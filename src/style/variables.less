@@ -1,0 +1,112 @@
+
+//== 颜色 Colors
+//-----------------------
+//## 对于颜色的全局使用
+
+@gray-base :           #000;
+@gray-darker :         lighten(@gray-base, 13.5%); // #222 增加一定数值的颜色亮度。
+@gray-dark :           lighten(@gray-base, 20%)  ; // #333
+@gray :                lighten(@gray-base, 33.5%); // #555
+@gray-light :          lighten(@gray-base, 46.7%); // #777
+@gray-lighter :        lighten(@gray-base, 93.5%); // #eee
+
+@brand-primary :       darken(#5CA2F4, 6.5%); // #337ab7  默认首选
+@brand-success :       #45BC01;     //成功
+@brand-info :          #00b0ff;     //一般信息
+@brand-warning :       #FFB12E;     //警告
+@brand-danger :        #FF4A60;     //危险
+
+
+@gray-light :          lighten(@gray-base, 46.7%); // #777
+@gray-lighter :        lighten(@gray-base, 93.5%); // #eee
+
+
+//== 组件 Components
+//-----------------------
+//## 定义普通填充和边框半径大小。基于部分文本 14px 和1.428 line-height（~ 20px开始）。
+
+@padding-base-vertical :    6px;
+@padding-base-horizontal :  12px;
+
+@padding-large-vertical :   10px;
+@padding-large-horizontal : 16px;
+
+@padding-small-vertical :   5px;
+@padding-small-horizontal : 10px;
+
+@padding-xs-vertical :      1px;
+@padding-xs-horizontal :    5px;
+
+@line-height-large :        1.3333333; // extra decimals for Win 8.1 Chrome
+@line-height-small :        1.5;
+
+@border-radius-base :       4px;
+@border-radius-large :      6px;
+@border-radius-small :      3px;
+
+
+
+//== 按钮 Buttons
+//-----------------------
+//## 对于每个RUI的按钮，定义文本、 背景和边框的颜色。
+
+@btn-font-weight :              300;
+
+@btn-default-color :            #333;
+@btn-default-bg :               #fff;
+@btn-default-border :           #ccc;
+
+
+@btn-default-color :            #333;
+@btn-default-bg :               #fff;
+@btn-default-border :           #ccc;
+
+@btn-primary-color :            #fff;
+@btn-primary-bg :               @brand-primary;
+@btn-primary-border :           darken(@btn-primary-bg, 5%); // 降低一定数值的颜色亮度。
+
+@btn-success-color :            #fff;
+@btn-success-bg :               @brand-success;
+@btn-success-border :           darken(@btn-success-bg, 5%);
+
+@btn-info-color :               #fff;
+@btn-info-bg :                  @brand-info;
+@btn-info-border :              darken(@btn-info-bg, 5%);
+
+@btn-warning-color :            #fff;
+@btn-warning-bg :               @brand-warning;
+@btn-warning-border :           darken(@btn-warning-bg, 5%);
+
+@btn-danger-color :             #fff;
+@btn-danger-bg :                @brand-danger;
+@btn-danger-border :            darken(@btn-danger-bg, 5%);
+
+@btn-link-disabled-color :      @gray-light;
+
+
+// 定义按钮的圆角大小
+@btn-border-radius-base :       @border-radius-base;
+@btn-border-radius-large :      @border-radius-large;
+@btn-border-radius-small :      @border-radius-small;
+
+// 鼠标禁止样式
+@cursor-disabled :               not-allowed;
+
+
+//== 版式 Typography
+//-----------------------
+//## Font, line-height, headings
+
+@font-family-sans-serif : "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-serif :      Georgia, "Times New Roman", Times, serif;
+//** 默认字体 for `<code>`, `<kbd>`, and `<pre>`.
+@font-family-monospace :  Menlo, Monaco, Consolas, "Courier New", monospace;
+@font-family-base :       @font-family-sans-serif;
+
+@font-size-base :         14px;
+@font-size-large :        ceil(@font-size-base * 1.25); // ~18px
+@font-size-small :        ceil(@font-size-base * 0.85); // ~12px
+
+
+//**  `line-height` 在组件 buttons 中使用。
+@line-height-base :       1.428571429; // 20/14

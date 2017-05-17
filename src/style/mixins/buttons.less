@@ -1,0 +1,51 @@
+.button-variant(@color, @background, @border){
+    color:@color;
+    background-color:@background;
+    border-color:@border;
+    &:focus,
+    &.focus{
+        color:@color;
+        background-color:darken(@background, 10%);
+        border-color:darken(@border, 25%);
+    }
+    &:hover{
+        color:@color;
+        background-color:darken(@background, 10%);
+        border-color:darken(@border, 12%);
+    }
+    &:active,
+    &.active{
+        color:@color;
+        background-color:darken(@background, 10%);
+        border-color:darken(@border, 12%);
+        background-image:none;
+    }
+
+    &.disabled,
+    &[disabled]{
+        &:hover,
+        &:focus,
+        &.focus,
+        &:active,
+        &.active{
+            background-color:@background;
+            border-color:@border;
+        }
+
+    }
+}
+// Button sizes
+.button-size(@padding-vertical, @padding-horizontal, @font-size, @line-height, @border-radius){
+    padding:@padding-vertical @padding-horizontal;
+    font-size:@font-size;
+    line-height:@line-height;
+    border-radius:@border-radius;
+}
+// WebKit-style focus
+.tab-focus(){
+    // Default
+    outline:thin dotted;
+    // WebKit
+    outline:5px auto -webkit-focus-ring-color;
+    outline-offset:-2px;
+}
