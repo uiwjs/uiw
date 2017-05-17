@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 export default class ButtonsGroup extends Component {
     static propTypes = {
-        /**
-         * Direction of Button Layout inside, Options: veritical, horizontal
-         */
-        direction: React.PropTypes.string
+        vertical: PropTypes.bool
     };
 
     static defaultProps = {
-        direction: 'vertical'
+        vertical: false
     };
 
     render() {
-        const {direction, children, className} = this.props;
+        const {vertical, children, className} = this.props;
         const cls = classNames({
             'w-btn-group': true,
-            'w-btn-group-inline': direction === 'horizontal',
+            'w-btn-group-vertical': vertical,
             [className]: className
         });
 
