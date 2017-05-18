@@ -16,32 +16,11 @@
         display: block;
     }
     > .w-alert-close-icon{
-        position: absolute;
-        width: @alert-close-icon-size;
-        height: @alert-close-icon-size;
-        top: @alert-close-icon-top;
-        right: @alert-close-icon-right;
-        cursor: pointer;
-        font-size: 12px;
-        transform: rotate(45deg);
-        color:@alert-close-icon-color;
-        &:before,&:after{
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
-            content: "";
-            pointer-events: none;
-            box-shadow: inset 0 0 0 32px;
-        }
-        &:before{
-            width: 10px;
-            height: 1px;
-        }
-        &:after{
-            width: 1px;
-            height: 10px;
-        }
+        width: @close-icon-size;
+        height: @close-icon-size;
+        top: @close-icon-top;
+        right: @close-icon-right;
+        .w-close-icon(@close-icon-color);
     }
 }
 

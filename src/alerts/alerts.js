@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import {IconClose} from '../svgs';
 
 export default class Alerts extends Component {
   static propTypes = {
@@ -9,6 +10,7 @@ export default class Alerts extends Component {
   };
   static defaultProps = {
     type: 'default',
+    prefixCls: "w-alert"
   }
   state = {
     visible:true
@@ -19,7 +21,7 @@ export default class Alerts extends Component {
     this.props.onClose()
   }
   render() {
-    const { type, message, onClose, prefixCls="w-alert", description, className, children, ...others } = this.props;
+    const { prefixCls, type, message, onClose, description, className, children, ...others } = this.props;
 
     const cls = classNames(prefixCls,{
         [`${prefixCls}-default`]: type === 'default',  //  默认样式
@@ -37,9 +39,7 @@ export default class Alerts extends Component {
         {description?<span className={`${prefixCls}-description`}>{description}</span>:null}
         {children}
         {onClose?(
-          <a onClick={this.handleClose.bind(this)} className={`${prefixCls}-close-icon`}>
-            
-          </a>
+          <a href="javascript:void(0)" onClick={this.handleClose.bind(this)} className={`${prefixCls}-close-icon`}>{IconClose}</a>
         ):null}
       </div>
     return (

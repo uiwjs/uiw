@@ -9,6 +9,7 @@ export default class Buttons extends Component {
     block: false,
     type: 'default',
     size: 'normal',
+    prefixCls: "w-btn",
   };
   static propTypes = {
     disabled: PropTypes.bool,
@@ -17,7 +18,7 @@ export default class Buttons extends Component {
     type: PropTypes.string,
   }
   render() {
-    const { prefixCls="w-btn", type, size, active, block, className, children, ...others } = this.props;
+    const { prefixCls, type, size, active, block, className, children, ...others } = this.props;
     const cls = classNames(prefixCls,{
         [`${prefixCls}-extra-small`]: size === 'extra-small', //（超小尺寸）Extra small button
         [`${prefixCls}-small`]: size === 'small',             //（小按钮）Small button

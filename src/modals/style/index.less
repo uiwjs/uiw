@@ -1,0 +1,88 @@
+
+.w-modal-wrap{
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    outline: 0;
+    bottom: 0;
+    z-index:@zindex-modal;
+    -webkit-overflow-scrolling:touch;
+}
+
+
+.w-modal-mask{
+    position: fixed;
+    top:0;
+    right:0;
+    left:0;
+    bottom: 0;
+    content: '';
+    background-color: @modal-mask-bg;
+    z-index:@zindex-modal-mask;
+
+}
+
+.w-modal-header{
+    padding: @modal-title-padding;
+    border-bottom:1px solid @modal-footer-border-color;
+    .w-modal-title{
+        font-weight: @modal-title-font-weight;
+        font-size: @font-size-base;
+    }
+    .w-modal-close-icon{
+        width: @close-icon-size;
+        height: @close-icon-size;
+        top: @close-icon-top;
+        right: @close-icon-right;
+        .w-close-icon(@close-icon-color);
+    }
+}
+
+.w-modal-footer{
+    padding: @modal-inner-padding;
+    border-top:1px solid @modal-footer-border-color;
+    text-align: right;
+    button+button{
+        margin-left: @modal-button-left;
+    }
+}
+
+.w-modal-body{
+    padding: @modal-body-padding;
+    font-size: @font-size-small;
+    line-height: 1.5;
+}
+.w-modal-content{
+    position: relative;
+    vertical-align: middle;
+    top: @modal-content-top;
+    text-align: left;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color:@modal-content-bg;
+    border-radius: @border-radius-large;
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    margin-bottom: 20px;
+}
+
+
+// 动画
+.w-modal-enter {
+  opacity: 0.01;
+}
+
+.w-modal-enter.w-modal-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.w-modal-leave {
+  opacity: 1;
+}
+
+.w-modal-leave.w-modal-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
