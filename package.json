@@ -1,0 +1,17 @@
+{
+  "name": "wui",
+  "version": "1.0.0",
+  "description": "wui - react ui kit.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "prop-types": "^15.5.8",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4"
+  },
+  "author": "",
+  "license": "ISC"
+}
