@@ -110,3 +110,72 @@
 
 //**  `line-height` 在组件 buttons 中使用。
 @line-height-base :       1.428571429; // 20/14
+
+@line-height-computed :   10px; // ~20px
+// @line-height-computed :   floor(@font-size-base * @line-height-base); // ~20px
+
+//== Alerts 状态 states  定义颜色
+
+// **默认状态颜色
+@state-default-text :           rgba(0,0,0,.85);
+@state-default-bg :             #fff;
+@state-default-border :         darken(spin(@state-default-bg, 0), 5%);
+
+// **默认状态颜色
+@state-primary-text :           #5CA2F4;
+@state-primary-bg :             #e8f6ff;
+@state-primary-border :         darken(spin(@state-primary-bg, 0), 5%);
+
+// **成功状态颜色
+@state-success-text :           #3c763d;
+@state-success-bg :             #dff0d8;
+@state-success-border :         darken(spin(@state-success-bg, 0), 5%);
+
+// **消息状态颜色
+@state-info-text :              #5CA2F4;
+@state-info-bg :                #d9edf7;
+@state-info-border :            darken(spin(@state-info-bg, -10), 7%);
+
+// **警告状态颜色
+@state-warn-text :              #8a6d3b;
+@state-warn-bg :                #fcf8e3;
+@state-warn-border :            darken(spin(@state-warn-bg, -10), 5%);
+
+// **危险状态颜色
+@state-error-text :             #a94442;
+@state-error-bg :               #f2dede;
+@state-error-border :           darken(spin(@state-error-bg, -10), 5%);
+
+// === Alert 警告框  
+@alert-padding :             10px;
+@alert-border-raduis: @border-radius-base;
+
+@alert-default-bg :          @state-default-bg;
+@alert-default-text :        @state-default-text;
+@alert-default-border :      @state-default-border;
+
+@alert-primary-bg :          @state-primary-bg;
+@alert-primary-text :        @state-primary-text;
+@alert-primary-border :      @state-primary-border;
+
+@alert-success-bg :          @state-success-bg;
+@alert-success-text :        @state-success-text;
+@alert-success-border :      @state-success-border;
+
+@alert-info-bg :             @state-info-bg;
+@alert-info-text :           @state-info-text;
+@alert-info-border :         @state-info-border;
+
+@alert-warn-bg :          @state-warn-bg;
+@alert-warn-text :        @state-warn-text;
+@alert-warn-border :      @state-warn-border;
+
+@alert-error-bg :           @state-error-bg;
+@alert-error-text :         @state-error-text;
+@alert-error-border :       @state-error-border;
+
+
+@alert-close-icon-size: 11px;
+@alert-close-icon-color: @state-default-text;
+@alert-close-icon-top: @alert-close-icon-size;
+@alert-close-icon-right: @alert-close-icon-size;

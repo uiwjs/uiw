@@ -1,0 +1,71 @@
+.w-alert{
+    position: relative;
+    padding: @alert-padding;
+    margin-bottom: @line-height-computed;
+    border: 1px solid transparent;
+    border-radius: @alert-border-raduis;
+    // border-radius: @alert-border-raduis;
+    .w-alert-message + .w-alert-description{
+        // font-size: 18px;
+    }
+    .w-alert-message + .w-alert-close-icon{
+        font-size: 12px;
+    }
+    .w-alert-message:first-child:not(:last-child){
+        font-size:18px;
+        display: block;
+    }
+    > .w-alert-close-icon{
+        position: absolute;
+        width: @alert-close-icon-size;
+        height: @alert-close-icon-size;
+        top: @alert-close-icon-top;
+        right: @alert-close-icon-right;
+        cursor: pointer;
+        font-size: 12px;
+        transform: rotate(45deg);
+        color:@alert-close-icon-color;
+        &:before,&:after{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            content: "";
+            pointer-events: none;
+            box-shadow: inset 0 0 0 32px;
+        }
+        &:before{
+            width: 10px;
+            height: 1px;
+        }
+        &:after{
+            width: 1px;
+            height: 10px;
+        }
+    }
+}
+
+.w-alert-default{
+    .alert-variant(@alert-default-bg, @alert-default-border, @alert-default-text)
+}
+
+.w-alert-primary{
+    .alert-variant(@alert-primary-bg, @alert-primary-border, @alert-primary-text)
+}
+   
+
+.w-alert-success{
+    .alert-variant(@alert-success-bg, @alert-success-border, @alert-success-text)
+}
+    
+.w-alert-warn{
+    .alert-variant(@alert-warn-bg, @alert-warn-border, @alert-warn-text)
+}
+ 
+.w-alert-info{
+    .alert-variant(@alert-info-bg, @alert-info-border, @alert-info-text)   
+}
+    
+.w-alert-error{
+    .alert-variant(@alert-error-bg, @alert-error-border, @alert-error-text)
+}
