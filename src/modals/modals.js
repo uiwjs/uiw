@@ -12,16 +12,18 @@ export default class Modal extends Component {
     visible:false,
   }
   static propTypes = {
-    visible:PropTypes.bool,
+    visible: PropTypes.bool,
+    title: PropTypes.node,
     onCancel: PropTypes.func,
-    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    width: PropTypes.oneOfType([
+      PropTypes.number, PropTypes.string
+    ]),
   }
   state = {
     visible:true
   }
   handleCancel = (e) => {
     const {onCancel} = this.props;
-    console.log("test",this.setState)
     this.setState({visible:false})
     onCancel && onCancel(e);
   }
@@ -31,8 +33,7 @@ export default class Modal extends Component {
     onOk && onOk(e);
   }
   render() {
-    const { prefixCls, footer, visible, children, onCancel, cancelText, okText, width, ...other} = this.props;
-    console.log("this.state.visible::",this.state.visible)
+    const { prefixCls, title, footer, visible, children, onCancel, cancelText, okText, width, ...other} = this.props;
     if(!visible) return null;
 
     const defaultFooter = !footer?(
@@ -58,7 +59,7 @@ export default class Modal extends Component {
           </div>
           <div className={`${prefixCls}-content`} style={{width:width,...other.style}}>
             <div className={`${prefixCls}-header`}>
-              <div className={`${prefixCls}-title`} id="rcDialogTitle9">Title</div>
+              <div className={`${prefixCls}-title`} id="rcDialogTitle9">{title}</div>
               <a onClick={this.handleCancel.bind(this)} className={`${prefixCls}-close-icon`}>{IconClose}</a>
             </div>
             <div className={`${prefixCls}-body`}>{children}</div>

@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export default class ButtonsGroup extends Component {
+export default class ModalsPlacement extends Component {
     static propTypes = {
         vertical: PropTypes.bool
     };
     static defaultProps = {
-        prefixCls: "w-btn",
+        prefixCls: "w-modal",
         vertical: false
     };
 
