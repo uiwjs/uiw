@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -42,7 +43,12 @@ export default class Alerts extends Component {
         ):null}
       </div>
     return (
-      alertsview
+        <CSSTransitionGroup
+          transitionName={prefixCls}
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+          {alertsview}
+        </CSSTransitionGroup>
     );
   }
 }
