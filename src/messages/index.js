@@ -20,7 +20,7 @@ function create (type) {
 
     msg.id = randomid()
     msg.content = content
-    msg.duration = msg.duration || 225;
+    msg.duration = msg.duration || 4;
     container.addMessage(msg)
   }
 }
