@@ -49,8 +49,6 @@ export default class Container extends Component {
     const {messages, currentId} = this.state;
     if(isEmpty(messages)) return DOM.noscript();
 
-    console.log("currentId:",currentId)
-    console.log("currentId:",messages[currentId])
     let cls = classNames(prefixCls);
     let _placement = messages[currentId].placement;
     if(_placement){
@@ -63,7 +61,6 @@ export default class Container extends Component {
         [`${prefixCls}-bottom-right`]: _placement  === 'bottomRight',    // 右边下角
       })
     }
-    console.log("cls::",cls,_placement)
     return (
       <div className={ cls }>
         {

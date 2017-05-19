@@ -9,7 +9,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "prop-types": "^15.5.8",
-    "prop-types": "^15.5.8",
+    "object-assign": "^4.1.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-transition-group": "^1.1.3"

@@ -31,6 +31,7 @@ export default class Buttons extends Component {
         [`${prefixCls}-info`]: type === 'info',               // （一般信息）Info
         [`${prefixCls}-warn`]: type === 'warn',               // （警告）Warning
         [`${prefixCls}-danger`]: type === 'danger',           // （危险）Danger
+        [`${prefixCls}-danger`]: type === 'error',           // （危险）Danger
 
         'disabled': this.props.disabled,    // 禁用状态
         'active': this.props.active,        // 激活状态

@@ -17,6 +17,28 @@
         width: 1%;
         vertical-align: middle;
     }
+    &.w-modals-confirm{
+        .w-modal-header{
+            display: none;
+        }
+        .w-modal-footer{
+            border:0;
+        }
+        .w-modal-content{
+            padding: @modal-confirm-content-padding;
+        }
+        svg {
+            float: left;
+        }
+        .w-modals-confirm-title{
+            padding-bottom: @line-height-computed ;
+            font-size: @font-size-base;
+            font-weight: @modal-title-font-weight;
+        }
+        .w-modals-confirm-title,.w-modals-confirm-content{
+            margin-left: @modal-confirm-body-margin-left;
+        }
+    }
 }
 
 

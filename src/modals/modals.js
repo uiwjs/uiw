@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Buttons from '../buttons';
 import {IconClose} from '../svgs';
 const ButtonsGroup = Buttons.Group;
@@ -33,7 +34,7 @@ export default class Modal extends Component {
     onOk && onOk(e);
   }
   render() {
-    const { prefixCls, title, footer, visible, children, onCancel, cancelText, okText, width, ...other} = this.props;
+    const { prefixCls, className, title, footer, visible, children, onCancel, cancelText, okText, width, ...other} = this.props;
     if(!visible) return null;
 
     const defaultFooter = !footer?(
@@ -47,6 +48,11 @@ export default class Modal extends Component {
       </ButtonsGroup>
     ):footer;
 
+    const cls = classNames(prefixCls,{
+      [`${prefixCls}-wrap`]: true,
+      [className]: className
+    });
+
     return (
       <CSSTransitionGroup
         transitionName={prefixCls}
@@ -54,7 +60,7 @@ export default class Modal extends Component {
         transitionAppearTimeout={3200}
         transitionEnter={false}
         transitionLeave={false}>
-        <div className={`${prefixCls}-wrap`}>
+        <div className={ cls }>
           <div className={`${prefixCls}-mask`} onClick={this.handleCancel}>
           </div>
           <div className={`${prefixCls}-content`} style={{width:width,...other.style}}>
