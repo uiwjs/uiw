@@ -39,16 +39,18 @@ export default function Container(config){
   }
 
   function okModals(...args){
-    if(!props.onOk) return closeModals("ok",...args);
-    let ret = props.onOk();
-    if (!ret) {
-      closeModals("ok",...args);
-    }
-    if(ret && ret.then){
-      ret.then((...args) => {
-        closeModals("ok",...args);
-      });
-    }
+    const { onOk } = props;
+    if(!onOk) return closeModals("ok",...args);
+
+    let ret;
+    if(onOk.length) ret = onOk(closeModals);
+      
+    ret = onOk();
+    if(!ret) closeModals();
+    
+    if(ret && ret.then) ret.then((...args) => {
+      closeModals(...args);
+    });
   }
   let footer = [];
   if (props.cancelText) {
@@ -70,6 +72,7 @@ export default function Container(config){
       <Modals 
         className={prefixCls}
         visible={true}
+        maskClosable={false}
         onOk={()=>{}}           // 点击确定提交按钮
         width={width}           // 有默认值可以不传递
         onCancel={closeModals}

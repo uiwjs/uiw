@@ -11,9 +11,11 @@ export default class Modal extends Component {
     prefixCls: "w-modal",
     width: 520,
     visible:false,
+    maskClosable: true,
   }
   static propTypes = {
     visible: PropTypes.bool,
+    maskClosable: PropTypes.bool,
     title: PropTypes.node,
     onCancel: PropTypes.func,
     width: PropTypes.oneOfType([
@@ -23,7 +25,9 @@ export default class Modal extends Component {
   state = {
     visible:true
   }
-  handleCancel = (e) => {
+  handleCancel = (ismask,e) => {
+    console.log("this.props.maskClosable:::",this.props.maskClosable)
+    if(ismask === "mask"&&!this.props.maskClosable) return;
     const {onCancel} = this.props;
     this.setState({visible:false})
     onCancel && onCancel(e);
@@ -61,7 +65,7 @@ export default class Modal extends Component {
         transitionEnter={false}
         transitionLeave={false}>
         <div className={ cls }>
-          <div className={`${prefixCls}-mask`} onClick={this.handleCancel}>
+          <div className={`${prefixCls}-mask`} onClick={this.handleCancel.bind(this,'mask')}>
           </div>
           <div className={`${prefixCls}-content`} style={{width:width,...other.style}}>
             <div className={`${prefixCls}-header`}>
