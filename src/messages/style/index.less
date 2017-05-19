@@ -16,3 +16,31 @@
     box-shadow: @box-shadow-x @box-shadow-y @box-shadow-blur @box-shadow-spread @box-shadow-bg;
   }
 }
+
+.w-messages-top{
+
+}
+.w-messages-bottom{
+  top: inherit;
+  bottom: @line-height-computed;
+}
+.w-messages-top-left{
+  text-align: left;
+  left: @line-height-computed;
+}
+.w-messages-top-right{
+  text-align: right;
+  right: @line-height-computed;
+}
+.w-messages-bottom-left{
+  top: inherit;
+  text-align: left;
+  bottom: @line-height-computed;
+  left: @line-height-computed;
+}
+.w-messages-bottom-right{
+  top: inherit;
+  text-align: right;
+  bottom: @line-height-computed;
+  right: @line-height-computed;
+}

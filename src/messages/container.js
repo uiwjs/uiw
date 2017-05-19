@@ -1,5 +1,6 @@
 import React, { Component, DOM } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Messages from './messages';
 
 
@@ -13,7 +14,11 @@ export function isEmpty (obj) {
 }
 
 export default class Container extends Component {
+  static propTypes = {
+    placement: PropTypes.string
+  }
   static defaultProps = {
+    placement: "top",
     prefixCls: "w-messages",
   };
   constructor (props) {
@@ -27,11 +32,10 @@ export default class Container extends Component {
     this.removeMessage = this.removeMessage.bind(this)
   }
 
-
   addMessage (msg) {
     let messages = this.state.messages
     messages[msg.id] = msg
-    this.setState({ messages })
+    this.setState({ messages , placement:msg.placement, currentId:msg.id})
   }
 
   removeMessage (id) {
@@ -41,12 +45,27 @@ export default class Container extends Component {
   }
 
   render () {
-    const { prefixCls } = this.props;
-    const messages = this.state.messages;
+    const { prefixCls, className } = this.props;
+    const {messages, currentId} = this.state;
     if(isEmpty(messages)) return DOM.noscript();
 
+    console.log("currentId:",currentId)
+    console.log("currentId:",messages[currentId])
+    let cls = classNames(prefixCls);
+    let _placement = messages[currentId].placement;
+    if(_placement){
+      cls = classNames(cls,{
+        [`${prefixCls}-top`]: _placement           === 'top',            // 默认顶部中间
+        [`${prefixCls}-bottom`]: _placement        === 'bottom',         // 底部中间
+        [`${prefixCls}-top-left`]: _placement      === 'topLeft',        // 左边上角
+        [`${prefixCls}-top-right`]: _placement     === 'topRight',       // 右边上角
+        [`${prefixCls}-bottom-left`]: _placement   === 'bottomLeft',     // 左边下角
+        [`${prefixCls}-bottom-right`]: _placement  === 'bottomRight',    // 右边下角
+      })
+    }
+    console.log("cls::",cls,_placement)
     return (
-      <div className={ prefixCls }>
+      <div className={ cls }>
         {
           Object.keys(messages).map((key) => <Messages key={key} {...messages[key]} onClose={this.removeMessage} />)
         }

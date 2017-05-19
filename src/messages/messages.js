@@ -29,10 +29,10 @@ export default class Messages extends Component {
     this.props.onClose(this.props.id)
   }
   render() {
-    const { content, type} = this.props;
-    const { duration } = this.state
+    const { content, type, className } = this.props;
+    const { duration } = this.state;
     return (
-      <Alerts type={type} onClose={duration <= 0 ? this.dismiss : undefined} >
+      <Alerts type={type} className={className} onClose={duration <= 0 ? this.dismiss : undefined} >
         {content}
       </Alerts>
     );
