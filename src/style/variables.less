@@ -44,6 +44,37 @@
 @border-radius-large :      6px;
 @border-radius-small :      3px;
 
+//== 版式 Typography
+//-----------------------
+//## Font, line-height, headings
+
+@font-family-sans-serif : "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-serif :      Georgia, "Times New Roman", Times, serif;
+//** 默认字体 for `<code>`, `<kbd>`, and `<pre>`.
+@font-family-monospace :  Menlo, Monaco, Consolas, "Courier New", monospace;
+@font-family-base :       @font-family-sans-serif;
+
+@font-size-base :         14px;
+@font-size-large :        ceil(@font-size-base * 1.25); // ~18px
+@font-size-small :        ceil(@font-size-base * 0.85); // ~12px
+
+
+//**  `line-height` 在组件 buttons 中使用。
+@line-height-base :       1.428571429; // 20/14
+@line-height-computed :   10px; // ~20px
+// @line-height-computed :   floor(@font-size-base * @line-height-base); // ~20px
+
+// z-index 层级
+@zindex-messages :         1010;
+@zindex-modal :            1050;
+@zindex-modal-mask :       -1;
+
+// 弹出层阴影样式
+@box-shadow-bg :            fade(@gray-base, 20%);
+@box-shadow-x :             0px;
+@box-shadow-y :             1px;
+@box-shadow-blur :          1px;
+@box-shadow-spread :        1px;
 
 
 //== 按钮 Buttons
@@ -92,27 +123,6 @@
 // 鼠标禁止样式
 @cursor-disabled :               not-allowed;
 
-
-//== 版式 Typography
-//-----------------------
-//## Font, line-height, headings
-
-@font-family-sans-serif : "Helvetica Neue", Helvetica, Arial, sans-serif;
-@font-family-serif :      Georgia, "Times New Roman", Times, serif;
-//** 默认字体 for `<code>`, `<kbd>`, and `<pre>`.
-@font-family-monospace :  Menlo, Monaco, Consolas, "Courier New", monospace;
-@font-family-base :       @font-family-sans-serif;
-
-@font-size-base :         14px;
-@font-size-large :        ceil(@font-size-base * 1.25); // ~18px
-@font-size-small :        ceil(@font-size-base * 0.85); // ~12px
-
-
-//**  `line-height` 在组件 buttons 中使用。
-@line-height-base :       1.428571429; // 20/14
-
-@line-height-computed :   10px; // ~20px
-// @line-height-computed :   floor(@font-size-base * @line-height-base); // ~20px
 
 //== Alerts 状态 states  定义颜色
 
@@ -180,10 +190,6 @@
 @close-icon-top:      @close-icon-size;
 @close-icon-right:    @close-icon-size;
 
-// z-index 层级
-@zindex-modal :            1050;
-@zindex-modal-mask :       -1;
-
 //== 弹出层 模态框 modal
 @modal-title-font-weight:    @btn-font-weight+100;
 @modal-inner-padding :       10px;
@@ -192,7 +198,9 @@
 @modal-body-padding:         @modal-inner-padding;     
 @modal-content-top:          @modal-inner-padding;     
 
-@modal-content-bg :         #fff;
-@modal-mask-bg :            rgba(0, 0, 0, 0.2);
-@modal-header-border-color: #e5e5e5;
-@modal-footer-border-color: @modal-header-border-color;
+@modal-content-bg :                    #fff;
+@modal-content-margin-bottom :         @line-height-computed;
+@modal-mask-bg :                       fade(@gray-base, 30%);
+@modal-header-border-color:            #e5e5e5;
+@modal-footer-border-color:            @modal-header-border-color;
+

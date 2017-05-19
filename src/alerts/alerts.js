@@ -35,12 +35,10 @@ export default class Alerts extends Component {
       });
 
     const alertsview = !this.state.visible ? null :<div { ...others } className={ cls }>
-        {message?<span className={!description?`${prefixCls}-description`:`${prefixCls}-message`}>{message}</span>:null}
-        {description?<span className={`${prefixCls}-description`}>{description}</span>:null}
+        {message&&<span className={!description?`${prefixCls}-description`:`${prefixCls}-message`}>{message}</span>}
+        {description&&<span className={`${prefixCls}-description`}>{description}</span>}
         {children}
-        {onClose?(
-          <a href="javascript:void(0)" onClick={this.handleClose.bind(this)} className={`${prefixCls}-close-icon`}>{IconClose}</a>
-        ):null}
+        {onClose&&<a href="javascript:void(0)" onClick={this.handleClose.bind(this)} className={`${prefixCls}-close-icon`}>{IconClose}</a>}
       </div>
     return (
         <CSSTransitionGroup

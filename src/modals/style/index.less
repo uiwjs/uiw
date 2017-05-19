@@ -60,7 +60,7 @@
 .w-modal-body{
     padding: @modal-body-padding;
     font-size: @font-size-small;
-    line-height: 1.5;
+    line-height: @line-height-small;
 }
 .w-modal-content{
     position: relative;
@@ -70,7 +70,7 @@
     overflow: hidden;
     background-color:@modal-content-bg;
     border-radius: @border-radius-large;
-    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    box-shadow: @box-shadow-x @box-shadow-y @box-shadow-blur @box-shadow-spread @box-shadow-bg;
     margin-bottom: 20px;
     vertical-align: middle;
     display: inline-block;

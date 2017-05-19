@@ -1,0 +1,18 @@
+.w-messages{
+  pointer-events: none;
+  text-align: center;
+  position: fixed;
+  font-size: @font-size-small ;
+  z-index: @zindex-messages;
+  width: 100%;
+  top: @line-height-computed;
+  > span {
+    display: block;
+  }
+  .w-alert{
+    display: inline-block;
+    padding: @padding-small-vertical @padding-small-horizontal;
+    border-width: 0;
+    box-shadow: @box-shadow-x @box-shadow-y @box-shadow-blur @box-shadow-spread @box-shadow-bg;
+  }
+}
