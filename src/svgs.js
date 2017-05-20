@@ -64,7 +64,6 @@ export {
   QuestionCircle,
   CheckmarkCircled,
   CloseCircled,
-  InformationCircled,
-  IconLoading
+  InformationCircled
 }
 
