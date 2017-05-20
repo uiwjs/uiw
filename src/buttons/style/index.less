@@ -48,15 +48,13 @@
     &.block + &.block{
         margin-top:8px;
     }
-    &.w-btn-loading{
-        svg{
-            animation:btnloading 2s linear infinite;
-            position:relative;
-            height: @btn-loading-height;
-            width: @btn-loading-width;
-            margin-right: @border-radius-base;
-            vertical-align: middle;
-        }
+    &.w-btn-loading svg{
+        animation:btnloading 2s linear infinite;
+        position:relative;
+        // height: @btn-loading-height;
+        // width: @btn-loading-width;
+        margin-right: @border-radius-base;
+        vertical-align: middle;
     }
 }
 @keyframes btnloading{0%{transform:rotate(0)}  50%{transform:rotate(180deg)} 100%{transform:rotate(360deg)}}
@@ -69,26 +67,31 @@
 }
 
 .w-btn-primary{
+    .button-loading(@btn-default-bg);
     .button-variant(@btn-primary-color, @btn-primary-bg, @btn-primary-bg);
 }
 
 // 成功将显示为绿色
 .w-btn-success{
+    .button-loading(@btn-default-bg);
     .button-variant(@btn-success-color, @btn-success-bg, @btn-success-bg);
 }
 
 // 信息显示为 蓝色
 .w-btn-info{
+    .button-loading(@btn-default-bg);
     .button-variant(@btn-info-color, @btn-info-bg, @btn-info-bg);
 }
 
 // 警告显示为橘黄色
 .w-btn-warn{
+    .button-loading(@btn-default-bg);
     .button-variant(@btn-warning-color, @btn-warning-bg, @btn-warning-bg);
 }
 
 // 危险显示为红色
 .w-btn-danger{
+    .button-loading(@btn-default-bg);
     .button-variant(@btn-danger-color, @btn-danger-bg, @btn-danger-bg);
 }
 

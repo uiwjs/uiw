@@ -39,12 +39,24 @@
 
     }
 }
+.button-loading(@bg-color){
+    &.w-btn-loading {
+        svg g,svg path{
+            stroke: @bg-color;
+            fill: @bg-color;
+        }
+    }
+}
 // Button sizes
 .button-size(@padding-vertical, @padding-horizontal, @font-size, @line-height, @border-radius){
     padding:@padding-vertical @padding-horizontal;
     font-size:@font-size;
     line-height:@line-height;
     border-radius:@border-radius;
+    svg {
+        width: @font-size;
+        height: @font-size;
+    }
 }
 // WebKit-style focus
 .tab-focus(){
