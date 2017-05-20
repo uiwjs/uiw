@@ -22,19 +22,23 @@ export default class Alerts extends Component {
     const dom = ReactDOM.findDOMNode(this);
     dom.parentNode.removeChild(dom);
   }
+  isPresetColor(color) {
+    return /^(white|pink|red|yellow|orange|cyan|green|blue|purple)?$/.test(color);
+  }
   render() {
     const { prefixCls, color, onClose, className, children, ...others } = this.props;
 
+    let colors = '';
+    switch(color){
+      case 'default': colors='white';break;
+      case 'error':   colors='red';break;
+      case 'warn':    colors='orange';break;
+      case 'success': colors='green';break;
+      case 'info':    colors='blue';break;
+      default:        colors = color;break;
+    }
     const cls = classNames(prefixCls,{
-        [`${prefixCls}-white`]:  (color === 'white')  || (color === 'default'),
-        [`${prefixCls}-red`]:    (color === 'red')    || (color === 'error'),
-        [`${prefixCls}-orange`]: (color === 'orange') || (color === 'warn'),
-        [`${prefixCls}-green`]:  (color === 'green')  || (color === 'success'),
-        [`${prefixCls}-blue`]:   (color === 'blue')   || (color === 'info'),
-        [`${prefixCls}-cyan`]:   (color === 'cyan'),
-        [`${prefixCls}-pink`]:   (color === 'pink'),
-        [`${prefixCls}-purple`]: (color === 'purple'),
-
+        [`${prefixCls}-${colors}`]: this.isPresetColor(colors),
         [className]: className
       });
 
