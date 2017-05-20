@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Container from './container';
 import { randomid } from '../utils/strings'
+import "./style/index.less";
 
 const div = document.createElement('div')
 document.body.appendChild(div)

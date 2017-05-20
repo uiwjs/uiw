@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./style/index.less";
 import Modals from './modals';
 import Container from './container';
 import assign from 'object-assign';

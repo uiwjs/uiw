@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { IconLoading } from '../svgs';
+import "./style/index.less";
 
 export default class Buttons extends Component {
   static defaultProps = {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import "./style/buttons-group.less";
 
 export default class ButtonsGroup extends Component {
     static propTypes = {
