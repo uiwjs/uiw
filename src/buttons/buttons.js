@@ -30,20 +30,15 @@ export default class Buttons extends Component {
       default:      types = type;  break;
     }
     const cls = classNames(prefixCls,{
-        [`${prefixCls}-extra-small`]: size === 'extra-small', //（超小尺寸）Extra small button
-        [`${prefixCls}-small`]: size === 'small',             //（小按钮）Small button
-        [`${prefixCls}-default`]: size === 'default',         //（默认尺寸）Default button
-        [`${prefixCls}-large`]: size === 'large',             //（大按钮）Large button
+        [`${prefixCls}-${size}`]:  /^(large|default|small|extra-small)?$/.test(size),
         [`${prefixCls}-${types}`]: /^(default|primary|success|info|warn|danger)?$/.test(type),
-        [`${prefixCls}-loading`]: loading,                    // 加载
-
+        [`${prefixCls}-loading`]: loading,  // 加载
         'disabled': disabled || loading,    // 禁用状态
-        'active': active,        // 激活状态
-        'block': block,          // （块级元素）Block level 
+        'active': active,                   // 激活状态
+        'block': block,                     // （块级元素）Block level 
 
         [className]: className
       });
-    console.log("type::",children,'-2:',type,'-3:',cls)
     return (
       <button { ...others } disabled={disabled || loading} className={ cls }>{loading&&IconLoading}{ children }</button>
     );

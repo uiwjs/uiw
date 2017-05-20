@@ -35,10 +35,9 @@ export default class Alerts extends Component {
       default:        colors = color;break;
     }
     const cls = classNames(prefixCls,{
-        [`${prefixCls}-${colors}`]: /^(white|pink|red|yellow|orange|cyan|green|blue|purple)?$/.test(color),
+        [`${prefixCls}-${colors}`]: /^(white|pink|red|yellow|orange|cyan|green|blue|purple)?$/.test(colors),
         [className]: className
       });
-
     return (
       <span className={cls}>{children} {onClose&&<i onClick={this.close}>{IconCloseSmall}</i>}</span>
     );
