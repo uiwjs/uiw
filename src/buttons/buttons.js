@@ -31,7 +31,7 @@ export default class Buttons extends Component {
     }
     const cls = classNames(prefixCls,{
         [`${prefixCls}-${size}`]:  /^(large|default|small|extra-small)?$/.test(size),
-        [`${prefixCls}-${types}`]: /^(default|primary|success|info|warn|danger)?$/.test(type),
+        [`${prefixCls}-${types}`]: /^(default|primary|success|info|warn|danger)?$/.test(types),
         [`${prefixCls}-loading`]: loading,  // 加载
         'disabled': disabled || loading,    // 禁用状态
         'active': active,                   // 激活状态
