@@ -27,7 +27,6 @@ export default function Container(config){
       props.onOk(...args)
     }
   }
-  console.log('---->',props.confirmLoading)
   let footer = [];
   if (props.cancelText) {
     footer.push(

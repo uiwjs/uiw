@@ -28,7 +28,6 @@ export default class Modal extends Component {
     visible:true
   }
   handleCancel = (ismask,e) => {
-    console.log("this.props.maskClosable:::",this.props.maskClosable)
     if(ismask === "mask"&&!this.props.maskClosable) return;
     const {onCancel} = this.props;
     this.setState({visible:false})

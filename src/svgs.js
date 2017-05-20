@@ -10,6 +10,15 @@ const IconClose = (
   </svg>
 )
 
+const IconCloseSmall = (
+<svg width="8px" height="6px" viewBox="0 0 8 6">
+  <g transform="translate(-319.000000, -6.000000)" stroke="#fff">
+    <path d="M320,6 L326,12" ></path>
+    <path d="M320,6 L326,12" transform="translate(323.000000, 9.000000) scale(-1, 1) translate(-323.000000, -9.000000)"></path>
+  </g>
+</svg>
+)
+
 const IconLoading = (
 
 <svg width="12px" height="12px" viewBox="0 0 17 16">
@@ -60,6 +69,7 @@ const CloseCircled = (
 
 export {
   IconClose,
+  IconCloseSmall,
   QuestionCircle,
   CheckmarkCircled,
   CloseCircled,
