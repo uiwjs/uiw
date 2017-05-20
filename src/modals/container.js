@@ -3,21 +3,11 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Modals from './modals';
-import Buttons from '../buttons';
-
-export function isEmpty (obj) {
-  if (obj === null || obj === undefined)     return true
-  if (typeof obj === 'number' && isNaN(obj)) return true
-  if (obj.length !== undefined)              return obj.length === 0
-  if (obj instanceof Date)                   return false
-  if (typeof obj === 'object')               return Object.keys(obj).length === 0
-  return false
-}
+import ActionButtons from './action-buttons';
 
 export default function Container(config){
-
   const props = config;
-  const {icon,title,content,width = 416,type = "success",prefixCls="w-modals-confirm"} = props;
+  const {icon,title,content,width = 416,confirmLoading, type = "success",prefixCls="w-modals-confirm"} = props;
 
   let div = document.createElement('div')
   document.body.appendChild(div)
@@ -37,36 +27,23 @@ export default function Container(config){
       props.onOk(...args)
     }
   }
-
-  function okModals(...args){
-    const { onOk } = props;
-    if(!onOk) return closeModals("ok",...args);
-
-    let ret;
-    if(onOk.length) ret = onOk(closeModals);
-      
-    ret = onOk();
-    if(!ret) closeModals();
-    
-    if(ret && ret.then) ret.then((...args) => {
-      closeModals(...args);
-    });
-  }
+  console.log('---->',props.confirmLoading)
   let footer = [];
   if (props.cancelText) {
     footer.push(
-      <Buttons key="cancel" size="small" onClick={closeModals.bind(this,'cancel')}>
+      <ActionButtons key="cancel" size="small" closeModals={closeModals} onOk={props.onOk} autoFocus>
         {props.cancelText}
-      </Buttons>
+      </ActionButtons>
     )
   } 
   if (props.okText) {
     footer.push(
-      <Buttons key="ok" type={type} size="small" onClick={okModals.bind(this,'ok')}>
+      <ActionButtons key="ok" type={type} size="small" closeModals={closeModals} onOk={props.onOk} autoFocus>
         {props.okText}
-      </Buttons>
+      </ActionButtons>
     )
   } 
+
   ReactDOM.render(
     <div>
       <Modals 
