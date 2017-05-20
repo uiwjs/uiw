@@ -43,9 +43,11 @@
     &.w-btn-loading&:before {
         width: @size;
         height: @size;
-        border:solid @bg-color-inverse 2px;
+        border:solid @bg-color-inverse 1px;
         border-radius: @size;
         border-top-color: @bg-color;
+        border-left-color: @bg-color;
+        // border-right-color: @bg-color;
     }
 }
 .button-size-loading(@top,@size){
@@ -55,9 +57,6 @@
         width: @size;
         height: @size;
         margin-right: 2px;
-        // border:solid @bg-color-inverse 2px;
-        // border-radius: @size;
-        // border-top-color: @bg-color;
     }
     
 }

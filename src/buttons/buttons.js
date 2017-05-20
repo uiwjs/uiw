@@ -39,7 +39,6 @@ export default class Buttons extends Component {
 
         [className]: className
       });
-    console.log(cls)
     return (
       <button { ...others } disabled={disabled || loading} className={ cls }>{ children }</button>
     );

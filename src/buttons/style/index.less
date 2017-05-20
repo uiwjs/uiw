@@ -51,11 +51,17 @@
         &:before{
             content: '';
             display: inline-block;
-            animation:btnloading 1s linear infinite;
+            animation:loading-rotate .6s linear infinite;
         }
     }
 }
-@keyframes btnloading{0%{transform:rotate(0)}  50%{transform:rotate(180deg)} 100%{transform:rotate(360deg)}}
+
+@keyframes loading-rotate {
+    to {
+        transform: rotate(1turn)
+    }
+}
+
 
 // 备用按钮样式
 // --------------------------------------------------
