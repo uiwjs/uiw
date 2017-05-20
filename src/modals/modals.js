@@ -12,10 +12,12 @@ export default class Modal extends Component {
     width: 520,
     visible:false,
     maskClosable: true,
+    confirmLoading:false
   }
   static propTypes = {
     visible: PropTypes.bool,
     maskClosable: PropTypes.bool,
+    confirmLoading: PropTypes.bool,
     title: PropTypes.node,
     onCancel: PropTypes.func,
     width: PropTypes.oneOfType([
@@ -38,7 +40,7 @@ export default class Modal extends Component {
     onOk && onOk(e);
   }
   render() {
-    const { prefixCls, className, title, footer, visible, children, onCancel, cancelText, okText, width, ...other} = this.props;
+    const { prefixCls, className, title, footer, visible, children, confirmLoading, onCancel, cancelText, okText, width, ...other} = this.props;
     if(!visible) return null;
 
     const defaultFooter = !footer?(
@@ -46,7 +48,7 @@ export default class Modal extends Component {
         <Buttons key="cancel" size="small" onClick={this.handleCancel}>
           {cancelText || '取消'}
         </Buttons>
-        <Buttons key="confirm" size="small" onClick={this.handleOk}>
+        <Buttons key="confirm" size="small" loading={confirmLoading} onClick={this.handleOk}>
           {okText || '确定'}
         </Buttons>
       </ButtonsGroup>
