@@ -47,13 +47,12 @@
     &.block + &.block{
         margin-top:8px;
     }
-    &.w-btn-loading svg{
-        animation:btnloading 2s linear infinite;
-        position:relative;
-        // height: @btn-loading-height;
-        // width: @btn-loading-width;
-        margin-right: @border-radius-base;
-        vertical-align: middle;
+    &.w-btn-loading{
+        &:before{
+            content: '';
+            display: inline-block;
+            animation:btnloading 1s linear infinite;
+        }
     }
 }
 @keyframes btnloading{0%{transform:rotate(0)}  50%{transform:rotate(180deg)} 100%{transform:rotate(360deg)}}
@@ -62,35 +61,36 @@
 // --------------------------------------------------
 
 .w-btn-default{
+    .button-loading(@btn-loading-small,@btn-default-border, transparent);
     .button-variant(@btn-default-color, @btn-default-bg, @btn-default-border);
 }
 
 .w-btn-primary{
-    .button-loading(@btn-default-bg);
+    .button-loading(@btn-loading-small,@btn-primary-color, transparent);
     .button-variant(@btn-primary-color, @btn-primary-bg, @btn-primary-bg);
 }
 
 // 成功将显示为绿色
 .w-btn-success{
-    .button-loading(@btn-default-bg);
+    .button-loading(@btn-loading-small,@btn-primary-color, transparent);
     .button-variant(@btn-success-color, @btn-success-bg, @btn-success-bg);
 }
 
 // 信息显示为 蓝色
 .w-btn-info{
-    .button-loading(@btn-default-bg);
+    .button-loading(@btn-loading-small,@btn-primary-color, transparent);
     .button-variant(@btn-info-color, @btn-info-bg, @btn-info-bg);
 }
 
 // 警告显示为橘黄色
 .w-btn-warn{
-    .button-loading(@btn-default-bg);
+    .button-loading(@btn-loading-small,@btn-primary-color, transparent);
     .button-variant(@btn-warning-color, @btn-warning-bg, @btn-warning-bg);
 }
 
 // 危险显示为红色
 .w-btn-danger{
-    .button-loading(@btn-default-bg);
+    .button-loading(@btn-loading-small,@btn-primary-color, transparent);
     .button-variant(@btn-danger-color, @btn-danger-bg, @btn-danger-bg);
 }
 
@@ -104,18 +104,22 @@
 // 'default',       //（默认尺寸）Default button
 // 'large',         //（大按钮）Large button
 
-.w-btn-extra-small{
+.w-btn-size-extra-small{
+    .button-size-loading(@btn-extra-small-top,@font-size-small);
     //（超小尺寸）Extra small button
     .button-size(@padding-xs-vertical, @padding-xs-horizontal, @font-size-small, @line-height-small, @btn-border-radius-small);
 }
-.w-btn-small{
+.w-btn-size-small{
+    .button-size-loading(@btn-extra-small-top,@font-size-small);
     //（小按钮）Small button
     .button-size(@padding-small-vertical, @padding-small-horizontal, @font-size-small, @line-height-small, @btn-border-radius-small);
 }
-.w-btn-default{
+.w-btn-size-default{
+    .button-size-loading(@btn-extra-small-top,@font-size-base);
     //（默认尺寸）Default button
 }
-.w-btn-large{
+.w-btn-size-large{
+    .button-size-loading(@btn-extra-small-top,@font-size-large);
     //（大按钮）Large button
     .button-size(@padding-large-vertical, @padding-large-horizontal, @font-size-large, @line-height-large, @btn-border-radius-large);
 }
