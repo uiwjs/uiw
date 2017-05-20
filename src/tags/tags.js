@@ -22,9 +22,6 @@ export default class Alerts extends Component {
     const dom = ReactDOM.findDOMNode(this);
     dom.parentNode.removeChild(dom);
   }
-  isPresetColor(color) {
-    return /^(white|pink|red|yellow|orange|cyan|green|blue|purple)?$/.test(color);
-  }
   render() {
     const { prefixCls, color, onClose, className, children, ...others } = this.props;
 
@@ -38,7 +35,7 @@ export default class Alerts extends Component {
       default:        colors = color;break;
     }
     const cls = classNames(prefixCls,{
-        [`${prefixCls}-${colors}`]: this.isPresetColor(colors),
+        [`${prefixCls}-${colors}`]: /^(white|pink|red|yellow|orange|cyan|green|blue|purple)?$/.test(color),
         [className]: className
       });
 
