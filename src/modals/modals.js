@@ -12,12 +12,13 @@ export default class Modal extends Component {
     width: 520,
     visible:false,
     maskClosable: true,
-    horizontal: PropTypes.string, // left || right
     confirmLoading:false
   }
   static propTypes = {
     visible: PropTypes.bool,
+    horizontal: PropTypes.string, // left || right
     maskClosable: PropTypes.bool,
+    styleMask: PropTypes.object,
     confirmLoading: PropTypes.bool,
     title: PropTypes.node,
     onCancel: PropTypes.func,
@@ -40,7 +41,7 @@ export default class Modal extends Component {
     onOk && onOk(e);
   }
   render() {
-    const { prefixCls, className, title, footer, visible, horizontal, children, confirmLoading, onCancel, cancelText, okText, width, ...other} = this.props;
+    const { prefixCls, className, title, footer, visible, horizontal, styleMask, children, confirmLoading, onCancel, cancelText, okText, width, ...other} = this.props;
     if(!visible) return null;
 
     const defaultFooter = !footer?(
@@ -69,7 +70,7 @@ export default class Modal extends Component {
         transitionEnter={false}
         transitionLeave={false}>
         <div className={ cls }>
-          <div className={`${prefixCls}-mask`} onClick={this.handleCancel.bind(this,'mask')}>
+          <div className={`${prefixCls}-mask`} style={styleMask} onClick={this.handleCancel.bind(this,'mask')}>
           </div>
           <div className={`${prefixCls}-content`} style={{width:width,...other.style}}>
             <div className={`${prefixCls}-header`}>
