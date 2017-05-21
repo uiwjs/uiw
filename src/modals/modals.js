@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+import Transition from '../transition'
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Buttons from '../buttons';
@@ -63,27 +63,21 @@ export default class Modal extends Component {
     });
 
     return (
-      <CSSTransitionGroup
-        transitionName={prefixCls}
-        transitionAppear={true}
-        transitionAppearTimeout={3200}
-        transitionEnter={false}
-        transitionLeave={false}>
-        <div className={ cls }>
-          <div className={`${prefixCls}-mask`} style={styleMask} onClick={this.handleCancel.bind(this,'mask')}>
+      <div className={ cls }>
+        <Transition>
+          <div className={`${prefixCls}-mask`} style={styleMask} onClick={this.handleCancel.bind(this,'mask')}></div>
+        </Transition>
+        <div className={`${prefixCls}-content`} style={{width:width,...other.style}}>
+          <div className={`${prefixCls}-header`}>
+            <div className={`${prefixCls}-title`} id="rcDialogTitle9">{title}</div>
+            <a onClick={this.handleCancel.bind(this)} className={`${prefixCls}-close-icon`}>{IconClose}</a>
           </div>
-          <div className={`${prefixCls}-content`} style={{width:width,...other.style}}>
-            <div className={`${prefixCls}-header`}>
-              <div className={`${prefixCls}-title`} id="rcDialogTitle9">{title}</div>
-              <a onClick={this.handleCancel.bind(this)} className={`${prefixCls}-close-icon`}>{IconClose}</a>
-            </div>
-            <div className={`${prefixCls}-body`}>{children}</div>
-            <div className={`${prefixCls}-footer`}>
-              {defaultFooter}
-            </div>
+          <div className={`${prefixCls}-body`}>{children}</div>
+          <div className={`${prefixCls}-footer`}>
+            {defaultFooter}
           </div>
         </div>
-      </CSSTransitionGroup>
+      </div>
     );
 
   }
