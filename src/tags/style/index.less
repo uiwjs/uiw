@@ -3,7 +3,7 @@
 
 .w-tags{
   display: inline;
-  padding: @tags-padding-top @tags-padding-horizontal @tags-padding-bottom;
+  padding: @tags-padding-top @tags-padding-right @tags-padding-bottom @tags-padding-horizontal;
   font-size: 75%;
   font-weight: 300;
   line-height: 1;
@@ -17,14 +17,13 @@
   svg{
     position: relative;
     top: -1px;
+    margin-right: 3px;
   }
 }
 
-
 .w-tags-white{
   color: @tags-white-color;
-  border: 1px solid #d2d2d2;
-  padding: @tags-padding-top-white @tags-padding-horizontal @tags-padding-bottom;
+  border: 1px solid @tags-white-border-color;
   background-color:@tags-white-bg;
   svg g {
     stroke: @tags-white-color;
