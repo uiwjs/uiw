@@ -52,7 +52,6 @@
     content: '';
     background-color: @modal-mask-bg;
     z-index:@zindex-modal-mask;
-
 }
 
 .w-modal-header{
@@ -97,6 +96,42 @@
     margin-bottom: 20px;
     vertical-align: middle;
     display: inline-block;
+}
+
+.w-modal-horizontal-left,.w-modal-horizontal-right{
+    .w-modal-content{
+        border-radius: 0;
+        top: 0;
+        bottom: 0;
+        float: right;
+        overflow: auto;
+        position: absolute;
+        margin-bottom: 0;
+    }
+    .w-modal-footer{
+        border-top: 0;
+        text-align: left;
+        padding-top: 0;
+    }
+}
+.w-modal-horizontal-right{
+    .w-modal-content{
+        right: 0;
+        // float: right;
+    }
+    .w-modal-body{
+        // height: 100%;
+    }
+}
+
+.w-modal-horizontal-left{
+    .w-modal-content{
+        left: 0;
+        // float: left;
+    }
+    .w-modal-body{
+        // height: 100%;
+    }
 }
 
 

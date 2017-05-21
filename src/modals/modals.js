@@ -12,6 +12,7 @@ export default class Modal extends Component {
     width: 520,
     visible:false,
     maskClosable: true,
+    horizontal: PropTypes.string, // left || right
     confirmLoading:false
   }
   static propTypes = {
@@ -39,7 +40,7 @@ export default class Modal extends Component {
     onOk && onOk(e);
   }
   render() {
-    const { prefixCls, className, title, footer, visible, children, confirmLoading, onCancel, cancelText, okText, width, ...other} = this.props;
+    const { prefixCls, className, title, footer, visible, horizontal, children, confirmLoading, onCancel, cancelText, okText, width, ...other} = this.props;
     if(!visible) return null;
 
     const defaultFooter = !footer?(
@@ -55,6 +56,8 @@ export default class Modal extends Component {
 
     const cls = classNames(prefixCls,{
       [`${prefixCls}-wrap`]: true,
+      [`${prefixCls}-horizontal-left`]: horizontal === 'left',
+      [`${prefixCls}-horizontal-right`]: horizontal === 'right',
       [className]: className
     });
 
