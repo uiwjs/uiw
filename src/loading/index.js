@@ -4,19 +4,7 @@ import PropTypes from 'prop-types';
 import "./style/index.less";
 
 export default class Loading extends Component{
-  static defaultProps = {
-    prefixCls: 'w-loading',
-    loading: true,
-    size: 'default'
-  };
-  static propTypes = {
-    prefixCls: PropTypes.string,
-    tip:PropTypes.string,
-    loading:PropTypes.bool,
-    size: PropTypes.string
-  }
   render(){
-
     const { prefixCls, className, size, children, tip, loading } = this.props;
     const icon_content = (<div className={`${prefixCls}-icon`}></div>)
     const loadingElm = (<div className={`${prefixCls}-tips-nested`}>{icon_content}{tip}</div>);
@@ -40,4 +28,16 @@ export default class Loading extends Component{
       </div>
     )
   }
+}
+
+Loading.defaultProps = {
+  prefixCls: 'w-loading',
+  loading: true,
+  size: 'default'
+};
+Loading.propTypes = {
+  prefixCls: PropTypes.string,
+  tip:PropTypes.string,
+  loading:PropTypes.bool,
+  size: PropTypes.string
 }

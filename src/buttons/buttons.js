@@ -4,22 +4,6 @@ import PropTypes from 'prop-types';
 import "./style/index.less";
 
 export default class Buttons extends Component {
-  static defaultProps = {
-    disabled: false,
-    active: false,
-    loading: false,
-    block: false,
-    type: 'default',
-    size: 'normal',
-    prefixCls: "w-btn",
-  };
-  static propTypes = {
-    loading: PropTypes.bool,
-    disabled: PropTypes.bool,
-    active: PropTypes.bool,
-    size: PropTypes.string,
-    type: PropTypes.string,
-  }
   render() {
     const { prefixCls, type, size, active, disabled, block, className, loading, children, ...others } = this.props;
 
@@ -43,4 +27,21 @@ export default class Buttons extends Component {
       <button { ...others } disabled={disabled || loading} className={ cls }>{ children }</button>
     );
   }
+}
+
+Buttons.defaultProps = {
+  disabled: false,
+  active: false,
+  loading: false,
+  block: false,
+  type: 'default',
+  size: 'normal',
+  prefixCls: "w-btn",
+};
+Buttons.propTypes = {
+  loading: PropTypes.bool,
+  disabled: PropTypes.bool,
+  active: PropTypes.bool,
+  size: PropTypes.string,
+  type: PropTypes.string,
 }

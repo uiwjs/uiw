@@ -6,15 +6,6 @@ import PropTypes from 'prop-types';
 import {IconCloseSmall} from '../svgs';
 
 export default class Alerts extends Component {
-  static propTypes = {
-    type: PropTypes.string,
-    color: PropTypes.string,
-    onClose: PropTypes.func,
-  };
-  static defaultProps = {
-    color: 'default',
-    prefixCls: "w-tags"
-  }
   close = (e) => {
     const onClose = this.props.onClose;
     if (onClose) onClose(e);
@@ -42,4 +33,14 @@ export default class Alerts extends Component {
       <span className={cls}>{children} {onClose&&<i onClick={this.close}>{IconCloseSmall}</i>}</span>
     );
   }
+}
+
+Alerts.propTypes = {
+  type: PropTypes.string,
+  color: PropTypes.string,
+  onClose: PropTypes.func,
+};
+Alerts.defaultProps = {
+  color: 'default',
+  prefixCls: "w-tags"
 }

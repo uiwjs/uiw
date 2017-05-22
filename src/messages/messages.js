@@ -3,19 +3,12 @@ import PropTypes from 'prop-types';
 import Alerts from '../alerts'
 
 export default class Messages extends Component {
-
-  static propTypes = {
-    content: PropTypes.node,
-    duration:PropTypes.number,
-    type: PropTypes.string
-  }
   constructor (props) {
     super(props)
     this.state = {
       duration: props.duration
     }
   }
-
   componentDidMount () {
     const { duration } = this.props
     if (duration > 0) {
@@ -35,4 +28,10 @@ export default class Messages extends Component {
       </Alerts>
     );
   }
+}
+
+Messages.propTypes = {
+  content: PropTypes.node,
+  duration:PropTypes.number, // 持续时间
+  type: PropTypes.string
 }

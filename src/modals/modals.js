@@ -7,25 +7,6 @@ import {IconClose} from '../svgs';
 const ButtonsGroup = Buttons.Group;
 
 export default class Modal extends Component {
-  static defaultProps = {
-    prefixCls: "w-modal",
-    width: 520,
-    visible:false,
-    maskClosable: true,
-    confirmLoading:false
-  }
-  static propTypes = {
-    visible: PropTypes.bool,
-    horizontal: PropTypes.string, // left || right
-    maskClosable: PropTypes.bool,
-    styleMask: PropTypes.object,
-    confirmLoading: PropTypes.bool,
-    title: PropTypes.node,
-    onCancel: PropTypes.func,
-    width: PropTypes.oneOfType([
-      PropTypes.number, PropTypes.string
-    ]),
-  }
   state = {
     leave:true,
     visible:false,
@@ -51,6 +32,7 @@ export default class Modal extends Component {
   render() {
     const { prefixCls,visible, className, title, footer, horizontal, styleMask, children, confirmLoading, onCancel, cancelText, okText, width, ...other} = this.props;
     const {leave} = this.state;
+    
     if(!visible) return null;
 
     const defaultFooter = !footer?(
@@ -99,4 +81,24 @@ export default class Modal extends Component {
     );
 
   }
+}
+
+Modal.defaultProps = {
+  prefixCls: "w-modal",
+  width: 520,
+  visible:false,
+  maskClosable: true,
+  confirmLoading:false
+}
+Modal.propTypes = {
+  visible: PropTypes.bool,
+  horizontal: PropTypes.string, // left || right
+  maskClosable: PropTypes.bool,
+  styleMask: PropTypes.object,
+  confirmLoading: PropTypes.bool,
+  title: PropTypes.node,
+  onCancel: PropTypes.func,
+  width: PropTypes.oneOfType([
+    PropTypes.number, PropTypes.string
+  ]),
 }

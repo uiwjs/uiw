@@ -6,13 +6,6 @@ import PropTypes from 'prop-types';
 import {IconClose} from '../svgs';
 
 export default class Alerts extends Component {
-  static propTypes = {
-    type: PropTypes.string,
-  };
-  static defaultProps = {
-    type: 'default',
-    prefixCls: "w-alert"
-  }
   state = {
     visible:true
   }
@@ -23,7 +16,6 @@ export default class Alerts extends Component {
   }
   render() {
     const { prefixCls, type, message, onClose, description, className, children, ...others } = this.props;
-
     const cls = classNames(prefixCls,{
         [`${prefixCls}-${type}`]: type ,
 
@@ -44,9 +36,17 @@ export default class Alerts extends Component {
         {onClose&&<a href="javascript:void(0)" onClick={this.handleClose.bind(this)} className={`${prefixCls}-close-icon`}>{IconClose}</a>}
       </div>
     return (
-        <Transition type="fade-in">
-          {alertsview}
-        </Transition>
+      <Transition type="fade-in">
+        {alertsview}
+      </Transition>
     );
   }
+}
+
+Alerts.propTypes = {
+  type: PropTypes.string,
+};
+Alerts.defaultProps = {
+  type: 'default',
+  prefixCls: "w-alert"
 }

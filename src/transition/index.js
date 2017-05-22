@@ -5,24 +5,6 @@ import classNames from 'classnames';
 import "./style/index.less";
 
 export default class Transition extends Component{
-  static defaultProps = {
-    prefixCls: "w-animate",
-    appear:true,
-    leave:true,
-    enter:true,
-    AppearTimeout:250,
-    LeaveTimeout:250,
-    EnterTimeout:500,
-  };
-  static propTypes = {
-    type: PropTypes.string,
-    appear: PropTypes.bool,
-    leave: PropTypes.bool,
-    enter: PropTypes.bool,
-    AppearTimeout: PropTypes.number,
-    LeaveTimeout: PropTypes.number,
-    EnterTimeout: PropTypes.number,
-  }
   isPresetAnimate(type){
     //https://daneden.github.io/animate.css/
     return /^(fade-in|fade-left|fade-right|fade-down|fade-up)?$/.test(type);
@@ -46,4 +28,23 @@ export default class Transition extends Component{
       </CSSTransitionGroup>
     )
   }
+}
+
+Transition.defaultProps = {
+  prefixCls: "w-animate",
+  appear:true,
+  leave:true,
+  enter:true,
+  AppearTimeout:250,
+  LeaveTimeout:250,
+  EnterTimeout:500,
+};
+Transition.propTypes = {
+  type: PropTypes.string,
+  appear: PropTypes.bool,
+  leave: PropTypes.bool,
+  enter: PropTypes.bool,
+  AppearTimeout: PropTypes.number,
+  LeaveTimeout: PropTypes.number,
+  EnterTimeout: PropTypes.number,
 }

@@ -14,13 +14,6 @@ export function isEmpty (obj) {
 }
 
 export default class Container extends Component {
-  static propTypes = {
-    placement: PropTypes.string
-  }
-  static defaultProps = {
-    placement: "top", // 位置
-    prefixCls: "w-messages",
-  };
   constructor (props) {
     super(props)
     this.state = {
@@ -61,3 +54,12 @@ export default class Container extends Component {
     )
   }
 }
+
+
+Container.propTypes = {
+  placement: PropTypes.string
+}
+Container.defaultProps = {
+  placement: "top", // 位置
+  prefixCls: "w-messages",
+};

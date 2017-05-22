@@ -4,14 +4,6 @@ import PropTypes from 'prop-types';
 import "./style/buttons-group.less";
 
 export default class ButtonsGroup extends Component {
-    static propTypes = {
-        vertical: PropTypes.bool
-    };
-    static defaultProps = {
-        prefixCls: "w-btn",
-        vertical: false
-    };
-
     render() {
         const { prefixCls, vertical, children, className} = this.props;
         const cls = classNames({
@@ -26,4 +18,12 @@ export default class ButtonsGroup extends Component {
             </div>
         );
     }
+};
+
+ButtonsGroup.propTypes = {
+    vertical: PropTypes.bool
+};
+ButtonsGroup.defaultProps = {
+    prefixCls: "w-btn",
+    vertical: false
 };
