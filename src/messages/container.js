@@ -18,30 +18,21 @@ export default class Container extends Component {
     placement: PropTypes.string
   }
   static defaultProps = {
-    placement: "top",
+    placement: "top", // 位置
     prefixCls: "w-messages",
   };
   constructor (props) {
     super(props)
-
     this.state = {
       messages: {}
     }
-
     this.addMessage = this.addMessage.bind(this)
-    this.removeMessage = this.removeMessage.bind(this)
   }
 
   addMessage (msg) {
     let messages = this.state.messages
     messages[msg.id] = msg
     this.setState({ messages , placement:msg.placement, currentId:msg.id})
-  }
-
-  removeMessage (id) {
-    let messages = this.state.messages
-    delete messages[id]
-    this.setState({ messages })
   }
 
   render () {
@@ -64,7 +55,7 @@ export default class Container extends Component {
     return (
       <div className={ cls }>
         {
-          Object.keys(messages).map((key) => <Messages key={key} {...messages[key]} onClose={this.removeMessage} />)
+          Object.keys(messages).map((key) => <Messages key={key} {...messages[key]}/>)
         }
       </div>
     )

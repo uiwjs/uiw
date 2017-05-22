@@ -17,9 +17,9 @@ export default class Alerts extends Component {
     visible:true
   }
   handleClose(e){
-    e.preventDefault();
+    e&&e.preventDefault();
     this.setState({visible:false})
-    this.props.onClose()
+    this.props&&this.props.onClose&&this.props.onClose()
   }
   render() {
     const { prefixCls, type, message, onClose, description, className, children, ...others } = this.props;

@@ -7,7 +7,6 @@ export default class Messages extends Component {
   static propTypes = {
     content: PropTypes.node,
     duration:PropTypes.number,
-    onClose: PropTypes.func,
     type: PropTypes.string
   }
   constructor (props) {
@@ -15,24 +14,23 @@ export default class Messages extends Component {
     this.state = {
       duration: props.duration
     }
-    this.dismiss = this.dismiss.bind(this)
   }
 
   componentDidMount () {
     const { duration } = this.props
     if (duration > 0) {
-      this.timeout = setTimeout(this.dismiss, duration * 1000)
+      this.timeout = setTimeout(this.dismiss.bind(this), duration * 1000)
     }
   }
 
   dismiss () {
-    this.props.onClose(this.props.id)
+    this.refs.alerts.handleClose()
   }
   render() {
     const { content, type, className } = this.props;
     const { duration } = this.state;
     return (
-      <Alerts type={type} className={className} onClose={duration <= 0 ? this.dismiss : undefined} >
+      <Alerts ref="alerts" type={type} className={className} >
         {content}
       </Alerts>
     );
