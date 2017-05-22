@@ -27,13 +27,21 @@ export default class Modal extends Component {
     ]),
   }
   state = {
-    visible:true
+    leave:true,
+    visible:false,
   }
   handleCancel = (ismask,e) => {
+    // 禁止遮罩层关闭
     if(ismask === "mask"&&!this.props.maskClosable) return;
     const {onCancel} = this.props;
-    this.setState({visible:false})
-    onCancel && onCancel(e);
+    this.setState({leave:false})
+    setTimeout(()=>{
+      this.setState({
+        visible:false,
+        leave:true
+      })
+      onCancel && onCancel(e);
+    },250)
   }
 
   handleOk = (e) => {
@@ -41,7 +49,8 @@ export default class Modal extends Component {
     onOk && onOk(e);
   }
   render() {
-    const { prefixCls, className, title, footer, visible, horizontal, styleMask, children, confirmLoading, onCancel, cancelText, okText, width, ...other} = this.props;
+    const { prefixCls,visible, className, title, footer, horizontal, styleMask, children, confirmLoading, onCancel, cancelText, okText, width, ...other} = this.props;
+    const {leave} = this.state;
     if(!visible) return null;
 
     const defaultFooter = !footer?(
@@ -72,10 +81,10 @@ export default class Modal extends Component {
     return (
       <div className={ cls }>
         <Transition type="fade-in">
-          <div className={`${prefixCls}-mask`} style={styleMask} onClick={this.handleCancel.bind(this,'mask')}></div>
+          {leave&&<div className={`${prefixCls}-mask`} style={styleMask} onClick={this.handleCancel.bind(this,'mask')}></div>}
         </Transition>
         <Transition type={AnimateType}>
-          <div className={`${prefixCls}-content`} style={{width:width,...other.style}}>
+          {leave&&<div className={`${prefixCls}-content`} style={{width:width,...other.style}}>
             <div className={`${prefixCls}-header`}>
               <div className={`${prefixCls}-title`} id="rcDialogTitle9">{title}</div>
               <a onClick={this.handleCancel.bind(this)} className={`${prefixCls}-close-icon`}>{IconClose}</a>
@@ -84,7 +93,7 @@ export default class Modal extends Component {
             <div className={`${prefixCls}-footer`}>
               {defaultFooter}
             </div>
-          </div>
+          </div>}
         </Transition>
       </div>
     );

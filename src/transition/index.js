@@ -12,7 +12,7 @@ export default class Transition extends Component{
     enter:true,
     AppearTimeout:250,
     LeaveTimeout:250,
-    EnterTimeout:1500,
+    EnterTimeout:500,
   };
   static propTypes = {
     type: PropTypes.string,

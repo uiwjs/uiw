@@ -44,7 +44,6 @@ export default function Container(config){
   } 
 
   ReactDOM.render(
-    <div>
       <Modals 
         className={prefixCls}
         visible={true}
@@ -61,9 +60,7 @@ export default function Container(config){
         <div className={`${prefixCls}-content`}>
         {content}
         </div>
-      </Modals>
-
-    </div>, 
+      </Modals>, 
     div
   )
 
