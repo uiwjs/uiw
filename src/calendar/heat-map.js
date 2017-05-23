@@ -67,7 +67,7 @@ export default class HeatMap extends Component {
     return curdt
   }
   render() {
-    const { prefixCls, weekLables, monthLables, panelColors, endDate, onClick, className} = this.props;
+    const { prefixCls, weekLables, monthLables, panelColors, endDate, onClick, onMouseOver, className} = this.props;
     let { days } = this.state;
     const cls = classNames(prefixCls,{
       [className]: className
@@ -95,7 +95,8 @@ export default class HeatMap extends Component {
         key={i} fill={curdt.color} 
         x={col + xl} 
         y={yl}
-        onClick={(e)=>onClick(e,curdatestr,curdt)} 
+        onClick={(e)=>onClick(e,curdatestr,curdt)}
+        onMouseOver={(e)=>onMouseOver(e,curdatestr,curdt)}
         width={width} height={height}></rect>);
       // 周标题
       if(Object.keys(weekLables).indexOf(i.toString()) > -1 && i < 7){
@@ -134,6 +135,7 @@ HeatMap.propTypes = {
   monthLables:PropTypes.array,
   values:PropTypes.array,
   onClick:PropTypes.func,
+  onMouseOver:PropTypes.func,
   days:PropTypes.number,
   endDate:PropTypes.object,
   panelColors:PropTypes.object,
@@ -144,6 +146,7 @@ HeatMap.defaultProps = {
   values:[],
   days:365,
   onClick:value => (value),
+  onMouseOver:value => (value),
   endDate:new Date(),
   // 默认选填选项  周标签显示
   weekLables: {1:'M', 3:'W', 5:'F'},
