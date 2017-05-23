@@ -22,7 +22,11 @@ export default class HeatMap extends Component {
     keys = this.numberSort(keys);
     // 判断使用什么颜色
     for(let a =0;a < keys.length;a++){
-      if(keys[a]>num) break;
+      if(num ==41){console.log("keys[a]::",keys[a],num)}
+      if(keys[a]>num) {
+        color = panelColors[keys[a]];
+        break;
+      }
       color = panelColors[keys[a]];
     }
     return color;
@@ -47,7 +51,7 @@ export default class HeatMap extends Component {
     return curdt
   }
   render() {
-    const { prefixCls, days, weekLables, monthLables, endDate, className} = this.props;
+    const { prefixCls, days, weekLables, monthLables, endDate, onClick, className} = this.props;
     const cls = classNames(prefixCls,{
       [className]: className
     });
@@ -72,9 +76,7 @@ export default class HeatMap extends Component {
         key={i} fill={curdt.color} 
         x={col + xl} 
         y={yl}
-        onClick={()=>{
-          console.log(curdatestr,curdt)
-        }} 
+        onClick={(e)=>onClick(e,curdatestr,curdt)} 
         width={width} height={height}></rect>);
       // 周标题
       if(Object.keys(weekLables).indexOf(i.toString()) > -1 && i < 7){
@@ -104,6 +106,7 @@ HeatMap.propTypes = {
   weekLables:PropTypes.object,
   monthLables:PropTypes.array,
   values:PropTypes.array,
+  onClick:PropTypes.func,
   days:PropTypes.number,
   endDate:PropTypes.object,
   panelColors:PropTypes.object,
@@ -113,6 +116,7 @@ HeatMap.defaultProps = {
   prefixCls: "w-heatmap",
   values:[],
   days:365,
+  onClick:value => (value),
   endDate:new Date(),
   // 默认选填选项  周标签显示
   weekLables: {1:'M', 3:'W', 5:'F'},
