@@ -1,3 +1,6 @@
+@import "../../style/variables.less";
+@import "../../style/mixins/index.less";
+
 .w-heatmap{
   user-select: none;
   rect{
@@ -5,16 +8,16 @@
     transition: all .3s ease-in;
   }
   rect:hover {
-    stroke: rgba(0, 0, 0, 0.34);
-    stroke-width: 1px;
+    stroke: @calendar-heatmap-stroke-bg;
+    stroke-width: @calendar-heatmap-stroke-width;
   }
   rect:active {
-    fill:#196127;
+    fill:@calendar-heatmap-fill;
   }
   .w-heatmap-week,.w-heatmap-month{
     text {
-      font-size: 12px;
-      fill: #959494;
+      font-size: @font-size-small;
+      fill: @calendar-heatmap-fill-text;
       text-anchor: middle;
     }
   }
