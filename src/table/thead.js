@@ -3,56 +3,77 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 
-let num = 1;
-
+let rowSpanNum = 0;
 export default class Thead extends Component{
+  /**
+   * [getRowSpan 获取行跨度数]
+   * @param  {[type]} columns [某列的总数据]
+   * @param  {[type]} subnum  [累计行跨度数]
+   * @return {[type]}         [返回最终行跨度数]
+   */
   getRowSpan(columns,subnum){
-    for(let i=0;i< columns.length;i++){
-      if(columns[i].children){
-        num += 1;
-        // num = this.getRowSpan(columns[i].children,num+1)
-        // console.log("===:",subnum,'-',num)
-        // console.log("--->",num,num+1)
+    let num = (subnum&&subnum.num)? subnum.num : 1;
+    for(let i=0;i < columns.length;i++){
+      if(columns[i].children&&columns[i].children.length>0){
+        let curnum = this.getRowSpan(columns[i].children,{num:num+1});
+        if(rowSpanNum < curnum.num) rowSpanNum = curnum.num;
       }
     }
-    console.log("===:",num)
+    return {num,rowSpanNum};
+  }
+  /**
+   * [getColSpan 获取列跨度数]
+   * @param  {[type]} columns [某列的总数]
+   * @param  {Number} num     [累计列跨度数]
+   * @return {[type]}         [返回最终列的跨度数]
+   */
+  getColSpan(columns,num = 0){
+    for(let i=0;i< columns.length;i++){
+      num +=1
+      if(columns[i].children&&columns[i].children.length>0){
+        num -= 1;
+        num = this.getColSpan(columns[i].children,num)
+      }
+    }
     return num;
   }
-  renderHead(columns,rowSpan){
-    let subitem = [],items=[];
-    for(let i =0;i< columns.length;i++){
-      subitem.push(<th rowSpan="3">1</th>)
+  /**
+   * [renderHead 返回tr节点]
+   * @param  {[type]} columns [列的总数据]
+   * @param  {[type]} spanNum [行跨度数]
+   * @param  {[type]} headelm [返回累计tr标签]
+   * @return {[type]}         [返回最终累计tr总标签]
+   */
+  renderHead(columns,spanNum,childrens=[],level=0,headelm=[]){
+    let subitem = [];
+    for(let i =0; i< columns.length;i++){
+      let attr = {}
+      if(columns[i]){
+        let attr = {}
+        if(columns[i].children&&columns[i].children.length>0){
+          attr.colSpan = this.getColSpan(columns[i].children);
+          childrens = childrens.concat(columns[i].children)
+        }else {
+          attr.rowSpan = spanNum;
+        }
+        subitem.push(<th key={i} {...attr}>{columns[i].title}</th>);
+      }
     }
-
+    headelm.push(<tr key={`level${level}`}>{subitem}</tr>);
+    if(childrens.length>0){
+      this.renderHead(childrens,spanNum-1,[],level+1,headelm);
+    }
+    return headelm;
   }
   render(){
     const { prefixCls, className, columns } = this.props;
-    console.log("columns:",columns)
-    let rowSpan=this.getRowSpan(columns)
-    console.log("rowSpan::",rowSpan)
-    
+    // 计算层级
+    let rowLevel = this.getRowSpan(columns);
     return(
       <thead>
-        {this.renderHead.bind(this)(columns,rowSpan)}
+        {this.renderHead.bind(this)(columns,rowLevel.rowSpanNum)}
       </thead>
     )
-    
-    // return(
-    //   <thead>
-    //     <tr>
-    //       <th rowSpan="3">1</th>
-    //       <th colSpan="2">2</th>
-    //     </tr>
-    //     <tr>
-    //       <th colSpan="2">1</th>
-    //       <th rowSpan="3">2</th>
-    //     </tr>
-    //     <tr>
-    //       <th >1</th>
-    //       <th >2</th>
-    //     </tr>
-    //   </thead>
-    // )
   }
 }
 
