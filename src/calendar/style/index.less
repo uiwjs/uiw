@@ -1,16 +1,14 @@
 .w-heatmap{
   user-select: none;
-  // overflow: hidden;
-  // overflow: auto;
   rect{
     cursor: pointer;
+    transition: all .3s ease-in;
   }
   rect:hover {
-    stroke: #616161;
+    stroke: rgba(0, 0, 0, 0.34);
     stroke-width: 1px;
   }
   rect:active {
-    stroke:#196127;
     fill:#196127;
   }
   .w-heatmap-week,.w-heatmap-month{

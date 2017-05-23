@@ -10,15 +10,14 @@ export default class HeatMap extends Component {
   }
   componentDidMount() {
     // 根据宽度来生成多少天的图形
-    const {endDate} = this.props;
+    const {endDate,days} = this.props;
     const $this = ReactDOM.findDOMNode(this);
     const width = $this.parentNode.offsetWidth
     const col = parseInt(width/16)
-    const days = col*7 -14;
+    const daycount = col*7 -14;
     let timestamp = endDate.getTime();
-
-    this.setState({
-      days:days
+    !days&&this.setState({
+      days:daycount
     })
   }
   numberSort(keys){// 排序 比较函数
@@ -92,6 +91,7 @@ export default class HeatMap extends Component {
       let curdt = this.isCurrentData(curdatestr);
       // 日方块
       rectdays.push(<rect 
+        data-date={curdatestr}
         key={i} fill={curdt.color} 
         x={col + xl} 
         y={yl}
@@ -104,7 +104,7 @@ export default class HeatMap extends Component {
       }
       // 月标题
       if(parseInt(curdate.getDate())==1){
-        rectMonth.push(<text key={i} x={xl}> {monthLables[parseInt(curdate.getMonth())]} </text>)
+        rectMonth.push(<text key={i} x={xl+12}> {monthLables[parseInt(curdate.getMonth())]} </text>)
       }
     }
     // 颜色说明栏
@@ -144,7 +144,6 @@ HeatMap.propTypes = {
 HeatMap.defaultProps = {
   prefixCls: "w-heatmap",
   values:[],
-  days:365,
   onClick:value => (value),
   onMouseOver:value => (value),
   endDate:new Date(),
