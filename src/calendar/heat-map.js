@@ -22,7 +22,6 @@ export default class HeatMap extends Component {
     keys = this.numberSort(keys);
     // 判断使用什么颜色
     for(let a =0;a < keys.length;a++){
-      if(num ==41){console.log("keys[a]::",keys[a],num)}
       if(keys[a]>num) {
         color = panelColors[keys[a]];
         break;
@@ -51,7 +50,7 @@ export default class HeatMap extends Component {
     return curdt
   }
   render() {
-    const { prefixCls, days, weekLables, monthLables, endDate, onClick, className} = this.props;
+    const { prefixCls, days, weekLables, monthLables, panelColors, endDate, onClick, className} = this.props;
     const cls = classNames(prefixCls,{
       [className]: className
     });
@@ -63,7 +62,7 @@ export default class HeatMap extends Component {
     }
     dayDate=this.numberSort(dayDate);
     // 日历
-    var rectdays = [], rectweeks=[], rectMonth=[],col=16;
+    var rectdays = [], rectweeks=[], rectMonth=[], rectPanelColors=[], col=16;
     for (var i = 0; i < days; i++) {
       let xl = parseInt(i/7) * col;
       let yl = 17 + parseInt(i%7) * col;
@@ -87,15 +86,23 @@ export default class HeatMap extends Component {
         rectMonth.push(<text key={i} x={xl}> {monthLables[parseInt(curdate.getMonth())]} </text>)
       }
     }
+    let nums = Object.keys(panelColors);
+    for(let i=0;i< nums.length;i++){
+      let xl = i * col;
+      rectPanelColors.push(<rect key={i}  width={width} height={height} x={xl} y="0" fill={panelColors[nums[i]]}></rect>)
+    }
 
     return (
-      <svg className={ cls } width="900px" height="135px">
+      <svg className={ cls } width="900px" height="160px">
         <g className={ `${prefixCls}-week` } transform="translate(0, 10)">
           {rectweeks}
         </g>
         {rectdays}
         <g className={ `${prefixCls}-month` } transform={`translate(${col}, 10)`}>
           {rectMonth}
+        </g>
+        <g transform="translate(16, 135)">
+          {rectPanelColors}
         </g>
       </svg>
     );
