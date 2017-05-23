@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import "./style/index.less";
 
 export default class HeatMap extends Component {
+  state = {
+    days:this.props.days
+  }
+  componentDidMount() {
+    // 根据宽度来生成多少天的图形
+    const {endDate} = this.props;
+    const $this = ReactDOM.findDOMNode(this);
+    const width = $this.parentNode.offsetWidth
+    const col = parseInt(width/16)
+    const days = col*7 -14;
+    let timestamp = endDate.getTime();
+
+    this.setState({
+      days:days
+    })
+  }
   numberSort(keys){// 排序 比较函数
     return keys.sort( (x, y) => {//比较函数
         if (x < y) return -1;
@@ -50,13 +67,17 @@ export default class HeatMap extends Component {
     return curdt
   }
   render() {
-    const { prefixCls, days, weekLables, monthLables, panelColors, endDate, onClick, className} = this.props;
+    const { prefixCls, weekLables, monthLables, panelColors, endDate, onClick, className} = this.props;
+    let { days } = this.state;
     const cls = classNames(prefixCls,{
       [className]: className
     });
 
     let width=14, height=14, dayDate=[], oneday=86400000;
     let timestamp = endDate.getTime();
+    let curweek = new Date(timestamp).getDay();
+    days = days+curweek+1;
+
     for (var i = 0; i < days; i++) {
       dayDate.push(timestamp - (oneday*i));
     }
@@ -92,7 +113,7 @@ export default class HeatMap extends Component {
       rectPanelColors.push(<rect key={i}  width={width} height={height} x={xl} y="0" fill={panelColors[nums[i]]}></rect>)
     }
     return (
-      <svg className={ cls } width={`${parseInt(i/7) * col + parseInt(i/7) -16}px`} height="155px">
+      <svg className={ cls } width={`100%`} height="155px">
         <g className={ `${prefixCls}-week` } transform="translate(0, 10)">
           {rectweeks}
         </g>
