@@ -65,13 +65,12 @@ export default class HeatMap extends Component {
     var rectdays = [], rectweeks=[], rectMonth=[], rectPanelColors=[], col=16;
     for (var i = 0; i < days; i++) {
       let xl = parseInt(i/7) * col;
-      let yl = 17 + parseInt(i%7) * col;
+      let yl = 21 + parseInt(i%7) * col;
       let curdate = new Date(dayDate[i]);
       let curdatestr = `${curdate.getFullYear()}-${curdate.getMonth()+1}-${curdate.getDate()}`;
       let curdt = this.isCurrentData(curdatestr);
       // 日方块
       rectdays.push(<rect 
-        data-date={curdatestr}
         key={i} fill={curdt.color} 
         x={col + xl} 
         y={yl}
@@ -86,24 +85,24 @@ export default class HeatMap extends Component {
         rectMonth.push(<text key={i} x={xl}> {monthLables[parseInt(curdate.getMonth())]} </text>)
       }
     }
+    // 颜色说明栏
     let nums = Object.keys(panelColors);
     for(let i=0;i< nums.length;i++){
       let xl = i * col;
       rectPanelColors.push(<rect key={i}  width={width} height={height} x={xl} y="0" fill={panelColors[nums[i]]}></rect>)
     }
-
     return (
-      <svg className={ cls } width="900px" height="160px">
+      <svg className={ cls } width={`${parseInt(i/7) * col + parseInt(i/7) -16}px`} height="155px">
         <g className={ `${prefixCls}-week` } transform="translate(0, 10)">
           {rectweeks}
         </g>
-        {rectdays}
-        <g className={ `${prefixCls}-month` } transform={`translate(${col}, 10)`}>
+        <g className={ `${prefixCls}-month` } transform={`translate(${col}, 14)`}>
           {rectMonth}
         </g>
-        <g transform="translate(16, 135)">
+        <g transform="translate(16, 138)">
           {rectPanelColors}
         </g>
+        {rectdays}
       </svg>
     );
   }
