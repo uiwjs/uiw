@@ -5,6 +5,21 @@ import PropTypes from 'prop-types';
 
 let rowSpanNum = 0;
 export default class Thead extends Component{
+  state={
+    render:{},
+    renderHead:[]
+  }
+  componentDidMount(){
+    const { columns } = this.props;
+    // 计算层级
+    let rowLevel = this.getRowSpan(columns);
+    this.setState({
+      renderHead:this.renderHead.bind(this)(columns,rowLevel.rowSpanNum)
+    })
+  }
+  getRender(key){
+    return this.state.render[key];
+  }
   /**
    * [getRowSpan 获取行跨度数]
    * @param  {[type]} columns [某列的总数据]
@@ -54,6 +69,11 @@ export default class Thead extends Component{
           attr.colSpan = this.getColSpan(columns[i].children);
           childrens = childrens.concat(columns[i].children)
         }else {
+          if(columns[i].render&&columns[i].key){
+            const { render } = this.state;
+            render[columns[i].key] = columns[i].render;
+            this.setState({render:[...render]});
+          }
           attr.rowSpan = spanNum;
         }
         subitem.push(<th key={i} {...attr}>{columns[i].title}</th>);
@@ -66,12 +86,11 @@ export default class Thead extends Component{
     return headelm;
   }
   render(){
-    const { prefixCls, className, columns } = this.props;
-    // 计算层级
-    let rowLevel = this.getRowSpan(columns);
+    const { prefixCls, className } = this.props;
+    console.log("::",this.state.render)
     return(
       <thead>
-        {this.renderHead.bind(this)(columns,rowLevel.rowSpanNum)}
+        {this.state.renderHead}
       </thead>
     )
   }
