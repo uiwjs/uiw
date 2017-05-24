@@ -15,11 +15,12 @@ export default class Chackbox extends Component{
   }
   handleChange(e){
     const {onChange} = this.props;
+    let checked = !this.state.checked
     this.setState({
-      checked:!this.state.checked,
+      checked:checked,
       indeterminate:false
     });
-    onChange(e);
+    onChange(e,checked);
   }
   render(){
     const { prefixCls, className, children, disabled} = this.props;
