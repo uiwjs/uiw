@@ -44,6 +44,9 @@
         th:first-child{
           border-radius: @border-radius-base 0 0 0;
         }
+        th:last-child{
+          border-radius: 0 @border-radius-base 0 0;
+        }
       }
     }
     tr{
@@ -66,12 +69,17 @@
     }
     .w-table-caption{
       text-align: left;
-      // height: @table-tr-height;
-      // margin: 1px 0 0 1px;
       border-radius: @border-radius-base @border-radius-base 0 0;
       border: 1px solid @table-border-color;
       border-bottom: 0;
       padding: 8px 8px;
+      &+thead{
+        tr:first-child{
+          th:first-child{
+            border-radius: 0;
+          }
+        }
+      }
     }
   }
 }
