@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import Thead from './thead';
 import Tbody from './tbody';
-import "./style/index.less";
 
 export default class Table extends Component{
   state={}
