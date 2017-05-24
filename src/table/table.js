@@ -11,7 +11,7 @@ export default class Table extends Component{
   }
   getRender(key){
     console.log("key::",key,this.refs)
-    return this.refs.thead.getRender(key);
+    // return this.refs.thead.getRender(key);
   }
 
   render(){

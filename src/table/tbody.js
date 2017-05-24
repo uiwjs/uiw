@@ -12,7 +12,7 @@ export default class Tbody extends Component{
     return items;
   }
   renderTbody(data){
-    console.log("getRender:",this.props.getRender('firstname'))
+    // console.log("getRender:",this.props.getRender('firstname'))
     let items = [];
     for(let i =0;i< data.length;i++){
       items.push(<tr key={i}>{this.renderTbodyItem.bind(this)(data[i])}</tr>)
