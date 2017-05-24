@@ -14,9 +14,6 @@ export default class Table extends Component{
     const { prefixCls, className, columns, data } = this.props;
     return(
       <div className={prefixCls}>
-        <div onClick={()=>{
-          console.log(this.refs)
-        }}>dsf</div>
         <table>
           <Thead columns={columns}/>
           <Tbody columns={columns} render={this.state.render} data={data} />
