@@ -25,15 +25,14 @@ export default class Chackbox extends Component{
     const { prefixCls, className, children, disabled} = this.props;
     const {checked,indeterminate} = this.state;
     const cls = classNames(prefixCls,{
-        'disabled': disabled,             // 禁用状态
-        'indeterminate': indeterminate,   // 激活状态
-        'checked': checked,               //（块级元素）Block level 
-        [className]: className
-      });
+      'disabled': disabled,             // 禁用状态
+      'indeterminate': indeterminate,   // 半选中
+      'checked': checked,               // 选中
+    });
     return(
-      <label className={`${prefixCls}-warpper`}>
+      <label className={classNames(`${prefixCls}-warpper`,className)}>
         <span className={cls}>
-          <input type="checkbox" disabled={disabled} checked={checked} value="{children}" onChange={this.handleChange} />
+          <input type="checkbox" disabled={disabled} checked={checked} value={children} onChange={this.handleChange } />
         </span>
         <span>{children}</span>
       </label>
