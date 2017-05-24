@@ -6,15 +6,15 @@
   table{
     border-collapse: separate;
     border-spacing: 0;
-    border: 1px solid @table-border-color;
+    // border: 1px solid @table-border-color;
     border-bottom: 0;
     border-right: 0;
     min-width: 100%;
     border-radius: @border-radius-base;
     overflow: hidden;
     td ,th{
-      border-bottom: 1px solid @table-border-color;
-      border-right: 1px solid @table-border-color;
+      // border-bottom: 1px solid @table-border-color;
+      border: 1px solid @table-border-color;
     }
     th{
       height: @table-tr-height;
@@ -26,8 +26,29 @@
       height: @table-tr-height;
       padding: @padding-small-vertical @padding-small-horizontal;
     }
+    td+td{
+      border-left:0;
+      border-top:0;
+    }
+    td:first-child{
+      border-top:0;
+    }
+    thead{
+      th+th{
+        border-left:0;
+      }
+      tr:not(:first-child) th{
+        border-top: 0;
+      }
+      tr:first-child{
+        th:first-child{
+          border-radius: @border-radius-base 0 0 0;
+        }
+      }
+    }
     tr{
       transition: background @transition-time @transition-timing-functio;
+      min-height: @table-tr-height;
       &:hover{
         background-color: @table-tr-bg-active-color;
       }
@@ -39,6 +60,18 @@
       td:first-child{
         border-radius: 0 0 0 @border-radius-base;
       }
+    }
+    tbody{
+      border-left: 1px solid @table-border-color;
+    }
+    .w-table-caption{
+      text-align: left;
+      // height: @table-tr-height;
+      // margin: 1px 0 0 1px;
+      border-radius: @border-radius-base @border-radius-base 0 0;
+      border: 1px solid @table-border-color;
+      border-bottom: 0;
+      padding: 8px 8px;
     }
   }
 }

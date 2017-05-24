@@ -57,23 +57,3 @@ Tbody.propTypes = {
   prefixCls: PropTypes.string,
   data: PropTypes.array,
 }
-
-// export type Column = {
-//   label: string,
-//   prop: string,
-//   property: string,
-//   type: string,
-//   minWidth: number,
-//   width: number,
-//   align: string,
-//   sortable: boolean,
-//   sortMethod: ()=>void,
-//   resizable: boolean,
-//   formatter: ()=>void,
-//   selectable: boolean,
-//   fixed: boolean | string,
-//   filterMethod: ()=>void,
-//   filters: Array<Object>,
-//   expandPannel: ()=>any,
-//   render: ()=>void
-// };
