@@ -79,6 +79,14 @@
           border-color:@checkbox-border-gray-light;
         }
       }
+      &.indeterminate{
+        &:before{
+          border:1px solid @checkbox-border-gray-light;
+        }
+        &:after{
+          background-color: @checkbox-border-gray-light;
+        }
+      }
     }
   }
 }
