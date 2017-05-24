@@ -6,17 +6,14 @@ import Tbody from './tbody';
 import "./style/index.less";
 
 export default class Table extends Component{
-  state={
-  }
-  componentDidMount(){
-  }
+  state={}
   render(){
     const { prefixCls, className, columns, data } = this.props;
     return(
       <div className={prefixCls}>
         <table>
           <Thead columns={columns}/>
-          <Tbody columns={columns} render={this.state.render} data={data} />
+          <Tbody columns={columns} data={data} />
         </table>
       </div>
     )

@@ -9,10 +9,11 @@ export default class Tbody extends Component{
   getRenders(columns,headelm={}){
     let subitem = [];
     for(let i =0; i< columns.length;i++){
-      if(columns[i]&& (!columns[i].children || columns[i].children.length < 1) ){
-          if(columns[i].render&&columns[i].key){
-            headelm[columns[i].key] = columns[i].render;
-          }
+      if(columns[i]
+        && (!columns[i].children || columns[i].children.length < 1) 
+        && columns[i].render
+        &&columns[i].key ){
+        headelm[columns[i].key] = columns[i].render;
       }
       if(columns[i].children && columns[i].children.length){
         this.getRenders(columns[i].children,headelm);
@@ -26,13 +27,11 @@ export default class Tbody extends Component{
     let items = [],key=0;
     for(let a in item){
       ++key;
-      items.push(<td key={key}>{renders[a]?renders[a](item[a]):item[a]}</td>);
+      items.push(<td key={key}>{renders[a]?renders[a](item[a],item,key):item[a]}</td>);
     }
     return items;
   }
   renderTbody(data){
-    // let a = this.props.getRender('firstname')
-    // console.log("getRender:-->::",this.props.getRender()())
     let items = [];
     for(let i =0;i< data.length;i++){
       items.push(<tr key={i}>{this.renderTbodyTd.bind(this)(data[i])}</tr>)
