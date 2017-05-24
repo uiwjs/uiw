@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 let rowSpanNum = 0;
 export default class Thead extends Component{
   state={
-    render:{},
     renderHead:[]
   }
   componentDidMount(){
@@ -16,9 +15,6 @@ export default class Thead extends Component{
     this.setState({
       renderHead:this.renderHead.bind(this)(columns,rowLevel.rowSpanNum)
     })
-  }
-  getRender(key){
-    return this.state.render[key];
   }
   /**
    * [getRowSpan 获取行跨度数]
@@ -69,11 +65,6 @@ export default class Thead extends Component{
           attr.colSpan = this.getColSpan(columns[i].children);
           childrens = childrens.concat(columns[i].children)
         }else {
-          if(columns[i].render&&columns[i].key){
-            const { render } = this.state;
-            render[columns[i].key] = columns[i].render;
-            this.setState({render:[...render]});
-          }
           attr.rowSpan = spanNum;
         }
         subitem.push(<th key={i} {...attr}>{columns[i].title}</th>);
@@ -87,7 +78,6 @@ export default class Thead extends Component{
   }
   render(){
     const { prefixCls, className } = this.props;
-    console.log("::",this.state.render)
     return(
       <thead>
         {this.state.renderHead}

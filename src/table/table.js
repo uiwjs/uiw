@@ -6,14 +6,10 @@ import Tbody from './tbody';
 import "./style/index.less";
 
 export default class Table extends Component{
-  
+  state={
+  }
   componentDidMount(){
   }
-  getRender(key){
-    console.log("key::",key,this.refs)
-    // return this.refs.thead.getRender(key);
-  }
-
   render(){
     const { prefixCls, className, columns, data } = this.props;
     return(
@@ -22,8 +18,8 @@ export default class Table extends Component{
           console.log(this.refs)
         }}>dsf</div>
         <table>
-          <Thead ref="thead" columns={columns}/>
-          <Tbody ref="tnody" getRender={this.getRender.bind(this)} data={data} />
+          <Thead columns={columns}/>
+          <Tbody columns={columns} render={this.state.render} data={data} />
         </table>
       </div>
     )
