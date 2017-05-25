@@ -39,5 +39,5 @@ Loading.propTypes = {
   prefixCls: PropTypes.string,
   tip:PropTypes.string,
   loading:PropTypes.bool,
-  size: PropTypes.string
+  size: PropTypes.oneOf(['small', 'default', 'large'])
 }

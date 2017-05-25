@@ -15,6 +15,8 @@ export default class Table extends Component{
   }
   render(){
     const { prefixCls, className, caption, columns, data } = this.props;
+
+
     return(
       <div className={prefixCls}>
         <table>
@@ -30,13 +32,14 @@ export default class Table extends Component{
 
 Table.defaultProps = {
   prefixCls: 'w-table',
-  size: '',  // large | small
+  size: 'default',  // large | small
   data:[],
   columns:[]
 };
 Table.propTypes = {
   columns: PropTypes.array,
   prefixCls: PropTypes.string,
-  size: PropTypes.string,
+  size: PropTypes.oneOf(['large', 'default', 'small']),
   data: PropTypes.array,
+  scroll: PropTypes.object,
 }

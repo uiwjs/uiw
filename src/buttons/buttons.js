@@ -35,13 +35,14 @@ Buttons.defaultProps = {
   loading: false,
   block: false,
   type: 'default',
-  size: 'normal',
+  size: 'default',
   prefixCls: "w-btn",
 };
 Buttons.propTypes = {
   loading: PropTypes.bool,
   disabled: PropTypes.bool,
   active: PropTypes.bool,
-  size: PropTypes.string,
-  type: PropTypes.string,
+  size: PropTypes.oneOf(['large', 'default', 'small', 'extra-small']),
+  type: PropTypes.oneOf(["default","primary","success","info","warn","error","danger"]),
 }
+

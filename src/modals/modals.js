@@ -92,7 +92,7 @@ Modal.defaultProps = {
 }
 Modal.propTypes = {
   visible: PropTypes.bool,
-  horizontal: PropTypes.string, // left || right
+  horizontal: PropTypes.oneOf(['left', 'right']),
   maskClosable: PropTypes.bool,
   styleMask: PropTypes.object,
   confirmLoading: PropTypes.bool,

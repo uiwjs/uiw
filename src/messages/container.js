@@ -57,9 +57,10 @@ export default class Container extends Component {
 
 
 Container.propTypes = {
-  placement: PropTypes.string
+  placement: PropTypes.oneOf(['top', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight'])
 }
 Container.defaultProps = {
   placement: "top", // 位置
   prefixCls: "w-messages",
 };
+

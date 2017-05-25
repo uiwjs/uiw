@@ -40,7 +40,7 @@ Transition.defaultProps = {
   EnterTimeout:500,
 };
 Transition.propTypes = {
-  type: PropTypes.string,
+  type: PropTypes.oneOf(["fade-in", "fade-left", "fade-right", "fade-down"]),
   appear: PropTypes.bool,
   leave: PropTypes.bool,
   enter: PropTypes.bool,
@@ -48,3 +48,4 @@ Transition.propTypes = {
   LeaveTimeout: PropTypes.number,
   EnterTimeout: PropTypes.number,
 }
+
