@@ -3,57 +3,62 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import Checkboxs from './';
 
-export default class Loading extends Component{
-  state={
-    checkedValues:[]
+
+export default class Group extends Component{
+  constructor(props){
+    super(props);
+    this.checkedValuesResult = this.checkedValuesResult.bind(this);
   }
-  checkedValues(value,checked){
-    const {checkedValues} = this.state;
-    let idx = checkedValues.indexOf(value);
-    if(idx>-1){
-      checked===false&&checkedValues.splice(idx, 1);
-    }else{
-      checked===true&&checkedValues.push(value)
+  checkedValuesResult(checkedValues,value,checked){
+    let values = []
+    for(let i=0;i< checkedValues.length;i++){
+      let _value = this.refs['checkbox'+i].state.value;
+      let _checked = this.refs['checkbox'+i].state.checked;
+      if( (_checked&&value!=_value) || (checked&&value==_value) ){
+        values.push(_value)
+      }
     }
-    return checkedValues;
-  }
-  renderCheckbox(item, i){
-    const {onChange,defaultChecked,disabled} = this.props;
-    const {checkedValues} = this.state;
-    let value = item.value?item.value:item;
-    let attri = { key:i, onChange:(e,checked)=>{
-      onChange(this.checkedValues(value,checked),value,checked,e)
-    }}
-    if(defaultChecked.indexOf(value)>-1){
-      attri.checked = true;
-      checkedValues.push(value)
-    }
-    if(disabled){
-      attri.disabled = item.disabled===false ? false : disabled;
-    }
-    return (
-      <Checkboxs {...attri}>{value}</Checkboxs>
-    )
+    return values;
   }
   render(){
-    const { prefixCls, style, options, className } = this.props;
+    const { prefixCls, style, onChange,options,checkedValues, disabled, className } = this.props;
+
+    let attr = {}
     return(
       <div style={style} className={classNames(prefixCls,className)}>
-      {options.map((item, i) => this.renderCheckbox(item, i))}
+      {Array.from(options,(item, i)=>{
+        let value = item.value?item.value:item;
+        attr = {key:i }
+        if(checkedValues.indexOf(value)>-1){
+          attr.checked = true;
+        }
+        if(disabled){
+          attr.disabled = item.disabled===false ? false : disabled;
+        }
+        if(onChange){
+          attr.onChange = (e,checked)=>{
+            let values = this.checkedValuesResult(options,value,checked);
+            onChange(values,value,checked,e);
+          }
+        }
+        return (
+          <Checkboxs ref={`checkbox${i}`} {...attr}>{value}</Checkboxs>
+        )
+      })}
       </div>
     )
   }
 }
 
-Loading.defaultProps = {
+Group.defaultProps = {
   prefixCls: 'w-checkbox-group',
   options:[],
-  defaultChecked:[],
+  checkedValues:[],
   onChange: e => (e),
 };
-Loading.propTypes = {
+Group.propTypes = {
   prefixCls: PropTypes.string,
   options: PropTypes.array,
-  defaultChecked: PropTypes.array,
+  checkedValues: PropTypes.array,
   onChange: PropTypes.func,
 }

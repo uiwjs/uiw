@@ -67,9 +67,6 @@ export default class Thead extends Component{
         }else {
           attr.rowSpan = spanNum;
         }
-        if(columns[i].className){
-          attr.className = columns[i].className
-        }
         subitem.push(<th key={i} {...attr}>{columns[i].title}</th>);
       }
     }

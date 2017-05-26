@@ -1,30 +1,44 @@
 import React, { Component } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import equal from 'deep-equal';
+import shallowEqual from 'shallowequal';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import {compare} from '../utils/objects';
 
 export default class Chackbox extends Component{
   constructor(props){
     super(props);
-    const {checked,indeterminate} = this.props;
     this.state = {
-      checked:checked,
-      indeterminate:indeterminate
+      checked:props.checked,
+      indeterminate:props.indeterminate,
+      value:props.children
     }
     this.handleChange = this.handleChange.bind(this)
   }
+  componentWillReceiveProps(nextProps,nextState) {
+    if(this.props.indeterminate!==nextProps.indeterminate){
+      this.setState({indeterminate: nextProps.indeterminate, checked:false });
+    }
+    if(this.props.checked!==nextProps.checked){
+      this.setState({checked:nextProps.checked });
+    }
+  }
   handleChange(e){
-    const {onChange} = this.props;
-    let checked = !this.state.checked
+    const {onChange,children} = this.props;
+    let checked = !this.state.checked;
     this.setState({
       checked:checked,
-      indeterminate:false
+      indeterminate:false,
+      value:children
     });
     onChange(e,checked);
   }
   render(){
-    const { prefixCls, className, children, disabled} = this.props;
+    const { prefixCls, className,  children, disabled} = this.props;
     const {checked,indeterminate} = this.state;
+
     const cls = classNames(prefixCls,{
       'disabled': disabled,             // 禁用状态
       'indeterminate': indeterminate,   // 半选中
@@ -44,6 +58,7 @@ export default class Chackbox extends Component{
 Chackbox.defaultProps = {
   prefixCls: 'w-chackbox',
   checked:false,
+  indeterminate:false,
   onChange: e => (e),
 };
 Chackbox.propTypes = {

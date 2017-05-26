@@ -6,7 +6,6 @@ import "./style/index.less";
 export default class Buttons extends Component {
   render() {
     const { prefixCls, type, size, active, disabled, block, className, loading, children, ...others } = this.props;
-
     let types = type;
     switch(type){
       case 'error': types='danger';break;

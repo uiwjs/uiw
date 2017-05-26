@@ -3,9 +3,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 export default class Tbody extends Component{
-  constructor(props){
-    super(props);
-    this.renderTbodyTd = this.renderTbodyTd.bind(this)
+  state = {
+
   }
   getRenders(columns,headelm={}){
     let subitem = [];
@@ -49,23 +48,10 @@ export default class Tbody extends Component{
     }
     return items;
   }
-  // 添加一列 Checkbox
-  addSelectDateColumn(data){
-    let temp = {_select:'_select'};
-    for(let a in data) temp[a] = data[a];
-    return temp;
-  }
   renderTbody(data){
-    const {rowSelection} = this.props;
     let items = [];
     for(let i =0;i< data.length;i++){
-      let rowdata = data[i];
-
-      if(rowSelection){
-        // 添加一列 Checkbox
-        rowdata = this.addSelectDateColumn(data[i]);
-      }
-      items.push(<tr key={i}>{this.renderTbodyTd(rowdata)}</tr>)
+      items.push(<tr key={i}>{this.renderTbodyTd.bind(this)(data[i])}</tr>)
     }
     return items;
   }
