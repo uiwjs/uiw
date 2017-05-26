@@ -44,12 +44,13 @@ export default class Chackbox extends Component{
       'indeterminate': indeterminate,   // 半选中
       'checked': checked,               // 选中
     });
+    const lablestr = <span>{children}</span>
     return(
       <label className={classNames(`${prefixCls}-warpper`,className)}>
         <span className={cls}>
           <input type="checkbox" disabled={disabled} checked={checked} value={children} onChange={this.handleChange } />
         </span>
-        <span>{children}</span>
+        {children&&lablestr}
       </label>
     )
   }
