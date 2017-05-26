@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import Checkboxs from '../checkbox/';
 
 
 let rowSpanNum = 0;
 export default class Thead extends Component{
-  state={
-    renderHead:[]
-  }
-  componentDidMount(){
-    const { columns } = this.props;
-    // 计算层级
-    let rowLevel = this.getRowSpan(columns);
-    this.setState({
-      renderHead:this.renderHead.bind(this)(columns,rowLevel.rowSpanNum)
-    })
-  }
   /**
    * [getRowSpan 获取行跨度数]
    * @param  {[type]} columns [某列的总数据]
@@ -50,13 +40,15 @@ export default class Thead extends Component{
   }
   /**
    * [renderHead 返回tr节点]
-   * @param  {[type]} columns [列的总数据]
-   * @param  {[type]} spanNum [行跨度数]
-   * @param  {[type]} headelm [返回累计tr标签]
-   * @return {[type]}         [返回最终累计tr总标签]
+   * @param  {[bool]}   indeterminate [是否全选状态]
+   * @param  {[Array]}  columns [列的总数据]
+   * @param  {[Number]} spanNum [行跨度数]
+   * @param  {[Node]}   headelm [返回累计tr标签]
+   * @return {[Node]}           [返回最终累计tr总标签]
    */
-  renderHead(columns,spanNum,childrens=[],level=0,headelm=[]){
+  renderHead(indeterminate,columns,spanNum,childrens=[],level=0,headelm=[]){
     let subitem = [];
+    // const {headindeterminate,headchecked} = this.props
     for(let i =0; i< columns.length;i++){
       let attr = {}
       if(columns[i]){
@@ -67,20 +59,36 @@ export default class Thead extends Component{
         }else {
           attr.rowSpan = spanNum;
         }
-        subitem.push(<th key={i} {...attr}>{columns[i].title}</th>);
+        subitem.push(
+          <th key={i} {...attr}>
+            {
+              columns[i].key==="_select"
+              ?(
+                <Checkboxs 
+                  indeterminate={this.props.headindeterminate}
+                  checked={this.props.headchecked}
+                  onChange={(e,checked) => this.props.selectedAll(e,checked)}>
+                </Checkboxs>
+              )
+              :columns[i].title
+            }
+          </th>
+        );
       }
     }
     headelm.push(<tr key={`level${level}`}>{subitem}</tr>);
     if(childrens.length>0){
-      this.renderHead(childrens,spanNum-1,[],level+1,headelm);
+      this.renderHead(indeterminate,childrens,spanNum-1,[],level+1,headelm);
     }
     return headelm;
   }
   render(){
-    const { prefixCls, className } = this.props;
+    const { prefixCls, className,indeterminate,headindeterminate,columns } = this.props;
+    // 计算层级
+    let rowLevel = this.getRowSpan(columns);
     return(
       <thead>
-        {this.state.renderHead}
+        {this.renderHead.bind(this)(indeterminate,columns,rowLevel.rowSpanNum)}
       </thead>
     )
   }

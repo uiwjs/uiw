@@ -38,7 +38,6 @@ export default class Chackbox extends Component{
   render(){
     const { prefixCls, className,  children, disabled} = this.props;
     const {checked,indeterminate} = this.state;
-
     const cls = classNames(prefixCls,{
       'disabled': disabled,             // 禁用状态
       'indeterminate': indeterminate,   // 半选中
