@@ -13,6 +13,16 @@ export default class Alerts extends Component {
     const dom = ReactDOM.findDOMNode(this);
     dom.parentNode.removeChild(dom);
   }
+  isColorValue(color){
+    var span = document.createElement("span");
+    span.style.color = color;
+    if(span.style.color != "") return true;
+    else return false;
+    span = null;
+  }
+  isPresetColor(color) {
+    return /^(white|pink|red|yellow|orange|cyan|green|blue|purple)?$/.test(color)
+  }
   render() {
     const { prefixCls, color, onClose, className, children, ...others } = this.props;
 
@@ -26,11 +36,19 @@ export default class Alerts extends Component {
       default:        colors = color;break;
     }
     const cls = classNames(prefixCls,{
-        [`${prefixCls}-${colors}`]: /^(white|pink|red|yellow|orange|cyan|green|blue|purple)?$/.test(colors),
+        [`${prefixCls}-${colors}`]: this.isPresetColor(colors),
         [className]: className
       });
+
+    // 自定义颜色值
+    let styles = {}
+    if(!this.isPresetColor(colors) && this.isColorValue(colors) ){
+      styles.style = {}
+      styles.style.backgroundColor = colors;
+    }
+
     return (
-      <span className={cls}>{children} {onClose&&<i onClick={this.close}>{IconCloseSmall}</i>}</span>
+      <span {...styles} className={cls}>{children} {onClose&&<i onClick={this.close}>{IconCloseSmall}</i>}</span>
     );
   }
 }
