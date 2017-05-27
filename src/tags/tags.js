@@ -54,7 +54,7 @@ export default class Alerts extends Component {
 }
 
 Alerts.propTypes = {
-  type: PropTypes.string,
+  // type: PropTypes.string,
   color: PropTypes.string,
   onClose: PropTypes.func,
 };
