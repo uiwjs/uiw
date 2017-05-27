@@ -15,7 +15,9 @@ export default class Table extends Component{
       headchecked:false,        //表头选中状态
       rowsCheckedAll:false,     //所有行选中状态
       rowsChecked:{},
-      rowsCount:0
+      rowsCount:0,
+
+      scrollLeft:0
     }
   }
   componentDidMount() {
@@ -64,8 +66,14 @@ export default class Table extends Component{
       rowSelection.onSelectAll&&rowSelection.onSelectAll(selectDatas,checked,e);
     })
   }
+  //横向滚动事件
+  onScroll(e){
+    this.setState({
+      scrollLeft:e.target.scrollLeft
+    })
+  }
   render(){
-    const { prefixCls, className, onChange, rowSelection, caption, columns, data, height } = this.props;
+    const { prefixCls, className, onChange, rowSelection, caption, columns, data, height, width } = this.props;
     const { headindeterminate,headchecked } = this.state
     // checkbox 选择数据如果存在删除重新渲染
     if(rowSelection){
@@ -96,19 +104,21 @@ export default class Table extends Component{
     let tableColgroup = (<Colgroup columns={columns}/>);
     let tableCaption = caption&&this.renderCaption();
 
-    if(height){
-      // 固定头
+    if(height||width){
+      // 固定头 或者左右滚动
       return(
-        <div className={prefixCls}>
-          <div className={`${prefixCls}-head`}>
-            <table>
+        <div className={classNames(prefixCls,`${prefixCls}-scroll`)}>
+          <div ref={(div)=>{
+            if( div ) div.scrollLeft = this.state.scrollLeft;
+          }} className={`${prefixCls}-head`}>
+            <table style={{width}}>
               {tableColgroup}
               {tableCaption}
               {tableThead}
             </table>
           </div>
-          <div style={{height}} className={`${prefixCls}-body`}>
-            <table>
+          <div onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-body`}>
+            <table style={{width}}>
               {tableColgroup}
               {tableTbody}
             </table>
