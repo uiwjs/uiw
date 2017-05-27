@@ -48,7 +48,6 @@ export default class Thead extends Component{
    */
   renderHead(indeterminate,columns,spanNum,childrens=[],level=0,headelm=[]){
     let subitem = [];
-    // const {headindeterminate,headchecked} = this.props
     for(let i =0; i< columns.length;i++){
       let attr = {}
       if(columns[i]){
@@ -59,7 +58,7 @@ export default class Thead extends Component{
         }else {
           attr.rowSpan = spanNum;
         }
-        if(columns[i].key == "_select") attr.className = '_select'
+        if(columns[i].key == "_select") attr.className = '_select';
         subitem.push(
           <th key={i} {...attr}>
             {
