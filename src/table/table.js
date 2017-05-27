@@ -65,7 +65,7 @@ export default class Table extends Component{
     })
   }
   render(){
-    const { prefixCls, className, onChange, rowSelection, caption, columns, data } = this.props;
+    const { prefixCls, className, onChange, rowSelection, caption, columns, data, height } = this.props;
     const { headindeterminate,headchecked } = this.state
     // checkbox 选择数据如果存在删除重新渲染
     if(rowSelection){
@@ -78,23 +78,53 @@ export default class Table extends Component{
       })
     }
 
+    let tableTbody = (<Tbody 
+        ref="tbody"
+        rowSelection={rowSelection}
+        onRowSelection={this.onRowSelection}
+        columns={columns} data={data} />
+      )
+
+    let tableThead =(<Thead 
+        rowSelection={rowSelection} 
+        headindeterminate={headindeterminate} 
+        headchecked={headchecked} 
+        selectedAll={this.selectedAll}
+        columns={columns}/>
+      )
+
+    let tableColgroup = (<Colgroup columns={columns}/>);
+    let tableCaption = caption&&this.renderCaption();
+
+    if(height){
+      // 固定头
+      return(
+        <div className={prefixCls}>
+          <div className={`${prefixCls}-head`}>
+            <table>
+              {tableColgroup}
+              {tableCaption}
+              {tableThead}
+            </table>
+          </div>
+          <div style={{height}} className={`${prefixCls}-body`}>
+            <table>
+              {tableColgroup}
+              {tableTbody}
+            </table>
+          </div>
+        </div>
+      )
+    }
+
+    // 默认的table
     return(
       <div className={prefixCls}>
         <table>
-          <Colgroup columns={columns}/>
-          {caption&&this.renderCaption()}
-          <Thead 
-            rowSelection={rowSelection} 
-            headindeterminate={headindeterminate} 
-            headchecked={headchecked} 
-            selectedAll={this.selectedAll}
-            columns={columns}/>
-          <Tbody 
-            ref="tbody"
-            rowSelection={rowSelection}
-            // headchecked={headchecked}
-            onRowSelection={this.onRowSelection}
-            columns={columns} data={data} />
+          {tableColgroup}
+          {tableCaption}
+          {tableThead}
+          {tableTbody}
         </table>
       </div>
     )
@@ -102,16 +132,18 @@ export default class Table extends Component{
 }
 
 Table.defaultProps = {
-  prefixCls: 'w-table',
+  prefixCls:'w-table',
   size: 'default',
   data:[],
   columns:[]
 };
+
 Table.propTypes = {
   columns: PropTypes.array,
   prefixCls: PropTypes.string,
   size: PropTypes.oneOf(['large', 'default', 'small']),
   data: PropTypes.array,
+  height: PropTypes.number,
   rowSelection: PropTypes.object,
   // onSelectAll: PropTypes.func,
   // onSelect: PropTypes.func,

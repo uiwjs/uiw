@@ -59,6 +59,7 @@ export default class Thead extends Component{
         }else {
           attr.rowSpan = spanNum;
         }
+        if(columns[i].key == "_select") attr.className = '_select'
         subitem.push(
           <th key={i} {...attr}>
             {
