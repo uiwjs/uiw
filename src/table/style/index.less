@@ -90,6 +90,7 @@
 
 .w-table {
   &.w-table-scroll{
+    position: relative;
     border: 1px solid @table-border-color;
     border-radius: @border-radius-base;
     .w-table-head{
@@ -109,6 +110,9 @@
           border-right: 0;
         }
       }
+    }
+    .w-table-fixed-body-left{
+      overflow: auto;
     }
     .w-table-body{
       overflow: auto;

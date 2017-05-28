@@ -6,6 +6,18 @@ import Checkboxs from '../checkbox/';
 
 let rowSpanNum = 0;
 export default class Thead extends Component{
+  constructor(props){
+    super(props);
+    this.state ={
+      td:''
+    }
+  }
+  componentDidMount() {
+    const {cloneElement} = this.props;
+    if(!cloneElement){
+      console.log("thead::",this.refs.thead)
+    }
+  }
   /**
    * [getRowSpan 获取行跨度数]
    * @param  {[type]} columns [某列的总数据]
@@ -39,6 +51,24 @@ export default class Thead extends Component{
     return num;
   }
   /**
+   * 过滤，保留固定的单元格
+   * @param  {[type]} columns  [所有单元格总数据]
+   * @param  {String} ty       [左边|右边固定的单元]
+   * @param  {[type]} childArr [子对象中的数据]
+   * @return {[type]}          [description]
+   */
+  renderColumnsFixed(columns,ty="left",childArr){
+    let arr = childArr || [];
+      for (var i = 0; i < columns.length; i++) {
+        if(ty == "left"){
+          if(columns[i].key == "_select" || columns[i].fixed =="left" ){
+            arr.push(columns[i])
+          }else break;
+        }
+      }
+      return arr;
+  }
+  /**
    * [renderHead 返回tr节点]
    * @param  {[bool]}   indeterminate [是否全选状态]
    * @param  {[Array]}  columns [列的总数据]
@@ -48,6 +78,12 @@ export default class Thead extends Component{
    */
   renderHead(indeterminate,columns,spanNum,childrens=[],level=0,headelm=[]){
     let subitem = [];
+    const {cloneElement} = this.props;
+
+    if(cloneElement == "left"){
+      columns = this.renderColumnsFixed(columns,"left")
+    }
+
     for(let i =0; i< columns.length;i++){
       let attr = {}
       if(columns[i]){
@@ -84,13 +120,23 @@ export default class Thead extends Component{
   }
   render(){
     const { prefixCls, className,indeterminate,headindeterminate,columns } = this.props;
+    console.log("headindeterminate:::",headindeterminate,this.props.headchecked)
     // 计算层级
     let rowLevel = this.getRowSpan(columns);
     return(
-      <thead>
+      <thead ref="thead">
         {this.renderHead.bind(this)(indeterminate,columns,rowLevel.rowSpanNum)}
       </thead>
     )
+
+
+    // // 计算层级
+    // let rowLevel = this.getRowSpan(columns);
+    // return(
+    //   <thead>
+    //     {this.renderHead.bind(this)(indeterminate,columns,rowLevel.rowSpanNum)}
+    //   </thead>
+    // )
   }
 }
 

@@ -20,8 +20,15 @@ export default class Chackbox extends Component{
       this.setState({indeterminate: nextProps.indeterminate, checked:false });
     }
     if(this.props.checked!==nextProps.checked){
-      this.setState({checked:nextProps.checked });
+      this.setState({checked:nextProps.checked});
     }
+    // this.setState({indeterminate: nextProps.indeterminate, checked:nextProps.checked });
+    // if(this.props.indeterminate!==nextProps.indeterminate){
+    //   this.setState({indeterminate: nextProps.indeterminate, checked:false });
+    // }
+    // if(this.props.checked!==nextProps.checked){
+    //   this.setState({checked:nextProps.checked });
+    // }
   }
   handleChange(e){
     const {onChange,children} = this.props;
