@@ -14,8 +14,22 @@ export default class Thead extends Component{
   }
   componentDidMount() {
     const {cloneElement} = this.props;
-    if(!cloneElement){
-      console.log("thead::",this.refs.thead)
+    if(cloneElement !== "left"){
+      this.props.setFixedLeftWidth(this.getTableThwidth(this.refs.thead))
+    }
+  }
+  getTableThwidth($thead,){
+    const {columns}=this.props;
+    let size=0;
+    if($thead.children&&$thead.children.length===1){
+      let $th = $thead.children[0].children;
+
+      for(let i=0;i < $th.length;i++){
+        if(columns[i] && (columns[i].key === '_select' || columns[i].fixed === 'left' )){
+          size += $th[i].offsetWidth;
+        }
+      }
+      return size;
     }
   }
   /**
@@ -120,7 +134,6 @@ export default class Thead extends Component{
   }
   render(){
     const { prefixCls, className,indeterminate,headindeterminate,columns } = this.props;
-    console.log("headindeterminate:::",headindeterminate,this.props.headchecked)
     // 计算层级
     let rowLevel = this.getRowSpan(columns);
     return(
@@ -128,15 +141,6 @@ export default class Thead extends Component{
         {this.renderHead.bind(this)(indeterminate,columns,rowLevel.rowSpanNum)}
       </thead>
     )
-
-
-    // // 计算层级
-    // let rowLevel = this.getRowSpan(columns);
-    // return(
-    //   <thead>
-    //     {this.renderHead.bind(this)(indeterminate,columns,rowLevel.rowSpanNum)}
-    //   </thead>
-    // )
   }
 }
 

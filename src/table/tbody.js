@@ -46,55 +46,46 @@ export default class Tbody extends Component{
     const {columns,cloneElement} = this.props;
     var renders = this.getRenders(columns);
     let items = [],fixedItems=[],key=0;
-    for(let a in item){
-      let attri = {}
-      if(renders[a]&&renders[a].onCellClick){
-        attri.onClick = renders[a].onCellClick.bind(this,item[a])
-      }
-      if(renders[a]&&renders[a].className){
-        attri.className = renders[a].className
-      }
-      // 选择按钮
-      if( 
-        (item[`_select`] && a)  ==="_select" || 
-        (item[`_checked`] && a)  ==="_checked" || 
-        (item[`_disabled`] && a)  ==="_disabled"
-      ){
-        let tdelmfixed = (
-          <td key={key} {...attri}>
+    for(let a in item){ 
+        let attri = {}
+        if(renders[a]&&renders[a].onCellClick){
+          attri.onClick = renders[a].onCellClick.bind(this,item[a])
+        }
+        if(renders[a]&&renders[a].className){
+          attri.className = renders[a].className
+        }
+        if(a === '_checked' || a === '_disabled'){
+          continue;
+        }
+
+        let tdelm = (item[`_select`] && a) === "_select" ?(
+          <td key={`${key}`} {...attri}>
             <Checkboxs 
               checked={this.state._checked[rownum]}
               disabled={this.state._disabled[rownum]}
               onChange={(e,checked)=>{
                 let _checked = this.state._checked;
-                console.log("====>>2>>",this.state._checked)
                 _checked[rownum] = checked;
-                console.log("====>>3>>",this.state._checked,_checked)
                 this.setState({_checked:_checked });
                 this.props.onRowSelection(item, rownum, checked, e)
               }}>
             </Checkboxs>
           </td>
-        )
-
-        a == '_select'&&items.push(tdelmfixed);
-        // 给固定列复制处理
-        a == '_select'&&cloneElement === "left"&&fixedItems.push(tdelmfixed);
-
-      }else{
-
-        let tdelm = (<td key={key} {...attri}>
+        ):(
+          <td key={key} {...attri}>
           {(renders[a]&&renders[a].render) ? renders[a].render(item[a],item,key):item[a]}
           </td>
-        );
+        )
 
-        if(cloneElement === "left" && columns[key-1] && columns[key-1].fixed === "left"){
-          fixedItems.push(tdelm);
+
+        if(cloneElement === "left"){
+          if(a == '_select' || columns[key]&&columns[key].fixed == "left") {
+            fixedItems.push(tdelm);
+          }
         }else{
           items.push(tdelm);
         }
-      }
-      ++key;
+        ++key;
     }
     if(cloneElement === "left"){
       return fixedItems;
@@ -102,12 +93,73 @@ export default class Tbody extends Component{
       return items;
     }
   }
+  // renderTbodyTd(item,rownum){
+  //   const {columns,cloneElement} = this.props;
+  //   var renders = this.getRenders(columns);
+  //   let items = [],fixedItems=[],key=0;
+  //   for(let a in item){
+  //     let attri = {}
+  //     if(renders[a]&&renders[a].onCellClick){
+  //       attri.onClick = renders[a].onCellClick.bind(this,item[a])
+  //     }
+  //     if(renders[a]&&renders[a].className){
+  //       attri.className = renders[a].className
+  //     }
+  //     // 选择按钮
+  //     if( 
+  //       (item[`_select`] && a)  ==="_select" || 
+  //       (item[`_checked`] && a)  ==="_checked" || 
+  //       (item[`_disabled`] && a)  ==="_disabled"
+  //     ){
+  //       let tdelmfixed = (
+  //         <td key={key} {...attri}>
+  //           <Checkboxs 
+  //             checked={this.state._checked[rownum]}
+  //             disabled={this.state._disabled[rownum]}
+  //             onChange={(e,checked)=>{
+  //               let _checked = this.state._checked;
+  //               _checked[rownum] = checked;
+  //               this.setState({_checked:_checked });
+  //               this.props.onRowSelection(item, rownum, checked, e)
+  //             }}>
+  //           </Checkboxs>
+  //         </td>
+  //       )
+
+  //       a == '_select'&&items.push(tdelmfixed);
+  //       // 给固定列复制处理
+  //       a == '_select'&&cloneElement === "left"&&fixedItems.push(tdelmfixed);
+
+  //     }else{
+
+  //       let tdelm = (<td key={key} {...attri}>
+  //         {(renders[a]&&renders[a].render) ? renders[a].render(item[a],item,key):item[a]}
+  //         </td>
+  //       );
+  //       if(cloneElement === "left" && columns[key-1] && columns[key-1].fixed === "left"){
+  //         console.log("tdelm:::",a,item[a],item)
+  //         fixedItems.push(tdelm);
+  //       }else{
+  //         items.push(tdelm);
+  //       }
+  //     }
+  //       if(cloneElement === "left" && columns[key-1] && columns[key-1].fixed === "left"){
+  //         // console.log("item[a]:------>::",fixedItems,item[a],columns[key-1])
+          
+  //       }
+  //     ++key;
+  //   }
+  //   if(cloneElement === "left"){
+  //     return fixedItems;
+  //   }else{
+  //     return items;
+  //   }
+  // }
   selectedAll(checked,cb){
     const {data} = this.props;
     const {_disabled,_checked} = this.state;
     let _checked_cur = {}, _selectedData=[];
     for(let i=0;i < data.length;i++){
-      // console.log("_disabled[i]::",_disabled[i],checked,data)
       if(!_disabled[i]) {
         _checked_cur[i] = checked;
         _checked_cur[i]&&_selectedData.push(data[i])
@@ -115,7 +167,6 @@ export default class Tbody extends Component{
         _checked_cur[i] = data[i]._checked_cur ? true : false;
       }
     }
-    console.log("_checked_cur::_checked_cur::",_checked,_checked_cur)
     this.setState({_checked:_checked_cur});
     cb&&cb(_selectedData)
   }
