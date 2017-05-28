@@ -70,17 +70,17 @@
     tbody{
       border-left: 1px solid @table-border-color;
     }
-    .w-table-caption{
-      text-align: left;
-      border-radius: @border-radius-base @border-radius-base 0 0;
-      border: 1px solid @table-border-color;
-      border-bottom: 0;
-      padding: 8px 8px;
-      &+thead{
-        tr:first-child {
-          th:first-child,th:last-child{
-            border-radius: 0;
-          }
+  }
+  .w-table-caption{
+    text-align: left;
+    border-radius: @border-radius-base @border-radius-base 0 0;
+    border: 1px solid @table-border-color;
+    border-bottom: 0;
+    padding: 8px 8px;
+    &+table thead{
+      tr:first-child {
+        th:first-child,th:last-child{
+          border-radius: 0;
         }
       }
     }
@@ -92,11 +92,19 @@
     position: relative;
     border: 1px solid @table-border-color;
     border-radius: @border-radius-base;
+    .w-table-caption{
+      border:0;
+      &+.w-table-head{
+        table thead tr th:first-child{
+          border-top-left-radius: 0;
+        }
+        table thead tr th:last-child{
+          border-top-right-radius: 0;
+        }
+      }
+    }
     .w-table-head{
       overflow-x: hidden;
-      .w-table-caption{
-        border:0;
-      }
       table {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;

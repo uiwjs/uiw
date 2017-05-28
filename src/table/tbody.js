@@ -93,68 +93,6 @@ export default class Tbody extends Component{
       return items;
     }
   }
-  // renderTbodyTd(item,rownum){
-  //   const {columns,cloneElement} = this.props;
-  //   var renders = this.getRenders(columns);
-  //   let items = [],fixedItems=[],key=0;
-  //   for(let a in item){
-  //     let attri = {}
-  //     if(renders[a]&&renders[a].onCellClick){
-  //       attri.onClick = renders[a].onCellClick.bind(this,item[a])
-  //     }
-  //     if(renders[a]&&renders[a].className){
-  //       attri.className = renders[a].className
-  //     }
-  //     // 选择按钮
-  //     if( 
-  //       (item[`_select`] && a)  ==="_select" || 
-  //       (item[`_checked`] && a)  ==="_checked" || 
-  //       (item[`_disabled`] && a)  ==="_disabled"
-  //     ){
-  //       let tdelmfixed = (
-  //         <td key={key} {...attri}>
-  //           <Checkboxs 
-  //             checked={this.state._checked[rownum]}
-  //             disabled={this.state._disabled[rownum]}
-  //             onChange={(e,checked)=>{
-  //               let _checked = this.state._checked;
-  //               _checked[rownum] = checked;
-  //               this.setState({_checked:_checked });
-  //               this.props.onRowSelection(item, rownum, checked, e)
-  //             }}>
-  //           </Checkboxs>
-  //         </td>
-  //       )
-
-  //       a == '_select'&&items.push(tdelmfixed);
-  //       // 给固定列复制处理
-  //       a == '_select'&&cloneElement === "left"&&fixedItems.push(tdelmfixed);
-
-  //     }else{
-
-  //       let tdelm = (<td key={key} {...attri}>
-  //         {(renders[a]&&renders[a].render) ? renders[a].render(item[a],item,key):item[a]}
-  //         </td>
-  //       );
-  //       if(cloneElement === "left" && columns[key-1] && columns[key-1].fixed === "left"){
-  //         console.log("tdelm:::",a,item[a],item)
-  //         fixedItems.push(tdelm);
-  //       }else{
-  //         items.push(tdelm);
-  //       }
-  //     }
-  //       if(cloneElement === "left" && columns[key-1] && columns[key-1].fixed === "left"){
-  //         // console.log("item[a]:------>::",fixedItems,item[a],columns[key-1])
-          
-  //       }
-  //     ++key;
-  //   }
-  //   if(cloneElement === "left"){
-  //     return fixedItems;
-  //   }else{
-  //     return items;
-  //   }
-  // }
   selectedAll(checked,cb){
     const {data} = this.props;
     const {_disabled,_checked} = this.state;

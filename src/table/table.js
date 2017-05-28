@@ -59,7 +59,8 @@ export default class Table extends Component{
   // 表头
   renderCaption(){
     const { prefixCls, caption } = this.props;
-    return (<caption ref="caption" className={`${prefixCls}-caption`}>{caption}</caption>)
+    return (<div ref="caption" className={`${prefixCls}-caption`}>{caption}</div>)
+    // return (<caption ref="caption" className={`${prefixCls}-caption`}>{caption}</caption>)
   }
   // 单行选择事件
   onRowSelection=(row, index, checked, e)=>{
@@ -155,12 +156,12 @@ export default class Table extends Component{
       // 固定头 或者左右滚动
       return(
         <div className={classNames(className,prefixCls,`${prefixCls}-scroll`)}>
+          {tableCaption}
           <div ref={(div)=>{
             if( div ) div.scrollLeft = this.state.scrollLeft;
           }} className={`${prefixCls}-head`}>
             <table style={{width}}>
               {tableColgroup}
-              {tableCaption}
               {tableThead}
             </table>
           </div>
@@ -196,9 +197,9 @@ export default class Table extends Component{
     // 默认的table
     return(
       <div className={classNames(className,prefixCls)}>
+        {tableCaption}
         <table>
           {tableColgroup}
-          {tableCaption}
           {tableThead}
           {tableTbody}
         </table>
