@@ -14,18 +14,24 @@ export default class Thead extends Component{
   }
   componentDidMount() {
     const {cloneElement} = this.props;
-    if(cloneElement !== "left"){
-      this.props.setFixedLeftWidth(this.getTableThwidth(this.refs.thead))
+    if(!cloneElement){
+      this.props.setFixedWidth(
+        this.getTableThwidth(this.refs.thead,'left'),
+        this.getTableThwidth(this.refs.thead,'right')
+      )
     }
   }
-  getTableThwidth($thead,){
+  getTableThwidth($thead,type){
     const {columns}=this.props;
     let size=0;
     if($thead.children&&$thead.children.length===1){
       let $th = $thead.children[0].children;
 
       for(let i=0;i < $th.length;i++){
-        if(columns[i] && (columns[i].key === '_select' || columns[i].fixed === 'left' )){
+        if(type == 'left' && columns[i] && (columns[i].key === '_select' || columns[i].fixed === 'left' )){
+          size += $th[i].offsetWidth;
+        }
+        if(type == 'right' && columns[i].fixed === 'right' ){
           size += $th[i].offsetWidth;
         }
       }
@@ -74,10 +80,11 @@ export default class Thead extends Component{
   renderColumnsFixed(columns,ty="left",childArr){
     let arr = childArr || [];
       for (var i = 0; i < columns.length; i++) {
-        if(ty == "left"){
-          if(columns[i].key == "_select" || columns[i].fixed =="left" ){
-            arr.push(columns[i])
-          }else break;
+        if(ty == "left" && (columns[i].key == "_select" || columns[i].fixed =="left")){
+          arr.push(columns[i]);
+        }
+        if(ty == "right" && columns[i] && columns[i].fixed =="right"){
+          arr.push(columns[i]);
         }
       }
       return arr;
@@ -94,8 +101,8 @@ export default class Thead extends Component{
     let subitem = [];
     const {cloneElement} = this.props;
 
-    if(cloneElement == "left"){
-      columns = this.renderColumnsFixed(columns,"left")
+    if(cloneElement){
+      columns = this.renderColumnsFixed(columns,cloneElement);
     }
 
     for(let i =0; i< columns.length;i++){

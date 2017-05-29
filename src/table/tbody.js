@@ -76,10 +76,12 @@ export default class Tbody extends Component{
           {(renders[a]&&renders[a].render) ? renders[a].render(item[a],item,key):item[a]}
           </td>
         )
-
-
         if(cloneElement === "left"){
           if(a == '_select' || columns[key]&&columns[key].fixed == "left") {
+            fixedItems.push(tdelm);
+          }
+        }else if(cloneElement === "right"){
+          if(columns[key]&&columns[key].fixed == "right") {
             fixedItems.push(tdelm);
           }
         }else{
@@ -87,7 +89,7 @@ export default class Tbody extends Component{
         }
         ++key;
     }
-    if(cloneElement === "left"){
+    if(cloneElement === "left" || cloneElement === "right"){
       return fixedItems;
     }else{
       return items;

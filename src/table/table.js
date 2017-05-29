@@ -20,8 +20,9 @@ export default class Table extends Component{
       scrollLeft:0,
       scrollRight:0,
       scrollTop:0,
-      leftFixedWidth:0,  // 左边固定的宽度
-      leftFixedTop:0     // 左边固定的距离顶部距离
+      leftFixedWidth:0,   // 左边固定的宽度
+      rightFixedWidth:0,  // 右边固定的宽度
+      leftFixedTop:0      // 左边固定的距离顶部距离
     }
   }
   componentDidMount() {
@@ -116,9 +117,10 @@ export default class Table extends Component{
       scrollRight:e.target.scrollWidth - (e.target.scrollLeft + e.target.offsetWidth)
     })
   }
-  setFixedLeftWidth=(width)=>{
+  setFixedWidth=(leftWidth,rightWidth)=>{
     this.setState({
-      leftFixedWidth:width
+      leftFixedWidth:leftWidth,
+      rightFixedWidth:rightWidth,
     })
   }
   render(){
@@ -144,7 +146,7 @@ export default class Table extends Component{
 
     let tableThead =(<Thead 
         rowSelection={rowSelection} 
-        setFixedLeftWidth={this.setFixedLeftWidth}
+        setFixedWidth={this.setFixedWidth}
         headindeterminate={headIndeterminate} 
         headchecked={headchecked} 
         selectedAll={this.selectedAll}
@@ -159,7 +161,7 @@ export default class Table extends Component{
       return(
         <div className={classNames(className,prefixCls,`${prefixCls}-scroll`,{
           [`${prefixCls}-scroll-position-left`]:this.state.scrollLeft ==0,
-          [`${prefixCls}-scroll-position-middle`]:(this.state.scrollLeft>0 && this.state.scrollRight>0) || this.state.scrollRight==0,
+          [`${prefixCls}-scroll-position-middle`]:(this.state.scrollLeft>0 && this.state.scrollRight>0),
           [`${prefixCls}-scroll-position-right`]:this.state.scrollRight==0,
         })}>
           {tableCaption}
@@ -196,6 +198,28 @@ export default class Table extends Component{
               </table>
             </div>
           </div>
+
+
+          <div className={classNames(`${prefixCls}-fixed-right`)} 
+            style={{width:this.state.rightFixedWidth,marginTop:this.state.leftFixedTop}}>
+            <div className={`${prefixCls}-fixed-head-right`}>
+              <table>
+                {React.cloneElement(tableColgroup)}
+                {React.cloneElement(tableThead,{
+                  cloneElement: "right",
+                })}
+              </table>
+            </div>
+            <div ref={(div)=>{
+              if( div ) div.scrollTop = this.state.scrollTop;
+            }} style={{height}} className={`${prefixCls}-fixed-body-right`}>
+              <table>
+                {React.cloneElement(tableColgroup,{cloneElement: "right"})}
+                {React.cloneElement(tableTbody,{cloneElement: "right"})}
+              </table>
+            </div>
+          </div>
+
         </div>
       )
     }
