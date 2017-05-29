@@ -58,12 +58,6 @@ export default class Table extends Component{
     }
 
   }
-  // 表头
-  renderCaption(){
-    const { prefixCls, caption } = this.props;
-    return (<div ref="caption" className={`${prefixCls}-caption`}>{caption}</div>)
-    // return (<caption ref="caption" className={`${prefixCls}-caption`}>{caption}</caption>)
-  }
   // 单行选择事件
   onRowSelection=(row, index, checked, e)=>{
     const {rowsChecked,rowsCount,headIndeterminate} = this.state;
@@ -124,7 +118,7 @@ export default class Table extends Component{
     })
   }
   render(){
-    const { prefixCls, className, onChange, rowSelection, caption, columns, data, height, width } = this.props;
+    const { prefixCls, className, onChange, rowSelection, caption, footer, columns, data, height, width } = this.props;
     const { headIndeterminate,headchecked } = this.state
     // checkbox 选择数据如果存在删除重新渲染
     if(rowSelection){
@@ -154,7 +148,8 @@ export default class Table extends Component{
       )
 
     let tableColgroup = (<Colgroup columns={columns}/>);
-    let tableCaption = caption&&this.renderCaption();
+    let tableCaption = caption&&(<div ref="caption" className={`${prefixCls}-caption`}>{caption}</div>);
+    let tableFooter = footer&&(<div className={`${prefixCls}-footer`}>footer</div>)
 
     if(height||width){
       // 固定头 或者左右滚动
@@ -179,6 +174,8 @@ export default class Table extends Component{
               {tableTbody}
             </table>
           </div>
+          {tableFooter}
+
           <div className={classNames(`${prefixCls}-fixed-left`)} 
             style={{width:this.state.leftFixedWidth,marginTop:this.state.leftFixedTop}}>
             <div className={`${prefixCls}-fixed-head-left`}>
@@ -233,6 +230,7 @@ export default class Table extends Component{
           {tableThead}
           {tableTbody}
         </table>
+        {tableFooter}
       </div>
     )
   }
