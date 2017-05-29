@@ -18,6 +18,7 @@ export default class Table extends Component{
       rowsCount:0,              //选中的行数
 
       scrollLeft:0,
+      scrollRight:0,
       scrollTop:0,
       leftFixedWidth:0,  // 左边固定的宽度
       leftFixedTop:0     // 左边固定的距离顶部距离
@@ -111,7 +112,8 @@ export default class Table extends Component{
   onScroll(e){
     this.setState({
       scrollLeft:e.target.scrollLeft,
-      scrollTop:e.target.scrollTop
+      scrollTop:e.target.scrollTop,
+      scrollRight:e.target.scrollWidth - (e.target.scrollLeft + e.target.offsetWidth)
     })
   }
   setFixedLeftWidth=(width)=>{
@@ -155,7 +157,11 @@ export default class Table extends Component{
     if(height||width){
       // 固定头 或者左右滚动
       return(
-        <div className={classNames(className,prefixCls,`${prefixCls}-scroll`)}>
+        <div className={classNames(className,prefixCls,`${prefixCls}-scroll`,{
+          [`${prefixCls}-scroll-position-left`]:this.state.scrollLeft ==0,
+          [`${prefixCls}-scroll-position-middle`]:(this.state.scrollLeft>0 && this.state.scrollRight>0) || this.state.scrollRight==0,
+          [`${prefixCls}-scroll-position-right`]:this.state.scrollRight==0,
+        })}>
           {tableCaption}
           <div ref={(div)=>{
             if( div ) div.scrollLeft = this.state.scrollLeft;
@@ -171,7 +177,7 @@ export default class Table extends Component{
               {tableTbody}
             </table>
           </div>
-          <div className={`${prefixCls}-fixed-left`} 
+          <div className={classNames(`${prefixCls}-fixed-left`)} 
             style={{width:this.state.leftFixedWidth,marginTop:this.state.leftFixedTop}}>
             <div className={`${prefixCls}-fixed-head-left`}>
               <table>
