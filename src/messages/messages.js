@@ -17,7 +17,9 @@ export default class Messages extends Component {
   }
 
   dismiss () {
+    const {onClose} =this.props
     this.refs.alerts.handleClose()
+    onClose&&onClose()
   }
   render() {
     const { content, type, className } = this.props;
