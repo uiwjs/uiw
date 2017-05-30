@@ -13,6 +13,7 @@ Modals.warn = function(props){
   }, props));
 }
 Modals.info = function(props){
+  console.log("props::",props)
   return Container(assign({}, {
     type: 'info',
     icon: InformationCircled,

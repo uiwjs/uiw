@@ -30,7 +30,7 @@ export default class Modal extends Component {
     onOk && onOk(e);
   }
   render() {
-    const { prefixCls,visible, className, title, footer, horizontal, styleMask, children, confirmLoading, onCancel, cancelText, okText, width, ...other} = this.props;
+    const { prefixCls,visible, className, title, footer, horizontal, styleMask, children, confirmLoading, onCancel, cancelText, okText, width,maskClosable, ...other} = this.props;
     const {leave} = this.state;
     
     if(!visible) return null;

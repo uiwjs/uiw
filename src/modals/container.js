@@ -7,7 +7,13 @@ import ActionButtons from './action-buttons';
 
 export default function Container(config){
   const props = config;
-  const {icon,title,content,width = 416,confirmLoading, type = "success",prefixCls="w-modals-confirm"} = props;
+  const {icon,title,content,onOk,className,
+    maskClosable=false, 
+    visible=true, 
+    width = 416,
+    type = "success",
+    prefixCls="w-modals-confirm", ...others
+  } = props;
 
   let div = document.createElement('div')
   document.body.appendChild(div)
@@ -41,14 +47,14 @@ export default function Container(config){
         {props.okText}
       </ActionButtons>
     )
-  } 
-
+  }
   ReactDOM.render(
       <Modals 
-        className={prefixCls}
-        visible={true}
-        maskClosable={false}
-        onOk={()=>{}}           // 点击确定提交按钮
+        { ...others }
+        className={classNames(prefixCls,className)}
+        visible={visible}
+        maskClosable={maskClosable}
+        onOk={onOk}           // 点击确定提交按钮
         width={width}           // 有默认值可以不传递
         onCancel={closeModals}
         footer={footer}
