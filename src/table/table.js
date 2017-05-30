@@ -154,53 +154,51 @@ export default class Table extends Component{
     let tableFooter = footer&&(<div className={`${prefixCls}-footer`}>footer</div>)
 
     if(height||width||rowSelection){
-      let fixedTable;
-      if(height||width){
-        fixedCloneTable = (
-          <div>
-            <div className={classNames(`${prefixCls}-fixed-left`)} 
-              style={{width:this.state.leftFixedWidth,marginTop:this.state.leftFixedTop}}>
-              <div className={`${prefixCls}-fixed-head-left`}>
-                <table>
-                  {React.cloneElement(tableColgroup)}
-                  {React.cloneElement(tableThead,{
-                    cloneElement: "left",
-                  })}
-                </table>
-              </div>
-              <div ref={(div)=>{
-                if( div ) div.scrollTop = this.state.scrollTop;
-              }} style={{height}} className={`${prefixCls}-fixed-body-left`}>
-                <table>
-                  {React.cloneElement(tableColgroup,{cloneElement: "left"})}
-                  {React.cloneElement(tableTbody('tbody_left'),{cloneElement: "left"})}
-                </table>
-              </div>
+      let fixedCloneTable = (height||width) ?  (
+        <div>
+          <div className={classNames(`${prefixCls}-fixed-left`)} 
+            style={{width:this.state.leftFixedWidth,marginTop:this.state.leftFixedTop}}>
+            <div className={`${prefixCls}-fixed-head-left`}>
+              <table>
+                {React.cloneElement(tableColgroup)}
+                {React.cloneElement(tableThead,{
+                  cloneElement: "left",
+                })}
+              </table>
             </div>
-
-
-            <div className={classNames(`${prefixCls}-fixed-right`)} 
-              style={{width:this.state.rightFixedWidth,marginTop:this.state.leftFixedTop}}>
-              <div className={`${prefixCls}-fixed-head-right`}>
-                <table>
-                  {React.cloneElement(tableColgroup)}
-                  {React.cloneElement(tableThead,{
-                    cloneElement: "right",
-                  })}
-                </table>
-              </div>
-              <div ref={(div)=>{
-                if( div ) div.scrollTop = this.state.scrollTop;
-              }} style={{height}} className={`${prefixCls}-fixed-body-right`}>
-                <table>
-                  {React.cloneElement(tableColgroup,{cloneElement: "right"})}
-                  {React.cloneElement(tableTbody('tbody_right'),{cloneElement: "right"})}
-                </table>
-              </div>
+            <div ref={(div)=>{
+              if( div ) div.scrollTop = this.state.scrollTop;
+            }} style={{height}} className={`${prefixCls}-fixed-body-left`}>
+              <table>
+                {React.cloneElement(tableColgroup,{cloneElement: "left"})}
+                {React.cloneElement(tableTbody('tbody_left'),{cloneElement: "left"})}
+              </table>
             </div>
           </div>
-        )
-      }
+
+
+          <div className={classNames(`${prefixCls}-fixed-right`)} 
+            style={{width:this.state.rightFixedWidth,marginTop:this.state.leftFixedTop}}>
+            <div className={`${prefixCls}-fixed-head-right`}>
+              <table>
+                {React.cloneElement(tableColgroup)}
+                {React.cloneElement(tableThead,{
+                  cloneElement: "right",
+                })}
+              </table>
+            </div>
+            <div ref={(div)=>{
+              if( div ) div.scrollTop = this.state.scrollTop;
+            }} style={{height}} className={`${prefixCls}-fixed-body-right`}>
+              <table>
+                {React.cloneElement(tableColgroup,{cloneElement: "right"})}
+                {React.cloneElement(tableTbody('tbody_right'),{cloneElement: "right"})}
+              </table>
+            </div>
+          </div>
+        </div>
+      ):null;
+
       // 固定头 或者左右滚动
       return(
         <div className={classNames(className,prefixCls,`${prefixCls}-scroll`,{
@@ -224,7 +222,7 @@ export default class Table extends Component{
             </table>
           </div>
           {tableFooter}
-          {(height||width) && fixedCloneTable}
+          {fixedCloneTable}
 
         </div>
       )
