@@ -35,7 +35,8 @@ export default class Modal extends Component {
     
     if(!visible) return null;
 
-    const defaultFooter = !footer?(
+    const defaultFooter = !footer?(footer ===null ? null:
+      <div className={`${prefixCls}-footer`}>
       <ButtonsGroup>
         <Buttons key="cancel" size="small" onClick={this.handleCancel}>
           {cancelText || '取消'}
@@ -44,6 +45,7 @@ export default class Modal extends Component {
           {okText || '确定'}
         </Buttons>
       </ButtonsGroup>
+      </div>
     ):footer;
 
     const cls = classNames(prefixCls,{
@@ -72,9 +74,7 @@ export default class Modal extends Component {
               <a onClick={this.handleCancel.bind(this)} className={`${prefixCls}-close-icon`}>{IconClose}</a>
             </div>
             <div className={`${prefixCls}-body`}>{children}</div>
-            <div className={`${prefixCls}-footer`}>
-              {defaultFooter}
-            </div>
+            {defaultFooter}
           </div>}
         </Transition>
       </div>
@@ -97,6 +97,7 @@ Modal.propTypes = {
   styleMask: PropTypes.object,
   confirmLoading: PropTypes.bool,
   title: PropTypes.node,
+  footer: PropTypes.node,
   onCancel: PropTypes.func,
   width: PropTypes.oneOfType([
     PropTypes.number, PropTypes.string
