@@ -28,7 +28,7 @@ export default class Alerts extends Component {
     const cls = classNames(prefixCls,{
         [`${prefixCls}-${type}`]: type ,
         [`${prefixCls}-icon`]: showIcon&&icon,
-        [`${prefixCls}-description`]: description,
+        [`${prefixCls}-icon-description`]: description,
         [className]: className
       });
 

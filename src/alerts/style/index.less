@@ -25,28 +25,24 @@
     right: @close-icon-right;
     .w-close-icon(@close-icon-color);
   }
-  &.w-alert-description{
-  }
   &.w-alert-icon{
-    padding: 8px 10px;
-    &.w-alert-description{
+    &.w-alert-icon-description{
       padding: 15px 16px;
+      padding-left: 56px;
     }
     svg {
-      margin-right: 10px;
       vertical-align: middle;
-    }
-    .w-alert-description{
-      padding-left: 36px;
+      position: absolute;
+      left: 16px;
     }
     .w-alert-description:first-child{
-      padding-left: 0;
+      padding-left: 15px;
       svg{
         height: 12px;
         width: 12px;
         margin-right: 5px;
-        position: relative;
-        top: -1px;
+        margin-top: 2px;
+        left: 9px;
       }
     }
   }
