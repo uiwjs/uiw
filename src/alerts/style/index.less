@@ -2,29 +2,54 @@
 @import "../../style/mixins/index.less";
 
 .w-alert{
-    position: relative;
-    padding: @alert-padding;
-    margin-bottom: @line-height-computed;
-    border: 1px solid transparent;
-    border-radius: @alert-border-raduis;
-    // border-radius: @alert-border-raduis;
-    .w-alert-message + .w-alert-description{
-        // font-size: 18px;
+  position: relative;
+  margin-bottom: @line-height-computed;
+  border: 1px solid transparent;
+  border-radius: @alert-border-raduis;
+  padding: @alert-padding;
+  // border-radius: @alert-border-raduis;
+  .w-alert-message + .w-alert-description{
+      // font-size: 18px;
+  }
+  .w-alert-message + .w-alert-close-icon{
+    font-size: 12px;
+  }
+  .w-alert-message:first-child:not(:last-child){
+      font-size:18px;
+      display: block;
+  }
+  > .w-alert-close-icon{
+    width: @close-icon-size;
+    height: @close-icon-size;
+    top: @close-icon-top;
+    right: @close-icon-right;
+    .w-close-icon(@close-icon-color);
+  }
+  &.w-alert-description{
+  }
+  &.w-alert-icon{
+    padding: 8px 10px;
+    &.w-alert-description{
+      padding: 15px 16px;
     }
-    .w-alert-message + .w-alert-close-icon{
-        font-size: 12px;
+    svg {
+      margin-right: 10px;
+      vertical-align: middle;
     }
-    .w-alert-message:first-child:not(:last-child){
-        font-size:18px;
-        display: block;
+    .w-alert-description{
+      padding-left: 36px;
     }
-    > .w-alert-close-icon{
-        width: @close-icon-size;
-        height: @close-icon-size;
-        top: @close-icon-top;
-        right: @close-icon-right;
-        .w-close-icon(@close-icon-color);
+    .w-alert-description:first-child{
+      padding-left: 0;
+      svg{
+        height: 12px;
+        width: 12px;
+        margin-right: 5px;
+        position: relative;
+        top: -1px;
+      }
     }
+  }
 }
 
 .w-alert-default{
