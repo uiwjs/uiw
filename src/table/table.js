@@ -235,7 +235,7 @@ export default class Table extends Component{
         <table>
           {tableColgroup}
           {tableThead}
-          {tableTbody}
+          {tableTbody()}
         </table>
         {tableFooter}
       </div>
