@@ -95,7 +95,7 @@ export default class Tbody extends Component{
       return items;
     }
   }
-  selectedAll(checked,cb){
+  selectedAll=(checked,cb)=>{
     const {data} = this.props;
     const {_disabled,_checked} = this.state;
     let _checked_cur = {}, _selectedData=[];

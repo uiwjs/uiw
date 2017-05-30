@@ -28,13 +28,18 @@ export default class Table extends Component{
   componentDidMount() {
     const {data} = this.props;
 
-    let checkedRow = [],rowsCount=0;
+    let checkedRow = [],rowsChecked = {},rowsCount=0;
     for(let i =0; i< data.length;i++){
       if(data[i]._checked){
         rowsCount +=1;
         checkedRow.push(data[i]);
+        rowsChecked[i] = data[i]
       }
     }
+    // 被选中的数据
+    this.setState({
+      rowsChecked:rowsChecked
+    })
     if(checkedRow.length > 0 &&  checkedRow.length != data.length){
       this.setState({
         rowsCount,
@@ -63,33 +68,31 @@ export default class Table extends Component{
     const {rowsChecked,rowsCount,headIndeterminate} = this.state;
     const {data,onSelect,rowSelection} = this.props;
 
+    let _rowsChecked = rowsChecked
     let count = Math.abs(checked ? rowsCount+1 : rowsCount-1);
-    let state = {rowsCount:count}
-
-    if(this.state.headchecked != count===data.length){
-      state[headchecked] = count===data.length;
-    }
-    if(this.state.headIndeterminate != count > 0 && count < data.length){
-      state[headIndeterminate] = count > 0 && count < data.length;
+    if(checked){
+      _rowsChecked[index] = row
+    }else{
+      delete _rowsChecked[index]
     }
     this.setState({
+      rowsChecked:_rowsChecked,
       rowsCount:count,
       headchecked:count===data.length,
       headIndeterminate: count > 0 && count < data.length
     })
-
-    rowSelection.onSelect&&rowSelection.onSelect(row,index,checked, e)
+    rowSelection.onSelect&&rowSelection.onSelect(row,index,checked,rowsChecked,e)
   }
   // 全选
   selectedAll=(e,checked)=>{
-    const {rowSelection,data} = this.props;
-    const {rowsCount} = this.state;
+    const {rowSelection,data,height,width} = this.props;
+    const {rowsCount,rowsChecked} = this.state;
     this.setState({
       rowsCount:checked?data.length:0,
       headchecked:checked,
       headIndeterminate:false
     })
-    this.refs.tbody.selectedAll(checked,(selectDatas)=>{
+    this.refs[(height||width)?'tbody_left':'tbody'].selectedAll(checked,(selectDatas)=>{
       rowSelection.onSelectAll&&rowSelection.onSelectAll(selectDatas,checked,e);
     })
   }
@@ -130,9 +133,8 @@ export default class Table extends Component{
         className:"_select"
       })
     }
-
-    let tableTbody = (<Tbody 
-        ref="tbody"
+    let tableTbody = (refname) => (<Tbody 
+        ref={refname}
         rowSelection={rowSelection}
         onRowSelection={this.onRowSelection}
         columns={columns} data={data} />
@@ -151,7 +153,54 @@ export default class Table extends Component{
     let tableCaption = caption&&(<div ref="caption" className={`${prefixCls}-caption`}>{caption}</div>);
     let tableFooter = footer&&(<div className={`${prefixCls}-footer`}>footer</div>)
 
-    if(height||width){
+    if(height||width||rowSelection){
+      let fixedTable;
+      if(height||width){
+        fixedCloneTable = (
+          <div>
+            <div className={classNames(`${prefixCls}-fixed-left`)} 
+              style={{width:this.state.leftFixedWidth,marginTop:this.state.leftFixedTop}}>
+              <div className={`${prefixCls}-fixed-head-left`}>
+                <table>
+                  {React.cloneElement(tableColgroup)}
+                  {React.cloneElement(tableThead,{
+                    cloneElement: "left",
+                  })}
+                </table>
+              </div>
+              <div ref={(div)=>{
+                if( div ) div.scrollTop = this.state.scrollTop;
+              }} style={{height}} className={`${prefixCls}-fixed-body-left`}>
+                <table>
+                  {React.cloneElement(tableColgroup,{cloneElement: "left"})}
+                  {React.cloneElement(tableTbody('tbody_left'),{cloneElement: "left"})}
+                </table>
+              </div>
+            </div>
+
+
+            <div className={classNames(`${prefixCls}-fixed-right`)} 
+              style={{width:this.state.rightFixedWidth,marginTop:this.state.leftFixedTop}}>
+              <div className={`${prefixCls}-fixed-head-right`}>
+                <table>
+                  {React.cloneElement(tableColgroup)}
+                  {React.cloneElement(tableThead,{
+                    cloneElement: "right",
+                  })}
+                </table>
+              </div>
+              <div ref={(div)=>{
+                if( div ) div.scrollTop = this.state.scrollTop;
+              }} style={{height}} className={`${prefixCls}-fixed-body-right`}>
+                <table>
+                  {React.cloneElement(tableColgroup,{cloneElement: "right"})}
+                  {React.cloneElement(tableTbody('tbody_right'),{cloneElement: "right"})}
+                </table>
+              </div>
+            </div>
+          </div>
+        )
+      }
       // 固定头 或者左右滚动
       return(
         <div className={classNames(className,prefixCls,`${prefixCls}-scroll`,{
@@ -171,51 +220,11 @@ export default class Table extends Component{
           <div onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-body`}>
             <table style={{width}}>
               {tableColgroup}
-              {tableTbody}
+              {tableTbody('tbody')}
             </table>
           </div>
           {tableFooter}
-
-          <div className={classNames(`${prefixCls}-fixed-left`)} 
-            style={{width:this.state.leftFixedWidth,marginTop:this.state.leftFixedTop}}>
-            <div className={`${prefixCls}-fixed-head-left`}>
-              <table>
-                {React.cloneElement(tableColgroup)}
-                {React.cloneElement(tableThead,{
-                  cloneElement: "left",
-                })}
-              </table>
-            </div>
-            <div ref={(div)=>{
-              if( div ) div.scrollTop = this.state.scrollTop;
-            }} style={{height}} className={`${prefixCls}-fixed-body-left`}>
-              <table>
-                {React.cloneElement(tableColgroup,{cloneElement: "left"})}
-                {React.cloneElement(tableTbody,{cloneElement: "left"})}
-              </table>
-            </div>
-          </div>
-
-
-          <div className={classNames(`${prefixCls}-fixed-right`)} 
-            style={{width:this.state.rightFixedWidth,marginTop:this.state.leftFixedTop}}>
-            <div className={`${prefixCls}-fixed-head-right`}>
-              <table>
-                {React.cloneElement(tableColgroup)}
-                {React.cloneElement(tableThead,{
-                  cloneElement: "right",
-                })}
-              </table>
-            </div>
-            <div ref={(div)=>{
-              if( div ) div.scrollTop = this.state.scrollTop;
-            }} style={{height}} className={`${prefixCls}-fixed-body-right`}>
-              <table>
-                {React.cloneElement(tableColgroup,{cloneElement: "right"})}
-                {React.cloneElement(tableTbody,{cloneElement: "right"})}
-              </table>
-            </div>
-          </div>
+          {(height||width) && fixedCloneTable}
 
         </div>
       )
