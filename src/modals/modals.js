@@ -35,8 +35,7 @@ export default class Modal extends Component {
     
     if(!visible) return null;
 
-    const defaultFooter = !footer?(footer ===null ? null:
-      <div className={`${prefixCls}-footer`}>
+    let defaultFooter = !footer?(
       <ButtonsGroup>
         <Buttons key="cancel" size="small" onClick={this.handleCancel}>
           {cancelText || '取消'}
@@ -45,7 +44,6 @@ export default class Modal extends Component {
           {okText || '确定'}
         </Buttons>
       </ButtonsGroup>
-      </div>
     ):footer;
 
     const cls = classNames(prefixCls,{
@@ -61,6 +59,7 @@ export default class Modal extends Component {
       case 'right': AnimateType='fade-right'; break;
       default: AnimateType='fade-down'; break;
     }
+    defaultFooter = (footer ===null?null:<div className={`${prefixCls}-footer`}>{defaultFooter}</div>)
 
     return (
       <div className={ cls }>
@@ -95,6 +94,7 @@ Modal.propTypes = {
   horizontal: PropTypes.oneOf(['left', 'right']),
   maskClosable: PropTypes.bool,
   styleMask: PropTypes.object,
+  style: PropTypes.object,
   confirmLoading: PropTypes.bool,
   title: PropTypes.node,
   footer: PropTypes.node,
