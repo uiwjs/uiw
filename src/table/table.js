@@ -133,9 +133,7 @@ export default class Table extends Component{
     const { headIndeterminate,headchecked,trHoverClassName } = this.state
     // checkbox 选择数据如果存在删除重新渲染
     if(rowSelection){
-      if(columns[0].key=='_select'){
-        columns.splice(0,1)
-      }
+      if(columns[0].key=='_select'){columns.splice(0,1)}
       columns.unshift({
         key: '_select',
         className:"_select"
@@ -166,7 +164,7 @@ export default class Table extends Component{
     let pagingView = paging && <Paging className={`${prefixCls}-paging`} {...paging}/>
 
     if(height||width||rowSelection){
-      let fixedCloneTable = (height||width) ?  (
+      let fixedCloneTable = (width) ?  (
         <div>
           <div className={classNames(`${prefixCls}-fixed-left`)} 
             style={{width:this.state.leftFixedWidth,marginTop:this.state.leftFixedTop}}>
@@ -180,7 +178,7 @@ export default class Table extends Component{
             </div>
             <div ref={(div)=>{
               if( div ) div.scrollTop = this.state.scrollTop;
-            }} style={{height}} className={`${prefixCls}-fixed-body-left`}>
+            }} onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-fixed-body-left`}>
               <table>
                 {React.cloneElement(tableColgroup,{cloneElement: "left"})}
                 {React.cloneElement(tableTbody('tbody_left'),{cloneElement: "left"})}
@@ -200,7 +198,7 @@ export default class Table extends Component{
             </div>
             <div ref={(div)=>{
               if( div ) div.scrollTop = this.state.scrollTop;
-            }} style={{height}} className={`${prefixCls}-fixed-body-right`}>
+            }} onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-fixed-body-right`}>
               <table>
                 {React.cloneElement(tableColgroup,{cloneElement: "right"})}
                 {React.cloneElement(tableTbody('tbody_right'),{cloneElement: "right"})}
@@ -227,7 +225,9 @@ export default class Table extends Component{
                 {tableThead}
               </table>
             </div>
-            <div onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-body`}>
+            <div ref={(div)=>{
+              if( div ) div.scrollTop = this.state.scrollTop;
+            }} onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-body`}>
               <table style={{width}}>
                 {tableColgroup}
                 {tableTbody('tbody')}

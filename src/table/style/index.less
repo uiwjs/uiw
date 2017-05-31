@@ -107,6 +107,7 @@
 
 .w-table-paging{
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 .w-table {
   &.w-table-scroll{
@@ -148,8 +149,14 @@
       overflow: hidden;
       top: 0;
       transition: box-shadow @transition-time @transition-timing-functio;
+      .w-table-fixed-body-left{
+        margin-right: -20px;
+        padding-right: 20px;
+      }
       .w-table-fixed-body-left,.w-table-fixed-body-right{
-        overflow: hidden;
+        overflow-y:scroll;
+        overflow-x: auto;
+        position: relative;
       }
       .w-table-fixed-head-right{
         border-top-right-radius: @border-radius-base;
@@ -191,7 +198,9 @@
       }
     }
     .w-table-body{
-      overflow: scroll;
+      overflow-x: auto;
+      position: relative;
+      overflow-y: scroll;
       border-radius: 0 0 @border-radius-base @border-radius-base;
       td:first-child{
         border-left: 0
@@ -203,7 +212,6 @@
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         border-left: 0;
-        overflow: hidden;
         tr:last-child{
           td{
             border-bottom: 0;
