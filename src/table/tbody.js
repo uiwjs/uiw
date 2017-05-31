@@ -120,7 +120,7 @@ export default class Tbody extends Component{
     return temp;
   }
   renderTbody(data){
-    const {rowSelection,trHoverClassName} = this.props;
+    const {rowSelection,trHoverClassName,prefixCls} = this.props;
     let items = [];
     console.log("trHoverClassName::",trHoverClassName,trHoverClassName[0])
     for(let i =0;i< data.length;i++){
@@ -129,13 +129,11 @@ export default class Tbody extends Component{
         // 添加一列 Checkbox
         rowdata = this.addSelectDateColumn(data[i]);
       }
-      let cls = (trHoverClassName.length > 1 && trHoverClassName[0] == i) ? 'hover' :''
-      if(trHoverClassName[0] && trHoverClassName[0] == i){
-        console.log("===trHoverClassName::",trHoverClassName)
-      }
       items.push(
         <tr 
-        className={cls}
+        className={classNames({
+          [`${prefixCls}-tr-hover`]:trHoverClassName[0] == i
+        })}
         onMouseEnter={()=>this.onMouseOver('enter',i)} 
         onMouseLeave={()=>this.onMouseOver('leave',i)} 
         key={i}>{this.renderTbodyTd(rowdata,i)}
@@ -155,7 +153,7 @@ export default class Tbody extends Component{
 }
 
 Tbody.defaultProps = {
-  prefixCls: '',
+  prefixCls: 'w-table',
   columns:[]
 };
 Tbody.propTypes = {

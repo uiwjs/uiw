@@ -52,7 +52,7 @@
     tr{
       transition: background @transition-time @transition-timing-functio;
       min-height: @table-tr-height;
-      &:hover{
+      &:hover,&.w-table-tr-hover{
         background-color: @table-tr-bg-active-color;
       }
     }
@@ -154,15 +154,17 @@
       .w-table-fixed-body-right{
         border-bottom-right-radius: @border-radius-base;
       }
-      table tbody tr{
+      table tbody{
         background-color: #fff;
-        &:last-child td{
-          border-bottom: 0;
+        tr{
+          &:last-child td{
+            border-bottom: 0;
+          }
+          &:first-child th{
+            border-top: 0;
+          }
         }
-        &:first-child th{
-          border-top: 0;
-        }
-      }
+      } 
       table thead tr:first-child th{
         border-top: 0;
       }
