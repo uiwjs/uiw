@@ -1,0 +1,126 @@
+// Reset
+
+
+//在HTML标签在浏览器里有默认的样式，例如 p 标签有上下边距，strong标签有字体加粗样式，em标签有字体倾斜样式。不同浏览器的默认样式之间也会有差别，例如ul默认带有缩进的样式，在IE下，它的缩进是通过margin实现的，而Firefox下，它的缩进是由padding实现的。在切换页面的时候，浏览器的默认样式往往会给我们带来麻烦，影响开发效率。所以解决的方法就是一开始就将浏览器的默认样式全部去掉，更准确说就是通过重新定义标签样式。“覆盖”浏览器的CSS默认属性。最最简单的说法就是把浏览器提供的默认样式覆盖掉！这就是CSS reset。
+
+// global-reset()
+// nested-reset()
+// reset-font()
+// reset-box-model()
+// reset-body()
+// reset-table()
+// reset-table-cell()
+// reset-html5()
+
+// http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/
+// http://yuilibrary.com/yui/docs/cssreset/
+// http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css
+// http://cssreset.com/
+
+.global-reset(){
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td{
+        .reset-box-model();
+        .reset-font();
+    }
+    body{
+        .reset-body()
+    }
+    ol, ul{
+        list-style: none;
+    }
+    table{
+        .reset-table()
+    }
+    caption, th, td{
+        .reset-table-cell()
+    }
+    a {   
+        text-decoration:inherit;
+        &:hover{
+            text-decoration:underline;
+        }
+    }
+    a img{
+        border: none;
+    }
+    * {
+        box-sizing: border-box; 
+    }
+}
+.nested-reset(){
+    div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,
+    pre, a, abbr, acronym, address, code, del, dfn, em, img,
+    dl, dt, dd, ol, ul, li, fieldset, form, label,
+    legend, caption, tbody, tfoot, thead, tr{
+        .reset-box-model();
+        .reset-font();
+    }
+    table{
+        .reset-table();
+    }
+    caption, th, td{
+        .reset-table-cell();
+    }
+    a img{
+        border: none;
+    }
+}
+.reset-box-model(){   
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
+
+.reset-font(){
+    font-weight: inherit;
+    font-style: inherit;
+    font-family: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+.reset-body(){
+    line-height: 1;
+    color: black;
+    background: white;
+}
+
+.reset-table(){
+    border-collapse: separate;
+    border-spacing: 0;
+    vertical-align: middle;
+}
+
+.reset-table-cell(){
+    text-align: left;
+    font-weight: normal;
+    vertical-align: middle;
+}
+.reset-html5(){
+    article, aside, canvas, details, figcaption,
+    figure, footer, header, hgroup, menu, nav,
+    section, summary, main{
+        .reset-box-model();
+        display: block;
+    }
+    audio, canvas, video{
+        display:inline-block;
+        *display: inline;
+        *zoom:1;
+    }
+    audio:not([controls]),[hidden]{
+        display:none;
+    }
+}
+
+
+
+.global-reset();
