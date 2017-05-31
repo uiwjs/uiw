@@ -17,6 +17,8 @@ export default class Table extends Component{
       rowsChecked:{},           //选中的数据
       rowsCount:0,              //选中的行数
 
+      trHoverClassName:[],       // 行移入移除事件，
+
       scrollLeft:0,
       scrollRight:0,
       scrollTop:0,
@@ -120,9 +122,14 @@ export default class Table extends Component{
       rightFixedWidth:rightWidth,
     })
   }
+  onTrHover=(ty,idx)=>{
+    this.setState({
+      trHoverClassName:ty == 'enter' ?[idx]:[]
+    })
+  }
   render(){
     const { prefixCls, className, onChange, rowSelection, caption, footer, columns, data, height, width } = this.props;
-    const { headIndeterminate,headchecked } = this.state
+    const { headIndeterminate,headchecked,trHoverClassName } = this.state
     // checkbox 选择数据如果存在删除重新渲染
     if(rowSelection){
       if(columns[0].key=='_select'){
@@ -136,6 +143,8 @@ export default class Table extends Component{
     let tableTbody = (refname) => (<Tbody 
         ref={refname}
         rowSelection={rowSelection}
+        trHoverClassName={trHoverClassName}
+        onTrHover={this.onTrHover}
         onRowSelection={this.onRowSelection}
         columns={columns} data={data} />
       )

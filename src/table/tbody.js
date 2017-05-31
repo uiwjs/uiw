@@ -110,6 +110,9 @@ export default class Tbody extends Component{
     this.setState({_checked:_checked_cur});
     cb&&cb(_selectedData)
   }
+  onMouseOver(ty,idx){
+    this.props.onTrHover(ty,idx);
+  }
   // 添加一列 Checkbox
   addSelectDateColumn(data){
     let temp = {_select:'_select'};
@@ -117,15 +120,27 @@ export default class Tbody extends Component{
     return temp;
   }
   renderTbody(data){
-    const {rowSelection} = this.props;
+    const {rowSelection,trHoverClassName} = this.props;
     let items = [];
+    console.log("trHoverClassName::",trHoverClassName,trHoverClassName[0])
     for(let i =0;i< data.length;i++){
       let rowdata = data[i];
       if(rowSelection){
         // 添加一列 Checkbox
         rowdata = this.addSelectDateColumn(data[i]);
       }
-      items.push(<tr key={i}>{this.renderTbodyTd(rowdata,i)}</tr>)
+      let cls = (trHoverClassName.length > 1 && trHoverClassName[0] == i) ? 'hover' :''
+      if(trHoverClassName[0] && trHoverClassName[0] == i){
+        console.log("===trHoverClassName::",trHoverClassName)
+      }
+      items.push(
+        <tr 
+        className={cls}
+        onMouseEnter={()=>this.onMouseOver('enter',i)} 
+        onMouseLeave={()=>this.onMouseOver('leave',i)} 
+        key={i}>{this.renderTbodyTd(rowdata,i)}
+        </tr>
+      )
     }
     return items;
   }
