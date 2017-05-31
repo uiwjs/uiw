@@ -5,6 +5,7 @@ import Thead from './thead';
 import Tbody from './tbody';
 import Colgroup from './colgroup';
 import Checkboxs from '../checkbox/';
+import Paging from '../paging/';
 import {compare} from '../utils/objects';
 
 export default class Table extends Component{
@@ -128,7 +129,7 @@ export default class Table extends Component{
     })
   }
   render(){
-    const { prefixCls, className, onChange, rowSelection, caption, footer, columns, data, height, width } = this.props;
+    const { prefixCls, className, onChange, rowSelection, caption, footer, columns, data, height, width,paging } = this.props;
     const { headIndeterminate,headchecked,trHoverClassName } = this.state
     // checkbox 选择数据如果存在删除重新渲染
     if(rowSelection){
@@ -162,6 +163,8 @@ export default class Table extends Component{
     let tableCaption = caption&&(<div ref="caption" className={`${prefixCls}-caption`}>{caption}</div>);
     let tableFooter = footer&&(<div className={`${prefixCls}-footer`}>footer</div>)
 
+    let pagingView = paging && <Paging className={`${prefixCls}-paging`} {...paging}/>
+
     if(height||width||rowSelection){
       let fixedCloneTable = (height||width) ?  (
         <div>
@@ -184,7 +187,6 @@ export default class Table extends Component{
               </table>
             </div>
           </div>
-
 
           <div className={classNames(`${prefixCls}-fixed-right`)} 
             style={{width:this.state.rightFixedWidth,marginTop:this.state.leftFixedTop}}>
@@ -210,43 +212,48 @@ export default class Table extends Component{
 
       // 固定头 或者左右滚动
       return(
-        <div className={classNames(className,prefixCls,`${prefixCls}-scroll`,{
-          [`${prefixCls}-scroll-position-left`]:this.state.scrollLeft ==0,
-          [`${prefixCls}-scroll-position-middle`]:(this.state.scrollLeft>0 && this.state.scrollRight>0),
-          [`${prefixCls}-scroll-position-right`]:this.state.scrollRight==0,
-        })}>
-          {tableCaption}
-          <div ref={(div)=>{
-            if( div ) div.scrollLeft = this.state.scrollLeft;
-          }} className={`${prefixCls}-head`}>
-            <table style={{width}}>
-              {tableColgroup}
-              {tableThead}
-            </table>
+        <div className={`${prefixCls}-warpper`}>
+          <div className={classNames(className,prefixCls,`${prefixCls}-scroll`,{
+            [`${prefixCls}-scroll-position-left`]:this.state.scrollLeft ==0,
+            [`${prefixCls}-scroll-position-middle`]:(this.state.scrollLeft>0 && this.state.scrollRight>0),
+            [`${prefixCls}-scroll-position-right`]:this.state.scrollRight==0,
+          })}>
+            {tableCaption}
+            <div ref={(div)=>{
+              if( div ) div.scrollLeft = this.state.scrollLeft;
+            }} className={`${prefixCls}-head`}>
+              <table style={{width}}>
+                {tableColgroup}
+                {tableThead}
+              </table>
+            </div>
+            <div onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-body`}>
+              <table style={{width}}>
+                {tableColgroup}
+                {tableTbody('tbody')}
+              </table>
+            </div>
+            {tableFooter}
+            {fixedCloneTable}
           </div>
-          <div onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-body`}>
-            <table style={{width}}>
-              {tableColgroup}
-              {tableTbody('tbody')}
-            </table>
-          </div>
-          {tableFooter}
-          {fixedCloneTable}
-
+          {pagingView}
         </div>
       )
     }
 
     // 默认的table
     return(
-      <div className={classNames(className,prefixCls)}>
-        {tableCaption}
-        <table>
-          {tableColgroup}
-          {tableThead}
-          {tableTbody()}
-        </table>
-        {tableFooter}
+      <div className={`${prefixCls}-warpper`}>
+        <div className={classNames(className,prefixCls)}>
+          {tableCaption}
+          <table>
+            {tableColgroup}
+            {tableThead}
+            {tableTbody()}
+          </table>
+          {tableFooter}
+        </div>
+        {pagingView}
       </div>
     )
   }
@@ -266,6 +273,7 @@ Table.propTypes = {
   data: PropTypes.array,
   height: PropTypes.number,
   rowSelection: PropTypes.object,
+  paging: PropTypes.object,
   // onSelectAll: PropTypes.func,
   // onSelect: PropTypes.func,
   scroll: PropTypes.object,

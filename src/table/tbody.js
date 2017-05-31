@@ -122,7 +122,6 @@ export default class Tbody extends Component{
   renderTbody(data){
     const {rowSelection,trHoverClassName,prefixCls} = this.props;
     let items = [];
-    console.log("trHoverClassName::",trHoverClassName,trHoverClassName[0])
     for(let i =0;i< data.length;i++){
       let rowdata = data[i];
       if(rowSelection){
