@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import {compare} from '../utils/objects';
 
 export default class Chackbox extends Component{
   constructor(props){

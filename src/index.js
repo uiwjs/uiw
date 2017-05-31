@@ -9,3 +9,4 @@ export { default as Calendars } from './calendar/';
 export { default as Transition } from './transition/';
 export { default as Tables } from './table/';
 export { default as Checkboxs } from './checkbox/';
+export { default as Paging } from './paging/';
