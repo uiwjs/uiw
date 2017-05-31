@@ -19,7 +19,6 @@
       background-color: @table-th-bg-color;
     }
     td{
-      background-color: @table-td-color;
       height: @table-tr-height;
       padding: @padding-small-vertical @padding-small-horizontal;
     }
@@ -155,11 +154,14 @@
       .w-table-fixed-body-right{
         border-bottom-right-radius: @border-radius-base;
       }
-      table tbody tr:last-child td{
-        border-bottom: 0;
-      }
-      table thead tr:first-child th{
-        border-top: 0;
+      table tbody tr{
+        background-color: #fff;
+        &:last-child td{
+          border-bottom: 0;
+        }
+        &:first-child th{
+          border-top: 0;
+        }
       }
     }
     .w-table-fixed-right{

@@ -48,8 +48,6 @@ export default class Paging extends React.Component {
       <li key={ty} onClick={()=>this.onPrevOrNext(ty)} className={classNames(`${prefixCls}-${ty}`)}><a>...</a></li>
     )
 
-    console.log("totalPage::",totalPage)
-
     for(let i =0; i< totalPage;i++){
       if(i+1 == curActvePage-3 && curActvePage-3 != 1 && totalPage > 5){
         items.push(itemsJump('jump-prev'));
