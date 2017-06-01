@@ -37,5 +37,16 @@
     "webpack-dev-server": "^2.4.5"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "babel":{
+    "env": {
+      "development": {
+        "presets" : ["es2015", "stage-1", "react"],
+        "plugins" : ["react-hot-loader/babel"]
+      },
+      "production": {
+        "presets" : [["es2015", { "modules": false }], "stage-1", "react"]
+      }
+    }
+  }
 }
