@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd docs && node webpack.config.dev.js",
-    "build": "cd docs && webpack  --progress"
+    "build": "cd docs && webpack  --progress",
+    "deploy": "./docs/release.sh"
   },
   "dependencies": {
     "classnames": "^2.2.5",
