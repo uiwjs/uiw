@@ -10,12 +10,14 @@ export default class Transition extends Component{
     return /^(fade-in|fade-left|fade-right|fade-down|fade-up)?$/.test(type);
   }
   render(){
-    const { prefixCls, type, appear, AppearTimeout, leave, LeaveTimeout, enter, EnterTimeout, children } = this.props;
+    const { prefixCls,className, type, appear, AppearTimeout, leave, LeaveTimeout, enter, EnterTimeout, children } = this.props;
     const animateName = classNames({
       [`${prefixCls}-${type}`]: this.isPresetAnimate(type)
     });
+    const cls = classNames(prefixCls,className)
     return(
       <CSSTransitionGroup
+        className={cls}
         transitionName={animateName}
         transitionAppear={appear}
         transitionAppearTimeout={AppearTimeout}

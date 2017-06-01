@@ -272,7 +272,11 @@ Table.propTypes = {
   size: PropTypes.oneOf(['large', 'default', 'small']),
   data: PropTypes.array,
   height: PropTypes.number,
-  rowSelection: PropTypes.object,
+  rowSelection: PropTypes.shape({
+    onSelect: PropTypes.func,
+    onSelectAll: PropTypes.func,
+    onCellClick: PropTypes.func
+  }),
   paging: PropTypes.object,
   // onSelectAll: PropTypes.func,
   // onSelect: PropTypes.func,
