@@ -31,7 +31,8 @@ export default class Markdown extends React.Component {
   }
 
   render() {
-    const document = this.document(localStorage.getItem('ELEMENT_LANGUAGE') || 'zh-CN');
+    const {prefixCls} = this.props;
+    const document = this.document(localStorage.getItem('W_LANGUAGE') || 'zh-CN');
 
     if (typeof document === 'string') {
       this.components.clear();
@@ -47,7 +48,7 @@ export default class Markdown extends React.Component {
       }));
 
       return (
-        <div dangerouslySetInnerHTML={{
+        <div className={`${prefixCls}-content-warpper`} dangerouslySetInnerHTML={{
           __html: html
         }} />
       )
@@ -55,4 +56,8 @@ export default class Markdown extends React.Component {
       return <span />
     }
   }
+}
+
+Markdown.defaultProps = {
+  prefixCls: 'w-docs',
 }

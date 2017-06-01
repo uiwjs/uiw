@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import App from './page';
 
-// import './style/base.less';
+import './style/base.less';
 import '../src/index.less';
 
 render(<AppContainer><App /></AppContainer>, document.getElementById('app'));

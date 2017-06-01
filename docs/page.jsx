@@ -79,32 +79,34 @@ export default class App extends Component {
     const {prefixCls} = this.props;
     return (
       <div className={`${prefixCls}`}>
-        {
-          Object.keys(pages.components).map(group => {
-            return (
-              <div className={`${prefixCls}-menu`} key={group}>
-                <div className={`${prefixCls}-title`}>{group}</div>
-                <ul className={`${prefixCls}-list`}>
-                  {
-                    Object.keys(pages.components[group]).map(page => {
-                      return (
-                        <li key={page} className="nav-item">
-                          <a 
-                            href={`#/${this.state.locale}/${page}`} 
-                            className={page === this.state.page ? 'active' : ''}>
-                            {this.getLocale(`page.${page}`)}
-                          </a>
-                        </li>
-                      )
-                    })
-                  }
-                </ul>
-              </div>
-            )
-          })
-        }
-        <div>
-          { this.getComponent(this.state.page) }
+        <div className={`${prefixCls}-menu-warpper`}>
+          {
+            Object.keys(pages.components).map(group => {
+              return (
+                <div className={`${prefixCls}-menu`} key={group}>
+                  <div className={`${prefixCls}-menu-title`}>{group}</div>
+                  <ul className={`${prefixCls}-menu-list`}>
+                    {
+                      Object.keys(pages.components[group]).map(page => {
+                        return (
+                          <li key={page} className={`${prefixCls}-menu-item`}>
+                            <a 
+                              href={`#/${this.state.locale}/${page}`} 
+                              className={page === this.state.page ? 'active' : ''}>
+                              {this.getLocale(`page.${page}`)}
+                            </a>
+                          </li>
+                        )
+                      })
+                    }
+                  </ul>
+                </div>
+              )
+            })
+          }
+        </div>
+        <div className={`${prefixCls}-content`}>
+          {this.getComponent(this.state.page)}
         </div>
       </div>
     )

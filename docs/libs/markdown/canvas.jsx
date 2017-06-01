@@ -21,11 +21,6 @@ export default class Canvas extends React.Component {
   componentDidUpdate() {
     this.renderSource();
   }
-
-  getHeight() {
-    return Math.max(this.refs.highlight.offsetHeight, this.refs.description && this.refs.description.offsetHeight || 0);
-  }
-
   blockControl() {
     this.setState({
       showBlock: !this.state.showBlock
@@ -61,6 +56,7 @@ export default class Canvas extends React.Component {
   }
 
   render() {
+    const {prefixCls} = this.props;
     const document = this.props.children.match(/([^]*)\n?(```[^]+```)/);
     const source = document[2].match(/```(.*)\n([^]+)```/);
     const description = marked(document[1]);
@@ -69,7 +65,6 @@ export default class Canvas extends React.Component {
       class Demo extends React.Component {
         ${source[2]}
       }
-
       __rtn = (function() {
         return <Demo {...context.props} />
       })();
@@ -81,22 +76,25 @@ export default class Canvas extends React.Component {
     this.component = component;
 
     return (
-      <div className={`demo-block demo-box demo-${this.props.name}`}>
-        <div className="source" ref="source"></div>
-        <div className="meta" style={{
-          height: this.state.showBlock ? this.getHeight() : 0
+      <div className={`${prefixCls}-demo-warpper ${prefixCls}-${this.props.name}`}>
+        <div className={`${prefixCls}-demo-source`} ref="source"></div>
+        <div className={`${prefixCls}-demo-meta`} style={{
+          height: this.state.showBlock ? 'inherit' : 0
         }}>
-          {description && <div ref="description" className="description" dangerouslySetInnerHTML={{ __html: description }}></div>}
-          <div ref="highlight" className="highlight" dangerouslySetInnerHTML={{ __html: highlight }}></div>
+          {
+            description && 
+            <div ref="description" className={`${prefixCls}-demo-des`} dangerouslySetInnerHTML={{ __html: description }}></div>
+          }
+          <div ref="highlight" className={`${prefixCls}-demo-highlight`} dangerouslySetInnerHTML={{ __html: highlight }}></div>
         </div>
         {
           this.state.showBlock ?
-            <div className="demo-block-control" onClick={this.blockControl.bind(this)}>
-              <i className="el-icon-caret-top"></i><span>{this.props.locale.hide}</span>
+            <div className={`${prefixCls}-demo-control`} onClick={this.blockControl.bind(this)}>
+              <span>{this.props.locale.hide}</span>
             </div>
             :
-            <div className="demo-block-control" onClick={this.blockControl.bind(this)}>
-              <i className="el-icon-caret-bottom"></i><span>{this.props.locale.show}</span>
+            <div className={`${prefixCls}-demo-control`} onClick={this.blockControl.bind(this)}>
+              <span>{this.props.locale.show}</span>
             </div>
         }
       </div>
@@ -105,42 +103,9 @@ export default class Canvas extends React.Component {
 }
 
 Canvas.propTypes = {
-  locale: PropTypes.object
+  locale: PropTypes.object,
 };
 
 Canvas.defaultProps = {
   locale: {}
 };
-
-
-
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import PropTypes from 'prop-types';
-// import marked from 'marked';
-// import prism from 'prismjs';
-// import { transform } from 'babel-standalone';
-
-// export default class Canvas extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {};
-//   }
-
-//   render() {
-
-//     return (
-//       <div className={`demo-block demo-box demo-${this.props.name}`}>
-//         <div className="source" ref="source"></div>
-//       </div>
-//     )
-//   }
-// }
-
-// Canvas.propTypes = {
-//   locale: PropTypes.object
-// };
-
-// Canvas.defaultProps = {
-//   locale: {}
-// };

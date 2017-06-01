@@ -9,9 +9,14 @@
 :::demo 简单的Checkbox，使用`checked`切换选中状态。
 ```js
 render() {
-  return <Checkboxs indeterminate onChange={(e)=>{
-              console.log(`checked = ${e.target.checked}`);
-            }}>半选中禁用</Checkboxs>
+  return (
+    <Checkboxs indeterminate 
+        onChange={(e)=>{
+          console.log(`checked = ${e.target.checked}`);
+        }}>
+        半选中禁用
+    </Checkboxs>
+  )
 }
 ```
 :::
