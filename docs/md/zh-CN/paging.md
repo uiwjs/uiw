@@ -6,7 +6,8 @@
 
 基础分页。
 
-<!--DemoStart--> 简单的Checkboxs，使用`checked`切换选中状态。
+<!--DemoStart--> 
+简单的Checkboxs，使用`checked`切换选中状态。
 ```js
 render() {
   return (
