@@ -13,6 +13,7 @@
 .w-docs-menu-warpper{
   height: 100%;
   width: 240px;
+  font-weight: 300;
   background-color: #0FA120;
   float: left;
   overflow: auto;
@@ -52,11 +53,15 @@
       margin-left: 0px;
       margin-top: 5px;
       margin-bottom: 10px;
-      code{
-        color:#a71d5d;
-        font-weight: bold;
-        padding:0 3px;
-      }
+    }
+    code{
+      color:#a71d5d;
+      font-weight: bold;
+      padding:0 3px;
+    }
+    pre > code{
+      font-weight: 300;
+      color:#353535;
     }
     table{
       border-collapse: collapse;
@@ -75,7 +80,7 @@
   border-radius: 4px;
   margin-top: 10px;
   .w-docs-demo-source{
-    padding: 10px;
+    padding: 20px;
   }
   .w-docs-demo-meta{
     overflow: hidden;
@@ -106,8 +111,12 @@
     .punctuation{
       font-weight: bold;
     }
+    .string{
+      color: #183691;
+    }
   }
   .w-docs-demo-control{
+    cursor: pointer;
     span{
       padding: 5px 10px;
       display: inline-block;

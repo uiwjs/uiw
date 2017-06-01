@@ -19,6 +19,13 @@ export default class Markdown extends React.Component {
     this.renderDOM();
   }
 
+  getPageName() {
+    const routes = location.hash.match(/(?:\/(.+))?\/(.+)/);
+    if (routes) {
+      return routes[2];
+    }
+    return 'quick-start';
+  }
   renderDOM() {
     for (const [id, component] of this.components) {
       const div = document.getElementById(id);
@@ -32,7 +39,7 @@ export default class Markdown extends React.Component {
 
   render() {
     const {prefixCls} = this.props;
-    const document = this.document(localStorage.getItem('W_LANGUAGE') || 'zh-CN');
+    const document = this.document(localStorage.getItem('W_LANGUAGE') || 'zh-CN',this.getPageName());
 
     if (typeof document === 'string') {
       this.components.clear();

@@ -57,7 +57,7 @@ render() {
 
 ### 受控的
 
-通过设置`disabled`属性来禁用多选框。
+联动 checkbox。
 
 <!--DemoStart-->
 ```js
@@ -263,7 +263,7 @@ render() {
 <!--End-->
 
 
-### Checkbox Attributes
+### Checkboxs Attributes
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
@@ -273,7 +273,7 @@ render() {
 | checked | 指定当前是否选中 | boolean | false |
 | indeterminate | 半选中，只负责样式控制 | Jay | false |
 
-### Checkbox Group Attributes
+### Checkboxs Group Attributes
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
