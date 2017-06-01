@@ -56,18 +56,16 @@ render() {
 ```js
 render() {
   return (
-    <div>
-        <Buttons size="small" onClick={()=>{
-          Messages.info(
-            <div>
-              <h2>标题</h2>
-              <p>这里是内容</p>
-            </div>
-          )
-        }}>
-          添加HTML输出 
-        </Buttons> 
-    </div>
+    <Buttons size="small" onClick={()=>{
+      Messages.info(
+        <div>
+          <h2>标题</h2>
+          <p>这里是内容</p>
+        </div>
+      )
+    }}>
+      添加HTML输出 
+    </Buttons> 
   )
 }
 ```
@@ -79,7 +77,6 @@ render() {
 ```js
 render() {
   return (
-    <div>
       <Buttons size="small" onClick={()=>{
         Messages.error('This is an warning Messages.',{
           duration:3,
@@ -89,8 +86,7 @@ render() {
         })
       }}>
         error, 自动3s关闭
-      </Buttons>  
-    </div>
+      </Buttons>
   )
 }
 ```
