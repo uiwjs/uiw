@@ -6,20 +6,18 @@ VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | s
 
 # target folder: /dist/site, make it clean and step into
 rm -fr dist
-mkdir dist dist/site
-cd dist/site
+builds=`npm run build`
+# mkdir dist dist/site
+cd dist/site 
 
 # init an empty git repo, checkout branch gh-pages
-git init
-git remote add origin $ORIGIN
-git fetch
-git checkout -b gh-pages
-
+git init 
+git remote add origin $ORIGIN 
+git checkout -b gh-pages 
+git add . -A 
+git commit -m "$VERSION" 
+git push -f origin gh-pages 
+# git reset --hard FETCH_HEAD
 # remove all existed files in the repo, run the site build script
-rm *
-npm run build
 
 # commit and push to gh-pages
-git add . -A
-git commit -m "$VERSION"
-git push --set-upstream origin gh-pages
