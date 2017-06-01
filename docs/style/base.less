@@ -67,9 +67,37 @@
       font-weight: bold;
       padding:0 3px;
     }
+    pre {
+      background-color: #efefef;
+      overflow: auto;
+    }
     pre > code{
       font-weight: 300;
       color:#353535;
+      padding: 10px;
+      display: inline-block;
+    }
+    .function{
+      font-weight: bold;
+      color: #333;
+    }
+    .keyword{
+      color: #a71d5d;
+    }
+    .template-string{
+      color: #3F51B5;
+    }
+    .operator{
+      color: #a71d5d;
+    }
+    .punctuation{
+      font-weight: bold;
+    }
+    .string{
+      color: #183691;
+    }
+    .comment{
+      color: #a2a2a2;
     }
   }
 }
@@ -95,28 +123,6 @@
     background-color: #efefef;
     padding: 10px;
     overflow: auto;
-    .function{
-      font-weight: bold;
-      color: #333;
-    }
-    .keyword{
-      color: #a71d5d;
-    }
-    .template-string{
-      color: #3F51B5;
-    }
-    .operator{
-      color: #a71d5d;
-    }
-    .punctuation{
-      font-weight: bold;
-    }
-    .string{
-      color: #183691;
-    }
-    .comment{
-      color: #a2a2a2;
-    }
   }
   .w-docs-demo-control{
     cursor: pointer;

@@ -1,4 +1,7 @@
 export default {
+  documents: {
+    'quick-start': require('./quick-start'),
+  },
   components: {
     'Basic': {
       'buttons': require('./buttons'),
