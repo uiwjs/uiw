@@ -6,7 +6,8 @@
 
 单独使用可以表示两种状态之间的切换，半选中只是样式上的表现。
 
-<!--DemoStart--> 简单的Checkboxs，使用`checked`切换选中状态。
+<!--DemoStart--> 
+简单的Checkboxs，使用`checked`切换选中状态。
 ```js
 render() {
   return (
