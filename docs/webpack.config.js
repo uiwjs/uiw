@@ -5,8 +5,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const basePath = path.resolve(__dirname, '../');
 
-console.log("process.env.TRAVIS_CI:::",process.env.TRAVIS_CI)
-
 module.exports = {
   entry: {
     docs: path.join(basePath, 'docs')
@@ -19,17 +17,16 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin({ filename: '[chunkhash:12].css' }),
     new HtmlWebpackPlugin({ template: './build.html' })
-  ].concat(process.env.TRAVIS_CI ? [] : [
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: {
-        keep_fnames: true
-      },
-      output: {
-        comments: false
-      }
-    })
-  ]),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   mangle: {
+    //     keep_fnames: true
+    //   },
+    //   output: {
+    //     comments: false
+    //   }
+    // })
+  ],
   resolve: {
     extensions: ['.js', '.jsx']
   },
