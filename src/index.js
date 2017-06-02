@@ -10,3 +10,4 @@ export { default as Transition } from './transition/';
 export { default as Tables } from './table/';
 export { default as Checkboxs } from './checkbox/';
 export { default as Paging } from './paging/';
+export { default as Tooltips } from './tooltip/';

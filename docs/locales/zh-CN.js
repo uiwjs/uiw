@@ -1,7 +1,7 @@
 module.exports = {
   page: {
     'quick-start': '快速上手',
-    'checkbox': 'Checkboxs 多选框',
+    'checkboxs': 'Checkboxs 多选框',
     'alerts': 'Alerts 警告',
     'buttons': 'Buttons 按钮',
     'paging': 'Paging 分页',
@@ -12,6 +12,14 @@ module.exports = {
     'transition': 'Transition 过渡动画',
     'calendars': 'Calendars 日历',
     'tables': 'Tables 表格',
+    'tooltips': 'Tooltip文字提示',
+  },
+  category:{
+    'Form':"表单",
+    'Basic':"基本",
+    'Data Display':"数据显示",
+    'Navigation':"导航",
+    'Feedback':"反馈",
   },
   markdown: {
     'show': '显示代码',

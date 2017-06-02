@@ -7,11 +7,12 @@ export default {
       'buttons': require('./buttons'),
     },
     'Form': {
-      'checkbox': require('./checkbox'),
+      'checkboxs': require('./checkboxs'),
     },
     'Data Display': {
       'calendars': require('./calendars'),
       'tables': require('./tables'),
+      'tooltips': require('./tooltips'),
     },
     'Navigation': {
       'paging': require('./paging'),

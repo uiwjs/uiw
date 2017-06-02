@@ -16,7 +16,7 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin({ filename: '[chunkhash:12].css' }),
-    new HtmlWebpackPlugin({ template: './build.html' })
+    new HtmlWebpackPlugin({ template: './build.html' }),
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
     // new webpack.optimize.UglifyJsPlugin({
     //   mangle: {

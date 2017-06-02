@@ -13,6 +13,13 @@ module.exports = {
     'calendar': 'Calendar',
     'tables': 'Tables',
   },
+  category:{
+    'Form':"Form",
+    'Basic':"Basic",
+    'Data Display':"Data Display",
+    'Navigation':"Navigation",
+    'Feedback':"Feedback",
+  },
   markdown: {
     'show': 'Show',
     'hide': 'Hide'

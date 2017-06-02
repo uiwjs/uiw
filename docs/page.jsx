@@ -7,6 +7,8 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.renderMenuItems = this.renderMenuItems.bind(this);
+    this.renderMenuGroup = this.renderMenuGroup.bind(this);
   }
 
   componentWillMount() {
@@ -75,35 +77,39 @@ export default class App extends Component {
     }
   }
 
+  renderMenuItems(page){
+    const {prefixCls} = this.props;
+    return (
+      <li key={page} className={`${prefixCls}-menu-item`}>
+        <a 
+          href={`#/${this.state.locale}/${page}`} 
+          className={page === this.state.page ? 'active' : ''}>
+          {this.getLocale(`page.${page}`)}
+        </a>
+      </li>
+    )
+  }
+
+  renderMenuGroup(group){
+    const {prefixCls} = this.props;
+    return (
+      <div className={`${prefixCls}-menu`} key={group}>
+        <div className={`${prefixCls}-menu-title`}>{this.getLocale(`category.${group}`)}</div>
+        <ul className={`${prefixCls}-menu-list`}>
+          {Object.keys(pages.components[group]).map(page => this.renderMenuItems(page))}
+        </ul>
+      </div>
+    )
+  }
+
   render() {
     const {prefixCls} = this.props;
     return (
       <div className={`${prefixCls}`}>
         <div className={`${prefixCls}-menu-warpper`}>
-          {
-            Object.keys(pages.components).map(group => {
-              return (
-                <div className={`${prefixCls}-menu`} key={group}>
-                  <div className={`${prefixCls}-menu-title`}>{group}</div>
-                  <ul className={`${prefixCls}-menu-list`}>
-                    {
-                      Object.keys(pages.components[group]).map(page => {
-                        return (
-                          <li key={page} className={`${prefixCls}-menu-item`}>
-                            <a 
-                              href={`#/${this.state.locale}/${page}`} 
-                              className={page === this.state.page ? 'active' : ''}>
-                              {this.getLocale(`page.${page}`)}
-                            </a>
-                          </li>
-                        )
-                      })
-                    }
-                  </ul>
-                </div>
-              )
-            })
-          }
+          <div className={`${prefixCls}-content`}>
+          {Object.keys(pages.components).map(group => this.renderMenuGroup(group)) }
+          </div>
         </div>
         <div className={`${prefixCls}-content`}>
           {this.getComponent(this.state.page)}
