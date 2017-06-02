@@ -141,7 +141,7 @@ render() {
 
 ### 主题
 
-组件提供了两个不同的主题：dark和light。
+组件提供了两个不同的主题：`dark`和`light`。
 
 <!--DemoStart--> 
 ```js

@@ -1,5 +1,5 @@
 import Markdown from '../../libs/markdown/';
-export default class Loading extends Markdown {
+export default class Layout extends Markdown {
   document(locale,fileName) {
     return require(`../../md/${locale}/${fileName}.md`);
   }

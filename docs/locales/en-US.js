@@ -4,6 +4,7 @@ module.exports = {
     'checkbox': 'Checkboxs',
     'alerts': 'Alerts',
     'buttons': 'Buttons',
+    'layout': 'Layout',
     'paging': 'Paging',
     'loading': 'Loading',
     'tags': 'Tags',

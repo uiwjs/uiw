@@ -1,0 +1,25 @@
+.w-row{
+  &:after,&:before {
+    content: "";
+    display: table;
+  }
+  &:after{
+    clear: both;
+  }
+}
+
+
+.w-col-1, .w-col-2, .w-col-3, .w-col-4, .w-col-5, .w-col-6, .w-col-7, .w-col-8, .w-col-9, .w-col-10, .w-col-11, .w-col-12, .w-col-13, .w-col-14, .w-col-15, .w-col-16, .w-col-17, .w-col-18, .w-col-19, .w-col-20, .w-col-21, .w-col-22, .w-col-23, .w-col-24 {
+  float: left;
+  box-sizing: border-box;
+}
+
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+  .w-col-@{i} {
+    width: (@i * 100% / @n);
+    test: @i  @n;
+  }
+  .generate-columns(@n, (@i + 1));
+}
+
+.generate-columns(24);

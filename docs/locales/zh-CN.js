@@ -4,6 +4,7 @@ module.exports = {
     'checkboxs': 'Checkboxs 多选框',
     'alerts': 'Alerts 警告',
     'buttons': 'Buttons 按钮',
+    'layout': 'Layout 布局',
     'paging': 'Paging 分页',
     'loading': 'Loading 加载中',
     'tags': 'Tags 标签',

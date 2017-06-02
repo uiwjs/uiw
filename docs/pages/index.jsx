@@ -5,6 +5,7 @@ export default {
   components: {
     'Basic': {
       'buttons': require('./buttons'),
+      'layout': require('./layout'),
     },
     'Form': {
       'checkboxs': require('./checkboxs'),
