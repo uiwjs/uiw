@@ -10,6 +10,9 @@
       display: inline-block;
     }
   }
+  .w-tooltip-children{
+    position: relative;
+  }
   .w-tooltip-content{
     position: relative;
     display: inline-block;
@@ -35,6 +38,25 @@
     height: 0;
     border-color: transparent;
     border-style: solid;
+  }
+  &.w-tooltip-light .w-tooltip-inner{
+    background-color: rgba(255, 255, 255, 0.75);
+    color:@tooltip-bg;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.46);
+  }
+  &.w-tooltip-light .w-tooltip-content .w-tooltip-arrow{
+    border-top-color: rgba(0, 0, 0, 0.25);
+    &:before{
+      content: '';
+      display: inline-block;
+      height: 6px;
+      width: 6px;
+      position: absolute;
+      transform: rotate(45deg);
+      top: -8px;
+      left: -3px;
+      background-color: #ffffff;
+    }
   }
   &.w-tooltip-placement-top,&.w-tooltip-placement-topLeft,&.w-tooltip-placement-topRight {
     .w-tooltip-content{

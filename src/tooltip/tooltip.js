@@ -21,20 +21,51 @@ export default class Tooltip extends Component {
       stylesPopup:this.styles()
     })
   }
+  componentWillReceiveProps(nextProps,nextState) {
+    if(this.props.visible!==nextProps.visible){
+      const {enterDelay,onVisibleChange} =this.props;
+      this.setState({showTooltip:!this.state.showTooltip});
+      // 解决无法获取节点样式
+      setTimeout(()=>{
+        this.setState({
+          stylesPopup:this.styles()
+        })
+        onVisibleChange&&onVisibleChange(true)
+      },enterDelay||0)
+    }
+  }
   showTooltip(){
-    this.setState({
-      showTooltip:true,
-    })
+    const {enterDelay,onVisibleChange} = this.props;
+    this.leaveTime = setTimeout(()=>{
+      this.setState({
+        showTooltip:true
+      })
+      onVisibleChange&&onVisibleChange(true)
+    },enterDelay||0)
+    // 解决无法获取节点样式
     setTimeout(()=>{
       this.setState({
         stylesPopup:this.styles()
       })
-    },0)
+      onVisibleChange&&onVisibleChange(true)
+    },enterDelay||0)
   }
-  hideTooltip(){
-    this.setState({
-      showTooltip:false
-    })
+  hideTooltip(e,isDelay){
+    const {leaveDelay,onVisibleChange} = this.props;
+    if(isDelay==true){
+      this.setState({
+        showTooltip:false
+      })
+      onVisibleChange&&onVisibleChange(false)
+    }else{
+      clearTimeout(this.leaveTime)
+      this.leaveTime = setTimeout(()=>{
+        this.setState({
+          showTooltip:false
+        })
+        onVisibleChange&&onVisibleChange(false)
+      },leaveDelay||0)
+    }
   }
   // 弹出的位置
   styles(){
@@ -110,19 +141,34 @@ export default class Tooltip extends Component {
     if(left) sty.left = left+'px';
     return sty
   }
+
   render() {
-    const { prefixCls,className,children,visibleArrow,placement,content, trigger,visible,onVisibleChange,effect, ...others } = this.props;
+    const { prefixCls,className,disabled,children,visibleArrow,placement,content, 
+      trigger,style,visible,onVisibleChange,effect,leaveDelay} = this.props;
     const { stylesPopup,showTooltip } = this.state;
     const cls = classNames(prefixCls,className,{
-      [`${prefixCls}-placement-${placement}`]:placement
+      [`${prefixCls}-placement-${placement}`]:placement,
+      [`${prefixCls}-${effect}`]:effect
     })
 
+    const props = {}
+    if (trigger === 'hover') {
+      props.onMouseEnter = this.showTooltip
+      props.onMouseLeave = this.hideTooltip
+    } else {
+      props.onClick = (e) => {
+        this.showTooltip(e)
+        clearTimeout(this.clickLeaveTimeout)
+        this.clickLeaveTimeout = setTimeout((f)=>this.hideTooltip(f,true),leaveDelay||2000)
+      }
+    }
+
     return (
-      <div className={cls} {...others} onMouseEnter={this.showTooltip} onMouseLeave={this.hideTooltip}>
+      <div className={cls} style={style||{}} {...props}>
         <div ref="reference" className={`${prefixCls}-children`}> {children} </div>
         <div ref="popup" style={stylesPopup} className={`${prefixCls}-popup`}>
           <Transition type="fade-in">
-            {showTooltip&&<div className={`${prefixCls}-content`}>
+            {!disabled&&showTooltip&&<div className={`${prefixCls}-content`}>
               {visibleArrow&&<div className={`${prefixCls}-arrow`}></div>}
               <div className={`${prefixCls}-inner`}>{content}</div>
             </div>}
@@ -152,8 +198,10 @@ Tooltip.propTypes = {
   disabled: PropTypes.bool,
   // 手动控制状态的展示
   visible: PropTypes.bool,
-  // 是否显示 Tooltip 箭头
+  // 是否显示 Tooltips 箭头
   visibleArrow: PropTypes.bool,
+  // 鼠标离开或者点击之后延时多少才隐藏 Tooltips，单位：秒
+  leaveDelay: PropTypes.number,
   // 显示隐藏的回调
   onVisibleChange: PropTypes.func,
   style: PropTypes.object,
