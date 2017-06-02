@@ -57,22 +57,57 @@ export default class Tooltip extends Component {
         top = -(refheight>popheight?refheight:popheight);
         left = diffwidth>0?-(diffwidth/2):Math.abs(diffwidth/2);
         break;
+      case "topLeft": 
+        top = -(refheight>popheight?refheight:popheight);
+        left = 0;
+        break;
+      case "topRight": 
+        top = -(refheight>popheight?refheight:popheight);
+        left = -(refwidth>popwidth?refwidth-popwidth:popwidth-refwidth);
+        break;
       case "left": 
         top = diffheight > 0 ? -(diffheight/2):Math.abs(diffheight/2);
         left = -popwidth;
         break;
-      case "bottom": 
-        left = diffwidth>0?-(diffwidth/2):Math.abs(diffwidth/2);
+      case "leftTop": 
+        top = 0;
+        left = -popwidth;
+        break;
+      case "leftBottom": 
+        top = (refheight>popheight?(refheight-popheight):-(popheight-refheight));
+        left = -popwidth;
         break;
       case "right": 
         top = diffheight > 0 ? -(diffheight/2):Math.abs(diffheight/2);
         left = refwidth;
         break;
+      case "rightTop": 
+        top = 0;
+        left = refwidth;
+        break;
+      case "rightBottom": 
+        top = (refheight>popheight?(refheight-popheight):-(popheight-refheight));
+        left = refwidth;
+        break;
+      case "bottom": 
+        top = refheight
+        left = diffwidth>0?-(diffwidth/2):Math.abs(diffwidth/2);
+        break;
+      case "bottomLeft": 
+        top = refheight;
+        left = 0;
+        break;
+      case "bottomRight": 
+        top = refheight;
+        left = -(refwidth>popwidth?refwidth-popwidth:popwidth-refwidth);
+        break;
     }
-    let sty = {}
-    if(top) sty.top = top+'px';
+    if(placement=="topLeft"){
+      console.log("topLeft::",top,-(refheight>popheight?refheight:popheight))
+    }
+    let sty = {};
+    if(top||top==0) sty.top = top+'px';
     if(left) sty.left = left+'px';
-
     return sty
   }
   render() {
