@@ -23,6 +23,16 @@
   }
   .generate-columns-bootstrap(@name, @n, (@i + 1));
 };
+
+.generate-columns-order(@n, @i: 1) when (@i =< @n) {
+  .w-col-order-@{i} {
+    order: @i;
+  }
+  .generate-columns-order(@n, (@i + 1));
+};
+
+.generate-columns-order(24);
+
 @media screen and (max-width: @screen-xs) {
   .generate-columns-bootstrap(xs,24);
 }

@@ -6,7 +6,7 @@ export default class Col extends Component {
   render() {
     const { prefixCls,tag,span, xs,sm,md,lg, ...others} = this.props;
     let classList = [];
-    ['span', 'offset', 'pull', 'push'].forEach(prop => {
+    ['span', 'offset', 'pull', 'push', 'order'].forEach(prop => {
       let num = this.props[prop];
       if (num) {
         classList.push(

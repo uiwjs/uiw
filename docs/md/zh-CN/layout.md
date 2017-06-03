@@ -2,31 +2,6 @@
 
 通过基础的 24 分栏，迅速简便地创建布局。 主要由 `Layout.Row` 和 `Layout.Col` 来实现布局。
 
-### Flex 排序
-
-通过 `Flex` 布局的 `Order` 来改变元素的排序。
-
-<!--DemoStart--> 
-```js
-render() {
-  //下面这段样式可以写入css中通过 className 来使用
-  let styleCol = {background: "lightgrey",lineHeight:"36px",textAlign:"center"};
-  let styleColLight = {background: "#e3e3e3",lineHeight:"36px",textAlign:"center"};
-
-  const {Row,Col} = Layout;
-
-  return (
-    <Row type="flex">
-      <Col span={6} order={4} style={styleCol}>span=1, order=4</Col>
-      <Col span={6} order={3} style={styleColLight}>span=2, order=3</Col>
-      <Col span={6} order={2} style={styleCol}>span=3, order=2</Col>
-      <Col span={6} order={1} style={styleColLight}>span=4, order=1</Col>
-    </Row>
-  )
-}
-```
-<!--End-->
-
 ### 基本用法
 
 <!--DemoStart--> 
@@ -280,6 +255,31 @@ render() {
 ```
 <!--End-->
 
+### Flex 排序
+
+通过 `Flex` 布局的 `order` 来改变元素的排序。
+
+<!--DemoStart--> 
+```js
+render() {
+  //下面这段样式可以写入css中通过 className 来使用
+  let styleCol = {background: "lightgrey",lineHeight:"36px",textAlign:"center"};
+  let styleColLight = {background: "#e3e3e3",lineHeight:"36px",textAlign:"center"};
+
+  const {Row,Col} = Layout;
+
+  return (
+    <Row type="flex">
+      <Col span={6} order={4} style={styleCol}>span=1, order=4</Col>
+      <Col span={6} order={3} style={styleColLight}>span=2, order=3</Col>
+      <Col span={6} order={2} style={styleCol}>span=3, order=2</Col>
+      <Col span={6} order={1} style={styleColLight}>span=4, order=1</Col>
+    </Row>
+  )
+}
+```
+<!--End-->
+
 
 ### 响应式布局
 
@@ -361,7 +361,7 @@ render() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| span | 栅格占据的列数，必选参数 0 < span < 24 | number | - |
+| span | 栅格占据的列数，必选参数 `0 < span < 24` | number | - |
 | offset | 栅格左侧的间隔格数，将列向右侧偏 | number | 0 |
 | push | 栅格向右移动格数 | number | 0 |
 | pull | 栅格向左移动格数 | number | 0 |
