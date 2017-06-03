@@ -38,9 +38,20 @@
 .w-col-0 {
   width: 0;
 }
+// 原来less这么难用，下次重构用回 stylus 算求了
+.generate-columns(@n, @i: 1,@name:".w-col-1") when (@i =< @n) {
+  .mixin-columns-name(@i) when (@i > 1) { 
+    @namey: ~"@{name},.w-col-@{i}";
+  }
+  .mixin-columns-name(@i);
 
-.generate-columns(@n, @i: 2,@name:".w-col-1") when (@i =< @n) {
-  @namey: ~"@{name},.w-col-@{i}";
+
+  .mixin-columns-name2(@i) when (@i = 1) { 
+    @namey: ~".w-col-@{i}";
+  }
+  .mixin-columns-name2(@i);
+
+  
   .mixin-columns (@i) when (@i = @n) { 
     @{namey} {
       float: left;
@@ -48,6 +59,7 @@
     }
   }
   .mixin-columns(@i);
+
   .w-col-@{i} {
     width: (@i * 100% / @n);
   }
@@ -60,7 +72,7 @@
   .w-col-push-@{i} {
     left:  (@i * 100% / @n);
   }
-  .generate-columns(@n, (@i + 1),"@{name},.w-col-@{i}");
+  .generate-columns(@n, (@i + 1),@namey);
 };
 
 .generate-columns(24);
