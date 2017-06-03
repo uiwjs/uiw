@@ -259,11 +259,29 @@ render() {
 
 参照 Bootstrap 的 响应式设计，预设了四个响应尺寸：xs、sm、md和lg。
 
+```css
+/* 超小屏幕（手机，小于 768px） */
+/* 没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的 */
+
+/* 小屏幕（平板，大于等于 768px） */
+@media (min-width: @screen-xs) { ... }
+
+/* 小屏幕（平板，大于等于 768px） */
+@media (min-width: @screen-sm) { ... }
+
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media (min-width: @screen-md) { ... }
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media (min-width: @screen-lg) { ... }
+```
+
 <!--DemoStart--> 
 ```js
 render() {
   //下面这段样式可以写入css中通过 className 来使用
   let styleCol = {background: "lightgrey",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
+  let styleCol2 = {background: "#e3e3e3",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
   let styleRow = {background: "#f7f7f7",padding:"5px 0"};
 
   const {Row,Col} = Layout;
@@ -271,9 +289,9 @@ render() {
   return (
     <Row style={styleRow} gutter="10">
       <Col xs="8" sm="6" md="4" lg="3"><div style={styleCol}></div></Col>
+      <Col xs="4" sm="6" md="8" lg="9"><div style={styleCol2}></div></Col>
       <Col xs="4" sm="6" md="8" lg="9"><div style={styleCol}></div></Col>
-      <Col xs="4" sm="6" md="8" lg="9"><div style={styleCol}></div></Col>
-      <Col xs="8" sm="6" md="4" lg="3"><div style={styleCol}></div></Col>
+      <Col xs="8" sm="6" md="4" lg="3"><div style={styleCol2}></div></Col>
     </Row>
   )
 }
