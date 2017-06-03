@@ -36,7 +36,7 @@ export default function Container(config){
   let footer = [];
   if (props.cancelText) {
     footer.push(
-      <ActionButtons key="cancel" size="small" closeModals={closeModals} onOk={props.onOk} autoFocus>
+      <ActionButtons key="cancel" size="small" closeModals={closeModals} onOk={props.onCancel} autoFocus>
         {props.cancelText}
       </ActionButtons>
     )

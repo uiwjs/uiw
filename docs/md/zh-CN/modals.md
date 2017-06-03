@@ -22,10 +22,10 @@ constructor(props) {
       maskClosable:false,
       className:"aaa",
       onOk:()=>{
-        console.log("确定回调！")
+        console.log("确定回调！1111")
       },
       onCancel:()=>{
-        console.log("取消回调！")
+        console.log("取消回调！222")
       },
     })
   }
