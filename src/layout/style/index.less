@@ -1,79 +1,20 @@
-.w-row{
-  &:after,&:before {
-    content: "";
-    display: table;
-  }
-  &:after{
-    clear: both;
-  }
-}
-
-.w-row-flex {
-  display: flex;
-  &:before,
-  &:after {
-    display: none;
-  }
-  &.w-row-justify-center {
-    justify-content: center;
-  }
-  &.w-row-justify-end {
-    justify-content: flex-end;
-  }
-  &.w-row-justify-space-between {
-    justify-content: space-between;
-  }
-  &.w-row-justify-space-around {
-    justify-content: space-around;
-  }
-  &.w-row-align-middle {
-    align-items: center;
-  }
-  &.w-row-align-bottom {
-    align-items: flex-end;
-  }
-}
+@import "../../style/variables.less";
+@import "../../style/mixins/index.less";
+@import "./row.less";
+@import "./col.less";
 
 
-.w-col-0 {
-  width: 0;
-}
-// 原来less这么难用，下次重构用回 stylus 算求了
-.generate-columns(@n, @i: 1,@name:".w-col-1") when (@i =< @n) {
-  .mixin-columns-name(@i) when (@i > 1) { 
-    @namey: ~"@{name},.w-col-@{i}";
-  }
-  .mixin-columns-name(@i);
-
-
-  .mixin-columns-name2(@i) when (@i = 1) { 
-    @namey: ~".w-col-@{i}";
-  }
-  .mixin-columns-name2(@i);
-
+// @media (min-width @screen-sm-min){
+//     .make-grid(sm);
   
-  .mixin-columns (@i) when (@i = @n) { 
-    @{namey} {
-      float: left;
-      box-sizing: border-box;
-    }
-  }
-  .mixin-columns(@i);
+// }
 
-  .w-col-@{i} {
-    width: (@i * 100% / @n);
-  }
-  .w-col-offset-@{i} {
-    margin-left: (@i * 100% / @n);
-  }
-  .w-col-pull-@{i} {
-    right:  (@i * 100% / @n);
-  }
-  .w-col-push-@{i} {
-    left:  (@i * 100% / @n);
-  }
-  .generate-columns(@n, (@i + 1),@namey);
-};
-
-.generate-columns(24);
-
+// @media (min-width @screen-md-min){
+//     .make-grid(md);
+  
+// }
+      
+// @media (min-width @screen-lg-min){
+//     .make-grid(lg);
+  
+// }

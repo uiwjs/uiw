@@ -50,7 +50,7 @@ Row.propTypes = {
     'start','end','center',
     'space-around','space-between'
   ]),
-  align: PropTypes.oneOf(['top','middle','bottom']),
+  align: PropTypes.oneOf(['top','middle','bottom','baseline']),
 }
 
 Row.defaultProps = {

@@ -2,13 +2,12 @@
 
 通过基础的 24 分栏，迅速简便地创建布局。 主要由 `Layout.Row` 和 `Layout.Col` 来实现布局。
 
-
-
 ### 基本用法
 
 <!--DemoStart--> 
 ```js
 render() {
+  //下面这段样式可以写入css中通过 className 来使用
   let styleCol = {background: "lightgrey",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
   let styleColLight = {background: "#e3e3e3",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
   let styleRow = {marginBottom: "20px"};
@@ -56,6 +55,7 @@ render() {
 <!--DemoStart--> 
 ```js
 render() {
+  //下面这段样式可以写入css中通过 className 来使用
   let styleCol = {background: "lightgrey",minHeight: "36px"};
   let styleColLight = {background: "#e3e3e3",minHeight: "36px"};
 
@@ -78,6 +78,7 @@ render() {
 <!--DemoStart--> 
 ```js
 render() {
+  //下面这段样式可以写入css中通过 className 来使用
   let styleCol = {background: "lightgrey",minHeight: "36px"};
   let styleColLight = {background: "#e3e3e3",minHeight: "36px"};
   let styleRow = {marginBottom: "20px"};
@@ -115,6 +116,7 @@ render() {
 <!--DemoStart--> 
 ```js
 render() {
+  //下面这段样式可以写入css中通过 className 来使用
   let styleCol = {background: "lightgrey",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
   let styleColLight = {background: "#e3e3e3",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
   let styleRow = {marginBottom: "20px"};
@@ -143,14 +145,22 @@ render() {
 
 ### flex布局
 
-使用 Layout.Row `flex` 定义 `flex` 布局，其子元素根据不同的值 `start`,`center`,`end`,`space-between`,`space-around`，分别定义其在父节点里面的排版方式。
+使用 Layout.Row `flex` 定义 `flex` 布局，其子元素根据不同的值 `start`,`center`,`end`,`space-between`,`space-around`，分别定义其在父节点里面的排版方式。  
+具体可以参考[阮一峰 Flex 布局教程：语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?utm_source=tuicool)
 
 <!--DemoStart--> 
+- `start（默认值）`：左对齐
+- `end`：右对齐
+- `center`： 居中
+- `space-between`：两端对齐，项目之间的间隔都相等。
+- `space-around`：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
 ```js
 render() {
+  //下面这段样式可以写入css中通过 className 来使用
   let styleCol = {background: "lightgrey",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
   let styleColLight = {background: "#e3e3e3",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
   let styleRow = {marginBottom: "20px",background: "#f7f7f7"};
+  let styleRow2 = {background: "#f7f7f7"};
 
   const {Row,Col} = Layout;
 
@@ -176,7 +186,7 @@ render() {
         <Col span="6"><div style={styleColLight}>col-6</div></Col>
         <Col span="6"><div style={styleCol}>col-6</div></Col>
       </Row>
-      <Row style={styleRow} type="flex" justify="space-around">
+      <Row style={styleRow2} type="flex" justify="space-around">
         <Col span="6"><div style={styleCol}>col-6</div></Col>
         <Col span="6"><div style={styleColLight}>col-6</div></Col>
         <Col span={6}><div style={styleCol}>col-6</div></Col>
@@ -191,8 +201,14 @@ render() {
 ### Flex 对齐
 
 <!--DemoStart--> 
+- `top` 交叉轴的起点对齐。设置样式 ~~`align-items: flex-start`~~ 默认不设置
+- `bottom` 交叉轴的终点对齐。设置样式 `align-items: flex-end`
+- `center` 交叉轴的中点对齐。设置样式 `align-items: center`
+- `baseline` 项目的第一行文字的基线对齐。设置样式 `align-items: baseline`
+- ~~`stretch（默认值）`~~ 如果Col未设置高度或设为auto，将占满整个容器的高度。不需要设置`align`
 ```js
 render() {
+  //下面这段样式可以写入css中通过 className 来使用
   let styleCol1 = {background: "lightgrey",lineHeight:"136px",minHeight: "36px",textAlign:"center"};
   let styleCol2 = {background: "#e3e3e3",height:"50px",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
   let styleCol3 = {background: "lightgrey",height:"70px",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
@@ -221,12 +237,48 @@ render() {
         <Col span="4"><div style={styleCol2}>4</div></Col>
         <Col span="4"><div style={styleCol3}>4</div></Col>
       </Row>
+      <p>Align Bottom Right</p>
+      <Row type="flex" justify="end" align="bottom" style={styleRow1}>
+        <Col span="4"><div style={styleCol1}>4</div></Col>
+        <Col span="4"><div style={styleCol2}>4</div></Col>
+        <Col span="4"><div style={styleCol3}>4</div></Col>
+      </Row>
+      <p>项目的第一行文字的基线对齐。</p>
+      <Row type="flex" justify="end" align="baseline" style={styleRow2}>
+        <Col span="4" style={styleCol1}><div>4</div></Col>
+        <Col span="4" style={styleCol2}><div>4</div></Col>
+        <Col span="4" style={styleCol3}><div>4</div></Col>
+      </Row>
     </div>
   )
 }
 ```
 <!--End-->
 
+### 响应式布局
+
+参照 Bootstrap 的 响应式设计，预设了四个响应尺寸：xs、sm、md和lg。
+
+<!--DemoStart--> 
+```js
+render() {
+  //下面这段样式可以写入css中通过 className 来使用
+  let styleCol = {background: "lightgrey",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
+  let styleRow = {background: "#f7f7f7",padding:"5px 0"};
+
+  const {Row,Col} = Layout;
+
+  return (
+    <Row style={styleRow} gutter="10">
+      <Col xs="8" sm="6" md="4" lg="3"><div style={styleCol}></div></Col>
+      <Col xs="4" sm="6" md="8" lg="9"><div style={styleCol}></div></Col>
+      <Col xs="4" sm="6" md="8" lg="9"><div style={styleCol}></div></Col>
+      <Col xs="8" sm="6" md="4" lg="3"><div style={styleCol}></div></Col>
+    </Row>
+  )
+}
+```
+<!--End-->
 
 ## API
 
@@ -237,7 +289,7 @@ render() {
 | gutter | 栅格间隔间距 | number | - |
 | type | 布局模式，可选 `flex`，[现代浏览器](http://caniuse.com/#search=flex) 下有效 | string | - |
 | justify | flex 布局下的水平排列方式：`start`,`center`,`end`,`space-between`,`space-around` | number | - |
-| justify | flex 布局下的垂直对齐方式：`top`,`middle`,`bottom` | number | - |
+| justify | flex 布局下的垂直对齐方式：`top`,`middle`,`bottom`,`baseline` | number | - |
 
 
 ### Col
