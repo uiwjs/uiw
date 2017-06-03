@@ -244,7 +244,7 @@ render() {
         <Col span="4"><div style={styleCol3}></div></Col>
       </Row>
       <p>项目的第一行文字的基线对齐。</p>
-      <Row type="flex" justify="end" align="baseline" style={styleRow2}>
+      <Row type="flex" justify="center" align="baseline" style={styleRow2}>
         <Col span="4" style={styleCol1}><div>align="baseline"</div></Col>
         <Col span="4" style={styleCol2}><div>align="baseline"</div></Col>
         <Col span="4" style={styleCol3}><div>align="baseline"</div></Col>

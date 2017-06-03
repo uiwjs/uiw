@@ -1,0 +1,67 @@
+@import "../../style/variables.less";
+@import "../../style/mixins/index.less";
+
+.w-switch{
+    appearance: none;
+    position: relative;
+    width: 41px;
+    height: @switch-height;
+    border: 1px solid #dfdfdf;
+    outline: 0;
+    border-radius: 16px;
+    box-sizing: border-box;
+    background: #dfdfdf;
+    display: inline-block;
+    &:before,&:after{
+        content: " ";
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 15px;
+        transition:transform .3s;
+    }
+    &:before{
+        width: 39px;
+        height: @switch-height - 2;
+        background-color: #FDFDFD;
+    }
+    &:after{
+        width: @switch-height - 2;
+        height: @switch-height - 2;
+        background-color: #FFFFFF;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+
+    
+    &.w-switch-checked{
+        border-color: #04BE02;
+        background-color: #04BE02;
+        &:before{
+            transform: scale(0);
+        }
+        &:after{
+            transform: translateX(17px);
+        }
+    }
+    input{
+        position: relative;
+        z-index: -1;
+        left: -99999px;
+    }
+    &.w-switch-disabled{
+        opacity: 0.4;
+        cursor: @cursor-disabled;
+        &:after{
+            background-color: #f2f2f2;
+        }
+        &:before{
+            background-color: #f6f6f6;
+        }
+    }
+    &.w-switch-color{
+        border-color: transparent;
+        &:before{
+            background-color: transparent;
+        }
+    }
+}

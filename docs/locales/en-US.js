@@ -2,6 +2,7 @@ module.exports = {
   page: {
     'quick-start': 'Quick Start',
     'checkbox': 'Checkboxs',
+    'switch': 'Switch 开关',
     'alerts': 'Alerts',
     'buttons': 'Buttons',
     'layout': 'Layout',
@@ -13,6 +14,7 @@ module.exports = {
     'transition': 'Transition',
     'calendar': 'Calendar',
     'tables': 'Tables',
+    'tooltips': 'Tooltip文字提示',
   },
   category:{
     'Form':"Form",

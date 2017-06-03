@@ -9,6 +9,7 @@ export default {
     },
     'Form': {
       'checkboxs': require('./checkboxs'),
+      'switch': require('./switch'),
     },
     'Data Display': {
       'calendars': require('./calendars'),

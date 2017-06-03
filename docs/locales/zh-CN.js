@@ -2,6 +2,7 @@ module.exports = {
   page: {
     'quick-start': '快速上手',
     'checkboxs': 'Checkboxs 多选框',
+    'switch': 'Switch 开关',
     'alerts': 'Alerts 警告',
     'buttons': 'Buttons 按钮',
     'layout': 'Layout 布局',
@@ -13,7 +14,7 @@ module.exports = {
     'transition': 'Transition 过渡动画',
     'calendars': 'Calendars 日历',
     'tables': 'Tables 表格',
-    'tooltips': 'Tooltip文字提示',
+    'tooltips': 'Tooltip 文字提示',
   },
   category:{
     'Form':"表单",
