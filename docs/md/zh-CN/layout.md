@@ -2,14 +2,39 @@
 
 通过基础的 24 分栏，迅速简便地创建布局。 主要由 `Layout.Row` 和 `Layout.Col` 来实现布局。
 
+### Flex 排序
+
+通过 `Flex` 布局的 `Order` 来改变元素的排序。
+
+<!--DemoStart--> 
+```js
+render() {
+  //下面这段样式可以写入css中通过 className 来使用
+  let styleCol = {background: "lightgrey",lineHeight:"36px",textAlign:"center"};
+  let styleColLight = {background: "#e3e3e3",lineHeight:"36px",textAlign:"center"};
+
+  const {Row,Col} = Layout;
+
+  return (
+    <Row type="flex">
+      <Col span={6} order={4} style={styleCol}>span=1, order=4</Col>
+      <Col span={6} order={3} style={styleColLight}>span=2, order=3</Col>
+      <Col span={6} order={2} style={styleCol}>span=3, order=2</Col>
+      <Col span={6} order={1} style={styleColLight}>span=4, order=1</Col>
+    </Row>
+  )
+}
+```
+<!--End-->
+
 ### 基本用法
 
 <!--DemoStart--> 
 ```js
 render() {
   //下面这段样式可以写入css中通过 className 来使用
-  let styleCol = {background: "lightgrey",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
-  let styleColLight = {background: "#e3e3e3",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
+  let styleCol = {background: "lightgrey",lineHeight:"36px",textAlign:"center"};
+  let styleColLight = {background: "#e3e3e3",lineHeight:"36px",textAlign:"center"};
   let styleRow = {marginBottom: "20px"};
 
   const {Row,Col} = Layout;
@@ -17,30 +42,30 @@ render() {
   return (
     <div>
       <Row style={styleRow}>
-        <Col span="24"><div style={styleCol}>100%</div></Col>
+        <Col span="24"><div style={styleCol}>100%, span=24</div></Col>
       </Row>
       <Row style={styleRow}>
-        <Col span="12"><div style={styleCol}>50%</div></Col>
-        <Col span="12"><div style={styleColLight}>50%</div></Col>
+        <Col span="12"><div style={styleCol}>50%, span=12</div></Col>
+        <Col span="12"><div style={styleColLight}>50%, span=12</div></Col>
       </Row>
       <Row style={styleRow}>
-        <Col span="8"><div style={styleCol}>33.33%</div></Col>
-        <Col span="8"><div style={styleColLight}>33.33%</div></Col>
-        <Col span="8"><div style={styleCol}>33.33%</div></Col>
+        <Col span="8"><div style={styleCol}>33.33%, span=8</div></Col>
+        <Col span="8"><div style={styleColLight}>33.33%, span=8</div></Col>
+        <Col span="8"><div style={styleCol}>33.33%, span=8</div></Col>
       </Row>
       <Row style={styleRow}>
-        <Col span="6"><div style={styleCol}>25%</div></Col>
-        <Col span="6"><div style={styleColLight}>25%</div></Col>
-        <Col span="6"><div style={styleCol}>25%</div></Col>
-        <Col span="6"><div style={styleColLight}>25%</div></Col>
+        <Col span="6"><div style={styleCol}>25%, span=6</div></Col>
+        <Col span="6"><div style={styleColLight}>25%, span=6</div></Col>
+        <Col span="6"><div style={styleCol}>25%, span=6</div></Col>
+        <Col span="6"><div style={styleColLight}>25%, span=6</div></Col>
       </Row>
       <Row>
-        <Col span="4"><div style={styleCol}>16.66667%</div></Col>
-        <Col span="4"><div style={styleColLight}>16.66667%</div></Col>
-        <Col span="4"><div style={styleCol}>16.66667%</div></Col>
-        <Col span="4"><div style={styleColLight}>16.66667%</div></Col>
-        <Col span="4"><div style={styleCol}>16.66667%</div></Col>
-        <Col span="4"><div style={styleColLight}>16.66667%</div></Col>
+        <Col span="4"><div style={styleCol}>16.66667%, span=4</div></Col>
+        <Col span="4"><div style={styleColLight}>16.66667%, span=4</div></Col>
+        <Col span="4"><div style={styleCol}>16.66667%, span=4</div></Col>
+        <Col span="4"><div style={styleColLight}>16.66667%, span=4</div></Col>
+        <Col span="4"><div style={styleCol}>16.66667%, span=4</div></Col>
+        <Col span="4"><div style={styleColLight}>16.66667%, span=4</div></Col>
       </Row>
     </div>
   )
@@ -56,17 +81,17 @@ render() {
 ```js
 render() {
   //下面这段样式可以写入css中通过 className 来使用
-  let styleCol = {background: "lightgrey",minHeight: "36px"};
-  let styleColLight = {background: "#e3e3e3",minHeight: "36px"};
+  let styleCol = {background: "lightgrey",lineHeight:"36px",textAlign:"center"};
+  let styleColLight = {background: "#e3e3e3",lineHeight:"36px",textAlign:"center"};
 
   const {Row,Col} = Layout;
 
   return (
     <Row gutter="20">
-      <Col span="6"><div style={styleCol}></div></Col>
-      <Col span="6"><div style={styleColLight}></div></Col>
-      <Col span="6"><div style={styleCol}></div></Col>
-      <Col span="6"><div style={styleColLight}></div></Col>
+      <Col span="6"><div style={styleCol}>span=6</div></Col>
+      <Col span="6"><div style={styleColLight}>span=6</div></Col>
+      <Col span="6"><div style={styleCol}>span=6</div></Col>
+      <Col span="6"><div style={styleColLight}>span=6</div></Col>
     </Row>
   )
 }
@@ -79,8 +104,8 @@ render() {
 ```js
 render() {
   //下面这段样式可以写入css中通过 className 来使用
-  let styleCol = {background: "lightgrey",minHeight: "36px"};
-  let styleColLight = {background: "#e3e3e3",minHeight: "36px"};
+  let styleCol = {background: "lightgrey",lineHeight:"36px",textAlign:"center"};
+  let styleColLight = {background: "#e3e3e3",lineHeight:"36px"};
   let styleRow = {marginBottom: "20px"};
 
   const {Row,Col} = Layout;
@@ -88,19 +113,19 @@ render() {
   return (
     <div style={{backgroundColor: "#f7f7f7"}}>
       <Row style={styleRow} gutter="20">
-        <Col span="16"><div style={styleCol}></div></Col>
-        <Col span="8"><div style={styleCol}></div></Col>
+        <Col span="16"><div style={styleCol}>span=16</div></Col>
+        <Col span="8"><div style={styleCol}>span=8</div></Col>
       </Row>
       <Row style={styleRow} gutter="20">
-        <Col span="8"><div style={styleCol}></div></Col>
-        <Col span="8"><div style={styleCol}></div></Col>
-        <Col span="4"><div style={styleCol}></div></Col>
-        <Col span="4"><div style={styleCol}></div></Col>
+        <Col span="8"><div style={styleCol}>span=8</div></Col>
+        <Col span="8"><div style={styleCol}>span=8</div></Col>
+        <Col span="4"><div style={styleCol}>span=4</div></Col>
+        <Col span="4"><div style={styleCol}>span=4</div></Col>
       </Row>
       <Row gutter="20">
-        <Col span="4"><div style={styleCol}></div></Col>
-        <Col span="16"><div style={styleCol}></div></Col>
-        <Col span="4"><div style={styleCol}></div></Col>
+        <Col span="4"><div style={styleCol}>span=4</div></Col>
+        <Col span="16"><div style={styleCol}>span=16</div></Col>
+        <Col span="4"><div style={styleCol}>span=4</div></Col>
       </Row>
     </div>
   )
@@ -117,8 +142,8 @@ render() {
 ```js
 render() {
   //下面这段样式可以写入css中通过 className 来使用
-  let styleCol = {background: "lightgrey",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
-  let styleColLight = {background: "#e3e3e3",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
+  let styleCol = {background: "lightgrey",lineHeight:"36px",textAlign:"center"};
+  let styleColLight = {background: "#e3e3e3",lineHeight:"36px",textAlign:"center"};
   let styleRow = {marginBottom: "20px"};
 
   const {Row,Col} = Layout;
@@ -126,15 +151,15 @@ render() {
   return (
     <div>
       <Row style={styleRow}>
-        <Col style={styleCol} span={8}>col-8</Col>
-        <Col style={styleColLight} span={8} offset={8}>col-8</Col>
+        <Col style={styleCol} span={8}>col=8</Col>
+        <Col style={styleColLight} span={8} offset={8}>col=8</Col>
       </Row>
       <Row style={styleRow}>
-        <Col style={styleCol} span={6} offset={6}>col-6 col-offset-6</Col>
-        <Col style={styleColLight} span={6} offset={6}>col-6 col-offset-6</Col>
+        <Col style={styleCol} span={6} offset={6}>col=6, offset=6</Col>
+        <Col style={styleColLight} span={6} offset={6}>col=6, offset=6</Col>
       </Row>
       <Row>
-        <Col style={styleCol} span={12} offset={6}>col-12 col-offset-6</Col>
+        <Col style={styleCol} span={12} offset={6}>col=12, offset=6</Col>
       </Row>
     </div>
   )
@@ -167,29 +192,29 @@ render() {
   return (
     <div>
       <Row style={styleRow} type="flex">
-        <Col span="6"><div style={styleCol}>col-6</div></Col>
-        <Col span="6"><div style={styleColLight}>col-6</div></Col>
-        <Col span="6"><div style={styleCol}>col-6</div></Col>
+        <Col span="6"><div style={styleCol}>col=6</div></Col>
+        <Col span="6"><div style={styleColLight}>col=6</div></Col>
+        <Col span="6"><div style={styleCol}>col=6</div></Col>
       </Row>
       <Row style={styleRow} type="flex" justify="center">
-        <Col span="6"><div style={styleCol}>col-6</div></Col>
-        <Col span="6"><div style={styleColLight}>col-6</div></Col>
-        <Col span="6"><div style={styleCol}>col-6</div></Col>
+        <Col span="6"><div style={styleCol}>col=6</div></Col>
+        <Col span="6"><div style={styleColLight}>col=6</div></Col>
+        <Col span="6"><div style={styleCol}>col=6</div></Col>
       </Row>
       <Row style={styleRow} type="flex" justify="end">
-        <Col span="6"><div style={styleCol}>col-6</div></Col>
-        <Col span="6"><div style={styleColLight}>col-6</div></Col>
-        <Col span="6"><div style={styleCol}>col-6</div></Col>
+        <Col span="6"><div style={styleCol}>col=6</div></Col>
+        <Col span="6"><div style={styleColLight}>col=6</div></Col>
+        <Col span="6"><div style={styleCol}>col=6</div></Col>
       </Row>
       <Row style={styleRow} type="flex" justify="space-between">
-        <Col span="6"><div style={styleCol}>col-6</div></Col>
-        <Col span="6"><div style={styleColLight}>col-6</div></Col>
-        <Col span="6"><div style={styleCol}>col-6</div></Col>
+        <Col span="6"><div style={styleCol}>col=6</div></Col>
+        <Col span="6"><div style={styleColLight}>col=6</div></Col>
+        <Col span="6"><div style={styleCol}>col=6</div></Col>
       </Row>
       <Row style={styleRow2} type="flex" justify="space-around">
-        <Col span="6"><div style={styleCol}>col-6</div></Col>
-        <Col span="6"><div style={styleColLight}>col-6</div></Col>
-        <Col span={6}><div style={styleCol}>col-6</div></Col>
+        <Col span="6"><div style={styleCol}>col=6</div></Col>
+        <Col span="6"><div style={styleColLight}>col=6</div></Col>
+        <Col span={6}><div style={styleCol}>col={6}</div></Col>
       </Row>
     </div>
   )
@@ -221,39 +246,40 @@ render() {
     <div>
       <p>Align Top</p>
       <Row type="flex" justify="center" align="top" style={styleRow1}>
-        <Col span="4"><div style={styleCol1}>4</div></Col>
-        <Col span="4"><div style={styleCol2}>4</div></Col>
-        <Col span="4"><div style={styleCol3}>4</div></Col>
+        <Col span="4"><div style={styleCol1}></div></Col>
+        <Col span="4"><div style={styleCol2}></div></Col>
+        <Col span="4"><div style={styleCol3}></div></Col>
       </Row>
       <p>Align Center</p>
       <Row type="flex" justify="space-around" align="middle" style={styleRow1}>
-        <Col span="4"><div style={styleCol1}>4</div></Col>
-        <Col span="4"><div style={styleCol2}>4</div></Col>
-        <Col span="4"><div style={styleCol3}>4</div></Col>
+        <Col span="4"><div style={styleCol1}></div></Col>
+        <Col span="4"><div style={styleCol2}></div></Col>
+        <Col span="4"><div style={styleCol3}></div></Col>
       </Row>
       <p>Align Bottom</p>
       <Row type="flex" justify="space-between" align="bottom" style={styleRow1}>
-        <Col span="4"><div style={styleCol1}>4</div></Col>
-        <Col span="4"><div style={styleCol2}>4</div></Col>
-        <Col span="4"><div style={styleCol3}>4</div></Col>
+        <Col span="4"><div style={styleCol1}></div></Col>
+        <Col span="4"><div style={styleCol2}></div></Col>
+        <Col span="4"><div style={styleCol3}></div></Col>
       </Row>
       <p>Align Bottom Right</p>
       <Row type="flex" justify="end" align="bottom" style={styleRow1}>
-        <Col span="4"><div style={styleCol1}>4</div></Col>
-        <Col span="4"><div style={styleCol2}>4</div></Col>
-        <Col span="4"><div style={styleCol3}>4</div></Col>
+        <Col span="4"><div style={styleCol1}></div></Col>
+        <Col span="4"><div style={styleCol2}></div></Col>
+        <Col span="4"><div style={styleCol3}></div></Col>
       </Row>
       <p>项目的第一行文字的基线对齐。</p>
       <Row type="flex" justify="end" align="baseline" style={styleRow2}>
-        <Col span="4" style={styleCol1}><div>4</div></Col>
-        <Col span="4" style={styleCol2}><div>4</div></Col>
-        <Col span="4" style={styleCol3}><div>4</div></Col>
+        <Col span="4" style={styleCol1}><div>align="baseline"</div></Col>
+        <Col span="4" style={styleCol2}><div>align="baseline"</div></Col>
+        <Col span="4" style={styleCol3}><div>align="baseline"</div></Col>
       </Row>
     </div>
   )
 }
 ```
 <!--End-->
+
 
 ### 响应式布局
 
@@ -277,6 +303,27 @@ render() {
 ```
 
 <!--DemoStart--> 
+<table>
+    <tr>
+        <th></th>
+        <th>超小屏幕 手机 (<768px)</th>
+        <th>小屏幕 平板 (≥768px)</th>
+        <th>中等屏幕 桌面显示器 (≥992px)</th>
+        <th>大屏幕 大桌面显示器 (≥1200px)</th>
+    </tr>
+    <tr>
+        <td>参数</td>
+        <td>xs</td>
+        <td>sm</td>
+        <td>md</td>
+        <td>lg</td>
+    </tr>
+    <tr>
+        <td>栅格系统行为</td>
+        <td>总是水平排列</td>
+        <td colspan="3">开始是堆叠在一起的，当大于这些阈值时将变为水平排列</td>
+    </tr>
+</table>
 ```js
 render() {
   //下面这段样式可以写入css中通过 className 来使用
@@ -316,3 +363,9 @@ render() {
 |--------- |-------- |--------- |-------- |
 | span | 栅格占据的列数，必选参数 0 < span < 24 | number | - |
 | offset | 栅格左侧的间隔格数，将列向右侧偏 | number | 0 |
+| push | 栅格向右移动格数 | number | 0 |
+| pull | 栅格向左移动格数 | number | 0 |
+| xs | `<768px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | number | 0 |
+| sm | `≥768px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | number | 0 |
+| md | `≥992px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | number | 0 |
+| lg | `≥1200px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | number | 0 |
