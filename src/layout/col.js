@@ -4,10 +4,8 @@ import PropTypes from 'prop-types';
 
 export default class Col extends Component {
   render() {
-    const { prefixCls,tag,...others } = this.props;
-    
+    const { prefixCls,tag,span,...others} = this.props;
     let classList = [];
-
     ['span', 'offset', 'pull', 'push'].forEach(prop => {
       let num = this.props[prop];
       if (num) {
@@ -16,7 +14,6 @@ export default class Col extends Component {
         );
       }
     });
-
     return createElement(this.props.tag, {
       className: classNames('w-col',classList),
       ...others
@@ -27,7 +24,8 @@ export default class Col extends Component {
 
 Col.propTypes = {
   prefixCls:PropTypes.string,
-  tag: PropTypes.string
+  tag: PropTypes.string,
+  span: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 }
 
 Col.defaultProps = {

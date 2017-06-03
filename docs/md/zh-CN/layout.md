@@ -1,6 +1,7 @@
 ## Layout 布局
 
-通过基础的 24 分栏，迅速简便地创建布局。
+通过基础的 24 分栏，迅速简便地创建布局。 主要由 `Layout.Row` 和 `Layout.Col` 来实现布局。
+
 
 
 ### 基本用法
@@ -8,8 +9,8 @@
 <!--DemoStart--> 
 ```js
 render() {
-  let styleCol = {background: "rgb(223, 223, 223)",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
-  let styleColLight = {background: "rgb(240, 240, 240)",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
+  let styleCol = {background: "lightgrey",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
+  let styleColLight = {background: "#e3e3e3",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
   let styleRow = {marginBottom: "20px"};
 
   const {Row,Col} = Layout;
@@ -55,8 +56,8 @@ render() {
 <!--DemoStart--> 
 ```js
 render() {
-  let styleCol = {background: "rgb(223, 223, 223)",minHeight: "36px"};
-  let styleColLight = {background: "rgb(240, 240, 240)",minHeight: "36px"};
+  let styleCol = {background: "lightgrey",minHeight: "36px"};
+  let styleColLight = {background: "#e3e3e3",minHeight: "36px"};
 
   const {Row,Col} = Layout;
 
@@ -77,14 +78,14 @@ render() {
 <!--DemoStart--> 
 ```js
 render() {
-  let styleCol = {background: "rgb(223, 223, 223)",minHeight: "36px"};
-  let styleColLight = {background: "rgb(240, 240, 240)",minHeight: "36px"};
+  let styleCol = {background: "lightgrey",minHeight: "36px"};
+  let styleColLight = {background: "#e3e3e3",minHeight: "36px"};
   let styleRow = {marginBottom: "20px"};
 
   const {Row,Col} = Layout;
 
   return (
-    <div>
+    <div style={{backgroundColor: "#f7f7f7"}}>
       <Row style={styleRow} gutter="20">
         <Col span="16"><div style={styleCol}></div></Col>
         <Col span="8"><div style={styleCol}></div></Col>
@@ -105,3 +106,143 @@ render() {
 }
 ```
 <!--End-->
+
+
+### 左右分栏偏移
+
+使用 `offset` 可以将列向右侧偏。例如，`offset={4}` 将元素向右侧偏移了 `4`个列`column`的宽度。
+
+<!--DemoStart--> 
+```js
+render() {
+  let styleCol = {background: "lightgrey",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
+  let styleColLight = {background: "#e3e3e3",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
+  let styleRow = {marginBottom: "20px"};
+
+  const {Row,Col} = Layout;
+
+  return (
+    <div>
+      <Row style={styleRow}>
+        <Col style={styleCol} span={8}>col-8</Col>
+        <Col style={styleColLight} span={8} offset={8}>col-8</Col>
+      </Row>
+      <Row style={styleRow}>
+        <Col style={styleCol} span={6} offset={6}>col-6 col-offset-6</Col>
+        <Col style={styleColLight} span={6} offset={6}>col-6 col-offset-6</Col>
+      </Row>
+      <Row>
+        <Col style={styleCol} span={12} offset={6}>col-12 col-offset-6</Col>
+      </Row>
+    </div>
+  )
+}
+```
+<!--End-->
+
+
+### flex布局
+
+使用 Layout.Row `flex` 定义 `flex` 布局，其子元素根据不同的值 `start`,`center`,`end`,`space-between`,`space-around`，分别定义其在父节点里面的排版方式。
+
+<!--DemoStart--> 
+```js
+render() {
+  let styleCol = {background: "lightgrey",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
+  let styleColLight = {background: "#e3e3e3",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
+  let styleRow = {marginBottom: "20px",background: "#f7f7f7"};
+
+  const {Row,Col} = Layout;
+
+  return (
+    <div>
+      <Row style={styleRow} type="flex">
+        <Col span="6"><div style={styleCol}>col-6</div></Col>
+        <Col span="6"><div style={styleColLight}>col-6</div></Col>
+        <Col span="6"><div style={styleCol}>col-6</div></Col>
+      </Row>
+      <Row style={styleRow} type="flex" justify="center">
+        <Col span="6"><div style={styleCol}>col-6</div></Col>
+        <Col span="6"><div style={styleColLight}>col-6</div></Col>
+        <Col span="6"><div style={styleCol}>col-6</div></Col>
+      </Row>
+      <Row style={styleRow} type="flex" justify="end">
+        <Col span="6"><div style={styleCol}>col-6</div></Col>
+        <Col span="6"><div style={styleColLight}>col-6</div></Col>
+        <Col span="6"><div style={styleCol}>col-6</div></Col>
+      </Row>
+      <Row style={styleRow} type="flex" justify="space-between">
+        <Col span="6"><div style={styleCol}>col-6</div></Col>
+        <Col span="6"><div style={styleColLight}>col-6</div></Col>
+        <Col span="6"><div style={styleCol}>col-6</div></Col>
+      </Row>
+      <Row style={styleRow} type="flex" justify="space-around">
+        <Col span="6"><div style={styleCol}>col-6</div></Col>
+        <Col span="6"><div style={styleColLight}>col-6</div></Col>
+        <Col span={6}><div style={styleCol}>col-6</div></Col>
+      </Row>
+    </div>
+  )
+}
+```
+<!--End-->
+
+
+### Flex 对齐
+
+<!--DemoStart--> 
+```js
+render() {
+  let styleCol1 = {background: "lightgrey",lineHeight:"136px",minHeight: "36px",textAlign:"center"};
+  let styleCol2 = {background: "#e3e3e3",height:"50px",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
+  let styleCol3 = {background: "lightgrey",height:"70px",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
+  let styleCol4 = {background: "#e3e3e3",lineHeight:"36px",minHeight: "36px",textAlign:"center"};
+  let styleRow1 = {marginBottom: "20px",background: "#f7f7f7"};
+  let styleRow2 = {background: "#f7f7f7"};
+
+  const {Row,Col} = Layout;
+  return (
+    <div>
+      <p>Align Top</p>
+      <Row type="flex" justify="center" align="top" style={styleRow1}>
+        <Col span="4"><div style={styleCol1}>4</div></Col>
+        <Col span="4"><div style={styleCol2}>4</div></Col>
+        <Col span="4"><div style={styleCol3}>4</div></Col>
+      </Row>
+      <p>Align Center</p>
+      <Row type="flex" justify="space-around" align="middle" style={styleRow1}>
+        <Col span="4"><div style={styleCol1}>4</div></Col>
+        <Col span="4"><div style={styleCol2}>4</div></Col>
+        <Col span="4"><div style={styleCol3}>4</div></Col>
+      </Row>
+      <p>Align Bottom</p>
+      <Row type="flex" justify="space-between" align="bottom" style={styleRow1}>
+        <Col span="4"><div style={styleCol1}>4</div></Col>
+        <Col span="4"><div style={styleCol2}>4</div></Col>
+        <Col span="4"><div style={styleCol3}>4</div></Col>
+      </Row>
+    </div>
+  )
+}
+```
+<!--End-->
+
+
+## API
+
+### Row
+
+| 参数 | 说明 | 类型 | 默认值 |
+|--------- |-------- |--------- |-------- |
+| gutter | 栅格间隔间距 | number | - |
+| type | 布局模式，可选 `flex`，[现代浏览器](http://caniuse.com/#search=flex) 下有效 | string | - |
+| justify | flex 布局下的水平排列方式：`start`,`center`,`end`,`space-between`,`space-around` | number | - |
+| justify | flex 布局下的垂直对齐方式：`top`,`middle`,`bottom` | number | - |
+
+
+### Col
+
+| 参数 | 说明 | 类型 | 默认值 |
+|--------- |-------- |--------- |-------- |
+| span | 栅格占据的列数，必选参数 0 < span < 24 | number | - |
+| offset | 栅格左侧的间隔格数，将列向右侧偏 | number | 0 |
