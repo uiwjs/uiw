@@ -14,3 +14,12 @@ ReactDOM.render(
   document.getElementById('app')
 );
 ```
+
+
+### 组件冲突
+
+重新取一个名字
+
+```js
+import { Buttons as ButtonsView } from 'uiw';
+```
