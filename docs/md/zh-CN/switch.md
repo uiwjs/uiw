@@ -101,7 +101,8 @@ render() {
 | checked | 指定当前是否选中 | boolean | false |
 | disabled | 是否禁用 | boolean | false |
 | color | 打开时的背景色 | string | - |
-| unColor |  关闭时的背景色 | string | - |
+| unColor | 关闭时的背景色 | string | - |
+| onChange | 变化时回调函数 | Function(checked:Boolean) | - |
 | checkedChildren |  选中时的内容 | string、ReactNode | - |
 | unCheckedChildren |  非选中时的内容 | string、ReactNode | - |
 | size |  开关大小，可选值：`default` `small` | string | default |
