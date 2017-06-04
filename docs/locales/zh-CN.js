@@ -14,7 +14,7 @@ module.exports = {
     'transition': 'Transition 过渡动画',
     'calendars': 'Calendars 日历',
     'tables': 'Tables 表格',
-    'tooltips': 'Tooltip 文字提示',
+    'tooltips': 'Tooltips 文字提示',
     'icon': 'Icon 图标',
   },
   category:{
