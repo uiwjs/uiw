@@ -16,6 +16,7 @@ export default class Canvas extends React.Component {
 
   componentDidMount() {
     this.renderSource();
+    prism.highlightAll();
   }
 
   componentDidUpdate() {
@@ -26,7 +27,7 @@ export default class Canvas extends React.Component {
       showBlock: !this.state.showBlock
     }, () => {
       if (this.state.showBlock) {
-        prism.highlightAll();
+        // prism.highlightAll();
       }
     });
   }

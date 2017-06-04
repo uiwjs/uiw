@@ -10,7 +10,7 @@
 <Icon type="arrow-down" />
 ```
 
-### 添加图标字体方法
+### 添加自己的图标字体方法
 
 默认建议使用 `svg` 来制作图标，如果使用字体文件，需要添加字体文件，并在 `css` 写符合规范的样式，这个文件通过 [iconfont.cn](http://iconfont.cn/) 来制作字体文件。  
 `icon` 名字需要命名规范，必须加上前缀 `.w-icon-{图标名字}` 。
@@ -24,7 +24,7 @@
   url('iconfont.svg') format('svg'); /* iOS 4.1- */
 }
 
-.iconfont {
+[class^="w-icon-uiw-"], [class*=" w-icon-uiw-"] {
   font-family:"iconfont" !important;
   font-size:16px;
   font-style:normal;
@@ -32,25 +32,27 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.w-icon-wxbgongju:before { content: "\e61b"; }
-.w-icon-wxbmingxingdianpu:before { content: "\e61c"; }
+.w-icon-uiw-wxbgongju:before { content: "\e61b"; }
+.w-icon-uiw-wxbmingxingdianpu:before { content: "\e61c"; }
 ```
 
 上面写好CSS之后在组件中引用，就可以通过 `Icon` 组件来调用了，例如上面定义了两个图标使用方法如下
 
 ```js
-<Icon type="wxbgongju" />
-<Icon type="wxbmingxingdianpu" />
+<Icon type="uiw-wxbgongju" />
+<Icon type="uiw-wxbmingxingdianp" />
 ```
 
-### 图标列表
+注意：这里 `.w-icon-` 是当前默认引用的字体文件，`w-icon-uiw-` 是引用自己制作的字体文件，来覆盖默认的字体文件，就当成一个新的作用域。
+
+### 默认自带图标列表
 
 <!--DemoStart--> 
 ```js
 render() {
   const {Row,Col} = Layout;
   const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px"};
-  const iconList = ["arrow-down", "arrow-left", "arrow-right", "arrow-up", "caret-bottom", "caret-left", "caret-right", "caret-top", "check", "circle-check", "circle-close", "circle-cross", "close", "upload", "d-arrow-left", "d-arrow-right", "d-caret", "date", "delete", "document", "edit", "information", "loading", "menu", "message", "minus", "more", "picture", "plus", "search", "setting", "share", "star-off", "star-on", "time", "warning", "delete2", "upload2", "view"]
+  const iconList = [,"arrow-down", "arrow-left", "arrow-right", "arrow-up", "caret-bottom", "caret-left", "caret-right", "caret-top", "check", "circle-check", "circle-close", "circle-cross", "close", "upload", "d-arrow-left", "d-arrow-right", "d-caret", "date", "delete", "document", "edit", "information", "loading", "menu", "message", "minus", "more", "picture", "plus", "search", "setting", "share", "star-off", "star-on", "time", "warning", "delete2", "upload2", "view"]
   return (
     <div>
       <Row gutter="10">

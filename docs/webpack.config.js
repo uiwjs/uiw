@@ -2,8 +2,20 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 const basePath = path.resolve(__dirname, '../');
+
+const cssFilename = 'static/css/[name].[contenthash:8].css';
+
+const extractLess = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    disable: process.env.NODE_ENV === "development"
+});
+
+// const extractCSS = new ExtractTextPlugin('css/[contenthash].css');
+// const extractLESS = new ExtractTextPlugin('css/[contenthash].css')
 
 module.exports = {
   entry: {
@@ -14,31 +26,36 @@ module.exports = {
     chunkFilename: '[chunkhash:12].js',
     filename: '[chunkhash:12].js'
   },
-  plugins: [
-    new ExtractTextPlugin('css/[name].[contenthash:8].css'),
-    new HtmlWebpackPlugin({ template: './build.html' }),
-    new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-    new CommonsChunkPlugin({
-      // 存储 webpack 必要的依赖
-      filename: "js/[hash:8].[name].js",
-      name: "vendor",
-      // minChunks: Infinity,
-      minChunks: 2 // 提取所有chunks共同依赖的模块
-    })
-    // new webpack.optimize.UglifyJsPlugin({
-    //   mangle: {
-    //     keep_fnames: true
-    //   },
-    //   output: {
-    //     comments: false
-    //   }
-    // })
-  ],
   resolve: {
     extensions: ['.js', '.jsx']
   },
   module: {
     rules: [
+      // {
+      //   exclude: [
+      //     /\.html$/,
+      //     // We have to write /\.(js|jsx)(\?.*)?$/ rather than just /\.(js|jsx)$/
+      //     // because you might change the hot reloading server from the custom one
+      //     // to Webpack's built-in webpack-dev-server/client?/, which would not
+      //     // get properly excluded by /\.(js|jsx)$/ because of the query string.
+      //     // Webpack 2 fixes this, but for now we include this hack.
+      //     // https://github.com/facebookincubator/create-react-app/issues/1713
+      //     /\.(js|jsx)(\?.*)?$/,
+      //     /\.css$/,
+      //     /\.less$/,
+      //     /\.json$/,
+      //     /\.svg$/,
+      //     /\.md$/,
+      //     /\.png$/,
+      //     /\.jpe?g$/
+      //   ],
+      //   use:[{
+      //     loader: 'file-loader',
+      //     query: {
+      //       name: '[name].[ext]'
+      //     }
+      //   }]
+      // },  
       {
         test: /\.(js|jsx)?$/,
         loader: 'babel-loader',
@@ -47,6 +64,29 @@ module.exports = {
           path.join(basePath, 'src'),
         ]
       },
+
+
+      // {
+      //   // "css-loader" 可以解析CSS中的路径，并添加资源作为依赖关系。
+      //   // "style-loader" 将CSS转换为注入<style>标签的JS模块。
+      //   // 在生产中，我们使用一个插件将该CSS提取到一个文件，但是
+      //   // 在开发中“样式”装载器可以对CSS进行热编辑。
+      //   test: /\.css$/,
+      //   use: extractCSS.extract({
+      //       use:[
+      //         'style-loader',
+      //         {
+      //           loader:'css-loader',
+      //           options: {
+      //             // 0 => no loaders (default); 1 => postcss-loader; 2 => postcss-loader, sass-loader 
+      //             importLoaders: 1 
+      //           }
+      //         }
+      //       ] 
+      //   })
+      // },
+
+
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
@@ -54,10 +94,39 @@ module.exports = {
           use: 'css-loader'
         })
       },
+
+      // {
+      //   test: /\.less$/,
+      //   use: ExtractTextPlugin.extract({
+      //       use:[
+      //         'style-loader',
+      //         {
+      //           loader:'css-loader',
+      //           options: {
+      //             // 0 => no loaders (default); 1 => postcss-loader; 2 => postcss-loader, sass-loader 
+      //             importLoaders: 1 
+      //           }
+      //         },
+      //         'less-loader'
+      //       ] 
+      //   }),
+      // },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
+        use: extractLess.extract({
+          use: [{
+            loader: "css-loader"
+          }, {
+            loader: "less-loader",
+          }],
+          // use style-loader in development
+          fallback: "style-loader"
+        })
       },
+      // {
+      //   test: /\.less$/,
+      //   use: ['style-loader', 'css-loader', 'less-loader']
+      // },
       {
         test: /\.(ttf|eot|svg|woff|woff2)(\?.+)?$/,
         loader: 'file-loader?name=[hash:12].[ext]'
@@ -71,5 +140,42 @@ module.exports = {
         loader : 'raw-loader'
       }
     ]
-  }
+  },
+
+  plugins: [
+    extractLess,
+    new HtmlWebpackPlugin({
+      inject: true,
+      // inject: "head",
+      template: './build.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      }
+    }),
+    new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+    
+    new webpack.optimize.CommonsChunkPlugin({
+      async: true,
+      children: true,
+      minChunks: 2,
+    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'inline',
+    //   filename: 'js/[hash:8].[name].js',
+    //   minChunks: Infinity
+    // }),
+    // new webpack.optimize.AggressiveSplittingPlugin({
+    //     minSize: 3000,
+    //     maxSize: 8000
+    // }),
+  ]
 };
