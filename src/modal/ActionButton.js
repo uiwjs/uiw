@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Buttons from '../button';
+import Button from '../button';
 
 export default class ActionButton extends Component{
   constructor(props) {
@@ -40,9 +40,9 @@ export default class ActionButton extends Component{
     const { type, size, children } = this.props;
     const loading = this.state.loading;
     return (
-      <Buttons type={type} size={size} onClick={this.onClick.bind(this)} loading={loading}>
+      <Button type={type} size={size} onClick={this.onClick.bind(this)} loading={loading}>
         {children}
-      </Buttons>
+      </Button>
     );
   }
 }
