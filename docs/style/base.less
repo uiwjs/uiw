@@ -1,4 +1,4 @@
-
+@import "./code.less";
 
 #app{
   min-height: 100%;
@@ -69,72 +69,16 @@
     margin: 0 0 0 0;
 
   }
-  p{
-    font-weight: 300;
-    margin-left: 0px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-  }
   code{
     color:#a71d5d;
     font-weight: bold;
     padding:0 3px;
   }
-  pre {
-    background-color: #efefef;
-    overflow: auto;
-  }
   pre > code{
     font-weight: 300;
     color:#353535;
-    padding: 10px;
+    padding: 0;
     display: inline-block;
-  }
-  .function{
-    font-weight: bold;
-    color: #333;
-  }
-  .keyword{
-    color: #a71d5d;
-  }
-  .template-string{
-    color: #3F51B5;
-  }
-  .operator{
-    color: #a71d5d;
-  }
-  .punctuation{
-    font-weight: bold;
-  }
-  .string{
-    color: #183691;
-  }
-  .comment{
-    color: #a2a2a2;
-  }
-  // HTML
-  .tag{
-    color:#9c27b0;
-    .punctuation{
-      color: #333;
-      font-weight: 300;
-    }
-  }
-  .attr-name{
-    color:#2196F3;
-  }
-  .attr-value{
-    color: #FF9800;
-    .punctuation:first-child:not(:last-child){
-      color:#333;
-    }
-    .punctuation:last-child{
-      color: #FF9800;
-
-    }
-    .punctuation{
-      color: #FF9800;
-    }
   }
 }
 // demo
@@ -162,6 +106,7 @@
   .w-docs-demo-control{
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.03);
+    border-top: 1px solid #d5d5d5;
     span{
       padding: 5px 10px;
       display: inline-block;
