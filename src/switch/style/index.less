@@ -105,6 +105,18 @@
                 transform: translateX(13px);
             }
         }
+        &.w-switch-disabled{
+            &:before{
+                border-radius: 5px;
+            }
+            &:after{
+                width: @switch-width - 34;
+                height: @switch-height - 14;
+                top: 1px;
+                left: 1px;
+            }
+
+        }
 
     }
 }
