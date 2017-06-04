@@ -23,11 +23,6 @@ export default class Switch extends Component {
     const { prefixCls,className,style,disabled,checked,checkedChildren,unCheckedChildren,color,unColor,...others} = this.props;
     const { _checked } = this.state;
 
-
-    const textView = _checked ? checkedChildren : unCheckedChildren;
-
-
-
     const cls = classNames(prefixCls,className,{
         [`${prefixCls}-disabled`]: disabled,
         [`${prefixCls}-checked`]: _checked,
