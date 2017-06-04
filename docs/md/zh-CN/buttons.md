@@ -48,6 +48,13 @@ render() {
         <br/>
         <br/>
         <ButtonsGroup>
+          <Buttons size="small">Secondary Normal</Buttons>
+          <Buttons size="small">Secondary Disabled</Buttons>
+          <Buttons size="small"><Icon type="arrow-down" /></Buttons>
+        </ButtonsGroup>
+        <br/>
+        <br/>
+        <ButtonsGroup>
           <Buttons type="warn">Warn Normal</Buttons>
           <Buttons type="warn" disabled>Disabled</Buttons>
         </ButtonsGroup>
@@ -56,6 +63,34 @@ render() {
 }
 ```
 <!--End-->
+
+### 添加图标
+
+<!--DemoStart--> 
+```js
+render() {
+  const ButtonsGroup = Buttons.Group;
+  return (
+    <div>
+        <ButtonsGroup>
+          <Buttons type="primary" icon="upload" />
+          <Buttons type="primary" icon="information" />
+          <Buttons type="primary" icon="edit" />
+        </ButtonsGroup>
+
+        &nbsp;&nbsp;
+
+        <ButtonsGroup>
+          <Buttons size="small"><Icon type="arrow-left" />返回</Buttons>
+          <Buttons size="small">前进<Icon type="arrow-right" /></Buttons>
+        </ButtonsGroup>
+
+    </div>
+  )
+}
+```
+<!--End-->
+
 
 ### 竖排列vertical
 
@@ -78,6 +113,15 @@ render() {
           <Buttons size="small">Middle</Buttons>
           <Buttons size="small" disabled>Disabled</Buttons>
           <Buttons size="small">Right</Buttons>
+        </ButtonsGroup>
+
+        &nbsp;&nbsp;
+
+        <ButtonsGroup vertical>
+          <Buttons size="small" type="primary">Left</Buttons>
+          <Buttons size="small" type="primary">Middle</Buttons>
+          <Buttons size="small" type="primary" disabled>Disabled</Buttons>
+          <Buttons size="small" type="primary">Right</Buttons>
         </ButtonsGroup>
     </div>
   )
@@ -192,10 +236,10 @@ render() {
   const ButtonsGroup = Buttons.Group;
   return (
     <div>
-        <Buttons size="extra-small" type="default">extra-small</Buttons> &nbsp;
-        <Buttons size="small" type="primary">small</Buttons> &nbsp;
-        <Buttons size="default" type="success">default</Buttons> &nbsp;
-        <Buttons size="large" type="info">large</Buttons> &nbsp;
+        <Buttons size="extra-small" type="default"><Icon type="arrow-down" /> extra-small</Buttons> &nbsp;
+        <Buttons size="small" type="primary"><Icon type="arrow-down" /> small</Buttons> &nbsp;
+        <Buttons size="default" type="success"><Icon type="arrow-down" /> default</Buttons> &nbsp;
+        <Buttons size="large" type="info"><Icon type="arrow-down" /> large</Buttons> &nbsp;
     </div>
   )
 }
@@ -225,6 +269,7 @@ render() {
 |--------- |-------- |--------- |-------- |
 | size | ['large', 'default', 'small', 'extra-small'] |string | - |
 | type | ["default","primary","success","info","warn","error","danger"] |string | - |
+| icon | 设置按钮的图标类型 |string | - |
 | block | 通过设置属性 block 可将按钮宽度设置为 100%，（块级元素），常用于弹窗内操作按钮。 |boolean | false |
 | disabled | 禁用状态 |boolean | false |
 | active | 激活状态，其表现为被按压下去（底色更深、边框夜色更深、向内投射阴影）。 |boolean | false |

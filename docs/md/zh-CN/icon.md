@@ -58,7 +58,6 @@ render() {
       <Row gutter="10">
       {
         iconList.map((item,idx) => {
-          item
           return (
             <Col key={idx} xs="8" sm="6" md="4" lg="4">
               <div style={styleItem}>

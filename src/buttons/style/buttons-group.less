@@ -18,6 +18,9 @@
 }
 
 .w-btn-group{
+    .w-btn + .w-btn{
+        border-left: 1px solid rgba(0, 0, 0, 0.18);
+    }
     .w-btn + .w-btn,
     .w-btn + .w-btn-group,
     .w-btn-group + .w-btn,
@@ -47,6 +50,16 @@
     }
     > .w-btn-group:last-child:not(:first-child) > .w-btn:first-child{
         .border-left-radius(0)
+    }
+}
+
+.w-btn-group.w-btn-group-vertical{
+    .w-btn + .w-btn{
+        border-left: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.18);
+    }
+    .w-btn-default+.w-btn-default{
+        border-left: 1px solid rgba(0, 0, 0, 0.18);
     }
 }
 
