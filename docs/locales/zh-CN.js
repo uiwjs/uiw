@@ -15,6 +15,7 @@ module.exports = {
     'calendars': 'Calendars 日历',
     'tables': 'Tables 表格',
     'tooltips': 'Tooltip 文字提示',
+    'icon': 'Icon 图标',
   },
   category:{
     'Form':"表单",

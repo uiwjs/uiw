@@ -14,7 +14,8 @@ module.exports = {
     'transition': 'Transition',
     'calendar': 'Calendar',
     'tables': 'Tables',
-    'tooltips': 'Tooltip文字提示',
+    'tooltips': 'Tooltips',
+    'icon': 'Icon',
   },
   category:{
     'Form':"Form",

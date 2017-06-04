@@ -12,3 +12,4 @@ export { default as Tables } from './table/';
 export { default as Paging } from './paging/';
 export { default as Tooltips } from './tooltip/';
 export { default as Switch } from './switch/';
+export { default as Icon } from './icon/';
