@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Modals from './modals';
+import Modals from './Modal';
 import ActionButton from './ActionButton';
 
 export default function Container(config){

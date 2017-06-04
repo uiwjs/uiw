@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Buttons from '../buttons';
+import Buttons from '../button';
 
 export default class ActionButton extends Component{
   constructor(props) {
