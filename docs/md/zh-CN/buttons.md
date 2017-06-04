@@ -12,6 +12,7 @@ render() {
         <Buttons>Normal</Buttons> &nbsp;
         <Buttons disabled>Disabled</Buttons> &nbsp;
         <Buttons type="primary" active>Buttons</Buttons> &nbsp;
+        <Buttons type="primary" size="small">more <Icon type="arrow-down" /></Buttons> &nbsp;
     </div>
   )
 }
@@ -31,6 +32,12 @@ render() {
           <Buttons>Middle</Buttons>
           <Buttons disabled>Disabled</Buttons>
           <Buttons>Right</Buttons>
+        </ButtonsGroup>
+
+        &nbsp;&nbsp;
+
+        <ButtonsGroup>
+          <Buttons>Left</Buttons>
         </ButtonsGroup>
         <br/>
         <br/>
