@@ -60,11 +60,30 @@ render() {
 <!--DemoStart--> 
 ```js
 render() {
-    const styl = {marginRight:"20px"}
+  const styl = {marginRight:"20px"}
   return (
     <div>
       <Switch checked={false} checkedChildren="开" unCheckedChildren="关" style={styl} />
       <Switch checked={true} checkedChildren="on" unCheckedChildren="off" color="#9C27B0" unColor="#ff4949" />
+    </div>
+  )
+}
+```
+<!--End-->
+
+
+### 两种大小
+
+<!--DemoStart--> 
+```js
+render() {
+  const styl = {marginRight:"20px"}
+  return (
+    <div>
+      <Switch checked={false} size="small" style={styl} />
+      <Switch disabled={true} size="small" style={styl} />
+      <Switch checked={true} size="small" checkedChildren="o" unCheckedChildren="f" color="#03A9F4" unColor="#ff4949"  style={styl}/>
+      <Switch checked={false} checkedChildren="开" unCheckedChildren="关" style={styl} />
     </div>
   )
 }
@@ -84,3 +103,4 @@ render() {
 | unColor |  关闭时的背景色 | string | - |
 | checkedChildren |  选中时的内容 | string、ReactNode | - |
 | unCheckedChildren |  非选中时的内容 | string、ReactNode | - |
+| size |  开关大小，可选值：`default` `small` | string | default |

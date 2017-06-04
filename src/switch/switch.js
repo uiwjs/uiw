@@ -20,12 +20,13 @@ export default class Switch extends Component {
     onChange&&onChange(e.target.checked,e)
   }
   render() {
-    const { prefixCls,className,style,disabled,checked,checkedChildren,unCheckedChildren,color,unColor,...others} = this.props;
+    const { prefixCls,className,style,size,disabled,checked,checkedChildren,unCheckedChildren,color,unColor,...others} = this.props;
     const { _checked } = this.state;
 
     const cls = classNames(prefixCls,className,{
         [`${prefixCls}-disabled`]: disabled,
         [`${prefixCls}-checked`]: _checked,
+        [`${prefixCls}-${size}`]: size=='small',
         [`${prefixCls}-color`]: (color || unColor)?true:false,
       });
 
@@ -47,11 +48,13 @@ Switch.propTypes = {
   color:PropTypes.string,
   unColor:PropTypes.string,
   checkedChildren:PropTypes.string,
+  size:PropTypes.oneOf(['small','default']),
   unCheckedChildren:PropTypes.string,
   onChange:PropTypes.func,
 }
 
 Switch.defaultProps = {
   prefixCls: "w-switch",
+  size: 'default',
   disabled: false
 }
