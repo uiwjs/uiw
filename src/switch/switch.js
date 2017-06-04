@@ -12,15 +12,6 @@ export default class Switch extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  // componentWillReceiveProps(nextProps,nextState) {
-  //   if(this.props.indeterminate!==nextProps.indeterminate){
-  //     this.setState({indeterminate: nextProps.indeterminate, checked:false });
-  //   }
-  //   if(this.props.checked!==nextProps.checked){
-  //     this.setState({checked:nextProps.checked});
-  //   }
-  // }
-
   onChange(e){
     const {onChange} =this.props;
     this.setState({
@@ -29,16 +20,12 @@ export default class Switch extends Component {
     onChange&&onChange(e.target.checked,e)
   }
   render() {
-    const { prefixCls,className,style,disabled,checked,color,unColor,...others} = this.props;
+    const { prefixCls,className,style,disabled,checked,checkedChildren,unCheckedChildren,color,unColor,...others} = this.props;
     const { _checked } = this.state;
 
-    let colorCur = {}
 
-    if(_checked){
-      colorCur.backgroundColor = color;
-    }else{
-      colorCur.backgroundColor = unColor;
-    }
+    const textView = _checked ? checkedChildren : unCheckedChildren;
+
 
 
     const cls = classNames(prefixCls,className,{
@@ -48,8 +35,11 @@ export default class Switch extends Component {
       });
 
     return (
-      <label style={assign({}, colorCur, style)} className={cls}>
+      <label style={assign({}, {
+        backgroundColor:_checked ? color : unColor
+      }, style)} className={cls}>
         <input disabled={disabled} checked={_checked} onChange={this.onChange} type="checkbox"/>
+        <span>{_checked ? checkedChildren : unCheckedChildren}</span>
       </label>
     )
   }
@@ -61,6 +51,8 @@ Switch.propTypes = {
   disabled:PropTypes.bool,
   color:PropTypes.string,
   unColor:PropTypes.string,
+  checkedChildren:PropTypes.string,
+  unCheckedChildren:PropTypes.string,
   onChange:PropTypes.func,
 }
 

@@ -4,24 +4,30 @@
 .w-switch{
     appearance: none;
     position: relative;
-    width: 41px;
+    width: @switch-width;
     height: @switch-height;
     border: 1px solid #dfdfdf;
+    line-height: 22px;
+    font-size: 12px;
+    padding: 0 4px;
     outline: 0;
     border-radius: 16px;
     box-sizing: border-box;
     background: #dfdfdf;
     display: inline-block;
+    transition:background @transition-time @transition-timing-functio;
+    user-select: none;
+    overflow: hidden;
     &:before,&:after{
         content: " ";
         position: absolute;
         top: 0;
         left: 0;
         border-radius: 15px;
-        transition:transform .3s;
+        transition:transform @transition-time;
     }
     &:before{
-        width: 39px;
+        width: @switch-width - 2;
         height: @switch-height - 2;
         background-color: #FDFDFD;
     }
@@ -31,8 +37,15 @@
         background-color: #FFFFFF;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     }
-
-    
+    span {
+        color: #646464;
+        display: inline-block;
+        text-align: right;
+        width: @switch-width - 10;
+        position: relative;
+        top: -22px;
+        transition:text-align @transition-time @transition-timing-functio;
+    }
     &.w-switch-checked{
         border-color: #04BE02;
         background-color: #04BE02;
@@ -40,7 +53,11 @@
             transform: scale(0);
         }
         &:after{
-            transform: translateX(17px);
+            transform: translateX(21px);
+        }
+        span{
+            text-align: left;
+            color: #fff;
         }
     }
     input{
@@ -62,6 +79,9 @@
         border-color: transparent;
         &:before{
             background-color: transparent;
+        }
+        span{
+            color:#fff;
         }
     }
 }

@@ -1,4 +1,4 @@
-## Switch 标签
+## Switch 开关
 
 表示两种相互对立的状态间的切换，多用于触发「开/关」。
 
@@ -46,7 +46,7 @@ render() {
           disabled:!this.state.disabled
         })
       }}>
-        Toggle disabled
+        {this.state.disabled?"Toggle disabled":"Toggle undisabled"}
       </Buttons>
     </div>
   )
@@ -63,14 +63,13 @@ render() {
     const styl = {marginRight:"20px"}
   return (
     <div>
-      <Switch checked={false} value="开" unValue="关" style={styl} />
-      <Switch checked={true} color="#9C27B0" unColor="#ff4949" />
+      <Switch checked={false} checkedChildren="开" unCheckedChildren="关" style={styl} />
+      <Switch checked={true} checkedChildren="on" unCheckedChildren="off" color="#9C27B0" unColor="#ff4949" />
     </div>
   )
 }
 ```
 <!--End-->
-
 
 
 ## API
@@ -80,5 +79,8 @@ render() {
 | 参数 | 说明 | 类型 | 默认值 |
 |------ |-------- |---------- |-------- |
 | checked | 指定当前是否选中 | boolean | false |
+| disabled | 是否禁用 | boolean | false |
 | color | 打开时的背景色 | string | - |
 | unColor |  关闭时的背景色 | string | - |
+| checkedChildren |  选中时的内容 | string、ReactNode | - |
+| unCheckedChildren |  非选中时的内容 | string、ReactNode | - |
