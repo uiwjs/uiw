@@ -1,7 +1,7 @@
 import React, { Component, DOM } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Messages from './messages';
+import Messages from './Message';
 
 
 export function isEmpty (obj) {

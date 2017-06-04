@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Modals from './modals';
-import ActionButtons from './action-buttons';
+import ActionButton from './ActionButton';
 
 export default function Container(config){
   const props = config;
@@ -36,16 +36,16 @@ export default function Container(config){
   let footer = [];
   if (props.cancelText) {
     footer.push(
-      <ActionButtons key="cancel" size="small" closeModals={closeModals} onOk={props.onCancel} autoFocus>
+      <ActionButton key="cancel" size="small" closeModals={closeModals} onOk={props.onCancel} autoFocus>
         {props.cancelText}
-      </ActionButtons>
+      </ActionButton>
     )
   } 
   if (props.okText) {
     footer.push(
-      <ActionButtons key="ok" type={type} size="small" closeModals={closeModals} onOk={props.onOk} autoFocus>
+      <ActionButton key="ok" type={type} size="small" closeModals={closeModals} onOk={props.onOk} autoFocus>
         {props.okText}
-      </ActionButtons>
+      </ActionButton>
     )
   }
   ReactDOM.render(

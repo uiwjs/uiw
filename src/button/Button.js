@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import "./style/index.less";
 import Icon from '../icon/';
 
-export default class Buttons extends Component {
+export default class Button extends Component {
   render() {
     const { prefixCls, type, size, icon, active, disabled, block, className, loading, children, ...others } = this.props;
     let types = type;
@@ -32,7 +32,7 @@ export default class Buttons extends Component {
   }
 }
 
-Buttons.defaultProps = {
+Button.defaultProps = {
   disabled: false,
   active: false,
   loading: false,
@@ -41,7 +41,7 @@ Buttons.defaultProps = {
   size: 'default',
   prefixCls: "w-btn",
 };
-Buttons.propTypes = {
+Button.propTypes = {
   loading: PropTypes.bool,
   disabled: PropTypes.bool,
   icon: PropTypes.string,

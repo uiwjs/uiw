@@ -1,5 +1,5 @@
-import Calendars from './calendar';
-import HeatMap from './heat-map';
+import Calendar from './Calendar';
+import HeatMap from './HeatMap';
 
-Calendars.HeatMap = HeatMap;
-export default Calendars;
+Calendar.HeatMap = HeatMap;
+export default Calendar;

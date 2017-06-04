@@ -1,5 +1,5 @@
-import Checkbox from './checkbox';
-import Group from './group';
+import Checkbox from './Checkbox';
+import Group from './Group';
 import "./style/index.less";
 
 Checkbox.Group = Group;

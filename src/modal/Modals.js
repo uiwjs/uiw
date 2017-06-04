@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Transition from '../transition'
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Buttons from '../buttons';
+import Button from '../button';
 import {IconClose} from '../svgs';
-const ButtonsGroup = Buttons.Group;
+const ButtonGroup = Button.Group;
 
 export default class Modal extends Component {
   state = {
@@ -36,14 +36,14 @@ export default class Modal extends Component {
     if(!visible) return null;
 
     let defaultFooter = !footer?(
-      <ButtonsGroup>
-        <Buttons key="cancel" size="small" onClick={this.handleCancel}>
+      <ButtonGroup>
+        <Button key="cancel" size="small" onClick={this.handleCancel}>
           {cancelText || '取消'}
-        </Buttons>
-        <Buttons key="confirm" size="small" loading={confirmLoading} onClick={this.handleOk}>
+        </Button>
+        <Button key="confirm" size="small" loading={confirmLoading} onClick={this.handleOk}>
           {okText || '确定'}
-        </Buttons>
-      </ButtonsGroup>
+        </Button>
+      </ButtonGroup>
     ):footer;
 
     const cls = classNames(prefixCls,{

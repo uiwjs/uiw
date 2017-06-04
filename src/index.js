@@ -1,11 +1,11 @@
 export { default as Layout } from './layout';
-export { default as Alerts } from './alerts/';
-export { default as Buttons } from './buttons/';
+export { default as Alerts } from './alert/';
+export { default as Buttons } from './button/';
 export { default as Calendars } from './calendar/';
 export { default as Checkboxs } from './checkbox/';
 export { default as Modals } from './modals/';
-export { default as Messages } from './messages/';
-export { default as Tags } from './tags/';
+export { default as Messages } from './message/';
+export { default as Tags } from './tag/';
 export { default as Loading } from './loading/';
 export { default as Transition } from './transition/';
 export { default as Tables } from './table/';

@@ -5,7 +5,7 @@ import Transition from '../transition'
 import PropTypes from 'prop-types';
 import {IconClose,InformationCircled,QuestionCircle,CheckmarkCircled,CloseCircled} from '../svgs';
 
-export default class Alerts extends Component {
+export default class Alert extends Component {
   state = {
     visible:true
   }
@@ -46,10 +46,10 @@ export default class Alerts extends Component {
   }
 }
 
-Alerts.propTypes = {
+Alert.propTypes = {
   type: PropTypes.string,
 };
-Alerts.defaultProps = {
+Alert.defaultProps = {
   type: 'default',
   prefixCls: "w-alert"
 }
