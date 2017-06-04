@@ -15,9 +15,16 @@ module.exports = {
     filename: '[chunkhash:12].js'
   },
   plugins: [
-    new ExtractTextPlugin({ filename: '[chunkhash:12].css' }),
+    new ExtractTextPlugin('css/[name].[contenthash:8].css'),
     new HtmlWebpackPlugin({ template: './build.html' }),
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+    new CommonsChunkPlugin({
+      // 存储 webpack 必要的依赖
+      filename: "js/[hash:8].[name].js",
+      name: "vendor",
+      // minChunks: Infinity,
+      minChunks: 2 // 提取所有chunks共同依赖的模块
+    })
     // new webpack.optimize.UglifyJsPlugin({
     //   mangle: {
     //     keep_fnames: true
