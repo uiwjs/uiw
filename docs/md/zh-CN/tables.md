@@ -12,6 +12,10 @@
 constructor(props) {
   super(props);
   this.state = {
+    paging:{
+        activePage:5,
+        total:250,
+    },
     columns: [
       {
         title: "姓名",
@@ -39,7 +43,12 @@ constructor(props) {
 }
 render() {
   return (
-    <Tables data={this.state.dataSource} columns={this.state.columns}/>
+    <Tables 
+      paging={this.state.paging}
+      caption={<div>明星基本信息</div>}
+      footer={<div>更新于1983年12月6日</div>}
+      data={this.state.dataSource} 
+      columns={this.state.columns}/>
   )
 }
 ```
@@ -108,7 +117,7 @@ render() {
 
 ### 表头分组
 
-表头分组通过 `children` 来实现。
+表头分组通过 `children` 来实现，复制的表头，需要设置每列的`width`，不然无法对齐表格。
 
 <!--DemoStart--> 
 对应数据中的key，保持一致，columns中的render函数才会有作用。
@@ -116,6 +125,10 @@ render() {
 constructor(props) {
   super(props);
   this.state = {
+    paging:{
+        activePage:5,
+        total:250,
+    },
     columns: [
         {
           title: '姓名',
@@ -135,7 +148,8 @@ constructor(props) {
                       width: 150,
                     },{
                       title: '先姓',
-                      key: 'lastname'
+                      key: 'lastname_wcj',
+                      width: 150,
                     }
                   ]
                 },{
@@ -144,10 +158,12 @@ constructor(props) {
                   children:[
                     {
                       title: '谱名',
-                      key: 'firstname'
+                      width: 150,
+                      key: 'puname'
                     },{
                       title: '名',
-                      key: 'lastname'
+                      width: 150,
+                      key: 'lastpuname'
                     }
                   ]
                 }
@@ -158,41 +174,23 @@ constructor(props) {
             }
           ]
         }, {
-          title: '年龄',
-          key: 'age',
-          children:[
-            {
-              title: '中年',
-              key: 'enname',
-              children:[
-                {
-                  title: '屌丝',
-                  key: 'firstname'
-                },{
-                  title: '老男人',
-                  key: 'lastname'
-                }
-              ]
-            },{
-              title: '青年',
-              key: 'cnname'
-            }
-          ]
-        }, {
           title: '公司',
           key: 'company',
           children:[
             {
               title: '地址',
+              width: 150,
               key: 'companyaddress'
             },{
               title: '公司名字',
+              width: 150,
               key: 'companyname'
             }
           ]
         }, {
           title: '操作',
           key: 'edit',
+          width: 150,
           render: (text, row, index) => <a href="#" onClick={()=>{
             console.log(text,row, index)
           }}>{text}</a>,
@@ -200,34 +198,31 @@ constructor(props) {
     ],
     dataSource:[{
       firstname_wcj: '周',
-      last_name: '杰伦',
-      first_enname: 'Jay',
-      last_enname: 'Chou',
-      street:"street",
-      age: 32,
-      address: '上海市青浦1018号e通世界双子楼B座508室',
-      company: '亮金信息科技',
-      company_name: '亮金',
-      gender: '男',
+      lastname_wcj: '杰伦',
+      puname:"street",
+      lastpuname:"street",
+      cnname: 32,
+      companyaddress: '亮金信息科技',
+      companyname: '亮金',
       edit: '编辑11',
     },{
-      firstname_wcj: '周1',
-      last_name: '杰伦2',
-      first_enname: 'Jay3',
-      last_enname: 'Chou4',
-      street:"street5",
-      age: 32,
-      address: 'e通世界双子楼B座508室7',
-      company: '亮金信息科技8',
-      company_name: '亮金9',
-      gender: '男10',
-      edit: '编辑是我拉',
+      firstname_wcj: '周',
+      lastname_wcj: '杰伦',
+      puname:"street",
+      lastpuname:"street",
+      cnname: 32,
+      companyaddress: '亮金信息科技',
+      companyname: '亮金',
+      edit: '编辑11',
     }]
   }
 }
 render() {
   return (
-    <Tables data={this.state.dataSource} columns={this.state.columns}/>
+    <Tables 
+      paging={this.state.paging}
+      width={2000}
+      data={this.state.dataSource} columns={this.state.columns}/>
   )
 }
 ```
@@ -243,6 +238,10 @@ render() {
 constructor(props) {
   super(props);
   this.state = {
+    paging:{
+        activePage:5,
+        total:250,
+    },
     columns: [
       {
         title: "姓名",
@@ -275,7 +274,9 @@ constructor(props) {
 }
 render() {
   return (
-    <Tables height={300} data={this.state.dataSource} columns={this.state.columns}/>
+    <Tables height={300} 
+    paging={this.state.paging}
+    data={this.state.dataSource} columns={this.state.columns}/>
   )
 }
 ```

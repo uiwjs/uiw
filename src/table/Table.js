@@ -26,7 +26,7 @@ export default class Table extends Component{
       scrollTop:0,
       leftFixedWidth:0,   // 左边固定的宽度
       rightFixedWidth:0,  // 右边固定的宽度
-      leftFixedTop:0      // 左边固定的距离顶部距离
+      leftFixedTop:null      // 左边固定的距离顶部距离
     }
   }
   componentDidMount() {
@@ -58,11 +58,12 @@ export default class Table extends Component{
         checkedRow:checkedRow
       })
     }
-
     // leftFixedTop
-    if(this.refs.caption){
+    if(this.refs.tableThead&&this.refs.tableThead.refs.thead
+      &&this.refs.tableThead.refs.thead.offsetHeight>0){
+      console.log("this.refs.tableThead-->::",this.refs.tableThead.refs.thead.offsetHeight)
       this.setState({
-        leftFixedTop:this.refs.caption.offsetHeight
+        leftFixedTop:this.refs.tableThead.refs.thead.offsetHeight
       })
     }
 
@@ -112,11 +113,45 @@ export default class Table extends Component{
   }
   //横向滚动事件
   onScroll(e){
-    this.setState({
-      scrollLeft:e.target.scrollLeft,
-      scrollTop:e.target.scrollTop,
-      scrollRight:e.target.scrollWidth - (e.target.scrollLeft + e.target.offsetWidth)
-    })
+    const {headerWrapper,bodyWrapper,fixedBodyWrapper,leftBodyWrapper,rightBodyWrapper} = this.refs;
+    const {prefixCls} = this.props;
+    const target = e&&e.target ? e.target : bodyWrapper.target;
+
+    this.timeout && clearTimeout(this.timeout)
+
+    if(target instanceof HTMLDivElement){
+
+      if(e.target == leftBodyWrapper){
+        bodyWrapper && (bodyWrapper.scrollTop = target.scrollTop);
+        rightBodyWrapper && (rightBodyWrapper.scrollTop = target.scrollTop);
+      }
+      if(e.target == rightBodyWrapper){
+        bodyWrapper && (bodyWrapper.scrollTop = target.scrollTop);
+        leftBodyWrapper && (leftBodyWrapper.scrollTop = target.scrollTop);
+      }
+      if(e.target == bodyWrapper){
+        headerWrapper.scrollLeft = target.scrollLeft;
+
+        leftBodyWrapper && (leftBodyWrapper.scrollTop = target.scrollTop);
+        rightBodyWrapper && (rightBodyWrapper.scrollTop = target.scrollTop);
+      }
+    }
+    this.timeout = setTimeout(()=>{
+      if( !fixedBodyWrapper) return ;
+      let scrollRight = target.scrollWidth - (target.scrollLeft + target.offsetWidth)
+      let fixedClassNames = "";
+      if(target.scrollLeft  < 1){
+        fixedClassNames = `${prefixCls}-fixed ${prefixCls}-scroll-position-left`;
+      }
+      if(target.scrollLeft>0 && scrollRight>0){
+        fixedClassNames = `${prefixCls}-fixed ${prefixCls}-scroll-position-middle`;
+      }
+      if(scrollRight < 1){
+        fixedClassNames = `${prefixCls}-fixed ${prefixCls}-scroll-position-right`;
+      }
+      fixedBodyWrapper.className = fixedClassNames;
+    },100)
+
   }
   setFixedWidth=(leftWidth,rightWidth)=>{
     this.setState({
@@ -149,7 +184,8 @@ export default class Table extends Component{
         columns={columns} data={data} />
       )
 
-    let tableThead =(<Thead 
+    let tableThead =(refname) => (<Thead 
+        ref={refname}
         rowSelection={rowSelection} 
         setFixedWidth={this.setFixedWidth}
         headindeterminate={headIndeterminate} 
@@ -160,25 +196,25 @@ export default class Table extends Component{
 
     let tableColgroup = (<Colgroup columns={columns}/>);
     let tableCaption = caption&&(<div ref="caption" className={`${prefixCls}-caption`}>{caption}</div>);
-    let tableFooter = footer&&(<div className={`${prefixCls}-footer`}>footer</div>)
+    let tableFooter = footer&&(<div className={`${prefixCls}-footer`}>{footer}</div>)
 
     let pagingView = paging && <Paging className={`${prefixCls}-paging`} {...paging}/> ;
     if(height || width || rowSelection || (loading == true || loading ==false) ){
       let fixedCloneTable = (width) ?  (
-        <div>
+        <div ref="fixedBodyWrapper" className={ classNames(`${prefixCls}-fixed`,`${prefixCls}-scroll-position-left`)} 
+          style={{marginTop:-this.state.leftFixedTop}}
+        >
           <div className={classNames(`${prefixCls}-fixed-left`)} 
-            style={{width:this.state.leftFixedWidth,marginTop:this.state.leftFixedTop}}>
+            style={{width:this.state.leftFixedWidth}}>
             <div className={`${prefixCls}-fixed-head-left`}>
               <table>
                 {React.cloneElement(tableColgroup)}
-                {React.cloneElement(tableThead,{
+                {React.cloneElement(tableThead(),{
                   cloneElement: "left",
                 })}
               </table>
             </div>
-            <div ref={(div)=>{
-              if( div ) div.scrollTop = this.state.scrollTop;
-            }} onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-fixed-body-left`}>
+            <div ref="leftBodyWrapper" onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-fixed-body-left`}>
               <table>
                 {React.cloneElement(tableColgroup,{cloneElement: "left"})}
                 {React.cloneElement(tableTbody('tbody_left'),{cloneElement: "left"})}
@@ -187,18 +223,16 @@ export default class Table extends Component{
           </div>
 
           <div className={classNames(`${prefixCls}-fixed-right`)} 
-            style={{width:this.state.rightFixedWidth,marginTop:this.state.leftFixedTop}}>
+            style={{width:this.state.rightFixedWidth}}>
             <div className={`${prefixCls}-fixed-head-right`}>
               <table>
                 {React.cloneElement(tableColgroup)}
-                {React.cloneElement(tableThead,{
+                {React.cloneElement(tableThead(),{
                   cloneElement: "right",
                 })}
               </table>
             </div>
-            <div ref={(div)=>{
-              if( div ) div.scrollTop = this.state.scrollTop;
-            }} onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-fixed-body-right`}>
+            <div ref="rightBodyWrapper" style={{height}} className={`${prefixCls}-fixed-body-right`}>
               <table>
                 {React.cloneElement(tableColgroup,{cloneElement: "right"})}
                 {React.cloneElement(tableTbody('tbody_right'),{cloneElement: "right"})}
@@ -211,24 +245,16 @@ export default class Table extends Component{
       // 固定头 或者左右滚动
       return(
         <div className={`${prefixCls}-warpper`}>
-          <div className={classNames(className,prefixCls,`${prefixCls}-scroll`,{
-            [`${prefixCls}-scroll-position-left`]:this.state.scrollLeft ==0,
-            [`${prefixCls}-scroll-position-middle`]:(this.state.scrollLeft>0 && this.state.scrollRight>0),
-            [`${prefixCls}-scroll-position-right`]:this.state.scrollRight==0,
-          })}>
+          <div className={classNames(className,prefixCls,`${prefixCls}-scroll`)}>
             {tableCaption}
-            <div ref={(div)=>{
-              if( div ) div.scrollLeft = this.state.scrollLeft;
-            }} className={`${prefixCls}-head`}>
+            <div ref="headerWrapper" className={`${prefixCls}-head`}>
               <table style={{width}}>
                 {tableColgroup}
-                {tableThead}
+                {tableThead("tableThead")}
               </table>
             </div>
             <Loading loading={this.props.loading}>
-              <div ref={(div)=>{
-                if( div ) div.scrollTop = this.state.scrollTop;
-              }} onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-body`}>
+              <div ref="bodyWrapper" onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-body`}>
                 <table style={{width}}>
                   {tableColgroup}
                   {tableTbody('tbody')}
@@ -250,7 +276,7 @@ export default class Table extends Component{
           {tableCaption}
           <table>
             {tableColgroup}
-            {tableThead}
+            {tableThead()}
             {tableTbody()}
           </table>
           {tableFooter}

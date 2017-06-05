@@ -140,7 +140,7 @@ export default class Thead extends Component{
     return headelm;
   }
   render(){
-    const { prefixCls, className,indeterminate,headindeterminate,columns } = this.props;
+    const { prefixCls, className,indeterminate,headindeterminate,columns} = this.props;
     // 计算层级
     let rowLevel = this.getRowSpan(columns);
     return(
