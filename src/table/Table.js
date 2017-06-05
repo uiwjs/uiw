@@ -61,7 +61,6 @@ export default class Table extends Component{
     // leftFixedTop
     if(this.refs.tableThead&&this.refs.tableThead.refs.thead
       &&this.refs.tableThead.refs.thead.offsetHeight>0){
-      console.log("this.refs.tableThead-->::",this.refs.tableThead.refs.thead.offsetHeight)
       this.setState({
         leftFixedTop:this.refs.tableThead.refs.thead.offsetHeight
       })
