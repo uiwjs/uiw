@@ -117,8 +117,6 @@ export default class Table extends Component{
     const {prefixCls} = this.props;
     const target = e&&e.target ? e.target : bodyWrapper.target;
 
-    this.timeout && clearTimeout(this.timeout)
-
     if(target instanceof HTMLDivElement){
 
       if(e.target == leftBodyWrapper){
@@ -136,21 +134,22 @@ export default class Table extends Component{
         rightBodyWrapper && (rightBodyWrapper.scrollTop = target.scrollTop);
       }
     }
-    this.timeout = setTimeout(()=>{
-      if( !fixedBodyWrapper) return ;
-      let scrollRight = target.scrollWidth - (target.scrollLeft + target.offsetWidth)
-      let fixedClassNames = "";
-      if(target.scrollLeft  < 1){
-        fixedClassNames = `${prefixCls}-fixed ${prefixCls}-scroll-position-left`;
-      }
-      if(target.scrollLeft>0 && scrollRight>0){
-        fixedClassNames = `${prefixCls}-fixed ${prefixCls}-scroll-position-middle`;
-      }
-      if(scrollRight < 1){
-        fixedClassNames = `${prefixCls}-fixed ${prefixCls}-scroll-position-right`;
-      }
+    
+    if( !fixedBodyWrapper) return ;
+    let scrollRight = target.scrollWidth - (target.scrollLeft + target.clientWidth)
+    let fixedClassNames = "";
+    if(target.scrollLeft  < 1){
+      fixedClassNames = `${prefixCls}-fixed ${prefixCls}-scroll-position-left`;
+    }
+    if(target.scrollLeft>0 && scrollRight>0){
+      fixedClassNames = `${prefixCls}-fixed ${prefixCls}-scroll-position-middle`;
+    }
+    if(scrollRight < 1){
+      fixedClassNames = `${prefixCls}-fixed ${prefixCls}-scroll-position-right`;
+    }
+    if(e&&e.target == bodyWrapper){
       fixedBodyWrapper.className = fixedClassNames;
-    },100)
+    }
 
   }
   setFixedWidth=(leftWidth,rightWidth)=>{
