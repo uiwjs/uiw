@@ -27,7 +27,7 @@ export default class Paging extends React.Component {
     }
     if(num){
       this.setState({activePage:num});
-      onChange&&onChange(num)
+      onChange&&onChange(num,total,pageSize)
     }
   }
   render() {
@@ -68,7 +68,7 @@ export default class Paging extends React.Component {
             className={activePage == i+1 ? `${prefixCls}-active`:`${prefixCls}-item`}
             onClick={()=>{
               this.setState({activePage:i+1 })
-              onChange&&onChange(i+1)
+              onChange&&onChange(i+1,total,pageSize)
             }}
           >
             <a>{i+1}</a>

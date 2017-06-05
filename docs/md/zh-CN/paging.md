@@ -34,4 +34,4 @@ render() {
 | total | 数据总数 | number | 0 |
 | activePage | 当前页数，选中的页数 | number | 0 |
 | pageSize | 每页条数 | number | 10 |
-| onChange | 页码改变的回调，返回改变后的页码 | Function(Number) | - |
+| onChange | 页码改变的回调，返回改变后的页码 | Function(activePage,total,pageSize) | - |

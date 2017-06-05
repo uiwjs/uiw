@@ -6,6 +6,7 @@ import Tbody from './tbody';
 import Colgroup from './colgroup';
 import Checkboxs from '../checkbox/';
 import Paging from '../paging/';
+import Loading from '../loading/';
 import {compare} from '../utils/objects';
 
 export default class Table extends Component{
@@ -129,7 +130,7 @@ export default class Table extends Component{
     })
   }
   render(){
-    const { prefixCls, className, onChange, rowSelection, caption, footer, columns, data, height, width,paging } = this.props;
+    const { prefixCls, className, onChange, rowSelection, caption, footer, columns, data, height, width, paging, loading } = this.props;
     const { headIndeterminate,headchecked,trHoverClassName } = this.state
     // checkbox 选择数据如果存在删除重新渲染
     if(rowSelection){
@@ -161,9 +162,8 @@ export default class Table extends Component{
     let tableCaption = caption&&(<div ref="caption" className={`${prefixCls}-caption`}>{caption}</div>);
     let tableFooter = footer&&(<div className={`${prefixCls}-footer`}>footer</div>)
 
-    let pagingView = paging && <Paging className={`${prefixCls}-paging`} {...paging}/>
-
-    if(height||width||rowSelection){
+    let pagingView = paging && <Paging className={`${prefixCls}-paging`} {...paging}/> ;
+    if(height || width || rowSelection || (loading == true || loading ==false) ){
       let fixedCloneTable = (width) ?  (
         <div>
           <div className={classNames(`${prefixCls}-fixed-left`)} 
@@ -225,18 +225,20 @@ export default class Table extends Component{
                 {tableThead}
               </table>
             </div>
-            <div ref={(div)=>{
-              if( div ) div.scrollTop = this.state.scrollTop;
-            }} onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-body`}>
-              <table style={{width}}>
-                {tableColgroup}
-                {tableTbody('tbody')}
-              </table>
-            </div>
-            {tableFooter}
-            {fixedCloneTable}
+            <Loading loading={this.props.loading}>
+              <div ref={(div)=>{
+                if( div ) div.scrollTop = this.state.scrollTop;
+              }} onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-body`}>
+                <table style={{width}}>
+                  {tableColgroup}
+                  {tableTbody('tbody')}
+                </table>
+              </div>
+              {tableFooter}
+              {fixedCloneTable}
+              {pagingView}
+            </Loading>
           </div>
-          {pagingView}
         </div>
       )
     }
@@ -262,6 +264,7 @@ export default class Table extends Component{
 Table.defaultProps = {
   prefixCls:'w-table',
   size: 'default',
+  loading: false,
   data:[],
   columns:[]
 };

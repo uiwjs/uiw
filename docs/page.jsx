@@ -107,7 +107,7 @@ export default class App extends Component {
     return (
       <div className={`${prefixCls}`}>
         <div className={`${prefixCls}-menu-warpper`}>
-          <div className={`${prefixCls}-content`}>
+          <div className={`${prefixCls}-menu-content`}>
           {Object.keys(pages.components).map(group => this.renderMenuGroup(group)) }
           </div>
         </div>
