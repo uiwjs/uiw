@@ -12,7 +12,7 @@ module.exports = {
     'messages': 'Messages 全局提示',
     'modals': 'Modals 对话框',
     'transition': 'Transition 过渡动画',
-    'calendars': 'Calendars 日历',
+    'calendar': 'Calendar 日历',
     'tables': 'Tables 表格',
     'tooltips': 'Tooltips 文字提示',
     'icon': 'Icon 图标',

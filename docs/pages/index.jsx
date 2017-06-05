@@ -13,7 +13,7 @@ export default {
       'switch': require('./switch'),
     },
     'Data Display': {
-      'calendars': require('./calendars'),
+      'calendar': require('./calendar'),
       'tables': require('./tables'),
       'tooltips': require('./tooltips'),
     },

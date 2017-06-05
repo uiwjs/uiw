@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM,{findDOMNode} from 'react-dom'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import Transition from '../transition'
@@ -8,7 +7,7 @@ export default class Tooltip extends Component {
   constructor(props){
     super(props);
     this.state = {
-      showTooltip:false,
+      showTooltip:props.visible,
       popupwidth:0,
       stylesPopup:{}
     }

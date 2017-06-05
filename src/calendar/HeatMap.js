@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM,{findDOMNode} from 'react-dom'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import Tooltip from '../tooltip';
 import "./style/index.less";
 
 export default class HeatMap extends Component {
-  state = {
-    days:this.props.days
+  constructor(props){
+    super(props);
+    this.state = {
+      days:this.props.days,
+      tooltip:true
+    }
+    this.onMouseOver = this.onMouseOver.bind(this)
+    this.showTooltip = this.showTooltip.bind(this)
   }
   componentDidMount() {
     // 根据宽度来生成多少天的图形
@@ -19,6 +26,8 @@ export default class HeatMap extends Component {
     !days&&this.setState({
       days:daycount
     })
+
+    this.showTooltip()
   }
   numberSort(keys){// 排序 比较函数
     return keys.sort( (x, y) => {//比较函数
@@ -65,12 +74,27 @@ export default class HeatMap extends Component {
     }
     return curdt
   }
+  onMouseOver(e,curdatestr,curdt){
+    const {onMouseOver} = this.props;
+    onMouseOver(e,curdatestr,curdt);
+    console.log("wwww>>",e.target.x.animVal.value)
+  }
+  showTooltip(x,y){
+    const {prefixCls} = this.props;
+    let $this = ReactDOM.findDOMNode(this);
+    console.log("$this::",$this)
+    // for(let a in  $this){
+    //   console.log("-->",a)
+    // }
+    const div = document.createElement('div')
+    div.className = `${prefixCls}-popup`
+    $this.appendChild(div)
+    const container = ReactDOM.render(<Tooltip visible={true} content="我来了！">丹丹</Tooltip>, div)
+  }
   render() {
     const { prefixCls, weekLables, monthLables, panelColors, endDate, onClick, onMouseOver, className} = this.props;
     let { days } = this.state;
-    const cls = classNames(prefixCls,{
-      [className]: className
-    });
+    const cls = classNames(prefixCls,className);
 
     let width=14, height=14, dayDate=[], oneday=86400000;
     let timestamp = endDate.getTime();
@@ -96,7 +120,7 @@ export default class HeatMap extends Component {
         x={col + xl} 
         y={yl}
         onClick={(e)=>onClick(e,curdatestr,curdt)}
-        onMouseOver={(e)=>onMouseOver(e,curdatestr,curdt)}
+        onMouseOver={(e)=>this.onMouseOver(e,curdatestr,curdt)}
         width={width} height={height}></rect>);
       // 周标题
       if(Object.keys(weekLables).indexOf(i.toString()) > -1 && i < 7){
@@ -114,18 +138,20 @@ export default class HeatMap extends Component {
       rectPanelColors.push(<rect key={i}  width={width} height={height} x={xl} y="0" fill={panelColors[nums[i]]}></rect>)
     }
     return (
-      <svg className={ cls } width={`100%`} height="155px">
-        <g className={ `${prefixCls}-week` } transform="translate(0, 10)">
-          {rectweeks}
-        </g>
-        <g className={ `${prefixCls}-month` } transform={`translate(${col}, 14)`}>
-          {rectMonth}
-        </g>
-        <g transform="translate(16, 138)">
-          {rectPanelColors}
-        </g>
-        {rectdays}
-      </svg>
+      <div ref="heatmap" className={`${prefixCls}-wrapper`}>
+        <svg className={ cls } width={`100%`} height="155px">
+          <g className={ `${prefixCls}-week` } transform="translate(0, 10)">
+            {rectweeks}
+          </g>
+          <g className={ `${prefixCls}-month` } transform={`translate(${col}, 14)`}>
+            {rectMonth}
+          </g>
+          <g transform="translate(16, 138)">
+            {rectPanelColors}
+          </g>
+          {rectdays}
+        </svg>
+      </div>
     );
   }
 }

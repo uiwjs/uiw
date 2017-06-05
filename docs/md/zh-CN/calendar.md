@@ -1,4 +1,4 @@
-## Calendars 日历
+## Calendar 日历
 
 按照日历形式展示数据的容器。
 
@@ -18,7 +18,7 @@ constructor(props) {
   }
 }
 render() {
-  const CalendarHeatMap = Calendars.HeatMap;
+  const CalendarHeatMap = Calendar.HeatMap;
   return (
     <div>
         <CalendarHeatMap 
@@ -43,7 +43,7 @@ render() {
           }}
           values={this.state.values} // 需要显示的数据，必填
           onMouseOver={(e,date,result)=>{
-            console.log("onMouseOver::",date)
+            console.log("onMouseOver::",date,result)
           }}
           onClick={(e,date,result)=>{
             console.log("date,result:",date,result)
@@ -86,7 +86,7 @@ render() {
 
 
 
-### Calendars.HeatMap Attributes
+### Calendar.HeatMap Attributes
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
