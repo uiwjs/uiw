@@ -16,7 +16,8 @@
 `icon` 名字需要命名规范，必须加上前缀 `.w-icon-{图标名字}` 。
 
 ```css
-@font-face {font-family: "iconfont";
+@font-face {
+  font-family: "iconfont";
   src: url('iconfont.eot'); /* IE9*/
   src: url('iconfont.eot') format('embedded-opentype'), /* IE6-IE8 */
   url('iconfont.woff') format('woff'), /* chrome, firefox */

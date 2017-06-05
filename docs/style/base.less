@@ -17,6 +17,7 @@
   background-color: #0FA120;
   float: left;
   overflow: auto;
+  box-shadow: 1px 0 2px 0px rgba(0, 0, 0, 0.15), inset -1px 0 0 0 rgba(0, 0, 0, 0.11);
   .w-docs-menu-content{
     padding: 20px 0 30px 0;
   }
@@ -26,11 +27,15 @@
     padding: 6px 24px 6px 20px;
     font-size: 14px;
     transition: background-color .7s ease;
+    &:active{
+      text-decoration: none;
+    }
     &:hover,&.active{
       background-color: rgba(0, 0, 0, 0.12);
+      text-decoration: none;
     }
     &:hover{
-      background-color: rgba(0, 0, 0, 0.27);
+      background-color: rgb(0, 148, 17);
     }
   }
 }
@@ -84,8 +89,7 @@
     display: inline-block;
   }
   p{
-    padding: 5px 0 10px 0;
-    // font-weight: 300;
+    padding: 5px 0 5px 0;
   }
   &> table{
     width: 100%;

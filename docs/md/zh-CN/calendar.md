@@ -41,6 +41,7 @@ render() {
             12:"#239A3B",
             32:"#196127",
           }}
+          emptyMessage="空的没有消息!"
           values={this.state.values} // 需要显示的数据，必填
           onMouseOver={(e,date,result)=>{
             console.log("onMouseOver::",date,result)
@@ -94,6 +95,8 @@ render() {
 | endDate | 截止日期 | Date | - |
 | onMouseOver | 鼠标滑过的事件 | Function(e, date, result) | - |
 | onClick | 鼠标点击单元格的事件 | Function(e, date, result) | - |
+| message | 消息提示 | String | - |
+| emptyMessage | 空的，消息提示 | String | - |
 | monthLables | ["1月", "2月", ...] | Array | - |
 | weekLables | 默认选填选项  周 { 1:"一", 3:"三", 5:"五"} | Object- | {} |
 | panelColors | 活跃颜色的深浅 {0:"#EBEDF0", 8:"#7BC96F", 4:"#C6E48B", 12:"#239A3B", 32:"#196127", } | Object | {} |

@@ -10,7 +10,9 @@ export default class HeatMap extends Component {
     super(props);
     this.state = {
       days:this.props.days,
-      tooltip:true
+      tooltip:true,
+      tooltipX:0,
+      tooltipY:0
     }
     this.onMouseOver = this.onMouseOver.bind(this)
     this.showTooltip = this.showTooltip.bind(this)
@@ -27,7 +29,7 @@ export default class HeatMap extends Component {
       days:daycount
     })
 
-    this.showTooltip()
+    
   }
   numberSort(keys){// 排序 比较函数
     return keys.sort( (x, y) => {//比较函数
@@ -77,19 +79,22 @@ export default class HeatMap extends Component {
   onMouseOver(e,curdatestr,curdt){
     const {onMouseOver} = this.props;
     onMouseOver(e,curdatestr,curdt);
-    console.log("wwww>>",e.target.x.animVal.value)
+
+    this.setState({
+      tooltipX:e.target.x.animVal.value,
+      tooltipY:e.target.y.animVal.value
+    })
   }
-  showTooltip(x,y){
-    const {prefixCls} = this.props;
-    let $this = ReactDOM.findDOMNode(this);
-    console.log("$this::",$this)
-    // for(let a in  $this){
-    //   console.log("-->",a)
-    // }
-    const div = document.createElement('div')
-    div.className = `${prefixCls}-popup`
-    $this.appendChild(div)
-    const container = ReactDOM.render(<Tooltip visible={true} content="我来了！">丹丹</Tooltip>, div)
+  showTooltip(){
+    const {prefixCls,emptyMessage} = this.props;
+    const {tooltipX,tooltipY} = this.state;
+    return (
+      <div 
+        style={{marginLeft:tooltipX, marginTop:tooltipY }}
+        className={`${prefixCls}-popup`}>
+        <Tooltip content={emptyMessage}><div></div></Tooltip>
+      </div>
+    )
   }
   render() {
     const { prefixCls, weekLables, monthLables, panelColors, endDate, onClick, onMouseOver, className} = this.props;
@@ -139,6 +144,7 @@ export default class HeatMap extends Component {
     }
     return (
       <div ref="heatmap" className={`${prefixCls}-wrapper`}>
+        {this.showTooltip()}
         <svg className={ cls } width={`100%`} height="155px">
           <g className={ `${prefixCls}-week` } transform="translate(0, 10)">
             {rectweeks}
@@ -163,6 +169,8 @@ HeatMap.propTypes = {
   onClick:PropTypes.func,
   onMouseOver:PropTypes.func,
   days:PropTypes.number,
+  emptyMessage: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+  message: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   endDate:PropTypes.object,
   panelColors:PropTypes.object,
 }
