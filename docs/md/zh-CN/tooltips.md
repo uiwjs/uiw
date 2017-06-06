@@ -292,14 +292,14 @@ render() {
 render() {
   return (
     <div>
-    <Tooltips placement="right" leaveDelay={6000} trigger="click" content="文字提示"  style={{marginRight:"20px"}}>
-      <Buttons>点击延迟6s消失</Buttons>
-    </Tooltips>
     <Tooltips placement="right" leaveDelay={6000} content="文字提示"  style={{marginRight:"20px"}}>
       <Buttons>hove延迟6s消失</Buttons>
     </Tooltips>
-    <Tooltips placement="right" enterDelay={6000}  leaveDelay={7000} content="文字提示"  style={{marginRight:"20px"}}>
-      <Buttons>hove延迟6s进入</Buttons>
+    <Tooltips placement="right" leaveDelay={6000} trigger="click" content="文字提示"  style={{marginRight:"20px"}}>
+      <Buttons>点击延迟6s消失</Buttons>
+    </Tooltips>
+    <Tooltips placement="right" enterDelay={2000}  leaveDelay={6000} content="文字提示"  style={{marginRight:"20px"}}>
+      <Buttons>鼠标悬停在按钮上延迟2s进入</Buttons>
     </Tooltips>
     </div>
   )
@@ -320,3 +320,4 @@ render() {
 | enterDelay | 鼠标离开或者点击之后延时多少才隐藏 Tooltips，单位：秒，`enterDelay` 为延迟进入必须配合`leaveDelay` 来使用，并且值比 `leaveDelay`小 | number | - |
 | visibleArrow | 是否显示 Tooltips 箭头 | bool | false |
 | visible | 状态是否可见 | bool | false |
+| onVisibleChange | 显示隐藏的回调 | Function(isVisible:bool) | - |

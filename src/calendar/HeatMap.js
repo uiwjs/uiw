@@ -186,7 +186,7 @@ export default class HeatMap extends Component {
     return (
       <div className={`${prefixCls}-wrapper`} >
         <div ref="tooltipRefs" className={`${prefixCls}-popup`}>
-          <Tooltip ref="tooltipConRefs" content={this.renderTooltip() ||  `  `} visible={true}>
+          <Tooltip ref="tooltipConRefs" content={this.renderTooltip() ||  ` `} visible={true}>
             <div onClick={(e)=>this.onClick(e)} style={{width:12,height:12}}></div>
           </Tooltip>
         </div>

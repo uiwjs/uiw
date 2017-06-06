@@ -7,7 +7,8 @@ export default class Tooltip extends Component {
   constructor(props){
     super(props);
     this.state = {
-      showTooltip:props.visible,
+      // showTooltip:props.visible,
+      showTooltip:true,
       popupwidth:0,
       content:props.content,
       stylesPopup:{}
@@ -41,21 +42,18 @@ export default class Tooltip extends Component {
   }
   showTooltip(){
     const {enterDelay,onVisibleChange} = this.props;
-    clearTimeout(this.leaveTime)
-    clearTimeout(this.styleTime)
-
+    clearTimeout(this.leaveTime);
+    clearTimeout(this.styleTime);
     if(enterDelay){
       this.leaveTime = setTimeout(()=>{
         this.setState({
           showTooltip:true
         })
-        onVisibleChange&&onVisibleChange(true)
       },enterDelay)
     }else{
       this.setState({
         showTooltip:true
       })
-      onVisibleChange&&onVisibleChange(true)
     }
 
     // 解决无法获取节点样式
@@ -68,11 +66,12 @@ export default class Tooltip extends Component {
   }
   hideTooltip(e,isDelay){
     const {leaveDelay,onVisibleChange,visible} = this.props;
+    const {showTooltip} = this.state;
     clearTimeout(this.leaveTime)
       
     if(isDelay==true){
       this.setState({
-        showTooltip:false
+        showTooltip:!showTooltip
       })
       onVisibleChange&&onVisibleChange(false)
     }else{
@@ -81,7 +80,7 @@ export default class Tooltip extends Component {
           showTooltip:false
         })
         onVisibleChange&&onVisibleChange(false)
-      },leaveDelay||100)
+      },leaveDelay||0)
     }
   }
   // 弹出的位置
@@ -171,8 +170,13 @@ export default class Tooltip extends Component {
       props.onMouseLeave = this.hideTooltip
     } else {
       props.onClick = (e) => {
+        if(leaveDelay){
+          this.setState({
+            showTooltip:true
+          })
+        }
         clearTimeout(this.clickLeaveTimeout)
-        this.clickLeaveTimeout = setTimeout((f)=>this.hideTooltip(f,true),leaveDelay||2000)
+        this.clickLeaveTimeout = setTimeout((f)=>this.hideTooltip(f,true),leaveDelay || 0)
       }
     }
 
