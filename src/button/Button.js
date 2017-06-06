@@ -14,7 +14,7 @@ export default class Button extends Component {
     }
     const cls = classNames(prefixCls,{
         // [`${prefixCls}-default`]: size === 'default',         //（默认尺寸）Default button
-        [`${prefixCls}-size-${size}`]: /^(large|default|small|extra-small)?$/.test(size),
+        [`${prefixCls}-size-${size}`]: /^(large|default|small|mini)?$/.test(size),
         [`${prefixCls}-${types}`]: /^(default|primary|success|info|warn|danger)?$/.test(types),
         [`${prefixCls}-loading`]: loading,  // 加载
         'disabled': disabled || loading,    // 禁用状态
@@ -46,7 +46,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   icon: PropTypes.string,
   active: PropTypes.bool,
-  size: PropTypes.oneOf(['large', 'default', 'small', 'extra-small']),
+  size: PropTypes.oneOf(['large', 'default', 'small', 'mini']),
   type: PropTypes.oneOf(["default","primary","success","info","warn","error","danger"]),
 }
 

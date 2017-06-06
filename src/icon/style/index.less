@@ -22,7 +22,15 @@
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    &:after {
+      content: '';
+      height: 100%;
+      width: 0;
+      display: inline-block;
+      vertical-align: middle;
+    }
 }
+
 
 .w-icon-arrow-down:before { content: "\e600"; }
 .w-icon-arrow-left:before { content: "\e601"; }

@@ -148,7 +148,7 @@ render() {
   return (
     <div>
 
-        <Buttons size="extra-small" loading={this.state.loading} 
+        <Buttons size="mini" loading={this.state.loading} 
           onClick={()=>{
             console.log("loading:",this.state.loading)
             this.setState({loading:true})
@@ -236,7 +236,7 @@ render() {
   const ButtonsGroup = Buttons.Group;
   return (
     <div>
-        <Buttons size="extra-small" type="default"><Icon type="arrow-down" /> extra-small</Buttons> &nbsp;
+        <Buttons size="mini" type="default"><Icon type="arrow-down" /> mini</Buttons> &nbsp;
         <Buttons size="small" type="primary"><Icon type="arrow-down" /> small</Buttons> &nbsp;
         <Buttons size="default" type="success"><Icon type="arrow-down" /> default</Buttons> &nbsp;
         <Buttons size="large" type="info"><Icon type="arrow-down" /> large</Buttons> &nbsp;
@@ -267,7 +267,7 @@ render() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| size | ['large', 'default', 'small', 'extra-small'] |string | - |
+| size | ['large', 'default', 'small', 'mini'] |string | - |
 | type | ["default","primary","success","info","warn","error","danger"] |string | - |
 | icon | 设置按钮的图标类型 |string | - |
 | block | 通过设置属性 block 可将按钮宽度设置为 100%，（块级元素），常用于弹窗内操作按钮。 |boolean | false |
