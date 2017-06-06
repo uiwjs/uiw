@@ -11,7 +11,7 @@ render() {
   return (
     <Row>
       <Col xs="8" sm="8" md="8" xs="24">
-        <Input  placeholder="请输入内容" />
+        <Input placeholder="请输入内容" />
       </Col>
     </Row>
   )
@@ -167,7 +167,10 @@ render() {
 |--------- |-------- |--------- |-------- |
 | type | 声明 input 类型，同原生 input 标签的 type 属性。另外提供 `type="textarea"`。 | String | `text` |
 | size | 指定输入框的尺寸，除了默认的大小外，还提供了 `large`、`small` 和 `mini` 三种尺寸。 | String | - |
-| autoFocus | 当页面加载时，文本区域自动获得焦点。`HTML5` 中的新属性。  | boolean | `false` |
-| preIcon | 输入框前面放置图标  | string | `false` |
+| autoFocus | 当页面加载时，文本区域自动获得焦点。`HTML5` 中的新属性。  | Boolean | `false` |
+| preIcon | 输入框`前`面放置图标  | String、ReactNode | - |
+| icon | 输入框`后`面放置图标  | String、ReactNode | - |
+| onPreIconClick | 输入框`前`面放置的图标事件  | Function | - |
+| onIconClick | 输入框`后`面放置的图标事件  | Function | - |
 
 Input 的其他属性和 React 自带的 [input](https://facebook.github.io/react/docs/events.html#supported-events) 一致。
