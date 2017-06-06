@@ -11,9 +11,9 @@ constructor(props) {
 
   this.state = {
     values:[
-      { date: '2017-05-02', count:5, content:['一条消息来了！'] },
-      { date: '2017-05-04', count:11, content:['一条消息来了！'] },
-      { date: '2017-05-14', count:31, content:['一条消息来了！'] },
+      { date: '2017-05-02',  count:2, content:['一条消息来了！'] },
+      { date: '2017-05-04',  count:22, content:['一条消息来了！'] },
+      { date: '2017-05-14',  count:8, content:['一条消息来了！'] },
     ]
   }
 }
@@ -40,6 +40,11 @@ render() {
             4:"#C6E48B",
             12:"#239A3B",
             32:"#196127",
+          }}
+          message={(content)=>{
+              return content.map((item,idx)=>{
+                return <div key={idx}>{item}</div>
+              })
           }}
           emptyMessage="空的没有消息!"
           values={this.state.values} // 需要显示的数据，必填
@@ -87,7 +92,7 @@ render() {
 
 
 
-### Calendar.HeatMap Attributes
+### Calendar.HeatMap
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
@@ -95,8 +100,16 @@ render() {
 | endDate | 截止日期 | Date | - |
 | onMouseOver | 鼠标滑过的事件 | Function(e, date, result) | - |
 | onClick | 鼠标点击单元格的事件 | Function(e, date, result) | - |
-| message | 消息提示 | String | - |
+| message | 消息提示 | Function(content:Array)  | - |
 | emptyMessage | 空的，消息提示 | String | - |
 | monthLables | ["1月", "2月", ...] | Array | - |
 | weekLables | 默认选填选项  周 { 1:"一", 3:"三", 5:"五"} | Object- | {} |
 | panelColors | 活跃颜色的深浅 {0:"#EBEDF0", 8:"#7BC96F", 4:"#C6E48B", 12:"#239A3B", 32:"#196127", } | Object | {} |
+
+### values
+
+| 参数 | 说明 | 类型 | 默认值 |
+|----- | ---- |----- |---- |
+| date | 日期，必填 | String | - |
+| content | 提示内容，有几条提示，必填 | Array | - |
+| count | 有多少条消息，必填 | Number | - |

@@ -14,8 +14,8 @@ export default class HeatMap extends Component {
       currentData:{}
     }
     this.onMouseOver = this.onMouseOver.bind(this)
-    this.onMouseOut = this.onMouseOut.bind(this)
     this.onClick = this.onClick.bind(this)
+    this.renderTooltip = this.renderTooltip.bind(this)
   }
   componentDidMount() {
     // 根据宽度来生成多少天的图形
@@ -78,9 +78,14 @@ export default class HeatMap extends Component {
     return curdt
   }
   onMouseOver(e,curdatestr,curdt){
-    const {onMouseOver} = this.props;
+
+    const {onMouseOver, emptyMessage } = this.props;
     onMouseOver(e,curdatestr,curdt);
     const {tooltiprefs} = this.refs;
+
+    // 空消息不提示
+    if(!emptyMessage || curdt.count < 1) return;
+    
     if(tooltiprefs&&e.target){
       clearTimeout(this.timeout)
       tooltiprefs.style.marginLeft = e.target.x.animVal.value +"px"
@@ -91,19 +96,8 @@ export default class HeatMap extends Component {
         this.setState({
           currentData:curdt
         })
-      },300)
+      },100)
     }
-  }
-  onMouseOut(e){
-    const {tooltiprefs} = this.refs;
-    console.log("onMouseOut::",tooltiprefs)
-      clearTimeout(this.timeMoustOut)
-
-      // this.timeMoustOut = setTimeout(()=>{
-      //   if(tooltiprefs){
-      //     tooltiprefs.style.display = "none";
-      //   }
-      // },300)
   }
   onClick(e,curdate,curdt){
     const {onClick} = this.props;
@@ -112,8 +106,24 @@ export default class HeatMap extends Component {
     curdate = curdate || currentData.date;
     onClick(e,curdate,curdt)
   }
+
+  renderTooltip(){
+    const {emptyMessage,message} = this.props;
+    const {currentData} =this.state;
+
+    if(currentData.count&&currentData.count>0){
+      let content = currentData.content;
+
+      if(message) return message(content)
+
+      return content.map((item,idx)=>{
+        return <div key={idx}>{item}</div>
+      })
+    }
+    return emptyMessage
+  }
   render() {
-    const { prefixCls, weekLables, monthLables, panelColors, endDate, onMouseOver,emptyMessage, className} = this.props;
+    const { prefixCls, weekLables, monthLables, panelColors, endDate, onMouseOver,className} = this.props;
     let { days,tooltipShow } = this.state;
     const cls = classNames(prefixCls,className);
 
@@ -159,9 +169,11 @@ export default class HeatMap extends Component {
       rectPanelColors.push(<rect key={i}  width={width} height={height} x={xl} y="0" fill={panelColors[nums[i]]}></rect>)
     }
     return (
-      <div className={`${prefixCls}-wrapper`} onMouseOut={(e)=>this.onMouseOut(e)}>
+      <div className={`${prefixCls}-wrapper`} >
         <div ref="tooltiprefs" className={`${prefixCls}-popup`}>
-          <Tooltip content={emptyMessage} visible={true}><div onClick={(e)=>this.onClick(e)} style={{width:12,height:12}}></div></Tooltip>
+          <Tooltip content={this.renderTooltip()} visible={true}>
+            <div onClick={(e)=>this.onClick(e)} style={{width:12,height:12}}></div>
+          </Tooltip>
         </div>
         <svg className={ cls } width={`100%`} height="155px">
           <g className={ `${prefixCls}-week` } transform="translate(0, 10)">
