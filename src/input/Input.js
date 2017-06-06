@@ -5,20 +5,48 @@ import Icon from '../icon'
 export default class Input extends Component {
   constructor(props){
     super(props);
-    this.state = {}
+    this.state = {
+      value:""
+    }
   }
+
+  handleKeyUp(e){
+    const { onSearch,onKeyUp } = this.props;
+    if(e.key == "Enter"){
+      onSearch&&onSearch(e,e.target.value)
+    }
+    onKeyUp&&onKeyUp()
+  }
+
+  handleChange(e){
+    const { onChange } = this.props;
+    this.setState({
+      value:e.target.value
+    })
+    onChange&&onChange(e)
+  }
+  handleClick(...attr){
+    if(this.props[attr[0]]){
+      this.props[attr[0]](this.state.value)
+    }
+  }
+
   render() {
     const {prefixCls,type,size,preIcon,icon,onIconClick,onPreIconClick,...other} = this.props;
     const cls = this.classNames(`${prefixCls}`,{
       'textarea':type === 'textarea',
       'disabled':this.props.disabled
     })
+
+    delete other.onSearch;
+    delete other.onSearch;
     if(type === 'textarea') return (
       <div className={cls}>
         <textarea 
           {...other}
           ref="textarea"
           type={type}
+          onChange={this.handleChange.bind(this)}
           className={`${prefixCls}-inner`}
           >
         </textarea>
@@ -31,14 +59,16 @@ export default class Input extends Component {
         [`${prefixCls}-icon-a-left`]:onPreIconClick,
         [`${prefixCls}-icon-a-right`]:onIconClick,
       })}>
-        {typeof preIcon != 'string' ? preIcon : <Icon type={preIcon} onClick={onPreIconClick} />}
+        {typeof preIcon != 'string' ? preIcon : <Icon type={preIcon} onClick={this.handleClick.bind(this,'onPreIconClick')} />}
         <input 
           {...other}
           ref="input"
           type={type}
           className={`${prefixCls}-inner`}
+          onChange={this.handleChange.bind(this)}
+          onKeyUp={this.handleKeyUp.bind(this)}
           />
-        {typeof icon != 'string' ? icon : <Icon type={icon}  onClick={onIconClick}/>}
+        {typeof icon != 'string' ? icon : <Icon type={icon}  onClick={this.handleClick.bind(this,'onIconClick')}/>}
       </div>
     );
   }
@@ -50,6 +80,7 @@ Input.propTypes = {
   size: PropTypes.oneOf(['large', 'small', 'mini']),
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   preIcon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  onSearch: PropTypes.func,
 }
 
 Input.defaultProps = {

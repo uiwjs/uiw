@@ -140,14 +140,14 @@ render() {
     <Row gutter="20">
       <Col xs="8" sm="8" md="8" xs="24">
         <Input preIcon="upload" placeholder="请输入内容" 
-          onPreIconClick={()=>{
-            Messages.info('您点击了上传图标。')
+          onPreIconClick={(value)=>{
+            Messages.info(`您点击了上传图标。输入框内容：${value?value:"空"}`)
           }}/>
       </Col>
       <Col xs="8" sm="8" md="8" xs="24">
         <Input icon="search" placeholder="请输入内容" 
-          onIconClick={()=>{
-            Messages.info('您点击了搜索图标。')
+          onIconClick={(value)=>{
+            Messages.info(`您点击了搜索图标。输入框内容：${value?value:"空"}`)
           }} />
       </Col>
       <Col xs="8" sm="8" md="8" xs="24">
@@ -163,6 +163,8 @@ render() {
 
 ### Input
 
+Input 的其他属性和 React 自带的 [input](https://facebook.github.io/react/docs/events.html#supported-events) 一致。
+
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | type | 声明 input 类型，同原生 input 标签的 type 属性。另外提供 `type="textarea"`。 | String | `text` |
@@ -170,7 +172,6 @@ render() {
 | autoFocus | 当页面加载时，文本区域自动获得焦点。`HTML5` 中的新属性。  | Boolean | `false` |
 | preIcon | 输入框`前`面放置图标  | String、ReactNode | - |
 | icon | 输入框`后`面放置图标  | String、ReactNode | - |
-| onPreIconClick | 输入框`前`面放置的图标事件  | Function | - |
-| onIconClick | 输入框`后`面放置的图标事件  | Function | - |
-
-Input 的其他属性和 React 自带的 [input](https://facebook.github.io/react/docs/events.html#supported-events) 一致。
+| onPreIconClick | 输入框`前`面放置的图标事件  | Function(value) | - |
+| onIconClick | 输入框`后`面放置的图标事件  | Function(value) | - |
+| onSearch | 输入框摁`Enter`执行这个事件  | Function(e,value) | - |
