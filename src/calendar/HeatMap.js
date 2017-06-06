@@ -10,12 +10,12 @@ export default class HeatMap extends Component {
     super(props);
     this.state = {
       days:this.props.days,
-      tooltip:true,
-      tooltipX:0,
-      tooltipY:0
+      tooltipShow:false,
+      currentData:{}
     }
     this.onMouseOver = this.onMouseOver.bind(this)
-    this.showTooltip = this.showTooltip.bind(this)
+    this.onMouseOut = this.onMouseOut.bind(this)
+    this.onClick = this.onClick.bind(this)
   }
   componentDidMount() {
     // 根据宽度来生成多少天的图形
@@ -69,6 +69,7 @@ export default class HeatMap extends Component {
         break;
       }
     }
+    curdt['date'] = date;
     if(curdt.count&&curdt.count>0){
       curdt.color = this.isExistColor(curdt.count);
     }else{
@@ -79,26 +80,41 @@ export default class HeatMap extends Component {
   onMouseOver(e,curdatestr,curdt){
     const {onMouseOver} = this.props;
     onMouseOver(e,curdatestr,curdt);
+    const {tooltiprefs} = this.refs;
+    if(tooltiprefs&&e.target){
+      clearTimeout(this.timeout)
+      tooltiprefs.style.marginLeft = e.target.x.animVal.value +"px"
+      tooltiprefs.style.marginTop = e.target.y.animVal.value +"px";
+      tooltiprefs.style.display = "inline-block";
 
-    this.setState({
-      tooltipX:e.target.x.animVal.value,
-      tooltipY:e.target.y.animVal.value
-    })
+      this.timeout = setTimeout(()=>{
+        this.setState({
+          currentData:curdt
+        })
+      },300)
+    }
   }
-  showTooltip(){
-    const {prefixCls,emptyMessage} = this.props;
-    const {tooltipX,tooltipY} = this.state;
-    return (
-      <div 
-        style={{marginLeft:tooltipX, marginTop:tooltipY }}
-        className={`${prefixCls}-popup`}>
-        <Tooltip content={emptyMessage}><div></div></Tooltip>
-      </div>
-    )
+  onMouseOut(e){
+    const {tooltiprefs} = this.refs;
+    console.log("onMouseOut::",tooltiprefs)
+      clearTimeout(this.timeMoustOut)
+
+      // this.timeMoustOut = setTimeout(()=>{
+      //   if(tooltiprefs){
+      //     tooltiprefs.style.display = "none";
+      //   }
+      // },300)
+  }
+  onClick(e,curdate,curdt){
+    const {onClick} = this.props;
+    const {currentData} =this.state;
+    curdt = curdt || currentData;
+    curdate = curdate || currentData.date;
+    onClick(e,curdate,curdt)
   }
   render() {
-    const { prefixCls, weekLables, monthLables, panelColors, endDate, onClick, onMouseOver, className} = this.props;
-    let { days } = this.state;
+    const { prefixCls, weekLables, monthLables, panelColors, endDate, onMouseOver,emptyMessage, className} = this.props;
+    let { days,tooltipShow } = this.state;
     const cls = classNames(prefixCls,className);
 
     let width=14, height=14, dayDate=[], oneday=86400000;
@@ -124,7 +140,7 @@ export default class HeatMap extends Component {
         key={i} fill={curdt.color} 
         x={col + xl} 
         y={yl}
-        onClick={(e)=>onClick(e,curdatestr,curdt)}
+        onClick={(e)=>this.onClick(e,curdatestr,curdt)}
         onMouseOver={(e)=>this.onMouseOver(e,curdatestr,curdt)}
         width={width} height={height}></rect>);
       // 周标题
@@ -143,8 +159,10 @@ export default class HeatMap extends Component {
       rectPanelColors.push(<rect key={i}  width={width} height={height} x={xl} y="0" fill={panelColors[nums[i]]}></rect>)
     }
     return (
-      <div ref="heatmap" className={`${prefixCls}-wrapper`}>
-        {this.showTooltip()}
+      <div className={`${prefixCls}-wrapper`} onMouseOut={(e)=>this.onMouseOut(e)}>
+        <div ref="tooltiprefs" className={`${prefixCls}-popup`}>
+          <Tooltip content={emptyMessage} visible={true}><div onClick={(e)=>this.onClick(e)} style={{width:12,height:12}}></div></Tooltip>
+        </div>
         <svg className={ cls } width={`100%`} height="155px">
           <g className={ `${prefixCls}-week` } transform="translate(0, 10)">
             {rectweeks}
@@ -152,9 +170,7 @@ export default class HeatMap extends Component {
           <g className={ `${prefixCls}-month` } transform={`translate(${col}, 14)`}>
             {rectMonth}
           </g>
-          <g transform="translate(16, 138)">
-            {rectPanelColors}
-          </g>
+          <g transform="translate(16, 138)"> {rectPanelColors} </g>
           {rectdays}
         </svg>
       </div>

@@ -44,7 +44,7 @@ render() {
           emptyMessage="空的没有消息!"
           values={this.state.values} // 需要显示的数据，必填
           onMouseOver={(e,date,result)=>{
-            console.log("onMouseOver::",date,result)
+            //console.log("onMouseOver::",date,result)
           }}
           onClick={(e,date,result)=>{
             console.log("date,result:",date,result)

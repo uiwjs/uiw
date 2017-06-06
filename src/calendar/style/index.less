@@ -5,7 +5,7 @@
   user-select: none;
   rect{
     cursor: pointer;
-    transition: all .3s ease-in;
+    transition: stroke @transition-time @transition-timing-functio;
   }
   rect:hover {
     stroke: @calendar-heatmap-stroke-bg;
@@ -24,16 +24,26 @@
 
 }
 
-
+.w-heatmap-wrapper{
+  position: relative;
+}
 .w-heatmap-popup{
-  width: 14px;
-  height: 14px;
+  width: @calendar-heatmap-popup-size;
+  height: @calendar-heatmap-popup-size;
   float: left;
   position: absolute;
-  display: inline-block;
+  display: none;
   .w-tooltip-children{
-    width: 14px;
-    height: 14px;
-    overflow: hidden;
+    cursor: pointer;
+    margin: -1px 0 0 -1px;
+    width: @calendar-heatmap-popup-size;
+    height: @calendar-heatmap-popup-size;
+    transition: background @transition-time @transition-timing-functio;
+    &:hover{
+      border: 1px solid @calendar-heatmap-tooltip-color;
+    }
+    &:active {
+      background:@calendar-heatmap-fill;
+    }
   }
 }
