@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 
 export default class Form extends Component {
   render() {
+    const {prefixCls} = this.props;
     return (
-      <form className={classNames(`${prefixCls}-${this.props.type}`)}>
+      <form className={classNames(`${prefixCls}-`)}>
         {this.props.children}
       </form>
     );
@@ -16,6 +17,6 @@ Form.propTypes = {
   prefixCls: PropTypes.string
 }
 
-Form.propTypes = {
+Form.defaultProps = {
   prefixCls: 'w-form',
 }

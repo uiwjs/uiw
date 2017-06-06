@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-export default class FormItem extends Component {
+export default class Input extends Component {
   render() {
     const {prefixCls} = this.props;
     return (
-      <div className={classNames(`${prefixCls}-item`)}>
+      <form className={classNames(`${prefixCls}-`)}>
         {this.props.children}
-      </div>
+      </form>
     );
   }
 }
 
-FormItem.propTypes = {
+Input.propTypes = {
   prefixCls: PropTypes.string
 }
 
-FormItem.defaultProps = {
-  prefixCls: 'w-form',
+Input.defaultProps = {
+  prefixCls: 'w-input',
 }

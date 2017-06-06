@@ -12,6 +12,7 @@ export default {
       'checkboxs':  require('./checkboxs'),
       'switch':     require('./switch'),
       'form':       require('./form'),
+      'input':       require('./input'),
     },
     'Data Display': {
       'calendar':   require('./calendar'),

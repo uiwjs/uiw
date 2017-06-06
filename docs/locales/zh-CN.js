@@ -17,6 +17,7 @@ module.exports = {
     'tooltips': 'Tooltips 文字提示',
     'icon': 'Icon 图标',
     'form': 'Form 表单',
+    'input': 'Input 输入框',
   },
   category:{
     'Form':"表单",

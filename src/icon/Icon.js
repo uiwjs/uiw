@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 
 export default class Icon extends Component {
   render() {
-    return <i className={classNames(`${prefixCls}-${this.props.type}`)}></i>;
+    const {prefixCls,type} = this.props;
+    return <i className={classNames(`${prefixCls}-${type}`)}></i>;
   }
 }
 
@@ -14,6 +15,6 @@ Icon.propTypes = {
   type: PropTypes.string
 }
 
-Icon.propTypes = {
+Icon.defaultProps = {
   prefixCls: 'w-icon',
 }
