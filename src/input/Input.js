@@ -24,20 +24,19 @@ export default class Input extends Component {
         </textarea>
       </div>
     );
-
     return (
       <div className={this.classNames(cls,{
         [`${prefixCls}-${size}`]:size,
         [`${prefixCls}-icon`]:preIcon || icon,
       })}>
-        {preIcon&&<Icon type={preIcon} />}
+        {typeof preIcon != 'string' ? preIcon : <Icon type={preIcon} />}
         <input 
           {...other}
           ref="input"
           type={type}
           className={`${prefixCls}-inner`}
           />
-        {icon&&<Icon type={icon} />}
+        {typeof icon != 'string' ? icon : <Icon type={icon} />}
       </div>
     );
   }
