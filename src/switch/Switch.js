@@ -1,6 +1,5 @@
-import React, { Component,createElement } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React, { createElement } from 'react';
+import {Component, PropTypes} from '../utils/';
 import assign from 'object-assign';
 
 export default class Switch extends Component {
@@ -23,7 +22,7 @@ export default class Switch extends Component {
     const { prefixCls,className,style,size,disabled,checked,checkedChildren,unCheckedChildren,color,unColor,...others} = this.props;
     const { _checked } = this.state;
 
-    const cls = classNames(prefixCls,className,{
+    const cls = this.classNames(prefixCls,className,{
         [`${prefixCls}-disabled`]: disabled,
         [`${prefixCls}-checked`]: _checked,
         [`${prefixCls}-${size}`]: size=='small',

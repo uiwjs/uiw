@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {Component, PropTypes} from '../utils/';
 
-export default class Paging extends React.Component {
+export default class Paging extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -38,14 +36,14 @@ export default class Paging extends React.Component {
     let totalPage = total/pageSize; // 总页数
 
     items.push(
-      <li key='prev' onClick={()=>this.onPrevOrNext('prev')} className={classNames(`${prefixCls}-prev`,{
+      <li key='prev' onClick={()=>this.onPrevOrNext('prev')} className={this.classNames(`${prefixCls}-prev`,{
       [`${prefixCls}-disable`]:activePage==1
       })}><a></a></li>
     )
 
     let curActvePage = activePage;
     let itemsJump = (ty) => (
-      <li key={ty} onClick={()=>this.onPrevOrNext(ty)} className={classNames(`${prefixCls}-${ty}`)}><a>...</a></li>
+      <li key={ty} onClick={()=>this.onPrevOrNext(ty)} className={this.classNames(`${prefixCls}-${ty}`)}><a>...</a></li>
     )
 
     for(let i =0; i< totalPage;i++){
@@ -77,13 +75,13 @@ export default class Paging extends React.Component {
       }
     }
     items.push(
-      <li key='next' onClick={()=>this.onPrevOrNext('next')} className={classNames(`${prefixCls}-next`,{
+      <li key='next' onClick={()=>this.onPrevOrNext('next')} className={this.classNames(`${prefixCls}-next`,{
         [`${prefixCls}-disable`]:activePage==totalPage
       })}><a></a></li>
     )
 
     return (
-      <ul className={classNames(prefixCls,className)}>
+      <ul className={this.classNames(prefixCls,className)}>
         {items}
       </ul>
     );

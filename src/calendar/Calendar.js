@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {Component, PropTypes} from '../utils/';
 import "./style/index.less";
 
 export default class Calendar extends Component {

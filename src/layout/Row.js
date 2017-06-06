@@ -1,7 +1,6 @@
-import React, { Component,Children,cloneElement,createElement } from 'react';
-import classNames from 'classnames';
+import React, {Children,cloneElement,createElement } from 'react';
+import {Component, PropTypes} from '../utils/';
 import assign from 'object-assign';
-import PropTypes from 'prop-types';
 
 export default class Row extends Component {
   render() {
@@ -22,7 +21,7 @@ export default class Row extends Component {
     });
 
     return createElement(this.props.tag, {
-      className: classNames(className,{
+      className: this.classNames(className,{
         [prefixCls]: !type,
         [`${prefixCls}-${type}`]: type,
         // flex 布局下的水平排列方式

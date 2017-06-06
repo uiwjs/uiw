@@ -75,7 +75,7 @@ render() {
         <Checkboxs indeterminate={this.state.indeterminate} onChange={(e)=>{
           console.log(`checked = ${e.target.checked}`);
         }}>半选中</Checkboxs>
-        <Buttons size="extra-small" onClick={()=>{
+        <Buttons size="mini" onClick={()=>{
           console.log("!this.state.indeterminate::",!this.state.indeterminate)
           this.setState({
             indeterminate:!this.state.indeterminate
@@ -118,7 +118,7 @@ render() {
       </Checkboxs>
         <div style={{padding:"10px 0 0 0"}}>
           <Buttons
-            size="extra-small"
+            size="mini"
             onClick={() => {
               this.setState({ checked3: !this.state.checked3 });
             }}
@@ -127,7 +127,7 @@ render() {
           </Buttons>
           <Buttons
             style={{ marginLeft: '10px' }}
-            size="extra-small"
+            size="mini"
             onClick={() => {
               this.setState({ disabled3: !this.state.disabled3 });
             }}

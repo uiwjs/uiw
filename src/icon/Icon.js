@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-
+import React from 'react';
+import {Component, PropTypes} from '../utils/';
 
 export default class Icon extends Component {
   render() {
     const {prefixCls,type} = this.props;
-    return <i className={classNames(`${prefixCls}-${type}`)}></i>;
+    return <i className={this.classNames(`${prefixCls}-${type}`)}></i>;
   }
 }
 

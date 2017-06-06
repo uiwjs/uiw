@@ -1,8 +1,5 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {Component, PropTypes, ReactDOM} from '../utils/';
 import {IconCloseSmall} from '../svgs';
 
 export default class Tag extends Component {
@@ -35,7 +32,7 @@ export default class Tag extends Component {
       case 'info':    colors='blue';break;
       default:        colors = color;break;
     }
-    const cls = classNames(prefixCls,{
+    const cls = this.classNames(prefixCls,{
         [`${prefixCls}-${colors}`]: this.isPresetColor(colors),
         [className]: className
       });

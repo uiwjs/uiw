@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import {Component, PropTypes} from '../utils/';
 import "./style/index.less";
 
 export default class Transition extends Component{
@@ -11,10 +10,10 @@ export default class Transition extends Component{
   }
   render(){
     const { prefixCls,className, type, appear, AppearTimeout, leave, LeaveTimeout, enter, EnterTimeout, children } = this.props;
-    const animateName = classNames({
+    const animateName = this.classNames({
       [`${prefixCls}-${type}`]: this.isPresetAnimate(type)
     });
-    const cls = classNames(prefixCls,className)
+    const cls = this.classNames(prefixCls,className)
     return(
       <CSSTransitionGroup
         className={cls}

@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
-import classNames from 'classnames';
-import Transition from '../transition'
-import PropTypes from 'prop-types';
+import React from 'react';
+import {Component, PropTypes} from '../utils/';
+import Transition from '../transition';
 import {IconClose,InformationCircled,QuestionCircle,CheckmarkCircled,CloseCircled} from '../svgs';
 
 export default class Alert extends Component {
@@ -25,7 +23,7 @@ export default class Alert extends Component {
         case "error": icon = CloseCircled;break;
       }
     }
-    const cls = classNames(prefixCls,{
+    const cls = this.classNames(prefixCls,{
         [`${prefixCls}-${type}`]: type ,
         [`${prefixCls}-icon`]: showIcon&&icon,
         [`${prefixCls}-icon-description`]: description,

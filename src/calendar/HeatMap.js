@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import ReactDOM,{findDOMNode} from 'react-dom'
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {Component, PropTypes, findDOMNode} from '../utils/';
 import Tooltip from '../tooltip';
 import "./style/index.less";
 
@@ -20,7 +18,7 @@ export default class HeatMap extends Component {
   componentDidMount() {
     // 根据宽度来生成多少天的图形
     const {endDate,days} = this.props;
-    const $this = ReactDOM.findDOMNode(this);
+    const $this = findDOMNode(this);
     const width = $this.parentNode.offsetWidth
     const col = parseInt(width/16)
     const daycount = col*7 -14;
@@ -140,7 +138,7 @@ export default class HeatMap extends Component {
   render() {
     const { prefixCls, weekLables, monthLables, panelColors, endDate, onMouseOver,className} = this.props;
     let { days,tooltipShow } = this.state;
-    const cls = classNames(prefixCls,className);
+    const cls = this.classNames(prefixCls,className);
 
     let width=14, height=14, dayDate=[], oneday=86400000;
     let timestamp = endDate.getTime();

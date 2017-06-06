@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {Component, PropTypes} from '../utils/';
 import "./style/index.less";
 import Icon from '../icon/';
 
@@ -12,7 +11,7 @@ export default class Button extends Component {
       case 'error': types='danger';break;
       default:      types = type;  break;
     }
-    const cls = classNames(prefixCls,{
+    const cls = this.classNames(prefixCls,{
         // [`${prefixCls}-default`]: size === 'default',         //（默认尺寸）Default button
         [`${prefixCls}-size-${size}`]: /^(large|default|small|mini)?$/.test(size),
         [`${prefixCls}-${types}`]: /^(default|primary|success|info|warn|danger)?$/.test(types),

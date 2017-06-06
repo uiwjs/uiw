@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {Component, PropTypes} from '../utils/';
 import Alert from '../alert'
 
 export default class Message extends Component {
@@ -24,6 +24,8 @@ export default class Message extends Component {
   render() {
     const { content, type, className, ...other } = this.props;
     const { duration } = this.state;
+    delete other.placement;
+    delete other.duration;
     return (
       <Alert ref="alerts" type={type} className={className} {...other} >
         {content}

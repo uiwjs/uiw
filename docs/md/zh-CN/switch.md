@@ -41,7 +41,7 @@ render() {
       <Switch checked={true} disabled={this.state.disabled} style={styl} />
       <br />
       <br />
-      <Buttons size="extra-small" type="default" onClick={()=>{
+      <Buttons size="mini" type="default" onClick={()=>{
         this.setState({
           disabled:!this.state.disabled
         })

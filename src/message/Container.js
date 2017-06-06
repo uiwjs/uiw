@@ -1,6 +1,5 @@
-import React, { Component, DOM } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import React, { DOM } from 'react';
+import {Component, PropTypes} from '../utils/';
 import Messages from './Message';
 
 
@@ -33,10 +32,10 @@ export default class Container extends Component {
     const {messages, currentId} = this.state;
     if(isEmpty(messages)) return DOM.noscript();
 
-    let cls = classNames(prefixCls);
+    let cls = this.classNames(prefixCls);
     let _placement = messages[currentId].placement;
     if(_placement){
-      cls = classNames(cls,{
+      cls = this.classNames(cls,{
         [`${prefixCls}-top`]: _placement           === 'top',            // 默认顶部中间
         [`${prefixCls}-bottom`]: _placement        === 'bottom',         // 底部中间
         [`${prefixCls}-top-left`]: _placement      === 'topLeft',        // 左边上角

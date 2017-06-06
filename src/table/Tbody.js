@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {Component, PropTypes} from '../utils/';
 import Checkboxs from '../checkbox/';
 
 export default class Tbody extends Component{
@@ -130,7 +129,7 @@ export default class Tbody extends Component{
       }
       items.push(
         <tr 
-        className={classNames({
+        className={this.classNames({
           [`${prefixCls}-tr-hover`]:trHoverClassName[0] == i
         })}
         onMouseEnter={()=>this.onMouseOver('enter',i)} 

@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {Component,ReactDOM} from '../utils/';
 import classNames from 'classnames';
 import Modals from './Modal';
 import ActionButton from './ActionButton';

@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {Component, PropTypes} from '../utils/';
 import Transition from '../transition'
 
 export default class Tooltip extends Component {
@@ -158,7 +157,7 @@ export default class Tooltip extends Component {
     const { prefixCls,className,disabled,children,visibleArrow,placement, 
       trigger,style,visible,onVisibleChange,effect,leaveDelay} = this.props;
     const { stylesPopup,content,showTooltip } = this.state;
-    const cls = classNames(prefixCls,className,{
+    const cls = this.classNames(prefixCls,className,{
       [`${prefixCls}-placement-${placement}`]:placement,
       [`${prefixCls}-${effect}`]:effect
     })

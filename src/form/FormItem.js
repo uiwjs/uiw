@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {Component, PropTypes} from '../utils/';
 
 export default class FormItem extends Component {
   render() {
     const {prefixCls} = this.props;
     return (
-      <div className={classNames(`${prefixCls}-item`)}>
+      <div className={this.classNames(`${prefixCls}-item`)}>
         {this.props.children}
       </div>
     );

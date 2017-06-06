@@ -1,6 +1,5 @@
-import React, { Component,createElement } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React, { createElement } from 'react';
+import {Component, PropTypes} from '../utils/';
 
 export default class Col extends Component {
   render() {
@@ -33,7 +32,7 @@ export default class Col extends Component {
     });
 
     return createElement(this.props.tag, {
-      className: classNames('w-col',classList), ...others
+      className: this.classNames('w-col',classList), ...others
     }, this.props.children);
   }
 }

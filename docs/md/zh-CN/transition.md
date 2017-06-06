@@ -28,7 +28,7 @@ render() {
             </Transition>
 
         </div>
-        <Buttons size="extra-small" onClick={()=>{
+        <Buttons size="mini" onClick={()=>{
           this.setState({
             dispaly:!this.state.dispaly
           })

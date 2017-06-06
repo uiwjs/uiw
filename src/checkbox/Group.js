@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {Component, PropTypes} from '../utils/';
 import Checkboxs from './';
 
 
@@ -25,7 +24,7 @@ export default class Group extends Component{
 
     let attr = {}
     return(
-      <div style={style} className={classNames(prefixCls,className)}>
+      <div style={style} className={this.classNames(prefixCls,className)}>
       {Array.from(options,(item, i)=>{
         let value = item.value?item.value:item;
         attr = {key:i }

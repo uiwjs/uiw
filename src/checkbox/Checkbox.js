@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {Component, PropTypes} from '../utils/';
 
 export default class Chackbox extends Component{
   constructor(props){
@@ -34,14 +32,14 @@ export default class Chackbox extends Component{
   render(){
     const { prefixCls, className,  children, disabled} = this.props;
     const {checked,indeterminate} = this.state;
-    const cls = classNames(prefixCls,{
+    const cls = this.classNames(prefixCls,{
       'disabled': disabled,             // 禁用状态
       'indeterminate': indeterminate,   // 半选中
       'checked': checked,               // 选中
     });
     const lablestr = <span>{children}</span>
     return(
-      <label className={classNames(`${prefixCls}-warpper`,className)}>
+      <label className={this.classNames(`${prefixCls}-warpper`,className)}>
         <span className={cls}>
           <input type="checkbox" disabled={disabled} checked={checked} value={children} onChange={this.handleChange } />
         </span>

@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import Transition from '../transition'
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import React from 'react';
+import {Component, PropTypes} from '../utils/';
+import Transition from '../transition';
 import Button from '../button';
 import {IconClose} from '../svgs';
 const ButtonGroup = Button.Group;
@@ -46,7 +45,7 @@ export default class Modal extends Component {
       </ButtonGroup>
     ):footer;
 
-    const cls = classNames(prefixCls,{
+    const cls = this.classNames(prefixCls,{
       [`${prefixCls}-wrap`]: true,
       [`${prefixCls}-horizontal-left`]: horizontal === 'left',
       [`${prefixCls}-horizontal-right`]: horizontal === 'right',

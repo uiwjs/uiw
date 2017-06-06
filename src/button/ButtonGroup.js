@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {Component, PropTypes} from '../utils/';
 import "./style/buttons-group.less";
 
 export default class ButtonGroup extends Component {
     render() {
         const { prefixCls, vertical, children, className} = this.props;
-        const cls = classNames({
+        const cls = this.classNames({
             [`${prefixCls}-group`]: true,
             [`${prefixCls}-group-vertical`]: vertical,
             [className]: className

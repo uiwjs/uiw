@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {Component, PropTypes} from '../utils/';
 import Thead from './thead';
 import Tbody from './tbody';
 import Colgroup from './colgroup';
@@ -199,10 +198,10 @@ export default class Table extends Component{
     let pagingView = paging && <Paging className={`${prefixCls}-paging`} {...paging}/> ;
     if(height || width || rowSelection || (loading == true || loading ==false) ){
       let fixedCloneTable = (width) ?  (
-        <div ref="fixedBodyWrapper" className={ classNames(`${prefixCls}-fixed`,`${prefixCls}-scroll-position-left`)} 
+        <div ref="fixedBodyWrapper" className={ this.classNames(`${prefixCls}-fixed`,`${prefixCls}-scroll-position-left`)} 
           style={{marginTop:-this.state.leftFixedTop}}
         >
-          <div className={classNames(`${prefixCls}-fixed-left`)} 
+          <div className={this.classNames(`${prefixCls}-fixed-left`)} 
             style={{width:this.state.leftFixedWidth}}>
             <div className={`${prefixCls}-fixed-head-left`}>
               <table>
@@ -220,7 +219,7 @@ export default class Table extends Component{
             </div>
           </div>
 
-          <div className={classNames(`${prefixCls}-fixed-right`)} 
+          <div className={this.classNames(`${prefixCls}-fixed-right`)} 
             style={{width:this.state.rightFixedWidth}}>
             <div className={`${prefixCls}-fixed-head-right`}>
               <table>
@@ -243,7 +242,7 @@ export default class Table extends Component{
       // 固定头 或者左右滚动
       return(
         <div className={`${prefixCls}-warpper`}>
-          <div className={classNames(className,prefixCls,`${prefixCls}-scroll`)}>
+          <div className={this.classNames(className,prefixCls,`${prefixCls}-scroll`)}>
             {tableCaption}
             <div ref="headerWrapper" className={`${prefixCls}-head`}>
               <table style={{width}}>
@@ -270,7 +269,7 @@ export default class Table extends Component{
     // 默认的table
     return(
       <div className={`${prefixCls}-warpper`}>
-        <div className={classNames(className,prefixCls)}>
+        <div className={this.classNames(className,prefixCls)}>
           {tableCaption}
           <table>
             {tableColgroup}

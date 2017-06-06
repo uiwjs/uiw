@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React from 'react';
+import {Component, PropTypes} from '../utils/';
 import "./style/index.less";
 
 export default class Loading extends Component{
@@ -8,7 +7,7 @@ export default class Loading extends Component{
     const { prefixCls, className, size, children, tip, loading } = this.props;
     const icon_content = (<div className={`${prefixCls}-icon`}></div>)
     const loadingElm = (<div className={`${prefixCls}-tips-nested`}>{icon_content}{tip}</div>);
-    const cls = classNames(prefixCls,{
+    const cls = this.classNames(prefixCls,{
         [`${prefixCls}-small`]: size === 'small',
         [`${prefixCls}-large`]: size === 'large',
         // [`${prefixCls}-show-text`]: !!tip,

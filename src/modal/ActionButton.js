@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
+import {Component,findDOMNode} from '../utils/';
 import Button from '../button';
 
 export default class ActionButton extends Component{
@@ -12,7 +12,7 @@ export default class ActionButton extends Component{
   componentDidMount() {
     // 焦点自动定位到按钮上面
     if (this.props.autoFocus) {
-      const $this = ReactDOM.findDOMNode(this);
+      const $this = findDOMNode(this);
       this.timeoutId = setTimeout(() => $this.focus());
     }
   }

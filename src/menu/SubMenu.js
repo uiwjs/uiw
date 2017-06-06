@@ -1,6 +1,5 @@
 import React, { Component} from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import {Component, PropTypes} from '../utils/';
 
 export default class SubMenu extends Component {
   render() {

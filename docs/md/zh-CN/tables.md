@@ -32,8 +32,8 @@ constructor(props) {
           const ButtonsGroup = Buttons.Group;
           return (
             <div>
-              <Buttons size="extra-small" type="danger">删除</Buttons>
-              <Buttons size="extra-small" type="success">修改</Buttons>
+              <Buttons size="mini" type="danger">删除</Buttons>
+              <Buttons size="mini" type="success">修改</Buttons>
             </div>
           )
         },
