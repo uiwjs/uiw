@@ -16,6 +16,7 @@ module.exports = {
     'tables': 'Tables 表格',
     'tooltips': 'Tooltips 文字提示',
     'icon': 'Icon 图标',
+    'form': 'Form 表单',
   },
   category:{
     'Form':"表单",

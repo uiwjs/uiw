@@ -5,10 +5,15 @@ import PropTypes from 'prop-types';
 
 export default class Icon extends Component {
   render() {
-    return <i className={classNames(`w-icon-${this.props.type}`)}></i>;
+    return <i className={classNames(`${prefixCls}-${this.props.type}`)}></i>;
   }
 }
 
 Icon.propTypes = {
-  name: PropTypes.string
+  prefixCls: PropTypes.string,
+  type: PropTypes.string
+}
+
+Icon.propTypes = {
+  prefixCls: 'w-icon',
 }

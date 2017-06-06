@@ -16,6 +16,7 @@ module.exports = {
     'tables': 'Tables',
     'tooltips': 'Tooltips',
     'icon': 'Icon',
+    'form': 'Form',
   },
   category:{
     'Form':"Form",
