@@ -145,12 +145,6 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props){
-  super(props);
-  this.state = {
-    disabled: false
-  }
-}
 render() {
   return (
     <div>

@@ -9,6 +9,7 @@ export default class Tooltip extends Component {
     this.state = {
       showTooltip:props.visible,
       popupwidth:0,
+      content:props.content,
       stylesPopup:{}
     }
     this.showTooltip = this.showTooltip.bind(this);
@@ -21,6 +22,11 @@ export default class Tooltip extends Component {
     })
   }
   componentWillReceiveProps(nextProps,nextState) {
+    if(this.props.content!==nextProps.content){
+        this.setState({
+          content:nextProps.content
+        })
+    }
     if(this.props.visible!==nextProps.visible){
       const {enterDelay,onVisibleChange} =this.props;
       this.setState({showTooltip:!this.state.showTooltip});
@@ -35,14 +41,25 @@ export default class Tooltip extends Component {
   }
   showTooltip(){
     const {enterDelay,onVisibleChange} = this.props;
-    this.leaveTime = setTimeout(()=>{
+    clearTimeout(this.leaveTime)
+    clearTimeout(this.styleTime)
+
+    if(enterDelay){
+      this.leaveTime = setTimeout(()=>{
+        this.setState({
+          showTooltip:true
+        })
+        onVisibleChange&&onVisibleChange(true)
+      },enterDelay)
+    }else{
       this.setState({
         showTooltip:true
       })
       onVisibleChange&&onVisibleChange(true)
-    },enterDelay||0)
+    }
+
     // 解决无法获取节点样式
-    setTimeout(()=>{
+    this.styleTime = setTimeout(()=>{
       this.setState({
         stylesPopup:this.styles()
       })
@@ -50,20 +67,21 @@ export default class Tooltip extends Component {
     },enterDelay||0)
   }
   hideTooltip(e,isDelay){
-    const {leaveDelay,onVisibleChange} = this.props;
+    const {leaveDelay,onVisibleChange,visible} = this.props;
+    clearTimeout(this.leaveTime)
+      
     if(isDelay==true){
       this.setState({
         showTooltip:false
       })
       onVisibleChange&&onVisibleChange(false)
     }else{
-      clearTimeout(this.leaveTime)
       this.leaveTime = setTimeout(()=>{
         this.setState({
           showTooltip:false
         })
         onVisibleChange&&onVisibleChange(false)
-      },leaveDelay||0)
+      },leaveDelay||100)
     }
   }
   // 弹出的位置
@@ -132,9 +150,6 @@ export default class Tooltip extends Component {
         left = -(refwidth>popwidth?refwidth-popwidth:popwidth-refwidth);
         break;
     }
-    if(placement=="topLeft"){
-      console.log("topLeft::",top,-(refheight>popheight?refheight:popheight))
-    }
     let sty = {};
     if(top||top==0) sty.top = top+'px';
     if(left) sty.left = left+'px';
@@ -142,9 +157,9 @@ export default class Tooltip extends Component {
   }
 
   render() {
-    const { prefixCls,className,disabled,children,visibleArrow,placement,content, 
+    const { prefixCls,className,disabled,children,visibleArrow,placement, 
       trigger,style,visible,onVisibleChange,effect,leaveDelay} = this.props;
-    const { stylesPopup,showTooltip } = this.state;
+    const { stylesPopup,content,showTooltip } = this.state;
     const cls = classNames(prefixCls,className,{
       [`${prefixCls}-placement-${placement}`]:placement,
       [`${prefixCls}-${effect}`]:effect
@@ -156,7 +171,6 @@ export default class Tooltip extends Component {
       props.onMouseLeave = this.hideTooltip
     } else {
       props.onClick = (e) => {
-        this.showTooltip(e)
         clearTimeout(this.clickLeaveTimeout)
         this.clickLeaveTimeout = setTimeout((f)=>this.hideTooltip(f,true),leaveDelay||2000)
       }

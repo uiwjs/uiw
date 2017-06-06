@@ -11,9 +11,9 @@ constructor(props) {
 
   this.state = {
     values:[
-      { date: '2017-05-02',  count:2, content:['一条消息来了！'] },
-      { date: '2017-05-04',  count:22, content:['一条消息来了！'] },
-      { date: '2017-05-14',  count:8, content:['一条消息来了！'] },
+      { date: '2017-05-02',  count:2, content:['毕竟时间精力有限'] },
+      { date: '2017-05-04',  count:22, content:['我有一个大胆的想法'] },
+      { date: '2017-05-14',  count:8, content:['也许差别不是那么大吧？'] },
     ]
   }
 }
@@ -46,7 +46,7 @@ render() {
                 return <div key={idx}>{item}</div>
               })
           }}
-          emptyMessage="空的没有消息!"
+          //emptyMessage="空的没有消息!"
           values={this.state.values} // 需要显示的数据，必填
           onMouseOver={(e,date,result)=>{
             //console.log("onMouseOver::",date,result)
@@ -59,9 +59,9 @@ render() {
           this.setState({
             values:[
               { date: '2017-03-11', count:2, content:['一条消息来了！'] },
-              { date: '2017-03-01', count:5, content:['一条消息来了！'] },
-              { date: '2017-04-02', count:5, content:['一条消息来了！'] },
-              { date: '2017-04-14', count:11, content:['一条消息来了！'] },
+              { date: '2017-03-01', count:5, content:['需要显示的数据'] },
+              { date: '2017-04-02', count:5, content:['空的没有消息'] },
+              { date: '2017-04-14', count:11, content:['些放弃的人会这样想'] },
             ]
           })
         }}>切换活跃记录</Buttons> &nbsp;
@@ -70,17 +70,17 @@ render() {
           this.setState({
             values:[
               { date: '2017-04-11', count:2, content:['一条消息来了！'] },
-              { date: '2017-05-01', count:5, content:['一条消息来了！'] },
-              { date: '2017-05-02', count:5, content:['一条消息来了！'] },
-              { date: '2017-05-04', count:11, content:['一条消息来了！'] },
-              { date: '2017-05-14', count:31, content:['一条消息来了！'] },
-              { date: '2017-05-16', count:2, content:['一条消息来了！'] },
-              { date: '2017-05-17', count:2, content:['一条消息来了！'] },
-              { date: '2017-05-18', count:2, content:['一条消息来了！'] },
-              { date: '2017-05-19', count:8, content:['一条消息来了！'] },
-              { date: '2017-05-20', count:6, content:['一条消息来了！'] },
-              { date: '2017-05-21', count:41, content:['一条消息来了！'] },
-              { date: '2017-05-22', count:6, content:['一条消息来了！'] },
+              { date: '2017-05-01', count:5, content:['需要显示的数据'] },
+              { date: '2017-05-02', count:5, content:['空的没有消息'] },
+              { date: '2017-05-04', count:11, content:['些放弃的人会这样想'] },
+              { date: '2017-05-14', count:31, content:['需要显示的数据2'] },
+              { date: '2017-05-16', count:2, content:['些放弃的人会这样想3'] },
+              { date: '2017-05-17', count:2, content:['生活中根本就用不到吧？'] },
+              { date: '2017-05-18', count:2, content:['也许差别不是那么大吧？'] },
+              { date: '2017-05-19', count:8, content:['您可以直接在'] },
+              { date: '2017-05-20', count:6, content:['我有一个大胆的想法'] },
+              { date: '2017-05-21', count:41, content:['毕竟时间精力有限'] },
+              { date: '2017-05-22', count:6, content:['友谊赛事。'] },
             ]
           })
         }}>切换活跃记录2</Buttons>

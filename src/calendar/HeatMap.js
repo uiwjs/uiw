@@ -79,24 +79,42 @@ export default class HeatMap extends Component {
   }
   onMouseOver(e,curdatestr,curdt){
 
-    const {onMouseOver, emptyMessage } = this.props;
+    const {onMouseOver, emptyMessage, message} = this.props;
+
     onMouseOver(e,curdatestr,curdt);
-    const {tooltiprefs} = this.refs;
+
+    const {tooltipRefs,tooltipConRefs} = this.refs;
 
     // 空消息不提示
-    if(!emptyMessage || curdt.count < 1) return;
+    if(!emptyMessage && !curdt.count) return;
     
-    if(tooltiprefs&&e.target){
-      clearTimeout(this.timeout)
-      tooltiprefs.style.marginLeft = e.target.x.animVal.value +"px"
-      tooltiprefs.style.marginTop = e.target.y.animVal.value +"px";
-      tooltiprefs.style.display = "inline-block";
+    if(tooltipRefs&&e.target){
+      clearTimeout(this.timeoutCurData);
+      tooltipRefs.style.marginLeft = e.target.x.animVal.value +"px"
+      tooltipRefs.style.marginTop = e.target.y.animVal.value +"px";
+      tooltipRefs.style.display = "inline-block";
+      let tooltipConten = '';
 
-      this.timeout = setTimeout(()=>{
+      if(curdt.count&&curdt.count>0){
+        let content = curdt.content;
+        if(message){
+          tooltipConten =  message(content);
+        }else{
+          tooltipConten = content.map((item,idx)=>{
+            return <div key={idx}>{item}</div>
+          })
+        }
+      }else{
+        tooltipConten = emptyMessage;
+      }
+
+      tooltipConRefs.setState({content:tooltipConten});
+
+      this.timeoutCurData = setTimeout(()=>{
         this.setState({
           currentData:curdt
         })
-      },100)
+      },200)
     }
   }
   onClick(e,curdate,curdt){
@@ -110,12 +128,9 @@ export default class HeatMap extends Component {
   renderTooltip(){
     const {emptyMessage,message} = this.props;
     const {currentData} =this.state;
-
     if(currentData.count&&currentData.count>0){
       let content = currentData.content;
-
       if(message) return message(content)
-
       return content.map((item,idx)=>{
         return <div key={idx}>{item}</div>
       })
@@ -170,8 +185,8 @@ export default class HeatMap extends Component {
     }
     return (
       <div className={`${prefixCls}-wrapper`} >
-        <div ref="tooltiprefs" className={`${prefixCls}-popup`}>
-          <Tooltip content={this.renderTooltip()} visible={true}>
+        <div ref="tooltipRefs" className={`${prefixCls}-popup`}>
+          <Tooltip ref="tooltipConRefs" content={this.renderTooltip() ||  `  `} visible={true}>
             <div onClick={(e)=>this.onClick(e)} style={{width:12,height:12}}></div>
           </Tooltip>
         </div>
@@ -198,7 +213,7 @@ HeatMap.propTypes = {
   onMouseOver:PropTypes.func,
   days:PropTypes.number,
   emptyMessage: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
-  message: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+  message:PropTypes.func,
   endDate:PropTypes.object,
   panelColors:PropTypes.object,
 }
