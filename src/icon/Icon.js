@@ -3,8 +3,8 @@ import {Component, PropTypes} from '../utils/';
 
 export default class Icon extends Component {
   render() {
-    const {prefixCls,type} = this.props;
-    return <i className={this.classNames(`${prefixCls}-${type}`)}></i>;
+    const {prefixCls,type,onClick} = this.props;
+    return <i onClick={onClick} className={this.classNames(`${prefixCls}-${type}`)}></i>;
   }
 }
 

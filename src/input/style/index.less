@@ -22,22 +22,36 @@
     font-weight: @input-font-weight;
     transition: color @transition-time @transition-timing-functio;
   }
-  &:disabled{
-    cursor: @cursor-disabled;
-    background-color: #f2f2f2;
-  }
   &:hover{
     border:1px solid #aeaeae;
   }
   &:focus{
-    border-color: #58d734;
+    border-color: #0fa120;
     box-shadow: 0 0 0 2px rgba(84,220,103,0.14);
   }
   &:focus&::placeholder{
     color:#d5d5d5;
   }
+  &:disabled{
+    cursor: @cursor-disabled;
+  }
 }
 
+
+.w-input.disabled{
+  position: relative;
+  &:before{
+    cursor: @cursor-disabled;
+    content: '';
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: @border-radius-base;
+    height: 100%;
+    width: 100%;
+  }
+}
 .w-input.textarea .w-input-inner{
     max-width: 100%;
     height: auto;
@@ -66,6 +80,14 @@
   }
   [class^="w-icon-"] ~ .w-input-inner{
     padding-left: 30px;
+  }
+}
+
+.w-input-icon-a-right [class^="w-icon-"]:last-child,
+.w-input-icon-a-left [class^="w-icon-"]:first-child{
+  cursor: pointer;
+  &:hover{
+    color:#0fa120;
   }
 }
 

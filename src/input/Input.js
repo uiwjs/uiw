@@ -8,7 +8,7 @@ export default class Input extends Component {
     this.state = {}
   }
   render() {
-    const {prefixCls,type,size,preIcon,icon,...other} = this.props;
+    const {prefixCls,type,size,preIcon,icon,onIconClick,onPreIconClick,...other} = this.props;
     const cls = this.classNames(`${prefixCls}`,{
       'textarea':type === 'textarea',
       'disabled':this.props.disabled
@@ -28,15 +28,17 @@ export default class Input extends Component {
       <div className={this.classNames(cls,{
         [`${prefixCls}-${size}`]:size,
         [`${prefixCls}-icon`]:preIcon || icon,
+        [`${prefixCls}-icon-a-left`]:onPreIconClick,
+        [`${prefixCls}-icon-a-right`]:onIconClick,
       })}>
-        {typeof preIcon != 'string' ? preIcon : <Icon type={preIcon} />}
+        {typeof preIcon != 'string' ? preIcon : <Icon type={preIcon} onClick={onPreIconClick} />}
         <input 
           {...other}
           ref="input"
           type={type}
           className={`${prefixCls}-inner`}
           />
-        {typeof icon != 'string' ? icon : <Icon type={icon} />}
+        {typeof icon != 'string' ? icon : <Icon type={icon}  onClick={onIconClick}/>}
       </div>
     );
   }

@@ -50,9 +50,15 @@ render() {
 render() {
   const {Row,Col} = Layout;
   return (
-    <Row>
+    <Row  gutter="20">
       <Col xs="8" sm="8" md="8" xs="24">
         <Input disabled placeholder="请输入内容" />
+      </Col>
+      <Col xs="8" sm="8" md="8" xs="24">
+        <Input disabled icon="search" placeholder="请输入内容" 
+          onIconClick={()=>{
+            Messages.info('您点击了搜索图标。')
+          }} />
       </Col>
     </Row>
   ) 
@@ -133,13 +139,21 @@ render() {
   return (
     <Row gutter="20">
       <Col xs="8" sm="8" md="8" xs="24">
-        <Input preIcon="upload" placeholder="请输入内容" />
+        <Input preIcon="upload" placeholder="请输入内容" 
+          onPreIconClick={()=>{
+            Messages.info('您点击了上传图标。')
+          }}/>
       </Col>
       <Col xs="8" sm="8" md="8" xs="24">
-        <Input icon="search" placeholder="请输入内容" />
+        <Input icon="search" placeholder="请输入内容" 
+          onIconClick={()=>{
+            Messages.info('您点击了搜索图标。')
+          }} />
       </Col>
       <Col xs="8" sm="8" md="8" xs="24">
-        <Input icon={<Icon type="search" />} placeholder="请输入内容" />
+        <Input 
+          icon={<Icon type="search" />} 
+          placeholder="请输入内容" />
       </Col>
     </Row>
   )
