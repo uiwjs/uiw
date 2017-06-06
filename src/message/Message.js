@@ -22,10 +22,10 @@ export default class Message extends Component {
     onClose&&onClose()
   }
   render() {
-    const { content, type, className } = this.props;
+    const { content, type, className, ...other } = this.props;
     const { duration } = this.state;
     return (
-      <Alert ref="alerts" type={type} className={className} >
+      <Alert ref="alerts" type={type} className={className} {...other} >
         {content}
       </Alert>
     );
