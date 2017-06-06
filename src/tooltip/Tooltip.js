@@ -7,8 +7,7 @@ export default class Tooltip extends Component {
   constructor(props){
     super(props);
     this.state = {
-      // showTooltip:props.visible,
-      showTooltip:true,
+      showTooltip:props.visible,
       popupwidth:0,
       content:props.content,
       stylesPopup:{}
