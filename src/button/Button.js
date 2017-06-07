@@ -5,7 +5,7 @@ import Icon from '../icon/';
 
 export default class Button extends Component {
   render() {
-    const { prefixCls, type, size, icon, active, disabled, block, className, loading, children, ...others } = this.props;
+    const { prefixCls, type, size, icon, active, disabled, block, className, loading, children,htmlType, ...others } = this.props;
     let types = type;
     switch(type){
       case 'error': types='danger';break;
@@ -14,7 +14,7 @@ export default class Button extends Component {
     const cls = this.classNames(prefixCls,{
         // [`${prefixCls}-default`]: size === 'default',         //（默认尺寸）Default button
         [`${prefixCls}-size-${size}`]: /^(large|default|small|mini)?$/.test(size),
-        [`${prefixCls}-${types}`]: /^(default|primary|success|info|warn|danger)?$/.test(types),
+        [`${prefixCls}-${types}`]: types,
         [`${prefixCls}-loading`]: loading,  // 加载
         'disabled': disabled || loading,    // 禁用状态
         'active': active,                   // 激活状态
@@ -23,7 +23,7 @@ export default class Button extends Component {
         [className]: className
       });
     return (
-      <button { ...others } disabled={disabled || loading} type={this.props.nativeType} className={ cls }>
+      <button { ...others } disabled={disabled || loading} type={htmlType} className={ cls }>
         {icon&& <Icon type={icon} />}
         { children }
       </button>

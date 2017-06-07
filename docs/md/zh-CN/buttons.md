@@ -252,11 +252,14 @@ render() {
 ```js
 render() {
   const ButtonsGroup = Buttons.Group;
+  const {Row,Col} = Layout;
   return (
-    <div>
+    <Row>
+      <Col xs="8" sm="8" md="8" xs="24">
         <Buttons type="info" block size="small">（小按钮）Small button </Buttons>
         <Buttons type="info" block size="default">（默认尺寸）Default button </Buttons>
-    </div>
+      </Col>
+    </Row>
   )
 }
 ```
