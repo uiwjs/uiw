@@ -1,7 +1,7 @@
 module.exports = {
   page: {
     'quick-start': 'Quick Start',
-    'checkbox': 'Checkboxs',
+    'checkbox': 'Checkbox',
     'switch': 'Switch 开关',
     'alert': 'Alert',
     'buttons': 'Buttons',

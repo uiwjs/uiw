@@ -1,6 +1,6 @@
 import React from 'react';
 import {Component, PropTypes} from '../utils/';
-import Checkboxs from './';
+import Checkbox from './';
 
 
 export default class Group extends Component{
@@ -41,7 +41,7 @@ export default class Group extends Component{
           }
         }
         return (
-          <Checkboxs ref={`checkbox${i}`} {...attr}>{value}</Checkboxs>
+          <Checkbox ref={`checkbox${i}`} {...attr}>{value}</Checkbox>
         )
       })}
       </div>

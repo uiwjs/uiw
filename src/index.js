@@ -2,7 +2,7 @@ export { default as Layout } from './layout';
 export { default as Alert } from './alert/';
 export { default as Buttons } from './button/';
 export { default as Calendar } from './calendar/';
-export { default as Checkboxs } from './checkbox/';
+export { default as Checkbox } from './checkbox/';
 export { default as Modals } from './modal/';
 export { default as Message } from './message/';
 export { default as Tag } from './tag/';

@@ -3,7 +3,6 @@ import {Component, PropTypes} from '../utils/';
 import Thead from './thead';
 import Tbody from './tbody';
 import Colgroup from './colgroup';
-import Checkboxs from '../checkbox/';
 import Paging from '../paging/';
 import Loading from '../loading/';
 import {compare} from '../utils/objects';

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Component, PropTypes} from '../utils/';
-import Checkboxs from '../checkbox/';
+import Checkbox from '../checkbox/';
 
 export default class Tbody extends Component{
   constructor(props){
@@ -59,7 +59,7 @@ export default class Tbody extends Component{
 
         let tdelm = (item[`_select`] && a) === "_select" ?(
           <td key={`${key}`} {...attri}>
-            <Checkboxs 
+            <Checkbox 
               checked={this.state._checked[rownum]}
               disabled={this.state._disabled[rownum]}
               onChange={(e,checked)=>{
@@ -68,7 +68,7 @@ export default class Tbody extends Component{
                 this.setState({_checked:_checked });
                 this.props.onRowSelection(item, rownum, checked, e)
               }}>
-            </Checkboxs>
+            </Checkbox>
           </td>
         ):(
           <td key={key} {...attri}>

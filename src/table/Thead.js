@@ -1,6 +1,6 @@
 import React from 'react';
 import {Component, PropTypes} from '../utils/';
-import Checkboxs from '../checkbox/';
+import Checkbox from '../checkbox/';
 
 
 let rowSpanNum = 0;
@@ -120,11 +120,11 @@ export default class Thead extends Component{
             {
               columns[i].key==="_select"
               ?(
-                <Checkboxs 
+                <Checkbox 
                   indeterminate={this.props.headindeterminate}
                   checked={this.props.headchecked}
                   onChange={(e,checked) => this.props.selectedAll(e,checked)}>
-                </Checkboxs>
+                </Checkbox>
               )
               :columns[i].title
             }

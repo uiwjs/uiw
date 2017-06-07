@@ -9,7 +9,7 @@ export default {
       'icon':       require('./icon'),
     },
     'Form': {
-      'checkboxs':  require('./checkboxs'),
+      'checkbox':  require('./checkbox'),
       'switch':     require('./switch'),
       'form':       require('./form'),
       'input':       require('./input'),

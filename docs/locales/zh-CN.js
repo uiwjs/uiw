@@ -1,7 +1,7 @@
 module.exports = {
   page: {
     'quick-start': '快速上手',
-    'checkboxs': 'Checkboxs 多选框',
+    'checkbox': 'Checkbox 多选框',
     'switch': 'Switch 开关',
     'alert': 'Alert 警告',
     'buttons': 'Buttons 按钮',

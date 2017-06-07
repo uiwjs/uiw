@@ -1,4 +1,4 @@
-## Checkboxs 多选框
+## Checkbox 多选框
 
 一组备选项中进行多选
 
@@ -12,15 +12,15 @@
 render() {
   return (
     <div>
-        <Checkboxs onChange={(e)=>{
+        <Checkbox onChange={(e)=>{
           console.log(`checked = ${e.target.checked}`);
-        }}>未选中</Checkboxs>
-        <Checkboxs checked onChange={(e)=>{
+        }}>未选中</Checkbox>
+        <Checkbox checked onChange={(e)=>{
           console.log(`checked = ${e.target.checked}`);
-        }}>选中</Checkboxs>
-        <Checkboxs indeterminate onChange={(e)=>{
+        }}>选中</Checkbox>
+        <Checkbox indeterminate onChange={(e)=>{
           console.log(`checked = ${e.target.checked}`);
-        }}>半选中</Checkboxs>
+        }}>半选中</Checkbox>
     </div>
   )
 }
@@ -37,17 +37,17 @@ render() {
 render() {
   return (
     <div>
-        <Checkboxs disabled onChange={(e)=>{
+        <Checkbox disabled onChange={(e)=>{
           console.log(`checked = ${e.target.checked}`);
-        }}>未选中禁用</Checkboxs>
+        }}>未选中禁用</Checkbox>
 
-        <Checkboxs disabled checked onChange={(e)=>{
+        <Checkbox disabled checked onChange={(e)=>{
           console.log(`checked = ${e.target.checked}`);
-        }}>选中禁用</Checkboxs>
+        }}>选中禁用</Checkbox>
 
-        <Checkboxs disabled indeterminate onChange={(e)=>{
+        <Checkbox disabled indeterminate onChange={(e)=>{
           console.log(`checked = ${e.target.checked}`);
-        }}>半选中禁用</Checkboxs>
+        }}>半选中禁用</Checkbox>
     </div>
   )
 }
@@ -72,9 +72,9 @@ constructor(props) {
 render() {
   return (
     <div>
-        <Checkboxs indeterminate={this.state.indeterminate} onChange={(e)=>{
+        <Checkbox indeterminate={this.state.indeterminate} onChange={(e)=>{
           console.log(`checked = ${e.target.checked}`);
-        }}>半选中</Checkboxs>
+        }}>半选中</Checkbox>
         <Buttons size="mini" onClick={()=>{
           console.log("!this.state.indeterminate::",!this.state.indeterminate)
           this.setState({
@@ -90,7 +90,7 @@ render() {
 
 ### 切换半选中
 
-联动 `Checkboxs`。
+联动 `Checkbox`。
 
 <!--DemoStart-->
 ```js
@@ -104,7 +104,7 @@ constructor(props) {
 render() {
   return (
     <div>
-      <Checkboxs
+      <Checkbox
         checked={this.state.checked3}
         disabled={this.state.disabled3}
         onChange={(e) => {
@@ -115,7 +115,7 @@ render() {
         }}
       >
         {`${this.state.checked ? 'Checked' : 'Unchecked'}-${this.state.disabled ? 'Disabled' : 'Enabled'}`}
-      </Checkboxs>
+      </Checkbox>
         <div style={{padding:"10px 0 0 0"}}>
           <Buttons
             size="mini"
@@ -142,9 +142,9 @@ render() {
 <!--End-->
 
 
-### Checkboxs 组
+### Checkbox 组
 
-方便的从数组生成 `Checkboxs` 组。
+方便的从数组生成 `Checkbox` 组。
 
 <!--DemoStart-->
 ```js
@@ -167,17 +167,17 @@ render() {
       { value: 'Pear' },
       { value: 'Orange', disabled: false },
     ];
-    const CheckboxsGroup = Checkboxs.Group;
+    const CheckboxGroup = Checkbox.Group;
     return (
       <div>            
-          <CheckboxsGroup 
+          <CheckboxGroup 
               options={plainOptions} 
               checkedValues={['Apple']} 
               onChange={(checkedValues,value,checked,e)=>{
                 console.log('checked = ', checkedValues);
               }} />
               <br />
-              <CheckboxsGroup 
+              <CheckboxGroup 
               options={options} 
               checkedValues={['Pear']} 
               onChange={(checkedValues)=>{
@@ -185,7 +185,7 @@ render() {
               }} />
 
               <br />
-              <CheckboxsGroup 
+              <CheckboxGroup 
               options={optionsWithDisabled} 
               disabled 
               checkedValues={['Apple']} 
@@ -229,11 +229,11 @@ render() {
       { value: 'Pear' },
       { value: 'Orange', disabled: false },
     ];
-    const CheckboxsGroup = Checkboxs.Group;
+    const CheckboxGroup = Checkbox.Group;
     return (
       <div>            
         <div style={{ borderBottom: '1px solid #E9E9E9',margin:"0 0 10px 0",padding:"0 0 10px 0 "}}>
-          <Checkboxs
+          <Checkbox
             indeterminate={this.state.indeterminate}
             onChange={(e,checked) => {
               console.log("--->",e,checked)
@@ -246,9 +246,9 @@ render() {
             checked={this.state.checkAll}
           >
             Check all
-          </Checkboxs>
+          </Checkbox>
         </div>
-        <CheckboxsGroup options={plainOptions} checkedValues={this.state.checkedList} 
+        <CheckboxGroup otions={plainOptions} checkedValues={this.state.checkedList} 
         onChange={(checkedList,value,checked,e) => {
           console.log("indeterminate::",checkedList,value,checked,e)
           this.setState({
@@ -264,7 +264,7 @@ render() {
 <!--End-->
 
 
-### Checkboxs Attributes
+### Checkbox Attributes
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
@@ -274,7 +274,7 @@ render() {
 | checked | 指定当前是否选中 | boolean | false |
 | indeterminate | 半选中，只负责样式控制 | Jay | false |
 
-### Checkboxs Group Attributes
+### Checkbox Group Attributes
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
