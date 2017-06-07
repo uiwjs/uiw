@@ -13,7 +13,7 @@ export default class Button extends Component {
     }
     const cls = this.classNames(prefixCls,{
         // [`${prefixCls}-default`]: size === 'default',         //（默认尺寸）Default button
-        [`${prefixCls}-size-${size}`]: /^(large|default|small|mini)?$/.test(size),
+        [`${prefixCls}-size-${size}`]: size,
         [`${prefixCls}-${types}`]: types,
         [`${prefixCls}-loading`]: loading,  // 加载
         'disabled': disabled || loading,    // 禁用状态
