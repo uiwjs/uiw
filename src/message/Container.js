@@ -1,6 +1,6 @@
 import React, { DOM } from 'react';
 import {Component, PropTypes} from '../utils/';
-import Messages from './Message';
+import Message from './Message';
 
 
 export function isEmpty (obj) {
@@ -16,24 +16,24 @@ export default class Container extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      messages: {}
+      message: {}
     }
     this.addMessage = this.addMessage.bind(this)
   }
 
   addMessage (msg) {
-    let messages = this.state.messages
-    messages[msg.id] = msg
-    this.setState({ messages , placement:msg.placement, currentId:msg.id})
+    let message = this.state.message
+    message[msg.id] = msg
+    this.setState({ message , placement:msg.placement, currentId:msg.id})
   }
 
   render () {
     const { prefixCls, className } = this.props;
-    const {messages, currentId} = this.state;
-    if(isEmpty(messages)) return DOM.noscript();
+    const {message, currentId} = this.state;
+    if(isEmpty(message)) return DOM.noscript();
 
     let cls = this.classNames(prefixCls);
-    let _placement = messages[currentId].placement;
+    let _placement = message[currentId].placement;
     if(_placement){
       cls = this.classNames(cls,{
         [`${prefixCls}-top`]: _placement           === 'top',            // 默认顶部中间
@@ -47,7 +47,7 @@ export default class Container extends Component {
     return (
       <div className={ cls }>
         {
-          Object.keys(messages).map((key) => <Messages key={key} {...messages[key]}/>)
+          Object.keys(message).map((key) => <Message key={key} {...message[key]}/>)
         }
       </div>
     )
@@ -60,6 +60,6 @@ Container.propTypes = {
 }
 Container.defaultProps = {
   placement: "top", // 位置
-  prefixCls: "w-messages",
+  prefixCls: "w-message",
 };
 

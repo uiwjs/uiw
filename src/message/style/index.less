@@ -1,11 +1,11 @@
 @import "../../style/variables.less";
 @import "../../style/mixins/index.less";
-.w-messages{
+.w-message{
   pointer-events: none;
   text-align: center;
   position: fixed;
   font-size: @font-size-small ;
-  z-index: @zindex-messages;
+  z-index: @zindex-message;
   width: 100%;
   top: @line-height-computed;
   > span {
@@ -19,28 +19,28 @@
   }
 }
 
-.w-messages-top{
+.w-message-top{
 
 }
-.w-messages-bottom{
+.w-message-bottom{
   top: inherit;
   bottom: @line-height-computed;
 }
-.w-messages-top-left{
+.w-message-top-left{
   text-align: left;
   left: @line-height-computed;
 }
-.w-messages-top-right{
+.w-message-top-right{
   text-align: right;
   right: @line-height-computed;
 }
-.w-messages-bottom-left{
+.w-message-bottom-left{
   top: inherit;
   text-align: left;
   bottom: @line-height-computed;
   left: @line-height-computed;
 }
-.w-messages-bottom-right{
+.w-message-bottom-right{
   top: inherit;
   text-align: right;
   bottom: @line-height-computed;

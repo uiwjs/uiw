@@ -1,4 +1,4 @@
-## Messages 全局提示
+## Message 全局提示
 
 全局展示操作反馈信息。
 
@@ -12,32 +12,32 @@ render() {
     <div>
         <ButtonsGroup>
           <Buttons size="small" onClick={()=>{
-            Messages.success('This is an success Messages.')
+            Message.success('This is an success Message.')
           }}>
             success
           </Buttons>  
           
           <Buttons size="small" onClick={()=>{
-            Messages.warning('This is an warning Messages.')
+            Message.warning('This is an warning Message.')
           }}>
             warning ( warn === warning)
           </Buttons>  
 
           <Buttons size="small" onClick={()=>{
-            Messages.warn('This is an warn Messages.')
+            Message.warn('This is an warn Message.')
           }}>
             warn ( warn === warning)
           </Buttons>  
           
           <Buttons size="small" onClick={()=>{
-            Messages.info('This is an info Messages.')
+            Message.info('This is an info Message.')
           }}>
             info
           </Buttons>  
 
           
           <Buttons size="small" onClick={()=>{
-            Messages.error('This is an error Messages.')
+            Message.error('This is an error Message.')
           }}>
             error
           </Buttons>  
@@ -57,7 +57,7 @@ render() {
 render() {
   return (
     <Buttons size="small" onClick={()=>{
-      Messages.info(
+      Message.info(
         <div>
           <h2>标题</h2>
           <p>这里是内容</p>
@@ -78,7 +78,7 @@ render() {
 render() {
   return (
       <Buttons size="small" onClick={()=>{
-        Messages.error('This is an warning Messages.',{
+        Message.error('This is an warning Message.',{
           duration:3,
           onClose:()=>{
             console.log("添加onClose事件")
@@ -102,32 +102,32 @@ render() {
     <div>
         <ButtonsGroup>
           <Buttons size="small" onClick={()=>{
-            Messages.success('默认顶部中间.',{placement:"top"})
+            Message.success('默认顶部中间.',{placement:"top"})
           }}>
             默认顶部中间
           </Buttons>
           <Buttons size="small" onClick={()=>{
-            Messages.info('底部中间',{placement:"bottom"})
+            Message.info('底部中间',{placement:"bottom"})
           }}>
             底部中间
           </Buttons>
           <Buttons size="small" onClick={()=>{
-            Messages.success('左边上角',{placement:"topLeft"})
+            Message.success('左边上角',{placement:"topLeft"})
           }}>
             左边上角
           </Buttons>
           <Buttons size="small" onClick={()=>{
-            Messages.success('右边上角',{placement:"topRight"})
+            Message.success('右边上角',{placement:"topRight"})
           }}>
             右边上角
           </Buttons>
           <Buttons size="small" onClick={()=>{
-            Messages.success('左边下角',{placement:"bottomLeft"})
+            Message.success('左边下角',{placement:"bottomLeft"})
           }}>
             左边下角
           </Buttons>
           <Buttons size="small" onClick={()=>{
-            Messages.success('右边下角',{placement:"bottomRight"})
+            Message.success('右边下角',{placement:"bottomRight"})
           }}>
             右边下角
           </Buttons>
@@ -138,7 +138,7 @@ render() {
 ```
 <!--End-->
 
-### Messages Attributes
+### Message Attributes
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |

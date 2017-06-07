@@ -26,7 +26,7 @@ export default {
     'Feedback':{
       'alerts':     require('./alerts'),
       'modals':     require('./modals'),
-      'messages':   require('./messages'),
+      'message':   require('./message'),
       'loading':    require('./loading'),
       'transition': require('./transition'),
     }

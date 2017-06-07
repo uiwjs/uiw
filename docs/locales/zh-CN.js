@@ -9,7 +9,7 @@ module.exports = {
     'paging': 'Paging 分页',
     'loading': 'Loading 加载中',
     'tag': 'Tag 标签',
-    'messages': 'Messages 全局提示',
+    'message': 'Message 全局提示',
     'modals': 'Modals 对话框',
     'transition': 'Transition 过渡动画',
     'calendar': 'Calendar 日历',
