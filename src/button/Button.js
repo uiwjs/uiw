@@ -23,9 +23,9 @@ export default class Button extends Component {
         [className]: className
       });
     return (
-      <button { ...others } disabled={disabled || loading} className={ cls }>
-      {icon&& <Icon type={icon} />}
-      { children }
+      <button { ...others } disabled={disabled || loading} type={this.props.nativeType} className={ cls }>
+        {icon&& <Icon type={icon} />}
+        { children }
       </button>
     );
   }
@@ -36,6 +36,7 @@ Button.defaultProps = {
   active: false,
   loading: false,
   block: false,
+  htmlType: 'button',
   type: 'default',
   size: 'default',
   prefixCls: "w-btn",
@@ -44,6 +45,7 @@ Button.propTypes = {
   loading: PropTypes.bool,
   disabled: PropTypes.bool,
   icon: PropTypes.string,
+  htmlType: PropTypes.string,
   active: PropTypes.bool,
   size: PropTypes.oneOf(['large', 'default', 'small', 'mini']),
   type: PropTypes.oneOf(["default","primary","success","info","warn","error","danger"]),

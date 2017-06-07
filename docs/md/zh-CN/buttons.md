@@ -262,13 +262,15 @@ render() {
 ```
 <!--End-->
 
+## API
 
-### Buttons Attributes
+### Buttons
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| size | ['large', 'default', 'small', 'mini'] |string | - |
-| type | ["default","primary","success","info","warn","error","danger"] |string | - |
+| size | `large`, `default`, `small`, `mini` |string | - |
+| type | `default`,`primary`,`success`,`info`,`warn`,`error`,`danger` |string | - |
+| htmlType | 设置 `button` 原生的 `type` 值，可选值请参考 [HTML 标准](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) |string | `button` |
 | icon | 设置按钮的图标类型 |string | - |
 | block | 通过设置属性 block 可将按钮宽度设置为 100%，（块级元素），常用于弹窗内操作按钮。 |boolean | false |
 | disabled | 禁用状态 |boolean | false |
