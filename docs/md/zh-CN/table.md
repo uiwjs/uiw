@@ -59,9 +59,9 @@ render() {
 ```
 <!--End-->
 
-### 基本用法
+### 带表头标题和页脚
 
-⚠️  columns 中的 key 很重要，在一个表中是唯一的。这个key 对应数据中的key，保持一致，columns中的render函数才会有作用。
+通过设置 `caption` 和 `footer` 来设置表的标题
 
 <!--DemoStart--> 
 ```js
@@ -110,7 +110,7 @@ render() {
 ```
 <!--End-->
 
-### 带分页的表
+### 带加载状态的表
 
 ⚠️  columns 中的 key 很重要，在一个表中是唯一的。这个key 对应数据中的key，保持一致，columns中的render函数才会有作用。
 
