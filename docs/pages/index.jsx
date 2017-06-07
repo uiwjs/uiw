@@ -24,7 +24,7 @@ export default {
       'paging':     require('./paging')
     },
     'Feedback':{
-      'alerts':     require('./alerts'),
+      'alert':     require('./alert'),
       'modals':     require('./modals'),
       'message':   require('./message'),
       'loading':    require('./loading'),

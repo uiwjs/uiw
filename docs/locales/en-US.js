@@ -3,7 +3,7 @@ module.exports = {
     'quick-start': 'Quick Start',
     'checkbox': 'Checkboxs',
     'switch': 'Switch 开关',
-    'alerts': 'Alerts',
+    'alert': 'Alert',
     'buttons': 'Buttons',
     'layout': 'Layout',
     'paging': 'Paging',

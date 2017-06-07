@@ -1,5 +1,5 @@
 export { default as Layout } from './layout';
-export { default as Alerts } from './alert/';
+export { default as Alert } from './alert/';
 export { default as Buttons } from './button/';
 export { default as Calendar } from './calendar/';
 export { default as Checkboxs } from './checkbox/';

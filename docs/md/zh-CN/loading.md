@@ -32,7 +32,7 @@ render() {
   return (
     <div>
         <Loading loading={this.state.loading}>
-          <Alerts 
+          <Alert 
             message="Alert message title"
             description="Further details about the context of this alert."
             type="default"
@@ -70,14 +70,14 @@ render() {
   return (
     <div>
         <Loading tip="正在加载...">
-          <Alerts 
+          <Alert 
             message="Error Text"
             description="Error Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error Description"
             type="error"
           />
         </Loading>
         <Loading tip="loading...">
-          <Alerts 
+          <Alert 
             message="Error Text"
             type="default"
             description="Error Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error Description"
