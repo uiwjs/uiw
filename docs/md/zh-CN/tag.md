@@ -1,4 +1,4 @@
-## Tags 标签
+## Tag 标签
 
 进行标记和分类的小标签。
 
@@ -9,15 +9,15 @@
 render() {
   return (
     <div>
-        <Tags color="white">white</Tags>
-        <Tags color="pink">pink</Tags>
-        <Tags color="red">red</Tags>
-        <Tags color="yellow">yellow</Tags>
-        <Tags color="orange">orange</Tags>
-        <Tags color="green">green</Tags>
-        <Tags color="cyan">cyan</Tags>
-        <Tags color="blue">blue</Tags>
-        <Tags color="purple">purple</Tags>
+        <Tag color="white">white</Tag>
+        <Tag color="pink">pink</Tag>
+        <Tag color="red">red</Tag>
+        <Tag color="yellow">yellow</Tag>
+        <Tag color="orange">orange</Tag>
+        <Tag color="green">green</Tag>
+        <Tag color="cyan">cyan</Tag>
+        <Tag color="blue">blue</Tag>
+        <Tag color="purple">purple</Tag>
     </div>
   )
 }
@@ -31,11 +31,11 @@ render() {
 render() {
   return (
     <div>
-        <Tags color="default">default</Tags>
-        <Tags color="error">error</Tags>
-        <Tags color="warn">warn</Tags>
-        <Tags color="success">success</Tags>
-        <Tags color="info">info</Tags>
+        <Tag color="default">default</Tag>
+        <Tag color="error">error</Tag>
+        <Tag color="warn">warn</Tag>
+        <Tag color="success">success</Tag>
+        <Tag color="info">info</Tag>
     </div>
   )
 }
@@ -49,11 +49,11 @@ render() {
 render() {
   return (
     <div>
-        <Tags color="default">默认</Tags>
-        <Tags color="error">错误</Tags>
-        <Tags color="warn">警告</Tags>
-        <Tags color="success">完成</Tags>
-        <Tags color="info">信息</Tags>
+        <Tag color="default">默认</Tag>
+        <Tag color="error">错误</Tag>
+        <Tag color="warn">警告</Tag>
+        <Tag color="success">完成</Tag>
+        <Tag color="info">信息</Tag>
     </div>
   )
 }
@@ -67,9 +67,9 @@ render() {
 render() {
   return (
     <div>
-        <Tags color="#0080f2">#0080f2</Tags>
-        <Tags color="rgba(0, 0, 0, 0.65)">rgba(0, 0, 0, 0.65)</Tags>
-        <Tags color="hsla(214, 100%, 29%, 0.65)">hsla(214, 100%, 29%, 0.65)</Tags>
+        <Tag color="#0080f2">#0080f2</Tag>
+        <Tag color="rgba(0, 0, 0, 0.65)">rgba(0, 0, 0, 0.65)</Tag>
+        <Tag color="hsla(214, 100%, 29%, 0.65)">hsla(214, 100%, 29%, 0.65)</Tag>
     </div>
   )
 }
@@ -86,16 +86,16 @@ log(e){
 render() {
   return (
     <div>
-        <Tags color="default" onClose={this.log}>默认</Tags>
-        <Tags color="error" onClose={this.log}>错误</Tags>
-        <Tags color="warn" onClose={this.log}>警告</Tags>
-        <Tags color="success" onClose={this.log}>完成</Tags>
-        <Tags color="info" onClose={this.log}>信息</Tags>
-        <Tags><a href="https://github.com/jaywcjlove">连接</a></Tags>
-        <Tags color="info" onClose={(e)=>{
+        <Tag color="default" onClose={this.log}>默认</Tag>
+        <Tag color="error" onClose={this.log}>错误</Tag>
+        <Tag color="warn" onClose={this.log}>警告</Tag>
+        <Tag color="success" onClose={this.log}>完成</Tag>
+        <Tag color="info" onClose={this.log}>信息</Tag>
+        <Tag><a href="https://github.com/jaywcjlove">连接</a></Tag>
+        <Tag color="info" onClose={(e)=>{
           e.preventDefault();
           console.log('Clicked! But prevent default.');
-        }}>代码禁止删除的Tags方法</Tags>
+        }}>代码禁止删除的Tags方法</Tag>
     </div>
   )
 }
@@ -158,9 +158,9 @@ render() {
       {
         this.state.dynamicTags.map((tag, index) => {
           return (
-            <Tags
+            <Tag
               key={Math.random()}
-              onClose={this.handleClose.bind(this, index)}>{tag}</Tags>
+              onClose={this.handleClose.bind(this, index)}>{tag}</Tag>
           )
         })
       }
@@ -207,16 +207,16 @@ handleClick(num){
 render() {
   return (
     <div>
-        <Tags color="white" checked={this.state.checked1} onClick={()=>this.handleClick('1')}>white</Tags>
-        <Tags color="orange" checked={this.state.checked2} onClick={()=>this.handleClick('2')}>white</Tags>
-        <Tags color="green" checked={this.state.checked3} onClick={()=>this.handleClick('3')}>white</Tags>
+        <Tag color="white" checked={this.state.checked1} onClick={()=>this.handleClick('1')}>white</Tag>
+        <Tag color="orange" checked={this.state.checked2} onClick={()=>this.handleClick('2')}>white</Tag>
+        <Tag color="green" checked={this.state.checked3} onClick={()=>this.handleClick('3')}>white</Tag>
     </div>
   )
 }
 ```
 <!--End-->
 
-### Tags Attributes
+### Tag Attributes
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |

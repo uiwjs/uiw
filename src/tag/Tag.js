@@ -68,5 +68,5 @@ Tag.propTypes = {
 };
 Tag.defaultProps = {
   color: 'default',
-  prefixCls: "w-tags"
+  prefixCls: "w-tag"
 }

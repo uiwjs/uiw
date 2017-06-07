@@ -5,7 +5,7 @@ export { default as Calendar } from './calendar/';
 export { default as Checkboxs } from './checkbox/';
 export { default as Modals } from './modal/';
 export { default as Messages } from './message/';
-export { default as Tags } from './tag/';
+export { default as Tag } from './tag/';
 export { default as Loading } from './loading/';
 export { default as Transition } from './transition/';
 export { default as Tables } from './table/';

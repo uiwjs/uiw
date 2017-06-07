@@ -8,7 +8,7 @@ module.exports = {
     'layout': 'Layout 布局',
     'paging': 'Paging 分页',
     'loading': 'Loading 加载中',
-    'tags': 'Tags 标签',
+    'tag': 'Tag 标签',
     'messages': 'Messages 全局提示',
     'modals': 'Modals 对话框',
     'transition': 'Transition 过渡动画',

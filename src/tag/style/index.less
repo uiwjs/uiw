@@ -1,9 +1,9 @@
 @import "../../style/variables.less";
 @import "../../style/mixins/index.less";
 
-.w-tags{
+.w-tag{
   display: inline;
-  padding: @tags-padding-top @tags-padding-right @tags-padding-bottom @tags-padding-right;
+  padding: @tag-padding-top @tag-padding-right @tag-padding-bottom @tag-padding-right;
   font-size: 75%;
   font-weight: 300;
   line-height: 1;
@@ -12,7 +12,7 @@
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25em;
-  margin-right: @tags-padding-horizontal;
+  margin-right: @tag-padding-horizontal;
   cursor: pointer;
   svg{
     position: relative;
@@ -21,41 +21,41 @@
   }
 }
 
-.w-tags-white{
-  color: @tags-white-color;
-  border: 1px solid @tags-white-border-color;
-  background-color:@tags-white-bg;
+.w-tag-white{
+  color: @tag-white-color;
+  border: 1px solid @tag-white-border-color;
+  background-color:@tag-white-bg;
   svg g {
-    stroke: @tags-white-color;
+    stroke: @tag-white-color;
   }
 }
-.w-tags-pink{
-  background-color: @tags-pink-bg;
+.w-tag-pink{
+  background-color: @tag-pink-bg;
 }
-.w-tags-red{
-  background-color: @tags-red-bg;
+.w-tag-red{
+  background-color: @tag-red-bg;
 }
-.w-tags-yellow{
-  background-color: @tags-yellow-bg;
+.w-tag-yellow{
+  background-color: @tag-yellow-bg;
 }
-.w-tags-orange{
-  background-color: @tags-orange-bg;
+.w-tag-orange{
+  background-color: @tag-orange-bg;
 }
-.w-tags-green{
-  background-color: @tags-green-bg;
+.w-tag-green{
+  background-color: @tag-green-bg;
 }
-.w-tags-cyan{
-  background-color: @tags-cyan-bg;
+.w-tag-cyan{
+  background-color: @tag-cyan-bg;
 }
-.w-tags-blue{
-  background-color: @tags-blue-bg;
+.w-tag-blue{
+  background-color: @tag-blue-bg;
 }
-.w-tags-purple{
-  background-color: @tags-purple-bg;
+.w-tag-purple{
+  background-color: @tag-purple-bg;
 }
 
 
-.w-tags.checkable{
+.w-tag.checkable{
   background-color: transparent;
   color: initial;
   border-color: transparent;
