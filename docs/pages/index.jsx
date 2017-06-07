@@ -18,10 +18,10 @@ export default {
       'calendar':   require('./calendar'),
       'tables':     require('./tables'),
       'tooltips':   require('./tooltips'),
+      'tag':        require('./tag'),
     },
     'Navigation': {
-      'paging':     require('./paging'),
-      'tag':        require('./tag'),
+      'paging':     require('./paging')
     },
     'Feedback':{
       'alerts':     require('./alerts'),
