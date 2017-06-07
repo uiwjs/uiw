@@ -1,7 +1,6 @@
-## Tables 表格
+## Table 表格
 
 用于页面中展示重要的提示信息。
-
 
 ### 基本用法
 
@@ -52,7 +51,7 @@ constructor(props) {
 }
 render() {
   return (
-    <Tables 
+    <Table 
       data={this.state.dataSource} 
       columns={this.state.columns}/>
   )
@@ -100,7 +99,7 @@ constructor(props) {
 }
 render() {
   return (
-    <Tables 
+    <Table 
       paging={this.state.paging}
       caption={<div>明星基本信息</div>}
       footer={<div>更新于1983年12月6日</div>}
@@ -161,7 +160,7 @@ handleTableChange(activePage,total,pageSize){
 }
 render() {
   return (
-    <Tables 
+    <Table 
       data={this.state.dataSource} 
       paging={this.state.paging}
       loading={this.state.loading}
@@ -276,7 +275,7 @@ constructor(props) {
 }
 render() {
   return (
-    <Tables 
+    <Table 
       paging={this.state.paging}
       width={2000}
       data={this.state.dataSource} columns={this.state.columns}/>
@@ -331,7 +330,7 @@ constructor(props) {
 }
 render() {
   return (
-    <Tables height={300} 
+    <Table height={300} 
     paging={this.state.paging}
     data={this.state.dataSource} columns={this.state.columns}/>
   )
@@ -373,7 +372,7 @@ constructor(props) {
 }
 render() {
   return (
-    <Tables 
+    <Table 
       rowSelection={{
         onSelectAll:(selectDatas,checked,e)=>{
           console.log("选择或取消选择所有选项！",selectDatas)
@@ -440,7 +439,7 @@ constructor(props) {
 }
 render() {
   return (
-    <Tables 
+    <Table 
       height={200}
       width={2000}
       rowSelection={{
@@ -458,7 +457,7 @@ render() {
 ```
 <!--End-->
 
-### Tables Attributes
+### Table Attributes
 
 | 参数 | 说明 | 类型 | 默认值 |
 |------ |-------- |---------- |-------- |
@@ -472,7 +471,7 @@ render() {
 | paging | 分页器，配置项参考 paging，设为 false 时不展示和进行分页 | Object | - |
 
 
-### Tables Column Attributes
+### Table Column Attributes
 
 列描述数据对象，是 columns 中的一项，Column 使用相同的 API。
 
@@ -484,7 +483,7 @@ render() {
 |className | 列的 className | string | - |
 |onCellClick | 单元格点击回调 | Function(rowData, event) | - |
 
-### Tables rowSelection Attributes
+### Table rowSelection Attributes
 
 选择功能的配置。
 
@@ -494,7 +493,7 @@ render() {
 | onSelectAll | 用户手动选择/取消选择所有列的回调 | Function(selectedRowKeys, selectedRows) | - |
 | onCellClick | 单元格点击回调 | Function(selectDatas, lineNumber, checked) | - |
 
-### Tables data Attributes
+### Table data Attributes
 
 Tables中的data描述数
 

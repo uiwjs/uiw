@@ -13,7 +13,7 @@ module.exports = {
     'modals': 'Modals 对话框',
     'transition': 'Transition 过渡动画',
     'calendar': 'Calendar 日历',
-    'tables': 'Tables 表格',
+    'table': 'Table 表格',
     'tooltips': 'Tooltips 文字提示',
     'icon': 'Icon 图标',
     'form': 'Form 表单',

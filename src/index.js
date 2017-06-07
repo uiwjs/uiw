@@ -8,7 +8,7 @@ export { default as Message } from './message/';
 export { default as Tag } from './tag/';
 export { default as Loading } from './loading/';
 export { default as Transition } from './transition/';
-export { default as Tables } from './table/';
+export { default as Table } from './table/';
 export { default as Paging } from './paging/';
 export { default as Tooltips } from './tooltip/';
 export { default as Switch } from './switch/';
