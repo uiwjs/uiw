@@ -10,7 +10,7 @@ export { default as Loading } from './loading/';
 export { default as Transition } from './transition/';
 export { default as Table } from './table/';
 export { default as Paging } from './paging/';
-export { default as Tooltips } from './tooltip/';
+export { default as Tooltip } from './tooltip/';
 export { default as Switch } from './switch/';
 export { default as Icon } from './icon/';
 export { default as Input } from './input/';

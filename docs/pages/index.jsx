@@ -17,7 +17,7 @@ export default {
     'Data Display': {
       'calendar':   require('./calendar'),
       'table':     require('./table'),
-      'tooltips':   require('./tooltips'),
+      'tooltip':   require('./tooltip'),
       'tag':        require('./tag'),
     },
     'Navigation': {
