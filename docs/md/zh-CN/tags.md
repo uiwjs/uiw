@@ -2,6 +2,7 @@
 
 进行标记和分类的小标签。
 
+
 ### 多彩标签
 
 <!--DemoStart--> 
@@ -92,9 +93,13 @@ render() {
         <Tags color="warn" onClose={this.log}>警告</Tags>
         <Tags color="success" onClose={this.log}>完成</Tags>
         <Tags color="info" onClose={this.log}>信息</Tags>
+        <Tags><a href="https://github.com/jaywcjlove">连接</a></Tags>
         <Tags color="info" onClose={(e)=>{
           e.preventDefault();
-          console.log('Clicked! But prevent default.');
+
+          //e.stopPropagation();
+          //e.nativeEvent.stopImmediatePropagation();
+          console.log('Clicked! But prevent default.',e.isDefaultPrevented());
 
         }}>代码禁止删除的Tags方法</Tags>
     </div>
@@ -104,6 +109,88 @@ render() {
 <!--End-->
 
 
+### 动态编辑标签
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+
+  this.state = {
+    dynamicTags: ['标签一', '标签二', '标签三'],
+    inputVisible: false,
+    inputValue: ''
+  }
+}
+
+onKeyUp(e) {
+  if (e.keyCode&&e.keyCode === 13) {
+    this.handleInputConfirm();
+  }
+}
+
+onChange(e) {
+  this.setState({ inputValue: e.target.value });
+}
+
+handleClose(index) {
+  this.state.dynamicTags.splice(index, 1);
+  this.forceUpdate();
+}
+
+showInput() {
+  this.setState({ inputVisible: true }, () => {
+    this.refs.saveTagInput.focus();
+  });
+}
+
+handleInputConfirm() {
+  let inputValue = this.state.inputValue;
+
+  if (inputValue) {
+    this.state.dynamicTags.push(inputValue);
+  }
+
+  this.state.inputVisible = false;
+  this.state.inputValue = '';
+
+  this.forceUpdate();
+}
+
+render() {
+  const styl = {display:"inline-block",width:50}
+  return (
+    <div>
+      {
+        this.state.dynamicTags.map((tag, index) => {
+          return (
+            <Tags
+              key={Math.random()}
+              closable={true}
+              closeTransition={false}
+              onClose={this.handleClose.bind(this, index)}>{tag}</Tags>
+          )
+        })
+      }
+      {
+        this.state.inputVisible ? (
+          <Input
+            className="input-new-tag"
+            value={this.state.inputValue}
+            ref="saveTagInput"
+            size="mini"
+            style={styl}
+            onChange={this.onChange.bind(this)}
+            onKeyUp={this.onKeyUp.bind(this)}
+            onBlur={this.handleInputConfirm.bind(this)}
+          />
+        ) : <Buttons size="mini" onClick={this.showInput.bind(this)}>+ New Tag</Buttons>
+      }
+    </div>
+  )
+}
+```
+<!--End-->
 
 ### Tags Attributes
 

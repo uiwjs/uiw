@@ -3,12 +3,19 @@ import {Component, PropTypes, ReactDOM} from '../utils/';
 import {IconCloseSmall} from '../svgs';
 
 export default class Tag extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      visible:true
+    }
+  }
   close = (e) => {
-    const onClose = this.props.onClose;
+    const {onClose} = this.props;
     if (onClose) onClose(e);
-    if (e.defaultPrevented) return;
-    const dom = ReactDOM.findDOMNode(this);
-    dom.parentNode.removeChild(dom);
+    if (e.isDefaultPrevented()) return;
+    this.setState({
+      visible:false
+    })
   }
   isColorValue(color){
     var span = document.createElement("span");
@@ -22,7 +29,7 @@ export default class Tag extends Component {
   }
   render() {
     const { prefixCls, color, onClose, className, children, ...others } = this.props;
-
+    const {visible} = this.state;
     let colors = '';
     switch(color){
       case 'default': colors='white';break;
@@ -40,13 +47,15 @@ export default class Tag extends Component {
     // 自定义颜色值
     let styles = {}
     if(!this.isPresetColor(colors) && this.isColorValue(colors) ){
-      styles.style = {}
-      styles.style.backgroundColor = colors;
+      styles.backgroundColor = colors;
     }
 
-    return (
-      <span {...styles} className={cls}>{children} {onClose&&<i onClick={this.close}>{IconCloseSmall}</i>}</span>
-    );
+    return visible ? (
+      <span style={styles} className={cls}>
+          {children} 
+          {onClose&&<i onClick={this.close} ref="iconclose">{IconCloseSmall}</i>}
+      </span>
+    ) :null;
   }
 }
 
