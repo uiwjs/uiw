@@ -3,7 +3,7 @@ import {Component, PropTypes} from '../utils/';
 
 export default class Col extends Component {
   render() {
-    const { prefixCls,tag,span, xs,sm,md,lg, ...others} = this.props;
+    const { prefixCls,className,tag,span, xs,sm,md,lg, ...others} = this.props;
     let classList = [];
     ['span', 'offset', 'pull', 'push', 'order'].forEach(prop => {
       let num = this.props[prop];
@@ -31,22 +31,30 @@ export default class Col extends Component {
       }
     });
 
+    classList.push(className);
+
     return createElement(this.props.tag, {
       className: this.classNames('w-col',classList), ...others
     }, this.props.children);
   }
 }
 
+
+const stringOrNumber = PropTypes.oneOfType([PropTypes.string, PropTypes.number]);
+const objectOrNumber = PropTypes.oneOfType([PropTypes.object, PropTypes.number]);
+
 Col.propTypes = {
   prefixCls:PropTypes.string,
-  span: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  offset: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  pull: PropTypes.number,
-  push: PropTypes.number,
-  xs: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
-  sm: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
-  md: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
-  lg: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
+  span: stringOrNumber,
+  offset: stringOrNumber,
+  pull: stringOrNumber,
+  push: stringOrNumber,
+  className: PropTypes.string,
+  children: PropTypes.node,
+  xs: objectOrNumber,
+  sm: objectOrNumber,
+  md: objectOrNumber,
+  lg: objectOrNumber,
   tag: PropTypes.string
 }
 
