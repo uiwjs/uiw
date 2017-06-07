@@ -9,13 +9,19 @@ export default class Input extends Component {
       value:""
     }
   }
+  focus(){
+    (this.refs.input || this.refs.textarea).focus();
+  }
 
+  blur(){
+    (this.refs.input || this.refs.textarea).blur();
+  }
   handleKeyUp(e){
     const { onSearch,onKeyUp } = this.props;
     if(e.key == "Enter"){
       onSearch&&onSearch(e,e.target.value)
     }
-    onKeyUp&&onKeyUp()
+    onKeyUp&&onKeyUp(e)
   }
 
   handleChange(e){
@@ -32,28 +38,30 @@ export default class Input extends Component {
   }
 
   render() {
-    const {prefixCls,type,size,preIcon,icon,onIconClick,onPreIconClick,...other} = this.props;
-    const cls = this.classNames(`${prefixCls}`,{
+    const {prefixCls,className,style,type,size,preIcon,icon,onIconClick,onPreIconClick,...other} = this.props;
+    const cls = this.classNames(`${prefixCls}`,className,{
       'textarea':type === 'textarea',
       'disabled':this.props.disabled
     })
 
     delete other.onSearch;
-    delete other.onSearch;
+    delete other.onChange;
+
+
+
     if(type === 'textarea') return (
-      <div className={cls}>
-        <textarea 
-          {...other}
-          ref="textarea"
-          type={type}
-          onChange={this.handleChange.bind(this)}
-          className={`${prefixCls}-inner`}
-          >
-        </textarea>
-      </div>
+      <textarea 
+        className={  this.classNames(cls,`${prefixCls}-inner`)}
+        {...other}
+        ref="textarea"
+        type={type}
+        style={style}
+        onChange={this.handleChange.bind(this)}
+        >
+      </textarea>
     );
     return (
-      <div className={this.classNames(cls,{
+      <div style={style} className={this.classNames(cls,{
         [`${prefixCls}-${size}`]:size,
         [`${prefixCls}-icon`]:preIcon || icon,
         [`${prefixCls}-icon-a-left`]:onPreIconClick,
