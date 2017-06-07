@@ -2,7 +2,6 @@
 
 进行标记和分类的小标签。
 
-
 ### 多彩标签
 
 <!--DemoStart--> 
@@ -24,7 +23,6 @@ render() {
 }
 ```
 <!--End-->
-
 
 ### 多彩英文标签
 
@@ -162,8 +160,6 @@ render() {
           return (
             <Tags
               key={Math.random()}
-              closable={true}
-              closeTransition={false}
               onClose={this.handleClose.bind(this, index)}>{tag}</Tags>
           )
         })
@@ -188,6 +184,38 @@ render() {
 ```
 <!--End-->
 
+### 可选择
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+
+  this.state = {
+    checked1:true,
+    checked2:true,
+    checked3:true,
+  }
+  this.handleClick = this.handleClick.bind(this);
+}
+handleClick(num){
+  console.log("num::",num,this.state[`checked${num}`])
+  this.setState({
+    [`checked${num}`]:!this.state[`checked${num}`]
+  })
+}
+render() {
+  return (
+    <div>
+        <Tags color="white" checked={this.state.checked1} onClick={()=>this.handleClick('1')}>white</Tags>
+        <Tags color="orange" checked={this.state.checked2} onClick={()=>this.handleClick('2')}>white</Tags>
+        <Tags color="green" checked={this.state.checked3} onClick={()=>this.handleClick('3')}>white</Tags>
+    </div>
+  )
+}
+```
+<!--End-->
+
 ### Tags Attributes
 
 | 参数      | 说明    | 类型      |  默认值   |
@@ -195,3 +223,4 @@ render() {
 | color | 支持颜色自定义，也提供选择`white`、 `pink`、 `red`、 `yellow`、 `orange`、 `cyan`、 `green`、 `blue`、 `purple` | string | - |
 | type⚠️ | 废弃直接在color里面填写后面面值，`white`、`red`、`orange`、`green`、`blue` | string | - |
 | onClose | 关闭时的回调，添加事件自动会出现关闭按钮 | (e) => void | - |
+| checked | 选中效果，紧紧是效果而已 | Bool | - |

@@ -28,7 +28,7 @@ export default class Tag extends Component {
     return /^(white|pink|red|yellow|orange|cyan|green|blue|purple)?$/.test(color)
   }
   render() {
-    const { prefixCls, color, onClose, className, children, ...others } = this.props;
+    const { prefixCls, color, onClose, className, checked, children, ...others } = this.props;
     const {visible} = this.state;
     let colors = '';
     switch(color){
@@ -41,7 +41,9 @@ export default class Tag extends Component {
     }
     const cls = this.classNames(prefixCls,{
         [`${prefixCls}-${colors}`]: this.isPresetColor(colors),
-        [className]: className
+        'checkable': checked == false,
+        'checked': checked,
+        'className': className,
       });
 
     // 自定义颜色值
@@ -51,7 +53,7 @@ export default class Tag extends Component {
     }
 
     return visible ? (
-      <span style={styles} className={cls}>
+      <span {...others} style={styles} className={cls}>
           {children} 
           {onClose&&<i onClick={this.close} ref="iconclose">{IconCloseSmall}</i>}
       </span>
