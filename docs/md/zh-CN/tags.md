@@ -96,9 +96,7 @@ render() {
         <Tags><a href="https://github.com/jaywcjlove">连接</a></Tags>
         <Tags color="info" onClose={(e)=>{
           e.preventDefault();
-          
           console.log('Clicked! But prevent default.');
-
         }}>代码禁止删除的Tags方法</Tags>
     </div>
   )
