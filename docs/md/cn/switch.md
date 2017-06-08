@@ -72,7 +72,7 @@ render() {
 <!--End-->
 
 
-### 两种大小
+### 三种大小
 
 <!--DemoStart--> 
 ```js
@@ -80,11 +80,11 @@ render() {
   const styl = {marginRight:"20px"}
   return (
     <div>
-      <Switch checked={false} size="small" style={styl} />
-      <Switch disabled={true} size="small" style={styl} />
-      <Switch checked={true} size="small" checkedChildren="o" unCheckedChildren="f" color="#03A9F4" unColor="#ff4949"  style={styl}/>
-      <Switch disabled={true} checked={true} size="small" checkedChildren="o" unCheckedChildren="f" color="#03A9F4" unColor="#ff4949"  style={styl}/>
-      <Switch checked={false} checkedChildren="开" unCheckedChildren="关" style={styl} />
+      <Switch checked={true} size="mini" style={styl} />
+      <Switch checked={true} disabled={true} size="mini" style={styl} />
+      <Switch checked={true} size="small" checkedChildren="开" unCheckedChildren="关" color="#e503f4" unColor="#ff4949"  style={styl}/>
+      <Switch disabled={true} checked={true} size="small" checkedChildren="开" unCheckedChildren="关" color="#e503f4" unColor="#ff4949"  style={styl}/>
+      <Switch checked={true} checkedChildren="开" unCheckedChildren="关" style={styl} />
     </div>
   )
 }
