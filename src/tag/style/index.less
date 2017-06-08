@@ -1,9 +1,9 @@
 @import "../../style/variables.less";
 @import "../../style/mixins/index.less";
 
-@form-cls: ~"w-tag";
+@tag-cls: ~"w-tag";
 
-.@{form-cls}{
+.@{tag-cls}{
   display: inline;
   padding: @tag-padding-top @tag-padding-right @tag-padding-bottom @tag-padding-right;
   font-size: 75%;
@@ -23,7 +23,7 @@
   }
 }
 
-.@{form-cls}-white{
+.@{tag-cls}-white{
   color: @tag-white-color;
   border: 1px solid @tag-white-border-color;
   background-color:@tag-white-bg;
@@ -31,35 +31,35 @@
     stroke: @tag-white-color;
   }
 }
-.@{form-cls}-pink{
+.@{tag-cls}-pink{
   background-color: @tag-pink-bg;
 }
-.@{form-cls}-red{
+.@{tag-cls}-red{
   background-color: @tag-red-bg;
 }
-.@{form-cls}-yellow{
+.@{tag-cls}-yellow{
   background-color: @tag-yellow-bg;
 }
-.@{form-cls}-orange{
+.@{tag-cls}-orange{
   background-color: @tag-orange-bg;
 }
-.@{form-cls}-green{
+.@{tag-cls}-green{
   background-color: @tag-green-bg;
 }
-.@{form-cls}-cyan{
+.@{tag-cls}-cyan{
   background-color: @tag-cyan-bg;
 }
-.@{form-cls}-blue{
+.@{tag-cls}-blue{
   background-color: @tag-blue-bg;
 }
-.@{form-cls}-purple{
+.@{tag-cls}-purple{
   background-color: @tag-purple-bg;
 }
 
-.@{form-cls}.checkable,.@{form-cls}.checked{
+.@{tag-cls}.checkable,.@{tag-cls}.checked{
   cursor: pointer;
 }
-.@{form-cls}.checkable{
+.@{tag-cls}.checkable{
   background-color: transparent;
   color: initial;
   border-color: transparent;

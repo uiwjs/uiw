@@ -38,7 +38,6 @@ export default class App extends Component {
     return 'quick-start';
   }
   setPage(fn) {
-    console.log("this.getPage()::",this.getPage())
     this.setState({ page: this.getPage() }, fn);
   }
 
@@ -79,7 +78,6 @@ export default class App extends Component {
   }
 
   renderMenuItems(page){
-    console.log("this.state.locale::",this.state.locale)
     const {prefixCls} = this.props;
     return (
       <li key={page} className={`${prefixCls}-menu-item`}>

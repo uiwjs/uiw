@@ -1,6 +1,7 @@
 import React from 'react';
 import {Component, PropTypes, ReactDOM} from '../utils/';
 import {IconCloseSmall} from '../svgs';
+import "./style/index.less";
 
 export default class Tag extends Component {
   constructor(props){
@@ -10,13 +11,14 @@ export default class Tag extends Component {
     }
   }
   close = (e) => {
-    const {onClose} = this.props;
-    if (onClose) onClose(e);
+    const {onClose,children} = this.props;
+    if (onClose) onClose(e,children);
     if (e.isDefaultPrevented()) return;
     this.setState({
       visible:false
     })
   }
+
   isColorValue(color){
     var span = document.createElement("span");
     span.style.color = color;
@@ -55,7 +57,7 @@ export default class Tag extends Component {
     return visible ? (
       <span {...others} style={styles} className={cls}>
           {children} 
-          {onClose&&<i onClick={this.close} ref="iconclose">{IconCloseSmall}</i>}
+          {( onClose && checked !== true && checked !==false )&&<i onClick={this.close} ref="iconclose">{IconCloseSmall}</i>}
       </span>
     ) :null;
   }

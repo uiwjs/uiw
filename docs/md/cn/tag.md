@@ -76,7 +76,152 @@ render() {
 ```
 <!--End-->
 
-### 动态删除
+### 标签组动可选择
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    plainOptions:[
+      {
+        checked:true,
+        color:"white",
+        value:'Apple'
+      }, {
+        checked:true,
+        color:"orange",
+        value:'Pear'
+      }, {
+        color:"green",
+        checked:false,
+        value:'Orange'
+      }
+    ],
+  }
+}
+render() {
+  const TagGroup = Tag.Group;
+  return (
+    <TagGroup 
+      options={this.state.plainOptions}
+      checked={true}
+      onChange={(e,value)=>{
+        console.log("value::",value)
+      }}
+    />
+  )
+}
+```
+<!--End-->
+
+### 标签组动态删除
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+
+  this.state = {
+    plainOptions:['Apple', 'Pear', 'Orange'],
+  }
+}
+render() {
+  const TagGroup = Tag.Group;
+  return (
+    <TagGroup 
+      options={this.state.plainOptions}
+      onChange={(e,value)=>{
+        console.log("value::",value)
+      }}
+    >
+      <Buttons size="mini" onClick={()=>{
+        console.log(this.state.plainOptions)
+        let addTag = this.state.plainOptions
+        addTag.push("test")
+        console.log("addTag::",addTag)
+        this.setState({plainOptions:addTag})
+      }}>Set</Buttons>
+    </TagGroup>
+  )
+}
+```
+<!--End-->
+
+### 标签组动态编辑
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+
+  this.state = {
+    inputVisible: false,
+    plainOptions:['Apple', 'Pear', 'Orange'],
+  }
+}
+
+onKeyUp(e) {
+  if (e.keyCode&&e.keyCode === 13) {
+    this.handleInputConfirm();
+  }
+}
+
+handleChange(e) {
+  this.setState({ inputValue: e.target.value });
+}
+
+handleClose(index) {
+  this.state.plainOptions.splice(index, 1);
+  this.forceUpdate();
+}
+
+showInput() {
+  this.setState({ inputVisible: true }, () => {
+    this.refs.saveTagInput.focus();
+  });
+}
+
+handleInputConfirm() {
+  let inputValue = this.state.inputValue;
+  if (inputValue) {
+    this.state.plainOptions.push(inputValue);
+  }
+  this.state.inputVisible = false;
+  this.state.inputValue = '';
+  this.forceUpdate();
+}
+render() {
+  const TagGroup = Tag.Group;
+  const styl = {display:"inline-block",width:50}
+  return (
+    <TagGroup 
+      options={this.state.plainOptions}
+      onChange={(e,value)=>{
+        console.log("Change::",value)
+      }}
+    >
+    {
+      this.state.inputVisible ? (
+        <Input
+          className="input-new-tag"
+          value={this.state.inputValue}
+          ref="saveTagInput"
+          size="mini"
+          style={styl}
+          onChange={this.handleChange.bind(this)}
+          onKeyUp={this.onKeyUp.bind(this)}
+          onBlur={this.handleInputConfirm.bind(this)}
+        />
+      ) : <Buttons size="mini" onClick={this.showInput.bind(this)}>+ New Tag</Buttons>
+    }
+    </TagGroup>
+  )
+}
+```
+<!--End-->
+
+### 禁止删除
 
 <!--DemoStart--> 
 ```js
@@ -216,11 +361,30 @@ render() {
 ```
 <!--End-->
 
-### Tag Attributes
+## API
+
+### Tag 
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
-| color | 支持颜色自定义，也提供选择`white`、 `pink`、 `red`、 `yellow`、 `orange`、 `cyan`、 `green`、 `blue`、 `purple` | string | - |
-| type⚠️ | 废弃直接在color里面填写后面面值，`white`、`red`、`orange`、`green`、`blue` | string | - |
-| onClose | 关闭时的回调，添加事件自动会出现关闭按钮 | (e) => void | - |
-| checked | 选中效果，紧紧是效果而已 | Bool | - |
+| color | 支持颜色自定义，也提供选择`white`、 `pink`、 `red`、 `yellow`、 `orange`、 `cyan`、 `green`、 `blue`、 `purple` | string | `white` |
+| ~~type~~⚠️ | 废弃直接在color里面填写后面面值，`white`、`red`、`orange`、`green`、`blue` | string | - |
+| onClose | 关闭时的回调，设置关闭事件，标签是否显示关闭按钮 | (e) => void | - |
+| checked | 选中效果，紧紧是效果而已 | Boolean | - |
+
+
+### Tag.Group
+
+| 参数      | 说明    | 类型      |  默认值   |
+|--------- |-------- |---------- |-------- |
+| options | 设置每个标签的值例如：`['Apple', 'Pear', 'Orange']` | Array | - |
+| checked | 标签组动可选择 | Boolean | `false` |
+| onChange | 标签组发生变化触发事件 | Function(e:Event,options:Array) | - |
+
+### Tag.Group options
+
+| 参数      | 说明    | 类型      |  默认值   |
+|--------- |-------- |---------- |-------- |
+| color | 定义颜色 | String | - |
+| checked | `Tag.Group` 的属性`checked`为 `true`，表示标签组动可选择，`option`这里是默认选中状态 | Boolean | - |
+| value | 标签上面显示的文字 | String | - |
