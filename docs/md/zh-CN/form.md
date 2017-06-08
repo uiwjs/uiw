@@ -2,6 +2,125 @@
 
 由输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据
 
+### 表单集合
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    form: {
+      name: {
+        label:"wui", // 初始值
+        //help:"用户名称输入会员/邮箱/手机号码",
+        rules:[
+          { required: true, message: '请输入活动名称'},
+          { min: 5, message: '长度不够！'}
+        ]
+      },
+      password: {
+        label:"",
+        help:"长度为6~14个字符/支持数字,字母和标点符号",
+        rules:[
+          { required: true, message: '不能为空！'},
+          { min: 6, message: '长度不够！'},
+          //{ max: 14, message: '长度超出！'}
+        ]
+      },
+      email: {
+        label:"",
+      },
+      online: {
+        label:true,
+      },
+    }
+  };
+}
+
+onChange(key,e, value) {
+  const {form} = this.state;
+  console.log("value::",value)
+  form[key].label = value;
+  this.setState({form});
+}
+
+handleSubmit(e) {
+  e.preventDefault();
+  this.refs.form.validate((valid) => {
+    console.log("form:",this.state.form,valid)
+    if (valid) {
+      alert('submit!');
+    } else {
+      console.log('error submit!!');
+      return false;
+    }
+  });
+}
+
+handleReset(e) {
+  e.preventDefault();
+  this.refs.form.resetFields((model)=>{
+    this.setState({form:model})
+  });
+}
+
+render() {
+  const {form} = this.state;
+  const FormItem = Form.Item;
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 4 },
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 14 },
+    },
+  };
+  const wrapperCol = {
+    wrapperCol: {
+      xs: {span: 24, offset: 0, },
+      sm: {span: 14, offset: 6, },
+    },
+  }
+  return (
+    <Form style={{width:500}} ref="form" model={form}>
+      <FormItem label="用户名" field="name" {...formItemLayout} >
+        <Input 
+          value={form.name.label} 
+          placeholder="请输入用户名"
+          onChange={this.onChange.bind(this, 'name')} />
+      </FormItem>
+      <FormItem label="密码" field="password" {...formItemLayout} >
+        <Input 
+          // 注意字段 password
+          value={form.password.label} 
+          type="password"
+          placeholder="请输入密码"
+          onChange={this.onChange.bind(this, 'password')} />
+      </FormItem>
+      <FormItem label="是否在线" field="online" {...formItemLayout} >
+        <Switch checked={true} 
+         onChange={this.onChange.bind(this, 'online')}/>
+      </FormItem>
+      <FormItem label="邮箱" field="email" {...formItemLayout} >
+        <Input 
+          value={form.email.label}
+          placeholder="请输入邮箱"
+          onChange={this.onChange.bind(this, 'email')} />
+      </FormItem>
+      <FormItem {...wrapperCol}>
+        <Buttons size="small" type="primary" onClick={this.handleSubmit.bind(this)}>提交</Buttons>
+        <Buttons size="small" onClick={this.handleReset.bind(this)}>重置</Buttons>
+      </FormItem>
+    </Form>
+  )
+}
+```
+<!--End-->
+
+
+
 ### 基础用法
 
 <!--DemoStart--> 
@@ -34,9 +153,9 @@ constructor(props) {
   };
 }
 
-onChange(key, e) {
+onChange(key, value) {
   const {form} = this.state;
-  form[key].label = e.target.value;
+  form[key].label = value;
   this.setState({form});
 }
 
@@ -65,7 +184,7 @@ render() {
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
-      sm: { span: 6 },
+      sm: { span: 4 },
     },
     wrapperCol: {
       xs: { span: 24 },

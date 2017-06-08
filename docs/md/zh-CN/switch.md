@@ -11,7 +11,7 @@ render() {
   return (
     <div>
       <Switch checked={false} style={styl} />
-      <Switch checked={true} onChange={(checked)=>{
+      <Switch checked={true} onChange={(e,checked)=>{
         console.log(`${checked?"选中":'没有选中'}`)
       }}/>
     </div>
@@ -102,7 +102,7 @@ render() {
 | disabled | 是否禁用 | boolean | false |
 | color | 打开时的背景色 | string | - |
 | unColor | 关闭时的背景色 | string | - |
-| onChange | 变化时回调函数 | Function(checked:Boolean) | - |
+| onChange | 变化时回调函数 | Function(e:Event,checked:Boolean) | - |
 | checkedChildren |  选中时的内容 | string、ReactNode | - |
 | unCheckedChildren |  非选中时的内容 | string、ReactNode | - |
 | size |  开关大小，可选值：`default` `small` | string | default |

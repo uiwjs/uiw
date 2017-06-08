@@ -37,7 +37,7 @@ export default class Group extends Component{
         if(onChange){
           attr.onChange = (e,checked)=>{
             let values = this.checkedValuesResult(options,value,checked);
-            onChange(values,value,checked,e);
+            onChange(e,values,value,checked);
           }
         }
         return (

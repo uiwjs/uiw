@@ -173,14 +173,14 @@ render() {
           <CheckboxGroup 
               options={plainOptions} 
               checkedValues={['Apple']} 
-              onChange={(checkedValues,value,checked,e)=>{
+              onChange={(e,checkedValues,value,checked)=>{
                 console.log('checked = ', checkedValues);
               }} />
               <br />
               <CheckboxGroup 
               options={options} 
               checkedValues={['Pear']} 
-              onChange={(checkedValues)=>{
+              onChange={(e,checkedValues)=>{
                 console.log('checked = ', checkedValues);
               }} />
 
@@ -189,7 +189,7 @@ render() {
               options={optionsWithDisabled} 
               disabled 
               checkedValues={['Apple']} 
-              onChange={(checkedValues)=>{
+              onChange={(e,checkedValues)=>{
                 console.log('checked = ', checkedValues);
               }} />
       </div>
@@ -211,7 +211,7 @@ constructor(props) {
     checked3: true,
     disabled3: true,
 
-    checkedList: [],
+    checkedList: ['Apple', 'Pear'],
     indeterminate: true,
     checkAll: false,
   }
@@ -248,8 +248,20 @@ render() {
             Check all
           </Checkbox>
         </div>
-        <CheckboxGroup otions={plainOptions} checkedValues={this.state.checkedList} 
-        onChange={(checkedList,value,checked,e) => {
+
+        <CheckboxGroup 
+        options={plainOptions}         
+        checkedValues={this.state.checkedList} 
+        onChange={(e,checkedList,value,checked)=>{
+          this.setState({
+            checkedList,
+            indeterminate: !!checkedList.length && (checkedList.length < plainOptions.length),
+            checkAll: checkedList.length === plainOptions.length,
+          });
+        }} />
+
+        <CheckboxGroup otions={options} checkedValues={this.state.checkedList} 
+        onChange={(e,checkedList,value,checked) => {
           console.log("indeterminate::",checkedList,value,checked,e)
           this.setState({
             checkedList,
@@ -280,5 +292,5 @@ render() {
 |--------- |-------- |---------- |-------- |
 | options | 指定可选 | string[] | [] |
 | checkedValues | 默认选中的选 | string[] | [] |
-| onChange | 变化时回调函数 | Function(checkedValues:Array, value:String, checked:Boolean, e:Event) | - |
+| onChange | 变化时回调函数 | Function(e:Event,checkedValues:Array, value:String, checked:Boolean) | - |
 | disabled | 禁用所有，[options]中设置，disabled=false 取消禁用 | Jay | false |

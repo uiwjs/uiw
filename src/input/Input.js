@@ -19,7 +19,7 @@ export default class Input extends Component {
   handleKeyUp(e){
     const { onSearch,onKeyUp } = this.props;
     if(e.key == "Enter"){
-      onSearch&&onSearch(e,e.target.value)
+      onSearch&&onSearch(e.target.value,e)
     }
     onKeyUp&&onKeyUp(e)
   }
@@ -29,7 +29,7 @@ export default class Input extends Component {
     this.setState({
       value:e.target.value
     })
-    onChange&&onChange(e)
+    onChange&&onChange(e,e.target.value)
   }
   handleClick(...attr){
     if(this.props[attr[0]]){

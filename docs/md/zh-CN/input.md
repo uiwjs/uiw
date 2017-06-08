@@ -174,4 +174,4 @@ Input 的其他属性和 React 自带的 [input](https://facebook.github.io/reac
 | icon | 输入框`后`面放置图标  | String、ReactNode | - |
 | onPreIconClick | 输入框`前`面放置的图标事件  | Function(value) | - |
 | onIconClick | 输入框`后`面放置的图标事件  | Function(value) | - |
-| onSearch | 输入框摁`Enter`执行这个事件  | Function(e,value) | - |
+| onSearch | 输入框摁`Enter`执行这个事件  | Function(e:Event,value) | - |
