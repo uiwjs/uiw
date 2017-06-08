@@ -6,14 +6,27 @@
 
 <!--DemoStart--> 
 ```js
+constructor(props){
+  super(props);
+  this.state = {
+    checked:true
+  }
+}
 render() {
-    const styl = {marginRight:"20px"}
+  const styl = {marginRight:"20px"}
   return (
     <div>
-      <Switch checked={false} style={styl} />
-      <Switch checked={true} onChange={(e,checked)=>{
+      <Switch checked={this.state.checked} 
+        style={styl} 
+        onChange={(e,checked)=>{
         console.log(`${checked?"选中":'没有选中'}`)
       }}/>
+      <Buttons size="mini" onClick={()=>{
+        console.log("-->>",this.state.checked)
+        this.setState({
+          checked:!this.state.checked
+        })
+      }}>打开</Buttons>
     </div>
   )
 }
