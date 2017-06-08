@@ -76,6 +76,8 @@ export default class FormItem extends Component {
       cb && cb();
       return true;
     }
+    
+    validating = true;
 
     const descriptor = { [this.props.field]: rules };
     const validator = new AsyncValidator(descriptor);

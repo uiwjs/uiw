@@ -72,15 +72,15 @@ constructor(props) {
 render() {
   return (
     <div>
-        <Checkbox indeterminate={this.state.indeterminate} onChange={(e)=>{
-          console.log(`checked = ${e.target.checked}`);
-        }}>半选中</Checkbox>
-        <Buttons size="mini" onClick={()=>{
-          console.log("!this.state.indeterminate::",!this.state.indeterminate)
-          this.setState({
-            indeterminate:!this.state.indeterminate
-          })
-        }}>切换半选中</Buttons>
+      <Checkbox indeterminate={this.state.indeterminate} onChange={(e)=>{
+        console.log(`checked = ${e.target.checked}`);
+      }}>半选中</Checkbox>
+      <Buttons size="mini" onClick={()=>{
+        console.log("!this.state.indeterminate::",!this.state.indeterminate)
+        this.setState({
+          indeterminate:!this.state.indeterminate
+        })
+      }}>切换半选中</Buttons>
     </div>
   )
 }
@@ -116,25 +116,25 @@ render() {
       >
         {`${this.state.checked ? 'Checked' : 'Unchecked'}-${this.state.disabled ? 'Disabled' : 'Enabled'}`}
       </Checkbox>
-        <div style={{padding:"10px 0 0 0"}}>
-          <Buttons
-            size="mini"
-            onClick={() => {
-              this.setState({ checked3: !this.state.checked3 });
-            }}
-          >
-            {!this.state.checked3 ? 'Check' : 'Uncheck'}
-          </Buttons>
-          <Buttons
-            style={{ marginLeft: '10px' }}
-            size="mini"
-            onClick={() => {
-              this.setState({ disabled3: !this.state.disabled3 });
-            }}
-          >
-            {!this.state.disabled3 ? 'Disable' : 'Enable'}
-          </Buttons>
-        </div>
+      <div style={{padding:"10px 0 0 0"}}>
+        <Buttons
+          size="mini"
+          onClick={() => {
+            this.setState({ checked3: !this.state.checked3 });
+          }}
+        >
+          {!this.state.checked3 ? 'Check' : 'Uncheck'}
+        </Buttons>
+        <Buttons
+          style={{ marginLeft: '10px' }}
+          size="mini"
+          onClick={() => {
+            this.setState({ disabled3: !this.state.disabled3 });
+          }}
+        >
+          {!this.state.disabled3 ? 'Disable' : 'Enable'}
+        </Buttons>
+      </div>
     </div>
   )
 }
@@ -170,28 +170,30 @@ render() {
     const CheckboxGroup = Checkbox.Group;
     return (
       <div>            
-          <CheckboxGroup 
-              options={plainOptions} 
-              checkedValues={['Apple']} 
-              onChange={(e,checkedValues,value,checked)=>{
-                console.log('checked = ', checkedValues);
-              }} />
-              <br />
-              <CheckboxGroup 
-              options={options} 
-              checkedValues={['Pear']} 
-              onChange={(e,checkedValues)=>{
-                console.log('checked = ', checkedValues);
-              }} />
-
-              <br />
-              <CheckboxGroup 
-              options={optionsWithDisabled} 
-              disabled 
-              checkedValues={['Apple']} 
-              onChange={(e,checkedValues)=>{
-                console.log('checked = ', checkedValues);
-              }} />
+        <CheckboxGroup 
+          options={plainOptions} 
+          checkedValues={['Apple']} 
+          onChange={(e,checkedValues,value,checked)=>{
+            console.log('checked = ', checkedValues);
+          }} 
+        />
+        <br />
+        <CheckboxGroup 
+          options={options} 
+          checkedValues={['Pear']} 
+          onChange={(e,checkedValues)=>{
+            console.log('checked = ', checkedValues);
+          }} 
+        />
+        <br />
+        <CheckboxGroup 
+          options={optionsWithDisabled} 
+          disabled 
+          checkedValues={['Apple']} 
+          onChange={(e,checkedValues)=>{
+            console.log('checked = ', checkedValues);
+          }} 
+        />
       </div>
     )
 }
@@ -280,10 +282,10 @@ render() {
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
-| options | 指定当前是否选中 | boolean | false |
-| disabled | 禁用 | boolean | false |
+| options | 指定当前是否选中 | Boolean | false |
+| disabled | 禁用 | Boolean | false |
 | onChange | 变化时回调函数 | Function(e:Event, checked:Boolean) | - |
-| checked | 指定当前是否选中 | boolean | false |
+| checked | 指定当前是否选中 | Boolean | false |
 | indeterminate | 半选中，只负责样式控制 | Jay | false |
 
 ### Checkbox Group Attributes

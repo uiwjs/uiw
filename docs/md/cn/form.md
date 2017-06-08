@@ -9,11 +9,12 @@
 constructor(props) {
   super(props);
   this.state = {
-    plainOptions:[
+    tagOptions:[
         {checked:true, color:"purple", value:'苹果'},
         {checked:true, color:"orange", value:'橘子'},
         {checked:false,color:"green", value:'香蕉'}
     ],
+    checkboxOption:['四川菜', '湖北菜', '湘菜', '粤菜'],
     form: {
       name: {
         value:"wui", // 初始值
@@ -34,12 +35,22 @@ constructor(props) {
       },
       email: {
         value:"",
+        rules:[
+          {type: 'email', message: '输入的不是E-mail!'}
+        ]
       },
       online: {
         value:true,
       },
+      carte: {
+        value:['湖北菜'],
+        rules:[
+          { required: true, message: '不能为空！'},
+          { min: 1, message: '至少选择一个选项'},
+        ]
+      },
       category:{
-        value:["orange","purple"],
+        value:["苹果","橘子"],
         rules:[
           { required: true, message: '不能为空！'},
           { min: 1, message: '至少选择一个选项'},
@@ -58,8 +69,8 @@ onChange(key,e, value) {
 
 handleSubmit(e) {
   e.preventDefault();
-  this.refs.form.validate((valid) => {
-    console.log("form:",this.state.form,valid)
+  this.refs.form.validate((valid,dataValues) => {
+    console.log("返回内容:",dataValues,valid)
     if (valid) {
       alert('submit!');
     } else {
@@ -126,9 +137,16 @@ render() {
       </FormItem>
       <FormItem label="分类" field="category" {...formItemLayout} >
         <TagGroup 
-          options={this.state.plainOptions}
+          options={this.state.tagOptions}
           checked={true}
           onChange={this.onChange.bind(this, 'category')}
+        />
+      </FormItem>
+      <FormItem label="菜肴" field="carte" {...formItemLayout} >
+        <Checkbox.Group 
+          options={this.state.checkboxOption}
+          checkedValues={form.carte.value} 
+          onChange={this.onChange.bind(this, 'carte')} 
         />
       </FormItem>
       <FormItem {...wrapperCol}>
@@ -272,7 +290,7 @@ render() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| validate | 对整个表单进行校验的方法 | String | - |
+| validate | 对整个表单进行校验的方法 | Function(valid:Boolean,dataValues:Object) | - |
 | resetFields | 对整个表单进行重置，将所有字段值重置为空并移除校验结果 | Function(model:Object) | - |
 
 ### Form model

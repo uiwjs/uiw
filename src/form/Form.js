@@ -18,10 +18,17 @@ export default class Form extends Component {
       component: this
     }
   }
-
+  filteredValues(values){
+    let dates = {};
+    for(let e in values){
+      dates[e] = values[e].value;
+    }
+    return dates;
+  }
   // 验证数据
   validate(callback){
     const {fields} = this.state;
+    const {model} = this.props;
     let valid = true;
 
     // 如果需要验证的fields为空，调用验证时立刻返回callback
@@ -33,7 +40,7 @@ export default class Form extends Component {
           valid = false;
         }
         if (typeof callback === 'function' && idx+1 === fields.length) {
-          callback(valid);
+          callback(valid,this.filteredValues(model));
         }
       });
     });
