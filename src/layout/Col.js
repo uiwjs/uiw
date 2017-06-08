@@ -41,7 +41,7 @@ export default class Col extends Component {
 
 
 const stringOrNumber = PropTypes.oneOfType([PropTypes.string, PropTypes.number]);
-const objectOrNumber = PropTypes.oneOfType([PropTypes.object, PropTypes.number]);
+const objectOrNumber = PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.number]);
 
 Col.propTypes = {
   prefixCls:PropTypes.string,
