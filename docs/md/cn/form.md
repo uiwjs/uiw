@@ -9,6 +9,11 @@
 constructor(props) {
   super(props);
   this.state = {
+    plainOptions:[
+        {checked:true, color:"purple", value:'苹果'},
+        {checked:true, color:"orange", value:'橘子'},
+        {checked:false,color:"green", value:'香蕉'}
+    ],
     form: {
       name: {
         value:"wui", // 初始值
@@ -33,12 +38,20 @@ constructor(props) {
       online: {
         value:true,
       },
+      category:{
+        value:["orange","purple"],
+        rules:[
+          { required: true, message: '不能为空！'},
+          { min: 1, message: '至少选择一个选项'},
+        ]
+      }
     }
   };
 }
 
 onChange(key,e, value) {
   const {form} = this.state;
+  console.log("value::",value)
   form[key].value = value;
   this.setState({form});
 }
@@ -66,6 +79,7 @@ handleReset(e) {
 render() {
   const {form} = this.state;
   const FormItem = Form.Item;
+  const TagGroup = Tag.Group;
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -109,6 +123,13 @@ render() {
           value={form.email.value}
           placeholder="请输入邮箱"
           onChange={this.onChange.bind(this, 'email')} />
+      </FormItem>
+      <FormItem label="分类" field="category" {...formItemLayout} >
+        <TagGroup 
+          options={this.state.plainOptions}
+          checked={true}
+          onChange={this.onChange.bind(this, 'category')}
+        />
       </FormItem>
       <FormItem {...wrapperCol}>
         <Buttons size="small" type="primary" onClick={this.handleSubmit.bind(this)}>提交</Buttons>
@@ -246,6 +267,8 @@ render() {
 ```html
 <Form ref="form"></Form>
 ```
+
+上面定义form的ref值为`form`
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |

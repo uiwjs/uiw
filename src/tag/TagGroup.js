@@ -35,7 +35,7 @@ export default class TagGroup extends Component {
   render() {
     const { prefixCls, children, options, checked,onChange, className, ...other} = this.props;
     const cls = this.classNames({
-      [`${prefixCls}-group`]: true,
+      [`${prefixCls}`]: true,
       [className]: className
     });
 
