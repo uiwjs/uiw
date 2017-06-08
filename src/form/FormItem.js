@@ -25,7 +25,7 @@ export default class FormItem extends Component {
     if(field){
       const value = this.getInitialValue()
       this.parent().addField(this);
-      this.initialValue = value.label;
+      this.initialValue = value.value;
       // 是否必填处理
       let rules = this.getRules();
       if (rules.length) rules.every(rule => {
@@ -63,7 +63,7 @@ export default class FormItem extends Component {
     if (Array.isArray(val) && val.length > 0) {
       model[this.props.field] = [];
     }else{
-      model[this.props.field].label = this.initialValue
+      model[this.props.field].value = this.initialValue
     }
 
   }
@@ -95,7 +95,7 @@ export default class FormItem extends Component {
   fieldValue(){
     const model = this.parent().props.model;
     if (!model || !this.props.field) { return; }
-    let str = model[this.props.field].label;
+    let str = model[this.props.field].value;
     return str;
   }
 

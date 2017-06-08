@@ -55,8 +55,6 @@ export default class Form extends Component {
     const {prefixCls,...other} = this.props;
 
     delete other.model;
-    delete other.rules;
-    delete other.labelWidth;
 
     return (
       <form {...other} className={this.classNames(`${prefixCls}`)}>
