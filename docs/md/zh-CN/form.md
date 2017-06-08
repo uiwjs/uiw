@@ -11,8 +11,8 @@ constructor(props) {
   this.state = {
     form: {
       name: {
-        label:"",
-        help:"用户名称输入会员/邮箱/手机号码",
+        label:"wui", // 初始值
+        //help:"用户名称输入会员/邮箱/手机号码",
         rules:[
           { required: true, message: '请输入活动名称'},
           { min: 5, message: '长度不够！'}
@@ -20,12 +20,15 @@ constructor(props) {
       },
       password: {
         label:"",
-        help:"长度为6~14个字符/支持数字,大小写字母和标点符号/不允许有空格",
+        help:"长度为6~14个字符/支持数字,字母和标点符号",
         rules:[
-          { required: true, message: '请输入活动名称'},
+          { required: true, message: '不能为空！'},
           { min: 6, message: '长度不够！'},
-          { max: 14, message: '长度超出！'}
+          //{ max: 14, message: '长度超出！'}
         ]
+      },
+      email: {
+        label:"",
       },
     }
   };
@@ -51,7 +54,9 @@ handleSubmit(e) {
 
 handleReset(e) {
   e.preventDefault();
-  this.refs.form.resetFields();
+  this.refs.form.resetFields((model)=>{
+    this.setState({form:model})
+  });
 }
 
 render() {
@@ -89,6 +94,12 @@ render() {
           placeholder="请输入密码"
           onChange={this.onChange.bind(this, 'password')} />
       </FormItem>
+      <FormItem label="邮箱" field="email" {...formItemLayout} >
+        <Input 
+          value={form.email.label}
+          placeholder="请输入邮箱"
+          onChange={this.onChange.bind(this, 'email')} />
+      </FormItem>
       <FormItem {...wrapperCol}>
         <Buttons size="small" type="primary" onClick={this.handleSubmit.bind(this)}>提交</Buttons>
         <Buttons size="small" onClick={this.handleReset.bind(this)}>重置</Buttons>
@@ -116,6 +127,7 @@ render() {
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | label | `label` 标签的文本 | String、ReactNode | - |
+| field | `field` 域的名称 | String、ReactNode | - |
 | labelCol | `label` 标签布局，同 `<Col>` 组件，设置 `span` `offset` 值，如 `{span: 3, offset: 12}` 或 `sm: {span: 3, offset: 12}` | Object | - |
 | wrapperCol | 需要为输入控件设置布局样式时，使用该属性，用法同 `labelCol` | Object | - |
 | help | 提示信息，如不设置，则会根据校验规则自动生成 | String、ReactNode | - |
@@ -131,12 +143,12 @@ render() {
 }
 ```
 
-`rules` 校验规则实例
+`rules` 校验规则实例，校验使用的包[async-validator](https://github.com/yiminghe/async-validator)
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | message | 校验文案，错误提示信息  |  string | - |
-| type    | 内建校验类型，可选项 | string | `string` |
+| type    | 内建校验类型，[可选项](https://github.com/yiminghe/async-validator#type) | string | `string` |
 | required | 是否必选  |  boolean | `false` |
 | whitespace | 必选时，空格是否会被视为错误 | boolean | false |
 | len | 字段长度  |  number | - |

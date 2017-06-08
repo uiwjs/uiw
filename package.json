@@ -10,6 +10,7 @@
     "deploy": "./docs/release.sh"
   },
   "dependencies": {
+    "async-validator": "^1.6.9",
     "classnames": "^2.2.5",
     "css-loader": "^0.28.4",
     "object-assign": "^4.1.1",

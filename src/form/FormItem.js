@@ -1,6 +1,7 @@
 import React from 'react';
 import {Component, PropTypes} from '../utils/';
 import Layout from '../layout/';
+import AsyncValidator from 'async-validator';
 
 const {Row,Col} = Layout;
 
@@ -9,31 +10,93 @@ export default class FormItem extends Component {
   constructor(props) {
     super(props);
     this.state={
-      isRequired:false, // 是否
+      error: '', // 错误信息
+      help: '',  // 帮助信息
+      isRequired:false, // 是否 【必填】
+      validating:false, // 是否验证成功
+      valid: false,     // 是否有效
     }
   }
 
   componentDidMount() {
     const { field } = this.props;
+    let { isRequired,help } = this.props;
 
     if(field){
+      const value = this.getInitialValue()
       this.parent().addField(this);
+      this.initialValue = value.label;
       // 是否必填处理
       let rules = this.getRules();
       if (rules.length) rules.every(rule => {
-          rule.required && this.setState({
-            isRequired:true
-          })
+          if(rule.required) isRequired = true;
       });
-    }
-    
-  }
 
+      help = value.help ? value.help :'';
+      this.setState({
+        isRequired,help
+      })
+    }
+  }
+  getInitialValue(){
+    let model = this.parent().props.model
+    return model[this.props.field]
+  }
   // 获取 Form组件的 校验规则
   getRules() {
     let formRules = this.parent().props.model;
     formRules = formRules? formRules[this.props.field] : [];
-    return [].concat( formRules.rules || []);
+    return [].concat( formRules? (formRules.rules || [] ) : [] );
+  }
+
+  resetField(): void {
+    let { valid, error } = this.state;
+
+    valid = true;
+    error = '';
+
+    this.setState({ valid, error });
+
+    let val =  this.fieldValue()
+    let model = this.parent().props.model
+
+    if (Array.isArray(val) && val.length > 0) {
+      model[this.props.field] = [];
+    }else{
+      model[this.props.field].label = this.initialValue
+    }
+
+  }
+
+  validate(trigger,cb){
+    let { validating, valid, error } = this.state;
+    const rules = this.getRules();
+
+    if (!rules || rules.length === 0) {
+      cb && cb();
+      return true;
+    }
+
+    const descriptor = { [this.props.field]: rules };
+    const validator = new AsyncValidator(descriptor);
+    const model = { [this.props.field]: this.fieldValue()};
+
+    validator.validate(model, { firstFields: true }, errors => {
+      valid = !errors;
+      error = errors ? errors[0].message : '';
+      cb && cb(errors);
+      validating = false;
+    });
+
+    this.setState({ validating, valid, error });
+
+  }
+
+  fieldValue(){
+    const model = this.parent().props.model;
+    if (!model || !this.props.field) { return; }
+    let str = model[this.props.field].label;
+    return str;
   }
 
   parent(){
@@ -46,11 +109,6 @@ export default class FormItem extends Component {
     this.validate('change');
   }
 
-  validate(trigger,cb){
-    // console.dir("=2=>",this)
-    // console.log("=1=>",this.parent)
-    // console.log("=3=>",this.context)
-  }
 
   renderLabel(){
     const {label,labelCol,prefixCls} = this.props;
@@ -67,6 +125,7 @@ export default class FormItem extends Component {
   }
   renderWrapper(){
     const {prefixCls,label,wrapperCol,children} = this.props;
+    const {error,help} = this.state;
 
     const className = this.classNames(
       `${prefixCls}-control`,
@@ -79,15 +138,20 @@ export default class FormItem extends Component {
         onChange={this.onFieldChange.bind(this)}
       >
         {children}
+        {
+          (error || help) && <div className={this.classNames(`${prefixCls}-explain`)}>{error || help}</div>
+        }
       </Col>
     )
   }
   render() {
     const {prefixCls,className,style} = this.props;
-    const {isRequired } = this.state;
+    const {isRequired,error,help} = this.state;
     const cls = this.classNames(className,{
       [`${prefixCls}`]: true,
-      'required': isRequired
+      'required': isRequired,
+      'error': error!='',
+      'help': help!='',
     })
     return (
       <Row className={cls}>

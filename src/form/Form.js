@@ -9,9 +9,6 @@ export default class Form extends Component {
     }
   }
 
-  addField(field) {
-    this.state.fields.push(field);
-  }
   // https://facebook.github.io/react/docs/context.html
   // 通过添加 childContextTypes 和 getChildContext()
   // 自动向下传递数据然后在组件树中的任意组件
@@ -23,15 +20,37 @@ export default class Form extends Component {
   }
 
   // 验证数据
-  validate = (callback) => {
-    // console.log("-22ww-->",this)
-    console.log("fields:::::::",this.state.fields)
+  validate(callback){
+    const {fields} = this.state;
+    let valid = true;
 
+    // 如果需要验证的fields为空，调用验证时立刻返回callback
+    if (fields.length === 0 && callback) callback(true);
+
+    fields.forEach((field,idx) => {
+      field.validate('', errors => {
+        if (errors) {
+          valid = false;
+        }
+        if (typeof callback === 'function' && idx+1 === fields.length) {
+          callback(valid);
+        }
+      });
+    });
   }
+
+  addField(field) {
+    this.state.fields.push(field);
+  }
+
   // 重置字段方法
   resetFields(callback){
-
+    this.state.fields.forEach(field => {
+      field.resetField();
+    });
+    callback&&callback(this.props.model)
   }
+
   render() {
     const {prefixCls,...other} = this.props;
 
