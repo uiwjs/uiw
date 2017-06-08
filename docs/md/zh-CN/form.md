@@ -256,7 +256,7 @@ render() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| value | React方法，提供Form组件内部方法调用 | String | - |
+| value | 表单数据对象 | Object、String、Array | - |
 | rules | 校验规则，参考下方文档 | Object[] | - |
 | help | 提示信息，如不设置，则会根据校验规则自动生成 | String、ReactNode | - |
 
