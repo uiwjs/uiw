@@ -20,7 +20,7 @@ export default class App extends Component {
   componentDidMount() {
     this.setPage(() => {
       if (!this.state.locale) {
-        this.setLocale(localStorage.getItem('W_LANGUAGE') || 'zh-CN');
+        this.setLocale(localStorage.getItem('WUI_LANG') || 'cn');
       }
     });
   }
@@ -30,7 +30,7 @@ export default class App extends Component {
     if (routes) {
       if (locales.hasOwnProperty(routes[1])) {
         this.setState({ locale: routes[1] }, () => {
-          localStorage.setItem('W_LANGUAGE', this.state.locale);
+          localStorage.setItem('WUI_LANG', this.state.locale);
         });
       }
       return routes[2];
@@ -38,6 +38,7 @@ export default class App extends Component {
     return 'quick-start';
   }
   setPage(fn) {
+    console.log("this.getPage()::",this.getPage())
     this.setState({ page: this.getPage() }, fn);
   }
 
@@ -54,7 +55,7 @@ export default class App extends Component {
 
   /**
    * 设置URL
-   * @param {[type]} locale [zh-CN]
+   * @param {[type]} locale [cn]
    */
   setLocale(locale) {
     window.location.hash = `/${locale}/${this.state.page}`;
@@ -78,6 +79,7 @@ export default class App extends Component {
   }
 
   renderMenuItems(page){
+    console.log("this.state.locale::",this.state.locale)
     const {prefixCls} = this.props;
     return (
       <li key={page} className={`${prefixCls}-menu-item`}>

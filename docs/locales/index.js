@@ -1,4 +1,4 @@
 export default {
-  'zh-CN': require('./zh-CN'),
-  'en-US': require('./en-US')
+  'cn': require('./cn'),
+  'en': require('./en')
 }
