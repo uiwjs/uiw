@@ -4,9 +4,9 @@ export default {
   },
   components: {
     'Basic': {
-      'buttons':    require('./buttons'),
       'layout':     require('./layout'),
       'icon':       require('./icon'),
+      'buttons':    require('./buttons'),
     },
     'Form': {
       'checkbox':  require('./checkbox'),

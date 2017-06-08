@@ -283,7 +283,7 @@ render() {
 
 ### 响应式布局
 
-参照 Bootstrap 的 响应式设计，预设了四个响应尺寸：xs、sm、md和lg。
+参照 [Bootstrap](http://getbootstrap.com/) 的 响应式设计，预设了四个响应尺寸：xs、sm、md和lg。
 
 ```css
 /* 超小屏幕（手机，小于 768px） */
