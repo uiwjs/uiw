@@ -3,78 +3,113 @@
 还未开源 `uiw` 没有任何作用
 
 
-
-<!--DemoStart-->
+<!--DemoStart--> 
 ```js
 constructor(props) {
   super(props);
   this.state = {
-    checked3: true,
-    disabled3: true,
-
-    checkedList: ['Apple', 'Pear'],
-    indeterminate: true,
-    checkAll: false,
+    form: {
+      name:'wui',
+      password: '',
+      email: '',
+    },
+    rules:{
+      name:[
+        { required: true, message: '请输入活动名称'},
+        { min: 5, message: '长度不够！'}
+      ],
+      password:[
+        { required: true, message: '不能为空！'},
+        { min: 6, message: '长度不够！'},
+        { max: 14, message: '长度超出！'}
+      ],
+      email:[
+        {type: 'email', message: '输入的不是E-mail!'}
+      ]
+    }
   }
 }
+
+onChange(key,e, value) {
+  const {form} = this.state;
+  form[key] = value;
+  this.setState({form});
+}
+
+handleSubmit(e) {
+  e.preventDefault();
+  this.refs.form.validate((valid,dataValues) => {
+    console.log("返回内容:",dataValues,valid)
+    if (valid) {
+      alert('submit!');
+    } else {
+      console.log('error submit!!');
+      return false;
+    }
+  });
+}
+
+handleReset(e) {
+  e.preventDefault();
+  this.refs.form.resetFields((model)=>{
+    this.setState({form:model})
+  });
+}
+
 render() {
-    const defaultCheckedList = ['Apple', 'Orange'];
-    const plainOptions = ['Apple', 'Pear', 'Orange'];
-    const options = [
-      { value: 'Apple' },
-      { value: 'Pear' },
-      { value: 'Orange' },
-    ];
-    const optionsWithDisabled = [
-      { value: 'Apple' },
-      { value: 'Pear' },
-      { value: 'Orange', disabled: false },
-    ];
-    const CheckboxGroup = Checkbox.Group;
-    return (
-      <div>            
-        <div style={{ borderBottom: '1px solid #E9E9E9',margin:"0 0 10px 0",padding:"0 0 10px 0 "}}>
-          <Checkbox
-            indeterminate={this.state.indeterminate}
-            onChange={(e,checked) => {
-              console.log("--->",e,checked)
-              this.setState({
-                checkedList: e.target.checked ? plainOptions : [],
-                indeterminate: false,
-                checkAll: e.target.checked,
-              });
-            }}
-            checked={this.state.checkAll}
-          >
-            Check all
-          </Checkbox>
-        </div>
-
-        <CheckboxGroup 
-        options={plainOptions}         
-        checkedValues={this.state.checkedList} 
-        onChange={(e,checkedList,value,checked)=>{
-          this.setState({
-            checkedList,
-            indeterminate: !!checkedList.length && (checkedList.length < plainOptions.length),
-            checkAll: checkedList.length === plainOptions.length,
-          });
-        }} />
-
-        <CheckboxGroup otions={options} checkedValues={this.state.checkedList} 
-        onChange={(e,checkedList,value,checked) => {
-          console.log("indeterminate::",checkedList,value,checked,e)
-          this.setState({
-            checkedList,
-            indeterminate: !!checkedList.length && (checkedList.length < plainOptions.length),
-            checkAll: checkedList.length === plainOptions.length,
-          });
-        }} />
-      </div>
-    )
+  const {form,rules} = this.state;
+  const FormItem = Form.Item;
+  const TagGroup = Tag.Group;
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 4 },
+      className:"colspanlab"
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 14 },
+      className:"colspan"
+    },
+  };
+  const wrapperCol = {
+    wrapperCol: {
+      xs: {span: 24, offset: 0, },
+      sm: {span: 14, offset: 4, },
+    },
+  }
+  return (
+    <Form style={{width:500}} ref="form" model={form} rules={rules}>
+      <FormItem label={<span>用户名</span>} field="name" {...formItemLayout} >
+        <Input 
+          value={form.name} 
+          placeholder="请输入用户名"
+          onChange={this.onChange.bind(this, 'name')} />
+      </FormItem>
+      <FormItem label="密码" field="password" {...formItemLayout} >
+        <Input 
+          // 注意字段 password
+          value={form.password} 
+          type="password"
+          placeholder="请输入密码"
+          onChange={this.onChange.bind(this, 'password')} />
+      </FormItem>
+      <FormItem label="邮箱" field="email" {...formItemLayout} >
+        <Input 
+          value={form.email.value}
+          placeholder="请输入邮箱"
+          onChange={this.onChange.bind(this, 'email')} />
+      </FormItem>
+      <FormItem {...wrapperCol}>
+        <Buttons size="small" type="primary" onClick={this.handleSubmit.bind(this)}>提交</Buttons>
+        <Buttons size="small" onClick={this.handleReset.bind(this)}>重置</Buttons>
+      </FormItem>
+    </Form>
+  )
 }
 ```
 <!--End-->
+
 
 ### 使用
 

@@ -25,7 +25,7 @@ export default class FormItem extends Component {
     if(field){
       const value = this.getInitialValue()
       this.parent().addField(this);
-      this.initialValue = value.value;
+      this.initialValue = value;
       // 是否必填处理
       let rules = this.getRules();
       if (rules.length) rules.every(rule => {
@@ -40,13 +40,19 @@ export default class FormItem extends Component {
   }
   getInitialValue(){
     let model = this.parent().props.model
+    console.log("model[this.props.field]::",this.props.field)
+    console.log("model[this.props.field]::",model[this.props.field])
     return model[this.props.field]
   }
   // 获取 Form组件的 校验规则
   getRules() {
-    let formRules = this.parent().props.model;
+    let formRules = this.parent().props.rules;
+    let selfRuels = this.props.rules;
+
+    console.log("formRules:",formRules)
+
     formRules = formRules? formRules[this.props.field] : [];
-    return [].concat( formRules? (formRules.rules || [] ) : [] );
+    return [].concat( formRules? formRules : [] );
   }
 
   resetField(): void {
@@ -63,7 +69,7 @@ export default class FormItem extends Component {
     if (Array.isArray(val) && val.length > 0) {
       model[this.props.field] = [];
     }else{
-      model[this.props.field].value = this.initialValue
+      model[this.props.field] = this.initialValue
     }
 
   }
@@ -71,6 +77,7 @@ export default class FormItem extends Component {
   validate(trigger,cb){
     let { validating, valid, error } = this.state;
     const rules = this.getRules();
+    // console.log("descriptor:",rules)
 
     if (!rules || rules.length === 0) {
       cb && cb();
@@ -80,6 +87,7 @@ export default class FormItem extends Component {
     validating = true;
 
     const descriptor = { [this.props.field]: rules };
+    console.log("descriptor:",descriptor,this.props.field)
     const validator = new AsyncValidator(descriptor);
     const model = { [this.props.field]: this.fieldValue()};
 
@@ -97,7 +105,7 @@ export default class FormItem extends Component {
   fieldValue(){
     const model = this.parent().props.model;
     if (!model || !this.props.field) { return; }
-    let str = model[this.props.field].value;
+    let str = model[this.props.field];
     return str;
   }
 

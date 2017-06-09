@@ -18,13 +18,6 @@ export default class Form extends Component {
       component: this
     }
   }
-  filteredValues(values){
-    let dates = {};
-    for(let e in values){
-      dates[e] = values[e].value;
-    }
-    return dates;
-  }
   // 验证数据
   validate(callback){
     const {fields} = this.state;
@@ -40,7 +33,7 @@ export default class Form extends Component {
           valid = false;
         }
         if (typeof callback === 'function' && idx+1 === fields.length) {
-          callback(valid,this.filteredValues(model));
+          callback(valid,model);
         }
       });
     });
@@ -62,6 +55,7 @@ export default class Form extends Component {
     const {prefixCls,...other} = this.props;
 
     delete other.model;
+    delete other.rules;
 
     return (
       <form {...other} className={this.classNames(`${prefixCls}`)}>

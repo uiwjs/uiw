@@ -15,47 +15,36 @@ constructor(props) {
         {checked:false,color:"green", value:'香蕉'}
     ],
     checkboxOption:['四川菜', '湖北菜', '湘菜', '粤菜'],
+
+    rules:{
+      name:[
+        { required: true, message: '请输入活动名称'},
+        { min: 5, message: '长度不够！'}
+      ],
+      password:[
+        { required: true, message: '不能为空！'},
+        { min: 6, message: '长度不够！'},
+        { max: 14, message: '长度超出！'}
+      ],
+      email:[
+        {type: 'email', message: '输入的不是E-mail!'}
+      ],
+      carte:[
+          { required: true, message: '不能为空！'},
+          { min: 1, message: '至少选择一个选项'},
+      ],
+      category:[
+          { required: true, message: '不能为空！'},
+          { min: 1, message: '至少选择一个选项'},
+      ]
+    },
     form: {
-      name: {
-        value:"wui", // 初始值
-        //help:"用户名称输入会员/邮箱/手机号码",
-        rules:[
-          { required: true, message: '请输入活动名称'},
-          { min: 5, message: '长度不够！'}
-        ]
-      },
-      password: {
-        value:"",
-        help:"长度为6~14个字符/支持数字,字母和标点符号",
-        rules:[
-          { required: true, message: '不能为空！'},
-          { min: 6, message: '长度不够！'},
-          { max: 14, message: '长度超出！'}
-        ]
-      },
-      email: {
-        value:"",
-        rules:[
-          {type: 'email', message: '输入的不是E-mail!'}
-        ]
-      },
-      online: {
-        value:true,
-      },
-      carte: {
-        value:['湖北菜'],
-        rules:[
-          { required: true, message: '不能为空！'},
-          { min: 1, message: '至少选择一个选项'},
-        ]
-      },
-      category:{
-        value:["苹果","橘子"],
-        rules:[
-          { required: true, message: '不能为空！'},
-          { min: 1, message: '至少选择一个选项'},
-        ]
-      }
+      name: "wui",
+      password: "",
+      email: "wwww@qq.com",
+      online: true,
+      carte: ['湖北菜'],
+      category: ["苹果","橘子"],
     }
   };
 }
@@ -63,7 +52,7 @@ constructor(props) {
 onChange(key,e, value) {
   const {form} = this.state;
   console.log("value::",value)
-  form[key].value = value;
+  form[key] = value;
   this.setState({form});
 }
 
@@ -88,7 +77,7 @@ handleReset(e) {
 }
 
 render() {
-  const {form} = this.state;
+  const {form,rules} = this.state;
   const FormItem = Form.Item;
   const TagGroup = Tag.Group;
   const formItemLayout = {
@@ -110,28 +99,28 @@ render() {
     },
   }
   return (
-    <Form style={{width:500}} ref="form" model={form}>
+    <Form style={{width:500}} ref="form" model={form} rules={rules}>
       <FormItem label={<span>用户名</span>} field="name" {...formItemLayout} >
         <Input 
-          value={form.name.value} 
+          value={form.name} 
           placeholder="请输入用户名"
           onChange={this.onChange.bind(this, 'name')} />
       </FormItem>
       <FormItem label="密码" field="password" {...formItemLayout} >
         <Input 
           // 注意字段 password
-          value={form.password.value} 
+          value={form.password} 
           type="password"
           placeholder="请输入密码"
           onChange={this.onChange.bind(this, 'password')} />
       </FormItem>
       <FormItem label="是否在线" field="online" {...formItemLayout} >
-        <Switch checked={form.online.value} 
+        <Switch checked={form.online} 
          onChange={this.onChange.bind(this, 'online')}/>
       </FormItem>
       <FormItem label="邮箱" field="email" {...formItemLayout} >
         <Input 
-          value={form.email.value}
+          value={form.email}
           placeholder="请输入邮箱"
           onChange={this.onChange.bind(this, 'email')} />
       </FormItem>
@@ -145,7 +134,7 @@ render() {
       <FormItem label="菜肴" field="carte" {...formItemLayout} >
         <Checkbox.Group 
           options={this.state.checkboxOption}
-          checkedValues={form.carte.value} 
+          checkedValues={form.carte} 
           onChange={this.onChange.bind(this, 'carte')} 
         />
       </FormItem>
@@ -163,49 +152,44 @@ render() {
 
 ### 基础用法
 
+
 <!--DemoStart--> 
 ```js
 constructor(props) {
   super(props);
   this.state = {
     form: {
-      name: {
-        value:"wui", // 初始值
-        //help:"用户名称输入会员/邮箱/手机号码",
-        rules:[
-          { required: true, message: '请输入活动名称'},
-          { min: 5, message: '长度不够！'}
-        ]
-      },
-      password: {
-        value:"",
-        help:"长度为6~14个字符/支持数字,字母和标点符号",
-        rules:[
-          { required: true, message: '不能为空！'},
-          { min: 6, message: '长度不够！'},
-          //{ max: 14, message: '长度超出！'}
-        ]
-      },
-      email: {
-        value:"",
-        rules:[
-          {type: 'email', message: '输入的不是E-mail!'}
-        ]
-      },
+      name:'wui',
+      password: '',
+      email: '',
+    },
+    rules:{
+      name:[
+        { required: true, message: '请输入活动名称'},
+        { min: 5, message: '长度不够！'}
+      ],
+      password:[
+        { required: true, message: '不能为空！'},
+        { min: 6, message: '长度不够！'},
+        { max: 14, message: '长度超出！'}
+      ],
+      email:[
+        {type: 'email', message: '输入的不是E-mail!'}
+      ]
     }
-  };
+  }
 }
 
-onChange(key, e, value) {
+onChange(key,e, value) {
   const {form} = this.state;
-  console.log("password::",key,value)
-  form[key].value = value;
+  form[key] = value;
   this.setState({form});
 }
 
 handleSubmit(e) {
   e.preventDefault();
-  this.refs.form.validate((valid) => {
+  this.refs.form.validate((valid,dataValues) => {
+    console.log("返回内容:",dataValues,valid)
     if (valid) {
       alert('submit!');
     } else {
@@ -223,16 +207,19 @@ handleReset(e) {
 }
 
 render() {
-  const {form} = this.state;
+  const {form,rules} = this.state;
   const FormItem = Form.Item;
+  const TagGroup = Tag.Group;
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
       sm: { span: 4 },
+      className:"colspanlab"
     },
     wrapperCol: {
       xs: { span: 24 },
       sm: { span: 14 },
+      className:"colspan"
     },
   };
   const wrapperCol = {
@@ -242,17 +229,17 @@ render() {
     },
   }
   return (
-    <Form style={{width:500}} ref="form" model={form}>
-      <FormItem label="用户名" field="name" {...formItemLayout} >
+    <Form style={{width:500}} ref="form" model={form} rules={rules}>
+      <FormItem label={<span>用户名</span>} field="name" {...formItemLayout} >
         <Input 
-          value={form.name.value} 
+          value={form.name} 
           placeholder="请输入用户名"
           onChange={this.onChange.bind(this, 'name')} />
       </FormItem>
       <FormItem label="密码" field="password" {...formItemLayout} >
         <Input 
           // 注意字段 password
-          value={form.password.value} 
+          value={form.password} 
           type="password"
           placeholder="请输入密码"
           onChange={this.onChange.bind(this, 'password')} />
@@ -272,8 +259,6 @@ render() {
 }
 ```
 <!--End-->
-
-
 
 ## API
 
