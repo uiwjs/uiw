@@ -80,7 +80,9 @@ TagGroup.childContextTypes = {
 
 TagGroup.propTypes = {
   prefixCls: PropTypes.string,
+  options: PropTypes.array,
   checked: PropTypes.bool,
+  isRadio: PropTypes.bool,
   checkedValues: PropTypes.array,
   onChange: PropTypes.func,
 };
