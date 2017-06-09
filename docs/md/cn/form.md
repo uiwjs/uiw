@@ -246,7 +246,7 @@ render() {
       </FormItem>
       <FormItem label="邮箱" field="email" {...formItemLayout} >
         <Input 
-          value={form.email.value}
+          value={form.email}
           placeholder="请输入邮箱"
           onChange={this.onChange.bind(this, 'email')} />
       </FormItem>

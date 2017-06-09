@@ -28,11 +28,9 @@ export default class FormItem extends Component {
       this.initialValue = value;
       // 是否必填处理
       let rules = this.getRules();
-      if (rules.length) rules.every(rule => {
-          if(rule.required) isRequired = true;
+      if (rules&&rules.length) rules.every(rule => {
+          if(rule&&rule.required) isRequired = true;
       });
-
-      help = value.help ? value.help :'';
       this.setState({
         isRequired,help
       })
@@ -40,19 +38,12 @@ export default class FormItem extends Component {
   }
   getInitialValue(){
     let model = this.parent().props.model
-    console.log("model[this.props.field]::",this.props.field)
-    console.log("model[this.props.field]::",model[this.props.field])
     return model[this.props.field]
   }
   // 获取 Form组件的 校验规则
   getRules() {
     let formRules = this.parent().props.rules;
-    let selfRuels = this.props.rules;
-
-    console.log("formRules:",formRules)
-
-    formRules = formRules? formRules[this.props.field] : [];
-    return [].concat( formRules? formRules : [] );
+    return [].concat( this.props.rules || formRules?formRules[this.props.field]:[] || [] );
   }
 
   resetField(): void {
@@ -64,20 +55,26 @@ export default class FormItem extends Component {
     this.setState({ valid, error });
 
     let val =  this.fieldValue()
-    let model = this.parent().props.model
+    let model = this.parent().props.model;
 
     if (Array.isArray(val) && val.length > 0) {
       model[this.props.field] = [];
     }else{
       model[this.props.field] = this.initialValue
     }
+  }
 
+  getFilteredRule(){
+    const rules = this.getRules();
+    // 过滤数组中的undefined
+    return rules.filter(rule => {
+      return rule;
+    });
   }
 
   validate(trigger,cb){
     let { validating, valid, error } = this.state;
-    const rules = this.getRules();
-    // console.log("descriptor:",rules)
+    const rules = this.getFilteredRule();
 
     if (!rules || rules.length === 0) {
       cb && cb();
@@ -85,9 +82,7 @@ export default class FormItem extends Component {
     }
     
     validating = true;
-
     const descriptor = { [this.props.field]: rules };
-    console.log("descriptor:",descriptor,this.props.field)
     const validator = new AsyncValidator(descriptor);
     const model = { [this.props.field]: this.fieldValue()};
 
