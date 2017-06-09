@@ -56,9 +56,8 @@ export default class FormItem extends Component {
 
     let val =  this.fieldValue()
     let model = this.parent().props.model;
-
     if (Array.isArray(val) && val.length > 0) {
-      model[this.props.field] = [];
+      model[this.props.field] = this.initialValue || [];
     }else{
       model[this.props.field] = this.initialValue
     }
