@@ -46,6 +46,36 @@
 
 注意：这里 `.w-icon-` 是当前默认引用的字体文件，`w-icon-uiw-` 是引用自己制作的字体文件，来覆盖默认的字体文件，就当成一个新的作用域。
 
+### 方向
+
+<!--DemoStart--> 
+```js
+render() {
+  const {Row,Col} = Layout;
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px"};
+  const iconList = ["arrow-up", "arrow-left", "arrow-right", "arrow-down", "caret-bottom",  "caret-left", "caret-top", "caret-right","d-arrow-left", "d-arrow-right"]
+  return (
+    <div>
+      <Row gutter="10">
+      {
+        iconList.map((item,idx) => {
+          return (
+            <Col key={idx} xs="8" sm="6" md="4" lg="4">
+              <div style={styleItem}>
+                  <Icon type={item} />
+                  <div>{item}</div>
+              </div>
+            </Col>
+          )
+        }) 
+      }
+      </Row>
+    </div>
+  )
+}
+```
+<!--End-->
+
 ### 默认自带图标列表
 
 <!--DemoStart--> 
@@ -53,7 +83,7 @@
 render() {
   const {Row,Col} = Layout;
   const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px"};
-  const iconList = [,"arrow-down", "arrow-left", "arrow-right", "arrow-up", "caret-bottom", "caret-left", "caret-right", "caret-top", "check", "circle-check", "circle-close", "circle-cross", "close", "upload", "d-arrow-left", "d-arrow-right", "d-caret", "date", "delete", "document", "edit", "information", "loading", "menu", "message", "minus", "more", "picture", "plus", "search", "setting", "share", "star-off", "star-on", "time", "warning", "delete2", "upload2", "view"]
+  const iconList = ["circle-check-o", "check", "circle-check", "circle-close", "copyright", "close", "circle-close-o", "d-caret", "date", "delete", "date1", "download", "download1", "document", "edit", "frown-o", "heart-off", "frown", "heart-on", "filter", "information", "loading", "information-o", "lock", "minus", "message-o", "message", "menu", "more", "picture", "pay", "plus", "paper-clip", "question-circle-o", "share", "search", "question-circle", "setting", "setting1", "smile-o", "star-on", "smile", "star-off", "time", "unlock", "verification", "view", "upload", "upload1", "user", "warning-o", "warning","asterisk"]
   return (
     <div>
       <Row gutter="10">
