@@ -18,7 +18,6 @@ render() {
     <div>
       <Switch checked={this.state.checked} 
         style={styl} 
-        size="small"
         onChange={(e,checked)=>{
         console.log(`${checked?"选中":'没有选中'}`)
       }}/>
@@ -94,11 +93,13 @@ render() {
   const styl = {marginRight:"20px"}
   return (
     <div>
-      <Switch checked={true} size="mini" style={styl} />
-      <Switch checked={true} disabled={true} size="mini" style={styl} />
-      <Switch checked={true} size="small" checkedChildren="开" unCheckedChildren="关" color="#e503f4" unColor="#ff4949"  style={styl}/>
-      <Switch disabled={true} checked={true} size="small" checkedChildren="开" unCheckedChildren="关" color="#e503f4" unColor="#ff4949"  style={styl}/>
-      <Switch checked={true} checkedChildren="开" unCheckedChildren="关" style={styl} />
+      <Switch checked={true} size="small" checkedChildren="n"  unCheckedChildren="o" style={styl} />
+      <Switch checked={true} size="small"  disabled={true}style={styl} />
+
+      <Switch checked={true} checkedChildren="开" unCheckedChildren="关" color="#e503f4" unColor="#ff4949"  style={styl}/>
+      <Switch disabled={true} checked={true} checkedChildren="开" unCheckedChildren="关" color="#e503f4" unColor="#ff4949"  style={styl}/>
+
+      <Switch checked={true} size="large" checkedChildren="开" unCheckedChildren="关" style={styl} />
     </div>
   )
 }
@@ -119,4 +120,4 @@ render() {
 | onChange | 变化时回调函数 | Function(e:Event,checked:Boolean) | - |
 | checkedChildren |  选中时的内容 | string、ReactNode | - |
 | unCheckedChildren |  非选中时的内容 | string、ReactNode | - |
-| size |  开关大小，可选值：`default` `small` | string | default |
+| size |  开关大小，可选值：`large` `default` `small` | string | default |
