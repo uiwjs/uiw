@@ -10,6 +10,11 @@ constructor(props) {
   super(props);
   this.state = {
     tagOptions:[
+        {color:"purple", value:'保密'},
+        {color:"orange", value:'男生'},
+        {color:"green", value:'女生'}
+    ],
+    tagRadioOptions:[
         {color:"purple", value:'苹果'},
         {color:"orange", value:'橘子'},
         {color:"green", value:'香蕉'}
@@ -30,7 +35,7 @@ constructor(props) {
         {type: 'email', message: '输入的不是E-mail!'}
       ],
       category:[
-        {required: true, message: '不能为空！'}
+        {required: true, message: '必须选择一个选项！'}
       ],
       carte:[
         {required: true, message: '不能为空！'},
@@ -52,14 +57,15 @@ constructor(props) {
       email: "wwww@qq.com",
       online: true,
       carte: ['湖北菜'],
-      category: ["苹果","橘子"],
+      category: ["保密"],
+      category_radio: ["香蕉"],
     }
   };
 }
 
 onChange(key,e, value) {
   const {form} = this.state;
-  console.log("value::",value)
+  console.log("value::",key,value)
   form[key] = value;
   this.setState({form});
 }
@@ -120,10 +126,11 @@ render() {
           value={form.password} 
           type="password"
           placeholder="请输入密码"
+          icon="lock"
           onChange={this.onChange.bind(this, 'password')} />
       </FormItem>
       <FormItem label="是否在线" field="online" {...formItemLayout} >
-        <Switch checked={form.online} size="small"
+        <Switch checked={form.online} 
          onChange={this.onChange.bind(this, 'online')}/>
       </FormItem>
       <FormItem label="邮箱" field="email" {...formItemLayout} >
@@ -132,12 +139,22 @@ render() {
           placeholder="请输入邮箱"
           onChange={this.onChange.bind(this, 'email')} />
       </FormItem>
-      <FormItem label="分类" field="category" {...formItemLayout} >
+      <FormItem label="分类单选" field="category" {...formItemLayout} >
         <TagGroup 
           options={this.state.tagOptions}
           checked={true}
+          isRadio={true}
           checkedValues={form.category} 
           onChange={this.onChange.bind(this, 'category')}
+        />
+      </FormItem>
+      <FormItem label="分类多选" field="category_radio" {...formItemLayout} >
+        <TagGroup 
+          options={this.state.tagRadioOptions}
+          checked={true}
+          //isRadio={true}
+          checkedValues={form.category_radio} 
+          onChange={this.onChange.bind(this, 'category_radio')}
         />
       </FormItem>
       <FormItem label="菜肴" field="carte" {...formItemLayout} >
@@ -150,6 +167,9 @@ render() {
       <FormItem {...wrapperCol}>
         <Buttons size="small" type="primary" onClick={this.handleSubmit.bind(this)}>提交</Buttons>
         <Buttons size="small" onClick={this.handleReset.bind(this)}>重置</Buttons>
+        <Buttons size="small" onClick={()=>{
+          console.log(this.state.form)
+          }}>查看State</Buttons>
       </FormItem>
     </Form>
   )

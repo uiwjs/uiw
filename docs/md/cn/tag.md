@@ -76,7 +76,7 @@ render() {
 ```
 <!--End-->
 
-### 标签组动可选择
+### 标签组动态单选多选
 
 <!--DemoStart--> 
 ```js
@@ -85,31 +85,53 @@ constructor(props) {
   this.state = {
     plainOptions:[
       {
-        checked:true,
         color:"white",
         value:'Apple'
       }, {
-        checked:true,
         color:"orange",
         value:'Pear'
       }, {
         color:"green",
-        checked:false,
         value:'Orange'
       }
     ],
+    tagRadioOptions:[
+        {color:"purple", value:'苹果'},
+        {color:"orange", value:'橘子'},
+        {color:"green", value:'香蕉'}
+    ],
+    plainValues:['Orange'],
+    checkedValues:['香蕉']
   }
 }
 render() {
   const TagGroup = Tag.Group;
+  const {Row,Col} = Layout;
   return (
-    <TagGroup 
-      options={this.state.plainOptions}
-      checked={true}
-      onChange={(e,value)=>{
-        console.log("value::",value)
-      }}
-    />
+    <Row gutter="10">
+      <Col xs="12" sm="6" md="4" lg="12">
+        <TagGroup 
+          options={this.state.plainOptions}
+          checked={true}
+          checkedValues={this.state.plainValues}
+          onChange={(e,value)=>{
+            console.log("value::",value)
+          }}
+        />
+      </Col>
+      <Col xs="12" sm="6" md="8" lg="12">
+        <TagGroup 
+          options={this.state.tagRadioOptions}
+          checked={true}
+          isRadio={true}
+          checkedValues={this.state.checkedValues}
+          onChange={(e,value)=>{
+            this.setState({checkedValues:value})
+            console.log("value::",value)
+          }}
+        />
+      </Col>
+    </Row>
   )
 }
 ```
@@ -123,7 +145,19 @@ constructor(props) {
   super(props);
 
   this.state = {
-    plainOptions:['Apple', 'Pear', 'Orange'],
+    //plainOptions:['Apple', 'Pear', 'Orange'],
+    plainOptions:[
+      {
+        color:"white",
+        value:'Apple'
+      }, {
+        color:"orange",
+        value:'Pear'
+      }, {
+        color:"green",
+        value:'Orange'
+      }
+    ],
   }
 }
 render() {
@@ -138,8 +172,10 @@ render() {
       <Buttons size="mini" onClick={()=>{
         console.log(this.state.plainOptions)
         let addTag = this.state.plainOptions
-        addTag.push("test")
-        console.log("addTag::",addTag)
+        addTag.push({
+          color:"green",
+          value:'test'
+        })
         this.setState({plainOptions:addTag})
       }}>Set</Buttons>
     </TagGroup>
@@ -225,8 +261,8 @@ render() {
 
 <!--DemoStart--> 
 ```js
-log(e){
-    console.log("--->",e) 
+log(e,vlue){
+    console.log("--->",vlue) 
 }
 render() {
   return (
@@ -247,120 +283,6 @@ render() {
 ```
 <!--End-->
 
-
-### 动态编辑标签
-
-<!--DemoStart--> 
-```js
-constructor(props) {
-  super(props);
-
-  this.state = {
-    dynamicTags: ['标签一', '标签二', '标签三'],
-    inputVisible: false,
-    inputValue: ''
-  }
-}
-
-onKeyUp(e) {
-  if (e.keyCode&&e.keyCode === 13) {
-    this.handleInputConfirm();
-  }
-}
-
-onChange(e) {
-  this.setState({ inputValue: e.target.value });
-}
-
-handleClose(index) {
-  this.state.dynamicTags.splice(index, 1);
-  this.forceUpdate();
-}
-
-showInput() {
-  this.setState({ inputVisible: true }, () => {
-    this.refs.saveTagInput.focus();
-  });
-}
-
-handleInputConfirm() {
-  let inputValue = this.state.inputValue;
-
-  if (inputValue) {
-    this.state.dynamicTags.push(inputValue);
-  }
-
-  this.state.inputVisible = false;
-  this.state.inputValue = '';
-
-  this.forceUpdate();
-}
-
-render() {
-  const styl = {display:"inline-block",width:50}
-  return (
-    <div>
-      {
-        this.state.dynamicTags.map((tag, index) => {
-          return (
-            <Tag
-              key={Math.random()}
-              onClose={this.handleClose.bind(this, index)}>{tag}</Tag>
-          )
-        })
-      }
-      {
-        this.state.inputVisible ? (
-          <Input
-            className="input-new-tag"
-            value={this.state.inputValue}
-            ref="saveTagInput"
-            size="mini"
-            style={styl}
-            onChange={this.onChange.bind(this)}
-            onKeyUp={this.onKeyUp.bind(this)}
-            onBlur={this.handleInputConfirm.bind(this)}
-          />
-        ) : <Buttons size="mini" onClick={this.showInput.bind(this)}>+ New Tag</Buttons>
-      }
-    </div>
-  )
-}
-```
-<!--End-->
-
-### 可选择
-
-<!--DemoStart--> 
-```js
-constructor(props) {
-  super(props);
-
-  this.state = {
-    checked1:true,
-    checked2:true,
-    checked3:true,
-  }
-  this.handleClick = this.handleClick.bind(this);
-}
-handleClick(num){
-  console.log("num::",num,this.state[`checked${num}`])
-  this.setState({
-    [`checked${num}`]:!this.state[`checked${num}`]
-  })
-}
-render() {
-  return (
-    <div>
-        <Tag color="white" checked={this.state.checked1} onClick={()=>this.handleClick('1')}>white</Tag>
-        <Tag color="orange" checked={this.state.checked2} onClick={()=>this.handleClick('2')}>white</Tag>
-        <Tag color="green" checked={this.state.checked3} onClick={()=>this.handleClick('3')}>white</Tag>
-    </div>
-  )
-}
-```
-<!--End-->
-
 ## API
 
 ### Tag 
@@ -370,21 +292,20 @@ render() {
 | color | 支持颜色自定义，也提供选择`white`、 `pink`、 `red`、 `yellow`、 `orange`、 `cyan`、 `green`、 `blue`、 `purple` | string | `white` |
 | ~~type~~⚠️ | 废弃直接在color里面填写后面面值，`white`、`red`、`orange`、`green`、`blue` | string | - |
 | onClose | 关闭时的回调，设置关闭事件，标签是否显示关闭按钮 | (e) => void | - |
-| checked | 选中效果，紧紧是效果而已 | Boolean | - |
-
 
 ### Tag.Group
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
 | options | 设置每个标签的值例如：`['Apple', 'Pear', 'Orange']` | Array | - |
-| checked | 标签组动可选择 | Boolean | `false` |
+| checkedValues | 表示标签组动可选择，数组值为默认选中值| Array | - |
 | onChange | 标签组发生变化触发事件 | Function(e:Event,options:Array) | - |
+| checked | 标签组动可选择 | Boolean | `false` |
+| isRadio | 标签组动`单选`，需要配合`checked`使用 | Boolean | `false` |
 
 ### Tag.Group options
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
 | color | 定义颜色 | String | - |
-| checked | `Tag.Group` 的属性`checked`为 `true`，表示标签组动可选择，`option`这里是默认选中状态 | Boolean | - |
 | value | 标签上面显示的文字 | String | - |

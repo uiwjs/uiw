@@ -3,30 +3,44 @@ import {Component, PropTypes} from '../utils/';
 import Tag from './Tag';
 
 export default class CheckedTag extends Component {
-  state = { checked: false || this.props.checked };
+  state = { 
+    checked: false || this.props.checked,
+    checkedValue:[]
+  }
+  componentDidMount() {
+    let {checkedValues,isRadio} = this.parent().props;
+    let {checkedValue} = this.parent().state;
+    this.setState({
+      checkedValue:checkedValues
+    })
+  }
   parent(){
     return this.context.component;
   }
   handleChange = (checked,e) => {
-    let {options,onChange} = this.parent().props;
-    if(options){
-      options[this.props.idx].checked = !this.state.checked;
+    const {children} = this.props;
+    let {options,checkedValues,onChange,isRadio} = this.parent().props;
+    let {checkedValue} = this.state;
+
+    if(options&&checked){
+      if(isRadio){
+        checkedValue = []
+        checkedValue.push(children)
+        checkedValues = [children]
+      }else{
+        console.log("children::",children)
+        let idx = checkedValue.indexOf(children);
+        idx >-1 ? checkedValue.splice(idx, 1) : checkedValue.push(children);
+      }
       this.setState({ checked:!this.state.checked },()=>{
-        let values = []
-        options.map((item,idx)=>{
-          if(item.checked){
-            values.push(item.value);
-          }
-        })
         //父组件的props.onChange
-        onChange&&onChange(e,values)
+        onChange&&onChange(e,checkedValue)
       });
     }
   }
   render() {
     const {...props} = this.props;
-    delete props.checkedTags;
-    delete props.idx;
+    // delete props.isRadio;
     return <Tag {...props} checked={this.state.checked} onClick={this.handleChange} >{this.props.children}</Tag>;
   }
 }

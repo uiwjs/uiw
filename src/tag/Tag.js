@@ -66,6 +66,7 @@ export default class Tag extends Component {
 Tag.propTypes = {
   prefixCls: PropTypes.string,
   color: PropTypes.string,
+  checked: PropTypes.bool,
   onClose: PropTypes.func,
 };
 Tag.defaultProps = {

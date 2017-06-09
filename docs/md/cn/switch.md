@@ -39,7 +39,6 @@ Switch 失效状态。
 
 <!--DemoStart--> 
 ```js
-
 constructor(props){
   super(props);
   this.state = {

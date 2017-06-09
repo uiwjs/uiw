@@ -10,11 +10,12 @@ export default class FormItem extends Component {
   constructor(props) {
     super(props);
     this.state={
-      error: '', // 错误信息
-      help: '',  // 帮助信息
+      error: '',        // 错误信息
+      help: '',         // 帮助信息
       isRequired:false, // 是否 【必填】
       validating:false, // 是否验证成功
       valid: false,     // 是否有效
+      initialValue:null
     }
   }
 
@@ -25,14 +26,19 @@ export default class FormItem extends Component {
     if(field){
       const value = this.getInitialValue()
       this.parent().addField(this);
+      // 重置值
       this.initialValue = value;
+      if(this.props.field=="category_radio"){
+        console.log("DidMout===>:",this.props.field,value)
+      }
       // 是否必填处理
       let rules = this.getRules();
       if (rules&&rules.length) rules.every(rule => {
           if(rule&&rule.required) isRequired = true;
       });
       this.setState({
-        isRequired,help
+        isRequired,help,
+        initialValue:value
       })
     }
   }
@@ -46,7 +52,7 @@ export default class FormItem extends Component {
     return [].concat( this.props.rules || formRules?formRules[this.props.field]:[] || [] );
   }
 
-  resetField(): void {
+  resetField() {
     let { valid, error } = this.state;
 
     valid = true;
@@ -56,7 +62,13 @@ export default class FormItem extends Component {
 
     let val =  this.fieldValue()
     let model = this.parent().props.model;
-    if (Array.isArray(val) && val.length > 0) {
+
+    if(this.props.field==("category_radio" || "category")){
+      console.log(`val--reset1:${this.props.field}:`,this.state.initialValue,val )
+      console.log(`val--reset2:${this.props.field}:`,this )
+      console.log(`val--reset3:${this.props.field}:`,this.initialValue )
+    }
+    if (Array.isArray(val)) {
       model[this.props.field] = this.initialValue || [];
     }else{
       model[this.props.field] = this.initialValue
