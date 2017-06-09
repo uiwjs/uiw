@@ -19,7 +19,7 @@ constructor(props) {
     rules:{
       name:[
         { required: true, message: '请输入活动名称'},
-        { min: 5, message: '长度不够！'}
+        { min: 4, message: '长度不够！'}
       ],
       password:[
         { required: true, message: '不能为空！'},
@@ -29,13 +29,21 @@ constructor(props) {
       email:[
         {type: 'email', message: '输入的不是E-mail!'}
       ],
-      carte:[
-          { required: true, message: '不能为空！'},
-          { min: 1, message: '至少选择一个选项'},
-      ],
       category:[
-          { required: true, message: '不能为空！'},
-          { min: 1, message: '至少选择一个选项'},
+        {required: true, message: '不能为空！'}
+      ],
+      carte:[
+        {required: true, message: '不能为空！'},
+        {
+          // 自定义校验规则 callback() 必须调用
+          validator:(rule, value,callback)=>{
+            if(value.length > 1){
+              callback();
+            }else{
+              callback(new Error("至少选两个选项"));
+            }
+          }
+        }
       ]
     },
     form: {
