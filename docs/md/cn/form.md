@@ -30,7 +30,7 @@ constructor(props) {
         rules:[
           { required: true, message: '不能为空！'},
           { min: 6, message: '长度不够！'},
-          //{ max: 14, message: '长度超出！'}
+          { max: 14, message: '长度超出！'}
         ]
       },
       email: {
@@ -188,13 +188,17 @@ constructor(props) {
       },
       email: {
         value:"",
+        rules:[
+          {type: 'email', message: '输入的不是E-mail!'}
+        ]
       },
     }
   };
 }
 
-onChange(key, value) {
+onChange(key, e, value) {
   const {form} = this.state;
+  console.log("password::",key,value)
   form[key].value = value;
   this.setState({form});
 }
