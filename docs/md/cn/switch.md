@@ -18,6 +18,7 @@ render() {
     <div>
       <Switch checked={this.state.checked} 
         style={styl} 
+        size="small"
         onChange={(e,checked)=>{
         console.log(`${checked?"选中":'没有选中'}`)
       }}/>
@@ -26,7 +27,7 @@ render() {
         this.setState({
           checked:!this.state.checked
         })
-      }}>打开</Buttons>
+      }}>{this.state.checked?"打开":"关闭"}</Buttons>
     </div>
   )
 }

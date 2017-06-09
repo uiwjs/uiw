@@ -9,10 +9,10 @@
 render() {
   return (
     <div>
-        <Buttons>Normal</Buttons> &nbsp;
-        <Buttons disabled>Disabled</Buttons> &nbsp;
-        <Buttons type="primary" active>Buttons</Buttons> &nbsp;
-        <Buttons type="primary" size="small">more <Icon type="arrow-down" /></Buttons> &nbsp;
+        <Buttons>Normal</Buttons>
+        <Buttons disabled>Disabled</Buttons>
+        <Buttons type="primary" active>Buttons</Buttons>
+        <Buttons type="primary" size="small">more <Icon type="arrow-down" /></Buttons>
     </div>
   )
 }
@@ -106,6 +106,7 @@ render() {
           <Buttons disabled>Disabled</Buttons>
           <Buttons>Right</Buttons>
         </ButtonsGroup>
+        
         &nbsp;&nbsp;
 
         <ButtonsGroup vertical>
@@ -154,34 +155,34 @@ render() {
             this.setState({loading:true})
         }}>
           点击Loading
-        </Buttons> &nbsp;
+        </Buttons>
         <Buttons size="small" type="success" loading={this.state.loading2} 
           onClick={()=>{
             console.log("loading2:",this.state.loading2)
             this.setState({loading2:true})
         }}>
           点击Loading
-        </Buttons> &nbsp;
+        </Buttons>
         <Buttons size="small" type="info" loading={this.state.loading5} 
           onClick={()=>{
             console.log("loading5:",this.state.loading5)
         }}>
           点击Loading
-        </Buttons> &nbsp;
+        </Buttons>
         <Buttons size="default" type="success" loading={this.state.loading3} 
           onClick={()=>{
             console.log("loading3:",this.state.loading3)
             this.setState({loading3:true})
         }}>
           点击Loading
-        </Buttons> &nbsp;
+        </Buttons>
         <Buttons size="large" type="danger" loading={this.state.loading4} 
           onClick={()=>{
             console.log("loading4:",this.state.loading4)
             this.setState({loading4:true})
         }}>
           点击Loading
-        </Buttons> &nbsp;
+        </Buttons>
     </div>
   )
 }
@@ -196,12 +197,12 @@ render() {
   const ButtonsGroup = Buttons.Group;
   return (
     <div>
-        <Buttons size="small" type="default">  默认样式 </Buttons>&nbsp;
-        <Buttons size="small" type="primary"> （首选项）Primary </Buttons>&nbsp;
-        <Buttons size="small" type="success"> （成功）Success </Buttons>&nbsp;
-        <Buttons size="small" type="info"> （一般信息）Info </Buttons>&nbsp;
-        <Buttons size="small" type="warn"> （警告）Warning </Buttons>&nbsp;
-        <Buttons size="small" type="danger"> （危险）Danger </Buttons>&nbsp;
+        <Buttons size="small" type="default">  默认样式 </Buttons>
+        <Buttons size="small" type="primary"> （首选项）Primary </Buttons>
+        <Buttons size="small" type="success"> （成功）Success </Buttons>
+        <Buttons size="small" type="info"> （一般信息）Info </Buttons>
+        <Buttons size="small" type="warn"> （警告）Warning </Buttons>
+        <Buttons size="small" type="danger"> （危险）Danger </Buttons>
     </div>
   )
 }
@@ -216,12 +217,12 @@ render() {
   const ButtonsGroup = Buttons.Group;
   return (
     <div>
-        <Buttons size="small" active type="default">  默认样式 </Buttons>&nbsp;
-        <Buttons size="small" active type="primary"> （首选项）Primary </Buttons>&nbsp;
-        <Buttons size="small" active type="success"> （成功）Success </Buttons>&nbsp;
-        <Buttons size="small" active type="info"> （一般信息）Info </Buttons>&nbsp;
-        <Buttons size="small" active type="warn"> （警告）Warning </Buttons>&nbsp;
-        <Buttons size="small" active type="danger"> （危险）Danger </Buttons>&nbsp;
+        <Buttons size="small" active type="default">  默认样式 </Buttons>
+        <Buttons size="small" active type="primary"> （首选项）Primary </Buttons>
+        <Buttons size="small" active type="success"> （成功）Success </Buttons>
+        <Buttons size="small" active type="info"> （一般信息）Info </Buttons>
+        <Buttons size="small" active type="warn"> （警告）Warning </Buttons>
+        <Buttons size="small" active type="danger"> （危险）Danger </Buttons>
     </div>
   )
 }
@@ -236,10 +237,10 @@ render() {
   const ButtonsGroup = Buttons.Group;
   return (
     <div>
-        <Buttons size="mini" type="default"><Icon type="arrow-down" /> mini</Buttons> &nbsp;
-        <Buttons size="small" type="primary"><Icon type="arrow-down" /> small</Buttons> &nbsp;
-        <Buttons size="default" type="success"><Icon type="arrow-down" /> default</Buttons> &nbsp;
-        <Buttons size="large" type="info"><Icon type="arrow-down" /> large</Buttons> &nbsp;
+        <Buttons size="mini" type="default"><Icon type="arrow-down" /> mini</Buttons>
+        <Buttons size="small" type="primary"><Icon type="arrow-down" /> small</Buttons>
+        <Buttons size="default" type="success"><Icon type="arrow-down" /> default</Buttons>
+        <Buttons size="large" type="info"><Icon type="arrow-down" /> large</Buttons>
     </div>
   )
 }

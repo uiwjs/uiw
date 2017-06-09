@@ -10,9 +10,9 @@ constructor(props) {
   super(props);
   this.state = {
     tagOptions:[
-        {checked:true, color:"purple", value:'苹果'},
-        {checked:true, color:"orange", value:'橘子'},
-        {checked:false,color:"green", value:'香蕉'}
+        {color:"purple", value:'苹果'},
+        {color:"orange", value:'橘子'},
+        {color:"green", value:'香蕉'}
     ],
     checkboxOption:['四川菜', '湖北菜', '湘菜', '粤菜'],
 
@@ -123,7 +123,7 @@ render() {
           onChange={this.onChange.bind(this, 'password')} />
       </FormItem>
       <FormItem label="是否在线" field="online" {...formItemLayout} >
-        <Switch checked={form.online} 
+        <Switch checked={form.online} size="small"
          onChange={this.onChange.bind(this, 'online')}/>
       </FormItem>
       <FormItem label="邮箱" field="email" {...formItemLayout} >
@@ -136,6 +136,7 @@ render() {
         <TagGroup 
           options={this.state.tagOptions}
           checked={true}
+          checkedValues={form.category} 
           onChange={this.onChange.bind(this, 'category')}
         />
       </FormItem>
