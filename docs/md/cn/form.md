@@ -106,7 +106,7 @@ render() {
           placeholder="请输入用户名"
           onChange={this.onChange.bind(this, 'name')} />
       </FormItem>
-      <FormItem label="密码" field="password" {...formItemLayout} >
+      <FormItem label="密码" field="password" help="这里显示对密码的帮助，比如只能英文字母"  {...formItemLayout} >
         <Input 
           // 注意字段 password
           value={form.password} 
@@ -288,7 +288,6 @@ render() {
 |--------- |-------- |--------- |-------- |
 | value | 表单数据对象 | Object、String、Array | - |
 | rules | 校验规则，参考下方文档 | Object[] | - |
-| help | 提示信息，如不设置，则会根据校验规则自动生成 | String、ReactNode | - |
 
 
 ### Form.Item 
@@ -299,6 +298,7 @@ render() {
 | field | `field` 域的名称 | String、ReactNode | - |
 | labelCol | `label` 标签布局，同 `<Col>` 组件，设置 `span` `offset` 值，如 `{span: 3, offset: 12}` 或 `sm: {span: 3, offset: 12}` | Object | - |
 | wrapperCol | 需要为输入控件设置布局样式时，使用该属性，用法同 `labelCol` | Object | - |
+| help | 提示信息，如不设置，则会根据校验规则自动生成 | String、ReactNode | - |
 
 ### 校验规则
 
