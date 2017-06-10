@@ -1,6 +1,9 @@
 @import "../../style/variables.less";
 @import "../../style/mixins/index.less";
 
+.w-input{
+  position: relative;
+}
 .w-input-inner{
   // iOS 中使用appearance修改输入框样式
   appearance: none;
@@ -62,7 +65,6 @@
 
 
 .w-input-icon{
-  position: relative;
   input {
     line-height: 30px;
   }
@@ -116,7 +118,7 @@
 }
 .w-input-mini {
   .w-input-inner{
-    height: 22px;
+    height: 20px;
     padding: 5px;
   }
   [class^="w-icon-"]{

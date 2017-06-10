@@ -45,7 +45,6 @@ export default class Form extends Component {
 
   // 重置字段方法
   resetFields(callback){
-    console.log("this.state.fields::",this.state.fields)
     this.state.fields.forEach(field => {
       field.resetField();
     });
@@ -53,13 +52,12 @@ export default class Form extends Component {
   }
 
   render() {
-    const {prefixCls,...other} = this.props;
-
-    delete other.model;
-    delete other.rules;
+    const {prefixCls,layout,model,rules,...other} = this.props;
 
     return (
-      <form {...other} className={this.classNames(`${prefixCls}`)}>
+      <form {...other} className={this.classNames(`${prefixCls}`,{
+        [`${prefixCls}-${layout}`]:layout
+      })}>
         {this.props.children}
       </form>
     );
@@ -72,9 +70,12 @@ Form.childContextTypes = {
 
 Form.propTypes = {
   prefixCls: PropTypes.string,
+  layout: PropTypes.oneOf(['horizontal', 'vertical', 'inline']),
   model: PropTypes.object,
+  rules: PropTypes.object,
 }
 
 Form.defaultProps = {
   prefixCls: 'w-form',
+  layout: 'horizontal',
 }

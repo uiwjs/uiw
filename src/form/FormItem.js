@@ -115,6 +115,18 @@ export default class FormItem extends Component {
     this.validate('change');
   }
 
+  layoutFilter(col){
+    const {layout} = this.parent().props;
+    console.log("layout::",layout)
+
+    if(layout == "vertical"){
+      return {span:0}
+    }
+    if(layout == "inline"){
+      return {span:0}
+    }
+    return col
+  }
 
   renderLabel(){
     const {label,labelCol,prefixCls} = this.props;
@@ -123,8 +135,9 @@ export default class FormItem extends Component {
       labelCol && labelCol.className,
     );
     let labelChildren = label;
+
     return (
-      <Col {...labelCol} className={labelColClassName}>
+      <Col {...this.layoutFilter(labelCol)} className={labelColClassName}>
         {label&&<label className={`${prefixCls}-field`}>{label}</label>}
       </Col>
     )
@@ -138,7 +151,7 @@ export default class FormItem extends Component {
       wrapperCol && wrapperCol.className,
     )
     return (
-      <Col {...wrapperCol} 
+      <Col {...this.layoutFilter(wrapperCol)} 
         className={className}
         onBlur={this.onFieldBlur.bind(this)} 
         onChange={this.onFieldChange.bind(this)}

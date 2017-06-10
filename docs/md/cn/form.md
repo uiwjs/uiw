@@ -2,6 +2,7 @@
 
 由输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据
 
+
 ### 表单集合
 
 <!--DemoStart--> 
@@ -288,6 +289,141 @@ render() {
 ```
 <!--End-->
 
+
+### 表单布局
+
+表单有三种布局，layout = `horizontal`横、`vertical`竖、`inline`行内；
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    plainOptions:[
+        {color:"purple", value:'horizontal'},
+        {color:"orange", value:'vertical'},
+        {color:"green", value:'inline'}
+    ],
+    formLayout:'vertical',
+    form: {
+      name:'wui',
+      password: '',
+      email: '',
+    },
+    rules:{
+      name:[
+        { required: true, message: '请输入活动名称'},
+        { min: 5, message: '长度不够！'}
+      ],
+      password:[
+        { required: true, message: '不能为空！'},
+        { min: 6, message: '长度不够！'},
+        { max: 14, message: '长度超出！'}
+      ],
+      email:[
+        {type: 'email', message: '输入的不是E-mail!'}
+      ]
+    }
+  }
+}
+
+onChange(key,e, value) {
+  const {form} = this.state;
+  form[key] = value;
+  this.setState({form});
+}
+
+handleSubmit(e) {
+  e.preventDefault();
+  this.refs.form.validate((valid,dataValues) => {
+    console.log("返回内容:",dataValues,valid)
+    if (valid) {
+      alert('submit!');
+    } else {
+      console.log('error submit!!');
+      return false;
+    }
+  });
+}
+
+handleReset(e) {
+  e.preventDefault();
+  this.refs.form.resetFields((model)=>{
+    this.setState({form:model})
+  });
+}
+
+render() {
+  const {form,rules,formLayout} = this.state;
+  const FormItem = Form.Item;
+  const TagGroup = Tag.Group;
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 4 },
+      className:"colspanlab"
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 14 },
+      className:"colspan"
+    },
+  };
+  const wrapperCol = {
+    wrapperCol: {
+      xs: {span: 24, offset: 0, },
+      sm: {span: 14, offset: 4, },
+    },
+  }
+  return (
+    <div>
+      <TagGroup 
+        style={{marginBottom:25}}
+        options={this.state.plainOptions}
+        checked={true}
+        isRadio={true}
+        checkedValues={[this.state.formLayout]} 
+        onChange={(e,checkedValues)=>{
+          console.log("checkedValues[0]::",checkedValues[0])
+          this.setState({formLayout:checkedValues[0]})
+        }}
+      />
+      <Form 
+        layout={formLayout} 
+        style={{width:formLayout == "inline"?"auto":500}} ref="form" model={form} rules={rules}>
+        <FormItem label={<span>用户名</span>} field="name" {...formItemLayout} >
+          <Input 
+            value={form.name} 
+            preIcon="user"
+            placeholder="请输入用户名"
+            onChange={this.onChange.bind(this, 'name')} />
+        </FormItem>
+        <FormItem label="密码" field="password" {...formItemLayout} >
+          <Input 
+            // 注意字段 password
+            value={form.password} 
+            preIcon="unlock"
+            type="password"
+            placeholder="请输入密码"
+            onChange={this.onChange.bind(this, 'password')} />
+        </FormItem>
+        <FormItem label="邮箱" field="email" {...formItemLayout} >
+          <Input 
+            value={form.email}
+            placeholder="请输入邮箱"
+            onChange={this.onChange.bind(this, 'email')} />
+        </FormItem>
+        <FormItem {...wrapperCol}>
+          <Buttons size="small" type="primary" onClick={this.handleSubmit.bind(this)}>提交</Buttons>
+          <Buttons size="small" onClick={this.handleReset.bind(this)}>重置</Buttons>
+        </FormItem>
+      </Form>
+    </div>
+  )
+}
+```
+<!--End-->
+
 ## API
 
 ### Form
@@ -296,6 +432,7 @@ render() {
 |--------- |-------- |--------- |-------- |
 | ref | React方法，提供Form组件内部方法调用 | String | - |
 | model | 表单数据对象，以及验证规则 | Object | - |
+| layout | 表单布局 `horizontal` `vertical` `inline` | String | `horizontal` |
 
 ### Form refs
 
