@@ -5,13 +5,18 @@
 ### 基础用法
 
 <!--DemoStart--> 
+这里设置了字符串长度为 `length=5`
 ```js
+log(e,value){
+  console.log(`value = ${value}`)
+}
 render() {
   const {Row,Col} = Layout;
   return (
     <Row>
       <Col xs="8" sm="8" md="8" xs="24">
-        <Input placeholder="请输入内容" />
+        <Input length="5" placeholder="请输入内容" 
+          onChange={this.log.bind(this)}/>
       </Col>
     </Row>
   )
@@ -169,6 +174,7 @@ Input 的其他属性和 React 自带的 [input](https://facebook.github.io/reac
 |--------- |-------- |--------- |-------- |
 | type | 声明 input 类型，同原生 input 标签的 type 属性。另外提供 `type="textarea"`。 | String | `text` |
 | size | 指定输入框的尺寸，除了默认的大小外，还提供了 `large`、`small` 和 `mini` 三种尺寸。 | String | - |
+| length | 输入的最大长度 | Number | Infinity |
 | autoFocus | 当页面加载时，文本区域自动获得焦点。`HTML5` 中的新属性。  | Boolean | `false` |
 | preIcon | 输入框`前`面放置图标  | String、ReactNode | - |
 | icon | 输入框`后`面放置图标  | String、ReactNode | - |

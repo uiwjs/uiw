@@ -25,11 +25,14 @@ export default class Input extends Component {
   }
 
   handleChange(e){
-    const { onChange } = this.props;
-    this.setState({
-      value:e.target.value
-    })
-    onChange&&onChange(e,e.target.value)
+    const { onChange,length } = this.props;
+    let val = e.target.value
+    if(val.length>length){
+      val=val.slice(0,length); 
+      e.target.value = val;
+    }
+    this.state.value = val;
+    onChange&&onChange(e,val)
   }
   handleClick(...attr){
     if(this.props[attr[0]]){
@@ -38,7 +41,7 @@ export default class Input extends Component {
   }
 
   render() {
-    const {prefixCls,className,style,type,size,preIcon,icon,onIconClick,onPreIconClick,...other} = this.props;
+    const {prefixCls,className,style,type,size,length,preIcon,icon,onIconClick,onPreIconClick,...other} = this.props;
     const cls = this.classNames(`${prefixCls}`,className,{
       'textarea':type === 'textarea',
       'disabled':this.props.disabled
@@ -46,8 +49,6 @@ export default class Input extends Component {
 
     delete other.onSearch;
     delete other.onChange;
-
-
 
     if(type === 'textarea') return (
       <textarea 
@@ -86,6 +87,7 @@ Input.propTypes = {
   prefixCls: PropTypes.string,
   type: PropTypes.string,
   size: PropTypes.oneOf(['large', 'small', 'mini']),
+  length: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   preIcon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   onSearch: PropTypes.func,
