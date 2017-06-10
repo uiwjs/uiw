@@ -9,7 +9,8 @@ export default class TagGroup extends Component {
   constructor(props){
     super(props)
     this.state = {
-        dynamicTags:props.options
+        dynamicTags:props.options,
+        checkedValues:props.checkedValues
     }
   }
   // 不要删除
@@ -36,7 +37,7 @@ export default class TagGroup extends Component {
     })
   }
   render() {
-    const { prefixCls, children, options, isRadio, checkedValues,onChange,checked, className, ...other} = this.props;
+    const { prefixCls, children, options, isRadio, checkedValues, onChange,checked, className, ...other} = this.props;
     const cls = this.classNames({
       [`${prefixCls}`]: true,
       [className]: className

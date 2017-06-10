@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 
 new WebpackDevServer(webpack({
+  devtool: 'source-map',
   devtool: 'eval',
   entry: [
     'webpack-dev-server/client?http://localhost:1987',

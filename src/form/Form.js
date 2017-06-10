@@ -45,6 +45,7 @@ export default class Form extends Component {
 
   // 重置字段方法
   resetFields(callback){
+    console.log("this.state.fields::",this.state.fields)
     this.state.fields.forEach(field => {
       field.resetField();
     });

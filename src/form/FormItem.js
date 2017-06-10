@@ -22,12 +22,11 @@ export default class FormItem extends Component {
   componentDidMount() {
     const { field } = this.props;
     let { isRequired,help } = this.props;
+    let {initialValue} = this.state;
 
     if(field){
       const value = this.getInitialValue()
       this.parent().addField(this);
-      // 重置值
-      this.initialValue = value;
       if(this.props.field=="category_radio"){
         console.log("DidMout===>:",this.props.field,value)
       }
@@ -62,16 +61,10 @@ export default class FormItem extends Component {
 
     let val =  this.fieldValue()
     let model = this.parent().props.model;
-
-    if(this.props.field==("category_radio" || "category")){
-      console.log(`val--reset1:${this.props.field}:`,this.state.initialValue,val )
-      console.log(`val--reset2:${this.props.field}:`,this )
-      console.log(`val--reset3:${this.props.field}:`,this.initialValue )
-    }
     if (Array.isArray(val)) {
-      model[this.props.field] = this.initialValue || [];
+      model[this.props.field] = this.state.initialValue || [];
     }else{
-      model[this.props.field] = this.initialValue
+      model[this.props.field] = this.state.initialValue
     }
   }
 

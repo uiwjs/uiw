@@ -9,12 +9,12 @@
 constructor(props) {
   super(props);
   this.state = {
-    tagOptions:[
+    tagRadioOptions:[
         {color:"purple", value:'保密'},
         {color:"orange", value:'男生'},
         {color:"green", value:'女生'}
     ],
-    tagRadioOptions:[
+    tagOptions:[
         {color:"purple", value:'苹果'},
         {color:"orange", value:'橘子'},
         {color:"green", value:'香蕉'}
@@ -57,8 +57,8 @@ constructor(props) {
       email: "wwww@qq.com",
       online: true,
       carte: ['湖北菜'],
-      category: ["保密"],
-      category_radio: ["香蕉"],
+      category_radio: ["保密"],
+      category: ["香蕉","橘子"],
     }
   };
 }
@@ -85,6 +85,7 @@ handleSubmit(e) {
 
 handleReset(e) {
   e.preventDefault();
+  console.log("--reset22:",this.state.form)
   this.refs.form.resetFields((model)=>{
     this.setState({form:model})
   });
@@ -139,22 +140,21 @@ render() {
           placeholder="请输入邮箱"
           onChange={this.onChange.bind(this, 'email')} />
       </FormItem>
-      <FormItem label="分类单选" field="category" {...formItemLayout} >
-        <TagGroup 
-          options={this.state.tagOptions}
-          checked={true}
-          isRadio={true}
-          checkedValues={form.category} 
-          onChange={this.onChange.bind(this, 'category')}
-        />
-      </FormItem>
-      <FormItem label="分类多选" field="category_radio" {...formItemLayout} >
+      <FormItem label="分类单选" field="category_radio" {...formItemLayout} >
         <TagGroup 
           options={this.state.tagRadioOptions}
           checked={true}
-          //isRadio={true}
+          isRadio={true}
           checkedValues={form.category_radio} 
           onChange={this.onChange.bind(this, 'category_radio')}
+        />
+      </FormItem>
+      <FormItem label="分类多选" field="category" {...formItemLayout} >
+        <TagGroup 
+          options={this.state.tagOptions}
+          checked={true}
+          checkedValues={form.category} 
+          onChange={this.onChange.bind(this, 'category')}
         />
       </FormItem>
       <FormItem label="菜肴" field="carte" {...formItemLayout} >
@@ -177,10 +177,7 @@ render() {
 ```
 <!--End-->
 
-
-
 ### 基础用法
-
 
 <!--DemoStart--> 
 ```js
