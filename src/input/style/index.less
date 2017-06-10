@@ -19,6 +19,7 @@
   line-height: 1;
   outline: 0;
   padding: 3px 10px;
+  display: inline-block;
   transition: border-color @transition-time @transition-timing-functio;
   &::placeholder{
     color:#ccc;
@@ -80,10 +81,14 @@
     height: 100%;
     text-align: center;
     vertical-align: middle;
-    margin-top: 1px;
   }
   &.w-input-icon-left ~ .w-input-inner{
     padding-left: 30px;
+  }
+  i[class^="w-icon-"]:before{
+
+    top: 2px;
+    position: relative;
   }
 }
 
@@ -96,10 +101,6 @@
 .w-input-icon-right{
   right: 0;
   top: 0;
-  position: absolute;
-  width: 30px;
-  height: 100%;
-  text-align: center;
 }
 
 
@@ -108,7 +109,8 @@
     height: 36px;
   }
   [class^="w-icon-"]{
-    width: 36px;
+    width: 100%;
+    font-size: 16px;
   }
   [class^="w-icon-"] ~ .w-input-inner{
     padding-left: 36px;
@@ -119,7 +121,7 @@
     height: 26px;
   }
   [class^="w-icon-"]{
-    width: 26px;
+    width: 100%;
   }
   [class^="w-icon-"] ~ .w-input-inner{
     padding-left: 26px;
@@ -128,10 +130,10 @@
 .w-input-mini {
   .w-input-inner{
     height: 20px;
-    padding: 5px;
+    padding: 5px 23px;
   }
   [class^="w-icon-"]{
-    width: 22px;
+    width: 100%;
   }
   [class^="w-icon-"] ~ .w-input-inner{
     padding-left: 22px;

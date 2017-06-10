@@ -31,6 +31,7 @@ export default class Input extends Component {
       val=val.slice(0,length); 
       e.target.value = val;
     }
+    console.log("length::",val,length)
     this.state.value = val;
     onChange&&onChange(e,val)
   }
@@ -42,7 +43,11 @@ export default class Input extends Component {
 
   renderIcon(type){
     const {prefixCls,preIcon,icon,onIconClick,onPreIconClick} = this.props;
-    let icons = type === 'icon' ? icon: preIcon;
+    let icons;
+    
+    if(type === 'icon' && typeof icon == 'string') icons = icon;
+    if(type === 'preIcon' && typeof preIcon == 'string') icons = preIcon;
+
     return (
       <div className={this.classNames({
         [`${prefixCls}-icon-left`]:type === 'preIcon' &&preIcon,
@@ -50,7 +55,7 @@ export default class Input extends Component {
         [`event`]: type === 'preIcon' && onPreIconClick || type === 'icon' && onIconClick
       })}>
       {
-        typeof preIcon == 'string' || typeof icon == 'string' 
+        typeof preIcon == 'string' && icons || typeof icon == 'string' && icons
         ? <Icon type={icons}  onClick={this.handleClick.bind(this, type === 'icon' ? 'onIconClick' : 'onPreIconClick')}/> 
         : (type == 'icon'?icon:preIcon)
       }
@@ -78,7 +83,6 @@ export default class Input extends Component {
         >
       </textarea>
     );
-
 
     return (
       <div style={style} className={this.classNames(cls,{

@@ -18,6 +18,7 @@ module.exports = {
     'icon': 'Icon',
     'form': 'Form',
     'input': 'Input',
+    'input-number': 'Input Number',
   },
   category:{
     'Form':"Form",

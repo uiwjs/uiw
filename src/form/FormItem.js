@@ -117,8 +117,6 @@ export default class FormItem extends Component {
 
   layoutFilter(col){
     const {layout} = this.parent().props;
-    console.log("layout::",layout)
-
     if(layout == "vertical"){
       return {span:0}
     }

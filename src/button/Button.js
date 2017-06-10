@@ -11,7 +11,7 @@ export default class Button extends Component {
       case 'error': types='danger';break;
       default:      types = type;  break;
     }
-    const cls = this.classNames(prefixCls,{
+    const cls = this.classNames(prefixCls,'w-transition-base',{
         // [`${prefixCls}-default`]: size === 'default',         //（默认尺寸）Default button
         [`${prefixCls}-size-${size}`]: size,
         [`${prefixCls}-${types}`]: types,

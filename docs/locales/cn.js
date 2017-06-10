@@ -18,6 +18,7 @@ module.exports = {
     'icon': 'Icon 图标',
     'form': 'Form 表单',
     'input': 'Input 输入框',
+    'input-number': 'Input Number 数字输入框',
   },
   category:{
     'Form':"表单",
