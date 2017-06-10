@@ -259,6 +259,7 @@ render() {
       <FormItem label={<span>用户名</span>} field="name" {...formItemLayout} >
         <Input 
           value={form.name} 
+          preIcon="user"
           placeholder="请输入用户名"
           onChange={this.onChange.bind(this, 'name')} />
       </FormItem>
@@ -266,6 +267,7 @@ render() {
         <Input 
           // 注意字段 password
           value={form.password} 
+          preIcon="unlock"
           type="password"
           placeholder="请输入密码"
           onChange={this.onChange.bind(this, 'password')} />
