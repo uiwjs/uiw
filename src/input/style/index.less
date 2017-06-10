@@ -38,6 +38,12 @@
   &:disabled{
     cursor: @cursor-disabled;
   }
+  &.w-input-p-left{
+    padding-left: 24px;
+  }
+  &.w-input-p-right{
+    padding-right: 24px;
+  }
 }
 
 
@@ -68,29 +74,32 @@
   input {
     line-height: 30px;
   }
-  [class^="w-icon-"]{
+  [class^="w-input-icon-"]{
     position: absolute;
     width: 30px;
     height: 100%;
     text-align: center;
-    &:first-child{
-      left: 0;
-    }
-    &:last-child{
-      right: 0;
-    }
+    vertical-align: middle;
+    margin-top: 1px;
   }
-  [class^="w-icon-"] ~ .w-input-inner{
+  &.w-input-icon-left ~ .w-input-inner{
     padding-left: 30px;
   }
 }
 
-.w-input-icon-a-right [class^="w-icon-"]:last-child,
-.w-input-icon-a-left [class^="w-icon-"]:first-child{
+.w-input-icon .event{
   cursor: pointer;
   &:hover{
     color:#0fa120;
   }
+}
+.w-input-icon-right{
+  right: 0;
+  top: 0;
+  position: absolute;
+  width: 30px;
+  height: 100%;
+  text-align: center;
 }
 
 

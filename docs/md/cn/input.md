@@ -145,13 +145,16 @@ render() {
     <Row gutter="20">
       <Col xs="8" sm="8" md="8" xs="24">
         <Input preIcon="upload" placeholder="请输入内容" 
-          onPreIconClick={(value)=>{
+          onPreIconClick={(e,value)=>{
             Message.info(`您点击了上传图标。输入框内容：${value?value:"空"}`)
           }}/>
       </Col>
       <Col xs="8" sm="8" md="8" xs="24">
-        <Input icon="search" placeholder="请输入内容" 
-          onIconClick={(value)=>{
+        <Input 
+          preIcon="user"
+          icon="search" 
+          placeholder="请输入内容" 
+          onIconClick={(e,value)=>{
             Message.info(`您点击了搜索图标。输入框内容：${value?value:"空"}`)
           }} />
       </Col>

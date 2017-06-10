@@ -6,7 +6,7 @@ export default class Input extends Component {
   constructor(props){
     super(props);
     this.state = {
-      value:""
+      value:props.value
     }
   }
   focus(){
@@ -34,12 +34,29 @@ export default class Input extends Component {
     this.state.value = val;
     onChange&&onChange(e,val)
   }
-  handleClick(...attr){
-    if(this.props[attr[0]]){
-      this.props[attr[0]](this.state.value)
+  handleClick(type,e){
+    if(this.props[type]){
+      this.props[type](e,this.state.value)
     }
   }
 
+  renderIcon(type){
+    const {prefixCls,preIcon,icon,onIconClick,onPreIconClick} = this.props;
+    let icons = type === 'icon' ? icon: preIcon;
+    return (
+      <div className={this.classNames({
+        [`${prefixCls}-icon-left`]:type === 'preIcon' &&preIcon,
+        [`${prefixCls}-icon-right`]:type === 'icon' &&icon,
+        [`event`]: type === 'preIcon' && onPreIconClick || type === 'icon' && onIconClick
+      })}>
+      {
+        typeof preIcon == 'string' || typeof icon == 'string' 
+        ? <Icon type={icons}  onClick={this.handleClick.bind(this, type === 'icon' ? 'onIconClick' : 'onPreIconClick')}/> 
+        : (type == 'icon'?icon:preIcon)
+      }
+      </div>
+    )
+  }
   render() {
     const {prefixCls,className,style,type,size,length,preIcon,icon,onIconClick,onPreIconClick,...other} = this.props;
     const cls = this.classNames(`${prefixCls}`,className,{
@@ -61,23 +78,26 @@ export default class Input extends Component {
         >
       </textarea>
     );
+
+
     return (
       <div style={style} className={this.classNames(cls,{
         [`${prefixCls}-${size}`]:size,
         [`${prefixCls}-icon`]:preIcon || icon,
-        [`${prefixCls}-icon-a-left`]:onPreIconClick,
-        [`${prefixCls}-icon-a-right`]:onIconClick,
       })}>
-        {typeof preIcon != 'string' ? preIcon : <Icon type={preIcon} onClick={this.handleClick.bind(this,'onPreIconClick')} />}
+        {preIcon&&this.renderIcon.bind(this)('preIcon')}
+        {icon&&this.renderIcon.bind(this)('icon')}
         <input 
           {...other}
           ref="input"
           type={type}
-          className={`${prefixCls}-inner`}
+          className={this.classNames(`${prefixCls}-inner`,{
+            [`${prefixCls}-p-left`]:preIcon,
+            [`${prefixCls}-p-right`]:icon
+          })}
           onChange={this.handleChange.bind(this)}
           onKeyUp={this.handleKeyUp.bind(this)}
           />
-        {typeof icon != 'string' ? icon : <Icon type={icon}  onClick={this.handleClick.bind(this,'onIconClick')}/>}
       </div>
     );
   }
