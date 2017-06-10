@@ -27,9 +27,6 @@ export default class FormItem extends Component {
     if(field){
       const value = this.getInitialValue()
       this.parent().addField(this);
-      if(this.props.field=="category_radio"){
-        console.log("DidMout===>:",this.props.field,value)
-      }
       // 是否必填处理
       let rules = this.getRules();
       if (rules&&rules.length) rules.every(rule => {
