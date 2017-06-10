@@ -9,18 +9,15 @@
 <!--DemoStart--> 
 简单的Checkboxs，使用`checked`切换选中状态。
 ```js
+log(e,value){
+  console.log(`checked = ${e.target.checked} - ${value}`);
+}
 render() {
   return (
     <div>
-        <Checkbox onChange={(e)=>{
-          console.log(`checked = ${e.target.checked}`);
-        }}>未选中</Checkbox>
-        <Checkbox checked onChange={(e)=>{
-          console.log(`checked = ${e.target.checked}`);
-        }}>选中</Checkbox>
-        <Checkbox indeterminate onChange={(e)=>{
-          console.log(`checked = ${e.target.checked}`);
-        }}>半选中</Checkbox>
+        <Checkbox onChange={this.log.bind(this)}>未选中</Checkbox>
+        <Checkbox onChange={this.log.bind(this)} checked >选中</Checkbox>
+        <Checkbox onChange={this.log.bind(this)} indeterminate >半选中</Checkbox>
     </div>
   )
 }
@@ -34,20 +31,15 @@ render() {
 
 <!--DemoStart-->
 ```js
+log(e,value){
+  console.log(`checked = ${e.target.checked} - ${value}`);
+}
 render() {
   return (
     <div>
-        <Checkbox disabled onChange={(e)=>{
-          console.log(`checked = ${e.target.checked}`);
-        }}>未选中禁用</Checkbox>
-
-        <Checkbox disabled checked onChange={(e)=>{
-          console.log(`checked = ${e.target.checked}`);
-        }}>选中禁用</Checkbox>
-
-        <Checkbox disabled indeterminate onChange={(e)=>{
-          console.log(`checked = ${e.target.checked}`);
-        }}>半选中禁用</Checkbox>
+        <Checkbox disabled onChange={this.log.bind(this)}>未选中禁用</Checkbox>
+        <Checkbox disabled onChange={this.log.bind(this)} checked>选中禁用</Checkbox>
+        <Checkbox disabled onChange={this.log.bind(this)} indeterminate>半选中禁用</Checkbox>
     </div>
   )
 }
@@ -64,23 +56,24 @@ render() {
 ```js
 constructor(props) {
   super(props);
-
   this.state = {
     indeterminate: true
   }
 }
+log(e,value){
+  console.log(`checked = ${e.target.checked} - ${value}`);
+}
+handleChange(){
+  console.log("!this.state.indeterminate::",!this.state.indeterminate)
+  this.setState({
+    indeterminate:!this.state.indeterminate
+  })
+}
 render() {
   return (
     <div>
-      <Checkbox indeterminate={this.state.indeterminate} onChange={(e)=>{
-        console.log(`checked = ${e.target.checked}`);
-      }}>半选中</Checkbox>
-      <Buttons size="mini" onClick={()=>{
-        console.log("!this.state.indeterminate::",!this.state.indeterminate)
-        this.setState({
-          indeterminate:!this.state.indeterminate
-        })
-      }}>切换半选中</Buttons>
+      <Checkbox indeterminate={this.state.indeterminate} onChange={this.log.bind(this)}>半选中</Checkbox>
+      <Buttons size="mini" onClick={this.handleChange.bind(this)}>切换半选中</Buttons>
     </div>
   )
 }
@@ -101,19 +94,17 @@ constructor(props) {
     disabled3: true,
   }
 }
+handleChange(e,value){
+  console.log(`checked = ${e.target.checked} - ${value}`);
+  this.setState({
+    checked3: value,
+  });
+}
 render() {
   return (
     <div>
-      <Checkbox
-        checked={this.state.checked3}
-        disabled={this.state.disabled3}
-        onChange={(e) => {
-          console.log('checked = ', e.target.checked);
-          this.setState({
-            checked3: e.target.checked,
-          });
-        }}
-      >
+      <Checkbox checked={this.state.checked3} disabled={this.state.disabled3} 
+        onChange={this.handleChange.bind(this)}>
         {`${this.state.checked ? 'Checked' : 'Unchecked'}-${this.state.disabled ? 'Disabled' : 'Enabled'}`}
       </Checkbox>
       <div style={{padding:"10px 0 0 0"}}>
