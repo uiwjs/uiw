@@ -288,7 +288,7 @@ render() {
   const ButtonsGroup = Buttons.Group;
   return (
     <div>
-        <Buttons size="mini" type="default"><Icon type="arrow-down" /> mini</Buttons>
+        <Buttons size="mini" icon="arrow-down" type="default">mini</Buttons>
         <Buttons size="small" type="primary"><Icon type="arrow-down" /> small</Buttons>
         <Buttons size="default" type="success"><Icon type="arrow-down" /> default</Buttons>
         <Buttons size="large" type="info"><Icon type="arrow-down" /> large</Buttons>

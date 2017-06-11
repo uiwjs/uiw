@@ -21,12 +21,13 @@ export default class InputNumber extends Component {
     let {value} = this.state;
     this.refs.input.focus();
     const {max,min,step,onChange} = this.props;
+
     if(type == "up"){
-      value = accAdd(Number(value),step);
+      value = accAdd(Number(value || 0),step);
       if(value > Number(max)) return;
     }
     if(type == "down"){
-      value = accSub(Number(value),step);
+      value = accSub(Number(value || 0),step);
       if(value < Number(min)) return;
     }
 
@@ -62,6 +63,7 @@ export default class InputNumber extends Component {
 
 InputNumber.propTypes = {
   prefixCls: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func,
   step: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
@@ -69,5 +71,6 @@ InputNumber.propTypes = {
 InputNumber.defaultProps = {
   prefixCls: 'w-input-number',
   onChange:(v)=>v,
+  // value:1,
   step:1,
 }

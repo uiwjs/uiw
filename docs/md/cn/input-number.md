@@ -142,6 +142,8 @@ render() {
 
 ### InputNumber
 
+继承Input部分参数，例如`preIcon`、`length`
+
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | max | 最大值 | Number | Infinity |
