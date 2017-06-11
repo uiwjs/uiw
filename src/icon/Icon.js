@@ -10,7 +10,7 @@ export default class Icon extends Component {
 
 Icon.propTypes = {
   prefixCls: PropTypes.string,
-  type: PropTypes.string
+  type: PropTypes.string.isRequired
 }
 
 Icon.defaultProps = {
