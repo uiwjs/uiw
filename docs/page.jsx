@@ -109,8 +109,10 @@ export default class App extends Component {
         <div className={`${prefixCls}-menu-warpper`}>
           <div className={`${prefixCls}-menu-content`}>
           <div className={`${prefixCls}-logo`}>
-            <img src={require('./assets/logo.svg')} />
-            <span>uiw</span>
+            <a href={`#/${this.state.locale}/quick-start`} >
+              <img src={require('./assets/logo.svg')} />
+              <span>uiw</span>
+            </a>
           </div>
           {Object.keys(pages.components).map(group => this.renderMenuGroup(group)) }
           </div>

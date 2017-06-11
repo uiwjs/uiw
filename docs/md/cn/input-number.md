@@ -14,12 +14,33 @@ constructor(props) {
   }
 }
 onChange(e,value) {
-    console.log(`value - ${value}`)
-
+  console.log(`value - ${value}`)
 }
 render() {
   return (
     <InputNumber value={this.state.value} onChange={this.onChange.bind(this)} min="1" max="10"></InputNumber>
+  )
+}
+```
+<!--End-->
+
+### 禁用
+
+<!--DemoStart--> 
+可以输入`+` `-` `.` `e` 和数字
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    value: 1
+  }
+}
+onChange(e,value) {
+  console.log(`value - ${value}`)
+}
+render() {
+  return (
+    <InputNumber disabled={true} value={this.state.value} onChange={this.onChange.bind(this)} min="1" max="10"></InputNumber>
   )
 }
 ```
@@ -45,9 +66,13 @@ handleIconClick(e,value){
 }
 render() {
   return (
-    <InputNumber preIcon="pay" icon="search" length={10} value={this.state.value} 
-    onChange={this.onChange.bind(this)}
-    onIconClick={this.handleIconClick.bind(this)}></InputNumber>
+    <InputNumber 
+      preIcon="pay" 
+      icon="search" 
+      length={10} 
+      value={this.state.value} 
+      onChange={this.onChange.bind(this)}
+      onIconClick={this.handleIconClick.bind(this)} />
   )
 }
 ```
