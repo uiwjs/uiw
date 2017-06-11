@@ -114,6 +114,19 @@
     .button-variant(@btn-danger-color, @btn-danger-bg, transparent);
 }
 
+// 危险显示为红色
+.w-btn-link{
+    .button-loading(@btn-loading-small,@btn-primary-color, transparent);
+    .button-variant(@btn-link-color, transparent, transparent);
+    &:hover{
+        color: darken(@btn-link-color, 12%);
+    }
+    &:active,&.active{
+        box-shadow:none;
+        color: darken(@btn-link-color, 32%);
+    }
+}
+
 
 
 // Button Sizes

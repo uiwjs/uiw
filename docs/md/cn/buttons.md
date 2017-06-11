@@ -95,6 +95,19 @@ render() {
           <Buttons icon="information" />
           <Buttons icon="verification" />
         </ButtonsGroup>
+
+        <br/><br/>
+  
+        <ButtonsGroup>
+          <Buttons type="link" icon="upload" />
+          <Buttons type="link" icon="information" />
+          <Buttons type="link" icon="edit" />
+          <Buttons type="link" icon="delete" />
+          <Buttons type="link" icon="information" />
+          <Buttons type="link" icon="verification" />
+        </ButtonsGroup>
+
+        <Buttons type="link" icon="verification" />
     </div>
   )
 }
@@ -151,6 +164,15 @@ render() {
           <Buttons size="small" icon="menu"></Buttons>
           <Buttons size="small" icon="share" disabled></Buttons>
           <Buttons size="small" icon="verification"></Buttons>
+        </ButtonsGroup>
+
+        &nbsp;&nbsp;
+
+        <ButtonsGroup vertical>
+          <Buttons size="small" type="link" icon="upload"></Buttons>
+          <Buttons size="small" type="link" icon="menu"></Buttons>
+          <Buttons size="small" type="link" icon="share" disabled></Buttons>
+          <Buttons size="small" type="link" icon="verification"></Buttons>
         </ButtonsGroup>
     </div>
   )
@@ -231,6 +253,7 @@ render() {
         <Buttons size="small" type="info"> （一般信息）Info </Buttons>
         <Buttons size="small" type="warn"> （警告）Warning </Buttons>
         <Buttons size="small" type="danger"> （危险）Danger </Buttons>
+        <Buttons size="small" type="link"> (超连接样式)link </Buttons>
     </div>
   )
 }

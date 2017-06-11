@@ -18,7 +18,7 @@
 }
 
 .w-btn-group{
-    .w-btn + .w-btn{
+    .w-btn + .w-btn:not(.w-btn-link){
         border-left: 1px solid rgba(0, 0, 0, 0.18);
     }
     .w-btn + .w-btn,
@@ -54,9 +54,15 @@
 }
 
 .w-btn-group.w-btn-group-vertical{
+    .w-btn-link + .w-btn-link{
+        border-top: 0;
+    }
     .w-btn + .w-btn{
         border-left: 0;
         border-top: 1px solid rgba(0, 0, 0, 0.18);
+        &.w-btn-link{
+            border-top:0;
+        }
     }
     .w-btn-default+.w-btn-default{
         border-left: 1px solid rgba(0, 0, 0, 0.18);
