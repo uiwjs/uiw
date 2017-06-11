@@ -53,7 +53,7 @@ Switch.propTypes = {
   color:PropTypes.string,
   unColor:PropTypes.string,
   checkedChildren:PropTypes.string,
-  size:PropTypes.oneOf(['mini','small','default']),
+  size:PropTypes.oneOf(['mini','small','default','large']),
   unCheckedChildren:PropTypes.string,
   onChange:PropTypes.func,
 }
