@@ -16,4 +16,5 @@ export { default as Switch } from './switch/';
 export { default as Icon } from './icon/';
 export { default as Input } from './input/';
 export { default as InputNumber } from './input-number/';
+export { default as Radio } from './radio/';
 export { default as Form } from './form/';

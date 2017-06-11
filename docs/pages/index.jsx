@@ -14,6 +14,7 @@ export default {
       'form':        require('./form'),
       'input':       require('./input'),
       'input-number':require('./input-number'),
+      'radio':       require('./radio'),
     },
     'Data Display': {
       'calendar':   require('./calendar'),

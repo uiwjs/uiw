@@ -18,6 +18,7 @@ module.exports = {
     'tooltip': 'Tooltip',
     'icon': 'Icon',
     'form': 'Form',
+    'radio': 'Radio',
     'input': 'Input',
     'input-number': 'Input Number',
   },

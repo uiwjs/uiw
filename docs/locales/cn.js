@@ -18,6 +18,7 @@ module.exports = {
     'tooltip': 'Tooltip 文字提示',
     'icon': 'Icon 图标',
     'form': 'Form 表单',
+    'radio': 'Radio 单选框',
     'input': 'Input 输入框',
     'input-number': 'Input Number 数字输入框',
   },
