@@ -130,12 +130,20 @@
 .w-input-mini {
   .w-input-inner{
     height: 20px;
-    padding: 5px 23px;
+    &.w-input-p-right{
+      padding-right: 24px;
+    }
+    &.w-input-p-left{
+      padding-left: 20px;
+    }
+  }
+  .w-input-icon-left{
+    width: 24px
+  }
+  .w-input-icon-right{
+    width: 24px;
   }
   [class^="w-icon-"]{
     width: 100%;
-  }
-  [class^="w-icon-"] ~ .w-input-inner{
-    padding-left: 22px;
   }
 }

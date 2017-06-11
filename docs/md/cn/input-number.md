@@ -121,16 +121,16 @@ render() {
   return (
     <Row gutter="20">
       <Col span="6">
-        <InputNumber size="large" preIcon="pay" icon="search" length={10}/>
+        <InputNumber size="large" preIcon="pay" icon="search" length={10} value=''/>
       </Col>
       <Col span="6">
-        <InputNumber preIcon="pay" icon="search" length={10}/>
+        <InputNumber preIcon="pay" icon="search" length={10} value=''/>
       </Col>
       <Col span="6">
-        <InputNumber size="small" preIcon="pay" icon="search" length={10}/>
+        <InputNumber size="small" preIcon="pay" icon="search" length={10} value=''/>
       </Col>
       <Col span="6">
-        <InputNumber size="mini" preIcon="pay" icon="search" length={10}/>
+        <InputNumber size="mini" preIcon="pay" icon="search" value=''/>
       </Col>
     </Row>
   )
