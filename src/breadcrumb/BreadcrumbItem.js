@@ -15,7 +15,7 @@ export default class BreadcrumbItem extends Component {
       )
     }
     return (
-      <span {...other} className={this.classNames(`${prefixCls}`,className)}>
+      <span {...other} className={this.classNames(prefixCls,className)}>
         <span className={`${prefixCls}-inner`}>{this.props.children}</span>
         <span className={`${prefixCls}-separator`}>{separator?separator:this.context.separator}</span>
       </span>
