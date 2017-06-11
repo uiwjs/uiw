@@ -31,7 +31,6 @@ export default class Input extends Component {
       val=val.slice(0,length); 
       e.target.value = val;
     }
-    console.log("length::",val,length)
     this.state.value = val;
     onChange&&onChange(e,val)
   }

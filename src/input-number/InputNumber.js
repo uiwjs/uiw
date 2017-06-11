@@ -12,22 +12,39 @@ export default class InputNumber extends Component {
       value: props.value,
     };
   }
+  componentWillReceiveProps(props) {
+    if (props.value != this.props.value) {
+      this.setState({ value: props.value });
+    }
+  }
   handleInput(e){
     const {value} = this.state;
-    let val = e.target.value;
-    this.setState({value:val})
+    let {max,min,onChange} = this.props;
+    let val = Number(e.target.value||0);
+    max = Number(max)
+    min = Number(min)
+    if(val > max){
+      val = max;
+    }
+    if(val < min){
+      val = min;
+    }
+    this.setState({value:val},()=>{
+      onChange(e,val)
+    })
   }
   handleClick(type,e){
     let {value} = this.state;
     this.refs.input.focus();
     const {max,min,step,onChange} = this.props;
 
+    value = value ? Number(value) : 0;
     if(type == "up"){
-      value = accAdd(Number(value || 0),step);
+      value = accAdd(value,step);
       if(value > Number(max)) return;
     }
     if(type == "down"){
-      value = accSub(Number(value || 0),step);
+      value = accSub(value,step);
       if(value < Number(min)) return;
     }
 
@@ -50,12 +67,13 @@ export default class InputNumber extends Component {
     return (
       <div className={`${prefixCls}`}>
         <Input 
-         ref="input"
+          ref="input"
           {...other}
-         type="number" 
-         icon={this.renderSelectable.bind(this)()}
-         value={this.state.value}
-         onInput={this.handleInput.bind(this)}/>
+          type="number" 
+          icon={this.renderSelectable.bind(this)()}
+          value={this.state.value}
+          onChange={this.handleInput.bind(this)}
+          />
       </div>
     )
   }
@@ -71,6 +89,5 @@ InputNumber.propTypes = {
 InputNumber.defaultProps = {
   prefixCls: 'w-input-number',
   onChange:(v)=>v,
-  // value:1,
   step:1,
 }
