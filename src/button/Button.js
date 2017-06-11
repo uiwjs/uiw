@@ -25,7 +25,7 @@ export default class Button extends Component {
     return (
       <button { ...others } disabled={disabled || loading} type={htmlType} className={ cls }>
         {icon&& <Icon type={icon} />}
-        { children }
+        { children && <span>{children}</span> }
       </button>
     );
   }

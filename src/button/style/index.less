@@ -40,7 +40,7 @@
         background-image:none;
         box-shadow:inset 0 8px 32px -8px rgba(0,0,0,0.3);
     }
-    // &.disabled,
+    &.disabled,
     &[disabled]{
         cursor:@cursor-disabled;
         opacity:.75;
@@ -60,6 +60,13 @@
             display: inline-block;
             animation:loading-rotate .6s linear infinite;
         }
+    }
+    i[class^="w-icon"] + span{
+        margin-left: 5px;
+    }
+    &.w-transition-base.disabled:after,
+    &.w-transition-base[disabled]:after{
+        display: none;
     }
 }
 

@@ -73,9 +73,9 @@ render() {
   return (
     <div>
         <ButtonsGroup>
-          <Buttons type="primary" icon="upload" />
-          <Buttons type="primary" icon="information" />
-          <Buttons type="primary" icon="edit" />
+          <Buttons type="success" icon="upload" />
+          <Buttons type="success" icon="information" />
+          <Buttons type="success" icon="edit" />
         </ButtonsGroup>
 
         &nbsp;&nbsp;
@@ -85,6 +85,16 @@ render() {
           <Buttons size="small">前进<Icon type="arrow-right" /></Buttons>
         </ButtonsGroup>
 
+        <br/><br/>
+  
+        <ButtonsGroup>
+          <Buttons icon="upload" />
+          <Buttons icon="information" />
+          <Buttons icon="edit" />
+          <Buttons icon="delete" />
+          <Buttons icon="information" />
+          <Buttons icon="verification" />
+        </ButtonsGroup>
     </div>
   )
 }
@@ -123,6 +133,24 @@ render() {
           <Buttons size="small" type="primary">Middle</Buttons>
           <Buttons size="small" type="primary" disabled>Disabled</Buttons>
           <Buttons size="small" type="primary">Right</Buttons>
+        </ButtonsGroup>
+
+        &nbsp;&nbsp;
+
+        <ButtonsGroup vertical>
+          <Buttons size="small" icon="upload"></Buttons>
+          <Buttons size="small" icon="menu">Middle</Buttons>
+          <Buttons size="small" icon="share" disabled>Disabled</Buttons>
+          <Buttons size="small" icon="verification">Right</Buttons>
+        </ButtonsGroup>
+
+        &nbsp;&nbsp;
+
+        <ButtonsGroup vertical>
+          <Buttons size="small" icon="upload"></Buttons>
+          <Buttons size="small" icon="menu"></Buttons>
+          <Buttons size="small" icon="share" disabled></Buttons>
+          <Buttons size="small" icon="verification"></Buttons>
         </ButtonsGroup>
     </div>
   )
