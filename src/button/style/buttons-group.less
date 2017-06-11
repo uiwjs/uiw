@@ -18,7 +18,12 @@
 }
 
 .w-btn-group{
-    .w-btn + .w-btn:not(.w-btn-link){
+    .w-btn-default + .w-btn-default,
+    .w-btn-primary + .w-btn-primary,
+    .w-btn-success + .w-btn-success,
+    .w-btn-info + .w-btn-info,
+    .w-btn-warn + .w-btn-warn,
+    .w-btn-danger + .w-btn-danger{
         border-left: 1px solid rgba(0, 0, 0, 0.18);
     }
     .w-btn + .w-btn,
