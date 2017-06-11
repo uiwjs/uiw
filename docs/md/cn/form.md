@@ -60,6 +60,7 @@ constructor(props) {
       carte: ['湖北菜'],
       category_radio: ["保密"],
       category: ["香蕉","橘子"],
+      radio:1,
     }
   };
 }
@@ -158,12 +159,20 @@ render() {
           onChange={this.onChange.bind(this, 'category')}
         />
       </FormItem>
-      <FormItem label="菜肴" field="carte" {...formItemLayout} >
+      <FormItem label="多选" field="carte" {...formItemLayout} >
         <Checkbox.Group 
           options={this.state.checkboxOption}
           checkedValues={form.carte} 
           onChange={this.onChange.bind(this, 'carte')} 
         />
+      </FormItem>
+      <FormItem label="单选" field="radio" {...formItemLayout} >
+        <div style={{margin:"7px 0"}}>
+          <Radio value={1} checked={form.radio === 1} 
+            onChange={this.onChange.bind(this,"radio")}>备选项</Radio>
+          <Radio value={2} checked={form.radio === 2} 
+            onChange={this.onChange.bind(this,"radio")}>备选项</Radio>
+        </div>
       </FormItem>
       <FormItem {...wrapperCol}>
         <Buttons size="small" type="primary" onClick={this.handleSubmit.bind(this)}>提交</Buttons>
