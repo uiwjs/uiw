@@ -2,9 +2,10 @@ module.exports = {
   page: {
     'quick-start': 'Quick Start',
     'checkbox': 'Checkbox',
-    'switch': 'Switch 开关',
+    'switch': 'Switch',
     'alert': 'Alert',
     'buttons': 'Buttons',
+    'breadcrumb': 'Breadcrumb',
     'layout': 'Layout',
     'paging': 'Paging',
     'loading': 'Loading',

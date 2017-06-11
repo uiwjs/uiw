@@ -22,7 +22,8 @@ export default {
       'tag':        require('./tag'),
     },
     'Navigation': {
-      'paging':     require('./paging')
+      'paging':     require('./paging'),
+      'breadcrumb':     require('./breadcrumb')
     },
     'Feedback':{
       'alert':      require('./alert'),

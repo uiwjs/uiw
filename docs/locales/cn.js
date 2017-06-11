@@ -5,6 +5,7 @@ module.exports = {
     'switch': 'Switch 开关',
     'alert': 'Alert 警告',
     'buttons': 'Buttons 按钮',
+    'breadcrumb': 'Breadcrumb 面包屑',
     'layout': 'Layout 布局',
     'paging': 'Paging 分页',
     'loading': 'Loading 加载中',
