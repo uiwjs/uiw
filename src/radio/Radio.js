@@ -22,13 +22,13 @@ export default class Radio extends Component {
   }
   render() {
     const {prefixCls,className,children,onChange,checked,disabled,value,...other} = this.props;
-    const cls = this.classNames(`${prefixCls}-inner`,{
+    const cls = this.classNames(`${prefixCls}`,className,{
       'disabled': disabled, // 禁用状态
       'checked': checked,   // 选中
     });
     return (
-      <label {...other} className={this.classNames(`${prefixCls}`,className)}>
-        <span className={cls}>
+      <label {...other} className={cls}>
+        <span className={`${prefixCls}-inner`}>
           <input type="checkbox" disabled={disabled} checked={checked} value={value || children} onChange={this.handleChange.bind(this)} />
         </span>
         <span className={`${prefixCls}-text`}>{children || value}</span>
@@ -47,4 +47,6 @@ Radio.propTypes = {
 
 Radio.defaultProps = {
   prefixCls: "w-radio",
+  disabled: false,
+  onChange:(v)=>v,
 }

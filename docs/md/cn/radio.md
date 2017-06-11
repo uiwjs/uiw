@@ -11,10 +11,9 @@
 ```js
 render() {
   return (
-    <Radio checked={true} onChange={(e,value)=>{
+    <Radio onChange={(e,value)=>{
         console.log(`values= ${value}`,value)
-    }}>
-        Radio
+    }}>Radio
     </Radio>
   )
 }
@@ -22,7 +21,6 @@ render() {
 <!--End-->
 
 ### 多个单选框
-
 
 <!--DemoStart--> 
 ```js
@@ -45,3 +43,38 @@ render() {
 }
 ```
 <!--End-->
+
+### 单选框禁用
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    value: 1
+  }
+}
+onChange(e,value) {
+  this.setState({ value });
+}
+render() {
+  return (
+    <div>
+        <Radio disabled={true}>禁用</Radio>
+        <Radio disabled={true} checked={true}>禁用</Radio>
+    </div>
+  )
+}
+```
+<!--End-->
+
+## API
+
+### Form
+
+| 参数 | 说明 | 类型 | 默认值 |
+|--------- |-------- |--------- |-------- |
+| value | 根据 value 进行比较，判断是否选中 | String/Number/Boolean | - |
+| checked | Radio是否被选中 | Boolean | - |
+| disabled | 是否禁用 | Boolean | `false` |
+| onChange | 数值改变时的回调，返回当前值 | Funtcion(e:Even,value) | - |

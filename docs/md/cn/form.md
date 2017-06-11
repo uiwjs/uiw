@@ -133,7 +133,7 @@ render() {
           icon="lock"
           onChange={this.onChange.bind(this, 'password')} />
       </FormItem>
-      <FormItem label="密码" field="inputNumber" help="输入数字5~100"  {...formItemLayout} >
+      <FormItem label="输入数字" field="inputNumber" help="输入数字5~100"  {...formItemLayout} >
           <InputNumber value={form.inputNumber} onChange={this.onChange.bind(this,'inputNumber')} min="5" max="100"></InputNumber>
       </FormItem>
       <FormItem label="是否在线" field="online" {...formItemLayout} >

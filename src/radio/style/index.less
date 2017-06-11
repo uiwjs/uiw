@@ -1,3 +1,6 @@
+@import "../../style/variables.less";
+@import "../../style/mixins/index.less";
+
 .w-radio-inner{
   input {
     position: relative;
@@ -40,6 +43,24 @@
 }
 
 .w-radio-text{
-  margin-left: 5px;
+  margin-left: 4px;
   margin-right: 5px;
+}
+
+.w-radio{
+  & + .w-radio{
+    margin-left: 5px;
+  }
+  &.disabled{
+    color: #c7c7c7;
+    cursor: @cursor-disabled;
+    input{
+      cursor: @cursor-disabled;
+      background-color: #ececec;
+      border: 1px solid #d7d7d7;
+      &:before{
+        background-color: #d7d7d7;
+      }
+    }
+  }
 }
