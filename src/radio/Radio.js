@@ -8,9 +8,6 @@ export default class Radio extends Component {
       checked: props.checked
     };
   }
-  getChecked(props){
-    return Boolean(props.checked)
-  }
   handleChange(e){
     const checked = e.target.checked;
     const {children} = this.props;

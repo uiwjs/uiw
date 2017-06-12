@@ -10,18 +10,35 @@
 constructor(props) {
   super(props);
   this.state = {
+    form: {
+      name: "wui",
+      password: "",
+      email: "wwww@qq.com",
+      online: true,
+      carte: ['湖北菜'],
+      category_radio: ["保密"],
+      category: ["香蕉","橘子"],
+      radio:1,
+      radioGroup:"", // 如果是数字类型，必须设置组件 value={6} 也是数字型
+      radioGroupDisabled:"乔布斯",
+      inputNumber:0,
+    },
     tagRadioOptions:[
-        {color:"purple", value:'保密'},
-        {color:"orange", value:'男生'},
-        {color:"green", value:'女生'}
+      {color:"purple", value:'保密'},
+      {color:"orange", value:'男生'},
+      {color:"green", value:'女生'}
     ],
     tagOptions:[
-        {color:"purple", value:'苹果'},
-        {color:"orange", value:'橘子'},
-        {color:"green", value:'香蕉'}
+      {color:"purple", value:'苹果'},
+      {color:"orange", value:'橘子'},
+      {color:"green", value:'香蕉'}
+    ],
+    radioOptionsDisabled:[
+      {label: '乔布斯', value: '乔布斯' },
+      {label: '比尔盖茨', value: '比尔盖茨' },
+      {label: '乔纳森', value: '乔纳森' ,disabled: true },
     ],
     checkboxOption:['四川菜', '湖北菜', '湘菜', '粤菜'],
-
     rules:{
       name:[
         { required: true, message: '请输入活动名称'},
@@ -52,17 +69,6 @@ constructor(props) {
         }
       ]
     },
-    form: {
-      name: "wui",
-      password: "",
-      email: "wwww@qq.com",
-      online: true,
-      carte: ['湖北菜'],
-      category_radio: ["保密"],
-      category: ["香蕉","橘子"],
-      radio:1,
-      inputNumber:0,
-    }
   };
 }
 
@@ -176,6 +182,23 @@ render() {
             onChange={this.onChange.bind(this,"radio")}>备选项</Radio>
           <Radio value={2} checked={form.radio === 2} 
             onChange={this.onChange.bind(this,"radio")}>备选项</Radio>
+        </div>
+      </FormItem>
+      <FormItem label="单选组" field="radioGroup" {...formItemLayout} >
+        <div style={{margin:"7px 0"}}>
+          <Radio.Group value={form.radioGroup} onChange={this.onChange.bind(this,'radioGroup')}>
+            <Radio value="3">高晓松</Radio>
+            <Radio value="6">周杰伦</Radio>
+            <Radio value="9">黄家驹</Radio>
+          </Radio.Group>
+        </div>
+      </FormItem>
+      <FormItem label="单选组配置" field="radioGroupDisabled" {...formItemLayout} >
+        <div style={{margin:"7px 0"}}>
+          <Radio.Group 
+            options={this.state.radioOptionsDisabled} 
+            value={form.radioGroupDisabled} 
+            onChange={this.onChange.bind(this,'radioGroupDisabled')} />
         </div>
       </FormItem>
       <FormItem {...wrapperCol}>
