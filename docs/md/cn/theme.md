@@ -15,7 +15,7 @@ module.exports = {
 };
 ```
 
-下面在 `webpack` 配置文件中配置
+下面在 `webpack` 配置文件中配置，更改主题颜色
 
 ```js
 //自定义主题
@@ -32,9 +32,9 @@ var modifyVars = theme;
 
 ```
 
-更多 `webpack` 其他配置项
+更多 `webpack` 其他配置项，更改主题颜色，图标字体
 
-```
+```js
 {
   test: /\.less$/,
   use: [
@@ -67,7 +67,7 @@ var modifyVars = theme;
       loader: require.resolve('less-loader'),
       options: {
         modifyVars: {
-          '@icon-url': '"~antd-iconfont/iconfont"',
+          '@icon-url': '"~font-file...."',
         },
       },
     },
