@@ -10,7 +10,6 @@ module.exports = {
     //'link-color': '#1DA57A',
     //'border-radius-base': '2px',
     '@font-size-base': '14px',
-    // fix icon in package theme  https://github.com/visvadw/dvajs-user-dashboard/pull/2
     '@icon-url': '"/assets/iconfont/iconfont"'
 };
 ```
