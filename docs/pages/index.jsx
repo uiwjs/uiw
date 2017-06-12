@@ -10,9 +10,9 @@ export default {
       'buttons':    require('./buttons'),
     },
     'Form': {
+      'form':        require('./form'),
       'checkbox':    require('./checkbox'),
       'switch':      require('./switch'),
-      'form':        require('./form'),
       'input':       require('./input'),
       'input-number':require('./input-number'),
       'radio':       require('./radio'),

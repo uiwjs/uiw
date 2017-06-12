@@ -15,7 +15,7 @@ module.exports = {
     'modals': 'Modals',
     'transition': 'Transition',
     'calendar': 'Calendar',
-    'tables': 'Tables',
+    'table': 'Tables',
     'tooltip': 'Tooltip',
     'icon': 'Icon',
     'form': 'Form',
