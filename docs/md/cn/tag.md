@@ -114,8 +114,9 @@ render() {
           options={this.state.plainOptions}
           checked={true}
           checkedValues={this.state.plainValues}
-          onChange={(e,value)=>{
-            console.log("value::",value)
+          onChange={(e,value2)=>{
+            this.setState({plainValues:value2})
+            console.log("value::",value2)
           }}
         />
       </Col>
