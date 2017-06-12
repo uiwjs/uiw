@@ -249,7 +249,6 @@ handleReset(e) {
 render() {
   const {form,rules} = this.state;
   const FormItem = Form.Item;
-  const TagGroup = Tag.Group;
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
