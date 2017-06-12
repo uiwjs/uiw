@@ -169,7 +169,6 @@ render() {
     lineHeight: '30px',
     marginLeft:0
   };
-  console.log("this.state.value === 9::",this.state.value)
   return (
     <Radio.Group value={this.state.value} onChange={this.onChange.bind(this)}>
       <Radio style={radioStyle} value="3">备选项</Radio>
@@ -204,3 +203,12 @@ render() {
 |--------- |-------- |--------- |-------- |
 | value | 根据 value 进行比较，判断是否选中 | String/Number/Boolean | - |
 | onChange | 数值改变时的回调，返回当前值 | Funtcion(e:Even,value) | - |
+| options | 以配置形式设置子元素 | Array<{label:String, value:String}> | - |
+
+### Radio.Group options
+
+| 参数 | 说明 | 类型 | 默认值 |
+|--------- |-------- |--------- |-------- |
+| label | Radio显示文字 | String/Number/Boolean | - |
+| value | Radio 的 value | String/Number | - |
+| disabled | Radio 是否禁用 | Boolean | - |
