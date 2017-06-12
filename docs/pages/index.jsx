@@ -1,6 +1,7 @@
 export default {
   documents: {
     'quick-start':  require('./quick-start'),
+    'theme':  require('./theme'),
   },
   components: {
     'Basic': {

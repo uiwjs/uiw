@@ -1,6 +1,7 @@
 module.exports = {
   page: {
     'quick-start': 'Quick Start',
+    'theme': 'Theme',
     'checkbox': 'Checkbox',
     'switch': 'Switch',
     'alert': 'Alert',

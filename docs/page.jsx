@@ -114,6 +114,9 @@ export default class App extends Component {
               <span>uiw</span>
             </a>
           </div>
+          <ul className={`${prefixCls}-menu-list`}>
+            {Object.keys(pages.documents).map(group => this.renderMenuItems(group)) }
+          </ul>
           {Object.keys(pages.components).map(group => this.renderMenuGroup(group)) }
           </div>
         </div>
