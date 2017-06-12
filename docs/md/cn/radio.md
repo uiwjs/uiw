@@ -106,21 +106,15 @@ render() {
 constructor(props) {
   super(props);
   this.state = {
-    value: "乔布斯",
+    value1: "乔布斯",
     value2: "乔纳森",
     value3: "比尔盖茨"
   }
 }
-onChange(e,value) {
-  this.setState({ value });
-}
-onChange2(e,value) {
-  console.log(`value=${value}`)
-  this.setState({ value2:value });
-}
-onChange3(e,value) {
-  console.log(`value=${value}`)
-  this.setState({ value3:value });
+onChange(key,e ,value) {
+  this.setState({
+    [key]: value
+  });
 }
 render() {
   const plainOptions = ['乔布斯', '比尔盖茨', '乔纳森'];
@@ -136,11 +130,19 @@ render() {
   ];
   return (
     <div>
-      <Radio.Group options={plainOptions} value={this.state.value} onChange={this.onChange.bind(this)} />
+      <Radio.Group options={plainOptions} value={this.state.value1} 
+        onChange={this.onChange.bind(this,'value1')} />
+      
       <br/><br/>
-      <Radio.Group options={options} value={this.state.value2} onChange={this.onChange2.bind(this)} />
+      
+      <Radio.Group options={options} value={this.state.value2} 
+        onChange={this.onChange.bind(this,'value2')} />
+      
       <br/><br/>
-      <Radio.Group options={optionsDisabled} value={this.state.value3} onChange={this.onChange3.bind(this)} />
+
+      <Radio.Group options={optionsDisabled} value={this.state.value3} 
+        onChange={this.onChange.bind(this,'value3')} />
+        
     </div>
   )
 }
@@ -179,6 +181,33 @@ render() {
           marginLeft: 10,
           display: "inline-block"}} /> : null}
       </Radio>
+    </Radio.Group>
+  )
+}
+```
+<!--End-->
+
+### 按钮样式
+
+按钮样式的单选组合。
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    value: 3
+  }
+}
+onChange(e,value) {
+  this.setState({ value });
+}
+render() {
+  return (
+    <Radio.Group value={this.state.value} onChange={this.onChange.bind(this)}>
+      <Radio.Button value="3">备选项</Radio.Button>
+      <Radio.Button disabled={true} value="6">备选项</Radio.Button>
+      <Radio.Button value="9">备选项</Radio.Button>
     </Radio.Group>
   )
 }
