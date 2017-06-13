@@ -17,11 +17,11 @@ export default class Transition extends Component{
 
     return React.createElement(CSSTransitionGroup, {
       transitionName: animateName,
-      transitionAppear: {appear},
-      transitionAppearTimeout: {AppearTimeout},
-      transitionEnter: {enter},
+      transitionAppear: appear,
+      transitionAppearTimeout: AppearTimeout,
+      transitionEnter: enter,
       transitionEnterTimeout: Number(EnterTimeout),
-      transitionLeave: {leave},
+      transitionLeave: leave,
       transitionLeaveTimeout: Number(LeaveTimeout),
       component: this.props.component,
       className: cls,
