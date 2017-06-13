@@ -48,9 +48,10 @@ render() {
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
 | type | 指定可选项 `fade-in` 、`fade-left`、 `fade-right` 、 `fade-down` | string | - |
-| appear | 出现 | Bool | true |
-| leave | 离开 | Bool | true |
-| enter | 进入 | Bool | true |
+| visible | 动画会产生一个根节点，设置 `false` 销毁 | Bool | `true` |
+| appear | 出现 | Bool | `true` |
+| leave | 离开 | Bool | `true` |
+| enter | 进入 | Bool | `true` |
 | AppearTimeout | 出现时间[自定义过渡效果起作用] | Number | 250 |
 | LeaveTimeout | 离开时间[自定义过渡效果起作用] | Number | 250 |
 | EnterTimeout | 进入时间[自定义过渡效果起作用] | Number | 500 |
