@@ -149,15 +149,19 @@ constructor(props) {
      visible1:false,
      visible2:false,
      visible3:false,
+     visible4:false,
      confirmLoading:false,
   }
+}
+onClick(key){
+  console.log("key::",key)
+  this.setState({
+    [key]:true
+  })
 }
 render() {
   return (
     <div>
-        <Buttons size="small" onClick={()=>{
-          this.setState({visible1:true})
-        }}>Right顶部留出空隙，隐藏遮罩层</Buttons>  &nbsp;
         <Modals 
           title="This Title" 
           horizontal="right"
@@ -193,10 +197,6 @@ render() {
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
         </Modals>
 
-
-        <Buttons size="small" onClick={()=>{
-          this.setState({visible2:true})
-        }}>Right顶部留出空隙</Buttons>  &nbsp;
         <Modals 
           title="This Title" 
           horizontal="right"
@@ -239,10 +239,6 @@ render() {
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
         </Modals>
 
-
-        <Buttons size="small" onClick={()=>{
-          this.setState({visible3:true})
-        }}>Left</Buttons>  &nbsp;
         <Modals 
           title="This Title" 
           horizontal="left"
@@ -278,15 +274,11 @@ render() {
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
         </Modals>
 
-
-        <Buttons size="small" onClick={()=>{
-          this.setState({visible6:true})
-        }}>Right</Buttons> 
         <Modals 
           title="点击确定后异步关闭对话框" 
           horizontal="right"
           width={300}
-          visible={this.state.visible6}
+          visible={this.state.visible4}
           onOk={()=>{
             this.setState({
               confirmLoading:true
@@ -294,13 +286,13 @@ render() {
 
             setTimeout(() => {
               this.setState({
-                visible6: false,
+                visible4: false,
                 confirmLoading: false,
               });
             }, 2000);
 
           }} // 点击确定提交按钮
-          onCancel={()=>this.setState({visible6:false})}
+          onCancel={()=>this.setState({visible4:false})}
           confirmLoading={this.state.confirmLoading}
           okText="OK" 
           cancelText="Cancel"
@@ -309,6 +301,17 @@ render() {
           <p>Bla bla ...</p>
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
         </Modals>
+
+        <Buttons size="small" onClick={this.onClick.bind(this,'visible1')}>Right顶部留出空隙，隐藏遮罩层</Buttons>
+
+
+        <Buttons size="small" onClick={this.onClick.bind(this,'visible2')}>Right顶部留出空隙</Buttons>
+
+
+        <Buttons size="small" onClick={this.onClick.bind(this,'visible3')}>Left</Buttons>
+
+
+        <Buttons size="small" onClick={this.onClick.bind(this,'visible4')}>Right</Buttons> 
 
     </div>
   )
