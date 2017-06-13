@@ -9,25 +9,24 @@ export default class Transition extends Component{
     return /^(fade-in|fade-left|fade-right|fade-down|fade-up)?$/.test(type);
   }
   render(){
-    const { prefixCls,className, type, appear, AppearTimeout, leave, LeaveTimeout, enter, EnterTimeout, children } = this.props;
+    const { prefixCls,className,style, type, appear, AppearTimeout, leave, LeaveTimeout, enter, EnterTimeout, children } = this.props;
     const animateName = this.classNames({
       [`${prefixCls}-${type}`]: this.isPresetAnimate(type)
     });
     const cls = this.classNames(prefixCls,className)
-    return(
-      <CSSTransitionGroup
-        className={cls}
-        transitionName={animateName}
-        transitionAppear={appear}
-        transitionAppearTimeout={AppearTimeout}
-        transitionEnter={enter}
-        transitionEnterTimeout={EnterTimeout}
-        transitionLeave={leave}
-        transitionLeaveTimeout={LeaveTimeout}
-        >
-        {children}
-      </CSSTransitionGroup>
-    )
+
+    return React.createElement(CSSTransitionGroup, {
+      transitionName: animateName,
+      transitionAppear: {appear},
+      transitionAppearTimeout: {AppearTimeout},
+      transitionEnter: {enter},
+      transitionEnterTimeout: Number(EnterTimeout),
+      transitionLeave: {leave},
+      transitionLeaveTimeout: Number(LeaveTimeout),
+      component: this.props.component,
+      className: cls,
+      style:style
+    }, children);
   }
 }
 
@@ -49,4 +48,3 @@ Transition.propTypes = {
   LeaveTimeout: PropTypes.number,
   EnterTimeout: PropTypes.number,
 }
-
