@@ -6,6 +6,7 @@ import "./style/index.less";
 
 const div = document.createElement('div')
 document.body.appendChild(div)
+
 const container = ReactDOM.render(<Container />, div)
 
 function create (type) {

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Component, PropTypes} from '../utils/';
 import Alert from '../alert'
+import Icon from '../icon'
 
 export default class Message extends Component {
   constructor (props) {
@@ -15,10 +16,13 @@ export default class Message extends Component {
       this.timeout = setTimeout(this.dismiss.bind(this), duration * 1000)
     }
   }
-
+  componentWillUnmount(){
+    console.log("tessssss")
+  }
   dismiss () {
     const {onClose} =this.props
     this.refs.alerts.handleClose()
+    console.log("-->",this.refs.alerts.target)
     onClose&&onClose()
   }
   render() {
@@ -26,9 +30,17 @@ export default class Message extends Component {
     const { duration } = this.state;
     delete other.placement;
     delete other.duration;
+    let icon = '';
+    switch(type){
+      case "warn": icon = "warning-o";break;
+      case "default": icon = "information-o";break;
+      case "error": icon = "circle-close-o";break;
+      case "success": icon = "circle-check-o";break;
+    }
     return (
       <Alert ref="alerts" type={type} className={className} {...other} >
-        {content}
+        {icon&&<Icon type={icon} />}
+        <span>{content}</span>
       </Alert>
     );
   }
