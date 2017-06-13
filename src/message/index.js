@@ -17,7 +17,15 @@ function create (type) {
     msg.content = content
     msg.placement = msg.placement 
     msg.duration = msg.duration || 3;
-    container.addMessage(msg);
+    switch(type){
+      case "warn": msg.icon = "warning-o";break;
+      case "default": msg.icon = "information-o";break;
+      case "error": msg.icon = "circle-close-o";break;
+      case "success": msg.icon = "circle-check-o";break;
+    }
+    container.addMessage(msg,()=>{
+      console.log("testt")
+    });
   }
 }
 

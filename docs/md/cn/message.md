@@ -138,7 +138,18 @@ render() {
 ```
 <!--End-->
 
-### Message Attributes
+### API
+
+组件提供了一些静态方法，使用方式和参数如下：
+
+> Message.success(content, config)
+> Message.error(content, config)
+> Message.info(content, config)
+> Message.warning(content, config)
+> Message.warn(content, config) // alias of warning
+> Message.loading(content, config)
+
+### Message config
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
