@@ -14,10 +14,10 @@ export default class MenuItem extends Component {
   }
 }
 
-Menu.propTypes = {
+MenuItem.propTypes = {
   prefixCls:PropTypes.string,
 }
 
-Menu.defaultProps = {
-  prefixCls: "w-row",
+MenuItem.defaultProps = {
+  prefixCls: "w-menu-item",
 }

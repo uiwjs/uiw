@@ -14,10 +14,10 @@ export default class SubMenu extends Component {
   }
 }
 
-Menu.propTypes = {
+SubMenu.propTypes = {
   prefixCls:PropTypes.string,
 }
 
-Menu.defaultProps = {
-  prefixCls: "w-row",
+SubMenu.defaultProps = {
+  prefixCls: "w-sub-menu",
 }
