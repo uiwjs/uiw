@@ -10,6 +10,13 @@ render() {
   return (
     <div>
         <Buttons>Normal</Buttons>
+        <Buttons type="primary"> （首选项）Primary </Buttons>
+        <Buttons type="success"> （成功）Success </Buttons>
+        <Buttons type="info"> （一般信息）Info </Buttons>
+        <Buttons type="warn"> （警告）Warning </Buttons>
+        <Buttons type="danger"> （危险）Danger </Buttons>
+        <Buttons type="link"> (超连接样式)link </Buttons>
+        <br/><br/>
         <Buttons disabled>Disabled</Buttons>
         <Buttons type="primary" active>Buttons</Buttons>
         <Buttons type="primary" size="small">more <Icon type="arrow-down" /></Buttons>
