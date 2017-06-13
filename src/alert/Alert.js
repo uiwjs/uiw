@@ -5,12 +5,19 @@ import {IconClose,InformationCircled,QuestionCircle,CheckmarkCircled,CloseCircle
 
 export default class Alert extends Component {
   state = {
-    visible:true
+    visible:true,
+    tranVisible:true,
   }
   handleClose(e){
     e&&e.preventDefault();
     this.setState({visible:false})
     this.props&&this.props.onClose&&this.props.onClose()
+    this.timeout = setTimeout(()=>{
+      this.setState({
+        tranVisible:false
+      })
+      clearTimeout(this.timeout)
+    },300)
   }
   render() {
     const { prefixCls, type, message, showIcon, onClose, description, className, children, ...others } = this.props;
@@ -37,7 +44,7 @@ export default class Alert extends Component {
         {onClose&&<a href="javascript:void(0)" onClick={this.handleClose.bind(this)} className={`${prefixCls}-close-icon`}>{IconClose}</a>}
       </div>
     return (
-      <Transition type="fade-in">
+      <Transition visible={this.state.tranVisible} type="fade-in">
         {alertsview}
       </Transition>
     );

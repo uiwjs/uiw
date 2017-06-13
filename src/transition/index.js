@@ -3,6 +3,8 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import {Component, PropTypes} from '../utils/';
 import "./style/index.less";
 
+// https://facebook.github.io/react/docs/animation.html
+
 export default class Transition extends Component{
   isPresetAnimate(type){
     //https://daneden.github.io/animate.css/
@@ -14,6 +16,10 @@ export default class Transition extends Component{
       [`${prefixCls}-${type}`]: this.isPresetAnimate(type)
     });
     const cls = this.classNames(prefixCls,className)
+    // 动画结束删除根节点
+    if (!this.props.visible) {
+      return false;
+    }
 
     return React.createElement(CSSTransitionGroup, {
       transitionName: animateName,
@@ -32,6 +38,7 @@ export default class Transition extends Component{
 
 Transition.defaultProps = {
   prefixCls: "w-animate",
+  visible:true,
   appear:true,
   leave:true,
   enter:true,
@@ -41,6 +48,7 @@ Transition.defaultProps = {
 };
 Transition.propTypes = {
   type: PropTypes.oneOf(["fade-in", "fade-left", "fade-right", "fade-down"]),
+  visible: PropTypes.bool,
   appear: PropTypes.bool,
   leave: PropTypes.bool,
   enter: PropTypes.bool,
