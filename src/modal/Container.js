@@ -4,58 +4,68 @@ import classNames from 'classnames';
 import Modals from './Modal';
 import ActionButton from './ActionButton';
 
-export default function Container(config){
-  const props = config;
-  const {icon,title,content,onOk,className,
-    maskClosable=false, 
-    visible=true, 
-    width = 416,
-    type = "success",
-    prefixCls="w-modals-confirm", ...others
-  } = props;
-
-  let div = document.createElement('div')
-  document.body.appendChild(div)
-
-  function closeModals(...args){
-    // 从 DOM 中移除已经挂载的 React 组件，清除相应的事件处理器和 state。
-    // 如果在 container 内没有组件挂载，这个函数将什么都不做。
-    // 如果组件成功移除，则返回 true；如果没有组件被移除，则返回 false。
-    const unmountResult = ReactDOM.unmountComponentAtNode(div);
-    if(unmountResult&&div.parentNode){
-      div.parentNode.removeChild(div);
-    }
-    if(props.onCancel&&args[0]==='cancel'){
-      props.onCancel(...args)
-    }
-    if(props.onOk&&args[0]==='ok'){
-      props.onOk(...args)
+class ContainerModel extends Component{
+  constructor(props){
+    super(props);
+    this.closeModals=this.closeModals.bind(this)
+    this.state = {
+      visible:true
     }
   }
-  let footer = [];
-  if (props.cancelText) {
-    footer.push(
-      <ActionButton key="cancel" size="small" closeModals={closeModals} onOk={props.onCancel} autoFocus>
-        {props.cancelText}
-      </ActionButton>
-    )
-  } 
-  if (props.okText) {
-    footer.push(
-      <ActionButton key="ok" type={type} size="small" closeModals={closeModals} onOk={props.onOk} autoFocus>
-        {props.okText}
-      </ActionButton>
-    )
+  closeModals(...args){
+    this.refs.modals.setState({
+      leave:false
+    },()=>{
+      this.timeout = setTimeout(()=>{
+        this.setState({
+          visible:false,
+          leave:true
+        })
+        this.props.removeChild()
+        if(this.props.onCancel&&args[0]==='cancel'){
+          this.props.onCancel(...args)
+        }
+        if(this.props.onOk&&args[0]==='ok'){
+          this.props.onOk(...args)
+        }
+      },250)
+    })
   }
-  ReactDOM.render(
+
+  render(){
+    const {icon,title,content,onOk,className,onCancel,cancelText,okText,
+      maskClosable=false, 
+      // visible=true, 
+      width = 416,
+      type = "success",
+      prefixCls="w-modals-confirm", ...others
+    } = this.props;
+
+    let footer = [];
+    if (cancelText) {
+      footer.push(
+        <ActionButton key="cancel" size="small" closeModals={this.closeModals} onOk={onCancel} autoFocus>
+          {cancelText}
+        </ActionButton>
+      )
+    } 
+    if (okText) {
+      footer.push(
+        <ActionButton key="ok" type={type} size="small" closeModals={this.closeModals} onOk={onOk} autoFocus>
+          {okText}
+        </ActionButton>
+      )
+    }
+    return(
       <Modals 
+        ref="modals"
         { ...others }
         className={classNames(prefixCls,className)}
-        visible={visible}
+        visible={this.state.visible}
         maskClosable={maskClosable}
         onOk={onOk}           // 点击确定提交按钮
         width={width}           // 有默认值可以不传递
-        onCancel={closeModals}
+        onCancel={this.closeModals}
         footer={footer}
       >
         {icon}
@@ -65,8 +75,26 @@ export default function Container(config){
         <div className={`${prefixCls}-content`}>
         {content}
         </div>
-      </Modals>, 
+      </Modals>
+    )
+  }
+}
+
+export default function Container(config){
+  let div = document.createElement('div')
+  document.body.appendChild(div)
+
+  function removeChild(e){
+    // 从 DOM 中移除已经挂载的 React 组件，清除相应的事件处理器和 state。
+    // 如果在 container 内没有组件挂载，这个函数将什么都不做。
+    // 如果组件成功移除，则返回 true；如果没有组件被移除，则返回 false。
+    const unmountResult = ReactDOM.unmountComponentAtNode(div);
+    if(unmountResult&&div.parentNode){
+      div.parentNode.removeChild(div);
+    }
+  }
+  ReactDOM.render(
+      <ContainerModel removeChild={removeChild.bind(this,div)} {...config}/>, 
     div
   )
-
 }
