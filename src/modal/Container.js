@@ -13,23 +13,7 @@ class ContainerModel extends Component{
     }
   }
   closeModals(...args){
-    this.refs.modals.setState({
-      leave:false
-    },()=>{
-      this.timeout = setTimeout(()=>{
-        this.setState({
-          visible:false,
-          leave:true
-        })
-        this.props.removeChild()
-        if(this.props.onCancel&&args[0]==='cancel'){
-          this.props.onCancel(...args)
-        }
-        if(this.props.onOk&&args[0]==='ok'){
-          this.props.onOk(...args)
-        }
-      },250)
-    })
+    this.refs.modals.onCancel()
   }
 
   render(){
@@ -63,7 +47,7 @@ class ContainerModel extends Component{
         className={classNames(prefixCls,className)}
         visible={this.state.visible}
         maskClosable={maskClosable}
-        onOk={onOk}           // 点击确定提交按钮
+        onOk={onOk}             // 点击确定提交按钮
         width={width}           // 有默认值可以不传递
         onCancel={this.closeModals}
         footer={footer}
@@ -94,7 +78,6 @@ export default function Container(config){
     }
   }
   ReactDOM.render(
-      <ContainerModel removeChild={removeChild.bind(this,div)} {...config}/>, 
-    div
+    <ContainerModel removeChild={removeChild.bind(this,div)} {...config}/>,div
   )
 }

@@ -6,37 +6,66 @@ import {IconClose} from '../svgs';
 const ButtonGroup = Button.Group;
 
 export default class Modal extends Component {
-  state = {
-    leave:true,
-    visible:false,
+  constructor(props){
+    super(props);
+    this.state = {
+      leave:true,
+      visible:this.props.visible,
+    }
   }
-  handleCancel = (ismask,e) => {
-    // 禁止遮罩层关闭
-    if(ismask === "mask"&&!this.props.maskClosable) return;
+  componentWillReceiveProps(nextProps,nextState) {
+    if(this.props.visible!==nextProps.visible){
+      if(nextProps.visible){
+        this.setState({
+          visible:true,
+          leave:true
+        })
+      }else{
+        this.setState({leave:false},()=>{
+          setTimeout(()=>{
+            if(this.state.visible !==false){
+              this.setState({
+                visible:false,
+                leave:true,
+              })
+            }
+          },250)
+        })
+      }
+    }
+  }
+  modalHide(e){
     const {onCancel} = this.props;
-    this.setState({leave:false})
-    setTimeout(()=>{
+    if(!this.state) return;
+    this.modalHideTimeout = setTimeout(()=>{
       this.setState({
         visible:false,
-        leave:true
+        leave:true,
       })
-      onCancel && onCancel(e);
+      clearTimeout(this.modalHideTimeout)
+      onCancel(e)
     },250)
   }
-
+  onCancel = (ismask,e) => {
+    // 禁止遮罩层关闭
+    if(ismask === "mask"&&!this.props.maskClosable) return;
+    this.setState({leave:false},()=>{
+      this.modalHide()
+    })
+  }
   handleOk = (e) => {
     const {onOk} = this.props;
     onOk && onOk(e);
   }
   render() {
-    const { prefixCls,visible, className, title, footer, horizontal, styleMask, children, confirmLoading, onCancel, cancelText, okText, width,maskClosable, ...other} = this.props;
-    const {leave} = this.state;
+    const { prefixCls,className, title, footer, horizontal, styleMask, children, confirmLoading, onCancel, cancelText, okText, width,maskClosable, ...other} = this.props;
+    const {leave,visible} = this.state;
     
     if(!visible) return null;
 
     let defaultFooter = !footer?(
       <ButtonGroup>
-        <Button key="cancel" size="small" onClick={this.handleCancel}>
+        <Button key="cancel" size="small" onClick={this.onCancel}>
           {cancelText || '取消'}
         </Button>
         <Button key="confirm" size="small" loading={confirmLoading} onClick={this.handleOk}>
@@ -63,13 +92,13 @@ export default class Modal extends Component {
     return (
       <div className={ cls }>
         <Transition type="fade-in">
-          {leave&&<div className={`${prefixCls}-mask`} style={styleMask} onClick={this.handleCancel.bind(this,'mask')}></div>}
+          {leave&&<div className={`${prefixCls}-mask`} style={styleMask} onClick={()=>this.onCancel('mask')}></div>}
         </Transition>
         <Transition type={AnimateType}>
           {leave&&<div className={`${prefixCls}-content`} style={{width:width,...other.style}}>
             <div className={`${prefixCls}-header`}>
               <div className={`${prefixCls}-title`} id="rcDialogTitle9">{title}</div>
-              <a onClick={this.handleCancel.bind(this)} className={`${prefixCls}-close-icon`}>{IconClose}</a>
+              <a onClick={()=>this.onCancel()} className={`${prefixCls}-close-icon`}>{IconClose}</a>
             </div>
             <div className={`${prefixCls}-body`}>{children}</div>
             {defaultFooter}
@@ -86,7 +115,8 @@ Modal.defaultProps = {
   width: 520,
   visible:false,
   maskClosable: true,
-  confirmLoading:false
+  confirmLoading:false,
+  onCancel:(v)=>v
 }
 Modal.propTypes = {
   visible: PropTypes.bool,

@@ -16,7 +16,7 @@ constructor(props) {
   showConfirm(){
     Modals.info({
       title: 'Want to delete these items s?',
-      content: 'When clicked the OK button, this dialog will be closed after 1 second',
+      content: 'When clicked the OK button, Some descriptions.',
       okText: 'OK',
       cancelText: 'Cancel',
       maskClosable:false,
@@ -44,7 +44,7 @@ constructor(props) {
   showConfirm3(){
     Modals.error({
       title: 'Want to delete these items?',
-      content: 'When clicked the OK button, this dialog will be closed after 1 second',
+      content: 'When clicked the OK button, this dialog will be closed after 3 second',
       okText: '确定按钮',
       onOk:()=>{
         console.log("确定回调！, 这里是利用Promise等执行完成再去关闭窗口")
@@ -154,7 +154,7 @@ constructor(props) {
   }
 }
 onClick(key){
-  console.log("key::",key)
+  console.log("key:------------------------------>:",key,this.state.visible1)
   this.setState({
     [key]:true
   })
@@ -187,7 +187,10 @@ render() {
             }, 2000);
 
           }} // 点击确定提交按钮
-          onCancel={()=>this.setState({visible1:false})}
+          onCancel={()=>{
+            console.log("-点击确定提交按钮-->",this.state.visible1)
+            this.setState({visible1:false})
+          }}
           confirmLoading={this.state.confirmLoading}
           okText="OK" 
           cancelText="Cancel"
@@ -368,24 +371,24 @@ constructor(props) {
      visible:false,
   }
 }
-handleCancel2(){
-  this.setState({
-    visible2:false
-  })
+handleCancel(){
+  this.setState({visible:false})
+}
+handleShow(){
+  this.setState({visible:true})
 }
 render() {
   return (
     <div> 
 
-        <Buttons size="small" onClick={()=>{
-          this.setState({visible2:true})
-        }}>Modals自定义Footer</Buttons> &nbsp;
+        <Buttons size="small" onClick={this.handleShow.bind(this)}>Modals自定义Footer</Buttons>
         <Modals 
+          ref="modals"
           title="Modals自定义Footer" 
-          visible={this.state.visible2}
+          visible={this.state.visible}
           onOk={this.handleOk} // 点击确定提交按钮
           style={{top: 20}}    // 可以设定容器的位置以及样式
-          onCancel={this.handleCancel2.bind(this)}
+          onCancel={this.handleCancel.bind(this)}
           okText="OK" 
           cancelText="Cancel"
           // 自定义页脚按钮
@@ -393,15 +396,16 @@ render() {
           footer={(
             <div>
               <Buttons size="small" onClick={()=>{
+                //this.refs.modals.onCancel
                 this.setState({
-                  visible2:false
+                  visible:false
                 })
               }}>
                 取消
               </Buttons>
               <Buttons size="small" onClick={()=>{
                 this.setState({
-                  visible2:false
+                  visible:false
                 })
               }}>
                 确定
@@ -411,7 +415,7 @@ render() {
         >
           <p style={{color:"#333"}}>Bla bla ...</p>
           <p>Bla bla ...</p>
-          <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
+          <p>Bla bla ...</p>
         </Modals>
     </div>
   )
