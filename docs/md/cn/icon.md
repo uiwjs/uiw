@@ -83,7 +83,7 @@ render() {
 render() {
   const {Row,Col} = Layout;
   const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px"};
-  const iconList = ["circle-check-o", "check", "circle-check", "circle-close", "copyright", "close", "circle-close-o", "d-caret", "date", "delete", "date1", "download", "download1", "document", "edit", "frown-o", "heart-off", "frown", "heart-on", "filter", "information", "loading", "information-o", "lock", "minus", "message-o", "message", "menu", "more", "picture", "pay", "plus", "paper-clip", "question-circle-o", "share", "search", "question-circle", "setting", "setting1", "smile-o", "star-on", "smile", "star-off", "time", "unlock", "verification", "view", "upload", "upload1", "user", "warning-o", "warning","asterisk"]
+  const iconList = ["asterisk", "check", "circle-check-o", "circle-check", "circle-close-o", "close", "circle-close", "copyright", "date", "d-caret", "delete", "date1", "document", "download", "download1", "frown-o", "frown", "heart-off", "heart-on", "information-o", "information", "menu", "loading", "edit", "filter", "lock", "message-o", "minus", "more", "message", "picture", "paper-clip", "pay", "plus", "question-circle-o", "question-circle", "search", "smile-o", "share", "setting", "smile", "setting1", "star-off", "star-on", "time", "upload", "upload1", "user", "verification", "unlock", "view", "warning", "warning-o"]
   return (
     <div>
       <Row gutter="10">
