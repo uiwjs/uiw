@@ -288,7 +288,7 @@ render() {
 ```css
 /* 超小屏幕（手机，小于 768px） */
 /*  没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的 */
-@media (min-width: @screen-xs) { ... }
+@media (max-width: @screen-xs) { ... }
 
 /* 小屏幕（平板，大于等于 768px） */
 @media (min-width: @screen-sm) { ... }
