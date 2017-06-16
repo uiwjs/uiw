@@ -287,9 +287,7 @@ render() {
 
 ```css
 /* 超小屏幕（手机，小于 768px） */
-/* 没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的 */
-
-/* 小屏幕（平板，大于等于 768px） */
+/*  没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的 */
 @media (min-width: @screen-xs) { ... }
 
 /* 小屏幕（平板，大于等于 768px） */
@@ -332,13 +330,13 @@ render() {
   let styleRow = {background: "#f7f7f7",padding:"5px 0"};
 
   const {Row,Col} = Layout;
-
+  // xs 默认不用设置
   return (
     <Row style={styleRow} gutter="10">
-      <Col xs="8" sm="6" md="4" lg="3"><div style={styleCol}></div></Col>
-      <Col xs="4" sm="6" md="8" lg="9"><div style={styleCol2}></div></Col>
-      <Col xs="4" sm="6" md="8" lg="9"><div style={styleCol}></div></Col>
-      <Col xs="8" sm="6" md="4" lg="3"><div style={styleCol2}></div></Col>
+      <Col xs="24" sm="6" md="4" lg="3"><div style={styleCol}></div></Col>
+      <Col xs="24" sm="6" md="8" lg="9"><div style={styleCol2}></div></Col>
+      <Col xs="24" sm="6" md="8" lg="9"><div style={styleCol}></div></Col>
+      <Col xs="24" sm="6" md="4" lg="3"><div style={styleCol2}></div></Col>
     </Row>
   )
 }
