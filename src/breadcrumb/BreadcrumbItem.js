@@ -24,11 +24,14 @@ export default class BreadcrumbItem extends Component {
 }
 
 BreadcrumbItem.contextTypes = {
-  prefixCls: PropTypes.string,
-  href: PropTypes.string,
   separator: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
+
+BreadcrumbItem.propTypes = {
+  prefixCls: PropTypes.string,
+  href: PropTypes.string,
+}
 BreadcrumbItem.defaultProps = {
   prefixCls: "w-breadcrumb-item",
 }
