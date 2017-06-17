@@ -17,5 +17,5 @@ Menu.propTypes = {
 }
 
 Menu.defaultProps = {
-  prefixCls: "w-row",
+  prefixCls: "w-menu",
 }

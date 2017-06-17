@@ -287,8 +287,8 @@ render() {
 
 ```css
 /* 超小屏幕（手机，小于 768px） */
-/*  没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的 */
-@media (max-width: @screen-xs) { ... }
+/* 没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的 */
+/* @media (max-width: @screen-xs) { ... } */
 
 /* 小屏幕（平板，大于等于 768px） */
 @media (min-width: @screen-sm) { ... }
@@ -364,7 +364,7 @@ render() {
 | offset | 栅格左侧的间隔格数，将列向右侧偏 | number | 0 |
 | push | 栅格向右移动格数 | number | 0 |
 | pull | 栅格向左移动格数 | number | 0 |
-| xs | `<768px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | number | 0 |
+| xs | `<768px` 默认的样式不需要设置 | number | - |
 | sm | `≥768px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | number | 0 |
 | md | `≥992px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | number | 0 |
 | lg | `≥1200px` 响应式栅格，可为栅格数或一个包含其他属性的对象 | number | 0 |

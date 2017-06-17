@@ -6,6 +6,7 @@ export { default as Calendar } from './calendar/';
 export { default as Checkbox } from './checkbox/';
 export { default as Modals } from './modal/';
 export { default as Message } from './message/';
+export { default as Menu } from './menu/';
 export { default as Tag } from './tag/';
 export { default as Loading } from './loading/';
 export { default as Transition } from './transition/';

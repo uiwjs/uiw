@@ -24,6 +24,7 @@ export default {
       'tag':        require('./tag'),
     },
     'Navigation': {
+      'menu':     require('./menu'),
       'paging':     require('./paging'),
       'breadcrumb':     require('./breadcrumb')
     },

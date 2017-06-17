@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React from 'react';
 import {Component, PropTypes} from '../utils/';
 
 export default class MenuItemGroup extends Component {

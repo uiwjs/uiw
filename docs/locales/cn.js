@@ -13,6 +13,7 @@ module.exports = {
     'tag': 'Tag 标签',
     'message': 'Message 全局提示',
     'modals': 'Modals 对话框',
+    'menu': 'Menu 菜单',
     'transition': 'Transition 过渡动画',
     'calendar': 'Calendar 日历',
     'table': 'Table 表格',

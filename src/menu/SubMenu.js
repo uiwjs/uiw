@@ -1,14 +1,13 @@
-import React, { Component} from 'react';
+import React from 'react';
 import {Component, PropTypes} from '../utils/';
 
 export default class SubMenu extends Component {
   render() {
     const { prefixCls,className,...others } = this.props;
 
-
     return (
       <ul>
-
+      	<li>sdf</li>
       </ul>
     )
   }
