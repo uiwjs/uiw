@@ -10,6 +10,10 @@
   background: #fff;
   line-height: 46px;
   background-color: #f9f9f9;
+  i[class^='w-icon']{
+    margin-right: 5px;
+    transform: scale(0.9);
+  }
   .w-menu-item{
     margin: 0;
     padding: 0 20px;
@@ -18,15 +22,13 @@
     display: block;
     white-space: nowrap;
     cursor: pointer;
-    i[class^='w-icon']{
-      margin-right: 5px;
-    }
+    transition: color @transition-time;
     > a{
       display: block;
       color: rgba(0,0,0,.65);
     }
     &.active{
-      font-weight: bold;
+      color: #0fa120; 
     }
     &.disabled{
       color: rgba(0,0,0,.25)!important;
@@ -77,9 +79,6 @@
       cursor: pointer;
       &:hover{
         color: #0fa120; 
-      }
-      i[class^='w-icon']{
-        margin-right: 5px;
       }
       span + i[class^='w-icon']{
         transition: transform @transition-time;
