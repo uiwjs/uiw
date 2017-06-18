@@ -80,4 +80,11 @@ render() {
 | disabled | 是否禁用 | Boolean | false |
 | index | `item` 的唯一标志 | String | vertical |
 
+### Menu.SubMenu
+
+| 参数 | 说明 | 类型 | 默认值 |
+|--------- |-------- |--------- |-------- |
+| title | 折叠菜单标题 | String,React.ReactNode | vertical |
+| index | `SubMenu` 的唯一标志 | String | vertical |
+
 

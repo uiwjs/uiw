@@ -312,9 +312,9 @@ render() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| content | 显示的内容 | string,React.ReactNode | - |
-| placement | 气泡框位置，可选 `top`,`topLeft`,`topRight`,`left`,`leftTop`,`leftBottom`,`right`,`rightTop`,`rightBottom`, `bottom`,`bottomLeft`,`bottomRight` | string | `top` |
-| effect | 默认提供的主题  `dark`, `light` | string | `dark` |
+| content | 显示的内容 | String,React.ReactNode | - |
+| placement | 气泡框位置，可选 `top`,`topLeft`,`topRight`,`left`,`leftTop`,`leftBottom`,`right`,`rightTop`,`rightBottom`, `bottom`,`bottomLeft`,`bottomRight` | String | `top` |
+| effect | 默认提供的主题  `dark`, `light` | String | `dark` |
 | disabled | 是否禁用提示框 | boolean | `false` |
 | leaveDelay | 鼠标离开或者点击之后延时多少才隐藏 Tooltip，单位：秒 | number | - |
 | enterDelay | 鼠标离开或者点击之后延时多少才隐藏 Tooltip，单位：秒，`enterDelay` 为延迟进入必须配合`leaveDelay` 来使用，并且值比 `leaveDelay`小 | number | - |
