@@ -106,6 +106,8 @@ render() {
 ```
 <!--End-->
 
+## API
+
 ### Alert Attributes
 
 | 参数 | 说明 | 类型 | 默认值 |

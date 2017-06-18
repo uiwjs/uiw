@@ -2,14 +2,23 @@ import React from 'react';
 import {Component, PropTypes} from '../utils/';
 
 export default class MenuItemGroup extends Component {
+  constructor(props: Object) {
+    super(props);
+
+    this.instanceType = 'SubMenu';
+
+    this.state = {
+      active: false
+    };
+  }
   render() {
     const { prefixCls,className,...others } = this.props;
-
-
     return (
-      <ul>
-
-      </ul>
+      <li className={this.classNames(`${prefixCls}`, {
+        // 'is-active': this.state.active,
+        // 'is-opened': this.opened()
+      })}>
+      </li>
     )
   }
 }
