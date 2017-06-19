@@ -29,7 +29,7 @@ export default class Paging extends Component {
     }
   }
   render() {
-    const {prefixCls,className,total,pageSize,onChange} = this.props;
+    const {prefixCls,className,style,total,pageSize,onChange} = this.props;
     const {activePage} = this.state;
 
     let items = [];
@@ -81,7 +81,7 @@ export default class Paging extends Component {
     )
 
     return (
-      <ul className={this.classNames(prefixCls,className)}>
+      <ul style={style} className={this.classNames(prefixCls,className)}>
         {items}
       </ul>
     );
