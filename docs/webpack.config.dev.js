@@ -3,25 +3,6 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const autoprefixer = require('autoprefixer');
 
-// "postcss-loader" 将autoprefixer应用到我们的CSS中。
-// var postcsscfg = {
-//   loader:'postcss-loader',
-//   options:{
-//     plugins:function() {
-//       return [
-//         autoprefixer({
-//           browsers: [
-//             '>1%',
-//             'last 4 versions',
-//             'Firefox ESR',
-//             'not ie < 9', // React doesn't support IE8 anyway
-//           ]
-//         }),
-//       ];
-//     }
-//   }
-// };
-
 new WebpackDevServer(webpack({
   devtool: 'source-map',
   devtool: 'eval',
