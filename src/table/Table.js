@@ -1,8 +1,8 @@
 import React from 'react';
 import {Component, PropTypes} from '../utils/';
-import Thead from './thead';
-import Tbody from './tbody';
-import Colgroup from './colgroup';
+import Thead from './Thead';
+import Tbody from './Tbody';
+import Colgroup from './Colgroup';
 import Paging from '../paging/';
 import Loading from '../loading/';
 import {compare} from '../utils/objects';
