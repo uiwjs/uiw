@@ -1,4 +1,7 @@
+// https://github.com/eslint/eslint/issues/1867#issuecomment-76101812
+/*eslint-disable no-unused-vars*/
 import React from 'react';
+/*eslint-enable no-unused-vars*/
 import "./style/index.less";
 import Modal from './Modal';
 import Container from './Container';
