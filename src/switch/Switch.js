@@ -25,7 +25,7 @@ export default class Switch extends Component {
     onChange&&onChange(e,e.target.checked)
   }
   render() {
-    const { prefixCls,className,style,size,disabled,checked,checkedChildren,unCheckedChildren,color,unColor,...others} = this.props;
+    const { prefixCls,className,style,size,disabled,checked,checkedChildren,unCheckedChildren,color,unColor} = this.props;
     const { _checked } = this.state;
 
     const cls = this.classNames(prefixCls,className,{
@@ -36,7 +36,7 @@ export default class Switch extends Component {
       });
 
     return (
-      <label {...others} style={assign({}, {
+      <label style={assign({}, {
         backgroundColor:_checked ? color : unColor
       }, style)} className={cls}>
         <input disabled={disabled} checked={_checked} onChange={this.onChange} type="checkbox"/>
