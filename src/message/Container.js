@@ -30,7 +30,7 @@ export default class Container extends Component {
   render () {
     const { prefixCls, className } = this.props;
     const {message, currentId} = this.state;
-    if(isEmpty(message)) return DOM.noscript();
+    if(isEmpty(message)) return null;
 
     let cls = this.classNames(prefixCls);
     let _placement = message[currentId].placement;
