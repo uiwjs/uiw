@@ -18,7 +18,6 @@ const HOST = process.env.HOST || '0.0.0.0';
 const isInteractive = process.stdout.isTTY;
 const fs = require('fs');
 
-console.log("yarnLockFile.cwd()::",paths.appHtml)
 const createDevServerConfig = require('./webpackDevServer');
 // 如果需要的文件不存在，警告并崩溃
 if (!checkRequiredFiles([ paths.appHtml ,paths.appIndexJs])) {
