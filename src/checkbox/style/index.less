@@ -9,6 +9,9 @@
     vertical-align: text-bottom;
     overflow: hidden;
     text-align: left;
+    background: transparent;
+    border-radius: @checkbox-border-radius;
+    transition: background @transition-time @transition-timing-functio;
     input{
       position: absolute;
       left: -19990px;
@@ -18,7 +21,7 @@
     &:before,&.checked:before,&.checked:after,
     &.indeterminate:before,
     &.indeterminate:after{
-      transition: background @transition-time @transition-timing-functio;
+      transition: background-color @transition-time @transition-timing-functio;
       content: '';
       display: inline-block;
     }
@@ -30,8 +33,8 @@
       border:1px solid @checkbox-border-gray-light;
     }
     &.checked{
+      background: @checkbox-bg-base;
       &:before{
-        background-color: @checkbox-bg-base;
         border:0;
       }
     }
@@ -68,6 +71,7 @@
     &+span{
       padding-left: @checkbox-label-padding-left;
       padding-right: @checkbox-label-padding-right;
+      user-select:none;
     }
     &.disabled{
       background-color: @gray-lighter;
