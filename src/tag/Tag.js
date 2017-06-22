@@ -1,5 +1,5 @@
 import React from 'react';
-import {Component, PropTypes, ReactDOM} from '../utils/';
+import {Component, PropTypes} from '../utils/';
 import {IconCloseSmall} from '../svgs';
 import "./style/index.less";
 
@@ -22,9 +22,11 @@ export default class Tag extends Component {
   isColorValue(color){
     var span = document.createElement("span");
     span.style.color = color;
-    if(span.style.color != "") return true;
-    else return false;
-    span = null;
+    if(span.style.color !== "") return true;
+    else{
+      span = null;
+      return false;
+    } 
   }
   isPresetColor(color) {
     return /^(white|pink|red|yellow|orange|cyan|green|blue|purple)?$/.test(color)
@@ -43,7 +45,7 @@ export default class Tag extends Component {
     }
     const cls = this.classNames(prefixCls,{
         [`${prefixCls}-${colors}`]: this.isPresetColor(colors),
-        'checkable': checked == false,
+        'checkable': checked === false,
         'checked': checked,
         'className': className,
       });

@@ -18,7 +18,7 @@ export default class Input extends Component {
   }
   handleKeyUp(e){
     const { onSearch,onKeyUp } = this.props;
-    if(e.key == "Enter"){
+    if(e.key === "Enter"){
       onSearch&&onSearch(e.target.value,e)
     }
     onKeyUp&&onKeyUp(e)
@@ -31,7 +31,7 @@ export default class Input extends Component {
       val=val.slice(0,length); 
       e.target.value = val;
     }
-    this.state.value = val;
+    this.setState({value:val})
     onChange&&onChange(e,val)
   }
   handleClick(type,e){
@@ -44,19 +44,19 @@ export default class Input extends Component {
     const {prefixCls,preIcon,icon,onIconClick,onPreIconClick} = this.props;
     let icons;
     
-    if(type === 'icon' && typeof icon == 'string') icons = icon;
-    if(type === 'preIcon' && typeof preIcon == 'string') icons = preIcon;
+    if(type === 'icon' && typeof icon === 'string') icons = icon;
+    if(type === 'preIcon' && typeof preIcon === 'string') icons = preIcon;
 
     return (
       <div className={this.classNames({
         [`${prefixCls}-icon-left`]:type === 'preIcon' &&preIcon,
         [`${prefixCls}-icon-right`]:type === 'icon' &&icon,
-        [`event`]: type === 'preIcon' && onPreIconClick || type === 'icon' && onIconClick
+        [`event`]: (type === 'preIcon' && onPreIconClick) || (type === 'icon' && onIconClick)
       })}>
       {
-        typeof preIcon == 'string' && icons || typeof icon == 'string' && icons
+        (typeof preIcon === 'string' && icons) || (typeof icon === 'string' && icons)
         ? <Icon type={icons}  onClick={this.handleClick.bind(this, type === 'icon' ? 'onIconClick' : 'onPreIconClick')}/> 
-        : (type == 'icon'?icon:preIcon)
+        : (type === 'icon'?icon:preIcon)
       }
       </div>
     )

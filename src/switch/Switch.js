@@ -1,4 +1,4 @@
-import React, { createElement } from 'react';
+import React from 'react';
 import {Component, PropTypes} from '../utils/';
 import assign from 'object-assign';
 
@@ -36,7 +36,7 @@ export default class Switch extends Component {
       });
 
     return (
-      <label style={assign({}, {
+      <label {...others} style={assign({}, {
         backgroundColor:_checked ? color : unColor
       }, style)} className={cls}>
         <input disabled={disabled} checked={_checked} onChange={this.onChange} type="checkbox"/>

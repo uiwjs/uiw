@@ -22,16 +22,18 @@ export default class FormItem extends Component {
   componentDidMount() {
     const { field } = this.props;
     let { isRequired,help } = this.props;
-    let {initialValue} = this.state;
 
     if(field){
       const value = this.getInitialValue()
       this.parent().addField(this);
       // 是否必填处理
       let rules = this.getRules();
-      if (rules&&rules.length) rules.every(rule => {
+      if (rules&&rules.length){
+        rules.every((rule) => {
           if(rule&&rule.required) isRequired = true;
-      });
+          return rule;
+        });
+      } 
       this.setState({
         isRequired,help,
         initialValue:value
@@ -117,10 +119,10 @@ export default class FormItem extends Component {
 
   layoutFilter(col){
     const {layout} = this.parent().props;
-    if(layout == "vertical"){
+    if(layout === "vertical"){
       return {span:0}
     }
-    if(layout == "inline"){
+    if(layout === "inline"){
       return {span:0}
     }
     return col
@@ -132,7 +134,6 @@ export default class FormItem extends Component {
       `${prefixCls}-label`,
       labelCol && labelCol.className,
     );
-    let labelChildren = label;
 
     return (
       <Col {...this.layoutFilter(labelCol)} className={labelColClassName}>
@@ -141,7 +142,7 @@ export default class FormItem extends Component {
     )
   }
   renderWrapper(){
-    const {prefixCls,label,wrapperCol,children} = this.props;
+    const {prefixCls,wrapperCol,children} = this.props;
     const {error,help} = this.state;
 
     const className = this.classNames(
@@ -167,11 +168,11 @@ export default class FormItem extends Component {
     const cls = this.classNames(className,{
       [`${prefixCls}`]: true,
       'required': isRequired,
-      'error': error!='',
-      'help': help!='',
+      'error': error!=='',
+      'help': help!=='',
     })
     return (
-      <Row className={cls}>
+      <Row style={style} className={cls}>
         {this.renderLabel.bind(this)()}
         {this.renderWrapper.bind(this)()}
       </Row>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Component, PropTypes} from '../utils/';
+import {PropTypes} from '../utils/';
 import Radio from './Radio';
 
 export default class RadioButton extends Radio {

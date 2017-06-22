@@ -5,7 +5,6 @@ import Tbody from './Tbody';
 import Colgroup from './Colgroup';
 import Paging from '../paging/';
 import Loading from '../loading/';
-import {compare} from '../utils/objects';
 
 export default class Table extends Component{
   constructor(props){
@@ -42,7 +41,7 @@ export default class Table extends Component{
     this.setState({
       rowsChecked:rowsChecked
     })
-    if(checkedRow.length > 0 &&  checkedRow.length != data.length){
+    if(checkedRow.length > 0 &&  checkedRow.length !== data.length){
       this.setState({
         rowsCount,
         headIndeterminate:true,
@@ -67,8 +66,8 @@ export default class Table extends Component{
   }
   // 单行选择事件
   onRowSelection=(row, index, checked, e)=>{
-    const {rowsChecked,rowsCount,headIndeterminate} = this.state;
-    const {data,onSelect,rowSelection} = this.props;
+    const {rowsChecked,rowsCount} = this.state;
+    const {data,rowSelection} = this.props;
 
     let _rowsChecked = rowsChecked
     let count = Math.abs(checked ? rowsCount+1 : rowsCount-1);
@@ -88,7 +87,6 @@ export default class Table extends Component{
   // 全选
   selectedAll=(e,checked)=>{
     const {rowSelection,data,height,width} = this.props;
-    const {rowsCount,rowsChecked} = this.state;
     this.setState({
       rowsCount:checked?data.length:0,
       headchecked:checked,
@@ -116,15 +114,15 @@ export default class Table extends Component{
 
     if(target instanceof HTMLDivElement){
 
-      if(e.target == leftBodyWrapper){
+      if(e.target === leftBodyWrapper){
         bodyWrapper && (bodyWrapper.scrollTop = target.scrollTop);
         rightBodyWrapper && (rightBodyWrapper.scrollTop = target.scrollTop);
       }
-      if(e.target == rightBodyWrapper){
+      if(e.target === rightBodyWrapper){
         bodyWrapper && (bodyWrapper.scrollTop = target.scrollTop);
         leftBodyWrapper && (leftBodyWrapper.scrollTop = target.scrollTop);
       }
-      if(e.target == bodyWrapper){
+      if(e.target === bodyWrapper){
         headerWrapper.scrollLeft = target.scrollLeft;
 
         leftBodyWrapper && (leftBodyWrapper.scrollTop = target.scrollTop);
@@ -144,7 +142,7 @@ export default class Table extends Component{
     if(scrollRight < 1){
       fixedClassNames = `${prefixCls}-fixed ${prefixCls}-scroll-position-right`;
     }
-    if(e&&e.target == bodyWrapper){
+    if(e&&e.target === bodyWrapper){
       fixedBodyWrapper.className = fixedClassNames;
     }
 
@@ -157,15 +155,15 @@ export default class Table extends Component{
   }
   onTrHover=(ty,idx)=>{
     this.setState({
-      trHoverClassName:ty == 'enter' ?[idx]:[]
+      trHoverClassName:ty === 'enter' ?[idx]:[]
     })
   }
   render(){
-    const { prefixCls, className, onChange, rowSelection, caption, footer, columns, data, height, width, paging, loading } = this.props;
+    const { prefixCls, className,rowSelection, caption, footer, columns, data, height, width, paging, loading } = this.props;
     const { headIndeterminate,headchecked,trHoverClassName } = this.state
     // checkbox 选择数据如果存在删除重新渲染
     if(rowSelection){
-      if(columns[0].key=='_select'){columns.splice(0,1)}
+      if(columns[0].key==='_select'){columns.splice(0,1)}
       columns.unshift({
         key: '_select',
         className:"_select"
@@ -195,7 +193,7 @@ export default class Table extends Component{
     let tableFooter = footer&&(<div className={`${prefixCls}-footer`}>{footer}</div>)
 
     let pagingView = paging && <Paging className={`${prefixCls}-paging`} {...paging}/> ;
-    if(height || width || rowSelection || (loading == true || loading ==false) ){
+    if(height || width || rowSelection || (loading === true || loading === false) ){
       let fixedCloneTable = (width) ?  (
         <div ref="fixedBodyWrapper" className={ this.classNames(`${prefixCls}-fixed`,`${prefixCls}-scroll-position-left`)} 
           style={{marginTop:-this.state.leftFixedTop}}

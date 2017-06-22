@@ -1,5 +1,5 @@
 import React from 'react';
-import {Component, PropTypes} from '../utils/';
+import {PropTypes} from '../utils/';
 import MixinComponent from './MixinComponent';
 
 export default class MenuItem extends MixinComponent {
@@ -12,9 +12,9 @@ export default class MenuItem extends MixinComponent {
     }
   }
   render() {
-    const { prefixCls,className,style,...others } = this.props;
+    const { prefixCls,className,style} = this.props;
     return (
-      <li style={style} className={this.classNames(`${prefixCls}`,{
+      <li style={style} className={this.classNames(className,`${prefixCls}`,{
         'active':this.active(),
         'disabled':this.props.disabled,
       })} onClick={this.handleClick.bind(this)}>

@@ -1,4 +1,4 @@
-import React, { DOM } from 'react';
+import React from 'react';
 import {Component, PropTypes} from '../utils/';
 import Message from './Message';
 
@@ -35,7 +35,7 @@ export default class Container extends Component {
     let cls = this.classNames(prefixCls);
     let _placement = message[currentId].placement;
     if(_placement){
-      cls = this.classNames(cls,{
+      cls = this.classNames(className,cls,{
         [`${prefixCls}-top`]: _placement           === 'top',            // 默认顶部中间
         [`${prefixCls}-bottom`]: _placement        === 'bottom',         // 底部中间
         [`${prefixCls}-top-left`]: _placement      === 'topLeft',        // 左边上角

@@ -13,12 +13,11 @@ export default class InputNumber extends Component {
     };
   }
   componentWillReceiveProps(props) {
-    if (props.value != this.props.value) {
+    if (props.value !== this.props.value) {
       this.setState({ value: props.value });
     }
   }
   handleInput(e){
-    const {value} = this.state;
     let {max,min,onChange} = this.props;
     let val = Number(e.target.value||0);
     max = Number(max)
@@ -39,11 +38,11 @@ export default class InputNumber extends Component {
     const {max,min,step,onChange} = this.props;
 
     value = value ? Number(value) : 0;
-    if(type == "up"){
+    if(type === "up"){
       value = accAdd(value,step);
       if(value > Number(max)) return;
     }
-    if(type == "down"){
+    if(type === "down"){
       value = accSub(value,step);
       if(value < Number(min)) return;
     }

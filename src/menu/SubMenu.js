@@ -1,5 +1,5 @@
 import React from 'react';
-import {Component, PropTypes} from '../utils/';
+import {PropTypes} from '../utils/';
 import MixinComponent from './MixinComponent';
 import Icon from '../icon';
 
@@ -31,10 +31,10 @@ export default class SubMenu extends MixinComponent {
     return this.menu().state.openedMenu.indexOf(this.props.index) !== -1;
   }
   render() {
-    const { prefixCls,className,...others } = this.props;
+    const { prefixCls,className} = this.props;
 
     return (
-      <li className={this.classNames(`${prefixCls}`, {
+      <li className={this.classNames(className,`${prefixCls}`, {
         // 'is-active': this.state.active,
         'opened': this.opened()
       })}>

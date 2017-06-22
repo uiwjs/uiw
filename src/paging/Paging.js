@@ -12,16 +12,17 @@ export default class Paging extends Component {
   onPrevOrNext(ty){
     const {total,pageSize,onChange} = this.props;
     const {activePage} = this.state;
-    if( (ty == 'prev' && activePage ==1) || (ty == 'next' && activePage ==total/pageSize) ){
+    if( (ty === 'prev' && activePage === 1) || (ty === 'next' && activePage === total/pageSize) ){
       return;
     }
-    let num = ty == "prev" ? activePage -1 : activePage +1;
+    let num = ty === "prev" ? activePage -1 : activePage +1;
 
     switch(ty){
       case "prev" : num = activePage -1; break;
       case "next" : num = activePage +1; break;
       case "jump-prev" : num = activePage -3; break;
       case "jump-next" : num = activePage +3; break;
+      default:break;
     }
     if(num){
       this.setState({activePage:num});
@@ -37,8 +38,8 @@ export default class Paging extends Component {
 
     items.push(
       <li key='prev' onClick={()=>this.onPrevOrNext('prev')} className={this.classNames(`${prefixCls}-prev`,{
-      [`${prefixCls}-disable`]:activePage==1
-      })}><a></a></li>
+        [`${prefixCls}-disable`]: activePage===1
+      })}><a>&nbsp;</a></li>
     )
 
     let curActvePage = activePage;
@@ -47,23 +48,23 @@ export default class Paging extends Component {
     )
 
     for(let i =0; i< totalPage;i++){
-      if(i+1 == curActvePage-3 && curActvePage-3 != 1 && totalPage > 5){
+      if(i+1 === curActvePage-3 && curActvePage-3 !== 1 && totalPage > 5){
         items.push(itemsJump('jump-prev'));
       }
-      if(i+1 == curActvePage+3 && curActvePage+3 != totalPage && totalPage > 5){
+      if(i+1 === curActvePage+3 && curActvePage+3 !== totalPage && totalPage > 5){
         items.push(itemsJump('jump-next'));
       }
 
-      if(curActvePage == i+1 
-        || i+1 == 1 
-        || i+1 == totalPage 
+      if(curActvePage === i+1 
+        || i+1 === 1 
+        || i+1 === totalPage 
         || (i+1 < 6 && totalPage < 6)
         || (i+1 > curActvePage-3 && i+1 < curActvePage)
         || (i+1 < curActvePage+3 && i+1 > curActvePage)
       ){
         items.push(
           <li key={i+1} 
-            className={activePage == i+1 ? `${prefixCls}-active`:`${prefixCls}-item`}
+            className={activePage === i+1 ? `${prefixCls}-active`:`${prefixCls}-item`}
             onClick={()=>{
               this.setState({activePage:i+1 })
               onChange&&onChange(i+1,total,pageSize)
@@ -76,8 +77,8 @@ export default class Paging extends Component {
     }
     items.push(
       <li key='next' onClick={()=>this.onPrevOrNext('next')} className={this.classNames(`${prefixCls}-next`,{
-        [`${prefixCls}-disable`]:activePage==totalPage
-      })}><a></a></li>
+        [`${prefixCls}-disable`]:activePage===totalPage
+      })}><a>&nbsp;</a></li>
     )
 
     return (

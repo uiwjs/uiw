@@ -9,7 +9,6 @@ export default class CheckedTag extends Component {
   }
   componentDidMount() {
     let {checkedValues} = this.parent().props;
-    let {checkedValue} = this.state;
     this.setState({
       checkedValue:checkedValues
     })
@@ -19,7 +18,7 @@ export default class CheckedTag extends Component {
   }
   handleChange = (checked,e) => {
     const {children} = this.props;
-    const {options,checkedValues,onChange,isRadio} = this.parent().props;
+    const {options,onChange,isRadio} = this.parent().props;
     const {checkedValue} = this.state;
 
     if(options&&checked){

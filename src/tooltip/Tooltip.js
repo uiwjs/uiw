@@ -63,11 +63,11 @@ export default class Tooltip extends Component {
     },enterDelay||0)
   }
   hideTooltip(e,isDelay){
-    const {leaveDelay,onVisibleChange,visible} = this.props;
+    const {leaveDelay,onVisibleChange} = this.props;
     const {showTooltip} = this.state;
     clearTimeout(this.leaveTime)
       
-    if(isDelay==true){
+    if(isDelay===true){
       this.setState({
         showTooltip:!showTooltip
       })
@@ -84,7 +84,6 @@ export default class Tooltip extends Component {
   // 弹出的位置
   styles(){
     const { placement } = this.props;
-    const { showTooltip } = this.state;
     const { reference, popup } = this.refs;
     let top = 0,left =0;
 
@@ -146,16 +145,17 @@ export default class Tooltip extends Component {
         top = refheight;
         left = -(refwidth>popwidth?refwidth-popwidth:popwidth-refwidth);
         break;
+      default:break;
     }
     let sty = {};
-    if(top||top==0) sty.top = top+'px';
+    if(top||top===0) sty.top = top+'px';
     if(left) sty.left = left+'px';
     return sty
   }
 
   render() {
     const { prefixCls,className,disabled,children,visibleArrow,placement, 
-      trigger,style,visible,onVisibleChange,effect,leaveDelay} = this.props;
+      trigger,style,effect,leaveDelay} = this.props;
     const { stylesPopup,content,showTooltip } = this.state;
     const cls = this.classNames(prefixCls,className,{
       [`${prefixCls}-placement-${placement}`]:placement,
