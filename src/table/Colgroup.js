@@ -25,7 +25,7 @@ export default class Colgroup extends Component{
     return colelm;
   }
   render(){
-    const { prefixCls, columns } = this.props;
+    const { columns } = this.props;
     return(
       <colgroup>
         {this.renderCol(columns)}

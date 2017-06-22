@@ -48,7 +48,7 @@ export default class Table extends Component{
         headIndeterminate:true,
         checkedRow:checkedRow
       })
-    }else if(checkedRow.length == data.length){
+    }else if(checkedRow.length === data.length){
       this.setState({
         rowsCount,
         headIndeterminate:false,

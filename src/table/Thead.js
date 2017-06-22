@@ -27,10 +27,10 @@ export default class Thead extends Component{
       let $th = $thead.children[0].children;
 
       for(let i=0;i < $th.length;i++){
-        if(type == 'left' && columns[i] && (columns[i].key === '_select' || columns[i].fixed === 'left' )){
+        if(type === 'left' && columns[i] && (columns[i].key === '_select' || columns[i].fixed === 'left' )){
           size += $th[i].offsetWidth;
         }
-        if(type == 'right' && columns[i].fixed === 'right' ){
+        if(type === 'right' && columns[i].fixed === 'right' ){
           size += $th[i].offsetWidth;
         }
       }
@@ -79,10 +79,10 @@ export default class Thead extends Component{
   renderColumnsFixed(columns,ty="left",childArr){
     let arr = childArr || [];
       for (var i = 0; i < columns.length; i++) {
-        if(ty == "left" && (columns[i].key == "_select" || columns[i].fixed =="left")){
+        if(ty === "left" && (columns[i].key === "_select" || columns[i].fixed ==="left")){
           arr.push(columns[i]);
         }
-        if(ty == "right" && columns[i] && columns[i].fixed =="right"){
+        if(ty === "right" && columns[i] && columns[i].fixed ==="right"){
           arr.push(columns[i]);
         }
       }
@@ -105,7 +105,6 @@ export default class Thead extends Component{
     }
 
     for(let i =0; i< columns.length;i++){
-      let attr = {}
       if(columns[i]){
         let attr = {}
         if(columns[i].children&&columns[i].children.length>0){
@@ -114,11 +113,11 @@ export default class Thead extends Component{
         }else {
           attr.rowSpan = spanNum;
         }
-        if(columns[i].key == "_select") attr.className = '_select';
+        if(columns[i].key === "_select") attr.className = '_select';
         subitem.push(
           <th key={i} {...attr}>
             {
-              columns[i].key==="_select"
+              columns[i].key === "_select"
               ?(
                 <Checkbox 
                   indeterminate={this.props.headindeterminate}
@@ -139,7 +138,7 @@ export default class Thead extends Component{
     return headelm;
   }
   render(){
-    const { prefixCls, className,indeterminate,headindeterminate,columns} = this.props;
+    const {indeterminate,columns} = this.props;
     // 计算层级
     let rowLevel = this.getRowSpan(columns);
     return(

@@ -23,7 +23,6 @@ export default class Message extends Component {
   }
   render() {
     const { content,icon, type, className, ...other } = this.props;
-    const { duration } = this.state;
     delete other.placement;
     delete other.duration;
     return (

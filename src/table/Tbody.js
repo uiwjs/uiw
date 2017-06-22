@@ -79,7 +79,7 @@ export default class Tbody extends Component{
             fixedItems.push(tdelm);
           }
         }else if(cloneElement === "right"){
-          if(columns[key]&&columns[key].fixed == "right") {
+          if(columns[key]&&columns[key].fixed === "right") {
             fixedItems.push(tdelm);
           }
         }else{
@@ -95,7 +95,7 @@ export default class Tbody extends Component{
   }
   selectedAll=(checked,cb)=>{
     const {data} = this.props;
-    const {_disabled,_checked} = this.state;
+    const {_disabled} = this.state;
     let _checked_cur = {}, _selectedData=[];
     for(let i=0;i < data.length;i++){
       if(!_disabled[i]) {
@@ -129,7 +129,7 @@ export default class Tbody extends Component{
       items.push(
         <tr 
         className={this.classNames({
-          [`${prefixCls}-tr-hover`]:trHoverClassName[0] == i
+          [`${prefixCls}-tr-hover`]:trHoverClassName[0] === i
         })}
         onMouseEnter={()=>this.onMouseOver('enter',i)} 
         onMouseLeave={()=>this.onMouseOver('leave',i)} 
@@ -140,7 +140,7 @@ export default class Tbody extends Component{
     return items;
   }
   render(){
-    const { prefixCls, className, data, headchecked } = this.props;
+    const { data } = this.props;
     return(
       <tbody>
         {this.renderTbody.bind(this)(data)}

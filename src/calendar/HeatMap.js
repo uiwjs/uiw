@@ -17,12 +17,11 @@ export default class HeatMap extends Component {
   }
   componentDidMount() {
     // 根据宽度来生成多少天的图形
-    const {endDate,days} = this.props;
+    const {days} = this.props;
     const $this = findDOMNode(this);
-    const width = $this.parentNode.offsetWidth
-    const col = parseInt(width/16)
+    const width = $this.parentNode.offsetWidth;
+    const col = parseInt(width/16,10);
     const daycount = col*7 -14;
-    let timestamp = endDate.getTime();
     !days&&this.setState({
       days:daycount
     })
@@ -41,7 +40,7 @@ export default class HeatMap extends Component {
     let color = '',keys = [], nums = Object.keys(panelColors);
     // 转换成数字
     for(let a=0;a< nums.length;a++){
-      keys.push(parseInt(nums[a]))
+      keys.push(parseInt(nums[a],10));
     }
     // 排序
     keys = this.numberSort(keys);
@@ -58,11 +57,11 @@ export default class HeatMap extends Component {
 
   isCurrentData(date){ // 判断传进来的数据，并返回颜色
     const { values, panelColors } = this.props;
-    let curdt = {},color = '';
+    let curdt = {};
     for (var i = 0; i < values.length; i++) {
       let curdate = new Date(values[i]['date']);
       curdate = `${curdate.getFullYear()}-${curdate.getMonth()+1}-${curdate.getDate()}`;
-      if(curdate==date){
+      if(curdate===date){
         curdt = values[i];
         break;
       }
@@ -79,7 +78,7 @@ export default class HeatMap extends Component {
 
     const {onMouseOver, emptyMessage, message} = this.props;
 
-    // onMouseOver(e,curdatestr,curdt);
+    onMouseOver(e,curdatestr,curdt);
 
     const {tooltipRefs,tooltipConRefs} = this.refs;
     console.log("emptyMessage::",emptyMessage)
@@ -117,12 +116,9 @@ export default class HeatMap extends Component {
     }
   }
   onClick(e,curdate,curdt){
-    console.log("=====>",e,curdate,curdt)
     const {onClick} = this.props;
-    const {currentData} =this.state;
-    console.log("curdate::",curdate)
-    curdt = curdt ;
-    curdate = curdate ;
+    // let _curdt = curdt ;
+    // curdate = curdate ;
     onClick(e,curdate,curdt)
   }
 
@@ -139,8 +135,8 @@ export default class HeatMap extends Component {
     return emptyMessage
   }
   render() {
-    const { prefixCls, weekLables, monthLables, panelColors, endDate, onMouseOver,className} = this.props;
-    let { days,tooltipShow } = this.state;
+    const { prefixCls, weekLables, monthLables, panelColors, endDate,className} = this.props;
+    let { days } = this.state;
     const cls = this.classNames(prefixCls,className);
 
     let width=14, height=14, dayDate=[], oneday=86400000;
@@ -148,19 +144,18 @@ export default class HeatMap extends Component {
     let curweek = new Date(timestamp).getDay();
     days = days+curweek+1;
 
-    for (var i = 0; i < days; i++) {
+    for (let i = 0; i < days; i++) {
       dayDate.push(timestamp - (oneday*i));
     }
     dayDate=this.numberSort(dayDate);
     // 日历
     var rectdays = [], rectweeks=[], rectMonth=[], rectPanelColors=[], col=16;
-    for (var i = 0; i < days; i++) {
-      let xl = parseInt(i/7) * col;
-      let yl = 21 + parseInt(i%7) * col;
+    for (let i = 0; i < days; i++) {
+      let xl = parseInt(i/7,10) * col;
+      let yl = 21 + parseInt(i%7,10) * col;
       let curdate = new Date(dayDate[i]);
       let curdatestr = `${curdate.getFullYear()}-${curdate.getMonth()+1}-${curdate.getDate()}`;
       let curdt = this.isCurrentData(curdatestr);
-      console.log("curdatestr::",curdatestr)
       // 日方块
       rectdays.push(<rect 
         data-date={curdatestr}
@@ -175,8 +170,8 @@ export default class HeatMap extends Component {
         rectweeks.push(<text key={i} x={xl+7} y={yl} width={width+10} height={height}>{weekLables[i]}</text>);
       }
       // 月标题
-      if(parseInt(curdate.getDate())==1){
-        rectMonth.push(<text key={i} x={xl+12}> {monthLables[parseInt(curdate.getMonth())]} </text>)
+      if(parseInt(curdate.getDate(),10)===1){
+        rectMonth.push(<text key={i} x={xl+12}> {monthLables[parseInt(curdate.getMonth(),10)]} </text>)
       }
     }
     // 颜色说明栏

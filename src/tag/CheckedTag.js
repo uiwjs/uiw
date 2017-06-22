@@ -8,7 +8,7 @@ export default class CheckedTag extends Component {
     checkedValue:[]
   }
   componentDidMount() {
-    let {checkedValues,isRadio} = this.parent().props;
+    let {checkedValues} = this.parent().props;
     let {checkedValue} = this.state;
     this.setState({
       checkedValue:checkedValues
