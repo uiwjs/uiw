@@ -79,10 +79,10 @@ export default class HeatMap extends Component {
 
     const {onMouseOver, emptyMessage, message} = this.props;
 
-    onMouseOver(e,curdatestr,curdt);
+    // onMouseOver(e,curdatestr,curdt);
 
     const {tooltipRefs,tooltipConRefs} = this.refs;
-
+    console.log("emptyMessage::",emptyMessage)
     // 空消息不提示
     if(!emptyMessage && !curdt.count) return;
     
@@ -107,19 +107,22 @@ export default class HeatMap extends Component {
       }
 
       tooltipConRefs.setState({content:tooltipConten});
+      console.log("curdt::",curdt)
 
-      this.timeoutCurData = setTimeout(()=>{
-        this.setState({
-          currentData:curdt
-        })
-      },200)
+      // this.timeoutCurData = setTimeout(()=>{
+      //   this.setState({
+      //     currentData:curdt
+      //   })
+      // },200)
     }
   }
   onClick(e,curdate,curdt){
+    console.log("=====>",e,curdate,curdt)
     const {onClick} = this.props;
     const {currentData} =this.state;
-    curdt = curdt || currentData;
-    curdate = curdate || currentData.date;
+    console.log("curdate::",curdate)
+    curdt = curdt ;
+    curdate = curdate ;
     onClick(e,curdate,curdt)
   }
 
@@ -157,6 +160,7 @@ export default class HeatMap extends Component {
       let curdate = new Date(dayDate[i]);
       let curdatestr = `${curdate.getFullYear()}-${curdate.getMonth()+1}-${curdate.getDate()}`;
       let curdt = this.isCurrentData(curdatestr);
+      console.log("curdatestr::",curdatestr)
       // 日方块
       rectdays.push(<rect 
         data-date={curdatestr}
@@ -185,7 +189,6 @@ export default class HeatMap extends Component {
       <div className={`${prefixCls}-wrapper`} >
         <div ref="tooltipRefs" className={`${prefixCls}-popup`}>
           <Tooltip ref="tooltipConRefs" content={this.renderTooltip() ||  ` `} visible={true}>
-            <div onClick={(e)=>this.onClick(e)} style={{width:12,height:12}}></div>
           </Tooltip>
         </div>
         <svg className={ cls } width={`100%`} height="155px">

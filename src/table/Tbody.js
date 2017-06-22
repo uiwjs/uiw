@@ -24,7 +24,6 @@ export default class Tbody extends Component{
     this.setState({_checked,_disabled});
   }
   getRenders(columns,headelm={}){
-    let subitem = [];
     for(let i =0; i< columns.length;i++){
       if(columns[i] && columns[i].key && (!columns[i].children || columns[i].children.length < 1)){
         headelm[columns[i].key]={};
@@ -76,7 +75,7 @@ export default class Tbody extends Component{
           </td>
         )
         if(cloneElement === "left"){
-          if(a == '_select' || columns[key]&&columns[key].fixed == "left") {
+          if( (a === '_select' || columns[key])&&columns[key].fixed === "left") {
             fixedItems.push(tdelm);
           }
         }else if(cloneElement === "right"){
