@@ -18,22 +18,6 @@ new WebpackDevServer(webpack({
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    // new webpack.LoaderOptionsPlugin({
-    //   options: {
-    //     postcss: [
-    //       autoprefixer({
-    //         browsers: [
-    //           "> 1%",
-    //           "last 2 versions",
-    //           // '>1%',
-    //           // 'last 4 versions',
-    //           // 'Firefox ESR',
-    //           // 'not ie < 9', // React doesn't support IE8 anyway
-    //         ]
-    //       })
-    //     ]
-    //   }
-    // })
   ],
   resolve: {
     extensions: ['.js', '.jsx']
@@ -42,7 +26,10 @@ new WebpackDevServer(webpack({
     rules: [
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader',
+        use:[
+          'babel-loader',
+        ],
+        // loader: 'babel-loader',
         include: [
           path.join(__dirname, '../docs'),
           path.join(__dirname, '../src'),
@@ -81,29 +68,6 @@ new WebpackDevServer(webpack({
           },
         ]
       },
-      // {
-      //   test: /\.css$/,
-      //   use: ['style-loader', 'css-loader',
-      //     {
-      //       loader: require.resolve('postcss-loader'),
-      //       options: {
-      //         ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
-      //         plugins: () => [
-      //           require('postcss-flexbugs-fixes'),
-      //           autoprefixer({
-      //             browsers: [
-      //               '>1%',
-      //               'last 4 versions',
-      //               'Firefox ESR',
-      //               'not ie < 9', // React doesn't support IE8 anyway
-      //             ],
-      //             flexbox: 'no-2009',
-      //           }),
-      //         ],
-      //       },
-      //     },
-      //   ]
-      // },
       {
         test: /\.(eot|svg|ttf|woff|woff2)(\?.+)?$/,
         loader : 'file-loader'

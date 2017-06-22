@@ -74,7 +74,7 @@ constructor(props) {
 
 onChange(key,e, value) {
   const {form} = this.state;
-  console.log("value:==:",key,value)
+  console.log("value:==:",key,value,e)
   form[key] = value;
   this.setState({form});
 }
@@ -140,7 +140,7 @@ render() {
           onChange={this.onChange.bind(this, 'password')} />
       </FormItem>
       <FormItem label="输入数字" field="inputNumber" help="输入数字5~100"  {...formItemLayout} >
-          <InputNumber value={form.inputNumber} onChange={this.onChange.bind(this,'inputNumber')} min="5" max="100"></InputNumber>
+        <InputNumber value={form.inputNumber} onChange={this.onChange.bind(this,'inputNumber')} min="5" max="100"></InputNumber>
       </FormItem>
       <FormItem label="是否在线" field="online" {...formItemLayout} >
         <Switch checked={form.online} 
