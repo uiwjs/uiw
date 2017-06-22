@@ -1,4 +1,4 @@
-import React, {Children,cloneElement,createElement } from 'react';
+import {Children,cloneElement,createElement } from 'react';
 import {Component, PropTypes} from '../utils/';
 import assign from 'object-assign';
 
