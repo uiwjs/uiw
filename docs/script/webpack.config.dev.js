@@ -9,11 +9,8 @@ module.exports = {
   devtool: 'eval',
   entry: [
     require.resolve('react-dev-utils/webpackHotDevClient'),
-    // 'webpack-dev-server/client?http://localhost:1987',
     'webpack/hot/only-dev-server',
     'react-hot-loader/patch',
-    // require("react-hot-loader/patch"),
-    // require("react-hot-loader/patch"),
     paths.appIndexJs
   ],
   output: {
