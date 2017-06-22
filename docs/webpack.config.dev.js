@@ -1,6 +1,26 @@
 const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
+const autoprefixer = require('autoprefixer');
+
+// "postcss-loader" 将autoprefixer应用到我们的CSS中。
+// var postcsscfg = {
+//   loader:'postcss-loader',
+//   options:{
+//     plugins:function() {
+//       return [
+//         autoprefixer({
+//           browsers: [
+//             '>1%',
+//             'last 4 versions',
+//             'Firefox ESR',
+//             'not ie < 9', // React doesn't support IE8 anyway
+//           ]
+//         }),
+//       ];
+//     }
+//   }
+// };
 
 new WebpackDevServer(webpack({
   devtool: 'source-map',
@@ -16,7 +36,23 @@ new WebpackDevServer(webpack({
     filename: 'bundle.js'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.LoaderOptionsPlugin({
+    //   options: {
+    //     postcss: [
+    //       autoprefixer({
+    //         browsers: [
+    //           "> 1%",
+    //           "last 2 versions",
+    //           // '>1%',
+    //           // 'last 4 versions',
+    //           // 'Firefox ESR',
+    //           // 'not ie < 9', // React doesn't support IE8 anyway
+    //         ]
+    //       })
+    //     ]
+    //   }
+    // })
   ],
   resolve: {
     extensions: ['.js', '.jsx']
@@ -32,13 +68,61 @@ new WebpackDevServer(webpack({
         ]
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        test: /\.(less|css)$/,
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: require.resolve('postcss-loader'),
+            options: {
+              ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
+              plugins: () => [
+                require('postcss-flexbugs-fixes'),
+                autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9', // React doesn't support IE8 anyway
+                  ],
+                  flexbox: 'no-2009',
+                }),
+              ],
+            },
+          },
+          {
+            loader: require.resolve('less-loader'),
+          },
+        ]
       },
-      {
-        test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
-      },
+      // {
+      //   test: /\.css$/,
+      //   use: ['style-loader', 'css-loader',
+      //     {
+      //       loader: require.resolve('postcss-loader'),
+      //       options: {
+      //         ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
+      //         plugins: () => [
+      //           require('postcss-flexbugs-fixes'),
+      //           autoprefixer({
+      //             browsers: [
+      //               '>1%',
+      //               'last 4 versions',
+      //               'Firefox ESR',
+      //               'not ie < 9', // React doesn't support IE8 anyway
+      //             ],
+      //             flexbox: 'no-2009',
+      //           }),
+      //         ],
+      //       },
+      //     },
+      //   ]
+      // },
       {
         test: /\.(eot|svg|ttf|woff|woff2)(\?.+)?$/,
         loader : 'file-loader'
