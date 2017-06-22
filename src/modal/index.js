@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import "./style/index.less";
 import Modal from './Modal';
 import Container from './Container';
 import assign from 'object-assign';
-import ReactDOM from 'react-dom';
 import {InformationCircled,QuestionCircle,CheckmarkCircled,CloseCircled} from '../svgs';
 
 Modal.warn = function(props){

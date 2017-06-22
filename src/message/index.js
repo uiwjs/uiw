@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import Container from './Container';
 import { randomid } from '../utils/strings'
@@ -22,6 +22,7 @@ function create (type) {
       case "default": msg.icon = "information-o";break;
       case "error": msg.icon = "circle-close-o";break;
       case "success": msg.icon = "circle-check-o";break;
+      default:break;
     }
     container.addMessage(msg,()=>{
       console.log("testt")

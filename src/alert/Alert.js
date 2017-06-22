@@ -28,6 +28,7 @@ export default class Alert extends Component {
         case "info": icon = InformationCircled;break;
         case "warn": icon = QuestionCircle;break;
         case "error": icon = CloseCircled;break;
+        default:break;
       }
     }
     const cls = this.classNames(prefixCls,{
@@ -41,7 +42,7 @@ export default class Alert extends Component {
         {message&&<span className={!description?`${prefixCls}-description`:`${prefixCls}-message`}>{icon}{message}</span>}
         {description&&<span className={`${prefixCls}-description`}>{description}</span>}
         {children}
-        {onClose&&<a href="javascript:void(0)" onClick={this.handleClose.bind(this)} className={`${prefixCls}-close-icon`}>{IconClose}</a>}
+        {onClose&&<a onClick={this.handleClose.bind(this)} className={`${prefixCls}-close-icon`}>{IconClose}</a>}
       </div>
     return (
       <Transition visible={this.state.tranVisible} type="fade-in">

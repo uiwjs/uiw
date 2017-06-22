@@ -13,7 +13,7 @@ export default class Group extends Component{
     for(let i=0;i< checkedValues.length;i++){
       let _value = this.refs['checkbox'+i].state.value;
       let _checked = this.refs['checkbox'+i].state.checked;
-      if( (_checked&&value!=_value) || (checked&&value==_value) ){
+      if( (_checked&&value!==_value) || (checked&&value===_value) ){
         values.push(_value)
       }
     }

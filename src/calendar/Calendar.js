@@ -1,5 +1,5 @@
 import React from 'react';
-import {Component, PropTypes} from '../utils/';
+import {Component} from '../utils/';
 import "./style/index.less";
 
 export default class Calendar extends Component {
@@ -9,7 +9,7 @@ export default class Calendar extends Component {
   static propTypes = {
   }
   render() {
-    const { prefixCls } = this.props;
+    // const { prefixCls } = this.props;
     return (
       <div></div>
     );

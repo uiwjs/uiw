@@ -12,7 +12,7 @@ export default class Button extends Component {
       default:      types = type;  break;
     }
     const cls = this.classNames(prefixCls,{
-        'w-transition-base': type != 'link',
+        'w-transition-base': type !== 'link',
         // [`${prefixCls}-default`]: size === 'default',         //（默认尺寸）Default button
         [`${prefixCls}-size-${size}`]: size,
         [`${prefixCls}-${types}`]: types,
