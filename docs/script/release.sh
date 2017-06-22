@@ -8,7 +8,7 @@ VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | s
 rm -fr dist
 builds=`npm run build`
 # mkdir dist dist/site
-cd dist/site 
+cd dist
 
 # init an empty git repo, checkout branch gh-pages
 git init 

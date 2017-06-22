@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node docs/script/start.js",
-    "build": "cd docs/script && webpack --config webpack.config.js --progress",
-    "deploy": "./docs/release.sh"
+    "build": "webpack --config docs/script/webpack.config.js --progress",
+    "deploy": "./docs/script/release.sh"
   },
   "dependencies": {
     "async-validator": "^1.6.9",

@@ -11,6 +11,7 @@ module.exports = {
   appBuild: resolveApp('dist'),
   appPublic: resolveApp('docs'),
   appHtml: resolveApp('docs/index.html'),
+  appBuildHtml: resolveApp('docs/build.html'),
   appIndexJs: resolveApp('docs/index.jsx'),
   appSrc: resolveApp('src'),
   appNodeModules: resolveApp('node_modules'),

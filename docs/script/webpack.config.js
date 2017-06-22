@@ -5,25 +5,20 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const ManifestPlugin = require('webpack-manifest-plugin');
 const autoprefixer = require('autoprefixer');
+const paths = require('./paths');
 
-const basePath = path.resolve(__dirname, '../');
-
-const cssFilename = 'static/css/[name].[contenthash:8].css';
-
-const extractLess = new ExtractTextPlugin({
-    filename: "[name].[contenthash].css",
-    disable: process.env.NODE_ENV === "development"
-});
-
-// const extractCSS = new ExtractTextPlugin('css/[contenthash].css');
-// const extractLESS = new ExtractTextPlugin('css/[contenthash].css')
+// const cssFilename = 'static/css/[name].[contenthash:8].css';
+// const extractLess = new ExtractTextPlugin({
+//   filename: "[name].[contenthash].css",
+//   disable: process.env.NODE_ENV === "development"
+// });
 
 module.exports = {
   entry: {
-    docs: path.join(basePath, 'docs')
+    docs: paths.appPublic
   },
   output: {
-    path: path.resolve(basePath, 'dist/site'),
+    path:paths.appBuild,
     chunkFilename: '[chunkhash:12].js',
     filename: '[chunkhash:12].js'
   },
@@ -36,8 +31,8 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         include: [
-          path.join(__dirname, '../docs'),
-          path.join(__dirname, '../src'),
+          paths.appPublic,
+          paths.appSrc,
         ]
       },
       {
@@ -73,29 +68,6 @@ module.exports = {
           },
         ]
       },
-      // {
-      //   test: /\.css$/,
-      //   use: ['style-loader', 'css-loader',
-      //     {
-      //       loader: require.resolve('postcss-loader'),
-      //       options: {
-      //         ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
-      //         plugins: () => [
-      //           require('postcss-flexbugs-fixes'),
-      //           autoprefixer({
-      //             browsers: [
-      //               '>1%',
-      //               'last 4 versions',
-      //               'Firefox ESR',
-      //               'not ie < 9', // React doesn't support IE8 anyway
-      //             ],
-      //             flexbox: 'no-2009',
-      //           }),
-      //         ],
-      //       },
-      //     },
-      //   ]
-      // },
       {
         test: /\.(eot|svg|ttf|woff|woff2)(\?.+)?$/,
         loader : 'file-loader'
@@ -112,11 +84,10 @@ module.exports = {
   },
 
   plugins: [
-    // extractLess,
     new HtmlWebpackPlugin({
       inject: true,
       // inject: "head",
-      template: './build.html',
+      template: paths.appBuildHtml,
       minify: {
         removeComments: true,
         collapseWhitespace: true,
