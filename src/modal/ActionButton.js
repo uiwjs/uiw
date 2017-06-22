@@ -19,7 +19,7 @@ export default class ActionButton extends Component{
   componentWillUnmount() {
     clearTimeout(this.timeoutId);
   }
-  onClick() {
+  onClick(...args) {
     const { onOk,closeModals } = this.props;
     if(!onOk) return closeModals("ok",...args);
 
