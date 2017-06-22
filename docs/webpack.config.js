@@ -85,48 +85,39 @@ module.exports = {
       //       ] 
       //   })
       // },
-
-
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader'
-        })
+        test: /\.(less|css)$/,
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: require.resolve('postcss-loader'),
+            options: {
+              ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
+              plugins: () => [
+                require('postcss-flexbugs-fixes'),
+                autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9', // React doesn't support IE8 anyway
+                  ],
+                  flexbox: 'no-2009',
+                }),
+              ],
+            },
+          },
+          {
+            loader: require.resolve('less-loader'),
+          },
+        ]
       },
-
-      // {
-      //   test: /\.less$/,
-      //   use: ExtractTextPlugin.extract({
-      //       use:[
-      //         'style-loader',
-      //         {
-      //           loader:'css-loader',
-      //           options: {
-      //             // 0 => no loaders (default); 1 => postcss-loader; 2 => postcss-loader, sass-loader 
-      //             importLoaders: 1 
-      //           }
-      //         },
-      //         'less-loader'
-      //       ] 
-      //   }),
-      // },
-      {
-        test: /\.less$/,
-        use: extractLess.extract({
-          use: [{
-            loader: "css-loader"
-          }, {
-            loader: "less-loader",
-          }],
-          // use style-loader in development
-          fallback: "style-loader"
-        })
-      },
-      // {
-      //   test: /\.less$/,
-      //   use: ['style-loader', 'css-loader', 'less-loader']
-      // },
       {
         test: /\.(ttf|eot|svg|woff|woff2)(\?.+)?$/,
         loader: 'file-loader?name=[hash:12].[ext]'
