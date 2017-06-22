@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
+const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const autoprefixer = require('autoprefixer');
 const paths = require('./paths');
 
@@ -19,12 +20,22 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
+    // 这是发送热更新（目前仅为CSS）的必要条件：
     new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
-    extensions: ['.js', '.jsx']
+    // 这些是Node生态系统支持的合理默认值。
+    // 我们还将支持JSX作为通用组件文件扩展名，来支持一些工具，尽管我们不建议使用它，
+    extensions: ['.js', '.jsx'],
+    plugins: [
+      // 组织用户从 src/(或者node_modules/) 以外的地方导入文件
+      // 这样通常回到这混乱，因为我们Babel只处理 src/ 中的文件
+      new ModuleScopePlugin(paths.appSrc),
+    ],
   },
   module: {
+    // 输出错误而不是警告
+    strictExportPresence: true,
     rules: [
       {
         test: /\.jsx?$/,
