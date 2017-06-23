@@ -25,7 +25,7 @@ export default class Switch extends Component {
     onChange&&onChange(e,e.target.checked)
   }
   render() {
-    const { prefixCls,className,style,size,disabled,checked,checkedChildren,unCheckedChildren,color,unColor} = this.props;
+    const { prefixCls,className,style,size,disabled,checkedChildren,unCheckedChildren,color,unColor} = this.props;
     const { _checked } = this.state;
 
     const cls = this.classNames(prefixCls,className,{
