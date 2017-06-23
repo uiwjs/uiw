@@ -9,6 +9,10 @@
     border-right: 0;
     min-width: 100%;
     border-radius: @border-radius-base;
+    th,td{
+      border-bottom: 1px solid @table-border-color;
+      border-right: 1px solid @table-border-color;
+    }
     th{
       height: @table-tr-height;
       color: @table-th-color;
@@ -49,13 +53,6 @@
   .w-table-caption{
     text-align: left;
     border-radius: @border-radius-base @border-radius-base 0 0;
-    // &+table thead{
-    //   tr:first-child {
-    //     th:first-child,th:last-child{
-    //       border-radius: 0;
-    //     }
-    //   }
-    // }
   }
 }
 
@@ -65,76 +62,61 @@
 }
 .w-table {
   &.w-table-scroll{
-    // position: relative;
-    // border-radius: @border-radius-base;
-    table{
-      // overflow: hidden;
-      // border: 1px solid @table-border-color;
-    }
-    .w-table-caption{
-      // border:0;
-      // border-bottom: 1px solid @table-border-color;
-      // &+.w-table-head{
-      //   table thead tr th:first-child{
-      //     border-top-left-radius: 0;
-      //   }
-      //   table thead tr th:last-child{
-      //     border-top-right-radius: 0;
-      //   }
-      // }
-    }
     .w-table-head{
       overflow-x: hidden;
-      // table {
-      //   border-bottom-left-radius: 0;
-      //   border-bottom-right-radius: 0;
-      // }
-      // table thead tr:first-child {
-      //   th:first-child{
-      //     border-left: 0;
-      //   }
-      //   th:last-child{
-      //     border-right: 0;
-      //   }
-      //   th{
-      //     border-top:0;
-      //   }
-      // }
     }
-    // .w-table-body{
-    //   // overflow: auto;
-    //   table{
-    //     border-top: 0;
-    //   }
-    // }
     .w-table-body{
-      // margin-left: calc(100vw - 100%);
       overflow: auto;
-      // position: relative;
-      // z-index: 99;
-      // width: 100%;
-      // overflow-y: scroll;
-      // border-radius: 0 0 @border-radius-base @border-radius-base;
-      // td:first-child{
-      //   border-left: 0
-      // }
-      // td:last-child{
-      //   border-right: 0
-      // }
-      // table{
-      //   // position: relative;
-      //   border-top-left-radius: 0;
-      //   border-top-right-radius: 0;
-      //   // border-left: 0;
-      //   border-top: 0;
-      //   tr:last-child{
-      //     td{
-      //       border-bottom: 0;
-      //     }
-      //   }
-      // }
     }
   }
+  .placeholder{
+    border-width: 0 1px 1px 1px;
+    border-color: @table-border-color;
+    border-style: solid;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  &.is-empty{
+    .w-table-fixed-body-left,.w-table-fixed-body-right{
+      display: none;
+    }
+  }
+}
+
+// 至于一个表格的样式
+.w-table-default{
+  table{
+    border-width: 1px 0 0 1px;
+    border-color: @table-border-color;
+    border-style: solid;
+    overflow: hidden;
+    tbody tr:last-child td:last-child{
+      border-bottom-right-radius: 4px;
+    }
+  }
+  &.is-empty{
+    tbody td{
+      text-align: center;
+    }
+  }
+  &.is-footer{
+    table{
+      border-bottom-left-radius:0;
+      border-bottom-right-radius: 0; 
+      tbody tr:last-child td:last-child{
+        border-bottom-right-radius: 0;
+      }
+    }
+  }
+  .w-table-caption + table {
+    border-top-left-radius:0;
+    border-top-right-radius: 0; 
+  }
+}
+
+.w-table-footer{
+  border-radius: 0 0 5px 5px;
 }
 
 
@@ -151,10 +133,6 @@
 }
 
 .w-table-head,.w-table-body{
-  th,td{
-    border-bottom: 1px solid @table-border-color;
-    border-right: 1px solid @table-border-color;
-  }
   td:last-child,tr:first-child th:last-child{
     border-right:0;
   }

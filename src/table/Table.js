@@ -5,6 +5,7 @@ import Tbody from './Tbody';
 import Colgroup from './Colgroup';
 import Paging from '../paging/';
 import Loading from '../loading/';
+import Icon from '../icon/';
 
 export default class Table extends Component{
   constructor(props){
@@ -96,16 +97,6 @@ export default class Table extends Component{
       rowSelection.onSelectAll&&rowSelection.onSelectAll(selectDatas,checked,e);
     })
   }
-  // 添加一列 Checkbox
-  addSelectDateColumn(data){
-    let newdata = []
-    for(let i = 0;i < data.length;i++){
-      let temp = {_select:'_select'};
-      for(let a in data[i]) temp[a] = data[i][a];
-      newdata.push(temp)
-    }
-    return newdata;
-  }
   //横向滚动事件
   onScroll(e){
     const {headerWrapper,bodyWrapper,fixedBodyWrapper,leftBodyWrapper,rightBodyWrapper} = this.refs;
@@ -158,9 +149,25 @@ export default class Table extends Component{
       trHoverClassName:ty === 'enter' ?[idx]:[]
     })
   }
+  // 是否有固定列
+  isColumnsFixed(columns,type){
+    let isFixed = false;
+    for(let i=0;i< columns.length;i++){
+      if(columns[i].fixed === type){
+        isFixed = true;
+        break;
+      }
+      if(columns[i].children&&columns[i].children.length){
+        isFixed = this.isColumnsFixed(columns[i].children,type)
+        if(isFixed === true) break;
+      }
+    }
+    return isFixed;
+  }
   render(){
-    const { prefixCls, className,rowSelection, caption, footer, columns, data, height, width, paging, loading } = this.props;
+    const { prefixCls, className,rowSelection, caption, footer, columns, data,width, paging, loading } = this.props;
     const { headIndeterminate,headchecked,trHoverClassName } = this.state
+    let {height} = this.props;
     // checkbox 选择数据如果存在删除重新渲染
     if(rowSelection){
       if(columns[0].key==='_select'){columns.splice(0,1)}
@@ -171,6 +178,7 @@ export default class Table extends Component{
     }
     let tableTbody = (refname) => (<Tbody 
         ref={refname}
+        type={refname}
         rowSelection={rowSelection}
         trHoverClassName={trHoverClassName}
         onTrHover={this.onTrHover}
@@ -193,53 +201,59 @@ export default class Table extends Component{
     let tableFooter = footer&&(<div className={`${prefixCls}-footer`}>{footer}</div>)
 
     let pagingView = paging && <Paging className={`${prefixCls}-paging`} {...paging}/> ;
-    if(height || width || rowSelection || (loading === true || loading === false) ){
+    if(height || width || rowSelection || loading === (true || false) ){
       let fixedCloneTable = (width) ?  (
         <div ref="fixedBodyWrapper" className={ this.classNames(`${prefixCls}-fixed`,`${prefixCls}-scroll-position-left`)} 
           style={{marginTop:-this.state.leftFixedTop}}
         >
-          <div className={this.classNames(`${prefixCls}-fixed-left`)} 
+          {this.isColumnsFixed(columns,'left')&&
+            <div className={this.classNames(`${prefixCls}-fixed-left`)} 
             style={{width:this.state.leftFixedWidth}}>
-            <div className={`${prefixCls}-fixed-head-left`}>
-              <table>
-                {React.cloneElement(tableColgroup)}
-                {React.cloneElement(tableThead(),{
-                  cloneElement: "left",
-                })}
-              </table>
+              <div className={`${prefixCls}-fixed-head-left`}>
+                <table>
+                  {React.cloneElement(tableColgroup)}
+                  {React.cloneElement(tableThead(),{
+                    cloneElement: "left",
+                  })}
+                </table>
+              </div>
+              <div ref="leftBodyWrapper" onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-fixed-body-left`}>
+                <table>
+                  {React.cloneElement(tableColgroup,{cloneElement: "left"})}
+                  {React.cloneElement(tableTbody('tbody_left'),{cloneElement: "left"})}
+                </table>
+              </div>
             </div>
-            <div ref="leftBodyWrapper" onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-fixed-body-left`}>
-              <table>
-                {React.cloneElement(tableColgroup,{cloneElement: "left"})}
-                {React.cloneElement(tableTbody('tbody_left'),{cloneElement: "left"})}
-              </table>
+          }
+          {this.isColumnsFixed(columns,'right')&&
+            <div className={this.classNames(`${prefixCls}-fixed-right`)} 
+              style={{width:this.state.rightFixedWidth}}>
+              <div className={`${prefixCls}-fixed-head-right`}>
+                <table>
+                  {React.cloneElement(tableColgroup)}
+                  {React.cloneElement(tableThead(),{
+                    cloneElement: "right",
+                  })}
+                </table>
+              </div>
+              <div ref="rightBodyWrapper" style={{height}} className={`${prefixCls}-fixed-body-right`}>
+                <table>
+                  {React.cloneElement(tableColgroup,{cloneElement: "right"})}
+                  {React.cloneElement(tableTbody('tbody_right'),{cloneElement: "right"})}
+                </table>
+              </div>
             </div>
-          </div>
-
-          <div className={this.classNames(`${prefixCls}-fixed-right`)} 
-            style={{width:this.state.rightFixedWidth}}>
-            <div className={`${prefixCls}-fixed-head-right`}>
-              <table>
-                {React.cloneElement(tableColgroup)}
-                {React.cloneElement(tableThead(),{
-                  cloneElement: "right",
-                })}
-              </table>
-            </div>
-            <div ref="rightBodyWrapper" style={{height}} className={`${prefixCls}-fixed-body-right`}>
-              <table>
-                {React.cloneElement(tableColgroup,{cloneElement: "right"})}
-                {React.cloneElement(tableTbody('tbody_right'),{cloneElement: "right"})}
-              </table>
-            </div>
-          </div>
+          }
         </div>
       ):null;
 
       // 固定头 或者左右滚动
       return(
         <div className={`${prefixCls}-warpper`}>
-          <div className={this.classNames(className,prefixCls,`${prefixCls}-scroll`)}>
+          <div className={this.classNames(className,prefixCls,`${prefixCls}-scroll`,{
+            [`is-empty`]:data.length ===0,
+            [`is-footer`]:tableFooter,
+          })}>
             {tableCaption}
             <div ref="headerWrapper" className={`${prefixCls}-head`}>
               <table style={{width}}>
@@ -247,13 +261,16 @@ export default class Table extends Component{
                 {tableThead("tableThead")}
               </table>
             </div>
-            <Loading loading={this.props.loading}>
-              <div ref="bodyWrapper" onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-body`}>
-                <table style={{width}}>
-                  {tableColgroup}
-                  {tableTbody('tbody')}
-                </table>
-              </div>
+            <Loading loading={this.props.loading===undefined ? false : loading}>
+              {data.length === 0?
+                <div className="placeholder"><Icon type="frown-o" /> 暂无数据</div> :
+                <div ref="bodyWrapper" onScroll={this.onScroll.bind(this)} style={{height}} className={`${prefixCls}-body`}>
+                  <table style={{width}}>
+                    {tableColgroup}
+                    {tableTbody('tbody')}
+                  </table>
+                </div>
+              }
               {tableFooter}
               {fixedCloneTable}
               {pagingView}
@@ -263,15 +280,25 @@ export default class Table extends Component{
       )
     }
 
-    // 默认的table
     return(
       <div className={`${prefixCls}-warpper`}>
-        <div className={this.classNames(className,prefixCls)}>
+        <div className={this.classNames(className,prefixCls,`${prefixCls}-default`,{
+          [`is-empty`]:data.length ===0,
+          [`is-footer`]:tableFooter,
+        })}>
           {tableCaption}
           <table>
             {tableColgroup}
-            {tableThead()}
-            {tableTbody()}
+            {tableThead("tableThead")}
+            {data.length ===0?(
+              <tbody>
+                <tr>
+                  <td ref={(elm)=>{
+                  if(elm){elm.colSpan = this.refs.tableThead.getColSpan(columns); }
+                  }}><Icon type="frown-o" /> 暂无数据</td>
+                </tr>
+              </tbody>
+            ):tableTbody()}
           </table>
           {tableFooter}
         </div>
@@ -284,7 +311,7 @@ export default class Table extends Component{
 Table.defaultProps = {
   prefixCls:'w-table',
   size: 'default',
-  loading: false,
+  // loading: false,
   data:[],
   columns:[]
 };

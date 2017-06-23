@@ -56,7 +56,7 @@ export default class Tbody extends Component{
           continue;
         }
 
-        let tdelm = (item[`_select`] && a) === "_select" ?(
+        let tdelm = item[`_select`] && a === "_select" ?(
           <td key={`${key}`} {...attri}>
             <Checkbox 
               checked={this.state._checked[rownum]}
@@ -75,7 +75,7 @@ export default class Tbody extends Component{
           </td>
         )
         if(cloneElement === "left"){
-          if( (a === '_select' || columns[key])&&columns[key].fixed === "left") {
+          if( a === '_select' || (columns[key]&&columns[key].fixed === "left")) {
             fixedItems.push(tdelm);
           }
         }else if(cloneElement === "right"){

@@ -2,6 +2,37 @@
 
 用于页面中展示重要的提示信息。
 
+
+
+
+### 基本用法
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    columns: [
+      {title: "姓名", key: "name",},
+      {title: "年龄", key: "age",},
+      {title: "地址", key: "info"},
+      {title: "操作", key: "edit", }
+    ],
+    dataSource:[
+  {name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。',edit:""},
+    ]
+  }
+}
+render() {
+  return (
+    <Table 
+      data={this.state.dataSource} 
+      columns={this.state.columns}/>
+  )
+}
+```
+<!--End-->
+
 ### 基本用法
 
 ⚠️  columns 中的 key 很重要，在一个表中是唯一的。这个key 对应数据中的key，保持一致，columns中的render函数才会有作用。
@@ -12,18 +43,10 @@ constructor(props) {
   super(props);
   this.state = {
     columns: [
+      {title: "姓名", key: "name", width: 180 },
+      {title: "年龄", key: "age", width: 180 },
+      {title: "地址", key: "info"},
       {
-        title: "姓名",
-        key: "name",
-        width: 180
-      },{
-        title: "年龄",
-        key: "age",
-        width: 180
-      },{
-        title: "地址",
-        key: "info"
-      },{
         title: "操作",
         key: "edit",
         width: 110,
@@ -51,9 +74,44 @@ constructor(props) {
 }
 render() {
   return (
-    <Table 
-      data={this.state.dataSource} 
-      columns={this.state.columns}/>
+    <Table data={this.state.dataSource} columns={this.state.columns}/>
+  )
+}
+```
+<!--End-->
+
+### 暂无数据
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    columns: [
+      {title: "姓名", key: "name", width: 180 },
+      {title: "年龄", key: "age", width: 180 },
+      {title: "地址", key: "info"},
+      {
+        title: "操作",
+        key: "edit",
+        width: 110,
+        render: (text, row, index) => {
+          const ButtonsGroup = Buttons.Group;
+          return (
+            <div>
+              <Buttons size="mini" type="danger">删除</Buttons>
+              <Buttons size="mini" type="success">修改</Buttons>
+            </div>
+          )
+        },
+      }
+    ],
+    dataSource:[]
+  }
+}
+render() {
+  return (
+    <Table data={this.state.dataSource} columns={this.state.columns}/>
   )
 }
 ```
@@ -73,18 +131,9 @@ constructor(props) {
         total:250,
     },
     columns: [
-      {
-        title: "姓名",
-        key: "name",
-        width: 180
-      },{
-        title: "年龄",
-        key: "age",
-        width: 180
-      },{
-        title: "地址",
-        key: "info"
-      }
+      {title: "姓名", key: "name", width: 180 },
+      {title: "年龄", key: "age", width: 180 },
+      {title: "地址", key: "info"}
     ],
     dataSource:[
   {name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。'},
@@ -188,7 +237,7 @@ constructor(props) {
     columns: [
         {
           title: '姓名',
-          key: 'name',
+          key: 'name', 
           children:[
             {
               title: '中文名字',
@@ -198,29 +247,15 @@ constructor(props) {
                   title: '姓',
                   key: 'firstname',
                   children:[
-                    {
-                      title: '祖姓',
-                      key: 'firstname_wcj',
-                      width: 150,
-                    },{
-                      title: '先姓',
-                      key: 'lastname_wcj',
-                      width: 150,
-                    }
+                    {title: '祖姓', key: 'firstname_wcj', width: 150, },
+                    {title: '先姓', key: 'lastname_wcj', width: 150, }
                   ]
                 },{
                   title: '名',
                   key: 'lastname',
                   children:[
-                    {
-                      title: '谱名',
-                      width: 150,
-                      key: 'puname'
-                    },{
-                      title: '名',
-                      width: 150,
-                      key: 'lastpuname'
-                    }
+                    {title: '谱名', width: 150, key: 'puname'},
+                    {title: '名', width: 150, key: 'lastpuname'}
                   ]
                 }
               ]
@@ -233,15 +268,8 @@ constructor(props) {
           title: '公司',
           key: 'company',
           children:[
-            {
-              title: '地址',
-              width: 150,
-              key: 'companyaddress'
-            },{
-              title: '公司名字',
-              width: 150,
-              key: 'companyname'
-            }
+            {title: '地址', width: 150, key: 'companyaddress'},
+            {title: '公司名字', width: 150, key: 'companyname'}
           ]
         }, {
           title: '操作',
@@ -252,25 +280,14 @@ constructor(props) {
           }}>{text}</a>,
         }
     ],
-    dataSource:[{
-      firstname_wcj: '周',
-      lastname_wcj: '杰伦',
-      puname:"street",
-      lastpuname:"street",
-      cnname: 32,
-      companyaddress: '亮金信息科技',
-      companyname: '亮金',
-      edit: '编辑11',
-    },{
-      firstname_wcj: '周',
-      lastname_wcj: '杰伦',
-      puname:"street",
-      lastpuname:"street",
-      cnname: 32,
-      companyaddress: '亮金信息科技',
-      companyname: '亮金',
-      edit: '编辑11',
-    }]
+    dataSource:[
+      {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
+      {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
+      {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
+      {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
+      {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
+      {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
+    ]
   }
 }
 render() {
@@ -278,6 +295,7 @@ render() {
     <Table 
       paging={this.state.paging}
       width={2000}
+      footer={<div>更新于1983年12月6日</div>}
       data={this.state.dataSource} columns={this.state.columns}/>
   )
 }
@@ -299,18 +317,9 @@ constructor(props) {
         total:250,
     },
     columns: [
-      {
-        title: "姓名",
-        key: "name",
-        width: 180
-      },{
-        title: "年龄",
-        key: "age",
-        width: 180
-      },{
-        title: "地址",
-        key: "info"
-      }
+      {title: "姓名", key: "name", width: 180 },
+      {title: "年龄", key: "age", width: 180 },
+      {title: "地址", key: "info"}
     ],
     dataSource:[
   {name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。'},
@@ -349,18 +358,9 @@ constructor(props) {
   super(props);
   this.state = {
     columns: [
-      {
-        title: "姓名",
-        key: "name",
-        width: 180
-      },{
-        title: "年龄",
-        key: "age",
-        width: 180
-      },{
-        title: "地址",
-        key: "info"
-      }
+      {title: "姓名", key: "name", width: 180 },
+      {title: "年龄", key: "age", width: 180 },
+      {title: "地址", key: "info"}
     ],
     dataSource:[
   {_checked:true,name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。'},
@@ -400,19 +400,10 @@ constructor(props) {
   super(props);
   this.state = {
     columns: [
+      {title: "姓名", key: "name", width: 180, fixed: 'left'},
+      {title: "年龄", key: "age", width: 180 },
+      {title: "地址", key: "info"}, 
       {
-        title: "姓名",
-        key: "name",
-        width: 180,
-        fixed: 'left',
-      },{
-        title: "年龄",
-        key: "age",
-        width: 180
-      },{
-        title: "地址",
-        key: "info"
-      }, {
         title: '操作',
         key: 'edit',
         width: 60,

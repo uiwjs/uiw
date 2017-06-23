@@ -76,6 +76,66 @@ render() {
 ```
 <!--End-->
 
+### 笑脸
+
+<!--DemoStart--> 
+```js
+render() {
+  const {Row,Col} = Layout;
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px"};
+  const iconList = [ "smile-o", "smile", "frown-o", "frown"]
+  return (
+    <div>
+      <Row gutter="10">
+      {
+        iconList.map((item,idx) => {
+          return (
+            <Col key={idx} xs="8" sm="6" md="4" lg="4">
+              <div style={styleItem}>
+                  <Icon type={item} />
+                  <div>{item}</div>
+              </div>
+            </Col>
+          )
+        }) 
+      }
+      </Row>
+    </div>
+  )
+}
+```
+<!--End-->
+
+### 符号
+
+<!--DemoStart--> 
+```js
+render() {
+  const {Row,Col} = Layout;
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px"};
+  const iconList = ["minus", "plus", "check", "close", "question-circle-o", "question-circle", "circle-check-o", "circle-check", "circle-close-o", "circle-close", "information-o", "information","asterisk", "copyright",]
+  return (
+    <div>
+      <Row gutter="10">
+      {
+        iconList.map((item,idx) => {
+          return (
+            <Col key={idx} xs="8" sm="6" md="4" lg="4">
+              <div style={styleItem}>
+                  <Icon type={item} />
+                  <div>{item}</div>
+              </div>
+            </Col>
+          )
+        }) 
+      }
+      </Row>
+    </div>
+  )
+}
+```
+<!--End-->
+
 ### 默认自带图标列表
 
 <!--DemoStart--> 
@@ -83,7 +143,7 @@ render() {
 render() {
   const {Row,Col} = Layout;
   const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px"};
-  const iconList = ["asterisk", "check", "circle-check-o", "circle-check", "circle-close-o", "close", "circle-close", "copyright", "date", "d-caret", "delete", "date1", "document", "download", "download1", "frown-o", "frown", "heart-off", "heart-on", "information-o", "information", "menu", "loading", "edit", "filter", "lock", "message-o", "minus", "more", "message", "picture", "paper-clip", "pay", "plus", "question-circle-o", "question-circle", "search", "smile-o", "share", "setting", "smile", "setting1", "star-off", "star-on", "time", "upload", "upload1", "user", "verification", "unlock", "view", "warning", "warning-o"]
+  const iconList = [ "date", "d-caret", "delete", "date1", "document", "download", "download1", "heart-off", "heart-on", "menu", "loading", "edit", "filter", "lock", "message-o", "more", "message", "picture", "paper-clip", "pay", "search", "share", "setting", "setting1", "star-off", "star-on", "time", "upload", "upload1", "user", "verification", "unlock", "view", "warning", "warning-o"]
   return (
     <div>
       <Row gutter="10">
