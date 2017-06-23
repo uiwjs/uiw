@@ -1,11 +1,11 @@
 import React from 'react';
-import {PropTypes} from '../utils/';
+import { PropTypes } from '../utils/';
 import Radio from './Radio';
 
 export default class RadioButton extends Radio {
   render() {
-    const {prefixCls,className,children,onChange,checked,disabled,value,...other} = this.props;
-    const cls = this.classNames(`${prefixCls}`,`${prefixCls}-button`,className,{
+    const { prefixCls, className, children, onChange, checked, disabled, value, ...other } = this.props;
+    const cls = this.classNames(`${prefixCls}`, `${prefixCls}-button`, className, {
       'disabled': disabled, // 禁用状态
       'checked': checked,   // 选中
     });

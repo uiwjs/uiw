@@ -7,7 +7,7 @@ const paths = require('./paths');
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
 
-module.exports = function(allowedHost) {
+module.exports = function (allowedHost) {
   return {
     // WebpackDevServer 2.4.3 introduced a security fix that prevents remote
     // websites from potentially accessing local content through DNS rebinding:
@@ -32,7 +32,7 @@ module.exports = function(allowedHost) {
     // Silence WebpackDevServer's own logs since they're generally not useful.
     // 不显示WebpackDevServer自己的日志，因为它们通常没有用。
     // It will still show compile warnings and errors with this setting.
-    // 它仍然会显示编译警告和错误与此设置。
+        // 它仍然会显示编译警告和错误与此设置。
     clientLogLevel: 'none',
     // By default WebpackDevServer serves physical files from current directory
     // in addition to all the virtual build products that it serves from memory.
@@ -49,7 +49,7 @@ module.exports = function(allowedHost) {
     // for some reason broken when imported through Webpack. If you just want to
     // use an image, put it in `src` and `import` it from JavaScript instead.
     contentBase: paths.appPublic,
-    
+
     // By default files from `contentBase` will not trigger a page reload.
     // 默认情况下，`contentBase`的文件不会触发页面重新加载。
     watchContentBase: true,

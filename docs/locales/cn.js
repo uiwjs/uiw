@@ -24,12 +24,12 @@ module.exports = {
     'input': 'Input 输入框',
     'input-number': 'Input Number 数字输入框',
   },
-  category:{
-    'Form':"表单",
-    'Basic':"基本",
-    'Data Display':"数据显示",
-    'Navigation':"导航",
-    'Feedback':"反馈",
+  category: {
+    'Form': "表单",
+    'Basic': "基本",
+    'Data Display': "数据显示",
+    'Navigation': "导航",
+    'Feedback': "反馈",
   },
   markdown: {
     'show': '显示代码',

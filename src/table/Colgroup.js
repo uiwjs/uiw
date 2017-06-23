@@ -1,32 +1,32 @@
 import React from 'react';
-import {Component, PropTypes} from '../utils/';
+import { Component, PropTypes } from '../utils/';
 
-export default class Colgroup extends Component{
-  state={}
-  getColCount(columns,arrs){
+export default class Colgroup extends Component {
+  state = {}
+  getColCount(columns, arrs) {
     let arr = arrs || [];
-    for(let i=0;i< columns.length;i++){
-      if(columns[i].children){
-        arr = this.getColCount(columns[i].children,arr);
-      }else{
-        arr.push({key:columns[i].key,width:columns[i].width})
+    for (let i = 0; i < columns.length; i++) {
+      if (columns[i].children) {
+        arr = this.getColCount(columns[i].children, arr);
+      } else {
+        arr.push({ key: columns[i].key, width: columns[i].width })
       }
     }
     return arr;
   }
-  renderCol(columns){
+  renderCol(columns) {
     const arrs = this.getColCount(columns)
     const colelm = []
-    for(let i=0;i < arrs.length;i++){
+    for (let i = 0; i < arrs.length; i++) {
       let attri = {}
-      if(arrs[i].width) attri.width = arrs[i].width;
-      colelm.push(<col key={i} {...attri}/>)
+      if (arrs[i].width) attri.width = arrs[i].width;
+      colelm.push(<col key={i} {...attri} />)
     }
     return colelm;
   }
-  render(){
+  render() {
     const { columns } = this.props;
-    return(
+    return (
       <colgroup>
         {this.renderCol(columns)}
       </colgroup>

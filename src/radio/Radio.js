@@ -1,5 +1,5 @@
 import React from 'react';
-import {Component, PropTypes} from '../utils/';
+import { Component, PropTypes } from '../utils/';
 
 export default class Radio extends Component {
   constructor(props) {
@@ -8,18 +8,18 @@ export default class Radio extends Component {
       checked: props.checked
     };
   }
-  handleChange(e){
+  handleChange(e) {
     const checked = e.target.checked;
-    const {children} = this.props;
+    const { children } = this.props;
     if (checked) {
       if (this.props.onChange) {
-        this.props.onChange(e,(this.props.value || children),checked);
+        this.props.onChange(e, (this.props.value || children), checked);
       }
     }
   }
   render() {
-    const {prefixCls,className,children,onChange,checked,disabled,value,...other} = this.props;
-    const cls = this.classNames(`${prefixCls}`,className,{
+    const { prefixCls, className, children, onChange, checked, disabled, value, ...other } = this.props;
+    const cls = this.classNames(`${prefixCls}`, className, {
       'disabled': disabled, // 禁用状态
       'checked': checked,   // 选中
     });
@@ -45,5 +45,5 @@ Radio.propTypes = {
 Radio.defaultProps = {
   prefixCls: "w-radio",
   disabled: false,
-  onChange:(v)=>v,
+  onChange: (v) => v,
 }

@@ -17,7 +17,7 @@ module.exports = {
   ],
   output: {
     path: paths.appBuild,
-    publicPath:'/',
+    publicPath: '/',
     filename: 'bundle.js'
   },
   plugins: [
@@ -54,7 +54,7 @@ module.exports = {
       },
       {
         test: /\.jsx?$/,
-        use:[
+        use: [
           'babel-loader',
         ],
         include: [
@@ -97,15 +97,15 @@ module.exports = {
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)(\?.+)?$/,
-        loader : 'file-loader'
+        loader: 'file-loader'
       },
       {
         test: /\.(jpe?g|png|gif)(\?.+)?$/,
-        loader : 'url-loader'
+        loader: 'url-loader'
       },
       {
         test: /\.md$/,
-        loader : 'raw-loader'
+        loader: 'raw-loader'
       }
     ]
   }

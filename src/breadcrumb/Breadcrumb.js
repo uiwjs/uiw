@@ -1,5 +1,5 @@
 import React from 'react';
-import {Component, PropTypes} from '../utils/';
+import { Component, PropTypes } from '../utils/';
 
 export default class Breadcrumb extends Component {
   getChildContext() {
@@ -9,9 +9,9 @@ export default class Breadcrumb extends Component {
   }
 
   render() {
-    const {prefixCls,className,separator,...other} = this.props;
+    const { prefixCls, className, separator, ...other } = this.props;
     return (
-      <div {...other} className={this.classNames(prefixCls,className)}>
+      <div {...other} className={this.classNames(prefixCls, className)}>
         {this.props.children}
       </div>
     )

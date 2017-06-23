@@ -26,7 +26,7 @@ new WebpackDevServer(webpack({
     rules: [
       {
         test: /\.jsx?$/,
-        use:[
+        use: [
           'babel-loader',
         ],
         // loader: 'babel-loader',
@@ -70,25 +70,25 @@ new WebpackDevServer(webpack({
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)(\?.+)?$/,
-        loader : 'file-loader'
+        loader: 'file-loader'
       },
       {
         test: /\.(jpe?g|png|gif)(\?.+)?$/,
-        loader : 'url-loader'
+        loader: 'url-loader'
       },
       {
         test: /\.md$/,
-        loader : 'raw-loader'
+        loader: 'raw-loader'
       }
     ]
   }
 }), {
-  publicPath: '/',
-  hot: true,
-  historyApiFallback: true,
-  stats: { colors: true }
-}).listen(1987, 'localhost', error => {
-  if (error) {
-    throw error;
-  }
-});
+    publicPath: '/',
+    hot: true,
+    historyApiFallback: true,
+    stats: { colors: true }
+  }).listen(1987, 'localhost', error => {
+    if (error) {
+      throw error;
+    }
+  });

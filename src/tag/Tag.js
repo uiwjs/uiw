@@ -1,67 +1,67 @@
 import React from 'react';
-import {Component, PropTypes} from '../utils/';
-import {IconCloseSmall} from '../svgs';
+import { Component, PropTypes } from '../utils/';
+import { IconCloseSmall } from '../svgs';
 import "./style/index.less";
 
 export default class Tag extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
-      visible:true
+    this.state = {
+      visible: true
     }
   }
   close = (e) => {
-    const {onClose,children} = this.props;
-    if (onClose) onClose(e,children);
+    const { onClose, children } = this.props;
+    if (onClose) onClose(e, children);
     if (e.isDefaultPrevented()) return;
     this.setState({
-      visible:false
+      visible: false
     })
   }
 
-  isColorValue(color){
+  isColorValue(color) {
     var span = document.createElement("span");
     span.style.color = color;
-    if(span.style.color !== "") return true;
-    else{
+    if (span.style.color !== "") return true;
+    else {
       span = null;
       return false;
-    } 
+    }
   }
   isPresetColor(color) {
     return /^(white|pink|red|yellow|orange|cyan|green|blue|purple)?$/.test(color)
   }
   render() {
     const { prefixCls, color, onClose, className, checked, children, ...others } = this.props;
-    const {visible} = this.state;
+    const { visible } = this.state;
     let colors = '';
-    switch(color){
-      case 'default': colors='white';break;
-      case 'error':   colors='red';break;
-      case 'warn':    colors='orange';break;
-      case 'success': colors='green';break;
-      case 'info':    colors='blue';break;
-      default:        colors = color;break;
+    switch (color) {
+      case 'default': colors = 'white'; break;
+      case 'error': colors = 'red'; break;
+      case 'warn': colors = 'orange'; break;
+      case 'success': colors = 'green'; break;
+      case 'info': colors = 'blue'; break;
+      default: colors = color; break;
     }
-    const cls = this.classNames(prefixCls,{
-        [`${prefixCls}-${colors}`]: this.isPresetColor(colors),
-        'checkable': checked === false,
-        'checked': checked,
-        'className': className,
-      });
+    const cls = this.classNames(prefixCls, {
+      [`${prefixCls}-${colors}`]: this.isPresetColor(colors),
+      'checkable': checked === false,
+      'checked': checked,
+      'className': className,
+    });
 
     // 自定义颜色值
     let styles = {}
-    if(!this.isPresetColor(colors) && this.isColorValue(colors) ){
+    if (!this.isPresetColor(colors) && this.isColorValue(colors)) {
       styles.backgroundColor = colors;
     }
 
     return visible ? (
       <span {...others} style={styles} className={cls}>
-          {children} 
-          {( onClose && checked !== true && checked !==false )&&<i onClick={this.close} ref="iconclose">{IconCloseSmall}</i>}
+        {children}
+        {(onClose && checked !== true && checked !== false) && <i onClick={this.close} ref="iconclose">{IconCloseSmall}</i>}
       </span>
-    ) :null;
+    ) : null;
   }
 }
 

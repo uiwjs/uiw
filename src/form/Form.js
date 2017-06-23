@@ -1,5 +1,5 @@
 import React from 'react';
-import {Component, PropTypes} from '../utils/';
+import { Component, PropTypes } from '../utils/';
 
 export default class Form extends Component {
   constructor(props: Object) {
@@ -13,27 +13,27 @@ export default class Form extends Component {
   // 通过添加 childContextTypes 和 getChildContext()
   // 自动向下传递数据然后在组件树中的任意组件
   // 都能通过定义 contextTypes 访问
-  getChildContext(){
+  getChildContext() {
     return {
       component: this
     }
   }
   // 验证数据
-  validate(callback){
-    const {fields} = this.state;
-    const {model} = this.props;
+  validate(callback) {
+    const { fields } = this.state;
+    const { model } = this.props;
     let valid = true;
 
     // 如果需要验证的fields为空，调用验证时立刻返回callback
     if (fields.length === 0 && callback) callback(true);
 
-    fields.forEach((field,idx) => {
+    fields.forEach((field, idx) => {
       field.validate('', errors => {
         if (errors) {
           valid = false;
         }
-        if (typeof callback === 'function' && idx+1 === fields.length) {
-          callback(valid,model);
+        if (typeof callback === 'function' && idx + 1 === fields.length) {
+          callback(valid, model);
         }
       });
     });
@@ -44,19 +44,19 @@ export default class Form extends Component {
   }
 
   // 重置字段方法
-  resetFields(callback){
+  resetFields(callback) {
     this.state.fields.forEach(field => {
       field.resetField();
     });
-    callback&&callback(this.props.model)
+    callback && callback(this.props.model)
   }
 
   render() {
-    const {prefixCls,layout,model,rules,...other} = this.props;
+    const { prefixCls, layout, model, rules, ...other } = this.props;
 
     return (
-      <form {...other} className={this.classNames(`${prefixCls}`,{
-        [`${prefixCls}-${layout}`]:layout
+      <form {...other} className={this.classNames(`${prefixCls}`, {
+        [`${prefixCls}-${layout}`]: layout
       })}>
         {this.props.children}
       </form>

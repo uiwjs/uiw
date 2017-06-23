@@ -1,5 +1,5 @@
 import React from 'react';
-import {Component, PropTypes} from '../utils/';
+import { Component, PropTypes } from '../utils/';
 
 export default class MenuItemGroup extends Component {
   constructor(props: Object) {
@@ -12,7 +12,7 @@ export default class MenuItemGroup extends Component {
     };
   }
   render() {
-    const { prefixCls,className,...others } = this.props;
+    const { prefixCls, className, ...others } = this.props;
     return (
       <li className={this.classNames(`${prefixCls}`, {
         // 'is-active': this.state.active,
@@ -24,7 +24,7 @@ export default class MenuItemGroup extends Component {
 }
 
 MenuItemGroup.propTypes = {
-  prefixCls:PropTypes.string,
+  prefixCls: PropTypes.string,
 }
 
 MenuItemGroup.defaultProps = {

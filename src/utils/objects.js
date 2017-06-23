@@ -1,5 +1,5 @@
 
-export function compare (x, y) {
+export function compare(x, y) {
   let p
 
   // remember that NaN === NaN returns false
@@ -20,8 +20,8 @@ export function compare (x, y) {
   // We can even handle functions passed across iframes
   if (typeof x === 'function' && typeof y === 'function') {
     if ((x instanceof RegExp && y instanceof RegExp) ||
-    (x instanceof String || y instanceof String) ||
-    (x instanceof Number || y instanceof Number)) {
+      (x instanceof String || y instanceof String) ||
+      (x instanceof Number || y instanceof Number)) {
       return x.toString() === y.toString()
     } else {
       return false

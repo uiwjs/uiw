@@ -1,10 +1,10 @@
-import {Children,cloneElement,createElement } from 'react';
-import {Component, PropTypes} from '../utils/';
+import { Children, cloneElement, createElement } from 'react';
+import { Component, PropTypes } from '../utils/';
 import assign from 'object-assign';
 
 export default class Row extends Component {
   render() {
-    const { prefixCls,className,gutter,children,tag,type,justify,align,...others } = this.props;
+    const { prefixCls, className, gutter, children, tag, type, justify, align, ...others } = this.props;
 
     const cols = Children.map(children, (col) => {
       if (!col) return null;
@@ -21,7 +21,7 @@ export default class Row extends Component {
     });
 
     return createElement(this.props.tag, {
-      className: this.classNames(className,{
+      className: this.classNames(className, {
         [prefixCls]: !type,
         [`${prefixCls}-${type}`]: type,
         // flex 布局下的水平排列方式
@@ -30,7 +30,7 @@ export default class Row extends Component {
         [`${prefixCls}-align-${align}`]: type && align,
       }),
       ...others
-    },cols);
+    }, cols);
   }
 }
 
@@ -40,16 +40,16 @@ Row.childContextTypes = {
 };
 
 Row.propTypes = {
-  prefixCls:PropTypes.string,
+  prefixCls: PropTypes.string,
   tag: PropTypes.string,
   children: PropTypes.node,
   gutter: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   type: PropTypes.oneOf(['flex']),
   justify: PropTypes.oneOf([
-    'start','end','center',
-    'space-around','space-between'
+    'start', 'end', 'center',
+    'space-around', 'space-between'
   ]),
-  align: PropTypes.oneOf(['top','middle','bottom','baseline']),
+  align: PropTypes.oneOf(['top', 'middle', 'bottom', 'baseline']),
 }
 
 Row.defaultProps = {

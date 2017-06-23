@@ -1,5 +1,5 @@
 import React from 'react';
-import {Component, PropTypes} from '../utils/';
+import { Component, PropTypes } from '../utils/';
 
 export default class Menu extends Component {
   constructor(props) {
@@ -7,40 +7,40 @@ export default class Menu extends Component {
     // 用户判断组件
     this.instanceType = 'Menu';
     this.state = {
-      defaultActive:props.defaultActive,
+      defaultActive: props.defaultActive,
       // dd
-      openedMenu:props.defaultOpened ? props.defaultOpened.slice(0) : [],
+      openedMenu: props.defaultOpened ? props.defaultOpened.slice(0) : [],
       // 子菜单
       submenus: {}
     };
   }
-  getChildContext(){
-    return {component: this}
+  getChildContext() {
+    return { component: this }
   }
   // 菜单选择事件
-  handleSelect(index,menuItem){
+  handleSelect(index, menuItem) {
     let { defaultActive } = this.state;
     defaultActive = index;
-    if(this.props.onSelect) {
+    if (this.props.onSelect) {
       this.props.onSelect(index, menuItem);
     }
-    this.setState({defaultActive});
+    this.setState({ defaultActive });
   }
   // 打开子菜单
-  openMenu(index, indexPath){
+  openMenu(index, indexPath) {
     let { openedMenu } = this.state;
     if (openedMenu.indexOf(index) !== -1) return;
     openedMenu.push(index);
     this.setState({ openedMenu });
   }
   // 关闭子菜单
-  closeMenu(index){
+  closeMenu(index) {
     let { openedMenu } = this.state;
     openedMenu.splice(openedMenu.indexOf(index), 1);
     this.setState({ openedMenu });
   }
   // 点击子菜单的标题事件
-  handleSubmenuClick(index){
+  handleSubmenuClick(index) {
     let isOpened = this.state.openedMenu.indexOf(index) !== -1;
 
     if (isOpened) {
@@ -56,9 +56,9 @@ export default class Menu extends Component {
     }
   }
   render() {
-    const { prefixCls,className,style,mode } = this.props;
+    const { prefixCls, className, style, mode } = this.props;
     return (
-      <ul style={style} className={this.classNames(className,`${prefixCls}`,{
+      <ul style={style} className={this.classNames(className, `${prefixCls}`, {
         [`${prefixCls}-${mode}`]: mode
       })}>
         {this.props.children}
@@ -72,7 +72,7 @@ Menu.childContextTypes = {
 };
 
 Menu.propTypes = {
-  prefixCls:PropTypes.string,
+  prefixCls: PropTypes.string,
   mode: PropTypes.string,
   defaultActive: PropTypes.string,
   onSelect: PropTypes.func,

@@ -51,7 +51,7 @@ export default class Canvas extends React.Component {
   }
 
   render() {
-    const {prefixCls} = this.props;
+    const { prefixCls } = this.props;
     const document = this.props.children.match(/([^]*)\n?(```[^]+```)/);
     const source = document[2].match(/```(.*)\n([^]+)```/);
     const description = marked(document[1]);
@@ -64,8 +64,8 @@ export default class Canvas extends React.Component {
         return <Demo {...context.props} />
       })();
     `, {
-      presets: ['es2015', 'react']
-    }).code.replace('__rtn = ', 'return ');
+        presets: ['es2015', 'react']
+      }).code.replace('__rtn = ', 'return ');
 
     this.shouldUpdate = component != this.component || this.component === undefined;
     this.component = component;
@@ -77,7 +77,7 @@ export default class Canvas extends React.Component {
           height: this.state.showBlock ? 'inherit' : 0
         }}>
           {
-            description && 
+            description &&
             <div ref="description" className={`${prefixCls}-demo-des`} dangerouslySetInnerHTML={{ __html: description }}></div>
           }
           <div ref="highlight" className={`${prefixCls}-demo-highlight`} dangerouslySetInnerHTML={{ __html: highlight }}></div>

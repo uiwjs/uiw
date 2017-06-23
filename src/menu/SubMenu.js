@@ -1,5 +1,5 @@
 import React from 'react';
-import {PropTypes} from '../utils/';
+import { PropTypes } from '../utils/';
 import MixinComponent from './MixinComponent';
 import Icon from '../icon';
 
@@ -16,25 +16,25 @@ export default class SubMenu extends MixinComponent {
     this.menu().state.submenus[this.props.index] = this;
     this.initEvents();
   }
-  initEvents(){
-    if(this.menu().props.mode === 'horizontal'){
-      
-    }else{
+  initEvents() {
+    if (this.menu().props.mode === 'horizontal') {
+
+    } else {
       this.refs.submenu.addEventListener('click', this.handleClick.bind(this));
     }
   }
-  handleClick(){
+  handleClick() {
     this.menu().handleSubmenuClick(this.props.index);
   }
 
-  opened(){
+  opened() {
     return this.menu().state.openedMenu.indexOf(this.props.index) !== -1;
   }
   render() {
-    const { prefixCls,className} = this.props;
+    const { prefixCls, className } = this.props;
 
     return (
-      <li className={this.classNames(className,`${prefixCls}`, {
+      <li className={this.classNames(className, `${prefixCls}`, {
         // 'is-active': this.state.active,
         'opened': this.opened()
       })}>
@@ -54,7 +54,7 @@ export default class SubMenu extends MixinComponent {
 }
 
 SubMenu.propTypes = {
-  prefixCls:PropTypes.string,
+  prefixCls: PropTypes.string,
 }
 
 SubMenu.defaultProps = {

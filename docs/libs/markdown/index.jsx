@@ -40,8 +40,8 @@ export default class Markdown extends React.Component {
   }
 
   render() {
-    const {prefixCls} = this.props;
-    const document = this.document(localStorage.getItem('WUI_LANG') || 'cn',this.getPageName());
+    const { prefixCls } = this.props;
+    const document = this.document(localStorage.getItem('WUI_LANG') || 'cn', this.getPageName());
 
     if (typeof document === 'string') {
       this.components.clear();

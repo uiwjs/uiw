@@ -18,7 +18,7 @@ module.exports = {
     docs: paths.appPublic
   },
   output: {
-    path:paths.appBuild,
+    path: paths.appBuild,
     chunkFilename: '[chunkhash:12].js',
     filename: '[chunkhash:12].js'
   },
@@ -70,15 +70,15 @@ module.exports = {
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)(\?.+)?$/,
-        loader : 'file-loader'
+        loader: 'file-loader'
       },
       {
         test: /\.(jpe?g|png|gif)(\?.+)?$/,
-        loader : 'url-loader'
+        loader: 'url-loader'
       },
       {
         test: /\.md$/,
-        loader : 'raw-loader'
+        loader: 'raw-loader'
       }
     ]
   },
@@ -102,7 +102,7 @@ module.exports = {
       }
     }),
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-    
+
     new webpack.optimize.CommonsChunkPlugin({
       async: true,
       children: true,

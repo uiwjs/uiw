@@ -1,106 +1,106 @@
 import React from 'react';
-import {Component, PropTypes} from '../utils/';
+import { Component, PropTypes } from '../utils/';
 import Icon from '../icon'
 
 export default class Input extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      value:props.value
+      value: props.value
     }
   }
-  focus(){
+  focus() {
     (this.refs.input || this.refs.textarea).focus();
   }
 
-  blur(){
+  blur() {
     (this.refs.input || this.refs.textarea).blur();
   }
-  handleKeyUp(e){
-    const { onSearch,onKeyUp } = this.props;
-    if(e.key === "Enter"){
-      onSearch&&onSearch(e.target.value,e)
+  handleKeyUp(e) {
+    const { onSearch, onKeyUp } = this.props;
+    if (e.key === "Enter") {
+      onSearch && onSearch(e.target.value, e)
     }
-    onKeyUp&&onKeyUp(e)
+    onKeyUp && onKeyUp(e)
   }
 
-  handleChange(e){
-    const { onChange,length } = this.props;
+  handleChange(e) {
+    const { onChange, length } = this.props;
     let val = e.target.value
-    if(val.length>length){
-      val=val.slice(0,length); 
+    if (val.length > length) {
+      val = val.slice(0, length);
       e.target.value = val;
     }
-    this.setState({value:val})
-    onChange&&onChange(e,val)
+    this.setState({ value: val })
+    onChange && onChange(e, val)
   }
-  handleClick(type,e){
-    if(this.props[type]){
-      this.props[type](e,this.state.value)
+  handleClick(type, e) {
+    if (this.props[type]) {
+      this.props[type](e, this.state.value)
     }
   }
 
-  renderIcon(type){
-    const {prefixCls,preIcon,icon,onIconClick,onPreIconClick} = this.props;
+  renderIcon(type) {
+    const { prefixCls, preIcon, icon, onIconClick, onPreIconClick } = this.props;
     let icons;
-    
-    if(type === 'icon' && typeof icon === 'string') icons = icon;
-    if(type === 'preIcon' && typeof preIcon === 'string') icons = preIcon;
+
+    if (type === 'icon' && typeof icon === 'string') icons = icon;
+    if (type === 'preIcon' && typeof preIcon === 'string') icons = preIcon;
 
     return (
       <div className={this.classNames({
-        [`${prefixCls}-icon-left`]:type === 'preIcon' &&preIcon,
-        [`${prefixCls}-icon-right`]:type === 'icon' &&icon,
+        [`${prefixCls}-icon-left`]: type === 'preIcon' && preIcon,
+        [`${prefixCls}-icon-right`]: type === 'icon' && icon,
         [`event`]: (type === 'preIcon' && onPreIconClick) || (type === 'icon' && onIconClick)
       })}>
-      {
-        (typeof preIcon === 'string' && icons) || (typeof icon === 'string' && icons)
-        ? <Icon type={icons}  onClick={this.handleClick.bind(this, type === 'icon' ? 'onIconClick' : 'onPreIconClick')}/> 
-        : (type === 'icon'?icon:preIcon)
-      }
+        {
+          (typeof preIcon === 'string' && icons) || (typeof icon === 'string' && icons)
+            ? <Icon type={icons} onClick={this.handleClick.bind(this, type === 'icon' ? 'onIconClick' : 'onPreIconClick')} />
+            : (type === 'icon' ? icon : preIcon)
+        }
       </div>
     )
   }
   render() {
-    const {prefixCls,className,style,type,size,length,preIcon,icon,onIconClick,onPreIconClick,...other} = this.props;
-    const cls = this.classNames(`${prefixCls}`,className,{
-      'textarea':type === 'textarea',
-      'disabled':this.props.disabled
+    const { prefixCls, className, style, type, size, length, preIcon, icon, onIconClick, onPreIconClick, ...other } = this.props;
+    const cls = this.classNames(`${prefixCls}`, className, {
+      'textarea': type === 'textarea',
+      'disabled': this.props.disabled
     })
 
     delete other.onSearch;
     delete other.onChange;
 
-    if(type === 'textarea') return (
-      <textarea 
-        className={  this.classNames(cls,`${prefixCls}-inner`)}
+    if (type === 'textarea') return (
+      <textarea
+        className={this.classNames(cls, `${prefixCls}-inner`)}
         {...other}
         ref="textarea"
         type={type}
         style={style}
         onChange={this.handleChange.bind(this)}
-        >
+      >
       </textarea>
     );
 
     return (
-      <div style={style} className={this.classNames(cls,{
-        [`${prefixCls}-${size}`]:size,
-        [`${prefixCls}-icon`]:preIcon || icon,
+      <div style={style} className={this.classNames(cls, {
+        [`${prefixCls}-${size}`]: size,
+        [`${prefixCls}-icon`]: preIcon || icon,
       })}>
-        {preIcon&&this.renderIcon.bind(this)('preIcon')}
-        {icon&&this.renderIcon.bind(this)('icon')}
-        <input 
+        {preIcon && this.renderIcon.bind(this)('preIcon')}
+        {icon && this.renderIcon.bind(this)('icon')}
+        <input
           {...other}
           ref="input"
           type={type}
-          className={this.classNames(`${prefixCls}-inner`,{
-            [`${prefixCls}-p-left`]:preIcon,
-            [`${prefixCls}-p-right`]:icon
+          className={this.classNames(`${prefixCls}-inner`, {
+            [`${prefixCls}-p-left`]: preIcon,
+            [`${prefixCls}-p-right`]: icon
           })}
           onChange={this.handleChange.bind(this)}
           onKeyUp={this.handleKeyUp.bind(this)}
-          />
+        />
       </div>
     );
   }
@@ -118,5 +118,5 @@ Input.propTypes = {
 
 Input.defaultProps = {
   prefixCls: 'w-input',
-  type:"text",
+  type: "text",
 }

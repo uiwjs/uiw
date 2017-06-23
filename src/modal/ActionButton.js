@@ -1,8 +1,8 @@
 import React from 'react';
-import {Component,findDOMNode} from '../utils/';
+import { Component, findDOMNode } from '../utils/';
 import Button from '../button';
 
-export default class ActionButton extends Component{
+export default class ActionButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,21 +20,21 @@ export default class ActionButton extends Component{
     clearTimeout(this.timeoutId);
   }
   onClick(...args) {
-    const { onOk,closeModals } = this.props;
-    if(!onOk) return closeModals("ok",...args);
+    const { onOk, closeModals } = this.props;
+    if (!onOk) return closeModals("ok", ...args);
 
     let ret;
-    if(onOk.length) ret = onOk(closeModals);
-      
+    if (onOk.length) ret = onOk(closeModals);
+
     ret = onOk();
-    if(!ret) closeModals();
-    
-    if(ret && ret.then){
+    if (!ret) closeModals();
+
+    if (ret && ret.then) {
       this.setState({ loading: true });
       ret.then((...args) => {
         closeModals(...args);
       });
-    } 
+    }
   }
   render() {
     const { type, size, children } = this.props;

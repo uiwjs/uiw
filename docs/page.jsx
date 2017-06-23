@@ -77,12 +77,12 @@ export default class App extends Component {
     }
   }
 
-  renderMenuItems(page){
-    const {prefixCls} = this.props;
+  renderMenuItems(page) {
+    const { prefixCls } = this.props;
     return (
       <li key={page} className={`${prefixCls}-menu-item`}>
-        <a 
-          href={`#/${this.state.locale}/${page}`} 
+        <a
+          href={`#/${this.state.locale}/${page}`}
           className={page === this.state.page ? 'active' : ''}>
           {this.getLocale(`page.${page}`)}
         </a>
@@ -90,8 +90,8 @@ export default class App extends Component {
     )
   }
 
-  renderMenuGroup(group){
-    const {prefixCls} = this.props;
+  renderMenuGroup(group) {
+    const { prefixCls } = this.props;
     return (
       <div className={`${prefixCls}-menu`} key={group}>
         <div className={`${prefixCls}-menu-title`}>{this.getLocale(`category.${group}`)}</div>
@@ -103,21 +103,21 @@ export default class App extends Component {
   }
 
   render() {
-    const {prefixCls} = this.props;
+    const { prefixCls } = this.props;
     return (
       <div className={`${prefixCls}`}>
         <div className={`${prefixCls}-menu-warpper`}>
           <div className={`${prefixCls}-menu-content`}>
-          <div className={`${prefixCls}-logo`}>
-            <a href={`#/${this.state.locale}/quick-start`} >
-              <img src={require('./assets/logo.svg')} />
-              <span>uiw</span>
-            </a>
-          </div>
-          <ul className={`${prefixCls}-menu-list`}>
-            {Object.keys(pages.documents).map(group => this.renderMenuItems(group)) }
-          </ul>
-          {Object.keys(pages.components).map(group => this.renderMenuGroup(group)) }
+            <div className={`${prefixCls}-logo`}>
+              <a href={`#/${this.state.locale}/quick-start`} >
+                <img src={require('./assets/logo.svg')} />
+                <span>uiw</span>
+              </a>
+            </div>
+            <ul className={`${prefixCls}-menu-list`}>
+              {Object.keys(pages.documents).map(group => this.renderMenuItems(group))}
+            </ul>
+            {Object.keys(pages.components).map(group => this.renderMenuGroup(group))}
           </div>
         </div>
         <div className={`${prefixCls}-content`}>

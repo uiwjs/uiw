@@ -1,10 +1,10 @@
-import {Component, PropTypes} from '../utils/';
+import { Component, PropTypes } from '../utils/';
 
 export default class MixinComponent extends Component {
-  parent(){
+  parent() {
     return this.context.component;
   }
-  menu(){
+  menu() {
     let parent = this.parent();
     while (parent.instanceType !== 'Menu') {
       parent = parent.parent();

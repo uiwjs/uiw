@@ -1,32 +1,32 @@
 import React from 'react';
-import {Component, PropTypes} from '../utils/';
+import { Component, PropTypes } from '../utils/';
 import Radio from './Radio';
 
 export default class RadioGroup extends Component {
-  getChildContext(){
+  getChildContext() {
     return {
       component: this
     };
   }
-  onChange(e,value){
+  onChange(e, value) {
     if (this.props.onChange) {
-      this.props.onChange(e,value)
+      this.props.onChange(e, value)
     }
   }
-  getValue(option){
-    if(typeof option === 'string'){
+  getValue(option) {
+    if (typeof option === 'string') {
       return option;
-    }else{
+    } else {
       return option.value;
     }
   }
   render() {
-    const {prefixCls,options} = this.props;
+    const { prefixCls, options } = this.props;
 
     let children = this.props.children
 
-    if(options && options.length >0){
-      children = options.map((option, idx)=>{
+    if (options && options.length > 0) {
+      children = options.map((option, idx) => {
         return (
           <Radio
             key={idx}
@@ -35,20 +35,20 @@ export default class RadioGroup extends Component {
             onChange={this.onRadioChange}
             checked={this.props.value === this.getValue(option)}
           >
-            {option&&option.label}
+            {option && option.label}
           </Radio>
         )
       })
     }
 
-    return(
+    return (
       <div className={this.classNames(`${prefixCls}`)}>
         {
           React.Children.map(children, element => {
             return React.cloneElement(element, Object.assign({}, element.props, {
               onChange: this.onChange.bind(this),
               checked: element.props.value === this.props.value,
-              value:element.props.value
+              value: element.props.value
             }))
           })
         }

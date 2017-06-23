@@ -23,12 +23,12 @@ module.exports = {
     'input': 'Input',
     'input-number': 'Input Number',
   },
-  category:{
-    'Form':"Form",
-    'Basic':"Basic",
-    'Data Display':"Data Display",
-    'Navigation':"Navigation",
-    'Feedback':"Feedback",
+  category: {
+    'Form': "Form",
+    'Basic': "Basic",
+    'Data Display': "Data Display",
+    'Navigation': "Navigation",
+    'Feedback': "Feedback",
   },
   markdown: {
     'show': 'Show',
