@@ -4,3 +4,4 @@ build
 *.swp
 npm-debug.log
 dist
+.vscode
