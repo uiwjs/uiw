@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
+const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const autoprefixer = require('autoprefixer');
 const paths = require('./paths');
 
@@ -37,6 +38,20 @@ module.exports = {
     // 输出错误而不是警告
     strictExportPresence: true,
     rules: [
+      {
+        test: /\.(js|jsx)$/,
+        enforce: 'pre',
+        use: [
+          {
+            options: {
+              formatter: eslintFormatter,
+            },
+            loader: require.resolve('eslint-loader'),
+            // exclude: '/node_modules/'
+          },
+        ],
+        include: paths.appSrc,
+      },
       {
         test: /\.jsx?$/,
         use:[

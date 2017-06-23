@@ -1,4 +1,3 @@
-
 const webpack = require('webpack');
 const path = require('path');
 const {
@@ -44,10 +43,6 @@ choosePort(HOST, DEFAULT_PORT)
       urls.lanUrlForConfig
     );
 
-    // console.log("compiler:",compiler)
-    console.log("serverConfig:",urls)
-    console.log("serverConfig:",serverConfig)
-    console.log("--22--->",paths)
     const WebpackDevServer = require('webpack-dev-server');
     const devServer = new WebpackDevServer(compiler, serverConfig).listen(port, 'localhost', err => {
       if (err) {
