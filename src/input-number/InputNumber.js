@@ -19,7 +19,8 @@ export default class InputNumber extends Component {
   }
   handleInput(e) {
     let { max, min, onChange } = this.props;
-    let val = Number(e.target.value || 0);
+    if (!e) return;
+    let val = Number((e.target.value) || 0);
     max = Number(max)
     min = Number(min)
     if (val > max) {
