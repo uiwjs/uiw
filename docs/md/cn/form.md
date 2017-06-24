@@ -14,6 +14,7 @@ constructor(props) {
       name: "wui",
       password: "",
       email: "wwww@qq.com",
+      select: "选项4",
       online: true,
       carte: ['湖北菜'],
       category_radio: ["保密"],
@@ -23,6 +24,13 @@ constructor(props) {
       radioGroupDisabled:"乔布斯",
       inputNumber:0,
     },
+    selectOptions: [
+      { value: '选项1', label: '红葡萄酒' }, 
+      { value: '选项2', label: '绍兴黄酒', disabled: true}, 
+      { value: '选项3', label: '燕京啤酒' }, 
+      { value: '选项4', label: '楚乡王白酒' }, 
+      { value: '选项5', label: '五粮液' },
+    ],
     tagRadioOptions:[
       {color:"purple", value:'保密'},
       {color:"orange", value:'男生'},
@@ -141,6 +149,15 @@ render() {
       </FormItem>
       <FormItem label="输入数字" field="inputNumber" help="输入数字5~100"  {...formItemLayout} >
         <InputNumber value={form.inputNumber} onChange={this.onChange.bind(this,'inputNumber')} min="5" max="100"></InputNumber>
+      </FormItem>
+      <FormItem label="输入数字" field="select" help="输入数字5~100"  {...formItemLayout} >
+        <Select onChange={this.onChange.bind(this,'select')} value={form.select}>
+          {
+            this.state.selectOptions.map(elm => {
+              return <Select.Option key={elm.value} label={elm.label} value={elm.value} disabled={elm.disabled} />
+            })
+          }
+        </Select>
       </FormItem>
       <FormItem label="是否在线" field="online" {...formItemLayout} >
         <Switch checked={form.online} 

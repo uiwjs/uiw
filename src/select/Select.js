@@ -13,7 +13,7 @@ export default class Select extends Component {
       placeholder: props.placeholder || '请选择',
       inputHovering: false,
       selected: undefined,
-      selectedLabel: props.value, //默认选中的值
+      selectedLabel: props.value, //默认选中的值 多选为数组
       visible: false,             // 菜单是否显示
       icon: "arrow-down",
       inputWidth: 0,
@@ -50,8 +50,10 @@ export default class Select extends Component {
       });
     }
     if (props.value !== this.props.value) {
+      let { selectedLabel } = this.state;
       this.setState({
-        value: props.value
+        value: props.value,
+        selectedLabel: props.value === "" || props.value.length === 0 ? props.value : selectedLabel
       }, () => {
         this.handleValueChange();
       });
@@ -66,7 +68,6 @@ export default class Select extends Component {
   }
   handleValueChange() {
     const { value, options } = this.state;
-    console.log("props::", this.props)
     const selected = options.filter(option => {
       return option.props.value === value
     })[0];

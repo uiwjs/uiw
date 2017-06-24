@@ -19,7 +19,7 @@ const fs = require('fs');
 
 const createDevServerConfig = require('./webpackDevServer');
 // 如果需要的文件不存在，警告并崩溃
-if (!checkRequiredFiles([ paths.appHtml ,paths.appIndexJs])) {
+if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);
 }
 
@@ -56,8 +56,8 @@ choosePort(HOST, DEFAULT_PORT)
     });
 
 
-    ['SIGINT', 'SIGTERM'].forEach(function(sig) {
-      process.on(sig, function() {
+    ['SIGINT', 'SIGTERM'].forEach(function (sig) {
+      process.on(sig, function () {
         devServer.close();
         process.exit();
       });
