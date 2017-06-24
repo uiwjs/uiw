@@ -14,8 +14,6 @@ export default class Input extends Component {
     if (props.value !== this.props.value) {
       this.setState({
         value: props.value
-      }, () => {
-        onChange && onChange(null, props.value)
       });
     }
   }
