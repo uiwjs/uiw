@@ -10,7 +10,6 @@ export default class Input extends Component {
     }
   }
   componentWillReceiveProps(props) {
-    const { onChange } = this.props;
     if (props.value !== this.props.value) {
       this.setState({
         value: props.value
