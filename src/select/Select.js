@@ -30,7 +30,7 @@ export default class Select extends Component {
     this.selectedData()
     this.handleValueChange();
   }
-
+  // 初始化默认选中
   selectedData() {
     const { value, children } = this.props;
     const selected = children.filter(option => {
@@ -50,11 +50,12 @@ export default class Select extends Component {
       });
     }
     if (props.value !== this.props.value) {
-      let { selectedLabel } = this.state;
+      const { selectedLabel } = this.state;
       this.setState({
         value: props.value,
         selectedLabel: props.value === "" || props.value.length === 0 ? props.value : selectedLabel
       }, () => {
+        this.selectedData()
         this.handleValueChange();
       });
     }
@@ -139,8 +140,9 @@ export default class Select extends Component {
     // })
   }
   render() {
-    const { prefixCls, style, multiple, filterable, disabled } = this.props;
+    const { prefixCls, style, multiple, filterable, disabled, children } = this.props;
     const { visible, inputWidth, selectedLabel } = this.state;
+    console.log("this.props.children::", this.props.children)
     return (
       <div
         style={style}
@@ -164,14 +166,14 @@ export default class Select extends Component {
           icon={this.state.icon}
         />
         <Transition type="fade-in">
-          {visible &&
+          {visible && children && children.length > 0 &&
             <Popper className={this.classNames(`${prefixCls}-popper`)}
               style={{
                 minWidth: inputWidth,
               }}
             >
               <ul ref="popper" className={`${prefixCls}-warp`}>
-                {this.props.children}
+                {children}
               </ul>
             </Popper>
           }
@@ -190,6 +192,7 @@ Select.propTypes = {
   disabled: PropTypes.bool,   // 是否禁用
   filterable: PropTypes.bool, // 是否可搜索
   multiple: PropTypes.bool,   // 是否可多选
+  value: PropTypes.string,   // 是否可多选
 }
 
 Select.defaultProps = {

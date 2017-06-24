@@ -38,11 +38,9 @@ render() {
 ```
 <!--End-->
 
-
-
 ### 禁用状态
 
-为`Select`设置`disabled`属性，则整个选择器不可用。
+`Select`设置`disabled`属性，则整个选择器不可用。单个选项禁用,`Option`设置`disabled`属性即可。
 
 <!--DemoStart--> 
 ```js
@@ -73,3 +71,96 @@ render() {
 }
 ```
 <!--End-->
+
+
+### 联动
+
+省市联动是典型的例子。
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    options: [
+      { value: 'Shanghai', label: '上海' }, 
+      { value: 'Beijing', label: '北京', disabled: true}, 
+      { value: 'Shenzhen', label: '深圳' }
+    ],
+    secondOptions:{
+      'Shanghai':[
+        { value: '001', label: '静安区' }, 
+        { value: '002', label: '青浦区', disabled: true}, 
+      ],
+      'Beijing':[
+        { value: '001', label: '东城区' }, 
+        { value: '002', label: '西城区', disabled: true}, 
+        { value: '003', label: '朝阳区', disabled: true}, 
+      ]
+    },
+    secondOptionsEmpty:[],
+    value: '',
+    valueSecond: ''
+  };
+}
+onChange(e,value){
+  console.log("onChange:",value,e)
+}
+render() {
+  return (
+    <div>
+      <Select style={{width:100}} onChange={(e,value)=>{
+
+        this.setState({
+          secondOptionsEmpty:this.state.secondOptions[value] || [],
+          value:e.props.label,
+          valueSecond:""
+        })
+
+      }} value={this.state.value}>
+        {
+          this.state.options.map(el => {
+            return <Select.Option key={el.value} label={el.label} value={el.value} />
+          })
+        }
+      </Select>
+      <Select style={{width:100}} onChange={(e,value)=>{
+        
+        this.setState({
+          valueSecond:e.props.label
+        })
+
+      }} value={this.state.valueSecond}>
+        {
+          this.state.secondOptionsEmpty.map(el => {
+            return <Select.Option key={el.value} label={el.label} value={el.value} />
+          })
+        }
+      </Select>
+      <div style={{paddingTop:10}}>
+      您选择了：{`${this.state.value}-${this.state.valueSecond}`}
+      </div>
+    </div>
+  )
+}
+```
+<!--End-->
+
+## API
+
+### Select
+
+| 参数 | 说明 | 类型 | 默认值 |
+|--------- |-------- |--------- |-------- |
+| value | 指定当前选中的条目 | String/String[] | - |
+| disabled | 是否禁用 | Boolean | - |
+| multiple | 是否可多选 | Boolean | - |
+| onChange | 选中值发生变化时触发 | function(option, value) | - |
+
+### Option
+
+| 参数 | 说明 | 类型 | 默认值 |
+|--------- |-------- |--------- |-------- |
+| value | 指定当前选中的条目 | String/String[] | - |
+| disabled | 是否禁用 | Boolean | false |
+| label | 选项的标签，若不设置则默认与 `value` 相同 | String/Number | - |

@@ -2,6 +2,11 @@
 @import "../../style/mixins/index.less";
 
 .w-select{
+  display: inline-block;
+  position: relative;
+  & + .w-select{
+    margin-left: 5px;
+  }
   i[class^="w-icon-"]{
     transition: transform @transition-time @transition-timing-functio;
       transform:rotate(0deg); 
@@ -13,6 +18,9 @@
     i[class^="w-icon-"] {
       transform:rotate(180deg); 
     }
+  }
+  .w-animate{
+    position: relative;
   }
 }
 
