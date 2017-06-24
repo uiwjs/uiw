@@ -9,6 +9,17 @@ export default class Input extends Component {
       value: props.value
     }
   }
+  componentWillReceiveProps(props) {
+    const { onChange } = this.props;
+    if (props.value !== this.props.value) {
+      this.setState({
+        value: props.value
+      }, () => {
+        onChange && onChange(null, props.value)
+      });
+    }
+  }
+
   focus() {
     (this.refs.input || this.refs.textarea).focus();
   }
@@ -32,6 +43,7 @@ export default class Input extends Component {
       e.target.value = val;
     }
     this.setState({ value: val })
+    console.log("onChange:::;")
     onChange && onChange(e, val)
   }
   handleClick(type, e) {
@@ -69,7 +81,7 @@ export default class Input extends Component {
     })
 
     delete other.onSearch;
-    delete other.onChange;
+    // delete other.onChange;
 
     if (type === 'textarea') return (
       <textarea
