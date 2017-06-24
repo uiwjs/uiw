@@ -17,10 +17,11 @@ export default class CheckedTag extends Component {
     return this.context.component;
   }
   handleChange = (checked, e) => {
-    const { children } = this.props;
+    const { data } = this.props;
     const { options, onChange, isRadio } = this.parent().props;
     const { checkedValue } = this.state;
 
+    let children = data.value;
     if (options && checked) {
       let values = []
       if (isRadio) {
@@ -32,7 +33,7 @@ export default class CheckedTag extends Component {
       }
       this.setState({ checkedValue: values, checked: !this.state.checked }, () => {
         //父组件的props.onChange
-        onChange && onChange(e, values)
+        onChange && onChange(e, values, options)
       });
     }
   }

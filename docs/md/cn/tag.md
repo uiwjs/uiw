@@ -86,19 +86,22 @@ constructor(props) {
     plainOptions:[
       {
         color:"white",
-        value:'Apple'
+        value:'Apple',
+        label:'苹果',
       }, {
         color:"orange",
-        value:'Pear'
+        value:'Pear',
+        label:'梨子'
       }, {
         color:"green",
-        value:'Orange'
+        value:'Orange',
+        label:'橘子'
       }
     ],
     tagRadioOptions:[
-        {color:"purple", value:'苹果'},
-        {color:"orange", value:'橘子'},
-        {color:"green", value:'香蕉'}
+        {color:"purple", value:'苹果',label:'苹果1'},
+        {color:"orange", value:'橘子',label:'橘子2'},
+        {color:"green", value:'香蕉',label:'香蕉3'}
     ],
     plainValues:['Orange'],
     checkedValues:['香蕉']
@@ -116,7 +119,7 @@ render() {
           checkedValues={this.state.plainValues}
           onChange={(e,value2)=>{
             this.setState({plainValues:value2})
-            console.log("value::",value2)
+            console.log("value::",e,value2)
           }}
         />
       </Col>
@@ -310,4 +313,5 @@ render() {
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
 | color | 定义颜色 | String | - |
-| value | 标签上面显示的文字 | String | - |
+| value | `必填` 如果`label`键值对没有，`value`就是标签上面显示的文字，否则就是隐藏的`value` | String | - |
+| label | `可选` 标签上面显示的文字 | String | - |

@@ -46,18 +46,26 @@ export default class TagGroup extends Component {
     return (
       <div className={cls} {...other}>
         {
-          options.map((tag, idx) => {
+          options.map((tags, idx) => {
             let prop = {};
-            if (typeof (tag) === "object") {
-              prop.color = tag.color ? tag.color : "";
-              tag = tag.value ? tag.value : "";
+            let label = '';
+            if (typeof (tags) === "object") {
+              prop.color = tags.color ? tags.color : "";
             }
+
+            if (typeof (tags) === "string") label = tags;
+            if (tags.label || tags.value) label = tags.label || tags.value;
+
             if (Array.isArray(checkedValues) && (checked || isRadio)) {
+              let isChecked = false;
+              if (checkedValues.indexOf(tags) > -1 || checkedValues.indexOf(tags.value) > -1 || checkedValues.indexOf(tags.label) > -1) {
+                isChecked = true;
+              }
               return (
-                <CheckedTag checked={checkedValues.indexOf(tag) > -1} {...prop} key={Math.random()}>{tag}</CheckedTag>
+                <CheckedTag data={tags} checked={isChecked} {...prop} key={Math.random()}>{label}</CheckedTag>
               )
             }
-            return <Tag {...prop} key={Math.random()} onClose={this.handleClose.bind(this, tag)}>{tag}</Tag>
+            return <Tag data={tags} {...prop} key={Math.random()} onClose={this.handleClose.bind(this, tags)}>{label}</Tag>
           })
         }
         {children &&
