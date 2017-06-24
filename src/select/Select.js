@@ -36,9 +36,11 @@ export default class Select extends Component {
     const selected = children.filter(option => {
       return option.props.value === value
     })[0];
-    this.setState({
-      selectedLabel: selected.props.label
-    })
+    if (selected) {
+      this.setState({
+        selectedLabel: selected.props.label
+      })
+    }
   }
 
   componentWillReceiveProps(props) {
@@ -64,6 +66,7 @@ export default class Select extends Component {
   }
   handleValueChange() {
     const { value, options } = this.state;
+    console.log("props::", this.props)
     const selected = options.filter(option => {
       return option.props.value === value
     })[0];
@@ -159,16 +162,18 @@ export default class Select extends Component {
           onChange={(e, value) => this.setState({ selectedLabel: value })}
           icon={this.state.icon}
         />
-        <Transition type="fade-in" visible={visible}>
-          <Popper className={this.classNames(`${prefixCls}-popper`)}
-            style={{
-              minWidth: inputWidth,
-            }}
-          >
-            <ul ref="popper" className={`${prefixCls}-warp`}>
-              {this.props.children}
-            </ul>
-          </Popper>
+        <Transition type="fade-in">
+          {visible &&
+            <Popper className={this.classNames(`${prefixCls}-popper`)}
+              style={{
+                minWidth: inputWidth,
+              }}
+            >
+              <ul ref="popper" className={`${prefixCls}-warp`}>
+                {this.props.children}
+              </ul>
+            </Popper>
+          }
         </Transition>
       </div>
     );
