@@ -195,6 +195,7 @@ constructor(props) {
   this.state = {
     inputVisible: false,
     plainOptions:['Apple', 'Pear', 'Orange'],
+    inputValue:""
   }
 }
 
