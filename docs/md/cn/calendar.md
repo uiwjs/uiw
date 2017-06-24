@@ -55,7 +55,7 @@ render() {
             console.log("date,result:",date,result)
           }}
         />
-        <Buttons size="small" onClick={()=>{
+        <Button size="small" onClick={()=>{
           this.setState({
             values:[
               { date: '2017-03-11', count:2, content:['一条消息来了！'] },
@@ -64,9 +64,9 @@ render() {
               { date: '2017-04-14', count:11, content:['些放弃的人会这样想'] },
             ]
           })
-        }}>切换活跃记录</Buttons> &nbsp;
+        }}>切换活跃记录</Button> &nbsp;
 
-        <Buttons size="small" onClick={()=>{
+        <Button size="small" onClick={()=>{
           this.setState({
             values:[
               { date: '2017-04-11', count:2, content:['一条消息来了！'] },
@@ -83,7 +83,7 @@ render() {
               { date: '2017-05-22', count:6, content:['友谊赛事。'] },
             ]
           })
-        }}>切换活跃记录2</Buttons>
+        }}>切换活跃记录2</Button>
     </div>
   )
 }

@@ -6,7 +6,7 @@ module.exports = {
     'switch': 'Switch 开关',
     'select': 'Select 选择器',
     'alert': 'Alert 警告',
-    'buttons': 'Buttons 按钮',
+    'button': 'Button 按钮',
     'breadcrumb': 'Breadcrumb 面包屑',
     'layout': 'Layout 布局',
     'paging': 'Paging 分页',

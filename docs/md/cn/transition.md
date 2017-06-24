@@ -28,13 +28,13 @@ render() {
             </Transition>
 
         </div>
-        <Buttons size="mini" onClick={()=>{
+        <Button size="mini" onClick={()=>{
           this.setState({
             dispaly:!this.state.dispaly
           })
         }}>
             {this.state.dispaly?'消失':'显示'}
-        </Buttons>
+        </Button>
     </div>
   )
 }

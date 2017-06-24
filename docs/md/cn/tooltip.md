@@ -12,19 +12,19 @@ render() {
   return (
     <div>
         <Tooltip content="文字提示" style={{marginRight:"20px"}}>
-          <Buttons>上边文字提示</Buttons>
+          <Button>上边文字提示</Button>
         </Tooltip>
 
         <Tooltip placement="left" content="文字提示"  style={{marginRight:"20px"}}>
-          <Buttons>左边文字提示</Buttons>
+          <Button>左边文字提示</Button>
         </Tooltip>
 
         <Tooltip placement="bottom" content="文字提示"  style={{marginRight:"20px"}}>
-          <Buttons>下边文字提示</Buttons>
+          <Button>下边文字提示</Button>
         </Tooltip>
 
         <Tooltip placement="right" content="文字提示"  style={{marginRight:"20px"}}>
-          <Buttons>右边文字提示</Buttons>
+          <Button>右边文字提示</Button>
         </Tooltip>
     </div>
   )
@@ -48,7 +48,7 @@ render() {
             <p>展示多行文本或者是设置文本内容的格式</p>
         </div>
     }>
-      <Buttons>右边多行文字</Buttons>
+      <Button>右边多行文字</Button>
     </Tooltip>
   )
 }
@@ -69,13 +69,13 @@ render() {
     <div style={{ marginLeft: 60 }}>
         <div style={{ marginLeft: 60 }}>
           <Tooltip style={{ marginRight: 20}} placement="topLeft" content={text}>
-            <Buttons>上左</Buttons>
+            <Button>上左</Button>
           </Tooltip>
           <Tooltip style={{ marginRight: 20}} placement="top" content={text}>
-            <Buttons>上边</Buttons>
+            <Button>上边</Button>
           </Tooltip>
           <Tooltip style={{ marginRight: 20}} placement="topRight" content={text}>
-            <Buttons>上右</Buttons>
+            <Button>上右</Button>
           </Tooltip>
         </div>
         <div style={{ width: 60, float: 'left' }}>
@@ -84,11 +84,11 @@ render() {
               <div>这里是文字描述！</div>
               <div>这里是文字描述！</div>
           </div>}>
-            <Buttons>左上</Buttons>
+            <Button>左上</Button>
           </Tooltip>
           <br/><br/>
           <Tooltip placement="left" content={text}>
-            <Buttons>左边</Buttons>
+            <Button>左边</Button>
           </Tooltip>
           <br/><br/>
           <Tooltip placement="leftBottom" content={<div>
@@ -96,16 +96,16 @@ render() {
               <div>这里是文字描述！</div>
               <div>这里是文字描述！</div>
           </div>}>
-            <Buttons>左下</Buttons>
+            <Button>左下</Button>
           </Tooltip>
         </div>
         <div style={{ width: 60, marginLeft: 270 }}>
           <Tooltip placement="rightTop" content="文字提示">
-            <Buttons>右上</Buttons>
+            <Button>右上</Button>
           </Tooltip>
           <br/><br/>
           <Tooltip placement="right" content="提示文字提示文字提示文字提文字">
-            <Buttons>右边</Buttons>
+            <Button>右边</Button>
           </Tooltip>
           <br/><br/>
           <Tooltip placement="rightBottom" content={<div>
@@ -113,7 +113,7 @@ render() {
               <div>这里是文字描述！</div>
               <div>这里是文字描述！</div>
           </div>}>
-            <Buttons>右下</Buttons>
+            <Button>右下</Button>
           </Tooltip>
           <br/><br/>
         </div>
@@ -123,13 +123,13 @@ render() {
               <div>这里是文字描述！</div>
               <div>这里是文字描述！</div>
           </div>}>
-            <Buttons>下左</Buttons>
+            <Button>下左</Button>
           </Tooltip>
           <Tooltip style={{ marginRight: 20}} placement="bottom" content={text}>
-            <Buttons>下边</Buttons>
+            <Button>下边</Button>
           </Tooltip>
           <Tooltip style={{ marginRight: 20}} placement="bottomRight" content={text}>
-            <Buttons>下右</Buttons>
+            <Button>下右</Button>
           </Tooltip>
         </div>
     </div>
@@ -149,10 +149,10 @@ render() {
   return (
     <div>
         <Tooltip content="文字提示" style={{marginRight:"20px"}}>
-          <Buttons>上边文字提示</Buttons>
+          <Button>上边文字提示</Button>
         </Tooltip>
         <Tooltip effect="light" content="文字提示">
-          <Buttons>上边文字提示</Buttons>
+          <Button>上边文字提示</Button>
         </Tooltip>
     </div>
   )
@@ -178,11 +178,11 @@ render() {
   return (
     <div>
       <Tooltip disabled={ this.state.disabled } content="点击关闭 Tooltip 功能">
-        <Buttons onClick={ e => this.setState({ disabled: true}) }>点击关闭   Tooltip 功能</Buttons>
+        <Button onClick={ e => this.setState({ disabled: true}) }>点击关闭   Tooltip 功能</Button>
       </Tooltip> &nbsp;
-      <Buttons onClick={ e => this.setState({ disabled: false}) }>
+      <Button onClick={ e => this.setState({ disabled: false}) }>
          启用前面按钮的提示
-      </Buttons>
+      </Button>
     </div>
   )
 }
@@ -199,7 +199,7 @@ render() {
 render() {
   return (
     <Tooltip placement="right" trigger="click" content="文字提示" >
-      <Buttons>点击</Buttons>
+      <Button>点击</Button>
     </Tooltip>
   )
 }
@@ -254,11 +254,11 @@ render() {
     <Tooltip visible={visible} content="文字提示"  style={{marginRight:"20px"}}>
       <div>手动控制状态的展示</div>
     </Tooltip>
-    <Buttons onClick={()=>{
+    <Button onClick={()=>{
         this.setState({
             visible:!visible
         })
-    }}>点击</Buttons>
+    }}>点击</Button>
     </div>
   )
 }
@@ -275,7 +275,7 @@ render() {
 render() {
   return (
     <Tooltip placement="right" visibleArrow={false} content="文字提示"  style={{marginRight:"20px"}}>
-      <Buttons>不显示箭头</Buttons>
+      <Button>不显示箭头</Button>
     </Tooltip>
   )
 }
@@ -293,13 +293,13 @@ render() {
   return (
     <div>
     <Tooltip placement="right" leaveDelay={6000} content="文字提示"  style={{marginRight:"20px"}}>
-      <Buttons>hove延迟6s消失</Buttons>
+      <Button>hove延迟6s消失</Button>
     </Tooltip>
     <Tooltip placement="right" leaveDelay={6000} trigger="click" content="文字提示"  style={{marginRight:"20px"}}>
-      <Buttons>点击延迟6s消失</Buttons>
+      <Button>点击延迟6s消失</Button>
     </Tooltip>
     <Tooltip placement="right" enterDelay={2000}  leaveDelay={6000} content="文字提示"  style={{marginRight:"20px"}}>
-      <Buttons>鼠标悬停在按钮上延迟2s进入</Buttons>
+      <Button>鼠标悬停在按钮上延迟2s进入</Button>
     </Tooltip>
     </div>
   )

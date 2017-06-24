@@ -58,13 +58,13 @@ constructor(props) {
     })
   }
 render() {
-  const ButtonsGroup = Buttons.Group;
+  const ButtonGroup = Button.Group;
   return (
-    <ButtonsGroup>
-      <Buttons size="small" onClick={this.showConfirm} type="default">确认对话框</Buttons>
-      <Buttons size="small" onClick={this.showConfirm2} type="default">一个确认按钮对话框</Buttons>
-      <Buttons size="small" onClick={this.showConfirm3.bind(this)} type="default">延迟关闭对话框</Buttons>
-    </ButtonsGroup>
+    <ButtonGroup>
+      <Button size="small" onClick={this.showConfirm} type="default">确认对话框</Button>
+      <Button size="small" onClick={this.showConfirm2} type="default">一个确认按钮对话框</Button>
+      <Button size="small" onClick={this.showConfirm3.bind(this)} type="default">延迟关闭对话框</Button>
+    </ButtonGroup>
   )
 }
 ```
@@ -126,14 +126,14 @@ showConfirm7(){
   })
 }
 render() {
-  const ButtonsGroup = Buttons.Group;
+  const ButtonGroup = Button.Group;
   return (
-    <ButtonsGroup>
-      <Buttons size="small" onClick={this.showConfirm4} type="info">消息</Buttons>
-      <Buttons size="small" onClick={this.showConfirm5} type="warn">警告</Buttons>
-      <Buttons size="small" onClick={this.showConfirm6} type="error">错误</Buttons>
-      <Buttons size="small" onClick={this.showConfirm7} type="success">成功</Buttons>
-    </ButtonsGroup>
+    <ButtonGroup>
+      <Button size="small" onClick={this.showConfirm4} type="info">消息</Button>
+      <Button size="small" onClick={this.showConfirm5} type="warn">警告</Button>
+      <Button size="small" onClick={this.showConfirm6} type="error">错误</Button>
+      <Button size="small" onClick={this.showConfirm7} type="success">成功</Button>
+    </ButtonGroup>
   )
 }
 ```
@@ -305,16 +305,16 @@ render() {
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
         </Modals>
 
-        <Buttons size="small" onClick={this.onClick.bind(this,'visible1')}>Right顶部留出空隙，隐藏遮罩层</Buttons>
+        <Button size="small" onClick={this.onClick.bind(this,'visible1')}>Right顶部留出空隙，隐藏遮罩层</Button>
 
 
-        <Buttons size="small" onClick={this.onClick.bind(this,'visible2')}>Right顶部留出空隙</Buttons>
+        <Button size="small" onClick={this.onClick.bind(this,'visible2')}>Right顶部留出空隙</Button>
 
 
-        <Buttons size="small" onClick={this.onClick.bind(this,'visible3')}>Left</Buttons>
+        <Button size="small" onClick={this.onClick.bind(this,'visible3')}>Left</Button>
 
 
-        <Buttons size="small" onClick={this.onClick.bind(this,'visible4')}>Right</Buttons> 
+        <Button size="small" onClick={this.onClick.bind(this,'visible4')}>Right</Button> 
 
     </div>
   )
@@ -335,9 +335,9 @@ constructor(props) {
 render() {
   return (
     <div> 
-        <Buttons size="small" onClick={()=>{
+        <Button size="small" onClick={()=>{
           this.setState({visible:true})
-        }}>Open Modals dialog</Buttons>  &nbsp;
+        }}>Open Modals dialog</Button>  &nbsp;
         <Modals 
           title="Modals Title" 
           visible={this.state.visible}
@@ -381,7 +381,7 @@ render() {
   return (
     <div> 
 
-        <Buttons size="small" onClick={this.handleShow.bind(this)}>Modals自定义Footer</Buttons>
+        <Button size="small" onClick={this.handleShow.bind(this)}>Modals自定义Footer</Button>
         <Modals 
           ref="modals"
           title="Modals自定义Footer" 
@@ -395,21 +395,21 @@ render() {
           // footer={null}
           footer={(
             <div>
-              <Buttons size="small" onClick={()=>{
+              <Button size="small" onClick={()=>{
                 //this.refs.modals.onCancel
                 this.setState({
                   visible:false
                 })
               }}>
                 取消
-              </Buttons>
-              <Buttons size="small" onClick={()=>{
+              </Button>
+              <Button size="small" onClick={()=>{
                 this.setState({
                   visible:false
                 })
               }}>
                 确定
-              </Buttons>
+              </Button>
             </div>
           )}
         >
@@ -437,9 +437,9 @@ constructor(props) {
 render() {
   return (
     <div> 
-        <Buttons size="small" onClick={()=>{
+        <Button size="small" onClick={()=>{
           this.setState({visible3:true})
-        }}>Modals居中显示，</Buttons> &nbsp;
+        }}>Modals居中显示，</Button> &nbsp;
         <Modals 
           title="Modals自定义Footer" 
           visible={this.state.visible3}
@@ -475,9 +475,9 @@ constructor(props) {
 render() {
   return (
     <div> 
-        <Buttons size="small" onClick={()=>{
+        <Button size="small" onClick={()=>{
           this.setState({visible:true})
-        }}>点击确定后异步关闭对话框， 并添加加载状态</Buttons> 
+        }}>点击确定后异步关闭对话框， 并添加加载状态</Button> 
         <Modals 
           title="点击确定后异步关闭对话框" 
           visible={this.state.visible}

@@ -219,11 +219,11 @@ render() {
         </div>
       </FormItem>
       <FormItem {...wrapperCol}>
-        <Buttons size="small" type="primary" onClick={this.handleSubmit.bind(this)}>提交</Buttons>
-        <Buttons size="small" onClick={this.handleReset.bind(this)}>重置</Buttons>
-        <Buttons size="small" onClick={()=>{
+        <Button size="small" type="primary" onClick={this.handleSubmit.bind(this)}>提交</Button>
+        <Button size="small" onClick={this.handleReset.bind(this)}>重置</Button>
+        <Button size="small" onClick={()=>{
           console.log(this.state.form)
-          }}>查看State</Buttons>
+          }}>查看State</Button>
       </FormItem>
     </Form>
   )
@@ -332,8 +332,8 @@ render() {
           onChange={this.onChange.bind(this, 'email')} />
       </FormItem>
       <FormItem {...wrapperCol}>
-        <Buttons size="small" type="primary" onClick={this.handleSubmit.bind(this)}>提交</Buttons>
-        <Buttons size="small" onClick={this.handleReset.bind(this)}>重置</Buttons>
+        <Button size="small" type="primary" onClick={this.handleSubmit.bind(this)}>提交</Button>
+        <Button size="small" onClick={this.handleReset.bind(this)}>重置</Button>
       </FormItem>
     </Form>
   )
@@ -466,8 +466,8 @@ render() {
             onChange={this.onChange.bind(this, 'email')} />
         </FormItem>
         <FormItem {...wrapperCol}>
-          <Buttons size="small" type="primary" onClick={this.handleSubmit.bind(this)}>提交</Buttons>
-          <Buttons size="small" onClick={this.handleReset.bind(this)}>重置</Buttons>
+          <Button size="small" type="primary" onClick={this.handleSubmit.bind(this)}>提交</Button>
+          <Button size="small" onClick={this.handleReset.bind(this)}>重置</Button>
         </FormItem>
       </Form>
     </div>

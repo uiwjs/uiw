@@ -173,7 +173,7 @@ render() {
         console.log("value::",value)
       }}
     >
-      <Buttons size="mini" onClick={()=>{
+      <Button size="mini" onClick={()=>{
         console.log(this.state.plainOptions)
         let addTag = this.state.plainOptions
         addTag.push({
@@ -181,7 +181,7 @@ render() {
           value:'test'
         })
         this.setState({plainOptions:addTag})
-      }}>Set</Buttons>
+      }}>Set</Button>
     </TagGroup>
   )
 }
@@ -254,7 +254,7 @@ render() {
           onKeyUp={this.onKeyUp.bind(this)}
           onBlur={this.handleInputConfirm.bind(this)}
         />
-      ) : <Buttons size="mini" onClick={this.showInput.bind(this)}>+ New Tag</Buttons>
+      ) : <Button size="mini" onClick={this.showInput.bind(this)}>+ New Tag</Button>
     }
     </TagGroup>
   )

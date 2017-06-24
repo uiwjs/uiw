@@ -7,7 +7,7 @@ export default {
     'Basic': {
       'layout': require('./layout'),
       'icon': require('./icon'),
-      'buttons': require('./buttons'),
+      'button': require('./button'),
     },
     'Form': {
       'form': require('./form'),

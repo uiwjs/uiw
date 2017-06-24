@@ -51,11 +51,11 @@ constructor(props) {
         key: "edit",
         width: 110,
         render: (text, row, index) => {
-          const ButtonsGroup = Buttons.Group;
+          const ButtonGroup = Button.Group;
           return (
             <div>
-              <Buttons size="mini" type="danger">删除</Buttons>
-              <Buttons size="mini" type="success">修改</Buttons>
+              <Button size="mini" type="danger">删除</Button>
+              <Button size="mini" type="success">修改</Button>
             </div>
           )
         },
@@ -96,11 +96,11 @@ constructor(props) {
         key: "edit",
         width: 110,
         render: (text, row, index) => {
-          const ButtonsGroup = Buttons.Group;
+          const ButtonGroup = Button.Group;
           return (
             <div>
-              <Buttons size="mini" type="danger">删除</Buttons>
-              <Buttons size="mini" type="success">修改</Buttons>
+              <Button size="mini" type="danger">删除</Button>
+              <Button size="mini" type="success">修改</Button>
             </div>
           )
         },

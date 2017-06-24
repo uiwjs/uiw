@@ -21,12 +21,12 @@ render() {
         onChange={(e,checked)=>{
         console.log(`${checked?"选中":'没有选中'}`)
       }}/>
-      <Buttons size="mini" onClick={()=>{
+      <Button size="mini" onClick={()=>{
         console.log("-->>",this.state.checked)
         this.setState({
           checked:!this.state.checked
         })
-      }}>{this.state.checked?"打开":"关闭"}</Buttons>
+      }}>{this.state.checked?"打开":"关闭"}</Button>
     </div>
   )
 }
@@ -53,13 +53,13 @@ render() {
       <Switch checked={true} disabled={this.state.disabled} style={styl} />
       <br />
       <br />
-      <Buttons size="mini" type="default" onClick={()=>{
+      <Button size="mini" type="default" onClick={()=>{
         this.setState({
           disabled:!this.state.disabled
         })
       }}>
         {this.state.disabled?"Toggle disabled":"Toggle undisabled"}
-      </Buttons>
+      </Button>
     </div>
   )
 }

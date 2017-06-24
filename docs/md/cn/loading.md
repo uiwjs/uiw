@@ -42,14 +42,14 @@ render() {
             />
         </Loading>
         <br/>
-        <Buttons size="small" type="default" onClick={()=>{
+        <Button size="small" type="default" onClick={()=>{
 
           let isload = !this.state.loading;
           this.setState({
             loading:isload
           })
 
-        }}>点击切换加载状态</Buttons>
+        }}>点击切换加载状态</Button>
     </div>
   )
 }

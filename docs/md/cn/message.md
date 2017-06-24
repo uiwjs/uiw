@@ -7,42 +7,42 @@
 <!--DemoStart--> 
 ```js
 render() {
-  const ButtonsGroup = Buttons.Group
+  const ButtonGroup = Button.Group
   return (
     <div>
-        <ButtonsGroup>
-          <Buttons size="small" onClick={()=>{
+        <ButtonGroup>
+          <Button size="small" onClick={()=>{
             Message.success('This is an success Message.')
           }}>
             success
-          </Buttons>  
+          </Button>  
           
-          <Buttons size="small" onClick={()=>{
+          <Button size="small" onClick={()=>{
             Message.warning('This is an warning Message.')
           }}>
             warning ( warn === warning)
-          </Buttons>  
+          </Button>  
 
-          <Buttons size="small" onClick={()=>{
+          <Button size="small" onClick={()=>{
             Message.warn('This is an warn Message.')
           }}>
             warn ( warn === warning)
-          </Buttons>  
+          </Button>  
           
-          <Buttons size="small" onClick={()=>{
+          <Button size="small" onClick={()=>{
             Message.info('This is an info Message.')
           }}>
             info
-          </Buttons>  
+          </Button>  
 
           
-          <Buttons size="small" onClick={()=>{
+          <Button size="small" onClick={()=>{
             Message.error('This is an error Message.')
           }}>
             error
-          </Buttons>  
+          </Button>  
           
-        </ButtonsGroup>
+        </ButtonGroup>
     </div>
   )
 }
@@ -56,7 +56,7 @@ render() {
 ```js
 render() {
   return (
-    <Buttons size="small" onClick={()=>{
+    <Button size="small" onClick={()=>{
       Message.info(
         <div>
           <h2>标题</h2>
@@ -65,7 +65,7 @@ render() {
       )
     }}>
       添加HTML输出 
-    </Buttons> 
+    </Button> 
   )
 }
 ```
@@ -77,7 +77,7 @@ render() {
 ```js
 render() {
   return (
-      <Buttons size="small" onClick={()=>{
+      <Button size="small" onClick={()=>{
         Message.error('This is an warning Message.',{
           duration:3,
           onClose:()=>{
@@ -86,7 +86,7 @@ render() {
         })
       }}>
         error, 自动3s关闭
-      </Buttons>
+      </Button>
   )
 }
 ```
@@ -97,41 +97,41 @@ render() {
 <!--DemoStart--> 
 ```js
 render() {
-  const ButtonsGroup = Buttons.Group
+  const ButtonGroup = Button.Group
   return (
     <div>
-        <ButtonsGroup>
-          <Buttons size="small" onClick={()=>{
+        <ButtonGroup>
+          <Button size="small" onClick={()=>{
             Message.success('默认顶部中间.',{placement:"top"})
           }}>
             默认顶部中间
-          </Buttons>
-          <Buttons size="small" onClick={()=>{
+          </Button>
+          <Button size="small" onClick={()=>{
             Message.info('底部中间',{placement:"bottom"})
           }}>
             底部中间
-          </Buttons>
-          <Buttons size="small" onClick={()=>{
+          </Button>
+          <Button size="small" onClick={()=>{
             Message.success('左边上角',{placement:"topLeft"})
           }}>
             左边上角
-          </Buttons>
-          <Buttons size="small" onClick={()=>{
+          </Button>
+          <Button size="small" onClick={()=>{
             Message.success('右边上角',{placement:"topRight"})
           }}>
             右边上角
-          </Buttons>
-          <Buttons size="small" onClick={()=>{
+          </Button>
+          <Button size="small" onClick={()=>{
             Message.success('左边下角',{placement:"bottomLeft"})
           }}>
             左边下角
-          </Buttons>
-          <Buttons size="small" onClick={()=>{
+          </Button>
+          <Button size="small" onClick={()=>{
             Message.success('右边下角',{placement:"bottomRight"})
           }}>
             右边下角
-          </Buttons>
-        </ButtonsGroup>
+          </Button>
+        </ButtonGroup>
     </div>
   )
 }

@@ -31,10 +31,10 @@ render() {
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Buttons } from 'uiw';
+import { Button } from 'uiw';
 
 ReactDOM.render(
-  <Buttons type="primary">Hello</Buttons>, 
+  <Button type="primary">Hello</Button>, 
   document.getElementById('app')
 );
 ```
@@ -45,5 +45,5 @@ ReactDOM.render(
 重新取一个名字
 
 ```js
-import { Buttons as ButtonsView } from 'uiw';
+import { Button as ButtonView } from 'uiw';
 ```

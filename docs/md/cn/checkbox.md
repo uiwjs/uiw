@@ -73,7 +73,7 @@ render() {
   return (
     <div>
       <Checkbox indeterminate={this.state.indeterminate} onChange={this.log.bind(this)}>半选中</Checkbox>
-      <Buttons size="mini" onClick={this.handleChange.bind(this)}>切换半选中</Buttons>
+      <Button size="mini" onClick={this.handleChange.bind(this)}>切换半选中</Button>
     </div>
   )
 }
@@ -108,15 +108,15 @@ render() {
         {`${this.state.checked ? 'Checked' : 'Unchecked'}-${this.state.disabled ? 'Disabled' : 'Enabled'}`}
       </Checkbox>
       <div style={{padding:"10px 0 0 0"}}>
-        <Buttons
+        <Button
           size="mini"
           onClick={() => {
             this.setState({ checked3: !this.state.checked3 });
           }}
         >
           {!this.state.checked3 ? 'Check' : 'Uncheck'}
-        </Buttons>
-        <Buttons
+        </Button>
+        <Button
           style={{ marginLeft: '10px' }}
           size="mini"
           onClick={() => {
@@ -124,7 +124,7 @@ render() {
           }}
         >
           {!this.state.disabled3 ? 'Disable' : 'Enable'}
-        </Buttons>
+        </Button>
       </div>
     </div>
   )
