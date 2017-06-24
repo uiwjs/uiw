@@ -43,7 +43,6 @@ export default class Input extends Component {
       e.target.value = val;
     }
     this.setState({ value: val })
-    console.log("onChange:::;")
     onChange && onChange(e, val)
   }
   handleClick(type, e) {

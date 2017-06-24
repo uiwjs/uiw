@@ -6,6 +6,9 @@
     transition: transform @transition-time @transition-timing-functio;
       transform:rotate(0deg); 
   }
+  .w-input{
+    cursor: pointer;
+  }
   &.unfold{
     i[class^="w-icon-"] {
       transform:rotate(180deg); 
@@ -26,7 +29,15 @@
     line-height: 1.5;
     box-sizing: border-box;
     cursor: pointer;
-    &:hover{
+    &:hover:not(.disabled){
+      background-color: #efefef;
+      color: #585858;
+    }
+    &.disabled{
+      cursor: not-allowed;
+      color: #dedede;
+    }
+    &.selected{
       background-color: #efefef;
     }
   }

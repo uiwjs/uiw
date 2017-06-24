@@ -9,33 +9,102 @@ export default class Select extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      options: [],
       placeholder: props.placeholder || '请选择',
       inputHovering: false,
       selected: undefined,
       selectedLabel: props.value, //默认选中的值
-      visible: false,   // 菜单是否显示
+      visible: false,             // 菜单是否显示
       icon: "arrow-down",
       inputWidth: 0,
     }
+  }
+  getChildContext() {
+    return { component: this }
   }
   componentDidMount() {
     this.input = ReactDOM.findDOMNode(this.refs.input);
     this.setState({
       inputWidth: this.input.getBoundingClientRect().width
     })
+    this.selectedData()
+    this.handleValueChange();
   }
-  componentDidUpdate() {
-    // let { inputWidth } = this.state;
-    console.log("===>", this.input.getBoundingClientRect().width)
+
+  selectedData() {
+    const { value, children } = this.props;
+    const selected = children.filter(option => {
+      return option.props.value === value
+    })[0];
+    this.setState({
+      selectedLabel: selected.props.label
+    })
+  }
+
+  componentWillReceiveProps(props) {
+    if (props.placeholder !== this.props.placeholder) {
+      this.setState({
+        placeholder: props.placeholder
+      });
+    }
+    if (props.value !== this.props.value) {
+      this.setState({
+        value: props.value
+      }, () => {
+        this.handleValueChange();
+      });
+    }
+  }
+
+  onOptionCreate(option) {
+    // 添加选中的组件
+    // this.state.options.push(option);
+    // console.log("option:::", option)
+    // this.setState(this.state);
+  }
+  handleValueChange() {
+    const { value, options } = this.state;
+    const selected = options.filter(option => {
+      return option.props.value === value
+    })[0];
+    if (selected) {
+      this.setState({
+        selectedLabel: selected.props.label
+      })
+    }
+  }
+  onSelectedChange(val) {
+    const { multiple, onChange } = this.props;
+    if (!multiple) {
+      onChange && onChange(val, val.props.value);
+    }
+  }
+  // 点击选中事件
+  onOptionClick(option) {
+    let { multiple } = this.props;
+    let { visible, selected, selectedLabel } = this.state;
+
+    if (!multiple) {
+      selected = option;
+      selectedLabel = option.currentLabel();
+      visible = false;
+    }
+
+    this.setState({
+      selected,
+      selectedLabel
+    }, () => {
+      if (!multiple) {
+        this.onSelectedChange(this.state.selected);
+      }
+      this.setState({ visible });
+    })
   }
   // 展示隐藏菜单
   toggleMenu() {
     const { disabled } = this.props;
     const { visible } = this.state;
-    console.log("visible::", visible)
-    // if (visible) {
-    //   return;
-    // }
+    if (visible) { return; }
 
     if (!disabled) {
       this.setState({
@@ -68,7 +137,6 @@ export default class Select extends Component {
   render() {
     const { prefixCls, style, multiple, filterable, disabled } = this.props;
     const { visible, inputWidth, selectedLabel } = this.state;
-    console.log("visible:ss:", visible)
     return (
       <div
         style={style}
@@ -88,24 +156,28 @@ export default class Select extends Component {
           onMouseLeave={this.onMouseLeave.bind(this)}
           onMouseDown={this.onMouseDown.bind(this)}
           onIconClick={this.onIconClick.bind(this)}
+          onChange={(e, value) => this.setState({ selectedLabel: value })}
           icon={this.state.icon}
         />
-        <Transition type="fade-in">
-          {visible &&
-            <Popper className={this.classNames(`${prefixCls}-popper`)}
-              style={{
-                minWidth: inputWidth,
-              }}
-            >
-              <ul className={`${prefixCls}-warp`}>
-                {this.props.children}
-              </ul>
-            </Popper>}
+        <Transition type="fade-in" visible={visible}>
+          <Popper className={this.classNames(`${prefixCls}-popper`)}
+            style={{
+              minWidth: inputWidth,
+            }}
+          >
+            <ul ref="popper" className={`${prefixCls}-warp`}>
+              {this.props.children}
+            </ul>
+          </Popper>
         </Transition>
       </div>
     );
   }
 }
+
+Select.childContextTypes = {
+  component: PropTypes.any
+};
 
 Select.propTypes = {
   prefixCls: PropTypes.string,
