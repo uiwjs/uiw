@@ -45,6 +45,8 @@ render() {
 
 ### Transition Attributes
 
+可以通过 [Animate.css](https://daneden.github.io/animate.css/) 制作更多的过度动画。
+
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
 | type | 指定可选项 `fade-in` 、`fade-left`、 `fade-right` 、 `fade-down` | string | - |
