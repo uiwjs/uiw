@@ -107,9 +107,9 @@ export default class Select extends Component {
   }
   // 展示隐藏菜单
   toggleMenu() {
-    const { disabled } = this.props;
+    const { disabled, children } = this.props;
     const { visible } = this.state;
-    if (visible) { return; }
+    if (visible || children.length === 0) return;
 
     if (!disabled) {
       this.setState({
@@ -140,9 +140,8 @@ export default class Select extends Component {
     // })
   }
   render() {
-    const { prefixCls, style, multiple, filterable, disabled, children } = this.props;
+    const { prefixCls, style, name, multiple, filterable, disabled, children } = this.props;
     const { visible, inputWidth, selectedLabel } = this.state;
-    console.log("this.props.children::", this.props.children)
     return (
       <div
         style={style}
@@ -154,6 +153,7 @@ export default class Select extends Component {
         <Input
           type="text"
           ref="input"
+          name={name}
           disabled={disabled}
           value={selectedLabel}
           readOnly={!filterable || multiple}
@@ -189,10 +189,12 @@ Select.childContextTypes = {
 
 Select.propTypes = {
   prefixCls: PropTypes.string,
+  placeholder: PropTypes.string,
   disabled: PropTypes.bool,   // 是否禁用
   filterable: PropTypes.bool, // 是否可搜索
   multiple: PropTypes.bool,   // 是否可多选
-  value: PropTypes.string,   // 是否可多选
+  clearable: PropTypes.bool,  // 清空单选
+  value: PropTypes.string,    // 是否可多选
 }
 
 Select.defaultProps = {

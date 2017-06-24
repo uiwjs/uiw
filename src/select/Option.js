@@ -16,7 +16,6 @@ export default class Select extends Component {
     } else if (Array.isArray(selected)) {
       return selected.map(e => e.props.value).indexOf(this.props.value) > -1;
     }
-
     return false;
   }
   currentLabel() {
@@ -45,6 +44,8 @@ Select.contextTypes = {
 
 Select.propTypes = {
   prefixCls: PropTypes.string,
+  disabled: PropTypes.bool,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 Select.defaultProps = {

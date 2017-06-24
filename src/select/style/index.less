@@ -26,14 +26,14 @@
 
 .w-select-warp{
   li{
-    font-size: 14px;
+    font-size: 12px;
     padding: 8px 10px;
     position: relative;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     color: #585858;
-    height: 36px;
+    height: 32px;
     line-height: 1.5;
     box-sizing: border-box;
     cursor: pointer;
@@ -58,4 +58,20 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,.12), 0 0 6px rgba(0,0,0,.04);
   box-sizing: border-box;
+}
+
+.w-select-warp .w-select-group-warp{
+  height: inherit;
+  padding:5px 0 0 0;
+  &:hover:not(.disabled){
+    background-color: transparent;
+  }
+  h2.w-select-group-title{
+    padding-left: 10px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+    height: 30px;
+    line-height: 30px;
+  }
 }

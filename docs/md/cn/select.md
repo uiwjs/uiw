@@ -73,6 +73,115 @@ render() {
 <!--End-->
 
 
+### 自定义模板
+
+可以自定义备选项。
+
+<!--DemoStart--> 
+将自定义的 `HTML` 模板插入`Option`中即可。
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    cities: [
+      { value: 'Beijing', label: '北京' }, 
+      { value: 'Shanghai', label: '上海' }, 
+      { value: 'Nanjing', label: '南京', disabled: true }, 
+      { value: 'Chengdu', label: '成都' }, 
+      { value: 'Shenzhen', label: '深圳' }, 
+      { value: 'Guangzhou', label: '广州' }
+    ],
+    value: ''
+  };
+}
+render() {
+  const {OptionGroup,Option} = Select
+  return (
+    <Select style={{width:200}} value={this.state.value}>
+      {
+        this.state.cities.map((elm,idx) => {
+          return (
+            <Option key={idx} label={elm.label} value={elm.value} disabled={elm.disabled}>
+              <span style={{float: 'left'}}>{elm.label}</span>
+              <span style={{float: 'right'}}>{elm.value}</span>
+            </Option>
+          )
+        })
+      }
+    </Select>
+  )
+}
+```
+<!--End-->
+
+
+### 分组
+
+备选项进行分组展示。
+
+<!--DemoStart--> 
+使用 `OptionGroup` 对备选项进行分组，它的 `label` 属性为分组名。
+```js
+constructor(props) {
+  super(props);
+
+  this.state = {
+    options: [{
+      label: '热门城市',
+      options: [{
+        value: 'Shanghai',
+        label: '上海'
+      }, {
+        value: 'Beijing',
+        label: '北京'
+      }]
+    }, {
+      label: '城市名',
+      options: [{
+        value: 'Chengdu',
+        label: '成都'
+      }, {
+        value: 'Shenzhen',
+        label: '深圳'
+      }, {
+        value: 'Guangzhou',
+        label: '广州'
+      }, {
+        value: 'Dalian',
+        label: '大连'
+      }]
+    }],
+    value: ''
+  };
+}
+
+render() {
+  return (
+    <Select value={this.state.value}>
+      {
+        this.state.options.map(group => {
+          return (
+            <Select.OptionGroup key={group.label} label={group.label}>
+              {
+                group.options.map(el => {
+                  return (
+                    <Select.Option key={el.value} label={el.label} value={el.value}>
+                      <span style={{float: 'left'}}>{el.label}</span>
+                      <span style={{float: 'right', color: '#b9b9b9', fontSize: 13}}>{el.value}</span>
+                    </Select.Option>
+                  )
+                })
+              }
+            </Select.OptionGroup>
+          )
+        })
+      }
+    </Select>
+  )
+}
+```
+<!--End-->
+
 ### 联动
 
 省市联动是典型的例子。
@@ -153,8 +262,11 @@ render() {
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | value | 指定当前选中的条目 | String/String[] | - |
-| disabled | 是否禁用 | Boolean | - |
-| multiple | 是否可多选 | Boolean | - |
+| name | `Select` 是通过 `input` 实现的，这里是设置 `name` 的属性 | String | - |
+| placeholder | 这里是 `input` 占位符 | String | `请选择` |
+| disabled | 是否禁用 | Boolean | false |
+| multiple | 是否可多选 | Boolean | false |
+| clearable | 是否可多选 | Boolean | false |
 | onChange | 选中值发生变化时触发 | function(option, value) | - |
 
 ### Option
