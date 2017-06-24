@@ -4,6 +4,7 @@ module.exports = {
     'theme': '主题定制',
     'checkbox': 'Checkbox 多选框',
     'switch': 'Switch 开关',
+    'select': 'Select 选择器',
     'alert': 'Alert 警告',
     'buttons': 'Buttons 按钮',
     'breadcrumb': 'Breadcrumb 面包屑',

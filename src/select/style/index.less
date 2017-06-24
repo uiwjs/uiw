@@ -1,0 +1,42 @@
+@import "../../style/variables.less";
+@import "../../style/mixins/index.less";
+
+.w-select{
+  i[class^="w-icon-"]{
+    transition: transform @transition-time @transition-timing-functio;
+      transform:rotate(0deg); 
+  }
+  &.unfold{
+    i[class^="w-icon-"] {
+      transform:rotate(180deg); 
+    }
+  }
+}
+
+.w-select-warp{
+  li{
+    font-size: 14px;
+    padding: 8px 10px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #585858;
+    height: 36px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    cursor: pointer;
+    &:hover{
+      background-color: #efefef;
+    }
+  }
+}
+.w-select-popper{
+  position: absolute;
+  z-index: 1001;
+  border: 1px solid #e8e8e8;
+  border-radius: 2px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,.12), 0 0 6px rgba(0,0,0,.04);
+  box-sizing: border-box;
+}
