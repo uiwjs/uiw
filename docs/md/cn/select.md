@@ -163,11 +163,11 @@ render() {
           return (
             <Select.OptionGroup key={group.label} label={group.label}>
               {
-                group.options.map(el => {
+                group.options.map(item => {
                   return (
-                    <Select.Option key={el.value} label={el.label} value={el.value}>
-                      <span style={{float: 'left'}}>{el.label}</span>
-                      <span style={{float: 'right', color: '#b9b9b9', fontSize: 13}}>{el.value}</span>
+                    <Select.Option key={item.value} label={item.label} value={item.value}>
+                      <span style={{float: 'left'}}>{item.label}</span>
+                      <span style={{float: 'right', color: '#b9b9b9', fontSize: 13}}>{item.value}</span>
                     </Select.Option>
                   )
                 })

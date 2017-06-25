@@ -3,9 +3,9 @@ import { Component, PropTypes } from '../utils/';
 
 export default class OptionGroup extends Component {
   render() {
-    const { style, prefixCls } = this.props;
+    const { style, className, prefixCls } = this.props;
     return (
-      <li className={`${prefixCls}-warp`}>
+      <li style={style} className={this.classNames(`${prefixCls}-warp`, className)}>
         <h2 className={`${prefixCls}-title`}>{this.props.label}</h2>
         <ul className={`${prefixCls}`}>
           {this.props.children}
