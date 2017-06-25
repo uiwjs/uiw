@@ -15,8 +15,6 @@ export default class OptionGroup extends Component {
   }
 }
 
-
-
 OptionGroup.propTypes = {
   prefixCls: PropTypes.string,
   label: PropTypes.string,

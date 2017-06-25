@@ -18,6 +18,8 @@ export default class Select extends Component {
       icon: "arrow-down",
       inputWidth: 0,
     }
+    this.toggleMenu = this.toggleMenu.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
   getChildContext() {
     return { component: this }
@@ -27,8 +29,18 @@ export default class Select extends Component {
     this.setState({
       inputWidth: this.input.getBoundingClientRect().width
     })
-    this.selectedData()
+    this.selectedData();
     this.handleValueChange();
+  }
+  handleClickOutside(e) {
+    // https://codepen.io/graubnla/pen/EgdgZm
+    // ignore clicks on the component it self
+    if (this.node.contains(e.target)) {
+      return;
+    }
+    if (this.state.visible) {
+      this.setState({ visible: false });
+    }
   }
   // 初始化默认选中
   selectedData() {
@@ -67,6 +79,7 @@ export default class Select extends Component {
     // console.log("option:::", option)
     // this.setState(this.state);
   }
+  // 改变选中的值
   handleValueChange() {
     const { value, options } = this.state;
     const selected = options.filter(option => {
@@ -78,13 +91,14 @@ export default class Select extends Component {
       })
     }
   }
+  // 触发onChange事件
   onSelectedChange(val) {
     const { multiple, onChange } = this.props;
     if (!multiple) {
       onChange && onChange(val, val.props.value);
     }
   }
-  // 点击选中事件
+  // 点击选中事件, 选中设置Select值
   onOptionClick(option) {
     let { multiple } = this.props;
     let { visible, selected, selectedLabel } = this.state;
@@ -106,15 +120,20 @@ export default class Select extends Component {
     })
   }
   // 展示隐藏菜单
-  toggleMenu() {
+  toggleMenu(e) {
     const { disabled, children } = this.props;
     const { visible } = this.state;
-    if (visible || children.length === 0) return;
 
+    if (!this.state.visible) {
+      // attach/remove event handler
+      document.addEventListener('click', this.handleClickOutside, false);
+    } else {
+      document.removeEventListener('click', this.handleClickOutside, false);
+    }
+
+    if (children.length === 0) return;
     if (!disabled) {
-      this.setState({
-        visible: !visible
-      });
+      this.setState({ visible: !visible });
     }
   }
 
@@ -123,32 +142,26 @@ export default class Select extends Component {
     if (this.refs.input) {
       this.refs.input.focus();
     }
+    // 单选展开菜单
+    this.toggleMenu(e)
   }
-  onIconClick() {
+  onIconClick(e) {
     if (this.refs.input) {
       this.refs.input.focus();
     }
-  }
-  onMouseEnter() {
-    // this.setState({
-    //   inputHovering: true
-    // })
-  }
-  onMouseLeave() {
-    // this.setState({
-    //   inputHovering: false
-    // })
+    this.toggleMenu(e)
   }
   render() {
     const { prefixCls, style, name, multiple, filterable, disabled, children } = this.props;
     const { visible, inputWidth, selectedLabel } = this.state;
     return (
       <div
+        ref={node => { this.node = node; }}
         style={style}
         className={this.classNames(`${prefixCls}`, {
           unfold: this.state.visible, // 是否展开
         })}
-        onClick={this.toggleMenu.bind(this)}
+      //onClick={this.toggleMenu.bind(this, 'tst')}
       >
         <Input
           type="text"
@@ -158,8 +171,6 @@ export default class Select extends Component {
           value={selectedLabel}
           readOnly={!filterable || multiple}
           placeholder={this.state.placeholder}
-          onMouseEnter={this.onMouseEnter.bind(this)}
-          onMouseLeave={this.onMouseLeave.bind(this)}
           onMouseDown={this.onMouseDown.bind(this)}
           onIconClick={this.onIconClick.bind(this)}
           onChange={(e, value) => this.setState({ selectedLabel: value })}
