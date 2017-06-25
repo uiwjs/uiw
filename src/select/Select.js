@@ -31,15 +31,21 @@ export default class Select extends Component {
     })
     this.selectedData();
     this.handleValueChange();
+    document.addEventListener('mousedown', this.handleClickOutside.bind(this), true);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside.bind(this), true);
   }
   handleClickOutside(e) {
     // https://codepen.io/graubnla/pen/EgdgZm
-    // ignore clicks on the component it self
-    if (this.node.contains(e.target)) {
-      return;
-    }
-    if (this.state.visible) {
-      this.setState({ visible: false });
+    // Ignore clicks on the component it self
+    // Detect a click outside of a React Component
+    // https://www.dhariri.com/posts/57c724e4d1befa66e5b8e056
+    const domNode = ReactDOM.findDOMNode(this);
+    if ((!domNode || !domNode.contains(e.target))) {
+      this.setState({
+        visible: false
+      });
     }
   }
   // 初始化默认选中
@@ -156,7 +162,6 @@ export default class Select extends Component {
     const { visible, inputWidth, selectedLabel } = this.state;
     return (
       <div
-        ref={node => { this.node = node; }}
         style={style}
         className={this.classNames(`${prefixCls}`, {
           unfold: this.state.visible, // 是否展开
