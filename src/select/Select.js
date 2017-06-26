@@ -188,7 +188,7 @@ export default class Select extends Component {
                 minWidth: inputWidth,
               }}
             >
-              <ul ref="popper" className={`${prefixCls}-warp`}>
+              <ul className={`${prefixCls}-warp`}>
                 {children}
               </ul>
             </Popper>
