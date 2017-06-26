@@ -11,12 +11,13 @@ export default {
     },
     'Form': {
       'form': require('./form'),
+      'radio': require('./radio'),
       'checkbox': require('./checkbox'),
       'select': require('./select'),
       'switch': require('./switch'),
       'input': require('./input'),
       'input-number': require('./input-number'),
-      'radio': require('./radio'),
+      'time-picker': require('./time-picker'),
     },
     'Data Display': {
       'calendar': require('./calendar'),

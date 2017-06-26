@@ -19,6 +19,7 @@ module.exports = {
     'calendar': 'Calendar 日历',
     'table': 'Table 表格',
     'tooltip': 'Tooltip 文字提示',
+    'time-picker': 'Time Picker 时间选择器',
     'icon': 'Icon 图标',
     'form': 'Form 表单',
     'radio': 'Radio 单选框',

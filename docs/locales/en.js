@@ -19,6 +19,7 @@ module.exports = {
     'calendar': 'Calendar',
     'table': 'Tables',
     'tooltip': 'Tooltip',
+    'time-picker': 'Time Picker',
     'icon': 'Icon',
     'form': 'Form',
     'radio': 'Radio',
