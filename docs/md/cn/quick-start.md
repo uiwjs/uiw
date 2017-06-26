@@ -3,24 +3,51 @@
 还未开源 `uiw` 没有任何作用
 
 
-### 基本用法
+### 基础用法
 
+适用广泛的基础单选
+`value`的值为当前被选中的Option的 `value` 属性值
 <!--DemoStart--> 
-可以输入`+` `-` `.` `e` 和数字
 ```js
 constructor(props) {
   super(props);
   this.state = {
-    value: 1
-  }
+    options: [
+      { value: '选项1', label: '红葡萄酒' }, 
+      { value: '选项2', label: '绍兴黄酒', disabled: true}, 
+      { value: '选项3', label: '燕京啤酒' }, 
+      { value: '选项4', label: '楚乡王白酒' }, 
+      { value: '选项5', label: '五粮液' },
+      { value: '选项6', label: '绍兴黄酒', disabled: true}, 
+      { value: '选项7', label: '燕京啤酒' }, 
+      { value: '选项8', label: '楚乡王白酒' }, 
+      { value: '选项9', label: '五粮液' },
+      { value: '选项10', label: '红葡萄酒' }, 
+      { value: '选项11', label: '红葡萄酒' }, 
+      { value: '选项12', label: '绍兴黄酒', disabled: true}, 
+      { value: '选项13', label: '燕京啤酒' }, 
+      { value: '选项14', label: '楚乡王白酒' }, 
+      { value: '选项15', label: '五粮液' },
+      { value: '选项16', label: '绍兴黄酒', disabled: true}, 
+      { value: '选项17', label: '燕京啤酒' }, 
+      { value: '选项18', label: '楚乡王白酒' }, 
+      { value: '选项19', label: '五粮液' },
+    ],
+    value: '选项1'
+  };
 }
-onChange(e,value) {
-    console.log(`value - ${value}`)
-
+onChange(e,value){
+  console.log("onChange:",value,e)
 }
 render() {
   return (
-    <InputNumber value={this.state.value} onChange={this.onChange.bind(this)} min="1" max="10"></InputNumber>
+    <Select onChange={this.onChange.bind(this)} style={{width:200}} value={this.state.value}>
+      {
+        this.state.options.map(elm => {
+          return <Select.Option key={elm.value} label={elm.label} value={elm.value} disabled={elm.disabled} />
+        })
+      }
+    </Select>
   )
 }
 ```
