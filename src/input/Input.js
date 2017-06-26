@@ -43,13 +43,14 @@ export default class Input extends Component {
     onChange && onChange(e, val)
   }
   handleClick(type, e) {
+    console.log("type:", type)
     if (this.props[type]) {
       this.props[type](e, this.state.value)
     }
   }
 
   renderIcon(type) {
-    const { prefixCls, preIcon, icon, onIconClick, onPreIconClick } = this.props;
+    const { prefixCls, preIcon, icon, onIconClick, onPreIconClick, onIconMouseOut, onPreIconMouseOut, onIconMouseOver, onPreIconMouseOver } = this.props;
     let icons;
 
     if (type === 'icon' && typeof icon === 'string') icons = icon;
@@ -59,7 +60,13 @@ export default class Input extends Component {
       <div className={this.classNames({
         [`${prefixCls}-icon-left`]: type === 'preIcon' && preIcon,
         [`${prefixCls}-icon-right`]: type === 'icon' && icon,
-        [`event`]: (type === 'preIcon' && onPreIconClick) || (type === 'icon' && onIconClick)
+        [`event`]: (type === 'preIcon' && onPreIconClick) ||
+        (type === 'icon' && onIconClick) ||
+        (type === 'preIcon' && onPreIconMouseOut) ||
+        (type === 'icon' && onIconMouseOut) ||
+        (type === 'preIcon' && onPreIconMouseOut) ||
+        (type === 'icon' && onIconMouseOver) ||
+        (type === 'preIcon' && onPreIconMouseOver)
       })}>
         {
           (typeof preIcon === 'string' && icons) || (typeof icon === 'string' && icons)
@@ -74,7 +81,15 @@ export default class Input extends Component {
     )
   }
   render() {
-    const { prefixCls, className, style, type, size, length, preIcon, icon, onIconClick, onPreIconClick, ...other } = this.props;
+    const { prefixCls, className, style, type, size, length, preIcon, icon,
+      onIconClick,
+      onPreIconClick,
+      onIconMouseOut,
+      onPreIconMouseOut,
+      onIconMouseOver,
+      onPreIconMouseOver,
+      ...other
+    } = this.props;
     const cls = this.classNames(`${prefixCls}`, className, {
       'textarea': type === 'textarea',
       'disabled': this.props.disabled
