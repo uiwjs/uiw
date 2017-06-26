@@ -52,16 +52,25 @@
 }
 .w-select-popper{
   position: absolute;
+  top: 5px;
+  max-height: 200px;
   z-index: 1001;
   border: 1px solid #e8e8e8;
   border-radius: 2px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,.12), 0 0 6px rgba(0,0,0,.04);
   box-sizing: border-box;
+  ul.w-select-warp{
+    outline: none;
+    max-height: 200px;
+    width: 100%;
+    display: block;
+    overflow: auto;
+  }
 }
 
 .w-select-warp .w-select-group-warp{
-  height: inherit;
+  height: initial;
   padding:5px 0 0 0;
   &:hover:not(.disabled){
     background-color: transparent;
