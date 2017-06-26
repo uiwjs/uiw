@@ -181,6 +181,10 @@ Input 的其他属性和 React 自带的 [input](https://facebook.github.io/reac
 | autoFocus | 当页面加载时，文本区域自动获得焦点。`HTML5` 中的新属性。  | Boolean | `false` |
 | preIcon | 输入框`前`面放置图标  | String、ReactNode | - |
 | icon | 输入框`后`面放置图标  | String、ReactNode | - |
-| onPreIconClick | 输入框`前`面放置的图标事件  | Function(value) | - |
-| onIconClick | 输入框`后`面放置的图标事件  | Function(value) | - |
+| onPreIconClick | 输入框`前`面放置的图标鼠标点击事件  | Function(value) | - |
+| onPreIconMouseOver | 输入框`前`面放置的图标，移到图标上的事件  | Function(value) | - |
+| onPreIconMouseOut | 输入框`前`面放置的图标，移开图标上的事件  | Function(value) | - |
+| onIconClick | 输入框`后`面放置的图标鼠标点击事件  | Function(value) | - |
+| onIconMouseOver | 输入框`后`面放置的图标，移到图标上的事件  | Function(value) | - |
+| onIconMouseOut | 输入框`后`面放置的图标，移开图标上的事件  | Function(value) | - |
 | onSearch | 输入框摁`Enter`执行这个事件  | Function(e:Event,value) | - |

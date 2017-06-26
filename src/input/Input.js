@@ -63,7 +63,11 @@ export default class Input extends Component {
       })}>
         {
           (typeof preIcon === 'string' && icons) || (typeof icon === 'string' && icons)
-            ? <Icon type={icons} onClick={this.handleClick.bind(this, type === 'icon' ? 'onIconClick' : 'onPreIconClick')} />
+            ? <Icon type={icons}
+              onClick={this.handleClick.bind(this, type === 'icon' ? 'onIconClick' : 'onPreIconClick')}
+              onMouseOver={this.handleClick.bind(this, type === 'icon' ? 'onIconMouseOver' : 'onPreIconMouseOver')}
+              onMouseOut={this.handleClick.bind(this, type === 'icon' ? 'onIconMouseOut' : 'onPreIconMouseOut')}
+            />
             : (type === 'icon' ? icon : preIcon)
         }
       </div>
