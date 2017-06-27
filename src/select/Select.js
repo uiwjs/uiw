@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Component, PropTypes } from '../utils/';
 import Input from '../input/'
 import Popper from '../popper/'
-import Transition from '../transition/'
 
 export default class Select extends Component {
   constructor(props) {
@@ -181,19 +180,15 @@ export default class Select extends Component {
           onChange={(e, value) => this.setState({ selectedLabel: value })}
           icon={this.state.icon}
         />
-        <Transition type="fade-in">
-          {visible && children && children.length > 0 &&
-            <Popper className={this.classNames(`${prefixCls}-popper`)}
-              style={{
-                minWidth: inputWidth,
-              }}
-            >
-              <ul className={`${prefixCls}-warp`}>
-                {children}
-              </ul>
-            </Popper>
-          }
-        </Transition>
+        <Popper visible={visible && children && children.length > 0} className={this.classNames(`${prefixCls}-popper`)}
+          style={{
+            minWidth: inputWidth,
+          }}
+        >
+          <ul className={`${prefixCls}-warp`}>
+            {children}
+          </ul>
+        </Popper>
       </div>
     );
   }
