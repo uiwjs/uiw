@@ -30,6 +30,16 @@ export default class Select extends Component {
     this.selectedData();
     this.handleValueChange();
   }
+  handleClickOutside(e) {
+    // Ignore clicks on the component it self
+    // https://codepen.io/graubnla/pen/EgdgZm
+    // Detect a click outside of a React Component
+    // https://www.dhariri.com/posts/57c724e4d1befa66e5b8e056
+    const domNode = ReactDOM.findDOMNode(this);
+    if ((!domNode || !domNode.contains(e.target))) {
+      this.setState({ visible: false });
+    }
+  }
   // 初始化默认选中
   selectedData() {
     const { value, children } = this.props;
@@ -60,7 +70,6 @@ export default class Select extends Component {
       });
     }
   }
-
   onOptionCreate(option) {
     // 添加选中的组件
     // this.state.options.push(option);
@@ -104,7 +113,7 @@ export default class Select extends Component {
       if (!multiple) {
         this.onSelectedChange(this.state.selected);
       }
-      this.setState({ visible });
+      this.setState({ visible: visible })
     })
   }
   // 展示隐藏菜单
@@ -155,8 +164,8 @@ export default class Select extends Component {
           onChange={(e, value) => this.setState({ selectedLabel: value })}
           icon={this.state.icon}
         />
-        <Popper visible={visible && children && children.length > 0} className={this.classNames(`${prefixCls}-popper`)}
-          onChange={(visible) => this.setState({ visible })}
+        <Popper ref="popper" visible={visible && children && children.length > 0} className={this.classNames(`${prefixCls}-popper`)}
+          clickOutside={this.handleClickOutside.bind(this)}
           style={{
             minWidth: inputWidth,
           }}
@@ -165,7 +174,7 @@ export default class Select extends Component {
             {children}
           </ul>
         </Popper>
-      </div>
+      </div >
     );
   }
 }

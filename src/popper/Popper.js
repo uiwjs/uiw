@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import { Component, PropTypes } from '../utils/';
 import Transition from '../transition/'
 
@@ -7,36 +7,22 @@ export default class Popper extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: props.visible
+      visible: false
     }
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
   componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside.bind(this), true);
+    document.addEventListener('mousedown', this.handleClickOutside, true);
   }
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside.bind(this), true);
-  }
-  componentWillReceiveProps(props) {
-    if (props.visible !== this.props.visible) {
-      this.setState({
-        visible: props.visible
-      });
-    }
+    document.removeEventListener('mousedown', this.handleClickOutside, true);
   }
   handleClickOutside(e) {
-    // Ignore clicks on the component it self
-    // https://codepen.io/graubnla/pen/EgdgZm
-    // Detect a click outside of a React Component
-    // https://www.dhariri.com/posts/57c724e4d1befa66e5b8e056
-    const domNode = ReactDOM.findDOMNode(this);
-    if ((!domNode || !domNode.contains(e.target))) {
-      let visible = false;
-      this.setState({ visible }, () => this.props.onChange(visible));
-    }
+    const { clickOutside } = this.props;
+    clickOutside && clickOutside(e);
   }
   render() {
-    const { style, className, prefixCls, tag, children } = this.props;
-    const { visible } = this.state;
+    const { style, className, visible, prefixCls, tag, children } = this.props;
     let wrapStyle = Object.assign.apply(null, [style, {}])
     return (
       <Transition type="fade-in">
