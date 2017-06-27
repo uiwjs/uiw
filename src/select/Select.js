@@ -18,7 +18,6 @@ export default class Select extends Component {
       inputWidth: 0,
     }
     this.toggleMenu = this.toggleMenu.bind(this);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
   getChildContext() {
     return { component: this }
@@ -30,22 +29,6 @@ export default class Select extends Component {
     })
     this.selectedData();
     this.handleValueChange();
-    document.addEventListener('mousedown', this.handleClickOutside.bind(this), true);
-  }
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside.bind(this), true);
-  }
-  handleClickOutside(e) {
-    // https://codepen.io/graubnla/pen/EgdgZm
-    // Ignore clicks on the component it self
-    // Detect a click outside of a React Component
-    // https://www.dhariri.com/posts/57c724e4d1befa66e5b8e056
-    const domNode = ReactDOM.findDOMNode(this);
-    if ((!domNode || !domNode.contains(e.target))) {
-      this.setState({
-        visible: false
-      });
-    }
   }
   // 初始化默认选中
   selectedData() {
@@ -129,13 +112,6 @@ export default class Select extends Component {
     const { disabled, children } = this.props;
     const { visible } = this.state;
 
-    if (!this.state.visible) {
-      // attach/remove event handler
-      document.addEventListener('click', this.handleClickOutside, false);
-    } else {
-      document.removeEventListener('click', this.handleClickOutside, false);
-    }
-
     if (children.length === 0) return;
     if (!disabled) {
       this.setState({ visible: !visible });
@@ -165,7 +141,6 @@ export default class Select extends Component {
         className={this.classNames(`${prefixCls}`, {
           unfold: this.state.visible, // 是否展开
         })}
-      //onClick={this.toggleMenu.bind(this, 'tst')}
       >
         <Input
           type="text"
@@ -181,6 +156,7 @@ export default class Select extends Component {
           icon={this.state.icon}
         />
         <Popper visible={visible && children && children.length > 0} className={this.classNames(`${prefixCls}-popper`)}
+          onChange={(visible) => this.setState({ visible })}
           style={{
             minWidth: inputWidth,
           }}
