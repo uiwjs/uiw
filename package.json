@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node docs/script/start.js",
-    "build": "webpack --config docs/script/webpack.config.js --progress",
+    "build": "webpack --config docs/script/webpack.config.production.js --progress",
     "deploy": "./docs/script/release.sh"
   },
   "dependencies": {
@@ -21,6 +21,8 @@
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-jsx-a11y": "5.0.3",
     "eslint-plugin-react": "7.0.1",
+    "favicons-webpack-plugin": "^0.0.7",
+    "merge-array-object": "^1.0.5",
     "object-assign": "^4.1.1",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",

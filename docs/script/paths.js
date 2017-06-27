@@ -10,6 +10,7 @@ module.exports = {
   appPackage: resolveApp('package.json'),
   appBuild: resolveApp('dist'),
   appPublic: resolveApp('docs'),
+  appFavicon: resolveApp('docs/assets/favicon.png'),
   appHtml: resolveApp('docs/index.html'),
   appBuildHtml: resolveApp('docs/build.html'),
   appIndexJs: resolveApp('docs/index.jsx'),
