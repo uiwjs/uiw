@@ -19,7 +19,7 @@ const fs = require('fs');
 
 const createDevServerConfig = require('./webpackDevServer');
 // 如果需要的文件不存在，警告并崩溃
-if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
+if (!checkRequiredFiles([paths.appBuildHtml, paths.appIndexJs])) {
   process.exit(1);
 }
 
