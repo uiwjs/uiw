@@ -43,7 +43,6 @@ export default class Input extends Component {
     onChange && onChange(e, val)
   }
   handleClick(type, e) {
-    console.log("type:", type)
     if (this.props[type]) {
       this.props[type](e, this.state.value)
     }
