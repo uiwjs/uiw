@@ -5,6 +5,7 @@
 ### 固定时间点
 
 <!--DemoStart--> 
+使用 `TimeSelect` 标签，分别通过`star`、`end`和`step`指定可选的起始时间、结束时间和步长，通过`minTime`和`maxTime`来限制时间。
 ```js
 constructor(props) {
   super(props);
