@@ -91,7 +91,7 @@ export default class Input extends Component {
     } = this.props;
     const cls = this.classNames(`${prefixCls}`, className, {
       'textarea': type === 'textarea',
-      'disabled': this.props.disabled
+      'w-disabled': this.props.disabled
     })
 
     delete other.onSearch;
