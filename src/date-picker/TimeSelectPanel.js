@@ -10,7 +10,7 @@ export default class TimeSelectPanel extends Component {
     super(props);
     this.state = {
       inputWidth: 0,
-      visible: false,             // 菜单是否显示
+      visible: false, // 菜单是否显示
     }
   }
   handleClick(item) {
@@ -27,7 +27,6 @@ export default class TimeSelectPanel extends Component {
     return (
       <Popper ref="popper" visible={visible}
         className={this.classNames(`${prefixCls}-popper`)}
-        //onChange={(visible) => this.setState({ visible })}
         clickOutside={handleClickOutside}
         style={{
           minWidth: inputWidth,

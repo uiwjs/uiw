@@ -4,34 +4,37 @@ import { Component, PropTypes } from '../utils/';
 import Input from '../input';
 import { isDate, parseTime } from './utils';
 
+function isTimeValid(props, propName, componentName) {
+  let dt = props[propName];
+  let _isDate = true;
+  if (!dt) return;
+  if (dt !== '') {
+    if (dt instanceof Array) {
+      for (let i = 0; i < dt.length; i++) {
+        if (!isDate(dt[i])) {
+          _isDate = false; break;
+        }
+      }
+    } else if (!isDate(dt)) {
+      _isDate = false;
+    }
+    if (_isDate === false) {
+      return new Error(
+        'Invalid prop `' + propName + '` supplied to' +
+        ' `' + componentName + '`. Validation failed.'
+      );
+    }
+  }
+}
+
 export default class BasePicker extends Component {
   static propTypes = {
     prefixCls: PropTypes.string,
     placeholder: PropTypes.string,
     disabled: PropTypes.bool,
     readOnly: PropTypes.bool,
-    value: (props, propName, componentName) => {
-      let dt = props[propName];
-      let _isDate = true;
-      if (dt !== '') {
-        if (dt instanceof Array) {
-          for (let i = 0; i < dt.length; i++) {
-            if (!isDate(dt[i])) {
-              _isDate = false;
-              break;
-            }
-          }
-        } else if (!isDate(dt)) {
-          _isDate = false;
-        }
-        if (_isDate === false) {
-          return new Error(
-            'Invalid prop `' + propName + '` supplied to' +
-            ' `' + componentName + '`. Validation failed.'
-          );
-        }
-      }
-    },
+    value: (props, propName, componentName) => isTimeValid(props, propName, componentName),
+    defaultValue: (props, propName, componentName) => isTimeValid(props, propName, componentName),
   }
   static defaultProps = {
     placeholder: '选择时间',
@@ -40,11 +43,13 @@ export default class BasePicker extends Component {
   }
   constructor(props, _type, state) {
     super(props);
-    this.type = _type
+    this.type = _type;
+    let defaultValue = props.value;
     this.state = Object.assign({}, state, {
       icon: 'time',
       value: props.value,
       visible: false,             // 菜单是否显示
+      defaultValue: defaultValue,
       inputWidth: 0,
     }, this.propsToState(props)
     )
@@ -117,7 +122,8 @@ export default class BasePicker extends Component {
     return ''
   }
   parseDate(date) {
-    let { value } = this.state;
+    let { value, defaultValue } = this.state;
+    if (!value) value = defaultValue;
     date = parseTime(date)
     value = new Date(value)
     value.setHours(date.hours)
@@ -134,7 +140,6 @@ export default class BasePicker extends Component {
     onChange && onChange(date, this.parseDate(date))
   }
   createPickerPanel() {
-    // const { visible } = this.props;
     return this.pickerPanel(
       this.state,
       Object.assign({}, { ...this.props })
@@ -165,33 +170,3 @@ export default class BasePicker extends Component {
     );
   }
 }
-
-
-// BasePicker.propTypes = {
-//   prefixCls: PropTypes.string,
-//   // placeholder: PropTypes.string,
-//   // disabled: PropTypes.bool,
-//   // readOnly: PropTypes.bool,
-//   // // value: PropTypes.oneOfType([
-//   // //   PropTypes.instanceOf(Date),
-//   // //   PropTypes.arrayOf(PropTypes.instanceOf(Date))
-//   // // ]),
-//   // value: (props, propName, componentName) => {
-//   //   console.log("--233223>", new Date(props[propName]))
-//   //   if (new Date(props[propName]) === 'Invalid Date') {
-//   //     return new Error(
-//   //       'Invalid prop `' + propName + '` supplied to' +
-//   //       ' `' + componentName + '`. Validation failed.'
-//   //     );
-//   //   }
-//   // },
-// }
-
-// BasePicker.defaultProps = {
-//   prefixCls: 'w-date-base',
-//   placeholder: '选择时间',
-//   readOnly: false,
-//   start: '09:00',
-//   end: '18:00',
-//   step: '00:30',
-// }
