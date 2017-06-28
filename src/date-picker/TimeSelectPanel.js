@@ -1,10 +1,18 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
+import Popper from '../popper/';
 import { parseTime } from './utils';
 
 // 单个时间选择弹出层
 export default class TimeSelectPanel extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputWidth: 0,
+      visible: false,             // 菜单是否显示
+    }
+  }
   handleClick(item) {
     const { onPicked } = this.props
     if (!item.disabled) {
@@ -15,22 +23,31 @@ export default class TimeSelectPanel extends Component {
     return TimeSelectPanel.items(this.props)
   }
   render() {
-    const { prefixCls, className, value } = this.props;
+    const { prefixCls, className, value, inputWidth, visible, handleClickOutside } = this.props;
     return (
-      <div className={this.classNames(className, `${prefixCls}`)}>
-        {
-          this.items().map((item, idx) => {
-            return (
-              <div key={idx}
-                className={this.classNames('time-select-item', {
-                  'w-selected': value === item.value,
-                  'w-disabled': item.disabled
-                })}
-                disabled={item.disabled}
-                onClick={() => this.handleClick(item)}>{item.value}</div>)
-          })
-        }
-      </div>
+      <Popper ref="popper" visible={visible}
+        className={this.classNames(`${prefixCls}-popper`)}
+        //onChange={(visible) => this.setState({ visible })}
+        clickOutside={handleClickOutside}
+        style={{
+          minWidth: inputWidth,
+        }}
+      >
+        <div className={this.classNames(className, `${prefixCls}`)}>
+          {
+            this.items().map((item, idx) => {
+              return (
+                <div key={idx}
+                  className={this.classNames({
+                    'w-selected': value === item.value,
+                    'w-disabled': item.disabled
+                  })}
+                  disabled={item.disabled}
+                  onClick={() => this.handleClick(item)}>{item.value}</div>)
+            })
+          }
+        </div>
+      </Popper>
     );
   }
 }
@@ -97,5 +114,5 @@ TimeSelectPanel.propTypes = {
 }
 
 TimeSelectPanel.defaultProps = {
-  prefixCls: 'w-time-panel',
+  prefixCls: 'w-timeselect-panel',
 }

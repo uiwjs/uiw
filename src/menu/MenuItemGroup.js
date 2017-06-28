@@ -2,11 +2,9 @@ import React from 'react';
 import { Component, PropTypes } from '../utils/';
 
 export default class MenuItemGroup extends Component {
-  constructor(props: Object) {
+  constructor(props) {
     super(props);
-
     this.instanceType = 'SubMenu';
-
     this.state = {
       active: false
     };

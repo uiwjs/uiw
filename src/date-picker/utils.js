@@ -28,6 +28,3 @@ export const parseTime = function (time) {
     };
   }
 };
-
-// export const value_map = {
-// }

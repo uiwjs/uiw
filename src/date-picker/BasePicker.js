@@ -2,10 +2,42 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Component, PropTypes } from '../utils/';
 import Input from '../input';
-import Popper from '../popper/';
 import { isDate, parseTime } from './utils';
 
 export default class BasePicker extends Component {
+  static propTypes = {
+    prefixCls: PropTypes.string,
+    placeholder: PropTypes.string,
+    disabled: PropTypes.bool,
+    readOnly: PropTypes.bool,
+    value: (props, propName, componentName) => {
+      let dt = props[propName];
+      let _isDate = true;
+      if (dt !== '') {
+        if (dt instanceof Array) {
+          for (let i = 0; i < dt.length; i++) {
+            if (!isDate(dt[i])) {
+              _isDate = false;
+              break;
+            }
+          }
+        } else if (!isDate(dt)) {
+          _isDate = false;
+        }
+        if (_isDate === false) {
+          return new Error(
+            'Invalid prop `' + propName + '` supplied to' +
+            ' `' + componentName + '`. Validation failed.'
+          );
+        }
+      }
+    },
+  }
+  static defaultProps = {
+    placeholder: '选择时间',
+    readOnly: false,
+    disabled: false,
+  }
   constructor(props, _type, state) {
     super(props);
     this.type = _type
@@ -14,7 +46,8 @@ export default class BasePicker extends Component {
       value: props.value,
       visible: false,             // 菜单是否显示
       inputWidth: 0,
-    }, this.propsToState(props))
+    }, this.propsToState(props)
+    )
   }
   componentDidMount() {
     this.input = ReactDOM.findDOMNode(this.refs.input);
@@ -27,6 +60,7 @@ export default class BasePicker extends Component {
   }
   // props与当前state合并
   propsToState(props) {
+    // delete props.value
     return {
       text: isDate(props.value) ? this.dateToStr(props.value) : '',
       value: isDate(props.value) ? props.value : new Date()
@@ -99,21 +133,18 @@ export default class BasePicker extends Component {
     })
     onChange && onChange(date, this.parseDate(date))
   }
+  createPickerPanel() {
+    // const { visible } = this.props;
+    return this.pickerPanel(
+      this.state,
+      Object.assign({}, { ...this.props })
+    )
+  }
   render() {
-    const { className, disabled, name, placeholder, readOnly, prefixCls } = this.props;
-    const { text, visible, inputWidth } = this.state;
-
-    const createPickerPanel = () => {
-      if (!visible) return null;
-      return this.pickerPanel(
-        this.state,
-        Object.assign({}, this.props)
-      )
-    }
+    const { className, disabled, name, placeholder, readOnly } = this.props;
+    const { text } = this.state;
     return (
-      <span className={this.classNames(className, 'w-date-base', {
-
-      })}>
+      <span className={this.classNames(className, 'w-date-base')}>
         <Input
           type="text"
           ref="input"
@@ -129,47 +160,38 @@ export default class BasePicker extends Component {
           onChange={(e, value) => this.setState({ value: value })}
           icon={this.state.icon}
         />
-        <Popper ref="popper" visible={visible}
-          className={this.classNames(`${prefixCls}-popper`)}
-          onChange={(visible) => this.setState({ visible })}
-          clickOutside={this.handleClickOutside.bind(this)}
-          style={{
-            minWidth: inputWidth,
-          }}
-        >
-          {createPickerPanel()}
-        </Popper>
+        {this.createPickerPanel()}
       </span>
     );
   }
 }
 
 
-BasePicker.propTypes = {
-  prefixCls: PropTypes.string,
-  // placeholder: PropTypes.string,
-  // disabled: PropTypes.bool,
-  // readOnly: PropTypes.bool,
-  // // value: PropTypes.oneOfType([
-  // //   PropTypes.instanceOf(Date),
-  // //   PropTypes.arrayOf(PropTypes.instanceOf(Date))
-  // // ]),
-  // value: (props, propName, componentName) => {
-  //   console.log("--233223>", new Date(props[propName]))
-  //   if (new Date(props[propName]) === 'Invalid Date') {
-  //     return new Error(
-  //       'Invalid prop `' + propName + '` supplied to' +
-  //       ' `' + componentName + '`. Validation failed.'
-  //     );
-  //   }
-  // },
-}
+// BasePicker.propTypes = {
+//   prefixCls: PropTypes.string,
+//   // placeholder: PropTypes.string,
+//   // disabled: PropTypes.bool,
+//   // readOnly: PropTypes.bool,
+//   // // value: PropTypes.oneOfType([
+//   // //   PropTypes.instanceOf(Date),
+//   // //   PropTypes.arrayOf(PropTypes.instanceOf(Date))
+//   // // ]),
+//   // value: (props, propName, componentName) => {
+//   //   console.log("--233223>", new Date(props[propName]))
+//   //   if (new Date(props[propName]) === 'Invalid Date') {
+//   //     return new Error(
+//   //       'Invalid prop `' + propName + '` supplied to' +
+//   //       ' `' + componentName + '`. Validation failed.'
+//   //     );
+//   //   }
+//   // },
+// }
 
-BasePicker.defaultProps = {
-  prefixCls: 'w-timeselect',
-  placeholder: '选择时间',
-  readOnly: false,
-  start: '09:00',
-  end: '18:00',
-  step: '00:30',
-}
+// BasePicker.defaultProps = {
+//   prefixCls: 'w-date-base',
+//   placeholder: '选择时间',
+//   readOnly: false,
+//   start: '09:00',
+//   end: '18:00',
+//   step: '00:30',
+// }
