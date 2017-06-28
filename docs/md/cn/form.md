@@ -15,6 +15,7 @@ constructor(props) {
       password: "",
       email: "wwww@qq.com",
       select: "选项4",
+      timeSelect: new Date(2017, 6, 28, 15, 51),
       online: true,
       carte: ['湖北菜'],
       category_radio: ["保密"],
@@ -150,7 +151,7 @@ render() {
       <FormItem label="输入数字" field="inputNumber" help="输入数字5~100"  {...formItemLayout} >
         <InputNumber value={form.inputNumber} onChange={this.onChange.bind(this,'inputNumber')} min="5" max="100"></InputNumber>
       </FormItem>
-      <FormItem label="输入数字" field="select" help="输入数字5~100"  {...formItemLayout} >
+      <FormItem label="选择器" field="select" help="输入数字5~100"  {...formItemLayout} >
         <Select onChange={this.onChange.bind(this,'select')} value={form.select}>
           {
             this.state.selectOptions.map(elm => {
@@ -158,6 +159,19 @@ render() {
             })
           }
         </Select>
+      </FormItem>
+      <FormItem label="时间选择" field="timeSelect"  {...formItemLayout} >
+        <TimeSelect
+          start="08:30"
+          step="00:15"
+          end="18:30"
+          //maxTime="12:30"
+          //readOnly="2323"
+          minTime="9:30"
+          onChange={this.onChange.bind(this, 'timeSelect')}
+          value={form.timeSelect}
+          placeholder="选择时间"
+          />
       </FormItem>
       <FormItem label="是否在线" field="online" {...formItemLayout} >
         <Switch checked={form.online} 

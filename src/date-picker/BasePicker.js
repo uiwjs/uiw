@@ -74,10 +74,11 @@ export default class BasePicker extends Component {
   }
   dateToStr(date) {
     if (this.type === 'timeselect') {
-      let dte = new Date(date)
-      return `${dte.getHours()}:${dte.getMinutes()}`
+      date = parseTime(date);
+      if (!date) return '';
+      return (date.hours < 10 ? '0' + date.hours : date.hours) + ':' + (date.minutes < 10 ? '0' + date.minutes : date.minutes);
     }
-    return '22:22'
+    return ''
   }
   parseDate(date) {
     let { value } = this.state;

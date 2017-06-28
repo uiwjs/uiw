@@ -11,11 +11,15 @@ export default class TimeSelect extends BasePicker {
     super(props, 'timeselect', {});
   }
   pickerPanel(state, props) {
-    const _props = props || this.props
     const value = this.dateToStr(state.value)
+    let panelPreps = () => {
+      const minTime = this.dateToStr(this.props.minTime)
+      const maxTime = this.dateToStr(this.props.maxTime)
+      return { ...(props || this.props), minTime, maxTime }
+    }
     return (
       <TimeSelectPanel
-        {..._props}
+        {...panelPreps() }
         value={value}
         onPicked={this.onPicked.bind(this)}
       />
