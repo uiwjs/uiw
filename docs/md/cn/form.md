@@ -53,6 +53,9 @@ constructor(props) {
         { required: true, message: '请输入活动名称'},
         { min: 4, message: '长度不够！'}
       ],
+      timeSelect:[
+        { required: true, message: '请选择时间！'},
+      ],
       password:[
         { required: true, message: '不能为空！'},
         { min: 6, message: '长度不够！'},

@@ -40,21 +40,24 @@ TimeSelect.propTypes = {
   value: (props, propName, componentName) => {
     let dt = props[propName];
     let _isDate = true;
-    if (dt instanceof Array) {
-      for (let i = 0; i < dt.length; i++) {
-        if (!isDate(dt[i])) {
-          _isDate = false;
-          break;
+    if (dt !== '') {
+      if (dt instanceof Array) {
+        for (let i = 0; i < dt.length; i++) {
+          if (!isDate(dt[i])) {
+            _isDate = false;
+            break;
+          }
         }
+      } else if (!isDate(dt)) {
+        _isDate = false;
       }
-    } else if (!isDate(dt)) {
-      _isDate = false;
-    }
-    if (_isDate === false) {
-      return new Error(
-        'Invalid prop `' + propName + '` supplied to' +
-        ' `' + componentName + '`. Validation failed.'
-      );
+      if (_isDate === false) {
+        return new Error(
+          'Invalid prop `' + propName + '` supplied to' +
+          ' `' + componentName + '`. Validation failed.'
+        );
+      }
+
     }
   },
 }

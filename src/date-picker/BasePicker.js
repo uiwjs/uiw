@@ -62,10 +62,12 @@ export default class BasePicker extends Component {
     }
   }
   onIconClick() {
-    this.setState({ dateValue: '', icon: 'time' })
+    const { onChange } = this.props;
+    this.setState({ text: '', value: '', icon: 'time' })
+    onChange && onChange('', '')
   }
   onIconMouseOver() {
-    if (this.state.dateValue !== '') {
+    if (this.state.text !== '') {
       this.setState({ icon: 'close' })
     }
   }
