@@ -88,9 +88,10 @@ export default class BasePicker extends Component {
     value.setMinutes(date.minutes)
     return value;
   }
-  onPicked(date) {
+  onPicked(date, visible) {
     const { onChange } = this.props;
     this.setState({
+      visible,
       text: date,
       value: this.parseDate(date)
     })
