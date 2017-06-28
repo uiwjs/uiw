@@ -22,6 +22,9 @@ export default class BasePicker extends Component {
       inputWidth: this.input.getBoundingClientRect().width
     })
   }
+  componentWillReceiveProps(nextProps) {
+    this.setState(this.propsToState(nextProps))
+  }
   // props与当前state合并
   propsToState(props) {
     return {
