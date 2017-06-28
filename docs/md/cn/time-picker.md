@@ -25,13 +25,14 @@ render() {
       start="08:30"
       step="00:15"
       end="18:30"
+      //disabled={true}
       //maxTime="12:30"
-      //readOnly="2323"
+      //readOnly={true}
       minTime="9:30"
       onChange={this.handleChang.bind(this)}
       value={this.state.value}
       placeholder="选择时间"
-      />
+    />
   )
 }
 ```
@@ -69,8 +70,7 @@ render() {
         onChange={this.handleStartUpdate.bind(this)}
         value={this.state.startDate}
         placeholder="选择时间"
-        />
-
+      />
       <TimeSelect
         start="08:30"
         step="00:15"
@@ -79,9 +79,8 @@ render() {
         value={this.state.endDate}
         minTime={this.state.startDate}
         placeholder="选择时间"
-        />
+      />
     </div>
-
   )
 }
 ```
@@ -90,13 +89,21 @@ render() {
 
 ## API
 
+### 公共参数 
+
+| 参数      | 说明    | 类型      |  默认值   |
+|--------- |-------- |---------- |-------- |
+| placeholder | 值 | String | - |
+| readOnly | 只读 | Boolean | `false` |
+| placeholder | 占位内容提示 | String | `false` |
+
 ### TimeSelect 
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
-| value | 值 | date/null | - |
-| start | 开始时间 | string | 09:00 |
-| end | 结束时间 | string | 18:00 |
-| step | 间隔时间 | string | 00:30 |
-| minTime | 最小时间 | date | - |
-| maxTime | 最大时间 | date | - |
+| value | 值 | Date/Null | - |
+| start | 开始时间 | String | 09:00 |
+| end | 结束时间 | String | 18:00 |
+| step | 间隔时间 | String | 00:30 |
+| minTime | 最小时间 | Date | - |
+| maxTime | 最大时间 | Date | - |
