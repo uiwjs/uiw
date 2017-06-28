@@ -10,10 +10,6 @@ constructor(props) {
   super(props);
   this.state = {
     value: new Date(2017, 6, 28, 15, 51),
-    //value: new Date("2016asdf0"),
-    //value: [ new Date("2016asdf0"),  new Date("2016asdf0")]
-    //value: [new Date(2016, 9, 10, 8, 40), new Date(2016, 9, 10, 9, 40)]
- 
   }
 }
 handleChang(value,date) {
@@ -25,9 +21,6 @@ render() {
       start="08:30"
       step="00:15"
       end="18:30"
-      //disabled={true}
-      //maxTime="12:30"
-      //readOnly={true}
       minTime="9:30"
       onChange={this.handleChang.bind(this)}
       value={this.state.value}
@@ -38,7 +31,35 @@ render() {
 ```
 <!--End-->
 
-### 固定时间点
+### 固定时间点禁用
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = { value: new Date(2017, 6, 28, 15, 51), }
+}
+handleChang(value,date) {
+  console.log('time-select Chang: ', value,date)
+}
+render() {
+  return (
+    <TimeSelect
+      start="08:30"
+      step="00:15"
+      end="18:30"
+      disabled={true}
+      minTime="9:30"
+      onChange={this.handleChang.bind(this)}
+      value={this.state.value}
+      placeholder="选择时间"
+    />
+  )
+}
+```
+<!--End-->
+
+### 固定时间范围
 
 <!--DemoStart--> 
 ```js
