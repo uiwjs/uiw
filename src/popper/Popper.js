@@ -6,9 +6,6 @@ import Transition from '../transition/'
 export default class Popper extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      visible: false
-    }
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
   componentDidMount() {
@@ -16,6 +13,12 @@ export default class Popper extends Component {
   }
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClickOutside, true);
+  }
+  componentWillReceiveProps(nextProps, nextState) {
+    const { onChange } = this.props;
+    if (this.props.visible !== nextProps.visible) {
+      onChange(nextProps.visible);
+    }
   }
   handleClickOutside(e) {
     const { clickOutside } = this.props;
