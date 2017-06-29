@@ -116,6 +116,7 @@ render() {
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
+| className | 选择器类名 | String | - |
 | value | 值 | Date/Null | - |
 | disable | 禁用时间选择器 | Boolean | `false` |
 | placeholder | 值 | String | - |
@@ -139,4 +140,7 @@ render() {
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
 | format | 默认显示时分秒，可以定义`HH:mm`只显示十分 | String | `HH:mm:ss` |
+| disabledHours | 禁止选择部分`小时`选项 | Array | [] |
+| disabledMinutes | 禁止选择部分`分钟`选项 | Array | [] |
+| disabledSeconds | 禁止选择部分`秒`选项 | String | `HH:mm:ss` |
 | onChange | 时间发生变化的回调 time:`9:30`、timeString:`Fri Jul 28 2017 09:45:00 GMT+0800 (CST)` | function(time:String, timeString: String) | - |

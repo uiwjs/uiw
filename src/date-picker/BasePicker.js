@@ -20,8 +20,7 @@ function isTimeValid(props, propName, componentName) {
     }
     if (_isDate === false) {
       return new Error(
-        'Invalid prop `' + propName + '` supplied to' +
-        ' `' + componentName + '`. Validation failed.'
+        'Invalid prop `' + propName + '` supplied to' + ' `' + componentName + '`. Validation failed.'
       );
     }
   }
@@ -114,12 +113,9 @@ export default class BasePicker extends Component {
     this.setState({ icon: 'time' })
   }
   dateToStr(date) {
-    if (this.type === 'timeselect') {
-      date = parseTime(date);
-      if (!date) return '';
-      return (date.hours < 10 ? '0' + date.hours : date.hours) + ':' + (date.minutes < 10 ? '0' + date.minutes : date.minutes);
-    }
-    return ''
+    date = parseTime(date);
+    if (!date) return '';
+    return (date.hours < 10 ? '0' + date.hours : date.hours) + ':' + (date.minutes < 10 ? '0' + date.minutes : date.minutes);
   }
   parseDate(date) {
     let { value, defaultValue } = this.state;
@@ -146,10 +142,10 @@ export default class BasePicker extends Component {
     )
   }
   render() {
-    const { className, disabled, name, placeholder, readOnly } = this.props;
+    const { className, style, disabled, name, placeholder, readOnly } = this.props;
     const { text } = this.state;
     return (
-      <span className={this.classNames(className, 'w-date-base')}>
+      <span style={style} className={this.classNames(className, 'w-date-base')}>
         <Input
           type="text"
           ref="input"
