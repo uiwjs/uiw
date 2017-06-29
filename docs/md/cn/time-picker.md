@@ -23,6 +23,7 @@ render() {
       step="00:15"
       end="18:30"
       minTime="9:30"
+      hideDisabled={true}
       onChange={this.handleChang.bind(this)}
       value={this.state.value}
       //placeholder="选择时间"
@@ -115,18 +116,27 @@ render() {
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
+| value | 值 | Date/Null | - |
+| disable | 禁用时间选择器 | Boolean | `false` |
 | placeholder | 值 | String | - |
 | readOnly | 只读 | Boolean | `false` |
 | placeholder | 占位内容提示 | String | `false` |
+| hideDisabled | 不可选择的项隐藏 | Boolean | `false` |
 
 ### TimeSelect 
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
-| value | 值 | Date/Null | - |
 | start | 开始时间 | String | 09:00 |
 | end | 结束时间 | String | 18:00 |
 | step | 间隔时间 | String | 00:30 |
 | minTime | 最小时间 | Date | - |
 | maxTime | 最大时间 | Date | - |
+| onChange | 时间发生变化的回调 time:`9:30`、timeString:`Fri Jul 28 2017 09:45:00 GMT+0800 (CST)` | function(time:String, timeString: String) | - |
+
+### TimePicker 
+
+| 参数      | 说明    | 类型      |  默认值   |
+|--------- |-------- |---------- |-------- |
+| format | 默认显示时分秒，可以定义`HH:mm`只显示十分 | String | `HH:mm:ss` |
 | onChange | 时间发生变化的回调 time:`9:30`、timeString:`Fri Jul 28 2017 09:45:00 GMT+0800 (CST)` | function(time:String, timeString: String) | - |

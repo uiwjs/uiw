@@ -32,6 +32,7 @@ export default class BasePicker extends Component {
     prefixCls: PropTypes.string,
     placeholder: PropTypes.string,
     disabled: PropTypes.bool,
+    hideDisabled: PropTypes.bool,
     readOnly: PropTypes.bool,
     value: (props, propName, componentName) => isTimeValid(props, propName, componentName),
   }

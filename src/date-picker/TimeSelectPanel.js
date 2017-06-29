@@ -35,6 +35,7 @@ export default class TimeSelectPanel extends Component {
         <div className={this.classNames(className, `${prefixCls}`)}>
           {
             this.items().map((item, idx) => {
+              if (item.hideDisabled && item.disabled) return null;
               return (
                 <div key={idx}
                   className={this.classNames({
@@ -87,13 +88,14 @@ const nextTime = function (time, step) {
   return formatTime(next);
 };
 
-TimeSelectPanel.items = ({ start, end, step, minTime, maxTime }) => {
+TimeSelectPanel.items = ({ start, end, step, minTime, maxTime, hideDisabled }) => {
   const result = [];
   if (start && end && step) {
     let current = start;
     while (compareTime(current, end) <= 0) {
       result.push({
         value: current,
+        hideDisabled: hideDisabled,
         disabled: compareTime(current, minTime || '00:00') <= 0 || compareTime(current, maxTime || '24:60') >= 0
       });
       current = nextTime(current, step);
