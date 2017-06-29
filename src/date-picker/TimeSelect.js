@@ -31,7 +31,6 @@ export default class TimeSelect extends BasePicker {
         {...this.panelPreps(props) }
         value={value}
         visible={state.visible}
-        defaultValue={props.defaultValue}
         handleClickOutside={this.handleClickOutside.bind(this)}
         inputWidth={state.inputWidth}
         onPicked={this.onPicked.bind(this)}

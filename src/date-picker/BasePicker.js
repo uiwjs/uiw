@@ -34,7 +34,6 @@ export default class BasePicker extends Component {
     disabled: PropTypes.bool,
     readOnly: PropTypes.bool,
     value: (props, propName, componentName) => isTimeValid(props, propName, componentName),
-    defaultValue: (props, propName, componentName) => isTimeValid(props, propName, componentName),
   }
   static defaultProps = {
     placeholder: '选择时间',

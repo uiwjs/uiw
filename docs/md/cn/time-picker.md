@@ -11,7 +11,6 @@ constructor(props) {
   super(props);
   this.state = {
     value: new Date(2017, 6, 28, 15, 51),
-    defaultValue: new Date(2017, 6, 28, 15, 51),
   }
 }
 handleChang(value,date) {
@@ -26,7 +25,6 @@ render() {
       minTime="9:30"
       onChange={this.handleChang.bind(this)}
       value={this.state.value}
-      defaultValue={this.state.defaultValue}
       //placeholder="选择时间"
     />
   )
