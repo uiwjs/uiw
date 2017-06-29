@@ -11,9 +11,6 @@ export default class TimePickerPanel extends Component {
       <Popper ref="popper" visible={visible}
         className={this.classNames(`${prefixCls}-popper`)}
         clickOutside={handleClickOutside}
-        style={{
-          minWidth: 161,
-        }}
       >
         <div className={this.classNames(className, `${prefixCls}`)}>
           <TimePickerSpinner {...other} />

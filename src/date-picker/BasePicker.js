@@ -20,7 +20,7 @@ function isTimeValid(props, propName, componentName) {
     }
     if (_isDate === false) {
       return new Error(
-        'Invalid prop `' + propName + '` supplied to' + ' `' + componentName + '`. Validation failed.'
+        'Invalid prop `' + propName + '` supplied to  `' + componentName + '`. Validation failed.'
       );
     }
   }
