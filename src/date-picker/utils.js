@@ -24,3 +24,21 @@ export const parseTime = function (time) {
     return { hours, minutes, seconds };
   }
 };
+
+
+export const dateTimeToStr = (date, format = 'HH:mm:ss') => {
+  let time = []
+  let _format = format.split(":");
+  date = parseTime(date);
+  if (!date) return '';
+  if (_format.indexOf('HH') > -1) {
+    time.push(date.hours < 10 ? '0' + date.hours : date.hours)
+  }
+  if (_format.indexOf('mm') > -1) {
+    time.push(date.minutes < 10 ? '0' + date.minutes : date.minutes)
+  }
+  if (_format.indexOf('ss') > -1) {
+    time.push(date.seconds < 10 ? '0' + date.seconds : date.seconds)
+  }
+  return time.join(':');
+}

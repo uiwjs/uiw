@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
-import { parseTime } from './utils';
+import { parseTime, dateTimeToStr } from './utils';
 
 // 时间滚动内容调整时间
 export default class TimeSpinner extends Component {
@@ -48,6 +48,19 @@ export default class TimeSpinner extends Component {
       });
     }
     return r;
+  }
+  handleClick(item) {
+    const { onPicked, defaultValue } = this.props
+    if (!item.disabled) {
+      let time = new Date(defaultValue)
+      switch (item.ty) {
+        case 'hours': time.setHours(item.value); break;
+        case 'minutes': time.setMinutes(item.value); break;
+        case 'seconds': time.setSeconds(item.value); break;
+        default: break;
+      }
+      onPicked(dateTimeToStr(time), true);
+    }
   }
   renderItem(arr) {
     const { prefixCls, hideDisabled } = this.props;

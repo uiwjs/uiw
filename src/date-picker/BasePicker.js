@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Component, PropTypes } from '../utils/';
 import Input from '../input';
-import { isDate, parseTime } from './utils';
+import { isDate, parseTime, dateTimeToStr } from './utils';
 
 function isTimeValid(props, propName, componentName) {
   let dt = props[propName];
@@ -115,20 +115,7 @@ export default class BasePicker extends Component {
   dateToStr(date) {
     const { format } = this.props;
     if (this.type === 'timepicker') {
-      let time = []
-      let _format = format.split(":");
-      date = parseTime(date);
-      if (!date) return '';
-      if (_format.indexOf('HH') > -1) {
-        time.push(date.hours < 10 ? '0' + date.hours : date.hours)
-      }
-      if (_format.indexOf('mm') > -1) {
-        time.push(date.minutes < 10 ? '0' + date.minutes : date.minutes)
-      }
-      if (_format.indexOf('ss') > -1) {
-        time.push(date.seconds < 10 ? '0' + date.seconds : date.seconds)
-      }
-      return time.join(':');
+      return dateTimeToStr(date, format);
     }
 
     if (this.type === 'timeselect') {
@@ -148,6 +135,7 @@ export default class BasePicker extends Component {
   }
   onPicked(date, visible) {
     const { onChange } = this.props;
+    console.log("date:3232:", date, this.parseDate(date))
     this.setState({
       visible,
       text: date,
