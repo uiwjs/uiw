@@ -27,6 +27,7 @@ render() {
       disabledMinutes={['01','02']}
       //selectableRange="18:30:00 - 20:30:00"
       disable={false}
+      //hideDisabled={true}
       format="HH:mm:ss"
       placeholder="选择时间de拉！"
       value={this.state.value}

@@ -113,9 +113,29 @@ export default class BasePicker extends Component {
     this.setState({ icon: 'time' })
   }
   dateToStr(date) {
-    date = parseTime(date);
-    if (!date) return '';
-    return (date.hours < 10 ? '0' + date.hours : date.hours) + ':' + (date.minutes < 10 ? '0' + date.minutes : date.minutes);
+    const { format } = this.props;
+    if (this.type === 'timepicker') {
+      let time = []
+      let _format = format.split(":");
+      date = parseTime(date);
+      if (!date) return '';
+      if (_format.indexOf('HH') > -1) {
+        time.push(date.hours < 10 ? '0' + date.hours : date.hours)
+      }
+      if (_format.indexOf('mm') > -1) {
+        time.push(date.minutes < 10 ? '0' + date.minutes : date.minutes)
+      }
+      if (_format.indexOf('ss') > -1) {
+        time.push(date.seconds < 10 ? '0' + date.seconds : date.seconds)
+      }
+      return time.join(':');
+    }
+
+    if (this.type === 'timeselect') {
+      date = parseTime(date);
+      if (!date) return '';
+      return (date.hours < 10 ? '0' + date.hours : date.hours) + ':' + (date.minutes < 10 ? '0' + date.minutes : date.minutes);
+    }
   }
   parseDate(date) {
     let { value, defaultValue } = this.state;

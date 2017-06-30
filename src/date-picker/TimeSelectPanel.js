@@ -43,7 +43,9 @@ export default class TimeSelectPanel extends Component {
                     'w-disabled': item.disabled
                   })}
                   disabled={item.disabled}
-                  onClick={() => this.handleClick(item)}>{item.value}</div>)
+                  onClick={() => this.handleClick(item)}>{item.value}
+                </div>
+              )
             })
           }
         </div>
