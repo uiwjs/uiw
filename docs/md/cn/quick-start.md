@@ -10,22 +10,21 @@
 <!--DemoStart--> 
 ```js
 constructor(props) {
-  super(props)
+  super(props);
   this.state = {
-    value: new Date(2016, 9, 10, 18, 40)
+    value: new Date(2017, 6, 28, 15, 51),
   }
 }
-handleUpdate(value) {
-  console.debug('time-picker update: ', value)
+handleChang(value,date) {
+  console.log('time-select Chang: ', value,date)
 }
 render() {
   return (
     <TimePicker
       //style={{width:100}}
-      onChange={this.handleUpdate.bind(this)}
+      onChange={this.handleChang.bind(this)}
       disabledHours={['00','01']}
       disabledMinutes={['01','02']}
-      //selectableRange="18:30:00 - 20:30:00"
       disable={false}
       //hideDisabled={true}
       format="HH:mm:ss"

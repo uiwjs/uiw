@@ -17,6 +17,8 @@ handleChang(value,date) {
   console.log('time-select Chang: ', value,date)
 }
 render() {
+
+  this.handleChang()
   return (
     <TimeSelect
       start="08:30"
@@ -104,6 +106,40 @@ render() {
         placeholder="选择时间"
       />
     </div>
+  )
+}
+```
+<!--End-->
+
+
+### 任意时间点
+
+可以选择任意时间
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    value: new Date(2017, 6, 28, 15, 51),
+  }
+}
+handleChang(value,date) {
+  console.log('time-select Chang: ', value,date)
+}
+render() {
+  return (
+    <TimePicker
+      //style={{width:100}}
+      onChange={this.handleChang.bind(this)}
+      disabledHours={['00','01']}
+      disabledMinutes={['01','02']}
+      disable={false}
+      //hideDisabled={true}
+      format="HH:mm:ss"
+      placeholder="选择时间de拉！"
+      value={this.state.value}
+    />
   )
 }
 ```

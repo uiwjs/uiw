@@ -50,9 +50,8 @@ export default class BasePicker extends Component {
       visible: false,             // 菜单是否显示
       defaultValue,
       inputWidth: 0,
-    }, this.propsToState(props)
+    }, { ...this.propsToState(props) }
     )
-    console.log("this.state::", this.state)
   }
   componentDidMount() {
     this.input = ReactDOM.findDOMNode(this.refs.input);
@@ -61,7 +60,7 @@ export default class BasePicker extends Component {
     })
   }
   componentWillReceiveProps(nextProps) {
-    this.setState(this.propsToState(nextProps))
+    this.setState({ ...this.propsToState(nextProps) })
   }
   // props与当前state合并
   propsToState(props) {
@@ -102,7 +101,7 @@ export default class BasePicker extends Component {
   onIconClick() {
     const { onChange } = this.props;
     this.setState({ text: '', value: '', icon: 'time' })
-    onChange && onChange('', '')
+    onChange && onChange();
   }
   onIconMouseOver() {
     if (this.state.text !== '') {
