@@ -12,9 +12,9 @@ export default class TimeSpinner extends Component {
       hours: 0,
       minutes: 0,
       seconds: 0,
-      hoursList: this.rangeTime(24, 'hours'),
-      minutesLisit: this.rangeTime(60, 'minutes'),
-      secondsList: this.rangeTime(60, 'seconds'),
+      // hoursList: this.rangeTime(24, 'hours'),
+      // minutesLisit: this.rangeTime(60, 'minutes'),
+      // secondsList: this.rangeTime(60, 'seconds'),
     }
     this.renderItem = this.renderItem.bind(this)
   }
@@ -32,8 +32,8 @@ export default class TimeSpinner extends Component {
   handleClick(item) {
     const { onPicked, value } = this.props
     if (!item.disabled) {
-      let time = parseTime(value)
-      time[item.ty] = parseInt(item.value);
+      let time = parseTime(value);
+      time[`${item.ty}`] = Number(item.value);
       onPicked(parseTimeStr(time), true);
     }
   }
@@ -65,13 +65,13 @@ export default class TimeSpinner extends Component {
   }
   render() {
     const { prefixCls } = this.props;
-    const { secondsList, several, minutesLisit, hoursList } = this.state;
+    const { several } = this.state;
 
     return (
       <div ref="spinner" className={this.classNames(`${prefixCls}`)}>
-        {several.indexOf('HH') > -1 && this.renderItem(hoursList)}
-        {several.indexOf('mm') > -1 && this.renderItem(minutesLisit)}
-        {several.indexOf('ss') > -1 && this.renderItem(secondsList)}
+        {several.indexOf('HH') > -1 && this.renderItem(this.rangeTime(24, 'hours'))}
+        {several.indexOf('mm') > -1 && this.renderItem(this.rangeTime(60, 'minutes'))}
+        {several.indexOf('ss') > -1 && this.renderItem(this.rangeTime(66, 'seconds'))}
       </div>
     );
   }
@@ -82,16 +82,15 @@ TimeSpinner.formatToJSON = (time) => {
 
 TimeSpinner.items = (end, ty, { disabledHours, disabledMinutes, disabledSeconds, value }) => {
   let currentTime = parseTime(value);
-  console.log("currentTime::", currentTime, value)
   let r = [];
   for (let i = 0; i < end; i++) {
     let time = i < 10 ? `0${i}` : i + '';
     let disabledArr = [];
     let checked = false;
     switch (ty) {
-      case 'hours': disabledArr = disabledHours; if (i === currentTime.hours) checked = true; break;
-      case 'minutes': disabledArr = disabledMinutes; if (i === currentTime.minutes) checked = true; break;
-      case 'seconds': disabledArr = disabledSeconds; if (i === currentTime.seconds) checked = true; break;
+      case 'hours': disabledArr = disabledHours; if (value && i === currentTime.hours) checked = true; break;
+      case 'minutes': disabledArr = disabledMinutes; if (value && i === currentTime.minutes) checked = true; break;
+      case 'seconds': disabledArr = disabledSeconds; if (value && i === currentTime.seconds) checked = true; break;
       default: break;
     }
     r.push({

@@ -6,7 +6,6 @@ export const isDate = function (date) {
 
 // parseTime 方法生成的Object 对象转换时间 `22:32`
 export const parseTimeStr = (obj) => {
-  console.log("obj::", obj)
   let time = [];
   for (let a in obj) time.push(
     obj[a] < 10 ? '0' + obj[a] : obj[a]
