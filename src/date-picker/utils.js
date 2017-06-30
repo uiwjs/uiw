@@ -4,6 +4,15 @@ export const isDate = function (date) {
   else return false;
 };
 
+// parseTime 方法生成的Object 对象转换时间 `22:32`
+export const parseTimeStr = (obj) => {
+  console.log("obj::", obj)
+  let time = [];
+  for (let a in obj) time.push(
+    obj[a] < 10 ? '0' + obj[a] : obj[a]
+  );
+  return time.join(':');
+}
 
 // 时间字符串转`22:32` 或者 时间 new Date 换成对象 {'hours':22,'minutes':32} || null
 export const parseTime = function (time) {
@@ -25,7 +34,7 @@ export const parseTime = function (time) {
   }
 };
 
-
+//  new Date 换成对象 根据format 转换成 `22:32`
 export const dateTimeToStr = (date, format = 'HH:mm:ss') => {
   let time = []
   let _format = format.split(":");

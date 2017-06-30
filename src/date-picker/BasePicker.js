@@ -46,12 +46,13 @@ export default class BasePicker extends Component {
     let defaultValue = props.value;
     this.state = Object.assign({}, state, {
       icon: 'time',
-      value: props.value,
+      value: new Date(),
       visible: false,             // 菜单是否显示
-      defaultValue: defaultValue,
+      defaultValue,
       inputWidth: 0,
     }, this.propsToState(props)
     )
+    console.log("this.state::", this.state)
   }
   componentDidMount() {
     this.input = ReactDOM.findDOMNode(this.refs.input);
@@ -64,7 +65,6 @@ export default class BasePicker extends Component {
   }
   // props与当前state合并
   propsToState(props) {
-    // delete props.value
     return {
       text: isDate(props.value) ? this.dateToStr(props.value) : '',
       value: isDate(props.value) ? props.value : new Date()
@@ -131,16 +131,18 @@ export default class BasePicker extends Component {
     value = new Date(value)
     value.setHours(date.hours)
     value.setMinutes(date.minutes)
+    console.log("date4:", date, value)
     return value;
   }
   onPicked(date, visible) {
     const { onChange } = this.props;
-    console.log("date:3232:", date, this.parseDate(date))
+    console.log("date2--->:", date, this.parseDate(date))
     this.setState({
       visible,
       text: date,
-      value: this.parseDate(date)
+      value: this.parseDate(date),
     })
+
     onChange && onChange(date, this.parseDate(date))
   }
   createPickerPanel() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
-import { parseTime, dateTimeToStr } from './utils';
+import { parseTime, parseTimeStr } from './utils';
 
 // 时间滚动内容调整时间
 export default class TimeSpinner extends Component {
@@ -27,39 +27,14 @@ export default class TimeSpinner extends Component {
   }
   // 生成时间
   rangeTime(end, ty) {
-    const { disabledHours, disabledMinutes, disabledSeconds, value } = this.props;
-    let currentTime = parseTime(value);
-    let r = [];
-    for (let i = 0; i < end; i++) {
-      let time = i < 10 ? `0${i}` : i + '';
-      let disabledArr = [];
-      let checked = false;
-      switch (ty) {
-        case 'hours': disabledArr = disabledHours; if (i === currentTime.hours) checked = true; break;
-        case 'minutes': disabledArr = disabledMinutes; if (i === currentTime.minutes) checked = true; break;
-        case 'seconds': disabledArr = disabledSeconds; if (i === currentTime.seconds) checked = true; break;
-        default: break;
-      }
-      r.push({
-        value: time,
-        ty,
-        disabled: disabledArr.indexOf(time) > -1 ? true : false,
-        checked
-      });
-    }
-    return r;
+    return TimeSpinner.items(end, ty, this.props);
   }
   handleClick(item) {
-    const { onPicked, defaultValue } = this.props
+    const { onPicked, value } = this.props
     if (!item.disabled) {
-      let time = new Date(defaultValue)
-      switch (item.ty) {
-        case 'hours': time.setHours(item.value); break;
-        case 'minutes': time.setMinutes(item.value); break;
-        case 'seconds': time.setSeconds(item.value); break;
-        default: break;
-      }
-      onPicked(dateTimeToStr(time), true);
+      let time = parseTime(value)
+      time[item.ty] = parseInt(item.value);
+      onPicked(parseTimeStr(time), true);
     }
   }
   renderItem(arr) {
@@ -105,12 +80,30 @@ TimeSpinner.formatToJSON = (time) => {
   return parseTime(time)
 }
 
+TimeSpinner.items = (end, ty, { disabledHours, disabledMinutes, disabledSeconds, value }) => {
+  let currentTime = parseTime(value);
+  console.log("currentTime::", currentTime, value)
+  let r = [];
+  for (let i = 0; i < end; i++) {
+    let time = i < 10 ? `0${i}` : i + '';
+    let disabledArr = [];
+    let checked = false;
+    switch (ty) {
+      case 'hours': disabledArr = disabledHours; if (i === currentTime.hours) checked = true; break;
+      case 'minutes': disabledArr = disabledMinutes; if (i === currentTime.minutes) checked = true; break;
+      case 'seconds': disabledArr = disabledSeconds; if (i === currentTime.seconds) checked = true; break;
+      default: break;
+    }
+    r.push({
+      value: time,
+      ty,
+      disabled: disabledArr.indexOf(time) > -1 ? true : false,
+      checked
+    });
+  }
+  return r;
+}
 TimeSpinner.propTypes = {
-  // start: PropTypes.string,
-  // end: PropTypes.string,
-  // step: PropTypes.string,
-  // minTime: PropTypes.string,
-  // maxTime: PropTypes.string,
   hours: PropTypes.number,   // 时
   minutes: PropTypes.number, // 分
   seconds: PropTypes.number, // 秒
