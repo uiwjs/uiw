@@ -37,12 +37,15 @@
     border-left:1px solid transparent;
   }
   .w-time-spinner-select{
+    position: relative;
     overflow: hidden;
-    overflow-y: auto;
     max-height: 144px;
     width: 53px;
     border-left: 1px solid #e9e9e9;
     float: left;
+    &:hover{
+      overflow-y: auto;
+    }
     ul{
       width: 100%;
       padding: 0 0 120px;

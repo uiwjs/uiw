@@ -1,7 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Component, PropTypes } from '../utils/';
 import { parseTime, parseTimeStr } from './utils';
-
+;
 // 时间滚动内容调整时间
 export default class TimeSpinner extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export default class TimeSpinner extends Component {
       // secondsList: this.rangeTime(60, 'seconds'),
     }
     this.renderItem = this.renderItem.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
   componentDidMount() {
     const { several } = this.state;
@@ -29,12 +31,19 @@ export default class TimeSpinner extends Component {
   rangeTime(end, ty) {
     return TimeSpinner.items(end, ty, this.props);
   }
-  handleClick(item) {
+  // 点击当前节点滚动到顶部
+  scrollTopNow(elm) {
+    let currentDom = ReactDOM.findDOMNode(elm);
+    currentDom.offsetParent.scrollTop = currentDom.offsetTop;
+  }
+  handleClick(item, e) {
     const { onPicked, value } = this.props
     if (!item.disabled) {
       let time = parseTime(value);
       time[`${item.ty}`] = Number(item.value);
       onPicked(parseTimeStr(time), true);
+      // 点击当前节点滚动到顶部
+      this.scrollTopNow(e.target)
     }
   }
   renderItem(arr) {
@@ -47,12 +56,17 @@ export default class TimeSpinner extends Component {
               if (hideDisabled && item.disabled) return null;
               return (
                 <li
+                  ref={(tag) => {
+                    if (tag && item.checked) {
+                      this.scrollTopNow(tag);
+                    }
+                  }}
                   key={`${idx}`}
                   className={this.classNames({
                     'w-disabled': item.disabled,
                     'w-checked': item.checked
                   })}
-                  onClick={() => this.handleClick(item)}
+                  onClick={(e) => this.handleClick(item, e)}
                 >
                   {item.value}
                 </li>
