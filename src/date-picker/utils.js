@@ -25,7 +25,7 @@ export const parseTime = function (time) {
   }
 
   const values = ('' || time).split(':');
-  if (values.length >= 2) {
+  if (values.length >= 1) {
     const hours = parseInt(values[0], 10);
     const minutes = parseInt(values[1], 10);
     const seconds = parseInt(values[2], 10);
