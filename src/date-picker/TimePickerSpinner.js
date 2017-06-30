@@ -45,12 +45,13 @@ export default class TimeSpinner extends Component {
     return r;
   }
   renderItem(arr) {
-    const { prefixCls } = this.props;
+    const { prefixCls, hideDisabled } = this.props;
     return (
       <div className={this.classNames(`${prefixCls}-select`)}>
         <ul>
           {
             arr.map((item, idx) => {
+              if (hideDisabled && item.disabled) return null;
               return (
                 <li className={this.classNames({
                   'w-disabled': item.disabled
