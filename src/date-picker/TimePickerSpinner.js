@@ -76,9 +76,6 @@ export default class TimeSpinner extends Component {
     );
   }
 }
-TimeSpinner.formatToJSON = (time) => {
-  return parseTime(time)
-}
 
 TimeSpinner.items = (end, ty, { disabledHours, disabledMinutes, disabledSeconds, value }) => {
   let currentTime = parseTime(value);

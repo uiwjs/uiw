@@ -128,9 +128,9 @@ export default class BasePicker extends Component {
     if (!value) value = defaultValue;
     date = parseTime(date)
     value = new Date(value)
-    date.hours && value.setHours(date.hours);
-    date.minutes && value.setMinutes(date.minutes);
-    date.seconds && value.setSeconds(date.seconds);
+    date.hours > -1 && value.setHours(date.hours);
+    date.minutes > -1 && value.setMinutes(date.minutes);
+    date.seconds > -1 && value.setSeconds(date.seconds);
     return value;
   }
   onPicked(date, visible) {
