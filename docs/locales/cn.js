@@ -12,6 +12,7 @@ module.exports = {
     'layout': 'Layout 布局',
     'paging': 'Paging 分页',
     'loading': 'Loading 加载中',
+    'rate': 'Rate 评分',
     'tag': 'Tag 标签',
     'message': 'Message 全局提示',
     'modals': 'Modals 对话框',

@@ -3,38 +3,19 @@
 还未开源 `uiw` 没有任何作用
 
 
-### 任意时间点
 
-可以选择任意时间
+### 允许半选
+
+可支持鼠标选择半星。
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: new Date(2017, 6, 28, 10, 20),
-  }
-}
-handleChang(value,date) {
-  console.log('time-select Chang: ', value,date)
-}
 render() {
-  return (
-    <TimePicker
-      //style={{width:100}}
-      onChange={this.handleChang.bind(this)}
-      disabledHours={[]}
-      disabledMinutes={[]}
-      disable={false}
-      //hideDisabled={true}
-      format="HH:mm:ss"
-      placeholder="选择时间de拉！"
-      value={this.state.value}
-    />
-  )
+  return <Rate value={2.5} allowHalf={true} onChange={(val) => console.log(val)} />
 }
 ```
 <!--End-->
+
 
 ### 使用
 

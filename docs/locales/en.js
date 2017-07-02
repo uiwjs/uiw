@@ -12,6 +12,7 @@ module.exports = {
     'layout': 'Layout',
     'paging': 'Paging',
     'loading': 'Loading',
+    'rate': 'Rate',
     'tag': 'Tag',
     'message': 'Message',
     'modals': 'Modals',

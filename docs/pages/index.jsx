@@ -25,6 +25,7 @@ export default {
       'table': require('./table'),
       'tooltip': require('./tooltip'),
       'tag': require('./tag'),
+      'rate': require('./rate'),
     },
     'Navigation': {
       'menu': require('./menu'),
