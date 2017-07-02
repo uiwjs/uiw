@@ -3,6 +3,7 @@ module.exports = {
     'quick-start': '快速上手',
     'theme': '主题定制',
     'checkbox': 'Checkbox 多选框',
+    'date-picker': 'Date Picker 日期选择器',
     'switch': 'Switch 开关',
     'select': 'Select 选择器',
     'alert': 'Alert 警告',

@@ -12,7 +12,7 @@
 constructor(props) {
   super(props);
   this.state = {
-    value: new Date(2017, 6, 28, 15, 51),
+    value: new Date(2017, 6, 28, 10, 20),
   }
 }
 handleChang(value,date) {
@@ -23,8 +23,8 @@ render() {
     <TimePicker
       //style={{width:100}}
       onChange={this.handleChang.bind(this)}
-      disabledHours={['00','01']}
-      disabledMinutes={['01','02']}
+      disabledHours={[]}
+      disabledMinutes={[]}
       disable={false}
       //hideDisabled={true}
       format="HH:mm:ss"

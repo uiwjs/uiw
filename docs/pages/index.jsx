@@ -18,6 +18,7 @@ export default {
       'input': require('./input'),
       'input-number': require('./input-number'),
       'time-picker': require('./time-picker'),
+      'date-picker': require('./date-picker'),
     },
     'Data Display': {
       'calendar': require('./calendar'),

@@ -3,6 +3,7 @@ module.exports = {
     'quick-start': 'Quick Start',
     'theme': 'Theme',
     'checkbox': 'Checkbox',
+    'date-picker': 'Date Picker',
     'switch': 'Switch',
     'select': 'Select 开关',
     'alert': 'Alert',
