@@ -2,6 +2,7 @@ export { default as Layout } from './layout';
 export { default as Alert } from './alert/';
 export { default as Button } from './button/';
 export { default as Breadcrumb } from './breadcrumb/';
+export { default as Badge } from './badge/';
 export { default as Calendar } from './calendar/';
 export { default as Checkbox } from './checkbox/';
 export { default as Modals } from './modal/';

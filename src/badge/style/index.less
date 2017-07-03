@@ -1,0 +1,44 @@
+.w-badge{
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  sup.w-badge-count{
+    position: absolute;
+    transform: translateX(-50%);
+    top: -10px;
+    height: 18px;
+    border-radius: 10px;
+    min-width: 20px;
+    background: #f04134;
+    color: #fff;
+    line-height: 18px;
+    text-align: center;
+    padding: 0 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    transform-origin: -10% center;
+    font-family: tahoma;
+    box-shadow: 0 0 0 1px #fff;
+  }
+  &.nowrap sup.w-badge-count{
+    top: auto;
+    display: block;
+    position: relative;
+    transform: none!important;
+    overflow: hidden;
+  }
+  sup.w-dot{
+    position: absolute;
+    transform: translateX(-50%);
+    transform-origin: 0 center;
+    top: -4px;
+    height: 8px;
+    width: 8px;
+    padding: 0;
+    border-radius: 100%;
+    background: #f04134;
+    z-index: 10;
+    box-shadow: 0 0 0 1px #fff;
+  }
+}

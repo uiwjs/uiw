@@ -7,6 +7,7 @@ module.exports = {
     'switch': 'Switch 开关',
     'select': 'Select 选择器',
     'alert': 'Alert 警告',
+    'badge': 'Badge 标记',
     'button': 'Button 按钮',
     'breadcrumb': 'Breadcrumb 面包屑',
     'layout': 'Layout 布局',

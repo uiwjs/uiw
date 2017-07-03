@@ -26,6 +26,7 @@ export default {
       'tooltip': require('./tooltip'),
       'tag': require('./tag'),
       'rate': require('./rate'),
+      'badge': require('./badge'),
     },
     'Navigation': {
       'menu': require('./menu'),
