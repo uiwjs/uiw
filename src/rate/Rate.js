@@ -61,20 +61,22 @@ export default class Rate extends Component {
       return (k < value && k + 1 > value) ? true : false
     }
   }
-  render() {
-    const { prefixCls, count, className, allowHalf, disabled, onHoverChange, ...other } = this.props;
+  starOn(k) {
     const { value, hoverIndex } = this.state;
+    return hoverIndex === 0 ? k < value : k < hoverIndex;
+  }
+  render() {
+    const { prefixCls, count, className, allowHalf, disabled, onHoverChange, color, ...other } = this.props;
     return (
       <ul {...other} className={this.classNames(className, `${prefixCls}`)}
         onMouseLeave={(e) => this.onMouseLeave(e)}
       >
         {[...Array(count)].map((v, k) => {
-          //console.log("www///", k, hoverIndex, value, value - 1, k + 1, (k < value && k + 1 > value))
           return (
             <li
               key={k}
               className={this.classNames({
-                'star-on': hoverIndex === 0 ? k < value : k < hoverIndex,
+                'star-on': this.starOn(k),
                 'star-half-on': this.starHalfOn(k),
                 'w-disabled': disabled,
               })}
@@ -82,7 +84,7 @@ export default class Rate extends Component {
               onMouseMove={(e) => this.onMouseMove(e, k)}
             >
               <Icon type="star-on">
-                <Icon type="star-on" />
+                <Icon style={{ color: this.starOn(k) || this.starHalfOn(k) ? color : '' }} type="star-on" />
               </Icon>
             </li>
           )
@@ -96,6 +98,7 @@ Rate.propTypes = {
   prefixCls: PropTypes.string,
   value: PropTypes.number,
   className: PropTypes.string,
+  color: PropTypes.string,
   count: PropTypes.number,
   character: PropTypes.node,
   disabled: PropTypes.bool,
@@ -108,6 +111,7 @@ Rate.defaultProps = {
   prefixCls: 'w-rate',
   value: 0,
   count: 5,
+  // color: '#f5a623',
   disabled: false,
   allowHalf: false,
   onHoverChange() { },
