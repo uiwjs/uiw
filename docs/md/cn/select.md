@@ -4,8 +4,8 @@
 
 ### 基础用法
 
-适用广泛的基础单选
-`value`的值为当前被选中的Option的 `value` 属性值
+适用广泛的基础单选`value`的值为当前被选中的Option的 `value` 属性值
+
 <!--DemoStart--> 
 ```js
 constructor(props) {
@@ -54,7 +54,7 @@ render() {
 
 ### 禁用状态
 
-`Select`设置`disabled`属性，则整个选择器不可用。单个选项禁用,`Option`设置`disabled`属性即可。
+`Select`设置`disabled`属性，则整个选择器不可用。单个选项禁用，`Option`设置`disabled`属性即可。
 
 <!--DemoStart--> 
 ```js

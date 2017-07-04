@@ -20,7 +20,6 @@ export default class Button extends Component {
     this.startPoint = num;
     this.setButtonPosition(num);
     this.parent().setBarPosition(num)
-    // this.setBarPosition(num)
   }
   parent() {
     return this.context.component;
@@ -43,14 +42,7 @@ export default class Button extends Component {
   isTooltip() {
     return this.parent().props.tooltip;
   }
-  handleMouseEnter() {
-
-  }
-  handleMouseLeave() {
-
-  }
   setButtonPosition(num) {
-    // console.log("num::", Math.abs(100 - num))
     if (this.isVertical()) {
       this.refs.button.style.bottom = num + '%';
     } else {
@@ -61,11 +53,7 @@ export default class Button extends Component {
     let count = this.parent().getSliderSize();
     let currentX = event.clientX;
     let currentY = event.clientY;
-    // let move = (currentX - this.startX) / count * 100;
     let move = (this.isVertical() ? (this.startY - currentY) : (currentX - this.startX)) / count * 100;
-    // if (this.isVertical()) {
-    //   move = (this.startY - currentY) / count * 100;
-    // }
     let startPoint = this.startPoint + parseInt(move, 10);
     if (startPoint > this.getMax() || startPoint < this.getMin()) return;
 
@@ -104,8 +92,6 @@ export default class Button extends Component {
     const { prefixCls } = this.props;
     return (
       <div ref="button" className={`${prefixCls}-btn-wapper`}
-        onMouseEnter={this.handleMouseEnter.bind(this)}
-        onMouseLeave={this.handleMouseLeave.bind(this)}
         onMouseDown={this.onButtonDown.bind(this)}
       >
         {this.isTooltip() ?
