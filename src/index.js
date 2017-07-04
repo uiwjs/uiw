@@ -17,6 +17,7 @@ export { default as Tooltip } from './tooltip/'
 export { TimeSelect, TimePicker } from './date-picker/';
 export { default as Switch } from './switch/';
 export { default as Select } from './select/';
+export { default as Slider } from './slider/';
 export { default as Icon } from './icon/';
 export { default as Input } from './input/';
 export { default as InputNumber } from './input-number/';

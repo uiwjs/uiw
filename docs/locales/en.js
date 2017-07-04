@@ -6,6 +6,7 @@ module.exports = {
     'date-picker': 'Date Picker',
     'switch': 'Switch',
     'select': 'Select',
+    'slider': 'Slider',
     'alert': 'Alert',
     'badge': 'Badge',
     'button': 'Button',

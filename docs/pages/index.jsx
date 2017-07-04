@@ -15,6 +15,7 @@ export default {
       'checkbox': require('./checkbox'),
       'select': require('./select'),
       'switch': require('./switch'),
+      'slider': require('./slider'),
       'input': require('./input'),
       'input-number': require('./input-number'),
       'time-picker': require('./time-picker'),

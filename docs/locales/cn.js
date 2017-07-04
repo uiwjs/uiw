@@ -6,6 +6,7 @@ module.exports = {
     'date-picker': 'Date Picker 日期选择器',
     'switch': 'Switch 开关',
     'select': 'Select 选择器',
+    'slider': 'Slider 滑块',
     'alert': 'Alert 警告',
     'badge': 'Badge 标记',
     'button': 'Button 按钮',
