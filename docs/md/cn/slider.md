@@ -4,6 +4,59 @@
 
 
 
+### 离散值
+
+选项可以是离散的。
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    value: 0
+  }
+}
+render() {
+  return (
+    <div>
+      <Slider value={this.state.value}
+        marks={{
+          0:"0°C",
+          10:"10°C",
+          20:"20°C"
+        }} 
+        step={10}
+        onChange={(e,value)=>{
+          this.setState({
+            value:value
+          })
+          console.log(`Value: ${value}`)
+        }} 
+        onDragChange={(e,value)=>console.log(`Drag value: ${value}`)} 
+      />
+      <div style={{height:200}}>
+        <Slider value={this.state.value}
+          marks={{
+            20:"20°C"
+          }} 
+          vertical
+          step={10}
+          onChange={(e,value)=>{
+            this.setState({
+              value:value
+            })
+            console.log(`Value: ${value}`)
+          }} 
+          onDragChange={(e,value)=>console.log(`Drag value: ${value}`)} 
+        />
+      </div>
+    </div>
+  )
+}
+```
+<!--End-->
+
+
 ### 基本用法
 
 按钮样式的单选组合。
@@ -93,6 +146,7 @@ render() {
 | max | 最大值 | Number | `100` |
 | disabled | 是否禁用 | Boolean | `false` |
 | step | 间步长度 | Number | `1` |
+| marks | 刻度标记，`key` 的类型必须为 `number` 且取值在闭区间 `min`, `max` 内，每个标签可以单独设置样式 | Object | `1` |
 | tooltip | 是否显示提示 | Boolean | `ture` |
 | vertical | 值为 `true` 时，`Slider` 为垂直方向 | Boolean | `false` |
 | onDragChange | 拖拽，值改变时触发 | Function(e,value) | - |

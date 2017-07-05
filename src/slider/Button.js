@@ -57,6 +57,8 @@ export default class Button extends Component {
     let startPoint = this.startPoint + parseInt(move, 10);
     if (startPoint > this.getMax() || startPoint < this.getMin()) return;
 
+    this.parent().isDragging(true);
+
     if (
       this.startPoint !== startPoint &&
       this.currentPoint !== startPoint
@@ -78,6 +80,11 @@ export default class Button extends Component {
       this.parent().props.onChange(this.parent(), startPoint);
     }
     this.startPoint = startPoint;
+    // 拖拽和点击，导致设置值不准确
+    this.timeout = setTimeout(() => {
+      this.parent().isDragging(false);
+      clearTimeout(this.timeout);
+    }, 0)
   }
   onButtonDown(event) {
     if (this.isDisabled()) return;
