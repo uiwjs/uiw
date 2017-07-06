@@ -55,10 +55,10 @@ export default class Slider extends Component {
     })
   }
   setMarkPosition(num) {
-    const { min, max, step } = this.props;
+    const { min, max, step, dots } = this.props;
     const stepWidth = 100 * step / (max - min);
-    let rem = num % step
-
+    let rem = num % step;
+    if (!dots) return num;
     if (rem <= stepWidth / 2) {
       return num - rem
     } else {
@@ -104,15 +104,23 @@ export default class Slider extends Component {
             })
           }
           {
-            marks && <div className={`${prefixCls}-marks`}>
+            marks && marks instanceof Object && <div className={`${prefixCls}-marks`}>
               {
                 Object.keys(marks).map((item, idx) => {
+                  let label = marks[item];
+                  let style = {
+                    [vertical ? 'bottom' : 'left']: item + '%'
+                  }
+                  if (label instanceof Object) {
+                    style = { ...style, ...label.style };
+                    label = label.label || '';
+                  }
                   return (
                     <div key={idx} className={this.classNames(`${prefixCls}-marks-text`, {
                       [`w-active`]: item < currentValue
                     })}
-                      style={vertical ? { 'bottom': item + '%' } : { 'left': item + '%' }}
-                    >{marks[item]}</div>
+                      style={style}
+                    >{label}</div>
                   )
                 })
               }
@@ -134,7 +142,11 @@ Slider.propTypes = {
   max: PropTypes.number,
   min: PropTypes.number,
   step: PropTypes.number,
-  marks: PropTypes.object,
+  dots: PropTypes.bool,
+  marks: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.bool,
+  ]),
   tooltip: PropTypes.bool,
   disabled: PropTypes.bool,
   vertical: PropTypes.bool,
@@ -147,6 +159,7 @@ Slider.defaultProps = {
   max: 100,
   min: 0,
   step: 1,
+  dots: false,
   tooltip: true,
   disabled: false,
   vertical: false,
