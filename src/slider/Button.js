@@ -55,6 +55,9 @@ export default class Button extends Component {
     let currentY = event.clientY;
     let move = (this.isVertical() ? (this.startY - currentY) : (currentX - this.startX)) / count * 100;
     let startPoint = this.startPoint + parseInt(move, 10);
+
+    startPoint = this.parent().setMarkPosition(startPoint);
+
     if (startPoint > this.getMax() || startPoint < this.getMin()) return;
 
     this.parent().isDragging(true);

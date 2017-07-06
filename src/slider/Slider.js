@@ -46,12 +46,25 @@ export default class Slider extends Component {
     }
     sliderOffsetValue = parseInt(sliderOffsetValue, 10);
     if (sliderOffsetValue > max || sliderOffsetValue < min) return;
+    sliderOffsetValue = this.setMarkPosition(sliderOffsetValue);
     this.setBarPosition(sliderOffsetValue);
     this.refs.btn1.refs.button.style[vertical ? 'bottom' : 'left'] = sliderOffsetValue + '%';
     this.refs.btn1.startPoint = sliderOffsetValue;
     this.refs.btn1.setState({
       value: sliderOffsetValue
     })
+  }
+  setMarkPosition(num) {
+    const { min, max, step } = this.props;
+    const stepWidth = 100 * step / (max - min);
+    let rem = num % step
+
+    if (rem <= stepWidth / 2) {
+      return num - rem
+    } else {
+      return num - rem + step
+    }
+
   }
   stepArray() {
     const { min, max, step } = this.props;
@@ -72,7 +85,7 @@ export default class Slider extends Component {
           'w-disabled': disabled,
           [`${prefixCls}-vertical`]: vertical,
         })}
-        onClick={this.onSliderClick.bind(this)}
+        onMouseDown={this.onSliderClick.bind(this)}
       >
         <div className={this.classNames(`${prefixCls}-track`)}>
           <div ref="bar" className={`${prefixCls}-bar`}> </div>
@@ -94,7 +107,6 @@ export default class Slider extends Component {
             marks && <div className={`${prefixCls}-marks`}>
               {
                 Object.keys(marks).map((item, idx) => {
-                  console.log("item, idx:", item, idx)
                   return (
                     <div key={idx} className={this.classNames(`${prefixCls}-marks-text`, {
                       [`w-active`]: item < currentValue
