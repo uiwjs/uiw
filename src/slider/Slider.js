@@ -47,25 +47,43 @@ export default class Slider extends Component {
     this.dragging = bool
   }
   onSliderClick(event) {
-    // if (this.dragging) return;
-    // const { vertical, max, min, disabled } = this.props;
-    // if (disabled) return;
-    // const sliderOffset = this.refs.slider.getBoundingClientRect();
-    // let sliderOffsetValue = 0
-    // if (vertical) {
-    //   sliderOffsetValue = (sliderOffset.bottom - event.clientY) / this.getSliderSize() * 100;
-    // } else {
-    //   sliderOffsetValue = ((event.clientX - sliderOffset.left) / this.getSliderSize() * 100)
-    // }
-    // sliderOffsetValue = parseInt(sliderOffsetValue, 10);
-    // if (sliderOffsetValue > max || sliderOffsetValue < min) return;
-    // sliderOffsetValue = this.setMarkPosition(sliderOffsetValue);
-    // this.setBarPosition(sliderOffsetValue);
-    // this.refs.btn1.refs.button.style[vertical ? 'bottom' : 'left'] = sliderOffsetValue + '%';
-    // this.refs.btn1.startPoint = sliderOffsetValue;
-    // this.refs.btn1.setState({
-    //   value: sliderOffsetValue
-    // })
+    const { vertical, disabled } = this.props;
+    const { firsValue, secendValue } = this.state;
+    if (this.dragging) return;
+    if (disabled) return;
+    const sliderOffset = this.refs.slider.getBoundingClientRect();
+    let sliderOffsetValue = 0
+    if (vertical) {
+      sliderOffsetValue = (sliderOffset.bottom - event.clientY) / this.getSliderSize() * 100;
+    } else {
+      sliderOffsetValue = ((event.clientX - sliderOffset.left) / this.getSliderSize() * 100)
+    }
+    sliderOffsetValue = parseInt(sliderOffsetValue, 10);
+
+    if (this.isRange()) {
+      let range = secendValue - firsValue;
+      // let btn1 = this.refs.btn1.refs.button.style[vertical ? 'bottom' : 'left'];
+      // let btn2 = this.refs.btn2.refs.button.style[vertical ? 'bottom' : 'left'];
+      // btn1 = parseInt(btn1, 10);
+      // btn2 = parseInt(btn2, 10);
+      if (range + firsValue > sliderOffsetValue) {
+        this.refs.btn1.startPoint = sliderOffsetValue;
+        this.setState({ firsValue: sliderOffsetValue }, () => {
+          this.setSliderBar(sliderOffsetValue, secendValue)
+        })
+        this.setButtonPosition(this.refs.btn1, sliderOffsetValue);
+      } else {
+        this.refs.btn2.startPoint = sliderOffsetValue;
+        this.setState({ secendValue: sliderOffsetValue }, () => {
+          this.setSliderBar(firsValue, sliderOffsetValue)
+        })
+        this.setButtonPosition(this.refs.btn2, sliderOffsetValue);
+      }
+    } else {
+      this.refs.btn1.startPoint = sliderOffsetValue;
+      this.setButtonPosition(this.refs.btn1, sliderOffsetValue);
+      this.setSliderBar(sliderOffsetValue, secendValue)
+    }
   }
   // 刻度显示
   stepArray(marks) {
@@ -105,10 +123,10 @@ export default class Slider extends Component {
     firsValue = parseInt((min + firsValue * (max - min) / 100), 10)
     secendValue = parseInt((min + secendValue * (max - min) / 100), 10)
     // 相同值不触发 事件
-    if (this._firsValue === firsValue && this._secendValue === secendValue) return;
+    if (this._firsValue === firsValue) return;
+    if (this.isRange() && this._firsValue === firsValue && this._secendValue === secendValue) return;
     this._firsValue = firsValue;
     this._secendValue = secendValue;
-
 
     if (!dots) {
       onChange([firsValue, secendValue])
@@ -137,7 +155,6 @@ export default class Slider extends Component {
       !isMount && this.onChange(firsValue, secendValue)
       this.refs.bar.style[vertical ? 'height' : 'width'] = firsValue + '%';
     }
-
   }
   // 设置按钮的位置
   setButtonPosition(comp, num) {
@@ -163,6 +180,7 @@ export default class Slider extends Component {
     secendValue = parseInt((min + secendValue * (max - min) / 100), 10)
     // 相同值不触发 事件
     if (this.__firsValue === firsValue && this.__secendValue === secendValue) return;
+    if (this.isRange() && this._firsValue === firsValue && this._secendValue === secendValue) return;
     this.__firsValue = firsValue;
     this.__secendValue = secendValue;
 
@@ -238,7 +256,7 @@ export default class Slider extends Component {
           'w-disabled': disabled,
           [`${prefixCls}-vertical`]: vertical,
         })}
-        onMouseDown={this.onSliderClick.bind(this)}
+        onClick={this.onSliderClick.bind(this)}
       >
         <div className={this.classNames(`${prefixCls}-track`)}>
           <div ref="bar" className={`${prefixCls}-bar`}> </div>

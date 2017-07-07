@@ -13,7 +13,7 @@ constructor(props) {
   super(props);
   this.state = {
     value: [0,30]
-    //value: [0,30]
+    //value: 20
   }
 }
 render() {
@@ -34,7 +34,7 @@ render() {
           50:"50°C",
         }} 
         max={50}
-        //vertical
+        vertical
         step={10}
         dots={true}
         onChange={(value)=>{
@@ -43,7 +43,7 @@ render() {
           //})
           console.log(`Value: ${value}`)
         }} 
-        onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+        //onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
       />
     </div>
   )
