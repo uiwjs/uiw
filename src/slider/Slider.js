@@ -21,20 +21,13 @@ export default class Slider extends Component {
     } else {
       firsValue = this.setResultConversion(value);
     }
-
-    // if (value instanceof Array) {
-    //   firsValue = value[0]
-    //   secendValue = value[1];
-    // } else {
-    //   firsValue = value;
-    // }
     this.setState({
       firsValue, secendValue
     })
   }
   componentDidMount() {
     const { firsValue, secendValue } = this.state;
-    this.setSliderBar(firsValue, secendValue)
+    this.setSliderBar(firsValue, secendValue, true)
   }
   getChildContext() {
     return {
@@ -55,8 +48,8 @@ export default class Slider extends Component {
   }
   onSliderClick(event) {
     // if (this.dragging) return;
-    // const { vertical, max, min } = this.props;
-    // if (this.props.disabled) return;
+    // const { vertical, max, min, disabled } = this.props;
+    // if (disabled) return;
     // const sliderOffset = this.refs.slider.getBoundingClientRect();
     // let sliderOffsetValue = 0
     // if (vertical) {
@@ -127,7 +120,7 @@ export default class Slider extends Component {
       onChange(firsValue)
     }
   }
-  setSliderBar(firsValue, secendValue) {
+  setSliderBar(firsValue, secendValue, isMount) {
     const { value, vertical } = this.props;
     let leftv = firsValue > secendValue ? secendValue : firsValue;
     firsValue = this.setMarkPosition(firsValue);
@@ -136,13 +129,12 @@ export default class Slider extends Component {
     let widthv = firsValue > secendValue ? firsValue - leftv : secendValue - leftv;
     widthv = this.setMarkPosition(widthv);
 
-
     if (value instanceof Array && value.length > 1) {
-      this.onChange(firsValue, secendValue)
+      !isMount && this.onChange(firsValue, secendValue)
       this.refs.bar.style[vertical ? 'bottom' : 'left'] = leftv + '%';
       this.refs.bar.style[vertical ? 'height' : 'width'] = widthv + '%';
     } else {
-      this.onChange(firsValue)
+      !isMount && this.onChange(firsValue, secendValue)
       this.refs.bar.style[vertical ? 'height' : 'width'] = firsValue + '%';
     }
 
@@ -162,8 +154,9 @@ export default class Slider extends Component {
 
   }
   onDragChange() {
-    const { min, max, onDragChange } = this.props;
+    const { min, max, disabled, onDragChange } = this.props;
     let { firsValue, secendValue } = this.state;
+    if (disabled) return;
 
     // 百分百转换值
     firsValue = parseInt((min + firsValue * (max - min) / 100), 10)
