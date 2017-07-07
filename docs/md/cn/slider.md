@@ -2,6 +2,31 @@
 
 通过拖动滑块在一个固定区间内进行选择
 
+### 区间范围选择
+
+选择某一数值范围。
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    value: [10,40]
+  }
+}
+render() {
+  return (
+    <div>
+      <Slider value={this.state.value} 
+        onChange={(e,value)=>console.log(`Value: ${value}`)} 
+        onDragChange={(e,value)=>console.log(`Drag value: ${value}`)} 
+      />
+    </div>
+  )
+}
+```
+<!--End-->
+
 
 
 ### 基本用法
@@ -97,7 +122,7 @@ render() {
   return (
     <div>
       <div style={{height:30}}>
-        <Slider value={this.state.value}
+        <Slider value={20}
           marks={{
             0:"0°C",
             10:"10°C",
@@ -121,7 +146,7 @@ render() {
         />
       </div>
       <div style={{height:30}}>
-        <Slider value={this.state.value}
+        <Slider value={30}
           marks={true} 
           step={10}
           onChange={(e,value)=>{
@@ -134,7 +159,7 @@ render() {
         />
       </div>
       <div style={{height:200,width:100,display:'inline-block'}}>
-        <Slider value={this.state.value}
+        <Slider value={40}
           marks={{
             20:"20°C"
           }} 
@@ -150,7 +175,8 @@ render() {
         />
       </div>
       <div style={{height:200,display:'inline-block'}}>
-        <Slider value={this.state.value}
+        <Slider 
+          value={80}
           marks={{
             0:"0°C",
             20:"20°C",
