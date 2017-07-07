@@ -16,14 +16,6 @@ export default class Input extends Component {
       });
     }
   }
-
-  focus() {
-    (this.refs.input || this.refs.textarea).focus();
-  }
-
-  blur() {
-    (this.refs.input || this.refs.textarea).blur();
-  }
   handleKeyUp(e) {
     const { onSearch, onKeyUp } = this.props;
     if (e.key === "Enter") {
@@ -47,7 +39,6 @@ export default class Input extends Component {
       this.props[type](e, this.state.value)
     }
   }
-
   renderIcon(type) {
     const { prefixCls, preIcon, icon, onIconClick, onPreIconClick, onIconMouseOut, onPreIconMouseOut, onIconMouseOver, onPreIconMouseOver } = this.props;
     let icons;
@@ -135,6 +126,7 @@ export default class Input extends Component {
 Input.propTypes = {
   prefixCls: PropTypes.string,
   type: PropTypes.string,
+  autoComplete: PropTypes.string,
   size: PropTypes.oneOf(['large', 'small', 'mini']),
   length: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
@@ -145,4 +137,5 @@ Input.propTypes = {
 Input.defaultProps = {
   prefixCls: 'w-input',
   type: "text",
+  autoComplete: 'off',
 }
