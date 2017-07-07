@@ -89,7 +89,7 @@ export default class Button extends Component {
       >
         {this.isTooltip() ?
           <Tooltip content={this.showNumber(value)}>
-            <div className={`${prefixCls}-btn-inner`}></div>
+            <div style={{ backgroundColor: this.parent().props.color }} className={`${prefixCls}-btn-inner`}></div>
           </Tooltip> :
           <div className={`${prefixCls}-btn-inner`}></div>
         }

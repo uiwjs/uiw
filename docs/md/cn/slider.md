@@ -52,6 +52,32 @@ render() {
 <!--End-->
 
 
+### 设置颜色
+
+<!--DemoStart--> 
+```js
+render() {
+  return (
+    <div>
+      <Slider  
+        color="#57a2ff"
+        value={50} 
+        onChange={(value)=>console.log(`Value: ${value}`)} 
+        onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+      />
+      <Slider  
+        color="#d700da"
+        value={20} 
+        onChange={(value)=>console.log(`Value: ${value}`)} 
+        onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+      />
+    </div>
+  )
+}
+```
+<!--End-->
+
+
 ### 垂直方向
 
 <!--DemoStart--> 
@@ -191,6 +217,40 @@ render() {
 render() {
   return (
     <div>
+      <div style={{height:60}}>
+        <Slider value={[0,30]}
+          marks={{
+            [-50]:{
+              style: { color: '#007cce'},
+              label: "-50°C",
+            },
+            [-40]:{
+              style: { color: '#0094f5'},
+              label: "-40°C",
+            },
+            [-30]:"-30°C",
+            [-20]:"-20°C",
+            [-10]:"-10°C",
+            0:"0°C",
+            10:"10°C",
+            20:"20°C",
+            30:{
+              style: { color: '#f50'},
+              label: "30°C",
+            },
+            40:"40°C",
+            50:"50°C",
+          }} 
+          max={50}
+          min={-50}
+          step={10}
+          dots={true}
+          onChange={(value)=>{
+            console.log(`Value: ${value}`)
+          }} 
+          //onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+        />
+      </div>
       <div style={{height:200,width:150,display:'inline-block'}}>
         <Slider value={[0,30]}
           marks={{

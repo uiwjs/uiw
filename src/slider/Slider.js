@@ -244,7 +244,7 @@ export default class Slider extends Component {
     )
   }
   render() {
-    const { prefixCls, marks, className, style, disabled, vertical } = this.props;
+    const { prefixCls, marks, className, color, style, disabled, vertical } = this.props;
     const { firsValue, secendValue } = this.state;
     return (
       <div ref="slider" style={style}
@@ -255,7 +255,7 @@ export default class Slider extends Component {
         onClick={this.onSliderClick.bind(this)}
       >
         <div className={this.classNames(`${prefixCls}-track`)}>
-          <div ref="bar" className={`${prefixCls}-bar`}> </div>
+          <div ref="bar" style={{ backgroundColor: color }} className={`${prefixCls}-bar`}> </div>
           <Button ref="btn1" value={firsValue} onChange={this.onFirstValueChange.bind(this)} />
           {
             this.isRange() && <Button ref="btn2" value={secendValue} onChange={this.onSecondValueChange.bind(this)} />
@@ -288,6 +288,7 @@ Slider.propTypes = {
     PropTypes.array,
   ]),
   max: PropTypes.number,
+  color: PropTypes.string,
   min: PropTypes.number,
   step: PropTypes.number,
   dots: PropTypes.bool,
