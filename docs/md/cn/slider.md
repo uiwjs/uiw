@@ -2,33 +2,6 @@
 
 通过拖动滑块在一个固定区间内进行选择
 
-### 区间范围选择
-
-选择某一数值范围。
-
-<!--DemoStart--> 
-```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: [10,40]
-  }
-}
-render() {
-  return (
-    <div>
-      <Slider value={this.state.value} 
-        onChange={(e,value)=>console.log(`Value: ${value}`)} 
-        onDragChange={(e,value)=>console.log(`Drag value: ${value}`)} 
-      />
-    </div>
-  )
-}
-```
-<!--End-->
-
-
-
 ### 基本用法
 
 按钮样式的单选组合。
@@ -45,8 +18,8 @@ render() {
   return (
     <div>
       <Slider value={this.state.value} 
-        onChange={(e,value)=>console.log(`Value: ${value}`)} 
-        onDragChange={(e,value)=>console.log(`Drag value: ${value}`)} 
+        onChange={(value)=>console.log(`Value: ${value}`)} 
+        onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
       />
     </div>
   )
@@ -69,8 +42,8 @@ render() {
   return (
     <div>
       <Slider disabled value={this.state.value} 
-        onChange={(e,value)=>console.log(`Value: ${value}`)} 
-        onDragChange={(e,value)=>console.log(`Drag value: ${value}`)} 
+        onChange={(value)=>console.log(`Value: ${value}`)} 
+        onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
       />
     </div>
   )
@@ -93,12 +66,12 @@ render() {
   return (
     <div style={{height:200}}>
       <Slider disabled style={{display:'inline-block'}} vertical value={this.state.value} 
-        onChange={(e,value)=>console.log(`Value: ${value}`)} 
-        onDragChange={(e,value)=>console.log(`Drag value: ${value}`)} 
+        onChange={(value)=>console.log(`Value: ${value}`)} 
+        onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
       />
       <Slider style={{display:'inline-block'}} vertical value={70} 
-        //onChange={(e,value)=>console.log(`Value: ${value}`)} 
-        //onDragChange={(e,value)=>console.log(`Drag value: ${value}`)} 
+        //onChange={(value)=>console.log(`Value: ${value}`)} 
+        //onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
       />
     </div>
   )
@@ -136,26 +109,26 @@ render() {
           }} 
           step={10}
           dots={true}
-          onChange={(e,value)=>{
+          onChange={(value)=>{
             this.setState({
               value:value
             })
             console.log(`Value: ${value}`)
           }} 
-          onDragChange={(e,value)=>console.log(`Drag value: ${value}`)} 
+          onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
         />
       </div>
       <div style={{height:30}}>
         <Slider value={30}
           marks={true} 
           step={10}
-          onChange={(e,value)=>{
+          onChange={(value)=>{
             this.setState({
               value:value
             })
             console.log(`Value: ${value}`)
           }} 
-          onDragChange={(e,value)=>console.log(`Drag value: ${value}`)} 
+          onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
         />
       </div>
       <div style={{height:200,width:100,display:'inline-block'}}>
@@ -165,13 +138,13 @@ render() {
           }} 
           vertical
           step={10}
-          onChange={(e,value)=>{
+          onChange={(value)=>{
             this.setState({
               value:value
             })
             console.log(`Value: ${value}`,value)
           }} 
-          onDragChange={(e,value)=>console.log(`Drag value: ${value}`)} 
+          onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
         />
       </div>
       <div style={{height:200,display:'inline-block'}}>
@@ -193,13 +166,13 @@ render() {
           vertical
           step={20}
           dots={true}
-          onChange={(e,value)=>{
+          onChange={(value)=>{
             this.setState({
               value:value
             })
             console.log(`Value: ${value}`)
           }} 
-          onDragChange={(e,value)=>console.log(`Drag value: ${value}`)} 
+          onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
         />
       </div>
     </div>
@@ -208,6 +181,81 @@ render() {
 ```
 <!--End-->
 
+
+### 区间范围选择
+
+选择某一数值范围。
+
+<!--DemoStart--> 
+```js
+render() {
+  return (
+    <div>
+      <div style={{height:200,width:150,display:'inline-block'}}>
+        <Slider value={[0,30]}
+          marks={{
+            0:"0°C",
+            10:"10°C",
+            20:"20°C",
+            30:{
+              style: {
+                color: '#f50',
+              },
+              label: <strong>30°C</strong>,
+            },
+            40:"40°C",
+            50:"50°C",
+          }} 
+          max={50}
+          vertical
+          step={10}
+          dots={true}
+          onChange={(value)=>{
+            console.log(`Value: ${value}`)
+          }} 
+          //onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+        />
+      </div>
+      <div style={{height:200,display:'inline-block'}}>
+        <Slider value={[0,30]}
+          marks={{
+            [-50]:{
+              style: { color: '#007cce'},
+              label: "-50°C",
+            },
+            [-40]:{
+              style: { color: '#0094f5'},
+              label: "-40°C",
+            },
+            [-30]:"-30°C",
+            [-20]:"-20°C",
+            [-10]:"-10°C",
+            0:"0°C",
+            10:"10°C",
+            20:"20°C",
+            30:{
+              style: { color: '#f50'},
+              label: "30°C",
+            },
+            40:"40°C",
+            50:"50°C",
+          }} 
+          max={50}
+          min={-50}
+          vertical
+          step={10}
+          dots={true}
+          onChange={(value)=>{
+            console.log(`Value: ${value}`)
+          }} 
+          //onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+        />
+      </div>
+    </div>
+  )
+}
+```
+<!--End-->
 
 
 ## API
