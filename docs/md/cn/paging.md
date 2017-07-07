@@ -7,18 +7,33 @@
 基础分页。
 
 <!--DemoStart--> 
-简单的Checkboxs，使用`checked`切换选中状态。
 ```js
 render() {
   return (
     <div>
-        <Paging activePage={5} total={250} onChange={(pageNumber)=>{
-          console.log('Page: ', pageNumber);
+      <Paging activePage={5} total={250} onChange={(pageNumber)=>{
+        console.log('Page: ', pageNumber);
+        }}/>
+        <br /><br />
+      <Paging total={60} onChange={(pageNumber)=>{
+        console.log('Page: ', pageNumber);
           }}/>
-          <br /><br />
-        <Paging total={60} onChange={(pageNumber)=>{
-          console.log('Page: ', pageNumber);
-          }}/>
+    </div>
+  )
+}
+```
+<!--End-->
+
+### 只有一页
+
+<!--DemoStart--> 
+```js
+render() {
+  return (
+    <div>
+      <Paging activePage={1} total={5} onChange={(pageNumber) => { 
+        console.log(`pageNumber:${pageNumber}`)
+      }} />
     </div>
   )
 }

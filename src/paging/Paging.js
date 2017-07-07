@@ -12,7 +12,8 @@ export default class Paging extends Component {
   onPrevOrNext(ty) {
     const { total, pageSize, onChange } = this.props;
     const { activePage } = this.state;
-    if ((ty === 'prev' && activePage === 1) || (ty === 'next' && activePage === total / pageSize)) {
+    let totalPage = total / pageSize;
+    if ((ty === 'prev' && activePage === 1) || (ty === 'next' && (activePage === totalPage || activePage > totalPage))) {
       return;
     }
     let num = ty === "prev" ? activePage - 1 : activePage + 1;
@@ -77,10 +78,9 @@ export default class Paging extends Component {
     }
     items.push(
       <li key='next' onClick={() => this.onPrevOrNext('next')} className={this.classNames(`${prefixCls}-next`, {
-        [`${prefixCls}-disable`]: activePage === totalPage
+        [`${prefixCls}-disable`]: activePage === totalPage || activePage > totalPage
       })}><a>&nbsp;</a></li>
     )
-
     return (
       <ul style={style} className={this.classNames(prefixCls, className)}>
         {items}
