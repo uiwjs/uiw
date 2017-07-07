@@ -99,11 +99,30 @@ export default class Slider extends Component {
     // num，stepWidth 是转换后的值
     // 倍数
     let multiple = parseInt((num / range + 1), 10);
-    if (!dots) return num;
+    if (!dots) return num
     if (currentv % step >= step / 2) {
       return multiple * range
     } else {
       return num - rem
+    }
+  }
+  onChange(firsValue, secendValue) {
+    const { dots, onChange } = this.props;
+
+    // 相同值不触发 事件
+    if (this._firsValue === firsValue && this._secendValue === secendValue) return;
+    this._firsValue = firsValue;
+    this._secendValue = secendValue;
+
+
+    if (!dots) {
+      onChange([firsValue, secendValue])
+      return;
+    }
+    if (this.isRange()) {
+      onChange([firsValue, secendValue])
+    } else {
+      onChange(firsValue)
     }
   }
   setSliderBar(firsValue, secendValue) {
@@ -115,10 +134,13 @@ export default class Slider extends Component {
     let widthv = firsValue > secendValue ? firsValue - leftv : secendValue - leftv;
     widthv = this.setMarkPosition(widthv);
 
+
     if (value instanceof Array && value.length > 1) {
+      this.onChange(firsValue, secendValue)
       this.refs.bar.style[vertical ? 'bottom' : 'left'] = leftv + '%';
       this.refs.bar.style[vertical ? 'height' : 'width'] = widthv + '%';
     } else {
+      this.onChange(firsValue)
       this.refs.bar.style[vertical ? 'height' : 'width'] = firsValue + '%';
     }
 
@@ -133,30 +155,35 @@ export default class Slider extends Component {
       comp.refs.button.style.left = num + '%';
     }
   }
-  onChange() {
-    const { onChange, value } = this.props;
-    const { firsValue, secendValue } = this.state;
+  onDragChange() {
+    const { onDragChange } = this.props;
+    let { firsValue, secendValue } = this.state;
 
-    console.log("widthv:", firsValue, secendValue)
-    this.setSliderBar(firsValue, secendValue)
-    let _value = firsValue;
-    if (value instanceof Array) {
-      _value = []
-      _value[0] = firsValue < secendValue ? firsValue : secendValue;
-      _value[1] = firsValue < secendValue ? secendValue : firsValue;
-    }
-    onChange(_value)
+    // 百分百转换值
+    // firsValue = parseInt((min + firsValue * (max - min) / 100), 10)
+    // secendValue = parseInt((min + secendValue * (max - min) / 100), 10)
+    // 相同值不触发 事件
+    if (this.__firsValue === firsValue && this.__secendValue === secendValue) return;
+    this.__firsValue = firsValue;
+    this.__secendValue = secendValue;
+
+    onDragChange(this.isRange() ? [firsValue, secendValue] : firsValue);
   }
   onFirstValueChange(firsValue) {
+    const { secendValue } = this.state;
     this.setState({ firsValue }, () => {
       this.setButtonPosition(this.refs.btn1, firsValue);
-      this.onChange()
+      this.setSliderBar(firsValue, secendValue)
+      this.onDragChange()
+
     })
   }
   onSecondValueChange(secendValue) {
+    const { firsValue } = this.state;
     this.setState({ secendValue }, () => {
       this.setButtonPosition(this.refs.btn2, secendValue);
-      this.onChange()
+      this.setSliderBar(firsValue, secendValue)
+      this.onDragChange()
     })
   }
   isActive(num) {

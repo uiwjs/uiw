@@ -13,6 +13,7 @@ constructor(props) {
   super(props);
   this.state = {
     value: [0,30]
+    //value: [0,30]
   }
 }
 render() {
@@ -42,7 +43,7 @@ render() {
           //})
           //console.log(`Value: ${value}`)
         }} 
-        onDragChange={(e,value)=>console.log(`Drag value: ${value}`)} 
+        onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
       />
     </div>
   )

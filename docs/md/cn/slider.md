@@ -169,7 +169,7 @@ render() {
             this.setState({
               value:value
             })
-            console.log(`Value: ${value}`)
+            console.log(`Value: ${value}`,value)
           }} 
           onDragChange={(e,value)=>console.log(`Drag value: ${value}`)} 
         />
@@ -225,5 +225,5 @@ render() {
 | marks | 刻度标记，`key` 的类型必须为 `number` 且取值在闭区间 `min`, `max` 内，每个标签可以单独设置样式，当值为`Boolean`值时表示是否显示刻度 | Object/Boolean | - |
 | tooltip | 是否显示提示 | Boolean | `ture` |
 | vertical | 值为 `true` 时，`Slider` 为垂直方向 | Boolean | `false` |
-| onDragChange | 拖拽，值改变时触发 | Function(e,value) | - |
-| onChange | 值改变时触发 | Function(e,value) | - |
+| onDragChange | 拖拽，值改变时触发 | Function(value) | - |
+| onChange | 值改变时触发 | Function(value) | - |
