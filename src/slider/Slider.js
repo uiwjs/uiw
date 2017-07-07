@@ -118,7 +118,7 @@ export default class Slider extends Component {
     }
   }
   onChange(firsValue, secendValue) {
-    const { max, min, dots, onChange } = this.props;
+    const { max, min, onChange } = this.props;
     // 百分百转换值
     firsValue = parseInt((min + firsValue * (max - min) / 100), 10)
     secendValue = parseInt((min + secendValue * (max - min) / 100), 10)
@@ -128,10 +128,6 @@ export default class Slider extends Component {
     this._firsValue = firsValue;
     this._secendValue = secendValue;
 
-    if (!dots) {
-      onChange([firsValue, secendValue])
-      return;
-    }
     if (this.isRange()) {
       onChange([firsValue, secendValue])
     } else {
