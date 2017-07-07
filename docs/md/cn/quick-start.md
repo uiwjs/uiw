@@ -41,7 +41,7 @@ render() {
           //this.setState({
           //  value:value
           //})
-          //console.log(`Value: ${value}`)
+          console.log(`Value: ${value}`)
         }} 
         onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
       />

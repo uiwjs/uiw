@@ -107,8 +107,10 @@ export default class Slider extends Component {
     }
   }
   onChange(firsValue, secendValue) {
-    const { dots, onChange } = this.props;
-
+    const { max, min, dots, onChange } = this.props;
+    // 百分百转换值
+    firsValue = parseInt((min + firsValue * (max - min) / 100), 10)
+    secendValue = parseInt((min + secendValue * (max - min) / 100), 10)
     // 相同值不触发 事件
     if (this._firsValue === firsValue && this._secendValue === secendValue) return;
     this._firsValue = firsValue;
@@ -155,13 +157,17 @@ export default class Slider extends Component {
       comp.refs.button.style.left = num + '%';
     }
   }
+  // 判断是否冗余过多触发事件
+  isRedundancyEvent() {
+
+  }
   onDragChange() {
-    const { onDragChange } = this.props;
+    const { min, max, onDragChange } = this.props;
     let { firsValue, secendValue } = this.state;
 
     // 百分百转换值
-    // firsValue = parseInt((min + firsValue * (max - min) / 100), 10)
-    // secendValue = parseInt((min + secendValue * (max - min) / 100), 10)
+    firsValue = parseInt((min + firsValue * (max - min) / 100), 10)
+    secendValue = parseInt((min + secendValue * (max - min) / 100), 10)
     // 相同值不触发 事件
     if (this.__firsValue === firsValue && this.__secendValue === secendValue) return;
     this.__firsValue = firsValue;
