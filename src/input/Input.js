@@ -22,7 +22,17 @@ export default class Input extends Component {
     }
     onKeyUp(e)
   }
-
+  // Input-Number 等其它组件使用的方法
+  focus() {
+    setTimeout(() => {
+      (this.refs.input || this.refs.textarea).focus();
+    });
+  }
+  blur() {
+    setTimeout(() => {
+      (this.refs.input || this.refs.textarea).blur();
+    });
+  }
   handleChange(e) {
     const { onChange, length } = this.props;
     let val = e.target.value
