@@ -18,9 +18,9 @@ export default class Input extends Component {
   handleKeyUp(e) {
     const { onSearch, onKeyUp } = this.props;
     if (e.key === "Enter") {
-      onSearch && onSearch(e.target.value, e)
+      onSearch(e, e.target.value)
     }
-    onKeyUp && onKeyUp(e)
+    onKeyUp(e)
   }
 
   handleChange(e) {
@@ -31,29 +31,12 @@ export default class Input extends Component {
       e.target.value = val;
     }
     this.setState({ value: val })
-    onChange && onChange(e, val)
+    onChange(e, val)
   }
   handleClick(type, e) {
     if (this.props[type]) {
       this.props[type](e, this.state.value)
     }
-  }
-
-  focus() {
-    console.log("--25->>>")
-    setTimeout(() => {
-      (this.refs.input || this.refs.textarea).focus();
-    });
-  }
-
-  blur() {
-    console.log("---23>>>")
-    setTimeout(() => {
-      (this.refs.input || this.refs.textarea).blur();
-    });
-  }
-  onInput(e) {
-    console.log(e, this)
   }
   renderIcon(type) {
     const { prefixCls, preIcon, icon, onIconClick, onPreIconClick, onIconMouseOut, onPreIconMouseOut, onIconMouseOver, onPreIconMouseOver } = this.props;
@@ -137,7 +120,6 @@ export default class Input extends Component {
           placeholder={!value ? this.state.placeholder : ''}
           onChange={this.handleChange.bind(this)}
           onKeyUp={this.handleKeyUp.bind(this)}
-          onInput={this.onInput.bind(this)}
         />
       </div>
     );
@@ -152,11 +134,16 @@ Input.propTypes = {
   length: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   preIcon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  onChange: PropTypes.func,
   onSearch: PropTypes.func,
+  onKeyUp: PropTypes.func,
 }
 
 Input.defaultProps = {
   prefixCls: 'w-input',
   type: "text",
   autoComplete: 'off',
+  onChange() { },
+  onSearch() { },
+  onKeyUp() { },
 }
