@@ -6,15 +6,14 @@ export default class Input extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: props.value
+      value: props.value,
+      placeholder: props.placeholder
     }
   }
-  componentWillReceiveProps(props) {
-    if (props.value !== this.props.value) {
-      this.setState({
-        value: props.value
-      });
-    }
+  componentWillReceiveProps(...props) {
+    this.setState({
+      ...props
+    });
   }
   handleKeyUp(e) {
     const { onSearch, onKeyUp } = this.props;
@@ -38,6 +37,23 @@ export default class Input extends Component {
     if (this.props[type]) {
       this.props[type](e, this.state.value)
     }
+  }
+
+  focus() {
+    console.log("--25->>>")
+    setTimeout(() => {
+      (this.refs.input || this.refs.textarea).focus();
+    });
+  }
+
+  blur() {
+    console.log("---23>>>")
+    setTimeout(() => {
+      (this.refs.input || this.refs.textarea).blur();
+    });
+  }
+  onInput(e) {
+    console.log(e, this)
   }
   renderIcon(type) {
     const { prefixCls, preIcon, icon, onIconClick, onPreIconClick, onIconMouseOut, onPreIconMouseOut, onIconMouseOver, onPreIconMouseOver } = this.props;
@@ -71,7 +87,7 @@ export default class Input extends Component {
     )
   }
   render() {
-    const { prefixCls, className, style, type, size, length, preIcon, icon,
+    const { prefixCls, className, style, type, size, length, preIcon, icon, value,
       onIconClick,
       onPreIconClick,
       onIconMouseOut,
@@ -92,6 +108,8 @@ export default class Input extends Component {
       <textarea
         className={this.classNames(cls, `${prefixCls}-inner`)}
         {...other}
+        value={value}
+        placeholder={!value ? this.state.placeholder : ''}
         ref="textarea"
         type={type}
         style={style}
@@ -115,8 +133,11 @@ export default class Input extends Component {
             [`${prefixCls}-p-left`]: preIcon,
             [`${prefixCls}-p-right`]: icon
           })}
+          value={value}
+          placeholder={!value ? this.state.placeholder : ''}
           onChange={this.handleChange.bind(this)}
           onKeyUp={this.handleKeyUp.bind(this)}
+          onInput={this.onInput.bind(this)}
         />
       </div>
     );
