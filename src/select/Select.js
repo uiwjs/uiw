@@ -168,7 +168,7 @@ export default class Select extends Component {
     this.showCloseIcon("arrow-down")
   }
   render() {
-    const { prefixCls, style, name, multiple, filterable, disabled, children } = this.props;
+    const { prefixCls, style, size, name, multiple, filterable, disabled, children } = this.props;
     const { visible, inputWidth, selectedLabel } = this.state;
     return (
       <div
@@ -181,6 +181,7 @@ export default class Select extends Component {
           type="text"
           ref="input"
           name={name}
+          size={size}
           disabled={disabled}
           value={selectedLabel}
           readOnly={!filterable || multiple}
@@ -221,6 +222,7 @@ Select.propTypes = {
   multiple: PropTypes.bool,   // 是否可多选
   clearable: PropTypes.bool,  // 清空单选
   value: PropTypes.string,    // 是否可多选
+  size: PropTypes.oneOf(['large', 'small', 'default', 'mini']),
 }
 
 Select.defaultProps = {
