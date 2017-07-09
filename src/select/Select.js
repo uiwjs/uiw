@@ -136,10 +136,36 @@ export default class Select extends Component {
     this.toggleMenu(e)
   }
   onIconClick(e) {
+    if (this.state.icon === 'close') {
+      this.setState({
+        selectedLabel: '',
+        icon: 'arrow-down'
+      })
+      return;
+    }
     if (this.refs.input) {
       this.refs.input.focus();
     }
     this.toggleMenu(e)
+  }
+  showCloseIcon(type) {
+    if (this.state.selectedLabel && this.props.clearable) {
+      this.setState({
+        icon: type
+      })
+    }
+  }
+  onIconMouseOver(e) {
+    this.showCloseIcon("close")
+  }
+  onIconMouseOut(e) {
+    this.showCloseIcon("arrow-down")
+  }
+  onMouseEnter(e) {
+    this.showCloseIcon("close")
+  }
+  onMouseLeave(e) {
+    this.showCloseIcon("arrow-down")
   }
   render() {
     const { prefixCls, style, name, multiple, filterable, disabled, children } = this.props;
@@ -160,7 +186,11 @@ export default class Select extends Component {
           readOnly={!filterable || multiple}
           placeholder={this.state.placeholder}
           onMouseDown={this.onMouseDown.bind(this)}
+          onMouseEnter={this.onMouseEnter.bind(this)}
+          onMouseLeave={this.onMouseLeave.bind(this)}
           onIconClick={this.onIconClick.bind(this)}
+          onIconMouseOut={this.onIconMouseOut.bind(this)}
+          onIconMouseOver={this.onIconMouseOver.bind(this)}
           onChange={(e, value) => this.setState({ selectedLabel: value })}
           icon={this.state.icon}
         />
