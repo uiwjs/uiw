@@ -11,6 +11,10 @@ export default class Select extends Component {
   }
   isSelected() {
     const { selected } = this.parent().state;
+    const { value } = this.parent().props;
+    if (value === this.props.value) {
+      return value === this.props.value;
+    }
     if (Object.prototype.toString.call(selected) === '[object Object]') {
       return selected.props === this.props;
     } else if (Array.isArray(selected)) {
