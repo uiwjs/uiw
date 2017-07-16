@@ -116,6 +116,11 @@ export default class HeatMap extends Component {
     }
 
   }
+  onMouseLeave() {
+    this.setState({
+      tooltipShow: false, content: null
+    })
+  }
   onClick(e, curdate, curdt) {
     const { onClick } = this.props;
     onClick(e, curdate, curdt)
@@ -199,7 +204,7 @@ export default class HeatMap extends Component {
     let { tooltipShow, content } = this.state;
     const cls = this.classNames(prefixCls, className);
     return (
-      <div className={`${prefixCls}-wrapper`} >
+      <div className={`${prefixCls}-wrapper`} onMouseLeave={this.onMouseLeave.bind(this)}>
         {tooltip &&
           <div ref="tooltipRefs" className={`${prefixCls}-popup`}>
             <Tooltip trigger="click" ref="tooltipConRefs" content={content || ` `} visible={tooltipShow}>
