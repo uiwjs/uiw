@@ -1,15 +1,12 @@
-// 离开
-.w-animate-fade-in-leave {}
-.w-animate-fade-in-leave.w-animate-fade-in-leave-active {
-  animation-name: fadeOut;
+// 出现
+.w-animate-fade-in-enter,.w-animate-fade-in-appear{
+  animation-name: fadeIn;
   animation-duration: 0.25s;
   animation-fill-mode: both;
 }
-// 出现
-.w-animate-fade-in-appear {}
-.w-animate-fade-in-appear.w-animate-fade-in-appear-active,
-.w-animate-fade-in-enter.w-animate-fade-in-enter-active {
-  animation-name: fadeIn;
+// 离开
+.w-animate-fade-in-leave {
+  animation-name: fadeOut;
   animation-duration: 0.25s;
   animation-fill-mode: both;
 }
@@ -23,18 +20,14 @@
   100%{opacity: 0; }
 }
 
-// 离开
-.w-animate-fade-down-leave {}
-.w-animate-fade-down-leave.w-animate-fade-down-leave-active {
-  animation-name: fadeOutDown;
+.w-animate-fade-down-enter,.w-animate-fade-down-appear {
+  animation-name: fadeInDown;
   animation-duration: 0.25s;
   animation-fill-mode: both;
 }
-// 出现
-.w-animate-fade-down-appear {}
-.w-animate-fade-down-appear.w-animate-fade-down-appear-active,
-.w-animate-fade-down-enter.w-animate-fade-down-enter-active {
-  animation-name: fadeInDown;
+
+.w-animate-fade-down-leave {
+  animation-name: fadeOutDown;
   animation-duration: 0.25s;
   animation-fill-mode: both;
 }
@@ -49,69 +42,58 @@
   100%{opacity: 0; transform: translate3d(0, 100%, 0); }
 }
 
-// 离开
-.w-animate-fade-left-leave {}
-.w-animate-fade-left-leave.w-animate-fade-left-leave-active {
-  animation-name: fadeOutLeft;
-  animation-duration: 0.25s;
-  animation-fill-mode: both;
-}
 // 出现
-.w-animate-fade-left-appear {}
-.w-animate-fade-left-appear.w-animate-fade-left-appear-active,
-.w-animate-fade-left-enter.w-animate-fade-left-enter-active {
+.w-animate-fade-left-enter,.w-animate-fade-left-appear{
   animation-name: fadeInLeft;
   animation-duration: 0.25s;
   animation-fill-mode: both;
 }
-
-@keyframes fadeOutLeft{
-  0%{opacity: 1; }
-  100%{opacity: 0 ;transform: translate3d(-100%, 0, 0) ;}
-}
-
-@keyframes fadeInLeft{
-  0%{opacity: 0; transform: translate3d(-100%, 0, 0); }
-  100%{opacity: 1; transform: none; }
-}
 // 离开
-.w-animate-fade-right-leave {}
-.w-animate-fade-right-leave.w-animate-fade-right-leave-active {
-  animation-name: fadeOutRight;
+.w-animate-fade-left-leave {
+  animation-name: fadeOutLeft;
   animation-duration: 0.25s;
   animation-fill-mode: both;
 }
+@keyframes fadeOutLeft{
+  0%{opacity: 1; }
+  100%{opacity:0 ;transform: translate3d(-100%, 0, 0) ;}
+}
+
+@keyframes fadeInLeft{
+  0%{opacity: 0;left: -100%;}
+  100%{opacity: 1;left: 0px;}
+}
+
 // 出现
-.w-animate-fade-right-appear {}
-.w-animate-fade-right-appear.w-animate-fade-right-appear-active,
-.w-animate-fade-right-enter.w-animate-fade-right-enter-active {
+.w-animate-fade-right-enter,.w-animate-fade-right-appear{
   animation-name: fadeInRight;
   animation-duration: 0.25s;
   animation-fill-mode: both;
 }
-
+// 离开
+.w-animate-fade-right-leave {
+  animation-name: fadeOutRight;
+  animation-duration: 0.25s;
+  animation-fill-mode: both;
+}
 @keyframes fadeOutRight{
   0%{opacity: 1;}
   100%{opacity: 0; transform: translate3d(100%, 0, 0);}
 }
 
 @keyframes fadeInRight{
-  0%{opacity: 0; transform: translate3d(100%, 0, 0);}
-  100%{opacity: 1; transform: none;}
+  0%{opacity: 0;right: -100%;}
+  100%{opacity: 1;right: 0px;}
 }
-
-// 离开
-.w-animate-fade-up-leave {}
-.w-animate-fade-up-leave.w-animate-fade-up-leave-active {
-  animation-name: fadeOutUp;
+// 出现
+.w-animate-fade-up-enter,.w-animate-fade-up-appear{
+  animation-name: fadeInUp;
   animation-duration: 0.25s;
   animation-fill-mode: both;
 }
-// 出现
-.w-animate-fade-up-appear {}
-.w-animate-fade-up-appear.w-animate-fade-up-appear-active,
-.w-animate-fade-up-enter.w-animate-fade-up-enter-active {
-  animation-name: fadeInUp;
+// 离开
+.w-animate-fade-up-leave {
+  animation-name: fadeOutUp;
   animation-duration: 0.25s;
   animation-fill-mode: both;
 }
