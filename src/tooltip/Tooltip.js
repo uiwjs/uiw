@@ -24,6 +24,11 @@ export default class Tooltip extends Component {
     if (this.props.content !== nextProps.content) {
       this.setState({
         content: nextProps.content
+      }, () => {
+        // console
+        this.setState({
+          stylesPopup: this.styles()
+        })
       })
     }
     if (this.props.visible !== nextProps.visible) {

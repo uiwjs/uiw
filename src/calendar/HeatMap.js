@@ -9,7 +9,8 @@ export default class HeatMap extends Component {
     this.state = {
       days: this.props.days,
       tooltipShow: false,
-      currentData: {}
+      currentData: {},
+      content: null  // tooltip展示内容
     }
     this.onMouseOver = this.onMouseOver.bind(this)
     this.onClick = this.onClick.bind(this)
@@ -60,7 +61,7 @@ export default class HeatMap extends Component {
     let curdt = {};
     for (var i = 0; i < values.length; i++) {
       let curdate = new Date(values[i]['date']);
-      curdate = `${curdate.getFullYear()}-${curdate.getMonth() + 1}-${curdate.getDate()}`;
+      curdate = `${curdate.getFullYear()}/${curdate.getMonth() + 1}/${curdate.getDate()}`;
       if (curdate === date) {
         curdt = values[i];
         break;
@@ -74,24 +75,24 @@ export default class HeatMap extends Component {
     }
     return curdt
   }
-  onMouseOver(e, curdatestr, curdt) {
-
+  onMouseOver(e, curdatestr, curdt, refname) {
     const { onMouseOver, emptyMessage, message } = this.props;
+    const { tooltipRefs } = this.refs;
+    // const { currentData } = this.state;
 
-    onMouseOver(e, curdatestr, curdt);
-
-    const { tooltipRefs, tooltipConRefs } = this.refs;
-    console.log("emptyMessage::", emptyMessage)
     // 空消息不提示
-    if (!emptyMessage && !curdt.count) return;
+    if (!emptyMessage && !curdt.count) {
+      return this.setState({
+        tooltipShow: false,
+        content: null
+      })
+    };
 
     if (tooltipRefs && e.target) {
-      clearTimeout(this.timeoutCurData);
+      // clearTimeout(this.timeoutCurData);
       tooltipRefs.style.marginLeft = e.target.x.animVal.value + "px"
       tooltipRefs.style.marginTop = e.target.y.animVal.value + "px";
-      tooltipRefs.style.display = "inline-block";
       let tooltipConten = '';
-
       if (curdt.count && curdt.count > 0) {
         let content = curdt.content;
         if (message) {
@@ -105,20 +106,18 @@ export default class HeatMap extends Component {
         tooltipConten = emptyMessage;
       }
 
-      tooltipConRefs.setState({ content: tooltipConten });
-      console.log("curdt::", curdt)
+      this.setState({
+        tooltipShow: (curdt.count < 1 || !curdt.content || curdt.content.length < 1) ? false : true,
+        content: tooltipConten
+      }, () => {
+        onMouseOver(e, curdatestr, curdt);
+      })
 
-      // this.timeoutCurData = setTimeout(()=>{
-      //   this.setState({
-      //     currentData:curdt
-      //   })
-      // },200)
     }
+
   }
   onClick(e, curdate, curdt) {
     const { onClick } = this.props;
-    // let _curdt = curdt ;
-    // curdate = curdate ;
     onClick(e, curdate, curdt)
   }
 
@@ -127,6 +126,7 @@ export default class HeatMap extends Component {
     const { currentData } = this.state;
     if (currentData.count && currentData.count > 0) {
       let content = currentData.content;
+      // console.log("content::", content)
       if (message) return message(content)
       return content.map((item, idx) => {
         return <div key={idx}>{item}</div>
@@ -134,11 +134,20 @@ export default class HeatMap extends Component {
     }
     return emptyMessage
   }
-  render() {
-    const { prefixCls, weekLables, monthLables, panelColors, endDate, className } = this.props;
+  renderPanelColors() {
+    let width = 14, height = 14, col = 16, rectPanelColors = [];
+    const { panelColors } = this.props;
+    // 颜色说明栏
+    let nums = Object.keys(panelColors);
+    for (let i = 0; i < nums.length; i++) {
+      let xl = i * col;
+      rectPanelColors.push(<rect key={i} width={width} height={height} x={xl} y="0" fill={panelColors[nums[i]]}></rect>)
+    }
+    return rectPanelColors;
+  }
+  renderPanelHeader(ty) {
+    const { endDate, weekLables, monthLables } = this.props;
     let { days } = this.state;
-    const cls = this.classNames(prefixCls, className);
-
     let width = 14, height = 14, dayDate = [], oneday = 86400000;
     let timestamp = endDate.getTime();
     let curweek = new Date(timestamp).getDay();
@@ -149,17 +158,19 @@ export default class HeatMap extends Component {
     }
     dayDate = this.numberSort(dayDate);
     // 日历
-    var rectdays = [], rectweeks = [], rectMonth = [], rectPanelColors = [], col = 16;
+    var rectdays = [], rectweeks = [], rectMonth = [], col = 16;
     for (let i = 0; i < days; i++) {
       let xl = parseInt(i / 7, 10) * col;
       let yl = 21 + parseInt(i % 7, 10) * col;
       let curdate = new Date(dayDate[i]);
-      let curdatestr = `${curdate.getFullYear()}-${curdate.getMonth() + 1}-${curdate.getDate()}`;
+      let curdatestr = `${curdate.getFullYear()}/${curdate.getMonth() + 1}/${curdate.getDate()}`;
       let curdt = this.isCurrentData(curdatestr);
+      // console.log("curdt", curdt)
       // 日方块
       rectdays.push(<rect
         data-date={curdatestr}
-        key={i} fill={curdt.color}
+        key={i}
+        fill={curdt.color}
         x={col + xl}
         y={yl}
         onClick={(e) => this.onClick(e, curdatestr, curdt)}
@@ -174,27 +185,37 @@ export default class HeatMap extends Component {
         rectMonth.push(<text key={i} x={xl + 12}> {monthLables[parseInt(curdate.getMonth(), 10)]} </text>)
       }
     }
-    // 颜色说明栏
-    let nums = Object.keys(panelColors);
-    for (let i = 0; i < nums.length; i++) {
-      let xl = i * col;
-      rectPanelColors.push(<rect key={i} width={width} height={height} x={xl} y="0" fill={panelColors[nums[i]]}></rect>)
+    if (ty === 'week') {
+      return rectweeks
+    } else if (ty === 'month') {
+      return rectMonth
+    } else if (ty === 'day') {
+      return rectdays
     }
+
+  }
+  render() {
+    const { prefixCls, tooltip, className } = this.props;
+    let { tooltipShow, content } = this.state;
+    const cls = this.classNames(prefixCls, className);
     return (
       <div className={`${prefixCls}-wrapper`} >
-        <div ref="tooltipRefs" className={`${prefixCls}-popup`}>
-          <Tooltip ref="tooltipConRefs" content={this.renderTooltip() || ` `} visible={true}>
-          </Tooltip>
-        </div>
+        {tooltip &&
+          <div ref="tooltipRefs" className={`${prefixCls}-popup`}>
+            <Tooltip trigger="click" ref="tooltipConRefs" content={content || ` `} visible={tooltipShow}>
+            </Tooltip>
+          </div>
+        }
         <svg className={cls} width={`100%`} height="155px">
           <g className={`${prefixCls}-week`} transform="translate(0, 10)">
-            {rectweeks}
+            {this.renderPanelHeader('week')}
           </g>
-          <g className={`${prefixCls}-month`} transform={`translate(${col}, 14)`}>
-            {rectMonth}
+          <g className={`${prefixCls}-month`} transform={`translate(16, 14)`}>
+            {this.renderPanelHeader('month')}
           </g>
-          <g transform="translate(16, 138)"> {rectPanelColors} </g>
-          {rectdays}
+          <g transform="translate(16, 138)"> {this.renderPanelColors()} </g>
+          <g>{this.renderPanelHeader('day')}
+          </g>
         </svg>
       </div>
     );
@@ -205,6 +226,7 @@ HeatMap.propTypes = {
   weekLables: PropTypes.object,
   monthLables: PropTypes.array,
   values: PropTypes.array,
+  tooltip: PropTypes.bool,
   onClick: PropTypes.func,
   onMouseOver: PropTypes.func,
   days: PropTypes.number,
@@ -216,9 +238,10 @@ HeatMap.propTypes = {
 
 HeatMap.defaultProps = {
   prefixCls: "w-heatmap",
+  tooltip: true,
   values: [],
-  onClick: value => (value),
-  onMouseOver: value => (value),
+  onClick() { },
+  onMouseOver() { },
   endDate: new Date(),
   // 默认选填选项  周标签显示
   weekLables: { 1: 'M', 3: 'W', 5: 'F' },
