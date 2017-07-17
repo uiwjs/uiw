@@ -11,9 +11,31 @@ constructor(props) {
 
   this.state = {
     values:[
-      { date: '2017-05-02',  count:2, content:['毕竟时间精力有限'] },
-      { date: '2017-05-04',  count:22, content:['我有一个大胆的想法'] },
-      { date: '2017-05-14',  count:8, content:['也许差别不是那么大吧？'] },
+      { date: '2016-01-11', count:2, content:['一条消息来了！','一条消息来了！'] },
+      { date: '2016-04-11', count:2, content:['一条消息来了！'] },
+      { date: '2016-05-01', count:5, content:['需要显示的数据'] },
+      { date: '2016-05-02', count:5, content:['空的没有消息'] },
+      { date: '2016-05-04', count:11, content:['些放弃的人会这样想'] },
+      { date: '2016-05-14', count:31, content:['需要显示的数据2'] },
+      { date: '2016-05-16', count:2, content:['些放弃的人会这样想3'] },
+      { date: '2016-05-17', count:2, content:['生活中根本就用不到吧？'] },
+      { date: '2016-05-18', count:2, content:['也许差别不是那么大吧？'] },
+      { date: '2016-05-19', count:8, content:['您可以直接在'] },
+      { date: '2016-05-20', count:6, content:['我有一个大胆的想法'] },
+      { date: '2016-05-21', count:41, content:['毕竟时间精力有限'] },
+      { date: '2016-05-22', count:6, content:['友谊赛事。'] },
+      { date: '2017-04-11', count:2, content:['一条消息来了！'] },
+      { date: '2017-05-01', count:5, content:['需要显示的数据'] },
+      { date: '2017-05-02', count:5, content:['空的没有消息'] },
+      { date: '2017-05-04', count:11, content:['些放弃的人会这样想'] },
+      { date: '2017-05-14', count:31, content:['需要显示的数据2'] },
+      { date: '2017-05-16', count:2, content:['些放弃的人会这样想3'] },
+      { date: '2017-05-17', count:2, content:['生活中根本就用不到吧？'] },
+      { date: '2017-05-18', count:2, content:['也许差别不是那么大吧？'] },
+      { date: '2017-05-19', count:8, content:['您可以直接在'] },
+      { date: '2017-05-20', count:6, content:['我有一个大胆的想法'] },
+      { date: '2017-05-21', count:41, content:['毕竟时间精力有限'] },
+      { date: '2017-05-22', count:6, content:['友谊赛事。'] },
     ]
   }
 }
@@ -22,7 +44,7 @@ render() {
   return (
     <div>
         <CalendarHeatMap 
-          endDate={new Date('2017-05-19')} // 截止日期
+          endDate={new Date('2017/05/19')} // 截止日期
           monthLables={
             // 默认选填选项 月份
             ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
@@ -30,6 +52,7 @@ render() {
           weekLables={{  // 默认选填选项  周
             1:'一', 3:'三', 5:'五'
           }}
+          //tooltip={false}
           // days={
           //   //设置显示多少个空格, 默认不填参数，将自适应
           //   365
@@ -58,17 +81,6 @@ render() {
         <Button size="small" onClick={()=>{
           this.setState({
             values:[
-              { date: '2017-03-11', count:2, content:['一条消息来了！'] },
-              { date: '2017-03-01', count:5, content:['需要显示的数据'] },
-              { date: '2017-04-02', count:5, content:['空的没有消息'] },
-              { date: '2017-04-14', count:11, content:['些放弃的人会这样想'] },
-            ]
-          })
-        }}>切换活跃记录</Button> &nbsp;
-
-        <Button size="small" onClick={()=>{
-          this.setState({
-            values:[
               { date: '2017-04-11', count:2, content:['一条消息来了！'] },
               { date: '2017-05-01', count:5, content:['需要显示的数据'] },
               { date: '2017-05-02', count:5, content:['空的没有消息'] },
@@ -81,6 +93,17 @@ render() {
               { date: '2017-05-20', count:6, content:['我有一个大胆的想法'] },
               { date: '2017-05-21', count:41, content:['毕竟时间精力有限'] },
               { date: '2017-05-22', count:6, content:['友谊赛事。'] },
+            ]
+          })
+        }}>切换活跃记录</Button> &nbsp;
+
+        <Button size="small" onClick={()=>{
+          this.setState({
+            values:[
+              { date: '2017-03-11', count:2, content:['一条消息来了！'] },
+              { date: '2017-03-01', count:5, content:['需要显示的数据'] },
+              { date: '2017-04-02', count:5, content:['空的没有消息'] },
+              { date: '2017-04-14', count:11, content:['些放弃的人会这样想'] },
             ]
           })
         }}>切换活跃记录2</Button>
@@ -97,6 +120,7 @@ render() {
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | values | 需要显示的数据，必填 | Object | - |
+| tooltip | 需要显示的数据，必填 | Boolean | - |
 | endDate | 截止日期 | Date | - |
 | onMouseOver | 鼠标滑过的事件 | Function(e, date, result) | - |
 | onClick | 鼠标点击单元格的事件 | Function(e, date, result) | - |

@@ -251,8 +251,8 @@ render() {
   const {visible} = this.state;
   return (
     <div>
-    <Tooltip visible={visible} content="文字提示"  style={{marginRight:"20px"}}>
-      <div>手动控制状态的展示</div>
+    <Tooltip trigger="click" visible={visible} content="文字提示"  style={{marginRight:"20px"}}>
+      <div>手动控</div>
     </Tooltip>
     <Button onClick={()=>{
         this.setState({

@@ -254,13 +254,13 @@ render() {
   const ButtonGroup = Button.Group;
   return (
     <div>
-        <Button size="small" type="default">  默认样式 </Button>
-        <Button size="small" type="primary"> （首选项）Primary </Button>
-        <Button size="small" type="success"> （成功）Success </Button>
-        <Button size="small" type="info"> （一般信息）Info </Button>
-        <Button size="small" type="warn"> （警告）Warning </Button>
-        <Button size="small" type="danger"> （危险）Danger </Button>
-        <Button size="small" type="link"> (超连接样式)link </Button>
+        <Button active size="small" type="default">  默认样式 </Button>
+        <Button active size="small" type="primary"> （首选项）Primary </Button>
+        <Button active size="small" type="success"> （成功）Success </Button>
+        <Button active size="small" type="info"> （一般信息）Info </Button>
+        <Button active size="small" type="warn"> （警告）Warning </Button>
+        <Button active size="small" type="danger"> （危险）Danger </Button>
+        <Button active size="small" type="link"> (超连接样式)link </Button>
     </div>
   )
 }
@@ -275,12 +275,12 @@ render() {
   const ButtonGroup = Button.Group;
   return (
     <div>
-        <Button size="small" active type="default">  默认样式 </Button>
-        <Button size="small" active type="primary"> （首选项）Primary </Button>
-        <Button size="small" active type="success"> （成功）Success </Button>
-        <Button size="small" active type="info"> （一般信息）Info </Button>
-        <Button size="small" active type="warn"> （警告）Warning </Button>
-        <Button size="small" active type="danger"> （危险）Danger </Button>
+        <Button size="small" disabled type="default">  默认样式 </Button>
+        <Button size="small" disabled type="primary"> （首选项）Primary </Button>
+        <Button size="small" disabled type="success"> （成功）Success </Button>
+        <Button size="small" disabled type="info"> （一般信息）Info </Button>
+        <Button size="small" disabled type="warn"> （警告）Warning </Button>
+        <Button size="small" disabled type="danger"> （危险）Danger </Button>
     </div>
   )
 }
@@ -330,12 +330,12 @@ render() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| size | `large`, `default`, `small`, `mini` |string | - |
-| type | `default`,`primary`,`success`,`info`,`warn`,`error`,`danger` |string | - |
-| htmlType | 设置 `button` 原生的 `type` 值，可选值请参考 [HTML 标准](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) |string | `button` |
-| icon | 设置按钮的图标类型 |string | - |
-| block | 通过设置属性 block 可将按钮宽度设置为 100%，（块级元素），常用于弹窗内操作按钮。 |boolean | false |
-| disabled | 禁用状态 |boolean | false |
-| active | 激活状态，其表现为被按压下去（底色更深、边框夜色更深、向内投射阴影）。 |boolean | false |
-| loading | 加载中状态 | boolean | false |
+| size | `large`, `default`, `small`, `mini` |String | - |
+| type | `default`,`primary`,`success`,`info`,`warn`,`error`,`danger` |String | - |
+| htmlType | 设置 `button` 原生的 `type` 值，可选值请参考 [HTML 标准](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) |String | `button` |
+| icon | 设置按钮的图标类型 |String | - |
+| block | 通过设置属性 block 可将按钮宽度设置为 100%，（块级元素），常用于弹窗内操作按钮。 |Boolean | false |
+| disabled | 禁用状态 |Boolean | false |
+| active | 激活状态，其表现为被按压下去（底色更深、边框夜色更深、向内投射阴影）。 |Boolean | false |
+| loading | 加载中状态 | Boolean | false |
 | onClick | click 事件的 handler |function | - |
