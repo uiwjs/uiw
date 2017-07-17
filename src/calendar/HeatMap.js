@@ -93,21 +93,20 @@ export default class HeatMap extends Component {
       tooltipRefs.style.marginLeft = e.target.x.animVal.value + "px"
       tooltipRefs.style.marginTop = e.target.y.animVal.value + "px";
       let tooltipConten = '';
-      if (curdt.count && curdt.count > 0) {
-        let content = curdt.content;
-        if (message) {
-          tooltipConten = message(content);
-        } else {
-          tooltipConten = content.map((item, idx) => {
-            return <div key={idx}>{item}</div>
-          })
-        }
+      let content = curdt.content;
+      if (message) {
+        tooltipConten = message(content, curdt);
+      } else if (content) {
+        tooltipConten = content.map((item, idx) => {
+          return <div key={idx}>{item}</div>
+        })
       } else {
         tooltipConten = emptyMessage;
       }
 
       this.setState({
-        tooltipShow: (curdt.count < 1 || !curdt.content || curdt.content.length < 1) ? false : true,
+        // tooltipShow: (curdt.count < 1 || !curdt.content || curdt.content.length < 1) ? false : true,
+        tooltipShow: true,
         content: tooltipConten
       }, () => {
         onMouseOver(e, curdatestr, curdt);
@@ -235,7 +234,7 @@ HeatMap.propTypes = {
   onClick: PropTypes.func,
   onMouseOver: PropTypes.func,
   days: PropTypes.number,
-  emptyMessage: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+  emptyMessage: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.bool]),
   message: PropTypes.func,
   endDate: PropTypes.object,
   panelColors: PropTypes.object,

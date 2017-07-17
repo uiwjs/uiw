@@ -64,12 +64,19 @@ render() {
             12:"#239A3B",
             32:"#196127",
           }}
-          message={(content)=>{
-              return content.map((item,idx)=>{
-                return <div key={idx}>{item}</div>
-              })
+          message={(content,dt)=>{
+            console.log("content::",content,dt)
+            if(!content) {
+
+              return dt.date
+            }
+
+            return content.map((item,idx)=>{
+              return <div key={idx}>{item}</div>
+            })
           }}
           //emptyMessage="空的没有消息!"
+          emptyMessage={true}
           values={this.state.values} // 需要显示的数据，必填
           onMouseOver={(e,date,result)=>{
             //console.log("onMouseOver::",date,result)
