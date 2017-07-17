@@ -11,8 +11,8 @@ export default class Tooltip extends Component {
       content: props.content,
       stylesPopup: {}
     }
-    this.showTooltip = this.showTooltip.bind(this);
     this.hideTooltip = this.hideTooltip.bind(this);
+    this.showTooltip = this.showTooltip.bind(this);
     this.styles = this.styles.bind(this);
   }
   componentDidMount() {
@@ -75,7 +75,13 @@ export default class Tooltip extends Component {
     if (isDelay === true) {
       this.setState({
         showTooltip: !showTooltip
+      }, () => {
+        this.setState({
+          stylesPopup: this.styles()
+        })
       })
+
+
       onVisibleChange && onVisibleChange(false)
     } else {
       this.leaveTime = setTimeout(() => {
@@ -176,6 +182,10 @@ export default class Tooltip extends Component {
         if (leaveDelay) {
           this.setState({
             showTooltip: true
+          }, () => {
+            this.setState({
+              stylesPopup: this.styles()
+            })
           })
         }
         clearTimeout(this.clickLeaveTimeout)
