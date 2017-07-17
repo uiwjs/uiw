@@ -281,6 +281,7 @@ render() {
         <Button size="small" disabled type="info"> （一般信息）Info </Button>
         <Button size="small" disabled type="warn"> （警告）Warning </Button>
         <Button size="small" disabled type="danger"> （危险）Danger </Button>
+        <Button size="small" disabled type="link"> (超连接样式)link </Button>
     </div>
   )
 }
