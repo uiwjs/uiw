@@ -86,11 +86,11 @@ render() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| separator | 分隔符自定义 | string、ReactNode | `/` |
+| separator | 分隔符自定义 | String、ReactNode | `/` |
 
 ### Breadcrumb.Item
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| separator | 分隔符自定义，子组件可以单独定义不同的分隔符。 | string、ReactNode | `/` |
-| href | 定义超链接， 定义了 `href` 参数，`Item` 上的参数就全部是超链原始属性。 | string、ReactNode | `/` |
+| separator | 分隔符自定义，子组件可以单独定义不同的分隔符。 | String、ReactNode | `/` |
+| href | 定义超链接， 定义了 `href` 参数，`Item` 上的参数就全部是超链原始属性。 | String、ReactNode | `/` |
