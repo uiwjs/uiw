@@ -27,19 +27,6 @@ function isTimeValid(props, propName, componentName) {
 }
 
 export default class BasePicker extends Component {
-  static propTypes = {
-    prefixCls: PropTypes.string,
-    placeholder: PropTypes.string,
-    disabled: PropTypes.bool,
-    hideDisabled: PropTypes.bool,
-    readOnly: PropTypes.bool,
-    value: (props, propName, componentName) => isTimeValid(props, propName, componentName),
-  }
-  static defaultProps = {
-    placeholder: '选择时间',
-    readOnly: false,
-    disabled: false,
-  }
   constructor(props, _type, state) {
     super(props);
     this.type = _type;
@@ -173,4 +160,18 @@ export default class BasePicker extends Component {
       </span>
     );
   }
+}
+
+BasePicker.propTypes = {
+  prefixCls: PropTypes.string,
+  placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
+  hideDisabled: PropTypes.bool,
+  readOnly: PropTypes.bool,
+  value: (props, propName, componentName) => isTimeValid(props, propName, componentName),
+}
+BasePicker.defaultProps = {
+  placeholder: '选择时间',
+  readOnly: false,
+  disabled: false,
 }

@@ -4,18 +4,6 @@ import BasePicker from './BasePicker'
 import TimePickerPanel from './TimePickerPanel'
 
 export default class TimePicker extends BasePicker {
-  static propTypes = Object.assign({
-    format: PropTypes.string,
-    disabledHours: PropTypes.arrayOf(PropTypes.string),
-    disabledMinutes: PropTypes.arrayOf(PropTypes.string),
-    disabledSeconds: PropTypes.arrayOf(PropTypes.string),
-  }, BasePicker.propTypes)
-  static defaultProps = Object.assign({
-    format: 'HH:mm:ss',
-    disabledHours: [],
-    disabledMinutes: [],
-    disabledSeconds: []
-  }, BasePicker.defaultProps)
   constructor(props) {
     // props, type, state
     // BasePicker 组件中使用
@@ -39,3 +27,16 @@ export default class TimePicker extends BasePicker {
     )
   }
 }
+
+TimePicker.propTypes = Object.assign({
+  format: PropTypes.string,
+  disabledHours: PropTypes.arrayOf(PropTypes.string),
+  disabledMinutes: PropTypes.arrayOf(PropTypes.string),
+  disabledSeconds: PropTypes.arrayOf(PropTypes.string),
+}, BasePicker.propTypes)
+TimePicker.defaultProps = Object.assign({
+  format: 'HH:mm:ss',
+  disabledHours: [],
+  disabledMinutes: [],
+  disabledSeconds: []
+}, BasePicker.defaultProps)
