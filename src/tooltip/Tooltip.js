@@ -39,7 +39,7 @@ export default class Tooltip extends Component {
         this.setState({
           stylesPopup: this.styles()
         })
-        onVisibleChange && onVisibleChange(true)
+        onVisibleChange(true)
       }, enterDelay || 0)
     }
   }
@@ -50,21 +50,25 @@ export default class Tooltip extends Component {
     if (enterDelay) {
       this.leaveTime = setTimeout(() => {
         this.setState({
-          showTooltip: true
+          showTooltip: true,
+          stylesPopup: this.styles()
+        }, () => {
+          onVisibleChange(true)
         })
       }, enterDelay)
     } else {
       this.setState({
-        showTooltip: true
+        showTooltip: true,
+        stylesPopup: this.styles()
+      }, () => {
+        onVisibleChange(true)
       })
     }
-
     // 解决无法获取节点样式
     this.styleTime = setTimeout(() => {
       this.setState({
         stylesPopup: this.styles()
       })
-      onVisibleChange && onVisibleChange(true)
     }, enterDelay || 0)
   }
   hideTooltip(e, isDelay) {
