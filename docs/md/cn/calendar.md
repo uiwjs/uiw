@@ -128,6 +128,8 @@ render() {
 | days | 设置显示多少个空格, 默认不填参数，将自适应 | Number | - |
 | tooltip | 需要显示弹出提示| Boolean | `true` |
 | endDate | 截止日期 | Date | - |
+| rectWidth | 方格宽度 | Number | `14` |
+| rectHeight | 方格高度 | Number | `14` |
 | onMouseOver | 鼠标滑过的事件 | Function(e, date, result) | - |
 | onClick | 鼠标点击单元格的事件 | Function(e, date, result) | - |
 | message | 消息提示 | Function(content:Array)  | - |

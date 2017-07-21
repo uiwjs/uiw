@@ -7,15 +7,15 @@ export default class HeatMapSVG extends Component {
     this.state = {
       days: 0,
     }
-    this.onMouseOver = this.onMouseOver.bind(this)
     this.onClick = this.onClick.bind(this)
+    this.onMouseMove = this.onMouseMove.bind(this)
   }
   componentDidMount() {
     // 根据宽度来生成多少天的图形
-    const { days } = this.parent().props;
+    const { days, rectWidth } = this.parent().props;
     const $this = findDOMNode(this);
     const width = $this.parentNode.offsetWidth;
-    const col = parseInt(width / 16, 10);
+    const col = parseInt(width / (rectWidth + 2), 10);
     const daycount = col * 7 - 14;
     this.setState({
       days: days || daycount
@@ -46,9 +46,6 @@ export default class HeatMapSVG extends Component {
     onClick(e, curdate, curdt)
   }
 
-  onMouseOver(e, curdatestr, curdt, refname) {
-    this.parent().onMouseOver(e, curdatestr, curdt);
-  }
   isCurrentData(date) { // 判断传进来的数据，并返回颜色
     const { values, panelColors } = this.parent().props;
     let curdt = {};
@@ -68,14 +65,27 @@ export default class HeatMapSVG extends Component {
     }
     return curdt
   }
+  onMouseLeave() {
+    this.rect = null
+  }
+  onMouseMove(e, curdatestr, curdt) {
+    if (e.target.tagName === 'rect' && e.target.dataset && e.target.dataset.date) {
+      // console.log("ee", e.target)
+      // this.parent().onMouseOver(e, e.target.dataset.date, curdt)
+      if (this.rect !== e.target) {
+        this.rect = e.target;
+        this.parent().onMouseOver(e, e.target.dataset.date, curdt)
+      }
+    }
+  }
   renderPanelColors() {
-    let width = 14, height = 14, col = 16, rectPanelColors = [];
-    const { panelColors } = this.parent().props;
+    const { panelColors, rectWidth, rectHeight } = this.parent().props;
+    let col = rectWidth + 2, rectPanelColors = [];
     // 颜色说明栏
     let nums = Object.keys(panelColors);
     for (let i = 0; i < nums.length; i++) {
       let xl = i * col;
-      rectPanelColors.push(<rect key={i} width={width} height={height} x={xl} y="0" fill={panelColors[nums[i]]}></rect>)
+      rectPanelColors.push(<rect key={i} width={rectWidth} height={rectHeight} x={xl} y="0" fill={panelColors[nums[i]]}></rect>)
     }
     return rectPanelColors;
   }
@@ -91,9 +101,9 @@ export default class HeatMapSVG extends Component {
     })
   }
   renderPanelHeader(ty) {
-    const { endDate, weekLables, monthLables } = this.parent().props;
+    const { endDate, weekLables, rectWidth, rectHeight, monthLables } = this.parent().props;
     let { days } = this.state;
-    let width = 14, height = 14, dayDate = [], oneday = 86400000;
+    let dayDate = [], oneday = 86400000;
     let timestamp = endDate.getTime();
     let curweek = new Date(timestamp).getDay();
     days = days + curweek + 1;
@@ -103,14 +113,13 @@ export default class HeatMapSVG extends Component {
     }
     dayDate = this.numberSort(dayDate);
     // 日历
-    var rectdays = [], rectweeks = [], rectMonth = [], col = 16;
+    var rectdays = [], rectweeks = [], rectMonth = [], col = rectWidth + 2;
     for (let i = 0; i < days; i++) {
       let xl = parseInt(i / 7, 10) * col;
       let yl = 21 + parseInt(i % 7, 10) * col;
       let curdate = new Date(dayDate[i]);
       let curdatestr = `${curdate.getFullYear()}/${curdate.getMonth() + 1}/${curdate.getDate()}`;
       let curdt = this.isCurrentData(curdatestr);
-      // console.log("curdt", curdt)
       // 日方块
       rectdays.push(<rect
         data-date={curdatestr}
@@ -119,11 +128,12 @@ export default class HeatMapSVG extends Component {
         x={col + xl}
         y={yl}
         onClick={(e) => this.onClick(e, curdatestr, curdt)}
-        onMouseOver={(e) => this.onMouseOver(e, curdatestr, curdt)}
-        width={width} height={height}></rect>);
+        onMouseMove={(e) => this.onMouseMove(e, curdatestr, curdt)}
+        // onMouseMove={this.onMouseMove.bind(this)}
+        width={rectWidth} height={rectHeight}></rect>);
       // 周标题
       if (Object.keys(weekLables).indexOf(i.toString()) > -1 && i < 7) {
-        rectweeks.push(<text key={i} x={xl + 7} y={yl} width={width + 10} height={height}>{weekLables[i]}</text>);
+        rectweeks.push(<text key={i} x={xl + 7} y={yl} width={rectWidth + 10} height={rectHeight}>{weekLables[i]}</text>);
       }
       // 月标题
       if (parseInt(curdate.getDate(), 10) === 1) {
@@ -140,17 +150,18 @@ export default class HeatMapSVG extends Component {
   }
   render() {
     const { prefixCls, className } = this.props;
+    const { rectWidth, rectHeight } = this.parent().props;
     const cls = this.classNames(prefixCls, className);
     return (
-      <svg className={cls} width={`100%`} height="155px">
+      <svg ref="svg" className={cls} width={`100%`} height={`${rectHeight * 7 + 60}px`} onMouseLeave={this.onMouseLeave.bind(this)}>
         <g className={`${prefixCls}-week`} transform="translate(0, 10)">
           {this.renderPanelHeader('week')}
         </g>
-        <g className={`${prefixCls}-month`} transform={`translate(16, 14)`}>
+        <g className={`${prefixCls}-month`} transform={`translate(${rectWidth}, ${16})`}>
           {this.renderPanelHeader('month')}
         </g>
-        <g transform="translate(16, 138)"> {this.renderPanelColors()} </g>
-        <g onMouseLeave={() => this.parent().onMouseLeave()}>{this.renderPanelHeader('day')}
+        <g transform={`translate(${rectWidth + 2}, ${rectHeight * 7 + 40})`}> {this.renderPanelColors()} </g>
+        <g onMouseLeave={this.onMouseLeave.bind(this)}>{this.renderPanelHeader('day')}
         </g>
       </svg>
     );
