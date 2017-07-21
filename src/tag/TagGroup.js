@@ -13,7 +13,6 @@ export default class TagGroup extends Component {
       checkedValues: props.checkedValues
     }
   }
-  // 不要删除
   getChildContext() {
     return { component: this }
   }

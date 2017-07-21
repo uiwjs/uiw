@@ -29,19 +29,20 @@
 }
 .w-heatmap-popup{
   width: @calendar-heatmap-popup-size;
-  // height: @calendar-heatmap-popup-size;
   height: 1px;
+  line-height: 1px;
   float: left;
   position: absolute;
   .w-tooltip{
     vertical-align: top;
   }
-  // display: none;
+  .w-tooltip-content{
+    line-height: initial;
+  }
   .w-tooltip-children{
     cursor: pointer;
     margin: -1px 0 0 -1px;
     width: @calendar-heatmap-popup-size;
-    // height: @calendar-heatmap-popup-size;
     height: 1px;
     transition: background @transition-time @transition-timing-functio;
     &:hover{

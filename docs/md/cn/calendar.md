@@ -53,10 +53,10 @@ render() {
             1:'一', 3:'三', 5:'五'
           }}
           //tooltip={false}
-          // days={
-          //   //设置显示多少个空格, 默认不填参数，将自适应
-          //   365
-          // }
+          //days={
+          //  //设置显示多少个空格, 默认不填参数，将自适应
+          //  365
+          //}
           panelColors={{ // 选填
             0:"#EBEDF0",
             8:"#7BC96F",
@@ -65,7 +65,7 @@ render() {
             32:"#196127",
           }}
           message={(content,dt)=>{
-            console.log("content::",content,dt)
+            //console.log("content::",content,dt)
             if(!content) {
               return dt.date
             }
@@ -125,12 +125,13 @@ render() {
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | values | 需要显示的数据，必填 | Object | - |
-| tooltip | 需要显示的数据，必填 | Boolean | - |
+| days | 设置显示多少个空格, 默认不填参数，将自适应 | Number | - |
+| tooltip | 需要显示弹出提示| Boolean | `true` |
 | endDate | 截止日期 | Date | - |
 | onMouseOver | 鼠标滑过的事件 | Function(e, date, result) | - |
 | onClick | 鼠标点击单元格的事件 | Function(e, date, result) | - |
 | message | 消息提示 | Function(content:Array)  | - |
-| emptyMessage | 空的，消息提示 | String/ReactNode/Boolean | - |
+| emptyMessage | 空的，消息提示, 值为Boolean的时候，空的地方是否显示`tooltip` | String/ReactNode/Boolean | - |
 | monthLables | ["1月", "2月", ...] | Array | - |
 | weekLables | 默认选填选项  周 { 1:"一", 3:"三", 5:"五"} | Object- | {} |
 | panelColors | 活跃颜色的深浅 {0:"#EBEDF0", 8:"#7BC96F", 4:"#C6E48B", 12:"#239A3B", 32:"#196127", } | Object | {} |
