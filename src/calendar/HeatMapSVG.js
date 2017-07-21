@@ -65,13 +65,12 @@ export default class HeatMapSVG extends Component {
     }
     return curdt
   }
-  onMouseLeave() {
+  onMouseLeave(e) {
     this.rect = null
+    this.parent().hideTooltip();
   }
   onMouseMove(e, curdatestr, curdt) {
     if (e.target.tagName === 'rect' && e.target.dataset && e.target.dataset.date) {
-      // console.log("ee", e.target)
-      // this.parent().onMouseOver(e, e.target.dataset.date, curdt)
       if (this.rect !== e.target) {
         this.rect = e.target;
         this.parent().onMouseOver(e, e.target.dataset.date, curdt)
@@ -153,7 +152,7 @@ export default class HeatMapSVG extends Component {
     const { rectWidth, rectHeight } = this.parent().props;
     const cls = this.classNames(prefixCls, className);
     return (
-      <svg ref="svg" className={cls} width={`100%`} height={`${rectHeight * 7 + 60}px`} onMouseLeave={this.onMouseLeave.bind(this)}>
+      <svg ref="svg" className={cls} width={`100%`} height={`${rectHeight * 7 + 60}px`}>
         <g className={`${prefixCls}-week`} transform="translate(0, 10)">
           {this.renderPanelHeader('week')}
         </g>
@@ -161,7 +160,8 @@ export default class HeatMapSVG extends Component {
           {this.renderPanelHeader('month')}
         </g>
         <g transform={`translate(${rectWidth + 2}, ${rectHeight * 7 + 40})`}> {this.renderPanelColors()} </g>
-        <g onMouseLeave={this.onMouseLeave.bind(this)}>{this.renderPanelHeader('day')}
+        <g onMouseLeave={this.onMouseLeave.bind(this)}>
+          {this.renderPanelHeader('day')}
         </g>
       </svg>
     );

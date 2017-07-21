@@ -15,15 +15,13 @@ export default class HeatMap extends Component {
     return { component: this }
   }
   componentDidMount() {
-    const { tooltipRefs } = this.refs;
-    tooltipRefs.style.display = 'none'
+    this.hideTooltip()
   }
-  onMouseLeave() {
+  hideTooltip() {
     const { tooltipRefs, tooltipConRefs } = this.refs;
     tooltipConRefs.hideTooltip();
     tooltipRefs.style.display = 'none'
   }
-
   onMouseOver(e, datestr, date) {
     const { onMouseOver, emptyMessage, message } = this.props;
     const { tooltipRefs, tooltipConRefs } = this.refs;
@@ -63,7 +61,7 @@ export default class HeatMap extends Component {
     let { tooltipShow } = this.state;
 
     return (
-      <div className={this.classNames(`${prefixCls}-wrapper`, className)} onMouseLeave={this.onMouseLeave.bind(this)}>
+      <div className={this.classNames(`${prefixCls}-wrapper`, className)}>
         {tooltip &&
           <div ref="tooltipRefs" className={`${prefixCls}-popup`}>
             <Tooltip trigger="click" ref="tooltipConRefs" visible={tooltipShow}> </Tooltip>
