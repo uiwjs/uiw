@@ -13,6 +13,10 @@ export default class Alert extends Component {
   }
   componentWillReceiveProps(nextProps, nextState) {
     this.setState({ ...nextProps })
+    if (nextProps.visible !== this.props.visible) {
+      // 节点删除
+      this.handleClose()
+    }
   }
   handleClose(e) {
     e && e.preventDefault();
