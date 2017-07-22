@@ -32,7 +32,7 @@ export default class Alert extends Component {
       switch (type) {
         case "success": icon = CheckmarkCircled; break;
         case "info": icon = InformationCircled; break;
-        case "warn": icon = QuestionCircle; break;
+        case "warning": icon = QuestionCircle; break;
         case "error": icon = CloseCircled; break;
         default: break;
       }

@@ -6,7 +6,7 @@
   margin-bottom: @line-height-computed;
   border: 1px solid transparent;
   border-radius: @alert-border-raduis;
-  padding: @alert-padding;
+  padding: @alert-padding @alert-padding + 5;
   .w-alert-message + .w-alert-close-icon{
     font-size: 12px;
   }
@@ -61,8 +61,8 @@
     .alert-variant(@alert-success-bg, @alert-success-border, @alert-success-text)
 }
     
-.w-alert-warn{
-    .alert-variant(@alert-warn-bg, @alert-warn-border, @alert-warn-text)
+.w-alert-warning{
+    .alert-variant(@alert-warning-bg, @alert-warning-border, @alert-warning-text)
 }
  
 .w-alert-info{

@@ -31,7 +31,7 @@ render() {
     <div>
         <Alert showIcon type="success" message="success Text"/>
         <Alert showIcon type="info" message="info Text"/>
-        <Alert showIcon type="warn" message="warn Text"/>
+        <Alert showIcon type="warning" message="warning Text"/>
         <Alert showIcon type="error" message="error Text"/>
         <Alert 
             message="Error Text"
@@ -42,7 +42,7 @@ render() {
 
         <Alert showIcon type="success" description="这里是说明！" message="Success Text"/>
         <Alert showIcon type="info" description="这里是说明！" message="Info Text"/>
-        <Alert showIcon type="warn" description="这里是说明！" message="Warn Text"/>
+        <Alert showIcon type="warning" description="这里是说明！" message="Warning Text"/>
         <Alert showIcon type="error" description="这里是说明！" message="Error Text"/>
     </div>
   )
@@ -80,7 +80,7 @@ render() {
 
 ### 常规颜色使用
 
-共有四种样式 `default`、`primary`=`info`、`warn`、`error`。
+共有四种样式 `default`、`primary`=`info`、`warning`、`error`。
 
 <!--DemoStart--> 
 ```js
@@ -91,7 +91,7 @@ render() {
         <Alert type="primary" message="primary Text"/>
         <Alert type="success" message="success Text"/>
         <Alert type="info" message="info Text"/>
-        <Alert type="warn" message="warn Text"/>
+        <Alert type="warning" message="warning Text"/>
 
         <Alert 
             message="Error Text"
@@ -152,4 +152,4 @@ render() {
 | showIcon | 是否显示图标 | Boolean | false |
 | visible | 是否显示组件 | Boolean | true |
 | transition | 过渡动画，具体值参见动画组件`<Transition>` | String | `fade-in` |
-| type | 指定警告提示的样式，有四种选择 `default`、 `primary`、 `success`、 `info`、`warn`、 `error` | String | default |
+| type | 指定警告提示的样式，有四种选择 `default`、 `primary`、 `success`、 `info`、`warning`、 `error` | String | default |
