@@ -63,7 +63,7 @@ Alert.propTypes = {
   visible: PropTypes.bool,
   showIcon: PropTypes.bool,
   transition: PropTypes.string,
-  message: PropTypes.string.isRequired,
+  message: PropTypes.string,
   description: PropTypes.string,
   onClose: PropTypes.func,
 };
@@ -73,5 +73,5 @@ Alert.defaultProps = {
   transition: "fade-in",
   visible: true,
   showIcon: false,
-  onClose() { },
+  // onClose() { }, //默认根据是否有此方法显示关闭按钮，
 }
