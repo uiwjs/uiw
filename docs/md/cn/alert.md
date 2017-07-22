@@ -106,14 +106,50 @@ render() {
 ```
 <!--End-->
 
+### 控制显示隐藏
+
+<!--DemoStart--> 
+```js
+constructor(props){
+  super(props)
+  this.state = {
+    visible: true,
+  }
+}
+render() {
+  return (
+    <div>
+      <Switch 
+        checked={true} 
+        style={{marginBottom:10}}
+        checkedChildren="显示" unCheckedChildren="隐藏"
+        onChange={(e,visible)=>{
+        console.log(`${visible?"选中":'没有选中'}`,visible)
+        this.setState({visible})
+      }}/>
+      <Alert 
+        visible={this.state.visible}
+        message="Error Text"
+        description="Error Description Error Description Error Description Error Description Error Description Error Description"
+        type="error"
+      />
+    </div>
+  )
+}
+```
+<!--End-->
+
+
 ## API
 
 ### Alert Attributes
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| message | 警告提示内容 | string、ReactNode | - |
-| description | 警告提示的辅助性文字介绍 | string、ReactNode | - |
+| message | 警告提示内容 | String、ReactNode | - |
+| description | 警告提示的辅助性文字介绍 | String、ReactNode | - |
 | onClose | 关闭时触发的回调函数，onClose方法，就会有关闭按钮 | Function | - |
 | showIcon | 是否显示图标 | Boolean | false |
-| type | 指定警告提示的样式，有四种选择 `default`、 `primary`、 `success`、 `info`、`warn`、 `error` | string | default |
+| visible | 是否显示组件 | Boolean | true |
+| transition | 过渡动画，具体值参见动画组件`<Transition>` | String | `fade-in` |
+| type | 指定警告提示的样式，有四种选择 `default`、 `primary`、 `success`、 `info`、`warn`、 `error` | String | default |
