@@ -17,7 +17,10 @@ render() {
 open() {
   Notification({
     message: '通知提醒框标题名称',
-    description: '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案'
+    description: '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案',
+    onClose(){
+      console.log("onClose-> 关闭回调事件！")
+    }
   });
 }
 open2() {
@@ -90,3 +93,4 @@ open4() {
 | showIcon | 是否显示图标 | Boolean | - |
 | placement | 弹出位置，可选 `topLeft`、`topRight`、`bottomLeft`、`bottomRight` | Boolean | `topRight` |
 | duration | 显示时间, 秒。设为 0 则不会自动关闭 | String | 4.5 |
+| onClose | 通知提醒框关闭回调事件 | Function | - |

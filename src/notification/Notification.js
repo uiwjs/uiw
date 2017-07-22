@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
-import Alert from '../alert'
+import Alert from '../alert';
 
 export default class Notification extends Component {
   constructor(props) {
@@ -10,11 +10,13 @@ export default class Notification extends Component {
     }
   }
   onClose() {
+    const { delNotify, _key } = this.props;
     this.stopTimer();
+    delNotify(_key);
     this.setState({
       visible: false
     }, () => {
-      this.props.willUnmount();
+      this.props.willUnmount(this.props);
     });
   }
   componentDidMount() {
@@ -32,12 +34,11 @@ export default class Notification extends Component {
     }
   }
   render() {
-    const { prefixCls, type, className, message, description, placement, onClose } = this.props;
+    const { prefixCls, type, className, message, description, placement } = this.props;
     let transition = 'fade-left';
     if (placement === ('topRight' || 'bottomRight')) {
       transition = 'fade-right';
     }
-    console.log("type:", type)
     return (
       <Alert
         ref="alerts"
@@ -46,8 +47,9 @@ export default class Notification extends Component {
         visible={this.state.visible}
         className={this.classNames(`${prefixCls}`, className)}
         type={type}
+        closable
         showIcon={type ? true : false}
-        onClose={onClose}
+        onClose={() => this.onClose()}
         transition={transition}
         message={message}
         description={description}
