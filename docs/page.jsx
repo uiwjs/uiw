@@ -14,6 +14,7 @@ export default class App extends Component {
   componentWillMount() {
     window.addEventListener("hashchange", () => {
       window.scrollTo(0, 0);
+      this.refs.content.scrollTop = 0;
       this.setPage();
     }, false);
   }
@@ -120,7 +121,7 @@ export default class App extends Component {
             {Object.keys(pages.components).map(group => this.renderMenuGroup(group))}
           </div>
         </div>
-        <div className={`${prefixCls}-content`}>
+        <div ref="content" className={`${prefixCls}-content`}>
           {this.getComponent(this.state.page)}
         </div>
       </div>
