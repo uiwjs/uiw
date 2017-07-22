@@ -14,20 +14,23 @@ export default class Alert extends Component {
   componentWillReceiveProps(nextProps, nextState) {
     this.setState({ ...nextProps })
     if (nextProps.visible !== this.props.visible) {
-      // 节点删除
-      this.handleClose()
+      this.removeRootDom();
     }
   }
-  handleClose(e) {
-    e && e.preventDefault();
-    this.setState({ visible: false })
-    this.props.onClose()
+  // 删除根节点
+  removeRootDom() {
     this.timeout = setTimeout(() => {
       this.setState({
         tranVisible: false
       })
       clearTimeout(this.timeout)
     }, 300)
+  }
+  handleClose(e) {
+    e && e.preventDefault();
+    this.setState({ visible: false })
+    this.props.onClose();
+    this.removeRootDom();
   }
   render() {
     const { prefixCls, type, message, showIcon, onClose, closable, description, className, children, transition, visible, ...others } = this.props;
