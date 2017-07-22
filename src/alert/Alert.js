@@ -4,9 +4,15 @@ import Transition from '../transition';
 import { IconClose, InformationCircled, QuestionCircle, CheckmarkCircled, CloseCircled } from '../svgs';
 
 export default class Alert extends Component {
-  state = {
-    visible: true,
-    tranVisible: true,
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: props.visible,
+      tranVisible: true,
+    }
+  }
+  componentWillReceiveProps(nextProps, nextState) {
+    this.setState({ ...nextProps })
   }
   handleClose(e) {
     e && e.preventDefault();
@@ -20,7 +26,7 @@ export default class Alert extends Component {
     }, 300)
   }
   render() {
-    const { prefixCls, type, message, showIcon, onClose, description, className, children, ...others } = this.props;
+    const { prefixCls, type, message, showIcon, onClose, description, className, children, visible, ...others } = this.props;
     let icon;
     if (showIcon) {
       switch (type) {
@@ -54,8 +60,16 @@ export default class Alert extends Component {
 
 Alert.propTypes = {
   type: PropTypes.string,
+  visible: PropTypes.bool,
+  showIcon: PropTypes.bool,
+  message: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  onClose: PropTypes.func,
 };
 Alert.defaultProps = {
   type: 'default',
-  prefixCls: "w-alert"
+  prefixCls: "w-alert",
+  visible: true,
+  showIcon: false,
+  onClose() { },
 }
