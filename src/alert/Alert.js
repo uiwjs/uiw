@@ -17,7 +17,7 @@ export default class Alert extends Component {
   handleClose(e) {
     e && e.preventDefault();
     this.setState({ visible: false })
-    this.props && this.props.onClose && this.props.onClose()
+    this.props.onClose()
     this.timeout = setTimeout(() => {
       this.setState({
         tranVisible: false
@@ -74,5 +74,6 @@ Alert.defaultProps = {
   transition: "fade-in",
   visible: true,
   showIcon: false,
-  // onClose() { }, //默认根据是否有此方法显示关闭按钮，
+  closable: false,
+  onClose() { },
 }
