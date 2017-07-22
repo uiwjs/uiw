@@ -23,9 +23,8 @@ export default function NotificationCreate(props = {}, type) {
     NotifyIndex[props.placement].addNotify({
       ...props,
       willUnmount(nprops) {
-        let doms = NotifyIndex[nprops.placement].state.notify
-        if (!doms || !doms[nprops._key]) return;
-
+        if (!nprops) return;
+        nprops.onClose && nprops.onClose();
       }
     })
   }
