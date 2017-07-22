@@ -14,7 +14,8 @@ export default class App extends Component {
   componentWillMount() {
     window.addEventListener("hashchange", () => {
       window.scrollTo(0, 0);
-      this.refs.content.scrollTop = 0;
+      const { content } = this.refs
+      if (content) content.scrollTop = 0;
       this.setPage();
     }, false);
   }
