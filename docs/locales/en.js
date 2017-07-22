@@ -19,6 +19,7 @@ module.exports = {
     'message': 'Message',
     'modals': 'Modals',
     'menu': 'Menu',
+    'notification': 'Notification',
     'transition': 'Transition',
     'calendar': 'Calendar',
     'table': 'Tables',

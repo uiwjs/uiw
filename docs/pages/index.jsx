@@ -38,6 +38,7 @@ export default {
       'alert': require('./alert'),
       'modals': require('./modals'),
       'message': require('./message'),
+      'notification': require('./notification'),
       'loading': require('./loading'),
       'transition': require('./transition'),
     }
