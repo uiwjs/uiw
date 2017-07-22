@@ -1,6 +1,5 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
-import assign from 'object-assign';
 
 export default class Switch extends Component {
   constructor(props) {
@@ -36,9 +35,10 @@ export default class Switch extends Component {
     });
 
     return (
-      <label style={assign({}, {
-        backgroundColor: _checked ? color : unColor
-      }, style)} className={cls}>
+      <label style={{
+        backgroundColor: _checked ? color : unColor,
+        ...style
+      }} className={cls}>
         <input disabled={disabled} checked={_checked} onChange={this.onChange} type="checkbox" />
         <span>{_checked ? checkedChildren : unCheckedChildren}</span>
       </label>
