@@ -26,7 +26,7 @@ export default class Alert extends Component {
     }, 300)
   }
   render() {
-    const { prefixCls, type, message, showIcon, onClose, description, className, children, visible, ...others } = this.props;
+    const { prefixCls, type, message, showIcon, onClose, description, className, children, transition, visible, ...others } = this.props;
     let icon;
     if (showIcon) {
       switch (type) {
@@ -51,7 +51,7 @@ export default class Alert extends Component {
       {onClose && <a onClick={this.handleClose.bind(this)} className={`${prefixCls}-close-icon`}>{IconClose}</a>}
     </div>
     return (
-      <Transition visible={this.state.tranVisible} type="fade-in">
+      <Transition visible={this.state.tranVisible} type={transition}>
         {alertsview}
       </Transition>
     );
@@ -62,6 +62,7 @@ Alert.propTypes = {
   type: PropTypes.string,
   visible: PropTypes.bool,
   showIcon: PropTypes.bool,
+  transition: PropTypes.string,
   message: PropTypes.string.isRequired,
   description: PropTypes.string,
   onClose: PropTypes.func,
@@ -69,6 +70,7 @@ Alert.propTypes = {
 Alert.defaultProps = {
   type: 'default',
   prefixCls: "w-alert",
+  transition: "fade-in",
   visible: true,
   showIcon: false,
   onClose() { },
