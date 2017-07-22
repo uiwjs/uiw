@@ -25,6 +25,7 @@ export default class Message extends Component {
     const { content, icon, type, className, ...other } = this.props;
     delete other.placement;
     delete other.duration;
+    delete other.onClose;
     return (
       <Alert ref="alerts" type={type} className={className} {...other} >
         {icon && <Icon type={icon} />}
