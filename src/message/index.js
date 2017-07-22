@@ -18,21 +18,20 @@ function create(type) {
     msg.placement = msg.placement
     msg.duration = msg.duration || 3;
     switch (type) {
-      case "warn": msg.icon = "warning-o"; break;
+      case "warning": msg.icon = "warning-o"; break;
       case "default": msg.icon = "information-o"; break;
       case "error": msg.icon = "circle-close-o"; break;
       case "success": msg.icon = "circle-check-o"; break;
       default: break;
     }
     container.addMessage(msg, () => {
-      console.log("testt")
+      // console.log("testt")
     });
   }
 }
 
 export default {
-  warning: create('warn'),
-  warn: create('warn'),
+  warning: create('warning'),
   info: create('default'),
   error: create('error'),
   success: create('success')

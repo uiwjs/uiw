@@ -20,15 +20,9 @@ render() {
           <Button size="small" onClick={()=>{
             Message.warning('This is an warning Message.')
           }}>
-            warning ( warn === warning)
+            warning
           </Button>  
 
-          <Button size="small" onClick={()=>{
-            Message.warn('This is an warn Message.')
-          }}>
-            warn ( warn === warning)
-          </Button>  
-          
           <Button size="small" onClick={()=>{
             Message.info('This is an info Message.')
           }}>
@@ -142,12 +136,13 @@ render() {
 
 组件提供了一些静态方法，使用方式和参数如下：
 
-> Message.success(content, config)
-> Message.error(content, config)
-> Message.info(content, config)
-> Message.warning(content, config)
-> Message.warn(content, config) // alias of warning
-> Message.loading(content, config)
+```js
+Message.success(content, config)  
+Message.error(content, config)  
+Message.info(content, config)  
+Message.warning(content, config)  
+Message.loading(content, config)  
+```
 
 ### Message config
 
