@@ -10,9 +10,9 @@ export default class Notification extends Component {
     }
   }
   onClose() {
-    const { delNotify, _key } = this.props;
+    const { delNotify } = this.props;
     this.stopTimer();
-    delNotify(_key);
+    delNotify(this.props);
     this.setState({
       visible: false
     }, () => {

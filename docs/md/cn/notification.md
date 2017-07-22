@@ -53,29 +53,81 @@ open1() {
   Notification({
     message: '通知提醒框标题名称',
     description: '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案',
-    type:"success"
+    type:"success",
+    placement:'topLeft',
   });
 }
 open2() {
   Notification({
     message: 'Notification Title',
     description: 'I will never close automatically. I will be close automatically. I will never close automatically.',
-    type:"warning"
+    type:"warning",
+    placement:'topRight',
   });
 }
 open3() {
   Notification({
     message: 'Notification Title',
     description: 'I will never close automatically. I will be close automatically. I will never close automatically.',
-    type:"info"
+    type:"info",
+    placement:'bottomLeft',
   });
 }
 open4() {
   Notification({
     message: 'Notification Title',
     description: 'I will never close automatically. I will be close automatically. I will never close automatically.',
-    type:"error"
+    type:"error",
+    placement:'bottomRight',
   });
+}
+```
+<!--End-->
+
+### 弹出通知位置
+
+可以设置通知从右上角、右下角、左下角、左上角弹出。
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    options: [
+      { value: 'topLeft', label: 'topLeft' }, 
+      { value: 'topRight', label: 'topRight' }, 
+      { value: 'bottomLeft', label: 'bottomLeft' }, 
+      { value: 'bottomRight', label: 'bottomRight' }, 
+    ],
+    value: 'topLeft'
+  };
+}
+onChange(e,value){
+  this.setState({
+    value
+  })
+}
+open() {
+  Notification({
+    message: 'Notification Title',
+    description: 'I will never close automatically. I will be close automatically. I will never close automatically.',
+    type:"info",
+    placement:this.state.value
+  });
+}
+render() {
+  return (
+    <div>
+    <Select onChange={this.onChange.bind(this)} style={{width:200}} value={this.state.value}>
+      {
+        this.state.options.map(elm => {
+          return <Select.Option key={elm.value} label={elm.label} value={elm.value} disabled={elm.disabled} />
+        })
+      }
+    </Select>
+    <Button style={{marginLeft:10}} size='small' onClick={this.open.bind(this)}>点击</Button>
+    </div>
+  )
 }
 ```
 <!--End-->

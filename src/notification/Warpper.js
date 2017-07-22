@@ -13,15 +13,19 @@ export default class Container extends Component {
     this.addNotify = this.addNotify.bind(this);
   }
   addNotify(porps) {
-    notify[porps._key] = porps;
+    if (!notify[porps.placement]) {
+      notify[porps.placement] = {};
+    }
+    notify[porps.placement][porps._key] = porps;
     this.setState({ visible: true, placement: porps.placement })
   }
-  delNotify(key) {
-    let _notify = {}
-    for (let i in notify) {
-      if (i !== key) _notify[key] = notify[key]
+  delNotify(_props) {
+    const { placement, _key } = _props
+    let _notify = {};
+    for (let i in notify[placement]) {
+      if (i !== _key) _notify[_key] = notify[placement][_key]
     }
-    notify = _notify;
+    notify[placement] = _notify;
   }
   render() {
     const { prefixCls } = this.props;
@@ -29,8 +33,8 @@ export default class Container extends Component {
     if (!visible) return null;
     return (
       <div className={this.classNames(prefixCls, placement)}>
-        {Object.keys(notify).map((key) => {
-          return <Notification delNotify={this.delNotify.bind(this)} key={key} {...notify[key]} />
+        {placement && Object.keys(notify[placement]).map((key) => {
+          return <Notification delNotify={this.delNotify.bind(this)} key={key} {...notify[placement][key]} />
         })}
       </div>
     )
