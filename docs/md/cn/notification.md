@@ -11,6 +11,7 @@ render() {
     <div>
       <Button onClick={this.open.bind(this)}>可自动关闭</Button>
       <Button onClick={this.open2.bind(this)}>不会自动关闭</Button>
+      <Button onClick={this.open3.bind(this)}>10秒后自动关闭</Button>
     </div>
   )
 }
@@ -28,6 +29,12 @@ open2() {
     message: '提示',
     description: '这是一条不会自动关闭的消息',
     duration: 0,
+  });
+}
+open3() {
+  Notification.info({
+    message: '提示',
+    description: '这是一条不会自动关闭的消息',
   });
 }
 ```
@@ -54,7 +61,6 @@ open1() {
     message: '通知提醒框标题名称',
     description: '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案',
     type:"success",
-    placement:'topLeft',
   });
 }
 open2() {
@@ -62,7 +68,6 @@ open2() {
     message: 'Notification Title',
     description: 'I will never close automatically. I will be close automatically. I will never close automatically.',
     type:"warning",
-    placement:'topRight',
   });
 }
 open3() {
@@ -70,7 +75,6 @@ open3() {
     message: 'Notification Title',
     description: 'I will never close automatically. I will be close automatically. I will never close automatically.',
     type:"info",
-    placement:'bottomLeft',
   });
 }
 open4() {
@@ -78,7 +82,6 @@ open4() {
     message: 'Notification Title',
     description: 'I will never close automatically. I will be close automatically. I will never close automatically.',
     type:"error",
-    placement:'bottomRight',
   });
 }
 ```
@@ -131,6 +134,7 @@ render() {
 }
 ```
 <!--End-->
+
 
 ## API
 

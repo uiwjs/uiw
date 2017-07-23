@@ -10,13 +10,14 @@ export default class Notification extends Component {
     }
   }
   onClose() {
-    const { delNotify } = this.props;
+    const { delNotify, willUnmount } = this.props;
     this.stopTimer();
+    if (!delNotify) return;
     delNotify(this.props);
     this.setState({
       visible: false
     }, () => {
-      this.props.willUnmount(this.props);
+      willUnmount && willUnmount(this.props);
     });
   }
   componentDidMount() {
