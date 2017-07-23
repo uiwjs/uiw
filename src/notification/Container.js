@@ -9,6 +9,7 @@ export default function NotificationCreate(props = {}, type) {
     props = { message: props };
   }
   props._key = randomid();
+  props.type = type;
   if (!props.placement) {
     props['placement'] = 'topRight'
   }
