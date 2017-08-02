@@ -8,10 +8,12 @@ export default class Notification extends Component {
     this.state = {
       visible: true
     }
+    this.onClose = this.onClose.bind(this);
   }
-  onClose() {
+  onClose(e) {
     const { delNotify, willUnmount } = this.props;
     this.stopTimer();
+    console.log("e", e)
     if (!delNotify) return;
     delNotify(this.props);
     this.setState({
@@ -30,6 +32,7 @@ export default class Notification extends Component {
   startTimer() {
     if (this.props.duration) {
       this.timeout = setTimeout(() => {
+        // console.log("props:", this.props)
         this.onClose();
       }, this.duration())
     }
@@ -50,7 +53,7 @@ export default class Notification extends Component {
         type={type}
         closable
         showIcon={type ? true : false}
-        onClose={() => this.onClose()}
+        onClose={this.onClose}
         transition={transition}
         message={message}
         description={description}

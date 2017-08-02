@@ -29,7 +29,7 @@ export default class Alert extends Component {
   handleClose(e) {
     e && e.preventDefault();
     this.setState({ visible: false })
-    this.props.onClose();
+    this.props.onClose(e);
     this.removeRootDom();
   }
   render() {
