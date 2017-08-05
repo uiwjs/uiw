@@ -12,8 +12,9 @@ export default class Select extends Component {
       placeholder: props.placeholder || '请选择',
       inputHovering: false,
       selected: undefined,
-      selectedLabel: props.value, //默认选中的值 多选为数组
-      visible: false,             // 菜单是否显示
+      selectedLabel: props.value,      // 默认选中的值 多选为数组
+      value: props.multiple ? [] : '', // 多选或单选值
+      visible: false,                  // 菜单是否显示
       icon: "arrow-down",
       inputWidth: 0,
     }
@@ -95,6 +96,19 @@ export default class Select extends Component {
       onChange && onChange(val, val.props.value);
     }
   }
+  // 设置选中值
+  addOptionToValue(option, init) {
+    const { multiple } = this.props;
+    let { selected, selectedLabel, value } = this.state;
+
+    if (multiple) {
+    } else {
+      selected = option;
+      selectedLabel = option.currentLabel();
+      value = option.props.value;
+    }
+    this.setState({ selected, selectedLabel, value });
+  }
   // 点击选中事件, 选中设置Select值
   onOptionClick(option) {
     let { multiple } = this.props;
@@ -126,7 +140,14 @@ export default class Select extends Component {
       this.setState({ visible: !visible });
     }
   }
-
+  // 输入内容，回调事件
+  onInputChange() {
+    if (this.props.filterable && this.state.selectedLabel !== this.state.value) {
+      this.setState({
+        selectedLabel: this.state.selectedLabel
+      });
+    }
+  }
   onMouseDown(e) {
     e.preventDefault();
     if (this.refs.input) {
@@ -184,6 +205,7 @@ export default class Select extends Component {
           size={size}
           disabled={disabled}
           value={selectedLabel}
+          icon={this.state.icon}
           readOnly={!filterable || multiple}
           placeholder={this.state.placeholder}
           onMouseDown={this.onMouseDown.bind(this)}
@@ -193,7 +215,7 @@ export default class Select extends Component {
           onIconMouseOut={this.onIconMouseOut.bind(this)}
           onIconMouseOver={this.onIconMouseOver.bind(this)}
           onChange={(e, value) => this.setState({ selectedLabel: value })}
-          icon={this.state.icon}
+          onKeyUp={this.onInputChange.bind(this)}
         />
         <Popper ref="popper" visible={visible && children && children.length > 0} className={this.classNames(`${prefixCls}-popper`)}
           clickOutside={this.handleClickOutside.bind(this)}
@@ -221,7 +243,10 @@ Select.propTypes = {
   filterable: PropTypes.bool, // 是否可搜索
   multiple: PropTypes.bool,   // 是否可多选
   clearable: PropTypes.bool,  // 清空单选
-  value: PropTypes.string,    // 是否可多选
+  value: PropTypes.oneOfType([// 是否可多选
+    PropTypes.string,
+    PropTypes.array,
+  ]),
   size: PropTypes.oneOf(['large', 'small', 'default', 'mini']),
 }
 

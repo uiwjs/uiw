@@ -9,16 +9,21 @@ export default class Select extends Component {
       this.parent().onOptionClick(this);
     }
   }
+  componentWillMount() {
+    const { value } = this.props;
+    if (!this.parent().state.selected && value === this.parent().props.value) {
+      this.parent().addOptionToValue(this);
+    }
+  }
   isSelected() {
     const { selected } = this.parent().state;
-    const { value } = this.parent().props;
-    if (value === this.props.value) {
-      return value === this.props.value;
-    }
-    if (Object.prototype.toString.call(selected) === '[object Object]') {
-      return selected.props === this.props;
-    } else if (Array.isArray(selected)) {
-      return selected.map(e => e.props.value).indexOf(this.props.value) > -1;
+    const { value } = this.props;
+    if (selected) {
+      if (Object.prototype.toString.call(selected) === '[object Object]') {
+        return value === selected.props.value;
+      } else if (Array.isArray(selected)) {
+        return selected.map(el => el.props.value).indexOf(value) > -1;
+      }
     }
     return false;
   }
