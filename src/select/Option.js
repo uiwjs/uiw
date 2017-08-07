@@ -1,18 +1,13 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
+import Icon from '../icon/';
 
-export default class Select extends Component {
+export default class Option extends Component {
   parent() { return this.context.component; }
   // 点击单个Item事件
   selectOptionClick() {
-    if (this.props.disabled !== true && this.parent().props.disabled !== true) {
+    if (this.props.disabled !== true) {
       this.parent().onOptionClick(this);
-    }
-  }
-  componentWillMount() {
-    const { value } = this.props;
-    if (!this.parent().state.selected && value === this.parent().props.value) {
-      this.parent().addOptionToValue(this);
     }
   }
   isSelected() {
@@ -26,6 +21,9 @@ export default class Select extends Component {
       }
     }
     return false;
+  }
+  isMultiple() {
+    return this.parent().props.multiple
   }
   currentLabel() {
     const { label, value } = this.props;
@@ -42,21 +40,22 @@ export default class Select extends Component {
         })}
       >
         {children || <span>{this.currentLabel()}</span>}
+        {this.isSelected() && this.isMultiple() && <span className="check"><Icon type="check" /></span>}
       </li>
     );
   }
 }
 
-Select.contextTypes = {
+Option.contextTypes = {
   component: PropTypes.any
 };
 
-Select.propTypes = {
+Option.propTypes = {
   prefixCls: PropTypes.string,
   disabled: PropTypes.bool,
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
-Select.defaultProps = {
+Option.defaultProps = {
   prefixCls: 'w-select',
 }

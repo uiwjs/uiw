@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Component, PropTypes } from '../utils/';
-import Input from '../input/'
-import Popper from '../popper/'
+import { Component, PropTypes, randomid } from '../utils/';
+import Input from '../input/';
+import Tag from '../tag';
+import Popper from '../popper/';
 
 export default class Select extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      options: [],
       placeholder: props.placeholder || '请选择',
       inputHovering: false,
-      selected: undefined,
+      selected: props.multiple ? [] : undefined,
       selectedLabel: props.value,      // 默认选中的值 多选为数组
-      value: props.multiple ? [] : '', // 多选或单选值
+      value: props.value, // 多选或单选值
       visible: false,                  // 菜单是否显示
       icon: "arrow-down",
       inputWidth: 0,
@@ -23,13 +23,27 @@ export default class Select extends Component {
   getChildContext() {
     return { component: this }
   }
+  componentWillReceiveProps(props) {
+    if (props.placeholder !== this.props.placeholder) {
+      this.setState({
+        placeholder: props.placeholder
+      });
+    }
+    if (props.value !== this.state.value) {
+      this.setState({
+        value: props.value,
+      }, () => {
+        this.selectedData()
+      });
+    }
+  }
   componentDidMount() {
     this.input = ReactDOM.findDOMNode(this.refs.input);
     this.setState({
       inputWidth: this.input.getBoundingClientRect().width
     })
-    this.selectedData();
-    this.handleValueChange();
+    this.selectedData(true);
+    // this.handleValueChange();
   }
   handleClickOutside(e) {
     // Ignore clicks on the component it self
@@ -41,52 +55,44 @@ export default class Select extends Component {
       this.setState({ visible: false });
     }
   }
+  showLabelText(props) {
+    return props.label ? props.label : props.value
+  }
   // 初始化默认选中
-  selectedData() {
-    const { value, children } = this.props;
-    const selected = children.filter(option => {
-      return option.props.value === value
-    })[0];
-    if (selected) {
-      this.setState({
-        selectedLabel: selected.props.label
-      })
-    }
-  }
+  selectedData(init) {
+    const { multiple, children } = this.props;
+    let { selectedLabel, selected, value } = this.state;
+    if (multiple && Array.isArray(value)) {
 
-  componentWillReceiveProps(props) {
-    if (props.placeholder !== this.props.placeholder) {
-      this.setState({
-        placeholder: props.placeholder
+      selected = children.reduce((prev, curr) => {
+        return value.indexOf(curr.props.value) > -1 ? prev.concat(curr) : prev;
+      }, [])
+      selectedLabel = selected.map(option => {
+        return this.showLabelText(option.props);
       });
-    }
-    if (props.value !== this.props.value) {
-      const { selectedLabel } = this.state;
       this.setState({
-        value: props.value,
-        selectedLabel: props.value === "" || props.value.length === 0 ? props.value : selectedLabel
+        selected, selectedLabel
       }, () => {
-        this.selectedData()
-        this.handleValueChange();
+        this.resetInputHeight(init)
       });
+    } else {
+      // 过滤改变 selectedLabel 的value对应的值
+      selected = children.filter(option => {
+        return option.props.value === value
+      })[0];
+      if (selected) {
+        this.setState({
+          selected,
+          selectedLabel: this.showLabelText(selected.props)
+        })
+      }
     }
   }
-  onOptionCreate(option) {
-    // 添加选中的组件
-    // this.state.options.push(option);
-    // console.log("option:::", option)
-    // this.setState(this.state);
-  }
-  // 改变选中的值
-  handleValueChange() {
-    const { value, options } = this.state;
-    const selected = options.filter(option => {
-      return option.props.value === value
-    })[0];
-    if (selected) {
-      this.setState({
-        selectedLabel: selected.props.label
-      })
+  resetInputHeight(init) {
+    const { input, tags } = this.refs;
+    input.refs.input.style.height = tags.clientHeight + 'px';
+    if (!init) {
+      input.refs.input.focus();
     }
   }
   // 触发onChange事件
@@ -96,39 +102,26 @@ export default class Select extends Component {
       onChange && onChange(val, val.props.value);
     }
   }
-  // 设置选中值
-  addOptionToValue(option, init) {
-    const { multiple } = this.props;
-    let { selected, selectedLabel, value } = this.state;
-
-    if (multiple) {
-    } else {
-      selected = option;
-      selectedLabel = option.currentLabel();
-      value = option.props.value;
-    }
-    this.setState({ selected, selectedLabel, value });
-  }
   // 点击选中事件, 选中设置Select值
   onOptionClick(option) {
     let { multiple } = this.props;
-    let { visible, selected, selectedLabel } = this.state;
-
-    if (!multiple) {
-      selected = option;
-      selectedLabel = option.currentLabel();
-      visible = false;
-    }
-
-    this.setState({
-      selected,
-      selectedLabel
-    }, () => {
-      if (!multiple) {
-        this.onSelectedChange(this.state.selected);
+    let { value } = this.state;
+    if (multiple) {
+      if (value.indexOf(option.props.value) > -1) {
+        value.splice(value.indexOf(option.props.value), 1)
+      } else {
+        value.push(option.props.value)
       }
-      this.setState({ visible: visible })
+    } else {
+      value = option.props.value
+      this.setState({ visible: false })
+    }
+    this.setState({ value }, () => {
+      this.selectedData()
     })
+  }
+  onTagClose(item) {
+    this.onOptionClick(item)
   }
   // 展示隐藏菜单
   toggleMenu(e) {
@@ -188,23 +181,48 @@ export default class Select extends Component {
   onMouseLeave(e) {
     this.showCloseIcon("arrow-down")
   }
+  onPopperMouseEnter() {
+    // console.log("this.input:", this.refs.input.refs.input)
+    // this.refs.input.refs.input.focus()
+    // this.input.focus()
+  }
+  onPopperMouseLeave() {
+
+  }
   render() {
     const { prefixCls, style, size, name, multiple, filterable, disabled, children } = this.props;
-    const { visible, inputWidth, selectedLabel } = this.state;
+    const { visible, inputWidth, selected, selectedLabel } = this.state;
     return (
       <div
         style={style}
         className={this.classNames(`${prefixCls}`, {
-          unfold: this.state.visible, // 是否展开
+          "unfold": this.state.visible, // 是否展开
+          "w-multiple": multiple
         })}
       >
+        {
+          multiple && (
+            <div ref="tags" className={`${prefixCls}-tags`}>
+              {
+                selected.map((item, idx) => {
+                  return (
+                    <Tag
+                      key={`${idx}${randomid()}`}
+                      onClose={this.onTagClose.bind(this, item)}
+                    >{this.showLabelText(item.props)}</Tag>
+                  )
+                })
+              }
+            </div>
+          )
+        }
         <Input
           type="text"
           ref="input"
           name={name}
           size={size}
           disabled={disabled}
-          value={selectedLabel}
+          value={selectedLabel && multiple ? (selectedLabel.length > 0 ? " " : '') : selectedLabel}
           icon={this.state.icon}
           readOnly={!filterable || multiple}
           placeholder={this.state.placeholder}
@@ -222,6 +240,8 @@ export default class Select extends Component {
           style={{
             minWidth: inputWidth,
           }}
+          onMouseEnter={this.onPopperMouseEnter.bind(this)}
+          onMouseLeave={this.onPopperMouseLeave.bind(this)}
         >
           <ul className={`${prefixCls}-warp`}>
             {children}

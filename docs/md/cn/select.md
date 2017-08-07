@@ -237,6 +237,61 @@ render() {
 ```
 <!--End-->
 
+
+### 多选标签
+
+用 `Tag` 展示已选择的项，需要设置`multiple=true`。
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    options: [
+      { value: '选项1', label: '红葡萄酒' }, 
+      { value: '选项2', label: '绍兴黄酒'}, 
+      { value: '选项3', label: '燕京啤酒' }, 
+      { value: '选项4', label: '楚乡王白酒' }, 
+      { value: '选项5', label: '五粮液' },
+      { value: '选项6', label: '绍兴黄酒', disabled: true}, 
+      //{ value: '选项7', label: '燕京啤酒' }, 
+      //{ value: '选项8', label: '楚乡王白酒' }, 
+      //{ value: '选项9', label: '五粮液' },
+      //{ value: '选项10', label: '红葡萄酒' }, 
+      //{ value: '选项11', label: '红葡萄酒' }, 
+      //{ value: '选项12', label: '绍兴黄酒', disabled: true}, 
+      //{ value: '选项13', label: '燕京啤酒' }, 
+      //{ value: '选项14', label: '楚乡王白酒' }, 
+      //{ value: '选项15', label: '五粮液' },
+      //{ value: '选项16', label: '绍兴黄酒', disabled: true}, 
+      //{ value: '选项17', label: '燕京啤酒' }, 
+      //{ value: '选项18', label: '楚乡王白酒' }, 
+      //{ value: '选项19', label: '五粮液' },
+    ],
+    value: ['选项1','选项3','选项5'],
+    //value: [],
+    value2:"选项1"
+  };
+}
+onChange(e,value){
+  console.log("onChange:",value,e)
+}
+render() {
+  return (
+    <div>
+      <Select onChange={this.onChange.bind(this)} multiple={true} style={{width:200}} value={this.state.value}>
+        {
+          this.state.options.map((elm,idx) => {
+            return <Select.Option key={idx} label={elm.label} value={elm.value} disabled={elm.disabled} />
+          })
+        }
+      </Select>
+    </div>
+  )
+}
+```
+<!--End-->
+
 ### 联动
 
 省市联动是典型的例子。
@@ -380,11 +435,12 @@ render() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| value | 指定当前选中的条目 | String/String[] | - |
+| value | 指定当前选中的条目，值为`value` 或`label` | String/String[] | - |
 | name | `Select` 是通过 `input` 实现的，这里是设置 `name` 的属性 | String | - |
 | placeholder | 这里是 `input` 占位符 | String | `请选择` |
 | disabled | 是否禁用 | Boolean | false |
 | multiple | 是否可多选 | Boolean | false |
+| filterable | 是否可搜索，设置`true`组件可以输入文字 | Boolean | false |
 | clearable | 是否可多选 | Boolean | false |
 | onChange | 选中值发生变化时触发 | function(option, value) | - |
 
@@ -392,6 +448,6 @@ render() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| value | 指定当前选中的条目 | String/String[] | - |
+| value | 指定当前选中的条目，`必填`选项 | String/String[] | - |
 | disabled | 是否禁用 | Boolean | false |
-| label | 选项的标签，若不设置则默认与 `value` 相同 | String/Number | - |
+| label | 选项的标签，若不设置则默认与 `value` 相同，`选填` | String/Number | - |

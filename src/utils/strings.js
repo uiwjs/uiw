@@ -1,4 +1,5 @@
 let uid = Date.now()
-export function randomid() {
+function randomid() {
   return (uid++).toString(36)
 }
+export { randomid }
