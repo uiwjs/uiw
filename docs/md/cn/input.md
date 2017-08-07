@@ -176,6 +176,8 @@ Input 的其他属性和 React 自带的 [input](https://facebook.github.io/reac
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | type | 声明 input 类型，同原生 input 标签的 type 属性。另外提供 `type="textarea"`。 | String | `text` |
+| value | 绑定值 | String | - |
+| defaultValue | 输入框默认内容 | String | - |
 | size | 指定输入框的尺寸，除了默认的大小外，还提供了 `large`、`small` 和 `mini` 三种尺寸。 | String | - |
 | length | 输入的最大长度 | Number | Infinity |
 | autoFocus | 当页面加载时，文本区域自动获得焦点。`HTML5` 中的新属性。  | Boolean | `false` |

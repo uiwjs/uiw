@@ -363,6 +363,8 @@ render() {
 
 ### Modals自定义Footer
 
+自定义按钮，需要定义`onCancel`方法，`onCancel`方法改变父组件的`visible`属性。`footer`可以赋值`null`，不显示底部按钮。
+
 <!--DemoStart--> 
 ```js
 constructor(props) {
@@ -380,43 +382,42 @@ handleShow(){
 render() {
   return (
     <div> 
-
-        <Button size="small" onClick={this.handleShow.bind(this)}>Modals自定义Footer</Button>
-        <Modals 
-          ref="modals"
-          title="Modals自定义Footer" 
-          visible={this.state.visible}
-          onOk={this.handleOk} // 点击确定提交按钮
-          style={{top: 20}}    // 可以设定容器的位置以及样式
-          onCancel={this.handleCancel.bind(this)}
-          okText="OK" 
-          cancelText="Cancel"
-          // 自定义页脚按钮
-          // footer={null}
-          footer={(
-            <div>
-              <Button size="small" onClick={()=>{
-                //this.refs.modals.onCancel
-                this.setState({
-                  visible:false
-                })
-              }}>
-                取消
-              </Button>
-              <Button size="small" onClick={()=>{
-                this.setState({
-                  visible:false
-                })
-              }}>
-                确定
-              </Button>
-            </div>
-          )}
-        >
-          <p style={{color:"#333"}}>Bla bla ...</p>
-          <p>Bla bla ...</p>
-          <p>Bla bla ...</p>
-        </Modals>
+      <Button size="small" onClick={this.handleShow.bind(this)}>Modals自定义Footer</Button>
+      <Modals 
+        ref="modals"
+        title="Modals自定义Footer" 
+        visible={this.state.visible}
+        onOk={this.handleOk} // 点击确定提交按钮
+        style={{top: 20}}    // 可以设定容器的位置以及样式
+        onCancel={this.handleCancel.bind(this)}
+        okText="OK" 
+        cancelText="Cancel"
+        // 自定义页脚按钮
+        // footer={null}
+        footer={(
+          <div>
+            <Button size="small" onClick={()=>{
+              //this.refs.modals.onCancel
+              this.setState({
+                visible:false
+              })
+            }}>
+              取消
+            </Button>
+            <Button size="small" onClick={()=>{
+              this.setState({
+                visible:false
+              })
+            }}>
+              确定
+            </Button>
+          </div>
+        )}
+      >
+        <p style={{color:"#333"}}>Bla bla ...</p>
+        <p>Bla bla ...</p>
+        <p>Bla bla ...</p>
+      </Modals>
     </div>
   )
 }
