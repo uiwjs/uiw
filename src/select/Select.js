@@ -58,13 +58,32 @@ export default class Select extends Component {
   showLabelText(props) {
     return props.label ? props.label : props.value
   }
+  // 带组的组件 Select Group
+  getChildren(_children) {
+    let { children } = this.props;
+    _children = _children || children
+    let items = [];
+    if (_children.length > 0) {
+      _children.forEach((item, idx) => {
+        if (Array.isArray(item)) {
+          item.forEach(_item => {
+            items = items.concat(this.getChildren(_item.props.children))
+          })
+        } else if (item.type.name === 'Option') {
+          items.push(item)
+        } else {
+          items = items.concat(this.getChildren(item.props.children))
+        }
+      })
+    }
+    return items;
+  }
   // 初始化默认选中
   selectedData(init) {
-    const { multiple, children } = this.props;
+    const { multiple } = this.props;
     let { selectedLabel, selected, value } = this.state;
     if (multiple && Array.isArray(value)) {
-
-      selected = children.reduce((prev, curr) => {
+      selected = this.getChildren().reduce((prev, curr) => {
         return value.indexOf(curr.props.value) > -1 ? prev.concat(curr) : prev;
       }, [])
       selectedLabel = selected.map(option => {
@@ -77,7 +96,7 @@ export default class Select extends Component {
       });
     } else {
       // 过滤改变 selectedLabel 的value对应的值
-      selected = children.filter(option => {
+      selected = this.getChildren().filter(option => {
         return option.props.value === value
       })[0];
       if (selected) {
