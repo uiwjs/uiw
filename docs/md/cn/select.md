@@ -261,8 +261,8 @@ constructor(props) {
     value: ['选项1','选项3','选项5'],
   };
 }
-onChange(e,value){
-  console.log("onChange:",value,e)
+onChange(e,value,values){
+  console.log("onChange:",value,values,e)
 }
 render() {
   return (
@@ -427,7 +427,7 @@ render() {
 | multiple | 是否可多选 | Boolean | false |
 | filterable | 是否可搜索，设置`true`组件可以输入文字 | Boolean | false |
 | clearable | 是否可多选 | Boolean | false |
-| onChange | 选中值发生变化时触发 | function(option, value) | - |
+| onChange | 选中值发生变化时触发 | function(option, curruntValue,values[]) | - |
 
 ### Option
 

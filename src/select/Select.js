@@ -115,11 +115,10 @@ export default class Select extends Component {
     }
   }
   // 触发onChange事件
-  onSelectedChange(val) {
-    const { multiple, onChange } = this.props;
-    if (!multiple) {
-      onChange && onChange(val, val.props.value);
-    }
+  onSelectedChange(option) {
+    const { onChange } = this.props;
+    const { value } = this.state;
+    onChange && onChange(option, option.props.value, value);
   }
   // 点击选中事件, 选中设置Select值
   onOptionClick(option) {
@@ -137,6 +136,7 @@ export default class Select extends Component {
     }
     this.setState({ value }, () => {
       this.selectedData()
+      this.onSelectedChange(option)
     })
   }
   onTagClose(item) {
