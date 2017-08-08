@@ -3,6 +3,26 @@ import { Component, PropTypes } from '../utils/';
 import Icon from '../icon/';
 
 export default class Option extends Component {
+  constructor(props) {
+    super(props);
+    this.mounted = true;
+    this.state = {
+      visible: true
+    }
+    this.queryChange = this.queryChange.bind(this);
+  }
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+  componentWillMount() {
+    const { selectedLabel } = this.parent().state;
+    const { multiple, filterable } = this.parent().props;
+    this.parent().onOptionCreate(this);
+    // 初始化搜索过滤方法
+    if ((filterable && selectedLabel) || (filterable && multiple && selectedLabel.length > 0)) {
+      this.queryChange(selectedLabel)
+    }
+  }
   parent() { return this.context.component; }
   // 点击单个Item事件
   selectOptionClick() {
@@ -11,7 +31,7 @@ export default class Option extends Component {
     }
   }
   isSelected() {
-    const { selected } = this.parent().state;
+    let { selected } = this.parent().state;
     const { value } = this.props;
     if (selected) {
       if (Object.prototype.toString.call(selected) === '[object Object]') {
@@ -29,8 +49,18 @@ export default class Option extends Component {
     const { label, value } = this.props;
     return label || ((typeof value === 'string' || typeof value === 'number') ? value : '');
   }
+  // 搜索过滤方法
+  queryChange(query) {
+    const visible = new RegExp(query, 'i').test(this.currentLabel());
+    // 判断组件是否挂载
+    if (this.mounted) {
+      this.setState({ visible });
+    }
+  }
   render() {
     const { children, disabled } = this.props;
+    const { visible } = this.state;
+    if (!visible) return null;
     return (
       <li
         onClick={this.selectOptionClick.bind(this)}

@@ -13,12 +13,14 @@ export default class Select extends Component {
       inputHovering: false,
       selected: props.multiple ? [] : undefined,
       selectedLabel: props.value,      // 默认选中的值 多选为数组
-      value: props.value, // 多选或单选值
+      value: props.value,              // 多选或单选值
       visible: false,                  // 菜单是否显示
+      options: [], // 在可搜索的时候，需要调用option里面的方法
       icon: "arrow-down",
       inputWidth: 0,
     }
     this.toggleMenu = this.toggleMenu.bind(this);
+    this.onQueryChange = this.onQueryChange.bind(this);
   }
   getChildContext() {
     return { component: this }
@@ -35,6 +37,11 @@ export default class Select extends Component {
       }, () => {
         this.selectedData()
       });
+    }
+  }
+  componentWillUpdate(props, state) {
+    if (state.selectedLabel !== this.state.selectedLabel) {
+      this.onQueryChange(state.selectedLabel)
     }
   }
   componentDidMount() {
@@ -54,6 +61,11 @@ export default class Select extends Component {
     if ((!domNode || !domNode.contains(e.target))) {
       this.setState({ visible: false });
     }
+  }
+  // 将所有渲染后的组件，寄存在当前state option上面
+  onOptionCreate(option) {
+    this.state.options.push(option);
+    this.setState(this.state);
   }
   showLabelText(props) {
     return props.label ? props.label : props.value
@@ -114,6 +126,10 @@ export default class Select extends Component {
       input.refs.input.focus();
     }
   }
+  onQueryChange(query) {
+    const { options } = this.state
+    options.forEach((option) => option.queryChange(query))
+  }
   // 触发onChange事件
   onSelectedChange(option) {
     const { onChange } = this.props;
@@ -155,8 +171,10 @@ export default class Select extends Component {
   // 输入内容，回调事件
   onInputChange() {
     if (this.props.filterable && this.state.selectedLabel !== this.state.value) {
-      this.setState({
-        selectedLabel: this.state.selectedLabel
+      this.setState({ visible: true }, () => {
+        this.setState({
+          selectedLabel: this.state.selectedLabel,
+        });
       });
     }
   }
@@ -270,7 +288,7 @@ Select.propTypes = {
   prefixCls: PropTypes.string,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,   // 是否禁用
-  filterable: PropTypes.bool, // 是否可搜索
+  filterable: PropTypes.bool, // 是否可过滤搜索
   multiple: PropTypes.bool,   // 是否可多选
   clearable: PropTypes.bool,  // 清空单选
   value: PropTypes.oneOfType([// 是否可多选

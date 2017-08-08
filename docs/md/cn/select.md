@@ -170,6 +170,46 @@ render() {
 ```
 <!--End-->
 
+### 带搜索框
+
+展开后可对选项进行搜索。
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    options: [
+      { value: '选项1', label: '红葡萄酒' }, 
+      { value: '选项2', label: '绍兴黄酒', disabled: true}, 
+      { value: '选项3', label: '燕京啤酒' }, 
+      { value: '选项4', label: '楚乡王白酒' }, 
+      { value: '选项5', label: '五粮液' },
+      { value: '选项6', label: '绍兴黄酒', disabled: true}, 
+      { value: '选项7', label: '燕京啤酒' }, 
+    ],
+    value: ''
+  };
+}
+onChange(e,value){
+  console.log("onChange:",value,e)
+}
+render() {
+  return (
+    <div>
+      <Select filterable={true} onChange={this.onChange.bind(this)} style={{width:200}} value={this.state.value}>
+        {
+          this.state.options.map(elm => {
+            return <Select.Option key={elm.value} label={elm.label} value={elm.value} disabled={elm.disabled} />
+          })
+        }
+      </Select>
+    </div>
+  )
+}
+```
+<!--End-->
+
 ### 分组
 
 备选项进行分组展示。
