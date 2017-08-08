@@ -169,16 +169,17 @@ export default class Select extends Component {
     this.toggleMenu(e)
   }
   onIconClick(e) {
+    const { multiple } = this.props
     if (this.state.icon === 'close') {
       this.setState({
-        selectedLabel: '',
+        selectedLabel: multiple ? [] : '',
+        selected: multiple ? [] : '',
+        value: multiple ? [] : '',
         icon: 'arrow-down'
       })
       return;
     }
-    if (this.refs.input) {
-      this.refs.input.focus();
-    }
+    if (this.input) this.input.focus();
     this.toggleMenu(e)
   }
   showCloseIcon(type) {
@@ -199,14 +200,6 @@ export default class Select extends Component {
   }
   onMouseLeave(e) {
     this.showCloseIcon("arrow-down")
-  }
-  onPopperMouseEnter() {
-    // console.log("this.input:", this.refs.input.refs.input)
-    // this.refs.input.refs.input.focus()
-    // this.input.focus()
-  }
-  onPopperMouseLeave() {
-
   }
   render() {
     const { prefixCls, style, size, name, multiple, filterable, disabled, children } = this.props;
@@ -259,8 +252,6 @@ export default class Select extends Component {
           style={{
             minWidth: inputWidth,
           }}
-          onMouseEnter={this.onPopperMouseEnter.bind(this)}
-          onMouseLeave={this.onPopperMouseLeave.bind(this)}
         >
           <ul className={`${prefixCls}-warp`}>
             {children}
