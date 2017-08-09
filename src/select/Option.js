@@ -20,7 +20,7 @@ export default class Option extends Component {
     this.parent().onOptionCreate(this);
     // 初始化搜索过滤方法
     if ((filterable && selectedLabel) || (filterable && multiple && selectedLabel.length > 0)) {
-      this.queryChange(selectedLabel)
+      this.queryChange()
     }
   }
   parent() { return this.context.component; }
@@ -50,8 +50,13 @@ export default class Option extends Component {
     return label || ((typeof value === 'string' || typeof value === 'number') ? value : '');
   }
   // 搜索过滤方法
-  queryChange(query) {
-    const visible = new RegExp(query, 'i').test(this.currentLabel());
+  queryChange(_query) {
+    const { multiple } = this.parent().props;
+    const { query, selectedLabel } = this.parent().state;
+    if (!_query) {
+      _query = multiple ? query : selectedLabel;
+    }
+    const visible = new RegExp(_query, 'i').test(this.currentLabel());
     // 判断组件是否挂载
     if (this.mounted) {
       this.setState({ visible });

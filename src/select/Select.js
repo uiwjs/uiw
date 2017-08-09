@@ -16,6 +16,7 @@ export default class Select extends Component {
       value: props.value,              // 多选或单选值
       visible: false,                  // 菜单是否显示
       options: [], // 在可搜索的时候，需要调用option里面的方法
+      query: "",   // 多标签使用
       icon: "arrow-down",
       inputWidth: 0,
     }
@@ -40,8 +41,8 @@ export default class Select extends Component {
     }
   }
   componentWillUpdate(props, state) {
-    if (state.selectedLabel !== this.state.selectedLabel) {
-      this.onQueryChange(state.selectedLabel)
+    if (state.query !== this.state.query) {
+      this.onQueryChange(state.query)
     }
   }
   componentDidMount() {
@@ -120,9 +121,14 @@ export default class Select extends Component {
   }
   resetInputHeight(init) {
     const { input, tags } = this.refs;
+    const { filterable } = this.props;
     input.refs.input.style.height = tags.clientHeight + 'px';
     if (!init) {
-      input.refs.input.focus();
+      if (filterable) {
+        this.inputMultipleFocus()
+      } else {
+        input.refs.input.focus();
+      }
     }
   }
   onQueryChange(query) {
@@ -150,9 +156,10 @@ export default class Select extends Component {
       value = option.props.value
       this.setState({ visible: false })
     }
-    this.setState({ value }, () => {
+    this.setState({ value, query: "" }, () => {
       this.selectedData()
       this.onSelectedChange(option)
+      this.onQueryChange()
     })
   }
   onTagClose(item) {
@@ -166,9 +173,19 @@ export default class Select extends Component {
 
     if (children.length === 0) return;
     if (!disabled) {
+      this.inputMultipleFocus()
       // 展开点击控件不消失
       if (visible && domNode && domNode.contains(e.target)) return;
-      this.setState({ visible: !visible });
+      this.setState({ visible: !visible }, () => {
+      });
+    }
+  }
+  inputMultipleFocus() {
+    const { multiple, filterable } = this.props;
+    const { filterInput } = this.refs;
+    // 多标签输入过滤获得焦点
+    if (multiple && filterable) {
+      filterInput.refs.input.focus();
     }
   }
   // 输入内容，回调事件
@@ -180,6 +197,20 @@ export default class Select extends Component {
         });
       });
     }
+  }
+  // 多标签搜索方法
+  onInputFilterChange(e, value) {
+    const { filterInput, filterInputWidth } = this.refs;
+    this.setState({ query: value, selectedLabel: " " }, () => {
+      if (filterInput && filterInputWidth) {
+        let width = filterInputWidth.offsetWidth + 10
+        if (filterInputWidth.offsetWidth + 20 > this.refs.root.offsetWidth) {
+          width = this.refs.root.offsetWidth - 20
+        };
+        ReactDOM.findDOMNode(filterInput).style.width = width + 10 + 'px';
+        this.resetInputHeight(true)
+      }
+    })
   }
   onMouseDown(e) {
     e.preventDefault();
@@ -224,7 +255,7 @@ export default class Select extends Component {
     this.showCloseIcon("arrow-down")
   }
   renderMultipleTags() {
-    const { multiple, prefixCls } = this.props;
+    const { multiple, filterable, prefixCls } = this.props;
     const { selected } = this.state;
     if (!multiple) return null;
     return (
@@ -239,6 +270,18 @@ export default class Select extends Component {
             )
           })
         }
+        {filterable && (
+          <div className={`${prefixCls}-tags-filter`}>
+            <div className="cal" ref="filterInputWidth">{this.state.query}</div>
+            <Input
+              ref="filterInput"
+              style={{ width: 21 }}
+              value={this.state.query}
+              onChange={this.onInputFilterChange.bind(this)}
+              size="mini"
+            />
+          </div>
+        )}
       </div>
     )
   }
@@ -247,6 +290,7 @@ export default class Select extends Component {
     const { visible, inputWidth, selectedLabel } = this.state;
     return (
       <div
+        ref="root"
         style={style}
         className={this.classNames(`${prefixCls}`, {
           "unfold": this.state.visible, // 是否展开
@@ -261,7 +305,7 @@ export default class Select extends Component {
           size={size}
           disabled={disabled}
           value={selectedLabel && multiple ? (selectedLabel.length > 0 ? " " : '') : selectedLabel}
-          icon={this.state.icon}
+          icon={multiple ? null : this.state.icon}
           readOnly={!filterable || multiple}
           placeholder={this.state.placeholder}
           onMouseDown={this.onMouseDown.bind(this)}
@@ -270,7 +314,7 @@ export default class Select extends Component {
           onIconClick={this.onIconClick.bind(this)}
           onIconMouseOut={this.onIconMouseOut.bind(this)}
           onIconMouseOver={this.onIconMouseOver.bind(this)}
-          onChange={(e, value) => this.setState({ selectedLabel: value })}
+          onChange={(e, value) => this.setState({ selectedLabel: value, query: value })}
           onKeyUp={this.onInputChange.bind(this)}
         />
         <Popper ref="popper" visible={visible && children && children.length > 0} className={this.classNames(`${prefixCls}-popper`)}

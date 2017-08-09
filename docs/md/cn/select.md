@@ -210,6 +210,46 @@ render() {
 ```
 <!--End-->
 
+### 多选标签搜索
+
+用 `Tag` 展示已选择的项，需要设置`multiple=true`，`filterable=true`。
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    options: [
+      { value: '选项1', label: '红葡萄酒' }, 
+      { value: '选项2', label: '绍兴黄酒'}, 
+      { value: '选项3', label: '燕京啤酒' }, 
+      { value: '选项4', label: '楚乡王白酒' }, 
+      { value: '选项5', label: '五粮液' },
+      { value: '选项6', label: '绍兴黄酒', disabled: true}, 
+      { value: '选项7', label: '燕京啤酒' }, 
+      { value: '选项8', label: '楚乡王白酒' }, 
+      { value: '选项9', label: '五粮液' },
+    ],
+    value: ['选项1','选项3','选项5'],
+  };
+}
+onChange(e,value,values){
+  console.log("onChange:",value,values,e)
+}
+render() {
+  return (
+    <Select onChange={this.onChange.bind(this)} filterable={true} multiple={true} style={{width:500}} value={this.state.value}>
+      {
+        this.state.options.map((elm,idx) => {
+          return <Select.Option key={idx} label={elm.label} value={elm.value} disabled={elm.disabled} />
+        })
+      }
+    </Select>
+  )
+}
+```
+<!--End-->
+
 ### 分组
 
 备选项进行分组展示。
