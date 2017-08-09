@@ -126,8 +126,9 @@ export default class Select extends Component {
     }
   }
   onQueryChange(query) {
-    const { options } = this.state
-    options.forEach((option) => option.queryChange(query))
+    const { options } = this.state;
+    const { filterable } = this.props;
+    filterable && options.forEach((option) => option.queryChange(query));
   }
   // 触发onChange事件
   onSelectedChange(option) {
@@ -188,6 +189,7 @@ export default class Select extends Component {
     // 单选展开菜单
     this.toggleMenu(e)
   }
+  //清空选中内容
   onIconClick(e) {
     const { multiple } = this.props;
     if (this.state.icon === 'close') {
@@ -226,7 +228,7 @@ export default class Select extends Component {
     const { selected } = this.state;
     if (!multiple) return null;
     return (
-      <div ref="tags" className={`${prefixCls}-tags`} onClick={this.onIconClick.bind(this)}>
+      <div ref="tags" className={`${prefixCls}-tags`} onClick={this.toggleMenu.bind(this)}>
         {
           selected.map((item, idx) => {
             return (
