@@ -50,7 +50,6 @@ export default class Select extends Component {
       inputWidth: this.input.getBoundingClientRect().width
     })
     this.selectedData(true);
-    // this.handleValueChange();
   }
   handleClickOutside(e) {
     // Ignore clicks on the component it self
@@ -162,9 +161,12 @@ export default class Select extends Component {
   toggleMenu(e) {
     const { disabled, children } = this.props;
     const { visible } = this.state;
+    const domNode = ReactDOM.findDOMNode(this);
 
     if (children.length === 0) return;
     if (!disabled) {
+      // 展开点击控件不消失
+      if (visible && domNode && domNode.contains(e.target)) return;
       this.setState({ visible: !visible });
     }
   }
@@ -187,7 +189,7 @@ export default class Select extends Component {
     this.toggleMenu(e)
   }
   onIconClick(e) {
-    const { multiple } = this.props
+    const { multiple } = this.props;
     if (this.state.icon === 'close') {
       this.setState({
         selectedLabel: multiple ? [] : '',
@@ -219,9 +221,28 @@ export default class Select extends Component {
   onMouseLeave(e) {
     this.showCloseIcon("arrow-down")
   }
+  renderMultipleTags() {
+    const { multiple, prefixCls } = this.props;
+    const { selected } = this.state;
+    if (!multiple) return null;
+    return (
+      <div ref="tags" className={`${prefixCls}-tags`} onClick={this.onIconClick.bind(this)}>
+        {
+          selected.map((item, idx) => {
+            return (
+              <Tag
+                key={`${idx}${randomid()}`}
+                onClose={this.onTagClose.bind(this, item)}
+              >{this.showLabelText(item.props)}</Tag>
+            )
+          })
+        }
+      </div>
+    )
+  }
   render() {
     const { prefixCls, style, size, name, multiple, filterable, disabled, children } = this.props;
-    const { visible, inputWidth, selected, selectedLabel } = this.state;
+    const { visible, inputWidth, selectedLabel } = this.state;
     return (
       <div
         style={style}
@@ -230,22 +251,7 @@ export default class Select extends Component {
           "w-multiple": multiple
         })}
       >
-        {
-          multiple && (
-            <div ref="tags" className={`${prefixCls}-tags`}>
-              {
-                selected.map((item, idx) => {
-                  return (
-                    <Tag
-                      key={`${idx}${randomid()}`}
-                      onClose={this.onTagClose.bind(this, item)}
-                    >{this.showLabelText(item.props)}</Tag>
-                  )
-                })
-              }
-            </div>
-          )
-        }
+        {this.renderMultipleTags()}
         <Input
           type="text"
           ref="input"

@@ -1,5 +1,4 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import { Component, PropTypes } from '../utils/';
 import Tooltip from '../tooltip/';
 
