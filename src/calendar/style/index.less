@@ -3,6 +3,9 @@
 
 .w-heatmap{
   user-select: none;
+  &svg{
+    overflow: inherit;
+  }
   rect{
     cursor: pointer;
     transition: stroke @transition-time @transition-timing-functio;
