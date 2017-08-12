@@ -14,7 +14,14 @@ const webpackConfig = require('./webpack.config');
 //   filename: "[name].[contenthash].css",
 //   disable: process.env.NODE_ENV === "development"
 // });
-module.exports = merge(webpackConfig, {
+
+const confg = merge(webpackConfig, {
+  // Don't attempt to continue if there are any errors.
+  // 有任何错误请不要尝试继续操作
+  bail: true,
+  // We generate sourcemaps in production. This is slow but gives good results.
+  // You can exclude the *.map files from the build during deployment.
+  devtool: 'source-map',
   entry: {
     docs: paths.appPublic
   },
@@ -47,6 +54,27 @@ module.exports = merge(webpackConfig, {
       children: true,
       minChunks: 2,
     }),
+    // Minify the code.
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        // Disabled because of an issue with Uglify breaking seemingly valid code:
+        // https://github.com/facebookincubator/create-react-app/issues/2376
+        // Pending further investigation:
+        // https://github.com/mishoo/UglifyJS2/issues/2011
+        comparisons: false,
+      },
+      output: {
+        comments: false,
+      },
+      sourceMap: true,
+    }),
+    // Moment.js is an extremely popular library that bundles large locale files
+    // by default due to how Webpack interprets its code. This is a practical
+    // solution that requires the user to opt into importing specific locales.
+    // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
+    // You can remove this if you don't use Moment.js:
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: 'inline',
     //   filename: 'js/[hash:8].[name].js',
@@ -58,3 +86,5 @@ module.exports = merge(webpackConfig, {
     // }),
   ]
 })
+
+module.exports = confg

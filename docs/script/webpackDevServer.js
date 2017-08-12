@@ -1,7 +1,6 @@
 'use strict';
 const errorOverlayMiddleware = require('react-error-overlay/middleware');
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
-const config = require('./webpack.config.dev');
 const paths = require('./paths');
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
@@ -32,7 +31,7 @@ module.exports = function (allowedHost) {
     // Silence WebpackDevServer's own logs since they're generally not useful.
     // 不显示WebpackDevServer自己的日志，因为它们通常没有用。
     // It will still show compile warnings and errors with this setting.
-        // 它仍然会显示编译警告和错误与此设置。
+    // 它仍然会显示编译警告和错误与此设置。
     clientLogLevel: 'none',
     // By default WebpackDevServer serves physical files from current directory
     // in addition to all the virtual build products that it serves from memory.

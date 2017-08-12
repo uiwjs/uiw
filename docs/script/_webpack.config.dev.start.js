@@ -5,7 +5,7 @@ const autoprefixer = require('autoprefixer');
 
 new WebpackDevServer(webpack({
   devtool: 'source-map',
-  devtool: 'eval',
+  // devtool: 'eval',
   entry: [
     'webpack-dev-server/client?http://localhost:1987',
     'webpack/hot/only-dev-server',
