@@ -5,6 +5,25 @@ import Input from '../input/';
 import Tag from '../tag';
 import Popper from '../popper/';
 
+function getChildrensComponent(_children) {
+  if (!_children) _children = [];
+  let items = [];
+  if (_children.length > 0) {
+    _children.forEach((item, idx) => {
+      if (Array.isArray(item)) {
+        item.forEach(_item => {
+          items = items.concat(getChildrensComponent(_item.props.children))
+        })
+      } else if (item.type.names === 'option') {
+        items.push(item)
+      } else {
+        items = items.concat(getChildrensComponent(item.props.children))
+      }
+    })
+  }
+  return items;
+}
+
 export default class Select extends Component {
   constructor(props) {
     super(props);
@@ -70,32 +89,12 @@ export default class Select extends Component {
   showLabelText(props) {
     return props.label ? props.label : props.value
   }
-  // 带组的组件 Select Group
-  getChildren(_children) {
-    let { children } = this.props;
-    _children = _children || children
-    let items = [];
-    if (_children.length > 0) {
-      _children.forEach((item, idx) => {
-        if (Array.isArray(item)) {
-          item.forEach(_item => {
-            items = items.concat(this.getChildren(_item.props.children))
-          })
-        } else if (item.type.name === 'Option') {
-          items.push(item)
-        } else {
-          items = items.concat(this.getChildren(item.props.children))
-        }
-      })
-    }
-    return items;
-  }
   // 初始化默认选中
   selectedData(init) {
-    const { multiple } = this.props;
+    const { multiple, children } = this.props;
     let { selectedLabel, selected, value } = this.state;
     if (multiple && Array.isArray(value)) {
-      selected = this.getChildren().reduce((prev, curr) => {
+      selected = getChildrensComponent(children).reduce((prev, curr) => {
         return value.indexOf(curr.props.value) > -1 ? prev.concat(curr) : prev;
       }, [])
       selectedLabel = selected.map(option => {
@@ -108,7 +107,7 @@ export default class Select extends Component {
       });
     } else {
       // 过滤改变 selectedLabel 的value对应的值
-      selected = this.getChildren().filter(option => {
+      selected = getChildrensComponent(children).filter(option => {
         return option.props.value === value
       })[0];
       if (selected) {
@@ -212,6 +211,9 @@ export default class Select extends Component {
       }
     })
   }
+  onInputChangeValue(e) {
+    this.setState({ selectedLabel: e.target.value, query: e.target.value })
+  }
   onMouseDown(e) {
     e.preventDefault();
     if (this.refs.input) {
@@ -314,7 +316,7 @@ export default class Select extends Component {
           onIconClick={this.onIconClick.bind(this)}
           onIconMouseOut={this.onIconMouseOut.bind(this)}
           onIconMouseOver={this.onIconMouseOver.bind(this)}
-          onChange={(e, value) => this.setState({ selectedLabel: value, query: value })}
+          onChange={this.onInputChangeValue.bind(this)}
           onKeyUp={this.onInputChange.bind(this)}
         />
         <Popper ref="popper" visible={visible && children && children.length > 0} className={this.classNames(`${prefixCls}-popper`)}
@@ -327,10 +329,11 @@ export default class Select extends Component {
             {children}
           </ul>
         </Popper>
-      </div >
+      </div>
     );
   }
 }
+
 
 Select.childContextTypes = {
   component: PropTypes.any

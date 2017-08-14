@@ -3,6 +3,7 @@ import { Component, PropTypes } from '../utils/';
 import Icon from '../icon/';
 
 export default class Option extends Component {
+  static names = "option"
   constructor(props) {
     super(props);
     this.mounted = true;
