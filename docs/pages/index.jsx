@@ -8,6 +8,7 @@ export default {
       'layout': require('./layout'),
       'icon': require('./icon'),
       'button': require('./button'),
+      'hotkeys': require('./hotkeys'),
     },
     'Form': {
       'form': require('./form'),

@@ -4,6 +4,7 @@ module.exports = {
     'theme': 'Theme',
     'checkbox': 'Checkbox',
     'date-picker': 'Date Picker',
+    'hotkeys': "Hotkeys",
     'switch': 'Switch',
     'select': 'Select',
     'slider': 'Slider',

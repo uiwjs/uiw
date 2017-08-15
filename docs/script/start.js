@@ -1,9 +1,9 @@
 const webpack = require('webpack');
-const path = require('path');
+// const path = require('path');
 const {
   choosePort,
   createCompiler,
-  prepareProxy,
+  // prepareProxy,
   prepareUrls,
 } = require('react-dev-utils/WebpackDevServerUtils');
 const clearConsole = require('react-dev-utils/clearConsole');

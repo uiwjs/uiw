@@ -4,6 +4,7 @@ module.exports = {
     'theme': '主题定制',
     'checkbox': 'Checkbox 多选框',
     'date-picker': 'Date Picker 日期选择器',
+    'hotkeys': "Hotkeys 快捷键",
     'switch': 'Switch 开关',
     'select': 'Select 选择器',
     'slider': 'Slider 滑块',

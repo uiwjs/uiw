@@ -5,6 +5,7 @@ export { default as Breadcrumb } from './breadcrumb/';
 export { default as Badge } from './badge/';
 export { default as Calendar } from './calendar/';
 export { default as Checkbox } from './checkbox/';
+export { default as Hotkeys } from './hotkeys/';
 export { default as Modals } from './modal/';
 export { default as Message } from './message/';
 export { default as Menu } from './menu/';

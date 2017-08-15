@@ -31,10 +31,9 @@ module.exports = merge(webpackConfig, {
       }
     }),
     new FaviconsWebpackPlugin(paths.appFavicon),
-    // // 这是发送热更新（目前仅为CSS）的必要条件：
-    // new webpack.HotModuleReplacementPlugin(),
-
-    // new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+    // 这是发送热更新（目前仅为CSS）的必要条件：
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
     // new webpack.optimize.CommonsChunkPlugin({
     //   async: true,
     //   children: true,

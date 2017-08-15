@@ -29,6 +29,7 @@
     "react-dev-utils": "^3.0.0",
     "react-dom": "^15.5.4",
     "react-error-overlay": "^1.0.7",
+    "react-hot-keys": "^1.0.0",
     "react-hot-loader": "^3.0.0-beta.7",
     "react-transition-group": "^1.1.3",
     "webpack-manifest-plugin": "^1.1.0"
