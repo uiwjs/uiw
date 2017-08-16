@@ -17,6 +17,10 @@ const HOST = process.env.HOST || '0.0.0.0';
 const isInteractive = process.stdout.isTTY;
 const fs = require('fs');
 
+
+process.env.BABEL_ENV = 'development';
+process.env.NODE_ENV = 'development';
+
 const createDevServerConfig = require('./webpackDevServer');
 // 如果需要的文件不存在，警告并崩溃
 if (!checkRequiredFiles([paths.appBuildHtml, paths.appIndexJs])) {

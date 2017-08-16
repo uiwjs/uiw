@@ -1,3 +1,5 @@
-import Hotkeys from 'react-hot-keys';
+// import ReactHotkeys from 'react-hot-keys';
 
-export default Hotkeys;
+function ReactHotkeys() { }
+
+export default ReactHotkeys;
