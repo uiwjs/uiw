@@ -1,6 +1,6 @@
-## Hotkeys 设置快捷键
+## Hotkeys 快捷键
 
-用于捕获键盘输入和输入的组合键，[react-hotkeys](https://github.com/jaywcjlove/react-hotkeys) 封装的组件
+用于捕获键盘输入和输入的组合键，基于[react-hotkeys](https://github.com/jaywcjlove/react-hotkeys) 封装的组件。
 
 ### 基础用法
 
