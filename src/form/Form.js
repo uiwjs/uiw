@@ -2,7 +2,7 @@ import React from 'react';
 import { Component, PropTypes } from '../utils/';
 
 export default class Form extends Component {
-  constructor(props: Object) {
+  constructor(props) {
     super(props);
     this.state = {
       fields: []

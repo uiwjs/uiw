@@ -1,5 +1,2 @@
-// import ReactHotkeys from 'react-hot-keys';
-
-function ReactHotkeys() { }
-
+import ReactHotkeys from './Hotkeys';
 export default ReactHotkeys;
