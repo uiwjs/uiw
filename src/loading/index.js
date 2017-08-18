@@ -21,7 +21,9 @@ export default class Loading extends Component {
         {loading && <div className={`${prefixCls}-tips`}>
           {loadingElm}
         </div>}
-        {children && <div className={loading ? `${prefixCls}-blur` : ''}>
+        {children && <div className={this.classNames(`${prefixCls}-warp`,{
+          [`${prefixCls}-blur`]:loading ===true
+        })}>
           {this.props.children}
         </div>}
       </div>
