@@ -16,11 +16,40 @@ ReactDOM.render(
 );
 ```
 
-
 ### 组件冲突
 
 重新取一个名字
 
 ```js
 import { Button as ButtonView } from 'uiw';
+```
+
+
+### 按需加载组件
+
+```js
+import React, { Component } from 'react';
+import { Alert } from 'uiw/src/alert';
+
+export default class Demo extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+    }
+  }
+  render() {
+    const {drag} = this.state;
+    return (
+      <div>
+        <Alert showIcon type="info" message="info Text"/>
+        <Alert type="success" message="success Text"/>
+        <Alert 
+          message="Error Text"
+          description="Error Description Error Description Error Description Error Description Error Description Error Description"
+          type="error"
+        />
+      </div>
+    )
+  }
+}
 ```

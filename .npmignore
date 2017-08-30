@@ -1,0 +1,7 @@
+docs
+build
+.DS_Store
+*.swp
+npm-debug.log
+dist
+.vscode
