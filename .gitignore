@@ -5,3 +5,5 @@ build
 npm-debug.log
 dist
 .vscode
+es5
+package-lock.json

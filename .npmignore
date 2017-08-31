@@ -5,3 +5,6 @@ build
 npm-debug.log
 dist
 .vscode
+src
+package-lock.json
+yarn.lock

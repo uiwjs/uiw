@@ -24,7 +24,6 @@ ReactDOM.render(
 import { Button as ButtonView } from 'uiw';
 ```
 
-
 ### 按需加载组件
 
 ```js
@@ -43,11 +42,6 @@ export default class Demo extends Component {
       <div>
         <Alert showIcon type="info" message="info Text"/>
         <Alert type="success" message="success Text"/>
-        <Alert 
-          message="Error Text"
-          description="Error Description Error Description Error Description Error Description Error Description Error Description"
-          type="error"
-        />
       </div>
     )
   }
