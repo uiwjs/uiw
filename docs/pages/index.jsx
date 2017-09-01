@@ -37,7 +37,7 @@ export default {
     },
     'Feedback': {
       'alert': require('./alert'),
-      'modals': require('./modals'),
+      'modal': require('./modal'),
       'message': require('./message'),
       'notification': require('./notification'),
       'loading': require('./loading'),
