@@ -18,7 +18,7 @@ module.exports = {
     'rate': 'Rate',
     'tag': 'Tag',
     'message': 'Message',
-    'modals': 'Modals',
+    'modal': 'Modal',
     'menu': 'Menu',
     'notification': 'Notification',
     'transition': 'Transition',

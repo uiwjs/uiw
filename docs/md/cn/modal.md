@@ -1,4 +1,4 @@
-## Modals 对话框
+## Modal 对话框
 
 模态对话框。
 
@@ -14,7 +14,7 @@ constructor(props) {
 }
 
   showConfirm(){
-    Modals.info({
+    Modal.info({
       title: 'Want to delete these items s?',
       content: 'When clicked the OK button, Some descriptions.',
       okText: 'OK',
@@ -31,7 +31,7 @@ constructor(props) {
   }
 
   showConfirm2(){
-    Modals.info({
+    Modal.info({
       title: 'Want to delete these items?',
       content: 'When clicked the OK button, this dialog will be closed after 1 second',
       okText: '确定按钮',
@@ -42,7 +42,7 @@ constructor(props) {
   }
 
   showConfirm3(){
-    Modals.error({
+    Modal.error({
       title: 'Want to delete these items?',
       content: 'When clicked the OK button, this dialog will be closed after 3 second',
       okText: '确定按钮',
@@ -83,7 +83,7 @@ constructor(props) {
 
 
 showConfirm4(){
-  Modals.info({
+  Modal.info({
     title: 'Want to delete these items?',
     content: 'When clicked the OK button, this dialog will be closed after 1 second',
     okText: '确定按钮',
@@ -94,7 +94,7 @@ showConfirm4(){
 }
 
   showConfirm5(){
-    Modals.warn({
+    Modal.warn({
       title: 'Want to delete these items?',
       content: 'When clicked the OK button, this dialog will be closed after 1 second',
       okText: '确定按钮',
@@ -105,7 +105,7 @@ showConfirm4(){
   }
   
   showConfirm6(){
-  Modals.error({
+  Modal.error({
     title: 'Want to delete these items?',
     content: 'When clicked the OK button, this dialog will be closed after 1 second',
     okText: '确定按钮',
@@ -116,7 +116,7 @@ showConfirm4(){
 }
 
 showConfirm7(){
-  Modals.success({
+  Modal.success({
     title: 'Want to delete these items?',
     content: 'When clicked the OK button, this dialog will be closed after 1 second',
     okText: '确定按钮',
@@ -162,7 +162,7 @@ onClick(key){
 render() {
   return (
     <div>
-        <Modals 
+        <Modal 
           title="This Title" 
           horizontal="right"
           width={300}
@@ -198,9 +198,9 @@ render() {
           <p style={{color:"#333"}}>Bla bla ...</p>
           <p>Bla bla ...</p>
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
-        </Modals>
+        </Modal>
 
-        <Modals 
+        <Modal 
           title="This Title" 
           horizontal="right"
           width={300}
@@ -240,9 +240,9 @@ render() {
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
-        </Modals>
+        </Modal>
 
-        <Modals 
+        <Modal 
           title="This Title" 
           horizontal="left"
           width={300}
@@ -275,9 +275,9 @@ render() {
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
-        </Modals>
+        </Modal>
 
-        <Modals 
+        <Modal 
           title="点击确定后异步关闭对话框" 
           horizontal="right"
           width={300}
@@ -303,7 +303,7 @@ render() {
           <p style={{color:"#333"}}>Bla bla ...</p>
           <p>Bla bla ...</p>
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
-        </Modals>
+        </Modal>
 
         <Button size="small" onClick={this.onClick.bind(this,'visible1')}>Right顶部留出空隙，隐藏遮罩层</Button>
 
@@ -337,9 +337,9 @@ render() {
     <div> 
         <Button size="small" onClick={()=>{
           this.setState({visible:true})
-        }}>Open Modals dialog</Button>  &nbsp;
-        <Modals 
-          title="Modals Title" 
+        }}>Open Modal dialog</Button>  &nbsp;
+        <Modal 
+          title="Modal Title" 
           visible={this.state.visible}
           onOk={this.handleOk} // 点击确定提交按钮
           width={600}          // 有默认值可以不传递
@@ -354,7 +354,7 @@ render() {
           <p style={{color:"#333"}}>Bla bla ...</p>
           <p>Bla bla ...</p>
           <p>Bla bla ...</p>
-        </Modals>
+        </Modal>
     </div>
   )
 }
@@ -383,8 +383,8 @@ render() {
   return (
     <div> 
       <Button size="small" onClick={this.handleShow.bind(this)}>Modals自定义Footer</Button>
-      <Modals 
-        ref="modals"
+      <Modal 
+        ref="modal"
         title="Modals自定义Footer" 
         visible={this.state.visible}
         onOk={this.handleOk} // 点击确定提交按钮
@@ -397,7 +397,7 @@ render() {
         footer={(
           <div>
             <Button size="small" onClick={()=>{
-              //this.refs.modals.onCancel
+              //this.refs.modal.onCancel
               this.setState({
                 visible:false
               })
@@ -417,7 +417,7 @@ render() {
         <p style={{color:"#333"}}>Bla bla ...</p>
         <p>Bla bla ...</p>
         <p>Bla bla ...</p>
-      </Modals>
+      </Modal>
     </div>
   )
 }
@@ -441,7 +441,7 @@ render() {
         <Button size="small" onClick={()=>{
           this.setState({visible3:true})
         }}>Modals居中显示，</Button> &nbsp;
-        <Modals 
+        <Modal 
           title="Modals自定义Footer" 
           visible={this.state.visible3}
           onOk={()=>{
@@ -454,7 +454,7 @@ render() {
           <p style={{color:"#333"}}>Bla bla ...</p>
           <p>Bla bla ...</p>
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
-        </Modals>
+        </Modal>
     </div>
   )
 }
@@ -479,7 +479,7 @@ render() {
         <Button size="small" onClick={()=>{
           this.setState({visible:true})
         }}>点击确定后异步关闭对话框， 并添加加载状态</Button> 
-        <Modals 
+        <Modal 
           title="点击确定后异步关闭对话框" 
           visible={this.state.visible}
           onOk={()=>{
@@ -507,7 +507,7 @@ render() {
           <p>Bla bla ...</p>
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
           </Loading>
-        </Modals>
+        </Modal>
     </div>
   )
 }
@@ -515,7 +515,7 @@ render() {
 <!--End-->
 
 
-### Modals Attributes
+### Modal Attributes
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
@@ -538,11 +538,11 @@ render() {
 
 | 方法 | 说明 |
 |--------- |-------- |
-| `Modals.info` | 正常白底效果 |
-| `Modals.success` | 成功提示 |
-| `Modals.warn` | 警告提示 |
-| `Modals.warning` | 警告提示 同warn |
-| `Modals.error` | 错误提示 |
+| `Modal.info` | 正常白底效果 |
+| `Modal.success` | 成功提示 |
+| `Modal.warn` | 警告提示 |
+| `Modal.warning` | 警告提示 同warn |
+| `Modal.error` | 错误提示 |
 
 继承Modals组件方法下面是默认，以及新增的方法。
 

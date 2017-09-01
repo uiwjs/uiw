@@ -18,7 +18,7 @@ module.exports = {
     'rate': 'Rate 评分',
     'tag': 'Tag 标签',
     'message': 'Message 全局提示',
-    'modals': 'Modals 对话框',
+    'modal': 'Modal 对话框',
     'menu': 'Menu 菜单',
     'notification': 'Notification 通知提醒框',
     'transition': 'Transition 过渡动画',
