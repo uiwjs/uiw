@@ -6,7 +6,7 @@ VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | s
 
 # target folder: /dist/site, make it clean and step into
 rm -fr dist
-builds=`npm run build`
+builds=`npm run build:doc`
 # mkdir dist dist/site
 cd dist
 

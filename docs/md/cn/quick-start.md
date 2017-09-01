@@ -26,24 +26,7 @@ import { Button as ButtonView } from 'uiw';
 
 ### 按需加载组件
 
-```js
-import React, { Component } from 'react';
-import { Alert } from 'uiw/src/alert';
-
-export default class Demo extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-    }
-  }
-  render() {
-    const {drag} = this.state;
-    return (
-      <div>
-        <Alert showIcon type="info" message="info Text"/>
-        <Alert type="success" message="success Text"/>
-      </div>
-    )
-  }
-}
+```diff
+- import { Alert } from 'uiw/src/alert';
++ import { Alert } from 'uiw/src/alert';
 ```
