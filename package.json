@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "1.1.3",
+  "version": "1.1.5",
   "description": "wui - react ui kit.",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "start": "node docs/script/start.js",
     "lib": "NODE_ENV=production ./docs/script/publish.sh",
     "build:doc": "node docs/script/build.js",
-    "build:lib": "BABEL_ENV=production babel src --out-dir lib",
+    "build:lib": "BABEL_ENV=production babel src --out-dir lib --copy-files",
     "deploy": "./docs/script/release.sh"
   },
   "dependencies": {
