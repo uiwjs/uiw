@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "1.1.5",
+  "version": "1.1.10",
   "description": "wui - react ui kit.",
   "main": "lib/index.js",
   "scripts": {

@@ -15,7 +15,8 @@ export { default as Transition } from './transition/';
 export { default as Table } from './table/';
 export { default as Paging } from './paging/';
 export { default as Tooltip } from './tooltip/'
-export { TimeSelect, TimePicker } from './date-picker/';
+export { TimePicker } from './date-picker/';
+export { default as TimeSelect } from './time-select/';
 export { default as Switch } from './switch/';
 export { default as Select } from './select/';
 export { default as Slider } from './slider/';
