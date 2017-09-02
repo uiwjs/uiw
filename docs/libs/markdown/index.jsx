@@ -50,7 +50,8 @@ export default class Markdown extends React.Component {
         const id = offset.toString(36);
 
         this.components.set(id, React.createElement(Canvas, Object.assign({
-          name: this.constructor.name.toLowerCase()
+          // name: this.constructor.name.toLowerCase()
+          name: this.getPageName()
         }, this.props), p1));
 
         return `<div id=${id}></div>`;

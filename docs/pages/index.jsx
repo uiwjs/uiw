@@ -5,6 +5,7 @@ export default {
   },
   components: {
     'Basic': {
+      'color': require('./color'),
       'layout': require('./layout'),
       'icon': require('./icon'),
       'button': require('./button'),

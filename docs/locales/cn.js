@@ -2,6 +2,7 @@ module.exports = {
   page: {
     'quick-start': '快速上手',
     'theme': '主题定制',
+    'color': 'Color 颜色',
     'checkbox': 'Checkbox 多选框',
     'date-picker': 'Date Picker 日期选择器',
     'hotkeys': "Hotkeys 快捷键",

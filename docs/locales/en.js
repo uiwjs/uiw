@@ -2,6 +2,7 @@ module.exports = {
   page: {
     'quick-start': 'Quick Start',
     'theme': 'Theme',
+    'color': 'Color',
     'checkbox': 'Checkbox',
     'date-picker': 'Date Picker',
     'hotkeys': "Hotkeys",
