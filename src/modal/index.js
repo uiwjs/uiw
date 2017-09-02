@@ -2,36 +2,36 @@
 /*eslint-disable no-unused-vars*/
 import React from 'react';
 /*eslint-enable no-unused-vars*/
+import assign from 'object-assign';
 import "./style/index.less";
 import Modal from './Modal';
 import Container from './Container';
-import assign from 'object-assign';
-import { InformationCircled, QuestionCircle, CheckmarkCircled, CloseCircled } from '../svgs';
+import Icon from '../icon'
 
 Modal.warn = function (props) {
   return Container(assign({}, {
     type: 'warn',
-    icon: QuestionCircle,
+    icon: <Icon type="question-circle" />,
   }, props));
 }
 Modal.info = function (props) {
   return Container(assign({}, {
     type: 'info',
-    icon: InformationCircled,
+    icon: <Icon type="information" />,
   }, props));
 
 }
 Modal.error = function (props) {
   return Container(assign({}, {
     type: 'error',
-    icon: CloseCircled,
+    icon: <Icon type="circle-close" />,
   }, props));
 
 }
 Modal.success = function (props) {
   return Container(assign({}, {
     type: 'success',
-    icon: CheckmarkCircled,
+    icon: <Icon type="circle-check" />,
   }, props));
 
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
-import { IconCloseSmall } from '../svgs';
+import Icon from '../icon';
 import "./style/index.less";
 
 export default class Tag extends Component {
@@ -59,7 +59,7 @@ export default class Tag extends Component {
     return visible ? (
       <span {...others} style={styles} className={cls}>
         {children}
-        {(onClose && checked !== true && checked !== false) && <i onClick={this.close} ref="iconclose">{IconCloseSmall}</i>}
+        {(onClose && checked !== true && checked !== false) && <i onClick={this.close} ref="iconclose"><Icon type="close" /></i>}
       </span>
     ) : null;
   }

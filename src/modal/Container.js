@@ -40,11 +40,14 @@ class ContainerModel extends Component {
         </ActionButton>
       )
     }
+    console.log("type:",type)
     return (
       <Modals
         ref="modals"
         { ...others }
-        className={classNames(prefixCls, className)}
+        className={classNames(prefixCls, className,{
+          [`${type}`]:type
+        })}
         visible={this.state.visible}
         maskClosable={maskClosable}
         onOk={onOk}             // 点击确定提交按钮
@@ -52,7 +55,7 @@ class ContainerModel extends Component {
         onCancel={this.closeModals}
         footer={footer}
       >
-        {icon}
+        <div className={`${prefixCls}-icon`}>{icon}</div>
         <div className={`${prefixCls}-title`}>
           {title}
         </div>

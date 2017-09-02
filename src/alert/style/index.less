@@ -27,18 +27,20 @@
       padding: 15px 16px;
       padding-left: 56px;
     }
-    svg {
+    svg,[class^="w-icon-"] {
       vertical-align: middle;
       position: absolute;
     }
     .w-alert-message{
-      svg{
+      svg,[class^="w-icon-"]{
+        font-size: 24px;
+        height: inherit;
         left: 16px;
       }
     }
     .w-alert-description:first-child{
       padding-left: 15px;
-      svg{
+      svg,[class^="w-icon-"]{
         height: 12px;
         width: 12px;
         margin-right: 5px;

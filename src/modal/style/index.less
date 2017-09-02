@@ -19,6 +19,18 @@
         vertical-align: middle;
     }
     &.w-modals-confirm{
+        &.warn .w-modals-confirm-icon{
+            color: #ffc107;
+        }
+        &.info .w-modals-confirm-icon{
+            color: #007bff;
+        }
+        &.error .w-modals-confirm-icon{
+            color: #dc3545;
+        }
+        &.success .w-modals-confirm-icon{
+            color: #28a745;
+        }
         .w-modal-header{
             display: none;
         }
@@ -28,9 +40,6 @@
         .w-modal-content{
             padding: @modal-confirm-content-padding;
         }
-        svg {
-            float: left;
-        }
         .w-modals-confirm-title{
             padding-bottom: @line-height-computed ;
             font-size: @font-size-base;
@@ -38,6 +47,10 @@
         }
         .w-modals-confirm-title,.w-modals-confirm-content{
             margin-left: @modal-confirm-body-margin-left;
+        }
+        .w-modals-confirm-icon{
+            float: left;
+            font-size: 22px;
         }
     }
 }

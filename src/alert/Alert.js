@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
 import Transition from '../transition';
-import { IconClose, InformationCircled, QuestionCircle, CheckmarkCircled, CloseCircled } from '../svgs';
+import Icon from '../icon'
 
 export default class Alert extends Component {
   constructor(props) {
@@ -37,10 +37,10 @@ export default class Alert extends Component {
     let icon;
     if (showIcon) {
       switch (type) {
-        case "success": icon = CheckmarkCircled; break;
-        case "info": icon = InformationCircled; break;
-        case "warning": icon = QuestionCircle; break;
-        case "error": icon = CloseCircled; break;
+        case "success": icon = <Icon type="circle-check-o" />; break;
+        case "info": icon = <Icon type="information-o" />; break;
+        case "warning": icon = <Icon type="question-circle-o" />; break;
+        case "error": icon =  <Icon type="circle-close-o" />; break;
         default: break;
       }
     }
@@ -55,7 +55,7 @@ export default class Alert extends Component {
       {message && <span className={!description ? `${prefixCls}-description` : `${prefixCls}-message`}>{icon}{message}</span>}
       {description && <span className={`${prefixCls}-description`}>{description}</span>}
       {children}
-      {closable && <a onClick={this.handleClose.bind(this)} className={`${prefixCls}-close-icon`}>{IconClose}</a>}
+      {closable && <a onClick={this.handleClose.bind(this)} className={`${prefixCls}-close-icon`}><Icon type="close" /></a>}
     </div>
     return (
       <Transition visible={this.state.tranVisible} type={transition}>

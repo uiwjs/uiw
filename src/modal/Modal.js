@@ -2,7 +2,7 @@ import React from 'react';
 import { Component, PropTypes } from '../utils/';
 import Transition from '../transition';
 import Button from '../button';
-import { IconClose } from '../svgs';
+import Icon from '../icon'
 const ButtonGroup = Button.Group;
 
 export default class Modal extends Component {
@@ -98,7 +98,7 @@ export default class Modal extends Component {
           {leave && <div className={`${prefixCls}-content`} style={{ width: width, ...other.style }}>
             <div className={`${prefixCls}-header`}>
               <div className={`${prefixCls}-title`} id="rcDialogTitle9">{title}</div>
-              <a onClick={() => this.onCancel()} className={`${prefixCls}-close-icon`}>{IconClose}</a>
+              <a onClick={() => this.onCancel()} className={`${prefixCls}-close-icon`}><Icon type="close" /></a>
             </div>
             <div className={`${prefixCls}-body`}>{children}</div>
             {defaultFooter}
