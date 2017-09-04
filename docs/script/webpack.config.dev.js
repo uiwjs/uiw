@@ -6,8 +6,9 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const paths = require('./paths');
 const merge = require('merge-array-object');
 const webpackConfig = require('./webpack.config');
+const autoprefixer = require('autoprefixer');
 
-module.exports = merge(webpackConfig, {
+const config = merge(webpackConfig, {
   // devtool: 'source-map',
   devtool: 'eval',
   entry: [
@@ -56,8 +57,6 @@ module.exports = merge(webpackConfig, {
     // }),
   ],
   module: {
-    // 输出错误而不是警告
-    strictExportPresence: true,
     rules: [
       {
         test: /\.(js|jsx)$/,
@@ -72,7 +71,42 @@ module.exports = merge(webpackConfig, {
           },
         ],
         include: paths.appSrc,
+      },
+      {
+        test: /\.(less|css)$/,
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: require.resolve('postcss-loader'),
+            options: {
+              ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
+              plugins: () => [
+                require('postcss-flexbugs-fixes'),
+                autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9', // React doesn't support IE8 anyway
+                  ],
+                  flexbox: 'no-2009',
+                }),
+              ],
+            },
+          },
+          {
+            loader: require.resolve('less-loader'),
+          },
+        ]
       }
     ]
   }
 })
+
+module.exports = config
