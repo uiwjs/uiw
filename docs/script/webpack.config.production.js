@@ -18,7 +18,7 @@ const confg = merge(webpackConfig, {
   bail: true,
   // We generate sourcemaps in production. This is slow but gives good results.
   // You can exclude the *.map files from the build during deployment.
-  devtool: 'source-map',
+  // devtool: 'source-map',
   entry: {
     docs: paths.appPublic
   },
@@ -29,6 +29,17 @@ const confg = merge(webpackConfig, {
   },
   module:{
     rules:[
+      {
+        test: /\.(js|jsx)$/,
+        use: [
+          'babel-loader',
+        ],
+        include: [
+          paths.appPublic,
+          paths.appSrc,
+          paths.appLib,
+        ]
+      },
       // https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/503
       {
         test: /\.css$/,
@@ -127,6 +138,9 @@ const confg = merge(webpackConfig, {
       }
     }),
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+    // 该功能也会让代码打包的体积变得更小，加快运行的速度
+    // Scope Hoisting 和 Code splitting
+    new webpack.optimize.ModuleConcatenationPlugin(),
     // new webpack.optimize.CommonsChunkPlugin({
     //   async: true,
     //   children: true,
@@ -150,7 +164,7 @@ const confg = merge(webpackConfig, {
       output: {
         comments: false,
       },
-      sourceMap: true,
+      // sourceMap: true,
     }),
     // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
     new ExtractTextPlugin({

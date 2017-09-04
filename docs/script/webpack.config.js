@@ -27,16 +27,6 @@ module.exports = {
     strictExportPresence: true,
     rules: [
       {
-        test: /\.jsx?$/,
-        use: [
-          'babel-loader',
-        ],
-        include: [
-          paths.appPublic,
-          paths.appSrc,
-        ]
-      },
-      {
         test: /\.(eot|svg|ttf|woff|woff2)(\?.+)?$/,
         loader: 'file-loader'
       },

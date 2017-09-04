@@ -13,7 +13,8 @@ module.exports = {
   appFavicon: resolveApp('docs/assets/favicon.png'),
   appHtml: resolveApp('docs/index.html'),
   appBuildHtml: resolveApp('docs/build.html'),
-  appIndexJs: resolveApp('docs/index.jsx'),
+  appIndexJs: resolveApp('docs/index.js'),
   appSrc: resolveApp('src'),
+  appLib: resolveApp('lib'),
   appNodeModules: resolveApp('node_modules'),
 };
