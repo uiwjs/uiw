@@ -21,9 +21,9 @@ export default class Markdown extends React.Component {
   }
 
   getPageName() {
-    const routes = location.hash.match(/(?:\/(.+))?\/(.+)/);
+    const routes = location.hash.match(/(?:\/(.+))?(\/(.+)\?|\/(.+))/);
     if (routes) {
-      return routes[2];
+      return routes[3] || routes[4];
     }
     return 'quick-start';
   }
@@ -48,9 +48,7 @@ export default class Markdown extends React.Component {
 
       const html = marked(document.replace(/\<\!--\s?DemoStart\s?--\>([^]+?)\<\!--\s?End\s?--\>/g, (match, p1, offset) => {
         const id = offset.toString(36);
-
         this.components.set(id, React.createElement(Canvas, Object.assign({
-          // name: this.constructor.name.toLowerCase()
           name: this.getPageName()
         }, this.props), p1));
 
