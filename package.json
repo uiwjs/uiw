@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "async-validator": "^1.6.9",
+    "bundle-loader": "^0.5.5",
     "classnames": "^2.2.5",
     "hotkeys-js": "^2.0.3",
     "object-assign": "^4.1.1",

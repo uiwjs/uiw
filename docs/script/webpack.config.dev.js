@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const paths = require('./paths');
 const merge = require('merge-array-object');
 const webpackConfig = require('./webpack.config');
@@ -114,7 +113,6 @@ const config = merge(webpackConfig, {
     new ExtractTextPlugin({
       filename: cssFilename,
     }),
-    new FaviconsWebpackPlugin(paths.appFavicon),
     // 这是发送热更新（目前仅为CSS）的必要条件：
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),

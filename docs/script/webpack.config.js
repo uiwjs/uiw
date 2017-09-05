@@ -10,7 +10,25 @@ module.exports = {
     publicPath: '/',
   },
   plugins: [
-    new FaviconsWebpackPlugin(paths.appFavicon),
+    new FaviconsWebpackPlugin({
+      logo: paths.appFavicon,
+      inject: true,
+      prefix: 'icons/',
+      persistentCache: true,
+      emitStats: false,
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: true,
+        coast: false,
+        favicons: true,
+        firefox: true,
+        opengraph: false,
+        twitter: false,
+        yandex: false,
+        windows: false
+      }
+    }),
   ],
   resolve: {
     // 这些是Node生态系统支持的合理默认值。
