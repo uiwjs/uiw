@@ -13,18 +13,19 @@ constructor(props) {
     output: `Hello, I am a component that listens to keydown and keyup of a. <br/> 
     你好，我是一个监听keydown和keyup的组件。<br/> 
     请摁下【shift+a】或者【alt+s】是一下效果`,
+    keyout:""
   }
 }
 onKeyUp(keyName, e, handle) {
   console.log("test:onKeyUp", e, handle)
   this.setState({
-    output: `onKeyUp ${keyName}`,
+    keyout: `onKeyUp ${keyName}`,
   });
 }
 onKeyDown(keyName, e, handle) {
   console.log("test:onKeyDown", keyName, e, handle)
   this.setState({
-    output: `onKeyDown ${keyName}`,
+    keyout: `onKeyDown ${keyName}`,
   });
 }
 render() {
@@ -34,7 +35,7 @@ render() {
       onKeyDown={this.onKeyDown.bind(this)}
       onKeyUp={this.onKeyUp.bind(this)}
     >
-      <div style={{ padding: "20px" }} dangerouslySetInnerHTML={{__html:this.state.output}} />
+      <div style={{ padding: "20px" }} dangerouslySetInnerHTML={{__html:`${this.state.output}<br/>${this.state.keyout}`}} />
     </Hotkeys>
   )
 }
