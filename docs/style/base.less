@@ -3,6 +3,13 @@ body::selection {
     background: #0fa120;
     color: #fff;
 }
+
+
+.w-doc-loading{
+  padding: 15px;
+}
+
+
 #app{
   min-height: 100%;
   height: 100%;
@@ -23,6 +30,13 @@ body::selection {
   .w-docs-menu-content{
     padding: 20px 0 30px 0;
   }
+  .active{
+    color: #909090;
+    font-size: 14px;
+    background-color: rgba(0, 0, 0, 0.12);
+    text-decoration: none;
+    padding: 6px 24px 6px 20px;
+  }
   a{
     color:#fff;
     display: block;
@@ -32,7 +46,7 @@ body::selection {
     &:active{
       text-decoration: none;
     }
-    &:hover,&.active{
+    &:hover{
       background-color: rgba(0, 0, 0, 0.12);
       text-decoration: none;
     }

@@ -9,6 +9,8 @@ module.exports = {
   yarnLockFile: resolveApp('yarn.lock'),
   appPackage: resolveApp('package.json'),
   appBuild: resolveApp('dist'),
+  appManifestDir: resolveApp('dll'),
+  appManifest: resolveApp('dll/vendor-manifest.json'),
   appPublic: resolveApp('docs'),
   appFavicon: resolveApp('docs/assets/favicon.png'),
   appHtml: resolveApp('docs/index.html'),

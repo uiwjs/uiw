@@ -8,3 +8,5 @@ dist
 es5
 lib
 package-lock.json
+dll
+.cache

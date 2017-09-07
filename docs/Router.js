@@ -65,7 +65,7 @@ const asyncComponent = (comp) => (props) => {
 
 const routes = {
   documents:[
-    { path:"/:lang/quick-start",component:asyncComponent(QuickStart)},
+    { path:"/:lang/quick-start",exact:true,component:asyncComponent(QuickStart)},
     { path:"/:lang/theme",component:asyncComponent(Theme)},
   ],
   components:{
@@ -100,6 +100,14 @@ const routes = {
       {path:"/:lang/menu",component:asyncComponent(menu)},
       {path:"/:lang/paging",component:asyncComponent(paging)},
       {path:"/:lang/breadcrumb",component:asyncComponent(breadcrumb)},
+    ],
+    'Feedback':[
+      {path:"/:lang/alert",component:asyncComponent(alert)},
+      {path:"/:lang/modal",component:asyncComponent(modal)},
+      {path:"/:lang/message",component:asyncComponent(message)},
+      {path:"/:lang/notification",component:asyncComponent(notification)},
+      {path:"/:lang/loading",component:asyncComponent(loading)},
+      {path:"/:lang/transition",component:asyncComponent(transition)},
     ]
   },
   redirect:[
@@ -141,7 +149,11 @@ const getRoutes = () => {
     if(!item.path) {
       return <Redirect key={idx} push to={{ pathname: item.redirect }} />
     }
-    return <Route key={idx} path={item.path} component={COM} />
+    if(item.exact){
+      return <Route exact key={idx} path={item.path} component={COM} />
+    }else{
+      return <Route key={idx} path={item.path} component={COM} />
+    }
   })
 }
 
@@ -156,13 +168,14 @@ const getPageName = (location) => {
 
 const getLangName = () =>  localStorage.getItem('WUI_LANG') || 'cn';
 
-const renderMenuLi = (item) =>{
+const renderMenuLi = (item,idx) =>{
   if(!item.path) return null;
+  if(getPageName(window.location.href) === getPageName(item.path)){
+    return <li className="active" key={idx}>{getLang(`page.${getPageName(item.path)}`)}</li>
+  }
   return (
-    <li>
-      <Link 
-      className={getPageName(item.path)===getPageName(location.href)?'active':''}
-      to={`/${getLangName()}/${getPageName(item.path)}`}>
+    <li key={idx}>
+      <Link to={`/${getLangName()}/${getPageName(item.path)}`}>
         {getLang(`page.${getPageName(item.path)}`)  }
       </Link>
     </li>
@@ -174,7 +187,7 @@ const renderMenu = (obj) =>{
   let html = []
   for(let a in _obj){
     if(_obj[a] instanceof Array){
-      html = html.concat(_obj[a].map((item) => renderMenuLi(item)) )
+      html = html.concat(_obj[a].map((item,idx) => renderMenuLi(item,idx)) )
     }else if(_obj[a] instanceof Object){
       for(let e in _obj[a]){
         if(_obj[a][e] instanceof Array){
@@ -191,6 +204,7 @@ const renderMenu = (obj) =>{
   return html
 }
 const RoutersContainer = withRouter(({history,location})=>{
+  console.log("getPageName---:",history,getPageName(location.pathname))
   const prefixCls = 'w-docs';
   return (
     <div className={`${prefixCls}`}>

@@ -24,6 +24,10 @@ const config = merge(webpackConfig, {
   output: {
     filename: 'bundle.js',
   },
+  // externals : {
+  //   'react': 'react',
+  //   'react-dom': 'ReactDOM'
+  // },
   module: {
     rules: [
       {

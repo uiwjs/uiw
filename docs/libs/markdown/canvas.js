@@ -26,19 +26,18 @@ export default class Canvas extends React.Component {
     });
   }
 
+
   renderSource() {
     if (this.shouldUpdate) {
       const div = this.refs.source;
-
       if (div instanceof HTMLElement) {
         require(['../../../src'], Element => {
+          console.log("Element",Element)
           const args = ['context', 'React'], argv = [this, React];
-
           for (const key in Element) {
             args.push(key);
             argv.push(Element[key]);
           }
-
           args.push(this.component);
 
           ReactDOM.unmountComponentAtNode(div);
@@ -70,6 +69,7 @@ export default class Canvas extends React.Component {
     this.shouldUpdate = component != this.component || this.component === undefined;
     this.component = component;
 
+
     return (
       <div className={`${prefixCls}-demo-warpper ${prefixCls}-${this.props.name}`}>
         <div className={`${prefixCls}-demo-source`} ref="source"></div>
@@ -99,8 +99,10 @@ export default class Canvas extends React.Component {
 
 Canvas.propTypes = {
   locale: PropTypes.object,
+  prefixCls: PropTypes.string,
 };
 
 Canvas.defaultProps = {
-  locale: {}
+  locale: {},
+  prefixCls:"w-docs"
 };

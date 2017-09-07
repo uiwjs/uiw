@@ -18,7 +18,7 @@ render() {
         <br /><br />
       <Paging total={60} onChange={(pageNumber)=>{
         console.log('Page: ', pageNumber);
-          }}/>
+      }}/>
     </div>
   )
 }
