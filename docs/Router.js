@@ -204,7 +204,6 @@ const renderMenu = (obj) =>{
   return html
 }
 const RoutersContainer = withRouter(({history,location})=>{
-  console.log("getPageName---:",history,getPageName(location.pathname))
   const prefixCls = 'w-docs';
   return (
     <div className={`${prefixCls}`}>

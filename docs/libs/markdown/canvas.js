@@ -32,7 +32,6 @@ export default class Canvas extends React.Component {
       const div = this.refs.source;
       if (div instanceof HTMLElement) {
         require(['../../../src'], Element => {
-          console.log("Element",Element)
           const args = ['context', 'React'], argv = [this, React];
           for (const key in Element) {
             args.push(key);

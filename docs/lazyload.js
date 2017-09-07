@@ -1,11 +1,14 @@
 import React from 'react'
+import {Loading} from '../src';
 
-class Loading extends React.Component{
+class Loadings extends React.Component{
     render(){
         return(
-            <div className="w-doc-loading">
-                loading....
-            </div>
+            <Loading className="w-doc-loading-warpper">
+                <div className="w-doc-loading">
+                    loading....
+                </div>
+            </Loading>
         )
     }
 }
@@ -30,7 +33,7 @@ export default class Bundle extends React.Component {
 
     load(props) {
         this.setState({
-            mod: Loading
+            mod: Loadings
         });
         props.load((mod) => {
             // let MOD = React.createElement(mod.default ? mod.default : mod, {
