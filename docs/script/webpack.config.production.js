@@ -8,11 +8,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // const ManifestPlugin = require('webpack-manifest-plugin');
 // const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const paths = require('./paths');
+const {readSrcSync} = require('./getUIWPath');
 
-const publicPath = paths.servedPath;
+// const publicPath = paths.servedPath;
 // Note: defined here because it will be used more than once.
-const cssFilename = 'css/[name].[contenthash:8].css';
-
+const cssFilename = '[name].[contenthash:8].css';
 
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
@@ -34,7 +34,9 @@ module.exports = {
       // require.resolve('./polyfills'), 
       paths.appIndexJs
     ],
-    marked:['marked','prismjs','babel-standalone'],
+    uiws:readSrcSync(paths.appSrc),
+    marked:['marked','prismjs'],
+    babelstandalone:['babel-standalone'],
   },
   externals : {
     // 'marked': 'marked',
@@ -50,7 +52,7 @@ module.exports = {
     filename: 'js/[name].[chunkhash:8].js',
     chunkFilename: 'js/[name].[chunkhash:8].chunk.js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
-    publicPath: publicPath,
+    publicPath: '/',
     // Point sourcemap entries to original disk location (format as URL on Windows)
     // devtoolModuleFilenameTemplate: info =>
     //   path
@@ -122,7 +124,14 @@ module.exports = {
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)(\?.+)?$/,
-        loader: 'file-loader'
+        use:[
+          {
+            loader: 'file-loader',
+            // options:{
+            //   name:'fonts/[name].[hash].[ext]'
+            // }
+          }
+        ]
       },
       {
         test: /\.(jpe?g|png|gif|ico)(\?.+)?$/,
@@ -162,25 +171,29 @@ module.exports = {
     // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
     // It is absolutely essential that NODE_ENV was set to production here.
     // Otherwise React will be compiled in the very slow development mode.
-    // new webpack.DefinePlugin(env.stringified),
+    new webpack.DefinePlugin({
+      'process.env':{
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
     // Minify the code.
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false,
-    //     // Disabled because of an issue with Uglify breaking seemingly valid code:
-    //     // https://github.com/facebookincubator/create-react-app/issues/2376
-    //     // Pending further investigation:
-    //     // https://github.com/mishoo/UglifyJS2/issues/2011
-    //     comparisons: false,
-    //   },
-    //   output: {
-    //     comments: false,
-    //     // Turned on because emoji and regex is not minified properly using default
-    //     // https://github.com/facebookincubator/create-react-app/issues/2488
-    //     ascii_only: true,
-    //   },
-    //   sourceMap: shouldUseSourceMap,
-    // }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        // Disabled because of an issue with Uglify breaking seemingly valid code:
+        // https://github.com/facebookincubator/create-react-app/issues/2376
+        // Pending further investigation:
+        // https://github.com/mishoo/UglifyJS2/issues/2011
+        comparisons: false,
+      },
+      output: {
+        comments: false,
+        // Turned on because emoji and regex is not minified properly using default
+        // https://github.com/facebookincubator/create-react-app/issues/2488
+        ascii_only: true,
+      },
+      // sourceMap: shouldUseSourceMap,
+    }),
     // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
     new ExtractTextPlugin({
       filename: cssFilename,
@@ -192,7 +205,7 @@ module.exports = {
     //   fileName: 'asset-manifest.json',
     // }),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['app','marked','vendors'],
+      names: ['app','uiws','marked','vendors','babelstandalone'],
       filename: 'js/[hash:8].[name].js',
       // chunks:['uiw']
       minChunks: Infinity,

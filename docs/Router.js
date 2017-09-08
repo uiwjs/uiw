@@ -1,6 +1,8 @@
 import { HashRouter,Route ,Switch,Redirect,withRouter,Link} from 'react-router-dom'
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+// export { randomid } from '../src/utils/strings';
+import { randomid } from '../src/utils/strings.js';
 import locales from './locales';
 import Bundle from "./lazyload";
 
@@ -38,6 +40,7 @@ import notification from 'bundle-loader?lazy!./pages/notification';
 import loading from 'bundle-loader?lazy!./pages/loading';
 import transition from 'bundle-loader?lazy!./pages/transition';
 /* eslint import/no-webpack-loader-syntax: off */
+// console.log("randomid::",randomid())
 
 const getLang =(key) =>{
   let locale = localStorage.getItem('WUI_LANG') || 'cn';
@@ -171,10 +174,10 @@ const getLangName = () =>  localStorage.getItem('WUI_LANG') || 'cn';
 const renderMenuLi = (item,idx) =>{
   if(!item.path) return null;
   if(getPageName(window.location.href) === getPageName(item.path)){
-    return <li className="active" key={idx}>{getLang(`page.${getPageName(item.path)}`)}</li>
+    return <li key={randomid()} className="active" key={idx}>{getLang(`page.${getPageName(item.path)}`)}</li>
   }
   return (
-    <li key={idx}>
+    <li key={randomid()}>
       <Link to={`/${getLangName()}/${getPageName(item.path)}`}>
         {getLang(`page.${getPageName(item.path)}`)  }
       </Link>
@@ -192,7 +195,7 @@ const renderMenu = (obj) =>{
       for(let e in _obj[a]){
         if(_obj[a][e] instanceof Array){
           html = html.concat( 
-            <ul>
+            <ul key={randomid()}>
               <li className="title">{getLang(`category.${e}`)}</li>
               {_obj[a][e].map((item) => renderMenuLi(item))}
             </ul>

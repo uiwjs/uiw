@@ -4,16 +4,16 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const paths = require('./paths');
 const merge = require('merge-array-object');
-const webpackConfig = require('./webpack.config');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 
 
 // Note: defined here because it will be used more than once.
 const cssFilename = '[name].[contenthash:8].css';
 
-const config = merge(webpackConfig, {
-  // devtool: 'source-map',
+module.exports = {
   devtool: 'eval',
   entry: [
     require.resolve('react-dev-utils/webpackHotDevClient'),
@@ -22,13 +22,44 @@ const config = merge(webpackConfig, {
     paths.appIndexJs
   ],
   output: {
+    path: paths.appBuild,
+    publicPath: '/',
     filename: 'bundle.js',
   },
-  // externals : {
-  //   'react': 'react',
-  //   'react-dom': 'ReactDOM'
-  // },
+  plugins: [
+    new FaviconsWebpackPlugin({
+      logo: paths.appFavicon,
+      inject: true,
+      prefix: 'icons/',
+      persistentCache: true,
+      emitStats: false,
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: true,
+        coast: false,
+        favicons: true,
+        firefox: true,
+        opengraph: false,
+        twitter: false,
+        yandex: false,
+        windows: false
+      }
+    }),
+  ],
+  resolve: {
+    // 这些是Node生态系统支持的合理默认值。
+    // 我们还将支持JSX作为通用组件文件扩展名，来支持一些工具，尽管我们不建议使用它，
+    extensions: ['.js', '.jsx'],
+    plugins: [
+      // 组织用户从 src/(或者node_modules/) 以外的地方导入文件
+      // 这样通常回到这混乱，因为我们Babel只处理 src/ 中的文件
+      new ModuleScopePlugin(paths.appSrc),
+    ],
+  },
   module: {
+    // 输出错误而不是警告
+    strictExportPresence: true,
     rules: [
       {
         test: /\.(js|jsx)$/,
@@ -41,20 +72,18 @@ const config = merge(webpackConfig, {
           paths.appLib,
         ]
       },
-      // {
-      //   test: /\.(js|jsx)$/,
-      //   enforce: 'pre',
-      //   use: [
-      //     {
-      //       options: {
-      //         formatter: eslintFormatter,
-      //       },
-      //       loader: require.resolve('eslint-loader'),
-      //       // exclude: '/node_modules/'
-      //     },
-      //   ],
-      //   include: paths.appSrc,
-      // },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)(\?.+)?$/,
+        loader: 'file-loader'
+      },
+      {
+        test: /\.(jpe?g|png|gif|ico)(\?.+)?$/,
+        loader: 'url-loader'
+      },
+      {
+        test: /\.md$/,
+        loader: 'raw-loader'
+      },
       {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
@@ -98,8 +127,6 @@ const config = merge(webpackConfig, {
         })
       },
 
-
-
     ]
   },
   plugins: [
@@ -121,6 +148,4 @@ const config = merge(webpackConfig, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
   ]
-})
-
-module.exports = config
+}
