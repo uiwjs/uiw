@@ -13,9 +13,11 @@ export default class Markdown extends React.Component {
     }
     this.components = new Map;
   }
-  componentDidMount() {
+  componentWillMount() {
     this.renderMarkdown(this.getLang(),this.getPageName())
     this.renderDOM();
+  }
+  componentDidMount() {
   }
 
   componentDidUpdate() {

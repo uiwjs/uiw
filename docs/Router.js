@@ -24,7 +24,7 @@ import input from 'bundle-loader?lazy!./pages/input';
 import inputNumber from 'bundle-loader?lazy!./pages/input-number';
 import timePicker from 'bundle-loader?lazy!./pages/time-picker';
 import datePicker from 'bundle-loader?lazy!./pages/date-picker';
-import Calendar from 'bundle-loader?lazy!./pages/calendar';
+import calendar from 'bundle-loader?lazy!./pages/calendar';
 import table from 'bundle-loader?lazy!./pages/table';
 import tooltip from 'bundle-loader?lazy!./pages/tooltip';
 import tag from 'bundle-loader?lazy!./pages/tag';
@@ -92,7 +92,7 @@ const routes = {
       {path:"/:lang/date-picker",component:asyncComponent(datePicker)},
     ],
     'Data Display':[
-      {path:"/:lang/calendar",component:asyncComponent(Calendar)},
+      {path:"/:lang/calendar",component:asyncComponent(calendar)},
       {path:"/:lang/table",component:asyncComponent(table)},
       {path:"/:lang/tooltip",component:asyncComponent(tooltip)},
       {path:"/:lang/tag",component:asyncComponent(tag)},
