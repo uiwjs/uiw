@@ -65,13 +65,18 @@ export default class Rate extends Component {
     const { value, hoverIndex } = this.state;
     return hoverIndex === 0 ? k < value : k < hoverIndex;
   }
+  tempArray(count){
+    let arr = []
+    for(let i=0;i< count;i++) arr.push(i);
+    return arr;
+  }
   render() {
     const { prefixCls, count, className, allowHalf, disabled, onHoverChange, color, ...other } = this.props;
     return (
       <ul {...other} className={this.classNames(className, `${prefixCls}`)}
         onMouseLeave={(e) => this.onMouseLeave(e)}
       >
-        {[...Array(count)].map((v, k) => {
+        {this.tempArray(count).map((v, k) => {
           return (
             <li
               key={k}
