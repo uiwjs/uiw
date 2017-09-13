@@ -8,7 +8,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // const ManifestPlugin = require('webpack-manifest-plugin');
 // const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const paths = require('./paths');
-const {readSrcSync} = require('./getUIWPath');
+const { readSrcSync } = require('./getUIWPath');
 
 // const publicPath = paths.servedPath;
 // Note: defined here because it will be used more than once.
@@ -25,20 +25,20 @@ module.exports = {
   // devtool: shouldUseSourceMap ? 'source-map' : false,
   // In production, we only want to load the polyfills and the app code.
   entry: {
-    vendors:['react', 'react-dom', 'react-router-dom'],
+    vendors: ['react', 'react-dom', 'react-router-dom'],
     // libs:[
     //   path.resolve(process.cwd(),'docs/libs/markdown/index.js'),
     //   path.resolve(process.cwd(),'docs/libs/markdown/canvas.js')
     // ],
-    app:[
+    app: [
       // require.resolve('./polyfills'), 
       paths.appIndexJs
     ],
-    uiws:readSrcSync(paths.appSrc),
-    marked:['marked','prismjs'],
-    babelstandalone:['babel-standalone'],
+    uiws: readSrcSync(paths.appSrc),
+    marked: ['marked', 'prismjs'],
+    babelstandalone: ['babel-standalone'],
   },
-  externals : {
+  externals: {
     // 'marked': 'marked',
     // react: 'react'
     // 'babel-standalone': 'transform'
@@ -79,12 +79,12 @@ module.exports = {
           paths.appSrc,
           // paths.appLib,
         ]
-      },{
+      }, {
         test: /\.less$/,
         exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
-          fallback:require.resolve('style-loader'),
-          use:[
+          fallback: require.resolve('style-loader'),
+          use: [
             // require.resolve('css-loader'), 
             {
               loader: require.resolve('css-loader'),
@@ -124,7 +124,7 @@ module.exports = {
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)(\?.+)?$/,
-        use:[
+        use: [
           {
             loader: 'file-loader',
             // options:{
@@ -172,7 +172,7 @@ module.exports = {
     // It is absolutely essential that NODE_ENV was set to production here.
     // Otherwise React will be compiled in the very slow development mode.
     new webpack.DefinePlugin({
-      'process.env':{
+      'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
     }),
@@ -205,7 +205,7 @@ module.exports = {
     //   fileName: 'asset-manifest.json',
     // }),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['app','uiws','marked','vendors','babelstandalone'],
+      names: ['vendors', 'babelstandalone', 'uiws', 'marked', 'app'],
       filename: 'js/[hash:8].[name].js',
       // chunks:['uiw']
       minChunks: Infinity,
