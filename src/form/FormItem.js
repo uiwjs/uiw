@@ -10,11 +10,11 @@ export default class FormItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: '',        // 错误信息
-      help: '',         // 帮助信息
+      error: '',         // 错误信息
+      help: '',          // 帮助信息
       isRequired: false, // 是否 【必填】
       validating: false, // 是否验证成功
-      valid: false,     // 是否有效
+      valid: false,      // 是否有效
       initialValue: null
     }
   }
@@ -38,6 +38,11 @@ export default class FormItem extends Component {
         isRequired, help,
         initialValue: value
       })
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if (this.fieldValue()) {
+      this.validate('blur');
     }
   }
   getInitialValue() {
@@ -110,9 +115,6 @@ export default class FormItem extends Component {
   parent() {
     return this.context.component;
   }
-  onFieldBlur() {
-    this.validate('blur');
-  }
   onFieldChange() {
     this.validate('change');
   }
@@ -152,7 +154,6 @@ export default class FormItem extends Component {
     return (
       <Col {...this.layoutFilter(wrapperCol) }
         className={className}
-        onBlur={this.onFieldBlur.bind(this)}
         onChange={this.onFieldChange.bind(this)}
       >
         {children}
