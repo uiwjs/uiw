@@ -1,0 +1,28 @@
+@import "../../style/variables.less";
+@import "../../style/mixins/index.less";
+
+.w-breadcrumb{
+  color: #595959;
+  .w-breadcrumb-item:last-child{
+    color: #c0c0c0;
+    .w-breadcrumb-item-separator{
+      display: none;
+    }
+  }
+  a{
+    color: #595959;
+    &:hover{
+      color: #3d90f2;
+    }
+  }
+  .w-breadcrumb-item-inner {
+    > i[class^="w-icon-"] + span{
+      margin-left: 5px;
+    }
+  }
+}
+
+.w-breadcrumb-item-separator{
+  margin: 0 8px;
+  color: #adadad;
+}
