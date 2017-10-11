@@ -1,6 +1,6 @@
 {
   "name": "@uiw/uiw",
-  "version": "1.1.12",
+  "version": "1.1.14",
   "description": "uiw - react ui kit.",
   "main": "lib/index.js",
   "private":true,
