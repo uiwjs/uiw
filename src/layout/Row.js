@@ -3,6 +3,11 @@ import { Component, PropTypes } from '../utils/';
 import assign from 'object-assign';
 
 export default class Row extends Component {
+  getChildContext() {
+    return {
+      gutter: this.props.gutter
+    };
+  }
   render() {
     const { prefixCls, className, gutter, children, tag, type, justify, align, ...others } = this.props;
 
