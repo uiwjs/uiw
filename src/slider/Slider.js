@@ -272,7 +272,7 @@ export default class Slider extends Component {
           }
           {marks && marks instanceof Object && this.renderMarks()}
         </div>
-      </div >
+      </div>
     )
   }
 }
