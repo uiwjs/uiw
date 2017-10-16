@@ -58,18 +58,20 @@ export default class Animate extends Component {
       [EXITED]: 'is-unmounted'
     }
     const childStyle = (child) => {
-      return Object.assign({}, child.props.style, {
+      return Object.assign({}, child && child.props ? child.props.style : {}, {
         transitionDuration: `${duration}ms`
       })
     }
     const childClassName = (child, transitionStatus) => {
-      return this.classNames(
-        prefixCls,
-        className,
+      const clss = this.classNames(
+        prefixCls, {
+          [`${className}`]: className
+        },
         sequenceClassNames,
         transitionStatus && animationStyles[transitionStatus],
-        child.props.className
+        child && child.props && child.props.className
       )
+      return clss;
     }
     return (
       <Transition

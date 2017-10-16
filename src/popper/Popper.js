@@ -28,10 +28,12 @@ export default class Popper extends Component {
     const { style, className, visible, prefixCls, tag, clickOutside, children, ...other } = this.props;
     let wrapStyle = Object.assign.apply(null, [style, {}])
     return (
-      <Transition type="fade-in">
-        {visible &&
-          React.createElement(tag, { style: wrapStyle, className: this.classNames(prefixCls, className), ...other }, children)
-        }
+      <Transition in={visible} sequence='fadeIn down'>
+        <div>
+          {
+            React.createElement(tag, { style: wrapStyle, className: this.classNames(prefixCls, className), ...other }, children)
+          }
+        </div>
       </Transition>
     )
   }
