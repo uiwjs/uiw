@@ -11,31 +11,87 @@ Transition 过渡动画
 ```js
 constructor(props) {
   super(props);
-  this.state = {
-    dispaly: true,
-  }
+  this.state = { show: true }
+}
+toggleIn () {
+  this.setState({ show: !this.state.show })
 }
 render() {
+  const { show } = this.state
   return (
     <div>  
-        <div style={{padding:"0 0 20px 0"}}>
+      <div style={{padding:"0 0 20px 0"}}>
+        <Transition in={show} sequence='fadeIn'>
+          <div>
+            淡进淡入
+          </div>
+        </Transition>
+      </div>
+      <Button size="mini" onClick={this.toggleIn.bind(this)}>
+        {show?'消失':'显示'}
+      </Button>
+    </div>
+  )
+}
+```
+<!--End-->
 
-            <Transition type="fade-down">
-              {this.state.dispaly&&
-                <div style={{}}>
-                  这里测试过渡动画
-                </div>
-              }
-            </Transition>
+### 向下淡进向上淡出
 
-        </div>
-        <Button size="mini" onClick={()=>{
-          this.setState({
-            dispaly:!this.state.dispaly
-          })
-        }}>
-            {this.state.dispaly?'消失':'显示'}
-        </Button>
+<!--DemoStart-->
+```js
+constructor(props) {
+  super(props);
+  this.state = { show: true }
+}
+toggleIn () {
+  this.setState({ show: !this.state.show })
+}
+render() {
+  const { show } = this.state
+  return (
+    <div>  
+      <div style={{padding:"0 0 20px 0",width:200}}>
+        <Transition in={show} sequence='fadeIn down'>
+          <div>
+            向下淡进向上淡出
+          </div>
+        </Transition>
+      </div>
+      <Button size="mini" onClick={this.toggleIn.bind(this)}>
+        {show?'消失':'显示'}
+      </Button>
+    </div>
+  )
+}
+```
+<!--End-->
+
+### 向上淡进向下淡出
+
+<!--DemoStart-->
+```js
+constructor(props) {
+  super(props);
+  this.state = { show: true }
+}
+toggleIn () {
+  this.setState({ show: !this.state.show })
+}
+render() {
+  const { show } = this.state
+  return (
+    <div>  
+      <div style={{padding:"0 0 20px 0",width:200}}>
+        <Transition in={show} sequence='fadeIn up'>
+          <div>
+            向上淡进向下淡出
+          </div>
+        </Transition>
+      </div>
+      <Button size="mini" onClick={this.toggleIn.bind(this)}>
+        {show?'消失':'显示'}
+      </Button>
     </div>
   )
 }
@@ -43,14 +99,122 @@ render() {
 <!--End-->
 
 
+### 在右淡进淡出
+
+<!--DemoStart-->
+```js
+constructor(props) {
+  super(props);
+  this.state = { show: true }
+}
+toggleIn () {
+  this.setState({ show: !this.state.show })
+}
+render() {
+  const { show } = this.state
+  return (
+    <div>  
+      <div style={{padding:"0 0 20px 0",width:200}}>
+        <Transition in={show} sequence='fadeIn right'>
+          <div>
+            在右淡进淡出
+          </div>
+        </Transition>
+      </div>
+      <Button size="mini" onClick={this.toggleIn.bind(this)}>
+        {show?'消失':'显示'}
+      </Button>
+    </div>
+  )
+}
+```
+<!--End-->
+
+
+### 在左淡进淡出
+
+<!--DemoStart-->
+```js
+constructor(props) {
+  super(props);
+  this.state = { show: true }
+}
+toggleIn () {
+  this.setState({ show: !this.state.show })
+}
+render() {
+  const { show } = this.state
+  return (
+    <div>  
+      <div style={{padding:"0 0 20px 0",width:200}}>
+        <Transition in={show} sequence='fadeIn left'>
+          <div> 在左淡进淡出 </div>
+        </Transition>
+      </div>
+      <Button size="mini" onClick={this.toggleIn.bind(this)}>
+        {show?'消失':'显示'}
+      </Button>
+    </div>
+  )
+}
+```
+<!--End-->
+
+### 自定义动画
+
+定义动画样式`flipInX`
+
+```less
+.w-animate{
+  &.is-flipInX {
+    &.is-mounting { // 安装
+      transform: translate3d(0, -100%, 0); 
+    }
+    &.is-mounted { // 安装完
+      transform: translate3d(0, 0, 0); 
+    }
+  
+    &.is-unmounting { // 卸载
+      transform: translate3d(0, -100%, 0); 
+    }
+  
+    &.is-unmounted { // 卸载完
+      transform: translate3d(0, -100%, 0); 
+    }
+  }
+}
+```
+
+引用自定义动画`flipInX`
+
+```jsx
+<Transition in={show} sequence='flipInX'>
+  <div> 在左淡进淡出 </div>
+</Transition>
+```
+
+
+## API
 
 ### Transition Attributes
 
-可以通过 [Animate.css](https://daneden.github.io/animate.css/) 制作更多的过度动画。
+可以通过 [Animate.css](https://daneden.github.io/animate.css/) 制作更多的过度动画。变化比较大，动画库重写了，请使用最新版本。
+
+**v1.1.15+**
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
-| type | 指定可选项 `fade-in` 、`fade-left`、 `fade-right` 、 `fade-down` | string | - |
+| sequence | 动画效果 默认可选`fadeIn`、`down`、`up`、`right`、`left` | String | `false` |
+| in | 显示组件; 触发进入或退出状态 | Bool | `false` |
+| animateOnMount | 安装动画 | Bool | `true` |
+| duration | 持续时间 | Number | `200` |
+| wait | 持续时间 | Number | `0` |
+
+**v1.1.13**
+
+| 参数      | 说明    | 类型      |  默认值   |
+|--------- |-------- |---------- |-------- |
+| type | 指定可选项 `fade-in` 、`fade-left`、 `fade-right` 、 `fade-down` | String | - |
 | visible | 动画会产生一个根节点，设置 `false` 销毁 | Bool | `true` |
 | appear | 出现 | Bool | `true` |
 | leave | 离开 | Bool | `true` |
