@@ -119,8 +119,8 @@ Animate.propTypes = {
   wait: PropTypes.number
 };
 Animate.defaultProps = {
-  onTransitionendEnter: (e) => e, //
-  onTransitionendExit: (e) => e,
+  onTransitionendEnter() { }, //
+  onTransitionendExit() { },
   prefixCls: "w-animate",
   unmountOnExit: true,  // 设置 true 销毁根节点
   animateOnMount: true, // 安装动画
