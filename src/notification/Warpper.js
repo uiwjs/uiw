@@ -19,6 +19,10 @@ export default class Container extends Component {
     notify[porps.placement][porps._key] = porps;
     this.setState({ visible: true, placement: porps.placement })
   }
+  /**
+   * 删除 Notify
+   * @param {*} _props 
+   */
   delNotify(_props) {
     const { placement, _key } = _props
     let _notify = {};
