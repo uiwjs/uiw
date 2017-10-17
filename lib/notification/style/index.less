@@ -24,13 +24,18 @@
 }
 
 .w-notification{
-  box-shadow: 0 2px 8px rgba(0,0,0,.2);
-  background: #fff;
-  border-color: transparent;
-  color:#848484;
-  // position: fixed !important;
-  // top:0;
-  .w-alert-message{
-    color: #333;
+  box-shadow: 0 1px 6px rgba(0,0,0,.2);
+  &.w-alert-default,&.w-alert-success,&.w-alert-info,&.w-alert-warning,&.w-alert-error{
+    background-color: #fff;
+    border-color: transparent;
+  }
+  .w-alert-description{
+    color:#52575c;
+  }
+  .w-alert-close-icon{
+    font-size: 18px;
+    right: 15px;
+    top: 5px;
+    color:@alert-default-text;
   }
 }

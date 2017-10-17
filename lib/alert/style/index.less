@@ -55,26 +55,50 @@
 }
 
 .w-alert-default{
-    .alert-variant(@alert-default-bg, @alert-default-border, @alert-default-text)
+  .alert-variant(@alert-default-bg, @alert-default-border, @alert-default-text);
 }
 
 .w-alert-primary{
-    .alert-variant(@alert-primary-bg, @alert-primary-border, @alert-primary-text)
+  .alert-variant(@alert-primary-bg, @alert-primary-border, @alert-primary-text);
+  .w-alert-description,.w-alert-message{
+    i[class^="w-icon-"]{
+      color:  @alert-primary-text;
+    }
+  }
 }
-   
 
 .w-alert-success{
-    .alert-variant(@alert-success-bg, @alert-success-border, @alert-success-text)
+  .alert-variant(@alert-success-bg, @alert-success-border, @alert-success-text);
+  .w-alert-description,.w-alert-message{
+    i[class^="w-icon-"]{
+      color:  @alert-success-text;
+    }
+  }
 }
-    
+
 .w-alert-warning{
-    .alert-variant(@alert-warning-bg, @alert-warning-border, @alert-warning-text)
+  .alert-variant(@alert-warning-bg, @alert-warning-border, @alert-warning-text);
+  .w-alert-description,.w-alert-message{
+    i[class^="w-icon-"]{
+      color:  @alert-warning-text;
+    }
+  }
 }
- 
+
 .w-alert-info{
-    .alert-variant(@alert-info-bg, @alert-info-border, @alert-info-text)   
+  .alert-variant(@alert-info-bg, @alert-info-border, @alert-info-text);
+  .w-alert-description,.w-alert-message{
+    i[class^="w-icon-"]{
+      color:  @alert-info-text;
+    }
+  }
 }
-    
+
 .w-alert-error{
-    .alert-variant(@alert-error-bg, @alert-error-border, @alert-error-text)
+  .alert-variant(@alert-error-bg, @alert-error-border, @alert-error-text);
+  .w-alert-description,.w-alert-message{
+    i[class^="w-icon-"]{
+      color:  @alert-error-text;
+    }
+  }
 }

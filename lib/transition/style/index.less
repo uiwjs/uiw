@@ -1,107 +1,91 @@
-// 出现
-.w-animate-fade-in-enter,.w-animate-fade-in-appear{
-  animation-name: fadeIn;
-  animation-duration: 0.25s;
-  animation-fill-mode: both;
-}
-// 离开
-.w-animate-fade-in-leave {
-  animation-name: fadeOut;
-  animation-duration: 0.25s;
-  animation-fill-mode: both;
-}
+.w-animate{
+  transition: all 0.3s ease;
+  &.is-down {
+    &.is-mounting { // 安装
+      transform: translate3d(0, -100%, 0); 
+    }
+    &.is-mounted { // 安装完
+      transform: translate3d(0, 0, 0); 
+    }
+  
+    &.is-unmounting { // 卸载
+      transform: translate3d(0, -100%, 0); 
+    }
+  
+    &.is-unmounted { // 卸载完
+      transform: translate3d(0, -100%, 0); 
+    }
+  }
 
-@keyframes fadeIn{
-  0%{opacity: 0; }
-  100%{opacity: 1; }
-}
-@keyframes fadeOut{
-  0%{opacity: 1; }
-  100%{opacity: 0; }
-}
+  &.is-up {
+    &.is-mounting {
+      transform: translate3d(0, 100%, 0); 
+    }
+  
+    &.is-mounted {
+      transform: translate(0, 0);
+    }
+  
+    &.is-unmounting {
+      transform: translate(0, 100%);
+    }
+  
+    &.is-unmounted {
+      transform: translate(0, 100%);
+    }
+  }
 
-.w-animate-fade-down-enter,.w-animate-fade-down-appear {
-  animation-name: fadeInDown;
-  animation-duration: 0.25s;
-  animation-fill-mode: both;
-}
+  &.is-right {
+    &.is-mounting {
+      transform: translate3d(100%, 0, 0);
+    }
+  
+    &.is-mounted {
+      transform: translate3d(0, 0, 0);
+    }
+  
+    &.is-unmounting {
+      transform: translate3d(100%, 0, 0);
+    }
+  
+    &.is-unmounted {
+      transform: translate3d(100%, 0, 0);
+    }
+  }
 
-.w-animate-fade-down-leave {
-  animation-name: fadeOutDown;
-  animation-duration: 0.25s;
-  animation-fill-mode: both;
-}
+  &.is-left {
+    &.is-mounting {
+      transform: translate3d(-100%, 0, 0);
+    }
+  
+    &.is-mounted {
+      transform: translate3d(0, 0, 0);
+    }
+  
+    &.is-unmounting {
+      transform: translate3d(-100%, 0, 0);
+    }
+  
+    &.is-unmounted {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
 
-@keyframes fadeInDown {
-  0%{opacity: 0; transform: translate3d(0, -100%, 0); }
-  100%{opacity: 1; transform: none; }
-}
-
-@keyframes fadeOutDown {
-  0%{opacity: 1; transform: translate3d(0, 0%, 0); }
-  100%{opacity: 0; transform: translate3d(0, 100%, 0); }
-}
-
-// 出现
-.w-animate-fade-left-enter,.w-animate-fade-left-appear{
-  animation-name: fadeInLeft;
-  animation-duration: 0.25s;
-  animation-fill-mode: both;
-}
-// 离开
-.w-animate-fade-left-leave {
-  animation-name: fadeOutLeft;
-  animation-duration: 0.25s;
-  animation-fill-mode: both;
-}
-@keyframes fadeOutLeft{
-  0%{opacity: 1; }
-  100%{opacity:0 ;transform: translate3d(-100%, 0, 0) ;}
-}
-
-@keyframes fadeInLeft{
-  0%{opacity: 0;left: -100%;}
-  100%{opacity: 1;left: 0px;}
-}
-
-// 出现
-.w-animate-fade-right-enter,.w-animate-fade-right-appear{
-  animation-name: fadeInRight;
-  animation-duration: 0.25s;
-  animation-fill-mode: both;
-}
-// 离开
-.w-animate-fade-right-leave {
-  animation-name: fadeOutRight;
-  animation-duration: 0.25s;
-  animation-fill-mode: both;
-}
-@keyframes fadeOutRight{
-  0%{opacity: 1;}
-  100%{opacity: 0; transform: translate3d(100%, 0, 0);}
-}
-
-@keyframes fadeInRight{
-  0%{opacity: 0;right: -100%;}
-  100%{opacity: 1;right: 0px;}
-}
-// 出现
-.w-animate-fade-up-enter,.w-animate-fade-up-appear{
-  animation-name: fadeInUp;
-  animation-duration: 0.25s;
-  animation-fill-mode: both;
-}
-// 离开
-.w-animate-fade-up-leave {
-  animation-name: fadeOutUp;
-  animation-duration: 0.25s;
-  animation-fill-mode: both;
-}
-@keyframes fadeInUp{
-  0%{opacity: 0; transform: translate3d(0, 100%, 0); }
-  100%{opacity: 1; transform: none; }
-}
-@keyframes fadeOutUp{
-  0%{opacity: 1; }
-  100%{opacity: 0; transform: translate3d(0, -100%, 0); }
+  &.is-fadeIn {
+    &.is-mounting {
+      opacity: 0;
+    }
+  
+    &.is-mounted {
+      opacity: 1;
+    }
+  
+    &.is-unmounting {
+      opacity: 0;
+    }
+  
+    &.is-unmounted {
+      opacity: 0;
+    }
+  }
 }

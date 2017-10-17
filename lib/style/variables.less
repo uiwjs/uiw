@@ -136,31 +136,6 @@
 
 //== Alerts 状态 states  定义颜色
 
-// **默认状态颜色
-@state-default-text :           rgba(0,0,0,.85);
-@state-default-bg :             #fff;
-@state-default-border :         darken(spin(@state-default-bg, 0), 15%);
-
-// **默认状态颜色
-@state-primary-text :           #5CA2F4;
-@state-primary-bg :             #e8f6ff;
-@state-primary-border :         darken(spin(@state-primary-bg, 0), 0%);
-
-// **成功状态颜色
-@state-success-text :           #3c763d;
-@state-success-bg :             #dff0d8;
-@state-success-border :         darken(spin(@state-success-bg, 0), 0%);
-
-// **消息状态颜色
-@state-info-text :              #236ec5;
-@state-info-bg :                #d9edf7;
-@state-info-border :            darken(spin(@state-info-bg, 0), 0%);
-
-// **警告状态颜色
-@state-warn-text :              #8a6d3b;
-@state-warn-bg :                #ffe697;
-@state-warn-border :            darken(spin(@state-warn-bg, 0), 0%);
-
 // **危险状态颜色
 @state-error-text :             #a94442;
 @state-error-bg :               #f2dede;
@@ -170,34 +145,35 @@
 @alert-padding :             10px;
 @alert-border-raduis: @border-radius-base;
 
-@alert-default-bg :          @state-default-bg;
-@alert-default-text :        @state-default-text;
-@alert-default-border :      @state-default-border;
+// **默认状态颜色
+@alert-default-bg :          #fff;
+@alert-default-text :        rgba(0,0,0,.85);
+@alert-default-border :      darken(spin(@alert-default-bg, 0), 15%);
 
-@alert-primary-bg :          @state-primary-bg;
-@alert-primary-text :        @state-primary-text;
-@alert-primary-border :      @state-primary-border;
+@alert-primary-text :        #007bff;
+@alert-primary-bg :          lighten(@alert-primary-text, 45%);
+@alert-primary-border :      darken(spin(@alert-primary-bg, 0), 0%);
 
-@alert-success-bg :          @state-success-bg;
-@alert-success-text :        @state-success-text;
-@alert-success-border :      @state-success-border;
+@alert-success-text :        #28a745;
+@alert-success-bg :          lighten(@alert-success-text, 51%);
+@alert-success-border :      darken(spin(@alert-success-bg, 0), 0%);
 
-@alert-info-bg :             @state-info-bg;
-@alert-info-text :           @state-info-text;
-@alert-info-border :         @state-info-border;
+@alert-info-text :           #007bff;
+@alert-info-bg :             lighten(@alert-info-text, 45%);
+@alert-info-border :         darken(spin(@alert-info-bg, 0), 0%);
 
-@alert-warning-bg :          @state-warn-bg;
-@alert-warning-text :        @state-warn-text;
-@alert-warning-border :      @state-warn-border;
+@alert-warning-text :        #ffc107;
+@alert-warning-bg :          lighten(@alert-warning-text, 40%);
+@alert-warning-border :      darken(spin(@alert-warning-bg, 0), 0%);
 
-@alert-error-bg :            @state-error-bg;
-@alert-error-text :          @state-error-text;
-@alert-error-border :        @state-error-border;
+@alert-error-text :          #dc3545;
+@alert-error-bg :            lighten(@alert-error-text, 40%);
+@alert-error-border :        darken(spin(@alert-error-bg, 0), 0%);
 
 //== 关闭图标 =======
 @close-icon-size:           11px;
-@close-icon-color:          @state-default-text;
-@close-icon-top:            @close-icon-size;
+@close-icon-color:          #52575c;
+@close-icon-top:            8px;
 @close-icon-right:          @close-icon-size;
 
 //== 弹出层 模态框 modal =======
