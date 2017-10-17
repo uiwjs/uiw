@@ -1,9 +1,6 @@
-const path = require('path');
 const webpack = require('webpack');
-const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const paths = require('./paths');
-const merge = require('merge-array-object');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
@@ -87,9 +84,9 @@ module.exports = {
       {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
-          fallback:require.resolve('style-loader'),
-          use:[
-            require.resolve('css-loader'), 
+          fallback: require.resolve('style-loader'),
+          use: [
+            require.resolve('css-loader'),
             // {
             //   loader: require.resolve('css-loader'),
             //   options: {
