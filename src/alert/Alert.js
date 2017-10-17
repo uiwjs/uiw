@@ -40,7 +40,7 @@ export default class Alert extends Component {
         case "success": icon = <Icon type="circle-check-o" />; break;
         case "info": icon = <Icon type="information-o" />; break;
         case "warning": icon = <Icon type="question-circle-o" />; break;
-        case "error": icon =  <Icon type="circle-close-o" />; break;
+        case "error": icon = <Icon type="circle-close-o" />; break;
         default: break;
       }
     }
@@ -51,15 +51,14 @@ export default class Alert extends Component {
       [className]: className
     });
 
-    const alertsview = !this.state.visible ? null : <div { ...others } className={cls}>
-      {message && <span className={!description ? `${prefixCls}-description` : `${prefixCls}-message`}>{icon}{message}</span>}
-      {description && <span className={`${prefixCls}-description`}>{description}</span>}
-      {children}
-      {closable && <a onClick={this.handleClose.bind(this)} className={`${prefixCls}-close-icon`}><Icon type="close" /></a>}
-    </div>
     return (
-      <Transition visible={this.state.tranVisible} type={transition}>
-        {alertsview}
+      <Transition in={this.state.visible} sequence={transition}>
+        <div { ...others } className={cls}>
+          {message && <span className={!description ? `${prefixCls}-description` : `${prefixCls}-message`}>{icon}{message}</span>}
+          {description && <span className={`${prefixCls}-description`}>{description}</span>}
+          {children}
+          {closable && <a onClick={this.handleClose.bind(this)} className={`${prefixCls}-close-icon`}><Icon type="close" /></a>}
+        </div>
       </Transition>
     );
   }
@@ -78,7 +77,7 @@ Alert.propTypes = {
 Alert.defaultProps = {
   type: 'default',
   prefixCls: "w-alert",
-  transition: "fade-in",
+  transition: "fadeIn",
   visible: true,
   showIcon: false,
   closable: false,
