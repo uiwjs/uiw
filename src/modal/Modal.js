@@ -83,26 +83,26 @@ export default class Modal extends Component {
 
     let AnimateType = '';
     switch (horizontal) {
-      case 'left': AnimateType = 'fade-left'; break;
-      case 'right': AnimateType = 'fade-right'; break;
-      default: AnimateType = 'fade-down'; break;
+      case 'left': AnimateType = 'fadeIn left'; break;
+      case 'right': AnimateType = 'fadeIn right'; break;
+      default: AnimateType = 'fadeIn down'; break;
     }
     defaultFooter = (footer === null ? null : <div className={`${prefixCls}-footer`}>{defaultFooter}</div>)
-
+    console.log("leave::", AnimateType, leave)
     return (
       <div className={cls}>
-        <Transition type="fade-in">
-          {leave && <div className={`${prefixCls}-mask`} style={styleMask} onClick={() => this.onCancel('mask')}></div>}
+        <Transition in={leave} sequence="fadeIn">
+          <div className={`${prefixCls}-mask`} style={styleMask} onClick={() => this.onCancel('mask')}></div>
         </Transition>
-        <Transition type={AnimateType}>
-          {leave && <div className={`${prefixCls}-content`} style={{ width: width, ...other.style }}>
+        <Transition in={leave} sequence={AnimateType}>
+          <div className={`${prefixCls}-content`} style={{ width: width, ...other.style }}>
             <div className={`${prefixCls}-header`}>
               <div className={`${prefixCls}-title`} id="rcDialogTitle9">{title}</div>
               <a onClick={() => this.onCancel()} className={`${prefixCls}-close-icon`}><Icon type="close" /></a>
             </div>
             <div className={`${prefixCls}-body`}>{children}</div>
             {defaultFooter}
-          </div>}
+          </div>
         </Transition>
       </div>
     );
