@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import marked from 'marked';
+import prism from 'prismjs';
 import { transform } from 'babel-standalone';
 
 export default class Canvas extends React.Component {
@@ -65,7 +66,7 @@ export default class Canvas extends React.Component {
         presets: ['es2015', 'react']
       }).code.replace('__rtn = ', 'return ');
 
-    this.shouldUpdate = component != this.component || this.component === undefined;
+    this.shouldUpdate = component !== this.component || this.component === undefined;
     this.component = component;
 
 
@@ -103,5 +104,5 @@ Canvas.propTypes = {
 
 Canvas.defaultProps = {
   locale: {},
-  prefixCls:"w-docs"
+  prefixCls: "w-docs"
 };

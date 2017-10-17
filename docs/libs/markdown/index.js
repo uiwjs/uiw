@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import locales from '../../locales';
 import prism from 'prismjs';
 import marked from 'marked';
 import Canvas from './canvas';
@@ -9,12 +8,12 @@ export default class Markdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      markdown:""
+      markdown: ""
     }
-    this.components = new Map;
+    this.components = new Map();
   }
   componentWillMount() {
-    this.renderMarkdown(this.getLang(),this.getPageName())
+    this.renderMarkdown(this.getLang(), this.getPageName())
     this.renderDOM();
   }
   componentDidMount() {
@@ -28,19 +27,20 @@ export default class Markdown extends React.Component {
       const div = document.getElementById(id);
       if (div instanceof HTMLElement) {
         ReactDOM.unmountComponentAtNode(div);
-        ReactDOM.render(component, div);
+        ReactDOM.render(component, div, () => {
+          prism.highlightAll();
+        });
       }
     }
-    prism.highlightAll();
   }
-  renderMarkdown(locale, fileName){
+  renderMarkdown(locale, fileName) {
     return import(`../../md/${locale}/${fileName}.md`).then(module => {
       this.setState({
-        markdown:module
+        markdown: module
       })
     })
   }
-  getLang(){
+  getLang() {
     return localStorage.getItem('WUI_LANG') || 'cn'
   }
   getPageName() {
@@ -51,23 +51,22 @@ export default class Markdown extends React.Component {
     return 'quick-start';
   }
   render() {
-    const {markdown} = this.state;
+    const { markdown } = this.state;
     let prefixCls = 'w-docs'
     if (typeof markdown === 'string') {
       this.components.clear();
       const html = marked(markdown.replace(/\<\!--\s?DemoStart\s?--\>([^]+?)\<\!--\s?End\s?--\>/g, (match, p1, offset) => {
-          const id = offset.toString(36);
-          this.components.set(id, React.createElement(Canvas, Object.assign({
-            name: this.getPageName()
-          }, this.props), p1));
-
-          return `<div id=${id}></div>`;
-        }));
+        const id = offset.toString(36);
+        this.components.set(id, React.createElement(Canvas, Object.assign({
+          name: this.getPageName()
+        }, this.props), p1));
+        return `<div id=${id}></div>`;
+      }));
       return (
-        <div className={`${prefixCls}-content-warpper`} dangerouslySetInnerHTML={{__html: html}} />
+        <div className={`${prefixCls}-content-warpper`} dangerouslySetInnerHTML={{ __html: html }} />
       )
-    }else{
-      return(
+    } else {
+      return (
         <span></span>
       )
 
