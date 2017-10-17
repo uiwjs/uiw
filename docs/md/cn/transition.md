@@ -205,6 +205,7 @@ render() {
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
 | sequence | 动画效果 默认可选`fadeIn`、`down`、`up`、`right`、`left` | String | `false` |
+| unmountOnExit | 设置 `true` 退出动画卸载组件 | Bool | `true` |
 | in | 显示组件; 触发进入或退出状态 | Bool | `false` |
 | animateOnMount | 安装动画 | Bool | `true` |
 | duration | 持续时间 | Number | `200` |
