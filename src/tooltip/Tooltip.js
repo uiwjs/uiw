@@ -201,11 +201,13 @@ export default class Tooltip extends Component {
       <div className={cls} style={style || {}} {...props}>
         <div ref="reference" className={`${prefixCls}-children`}> {children} </div>
         <div ref="popup" style={stylesPopup} className={`${prefixCls}-popup`}>
-          <Transition type="fade-in">
-            {!disabled && showTooltip && <div className={`${prefixCls}-content`}>
-              {visibleArrow && <div className={`${prefixCls}-arrow`}></div>}
-              <div className={`${prefixCls}-inner`}>{content}</div>
-            </div>}
+          <Transition in={showTooltip} sequence='fadeIn'>
+            <div>
+              {!disabled && <div className={`${prefixCls}-content`}>
+                {visibleArrow && <div className={`${prefixCls}-arrow`}></div>}
+                <div className={`${prefixCls}-inner`}>{content}</div>
+              </div>}
+            </div>
           </Transition>
         </div>
       </div>
