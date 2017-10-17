@@ -32,16 +32,15 @@ export default class Notification extends Component {
   startTimer() {
     if (this.props.duration) {
       this.timeout = setTimeout(() => {
-        // console.log("props:", this.props)
         this.onClose();
       }, this.duration())
     }
   }
   render() {
     const { prefixCls, type, className, message, description, placement } = this.props;
-    let transition = 'fade-left';
+    let transition = 'fadeIn left';
     if (placement === ('topRight' || 'bottomRight')) {
-      transition = 'fade-right';
+      transition = 'fadeIn right';
     }
     return (
       <Alert
