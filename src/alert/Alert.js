@@ -50,7 +50,6 @@ export default class Alert extends Component {
       [`${prefixCls}-icon-description`]: description,
       [className]: className
     });
-
     return (
       <Transition in={this.state.visible} sequence={transition}  { ...others }>
         <div className={cls}>
@@ -81,5 +80,5 @@ Alert.defaultProps = {
   visible: true,
   showIcon: false,
   closable: false,
-  onClose() { }
+  onClose() { },
 }

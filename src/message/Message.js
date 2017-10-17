@@ -34,14 +34,14 @@ export default class Message extends Component {
     const { content, type, className, ...other } = this.props;
     const { removeRootElm, visible } = this.state;
     // delete other.placement;
-    // delete other.duration;
     // delete other.onClose;
+    delete other.duration;
     if (removeRootElm) {
       return null
     }
     return (
       <span>
-        <Alert showIcon type={type} onTransitionendExit={this.onTransitionendExit.bind(this)} visible={visible} message={content} className={className} {...other} />
+        <Alert showIcon type={type} transition="fadeIn down" onTransitionendExit={this.onTransitionendExit.bind(this)} visible={visible} message={content} className={className} {...other} />
       </span>
     );
   }
