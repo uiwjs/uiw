@@ -32,6 +32,7 @@ export default class Markdown extends React.Component {
         });
       }
     }
+    prism.highlightAll();
   }
   renderMarkdown(locale, fileName) {
     return import(`../../md/${locale}/${fileName}.md`).then(module => {
