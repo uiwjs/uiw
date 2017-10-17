@@ -1,13 +1,13 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
 import Alert from '../alert'
-import Icon from '../icon'
 
 export default class Message extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      duration: props.duration
+      duration: props.duration,
+      visible: true
     }
   }
   componentDidMount() {
@@ -18,19 +18,21 @@ export default class Message extends Component {
   }
   dismiss() {
     const { onClose } = this.props
-    this.refs.alerts.handleClose()
+    this.setState({ visible: false })
     onClose && onClose()
   }
   render() {
-    const { content, icon, type, className, ...other } = this.props;
-    delete other.placement;
-    delete other.duration;
-    delete other.onClose;
+    const { content, type, className, ...other } = this.props;
+    // delete other.placement;
+    // delete other.duration;
+    // delete other.onClose;
+    if (!this.state.visible) {
+      return null
+    }
     return (
-      <Alert ref="alerts" type={type} className={className} {...other} >
-        {icon && <Icon type={icon} />}
-        <span>{content}</span>
-      </Alert>
+      <span>
+        <Alert showIcon type={type} message={content} className={className} {...other} />
+      </span>
     );
   }
 }
