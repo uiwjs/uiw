@@ -73,7 +73,7 @@ Notification.propTypes = {
 
 Notification.defaultProps = {
   prefixCls: 'w-notification',
-  duration: 4.5,
+  duration: 24.5,
   showIcon: false,
   top: 12,
   placement: "topRight",

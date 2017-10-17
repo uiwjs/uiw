@@ -37,10 +37,10 @@ export default class Alert extends Component {
     let icon;
     if (showIcon) {
       switch (type) {
-        case "success": icon = <Icon type="circle-check-o" />; break;
-        case "info": icon = <Icon type="information-o" />; break;
-        case "warning": icon = <Icon type="question-circle-o" />; break;
-        case "error": icon = <Icon type="circle-close-o" />; break;
+        case "success": icon = <Icon type="circle-check" />; break;
+        case "info": icon = <Icon type="information" />; break;
+        case "warning": icon = <Icon type="question-circle" />; break;
+        case "error": icon = <Icon type="circle-close" />; break;
         default: break;
       }
     }
