@@ -89,7 +89,7 @@ export default class Animate extends Component {
             this.setState({ unmountOnExit: this.props.in ? false : true }, () => {
               this.props.in ?
                 onTransitionendEnter(this.props) :
-                onTransitionendEnter(this.props);
+                onTransitionendExit(this.props);
             })
           }, false);
         }}
