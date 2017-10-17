@@ -14,9 +14,8 @@ import "./style/index.less";
 export default class Animate extends Component {
   constructor(...args) {
     super(...args);
-    this.state = { in: false }
+    this.state = { in: false, unmountOnExit: false }
   }
-
   componentDidMount() {
     if (this.props.animateOnMount || this.props.in === true) {
       this.setState({ in: true })
@@ -28,21 +27,24 @@ export default class Animate extends Component {
       this.setState({ in: false })
     }
   }
-
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextState) {
     /* istanbul ignore next */
     if (nextProps.in === undefined) return
-
     this.setState({
       in: nextProps.in
     })
+    if (this.props.unmountOnExit !== nextProps.unmountOnExit) {
+      this.setState({
+        unmountOnExit: nextProps.unmountOnExit
+      })
+    }
   }
   render() {
     // // 动画结束删除根节点
     // if (!this.props.visible) {
     //   return false;
     // }
-    const { prefixCls, sequence, className, wait, children, duration, ...other } = this.props;
+    const { prefixCls, sequence, className, wait, children, duration, unmountOnExit, ...other } = this.props;
     const transitionIn = this.state.in
 
     const timeout = {
@@ -75,7 +77,19 @@ export default class Animate extends Component {
     }
     return (
       <Transition
+        ref="tran"
         {...other}
+        unmountOnExit={this.state.unmountOnExit}
+        addEndListener={(node, done) => {
+          // 使用css transitionend事件来标记动画转换的完成
+          node.addEventListener('transitionend', (a, b) => {
+            if (this.props.in) {
+              this.setState({ unmountOnExit: false })
+            } else if (unmountOnExit) {
+              this.setState({ unmountOnExit: true })
+            }
+          }, false);
+        }}
         className={prefixCls}
         in={transitionIn}
         timeout={timeout}
@@ -91,6 +105,7 @@ export default class Animate extends Component {
 
 Animate.propTypes = {
   animateOnMount: PropTypes.bool,
+  unmountOnExit: PropTypes.bool,
   prefixCls: PropTypes.string,
   className: PropTypes.string,
   duration: PropTypes.number,
@@ -100,6 +115,7 @@ Animate.propTypes = {
 };
 Animate.defaultProps = {
   prefixCls: "w-animate",
+  unmountOnExit: true, // 设置 true 销毁根节点
   animateOnMount: true, // 安装动画
   duration: 200,        // 持续时间
   wait: 0
