@@ -44,7 +44,10 @@ export default class Animate extends Component {
     // if (!this.props.visible) {
     //   return false;
     // }
-    const { prefixCls, sequence, className, wait, children, duration, unmountOnExit, ...other } = this.props;
+    const { prefixCls, sequence, className, wait, children, duration, unmountOnExit,
+      onTransitionendEnter,
+      onTransitionendExit,
+      ...other } = this.props;
     const transitionIn = this.state.in
 
     const timeout = {
@@ -83,11 +86,11 @@ export default class Animate extends Component {
         addEndListener={(node, done) => {
           // 使用css transitionend事件来标记动画转换的完成
           node.addEventListener('transitionend', (a, b) => {
-            if (this.props.in) {
-              this.setState({ unmountOnExit: false })
-            } else if (unmountOnExit) {
-              this.setState({ unmountOnExit: true })
-            }
+            this.setState({ unmountOnExit: this.props.in ? false : true }, () => {
+              this.props.in ?
+                onTransitionendEnter(this.props) :
+                onTransitionendEnter(this.props);
+            })
           }, false);
         }}
         className={prefixCls}
@@ -105,6 +108,8 @@ export default class Animate extends Component {
 
 Animate.propTypes = {
   animateOnMount: PropTypes.bool,
+  onTransitionendEnter: PropTypes.func,
+  onTransitionendExit: PropTypes.func,
   unmountOnExit: PropTypes.bool,
   prefixCls: PropTypes.string,
   className: PropTypes.string,
@@ -114,8 +119,10 @@ Animate.propTypes = {
   wait: PropTypes.number
 };
 Animate.defaultProps = {
+  onTransitionendEnter: (e) => e, //
+  onTransitionendExit: (e) => e,
   prefixCls: "w-animate",
-  unmountOnExit: true, // 设置 true 销毁根节点
+  unmountOnExit: true,  // 设置 true 销毁根节点
   animateOnMount: true, // 安装动画
   duration: 200,        // 持续时间
   wait: 0

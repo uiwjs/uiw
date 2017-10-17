@@ -210,6 +210,8 @@ render() {
 | animateOnMount | 安装动画 | Bool | `true` |
 | duration | 持续时间 | Number | `200` |
 | wait | 持续时间 | Number | `0` |
+| onTransitionendEnter | 动画进入完成 | Function | `()=>{}` |
+| onTransitionendExit | 动画退出完成 | Function | `()=>{}` |
 
 **v1.1.13**
 
