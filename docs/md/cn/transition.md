@@ -198,7 +198,7 @@ render() {
 
 ### Transition Attributes
 
-可以通过 [Animate.css](https://daneden.github.io/animate.css/) 制作更多的过度动画。变化比较大，动画库重写了，请使用最新版本。
+可以通过 [Animate.css](https://daneden.github.io/animate.css/) 制作更多的过度动画。变化比较大，动画库重写了，请使用最新版本。动画组件根据[react-transition-group](https://reactcommunity.org/react-transition-group/#Transition) 动画过渡组件二次封装
 
 **v1.1.15+**
 
