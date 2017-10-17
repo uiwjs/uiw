@@ -205,13 +205,15 @@ render() {
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
 | sequence | 动画效果 默认可选`fadeIn`、`down`、`up`、`right`、`left` | String | `false` |
-| unmountOnExit | 设置 `true` 退出动画卸载组件 | Bool | `true` |
-| in | 显示组件; 触发进入或退出状态 | Bool | `false` |
+| [in](https://reactcommunity.org/react-transition-group/#Transition-prop-in) | 显示组件; 触发进入或退出状态 | Bool | `false` |
 | animateOnMount | 安装动画 | Bool | `true` |
 | duration | 持续时间 | Number | `200` |
-| wait | 持续时间 | Number | `0` |
+| [wait](https://reactcommunity.org/react-transition-group/#Transition-prop-timeout) | 持续时间 | Number | `0` |
+| [unmountOnExit](https://reactcommunity.org/react-transition-group/#Transition-prop-unmountOnExit) | 默认 `true` 退出动画卸载组件 | Bool | `true` |
+| [mountOnEnter](https://reactcommunity.org/react-transition-group/#Transition-prop-mountOnEnter) | 默认情况下，子组件与父Transition组件一起立即安装。 如果要“lazy mount”组件的第一个in = {true}，可以设置mountOnEnter。 在第一次进入转换之后，组件将保持安装，即使是“退出”，除非您还要指定unmountOnExit。 | Number | `false` |
 | onTransitionendEnter | 动画进入完成 | Function | `()=>{}` |
 | onTransitionendExit | 动画退出完成 | Function | `()=>{}` |
+| prefixCls | 默认样式`w-animate` | String | w-animate |
 
 **v1.1.13**
 
