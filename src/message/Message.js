@@ -7,7 +7,8 @@ export default class Message extends Component {
     super(props)
     this.state = {
       duration: props.duration,
-      visible: true
+      visible: true,
+      removeRootElm: false
     }
   }
   componentDidMount() {
@@ -21,17 +22,26 @@ export default class Message extends Component {
     this.setState({ visible: false })
     onClose && onClose()
   }
+  /**
+   * 动画完成之后删除根节点
+   */
+  onTransitionendExit() {
+    if (!this.state.removeRootElm) {
+      this.setState({ removeRootElm: true })
+    }
+  }
   render() {
     const { content, type, className, ...other } = this.props;
+    const { removeRootElm, visible } = this.state;
     // delete other.placement;
     // delete other.duration;
     // delete other.onClose;
-    if (!this.state.visible) {
+    if (removeRootElm) {
       return null
     }
     return (
       <span>
-        <Alert showIcon type={type} message={content} className={className} {...other} />
+        <Alert showIcon type={type} onTransitionendExit={this.onTransitionendExit.bind(this)} visible={visible} message={content} className={className} {...other} />
       </span>
     );
   }
