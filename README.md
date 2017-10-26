@@ -1,17 +1,32 @@
 <p align="center">
-    <a href="https://uiw-react.github.io">
-        <img width="150" src="https://raw.githubusercontent.com/uiw-react/uiw/master/docs/assets/logo-README.svg?sanitize=true">
-    </a>
+  <a href="https://uiw-react.github.io">
+    <img width="150" src="https://raw.githubusercontent.com/uiw-react/uiw/master/docs/assets/logo-README.svg?sanitize=true">
+  </a>
+</p>
+<p align="center">
+  <a href="https://github.com/uiw-react/uiw/issues">
+    <img src="https://img.shields.io/github/issues/uiw-react/uiw.svg">
+  </a>
+  <a href="https://github.com/uiw-react/uiw/network">
+    <img src="https://img.shields.io/github/forks/uiw-react/uiw.svg">
+  </a>
+  <a href="https://github.com/uiw-react/uiw/stargazers">
+    <img src="https://img.shields.io/github/stars/uiw-react/uiw.svg">
+  </a>
+  <br>
+  <a href="https://github.com/uiw-react/uiw/releases">
+    <img src="https://img.shields.io/github/release/uiw-react/uiw.svg">
+  </a>
+  <a href="https://github.com/uiw-react/uiw">
+    <img src="https://img.shields.io/packagist/l/uiw-react/uiw.svg">
+  </a>
+  <a href="https://www.npmjs.com/package/uiw">
+    <img src="https://img.shields.io/npm/v/uiw.svg">
+  </a>
 </p>
 
 uiw
 ---
-
-<p align="center">
-
-[![](https://img.shields.io/github/issues/uiw-react/uiw.svg)](https://github.com/uiw-react/uiw/issues) [![](https://img.shields.io/github/forks/uiw-react/uiw.svg)](https://github.com/uiw-react/uiw/network) [![](https://img.shields.io/github/stars/uiw-react/uiw.svg)](https://github.com/uiw-react/uiw/stargazers) [![](https://img.shields.io/github/release/uiw-react/uiw.svg)](https://github.com/uiw-react/uiw/releases) [![Packagist](https://img.shields.io/packagist/l/uiw-react/uiw.svg)](https://github.com/uiw-react/uiw) [![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/uiw)
-
-</p>
 
 A high quality UI Toolkit, A Component Library for React 16+. 💘
 
