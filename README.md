@@ -18,7 +18,7 @@
     <img src="https://img.shields.io/github/release/uiw-react/uiw.svg">
   </a>
   <a href="https://github.com/uiw-react/uiw">
-    <img src="https://img.shields.io/packagist/l/uiw-react/uiw.svg">
+    <img src="https://img.shields.io/dub/l/vibe-d.svg">
   </a>
   <a href="https://www.npmjs.com/package/uiw">
     <img src="https://img.shields.io/npm/v/uiw.svg">
