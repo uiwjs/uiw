@@ -47,10 +47,23 @@ To develop, run the self-reloading build:
 $ npm start
 ```
 
+Open your browser and visit http://127.0.0.1:2087
+
 Update the document
 
 ```bash
 npm run deploy
+```
+
+Folders
+
+```bash
+├── dist           # document the static file.
+├── docs           # documentation in markdown
+├── lib            
+├── package.json
+├── script
+└── src            # react source code 
 ```
 
 ### License
