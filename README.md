@@ -7,7 +7,7 @@
 uiw
 ---
 
-A high quality UI Toolkit built on React 16+. 💘
+A high quality UI Toolkit, A Component Library for React 16+. 💘
 
 ### Install
 
