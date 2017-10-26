@@ -1,8 +1,8 @@
 import { HashRouter, Route, Switch, Redirect, withRouter, Link } from 'react-router-dom'
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import locales from './locales';
 import Bundle from "./lazyload";
+import Logo from "./assets/logo.svg";
 
 /* eslint import/no-webpack-loader-syntax: off */
 import QuickStart from 'bundle-loader?lazy&name=quick-start!./pages/quick-start';
@@ -126,17 +126,6 @@ const routes = {
   ]
 }
 
-
-const getComponent = (page) => {
-  if (page && page.default) {
-    return React.createElement(page.default, {
-      locale: {
-        show: getLang('markdown.show'),
-        hide: getLang('markdown.hide')
-      }
-    });
-  }
-}
 // 获取所有路由
 const getRoutesTotal = (obj) => {
   let _obj = obj || routes;
@@ -213,14 +202,15 @@ const renderMenu = (obj) => {
   }
   return html
 }
-const RoutersContainer = withRouter(({ history, location }) => {
+const RoutersContainer = withRouter(({ history, location, ...props }) => {
+  console.log("===>", location.pathname, props)
   const prefixCls = 'w-docs';
   return (
     <div className={`${prefixCls}`}>
       <div className={`${prefixCls}-menu-warpper`}>
         <div className={`${prefixCls}-menu-content`}>
           <div className={`${prefixCls}-logo`}>
-            <img src={require('./assets/logo.svg')} />
+            <img src={Logo} />
             <span>uiw</span>
           </div>
           <ul className={`${prefixCls}-menu-list`}>
@@ -232,6 +222,10 @@ const RoutersContainer = withRouter(({ history, location }) => {
         <Switch>
           {getRoutes()}
         </Switch>
+        <div className={`${prefixCls}-docinfo`}>
+          犯了错误还是想对文件做出贡献？ <a href={`https://github.com/uiw-react/uiw/blob/master/docs/md/${location.pathname}.md`}>在Github上编辑本页！</a> <br />
+          <a href="https://github.com/uiw-react/uiw/issues">反馈建议</a> | <a href="https://github.com/uiw-react/uiw/issues/new">提交bug</a> | <a href="https://github.com/uiw-react/uiw">Github</a>
+        </div>
       </div>
     </div>
   )
