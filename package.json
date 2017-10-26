@@ -1,7 +1,15 @@
 {
   "name": "uiw",
-  "version": "1.2.7",
-  "description": "uiw - react ui kit.",
+  "version": "1.2.8",
+  "description": "A high quality UI Toolkit built on React.",
+  "homepage": "https://uiw-react.github.io",
+  "authors": [
+    "Kenny Wang <wowohoo@qq.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uiw-react/uiw.git"
+  },
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,6 +18,16 @@
     "build:lib": "BABEL_ENV=production babel  --plugins transform-runtime src --out-dir lib --copy-files ",
     "deploy": "./script/deploy.sh"
   },
+  "keywords": [
+    "uiw",
+    "uiw-react",
+    "react.js",
+    "react",
+    "component",
+    "components",
+    "ui",
+    "framework"
+  ],
   "dependencies": {
     "async-validator": "^1.8.1",
     "babel-polyfill": "^6.26.0",
