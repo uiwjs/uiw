@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://uiw-react.github.io">
-        <img width="100" src="./docs/assets/logo.svg">
+        <img width="100" src="./docs/assets/logo-README.svg">
     </a>
 </p>
 
