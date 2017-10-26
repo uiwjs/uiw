@@ -1,0 +1,156 @@
+@import "../../style/variables.less";
+@import "../../style/mixins/index.less";
+
+.w-input{
+  position: relative;
+}
+.w-input-inner{
+  // iOS 中使用appearance修改输入框样式
+  appearance: none;
+  background-color: #fff;
+  background-image: none;
+  border-radius: @border-radius-base;
+  border: 1px solid #E8E8E8;
+  box-sizing: border-box;
+  color: #1f2d3d;
+  font-size: inherit;
+  width: 100%;
+  height: 30px;
+  line-height: 14px;
+  outline: 0;
+  padding: 3px 10px;
+  display: inline-block;
+  transition: border-color @transition-time @transition-timing-functio;
+  &::placeholder{
+    color:#ccc;
+    font-weight: @input-font-weight;
+    transition: color @transition-time @transition-timing-functio;
+  }
+  &:hover{
+    border:1px solid #aeaeae;
+  }
+  &:focus{
+    border-color: #0fa120;
+    box-shadow: 0 0 0 2px rgba(84,220,103,0.14);
+  }
+  &:focus&::placeholder{
+    color:#d5d5d5;
+  }
+  &:disabled{
+    cursor: @cursor-disabled;
+  }
+  &.w-input-p-left{
+    padding-left: 24px;
+  }
+  &.w-input-p-right{
+    line-height: 14px;
+    padding-right: 24px;
+  }
+}
+
+
+.w-input.w-disabled{
+  position: relative;
+  &:before{
+    cursor: @cursor-disabled;
+    content: '';
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: @border-radius-base;
+    height: 100%;
+    width: 100%;
+  }
+}
+.w-input.textarea.w-input-inner{
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+    padding:10px;
+    line-height: 18px;
+}
+
+
+.w-input-icon{
+  input {
+    line-height: 30px;
+  }
+  [class^="w-input-icon-"]{
+    position: absolute;
+    width: 30px;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    i[class^="w-icon-"]{
+      width: 100%;
+    }
+  }
+  &.w-input-icon-left ~ .w-input-inner{
+    padding-left: 30px;
+  }
+  i[class^="w-icon-"]:before{
+    top: 2px;
+    position: relative;
+  }
+}
+
+.w-input-icon .event{
+  cursor: pointer;
+  &:hover{
+    color:#0fa120;
+  }
+}
+.w-input-icon-right{
+  right: 0;
+  top: 0;
+}
+
+
+.w-input-large{
+  .w-input-inner{
+    height: 36px;
+  }
+  [class^="w-icon-"]{
+    width: 100%;
+    font-size: 16px;
+  }
+  [class^="w-icon-"] ~ .w-input-inner{
+    padding-left: 36px;
+  }
+}
+.w-input-small {
+  .w-input-inner{
+    height: 26px;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  [class^="w-icon-"]{
+    width: 100%;
+  }
+  [class^="w-icon-"] ~ .w-input-inner{
+    padding-left: 26px;
+  }
+}
+.w-input-mini {
+  .w-input-inner{
+    height: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    &.w-input-p-right{
+      padding-right: 24px;
+    }
+    &.w-input-p-left{
+      padding-left: 20px;
+    }
+  }
+  .w-input-icon-left{
+    width: 24px
+  }
+  .w-input-icon-right{
+    width: 24px;
+  }
+  [class^="w-icon-"]{
+    width: 100%;
+  }
+}

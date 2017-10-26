@@ -1,0 +1,78 @@
+@import "../../style/variables.less";
+@import "../../style/mixins/index.less";
+
+.w-paging{
+  position: relative;
+  display: inline-block;
+  user-select: none;
+  li{
+    display: inline-block;
+    border:1px solid @paging-border-color;
+    height: @paging-height;
+    line-height: @paging-lineght-height;
+    text-align: center;
+    border-left:0;
+    position: relative;
+    cursor: pointer;
+    transition: background-color @transition-time @transition-timing-functio,box-shadow @transition-time @transition-timing-functio;
+    &.w-paging-prev a,&.w-paging-next a{
+      display: inline-block;
+      &:after{
+        content: "";
+        display: inline-block;
+        height: 6px;
+        position: relative;
+        width: 6px;
+        border: solid @paging-color;
+        border-width: 0 0 1px 1px;
+        top: -2px;
+      }
+    }
+    &.w-paging-prev a{
+      &:after{
+        transform: rotate(@paging-icon-prev-rotate);
+        left: 2px;
+      }
+    }
+    &.w-paging-next a{
+      &:after{
+        transform: rotate(@paging-icon-next-rotate);
+        left: -1px;
+      }
+    }
+    &.w-paging-disable{
+      cursor: @cursor-disabled;
+      a{
+        cursor: @cursor-disabled;
+      }
+      a:after{
+        border-color:@paging-disable-color;
+      }
+    }
+    a {
+      text-decoration: none;
+      color: @paging-color;
+      transition: none;
+      margin: 0 8px;
+    }
+    &:hover{
+      background-color: @paging-hover-bg-color;
+    }
+    &:active{
+      box-shadow:inset @paging-active-shadow-x @paging-active-shadow-y @paging-active-shadow-blur @paging-active-shadow-spread @paging-active-shadow-bg;
+    }
+    &:first-child{
+      border-left:1px solid @paging-border-color;
+      border-radius: @border-radius-base 0 0 @border-radius-base;
+    }
+    &:last-child{
+      border-radius: 0 @border-radius-base @border-radius-base 0;
+    }
+    &.w-paging-active{
+      background-color: @paging-active-bg-color;
+      &:active{
+        box-shadow:inset 0 0 0 rgba(0, 0, 0, 0);
+      }
+    }
+  }
+}

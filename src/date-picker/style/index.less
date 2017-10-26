@@ -1,0 +1,20 @@
+@import "../../style/variables.less";
+@import "../../style/mixins/index.less";
+@import './time-select.less';
+
+.w-date-base{
+  position: relative;
+  display: inline-block;
+  & + .w-date-base{
+    margin-left: 5px;
+  }
+  .w-animate{
+    position: relative;
+  }
+  .w-disabled{
+    color: #ccc;
+    input{
+      color: #ccc;
+    }
+  }
+}

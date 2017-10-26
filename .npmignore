@@ -1,0 +1,12 @@
+docs
+build
+script
+.DS_Store
+*.swp
+npm-debug.log
+dist
+.vscode
+src
+package-lock.json
+yarn.lock
+.cache
