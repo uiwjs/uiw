@@ -7,6 +7,8 @@
 uiw
 ---
 
+A high quality UI Toolkit built on React 16+. 💘
+
 ### Install
 
 ```bash
