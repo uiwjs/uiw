@@ -203,15 +203,16 @@ const renderMenu = (obj) => {
   return html
 }
 const RoutersContainer = withRouter(({ history, location, ...props }) => {
-  console.log("===>", location.pathname, props)
   const prefixCls = 'w-docs';
   return (
     <div className={`${prefixCls}`}>
       <div className={`${prefixCls}-menu-warpper`}>
         <div className={`${prefixCls}-menu-content`}>
           <div className={`${prefixCls}-logo`}>
-            <img src={Logo} />
-            <span>uiw</span>
+            <a href="https://uiw-react.github.io">
+              <img src={Logo} />
+              <span>uiw</span>
+            </a>
           </div>
           <ul className={`${prefixCls}-menu-list`}>
             {renderMenu()}
@@ -222,10 +223,6 @@ const RoutersContainer = withRouter(({ history, location, ...props }) => {
         <Switch>
           {getRoutes()}
         </Switch>
-        <div className={`${prefixCls}-docinfo`}>
-          犯了错误还是想对文件做出贡献？ <a href={`https://github.com/uiw-react/uiw/blob/master/docs/md/${location.pathname}.md`}>在Github上编辑本页！</a> <br />
-          <a href="https://github.com/uiw-react/uiw/issues">反馈建议</a> | <a href="https://github.com/uiw-react/uiw/issues/new">提交bug</a> | <a href="https://github.com/uiw-react/uiw">Github</a>
-        </div>
       </div>
     </div>
   )

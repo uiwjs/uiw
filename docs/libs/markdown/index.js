@@ -16,9 +16,6 @@ export default class Markdown extends React.Component {
     this.renderMarkdown(this.getLang(), this.getPageName())
     this.renderDOM();
   }
-  componentDidMount() {
-  }
-
   componentDidUpdate() {
     this.renderDOM();
   }
@@ -63,7 +60,15 @@ export default class Markdown extends React.Component {
         }, this.props), p1));
         return `<div id=${id}></div>`;
       }));
-      return <div className={`${prefixCls}-content-warpper`} dangerouslySetInnerHTML={{ __html: html }} />
+      return (
+        <div>
+          <div className={`${prefixCls}-content-warpper`} dangerouslySetInnerHTML={{ __html: html }} />
+          <div className={`${prefixCls}-docinfo`}>
+            犯了错误还是想对文件做出贡献？ <a href={`https://github.com/uiw-react/uiw/blob/master/docs/md/${location.pathname}.md`}>在Github上编辑本页！</a> <br />
+            <a href="https://github.com/uiw-react/uiw/issues">反馈建议</a> | <a href="https://github.com/uiw-react/uiw/issues/new">提交bug</a> | <a href="https://github.com/uiw-react/uiw">Github</a>
+          </div>
+        </div>
+      )
     } else {
       return (
         <span></span>
