@@ -219,7 +219,11 @@ const RoutersContainer = withRouter(({ history, location, ...props }) => {
           </ul>
         </div>
       </div>
-      <div className={`${prefixCls}-content`}>
+      <div className={`${prefixCls}-content`} ref={(elm) => {
+        if (elm) {
+          elm.scrollTop = 0
+        }
+      }}>
         <Switch>
           {getRoutes()}
         </Switch>
