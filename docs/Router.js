@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import locales from './locales';
 import Bundle from "./lazyload";
 import Logo from "./assets/logo.svg";
+import ScrollToTop from 'react-scroll-up';
 
 /* eslint import/no-webpack-loader-syntax: off */
 import QuickStart from 'bundle-loader?lazy&name=quick-start!./pages/quick-start';
@@ -227,6 +228,9 @@ const RoutersContainer = withRouter(({ history, location, ...props }) => {
         <Switch>
           {getRoutes()}
         </Switch>
+        <ScrollToTop showUnder={160} style={{ bottom: 20 }}>
+          <div className={`${prefixCls}-totop`}></div>
+        </ScrollToTop>
       </div>
     </div>
   )
