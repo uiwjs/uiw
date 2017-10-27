@@ -54,7 +54,7 @@ ReactDOM.render(
 Visit the [uiw-react.github.io](https://uiw-react.github.io) website for more information.
 
 <p align="center">
-<img src="docs/assets/uiw-doc.png" />
+<img src="https://raw.githubusercontent.com/uiw-react/uiw/master/docs/assets/uiw-doc.png" />
 </p>
 
 ### Development
