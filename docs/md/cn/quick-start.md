@@ -67,7 +67,7 @@ $ npm start
 npm run deploy
 ```
 
-### 文件目录说明
+## 文件目录说明
 
 ```bash
 ├── dist           # 生成的文档静态文件目录

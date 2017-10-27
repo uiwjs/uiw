@@ -144,17 +144,19 @@ body::selection {
     color: #353535;
   }
   h1{
-    padding: 10px 0 20px 10px;
+    padding: 10px 0 10px 10px;
+    margin: 0 0 10px 0;
+    border-bottom: 1px solid #e3e3e3;
+  }
+  h2{
+    margin: 20px 0 10px 0;
+    font-size: 16px;
+    &:first-child {
+      margin: 0 0 0 0;
+    }
   }
   h3{
     margin: 20px 0 5px 0;
-  }
-  h2{
-    margin: 35px 0 0 0;
-  }
-  h2:first-child {
-    margin: 0 0 0 0;
-
   }
   code{
     color:#a71d5d;
@@ -169,6 +171,7 @@ body::selection {
   }
   p{
     padding: 5px 0 5px 0;
+    margin-bottom: 10px;
   }
   &> table,.w-docs-demo-des > table{
     width: 100%;
