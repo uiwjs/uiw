@@ -5,6 +5,7 @@ const paths = require('./paths');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ManifestPlugin = require('webpack-manifest-plugin');
@@ -246,6 +247,7 @@ module.exports = {
         minifyURLs: true,
       },
     }),
+    new FaviconsWebpackPlugin(paths.appFavicon),
     // 使一些环境变量可用于JS代码，例如：
     // if（process.env.NODE_ENV ==='production'）{...}。
     // 这里绝对必要NODE_ENV被设置为生产。

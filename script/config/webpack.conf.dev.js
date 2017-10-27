@@ -2,6 +2,7 @@ const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
@@ -191,6 +192,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
     }),
+    new FaviconsWebpackPlugin(paths.appFavicon),
     // 生成一个`index.html`文件，并注入<script>。
     new HtmlWebpackPlugin({
       inject: true,
