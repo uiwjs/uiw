@@ -30,13 +30,13 @@ uiw
 
 A high quality UI Toolkit, A Component Library for React 16+. 💘
 
-### Install
+### Installation
 
 ```bash
 npm install uiw --save
 ```
 
-### Usage
+### Basic Usage
 
 ```js
 import React from 'react';
