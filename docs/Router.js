@@ -2,6 +2,7 @@ import { HashRouter, Route, Switch, Redirect, withRouter, Link } from 'react-rou
 import React, { Component } from 'react';
 import locales from './locales';
 import Bundle from "./lazyload";
+import { Icon } from "../src";
 import Logo from "./assets/logo.svg";
 import ScrollToTop from 'react-scroll-up';
 
@@ -212,12 +213,17 @@ const RoutersContainer = withRouter(({ history, location, ...props }) => {
           <div className={`${prefixCls}-logo`}>
             <a href="https://uiw-react.github.io">
               <img src={Logo} />
-              <span>uiw</span>
+              <span>uiw <sup>beta</sup></span>
             </a>
           </div>
           <ul className={`${prefixCls}-menu-list`}>
             {renderMenu()}
           </ul>
+          <div className={`${prefixCls}-info`}>
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/uiw-react/uiw/issues"><Icon type="message" /> 反馈建议</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/uiw-react/uiw/issues/new"><Icon type="question-circle" /> 提交bug</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/uiw-react/uiw">Github</a>
+          </div>
         </div>
       </div>
       <div className={`${prefixCls}-content`} ref={(elm) => {

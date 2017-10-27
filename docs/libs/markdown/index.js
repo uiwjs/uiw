@@ -65,7 +65,7 @@ export default class Markdown extends React.Component {
           <div className={`${prefixCls}-content-warpper`} dangerouslySetInnerHTML={{ __html: html }} />
           <div className={`${prefixCls}-docinfo`}>
             犯了错误还是想对文件做出贡献？ <a href={`https://github.com/uiw-react/uiw/blob/master/docs/md/${this.getLang() + '/' + this.getPageName()}.md`} target="_blank" rel="noopener noreferrer">在Github上编辑本页！</a> <br />
-            <a href="https://github.com/uiw-react/uiw/issues" target="_blank" rel="noopener noreferrer">反馈建议</a> | <a target="_blank" rel="noopener noreferrer" href="https://github.com/uiw-react/uiw/issues/new">提交bug</a> | <a target="_blank" href="https://github.com/uiw-react/uiw">Github</a>
+            <a href="https://github.com/uiw-react/uiw/issues" target="_blank" rel="noopener noreferrer">反馈建议</a> | <a target="_blank" rel="noopener noreferrer" href="https://github.com/uiw-react/uiw/issues/new">提交bug</a> | <a target="_blank" rel="noopener noreferrer" href="https://github.com/uiw-react/uiw">Github</a>
           </div>
         </div>
       )
