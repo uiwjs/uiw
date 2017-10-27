@@ -39,3 +39,45 @@ import { Button as ButtonView } from 'uiw';
 - import { Alert } from 'uiw';
 + import { Alert } from 'uiw/src/alert';
 ```
+
+### 开发
+
+要开发，运行自重新构建，获取代码：
+
+```
+$ git clone https://github.com/uiw-react/uiw.git
+$ cd uiw
+$ npm install # or  yarn install
+```
+
+要开发，运行自重新构建：
+
+```bash
+# Run the app
+# Restart the app automatically every time code changes. 
+# Useful during development.
+$ npm start
+```
+
+打开浏览器并访问：http://127.0.0.1:2087
+
+更新文档
+
+```bash
+npm run deploy
+```
+
+### 文件目录说明
+
+```bash
+├── dist           # 生成的文档静态文件目录
+├── docs           # 文档的源文件
+├── lib            
+├── package.json
+├── script
+└── src            # React组件在此
+```
+
+## License
+
+Licensed under the MIT License.
