@@ -20,7 +20,7 @@ git remote add origin $ORIGIN
 # git checkout -b gh-pages 
 git checkout -b master 
 git add . -A 
-git commit -m "$VERSION" 
+git commit -m "Update uiw v$VERSION document." 
 git push -f origin master
 
 # git reset --hard FETCH_HEAD
