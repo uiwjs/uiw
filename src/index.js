@@ -16,6 +16,7 @@ export { default as Transition } from './transition/';
 export { default as Table } from './table/';
 export { default as Tabs } from './tabs/';
 export { default as Paging } from './paging/';
+export { default as Progress } from './progress/';
 export { default as Tooltip } from './tooltip/'
 export { TimePicker } from './date-picker/';
 export { default as TimeSelect } from './time-select/';

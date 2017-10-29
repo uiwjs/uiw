@@ -12,6 +12,7 @@ module.exports = {
     'slider': 'Slider',
     'steps': 'Steps',
     'alert': 'Alert',
+    'avatar': 'Avatar',
     'badge': 'Badge',
     'button': 'Button',
     'breadcrumb': 'Breadcrumb',
