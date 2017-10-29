@@ -12,6 +12,7 @@ module.exports = {
     'slider': 'Slider 滑块',
     'steps': 'Steps 步骤条',
     'alert': 'Alert 警告',
+    'avatar': 'Avatar 头像',
     'badge': 'Badge 标记',
     'button': 'Button 按钮',
     'breadcrumb': 'Breadcrumb 面包屑',

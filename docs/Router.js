@@ -9,6 +9,7 @@ import ScrollToTop from 'react-scroll-up';
 /* eslint import/no-webpack-loader-syntax: off */
 import QuickStart from 'bundle-loader?lazy&name=quick-start!./pages/quick-start';
 import Theme from 'bundle-loader?lazy&name=theme!./pages/theme';
+import Avatar from 'bundle-loader?lazy&name=avatar!./pages/avatar';
 import Color from 'bundle-loader?lazy&name=color!./pages/color';
 import Layout from 'bundle-loader?lazy&name=layout!./pages/layout';
 import icon from 'bundle-loader?lazy&name=icon!./pages/icon';
@@ -96,14 +97,15 @@ const routes = {
       { path: "/:lang/date-picker", component: asyncComponent(datePicker) },
     ],
     'Data Display': [
+      { path: "/:lang/avatar", component: asyncComponent(Avatar) },
+      { path: "/:lang/badge", component: asyncComponent(badge) },
       { path: "/:lang/calendar", component: asyncComponent(calendar) },
-      { path: "/:lang/table", component: asyncComponent(table) },
-      { path: "/:lang/tooltip", component: asyncComponent(tooltip) },
-      { path: "/:lang/tag", component: asyncComponent(tag) },
+      { path: "/:lang/carousel", component: asyncComponent(carousel) },
       { path: "/:lang/progress", component: asyncComponent(progress) },
       { path: "/:lang/rate", component: asyncComponent(rate) },
-      { path: "/:lang/badge", component: asyncComponent(badge) },
-      { path: "/:lang/carousel", component: asyncComponent(carousel) },
+      { path: "/:lang/table", component: asyncComponent(table) },
+      { path: "/:lang/tag", component: asyncComponent(tag) },
+      { path: "/:lang/tooltip", component: asyncComponent(tooltip) },
     ],
     'Navigation': [
       { path: "/:lang/menu", component: asyncComponent(menu) },
