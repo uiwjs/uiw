@@ -4,7 +4,7 @@ import "./style/buttons-group.less";
 
 export default class ButtonGroup extends Component {
     render() {
-        const { prefixCls, vertical, children, className } = this.props;
+        const { prefixCls, vertical, children, className, ...resetProps } = this.props;
         const cls = this.classNames({
             [`${prefixCls}-group`]: true,
             [`${prefixCls}-group-vertical`]: vertical,
@@ -12,7 +12,7 @@ export default class ButtonGroup extends Component {
         });
 
         return (
-            <div className={cls}>
+            <div className={cls} {...resetProps}>
                 {children}
             </div>
         );
@@ -20,6 +20,7 @@ export default class ButtonGroup extends Component {
 };
 
 ButtonGroup.propTypes = {
+    prefixCls: PropTypes.string,
     vertical: PropTypes.bool
 };
 ButtonGroup.defaultProps = {
