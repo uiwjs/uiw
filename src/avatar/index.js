@@ -18,7 +18,6 @@ export default class Avatar extends Component {
   render() {
     const { prefixCls, type, className, size, src, alt, icon, shape, ...resetProps } = this.props;
     let children = this.props.children;
-    console.log("size", size)
     const cls = this.classNames(prefixCls, {
       [`${prefixCls}-large`]: size === 'large',
       [`${prefixCls}-small`]: size === 'small',
