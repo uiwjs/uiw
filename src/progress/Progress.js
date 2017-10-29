@@ -4,7 +4,7 @@ import Icon from '../icon/';
 
 export default class Progress extends Component {
   render() {
-    const { prefixCls, type, className, showText, percent, strokeWidth, status, ...other } = this.props;
+    const { prefixCls, type, className, showText, percent, strokeWidth, status, ...resetProps } = this.props;
     const cls = this.classNames(prefixCls, className, {
       [`${prefixCls}-${type}`]: type,
       [`${prefixCls}-show-text`]: showText,
@@ -38,7 +38,7 @@ export default class Progress extends Component {
       )
     }
     return (
-      <div className={cls}>{progress} {progressInfo}</div>
+      <div {...resetProps} className={cls}>{progress} {progressInfo}</div>
     )
   }
 }
