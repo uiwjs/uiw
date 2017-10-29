@@ -1,0 +1,40 @@
+
+@avatar-prefix-cls: ~"w-avatar";
+
+.@{avatar-prefix-cls} {
+  display: inline-block;
+  text-align: center;
+  background: #ccc;
+  color: #fff;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  font-size:18px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 3px;
+  & + .@{avatar-prefix-cls}{
+    margin-left: 5px;
+  }
+  &-small{
+    height: 24px;
+    width: 24px;
+    font-size: 12px;
+    line-height: 24px;
+  }
+  &-large{
+    height: 40px;
+    width: 40px;
+    font-size: 24px;
+    line-height: 40px;
+  }
+  &-circle{
+    border-radius: 50%;
+  }
+  > img{
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
