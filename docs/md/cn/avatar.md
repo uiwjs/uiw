@@ -48,6 +48,27 @@ render() {
 ```
 <!--End-->
 
+## 图片支持
+
+在组件上没有暴露`onError`事件，可以直接使用`<img/>`标签。
+
+<!--DemoStart--> 
+```js
+render() {
+  return (
+    <div>
+      <Avatar src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" />
+      <Avatar>
+        <img src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" onError={()=>{
+          console.log("图片加载错误！")
+        }}/>
+      </Avatar>
+    </div>
+  )
+}
+```
+<!--End-->
+
 ## 带徽标的头像
 
 <!--DemoStart--> 
@@ -77,4 +98,4 @@ render() {
 | shape | 指定头像的形状`square`正方形或者`circle`圆	 | Enum{'`circle`', '`square`' } | - |
 | size | 设置头像的大小 | Enum{ '`large`', '`small`', '`default`' } | `default` |
 | src | 图片类头像的资源地址 | String | - |
-| alt | 设置头像的大小 | String | - |
+| alt | 规定图像的替代文本 | String | - |
