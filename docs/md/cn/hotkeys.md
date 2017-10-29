@@ -1,7 +1,7 @@
 Hotkeys 快捷键
 ===
 
-用于捕获键盘输入和输入的组合键，基于 **[hotkeys.js](https://github.com/jaywcjlove/hotkeys)** 封装的组件。
+用于捕获键盘输入和输入的组合键，基于 [hotkeys.js](https://github.com/jaywcjlove/hotkeys) 封装的组件。也可以单独使用[react-hotkeys](https://github.com/jaywcjlove/react-hotkeys)
 
 ### 基础用法
 
