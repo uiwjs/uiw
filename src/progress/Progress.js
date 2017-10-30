@@ -3,8 +3,39 @@ import { Component, PropTypes } from '../utils/';
 import Icon from '../icon/';
 
 export default class Progress extends Component {
+  relativeStrokeWidth(bl, type, elm) {
+    const { strokeWidth, percent } = this.props;
+    if (elm) {
+      const { width } = elm.parentNode.getBoundingClientRect();
+      let _strokeWidth = (strokeWidth / width * 100).toFixed(1);
+      const radius = parseInt(
+        50 - parseFloat(_strokeWidth) / 2,
+        10
+      );
+      elm.setAttribute('stroke-width', _strokeWidth)
+      elm.setAttribute('d', `M 50 50 m 0 -${radius} a ${radius} ${radius} 0 1 1 0 ${radius * 2} a ${radius} ${radius} 0 1 1 0 -${radius * 2}`);
+      if (type === 'track') {
+        // 计算周长
+        const perimeter = 2 * Math.PI * radius;
+        elm.setAttribute('style', `stroke-dasharray:${perimeter}px,${perimeter}px;stroke-dashoffset:${(1 - percent / 100) * perimeter}px;transition: stroke-dashoffset 0.6s ease 0s, stroke 0.6s ease;`)
+      }
+    }
+  }
+  stroke() {
+    const { percent } = this.props
+    let ret;
+    switch (this.props.status) {
+      case 'success': ret = '#13ce66'; break;
+      case 'exception': ret = '#ff4949'; break;
+      default: ret = '#20a0ff';
+    }
+    if (percent === 100) {
+      ret = '#13ce66';
+    }
+    return ret;
+  }
   render() {
-    const { prefixCls, type, className, showText, percent, strokeWidth, status, ...resetProps } = this.props;
+    const { prefixCls, style, type, className, showText, percent, strokeWidth, width, status, ...resetProps } = this.props;
     const cls = this.classNames(prefixCls, className, {
       [`${prefixCls}-${type}`]: type,
       [`${prefixCls}-show-text`]: showText,
@@ -16,9 +47,9 @@ export default class Progress extends Component {
     if (showText) {
       let text;
       if (progressStatus === 'exception') {
-        text = <Icon type='circle-close' />
+        text = <Icon type={type === 'line' ? 'circle-close' : 'close'} />
       } else if (progressStatus === 'success') {
-        text = <Icon type='circle-check' />
+        text = <Icon type={type === 'line' ? 'circle-check' : 'check'} />
       } else {
         text = percent + '%'
       }
@@ -27,7 +58,7 @@ export default class Progress extends Component {
     if (type === 'line') {
       const percentStyle = {
         width: `${percent}%`,
-        height: strokeWidth || 6,
+        height: strokeWidth,
       }
       progress = (
         <div className={`${prefixCls}-bar`}>
@@ -36,9 +67,16 @@ export default class Progress extends Component {
           </div>
         </div>
       )
+    } else {
+      progress = (
+        <svg viewBox="0 0 100 100" width={`${width}`}>
+          <path ref={this.relativeStrokeWidth.bind(this, true, 'bg')} stroke="#e5e9f2" fill="none"></path>
+          <path ref={this.relativeStrokeWidth.bind(this, true, 'track')} strokeLinecap="round" stroke={this.stroke()} fill="none" />
+        </svg>
+      )
     }
     return (
-      <div {...resetProps} className={cls}>{progress} {progressInfo}</div>
+      <div ref="progress" className={cls} style={style}  {...resetProps}>{progress}{progressInfo}</div>
     )
   }
 }
@@ -46,6 +84,8 @@ export default class Progress extends Component {
 Progress.propTypes = {
   prefixCls: PropTypes.string,
   showText: PropTypes.bool,
+  strokeWidth: PropTypes.number,
+  width: PropTypes.number,
   status: PropTypes.oneOf([
     'success',
     'active',
@@ -62,5 +102,7 @@ Progress.defaultProps = {
   prefixCls: 'w-progress',
   showText: true, // 是否显示进度条文字内容
   percent: 0,     // 百分比（必填）
+  width: 126,     // 圆圈进度条画布宽度
+  strokeWidth: 6, // 进度条大小设置
   type: 'line',
 }
