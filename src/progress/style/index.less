@@ -3,6 +3,7 @@
 .@{w-progress-prefix}{
   position: relative;
   line-height: 1;
+  display: inline-block;
   &-line{
     width: 100%;
     font-size: 12px;
@@ -12,20 +13,18 @@
     width: 100%;
     vertical-align: middle;
   }
-  &-status-active{
-    .@{w-progress-prefix}-bg{
-      &:before{
-        content: " ";
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: #fff;
-        border-radius: 10px;
-        animation: w-progress-active 2.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
-      }
+  &-status-active &-bg{
+    &:before{
+      content: " ";
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #fff;
+      border-radius: 10px;
+      animation: w-progress-active 2.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
     }
   }
   &-status-exception{
@@ -44,11 +43,9 @@
       color: #28a745;
     }
   }
-  &-show-text{
-    .@{w-progress-prefix}-bar{
-      margin-right: -50px;
-      padding-right: 50px;
-    }
+  &-show-text &-bar{
+    margin-right: -50px;
+    padding-right: 50px;
   }
   &-inner{
     height: 100%;
@@ -68,6 +65,19 @@
     vertical-align: middle;
     margin-left: 10px;
     line-height: 1;
+  }
+  &-circle &-text i[class^="w-icon-"]{
+    font-size: 18px;
+  }
+  &-circle &-text {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    transform: translate(0,-50%);
+    font-size: 16px;
   }
 }
 
