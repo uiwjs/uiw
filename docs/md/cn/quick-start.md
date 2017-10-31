@@ -8,9 +8,12 @@
 ```bash
 npm install uiw --save
 
-# 通过git仓库安装
-npm i -S git+ssh://git@github.com:uiw-react/uiw.git#v1.2.8
+# 通过GitHub仓库安装
+npm i -S uiw-react/uiw
+# 或者
+yarn add uiw-react/uiw
 ```
+> ps: **通过GitHub仓库安装**的 win 用户请在 `Git Bash` 下执行，因为需要用到 git。
 
 ## 使用
 
