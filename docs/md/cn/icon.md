@@ -5,6 +5,18 @@ Icon 图标
 
 ### 如何使用
 
+使用`<Icon />`组件，指定图标对应的`type`属性，示例代码：
+
+```html
+<Icon type="minus" />
+```
+
+渲染后为：
+
+```html
+<i class="w-icon-date"></i>
+```
+
 使用 `<Icon />` 标签声明组件，指定图标对应的 `type` 属性，示例代码如下:
 
 <!--DemoStart--> 
@@ -84,6 +96,13 @@ render() {
 ```
 <!--End-->
 
+### API
+
+| 参数 | 说明 | 类型 | 默认值 |
+|--------- |-------- |--------- |-------- |
+| type | 图标的名称 |  string | - |
+
+## 实例
 
 ### 方向
 
@@ -91,7 +110,8 @@ render() {
 ```js
 render() {
   const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px"};
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px",fontSize:18};
+  const nameStyl = {fontSize:14}
   const iconList = ["arrow-up", "arrow-left", "arrow-right", "arrow-down", "caret-bottom",  "caret-left", "caret-top", "caret-right","d-arrow-left", "d-arrow-right"]
   return (
     <div>
@@ -102,7 +122,7 @@ render() {
             <Col key={idx} xs="8" sm="6" md="4" lg="4">
               <div style={styleItem}>
                   <Icon type={item} />
-                  <div>{item}</div>
+                  <div style={nameStyl}>{item}</div>
               </div>
             </Col>
           )
@@ -121,7 +141,8 @@ render() {
 ```js
 render() {
   const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px"};
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px",fontSize:18};
+  const nameStyl = {fontSize:14}
   const iconList = [ "smile-o", "smile", "frown-o", "frown"]
   return (
     <div>
@@ -132,7 +153,7 @@ render() {
             <Col key={idx} xs="8" sm="6" md="4" lg="4">
               <div style={styleItem}>
                   <Icon type={item} />
-                  <div>{item}</div>
+                  <div style={nameStyl}>{item}</div>
               </div>
             </Col>
           )
@@ -151,7 +172,8 @@ render() {
 ```js
 render() {
   const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px"};
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px",fontSize:18};
+  const nameStyl = {fontSize:14}
   const iconList = ["minus", "plus", "check", "close", "question-circle-o", "question-circle", "circle-check-o", "circle-check", "circle-close-o", "circle-close", "information-o", "information","asterisk", "copyright",]
   return (
     <div>
@@ -162,7 +184,7 @@ render() {
             <Col key={idx} xs="8" sm="6" md="4" lg="4">
               <div style={styleItem}>
                   <Icon type={item} />
-                  <div>{item}</div>
+                  <div style={nameStyl}>{item}</div>
               </div>
             </Col>
           )
@@ -181,8 +203,9 @@ render() {
 ```js
 render() {
   const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px"};
-  const iconList = [ "date", "d-caret", "delete", "date1", "document", "download", "cloud-download", "heart-off", "heart-on", "menu", "loading", "edit", "filter", "lock", "message-o", "more", "message", "picture", "paper-clip", "pay", "search", "share", "setting", "setting-o", "star-off", "star-on", "time", "upload", "upload1", "user", "verification", "unlock", "view", "warning", "warning-o"]
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px",fontSize:18};
+  const nameStyl = {fontSize:14}
+  const iconList = [ "date", "d-caret", "delete", "date1", "document", "download", "cloud-download", "heart-off", "heart-on", "menu", "loading", "edit", "filter", "lock", "message-o", "more", "message", "picture", "paper-clip", "pay", "search", "share", "setting", "setting-o", "star-off", "star-on", "time", "upload", "cloud-upload", "user", "verification", "unlock", "view", "warning", "warning-o"]
   return (
     <div>
       <Row gutter="10">
@@ -192,7 +215,7 @@ render() {
             <Col key={idx} xs="8" sm="6" md="4" lg="4">
               <div style={styleItem}>
                   <Icon type={item} />
-                  <div>{item}</div>
+                  <div style={nameStyl}>{item}</div>
               </div>
             </Col>
           )
