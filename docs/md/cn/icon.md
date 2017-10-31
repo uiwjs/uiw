@@ -182,7 +182,7 @@ render() {
 render() {
   const {Row,Col} = Layout;
   const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px"};
-  const iconList = [ "date", "d-caret", "delete", "date1", "document", "download", "download1", "heart-off", "heart-on", "menu", "loading", "edit", "filter", "lock", "message-o", "more", "message", "picture", "paper-clip", "pay", "search", "share", "setting", "setting1", "star-off", "star-on", "time", "upload", "upload1", "user", "verification", "unlock", "view", "warning", "warning-o"]
+  const iconList = [ "date", "d-caret", "delete", "date1", "document", "download", "cloud-download", "heart-off", "heart-on", "menu", "loading", "edit", "filter", "lock", "message-o", "more", "message", "picture", "paper-clip", "pay", "search", "share", "setting", "setting-o", "star-off", "star-on", "time", "upload", "upload1", "user", "verification", "unlock", "view", "warning", "warning-o"]
   return (
     <div>
       <Row gutter="10">
