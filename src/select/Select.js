@@ -289,12 +289,12 @@ export default class Select extends Component {
     )
   }
   render() {
-    const { prefixCls, style, size, name, multiple, filterable, disabled, children } = this.props;
+    const { prefixCls, size, name, clearable, multiple, filterable, disabled, children, ...resetProps } = this.props;
     const { visible, inputWidth, selectedLabel } = this.state;
     return (
       <div
+        {...resetProps}
         ref="root"
-        style={style}
         className={this.classNames(`${prefixCls}`, {
           "unfold": this.state.visible, // 是否展开
           "w-multiple": multiple
