@@ -19,6 +19,7 @@ export default class Modal extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.visible !== nextProps.visible) {
+      document.body.style.overflow = nextProps.visible ? 'hidden' : 'inherit';
       if (nextProps.visible) {
         this.isMount = true;
       }
@@ -85,7 +86,7 @@ export default class Modal extends Component {
         <Transition onTransitionendExit={this.onTransitionendExit.bind(this)} onTransitionendEnter={onTransitionendEnter} in={visible} sequence={AnimateType}>
           <div className={`${prefixCls}-content`} style={{ width: width, ...other.style }}>
             <div className={`${prefixCls}-header`}>
-              <div className={`${prefixCls}-title`} id="rcDialogTitle9">{title}</div>
+              <div className={`${prefixCls}-title`}>{title}</div>
               <a onClick={() => this.onCancel()} className={`${prefixCls}-close-icon`}><Icon type="close" /></a>
             </div>
             <div className={`${prefixCls}-body`}>{children}</div>
