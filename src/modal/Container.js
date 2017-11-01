@@ -15,7 +15,7 @@ class ContainerModel extends Component {
   closeModals(...args) {
     this.refs.modals.onCancel()
   }
-  onTransitionendExit() {
+  onExited() {
     this.props.removeChild()
   }
   render() {
@@ -48,7 +48,7 @@ class ContainerModel extends Component {
         className={classNames(prefixCls, className, {
           [`${type}`]: type
         })}
-        onTransitionendExit={this.onTransitionendExit.bind(this)}
+        onExited={this.onExited.bind(this)}
         visible={this.state.visible}
         maskClosable={maskClosable}
         onOk={onOk}             // 点击确定提交按钮

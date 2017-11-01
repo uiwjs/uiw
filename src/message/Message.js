@@ -25,7 +25,7 @@ export default class Message extends Component {
   /**
    * 动画完成之后删除根节点
    */
-  onTransitionendExit() {
+  onExited() {
     this.props.delMessage(this.props, this)
   }
   render() {
@@ -36,7 +36,7 @@ export default class Message extends Component {
     delete other.duration;
     return (
       <span>
-        <Alert showIcon type={type} transition="fadeIn down" onTransitionendExit={this.onTransitionendExit.bind(this)} visible={visible} message={content} className={className} {...other} />
+        <Alert showIcon type={type} transition="fadeIn down" onExited={this.onExited.bind(this)} visible={visible} message={content} className={className} {...other} />
       </span>
     );
   }
