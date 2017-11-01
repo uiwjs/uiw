@@ -1,0 +1,47 @@
+@import "../../style/variables.less";
+@import "../../style/mixins/index.less";
+
+@card-prefix: ~"w-card";
+
+.@{card-prefix}{
+  background: #fff;
+  border-radius: 5px;
+  font-size: 12px;
+  position: relative;
+  transition: all .3s;
+  overflow: hidden;
+  &:not(&-no-hovering):hover {
+    box-shadow: 0 1px 6px rgba(0,0,0,.2);
+    border-color: rgba(0,0,0,.2);
+  }
+  &-bordered{
+    border: 1px solid #e9e9e9;
+  }
+  &-head{
+    height: 48px;
+    line-height: 48px;
+    border-bottom: 1px solid #e9e9e9;
+    padding: 0 14px;
+    border-radius: 2px 2px 0 0;
+    zoom: 1;
+  }
+  
+  &-head-title{
+    font-size: 14px;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    color: rgba(0,0,0,.85);
+    font-weight: 500;
+    display: inline-block;
+  }
+  &-extra{
+    position: absolute;
+    right: 16px;
+    top: 0px;
+  }
+  &-body{
+    padding:14px;
+  }
+}

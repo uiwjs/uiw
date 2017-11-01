@@ -18,6 +18,7 @@ import hotkeys from 'bundle-loader?lazy&name=hotkeys!./pages/hotkeys';
 import FormCom from 'bundle-loader?lazy&name=form!./pages/form';
 import radio from 'bundle-loader?lazy&name=radio!./pages/radio';
 import checkbox from 'bundle-loader?lazy&name=checkbox!./pages/checkbox';
+import card from 'bundle-loader?lazy&name=card!./pages/card';
 import select from 'bundle-loader?lazy&name=select!./pages/select';
 import SwitchCom from 'bundle-loader?lazy&name=switch!./pages/switch';
 import slider from 'bundle-loader?lazy&name=slider!./pages/slider';
@@ -101,6 +102,7 @@ const routes = {
       { path: "/:lang/badge", component: asyncComponent(badge) },
       { path: "/:lang/calendar", component: asyncComponent(calendar) },
       { path: "/:lang/carousel", component: asyncComponent(carousel) },
+      { path: "/:lang/card", component: asyncComponent(card) },
       { path: "/:lang/progress", component: asyncComponent(progress) },
       { path: "/:lang/rate", component: asyncComponent(rate) },
       { path: "/:lang/table", component: asyncComponent(table) },

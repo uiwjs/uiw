@@ -4,6 +4,7 @@ module.exports = {
     'theme': 'Theme',
     'color': 'Color',
     'checkbox': 'Checkbox',
+    'card': 'Card',
     'date-picker': 'Date Picker',
     'dropdown': 'Dropdown',
     'hotkeys': "Hotkeys",
