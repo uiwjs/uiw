@@ -35,10 +35,7 @@ export default class Animate extends Component {
     // if (!this.props.visible) {
     //   return false;
     // }
-    const { prefixCls, sequence, className, wait, children, duration,
-      onTransitionendEnter,
-      onTransitionendExit,
-      ...other } = this.props;
+    const { prefixCls, sequence, className, wait, children, duration, ...other } = this.props;
     const transitionIn = this.state.in
 
     const timeout = {
@@ -71,20 +68,8 @@ export default class Animate extends Component {
     }
     return (
       <Transition
-        ref="tran"
         {...other}
-        addEndListener={(node, done) => {
-          // 确保动画时间调用
-          let timer = setTimeout(() => {
-            this.props.in ? onTransitionendEnter(this.props) : onTransitionendExit(this.props); clearTimeout(timer)
-          }, duration + wait)
-          // 使用css transitionend事件来标记动画转换的完成
-          // node.addEventListener('transitionend', (a, b) => {
-          //   this.props.in ?
-          //     onTransitionendEnter(this.props) :
-          //     onTransitionendExit(this.props);
-          // }, false);
-        }}
+        ref="tran"
         className={prefixCls}
         in={transitionIn}
         timeout={timeout}
@@ -102,8 +87,6 @@ export default class Animate extends Component {
 
 Animate.propTypes = {
   animateOnMount: PropTypes.bool,
-  onTransitionendEnter: PropTypes.func,
-  onTransitionendExit: PropTypes.func,
   unmountOnExit: PropTypes.bool,
   prefixCls: PropTypes.string,
   className: PropTypes.string,
@@ -113,8 +96,6 @@ Animate.propTypes = {
   wait: PropTypes.number
 };
 Animate.defaultProps = {
-  onTransitionendEnter() { }, //
-  onTransitionendExit() { },
   prefixCls: "w-animate",
   unmountOnExit: true,  // 设置 true 销毁根节点
   animateOnMount: true, // 安装动画

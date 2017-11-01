@@ -28,13 +28,13 @@ export default class Modal extends Component {
       })
     }
   }
-  onTransitionendExit(props) {
-    const { onCancel, onTransitionendExit } = this.props;
+  onExited(props) {
+    const { onCancel, onExited } = this.props;
     this.isMount = false
     // 动画事件不同步，带来的闪烁问题
     let timer = setTimeout(() => {
       if (!this.isMount) {
-        onTransitionendExit(props)
+        onExited(props)
       }
       clearTimeout(timer)
     }, 100)
@@ -52,7 +52,7 @@ export default class Modal extends Component {
     onOk && onOk(e);
   }
   render() {
-    const { prefixCls, className, title, footer, horizontal, styleMask, children, confirmLoading, onCancel, cancelText, okText, width, onTransitionendEnter, ...other } = this.props;
+    const { prefixCls, className, title, footer, horizontal, styleMask, children, confirmLoading, onCancel, cancelText, okText, width, onEntered, ...other } = this.props;
     const { visible } = this.state;
     let defaultFooter = !footer ? (
       <ButtonGroup>
@@ -83,7 +83,7 @@ export default class Modal extends Component {
         <Transition in={visible} sequence="fadeIn">
           <div className={`${prefixCls}-mask`} style={styleMask} onClick={() => this.onCancel('mask')}></div>
         </Transition>
-        <Transition onTransitionendExit={this.onTransitionendExit.bind(this)} onTransitionendEnter={onTransitionendEnter} in={visible} sequence={AnimateType}>
+        <Transition onExited={this.onExited.bind(this)} onEntered={onEntered} in={visible} sequence={AnimateType}>
           <div className={`${prefixCls}-content`} style={{ width: width, ...other.style }}>
             <div className={`${prefixCls}-header`}>
               <div className={`${prefixCls}-title`}>{title}</div>
@@ -106,8 +106,8 @@ Modal.defaultProps = {
   maskClosable: true,
   confirmLoading: false,
   onCancel: (v) => v,
-  onTransitionendExit: (v) => v,
-  onTransitionendEnter: (v) => v
+  onExited: (v) => v,
+  onEntered: (v) => v
 }
 Modal.propTypes = {
   visible: PropTypes.bool,
@@ -119,8 +119,8 @@ Modal.propTypes = {
   title: PropTypes.node,
   footer: PropTypes.node,
   onCancel: PropTypes.func,
-  onTransitionendExit: PropTypes.func,
-  onTransitionendEnter: PropTypes.func,
+  onExited: PropTypes.func,
+  onEntered: PropTypes.func,
   width: PropTypes.oneOfType([
     PropTypes.number, PropTypes.string
   ]),

@@ -534,8 +534,8 @@ render() {
 | maskClosable | 点击蒙层是否允许关闭 | boolean | true |
 | styleMask | 遮罩层样式 | object | - |
 | style | 可用于设置浮层的样式，调整浮层位置等 | object | - |
-| onTransitionendEnter | 动画进入完成，`<Transition>` 动画库方法 | Function | `(props)=>{}` |
-| onTransitionendExit | 动画退出完成，`<Transition>` 动画库方法 | Function | `(props)=>{}` |
+| onEntered | 动画进入完成，`<Transition>` 动画库方法 | Function | - |
+| onExited | 动画退出完成，`<Transition>` 动画库方法 | Function | - |
 
 
 
