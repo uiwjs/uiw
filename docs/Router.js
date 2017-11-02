@@ -226,7 +226,7 @@ const RoutersContainer = withRouter(({ history, location, ...props }) => {
           <div className={`${prefixCls}-info`}>
             <a target="_blank" rel="noopener noreferrer" href="https://github.com/uiw-react/uiw/issues"><Icon type="message" /> 反馈建议</a>
             <a target="_blank" rel="noopener noreferrer" href="https://github.com/uiw-react/uiw/issues/new"><Icon type="question-circle" /> 提交bug</a>
-            <a target="_blank" rel="noopener noreferrer" href="https://github.com/uiw-react/uiw">Github</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/uiw-react/uiw"><Icon type="github" /> Github</a>
           </div>
         </div>
       </div>
