@@ -36,56 +36,48 @@
   }
 
   &.is-right {
-    &.is-mounting {
+    &.is-mounting ,&.is-unmounting, &.is-unmounted  {
       transform: translate3d(100%, 0, 0);
     }
-  
     &.is-mounted {
       transform: translate3d(0, 0, 0);
-    }
-  
-    &.is-unmounting {
-      transform: translate3d(100%, 0, 0);
-    }
-  
-    &.is-unmounted {
-      transform: translate3d(100%, 0, 0);
     }
   }
 
   &.is-left {
-    &.is-mounting {
+    &.is-mounting ,&.is-unmounting, &.is-unmounted  {
       transform: translate3d(-100%, 0, 0);
     }
-  
     &.is-mounted {
       transform: translate3d(0, 0, 0);
-    }
-  
-    &.is-unmounting {
-      transform: translate3d(-100%, 0, 0);
-    }
-  
-    &.is-unmounted {
-      transform: translate3d(-100%, 0, 0);
     }
   }
 
   &.is-fadeIn {
-    &.is-mounting {
+    &.is-mounting ,&.is-unmounting, &.is-unmounted  {
       opacity: 0;
     }
   
     &.is-mounted {
       opacity: 1;
     }
-  
-    &.is-unmounting {
-      opacity: 0;
+  }
+  &.is-height {
+    overflow: hidden;
+    &.is-mounting,&.is-unmounting,&.is-unmounted { // 安装
+      height: 0;
     }
-  
-    &.is-unmounted {
-      opacity: 0;
+    &.is-mounted { // 安装完
+      height: 100%;
+    }
+  }
+  &.is-width {
+    overflow: hidden;
+    &.is-mounting,&.is-unmounting,&.is-unmounted { // 安装
+      width: 0;
+    }
+    &.is-mounted { // 安装完
+      width: 100%;
     }
   }
 }
