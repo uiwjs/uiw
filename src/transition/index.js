@@ -24,20 +24,23 @@ export default class Animate extends Component {
     }
   }
   componentWillReceiveProps(nextProps, nextState) {
-    /* istanbul ignore next */
     if (nextProps.in === undefined) return;
     this.setState({
       in: nextProps.in
     })
   }
+  refsSizeChange(elm, status) {
+    const { sequence } = this.props;
+    if (!elm || !/(?:^|\s)(width|height)(?!\S)/.test(sequence)) return;
+    if (status === EXITED) {
+      elm.style.height = 0
+    } else if (status === ENTERED) {
+      elm.style.height = `${elm.scrollHeight}px`
+    }
+  }
   render() {
-    // // 动画结束删除根节点
-    // if (!this.props.visible) {
-    //   return false;
-    // }
     const { prefixCls, sequence, className, wait, children, duration, ...other } = this.props;
     const transitionIn = this.state.in
-
     const timeout = {
       enter: wait,
       exit: wait
@@ -51,7 +54,7 @@ export default class Animate extends Component {
       [EXITED]: 'is-unmounted'
     }
     const childStyle = (child) => {
-      return Object.assign({}, child && child.props ? child.props.style : {}, {
+      return Object.assign({}, child && child.props ? child.props.style : {}, other.style, {
         transitionDuration: `${duration}ms`
       })
     }
@@ -69,17 +72,17 @@ export default class Animate extends Component {
     return (
       <Transition
         {...other}
+        style={other.style}
         ref="tran"
         className={prefixCls}
         in={transitionIn}
         timeout={timeout}
       >
-        {status => {
-          return React.cloneElement(children, {
-            className: childClassName(children, status),
-            style: childStyle(children)
-          })
-        }}
+        {status => React.cloneElement(children, {
+          className: childClassName(children, status),
+          style: childStyle(children, status),
+          ref: elm => this.refsSizeChange(elm, status),
+        })}
       </Transition>
     )
   }
