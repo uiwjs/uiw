@@ -17,7 +17,7 @@ Icon 图标
 <i class="w-icon-date"></i>
 ```
 
-使用 `<Icon />` 标签声明组件，指定图标对应的 `type` 属性，示例代码如下:
+示例如下:
 
 <!--DemoStart--> 
 ```js
@@ -100,19 +100,23 @@ render() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| type | 图标的名称 |  string | - |
+| spin | 是否有旋转动画 |  Boolean | `false` |
+| style | 设置图标的样式，例如 fontSize 和 color |  Object | - |
+| type | 图标的名称 |  String | - |
 
 ## 实例
 
-### 方向
+
+### 图标旋转实例
+
+通过设置参数`spin={true}`来设置图标旋转。
 
 <!--DemoStart--> 
 ```js
 render() {
   const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px",fontSize:18};
-  const nameStyl = {fontSize:14}
-  const iconList = ["arrow-up", "arrow-left", "arrow-right", "arrow-down", "caret-bottom",  "caret-left", "caret-top", "caret-right","d-arrow-left", "d-arrow-right"]
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+  const iconList = ["loading",'reload']
   return (
     <div>
       <Row gutter="10">
@@ -121,8 +125,8 @@ render() {
           return (
             <Col key={idx} xs="8" sm="6" md="4" lg="4">
               <div style={styleItem}>
-                  <Icon type={item} />
-                  <div style={nameStyl}>{item}</div>
+                <Icon type={item} spin style={{fontSize:16,marginBottom:10}}/>
+                <div>{item}</div>
               </div>
             </Col>
           )
@@ -135,15 +139,14 @@ render() {
 ```
 <!--End-->
 
-### 笑脸
+### 方向性图标
 
 <!--DemoStart--> 
 ```js
 render() {
   const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px",fontSize:18};
-  const nameStyl = {fontSize:14}
-  const iconList = [ "smile-o", "smile", "frown-o", "frown"]
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+  const iconList = ['caret-down', 'caret-up', 'caret-left',  'caret-right','d-caret', 'arrow-down', 'arrow-left', 'arrow-right', 'arrow-up', 'arrows-alt', 'd-arrow-right', 'd-arrow-left', 'down-circle-o', 'down-square-o','down-square', 'backward', 'check-square-o','check-square','down-circle', 'enter', 'logout', 'login', 'left-square-o', 'swap-right', 'swap', 'verticle-left', 'verticle-right','rollback','shrink','left-square',  'left-circle-o','left-circle','play-circle-o',  'play-circle','right-square-o', 'right-square','up-square-o', 'up-circle-o','up-square',]
   return (
     <div>
       <Row gutter="10">
@@ -152,8 +155,38 @@ render() {
           return (
             <Col key={idx} xs="8" sm="6" md="4" lg="4">
               <div style={styleItem}>
-                  <Icon type={item} />
-                  <div style={nameStyl}>{item}</div>
+                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                <div>{item}</div>
+              </div>
+            </Col>
+          )
+        }) 
+      }
+      </Row>
+    </div>
+  )
+}
+```
+<!--End-->
+
+### 提示建议性图标
+
+<!--DemoStart--> 
+```js
+render() {
+  const {Row,Col} = Layout;
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+  const iconList = ['smile-o', 'smile','frown-o', 'frown', ]
+  return (
+    <div>
+      <Row gutter="10">
+      {
+        iconList.map((item,idx) => {
+          return (
+            <Col key={idx} xs="8" sm="6" md="4" lg="4">
+              <div style={styleItem}>
+                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                <div>{item}</div>
               </div>
             </Col>
           )
@@ -172,8 +205,7 @@ render() {
 ```js
 render() {
   const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px",fontSize:18};
-  const nameStyl = {fontSize:14}
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
   const iconList = ["minus", "plus", "check", "close", "question-circle-o", "question-circle", "circle-check-o", "circle-check", "circle-close-o", "circle-close", "information-o", "information","asterisk", "copyright",]
   return (
     <div>
@@ -183,8 +215,8 @@ render() {
           return (
             <Col key={idx} xs="8" sm="6" md="4" lg="4">
               <div style={styleItem}>
-                  <Icon type={item} />
-                  <div style={nameStyl}>{item}</div>
+                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                <div>{item}</div>
               </div>
             </Col>
           )
@@ -197,15 +229,14 @@ render() {
 ```
 <!--End-->
 
-### 默认自带图标列表
+### 其它
 
-<!--DemoStart--> 
+<!--DemoStart-->  
 ```js
 render() {
   const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px",fontSize:18};
-  const nameStyl = {fontSize:14}
-  const iconList = [ "date", "d-caret", "delete", "date1", "document", "download", "cloud-download", "heart-off", "heart-on", "menu", "loading", "edit", "filter", "lock", "message-o", "more", "message", "picture", "paper-clip", "pay", "search", "share", "setting", "setting-o", "star-off", "star-on", "time", "upload", "cloud-upload", "user", "verification", "unlock", "view", "warning", "warning-o"]
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+  const iconList = ['area-chart', 'appstore', 'appstore-o', 'asterisk', 'bar-chart',  'camera-o', 'check', 'circle-check-o', 'circle-check', 'circle-close', 'circle-close-o', 'close', 'close-square-o', 'close-square', 'cloud-upload-o', 'cloud-download-o', 'copyright', 'coffee', 'document', 'dislike-o', 'delete', 'dot-chart', 'date',  'edit',  'download', 'eye-o', 'environment-o', 'css', 'file-text', 'file-jpg', 'file-unknown', 'file-add', 'file-excel', 'filter', 'file-pdf', 'folder-add', 'forward', 'folder-open',  'global', 'heart-off', 'inbox', 'information-o', 'home', 'heart-on', 'information', 'html',  'like-o', 'laptop', 'link', 'lock', 'loading', 'meh', 'meh-o', 'menu-fold', 'message-o', 'menu', 'message', 'menu-unfold', 'minus-circle-o', 'minus-circle', 'minus-square', 'minus-square-o', 'mobile', 'more', 'minus', 'notification', 'pause-circle', 'pause-circle-o', 'paper-clip', 'pause', 'picture', 'picasa', 'pay-circle-o', 'pay', 'plus-circle-o', 'plus-circle', 'plus-square', 'plus', 'pie-chart', 'poweroff', 'plus-square-o', 'reload', 'right-circle-o', 'question-circle', 'right-circle', 'question-circle-o',   'save', 'safety', 'setting-o', 'search',  'shopping-cart', 'share', 'setting', 'star-on', 'star-off', 'tag', 'time', 'tags-o', 'tag-o', 'tags', 'time-o', 'twitter',  'upload', 'up-circle', 'unlock', 'user', 'usergroup-add', 'warning-o', 'warning', 'verification', 'video-camera',  'zoom-in', 'zoom-out', 'wifi', 'cloud-download', 'cloud-upload',]
   return (
     <div>
       <Row gutter="10">
@@ -214,8 +245,38 @@ render() {
           return (
             <Col key={idx} xs="8" sm="6" md="4" lg="4">
               <div style={styleItem}>
-                  <Icon type={item} />
-                  <div style={nameStyl}>{item}</div>
+                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                <div>{item}</div>
+              </div>
+            </Col>
+          )
+        }) 
+      }
+      </Row>
+    </div>
+  )
+}
+```
+<!--End-->
+
+### 品牌标识
+
+<!--DemoStart-->  
+```js
+render() {
+  const {Row,Col} = Layout;
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+  const iconList = ['uiw','adobe', 'apple','github', 'github-o', 'windows','reddit', 'facebook','android', ]
+  return (
+    <div>
+      <Row gutter="10">
+      {
+        iconList.map((item,idx) => {
+          return (
+            <Col key={idx} xs="8" sm="6" md="4" lg="4">
+              <div style={styleItem}>
+                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                <div>{item}</div>
               </div>
             </Col>
           )
