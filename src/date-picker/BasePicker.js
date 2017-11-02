@@ -35,7 +35,7 @@ export default class BasePicker extends Component {
     this.state = Object.assign(
       {}, state,
       {
-        icon: 'time',
+        icon: 'time-o',
         value: new Date(),
         visible: false, // 菜单是否显示
         defaultValue,
@@ -100,7 +100,7 @@ export default class BasePicker extends Component {
     }
   }
   onIconMouseOut() {
-    this.setState({ icon: 'time' })
+    this.setState({ icon: 'time-o' })
   }
   dateToStr(date) {
     const { format } = this.props;
