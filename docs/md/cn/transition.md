@@ -87,6 +87,51 @@ render() {
 ```
 <!--End-->
 
+## 高宽改变动画
+
+<!--DemoStart-->
+```js
+constructor(props) {
+  super(props);
+  this.state = { 
+    show: true ,
+    show2:true
+  }
+}
+toggleIn (ty) {
+  this.setState({ 
+    [`${ty}`]: !this.state[ty] 
+  })
+}
+render() {
+  const { show,show2 } = this.state
+  return (
+    <div>  
+      <Button size="mini" onClick={this.toggleIn.bind(this,'show')}> {show?'消失':'显示'} </Button>
+      <div style={{padding:"20px 0 10px 0",maxWidth:200}}>
+        <Transition in={show} unmountOnExit={false} sequence='height' style={{background:"#e2e2e2"}}>
+          <div>
+            <div style={{padding:10}}>
+              高度改变动画支持
+            </div>
+          </div>
+        </Transition>
+      </div>
+      <Button size="mini" onClick={this.toggleIn.bind(this,'show2')}> {show2?'消失':'显示'} </Button>
+      <div style={{padding:"20px 0 10px 0",maxWidth:200}}>
+        <Transition in={show2} unmountOnExit={false} sequence='width' style={{background:"#e2e2e2"}}>
+          <div>
+            <div style={{padding:10}}>
+              高度改变动画支持
+            </div>
+          </div>
+        </Transition>
+      </div>
+    </div>
+  )
+}
+```
+<!--End-->
 
 
 ## 自定义动画
@@ -122,7 +167,6 @@ render() {
 </Transition>
 ```
 
-
 ## API
 
 ### Transition 
@@ -133,7 +177,7 @@ render() {
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
-| sequence | 动画效果 默认可选`fadeIn`、`down`、`up`、`right`、`left` | String | `false` |
+| sequence | 动画效果 默认可选`fadeIn`、`down`、`up`、`right`、`left`、`height`、`width` | String | - |
 | [in](https://reactcommunity.org/react-transition-group/#Transition-prop-in) | 显示组件; 触发进入或退出状态 | Bool | `false` |
 | animateOnMount | 安装动画 | Bool | `true` |
 | duration | 持续时间 | Number | `200` |
