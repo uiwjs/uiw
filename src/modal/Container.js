@@ -23,7 +23,7 @@ class ContainerModel extends Component {
       maskClosable = false,
       width = 416,
       type = "success",
-      prefixCls = "w-modals-confirm", ...others
+      prefixCls = "w-modal-confirm", ...others
     } = this.props;
 
     let footer = [];
