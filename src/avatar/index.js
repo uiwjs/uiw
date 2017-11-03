@@ -50,10 +50,6 @@ Avatar.propTypes = {
     'default',
     'small',
   ]),
-  user: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node
-  ]),
   shape: PropTypes.oneOf([
     'square', // 正方形
     'circle', // 圈
@@ -63,5 +59,4 @@ Avatar.propTypes = {
 Avatar.defaultProps = {
   prefixCls: 'w-avatar',
   shape: 'circle',
-  // size: 'default',
 }
