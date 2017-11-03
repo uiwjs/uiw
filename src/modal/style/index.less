@@ -1,20 +1,23 @@
 @import "../../style/variables.less";
 @import "../../style/mixins/index.less";
-.w-modal{
+
+@w-modal: ~"w-modal";
+.@{w-modal}{
     position: fixed;
-}
-.w-modal-wrap{
-    overflow: auto;
-    top: 0;
-    right: 0;
-    left: 0;
-    outline: 0;
-    bottom: 0;
-    z-index:@zindex-modal;
-    -webkit-overflow-scrolling:touch;
-    text-align: center;
-    height: 100%;
-    width: 100%;
+    &-wrap{
+        overflow: auto;
+        top: 0;
+        right: 0;
+        left: 0;
+        outline: 0;
+        bottom: 0;
+        z-index:@zindex-modal;
+        -webkit-overflow-scrolling:touch;
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        padding-bottom: 40px;
+    }
     &:before{
         content: " ";
         display: inline-block;
@@ -22,124 +25,120 @@
         width: 1%;
         vertical-align: middle;
     }
-    &.w-modals-confirm{
-        &.warn .w-modals-confirm-icon{
+    &.@{w-modal}-confirm{
+        &.warn .@{w-modal}-confirm-icon{
             color: #ffc107;
         }
-        &.info .w-modals-confirm-icon{
+        &.info .@{w-modal}-confirm-icon{
             color: #007bff;
         }
-        &.error .w-modals-confirm-icon{
+        &.error .@{w-modal}-confirm-icon{
             color: #dc3545;
         }
-        &.success .w-modals-confirm-icon{
+        &.success .@{w-modal}-confirm-icon{
             color: #28a745;
         }
-        .w-modal-header{
+        .@{w-modal}-header{
             display: none;
         }
-        .w-modal-footer{
+        .@{w-modal}-footer{
             border:0;
         }
-        .w-modal-content{
+        .@{w-modal}-content{
             padding: @modal-confirm-content-padding;
         }
-        .w-modals-confirm-title{
+        .@{w-modal}-confirm-title{
             padding-bottom: @line-height-computed ;
             font-size: @font-size-base;
             font-weight: @modal-title-font-weight;
         }
-        .w-modals-confirm-title,.w-modals-confirm-content{
+        .@{w-modal}-confirm-title,.@{w-modal}-confirm-content{
             margin-left: @modal-confirm-body-margin-left;
         }
-        .w-modals-confirm-icon{
+        .@{w-modal}-confirm-icon{
             float: left;
             font-size: 22px;
         }
     }
-}
-
-
-.w-modal-mask{
-    position: fixed;
-    top:0;
-    right:0;
-    left:0;
-    bottom: 0;
-    content: '';
-    background-color: @modal-mask-bg;
-    z-index:@zindex-modal-mask;
-}
-
-.w-modal-header{
-    padding: @modal-title-padding;
-    line-height: @modal-title-line-height;
-    border-bottom:1px solid @modal-footer-border-color;
-    .w-modal-title{
+    &-mask{
+        position: fixed;
+        top:0;
+        right:0;
+        left:0;
+        bottom: 0;
+        content: '';
+        background-color: @modal-mask-bg;
+        z-index:@zindex-modal-mask;
+    }
+    &-header{
+        padding: @modal-title-padding;
+        line-height: @modal-title-line-height;
+        border-bottom:1px solid @modal-footer-border-color;
+    }
+    &-title{
         font-weight: @modal-title-font-weight;
         font-size: @font-size-base;
     }
-    .w-modal-close-icon{
+    &-close-icon{
         width: @close-icon-size;
         height: @close-icon-size;
         top: @close-icon-top;
         right: @close-icon-right;
         .w-close-icon(@close-icon-color);
     }
-}
-
-.w-modal-footer{
-    padding: @modal-inner-padding;
-    border-top:1px solid @modal-footer-border-color;
-    text-align: right;
-    button+button{
-        margin-left: @modal-button-left;
+    &-footer{
+        padding: @modal-inner-padding;
+        border-top:1px solid @modal-footer-border-color;
+        text-align: right;
+        button+button{
+            margin-left: @modal-button-left;
+        }
     }
-}
-
-.w-modal-body{
-    padding: @modal-body-padding;
-    font-size: @font-size-small;
-    line-height: @line-height-small;
-}
-.w-modal-content{
-    position: relative;
-    top: @modal-content-top;
-    text-align: left;
-    margin: 0 auto;
-    overflow: hidden;
-    background-color:@modal-content-bg;
-    border-radius: @border-radius-large;
-    box-shadow: @box-shadow-x @box-shadow-y @box-shadow-blur @box-shadow-spread @box-shadow-bg;
-    margin-bottom: 20px;
-    vertical-align: middle;
-    display: inline-block;
-}
-
-.w-modal-horizontal-left,.w-modal-horizontal-right{
-    .w-modal-content{
-        border-radius: 0;
-        top: 0;
-        bottom: 0;
-        float: right;
-        overflow: auto;
-        position: absolute;
-        margin-bottom: 0;
+    &-body{
+        padding: @modal-body-padding;
+        font-size: @font-size-small;
+        line-height: @line-height-small;
     }
-    .w-modal-footer{
-        border-top: 0;
+    &-content{
+        position: relative;
+        top: @modal-content-top;
         text-align: left;
-        padding-top: 0;
+        margin: 0 auto;
+        overflow: hidden;
+        background-color:@modal-content-bg;
+        border-radius: @border-radius-large;
+        box-shadow: @box-shadow-x @box-shadow-y @box-shadow-blur @box-shadow-spread @box-shadow-bg;
+        vertical-align: middle;
+        display: inline-block;
     }
-}
-.w-modal-horizontal-right{
-    .w-modal-content{
-        right: 0;
+
+    &-horizontal-left,&-horizontal-right{
+        .@{w-modal}-content{
+            border-radius: 0;
+            top: 0;
+            bottom: 0;
+            float: right;
+            overflow: auto;
+            position: absolute;
+            margin-bottom: 0;
+        }
+        .@{w-modal}-footer{
+            border-top: 0;
+            text-align: left;
+            padding-top: 0;
+        }
+    }
+    
+    &-horizontal-right{
+        .@{w-modal}-content{
+            right: 0;
+        }
+    }
+    
+    &-horizontal-left{
+        .@{w-modal}-content{
+            left: 0;
+        }
     }
 }
 
-.w-modal-horizontal-left{
-    .w-modal-content{
-        left: 0;
-    }
-}
