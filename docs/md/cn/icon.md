@@ -37,7 +37,8 @@ render() {
 
 ### 添加自己的图标字体方法
 
-默认建议使用 `svg` 来制作图标，如果使用字体文件，需要添加字体文件，并在 `css` 写符合规范的样式，这个文件通过 [iconfont.cn](http://iconfont.cn/) 来制作字体文件。  
+默认建议使用 `svg` 来制作图标，如果使用字体文件，需要添加字体文件，并在 `css` 写符合规范的样式。icon字体以及样式，被抽离到一个新的仓库 [uiw icon](https://uiw-react.github.io/icons/) ，`uiw`去依赖 [uiw-iconfont](github.com/uiw-react/icons)，这个仓库主要是维护一套svg图片，并将svg图片转换为 `*.svg` `*.ttf` `*.woff` `*.eot` 等字体及相关文件并发布到 [npm](https://www.npmjs.com/package/uiw-iconfont) 上去。
+
 `icon` 名字需要命名规范，必须加上前缀 `.w-icon-{图标名字}` 。
 
 ```css
@@ -236,7 +237,7 @@ render() {
 render() {
   const {Row,Col} = Layout;
   const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
-  const iconList = ['area-chart', 'appstore', 'appstore-o', 'asterisk', 'bar-chart',  'camera-o', 'check', 'circle-check-o', 'circle-check', 'circle-close', 'circle-close-o', 'close', 'close-square-o', 'close-square', 'cloud-upload-o', 'cloud-download-o', 'copyright', 'coffee', 'document', 'dislike-o', 'delete', 'dot-chart', 'date',  'edit',  'download', 'eye-o', 'environment-o', 'css', 'file-text', 'file-jpg', 'file-unknown', 'file-add', 'file-excel', 'filter', 'file-pdf', 'folder-add', 'forward', 'folder-open',  'global', 'heart-off', 'inbox', 'information-o', 'home', 'heart-on', 'information', 'html',  'like-o', 'laptop', 'link', 'lock', 'loading', 'meh', 'meh-o', 'menu-fold', 'message-o', 'menu', 'message', 'menu-unfold', 'minus-circle-o', 'minus-circle', 'minus-square', 'minus-square-o', 'mobile', 'more', 'minus', 'notification', 'pause-circle', 'pause-circle-o', 'paper-clip', 'pause', 'picture', 'picasa', 'pay-circle-o', 'pay', 'plus-circle-o', 'plus-circle', 'plus-square', 'plus', 'pie-chart', 'poweroff', 'plus-square-o', 'reload', 'right-circle-o', 'question-circle', 'right-circle', 'question-circle-o',   'save', 'safety', 'setting-o', 'search',  'shopping-cart', 'share', 'setting', 'star-on', 'star-off', 'tag', 'time', 'tags-o', 'tag-o', 'tags', 'time-o', 'twitter',  'upload', 'up-circle', 'unlock', 'user', 'usergroup-add', 'warning-o', 'warning', 'verification', 'video-camera',  'zoom-in', 'zoom-out', 'wifi', 'cloud-download', 'cloud-upload',]
+  const iconList = ['area-chart', 'appstore', 'appstore-o', 'bar-chart',  'camera-o', 'check', 'circle-check-o', 'circle-check', 'circle-close', 'circle-close-o', 'close', 'close-square-o', 'close-square', 'cloud-upload-o', 'cloud-download-o', 'coffee', 'document', 'dislike-o', 'delete', 'dot-chart', 'date',  'edit',  'download', 'eye-o', 'environment-o', 'css', 'file-text', 'file-jpg', 'file-unknown', 'file-add', 'file-excel', 'filter', 'file-pdf', 'folder-add', 'forward', 'folder-open',  'global', 'heart-off', 'inbox', 'home', 'heart-on', 'information', 'html',  'like-o', 'laptop', 'link', 'lock', 'loading', 'meh', 'meh-o', 'menu-fold', 'message-o', 'menu', 'message', 'menu-unfold', 'minus-circle-o', 'minus-circle', 'minus-square', 'minus-square-o', 'mobile', 'more', 'minus', 'notification', 'pause-circle', 'pause-circle-o', 'paper-clip', 'pause', 'picture', 'picasa', 'pay-circle-o', 'pay', 'plus-circle-o', 'plus-circle', 'plus-square', 'plus', 'pie-chart', 'poweroff', 'plus-square-o', 'reload', 'right-circle-o', 'question-circle', 'right-circle', 'question-circle-o',   'save', 'safety', 'setting-o', 'search',  'shopping-cart', 'share', 'setting', 'star-on', 'star-off', 'tag', 'time', 'tags-o', 'tag-o', 'tags', 'time-o', 'twitter',  'upload', 'up-circle', 'unlock', 'user', 'usergroup-add', 'warning-o', 'warning', 'verification', 'video-camera',  'zoom-in', 'zoom-out', 'wifi', 'cloud-download', 'cloud-upload',]
   return (
     <div>
       <Row gutter="10">
