@@ -282,7 +282,7 @@ render() {
         <Tag color="info" onClose={(e)=>{
           e.preventDefault();
           console.log('Clicked! But prevent default.');
-        }}>代码禁止删除的Tags方法</Tag>
+        }}>阻止自身销毁组件的方法</Tag>
     </div>
   )
 }
