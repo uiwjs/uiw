@@ -40,7 +40,7 @@ import { Button as ButtonView } from 'uiw';
 
 ```diff
 - import { Alert } from 'uiw';
-+ import { Alert } from 'uiw/src/alert';
++ import { Alert } from 'uiw/lib/alert';
 ```
 
 ## 开发
