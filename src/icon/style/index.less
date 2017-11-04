@@ -5,6 +5,19 @@
   animation: loading-circle 1s infinite linear;
 }
 
+[class^="w-icon-"]:before,{
+  vertical-align: middle;
+}
+[class^="w-icon-"]:after, 
+[class*=" w-icon-"]:after,{
+  vertical-align: middle;
+  content: '';
+  height: 100%;
+  width: 0;
+  display: inline-block;
+}
+
+
 @keyframes loading-circle {
   0% {
     transform: rotate(0deg);
