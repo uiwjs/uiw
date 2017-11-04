@@ -36,7 +36,8 @@
     "hotkeys-js": "^2.0.4",
     "prop-types": "^15.6.0",
     "react-slick": "^0.15.4",
-    "react-transition-group": "^2.2.1"
+    "react-transition-group": "^2.2.1",
+    "uiw-iconfont": "^1.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",
