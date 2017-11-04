@@ -256,6 +256,7 @@ render() {
 ```
 <!--End-->
 
+## API
 
 ### Checkbox Attributes
 
@@ -265,7 +266,7 @@ render() {
 | disabled | 禁用 | Boolean | false |
 | onChange | 变化时回调函数 | Function(e:Event, checked:Boolean) | - |
 | checked | 指定当前是否选中 | Boolean | false |
-| indeterminate | 半选中，只负责样式控制 | Jay | false |
+| indeterminate | 半选中，只负责样式控制 | Boollean | false |
 
 ### Checkbox Group Attributes
 

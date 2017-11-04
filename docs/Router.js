@@ -11,6 +11,7 @@ import QuickStart from 'bundle-loader?lazy&name=quick-start!./pages/quick-start'
 import Theme from 'bundle-loader?lazy&name=theme!./pages/theme';
 import Avatar from 'bundle-loader?lazy&name=avatar!./pages/avatar';
 import Color from 'bundle-loader?lazy&name=color!./pages/color';
+import Collapse from 'bundle-loader?lazy&name=collapse!./pages/collapse';
 import Layout from 'bundle-loader?lazy&name=layout!./pages/layout';
 import icon from 'bundle-loader?lazy&name=icon!./pages/icon';
 import button from 'bundle-loader?lazy&name=button!./pages/button';
@@ -102,6 +103,7 @@ const routes = {
       { path: "/:lang/badge", component: asyncComponent(badge) },
       { path: "/:lang/calendar", component: asyncComponent(calendar) },
       { path: "/:lang/carousel", component: asyncComponent(carousel) },
+      { path: "/:lang/collapse", component: asyncComponent(Collapse) },
       { path: "/:lang/card", component: asyncComponent(card) },
       { path: "/:lang/progress", component: asyncComponent(progress) },
       { path: "/:lang/rate", component: asyncComponent(rate) },
