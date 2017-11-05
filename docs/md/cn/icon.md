@@ -1,7 +1,7 @@
 Icon 图标
 ===
 
-语义化的矢量图形，内置的图标属于UI框架常用图形字体。icon字体以及样式，被抽离到一个新的仓库 [uiw icon](https://uiw-react.github.io/icons/) ，`uiw`去依赖 [uiw-iconfont](github.com/uiw-react/icons)，这个仓库主要是维护一套svg图片，并将svg图片转换为 `*.svg` `*.ttf` `*.woff` `*.eot` 等字体及相关文件并发布到 [npm](https://www.npmjs.com/package/uiw-iconfont) 上去。
+语义化的矢量图形，内置的图标属于UI框架常用图形字体。icon字体以及样式，被抽离到一个新的仓库 [uiw icon](https://uiw-react.github.io/icons/) ，`uiw`去依赖 [uiw-iconfont](https://github.com/uiw-react/icons)，这个仓库主要是维护一套svg图片，并将svg图片转换为 `*.svg` `*.ttf` `*.woff` `*.eot` 等字体及相关文件并发布到 [npm](https://www.npmjs.com/package/uiw-iconfont) 上去。
 
 ### 如何使用
 
@@ -147,7 +147,15 @@ render() {
 render() {
   const {Row,Col} = Layout;
   const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
-  const iconList = ['caret-down', 'caret-up', 'caret-left',  'caret-right','d-caret', 'arrow-down', 'arrow-left', 'arrow-right', 'arrow-up', 'arrows-alt', 'd-arrow-right', 'd-arrow-left', 'down-circle-o', 'down-square-o','down-square', 'backward', 'check-square-o','check-square','down-circle', 'enter', 'logout', 'login', 'left-square-o', 'swap-right', 'swap', 'verticle-left', 'verticle-right','rollback','shrink','left-square',  'left-circle-o','left-circle','play-circle-o',  'play-circle','right-square-o', 'right-square','up-square-o', 'up-circle-o','up-square',]
+  const iconList = [
+  'caret-down', 'arrow-down','down-square-o','down-square',  'down-circle-o', 'down-circle',
+  'caret-up','arrow-up', ,'up-square-o', 'up-square','up-circle-o','up-circle',
+  'caret-left',  'arrow-left','left-square-o','left-square',  'left-circle-o', 'left-circle',
+  'caret-right','arrow-right','right-square-o', 'right-square','right-circle-o', 'right-circle',
+  'shrink','arrows-alt','d-arrow-left','d-arrow-right','enter', 
+   
+  'rollback', 'd-caret','backward','forward',  'logout', 'login',  'swap-right', 'swap', 
+  'verticle-left', 'verticle-right','play-circle-o',  'play-circle','menu-fold', 'menu-unfold',  ]
   return (
     <div>
       <Row gutter="10">
@@ -177,7 +185,10 @@ render() {
 render() {
   const {Row,Col} = Layout;
   const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
-  const iconList = ['smile-o', 'smile','frown-o', 'frown', ]
+  const iconList = [ 
+    'smile-o', 'smile','frown-o', 'frown','meh', 'meh-o',
+    'pause','pause-circle', 'pause-circle-o', 'information', "information-o", 'warning-o', 'warning',
+  ]
   return (
     <div>
       <Row gutter="10">
@@ -207,7 +218,12 @@ render() {
 render() {
   const {Row,Col} = Layout;
   const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
-  const iconList = ["minus", "plus", "check", "close", "question-circle-o", "question-circle", "circle-check-o", "circle-check", "circle-close-o", "circle-close", "information-o", "information","asterisk", "copyright",]
+  const iconList = [ 
+    "plus", 'plus-circle-o','plus-circle', 'plus-square', 'plus-square-o', "question-circle-o", 
+    "minus", 'minus-circle-o', 'minus-circle', 'minus-square', 'minus-square-o',"question-circle", 
+    "close", "circle-close-o", "circle-close",'close-square', 'close-square-o', "asterisk", 
+    "check", "circle-check-o", "circle-check",'check-square','check-square-o', "copyright",
+  ]
   return (
     <div>
       <Row gutter="10">
@@ -237,7 +253,16 @@ render() {
 render() {
   const {Row,Col} = Layout;
   const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
-  const iconList = ['area-chart', 'appstore', 'appstore-o', 'bar-chart',  'camera-o', 'check', 'circle-check-o', 'circle-check', 'circle-close', 'circle-close-o', 'close', 'close-square-o', 'close-square', 'cloud-upload-o', 'cloud-download-o', 'coffee', 'document', 'dislike-o', 'delete', 'dot-chart', 'date',  'edit',  'download', 'eye-o', 'environment-o', 'css', 'file-text', 'file-jpg', 'file-unknown', 'file-add', 'file-excel', 'filter', 'file-pdf', 'folder-add', 'forward', 'folder-open',  'global', 'heart-off', 'inbox', 'home', 'heart-on', 'information', 'html',  'like-o', 'laptop', 'link', 'lock', 'loading', 'meh', 'meh-o', 'menu-fold', 'message-o', 'menu', 'message', 'menu-unfold', 'minus-circle-o', 'minus-circle', 'minus-square', 'minus-square-o', 'mobile', 'more', 'minus', 'notification', 'pause-circle', 'pause-circle-o', 'paper-clip', 'pause', 'picture', 'picasa', 'pay-circle-o', 'pay', 'plus-circle-o', 'plus-circle', 'plus-square', 'plus', 'pie-chart', 'poweroff', 'plus-square-o', 'reload', 'right-circle-o', 'question-circle', 'right-circle', 'question-circle-o',   'save', 'safety', 'setting-o', 'search',  'shopping-cart', 'share', 'setting', 'star-on', 'star-off', 'tag', 'time', 'tags-o', 'tag-o', 'tags', 'time-o', 'twitter',  'upload', 'up-circle', 'unlock', 'user', 'usergroup-add', 'warning-o', 'warning', 'verification', 'video-camera',  'zoom-in', 'zoom-out', 'wifi', 'cloud-download', 'cloud-upload',]
+  const iconList = [ 
+    'heart-off', 'heart-on', 'star-on', 'star-off','lock', 'unlock',
+    'area-chart', 'bar-chart', 'dot-chart','pie-chart', 'folder-add', 'folder-open', 
+    'dislike-o', 'like-o','loading', 'reload','appstore', 'appstore-o',
+    'file-text', 'file-jpg', 'file-unknown', 'file-add', 'file-excel', 'file-pdf',
+    'tag', 'tag-o','tags','tags-o', 'setting','setting-o',
+    'cloud-upload','cloud-upload-o', 'cloud-download','cloud-download-o', 'message','message-o',
+    'user', 'usergroup-add', 'zoom-in', 'zoom-out','time', 'time-o',
+    "bell", 'camera-o', 'coffee', 'document', 'delete', 'date', 'edit', 'download', 'eye-o', 'environment-o', 'filter', 'global', 'inbox', 'home', 'laptop', 'link',  'menu', 'mobile', 'more', 'notification', 'paper-clip', 'picture', 'picasa', 'pay-circle-o', 'pay', 'poweroff',  'save', 'safety', 'search', 'shopping-cart', 'share',   'upload', 'verification', 'video-camera', 'wifi', 
+  ]
   return (
     <div>
       <Row gutter="10">
@@ -267,7 +292,39 @@ render() {
 render() {
   const {Row,Col} = Layout;
   const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
-  const iconList = ['uiw','adobe', 'apple','github', 'github-o', 'windows','reddit', 'facebook','android', ]
+  const iconList = ['uiw', 'windows', "linux", 'apple', 'facebook', 'twitter', 'adobe', "baidu", "ali-pay", 'reddit', 'android', 'github', 'github-o', "aliwangwang",   "dingding", "foursquare", "linkedin", "pinterest", "qq",  "weibo", "taobao", "weixin", 'css3', 'html5', ]
+  return (
+    <div>
+      <Row gutter="10">
+      {
+        iconList.map((item,idx) => {
+          return (
+            <Col key={idx} xs="8" sm="6" md="4" lg="4">
+              <div style={styleItem}>
+                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                <div>{item}</div>
+              </div>
+            </Col>
+          )
+        }) 
+      }
+      </Row>
+    </div>
+  )
+}
+```
+<!--End-->
+
+### 浏览器图标
+
+<!--DemoStart-->  
+```js
+render() {
+  const {Row,Col} = Layout;
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+  const iconList = [
+    "chrome", "safari", "firefox", "opera", "ie", 
+  ]
   return (
     <div>
       <Row gutter="10">
