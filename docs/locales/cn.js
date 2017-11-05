@@ -2,6 +2,7 @@ module.exports = {
   page: {
     'quick-start': '快速上手',
     'theme': '主题定制',
+    'changelog': '更新日志',
     'color': 'Color 颜色',
     'checkbox': 'Checkbox 多选框',
     'card': 'Card 卡片',
