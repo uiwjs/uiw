@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "1.2.12",
+  "version": "1.2.13",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiw-react.github.io",
   "authors": [
@@ -29,15 +29,15 @@
     "framework"
   ],
   "dependencies": {
-    "async-validator": "^1.8.1",
-    "babel-polyfill": "^6.26.0",
-    "babel-runtime": "^6.26.0",
-    "classnames": "^2.2.5",
-    "hotkeys-js": "^2.0.4",
-    "prop-types": "^15.6.0",
-    "react-slick": "^0.15.4",
-    "react-transition-group": "^2.2.1",
-    "uiw-iconfont": "^1.2.1"
+    "async-validator": "~1.8.1",
+    "babel-polyfill": "~6.26.0",
+    "babel-runtime": "~6.26.0",
+    "classnames": "~2.2.5",
+    "hotkeys-js": "~2.0.4",
+    "prop-types": "~15.6.0",
+    "react-slick": "~0.15.4",
+    "react-transition-group": "~2.2.1",
+    "uiw-iconfont": "~1.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",
