@@ -38,7 +38,7 @@ export default class CheckedTag extends Component {
     }
   }
   render() {
-    const { ...props } = this.props;
+    const { data, ...props } = this.props;
     return <Tag {...props} checked={this.state.checked} onClick={this.handleChange} >{this.props.children}</Tag>;
   }
 }
