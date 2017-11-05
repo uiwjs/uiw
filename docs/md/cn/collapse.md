@@ -53,9 +53,9 @@ render() {
       <Button
         type="primary"
         style={{marginBottom: '15px'}}
-        onClick={() => this.setState({ activeName: '2' })}
+        onClick={() => this.setState({ activeName: this.state.activeName === '2'?'':'2' })}
       >
-        打开第三个
+        打开或关闭第三个
       </Button>
       <Collapse accordion activeKey={[this.state.activeName]} onChange={key=>console.log(key)}>
         <Panel header="大话西游">
