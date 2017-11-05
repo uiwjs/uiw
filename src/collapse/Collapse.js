@@ -22,6 +22,7 @@ export default class Collapse extends Component {
     }
   }
   onItemClick(key) {
+    const { onChange } = this.props;
     let activeKey = this.state.activeKey;
     if (this.props.accordion) {
       activeKey = activeKey[0] === key ? [] : [key];
@@ -35,7 +36,9 @@ export default class Collapse extends Component {
         activeKey.push(key);
       }
     }
-    this.setState({ activeKey });
+    this.setState({ activeKey }, () => {
+      onChange && onChange(activeKey, this.props)
+    });
   }
   render() {
     const { prefixCls, className, children, accordion, bordered, activeKey, showArrow, ...resetProps } = this.props;
@@ -74,6 +77,7 @@ Collapse.propTypes = {
   prefixCls: PropTypes.string,
   accordion: PropTypes.bool,
   showArrow: PropTypes.bool,
+  onChange: PropTypes.func,
   activeKey: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
