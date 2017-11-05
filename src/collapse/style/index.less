@@ -16,14 +16,14 @@
     cursor: pointer;
     position: relative;
     transition: all .3s;
-    i[class^="w-icon"]:first-child{
+    & > i[class^="w-icon"]:first-child{
       margin-right: 6px;
       transform: scale(.75) rotate(-90deg);
       transition: transform .24s;
     }
   }
   &-active &-header{
-    i[class^="w-icon"]:first-child{
+    & > i[class^="w-icon"]:first-child{
       transform: scale(.75) rotate(0);
     }
   }
