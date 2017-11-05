@@ -118,6 +118,8 @@ render() {
 
 ### Carousel
 
+更多参数可参考：[akiran/react-slick](https://github.com/akiran/react-slick)
+
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | effect | 动画效果函数，可取 scrollx, fade | String | 'srcollx' |
