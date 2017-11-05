@@ -137,6 +137,7 @@ body::selection {
 }
 
 .w-docs-content-warpper{
+  font-size: 14px;
   padding: 20px;
   color: rgba(0,0,0,.65);
   h1,h2,h3,h4,h5,h6{
@@ -144,13 +145,13 @@ body::selection {
     color: #353535;
   }
   h1{
-    padding: 10px 0 10px 10px;
+    padding: 10px 0 10px 5px;
     margin: 0 0 10px 0;
     border-bottom: 1px solid #e3e3e3;
   }
   h2{
     margin: 20px 0 10px 0;
-    font-size: 16px;
+    font-size: 1.5em;
     &:first-child {
       margin: 0 0 0 0;
     }
@@ -164,10 +165,14 @@ body::selection {
     padding:0 3px;
   }
   pre > code{
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    border-radius: 3px;
     font-weight: 300;
     color:#353535;
     padding: 0;
-    display: inline-block;
+    display: block;
   }
   p{
     padding: 5px 0 5px 0;
@@ -184,6 +189,13 @@ body::selection {
       border:1px solid #e9e9e9;
       padding: 8px 12px;
     }
+  }
+  ul{
+    padding: 0 0 0 18px;
+  }
+  li{
+    list-style-type: disc;
+    line-height: 26px;
   }
 }
 // demo
