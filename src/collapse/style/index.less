@@ -31,7 +31,6 @@
     overflow: hidden;
     color: rgba(0,0,0,.65);
     padding: 0 16px;
-    // padding: 10px 15px;
     background-color: #fff;
     &:before,&:after{
       content: "";
@@ -46,5 +45,17 @@
     cursor: not-allowed;
     color: rgba(0,0,0,.25);
     background-color: #f7f7f7;
+  }
+  &.no-border {
+    border:0;
+    background: transparent;
+  }
+  &.no-border & {
+    &-item{
+      border:0;
+    }
+    &-header{
+      border-bottom: 1px solid #d9d9d9;
+    }
   }
 }
