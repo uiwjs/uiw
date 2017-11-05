@@ -38,7 +38,7 @@ export default class Collapse extends Component {
     this.setState({ activeKey });
   }
   render() {
-    const { prefixCls, className, children, accordion, bordered, activeKey, ...resetProps } = this.props;
+    const { prefixCls, className, children, accordion, bordered, activeKey, showArrow, ...resetProps } = this.props;
     const cls = this.classNames(prefixCls, className, {
       'no-border': bordered
     })
@@ -59,6 +59,7 @@ export default class Collapse extends Component {
             prefixCls: prefixCls,
             isActive: isActive,
             disabled: disabled,
+            showArrow: showArrow,
             onItemClick: disabled ? () => { } : () => this.onItemClick(key),
             ...child.props
           }
@@ -72,6 +73,7 @@ export default class Collapse extends Component {
 Collapse.propTypes = {
   prefixCls: PropTypes.string,
   accordion: PropTypes.bool,
+  showArrow: PropTypes.bool,
   activeKey: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
@@ -81,4 +83,5 @@ Collapse.propTypes = {
 Collapse.defaultProps = {
   prefixCls: 'w-collapse',
   accordion: false,
+  showArrow: true,
 }

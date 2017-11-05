@@ -5,7 +5,7 @@ import Icon from '../icon';
 
 export default class Panel extends Component {
   render() {
-    const { prefixCls, className, children, isActive, onItemClick, disabled, showArrow, header, ...resetProps } = this.props;
+    const { prefixCls, className, children, isActive, onItemClick, disabled, showArrow, header, childProps, ...resetProps } = this.props;
     const cls = this.classNames([`${prefixCls}-item`], className, {
       [`${prefixCls}-active`]: isActive,
       [`${prefixCls}-disabled`]: disabled,
@@ -44,5 +44,4 @@ Panel.propTypes = {
 
 Panel.defaultProps = {
   disabled: false,
-  showArrow: true
 }
