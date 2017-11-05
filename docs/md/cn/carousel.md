@@ -15,7 +15,7 @@ render() {
     height: 160,
     width:100,
     linearHeight: 160,
-    background: '#364d79',
+    background: '#b7b7b7',
     overflow: 'hidden',
   };
   return (
@@ -43,7 +43,7 @@ render() {
     textAlign: 'center',
     height: 160,
     linearHeight: 160,
-    background: '#364d79',
+    background: '#b7b7b7',
     overflow: 'hidden',
   };
   return (
@@ -71,7 +71,7 @@ render() {
     height: 160,
     linearHeight: 160,
     width:50,
-    background: '#364d79',
+    background: '#b7b7b7',
     overflow: 'hidden',
   };
   return (
@@ -99,7 +99,7 @@ render() {
     textAlign: 'center',
     height: 160,
     linearHeight: 160,
-    background: '#364d79',
+    background: '#b7b7b7',
     overflow: 'hidden',
   };
   return (
