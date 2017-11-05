@@ -32,7 +32,7 @@ export default class Tag extends Component {
     return /^(white|pink|red|yellow|orange|cyan|green|blue|purple)?$/.test(color)
   }
   render() {
-    const { prefixCls, color, onClose, className, checked, children, ...others } = this.props;
+    const { prefixCls, color, onClose, className, checked, children, data, ...others } = this.props;
     const { visible } = this.state;
     let colors = '';
     switch (color) {
@@ -59,7 +59,7 @@ export default class Tag extends Component {
     return visible ? (
       <span {...others} style={styles} className={cls}>
         {children}
-        {(onClose && checked !== true && checked !== false) && <i onClick={this.close} ref="iconclose"><Icon type="close" /></i>}
+        {(onClose && checked !== true && checked !== false) && <Icon type="close" onClick={this.close} ref="iconclose" />}
       </span>
     ) : null;
   }
