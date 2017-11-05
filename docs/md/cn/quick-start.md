@@ -10,6 +10,8 @@ npm install uiw --save
 
 # 通过GitHub仓库安装
 npm i -S uiw-react/uiw
+# 指定版本
+npm i -S uiw-react/uiw#v1.2.12
 # 或者
 yarn add uiw-react/uiw
 ```
