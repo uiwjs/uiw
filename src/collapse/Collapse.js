@@ -38,8 +38,10 @@ export default class Collapse extends Component {
     this.setState({ activeKey });
   }
   render() {
-    const { prefixCls, className, children, accordion, activeKey, ...resetProps } = this.props;
-    const cls = this.classNames(prefixCls, className)
+    const { prefixCls, className, children, accordion, bordered, activeKey, ...resetProps } = this.props;
+    const cls = this.classNames(prefixCls, className, {
+      'no-border': bordered
+    })
     return (
       <div className={cls} {...resetProps}>
         {React.Children.map(children, (child, index) => {
