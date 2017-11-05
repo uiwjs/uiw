@@ -144,6 +144,7 @@ render() {
 | accordion | 手风琴效果 | Boolean | false |
 | activeKey | 当前激活 tab 面板的 key, accordion 模式下默认第一个元素 | String[]/String | false |
 | showArrow | 在这里使用，表示控制所有的面板图标是否展示 | Boolean | true |
+| bordered | 设置没有边框的简洁样式 | Boolean | false |
 
 ### Collapse.Panel
 
