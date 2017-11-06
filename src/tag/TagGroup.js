@@ -36,8 +36,10 @@ export default class TagGroup extends Component {
     })
   }
 
-  componentWillReceiveProps(nextProps){
-    this.setState({dynamicTags:nextProps.options})
+  componentWillReceiveProps(nextProps) {
+    if (this.props.options !== nextProps.options) {
+      this.setState({ dynamicTags: nextProps.options })
+    }
   }
 
   render() {
