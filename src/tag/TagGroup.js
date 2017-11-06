@@ -35,6 +35,11 @@ export default class TagGroup extends Component {
       onChange(e, this.getFilteredTags(dynamicTags))
     })
   }
+
+  componentWillReceiveProps(nextProps){
+    this.setState({dynamicTags:nextProps.options})
+  }
+
   render() {
     const { prefixCls, children, options, isRadio, checkedValues, onChange, checked, className, ...other } = this.props;
     const cls = this.classNames({
