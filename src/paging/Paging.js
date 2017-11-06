@@ -40,7 +40,7 @@ export default class Paging extends Component {
     items.push(
       <li key='prev' onClick={() => this.onPrevOrNext('prev')} className={this.classNames(`${prefixCls}-prev`, {
         [`${prefixCls}-disable`]: activePage === 1
-      })}><a>&nbsp;</a></li>
+      })}></li>
     )
 
     let curActvePage = activePage;
@@ -79,7 +79,7 @@ export default class Paging extends Component {
     items.push(
       <li key='next' onClick={() => this.onPrevOrNext('next')} className={this.classNames(`${prefixCls}-next`, {
         [`${prefixCls}-disable`]: activePage === totalPage || activePage > totalPage
-      })}><a>&nbsp;</a></li>
+      })}></li>
     )
     return (
       <ul style={style} className={this.classNames(prefixCls, className)}>
