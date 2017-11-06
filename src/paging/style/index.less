@@ -44,7 +44,7 @@
       box-shadow:inset 0 0 0 rgba(0, 0, 0, 0);
     }
   }
-  &-prev a,&-next a{
+  &-prev,&-next{
     display: inline-block;
     &:after{
       content: " ";
@@ -55,18 +55,21 @@
       border: solid @paging-color;
       border-width: 0 0 1px 1px;
       top: -2px;
+      margin: 0 10px;
     }
   }
-  &-prev a{
-    &:after{
-      transform: rotate(@paging-icon-prev-rotate);
-      left: 2px;
-    }
+  &-prev:after{
+    transform: rotate(@paging-icon-prev-rotate);
+    left: 2px;
   }
-  &-next a{
-    &:after{
-      transform: rotate(@paging-icon-next-rotate);
-      left: -1px;
+  &-next:after{
+    transform: rotate(@paging-icon-next-rotate);
+    left: -1px;
+  }
+  &-prev&-disable,&-next&-disable{
+    cursor: @cursor-disabled;
+    &:active{
+      box-shadow: inset 0 8px 42px -12px rgba(0, 0, 0, 0);
     }
   }
   &-disable{
@@ -74,7 +77,7 @@
     a{
       cursor: @cursor-disabled;
     }
-    a:after{
+    &:after{
       border-color:@paging-disable-color;
     }
   }
