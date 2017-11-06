@@ -87,4 +87,28 @@
   &-alignment-right{
     text-align: right;
   }
+  &&-small li&-prev,&&-small li&-next{
+    &:after{
+      top: -1px;
+      margin: 0 5px;
+    }
+  }
+  &&-small li{
+    border: 0;
+    line-height: 21px;
+    height: 21px;
+    margin: 0 2px;
+    &:first-child,&:last-child{
+      border-radius: 4px;
+    }
+    &:hover{
+      border-radius: 4px;
+    }
+    a{
+      margin: 0 6px;
+    }
+  }
+  &&-small &-active{
+    border-radius: 5px;
+  }
 }
