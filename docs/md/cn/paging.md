@@ -15,7 +15,7 @@ render() {
       <Paging activePage={5} total={250} onChange={(pageNumber)=>{
         console.log('Page: ', pageNumber);
         }}/>
-        <br /><br />
+        <br />
       <Paging total={60} onChange={(pageNumber)=>{
         console.log('Page: ', pageNumber);
       }}/>
@@ -41,6 +41,38 @@ render() {
 ```
 <!--End-->
 
+### 对齐
+
+目前有三种对齐方式 `左边(left)`、`中间(center)`、`右边(right)`
+
+<!--DemoStart--> 
+```js
+render() {
+  let cls = {padding: "10px 10px",background: "#f5f5f5",marginBottom:20}
+  let clsLast = {padding: "10px 10px",background: "#f5f5f5",marginBottom:0}
+  return (
+    <div>
+      <div style={cls}>
+        <Paging activePage={5} total={250}  onChange={(pageNumber) => { 
+          console.log(`pageNumber:${pageNumber}`)
+        }} />
+      </div>
+      <div style={cls}>
+        <Paging alignment="center" activePage={5} total={250}  onChange={(pageNumber) => { 
+          console.log(`pageNumber:${pageNumber}`)
+        }} />
+      </div>
+      <div style={clsLast}>
+        <Paging alignment="right" activePage={5} total={250}  onChange={(pageNumber) => { 
+          console.log(`pageNumber:${pageNumber}`)
+        }} />
+      </div>
+    </div>
+  )
+}
+```
+<!--End-->
+
 ## API
 
 ### Paging Attributes
@@ -48,6 +80,7 @@ render() {
 | 参数 | 说明 | 类型 | 默认值 |
 |------ |-------- |---------- |-------- |
 | total | 数据总数 | number | 0 |
+| alignment | 对齐 | Enum{`left`, `center`, `right`} | `left` |
 | activePage | 当前页数，选中的页数 | number | 1 |
 | pageSize | 每页条数 | number | 10 |
 | onChange | 页码改变的回调，返回改变后的页码 | Function(activePage,total,pageSize) | - |
