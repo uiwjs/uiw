@@ -31,11 +31,23 @@ render() {
 ```js
 render() {
   return (
-    <div>
-      <Paging activePage={1} total={5} onChange={(pageNumber) => { 
-        console.log(`pageNumber:${pageNumber}`)
-      }} />
-    </div>
+    <Paging activePage={1} total={5} onChange={(pageNumber) => { 
+      console.log(`pageNumber:${pageNumber}`)
+    }} />
+  )
+}
+```
+<!--End-->
+
+### 迷你分页
+
+<!--DemoStart--> 
+```js
+render() {
+  return (
+    <Paging size="small" activePage={1} total={250} onChange={(pageNumber) => { 
+      console.log(`pageNumber:${pageNumber}`)
+    }} />
   )
 }
 ```
@@ -53,7 +65,7 @@ render() {
   return (
     <div>
       <div style={cls}>
-        <Paging activePage={5} total={250}  onChange={(pageNumber) => { 
+        <Paging activePage={5} total={250} onChange={(pageNumber) => { 
           console.log(`pageNumber:${pageNumber}`)
         }} />
       </div>
@@ -79,8 +91,9 @@ render() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |------ |-------- |---------- |-------- |
-| total | 数据总数 | number | 0 |
+| total | 数据总数 | Number | 0 |
+| size | 当为`small`时，是小尺寸分页 | String | - |
 | alignment | 对齐 | Enum{`left`, `center`, `right`} | `left` |
-| activePage | 当前页数，选中的页数 | number | 1 |
-| pageSize | 每页条数 | number | 10 |
+| activePage | 当前页数，选中的页数 | Number | 1 |
+| pageSize | 每页条数 | Number | 10 |
 | onChange | 页码改变的回调，返回改变后的页码 | Function(activePage,total,pageSize) | - |
