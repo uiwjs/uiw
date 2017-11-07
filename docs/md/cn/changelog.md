@@ -5,6 +5,24 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+##  v1.2.14
+
+- 🌟 feat(Paging): Add a mini show. - [17d6fea](https://github.com/uiw-react/uiw/commit/17d6feab066d446ad58273d5fca7f99b2073164e)
+- 📝 docs(Paging): Add alignment parameter example. - [6d208d4](https://github.com/uiw-react/uiw/commit/6d208d4fa1ef7034b106b727b2f46252beecfa8e)
+- 🌟 feat(Paging): Add alignment parameters. - [a136b2d](https://github.com/uiw-react/uiw/commit/a136b2dfd5093b0aa47c718ae7177ad3f0e2ff92)
+- 🐞 Style(Paging):Adjust the Paging component arrow style. - [c9c3f56](https://github.com/uiw-react/uiw/commit/c9c3f5672117b8ac6a9c5fc533d6ad65a344df0e)
+- 🐞 Style(Paging): Adjust the paging component style. - [901e511](https://github.com/uiw-react/uiw/commit/901e511dec7727c9aee2d89672d9eb5a3d3816f4)
+- 🐞 Optimize Tag.Group status updates [#4](https://github.com/uiw-react/uiw/pull/4)  - [6750128](https://github.com/uiw-react/uiw/commit/675012821bcf6c325978346e77c325a22fbe1a35)
+- 🐞 TagGroup 动态添加数据 点击删除无法获取相应数据问题 - [1e5b350](https://github.com/uiw-react/uiw/commit/1e5b3508513c72d1c1cd45fbdc2a4cf198420664) - [kooff88](https://github.com/kooff88) 
+- 📝 Update README.md  - [65d4e6d](https://github.com/uiw-react/uiw/commit/65d4e6d3969da43e5c6b9fceb4835f81f1662d62) - [kooff88](https://github.com/kooff88)
+- 📝 docs: Change docs style. - [f773502](https://github.com/uiw-react/uiw/commit/f7735026ca10785082edb1c768691f80326f37a9)
+- 🐞 fix: Controls the initial font size of all components. - [daeda01](https://github.com/uiw-react/uiw/commit/daeda01dbd8ef20d112f6d140c7d489019c05356)
+- 📝 docs:Change style. - [6285282](https://github.com/uiw-react/uiw/commit/6285282e2f2601ca720e6381dcf340f585effa67)
+- 🐞 fix(Tag.Group):Repair Tag Change parameter assignment. - [df8bd1a](https://github.com/uiw-react/uiw/commit/df8bd1a5cec0e3d56f050b79322c91a5e514e723)
+- 🐞 fix(Checkbox): Change style. - [e7b9824](https://github.com/uiw-react/uiw/commit/e7b9824a713ccab966d82d1cfb84dc32862730eb)
+- 📝 Change website style. - [3a864aa](https://github.com/uiw-react/uiw/commit/3a864aa614208d64bbfc27f01951c5fdf611417e)
+- 🌟 Add change log. - [ba95928](https://github.com/uiw-react/uiw/commit/ba95928acaabe6da3cb507d906fc70aa9c88de92)
+
 ## v1.2.13
 
 - 📝 Update collapse component docs. - [b8adc03](https://github.com/uiw-react/uiw/commit/b8adc03784f6e11d4834c5c1c5bbd656eee6c840) 
