@@ -34,6 +34,7 @@ import tabs from 'bundle-loader?lazy&name=tabs!./pages/tabs';
 import tooltip from 'bundle-loader?lazy&name=tooltip!./pages/tooltip';
 import tag from 'bundle-loader?lazy&name=tag!./pages/tag';
 import rate from 'bundle-loader?lazy&name=rate!./pages/rate';
+import recommendation from 'bundle-loader?lazy&name=recommendation!./pages/recommendation';
 import badge from 'bundle-loader?lazy&name=badge!./pages/badge';
 import menu from 'bundle-loader?lazy&name=menu!./pages/menu';
 import paging from 'bundle-loader?lazy&name=paging!./pages/paging';
@@ -79,6 +80,7 @@ const routes = {
     { path: "/:lang/quick-start", exact: true, component: asyncComponent(QuickStart) },
     { path: "/:lang/theme", component: asyncComponent(Theme) },
     { path: "/:lang/changelog", component: asyncComponent(changelog) },
+    { path: "/:lang/recommendation", component: asyncComponent(recommendation) },
   ],
   components: {
     'Basic': [
