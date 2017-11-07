@@ -157,5 +157,5 @@ render() {
 | closable | 显示关闭按钮 | Boolean | - |
 | showIcon | 是否显示图标 | Boolean | false |
 | visible | 是否显示组件 | Boolean | true |
-| transition | 过渡动画，具体值参见动画组件`<Transition>` | String | `fade-in` |
+| transition | 过渡动画，具体值参见动画组件`<Transition>` | String | `fadeIn` |
 | type | 指定警告提示的样式，有四种选择 `default`、 `primary`、 `success`、 `info`、`warning`、 `error` | String | default |

@@ -39,6 +39,7 @@ module.exports = {
     'icon': 'Icon',
     'form': 'Form',
     'radio': 'Radio',
+    'recommendation': 'Third-Party Libraries',
     'input': 'Input',
     'input-number': 'Input Number',
   },

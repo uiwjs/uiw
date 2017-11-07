@@ -130,17 +130,31 @@ handleChang(value,date) {
 }
 render() {
   return (
-    <TimePicker
-      //style={{width:100}}
-      onChange={this.handleChang.bind(this)}
-      disabledHours={['00','01']}
-      disabledMinutes={['01','02']}
-      disable={false}
-      //hideDisabled={true}
-      format="HH:mm:ss"
-      placeholder="选择时间de拉！"
-      value={this.state.value}
-    />
+    <div>
+      <TimePicker
+        //style={{width:100}}
+        onChange={this.handleChang.bind(this)}
+        disabledHours={['00','01']}
+        disabledMinutes={['01','02']}
+        disabled={true}
+        //hideDisabled={true}
+        format="HH:mm:ss"
+        placeholder="选择时间de拉！"
+        value={this.state.value}
+      />
+      <TimePicker
+        //style={{width:100}}
+        size="large" 
+        onChange={this.handleChang.bind(this)}
+        disabledHours={['00','01']}
+        disabledMinutes={['01','02']}
+        disabled={false}
+        // hideDisabled={true}
+        format="HH:mm:ss"
+        placeholder="选择时间de拉！更改"
+        value={this.state.value}
+      />
+    </div>
   )
 }
 ```
@@ -148,6 +162,8 @@ render() {
 
 
 ## API
+
+> 输入框继承 `<Input/>` 组件。支持 Input 的大部分属性如`size`
 
 ### 公共参数 
 
@@ -157,7 +173,6 @@ render() {
 | value | 值 | Date/Null | - |
 | disable | 禁用时间选择器 | Boolean | `false` |
 | placeholder | 值 | String | - |
-| readOnly | 只读 | Boolean | `false` |
 | placeholder | 占位内容提示 | String | `false` |
 | hideDisabled | 不可选择的项隐藏 | Boolean | `false` |
 

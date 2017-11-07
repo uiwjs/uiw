@@ -4,36 +4,6 @@ Table 表格
 用于页面中展示重要的提示信息。
 
 
-
-
-### 基本用法
-
-<!--DemoStart--> 
-```js
-constructor(props) {
-  super(props);
-  this.state = {
-    columns: [
-      {title: "姓名", key: "name",},
-      {title: "年龄", key: "age",},
-      {title: "地址", key: "info"},
-      {title: "操作", key: "edit", }
-    ],
-    dataSource:[
-  {name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。',edit:""},
-    ]
-  }
-}
-render() {
-  return (
-    <Table 
-      data={this.state.dataSource} 
-      columns={this.state.columns}/>
-  )
-}
-```
-<!--End-->
-
 ### 基本用法
 
 ⚠️  columns 中的 key 很重要，在一个表中是唯一的。这个key 对应数据中的key，保持一致，columns中的render函数才会有作用。
@@ -113,6 +83,55 @@ constructor(props) {
 render() {
   return (
     <Table data={this.state.dataSource} columns={this.state.columns}/>
+  )
+}
+```
+<!--End-->
+
+
+### 列数据在数据项
+
+通过设置 `columns` 参数 `dataIndex`值，指定 `data` 参数中的 `key` 对应的值，默认情况表格的单元格，是按照顺序生成单元格。
+
+下面数据清晰对比有`dataIndex`和没有`dataIndex`的区别。
+
+<!--DemoStart--> 
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    columns: [
+      {title: "姓名", key: "age",  width: 160},
+      {title: "年龄", key: "name", dataIndex: 'name',  width: 160},
+      {
+        title: "操作",
+        key: "edit",
+        dataIndex: 'edit',
+        width: 110,
+        render: (text, row, index) => {
+          const ButtonGroup = Button.Group;
+          return (
+            <span>
+              <Button size="mini" type="danger">删除{text}</Button>
+              <Button size="mini" type="success">修改</Button>
+            </span>
+          )
+        },
+      },
+      {title: "说明", key: "info", width: 160},
+      
+    ],
+    dataSource:[
+      {name: '邓紫棋', age: '12', edit:"11", info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。'},
+      {name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。',edit:"11"},
+    ]
+  }
+}
+render() {
+  return (
+    <Table 
+      data={this.state.dataSource} 
+      columns={this.state.columns}/>
   )
 }
 ```
@@ -376,10 +395,15 @@ render() {
     <Table 
       rowSelection={{
         onSelectAll:(selectDatas,checked,e)=>{
-          console.log("选择或取消选择所有选项！",selectDatas)
+          console.log("所有选择的数据：",selectDatas)
+          console.log("是否选中：",checked)
         },
-        onSelect:()=>{
-          console.log("选择单行选项！")
+        onSelect:(row,number,checked,allChecked,e)=>{ //选中行的数据, 选中的行数, 是否选中, 选中的所有数据,e
+          console.log("选中行的数据row:",row)
+          console.log("选中的行数number:",number)
+          console.log("是否选中checked:",checked)
+          console.log("选中的所有数据allChecked:",allChecked)
+          console.log("Evn:",e)
         }
       }}
       data={this.state.dataSource} 
@@ -451,7 +475,7 @@ render() {
 
 ## API
 
-### Table Attributes
+### Table 
 
 | 参数 | 说明 | 类型 | 默认值 |
 |------ |-------- |---------- |-------- |
@@ -463,21 +487,23 @@ render() {
 | defaultChecked | 默认选中的选项 | string | [] |
 | onChange | 变化时回调函数 | Function(checkedValues:Array, value:String, checked:Boolean, e:Event) | - |
 | paging | 分页器，配置项参考 paging，设为 false 时不展示和进行分页 | Object | - |
+| rowSelection | 选择功能的配置。方法参考下面 `rowSelection` 文档 | Object | - |
 
 
-### Table Column Attributes
+### Table Column
 
 列描述数据对象，是 columns 中的一项，Column 使用相同的 API。
 
 | 参数 | 说明 | 类型 | 默认值 |
 |------ |-------- |---------- |-------- |
-|width | 列宽度 | string | - |
-|fixed | 列是否固定，`left`、`right` | string | - |
-|render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前行数据，行索引，@return里面可以设置表格行/列合并 | Function(text, rowData, index) {} | - |
-|className | 列的 className | string | - |
-|onCellClick | 单元格点击回调 | Function(rowData, event) | - |
+| width | 列宽度 | string | - |
+| dataIndex | 列数据在数据项中对应的 `key` | Function | string |
+| fixed | 列是否固定，`left`、`right` | string | - |
+| render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前行数据，行索引，@return里面可以设置表格行/列合并 | Function(text, rowData, index) {} | - |
+| className | 列的 className | string | - |
+| onCellClick | 单元格点击回调 | Function(rowData, event) | - |
 
-### Table rowSelection Attributes
+### Table rowSelection
 
 选择功能的配置。
 
@@ -487,7 +513,7 @@ render() {
 | onSelectAll | 用户手动选择/取消选择所有列的回调 | Function(selectedRowKeys, selectedRows) | - |
 | onCellClick | 单元格点击回调 | Function(selectDatas, lineNumber, checked) | - |
 
-### Table data Attributes
+### Table data
 
 Tables中的data描述数
 
@@ -495,4 +521,4 @@ Tables中的data描述数
 |------ |-------- |---------- |-------- |
 | _checked  | 给 data 项设置特殊 key `_checked: true` 可以默认选中当前项。 | Boolean | false | 
 | _disabled  | 给 data 项设置特殊 key `_disabled: true` 可以禁止选择当前项。 | Boolean | false | 
-| _select | 特殊`key:_select`，框架内部使用，请不要设置 | - | - | 
+| ~~`_select`~~ | 特殊`key:_select`，框架内部使用，请不要设置 | - | - | 
