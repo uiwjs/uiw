@@ -244,7 +244,7 @@ const RoutersContainer = withRouter(({ history, location, ...props }) => {
         <Switch>
           {getRoutes()}
         </Switch>
-        <ScrollToTop showUnder={160} style={{ bottom: 20 }}>
+        <ScrollToTop showUnder={160} style={{ bottom: 20, zIndex: 999 }}>
           <div className={`${prefixCls}-totop`}></div>
         </ScrollToTop>
       </div>
