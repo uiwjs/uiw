@@ -19,10 +19,11 @@ export default class Tabs extends Component {
   componentDidMount() {
     this.updateFirstMount()
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.isFirstMount !== prevState.isFirstMount) {
-      this.calcSlideStyle()
-
+  componentWillReceiveProps(nextProps, nextState) {
+    if (nextProps.position !== this.props.position) {
+      setTimeout(() => {
+        this.calcSlideStyle()
+      })
     }
   }
   updateFirstMount() {
