@@ -1,7 +1,9 @@
 @import "../../style/variables.less";
 @import "../../style/mixins/index.less";
 
-.w-select{
+@select-cls: ~'w-select';
+
+.@{select-cls}{
   display: inline-block;
   position: relative;
   vertical-align: middle;
@@ -24,39 +26,52 @@
   .w-animate{
     position: relative;
   }
-}
-
-.w-select-warp{
-  min-height: 10px;
-  padding: 0;
-  li{
-    font-size: 12px;
-    padding: 8px 10px;
-    position: relative;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #585858;
-    height: 32px;
-    line-height: 1.5;
-    box-sizing: border-box;
-    cursor: pointer;
-    &:hover:not(.disabled){
-      background-color: #efefef;
+  &-warp{
+    min-height: 10px;
+    padding: 0;
+    li{
+      font-size: 12px;
+      padding: 8px 10px;
+      margin: 0;
+      position: relative;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       color: #585858;
+      height: 32px;
+      line-height: 1.5;
+      box-sizing: border-box;
+      cursor: pointer;
+      &:hover:not(.disabled){
+        background-color: #efefef;
+        color: #585858;
+      }
+      &.disabled{
+        cursor: not-allowed;
+        color: #dedede;
+      }
+      &.selected{
+        background-color: #efefef;
+      }
     }
-    &.disabled{
-      cursor: not-allowed;
-      color: #dedede;
+    .w-select-group-warp{
+      height: initial;
+      padding:5px 0 0 0;
+      &:hover:not(.disabled){
+        background-color: transparent;
+      }
+      h2.w-select-group-title{
+        padding-left: 10px;
+        font-size: 12px;
+        font-weight: normal;
+        color: #999;
+        height: 30px;
+        line-height: 30px;
+      }
     }
-    &.selected{
-      background-color: #efefef;
-    }
-  }
-}
 
-.w-select.w-multiple{
-  .w-select-warp{
+  }
+  &.w-multiple &-warp{
     li.selected{
       background-color: transparent;
       color:#0c8c00;
@@ -65,16 +80,18 @@
       }
     }
   }
-  .check{
-    display: inline-block;
-    height: 12px;
-    width: 12px;
-    font-size: 14px;
-    position: absolute;
-    right: 10px;
-    margin-top: -3px;
+  &.w-multiple{
+    .check{
+      display: inline-block;
+      height: 12px;
+      width: 12px;
+      font-size: 14px;
+      position: absolute;
+      right: 10px;
+      margin-top: -3px;
+    }
   }
-  .w-select-tags{
+  &-tags{
     min-height: 30px;
     position: absolute;
     z-index: 2;
@@ -84,63 +101,46 @@
       margin-top: 3px;
       margin-bottom: 3px;
     }
-  }
-  .w-select-tags-filter{
-    display: inline-block;
-    input{
-      border:0;
-      padding-left: 0;
-      padding-right: 0;
-      background: transparent;
-      margin-top: 3px;
-      &:focus{
-        box-shadow: 0 0 0 0;
+    &-filter{
+      display: inline-block;
+      input{
+        border:0;
+        padding-left: 0;
+        padding-right: 0;
+        background: transparent;
+        margin-top: 3px;
+        &:focus{
+          box-shadow: 0 0 0 0;
+        }
+      }
+      div.cal{
+        position: absolute;
+        display: inline-block;
+        overflow: hidden;
+        height: 0px;
+        z-index: -1;
       }
     }
-    div.cal{
-      position: absolute;
-      display: inline-block;
-      overflow: hidden;
-      height: 0px;
-      z-index: -1;
-    }
   }
-}
-
-.w-select .w-popper-warpper{
-  position: absolute;
-  z-index: 1001;
-}
-.w-select-popper{
-  position: absolute;
-  top: 5px;
-  max-height: 200px;
-  border: 1px solid #e8e8e8;
-  border-radius: 4px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,.12), 0 0 6px rgba(0,0,0,.04);
-  box-sizing: border-box;
-  ul.w-select-warp{
-    outline: none;
+  .w-popper-warpper{
+    position: absolute;
+    z-index: 1001;
+  }
+  &-popper{
+    position: absolute;
+    top: 5px;
     max-height: 200px;
-    width: 100%;
-    display: block;
-    overflow: auto;
-  }
-}
-
-.w-select-warp .w-select-group-warp{
-  height: initial;
-  padding:5px 0 0 0;
-  &:hover:not(.disabled){
-    background-color: transparent;
-  }
-  h2.w-select-group-title{
-    padding-left: 10px;
-    font-size: 12px;
-    font-weight: normal;
-    color: #999;
-    height: 30px;
-    line-height: 30px;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.12), 0 0 6px rgba(0,0,0,.04);
+    box-sizing: border-box;
+    ul.w-select-warp{
+      outline: none;
+      max-height: 200px;
+      width: 100%;
+      display: block;
+      overflow: auto;
+    }
   }
 }
