@@ -1,19 +1,44 @@
 Icon 图标
 ===
 
-语义化的矢量图形，内置的图标属于UI框架常用图形字体。
+语义化的矢量图形，内置的图标属于UI框架常用图形字体。icon字体以及样式，被抽离到一个新的仓库 [uiw icon](https://uiw-react.github.io/icons/) ，`uiw`去依赖 [uiw-iconfont](https://github.com/uiw-react/icons)，这个仓库主要是维护一套svg图片，并将svg图片转换为 `*.svg` `*.ttf` `*.woff` `*.eot` 等字体及相关文件并发布到 [npm](https://www.npmjs.com/package/uiw-iconfont) 上去。
 
 ### 如何使用
 
-使用 `<Icon />` 标签声明组件，指定图标对应的 `type` 属性，示例代码如下:
+使用`<Icon />`组件，指定图标对应的`type`属性，示例代码：
 
 ```html
-<Icon type="arrow-down" />
+<Icon type="minus" />
 ```
+
+渲染后为：
+
+```html
+<i class="w-icon-date"></i>
+```
+
+示例如下:
+
+<!--DemoStart--> 
+```js
+render() {
+  return (
+    <div>
+      <Icon type="arrow-down" />
+      <Icon type="minus" />
+      <Icon type="plus" />
+      <Icon type="check" />
+      <Icon type="close" />
+    </div>
+  )
+}
+```
+<!--End-->
 
 ### 添加自己的图标字体方法
 
-默认建议使用 `svg` 来制作图标，如果使用字体文件，需要添加字体文件，并在 `css` 写符合规范的样式，这个文件通过 [iconfont.cn](http://iconfont.cn/) 来制作字体文件。  
+默认建议使用 `svg` 来制作图标，如果使用字体文件，需要添加字体文件，并在 `css` 写符合规范的样式。
+
 `icon` 名字需要命名规范，必须加上前缀 `.w-icon-{图标名字}` 。
 
 ```css
@@ -47,14 +72,52 @@ Icon 图标
 
 注意：这里 `.w-icon-` 是当前默认引用的字体文件，`w-icon-uiw-` 是引用自己制作的字体文件，来覆盖默认的字体文件，就当成一个新的作用域。
 
-### 方向
+### 图标的命名规范
+
+我们为每个图标赋予了语义化的命名，命名规则如下:
+
+> [形状?]-[图标名]-[描线?]-[方向?]  
+> 方向：`down`、`up`、`left`、`right`  
+> 描线：`-o` 图标添加边框描线
+> 默认：`w-icon-` 默认引用的字体文件作用域  
+> 自定定义：`w-icon-uiw-` 自定定义作用域  
+
+<!--DemoStart--> 
+```js
+render() {
+  return (
+    <div>
+      <Icon type="circle-close" />  图标名称：circle-close，[circle圈]-[关闭close]
+      <br/>
+      <br/>
+      <Icon type="circle-close-o" /> 图标名称：circle-close-o，[circle圈]-[关闭close]-[o描线]
+    </div>
+  )
+}
+```
+<!--End-->
+
+### API
+
+| 参数 | 说明 | 类型 | 默认值 |
+|--------- |-------- |--------- |-------- |
+| spin | 是否有旋转动画 |  Boolean | `false` |
+| style | 设置图标的样式，例如 fontSize 和 color |  Object | - |
+| type | 图标的名称 |  String | - |
+
+## 实例
+
+
+### 图标旋转实例
+
+通过设置参数`spin={true}`来设置图标旋转。
 
 <!--DemoStart--> 
 ```js
 render() {
   const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px"};
-  const iconList = ["arrow-up", "arrow-left", "arrow-right", "arrow-down", "caret-bottom",  "caret-left", "caret-top", "caret-right","d-arrow-left", "d-arrow-right"]
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+  const iconList = ["loading",'reload']
   return (
     <div>
       <Row gutter="10">
@@ -63,8 +126,8 @@ render() {
           return (
             <Col key={idx} xs="8" sm="6" md="4" lg="4">
               <div style={styleItem}>
-                  <Icon type={item} />
-                  <div>{item}</div>
+                <Icon type={item} spin style={{fontSize:16,marginBottom:10}}/>
+                <div>{item}</div>
               </div>
             </Col>
           )
@@ -77,14 +140,22 @@ render() {
 ```
 <!--End-->
 
-### 笑脸
+### 方向性图标
 
 <!--DemoStart--> 
 ```js
 render() {
   const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px"};
-  const iconList = [ "smile-o", "smile", "frown-o", "frown"]
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+  const iconList = [
+  'caret-down', 'arrow-down','down-square-o','down-square',  'down-circle-o', 'down-circle',
+  'caret-up','arrow-up', ,'up-square-o', 'up-square','up-circle-o','up-circle',
+  'caret-left',  'arrow-left','left-square-o','left-square',  'left-circle-o', 'left-circle',
+  'caret-right','arrow-right','right-square-o', 'right-square','right-circle-o', 'right-circle',
+  'shrink','arrows-alt','d-arrow-left','d-arrow-right','enter', 
+   
+  'rollback', 'd-caret','backward','forward',  'logout', 'login',  'swap-right', 'swap', 
+  'verticle-left', 'verticle-right','play-circle-o',  'play-circle','menu-fold', 'menu-unfold',  ]
   return (
     <div>
       <Row gutter="10">
@@ -93,8 +164,41 @@ render() {
           return (
             <Col key={idx} xs="8" sm="6" md="4" lg="4">
               <div style={styleItem}>
-                  <Icon type={item} />
-                  <div>{item}</div>
+                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                <div>{item}</div>
+              </div>
+            </Col>
+          )
+        }) 
+      }
+      </Row>
+    </div>
+  )
+}
+```
+<!--End-->
+
+### 提示建议性图标
+
+<!--DemoStart--> 
+```js
+render() {
+  const {Row,Col} = Layout;
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+  const iconList = [ 
+    'smile-o', 'smile','frown-o', 'frown','meh', 'meh-o',
+    'pause','pause-circle', 'pause-circle-o', 'information', "information-o", 'warning-o', 'warning',
+  ]
+  return (
+    <div>
+      <Row gutter="10">
+      {
+        iconList.map((item,idx) => {
+          return (
+            <Col key={idx} xs="8" sm="6" md="4" lg="4">
+              <div style={styleItem}>
+                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                <div>{item}</div>
               </div>
             </Col>
           )
@@ -113,8 +217,13 @@ render() {
 ```js
 render() {
   const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px"};
-  const iconList = ["minus", "plus", "check", "close", "question-circle-o", "question-circle", "circle-check-o", "circle-check", "circle-close-o", "circle-close", "information-o", "information","asterisk", "copyright",]
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+  const iconList = [ 
+    "plus", 'plus-circle-o','plus-circle', 'plus-square', 'plus-square-o', "question-circle-o", 
+    "minus", 'minus-circle-o', 'minus-circle', 'minus-square', 'minus-square-o',"question-circle", 
+    "close", "circle-close-o", "circle-close",'close-square', 'close-square-o', "asterisk", 
+    "check", "circle-check-o", "circle-check",'check-square','check-square-o', "copyright",
+  ]
   return (
     <div>
       <Row gutter="10">
@@ -123,8 +232,8 @@ render() {
           return (
             <Col key={idx} xs="8" sm="6" md="4" lg="4">
               <div style={styleItem}>
-                  <Icon type={item} />
-                  <div>{item}</div>
+                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                <div>{item}</div>
               </div>
             </Col>
           )
@@ -137,14 +246,23 @@ render() {
 ```
 <!--End-->
 
-### 默认自带图标列表
+### 其它
 
-<!--DemoStart--> 
+<!--DemoStart-->  
 ```js
 render() {
   const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:"10px"};
-  const iconList = [ "date", "d-caret", "delete", "date1", "document", "download", "download1", "heart-off", "heart-on", "menu", "loading", "edit", "filter", "lock", "message-o", "more", "message", "picture", "paper-clip", "pay", "search", "share", "setting", "setting1", "star-off", "star-on", "time", "upload", "upload1", "user", "verification", "unlock", "view", "warning", "warning-o"]
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+  const iconList = [ 
+    'heart-off', 'heart-on', 'star-on', 'star-off','lock', 'unlock',
+    'area-chart', 'bar-chart', 'dot-chart','pie-chart', 'folder-add', 'folder-open', 
+    'dislike-o', 'like-o','loading', 'reload','appstore', 'appstore-o',
+    'file-text', 'file-jpg', 'file-unknown', 'file-add', 'file-excel', 'file-pdf',
+    'tag', 'tag-o','tags','tags-o', 'setting','setting-o',
+    'cloud-upload','cloud-upload-o', 'cloud-download','cloud-download-o', 'message','message-o',
+    'user', 'usergroup-add', 'zoom-in', 'zoom-out','time', 'time-o',
+    "bell", 'camera-o', 'coffee', 'document', 'delete', 'date', 'edit', 'download', 'eye-o', 'environment-o', 'filter', 'global', 'inbox', 'home', 'laptop', 'link',  'menu', 'mobile', 'more', 'notification', 'paper-clip', 'picture', 'picasa', 'pay-circle-o', 'pay', 'poweroff',  'save', 'safety', 'search', 'shopping-cart', 'share',   'upload', 'verification', 'video-camera', 'wifi', 
+  ]
   return (
     <div>
       <Row gutter="10">
@@ -153,8 +271,70 @@ render() {
           return (
             <Col key={idx} xs="8" sm="6" md="4" lg="4">
               <div style={styleItem}>
-                  <Icon type={item} />
-                  <div>{item}</div>
+                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                <div>{item}</div>
+              </div>
+            </Col>
+          )
+        }) 
+      }
+      </Row>
+    </div>
+  )
+}
+```
+<!--End-->
+
+### 品牌标识
+
+<!--DemoStart-->  
+```js
+render() {
+  const {Row,Col} = Layout;
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+  const iconList = ['uiw', 'windows', "linux", 'apple', 'facebook', 'twitter', 'adobe', "baidu", "ali-pay", 'reddit', 'android', 'github', 'github-o', "aliwangwang",   "dingding", "foursquare", "linkedin", "pinterest", "qq",  "weibo", "taobao", "weixin", 'css3', 'html5', ]
+  return (
+    <div>
+      <Row gutter="10">
+      {
+        iconList.map((item,idx) => {
+          return (
+            <Col key={idx} xs="8" sm="6" md="4" lg="4">
+              <div style={styleItem}>
+                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                <div>{item}</div>
+              </div>
+            </Col>
+          )
+        }) 
+      }
+      </Row>
+    </div>
+  )
+}
+```
+<!--End-->
+
+### 浏览器图标
+
+<!--DemoStart-->  
+```js
+render() {
+  const {Row,Col} = Layout;
+  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+  const iconList = [
+    "chrome", "safari", "firefox", "opera", "ie", 
+  ]
+  return (
+    <div>
+      <Row gutter="10">
+      {
+        iconList.map((item,idx) => {
+          return (
+            <Col key={idx} xs="8" sm="6" md="4" lg="4">
+              <div style={styleItem}>
+                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                <div>{item}</div>
               </div>
             </Col>
           )
