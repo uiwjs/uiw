@@ -2,6 +2,11 @@ import React from 'react';
 import { Component, PropTypes } from '../utils/';
 import Icon from '../icon/';
 
+function isSreachIndexOF(oldstr, kw) {
+  if (!oldstr || !kw) return false;
+  return oldstr.toLowerCase().indexOf(kw.toLowerCase()) > -1 ? true : false;
+}
+
 export default class Option extends Component {
   static names = "option"
   constructor(props) {
@@ -57,11 +62,14 @@ export default class Option extends Component {
     if (!_query) {
       _query = multiple ? query : selectedLabel;
     }
-    const visible = new RegExp(_query, 'i').test(this.currentLabel());
+    let visible = isSreachIndexOF(this.currentLabel(), _query)
+    // 没有输入内容的情况
+    if (!query) visible = true;
     // 判断组件是否挂载
     if (this.mounted) {
       this.setState({ visible });
     }
+    return visible;
   }
   render() {
     const { children, disabled } = this.props;
