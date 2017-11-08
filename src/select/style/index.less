@@ -22,6 +22,10 @@
     .w-input-icon-right i[class^="w-icon-"] {
       transform:rotate(180deg); 
     }
+    input{
+      border-color: #0fa120;
+      box-shadow: 0 0 0 2px rgba(84, 220, 103, 0.14);
+    }
   }
   .w-animate{
     position: relative;
@@ -71,24 +75,28 @@
     }
 
   }
-  &.w-multiple &-warp{
+  &.@{select-cls}-multiple &-warp{
     li.selected{
       background-color: transparent;
       color:#0c8c00;
       &:hover{
         background-color:rgba(51, 51, 51, 0.09);
       }
+      .check{
+        display: inline-block;
+        height: 12px;
+        width: 12px;
+        font-size: 14px;
+        position: absolute;
+        right: 10px;
+        margin-top: -3px;
+      }
     }
   }
-  &.w-multiple{
-    .check{
-      display: inline-block;
-      height: 12px;
-      width: 12px;
-      font-size: 14px;
-      position: absolute;
-      right: 10px;
-      margin-top: -3px;
+  &.@{select-cls}-multiple &-tags-filter{
+    input,input:focus,input:hover{
+      border-color: transparent;
+      box-shadow: 0 0 0 0;
     }
   }
   &-tags{
