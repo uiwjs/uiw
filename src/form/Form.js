@@ -52,12 +52,12 @@ export default class Form extends Component {
   }
 
   render() {
-    const { prefixCls, layout, model, rules, ...other } = this.props;
+    const { prefixCls, className, layout, model, rules, ...other } = this.props;
 
     return (
-      <form {...other} className={this.classNames(`${prefixCls}`, {
+      <form className={this.classNames(className, `${prefixCls}`, {
         [`${prefixCls}-${layout}`]: layout
-      })}>
+      })}  {...other} >
         {this.props.children}
       </form>
     );

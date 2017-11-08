@@ -164,7 +164,7 @@ export default class FormItem extends Component {
     )
   }
   render() {
-    const { prefixCls, className, style } = this.props;
+    const { prefixCls, className, label, labelCol, wrapperCol, ...resetProps } = this.props;
     const { isRequired, error, help } = this.state;
     const cls = this.classNames(className, {
       [`${prefixCls}`]: true,
@@ -173,7 +173,7 @@ export default class FormItem extends Component {
       'help': help !== '',
     })
     return (
-      <Row style={style} className={cls}>
+      <Row className={cls} {...resetProps}>
         {this.renderLabel.bind(this)()}
         {this.renderWrapper.bind(this)()}
       </Row>
