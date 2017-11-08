@@ -304,7 +304,7 @@ export default class Select extends Component {
         ref="root"
         className={this.classNames(`${prefixCls}`, {
           "unfold": this.state.visible, // 是否展开
-          "w-multiple": multiple
+          [`${prefixCls}-multiple`]: multiple
         })}
       >
         {this.renderMultipleTags()}
