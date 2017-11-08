@@ -65,12 +65,10 @@
 } 
 
 
-.@{form-cls}-vertical{
-  
-}
-
 .@{form-cls}-inline{
-  
+  & .@{form-cls}-item + .@{form-cls}-item {
+    margin: 0 0 0 10px
+  }
   .@{form-item-cls}-control,.@{form-item-cls}-label,.@{form-item-cls}{
     display: inline-block;
   }
