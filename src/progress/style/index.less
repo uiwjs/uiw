@@ -14,6 +14,9 @@
     vertical-align: middle;
   }
   &-status-active &-bg{
+    background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+    background-size: 12px 12px;
+    animation: progress-bar-stripes 1s linear infinite;
     &:before{
       content: " ";
       opacity: 0;
@@ -79,6 +82,11 @@
     transform: translate(0,-50%);
     font-size: 16px;
   }
+}
+
+@keyframes progress-bar-stripes {
+  from { background-position: 0 0; }
+  to { background-position: 24px 0; }
 }
 
 @keyframes w-progress-active {
