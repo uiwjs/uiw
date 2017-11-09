@@ -5,6 +5,25 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+##  v1.2.15
+
+- 📝 docs: Document add version information display. [40295b6](https://github.com/uiw-react/uiw/commit/40295b615f4bd64083aeb938fcb606051b89ddf8)
+- 🌟 feat(version):add version get api. [fe3b6fb](https://github.com/uiw-react/uiw/commit/fe3b6fbcf76c8a36b79739562c424c83235c422f)
+- 🌟 feat: Add Affix component. [d33921b](https://github.com/uiw-react/uiw/commit/d33921ba8e824a28df7d9896fa802648f8dccf8f)
+- 🌟 feat(Progress): Add activation animation. [8a33e21](https://github.com/uiw-react/uiw/commit/8a33e218f9dec83911a923be31218ea621052289)
+- 🐞 style(Select):Change search filter style. [53c0405](https://github.com/uiw-react/uiw/commit/53c040510528c55e8911fbb3758a3fc25a980f04)
+- 🐞 fix(Select): Select search filter problem. [452b32d](https://github.com/uiw-react/uiw/commit/452b32d1359ff821c1d0f598b9bad8ede88d417e)
+- 📝 docs(Form): Add line display example. [fe7af41](https://github.com/uiw-react/uiw/commit/fe7af414d858a6395bc33526e8ba5a7a4934479b)
+- 📝 style(Form): Modify Form component inline display style. [6b4fa2f](https://github.com/uiw-react/uiw/commit/6b4fa2fb8cb8156fb10843115487d039a2e12cf3)
+- 🐞 fix(Form): Form component add reset props. [40620b1](https://github.com/uiw-react/uiw/commit/40620b1befdc1ebea1ec515eb0ad94b1b86f2d90)
+- 🐞 fix(Tags): Fix tabs position style issue. [a607a40](https://github.com/uiw-react/uiw/commit/a607a40b3ad437775d403f3d78933f0ceb035b05)
+- 📝 doc: Change scroll to top style. [957f37b](https://github.com/uiw-react/uiw/commit/957f37b0b0c324a1336ed25d7770c7e174a49f9e)
+- 📝 doc: Update docs style. [39de351](https://github.com/uiw-react/uiw/commit/39de351062a9439ad1f683777fd82728b5570a50)
+- 🐞 fix(Transition):Change ref name. [158cd0c](https://github.com/uiw-react/uiw/commit/158cd0c83952648e7e92ce3ef1e6814b32f5f1d9)
+- 🐞 fix(Tabs): Tabs component selected style problems. [26436ca](https://github.com/uiw-react/uiw/commit/26436ca0880bb77546dff751f34229aa06645a13)
+- 🌟 Update uiw-iconfont, Add  swap-left icon.. [149fbae](https://github.com/uiw-react/uiw/commit/149fbae9f04467318167d48dce4db27d7ee2d477)
+- 📝 docs:Update English document file. [6d92bc7](https://github.com/uiw-react/uiw/commit/6d92bc769a69baf7098eb6627d50992552d8e56a)
+
 ##  v1.2.14
 
 - 🌟 feat(Paging): Add a mini show. - [17d6fea](https://github.com/uiw-react/uiw/commit/17d6feab066d446ad58273d5fca7f99b2073164e)
