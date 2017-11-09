@@ -10,6 +10,7 @@ import ScrollToTop from 'react-scroll-up';
 import QuickStart from 'bundle-loader?lazy&name=quick-start!./pages/quick-start';
 import Theme from 'bundle-loader?lazy&name=theme!./pages/theme';
 import Avatar from 'bundle-loader?lazy&name=avatar!./pages/avatar';
+import affix from 'bundle-loader?lazy&name=affix!./pages/affix';
 import Color from 'bundle-loader?lazy&name=color!./pages/color';
 import Collapse from 'bundle-loader?lazy&name=collapse!./pages/collapse';
 import changelog from 'bundle-loader?lazy&name=changelog!./pages/changelog';
@@ -116,6 +117,7 @@ const routes = {
       { path: "/:lang/tooltip", component: asyncComponent(tooltip) },
     ],
     'Navigation': [
+      { path: "/:lang/affix", component: asyncComponent(affix) },
       { path: "/:lang/menu", component: asyncComponent(menu) },
       { path: "/:lang/tabs", component: asyncComponent(tabs) },
       { path: "/:lang/paging", component: asyncComponent(paging) },
