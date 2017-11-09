@@ -39,7 +39,7 @@ export default class Affix extends Component {
       offsetMode.top = typeof offsetTop === 'number';
       offsetMode.bottom = typeof offsetBottom === 'number';
     }
-    const { scrollTop, clientHeight, } = document.documentElement;
+    const { scrollTop, clientHeight, } = window.document.body;
     if (rootElm.offsetTop < scrollTop && offsetMode.top) {
       // 设置占位高宽
       this.setPlaceholderStyle({ ...elemSize })
