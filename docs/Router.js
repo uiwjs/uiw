@@ -2,7 +2,7 @@ import { HashRouter, Route, Switch, Redirect, withRouter, Link } from 'react-rou
 import React, { Component } from 'react';
 import locales from './locales';
 import Bundle from "./lazyload";
-import { Icon } from "../src";
+import { Icon, version } from "../src";
 import Logo from "./assets/logo.svg";
 import ScrollToTop from 'react-scroll-up';
 
@@ -224,8 +224,8 @@ const RoutersContainer = withRouter(({ history, location, ...props }) => {
         <div className={`${prefixCls}-menu-content`}>
           <div className={`${prefixCls}-logo`}>
             <a href="https://uiw-react.github.io">
-              <img src={Logo} />
-              <span>uiw <sup>beta</sup></span>
+              <img src={Logo} alt="logo" />
+              <span>uiw <i className="version">{version} </i> <sup>beta</sup></span>
             </a>
           </div>
           <ul className={`${prefixCls}-menu-list`}>
