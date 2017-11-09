@@ -7,6 +7,8 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 ##  v1.2.15
 
+`2017-11-09`
+
 - 📝 docs: Document add version information display. [40295b6](https://github.com/uiw-react/uiw/commit/40295b615f4bd64083aeb938fcb606051b89ddf8)
 - 🌟 feat(version):add version get api. [fe3b6fb](https://github.com/uiw-react/uiw/commit/fe3b6fbcf76c8a36b79739562c424c83235c422f)
 - 🌟 feat: Add Affix component. [d33921b](https://github.com/uiw-react/uiw/commit/d33921ba8e824a28df7d9896fa802648f8dccf8f)
@@ -26,6 +28,8 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 ##  v1.2.14
 
+`2017-11-07`
+
 - 🌟 feat(Paging): Add a mini show. - [17d6fea](https://github.com/uiw-react/uiw/commit/17d6feab066d446ad58273d5fca7f99b2073164e)
 - 📝 docs(Paging): Add alignment parameter example. - [6d208d4](https://github.com/uiw-react/uiw/commit/6d208d4fa1ef7034b106b727b2f46252beecfa8e)
 - 🌟 feat(Paging): Add alignment parameters. - [a136b2d](https://github.com/uiw-react/uiw/commit/a136b2dfd5093b0aa47c718ae7177ad3f0e2ff92)
@@ -43,6 +47,8 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 - 🌟 Add change log. - [ba95928](https://github.com/uiw-react/uiw/commit/ba95928acaabe6da3cb507d906fc70aa9c88de92)
 
 ## v1.2.13
+
+`2017-11-05`
 
 - 📝 Update collapse component docs. - [b8adc03](https://github.com/uiw-react/uiw/commit/b8adc03784f6e11d4834c5c1c5bbd656eee6c840) 
 - 📝 Update carousel example. - [038cd4d](https://github.com/uiw-react/uiw/commit/038cd4d4028e10456470bf523d08ee3e7c8379fd) 
@@ -64,6 +70,8 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 - 🐞 style(Modal): Modify the mask style. - [c1f4281](https://github.com/uiw-react/uiw/commit/c1f42814906211669bbb239d4d032b8047fcfe2b) 
 
 ## v1.2.12
+
+`2017-11-02`
 
 - 📝 docs: Menu add icon. - [6fabe0b](https://github.com/uiw-react/uiw/commit/6fabe0b04ac087c5989cb7c9c8d0e2cd6c72968f) 
 - 🐞 style(TimePicker): Change icon. - [229d216](https://github.com/uiw-react/uiw/commit/229d216ae1ad913a5546ef9d18166346c9c9c70a) 
@@ -93,6 +101,8 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 ## v1.2.10
 
+`2017-11-30`
+
 - 🐞 Fix file reference error. - [5e7ff94](https://github.com/uiw-react/uiw/commit/5e7ff942d32b3e6cddd459703db6c43b696dcff0) 
 - 🌟 Add a Progress component circle effect. - [52798a1](https://github.com/uiw-react/uiw/commit/52798a12f75a6a53ecb92378a54a0b70e0740e45) 
 - 📝 Update Button component document. - [b189877](https://github.com/uiw-react/uiw/commit/b189877dc33d0fd8d796f636e0990d3d960d9fda) 
@@ -101,3 +111,15 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 - 🌟 Add the Progress component. - [fd72d36](https://github.com/uiw-react/uiw/commit/fd72d362bff7822dd15a518f98cc591b3264dcdf) 
 - 🐞 Fix Avatar component Safari browser alignment issues. - [fbffea6](https://github.com/uiw-react/uiw/commit/fbffea6fc10d71f2cbf8ad2c8962aada3cdcc4f9) 
 - 🌟 Add an example of using Avatar component images. - [ce2a1ce](https://github.com/uiw-react/uiw/commit/ce2a1ce002ffc0eb57ef37bcbc5eef405c6e0308) 
+
+## v1.2.9
+
+`2017-11-29`
+
+- 🌟 Add the Avatar component. [e6b3c32](https://github.com/uiw-react/uiw/commit/e6b3c32318b79ee7b4a085b18907f630f3076e6c)
+- 🐞 Change the Badge style. [e4ea572](https://github.com/uiw-react/uiw/commit/e4ea5722c58cc581d8832253ca69818064331a36)
+- 🌍 Add favicons. [3b6c696](https://github.com/uiw-react/uiw/commit/3b6c696a3e7d62d71d9b58703998b27d9b746e31)
+- 📖 Document add back to top features. [fbcdf57](https://github.com/uiw-react/uiw/commit/fbcdf57dc0f90dd69c03358e6f20588dd04971b6)
+- 📓 Add the MIT License [45235ea](https://github.com/uiw-react/uiw/commit/45235eaf16266f2f79bdfa4166e64be658500f36)
+- 📖 Update Document.
+- 🐞 Update the deploy script.
