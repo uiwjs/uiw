@@ -4,6 +4,9 @@
   </a>
 </p>
 <p align="center">
+  <a href="https://travis-ci.org/uiw-react/uiw">
+    <img src="https://api.travis-ci.org/uiw-react/uiw.svg?branch=master">
+  </a>
   <a href="https://github.com/uiw-react/uiw/issues">
     <img src="https://img.shields.io/github/issues/uiw-react/uiw.svg">
   </a>
