@@ -2,7 +2,6 @@ import React from 'react';
 import { Component, PropTypes } from '../utils/';
 import Icon from '../icon/';
 
-// const isLeft = e => (e.clientX - e.target.getBoundingClientRect().left) * 2 <= e.target.parentNode.clientWidth;
 export default class Rate extends Component {
   constructor(props) {
     super(props);

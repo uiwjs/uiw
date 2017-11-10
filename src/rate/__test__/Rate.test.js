@@ -50,4 +50,8 @@ describe('<Rate>', () => {
     expect(wrapper.find('.w-rate li').at(4).prop('className')).toBe('')
     expect(wrapper.find('.w-rate li').at(5).length).toBe(0)
   });
+  it('Test count attributes.', () => {
+    wrapper.setProps({ value: 2, color: "#d80000" });
+    console.log("===>", wrapper.find('.w-rate li').at(0).html())
+  });
 })
