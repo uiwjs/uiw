@@ -171,14 +171,6 @@ render() {
         />
         <br />
         <CheckboxGroup 
-          options={options} 
-          checkedValues={['Pear']} 
-          onChange={(e,checkedValues)=>{
-            console.log('checked = ', checkedValues);
-          }} 
-        />
-        <br />
-        <CheckboxGroup 
           options={optionsWithDisabled} 
           disabled 
           checkedValues={['Apple']} 
@@ -208,11 +200,22 @@ constructor(props) {
     checkedList: ['Apple', 'Pear'],
     indeterminate: true,
     checkAll: false,
+
+    plainOptions:['Apple', 'Pear', 'Orange']
   }
+}
+onChange(e,checkedList,value,checked){
+  const {plainOptions} = this.state
+  console.log("checkedList:",checkedList,value,checked,plainOptions)
+  this.setState({
+    checkedList,
+    indeterminate: !!checkedList.length && (checkedList.length < plainOptions.length),
+    checkAll: checkedList.length === plainOptions.length,
+  });
 }
 render() {
     const defaultCheckedList = ['Apple', 'Orange'];
-    const plainOptions = ['Apple', 'Pear', 'Orange'];
+    const {plainOptions} = this.state
     const options = [
       { value: 'Apple' },
       { value: 'Pear' },
@@ -244,31 +247,16 @@ render() {
         </div>
 
         <CheckboxGroup 
-        options={plainOptions}         
-        checkedValues={this.state.checkedList} 
-        onChange={(e,checkedList,value,checked)=>{
-          this.setState({
-            checkedList,
-            indeterminate: !!checkedList.length && (checkedList.length < plainOptions.length),
-            checkAll: checkedList.length === plainOptions.length,
-          });
-        }} />
-
-        <CheckboxGroup otions={options} checkedValues={this.state.checkedList} 
-        onChange={(e,checkedList,value,checked) => {
-          console.log("indeterminate::",checkedList,value,checked,e)
-          this.setState({
-            checkedList,
-            indeterminate: !!checkedList.length && (checkedList.length < plainOptions.length),
-            checkAll: checkedList.length === plainOptions.length,
-          });
-        }} />
+          options={plainOptions} 
+          checkedValues={this.state.checkedList} 
+          onChange={this.onChange.bind(this)} />
       </div>
     )
 }
 ```
 <!--End-->
 
+## API
 
 ### Checkbox Attributes
 
@@ -278,7 +266,7 @@ render() {
 | disabled | 禁用 | Boolean | false |
 | onChange | 变化时回调函数 | Function(e:Event, checked:Boolean) | - |
 | checked | 指定当前是否选中 | Boolean | false |
-| indeterminate | 半选中，只负责样式控制 | Jay | false |
+| indeterminate | 半选中，只负责样式控制 | Boollean | false |
 
 ### Checkbox Group Attributes
 

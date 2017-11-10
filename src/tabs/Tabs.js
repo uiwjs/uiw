@@ -1,5 +1,5 @@
 import React from 'react';
-import { Component, PropTypes } from '../utils/';
+import { Component, PropTypes, ReactDOM } from '../utils/';
 import Transition from '../transition';
 import Icon from '../icon';
 
@@ -19,15 +19,18 @@ export default class Tabs extends Component {
   componentDidMount() {
     this.updateFirstMount()
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.isFirstMount !== prevState.isFirstMount) {
-      this.calcSlideStyle()
-
+  componentWillReceiveProps(nextProps, nextState) {
+    if (nextProps.position !== this.props.position) {
+      setTimeout(() => {
+        this.calcSlideStyle()
+      })
     }
   }
   updateFirstMount() {
     this.setState({
       isFirstMount: false
+    }, () => {
+      this.calcSlideStyle()
     })
   }
   calcSlideStyle() {
@@ -95,8 +98,13 @@ export default class Tabs extends Component {
               React.Children.map(children, (item, idx) => {
                 const { label, disabled } = item.props;
                 return (
-                  <Transition in={true}>
-                    <div ref={(elm) => elm && this.tabsBar.push(elm)} className={this.classNames(`${prefixCls}-tab`, {
+                  <Transition ref={(elm) => {
+                    let _elm = ReactDOM.findDOMNode(elm)
+                    if (_elm) {
+                      this.tabsBar.push(_elm)
+                    }
+                  }} in={true} unmountOnExit={false}>
+                    <div className={this.classNames(`${prefixCls}-tab`, {
                       'w-disabled': disabled,
                       'w-active': item.key === activeKey,
                       'w-closable': closable
@@ -116,16 +124,18 @@ export default class Tabs extends Component {
             React.Children.map(children, item => {
               const { key, props } = item;
               return (
-                <Transition in={key === activeKey} sequence={props.sequence ? props.sequence : sequence} mountOnEnter={false} unmountOnExit={false}>
-                  <div ref={(elm) => {
-                    if (elm && key === activeKey) {
-                      // 设置内容高度
-                      let timer = setTimeout(() => {
-                        clearTimeout(timer)
-                        this.refs.tabcon.style.height = elm.clientHeight + 'px';
-                      })
+                <Transition
+                  ref={(elm) => {
+                    let _elm = ReactDOM.findDOMNode(elm);
+                    if (_elm && key === activeKey && _elm.clientHeight && this.refs.tabcon) {
+                      this.refs.tabcon.style.height = _elm.clientHeight + 'px';
                     }
-                  }} className={this.classNames(`${prefixCls}-pane`, {
+                  }}
+                  in={key === activeKey} sequence={props.sequence ? props.sequence : sequence}
+                  mountOnEnter={false}
+                  unmountOnExit={false}
+                >
+                  <div className={this.classNames(`${prefixCls}-pane`, {
                     'w-disabled': props.disabled,
                   })}> {props.children} </div>
                 </Transition>

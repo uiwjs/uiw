@@ -39,6 +39,7 @@ export default class Select extends Component {
       query: "",   // 多标签使用
       icon: "arrow-down",
       inputWidth: 0,
+      filterItems: [], //搜索到的内容暂存
     }
     this.toggleMenu = this.toggleMenu.bind(this);
     this.onQueryChange = this.onQueryChange.bind(this);
@@ -134,7 +135,12 @@ export default class Select extends Component {
   onQueryChange(query) {
     const { options } = this.state;
     const { filterable } = this.props;
-    filterable && options.forEach((option) => option.queryChange(query));
+    let filterItems = []
+    filterable && options.forEach((option) => {
+      let visible = option.queryChange(query)
+      if (visible) filterItems.push(option);
+    });
+    this.setState({ filterItems })
   }
   // 触发onChange事件
   onSelectedChange(option) {
@@ -290,14 +296,15 @@ export default class Select extends Component {
   }
   render() {
     const { prefixCls, size, name, clearable, multiple, filterable, disabled, children, ...resetProps } = this.props;
-    const { visible, inputWidth, selectedLabel } = this.state;
+    const { visible, inputWidth, selectedLabel, filterItems, query } = this.state;
+
     return (
       <div
         {...resetProps}
         ref="root"
         className={this.classNames(`${prefixCls}`, {
           "unfold": this.state.visible, // 是否展开
-          "w-multiple": multiple
+          [`${prefixCls}-multiple`]: multiple
         })}
       >
         {this.renderMultipleTags()}
@@ -328,7 +335,7 @@ export default class Select extends Component {
             }}
           >
             <ul className={`${prefixCls}-warp`}>
-              {children}
+              {filterable && query && filterItems && filterItems.length === 0 ? <li>Not Fount</li> : children}
             </ul>
           </Popper>
         </Transition>

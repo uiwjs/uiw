@@ -83,7 +83,7 @@ body::selection {
     margin-right: 10px;
   }
   span{
-    color: #909090;
+    color: #fff;
     font-size: 18px;
   }
   a{
@@ -97,6 +97,13 @@ body::selection {
   a:focus{
     text-decoration: none;
   }
+  .version{
+    font-size: 12px;
+    color: #6f6f6f;
+  }
+  sup{
+    color: #6f6f6f;
+  }
 }
 
 .w-docs-menu-list{
@@ -105,6 +112,10 @@ body::selection {
     color: #909090;
     font-size: 14px;
     text-shadow: 0 1px rgba(0, 0, 0, 0.26);
+  }
+  li{
+    margin: 0;
+    list-style: none;
   }
 }
 .w-docs-menu-item{
@@ -160,9 +171,13 @@ body::selection {
     margin: 20px 0 5px 0;
   }
   code{
-    color:#a71d5d;
-    font-weight: bold;
-    padding:0 3px;
+    color: #4a4a4a;
+    padding: 0 3px;
+    padding: 2px 3px 2px 3px;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(27,31,35,0.05);
+    border-radius: 3px;
   }
   pre > code{
     overflow: auto;
@@ -215,6 +230,9 @@ body::selection {
     background-color: #efefef;
     padding: 0;
     overflow: auto;
+    pre[class*="language-"]{
+      margin-bottom: 0;
+    }
   }
   .w-docs-demo-control{
     cursor: pointer;

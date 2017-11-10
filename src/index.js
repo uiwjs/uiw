@@ -1,6 +1,7 @@
 export { default as Layout } from './layout';
 export { default as Alert } from './alert/';
 export { default as Avatar } from './avatar/';
+export { default as Affix } from './affix/';
 export { default as Button } from './button/';
 export { default as Breadcrumb } from './breadcrumb/';
 export { default as Badge } from './badge/';
@@ -34,3 +35,4 @@ export { default as Radio } from './radio/';
 export { default as Notification } from './notification/';
 export { default as Carousel } from './carousel/';
 export { default as Form } from './form/';
+export { default as version } from './version';

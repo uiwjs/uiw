@@ -15,10 +15,10 @@ render() {
       <Paging activePage={5} total={250} onChange={(pageNumber)=>{
         console.log('Page: ', pageNumber);
         }}/>
-        <br /><br />
+        <br />
       <Paging total={60} onChange={(pageNumber)=>{
         console.log('Page: ', pageNumber);
-          }}/>
+      }}/>
     </div>
   )
 }
@@ -31,10 +31,54 @@ render() {
 ```js
 render() {
   return (
+    <Paging activePage={1} total={5} onChange={(pageNumber) => { 
+      console.log(`pageNumber:${pageNumber}`)
+    }} />
+  )
+}
+```
+<!--End-->
+
+### 迷你分页
+
+<!--DemoStart--> 
+```js
+render() {
+  return (
+    <Paging size="small" activePage={1} total={250} onChange={(pageNumber) => { 
+      console.log(`pageNumber:${pageNumber}`)
+    }} />
+  )
+}
+```
+<!--End-->
+
+### 对齐
+
+目前有三种对齐方式 `左边(left)`、`中间(center)`、`右边(right)`
+
+<!--DemoStart--> 
+```js
+render() {
+  let cls = {padding: "10px 10px",background: "#f5f5f5",marginBottom:20}
+  let clsLast = {padding: "10px 10px",background: "#f5f5f5",marginBottom:0}
+  return (
     <div>
-      <Paging activePage={1} total={5} onChange={(pageNumber) => { 
-        console.log(`pageNumber:${pageNumber}`)
-      }} />
+      <div style={cls}>
+        <Paging activePage={5} total={250} onChange={(pageNumber) => { 
+          console.log(`pageNumber:${pageNumber}`)
+        }} />
+      </div>
+      <div style={cls}>
+        <Paging alignment="center" activePage={5} total={250}  onChange={(pageNumber) => { 
+          console.log(`pageNumber:${pageNumber}`)
+        }} />
+      </div>
+      <div style={clsLast}>
+        <Paging alignment="right" activePage={5} total={250}  onChange={(pageNumber) => { 
+          console.log(`pageNumber:${pageNumber}`)
+        }} />
+      </div>
     </div>
   )
 }
@@ -47,7 +91,9 @@ render() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |------ |-------- |---------- |-------- |
-| total | 数据总数 | number | 0 |
-| activePage | 当前页数，选中的页数 | number | 1 |
-| pageSize | 每页条数 | number | 10 |
+| total | 数据总数 | Number | 0 |
+| size | 当为`small`时，是小尺寸分页 | String | - |
+| alignment | 对齐 | Enum{`left`, `center`, `right`} | `left` |
+| activePage | 当前页数，选中的页数 | Number | 1 |
+| pageSize | 每页条数 | Number | 10 |
 | onChange | 页码改变的回调，返回改变后的页码 | Function(activePage,total,pageSize) | - |

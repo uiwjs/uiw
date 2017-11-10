@@ -31,7 +31,7 @@ export default class Paging extends Component {
     }
   }
   render() {
-    const { prefixCls, className, style, total, pageSize, onChange } = this.props;
+    const { prefixCls, className, style, alignment, size, total, pageSize, onChange } = this.props;
     const { activePage } = this.state;
 
     let items = [];
@@ -40,7 +40,7 @@ export default class Paging extends Component {
     items.push(
       <li key='prev' onClick={() => this.onPrevOrNext('prev')} className={this.classNames(`${prefixCls}-prev`, {
         [`${prefixCls}-disable`]: activePage === 1
-      })}><a>&nbsp;</a></li>
+      })}></li>
     )
 
     let curActvePage = activePage;
@@ -79,10 +79,13 @@ export default class Paging extends Component {
     items.push(
       <li key='next' onClick={() => this.onPrevOrNext('next')} className={this.classNames(`${prefixCls}-next`, {
         [`${prefixCls}-disable`]: activePage === totalPage || activePage > totalPage
-      })}><a>&nbsp;</a></li>
+      })}></li>
     )
     return (
-      <ul style={style} className={this.classNames(prefixCls, className)}>
+      <ul style={style} className={this.classNames(prefixCls, className, {
+        [`${prefixCls}-alignment-${alignment}`]: alignment,
+        [`${prefixCls}-${size}`]: size,
+      })}>
         {items}
       </ul>
     );
@@ -92,6 +95,8 @@ export default class Paging extends Component {
 
 Paging.defaultProps = {
   prefixCls: 'w-paging',
+  alignment: 'left',
+  size: '',
   total: 0,        // 数据总数
   pageSize: 10,    // 每页条数
   activePage: 1,   // 当前页数，选中的页数
@@ -99,7 +104,9 @@ Paging.defaultProps = {
 }
 Paging.propTypes = {
   prefixCls: PropTypes.string,
+  alignment: PropTypes.oneOf(['left', 'center', 'right']),
   total: PropTypes.number,
+  size: PropTypes.string,
   pageSize: PropTypes.number,
   activePage: PropTypes.number,
   onChange: PropTypes.func,

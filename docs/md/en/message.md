@@ -32,7 +32,7 @@ render() {
 
           
           <Button size="small" onClick={()=>{
-            Message.error('This is an error Message.')
+            Message.error('This is an error Message.',{duration:4})
           }}>
             error
           </Button>  

@@ -2,7 +2,7 @@ import { HashRouter, Route, Switch, Redirect, withRouter, Link } from 'react-rou
 import React, { Component } from 'react';
 import locales from './locales';
 import Bundle from "./lazyload";
-import { Icon } from "../src";
+import { Icon, version } from "../src";
 import Logo from "./assets/logo.svg";
 import ScrollToTop from 'react-scroll-up';
 
@@ -10,6 +10,7 @@ import ScrollToTop from 'react-scroll-up';
 import QuickStart from 'bundle-loader?lazy&name=quick-start!./pages/quick-start';
 import Theme from 'bundle-loader?lazy&name=theme!./pages/theme';
 import Avatar from 'bundle-loader?lazy&name=avatar!./pages/avatar';
+import affix from 'bundle-loader?lazy&name=affix!./pages/affix';
 import Color from 'bundle-loader?lazy&name=color!./pages/color';
 import Collapse from 'bundle-loader?lazy&name=collapse!./pages/collapse';
 import changelog from 'bundle-loader?lazy&name=changelog!./pages/changelog';
@@ -34,6 +35,7 @@ import tabs from 'bundle-loader?lazy&name=tabs!./pages/tabs';
 import tooltip from 'bundle-loader?lazy&name=tooltip!./pages/tooltip';
 import tag from 'bundle-loader?lazy&name=tag!./pages/tag';
 import rate from 'bundle-loader?lazy&name=rate!./pages/rate';
+import recommendation from 'bundle-loader?lazy&name=recommendation!./pages/recommendation';
 import badge from 'bundle-loader?lazy&name=badge!./pages/badge';
 import menu from 'bundle-loader?lazy&name=menu!./pages/menu';
 import paging from 'bundle-loader?lazy&name=paging!./pages/paging';
@@ -79,6 +81,7 @@ const routes = {
     { path: "/:lang/quick-start", exact: true, component: asyncComponent(QuickStart) },
     { path: "/:lang/theme", component: asyncComponent(Theme) },
     { path: "/:lang/changelog", component: asyncComponent(changelog) },
+    { path: "/:lang/recommendation", component: asyncComponent(recommendation) },
   ],
   components: {
     'Basic': [
@@ -114,6 +117,7 @@ const routes = {
       { path: "/:lang/tooltip", component: asyncComponent(tooltip) },
     ],
     'Navigation': [
+      { path: "/:lang/affix", component: asyncComponent(affix) },
       { path: "/:lang/menu", component: asyncComponent(menu) },
       { path: "/:lang/tabs", component: asyncComponent(tabs) },
       { path: "/:lang/paging", component: asyncComponent(paging) },
@@ -220,8 +224,8 @@ const RoutersContainer = withRouter(({ history, location, ...props }) => {
         <div className={`${prefixCls}-menu-content`}>
           <div className={`${prefixCls}-logo`}>
             <a href="https://uiw-react.github.io">
-              <img src={Logo} />
-              <span>uiw <sup>beta</sup></span>
+              <img src={Logo} alt="logo" />
+              <span>uiw <i className="version">{version} </i> <sup>beta</sup></span>
             </a>
           </div>
           <ul className={`${prefixCls}-menu-list`}>
@@ -242,7 +246,7 @@ const RoutersContainer = withRouter(({ history, location, ...props }) => {
         <Switch>
           {getRoutes()}
         </Switch>
-        <ScrollToTop showUnder={160} style={{ bottom: 20 }}>
+        <ScrollToTop showUnder={160} style={{ bottom: 20, zIndex: 999 }}>
           <div className={`${prefixCls}-totop`}></div>
         </ScrollToTop>
       </div>

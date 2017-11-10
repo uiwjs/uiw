@@ -1,9 +1,9 @@
 @import "../../style/variables.less";
 @import "../../style/mixins/index.less";
 
-.w-paging{
+@w-paging: ~"w-paging";
+.@{w-paging}{
   position: relative;
-  display: inline-block;
   user-select: none;
   font-size: 12px;
   li{
@@ -16,40 +16,8 @@
     position: relative;
     cursor: pointer;
     transition: background-color @transition-time @transition-timing-functio,box-shadow @transition-time @transition-timing-functio;
-    &.w-paging-prev a,&.w-paging-next a{
-      display: inline-block;
-      &:after{
-        content: "";
-        display: inline-block;
-        height: 6px;
-        position: relative;
-        width: 6px;
-        border: solid @paging-color;
-        border-width: 0 0 1px 1px;
-        top: -2px;
-      }
-    }
-    &.w-paging-prev a{
-      &:after{
-        transform: rotate(@paging-icon-prev-rotate);
-        left: 2px;
-      }
-    }
-    &.w-paging-next a{
-      &:after{
-        transform: rotate(@paging-icon-next-rotate);
-        left: -1px;
-      }
-    }
-    &.w-paging-disable{
-      cursor: @cursor-disabled;
-      a{
-        cursor: @cursor-disabled;
-      }
-      a:after{
-        border-color:@paging-disable-color;
-      }
-    }
+    margin: 0 0 0 0;
+    background: #fff;
     a {
       text-decoration: none;
       color: @paging-color;
@@ -69,11 +37,78 @@
     &:last-child{
       border-radius: 0 @border-radius-base @border-radius-base 0;
     }
-    &.w-paging-active{
-      background-color: @paging-active-bg-color;
-      &:active{
-        box-shadow:inset 0 0 0 rgba(0, 0, 0, 0);
-      }
+  }
+  li&-active{
+    background-color: @paging-active-bg-color;
+    &:active{
+      box-shadow:inset 0 0 0 rgba(0, 0, 0, 0);
     }
+  }
+  &-prev,&-next{
+    display: inline-block;
+    &:after{
+      content: " ";
+      display: inline-block;
+      height: 6px;
+      position: relative;
+      width: 6px;
+      border: solid @paging-color;
+      border-width: 0 0 1px 1px;
+      top: -2px;
+      margin: 0 10px;
+    }
+  }
+  &-prev:after{
+    transform: rotate(@paging-icon-prev-rotate);
+    left: 2px;
+  }
+  &-next:after{
+    transform: rotate(@paging-icon-next-rotate);
+    left: -1px;
+  }
+  &-prev&-disable,&-next&-disable{
+    cursor: @cursor-disabled;
+    &:active{
+      box-shadow: inset 0 8px 42px -12px rgba(0, 0, 0, 0);
+    }
+  }
+  &-disable{
+    cursor: @cursor-disabled;
+    a{
+      cursor: @cursor-disabled;
+    }
+    &:after{
+      border-color:@paging-disable-color;
+    }
+  }
+  &-alignment-center{
+    text-align: center;
+  }
+  &-alignment-right{
+    text-align: right;
+  }
+  &&-small li&-prev,&&-small li&-next{
+    &:after{
+      top: -1px;
+      margin: 0 5px;
+    }
+  }
+  &&-small li{
+    border: 0;
+    line-height: 21px;
+    height: 21px;
+    margin: 0 2px;
+    &:first-child,&:last-child{
+      border-radius: 4px;
+    }
+    &:hover{
+      border-radius: 4px;
+    }
+    a{
+      margin: 0 6px;
+    }
+  }
+  &&-small &-active{
+    border-radius: 5px;
   }
 }

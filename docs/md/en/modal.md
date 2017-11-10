@@ -342,7 +342,9 @@ render() {
         <Modal 
           title="Modal Title" 
           visible={this.state.visible}
-          onOk={this.handleOk} // 点击确定提交按钮
+          onOk={()=>{
+            this.setState({visible:false})
+          }} // 点击确定提交按钮
           width={600}          // 有默认值可以不传递
           style={{top: 20}}    // 可以设定容器的位置以及样式
           onCancel={()=>{
@@ -532,6 +534,8 @@ render() {
 | maskClosable | 点击蒙层是否允许关闭 | boolean | true |
 | styleMask | 遮罩层样式 | object | - |
 | style | 可用于设置浮层的样式，调整浮层位置等 | object | - |
+| onEntered | 动画进入完成，`<Transition>` 动画库方法 | Function | - |
+| onExited | 动画退出完成，`<Transition>` 动画库方法 | Function | - |
 
 
 
