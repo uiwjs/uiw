@@ -2,6 +2,7 @@ import React from 'react';
 import { Component, PropTypes } from '../utils/';
 import Icon from '../icon/';
 
+// const isLeft = e => (e.clientX - e.target.getBoundingClientRect().left) * 2 <= e.target.parentNode.clientWidth;
 export default class Rate extends Component {
   constructor(props) {
     super(props);
@@ -13,31 +14,32 @@ export default class Rate extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState({ ...nextProps })
   }
-  onClick(e) {
+  onClick(e, key) {
     const { disabled, onChange } = this.props;
-    const { hoverIndex } = this.state;
+    let value = this.getValue(e, key)
     if (disabled) return;
     this.setState({
-      value: hoverIndex
+      value: value
     }, () => {
-      onChange(e, hoverIndex)
+      onChange(e, value)
     })
   }
-  onMouseMove(e, k) {
-    const { disabled, onHoverChange, allowHalf } = this.props;
-    let value = k
-    if (disabled) return;
+  getValue(e, key) {
+    let value = key
+    const { allowHalf } = this.props;
+    let isLeft = (e.clientX - e.target.getBoundingClientRect().left) * 2 <= e.target.parentNode.clientWidth
     if (allowHalf) {
       e.persist();
-      let isLeft = (e.clientX - e.target.getBoundingClientRect().left) * 2 <= e.target.parentNode.clientWidth;
-      if (isLeft) {
-        value = k + 0.5;
-      } else {
-        value = k + 1;
-      }
+      value = isLeft ? key + 0.5 : key + 1;
     } else {
-      value = k + 1;
+      value = key + 1;
     }
+    return value
+  }
+  onMouseMove(e, k) {
+    const { disabled, onHoverChange } = this.props;
+    let value = this.getValue(e, k)
+    if (disabled) return;
     this.setState({
       hoverIndex: value
     }, () => {
@@ -65,13 +67,13 @@ export default class Rate extends Component {
     const { value, hoverIndex } = this.state;
     return hoverIndex === 0 ? k < value : k < hoverIndex;
   }
-  tempArray(count){
+  tempArray(count) {
     let arr = []
-    for(let i=0;i< count;i++) arr.push(i);
+    for (let i = 0; i < count; i++) arr.push(i);
     return arr;
   }
   render() {
-    const { prefixCls, count, className, allowHalf, disabled, onHoverChange, color, ...other } = this.props;
+    const { prefixCls, count, className, allowHalf, disabled, value, onHoverChange, color, ...other } = this.props;
     return (
       <ul {...other} className={this.classNames(className, `${prefixCls}`)}
         onMouseLeave={(e) => this.onMouseLeave(e)}
