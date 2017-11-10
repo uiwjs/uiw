@@ -4,11 +4,17 @@ import { Rate } from '../../../src';
 
 describe('<Rate>', () => {
   const warpperState = {
-    value: 0
+    value: 0,
+    hoverValue: 0,
   };
-  var wrapper = mount(<Rate onChange={(e, value) => {
-    warpperState.value = value
-  }}></Rate>);
+  var wrapper = mount(<Rate
+    onHoverChange={(e, value) => {
+      console.log("value:", value)
+      warpperState.hoverValue = value
+    }}
+    onChange={(e, value) => {
+      warpperState.value = value
+    }}></Rate>);
   it('Test the default props and node.', () => {
     expect(wrapper.name()).toBe('Rate');
     // 默认值测试
@@ -50,8 +56,15 @@ describe('<Rate>', () => {
     expect(wrapper.find('.w-rate li').at(4).prop('className')).toBe('')
     expect(wrapper.find('.w-rate li').at(5).length).toBe(0)
   });
-  it('Test count attributes.', () => {
-    wrapper.setProps({ value: 2, color: "#d80000" });
-    console.log("===>", wrapper.find('.w-rate li').at(0).html())
+  it('Test color attributes.', () => {
+    wrapper.setProps({ value: 5, color: "rgb(216, 0, 0)" });
+    expect(wrapper.find('.w-rate li').at(0).find('i').at(1).html()).toContain('<i class="w-icon-star-on" style="color: rgb(216, 0, 0);"></i>')
+  });
+
+  it('Test onHoverChange event.', () => {
+    let rate2 = wrapper.find('.w-rate li').at(3);
+    rate2.simulate('mousemove');
+    expect(warpperState.hoverValue).toBe(4);
+    expect(rate2.at(0).find('i').at(1).html()).toContain('<i class="w-icon-star-on" style="color: rgb(216, 0, 0);"></i>')
   });
 })
