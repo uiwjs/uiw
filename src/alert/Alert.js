@@ -7,31 +7,23 @@ export default class Alert extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: props.visible,
-      tranVisible: true,
+      visible: props.visible
     }
   }
+
   componentWillReceiveProps(nextProps, nextState) {
     this.setState({ ...nextProps })
     if (nextProps.visible !== this.props.visible) {
       this.removeRootDom();
     }
   }
-  // 删除根节点
-  removeRootDom() {
-    this.timeout = setTimeout(() => {
-      this.setState({
-        tranVisible: false
-      })
-      clearTimeout(this.timeout)
-    }, 300)
-  }
+
   handleClose(e) {
     e && e.preventDefault();
     this.setState({ visible: false })
-    this.props.onClose(e);
-    this.removeRootDom();
+    this.props.onClose && this.props.onClose(e);
   }
+
   render() {
     const { prefixCls, type, message, showIcon, onClose, closable, description, className, children, transition, visible, ...others } = this.props;
     let icon;
@@ -50,6 +42,7 @@ export default class Alert extends Component {
       [`${prefixCls}-icon-description`]: description,
       [className]: className
     });
+
     return (
       <Transition in={this.state.visible} sequence={transition}  { ...others }>
         <div className={cls}>
@@ -68,7 +61,7 @@ Alert.propTypes = {
   visible: PropTypes.bool,
   showIcon: PropTypes.bool,
   transition: PropTypes.string,
-  message:  PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+  message: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   closable: PropTypes.bool,
   description: PropTypes.string,
   onClose: PropTypes.func,
@@ -80,5 +73,4 @@ Alert.defaultProps = {
   visible: true,
   showIcon: false,
   closable: false,
-  onClose() { },
 }
