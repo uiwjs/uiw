@@ -12,13 +12,20 @@ export default class Radio extends Component {
     const checked = e.target.checked;
     const { children } = this.props;
     if (checked) {
-      if (this.props.onChange) {
-        this.props.onChange(e, (this.props.value || children), checked);
-      }
+      this.props.onChange(e, (this.props.value || children), checked);
+    }
+  }
+  // fixed jest test error.
+  componentWillReceiveProps(nextProps) {
+    if (this.props.checked !== nextProps.checked) {
+      this.setState({ checked: nextProps.checked }, () => {
+        this.refs.radio.checked = nextProps.checked;
+      })
     }
   }
   render() {
-    const { prefixCls, className, children, onChange, checked, disabled, value, ...other } = this.props;
+    const { prefixCls, className, children, onChange, disabled, value, ...other } = this.props;
+    const { checked } = this.state;
     const cls = this.classNames(`${prefixCls}`, className, {
       'disabled': disabled, // 禁用状态
       'checked': checked,   // 选中
@@ -26,7 +33,7 @@ export default class Radio extends Component {
     return (
       <label {...other} className={cls}>
         <span className={`${prefixCls}-inner`}>
-          <input type="radio" disabled={disabled} checked={checked} value={value || children} onChange={this.handleChange.bind(this)} />
+          <input ref="radio" type="radio" disabled={disabled} value={value || children} onChange={this.handleChange.bind(this)} />
         </span>
         <span className={`${prefixCls}-text`}>{children || value}</span>
       </label>
