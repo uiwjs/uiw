@@ -13,9 +13,6 @@ export default class Alert extends Component {
 
   componentWillReceiveProps(nextProps, nextState) {
     this.setState({ ...nextProps })
-    if (nextProps.visible !== this.props.visible) {
-      this.removeRootDom();
-    }
   }
 
   handleClose(e) {
