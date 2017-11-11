@@ -9,4 +9,6 @@ dist
 src
 package-lock.json
 yarn.lock
-.cache
+.cachetest
+.travis.yml
+.babelrc
