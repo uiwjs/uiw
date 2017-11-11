@@ -5,7 +5,34 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
-##  v1.2.15
+## v1.2.16
+
+`2017-11-11`
+
+- remove useless code : [@Xing-He](https://github.com/Xing-He) [1f9a409](https://github.com/uiw-react/uiw/commit/1f9a40975faeafd7d61e985a4f8f2dc6bbc89cbe)
+- add test cases of Component Alert. : [@Xing-He](https://github.com/Xing-He) [3b19d4a](https://github.com/uiw-react/uiw/commit/3b19d4af5165b0b925e29b6f76e1e64d5ed134fc)
+- remove useless props function and format code : [@Xing-He](https://github.com/Xing-He) [8ef6cbf](https://github.com/uiw-react/uiw/commit/8ef6cbf6cca6b5731d2ab5b3f832143cbf33b92f)
+- Update .npmignore file. [f3aa184](https://github.com/uiw-react/uiw/commit/f3aa1840d47a392339df72850c759b95bd715929)
+- test: Radio add a test case. [792d703](https://github.com/uiw-react/uiw/commit/792d703e772bbd9d2665a0760cc4d219f7de0972)
+- docs: Change docs style. [44021e5](https://github.com/uiw-react/uiw/commit/44021e5da259e1a141defcffd4457af1c4760326)
+- fixed(Radio): Fixed checked attribute error in jest. [15fb1f1](https://github.com/uiw-react/uiw/commit/15fb1f15883f08544ce242781b2f266eb9066c48)
+- Update recommendation.md : [@margox](https://github.com/margox) [f6afa10](https://github.com/uiw-react/uiw/commit/f6afa10d4116c0b40500a806932c1cb2ce4c2bb4)
+- test:Add color attribute and onHoverChange event to add a test case. [a06685a](https://github.com/uiw-react/uiw/commit/a06685a9f72df13d61e2ed053819e560b9e5faa8)
+- Add build Status icon. [2f1422c](https://github.com/uiw-react/uiw/commit/2f1422c1f0df54fb8350c7e0209884dc2506b7b6)
+- Update .travis.yml file. [5820f70](https://github.com/uiw-react/uiw/commit/5820f7097477f4f698b3688b3f313ac105285ee7)
+- clean: Rate delete redundant commits. [862a497](https://github.com/uiw-react/uiw/commit/862a4973eb55dee22e8304f91a6c6e8b30e8cce1)
+- test: Rate add a test case. [2e5347e](https://github.com/uiw-react/uiw/commit/2e5347ea97616ca6e81861cc9aa73e7e88052209)
+- Update .gitignore. [fe6b706](https://github.com/uiw-react/uiw/commit/fe6b706a7097a30683fd2210b966d48b64589ddb)
+- Add a test framework. [6a21ffe](https://github.com/uiw-react/uiw/commit/6a21ffed80675f3356227dc0370cd10536cd351a)
+- fix(Rate): Fix the return value accuracy. [fa01826](https://github.com/uiw-react/uiw/commit/fa0182667c8a1744ce451abe05c84fc620fee948)
+- Update .gitignore file. [86f6f75](https://github.com/uiw-react/uiw/commit/86f6f751d111f0e98507d912a4035e97d6289386)
+- website:Change website styles. [1379308](https://github.com/uiw-react/uiw/commit/1379308587163122840ced9b41980b1a10f59b3a)
+- doc: Update change log. [6dd28a6](https://github.com/uiw-react/uiw/commit/6dd28a66967321a50f46424654c4403a371e3541)
+- docs:Remove the space between the names. [fbcb56f](https://github.com/uiw-react/uiw/commit/fbcb56f25848e3834c4940a00fe593452e61d4b1)
+- fix(Affix): Brower compatible bug. [d8a726d](https://github.com/uiw-react/uiw/commit/d8a726d996d9cfb766504fc2c005d9eb048e42b7)
+- Add v1.2.14 update log. [805321f](https://github.com/uiw-react/uiw/commit/805321fa597cc2391cfcf11615bcb32f7f6fb43b)
+
+## v1.2.15
 
 `2017-11-09`
 
@@ -26,7 +53,7 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 - 🌟 Update uiw-iconfont, Add  swap-left icon.. [149fbae](https://github.com/uiw-react/uiw/commit/149fbae9f04467318167d48dce4db27d7ee2d477)
 - 📝 docs:Update English document file. [6d92bc7](https://github.com/uiw-react/uiw/commit/6d92bc769a69baf7098eb6627d50992552d8e56a)
 
-##  v1.2.14
+## v1.2.14
 
 `2017-11-07`
 
@@ -36,8 +63,8 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 - 🐞 Style(Paging):Adjust the Paging component arrow style. - [c9c3f56](https://github.com/uiw-react/uiw/commit/c9c3f5672117b8ac6a9c5fc533d6ad65a344df0e)
 - 🐞 Style(Paging): Adjust the paging component style. - [901e511](https://github.com/uiw-react/uiw/commit/901e511dec7727c9aee2d89672d9eb5a3d3816f4)
 - 🐞 Optimize Tag.Group status updates [#4](https://github.com/uiw-react/uiw/pull/4)  - [6750128](https://github.com/uiw-react/uiw/commit/675012821bcf6c325978346e77c325a22fbe1a35)
-- 🐞 TagGroup 动态添加数据 点击删除无法获取相应数据问题 - [1e5b350](https://github.com/uiw-react/uiw/commit/1e5b3508513c72d1c1cd45fbdc2a4cf198420664) - [kooff88](https://github.com/kooff88) 
-- 📝 Update README.md  - [65d4e6d](https://github.com/uiw-react/uiw/commit/65d4e6d3969da43e5c6b9fceb4835f81f1662d62) - [kooff88](https://github.com/kooff88)
+- 🐞 TagGroup 动态添加数据 点击删除无法获取相应数据问题 - [1e5b350](https://github.com/uiw-react/uiw/commit/1e5b3508513c72d1c1cd45fbdc2a4cf198420664) - [@kooff88](https://github.com/kooff88) 
+- 📝 Update README.md  - [65d4e6d](https://github.com/uiw-react/uiw/commit/65d4e6d3969da43e5c6b9fceb4835f81f1662d62) - [@kooff88](https://github.com/kooff88)
 - 📝 docs: Change docs style. - [f773502](https://github.com/uiw-react/uiw/commit/f7735026ca10785082edb1c768691f80326f37a9)
 - 🐞 fix: Controls the initial font size of all components. - [daeda01](https://github.com/uiw-react/uiw/commit/daeda01dbd8ef20d112f6d140c7d489019c05356)
 - 📝 docs:Change style. - [6285282](https://github.com/uiw-react/uiw/commit/6285282e2f2601ca720e6381dcf340f585effa67)
