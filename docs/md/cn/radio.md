@@ -10,13 +10,15 @@ Radio 单选框
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Radio onChange={(e,value)=>{
-        console.log(`values= ${value}`,value)
-    }}>Radio
-    </Radio>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Radio onChange={(e,value)=>{
+          console.log(`values= ${value}`,value)
+      }}>Radio
+      </Radio>
+    )
+  }
 }
 ```
 <!--End-->
@@ -25,22 +27,24 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: 1
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 1
+    }
   }
-}
-onChange(e,value) {
-  this.setState({ value });
-}
-render() {
-  return (
-    <div>
-      <Radio value={1} checked={this.state.value === 1} onChange={this.onChange.bind(this)}>备选项</Radio>
-      <Radio value={2} checked={this.state.value === 2} onChange={this.onChange.bind(this)}>备选项</Radio>
-    </div>
-  )
+  onChange(e,value) {
+    this.setState({ value });
+  }
+  render() {
+    return (
+      <div>
+        <Radio value={1} checked={this.state.value === 1} onChange={this.onChange.bind(this)}>备选项</Radio>
+        <Radio value={2} checked={this.state.value === 2} onChange={this.onChange.bind(this)}>备选项</Radio>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -49,22 +53,24 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: 1
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 1
+    }
   }
-}
-onChange(e,value) {
-  this.setState({ value });
-}
-render() {
-  return (
-    <div>
+  onChange(e,value) {
+    this.setState({ value });
+  }
+  render() {
+    return (
+      <div>
         <Radio disabled={true}>禁用</Radio>
         <Radio disabled={true} checked={true}>禁用</Radio>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -76,23 +82,25 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: 3
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 3
+    }
   }
-}
-onChange(e,value) {
-  this.setState({ value });
-}
-render() {
-  return (
-    <Radio.Group value={this.state.value} onChange={this.onChange.bind(this)}>
-      <Radio value="3">备选项</Radio>
-      <Radio disabled={true} value="6">备选项</Radio>
-      <Radio value="9">备选项</Radio>
-    </Radio.Group>
-  )
+  onChange(e,value) {
+    this.setState({ value });
+  }
+  render() {
+    return (
+      <Radio.Group value={this.state.value} onChange={this.onChange.bind(this)}>
+        <Radio value="3">备选项</Radio>
+        <Radio disabled={true} value="6">备选项</Radio>
+        <Radio value="9">备选项</Radio>
+      </Radio.Group>
+    )
+  }
 }
 ```
 <!--End-->
@@ -104,48 +112,50 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value1: "乔布斯",
-    value2: "乔纳森",
-    value3: "比尔盖茨"
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value1: "乔布斯",
+      value2: "乔纳森",
+      value3: "比尔盖茨"
+    }
   }
-}
-onChange(key,e ,value) {
-  this.setState({
-    [key]: value
-  });
-}
-render() {
-  const plainOptions = ['乔布斯', '比尔盖茨', '乔纳森'];
-  const options = [
-    {label: '乔布斯', value: '乔布斯' },
-    {label: '比尔盖茨', value: '比尔盖茨' },
-    {label: '乔纳森', value: '乔纳森' },
-  ];
-  const optionsDisabled = [
-    {label: '乔布斯', value: '乔布斯' },
-    {label: '比尔盖茨', value: '比尔盖茨' },
-    {label: '乔纳森', value: '乔纳森' ,disabled: true },
-  ];
-  return (
-    <div>
-      <Radio.Group options={plainOptions} value={this.state.value1} 
-        onChange={this.onChange.bind(this,'value1')} />
-      
-      <br/><br/>
-      
-      <Radio.Group options={options} value={this.state.value2} 
-        onChange={this.onChange.bind(this,'value2')} />
-      
-      <br/><br/>
-
-      <Radio.Group options={optionsDisabled} value={this.state.value3} 
-        onChange={this.onChange.bind(this,'value3')} />
+  onChange(key,e ,value) {
+    this.setState({
+      [key]: value
+    });
+  }
+  render() {
+    const plainOptions = ['乔布斯', '比尔盖茨', '乔纳森'];
+    const options = [
+      {label: '乔布斯', value: '乔布斯' },
+      {label: '比尔盖茨', value: '比尔盖茨' },
+      {label: '乔纳森', value: '乔纳森' },
+    ];
+    const optionsDisabled = [
+      {label: '乔布斯', value: '乔布斯' },
+      {label: '比尔盖茨', value: '比尔盖茨' },
+      {label: '乔纳森', value: '乔纳森' ,disabled: true },
+    ];
+    return (
+      <div>
+        <Radio.Group options={plainOptions} value={this.state.value1} 
+          onChange={this.onChange.bind(this,'value1')} />
         
-    </div>
-  )
+        <br/><br/>
+        
+        <Radio.Group options={options} value={this.state.value2} 
+          onChange={this.onChange.bind(this,'value2')} />
+        
+        <br/><br/>
+
+        <Radio.Group options={optionsDisabled} value={this.state.value3} 
+          onChange={this.onChange.bind(this,'value3')} />
+          
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -156,34 +166,36 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: 3
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 3
+    }
   }
-}
-onChange(e,value) {
-  this.setState({ value });
-}
-render() {
-  const radioStyle = {
-    display: 'block',
-    height: '30px',
-    lineHeight: '30px',
-    marginLeft:0
-  };
-  return (
-    <Radio.Group value={this.state.value} onChange={this.onChange.bind(this)}>
-      <Radio style={radioStyle} value="3">备选项</Radio>
-      <Radio style={radioStyle} value="6">备选项</Radio>
-      <Radio style={radioStyle} value="9">选择显示输入框哦
-        {this.state.value === "9" ? <Input style={{ 
-          width: 100, 
-          marginLeft: 10,
-          display: "inline-block"}} /> : null}
-      </Radio>
-    </Radio.Group>
-  )
+  onChange(e,value) {
+    this.setState({ value });
+  }
+  render() {
+    const radioStyle = {
+      display: 'block',
+      height: '30px',
+      lineHeight: '30px',
+      marginLeft:0
+    };
+    return (
+      <Radio.Group value={this.state.value} onChange={this.onChange.bind(this)}>
+        <Radio style={radioStyle} value="3">备选项</Radio>
+        <Radio style={radioStyle} value="6">备选项</Radio>
+        <Radio style={radioStyle} value="9">选择显示输入框哦
+          {this.state.value === "9" ? <Input style={{ 
+            width: 100, 
+            marginLeft: 10,
+            display: "inline-block"}} /> : null}
+        </Radio>
+      </Radio.Group>
+    )
+  }
 }
 ```
 <!--End-->
@@ -194,23 +206,25 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: 3
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 3
+    }
   }
-}
-onChange(e,value) {
-  this.setState({ value });
-}
-render() {
-  return (
-    <Radio.Group value={this.state.value} onChange={this.onChange.bind(this)}>
-      <Radio.Button value="3">备选项</Radio.Button>
-      <Radio.Button disabled={true} value="6">备选项</Radio.Button>
-      <Radio.Button value="9">备选项</Radio.Button>
-    </Radio.Group>
-  )
+  onChange(e,value) {
+    this.setState({ value });
+  }
+  render() {
+    return (
+      <Radio.Group value={this.state.value} onChange={this.onChange.bind(this)}>
+        <Radio.Button value="3">备选项</Radio.Button>
+        <Radio.Button disabled={true} value="6">备选项</Radio.Button>
+        <Radio.Button value="9">备选项</Radio.Button>
+      </Radio.Group>
+    )
+  }
 }
 ```
 <!--End-->

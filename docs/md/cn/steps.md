@@ -9,15 +9,17 @@ Steps 步骤条
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Steps current={1} style={{padding:"20px 0"}}>
-      <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。" />
-      <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
-      <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />
-      <Steps.Step title="步骤四" description="这里是步骤一的说明，可以很长很长哦。" />
-    </Steps>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Steps current={1} style={{padding:"20px 0"}}>
+        <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。" />
+        <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
+        <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />
+        <Steps.Step title="步骤四" description="这里是步骤一的说明，可以很长很长哦。" />
+      </Steps>
+    )
+  }
 }
 ```
 <!--End-->
@@ -28,15 +30,17 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Steps current={1} style={{padding:"20px 0"}}>
-      <Steps.Step title="步骤一" />
-      <Steps.Step title="步骤二" />
-      <Steps.Step title="步骤三" />
-      <Steps.Step title="步骤四" />
-    </Steps>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Steps current={1} style={{padding:"20px 0"}}>
+        <Steps.Step title="步骤一" />
+        <Steps.Step title="步骤二" />
+        <Steps.Step title="步骤三" />
+        <Steps.Step title="步骤四" />
+      </Steps>
+    )
+  }
 }
 ```
 <!--End-->
@@ -47,14 +51,16 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Steps current={1} style={{padding:"20px 0"}}>
-      <Steps.Step icon={<Icon type="user"/>} title="注册" description="这里是步骤一的说明，可以很长很长哦。" />
-      <Steps.Step icon={<Icon type="picture"/>} title="上传头像" description="这里是步骤一的说明，可以很长很长哦。" />
-      <Steps.Step icon='message' title="验证邮箱" description="这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。" />
-    </Steps>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Steps current={1} style={{padding:"20px 0"}}>
+        <Steps.Step icon={<Icon type="user"/>} title="注册" description="这里是步骤一的说明，可以很长很长哦。" />
+        <Steps.Step icon={<Icon type="picture"/>} title="上传头像" description="这里是步骤一的说明，可以很长很长哦。" />
+        <Steps.Step icon='message' title="验证邮箱" description="这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。" />
+      </Steps>
+    )
+  }
 }
 ```
 <!--End-->
@@ -65,15 +71,17 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Steps current={2} status="error" style={{padding:"20px 0"}}>
-      <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。" />
-      <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
-      <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />
-      <Steps.Step title="步骤四" description="这里是步骤一的说明，可以很长很长哦。" />
-    </Steps>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Steps current={2} status="error" style={{padding:"20px 0"}}>
+        <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。" />
+        <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
+        <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />
+        <Steps.Step title="步骤四" description="这里是步骤一的说明，可以很长很长哦。" />
+      </Steps>
+    )
+  }
 }
 ```
 <!--End-->
@@ -84,15 +92,17 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Steps progressDot status="error" current={2} style={{padding:"20px 0"}}>
-      <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。" />
-      <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
-      <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />
-      <Steps.Step title="步骤四" description="这里是步骤一的说明，可以很长很长哦。" />
-    </Steps>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Steps progressDot status="error" current={2} style={{padding:"20px 0"}}>
+        <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。" />
+        <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
+        <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />
+        <Steps.Step title="步骤四" description="这里是步骤一的说明，可以很长很长哦。" />
+      </Steps>
+    )
+  }
 }
 ```
 <!--End-->
@@ -103,8 +113,9 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
+class Demo extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       current: 0,
       steps:[{
@@ -158,6 +169,7 @@ constructor(props) {
       </div>
     );
   }
+}
 ```
 <!--End-->
 
@@ -167,28 +179,30 @@ constructor(props) {
 
 <!--DemoStart--> 
 ```js
-render() {
-  const {Row,Col} = Layout;
-  return (
-    <Row gutter="20">
-      <Col md="12" xs="24">
-        <Steps current={1} direction="vertical" style={{padding:"20px 0"}}>
-          <Steps.Step title="已完成" description="这里是该步骤的描述信息" />
-          <Steps.Step title="进行中" description="这里是该步骤的描述信息" />
-          <Steps.Step title="待进行" description="这里是该步骤的描述信息" />
-          <Steps.Step title="待进行" description="这里是该步骤的描述信息" />
-        </Steps>
-      </Col>
-      <Col md="12" xs="24">
-        <Steps direction="vertical" progressDot status="error" current={2} style={{padding:"20px 0"}}>
-          <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。" />
-          <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
-          <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />
-          <Steps.Step title="步骤四" description="这里是步骤一的说明，可以很长很长哦。" />
-        </Steps>
-      </Col>
-    </Row>
-  )
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    return (
+      <Row gutter="20">
+        <Col md="12" xs="24">
+          <Steps current={1} direction="vertical" style={{padding:"20px 0"}}>
+            <Steps.Step title="已完成" description="这里是该步骤的描述信息" />
+            <Steps.Step title="进行中" description="这里是该步骤的描述信息" />
+            <Steps.Step title="待进行" description="这里是该步骤的描述信息" />
+            <Steps.Step title="待进行" description="这里是该步骤的描述信息" />
+          </Steps>
+        </Col>
+        <Col md="12" xs="24">
+          <Steps direction="vertical" progressDot status="error" current={2} style={{padding:"20px 0"}}>
+            <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。" />
+            <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
+            <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />
+            <Steps.Step title="步骤四" description="这里是步骤一的说明，可以很长很长哦。" />
+          </Steps>
+        </Col>
+      </Row>
+    )
+  }
 }
 ```
 <!--End-->

@@ -9,9 +9,10 @@ Tooltip 文字提示
 <!--DemoStart--> 
 最简单的用法。
 ```js
-render() {
-  return (
-    <div>
+class Demo extends Component {
+  render() {
+    return (
+      <div>
         <Tooltip content="文字提示" style={{marginRight:"20px"}}>
           <Button>上边文字提示</Button>
         </Tooltip>
@@ -27,8 +28,9 @@ render() {
         <Tooltip placement="right" content="文字提示"  style={{marginRight:"20px"}}>
           <Button>右边文字提示</Button>
         </Tooltip>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -41,17 +43,19 @@ render() {
 <!--DemoStart--> 
 `content`属性也可以是`ReactElement`。
 ```js
-render() {
-  return (
-    <Tooltip placement="right" content={
+class Demo extends Component {
+  render() {
+    return (
+      <Tooltip placement="right" content={
         <div>
-            <div>标题</div>
-            <p>展示多行文本或者是设置文本内容的格式</p>
+          <div>标题</div>
+          <p>展示多行文本或者是设置文本内容的格式</p>
         </div>
-    }>
-      <Button>右边多行文字</Button>
-    </Tooltip>
-  )
+      }>
+        <Button>右边多行文字</Button>
+      </Tooltip>
+    )
+  }
 }
 ```
 <!--End-->
@@ -64,10 +68,11 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  const text = <span>提示文字</span>;
-  return (
-    <div style={{ marginLeft: 60 }}>
+class Demo extends Component {
+  render() {
+    const text = <span>提示文字</span>;
+    return (
+      <div style={{ marginLeft: 60 }}>
         <div style={{ marginLeft: 60 }}>
           <Tooltip style={{ marginRight: 20}} placement="topLeft" content={text}>
             <Button>上左</Button>
@@ -81,9 +86,9 @@ render() {
         </div>
         <div style={{ width: 60, float: 'left' }}>
           <Tooltip placement="leftTop" content={<div>
-              <div>文字提示</div>
-              <div>这里是文字描述！</div>
-              <div>这里是文字描述！</div>
+            <div>文字提示</div>
+            <div>这里是文字描述！</div>
+            <div>这里是文字描述！</div>
           </div>}>
             <Button>左上</Button>
           </Tooltip>
@@ -93,9 +98,9 @@ render() {
           </Tooltip>
           <br/><br/>
           <Tooltip placement="leftBottom" content={<div>
-              <div>文字提示</div>
-              <div>这里是文字描述！</div>
-              <div>这里是文字描述！</div>
+            <div>文字提示</div>
+            <div>这里是文字描述！</div>
+            <div>这里是文字描述！</div>
           </div>}>
             <Button>左下</Button>
           </Tooltip>
@@ -110,9 +115,9 @@ render() {
           </Tooltip>
           <br/><br/>
           <Tooltip placement="rightBottom" content={<div>
-              <div>文字提示</div>
-              <div>这里是文字描述！</div>
-              <div>这里是文字描述！</div>
+            <div>文字提示</div>
+            <div>这里是文字描述！</div>
+            <div>这里是文字描述！</div>
           </div>}>
             <Button>右下</Button>
           </Tooltip>
@@ -120,9 +125,9 @@ render() {
         </div>
         <div style={{ marginLeft: 60, clear: 'both' }}>
           <Tooltip style={{ marginRight: 20}} placement="bottomLeft" content={<div>
-              <div>文字提示</div>
-              <div>这里是文字描述！</div>
-              <div>这里是文字描述！</div>
+            <div>文字提示</div>
+            <div>这里是文字描述！</div>
+            <div>这里是文字描述！</div>
           </div>}>
             <Button>下左</Button>
           </Tooltip>
@@ -133,8 +138,9 @@ render() {
             <Button>下右</Button>
           </Tooltip>
         </div>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -146,17 +152,19 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
+class Demo extends Component {
+  render() {
+    return (
+      <div>
         <Tooltip content="文字提示" style={{marginRight:"20px"}}>
           <Button>上边文字提示</Button>
         </Tooltip>
         <Tooltip effect="light" content="文字提示">
           <Button>上边文字提示</Button>
         </Tooltip>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -169,23 +177,25 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props){
-  super(props);
-  this.state = {
-    disabled: false
+class Demo extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      disabled: false
+    }
   }
-}
-render() {
-  return (
-    <div>
-      <Tooltip disabled={ this.state.disabled } content="点击关闭 Tooltip 功能">
-        <Button onClick={ e => this.setState({ disabled: true}) }>点击关闭   Tooltip 功能</Button>
-      </Tooltip> &nbsp;
-      <Button onClick={ e => this.setState({ disabled: false}) }>
-         启用前面按钮的提示
-      </Button>
-    </div>
-  )
+  render() {
+    return (
+      <div>
+        <Tooltip disabled={ this.state.disabled } content="点击关闭 Tooltip 功能">
+          <Button onClick={ e => this.setState({ disabled: true}) }>点击关闭   Tooltip 功能</Button>
+        </Tooltip> &nbsp;
+        <Button onClick={ e => this.setState({ disabled: false}) }>
+          启用前面按钮的提示
+        </Button>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -197,12 +207,14 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Tooltip placement="right" trigger="click" content="文字提示" >
-      <Button>点击</Button>
-    </Tooltip>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Tooltip placement="right" trigger="click" content="文字提示" >
+        <Button>点击</Button>
+      </Tooltip>
+    )
+  }
 }
 ```
 <!--End-->
@@ -211,27 +223,29 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props){
-  super(props);
-  this.state = {
-    str: '-'
+class Demo extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      str: '-'
+    }
   }
-}
-render() {
-  return (
-    <div>
-        <Tooltip content="文字提示"
-        onVisibleChange={(isVisible)=>{
-            console.log("isVisible::",isVisible)
-            this.setState({
-                str:isVisible?"显示了！":"隐藏了！"
-            })
-        }}>
-          鼠标移动到此处，显示和消失触发事件
-        </Tooltip>
-        <div style={{paddingTop:"20px"}}>显示状态：{this.state.str}</div>
-    </div>
-  )
+  render() {
+    return (
+      <div>
+          <Tooltip content="文字提示"
+          onVisibleChange={(isVisible)=>{
+              console.log("isVisible::",isVisible)
+              this.setState({
+                  str:isVisible?"显示了！":"隐藏了！"
+              })
+          }}>
+            鼠标移动到此处，显示和消失触发事件
+          </Tooltip>
+          <div style={{paddingTop:"20px"}}>显示状态：{this.state.str}</div>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -242,26 +256,28 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props){
-  super(props);
-  this.state = {
-    visible: false
+class Demo extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      visible: false
+    }
   }
-}
-render() {
-  const {visible} = this.state;
-  return (
-    <div>
-    <Tooltip trigger="click" visible={visible} content="文字提示"  style={{marginRight:"20px"}}>
-      <div>手动控</div>
-    </Tooltip>
-    <Button onClick={()=>{
-        this.setState({
-            visible:!visible
-        })
-    }}>点击</Button>
-    </div>
-  )
+  render() {
+    const {visible} = this.state;
+    return (
+      <div>
+      <Tooltip trigger="click" visible={visible} content="文字提示"  style={{marginRight:"20px"}}>
+        <div>手动控</div>
+      </Tooltip>
+      <Button onClick={()=>{
+          this.setState({
+              visible:!visible
+          })
+      }}>点击</Button>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -273,12 +289,14 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Tooltip placement="right" visibleArrow={false} content="文字提示"  style={{marginRight:"20px"}}>
-      <Button>不显示箭头</Button>
-    </Tooltip>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Tooltip placement="right" visibleArrow={false} content="文字提示"  style={{marginRight:"20px"}}>
+        <Button>不显示箭头</Button>
+      </Tooltip>
+    )
+  }
 }
 ```
 <!--End-->
@@ -290,20 +308,22 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
-    <Tooltip placement="right" leaveDelay={6000} content="文字提示"  style={{marginRight:"20px"}}>
-      <Button>hove延迟6s消失</Button>
-    </Tooltip>
-    <Tooltip placement="right" leaveDelay={6000} trigger="click" content="文字提示"  style={{marginRight:"20px"}}>
-      <Button>点击延迟6s消失</Button>
-    </Tooltip>
-    <Tooltip placement="right" enterDelay={2000}  leaveDelay={6000} content="文字提示"  style={{marginRight:"20px"}}>
-      <Button>鼠标悬停在按钮上延迟2s进入</Button>
-    </Tooltip>
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+      <Tooltip placement="right" leaveDelay={6000} content="文字提示"  style={{marginRight:"20px"}}>
+        <Button>hove延迟6s消失</Button>
+      </Tooltip>
+      <Tooltip placement="right" leaveDelay={6000} trigger="click" content="文字提示"  style={{marginRight:"20px"}}>
+        <Button>点击延迟6s消失</Button>
+      </Tooltip>
+      <Tooltip placement="right" enterDelay={2000}  leaveDelay={6000} content="文字提示"  style={{marginRight:"20px"}}>
+        <Button>鼠标悬停在按钮上延迟2s进入</Button>
+      </Tooltip>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->

@@ -10,12 +10,14 @@ Badge 标记
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Badge count={ 12 }>
-      <Button size="small">评论</Button>
-    </Badge>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Badge count={ 12 }>
+        <Button size="small">评论</Button>
+      </Badge>
+    )
+  }
 }
 ```
 <!--End-->
@@ -27,32 +29,34 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  const {Row,Col} = Layout;
-  return (
-    <Row gutter="20" style={{width:280}}>
-      <Col span="6">
-        <Badge count={ 99 }>
-          <Button size="small">评论</Button>
-        </Badge>
-      </Col>
-      <Col span="6">
-        <Badge count={ 100 }>
-          <Button size="small">回复</Button>
-        </Badge>
-      </Col>
-      <Col span="6">
-        <Badge count={ 99 } max={10}>
-          <Button size="small">点赞</Button>
-        </Badge>
-      </Col>
-      <Col span="6">
-        <Badge count={ 1000 } max={999}>
-          <Button size="small">打分</Button>
-        </Badge>
-      </Col>
-    </Row>
-  )
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    return (
+      <Row gutter="20" style={{width:280}}>
+        <Col span="6">
+          <Badge count={ 99 }>
+            <Button size="small">评论</Button>
+          </Badge>
+        </Col>
+        <Col span="6">
+          <Badge count={ 100 }>
+            <Button size="small">回复</Button>
+          </Badge>
+        </Col>
+        <Col span="6">
+          <Badge count={ 99 } max={10}>
+            <Button size="small">点赞</Button>
+          </Badge>
+        </Col>
+        <Col span="6">
+          <Badge count={ 1000 } max={999}>
+            <Button size="small">打分</Button>
+          </Badge>
+        </Col>
+      </Row>
+    )
+  }
 }
 ```
 <!--End-->
@@ -63,21 +67,23 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  const {Row,Col} = Layout;
-  return (
-    <Row gutter="20" style={{width:150}}>
-      <Col span="6">
-        <Badge count={25} /> 
-      </Col>
-      <Col span="6">
-        <Badge count={4} style={{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset' }} /> 
-      </Col>
-      <Col span="6">
-        <Badge count={109} style={{ backgroundColor: '#87d068' }} /> 
-      </Col>
-    </Row>
-  )
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    return (
+      <Row gutter="20" style={{width:150}}>
+        <Col span="6">
+          <Badge count={25} /> 
+        </Col>
+        <Col span="6">
+          <Badge count={4} style={{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset' }} /> 
+        </Col>
+        <Col span="6">
+          <Badge count={109} style={{ backgroundColor: '#87d068' }} /> 
+        </Col>
+      </Row>
+    )
+  }
 }
 ```
 <!--End-->
@@ -88,22 +94,24 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  const {Row,Col} = Layout;
-  return (
-    <Row gutter="20" style={{width:350}}>
-      <Col span="6">
-        <Badge dot>
-          数据查询
-        </Badge>
-      </Col>
-      <Col span="6">
-        <Badge dot count={4}>
-          <Icon type='message-o' />
-        </Badge>
-      </Col>
-    </Row>
-  )
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    return (
+      <Row gutter="20" style={{width:350}}>
+        <Col span="6">
+          <Badge dot>
+            数据查询
+          </Badge>
+        </Col>
+        <Col span="6">
+          <Badge dot count={4}>
+            <Icon type='message-o' />
+          </Badge>
+        </Col>
+      </Row>
+    )
+  }
 }
 ```
 <!--End-->
@@ -114,34 +122,36 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    checked: true,
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checked: true,
+    }
   }
-}
-render() {
-  const {Row,Col} = Layout;
-  const {checked} = this.state;
-  return (
-    <Row gutter="20" style={{width:350}}>
-      <Col span="6">
-        <Badge dot count={checked?1:0}>
-          数据查询
-        </Badge>
-      </Col>
-      <Col span="6">
-        <Switch 
-          checked={this.state.checked}
-          onChange={(e,checked)=>{
-            this.setState({
-              checked:checked
-            })
-            console.log(`${checked?"选中":'没有选中'}`)
-        }}/>
-      </Col>
-    </Row>
-  )
+  render() {
+    const {Row,Col} = Layout;
+    const {checked} = this.state;
+    return (
+      <Row gutter="20" style={{width:350}}>
+        <Col span="6">
+          <Badge dot count={checked?1:0}>
+            数据查询
+          </Badge>
+        </Col>
+        <Col span="6">
+          <Switch 
+            checked={this.state.checked}
+            onChange={(e,checked)=>{
+              this.setState({
+                checked:checked
+              })
+              console.log(`${checked?"选中":'没有选中'}`)
+          }}/>
+        </Col>
+      </Row>
+    )
+  }
 }
 ```
 <!--End-->

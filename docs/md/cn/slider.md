@@ -9,21 +9,23 @@ Slider 滑块
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: 20
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 20
+    }
   }
-}
-render() {
-  return (
-    <div>
-      <Slider value={this.state.value} 
-        onChange={(value)=>console.log(`Value: ${value}`)} 
-        onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
-      />
-    </div>
-  )
+  render() {
+    return (
+      <div>
+        <Slider value={this.state.value} 
+          onChange={(value)=>console.log(`Value: ${value}`)} 
+          onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+        />
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -33,21 +35,23 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: 50
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 50
+    }
   }
-}
-render() {
-  return (
-    <div>
-      <Slider disabled value={this.state.value} 
-        onChange={(value)=>console.log(`Value: ${value}`)} 
-        onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
-      />
-    </div>
-  )
+  render() {
+    return (
+      <div>
+        <Slider disabled value={this.state.value} 
+          onChange={(value)=>console.log(`Value: ${value}`)} 
+          onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+        />
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -57,23 +61,25 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
-      <Slider  
-        color="#57a2ff"
-        value={50} 
-        onChange={(value)=>console.log(`Value: ${value}`)} 
-        onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
-      />
-      <Slider  
-        color="#d700da"
-        value={20} 
-        onChange={(value)=>console.log(`Value: ${value}`)} 
-        onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
-      />
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <Slider  
+          color="#57a2ff"
+          value={50} 
+          onChange={(value)=>console.log(`Value: ${value}`)} 
+          onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+        />
+        <Slider  
+          color="#d700da"
+          value={20} 
+          onChange={(value)=>console.log(`Value: ${value}`)} 
+          onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+        />
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -83,25 +89,27 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: 20
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 20
+    }
   }
-}
-render() {
-  return (
-    <div style={{height:200}}>
-      <Slider disabled style={{display:'inline-block'}} vertical value={this.state.value} 
-        onChange={(value)=>console.log(`Value: ${value}`)} 
-        onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
-      />
-      <Slider style={{display:'inline-block'}} vertical value={70} 
-        //onChange={(value)=>console.log(`Value: ${value}`)} 
-        //onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
-      />
-    </div>
-  )
+  render() {
+    return (
+      <div style={{height:200}}>
+        <Slider disabled style={{display:'inline-block'}} vertical value={this.state.value} 
+          onChange={(value)=>console.log(`Value: ${value}`)} 
+          onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+        />
+        <Slider style={{display:'inline-block'}} vertical value={70} 
+          //onChange={(value)=>console.log(`Value: ${value}`)} 
+          //onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+        />
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -112,98 +120,102 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: 0
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 0,
+      marks:{
+        0:"0°C",
+        10:"10°C",
+        20:"20°C",
+        100:{
+          style: {
+            color: '#f50',
+          },
+          label: <strong>100°C</strong>,
+        },
+      },
+      marks2:{
+        0:"0°C",
+        20:"20°C",
+        40:"40°C",
+        60:"60°C",
+        80:"80°C",
+        100:{
+          style: {
+            color: '#f50',
+          },
+          label: <strong>100°C</strong>,
+        },
+      }
+    }
   }
-}
-render() {
-  return (
-    <div>
-      <div style={{height:30}}>
-        <Slider value={20}
-          marks={{
-            0:"0°C",
-            10:"10°C",
-            20:"20°C",
-            100:{
-              style: {
-                color: '#f50',
-              },
-              label: <strong>100°C</strong>,
-            },
-          }} 
-          step={10}
-          dots={true}
-          onChange={(value)=>{
-            this.setState({
-              value:value
-            })
-            console.log(`Value: ${value}`)
-          }} 
-          onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
-        />
+  render() {
+    return (
+      <div>
+        <div style={{height:30}}>
+          <Slider value={20}
+            marks={this.state.marks} 
+            step={10}
+            dots={true}
+            onChange={(value)=>{
+              this.setState({
+                value:value
+              })
+              console.log(`Value: ${value}`)
+            }} 
+            onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+          />
+        </div>
+        <div style={{height:30}}>
+          <Slider value={30}
+            marks={true} 
+            step={10}
+            onChange={(value)=>{
+              this.setState({
+                value:value
+              })
+              console.log(`Value: ${value}`)
+            }} 
+            onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+          />
+        </div>
+        <div style={{height:200,width:100,display:'inline-block'}}>
+          <Slider value={40}
+            marks={{
+              20:"20°C"
+            }} 
+            vertical
+            step={10}
+            onChange={(value)=>{
+              this.setState({
+                value:value
+              })
+              console.log(`Value: ${value}`,value)
+            }} 
+            onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+          />
+        </div>
+        <div style={{height:200,display:'inline-block'}}>
+          <Slider 
+            value={80}
+            marks={this.state.marks2} 
+            vertical
+            step={20}
+            dots={true}
+            onChange={(value)=>{
+              this.setState({
+                value:value
+              })
+              console.log(`Value: ${value}`)
+            }} 
+            onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+          />
+        </div>
       </div>
-      <div style={{height:30}}>
-        <Slider value={30}
-          marks={true} 
-          step={10}
-          onChange={(value)=>{
-            this.setState({
-              value:value
-            })
-            console.log(`Value: ${value}`)
-          }} 
-          onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
-        />
-      </div>
-      <div style={{height:200,width:100,display:'inline-block'}}>
-        <Slider value={40}
-          marks={{
-            20:"20°C"
-          }} 
-          vertical
-          step={10}
-          onChange={(value)=>{
-            this.setState({
-              value:value
-            })
-            console.log(`Value: ${value}`,value)
-          }} 
-          onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
-        />
-      </div>
-      <div style={{height:200,display:'inline-block'}}>
-        <Slider 
-          value={80}
-          marks={{
-            0:"0°C",
-            20:"20°C",
-            40:"40°C",
-            60:"60°C",
-            80:"80°C",
-            100:{
-              style: {
-                color: '#f50',
-              },
-              label: <strong>100°C</strong>,
-            },
-          }} 
-          vertical
-          step={20}
-          dots={true}
-          onChange={(value)=>{
-            this.setState({
-              value:value
-            })
-            console.log(`Value: ${value}`)
-          }} 
-          onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
-        />
-      </div>
-    </div>
-  )
+    )
+  }
 }
 ```
 <!--End-->
@@ -215,105 +227,94 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
-      <div style={{height:60}}>
-        <Slider value={[0,30]}
-          marks={{
-            [-50]:{
-              style: { color: '#007cce'},
-              label: "-50°C",
-            },
-            [-40]:{
-              style: { color: '#0094f5'},
-              label: "-40°C",
-            },
-            [-30]:"-30°C",
-            [-20]:"-20°C",
-            [-10]:"-10°C",
-            0:"0°C",
-            10:"10°C",
-            20:"20°C",
-            30:{
-              style: { color: '#f50'},
-              label: "30°C",
-            },
-            40:"40°C",
-            50:"50°C",
-          }} 
-          max={50}
-          min={-50}
-          step={10}
-          dots={true}
-          onChange={(value)=>{
-            console.log(`Value: ${value}`)
-          }} 
-          //onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
-        />
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 0,
+      marks:{
+        [-50]:{
+          style: { color: '#007cce'},
+          label: "-50°C",
+        },
+        [-40]:{
+          style: { color: '#0094f5'},
+          label: "-40°C",
+        },
+        [-30]:"-30°C",
+        [-20]:"-20°C",
+        [-10]:"-10°C",
+        0:"0°C",
+        10:"10°C",
+        20:"20°C",
+        30:{
+          style: { color: '#f50'},
+          label: "30°C",
+        },
+        40:"40°C",
+        50:"50°C",
+      },
+      marks2:{
+        0:"0°C",
+        10:"10°C",
+        20:"20°C",
+        30:{
+          style: {
+            color: '#f50',
+          },
+          label: <strong>30°C</strong>,
+        },
+        40:"40°C",
+        50:"50°C",
+      },
+    }
+  }
+  render() {
+    return (
+      <div>
+        <div style={{height:60}}>
+          <Slider value={[0,30]}
+            marks={this.state.marks} 
+            max={50}
+            min={-50}
+            step={10}
+            dots={true}
+            onChange={(value)=>{
+              console.log(`Value: ${value}`)
+            }} 
+            //onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+          />
+        </div>
+        <div style={{height:200,width:150,display:'inline-block'}}>
+          <Slider value={[0,30]}
+            marks={this.state.marks2} 
+            max={50}
+            vertical
+            step={10}
+            dots={true}
+            onChange={(value)=>{
+              console.log(`Value: ${value}`)
+            }} 
+            //onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+          />
+        </div>
+        <div style={{height:200,display:'inline-block'}}>
+          <Slider value={[0,30]}
+            marks={this.state.marks} 
+            max={50}
+            min={-50}
+            vertical
+            step={10}
+            dots={true}
+            onChange={(value)=>{
+              console.log(`Value: ${value}`)
+            }} 
+            //onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
+          />
+        </div>
       </div>
-      <div style={{height:200,width:150,display:'inline-block'}}>
-        <Slider value={[0,30]}
-          marks={{
-            0:"0°C",
-            10:"10°C",
-            20:"20°C",
-            30:{
-              style: {
-                color: '#f50',
-              },
-              label: <strong>30°C</strong>,
-            },
-            40:"40°C",
-            50:"50°C",
-          }} 
-          max={50}
-          vertical
-          step={10}
-          dots={true}
-          onChange={(value)=>{
-            console.log(`Value: ${value}`)
-          }} 
-          //onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
-        />
-      </div>
-      <div style={{height:200,display:'inline-block'}}>
-        <Slider value={[0,30]}
-          marks={{
-            [-50]:{
-              style: { color: '#007cce'},
-              label: "-50°C",
-            },
-            [-40]:{
-              style: { color: '#0094f5'},
-              label: "-40°C",
-            },
-            [-30]:"-30°C",
-            [-20]:"-20°C",
-            [-10]:"-10°C",
-            0:"0°C",
-            10:"10°C",
-            20:"20°C",
-            30:{
-              style: { color: '#f50'},
-              label: "30°C",
-            },
-            40:"40°C",
-            50:"50°C",
-          }} 
-          max={50}
-          min={-50}
-          vertical
-          step={10}
-          dots={true}
-          onChange={(value)=>{
-            console.log(`Value: ${value}`)
-          }} 
-          //onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
-        />
-      </div>
-    </div>
-  )
+    )
+  }
 }
 ```
 <!--End-->

@@ -7,10 +7,11 @@ Message 全局提示
 
 <!--DemoStart--> 
 ```js
-render() {
-  const ButtonGroup = Button.Group
-  return (
-    <div>
+class Demo extends Component {
+  render() {
+    const ButtonGroup = Button.Group
+    return (
+      <div>
         <ButtonGroup>
           <Button size="small" onClick={()=>{
             Message.success('This is an success Message.')
@@ -38,8 +39,9 @@ render() {
           </Button>  
           
         </ButtonGroup>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -49,19 +51,21 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Button size="small" onClick={()=>{
-      Message.info(
-        <div>
-          <h2>标题</h2>
-          <p>这里是内容</p>
-        </div>
-      )
-    }}>
-      添加HTML输出 
-    </Button> 
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Button size="small" onClick={()=>{
+        Message.info(
+          <div>
+            <h2>标题</h2>
+            <p>这里是内容</p>
+          </div>
+        )
+      }}>
+        添加HTML输出 
+      </Button> 
+    )
+  }
 }
 ```
 <!--End-->
@@ -70,8 +74,9 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
+class Demo extends Component {
+  render() {
+    return (
       <Button size="small" onClick={()=>{
         Message.error('This is an warning Message.',{
           duration:3,
@@ -82,7 +87,8 @@ render() {
       }}>
         error, 自动3s关闭
       </Button>
-  )
+    )
+  }
 }
 ```
 <!--End-->
@@ -91,10 +97,11 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  const ButtonGroup = Button.Group
-  return (
-    <div>
+class Demo extends Component {
+  render() {
+    const ButtonGroup = Button.Group
+    return (
+      <div>
         <ButtonGroup>
           <Button size="small" onClick={()=>{
             Message.success('默认顶部中间.',{placement:"top"})
@@ -127,8 +134,9 @@ render() {
             右边下角
           </Button>
         </ButtonGroup>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 ```
 <!--End-->

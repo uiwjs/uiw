@@ -10,10 +10,12 @@ Rate 评分
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Rate/>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Rate/>
+    )
+  }
 }
 ```
 <!--End-->
@@ -25,10 +27,12 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Rate value={2} disabled={true}/>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Rate value={2} disabled={true}/>
+    )
+  }
 }
 ```
 <!--End-->
@@ -40,13 +44,15 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
-      <Rate value={2} color="#d80000"/> <br/>
-      <Rate value={3.5} allowHalf={true} color="#16a900"/>
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <Rate value={2} color="#d80000"/> <br/>
+        <Rate value={3.5} allowHalf={true} color="#16a900"/>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -58,35 +64,37 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props){
-  super(props);
-  this.state={
-    value:0,
-    hoverValue:0,
-  };
-}
-handleChange(e,value){
-  this.setState({ value });
-}
-render() {
-  const { value,hoverValue } = this.state;
-  let str = '极差';
-  let _value = hoverValue>0 ? hoverValue :value;
-  switch(_value){
-    case 0:str='没有状态';break;
-    case 1:str='极差';break;
-    case 2:str='失望';break;
-    case 3:str='一般';break;
-    case 4:str='满意';break;
-    case 5:str='惊喜';break;
+class Demo extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      value:0,
+      hoverValue:0,
+    };
   }
-  return (
-    <span>
-      <Rate onChange={this.handleChange.bind(this)} value={value} onHoverChange={(e,v)=>this.setState({hoverValue:v})} />
-      {value >-1&& <span> {str} </span>}
-      {hoverValue >-1&& <span>, hover {hoverValue} stars</span>}
-    </span>
-  );
+  handleChange(e,value){
+    this.setState({ value });
+  }
+  render() {
+    const { value,hoverValue } = this.state;
+    let str = '极差';
+    let _value = hoverValue>0 ? hoverValue :value;
+    switch(_value){
+      case 0:str='没有状态';break;
+      case 1:str='极差';break;
+      case 2:str='失望';break;
+      case 3:str='一般';break;
+      case 4:str='满意';break;
+      case 5:str='惊喜';break;
+    }
+    return (
+      <span>
+        <Rate onChange={this.handleChange.bind(this)} value={value} onHoverChange={(e,v)=>this.setState({hoverValue:v})} />
+        {value >-1&& <span> {str} </span>}
+        {hoverValue >-1&& <span>, hover {hoverValue} stars</span>}
+      </span>
+    );
+  }
 }
 ```
 <!--End-->
@@ -98,8 +106,10 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return <Rate value={2.5} allowHalf={true} onChange={(e,val) => console.log(val)} />
+class Demo extends Component {
+  render() {
+    return <Rate value={2.5} allowHalf={true} onChange={(e,val) => console.log(val)} />
+  }
 }
 ```
 <!--End-->

@@ -10,17 +10,19 @@ Checkbox 多选框
 <!--DemoStart--> 
 简单的Checkboxs，使用`checked`切换选中状态。
 ```js
-log(e,value){
-  console.log(`checked = ${e.target.checked} - ${value}`);
-}
-render() {
-  return (
-    <div>
-        <Checkbox onChange={this.log.bind(this)}>未选中</Checkbox>
-        <Checkbox onChange={this.log.bind(this)} checked >选中</Checkbox>
-        <Checkbox onChange={this.log.bind(this)} indeterminate >半选中</Checkbox>
-    </div>
-  )
+class Demo extends Component {
+  log(e,value){
+    console.log(`checked = ${e.target.checked} - ${value}`);
+  }
+  render() {
+    return (
+      <div>
+          <Checkbox onChange={this.log.bind(this)}>未选中</Checkbox>
+          <Checkbox onChange={this.log.bind(this)} checked >选中</Checkbox>
+          <Checkbox onChange={this.log.bind(this)} indeterminate >半选中</Checkbox>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -32,17 +34,19 @@ render() {
 
 <!--DemoStart-->
 ```js
-log(e,value){
-  console.log(`checked = ${e.target.checked} - ${value}`);
-}
-render() {
-  return (
-    <div>
-        <Checkbox disabled onChange={this.log.bind(this)}>未选中禁用</Checkbox>
-        <Checkbox disabled onChange={this.log.bind(this)} checked>选中禁用</Checkbox>
-        <Checkbox disabled onChange={this.log.bind(this)} indeterminate>半选中禁用</Checkbox>
-    </div>
-  )
+class Demo extends Component {
+  log(e,value){
+    console.log(`checked = ${e.target.checked} - ${value}`);
+  }
+  render() {
+    return (
+      <div>
+          <Checkbox disabled onChange={this.log.bind(this)}>未选中禁用</Checkbox>
+          <Checkbox disabled onChange={this.log.bind(this)} checked>选中禁用</Checkbox>
+          <Checkbox disabled onChange={this.log.bind(this)} indeterminate>半选中禁用</Checkbox>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -55,28 +59,30 @@ render() {
 
 <!--DemoStart-->
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    indeterminate: true
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      indeterminate: true
+    }
   }
-}
-log(e,value){
-  console.log(`checked = ${e.target.checked} - ${value}`);
-}
-handleChange(){
-  console.log("!this.state.indeterminate::",!this.state.indeterminate)
-  this.setState({
-    indeterminate:!this.state.indeterminate
-  })
-}
-render() {
-  return (
-    <div>
-      <Checkbox indeterminate={this.state.indeterminate} onChange={this.log.bind(this)}>半选中</Checkbox>
-      <Button size="mini" onClick={this.handleChange.bind(this)}>切换半选中</Button>
-    </div>
-  )
+  log(e,value){
+    console.log(`checked = ${e.target.checked} - ${value}`);
+  }
+  handleChange(){
+    console.log("!this.state.indeterminate::",!this.state.indeterminate)
+    this.setState({
+      indeterminate:!this.state.indeterminate
+    })
+  }
+  render() {
+    return (
+      <div>
+        <Checkbox indeterminate={this.state.indeterminate} onChange={this.log.bind(this)}>半选中</Checkbox>
+        <Button size="mini" onClick={this.handleChange.bind(this)}>切换半选中</Button>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -88,47 +94,49 @@ render() {
 
 <!--DemoStart-->
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    checked3: true,
-    disabled3: true,
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checked3: true,
+      disabled3: true,
+    }
   }
-}
-handleChange(e,value){
-  console.log(`checked = ${e.target.checked} - ${value}`);
-  this.setState({
-    checked3: value,
-  });
-}
-render() {
-  return (
-    <div>
-      <Checkbox checked={this.state.checked3} disabled={this.state.disabled3} 
-        onChange={this.handleChange.bind(this)}>
-        {`${this.state.checked ? 'Checked' : 'Unchecked'}-${this.state.disabled ? 'Disabled' : 'Enabled'}`}
-      </Checkbox>
-      <div style={{padding:"10px 0 0 0"}}>
-        <Button
-          size="mini"
-          onClick={() => {
-            this.setState({ checked3: !this.state.checked3 });
-          }}
-        >
-          {!this.state.checked3 ? 'Check' : 'Uncheck'}
-        </Button>
-        <Button
-          style={{ marginLeft: '10px' }}
-          size="mini"
-          onClick={() => {
-            this.setState({ disabled3: !this.state.disabled3 });
-          }}
-        >
-          {!this.state.disabled3 ? 'Disable' : 'Enable'}
-        </Button>
+  handleChange(e,value){
+    console.log(`checked = ${e.target.checked} - ${value}`);
+    this.setState({
+      checked3: value,
+    });
+  }
+  render() {
+    return (
+      <div>
+        <Checkbox checked={this.state.checked3} disabled={this.state.disabled3} 
+          onChange={this.handleChange.bind(this)}>
+          {`${this.state.checked ? 'Checked' : 'Unchecked'}-${this.state.disabled ? 'Disabled' : 'Enabled'}`}
+        </Checkbox>
+        <div style={{padding:"10px 0 0 0"}}>
+          <Button
+            size="mini"
+            onClick={() => {
+              this.setState({ checked3: !this.state.checked3 });
+            }}
+          >
+            {!this.state.checked3 ? 'Check' : 'Uncheck'}
+          </Button>
+          <Button
+            style={{ marginLeft: '10px' }}
+            size="mini"
+            onClick={() => {
+              this.setState({ disabled3: !this.state.disabled3 });
+            }}
+          >
+            {!this.state.disabled3 ? 'Disable' : 'Enable'}
+          </Button>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 ```
 <!--End-->
@@ -140,14 +148,15 @@ render() {
 
 <!--DemoStart-->
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    checked3: true,
-    disabled3: true,
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checked3: true,
+      disabled3: true,
+    }
   }
-}
-render() {
+  render() {
     const plainOptions = ['Apple', 'Pear', 'Orange'];
     const options = [
       { value: 'Apple' },
@@ -180,6 +189,7 @@ render() {
         />
       </div>
     )
+  }
 }
 ```
 <!--End-->
@@ -191,29 +201,30 @@ render() {
 
 <!--DemoStart-->
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    checked3: true,
-    disabled3: true,
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checked3: true,
+      disabled3: true,
 
-    checkedList: ['Apple', 'Pear'],
-    indeterminate: true,
-    checkAll: false,
+      checkedList: ['Apple', 'Pear'],
+      indeterminate: true,
+      checkAll: false,
 
-    plainOptions:['Apple', 'Pear', 'Orange']
+      plainOptions:['Apple', 'Pear', 'Orange']
+    }
   }
-}
-onChange(e,checkedList,value,checked){
-  const {plainOptions} = this.state
-  console.log("checkedList:",checkedList,value,checked,plainOptions)
-  this.setState({
-    checkedList,
-    indeterminate: !!checkedList.length && (checkedList.length < plainOptions.length),
-    checkAll: checkedList.length === plainOptions.length,
-  });
-}
-render() {
+  onChange(e,checkedList,value,checked){
+    const {plainOptions} = this.state
+    console.log("checkedList:",checkedList,value,checked,plainOptions)
+    this.setState({
+      checkedList,
+      indeterminate: !!checkedList.length && (checkedList.length < plainOptions.length),
+      checkAll: checkedList.length === plainOptions.length,
+    });
+  }
+  render() {
     const defaultCheckedList = ['Apple', 'Orange'];
     const {plainOptions} = this.state
     const options = [
@@ -252,6 +263,7 @@ render() {
           onChange={this.onChange.bind(this)} />
       </div>
     )
+  }
 }
 ```
 <!--End-->

@@ -8,30 +8,32 @@ Time Picker 时间选择器
 <!--DemoStart--> 
 使用 `TimeSelect` 标签，分别通过`star`、`end`和`step`指定可选的起始时间、结束时间和步长，通过`minTime`和`maxTime`来限制时间。
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: new Date(2017, 6, 28, 15, 51),
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: new Date(2017, 6, 28, 15, 51),
+    }
   }
-}
-handleChang(value,date) {
-  console.log('time-select Chang: ', value,date)
-}
-render() {
+  handleChang(value,date) {
+    console.log('time-select Chang: ', value,date)
+  }
+  render() {
 
-  this.handleChang()
-  return (
-    <TimeSelect
-      start="08:30"
-      step="00:15"
-      end="18:30"
-      minTime="9:30"
-      hideDisabled={true}
-      onChange={this.handleChang.bind(this)}
-      value={this.state.value}
-      //placeholder="选择时间"
-    />
-  )
+    this.handleChang()
+    return (
+      <TimeSelect
+        start="08:30"
+        step="00:15"
+        end="18:30"
+        minTime="9:30"
+        hideDisabled={true}
+        onChange={this.handleChang.bind(this)}
+        value={this.state.value}
+        //placeholder="选择时间"
+      />
+    )
+  }
 }
 ```
 <!--End-->
@@ -40,26 +42,28 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = { value: new Date(2017, 6, 28, 15, 51), }
-}
-handleChang(value,date) {
-  console.log('time-select Chang: ', value,date)
-}
-render() {
-  return (
-    <TimeSelect
-      start="08:30"
-      step="00:15"
-      end="18:30"
-      disabled={true}
-      minTime="9:30"
-      onChange={this.handleChang.bind(this)}
-      value={this.state.value}
-      placeholder="选择时间"
-    />
-  )
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: new Date(2017, 6, 28, 15, 51), }
+  }
+  handleChang(value,date) {
+    console.log('time-select Chang: ', value,date)
+  }
+  render() {
+    return (
+      <TimeSelect
+        start="08:30"
+        step="00:15"
+        end="18:30"
+        disabled={true}
+        minTime="9:30"
+        onChange={this.handleChang.bind(this)}
+        value={this.state.value}
+        placeholder="选择时间"
+      />
+    )
+  }
 }
 ```
 <!--End-->
@@ -68,46 +72,48 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props)
-  this.state = {
-    startDate: new Date(2017, 9, 10, 14, 30),
-    endDate: new Date(2017, 9, 10, 15, 30)
+class Demo extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      startDate: new Date(2017, 9, 10, 14, 30),
+      endDate: new Date(2017, 9, 10, 15, 30)
+    }
   }
-}
 
-handleStartUpdate(value,startDate) {
-  console.debug('time-select startDate update: ', startDate)
-  this.setState({startDate})
-}
+  handleStartUpdate(value,startDate) {
+    console.debug('time-select startDate update: ', startDate)
+    this.setState({startDate})
+  }
 
-handleEndUpdate(value,endDate){
-  console.debug('time-select endDate update: ', endDate)
-  this.setState({endDate})
-}
+  handleEndUpdate(value,endDate){
+    console.debug('time-select endDate update: ', endDate)
+    this.setState({endDate})
+  }
 
-render() {
-  return (
-    <div>
-      <TimeSelect
-        start="08:30"
-        step="00:15"
-        end="18:30"
-        onChange={this.handleStartUpdate.bind(this)}
-        value={this.state.startDate}
-        placeholder="选择时间"
-      />
-      <TimeSelect
-        start="08:30"
-        step="00:15"
-        end="18:30"
-        onChange={this.handleEndUpdate.bind(this)}
-        value={this.state.endDate}
-        minTime={this.state.startDate}
-        placeholder="选择时间"
-      />
-    </div>
-  )
+  render() {
+    return (
+      <div>
+        <TimeSelect
+          start="08:30"
+          step="00:15"
+          end="18:30"
+          onChange={this.handleStartUpdate.bind(this)}
+          value={this.state.startDate}
+          placeholder="选择时间"
+        />
+        <TimeSelect
+          start="08:30"
+          step="00:15"
+          end="18:30"
+          onChange={this.handleEndUpdate.bind(this)}
+          value={this.state.endDate}
+          minTime={this.state.startDate}
+          placeholder="选择时间"
+        />
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -119,43 +125,45 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: new Date(2017, 6, 28, 15, 51),
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: new Date(2017, 6, 28, 15, 51),
+    }
   }
-}
-handleChang(value,date) {
-  console.log('time-select Chang: ', value,date)
-}
-render() {
-  return (
-    <div>
-      <TimePicker
-        //style={{width:100}}
-        onChange={this.handleChang.bind(this)}
-        disabledHours={['00','01']}
-        disabledMinutes={['01','02']}
-        disabled={true}
-        //hideDisabled={true}
-        format="HH:mm:ss"
-        placeholder="选择时间de拉！"
-        value={this.state.value}
-      />
-      <TimePicker
-        //style={{width:100}}
-        size="large" 
-        onChange={this.handleChang.bind(this)}
-        disabledHours={['00','01']}
-        disabledMinutes={['01','02']}
-        disabled={false}
-        // hideDisabled={true}
-        format="HH:mm:ss"
-        placeholder="选择时间de拉！更改"
-        value={this.state.value}
-      />
-    </div>
-  )
+  handleChang(value,date) {
+    console.log('time-select Chang: ', value,date)
+  }
+  render() {
+    return (
+      <div>
+        <TimePicker
+          //style={{width:100}}
+          onChange={this.handleChang.bind(this)}
+          disabledHours={['00','01']}
+          disabledMinutes={['01','02']}
+          disabled={true}
+          //hideDisabled={true}
+          format="HH:mm:ss"
+          placeholder="选择时间de拉！"
+          value={this.state.value}
+        />
+        <TimePicker
+          //style={{width:100}}
+          size="large" 
+          onChange={this.handleChang.bind(this)}
+          disabledHours={['00','01']}
+          disabledMinutes={['01','02']}
+          disabled={false}
+          // hideDisabled={true}
+          format="HH:mm:ss"
+          placeholder="选择时间de拉！更改"
+          value={this.state.value}
+        />
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
