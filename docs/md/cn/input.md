@@ -8,19 +8,21 @@ Input 输入框
 <!--DemoStart--> 
 这里设置了字符串长度为 `length=5`
 ```js
-log(e,value){
-  console.log(`value = ${value}`)
-}
-render() {
-  const {Row,Col} = Layout;
-  return (
-    <Row>
-      <Col xs="8" sm="8" md="8" xs="24">
-        <Input length="5" placeholder="请输入内容" 
-          onChange={this.log.bind(this)}/>
-      </Col>
-    </Row>
-  )
+class Demo extends Component {
+  log(e,value){
+    console.log(`value = ${value}`)
+  }
+  render() {
+    const {Row,Col} = Layout;
+    return (
+      <Row>
+        <Col xs="8" sm="8" md="8" xs="24">
+          <Input length="5" placeholder="请输入内容" 
+            onChange={this.log.bind(this)}/>
+        </Col>
+      </Row>
+    )
+  }
 }
 ```
 <!--End-->
@@ -34,15 +36,17 @@ HTML5 中的新属性。
 `Input` 必须在第一页，窗口可见的位置
 
 ```js
-render() {
-  const {Row,Col} = Layout;
-  return (
-    <Row>
-      <Col xs="8" sm="8" md="8" xs="24">
-        <Input autoFocus placeholder="请输入内容" />
-      </Col>
-    </Row>
-  ) 
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    return (
+      <Row>
+        <Col xs="8" sm="8" md="8" xs="24">
+          <Input autoFocus placeholder="请输入内容" />
+        </Col>
+      </Row>
+    ) 
+  }
 }
 ```
 <!--End-->
@@ -53,21 +57,23 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  const {Row,Col} = Layout;
-  return (
-    <Row  gutter="20">
-      <Col xs="8" sm="8" md="8" xs="24">
-        <Input disabled placeholder="请输入内容" />
-      </Col>
-      <Col xs="8" sm="8" md="8" xs="24">
-        <Input disabled icon="search" placeholder="请输入内容" 
-          onIconClick={()=>{
-            Message.info('您点击了搜索图标。')
-          }} />
-      </Col>
-    </Row>
-  ) 
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    return (
+      <Row  gutter="20">
+        <Col xs="8" sm="8" md="8" xs="24">
+          <Input disabled placeholder="请输入内容" />
+        </Col>
+        <Col xs="8" sm="8" md="8" xs="24">
+          <Input disabled icon="search" placeholder="请输入内容" 
+            onIconClick={()=>{
+              Message.info('您点击了搜索图标。')
+            }} />
+        </Col>
+      </Row>
+    ) 
+  }
 }
 ```
 <!--End-->
@@ -79,31 +85,33 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  const {Row,Col} = Layout;
-  return (
-    <Row gutter="20">
-      <Col md="12" xs="24">
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    return (
+      <Row gutter="20">
+        <Col md="12" xs="24">
 
-        <Input type="textarea"placeholder="请输入内容"/>
+          <Input type="textarea"placeholder="请输入内容"/>
 
-        <br/>
+          <br/>
 
-        <Input 
-          type="textarea" 
-          rows={6} 
-          placeholder="请输入内容"
-          defaultValue="通过将 type 属性的值指定为 textarea。"
-        />
+          <Input 
+            type="textarea" 
+            rows={6} 
+            placeholder="请输入内容"
+            defaultValue="通过将 type 属性的值指定为 textarea。"
+          />
 
-      </Col>
-      <Col md="12" xs="24">
+        </Col>
+        <Col md="12" xs="24">
 
-        <Input type="textarea" rows={6} cols="30" placeholder="请输入内容"/>
+          <Input type="textarea" rows={6} cols="30" placeholder="请输入内容"/>
 
-      </Col>
-    </Row>
-  )
+        </Col>
+      </Row>
+    )
+  }
 }
 ```
 <!--End-->
@@ -114,24 +122,26 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  const {Row,Col} = Layout;
-  return (
-    <Row gutter="20">
-      <Col span="6">
-        <Input placeholder="请输入内容" size="large" />
-      </Col>
-      <Col span="6">
-        <Input placeholder="请输入内容" />
-      </Col>
-      <Col span="6">
-        <Input placeholder="请输入内容" size="small" />
-      </Col>
-      <Col span="6">
-        <Input placeholder="请输入内容" size="mini" />
-      </Col>
-    </Row>
-  )
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    return (
+      <Row gutter="20">
+        <Col span="6">
+          <Input placeholder="请输入内容" size="large" />
+        </Col>
+        <Col span="6">
+          <Input placeholder="请输入内容" />
+        </Col>
+        <Col span="6">
+          <Input placeholder="请输入内容" size="small" />
+        </Col>
+        <Col span="6">
+          <Input placeholder="请输入内容" size="mini" />
+        </Col>
+      </Row>
+    )
+  }
 }
 ```
 <!--End-->
@@ -140,32 +150,34 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  const {Row,Col} = Layout;
-  return (
-    <Row gutter="20">
-      <Col xs="8" sm="8" md="8" xs="24">
-        <Input preIcon="upload" placeholder="请输入内容" 
-          onPreIconClick={(e,value)=>{
-            Message.info(`您点击了上传图标。输入框内容：${value?value:"空"}`)
-          }}/>
-      </Col>
-      <Col xs="8" sm="8" md="8" xs="24">
-        <Input 
-          preIcon="user"
-          icon="search" 
-          placeholder="请输入内容" 
-          onIconClick={(e,value)=>{
-            Message.info(`您点击了搜索图标。输入框内容：${value?value:"空"}`)
-          }} />
-      </Col>
-      <Col xs="8" sm="8" md="8" xs="24">
-        <Input 
-          icon={<Icon type="search" />} 
-          placeholder="请输入内容" />
-      </Col>
-    </Row>
-  )
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    return (
+      <Row gutter="20">
+        <Col xs="8" sm="8" md="8" xs="24">
+          <Input preIcon="upload" placeholder="请输入内容" 
+            onPreIconClick={(e,value)=>{
+              Message.info(`您点击了上传图标。输入框内容：${value?value:"空"}`)
+            }}/>
+        </Col>
+        <Col xs="8" sm="8" md="8" xs="24">
+          <Input 
+            preIcon="user"
+            icon="search" 
+            placeholder="请输入内容" 
+            onIconClick={(e,value)=>{
+              Message.info(`您点击了搜索图标。输入框内容：${value?value:"空"}`)
+            }} />
+        </Col>
+        <Col xs="8" sm="8" md="8" xs="24">
+          <Input 
+            icon={<Icon type="search" />} 
+            placeholder="请输入内容" />
+        </Col>
+      </Row>
+    )
+  }
 }
 ```
 <!--End-->

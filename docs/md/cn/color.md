@@ -12,32 +12,34 @@ Color 色彩
 
 <!--DemoStart--> 
 ```js
-render() {
-  //下面这段样式可以写入css中通过 className 来使用
-  const {Row,Col} = Layout;
+class Demo extends Component {
+  render() {
+    //下面这段样式可以写入css中通过 className 来使用
+    const {Row,Col} = Layout;
 
-  return (
-    <div>
-      <Row gutter="20" className="colorDemo">
-        <Col xs="24" sm="8"><div style={{background:"#007bff"}}>Blue <br/> #007bff</div></Col>
-        <Col xs="24" sm="8"><div style={{background:"#6610f2"}}>Indigo <br/> #6610f2</div></Col>
-        <Col xs="24" sm="8"><div style={{background:"#6f42c1"}}>Purple <br/> #6f42c1</div></Col>
-      </Row>
-      <Row gutter="20" className="colorDemo">
-        <Col xs="24" sm="8"><div style={{background:"#e83e8c"}}>Pink <br/> #e83e8c</div></Col>
-        <Col xs="24" sm="8"><div style={{background:"#dc3545"}}>Red <br/> #dc3545</div></Col>
-        <Col xs="24" sm="8"><div style={{background:"#fd7e14"}}>Orange <br/> #fd7e14</div></Col>
-      </Row>
-      <Row gutter="20" className="colorDemo">
-        <Col xs="24" sm="8"><div style={{background:"#ffc107",color:"#111"}}>Yellow <br/> #ffc107</div></Col>
-        <Col xs="24" sm="8"><div style={{background:"#28a745"}}>Green <br/> #28a745</div></Col>
-        <Col xs="24" sm="8"><div style={{background:"#20c997"}}>Teal <br/> #20c997</div></Col>
-      </Row>
-      <Row gutter="20" className="colorDemo">
-        <Col xs="24" sm="8"><div style={{background:"#17a2b8"}}>Cyan <br/> #17a2b8</div></Col>
-      </Row>
-    </div>
-  )
+    return (
+      <div>
+        <Row gutter="20" className="colorDemo">
+          <Col xs="24" sm="8"><div style={{background:"#007bff"}}>Blue <br/> #007bff</div></Col>
+          <Col xs="24" sm="8"><div style={{background:"#6610f2"}}>Indigo <br/> #6610f2</div></Col>
+          <Col xs="24" sm="8"><div style={{background:"#6f42c1"}}>Purple <br/> #6f42c1</div></Col>
+        </Row>
+        <Row gutter="20" className="colorDemo">
+          <Col xs="24" sm="8"><div style={{background:"#e83e8c"}}>Pink <br/> #e83e8c</div></Col>
+          <Col xs="24" sm="8"><div style={{background:"#dc3545"}}>Red <br/> #dc3545</div></Col>
+          <Col xs="24" sm="8"><div style={{background:"#fd7e14"}}>Orange <br/> #fd7e14</div></Col>
+        </Row>
+        <Row gutter="20" className="colorDemo">
+          <Col xs="24" sm="8"><div style={{background:"#ffc107",color:"#111"}}>Yellow <br/> #ffc107</div></Col>
+          <Col xs="24" sm="8"><div style={{background:"#28a745"}}>Green <br/> #28a745</div></Col>
+          <Col xs="24" sm="8"><div style={{background:"#20c997"}}>Teal <br/> #20c997</div></Col>
+        </Row>
+        <Row gutter="20" className="colorDemo">
+          <Col xs="24" sm="8"><div style={{background:"#17a2b8"}}>Cyan <br/> #17a2b8</div></Col>
+        </Row>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -48,27 +50,29 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  //下面这段样式可以写入css中通过 className 来使用
-  const {Row,Col} = Layout;
-  return (
-    <div>
-      <Row gutter="20" className="colorDemo">
-        <Col xs="24" sm="8"><div style={{background:"#007bff"}}>Primary(主要) <br/> #007bff</div></Col>
-        <Col xs="24" sm="8"><div style={{background:"#868e96"}}>Secondary(次要) <br/> #868e96</div></Col>
-        <Col xs="24" sm="8"><div style={{background:"#28a745"}}>Success(成功) <br/> #28a745</div></Col>
-      </Row>
-      <Row gutter="20" className="colorDemo">
-        <Col xs="24" sm="8"><div style={{background:"#dc3545"}}>Danger(危险) <br/> #dc3545</div></Col>
-        <Col xs="24" sm="8"><div style={{background:"#ffc107",color:"#111"}}>Warning(警告) <br/> #ffc107</div></Col>
-        <Col xs="24" sm="8"><div style={{background:"#17a2b8"}}>Info(信息) <br/> #17a2b8</div></Col>
-      </Row>
-      <Row gutter="20" className="colorDemo">
-        <Col xs="24" sm="8"><div style={{background:"#f8f9fa",color:"#111"}}>Light(亮) <br/> #f8f9fa</div></Col>
-        <Col xs="24" sm="8"><div style={{background:"#343a40"}}>Dark(暗) <br/> #343a40</div></Col>
-      </Row>
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    //下面这段样式可以写入css中通过 className 来使用
+    const {Row,Col} = Layout;
+    return (
+      <div>
+        <Row gutter="20" className="colorDemo">
+          <Col xs="24" sm="8"><div style={{background:"#007bff"}}>Primary(主要) <br/> #007bff</div></Col>
+          <Col xs="24" sm="8"><div style={{background:"#868e96"}}>Secondary(次要) <br/> #868e96</div></Col>
+          <Col xs="24" sm="8"><div style={{background:"#28a745"}}>Success(成功) <br/> #28a745</div></Col>
+        </Row>
+        <Row gutter="20" className="colorDemo">
+          <Col xs="24" sm="8"><div style={{background:"#dc3545"}}>Danger(危险) <br/> #dc3545</div></Col>
+          <Col xs="24" sm="8"><div style={{background:"#ffc107",color:"#111"}}>Warning(警告) <br/> #ffc107</div></Col>
+          <Col xs="24" sm="8"><div style={{background:"#17a2b8"}}>Info(信息) <br/> #17a2b8</div></Col>
+        </Row>
+        <Row gutter="20" className="colorDemo">
+          <Col xs="24" sm="8"><div style={{background:"#f8f9fa",color:"#111"}}>Light(亮) <br/> #f8f9fa</div></Col>
+          <Col xs="24" sm="8"><div style={{background:"#343a40"}}>Dark(暗) <br/> #343a40</div></Col>
+        </Row>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -79,24 +83,26 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  //下面这段样式可以写入css中通过 className 来使用
-  const {Row,Col} = Layout;
-  return (
-    <div>
-      <Row gutter="20" className="colorDemo">
-        <Col xs="24" sm="6"><div style={{background:"#343a40"}}>标题 Title <br/> #343a40</div></Col>
-        <Col xs="24" sm="6"><div style={{background:"#52575c"}}>正文 Content <br/> #52575c</div></Col>
-        <Col xs="24" sm="6"><div style={{background:"#676b70"}}>辅助/图标 Sub Color <br/> #676b70</div></Col>
-        <Col xs="24" sm="6"><div style={{background:"#a3a6a9"}}>失效 Disabled <br/> #a3a6a9</div></Col>
-      </Row>
-      <Row gutter="20" className="colorDemo">
-        <Col xs="24" sm="6"><div style={{background:"#dddee1",color:"#676b70"}}>边框 Border <br/> #dddee1</div></Col>
-        <Col xs="24" sm="6"><div style={{background:"#e9eaec",color:"#676b70"}}>分割线 Divider <br/> #e9eaec</div></Col>
-        <Col xs="24" sm="6"><div style={{background:"#f8f8f9",color:"#676b70"}}>背景 Background <br/> #f8f8f9</div></Col>
-      </Row>
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    //下面这段样式可以写入css中通过 className 来使用
+    const {Row,Col} = Layout;
+    return (
+      <div>
+        <Row gutter="20" className="colorDemo">
+          <Col xs="24" sm="6"><div style={{background:"#343a40"}}>标题 Title <br/> #343a40</div></Col>
+          <Col xs="24" sm="6"><div style={{background:"#52575c"}}>正文 Content <br/> #52575c</div></Col>
+          <Col xs="24" sm="6"><div style={{background:"#676b70"}}>辅助/图标 Sub Color <br/> #676b70</div></Col>
+          <Col xs="24" sm="6"><div style={{background:"#a3a6a9"}}>失效 Disabled <br/> #a3a6a9</div></Col>
+        </Row>
+        <Row gutter="20" className="colorDemo">
+          <Col xs="24" sm="6"><div style={{background:"#dddee1",color:"#676b70"}}>边框 Border <br/> #dddee1</div></Col>
+          <Col xs="24" sm="6"><div style={{background:"#e9eaec",color:"#676b70"}}>分割线 Divider <br/> #e9eaec</div></Col>
+          <Col xs="24" sm="6"><div style={{background:"#f8f8f9",color:"#676b70"}}>背景 Background <br/> #f8f8f9</div></Col>
+        </Row>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->

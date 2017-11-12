@@ -7,18 +7,20 @@ Alert 警告
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
-      <Alert showIcon type="info" message="info Text"/>
-      <Alert type="success" message="success Text"/>
-      <Alert 
-        message="Error Text"
-        description="Error Description Error Description Error Description Error Description Error Description Error Description"
-        type="error"
-      />
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <Alert showIcon type="info" message="info Text"/>
+        <Alert type="success" message="success Text"/>
+        <Alert 
+          message="Error Text"
+          description="Error Description Error Description Error Description Error Description Error Description Error Description"
+          type="error"
+        />
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -27,9 +29,10 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
+class Demo extends Component {
+  render() {
+    return (
+      <div>
         <Alert showIcon type="success" message="success Text"/>
         <Alert showIcon type="info" message="info Text"/>
         <Alert showIcon type="warning" message="warning Text"/>
@@ -45,8 +48,9 @@ render() {
         <Alert showIcon type="info" description="这里是说明！" message="Info Text"/>
         <Alert showIcon type="warning" description="这里是说明！" message="Warning Text"/>
         <Alert showIcon type="error" description="这里是说明！" message="Error Text"/>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -55,28 +59,30 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
+class Demo extends Component {
+  render() {
+    return (
+      <div>
         <Alert 
-            message="Success Text"
-            description="Success Description Success Description Success Description Success Description Success Description Success Description"
-            type="success"
-            closable
-            onClose={()=>{
-                console.log("onClose::")  
-            }}
-          />
+          message="Success Text"
+          description="Success Description Success Description Success Description Success Description Success Description Success Description"
+          type="success"
+          closable
+          onClose={()=>{
+              console.log("onClose::")  
+          }}
+        />
         <Alert 
-            message="info Text"
-            type="info"
-            closable
-            onClose={()=>{
-                console.log("onClose::")  
-            }}
-          />
-    </div>
-  )
+          message="info Text"
+          type="info"
+          closable
+          onClose={()=>{
+              console.log("onClose::")  
+          }}
+        />
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -87,9 +93,10 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
+class Demo extends Component {
+  render() {
+    return (
+      <div>
         <Alert type="default" message="default Text"/>
         <Alert type="primary" message="primary Text"/>
         <Alert type="success" message="success Text"/>
@@ -97,15 +104,16 @@ render() {
         <Alert type="warning" message="warning Text"/>
 
         <Alert 
-            message="Error Text"
-            type="error"
-            closable
-            onClose={()=>{
-                console.log("onClose::")  
-            }}
-          />
-    </div>
-  )
+          message="Error Text"
+          type="error"
+          closable
+          onClose={()=>{
+              console.log("onClose::")  
+          }}
+        />
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -114,32 +122,34 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props){
-  super(props)
-  this.state = {
-    visible: true,
+class Demo extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      visible: true,
+    }
   }
-}
-render() {
-  return (
-    <div>
-      <Switch 
-        checked={true} 
-        style={{marginBottom:10}}
-        checkedChildren="显示" unCheckedChildren="隐藏"
-        onChange={(e,visible)=>{
-          console.log(`${visible?"选中":'没有选中'}`,visible)
-          this.setState({visible})
-        }}
-      />
-      <Alert 
-        visible={this.state.visible}
-        message="Error Text"
-        description="Error Description Error Description Error Description Error Description Error Description Error Description"
-        type="error"
-      />
-    </div>
-  )
+  render() {
+    return (
+      <div>
+        <Switch 
+          checked={true} 
+          style={{marginBottom:10}}
+          checkedChildren="显示" unCheckedChildren="隐藏"
+          onChange={(e,visible)=>{
+            console.log(`${visible?"选中":'没有选中'}`,visible)
+            this.setState({visible})
+          }}
+        />
+        <Alert 
+          visible={this.state.visible}
+          message="Error Text"
+          description="Error Description Error Description Error Description Error Description Error Description Error Description"
+          type="error"
+        />
+      </div>
+    )
+  }
 }
 ```
 <!--End-->

@@ -10,17 +10,19 @@ Tabs 标签页
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Tabs activeKey="1" onTabClick={(tab, key, e) => {
-        console.log("=>",key,tab)
-      }}>
-      <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
-      <Tabs.Pane label="配置管理" key="2">配置管理</Tabs.Pane>
-      <Tabs.Pane sequence="fadeIn up" label="角色管理" key="3">角色管理</Tabs.Pane>
-      <Tabs.Pane label="大爷欢乐多" key="4"><div>大爷欢乐多</div><div>大爷欢乐多</div></Tabs.Pane>
-    </Tabs>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Tabs activeKey="1" onTabClick={(tab, key, e) => {
+          console.log("=>",key,tab)
+        }}>
+        <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
+        <Tabs.Pane label="配置管理" key="2">配置管理</Tabs.Pane>
+        <Tabs.Pane sequence="fadeIn up" label="角色管理" key="3">角色管理</Tabs.Pane>
+        <Tabs.Pane label="大爷欢乐多" key="4"><div>大爷欢乐多</div><div>大爷欢乐多</div></Tabs.Pane>
+      </Tabs>
+    )
+  }
 }
 ```
 <!--End-->
@@ -31,17 +33,19 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Tabs type="card" activeKey="2" onTabClick={(tab, key, e) => {
-        console.log("=>",key,tab)
-      }}>
-      <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
-      <Tabs.Pane label={<span><Icon type="setting" />配置管理 </span>} key="2">配置管理</Tabs.Pane>
-      <Tabs.Pane sequence="fadeIn up" label="角色管理" key="3">角色管理</Tabs.Pane>
-      <Tabs.Pane label="大爷欢乐多" key="4"><div>大爷欢乐多</div><div>大爷欢乐多</div></Tabs.Pane>
-    </Tabs>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Tabs type="card" activeKey="2" onTabClick={(tab, key, e) => {
+          console.log("=>",key,tab)
+        }}>
+        <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
+        <Tabs.Pane label={<span><Icon type="setting" />配置管理 </span>} key="2">配置管理</Tabs.Pane>
+        <Tabs.Pane sequence="fadeIn up" label="角色管理" key="3">角色管理</Tabs.Pane>
+        <Tabs.Pane label="大爷欢乐多" key="4"><div>大爷欢乐多</div><div>大爷欢乐多</div></Tabs.Pane>
+      </Tabs>
+    )
+  }
 }
 ```
 <!--End-->
@@ -52,29 +56,31 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
-      <Tabs type="card" activeKey="2" 
-        style={{paddingBottom:"30px"}}
-        onTabClick={(tab) => {
-          console.log(tab.props.activeKey)
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <Tabs type="card" activeKey="2" 
+          style={{paddingBottom:"30px"}}
+          onTabClick={(tab) => {
+            console.log(tab.props.activeKey)
+          }}>
+          <Tabs.Pane disabled={true} label="用户管理" key="1">用户管理</Tabs.Pane>
+          <Tabs.Pane label={<span><Icon type="setting" />配置管理 </span>} key="2">配置管理</Tabs.Pane>
+          <Tabs.Pane disabled label="角色管理" key="3">角色管理</Tabs.Pane>
+          <Tabs.Pane label="大爷欢乐多" key="4"><div>大爷欢乐多</div><div>大爷欢乐多</div></Tabs.Pane>
+        </Tabs>
+        <Tabs activeKey="1" onTabClick={(tab, key, e) => {
+          console.log("=>",key,tab)
         }}>
-        <Tabs.Pane disabled={true} label="用户管理" key="1">用户管理</Tabs.Pane>
-        <Tabs.Pane label={<span><Icon type="setting" />配置管理 </span>} key="2">配置管理</Tabs.Pane>
-        <Tabs.Pane disabled label="角色管理" key="3">角色管理</Tabs.Pane>
-        <Tabs.Pane label="大爷欢乐多" key="4"><div>大爷欢乐多</div><div>大爷欢乐多</div></Tabs.Pane>
-      </Tabs>
-      <Tabs activeKey="1" onTabClick={(tab, key, e) => {
-        console.log("=>",key,tab)
-      }}>
-        <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
-        <Tabs.Pane disabled={true} label="配置管理" key="2">配置管理</Tabs.Pane>
-        <Tabs.Pane sequence="fadeIn up" label="角色管理" key="3">角色管理</Tabs.Pane>
-        <Tabs.Pane label="大爷欢乐多" key="4"><div>大爷欢乐多</div><div>大爷欢乐多</div></Tabs.Pane>
-      </Tabs>
-    </div>
-  )
+          <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
+          <Tabs.Pane disabled={true} label="配置管理" key="2">配置管理</Tabs.Pane>
+          <Tabs.Pane sequence="fadeIn up" label="角色管理" key="3">角色管理</Tabs.Pane>
+          <Tabs.Pane label="大爷欢乐多" key="4"><div>大爷欢乐多</div><div>大爷欢乐多</div></Tabs.Pane>
+        </Tabs>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -85,45 +91,47 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    tagRadioOptions:[
-        {color:"purple", value:'top',label:'顶部'},
-        {color:"orange", value:'right',label:'右边'},
-        {color:"green", value:'bottom',label:'底部'},
-        {color:"blue", value:'left',label:'左边'}
-    ],
-    position:['left']
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tagRadioOptions:[
+          {color:"purple", value:'top',label:'顶部'},
+          {color:"orange", value:'right',label:'右边'},
+          {color:"green", value:'bottom',label:'底部'},
+          {color:"blue", value:'left',label:'左边'}
+      ],
+      position:['left']
+    }
   }
-}
-render() {
-  const TagGroup = Tag.Group;
-  return (
-    <div>
+  render() {
+    const TagGroup = Tag.Group;
+    return (
+      <div>
 
-      <TagGroup 
-        options={this.state.tagRadioOptions}
-        checked={true}
-        isRadio={true}
-        style={{paddingBottom:25}}
-        checkedValues={this.state.position}
-        onChange={(e,value)=>{
-          this.setState({position:value})
-          console.log("value::",value)
-        }}
-      />
-        
-      <Tabs type="line" position={this.state.position[0]} activeKey="2" onTabClick={(tab, key, e) => {
-        console.log("=>",key,tab)
-      }}>
-        <Tabs.Pane label={<span><Icon type="menu" />用户管理 </span>} key="1">用户管理</Tabs.Pane>
-        <Tabs.Pane label={<span><Icon type="setting" />配置管理 </span>} key="2">配置管理</Tabs.Pane>
-        <Tabs.Pane sequence="fadeIn up" label={<span><Icon type="user" />角色管理 </span>}  key="3">角色管理</Tabs.Pane>
-        <Tabs.Pane label={<span><Icon type="heart-on" />大爷欢乐多 </span>} key="4"><div>大爷欢乐多</div><div>大爷欢乐多</div></Tabs.Pane>
-      </Tabs>
-    </div>
-  )
+        <TagGroup 
+          options={this.state.tagRadioOptions}
+          checked={true}
+          isRadio={true}
+          style={{paddingBottom:25}}
+          checkedValues={this.state.position}
+          onChange={(e,value)=>{
+            this.setState({position:value})
+            console.log("value::",value)
+          }}
+        />
+          
+        <Tabs type="line" position={this.state.position[0]} activeKey="2" onTabClick={(tab, key, e) => {
+          console.log("=>",key,tab)
+        }}>
+          <Tabs.Pane label={<span><Icon type="menu" />用户管理 </span>} key="1">用户管理</Tabs.Pane>
+          <Tabs.Pane label={<span><Icon type="setting" />配置管理 </span>} key="2">配置管理</Tabs.Pane>
+          <Tabs.Pane sequence="fadeIn up" label={<span><Icon type="user" />角色管理 </span>}  key="3">角色管理</Tabs.Pane>
+          <Tabs.Pane label={<span><Icon type="heart-on" />大爷欢乐多 </span>} key="4"><div>大爷欢乐多</div><div>大爷欢乐多</div></Tabs.Pane>
+        </Tabs>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -136,29 +144,31 @@ render() {
 `<Tabs>`使用 `closable={true}` 开启标签可关闭。  
 `<Tabs.Pane>`使用 `closable={false}` 标签关闭按钮被隐藏。
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    }
   }
-}
-render() {
-  const TagGroup = Tag.Group;
-  return (
-    <div>
-      <Tabs closable type="card" activeKey="1" 
-        onTabRemove={(tab, idx, e)=>{
-          console.log("=>",tab, idx, e)
-        }}
-        onTabClick={(tab,  key, e) => {
-          console.log("=>",key,tab)
-        }}
-      >
-        <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
-        <Tabs.Pane closable={false} label="配置管理" key="2">配置管理</Tabs.Pane>
-        <Tabs.Pane label="角色管理"  key="3">角色管理</Tabs.Pane>
-      </Tabs>
-    </div>
-  )
+  render() {
+    const TagGroup = Tag.Group;
+    return (
+      <div>
+        <Tabs closable type="card" activeKey="1" 
+          onTabRemove={(tab, idx, e)=>{
+            console.log("=>",tab, idx, e)
+          }}
+          onTabClick={(tab,  key, e) => {
+            console.log("=>",key,tab)
+          }}
+        >
+          <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
+          <Tabs.Pane closable={false} label="配置管理" key="2">配置管理</Tabs.Pane>
+          <Tabs.Pane label="角色管理"  key="3">角色管理</Tabs.Pane>
+        </Tabs>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->

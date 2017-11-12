@@ -6,26 +6,28 @@ Carousel 走马灯
 
 <!--DemoStart--> 
 ```js
-onChange(a,b,c){
-  console.log(a, b, c);
-}
-render() {
-  let style = {
-    textAlign: 'center',
-    height: 160,
-    width:100,
-    linearHeight: 160,
-    background: '#b7b7b7',
-    overflow: 'hidden',
-  };
-  return (
-    <Carousel   easing='linear'  afterChange={this.onChange} >
-      <div style={style}><h3 style={{color:'#fff'}}>1</h3></div>
-      <div style={style}><h3 style={{color:'#fff'}}>2</h3></div>
-      <div style={style}><h3 style={{color:'#fff'}}>3</h3></div>
-      <div style={style}><h3 style={{color:'#fff'}}>4</h3></div>
-    </Carousel>
-  )
+class Demo extends Component {
+  onChange(a,b,c){
+    console.log(a, b, c);
+  }
+  render() {
+    let style = {
+      textAlign: 'center',
+      height: 160,
+      width:100,
+      linearHeight: 160,
+      background: '#b7b7b7',
+      overflow: 'hidden',
+    };
+    return (
+      <Carousel   easing='linear'  afterChange={this.onChange} >
+        <div style={style}><h3 style={{color:'#fff'}}>1</h3></div>
+        <div style={style}><h3 style={{color:'#fff'}}>2</h3></div>
+        <div style={style}><h3 style={{color:'#fff'}}>3</h3></div>
+        <div style={style}><h3 style={{color:'#fff'}}>4</h3></div>
+      </Carousel>
+    )
+  }
 }
 ```
 <!--End-->
@@ -35,25 +37,27 @@ render() {
 
 <!--DemoStart--> 
 ```js
-onChange(a,b,c){
-  console.log(a, b, c);
-}
-render() {
-  let style = {
-    textAlign: 'center',
-    height: 160,
-    linearHeight: 160,
-    background: '#b7b7b7',
-    overflow: 'hidden',
-  };
-  return (
-    <Carousel vertical  afterChange={this.onChange} >
-      <div style={style}><h3 style={{color:'#fff'}}>1</h3></div>
-      <div style={style}><h3 style={{color:'#fff'}}>2</h3></div>
-      <div style={style}><h3 style={{color:'#fff'}}>3</h3></div>
-      <div style={style}><h3 style={{color:'#fff'}}>4</h3></div>
-    </Carousel>
-  )
+class Demo extends Component {
+  onChange(a,b,c){
+    console.log(a, b, c);
+  }
+  render() {
+    let style = {
+      textAlign: 'center',
+      height: 160,
+      linearHeight: 160,
+      background: '#b7b7b7',
+      overflow: 'hidden',
+    };
+    return (
+      <Carousel vertical  afterChange={this.onChange} >
+        <div style={style}><h3 style={{color:'#fff'}}>1</h3></div>
+        <div style={style}><h3 style={{color:'#fff'}}>2</h3></div>
+        <div style={style}><h3 style={{color:'#fff'}}>3</h3></div>
+        <div style={style}><h3 style={{color:'#fff'}}>4</h3></div>
+      </Carousel>
+    )
+  }
 }
 ```
 <!--End-->
@@ -62,26 +66,28 @@ render() {
 
 <!--DemoStart--> 
 ```js
-onChange(a,b,c){
-  console.log(a, b, c);
-}
-render() {
-  let style = {
-    textAlign: 'center',
-    height: 160,
-    linearHeight: 160,
-    width:50,
-    background: '#b7b7b7',
-    overflow: 'hidden',
-  };
-  return (
-    <Carousel effect="fade" afterChange={this.onChange} >
-      <div style={style}><h3 style={{color:'#fff'}}>1</h3></div>
-      <div style={style}><h3 style={{color:'#fff'}}>2</h3></div>
-      <div style={style}><h3 style={{color:'#fff'}}>3</h3></div>
-      <div style={style}><h3 style={{color:'#fff'}}>4</h3></div>
-    </Carousel>
-  )
+class Demo extends Component {
+  onChange(a,b,c){
+    console.log(a, b, c);
+  }
+  render() {
+    let style = {
+      textAlign: 'center',
+      height: 160,
+      linearHeight: 160,
+      width:50,
+      background: '#b7b7b7',
+      overflow: 'hidden',
+    };
+    return (
+      <Carousel effect="fade" afterChange={this.onChange} >
+        <div style={style}><h3 style={{color:'#fff'}}>1</h3></div>
+        <div style={style}><h3 style={{color:'#fff'}}>2</h3></div>
+        <div style={style}><h3 style={{color:'#fff'}}>3</h3></div>
+        <div style={style}><h3 style={{color:'#fff'}}>4</h3></div>
+      </Carousel>
+    )
+  }
 }
 ```
 <!--End-->
@@ -91,25 +97,27 @@ render() {
 
 <!--DemoStart--> 
 ```js
-onChange(a,b,c){
-  console.log(a, b, c);
-}
-render() {
-  let style = {
-    textAlign: 'center',
-    height: 160,
-    linearHeight: 160,
-    background: '#b7b7b7',
-    overflow: 'hidden',
-  };
-  return (
-    <Carousel autoplay afterChange={this.onChange} >
-      <div style={style}><h3 style={{color:'#fff'}}>1</h3></div>
-      <div style={style}><h3 style={{color:'#fff'}}>2</h3></div>
-      <div style={style}><h3 style={{color:'#fff'}}>3</h3></div>
-      <div style={style}><h3 style={{color:'#fff'}}>4</h3></div>
-    </Carousel>
-  )
+class Demo extends Component {
+  onChange(a,b,c){
+    console.log(a, b, c);
+  }
+  render() {
+    let style = {
+      textAlign: 'center',
+      height: 160,
+      linearHeight: 160,
+      background: '#b7b7b7',
+      overflow: 'hidden',
+    };
+    return (
+      <Carousel autoplay afterChange={this.onChange} >
+        <div style={style}><h3 style={{color:'#fff'}}>1</h3></div>
+        <div style={style}><h3 style={{color:'#fff'}}>2</h3></div>
+        <div style={style}><h3 style={{color:'#fff'}}>3</h3></div>
+        <div style={style}><h3 style={{color:'#fff'}}>4</h3></div>
+      </Carousel>
+    )
+  }
 }
 ```
 <!--End-->

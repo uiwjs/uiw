@@ -7,14 +7,16 @@ Loading 加载中
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
+class Demo extends Component {
+  render() {
+    return (
+      <div>
         <Loading size="small" />
         <Loading />
         <Loading size="large" />
-    </div>
-  )
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -23,15 +25,16 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    loading:true
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading:true
+    }
   }
-}
-render() {
-  return (
-    <div>
+  render() {
+    return (
+      <div>
         <Loading loading={this.state.loading}>
           <Alert 
             message="Alert message title"
@@ -51,8 +54,9 @@ render() {
           })
 
         }}>点击切换加载状态</Button>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -61,15 +65,16 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    loading:true
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading:true
+    }
   }
-}
-render() {
-  return (
-    <div>
+  render() {
+    return (
+      <div>
         <Loading tip="正在加载...">
           <Alert 
             message="Error Text"
@@ -84,8 +89,9 @@ render() {
             description="Error Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error Description"
           />
         </Loading>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 ```
 <!--End-->

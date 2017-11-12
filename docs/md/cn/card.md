@@ -10,14 +10,16 @@ Card 卡片
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Card title="Card标题" extra={<a href="#">更多</a>} style={{ width: 300 }}>
-      卡片内容<br/>
-      卡片内容<br/>
-      卡片内容<br/>
-    </Card>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Card title="Card标题" extra={<a href="#">更多</a>} style={{ width: 300 }}>
+        卡片内容<br/>
+        卡片内容<br/>
+        卡片内容<br/>
+      </Card>
+    )
+  }
 }
 ```
 <!--End-->
@@ -28,16 +30,18 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div style={{ background: '#ECECEC', padding: '30px' }}>
-      <Card title="Card标题" bordered={false} style={{ width: 300 }}>
-        卡片内容<br/>
-        卡片内容<br/>
-        卡片内容<br/>
-      </Card>
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <div style={{ background: '#ECECEC', padding: '30px' }}>
+        <Card title="Card标题" bordered={false} style={{ width: 300 }}>
+          卡片内容<br/>
+          卡片内容<br/>
+          卡片内容<br/>
+        </Card>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -48,14 +52,16 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Card style={{ width: 300 }}>
-      卡片内容<br/>
-      卡片内容<br/>
-      卡片内容<br/>
-    </Card>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Card style={{ width: 300 }}>
+        卡片内容<br/>
+        卡片内容<br/>
+        卡片内容<br/>
+      </Card>
+    )
+  }
 }
 ```
 <!--End-->
@@ -66,19 +72,21 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  let titleStyle = {padding: `10px 16px`}
-  return (
-    <Card style={{ width: 240 }} bodyStyle={{ padding: 0 }}>
-      <div>
-        <img alt="example" width="100%" src="http://7xi8d6.com1.z0.glb.clouddn.com/20171018091347_Z81Beh_nini.nicky_18_10_2017_9_13_35_727.jpeg" />
-      </div>
-      <div style={titleStyle}>
-        <h3 style={{margin:0}}>我爱漂亮妹妹</h3>
-        <p style={{margin:0}}><a href="https://uiw-react.github.io">https://uiw-react.github.io</a></p>
-      </div>
-    </Card>
-  )
+class Demo extends Component {
+  render() {
+    let titleStyle = {padding: `10px 16px`}
+    return (
+      <Card style={{ width: 240 }} bodyStyle={{ padding: 0 }}>
+        <div>
+          <img alt="example" width="100%" src="http://7xi8d6.com1.z0.glb.clouddn.com/20171018091347_Z81Beh_nini.nicky_18_10_2017_9_13_35_727.jpeg" />
+        </div>
+        <div style={titleStyle}>
+          <h3 style={{margin:0}}>我爱漂亮妹妹</h3>
+          <p style={{margin:0}}><a href="https://uiw-react.github.io">https://uiw-react.github.io</a></p>
+        </div>
+      </Card>
+    )
+  }
 }
 ```
 <!--End-->
@@ -89,23 +97,25 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  const {Row,Col} = Layout;
-  return (
-  <div style={{ background: '#ECECEC', padding: '20px 10px' }}>
-    <Row gutter={16}>
-      <Col span={8}>
-        <Card title="卡片标题" bordered={false}>卡片内容！</Card>
-      </Col>
-      <Col span={8}>
-        <Card title="卡片标题" bordered={false}>卡片内容！</Card>
-      </Col>
-      <Col span={8}>
-        <Card title="卡片标题" bordered={false}>卡片内容！</Card>
-      </Col>
-    </Row>
-  </div>
-  )
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    return (
+    <div style={{ background: '#ECECEC', padding: '20px 10px' }}>
+      <Row gutter={16}>
+        <Col span={8}>
+          <Card title="卡片标题" bordered={false}>卡片内容！</Card>
+        </Col>
+        <Col span={8}>
+          <Card title="卡片标题" bordered={false}>卡片内容！</Card>
+        </Col>
+        <Col span={8}>
+          <Card title="卡片标题" bordered={false}>卡片内容！</Card>
+        </Col>
+      </Row>
+    </div>
+    )
+  }
 }
 ```
 <!--End-->

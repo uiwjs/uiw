@@ -9,21 +9,23 @@ Avatar 头像
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
-      <div style={{paddingBottom:20}}>
-        <Avatar size="large" icon={<Icon type="user"/>} />
-        <Avatar icon="user" />
-        <Avatar size="small" icon="user" />
-      </div>
+class Demo extends Component {
+  render() {
+    return (
       <div>
-        <Avatar shape="square" size="large" icon="user" />
-        <Avatar shape="square" icon="user" />
-        <Avatar shape="square" size="small" icon="user" />
+        <div style={{paddingBottom:20}}>
+          <Avatar size="large" icon={<Icon type="user"/>} />
+          <Avatar icon="user" />
+          <Avatar size="small" icon="user" />
+        </div>
+        <div>
+          <Avatar shape="square" size="large" icon="user" />
+          <Avatar shape="square" icon="user" />
+          <Avatar shape="square" size="small" icon="user" />
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 ```
 <!--End-->
@@ -34,16 +36,18 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
-      <Avatar icon={<Icon type="user"/>} />
-      <Avatar>U</Avatar>
-      <Avatar src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" />
-      <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
-      <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <Avatar icon={<Icon type="user"/>} />
+        <Avatar>U</Avatar>
+        <Avatar src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" />
+        <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
+        <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -54,17 +58,19 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
-      <Avatar src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" />
-      <Avatar>
-        <img src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" onError={()=>{
-          console.log("图片加载错误！")
-        }}/>
-      </Avatar>
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <Avatar src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" />
+        <Avatar>
+          <img src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" onError={()=>{
+            console.log("图片加载错误！")
+          }}/>
+        </Avatar>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -73,17 +79,19 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
-      <span style={{ marginRight: 24 }}>
-        <Badge count={1}><Avatar shape="square" icon="user" /></Badge>
-      </span>
-      <span>
-        <Badge dot><Avatar shape="square" icon="user" /></Badge>
-      </span>
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <span style={{ marginRight: 24 }}>
+          <Badge count={1}><Avatar shape="square" icon="user" /></Badge>
+        </span>
+        <span>
+          <Badge dot><Avatar shape="square" icon="user" /></Badge>
+        </span>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->

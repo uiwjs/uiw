@@ -12,15 +12,17 @@ Breadcrumb 面包屑
 在 `Breadcrumb` 中使用 `Breadcrumb.Item` 标签表示从首页开始的每一级。
 
 ```js
-render() {
-  return (
-    <Breadcrumb>
-      <Breadcrumb.Item>首页</Breadcrumb.Item>
-      <Breadcrumb.Item>活动管理</Breadcrumb.Item>
-      <Breadcrumb.Item>活动列表</Breadcrumb.Item>
-      <Breadcrumb.Item>活动详情</Breadcrumb.Item>
-    </Breadcrumb>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Breadcrumb>
+        <Breadcrumb.Item>首页</Breadcrumb.Item>
+        <Breadcrumb.Item>活动管理</Breadcrumb.Item>
+        <Breadcrumb.Item>活动列表</Breadcrumb.Item>
+        <Breadcrumb.Item>活动详情</Breadcrumb.Item>
+      </Breadcrumb>
+    )
+  }
 }
 ```
 <!--End-->
@@ -32,25 +34,25 @@ render() {
 <!--DemoStart--> 
 注意：子组件也可以定义`separator="/"` 参数哦
 ```js
-render() {
-  return (
-    <div>
-
+class Demo extends Component {
+  render() {
+    return (
+      <div>
         <Breadcrumb separator=">">
           <Breadcrumb.Item>首页</Breadcrumb.Item>
           <Breadcrumb.Item>活动管理</Breadcrumb.Item>
           <Breadcrumb.Item>活动列表</Breadcrumb.Item>
           <Breadcrumb.Item>活动详情</Breadcrumb.Item>
         </Breadcrumb>
-
         <Breadcrumb separator={<Icon type="menu"/>}>
           <Breadcrumb.Item>首页</Breadcrumb.Item>
           <Breadcrumb.Item separator="/">活动管理</Breadcrumb.Item>
           <Breadcrumb.Item>活动列表</Breadcrumb.Item>
           <Breadcrumb.Item>活动详情</Breadcrumb.Item>
         </Breadcrumb>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -61,21 +63,23 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
-      <Breadcrumb separator=">">
-        <Breadcrumb.Item><Icon type="menu"/></Breadcrumb.Item>
-        <Breadcrumb.Item href="https://github.com/jaywcjlove" target="_blank">
-          <Icon type="verification"/><span>活动管理</span>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item separator="/">
-            <a href="/">活动列表</a>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>活动详情</Breadcrumb.Item>
-      </Breadcrumb>
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <Breadcrumb separator=">">
+          <Breadcrumb.Item><Icon type="menu"/></Breadcrumb.Item>
+          <Breadcrumb.Item href="https://github.com/jaywcjlove" target="_blank">
+            <Icon type="verification"/><span>活动管理</span>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item separator="/">
+              <a href="/">活动列表</a>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>活动详情</Breadcrumb.Item>
+        </Breadcrumb>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
