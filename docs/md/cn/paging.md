@@ -9,18 +9,20 @@ Paging 分页
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
-      <Paging activePage={5} total={250} onChange={(pageNumber)=>{
-        console.log('Page: ', pageNumber);
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <Paging activePage={5} total={250} onChange={(pageNumber)=>{
+          console.log('Page: ', pageNumber);
+          }}/>
+          <br />
+        <Paging total={60} onChange={(pageNumber)=>{
+          console.log('Page: ', pageNumber);
         }}/>
-        <br />
-      <Paging total={60} onChange={(pageNumber)=>{
-        console.log('Page: ', pageNumber);
-      }}/>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -29,12 +31,14 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Paging activePage={1} total={5} onChange={(pageNumber) => { 
-      console.log(`pageNumber:${pageNumber}`)
-    }} />
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Paging activePage={1} total={5} onChange={(pageNumber) => { 
+        console.log(`pageNumber:${pageNumber}`)
+      }} />
+    )
+  }
 }
 ```
 <!--End-->
@@ -43,12 +47,14 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Paging size="small" activePage={1} total={250} onChange={(pageNumber) => { 
-      console.log(`pageNumber:${pageNumber}`)
-    }} />
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <Paging size="small" activePage={1} total={250} onChange={(pageNumber) => { 
+        console.log(`pageNumber:${pageNumber}`)
+      }} />
+    )
+  }
 }
 ```
 <!--End-->
@@ -59,28 +65,30 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  let cls = {padding: "10px 10px",background: "#f5f5f5",marginBottom:20}
-  let clsLast = {padding: "10px 10px",background: "#f5f5f5",marginBottom:0}
-  return (
-    <div>
-      <div style={cls}>
-        <Paging activePage={5} total={250} onChange={(pageNumber) => { 
-          console.log(`pageNumber:${pageNumber}`)
-        }} />
+class Demo extends Component {
+  render() {
+    let cls = {padding: "10px 10px",background: "#f5f5f5",marginBottom:20}
+    let clsLast = {padding: "10px 10px",background: "#f5f5f5",marginBottom:0}
+    return (
+      <div>
+        <div style={cls}>
+          <Paging activePage={5} total={250} onChange={(pageNumber) => { 
+            console.log(`pageNumber:${pageNumber}`)
+          }} />
+        </div>
+        <div style={cls}>
+          <Paging alignment="center" activePage={5} total={250}  onChange={(pageNumber) => { 
+            console.log(`pageNumber:${pageNumber}`)
+          }} />
+        </div>
+        <div style={clsLast}>
+          <Paging alignment="right" activePage={5} total={250}  onChange={(pageNumber) => { 
+            console.log(`pageNumber:${pageNumber}`)
+          }} />
+        </div>
       </div>
-      <div style={cls}>
-        <Paging alignment="center" activePage={5} total={250}  onChange={(pageNumber) => { 
-          console.log(`pageNumber:${pageNumber}`)
-        }} />
-      </div>
-      <div style={clsLast}>
-        <Paging alignment="right" activePage={5} total={250}  onChange={(pageNumber) => { 
-          console.log(`pageNumber:${pageNumber}`)
-        }} />
-      </div>
-    </div>
-  )
+    )
+  }
 }
 ```
 <!--End-->

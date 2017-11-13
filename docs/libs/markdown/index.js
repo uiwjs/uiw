@@ -42,7 +42,7 @@ export default class Markdown extends React.Component {
     return localStorage.getItem('WUI_LANG') || 'cn'
   }
   getPageName() {
-    const routes = location.hash.match(/(?:\/(.+))?(\/(.+)\?|\/(.+))/);
+    const routes = window.location.hash.match(/(?:\/(.+))?(\/(.+)\?|\/(.+))/);
     if (routes) {
       return routes[3] || routes[4];
     }
@@ -53,13 +53,14 @@ export default class Markdown extends React.Component {
     let prefixCls = 'w-docs'
     if (typeof markdown === 'string') {
       this.components.clear();
-      const html = marked(markdown.replace(/\<\!--\s?DemoStart\s?--\>([^]+?)\<\!--\s?End\s?--\>/g, (match, p1, offset) => {
+      const html = marked(markdown.replace(/<!--\s?DemoStart\s?-->([^]+?)<!--\s?End\s?-->/g, (match, p1, offset) => {
         const id = offset.toString(36);
         this.components.set(id, React.createElement(Canvas, Object.assign({
           name: this.getPageName()
         }, this.props), p1));
         return `<div id=${id}></div>`;
       }));
+      
       return (
         <div>
           <div className={`${prefixCls}-content-warpper`} dangerouslySetInnerHTML={{ __html: html }} />

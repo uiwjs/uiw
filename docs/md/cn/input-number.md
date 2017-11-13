@@ -8,19 +8,21 @@ Input Number 数字输入框
 <!--DemoStart--> 
 可以输入`+` `-` `.` `e` 和数字
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: 1
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 1
+    }
   }
-}
-onChange(e,value) {
-  console.log(`value - ${value}`)
-}
-render() {
-  return (
-    <InputNumber value={this.state.value} onChange={this.onChange.bind(this)} min="5" max="10"></InputNumber>
-  )
+  onChange(e,value) {
+    console.log(`value - ${value}`)
+  }
+  render() {
+    return (
+      <InputNumber value={this.state.value} onChange={this.onChange.bind(this)} min="5" max="10"></InputNumber>
+    )
+  }
 }
 ```
 <!--End-->
@@ -30,19 +32,21 @@ render() {
 <!--DemoStart--> 
 可以输入`+` `-` `.` `e` 和数字
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: 1
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 1
+    }
   }
-}
-onChange(e,value) {
-  console.log(`value - ${value}`)
-}
-render() {
-  return (
-    <InputNumber disabled={true} value={this.state.value} onChange={this.onChange.bind(this)} min="5" max="10"></InputNumber>
-  )
+  onChange(e,value) {
+    console.log(`value - ${value}`)
+  }
+  render() {
+    return (
+      <InputNumber disabled={true} value={this.state.value} onChange={this.onChange.bind(this)} min="5" max="10"></InputNumber>
+    )
+  }
 }
 ```
 <!--End-->
@@ -52,29 +56,31 @@ render() {
 <!--DemoStart--> 
 除了默认的大小外，还提供了 `large`、`small` 和 `mini` 三种尺寸。
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: 1
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 1
+    }
   }
-}
-onChange(e,value) {
-    console.log(`value - ${value}`)
-}
-handleIconClick(e,value){
-    console.log(`value - ${value}`)
-    Message.success(`您输入了数字 - ${value}`)
-}
-render() {
-  return (
-    <InputNumber 
-      preIcon="pay" 
-      icon="search" 
-      length={10} 
-      value={this.state.value} 
-      onChange={this.onChange.bind(this)}
-      onIconClick={this.handleIconClick.bind(this)} />
-  )
+  onChange(e,value) {
+      console.log(`value - ${value}`)
+  }
+  handleIconClick(e,value){
+      console.log(`value - ${value}`)
+      Message.success(`您输入了数字 - ${value}`)
+  }
+  render() {
+    return (
+      <InputNumber 
+        preIcon="pay" 
+        icon="search" 
+        length={10} 
+        value={this.state.value} 
+        onChange={this.onChange.bind(this)}
+        onIconClick={this.handleIconClick.bind(this)} />
+    )
+  }
 }
 ```
 <!--End-->
@@ -84,30 +90,32 @@ render() {
 <!--DemoStart--> 
 除了默认的大小外，还提供了 `large`、`small` 和 `mini` 三种尺寸。
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    value: 1
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 1
+    }
   }
-}
-onChange(e,value) {
-    console.log(`value - ${value}`)
-}
-handleIconClick(e,value){
-    console.log(`value - ${value}`)
-    Message.success(`您输入了数字 - ${value}`)
-}
-render() {
-  return (
-    <InputNumber 
-      preIcon="pay" 
-      icon="search" 
-      step="0.5"
-      length={10} 
-      value={this.state.value} 
-      onChange={this.onChange.bind(this)}
-      onIconClick={this.handleIconClick.bind(this)} />
-  )
+  onChange(e,value) {
+      console.log(`value - ${value}`)
+  }
+  handleIconClick(e,value){
+      console.log(`value - ${value}`)
+      Message.success(`您输入了数字 - ${value}`)
+  }
+  render() {
+    return (
+      <InputNumber 
+        preIcon="pay" 
+        icon="search" 
+        step="0.5"
+        length={10} 
+        value={this.state.value} 
+        onChange={this.onChange.bind(this)}
+        onIconClick={this.handleIconClick.bind(this)} />
+    )
+  }
 }
 ```
 <!--End-->
@@ -117,24 +125,26 @@ render() {
 <!--DemoStart--> 
 可以输入`+` `-` `.` `e` 和数字
 ```js
-render() {
-  const {Row,Col} = Layout;
-  return (
-    <Row gutter="20">
-      <Col span="6">
-        <InputNumber size="large" preIcon="pay" icon="search" length={10} value=''/>
-      </Col>
-      <Col span="6">
-        <InputNumber preIcon="pay" icon="search" length={10} value=''/>
-      </Col>
-      <Col span="6">
-        <InputNumber size="small" preIcon="pay" icon="search" length={10} value=''/>
-      </Col>
-      <Col span="6">
-        <InputNumber size="mini" preIcon="pay" icon="search" value=''/>
-      </Col>
-    </Row>
-  )
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    return (
+      <Row gutter="20">
+        <Col span="6">
+          <InputNumber size="large" preIcon="pay" icon="search" length={10} value=''/>
+        </Col>
+        <Col span="6">
+          <InputNumber preIcon="pay" icon="search" length={10} value=''/>
+        </Col>
+        <Col span="6">
+          <InputNumber size="small" preIcon="pay" icon="search" length={10} value=''/>
+        </Col>
+        <Col span="6">
+          <InputNumber size="mini" preIcon="pay" icon="search" value=''/>
+        </Col>
+      </Row>
+    )
+  }
 }
 ```
 <!--End-->

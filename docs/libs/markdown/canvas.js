@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import marked from 'marked';
@@ -7,79 +7,62 @@ import { transform } from 'babel-standalone';
 export default class Canvas extends React.Component {
   constructor(props) {
     super(props);
-
+    this.playerId = `${parseInt(Math.random() * 1e9).toString(36)}`
+    this.document = this.props.children.match(/([^]*)\n?(```[^]+```)/);
+    this.source = this.document[2].match(/```(.*)\n([^]+)```/);
+    this.description = marked(this.document[1]);
+    this.highlight = marked(this.document[2]);
     this.state = {
       showBlock: false
     };
   }
-
   componentDidMount() {
-    this.renderSource();
-  }
-
-  componentDidUpdate() {
-    this.renderSource();
+    this.renderSource(this.source[2]);
   }
   blockControl() {
     this.setState({
       showBlock: !this.state.showBlock
     });
   }
-
-
-  renderSource() {
-    if (this.shouldUpdate) {
-      const div = this.refs.source;
-      if (div instanceof HTMLElement) {
-        require(['../../../src'], Element => {
-          const args = ['context', 'React'], argv = [this, React];
-          for (const key in Element) {
-            args.push(key);
-            argv.push(Element[key]);
-          }
-          args.push(this.component);
-
-          ReactDOM.unmountComponentAtNode(div);
-          ReactDOM.render(new Function(...args).apply(null, argv), div);
-        });
+  renderSource(value) {
+    import('../../../src').then(Element => {
+      const args = ['context','React', 'ReactDOM','Component']
+      const argv = [this, React, ReactDOM, Component]
+      for (const key in Element) {
+        args.push(key)
+        argv.push(Element[key])
       }
-    }
-
-    delete this.shouldUpdate;
+      return { args, argv }
+    }).then(({ args, argv })=>{
+      const code = transform(`
+        ${value}
+        ReactDOM.render(<Demo {...context.props} />, document.getElementById('${this.playerId}'))
+      `, {
+        presets: ['es2015', 'react']
+      }).code
+      args.push(code)
+      new Function(...args).apply(null, argv)
+      this.source[2] = value
+    }).catch((err) => {
+      if (process.env.NODE_ENV !== 'production') {
+        throw err;
+      }
+    })
   }
 
   render() {
     const { prefixCls } = this.props;
-    const document = this.props.children.match(/([^]*)\n?(```[^]+```)/);
-    const source = document[2].match(/```(.*)\n([^]+)```/);
-    const description = marked(document[1]);
-    const highlight = marked(document[2]);
-    const component = transform(`
-      class Demo extends React.Component {
-        ${source[2]}
-      }
-      __rtn = (function() {
-        return <Demo {...context.props} />
-      })();
-    `, {
-        presets: ['es2015', 'react']
-      }).code.replace('__rtn = ', 'return ');
-
-    this.shouldUpdate = component !== this.component || this.component === undefined;
-    this.component = component;
-
-
     return (
       <div className={`${prefixCls}-demo-warpper ${prefixCls}-${this.props.name}`}>
-        <div className={`${prefixCls}-demo-source`} ref="source"></div>
+        <div className={`${prefixCls}-demo-source`} ref="source" id={this.playerId}></div>
         <div className={`${prefixCls}-demo-meta`} style={{
           height: this.state.showBlock ? 'inherit' : 0
         }}>
           {
-            description &&
-            <div ref="description" className={`${prefixCls}-demo-des`} dangerouslySetInnerHTML={{ __html: description }}></div>
+            this.description &&
+            <div ref="description" className={`${prefixCls}-demo-des`} dangerouslySetInnerHTML={{ __html: this.description }}></div>
           }
-          <div ref="highlight" className={`${prefixCls}-demo-highlight`} dangerouslySetInnerHTML={{ __html: highlight }}></div>
+          <div ref="highlight" className={`${prefixCls}-demo-highlight`} dangerouslySetInnerHTML={{ __html: this.highlight }}></div>
         </div>
         {
           this.state.showBlock ?

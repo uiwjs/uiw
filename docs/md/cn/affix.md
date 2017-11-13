@@ -8,12 +8,14 @@ Affix 图钉
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
+class Demo extends Component {
+  render(){
+    return (
     <Affix>
       <Button type="primary">钉在顶部</Button>
     </Affix>
-  )
+    )
+  }
 }
 ```
 <!--End-->
@@ -24,12 +26,14 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <Affix offsetBottom={10} onChange={(affixed)=>console.log("affixed::",affixed)}>
-      <Button type="primary">钉在底部</Button>
-    </Affix>
-  )
+class Demo extends Component {
+  render(){
+    return (
+      <Affix offsetBottom={10} onChange={(affixed)=>console.log("affixed::",affixed)}>
+        <Button type="primary">钉在底部</Button>
+      </Affix>
+    )
+  }
 }
 ```
 <!--End-->

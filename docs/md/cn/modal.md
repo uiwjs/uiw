@@ -7,12 +7,13 @@ Modal 对话框
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    loading:true
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading:true
+    }
   }
-}
 
   showConfirm(){
     Modal.info({
@@ -58,15 +59,16 @@ constructor(props) {
       },
     })
   }
-render() {
-  const ButtonGroup = Button.Group;
-  return (
-    <ButtonGroup>
-      <Button size="small" onClick={this.showConfirm} type="default">确认对话框</Button>
-      <Button size="small" onClick={this.showConfirm2} type="default">一个确认按钮对话框</Button>
-      <Button size="small" onClick={this.showConfirm3.bind(this)} type="default">延迟关闭对话框</Button>
-    </ButtonGroup>
-  )
+  render() {
+    const ButtonGroup = Button.Group;
+    return (
+      <ButtonGroup>
+        <Button size="small" onClick={this.showConfirm} type="default">确认对话框</Button>
+        <Button size="small" onClick={this.showConfirm2} type="default">一个确认按钮对话框</Button>
+        <Button size="small" onClick={this.showConfirm3.bind(this)} type="default">延迟关闭对话框</Button>
+      </ButtonGroup>
+    )
+  }
 }
 ```
 <!--End-->
@@ -75,24 +77,23 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    loading:true
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading:true
+    }
   }
-}
-
-
-showConfirm4(){
-  Modal.info({
-    title: 'Want to delete these items?',
-    content: 'When clicked the OK button, this dialog will be closed after 1 second',
-    okText: '确定按钮',
-    onOk() {
-      console.log("确定回调！")
-    },
-  })
-}
+  showConfirm4(){
+    Modal.info({
+      title: 'Want to delete these items?',
+      content: 'When clicked the OK button, this dialog will be closed after 1 second',
+      okText: '确定按钮',
+      onOk() {
+        console.log("确定回调！")
+      },
+    })
+  }
 
   showConfirm5(){
     Modal.warn({
@@ -104,38 +105,39 @@ showConfirm4(){
       },
     })
   }
-  
-  showConfirm6(){
-  Modal.error({
-    title: 'Want to delete these items?',
-    content: 'When clicked the OK button, this dialog will be closed after 1 second',
-    okText: '确定按钮',
-    onOk() {
-      console.log("确定回调！")
-    },
-  })
-}
 
-showConfirm7(){
-  Modal.success({
-    title: 'Want to delete these items?',
-    content: 'When clicked the OK button, this dialog will be closed after 1 second',
-    okText: '确定按钮',
-    onOk() {
-      console.log("确定回调！")
-    },
-  })
-}
-render() {
-  const ButtonGroup = Button.Group;
-  return (
-    <ButtonGroup>
-      <Button size="small" onClick={this.showConfirm4} type="info">消息</Button>
-      <Button size="small" onClick={this.showConfirm5} type="warn">警告</Button>
-      <Button size="small" onClick={this.showConfirm6} type="error">错误</Button>
-      <Button size="small" onClick={this.showConfirm7} type="success">成功</Button>
-    </ButtonGroup>
-  )
+  showConfirm6(){
+    Modal.error({
+      title: 'Want to delete these items?',
+      content: 'When clicked the OK button, this dialog will be closed after 1 second',
+      okText: '确定按钮',
+      onOk() {
+        console.log("确定回调！")
+      },
+    })
+  }
+
+  showConfirm7(){
+    Modal.success({
+      title: 'Want to delete these items?',
+      content: 'When clicked the OK button, this dialog will be closed after 1 second',
+      okText: '确定按钮',
+      onOk() {
+        console.log("确定回调！")
+      },
+    })
+  }
+  render() {
+    const ButtonGroup = Button.Group;
+    return (
+      <ButtonGroup>
+        <Button size="small" onClick={this.showConfirm4} type="info">消息</Button>
+        <Button size="small" onClick={this.showConfirm5} type="warn">警告</Button>
+        <Button size="small" onClick={this.showConfirm6} type="error">错误</Button>
+        <Button size="small" onClick={this.showConfirm7} type="success">成功</Button>
+      </ButtonGroup>
+    )
+  }
 }
 ```
 <!--End-->
@@ -144,25 +146,26 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-     visible1:false,
-     visible2:false,
-     visible3:false,
-     visible4:false,
-     confirmLoading:false,
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible1:false,
+      visible2:false,
+      visible3:false,
+      visible4:false,
+      confirmLoading:false,
+    }
   }
-}
-onClick(key){
-  console.log("key:------------------------------>:",key,this.state.visible1)
-  this.setState({
-    [key]:true
-  })
-}
-render() {
-  return (
-    <div>
+  onClick(key){
+    console.log("key:------------------------------>:",key,this.state.visible1)
+    this.setState({
+      [key]:true
+    })
+  }
+  render() {
+    return (
+      <div>
         <Modal 
           title="This Title" 
           horizontal="right"
@@ -308,17 +311,15 @@ render() {
 
         <Button size="small" onClick={this.onClick.bind(this,'visible1')}>Right顶部留出空隙，隐藏遮罩层</Button>
 
-
         <Button size="small" onClick={this.onClick.bind(this,'visible2')}>Right顶部留出空隙</Button>
-
 
         <Button size="small" onClick={this.onClick.bind(this,'visible3')}>Left</Button>
 
-
         <Button size="small" onClick={this.onClick.bind(this,'visible4')}>Right</Button> 
 
-    </div>
-  )
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -327,15 +328,16 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-     visible:false,
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible:false,
+    }
   }
-}
-render() {
-  return (
-    <div> 
+  render() {
+    return (
+      <div> 
         <Button size="small" onClick={()=>{
           this.setState({visible:true})
         }}>Open Modal dialog</Button>  &nbsp;
@@ -358,8 +360,9 @@ render() {
           <p>Bla bla ...</p>
           <p>Bla bla ...</p>
         </Modal>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -370,59 +373,61 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-     visible:false,
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible:false,
+    }
   }
-}
-handleCancel(){
-  this.setState({visible:false})
-}
-handleShow(){
-  this.setState({visible:true})
-}
-render() {
-  return (
-    <div> 
-      <Button size="small" onClick={this.handleShow.bind(this)}>Modals自定义Footer</Button>
-      <Modal 
-        ref="modal"
-        title="Modals自定义Footer" 
-        visible={this.state.visible}
-        onOk={this.handleOk} // 点击确定提交按钮
-        style={{top: 20}}    // 可以设定容器的位置以及样式
-        onCancel={this.handleCancel.bind(this)}
-        okText="OK" 
-        cancelText="Cancel"
-        // 自定义页脚按钮
-        // footer={null}
-        footer={(
-          <div>
-            <Button size="small" onClick={()=>{
-              //this.refs.modal.onCancel
-              this.setState({
-                visible:false
-              })
-            }}>
-              取消
-            </Button>
-            <Button size="small" onClick={()=>{
-              this.setState({
-                visible:false
-              })
-            }}>
-              确定
-            </Button>
-          </div>
-        )}
-      >
-        <p style={{color:"#333"}}>Bla bla ...</p>
-        <p>Bla bla ...</p>
-        <p>Bla bla ...</p>
-      </Modal>
-    </div>
-  )
+  handleCancel(){
+    this.setState({visible:false})
+  }
+  handleShow(){
+    this.setState({visible:true})
+  }
+  render() {
+    return (
+      <div> 
+        <Button size="small" onClick={this.handleShow.bind(this)}>Modals自定义Footer</Button>
+        <Modal 
+          ref="modal"
+          title="Modals自定义Footer" 
+          visible={this.state.visible}
+          onOk={this.handleOk} // 点击确定提交按钮
+          style={{top: 20}}    // 可以设定容器的位置以及样式
+          onCancel={this.handleCancel.bind(this)}
+          okText="OK" 
+          cancelText="Cancel"
+          // 自定义页脚按钮
+          // footer={null}
+          footer={(
+            <div>
+              <Button size="small" onClick={()=>{
+                //this.refs.modal.onCancel
+                this.setState({
+                  visible:false
+                })
+              }}>
+                取消
+              </Button>
+              <Button size="small" onClick={()=>{
+                this.setState({
+                  visible:false
+                })
+              }}>
+                确定
+              </Button>
+            </div>
+          )}
+        >
+          <p style={{color:"#333"}}>Bla bla ...</p>
+          <p>Bla bla ...</p>
+          <p>Bla bla ...</p>
+        </Modal>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -432,15 +437,16 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-     visible3:false,
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible3:false,
+    }
   }
-}
-render() {
-  return (
-    <div> 
+  render() {
+    return (
+      <div> 
         <Button size="small" onClick={()=>{
           this.setState({visible3:true})
         }}>Modals居中显示，</Button> &nbsp;
@@ -458,8 +464,9 @@ render() {
           <p>Bla bla ...</p>
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
         </Modal>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -468,17 +475,18 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    confirmLoading:false,
-    loading:false,
-    visible:false,
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      confirmLoading:false,
+      loading:false,
+      visible:false,
+    }
   }
-}
-render() {
-  return (
-    <div> 
+  render() {
+    return (
+      <div> 
         <Button size="small" onClick={()=>{
           this.setState({visible:true})
         }}>点击确定后异步关闭对话框， 并添加加载状态</Button> 
@@ -511,8 +519,9 @@ render() {
           <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
           </Loading>
         </Modal>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 ```
 <!--End-->

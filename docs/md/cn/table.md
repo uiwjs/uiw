@@ -10,43 +10,45 @@ Table 表格
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    columns: [
-      {title: "姓名", key: "name", width: 180 },
-      {title: "年龄", key: "age", width: 180 },
-      {title: "地址", key: "info"},
-      {
-        title: "操作",
-        key: "edit",
-        width: 110,
-        render: (text, row, index) => {
-          const ButtonGroup = Button.Group;
-          return (
-            <div>
-              <Button size="mini" type="danger">删除</Button>
-              <Button size="mini" type="success">修改</Button>
-            </div>
-          )
-        },
-      }
-    ],
-    dataSource:[
-  {name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。',edit:""},
-  {name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人',edit:""},
-  {name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手',edit:""},
-  {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。',edit:""},
-  {name: 'Angelababy', age: '54', info: '1989年2月28日出生于上海市，华语影视女演员、时尚模特。',edit:""},
-  {name: '唐嫣', age: '12', info: '1983年12月6日出生于上海市，毕业于中央戏剧学院表演系本科班',edit:""},
-  {name: '吴亦凡', age: '4', info: '1990年11月06日出生于广东省广州市，华语影视男演员、流行乐歌手。',edit:""},
-    ]
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      columns: [
+        {title: "姓名", key: "name", width: 180 },
+        {title: "年龄", key: "age", width: 180 },
+        {title: "地址", key: "info"},
+        {
+          title: "操作",
+          key: "edit",
+          width: 110,
+          render: (text, row, index) => {
+            const ButtonGroup = Button.Group;
+            return (
+              <div>
+                <Button size="mini" type="danger">删除</Button>
+                <Button size="mini" type="success">修改</Button>
+              </div>
+            )
+          },
+        }
+      ],
+      dataSource:[
+{name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。',edit:""},
+{name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人',edit:""},
+{name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手',edit:""},
+{name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。',edit:""},
+{name: 'Angelababy', age: '54', info: '1989年2月28日出生于上海市，华语影视女演员、时尚模特。',edit:""},
+{name: '唐嫣', age: '12', info: '1983年12月6日出生于上海市，毕业于中央戏剧学院表演系本科班',edit:""},
+{name: '吴亦凡', age: '4', info: '1990年11月06日出生于广东省广州市，华语影视男演员、流行乐歌手。',edit:""},
+      ]
+    }
   }
-}
-render() {
-  return (
-    <Table data={this.state.dataSource} columns={this.state.columns}/>
-  )
+  render() {
+    return (
+      <Table data={this.state.dataSource} columns={this.state.columns}/>
+    )
+  }
 }
 ```
 <!--End-->
@@ -55,35 +57,37 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    columns: [
-      {title: "姓名", key: "name", width: 180 },
-      {title: "年龄", key: "age", width: 180 },
-      {title: "地址", key: "info"},
-      {
-        title: "操作",
-        key: "edit",
-        width: 110,
-        render: (text, row, index) => {
-          const ButtonGroup = Button.Group;
-          return (
-            <div>
-              <Button size="mini" type="danger">删除</Button>
-              <Button size="mini" type="success">修改</Button>
-            </div>
-          )
-        },
-      }
-    ],
-    dataSource:[]
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      columns: [
+        {title: "姓名", key: "name", width: 180 },
+        {title: "年龄", key: "age", width: 180 },
+        {title: "地址", key: "info"},
+        {
+          title: "操作",
+          key: "edit",
+          width: 110,
+          render: (text, row, index) => {
+            const ButtonGroup = Button.Group;
+            return (
+              <div>
+                <Button size="mini" type="danger">删除</Button>
+                <Button size="mini" type="success">修改</Button>
+              </div>
+            )
+          },
+        }
+      ],
+      dataSource:[]
+    }
   }
-}
-render() {
-  return (
-    <Table data={this.state.dataSource} columns={this.state.columns}/>
-  )
+  render() {
+    return (
+      <Table data={this.state.dataSource} columns={this.state.columns}/>
+    )
+  }
 }
 ```
 <!--End-->
@@ -97,42 +101,44 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    columns: [
-      {title: "姓名", key: "age",  width: 160},
-      {title: "年龄", key: "name", dataIndex: 'name',  width: 160},
-      {
-        title: "操作",
-        key: "edit",
-        dataIndex: 'edit',
-        width: 110,
-        render: (text, row, index) => {
-          const ButtonGroup = Button.Group;
-          return (
-            <span>
-              <Button size="mini" type="danger">删除{text}</Button>
-              <Button size="mini" type="success">修改</Button>
-            </span>
-          )
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      columns: [
+        {title: "姓名", key: "age",  width: 160},
+        {title: "年龄", key: "name", dataIndex: 'name',  width: 160},
+        {
+          title: "操作",
+          key: "edit",
+          dataIndex: 'edit',
+          width: 110,
+          render: (text, row, index) => {
+            const ButtonGroup = Button.Group;
+            return (
+              <span>
+                <Button size="mini" type="danger">删除{text}</Button>
+                <Button size="mini" type="success">修改</Button>
+              </span>
+            )
+          },
         },
-      },
-      {title: "说明", key: "info", width: 160},
-      
-    ],
-    dataSource:[
-      {name: '邓紫棋', age: '12', edit:"11", info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。'},
-      {name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。',edit:"11"},
-    ]
+        {title: "说明", key: "info", width: 160},
+        
+      ],
+      dataSource:[
+        {name: '邓紫棋', age: '12', edit:"11", info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。'},
+        {name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。',edit:"11"},
+      ]
+    }
   }
-}
-render() {
-  return (
-    <Table 
-      data={this.state.dataSource} 
-      columns={this.state.columns}/>
-  )
+  render() {
+    return (
+      <Table 
+        data={this.state.dataSource} 
+        columns={this.state.columns}/>
+    )
+  }
 }
 ```
 <!--End-->
@@ -143,38 +149,40 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    paging:{
-        activePage:5,
-        total:250,
-    },
-    columns: [
-      {title: "姓名", key: "name", width: 180 },
-      {title: "年龄", key: "age", width: 180 },
-      {title: "地址", key: "info"}
-    ],
-    dataSource:[
-  {name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。'},
-  {name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人'},
-  {name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手'},
-  {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。'},
-  {name: 'Angelababy', age: '54', info: '1989年2月28日出生于上海市，华语影视女演员、时尚模特。'},
-  {name: '唐嫣', age: '12', info: '1983年12月6日出生于上海市，毕业于中央戏剧学院表演系本科班'},
-  {name: '吴亦凡', age: '4', info: '1990年11月06日出生于广东省广州市，华语影视男演员、流行乐歌手。'},
-    ]
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      paging:{
+          activePage:5,
+          total:250,
+      },
+      columns: [
+        {title: "姓名", key: "name", width: 180 },
+        {title: "年龄", key: "age", width: 180 },
+        {title: "地址", key: "info"}
+      ],
+      dataSource:[
+    {name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。'},
+    {name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人'},
+    {name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手'},
+    {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。'},
+    {name: 'Angelababy', age: '54', info: '1989年2月28日出生于上海市，华语影视女演员、时尚模特。'},
+    {name: '唐嫣', age: '12', info: '1983年12月6日出生于上海市，毕业于中央戏剧学院表演系本科班'},
+    {name: '吴亦凡', age: '4', info: '1990年11月06日出生于广东省广州市，华语影视男演员、流行乐歌手。'},
+      ]
+    }
   }
-}
-render() {
-  return (
-    <Table 
-      paging={this.state.paging}
-      caption={<div>明星基本信息</div>}
-      footer={<div>更新于1983年12月6日</div>}
-      data={this.state.dataSource} 
-      columns={this.state.columns}/>
-  )
+  render() {
+    return (
+      <Table 
+        paging={this.state.paging}
+        caption={<div>明星基本信息</div>}
+        footer={<div>更新于1983年12月6日</div>}
+        data={this.state.dataSource} 
+        columns={this.state.columns}/>
+    )
+  }
 }
 ```
 <!--End-->
@@ -185,21 +193,22 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    loading:false,
-    paging:{
-        activePage:5,
-        total:250,
-        onChange:this.handleTableChange.bind(this)
-    },
-    columns: [
-      {title: "姓名", key: "name", width: 180 },
-      {title: "年龄", key: "age", width: 180 },
-      {title: "地址", key: "info"}
-    ],
-    dataSource:[
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading:false,
+      paging:{
+          activePage:5,
+          total:250,
+          onChange:this.handleTableChange.bind(this)
+      },
+      columns: [
+        {title: "姓名", key: "name", width: 180 },
+        {title: "年龄", key: "age", width: 180 },
+        {title: "地址", key: "info"}
+      ],
+      dataSource:[
   {name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。'},
   {name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人'},
   {name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手'},
@@ -207,35 +216,36 @@ constructor(props) {
   {name: 'Angelababy', age: '54', info: '1989年2月28日出生于上海市，华语影视女演员、时尚模特。'},
   {name: '唐嫣', age: '12', info: '1983年12月6日出生于上海市，毕业于中央戏剧学院表演系本科班'},
   {name: '吴亦凡', age: '4', info: '1990年11月06日出生于广东省广州市，华语影视男演员、流行乐歌手。'},
-    ]
+      ]
+    }
   }
-}
 
-handleTableChange(activePage,total,pageSize){
-
-  this.setState({
-    loading:true,
-    activePage:activePage
-  })
-
-  setTimeout(()=>{
+  handleTableChange(activePage,total,pageSize){
 
     this.setState({
-      loading:false
+      loading:true,
+      activePage:activePage
     })
 
-  },2000)
-  
-}
-render() {
-  return (
-    <Table 
-      data={this.state.dataSource} 
-      paging={this.state.paging}
-      loading={this.state.loading}
-      columns={this.state.columns}
-    />
-  )
+    setTimeout(()=>{
+
+      this.setState({
+        loading:false
+      })
+
+    },2000)
+    
+  }
+  render() {
+    return (
+      <Table 
+        data={this.state.dataSource} 
+        paging={this.state.paging}
+        loading={this.state.loading}
+        columns={this.state.columns}
+      />
+    )
+  }
 }
 ```
 <!--End-->
@@ -247,77 +257,79 @@ render() {
 <!--DemoStart--> 
 对应数据中的key，保持一致，columns中的render函数才会有作用。
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    paging:{
-        activePage:5,
-        total:250,
-    },
-    columns: [
-        {
-          title: '姓名',
-          key: 'name', 
-          children:[
-            {
-              title: '中文名字',
-              key: 'enname',
-              children:[
-                {
-                  title: '姓',
-                  key: 'firstname',
-                  children:[
-                    {title: '祖姓', key: 'firstname_wcj', width: 150, },
-                    {title: '先姓', key: 'lastname_wcj', width: 150, }
-                  ]
-                },{
-                  title: '名',
-                  key: 'lastname',
-                  children:[
-                    {title: '谱名', width: 150, key: 'puname'},
-                    {title: '名', width: 150, key: 'lastpuname'}
-                  ]
-                }
-              ]
-            },{
-              title: '英文名字',
-              key: 'cnname'
-            }
-          ]
-        }, {
-          title: '公司',
-          key: 'company',
-          children:[
-            {title: '地址', width: 150, key: 'companyaddress'},
-            {title: '公司名字', width: 150, key: 'companyname'}
-          ]
-        }, {
-          title: '操作',
-          key: 'edit',
-          width: 150,
-          render: (text, row, index) => <a href="#" onClick={()=>{
-            console.log(text,row, index)
-          }}>{text}</a>,
-        }
-    ],
-    dataSource:[
-      {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
-      {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
-      {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
-      {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
-      {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
-      {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
-    ]
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      paging:{
+          activePage:5,
+          total:250,
+      },
+      columns: [
+          {
+            title: '姓名',
+            key: 'name', 
+            children:[
+              {
+                title: '中文名字',
+                key: 'enname',
+                children:[
+                  {
+                    title: '姓',
+                    key: 'firstname',
+                    children:[
+                      {title: '祖姓', key: 'firstname_wcj', width: 150, },
+                      {title: '先姓', key: 'lastname_wcj', width: 150, }
+                    ]
+                  },{
+                    title: '名',
+                    key: 'lastname',
+                    children:[
+                      {title: '谱名', width: 150, key: 'puname'},
+                      {title: '名', width: 150, key: 'lastpuname'}
+                    ]
+                  }
+                ]
+              },{
+                title: '英文名字',
+                key: 'cnname'
+              }
+            ]
+          }, {
+            title: '公司',
+            key: 'company',
+            children:[
+              {title: '地址', width: 150, key: 'companyaddress'},
+              {title: '公司名字', width: 150, key: 'companyname'}
+            ]
+          }, {
+            title: '操作',
+            key: 'edit',
+            width: 150,
+            render: (text, row, index) => <a href="#" onClick={()=>{
+              console.log(text,row, index)
+            }}>{text}</a>,
+          }
+      ],
+      dataSource:[
+        {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
+        {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
+        {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
+        {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
+        {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
+        {firstname_wcj: '周', lastname_wcj: '杰伦', puname:"street", lastpuname:"street", cnname: 32, companyaddress: '亮金信息科技', companyname: '亮金', edit: '编辑11'},
+      ]
+    }
   }
-}
-render() {
-  return (
-    <Table 
-      paging={this.state.paging}
-      width={2000}
-      footer={<div>更新于1983年12月6日</div>}
-      data={this.state.dataSource} columns={this.state.columns}/>
-  )
+  render() {
+    return (
+      <Table 
+        paging={this.state.paging}
+        width={2000}
+        footer={<div>更新于1983年12月6日</div>}
+        data={this.state.dataSource} columns={this.state.columns}/>
+    )
+  }
 }
 ```
 <!--End-->
@@ -329,40 +341,42 @@ render() {
 <!--DemoStart--> 
 对应数据中的key，保持一致，columns中的render函数才会有作用。
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    paging:{
-        activePage:5,
-        total:250,
-    },
-    columns: [
-      {title: "姓名", key: "name", width: 180 },
-      {title: "年龄", key: "age", width: 180 },
-      {title: "地址", key: "info"}
-    ],
-    dataSource:[
-  {name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。'},
-  {name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人'},
-  {name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手'},
-  {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。'},
-  {name: 'Angelababy', age: '54', info: '1989年2月28日出生于上海市，华语影视女演员、时尚模特。'},
-  {name: '唐嫣', age: '12', info: '1983年12月6日出生于上海市，毕业于中央戏剧学院表演系本科班'},
-  {name: '吴亦凡', age: '4', info: '1990年11月06日出生于广东省广州市，华语影视男演员、流行乐歌手。'},
-  {name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手'},
-  {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。'},
-  {name: 'Angelababy', age: '54', info: '1989年2月28日出生于上海市，华语影视女演员、时尚模特。'},
-  {name: '唐嫣', age: '12', info: '1983年12月6日出生于上海市，毕业于中央戏剧学院表演系本科班'},
-  {name: '吴亦凡', age: '4', info: '1990年11月06日出生于广东省广州市，华语影视男演员、流行乐歌手。'},
-    ]
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      paging:{
+          activePage:5,
+          total:250,
+      },
+      columns: [
+        {title: "姓名", key: "name", width: 180 },
+        {title: "年龄", key: "age", width: 180 },
+        {title: "地址", key: "info"}
+      ],
+      dataSource:[
+    {name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。'},
+    {name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人'},
+    {name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手'},
+    {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。'},
+    {name: 'Angelababy', age: '54', info: '1989年2月28日出生于上海市，华语影视女演员、时尚模特。'},
+    {name: '唐嫣', age: '12', info: '1983年12月6日出生于上海市，毕业于中央戏剧学院表演系本科班'},
+    {name: '吴亦凡', age: '4', info: '1990年11月06日出生于广东省广州市，华语影视男演员、流行乐歌手。'},
+    {name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手'},
+    {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。'},
+    {name: 'Angelababy', age: '54', info: '1989年2月28日出生于上海市，华语影视女演员、时尚模特。'},
+    {name: '唐嫣', age: '12', info: '1983年12月6日出生于上海市，毕业于中央戏剧学院表演系本科班'},
+    {name: '吴亦凡', age: '4', info: '1990年11月06日出生于广东省广州市，华语影视男演员、流行乐歌手。'},
+      ]
+    }
   }
-}
-render() {
-  return (
-    <Table height={300} 
-    paging={this.state.paging}
-    data={this.state.dataSource} columns={this.state.columns}/>
-  )
+  render() {
+    return (
+      <Table height={300} 
+      paging={this.state.paging}
+      data={this.state.dataSource} columns={this.state.columns}/>
+    )
+  }
 }
 ```
 <!--End-->
@@ -374,41 +388,43 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    columns: [
-      {title: "姓名", key: "name", width: 180 },
-      {title: "年龄", key: "age", width: 180 },
-      {title: "地址", key: "info"}
-    ],
-    dataSource:[
-  {_checked:true,name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。'},
-  {_disabled:true,name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人'},
-  {name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手'},
-  {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。'},
-    ]
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      columns: [
+        {title: "姓名", key: "name", width: 180 },
+        {title: "年龄", key: "age", width: 180 },
+        {title: "地址", key: "info"}
+      ],
+      dataSource:[
+    {_checked:true,name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。'},
+    {_disabled:true,name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人'},
+    {name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手'},
+    {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。'},
+      ]
+    }
   }
-}
-render() {
-  return (
-    <Table 
-      rowSelection={{
-        onSelectAll:(selectDatas,checked,e)=>{
-          console.log("所有选择的数据：",selectDatas)
-          console.log("是否选中：",checked)
-        },
-        onSelect:(row,number,checked,allChecked,e)=>{ //选中行的数据, 选中的行数, 是否选中, 选中的所有数据,e
-          console.log("选中行的数据row:",row)
-          console.log("选中的行数number:",number)
-          console.log("是否选中checked:",checked)
-          console.log("选中的所有数据allChecked:",allChecked)
-          console.log("Evn:",e)
-        }
-      }}
-      data={this.state.dataSource} 
-      columns={this.state.columns}/>
-  )
+  render() {
+    return (
+      <Table 
+        rowSelection={{
+          onSelectAll:(selectDatas,checked,e)=>{
+            console.log("所有选择的数据：",selectDatas)
+            console.log("是否选中：",checked)
+          },
+          onSelect:(row,number,checked,allChecked,e)=>{ //选中行的数据, 选中的行数, 是否选中, 选中的所有数据,e
+            console.log("选中行的数据row:",row)
+            console.log("选中的行数number:",number)
+            console.log("是否选中checked:",checked)
+            console.log("选中的所有数据allChecked:",allChecked)
+            console.log("Evn:",e)
+          }
+        }}
+        data={this.state.dataSource} 
+        columns={this.state.columns}/>
+    )
+  }
 }
 ```
 <!--End-->
@@ -421,54 +437,56 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props) {
-  super(props);
-  this.state = {
-    columns: [
-      {title: "姓名", key: "name", width: 180, fixed: 'left'},
-      {title: "年龄", key: "age", width: 180 },
-      {title: "地址", key: "info"}, 
-      {
-        title: '操作',
-        key: 'edit',
-        width: 60,
-        fixed: 'right',
-        render: (text, row, index) => <a href="javascript:void(0)" onClick={()=>{
-          console.log("--->",text,row, index)
-        }}>{text}</a>,
-      }
-    ],
-    dataSource:[
-  {_checked:true,name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。',edit:"编辑"},
-  {_disabled:true,name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人',edit:"编辑"},
-  {name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手',edit:"编辑"},
-  {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。',edit:"编辑"},
-  {_disabled:true,name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人',edit:"编辑"},
-  {name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手',edit:"编辑"},
-  {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。',edit:"编辑"},
-  {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。',edit:"编辑"},
-  {_disabled:true,name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人',edit:"编辑"},
-  {name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手',edit:"编辑"},
-  {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。',edit:"编辑"},
-    ]
-  }
-}
-render() {
-  return (
-    <Table 
-      height={200}
-      width={2000}
-      rowSelection={{
-        onSelectAll:(selectDatas,checked,e)=>{
-          console.log("选择或取消选择所有选项！",selectDatas)
-        },
-        onSelect:()=>{
-          console.log("选择单行选项！")
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      columns: [
+        {title: "姓名", key: "name", width: 180, fixed: 'left'},
+        {title: "年龄", key: "age", width: 180 },
+        {title: "地址", key: "info"}, 
+        {
+          title: '操作',
+          key: 'edit',
+          width: 60,
+          fixed: 'right',
+          render: (text, row, index) => <a href="javascript:void(0)" onClick={()=>{
+            console.log("--->",text,row, index)
+          }}>{text}</a>,
         }
-      }}
-      data={this.state.dataSource} 
-      columns={this.state.columns}/>
-  )
+      ],
+      dataSource:[
+    {_checked:true,name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，4岁移居香港，中国香港创作型女歌手。',edit:"编辑"},
+    {_disabled:true,name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人',edit:"编辑"},
+    {name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手',edit:"编辑"},
+    {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。',edit:"编辑"},
+    {_disabled:true,name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人',edit:"编辑"},
+    {name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手',edit:"编辑"},
+    {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。',edit:"编辑"},
+    {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。',edit:"编辑"},
+    {_disabled:true,name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人',edit:"编辑"},
+    {name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手',edit:"编辑"},
+    {name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。',edit:"编辑"},
+      ]
+    }
+  }
+  render() {
+    return (
+      <Table 
+        height={200}
+        width={2000}
+        rowSelection={{
+          onSelectAll:(selectDatas,checked,e)=>{
+            console.log("选择或取消选择所有选项！",selectDatas)
+          },
+          onSelect:()=>{
+            console.log("选择单行选项！")
+          }
+        }}
+        data={this.state.dataSource} 
+        columns={this.state.columns}/>
+    )
+  }
 }
 ```
 <!--End-->

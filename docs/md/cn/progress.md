@@ -7,17 +7,19 @@ Progress 进度条
 
 <!--DemoStart--> 
 ```js
-render() {
-  const sty = {marginBottom:10}
-  return (
-    <div style={{maxWidth:400}}>
-      <Progress style={sty} percent={30} />
-      <Progress style={sty} percent={50} status="active" />
-      <Progress style={sty} percent={70} status="exception" />
-      <Progress style={sty} percent={100} />
-      <Progress style={sty} percent={50} showText={false} />
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    const sty = {marginBottom:10}
+    return (
+      <div style={{maxWidth:400}}>
+        <Progress style={sty} percent={30} />
+        <Progress style={sty} percent={50} status="active" />
+        <Progress style={sty} percent={70} status="exception" />
+        <Progress style={sty} percent={100} />
+        <Progress style={sty} percent={50} showText={false} />
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -28,17 +30,19 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  const sty = {marginBottom:15}
-  return (
-    <div style={{maxWidth:400}}>
-      <Progress style={sty} strokeWidth={14} percent={30} />
-      <Progress style={sty} strokeWidth={14} percent={50} status="active" />
-      <Progress style={sty} strokeWidth={14} percent={70} status="exception" />
-      <Progress style={sty} strokeWidth={14} percent={100} />
-      <Progress style={sty} strokeWidth={14} percent={50} showText={false} />
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    const sty = {marginBottom:15}
+    return (
+      <div style={{maxWidth:400}}>
+        <Progress style={sty} strokeWidth={14} percent={30} />
+        <Progress style={sty} strokeWidth={14} percent={50} status="active" />
+        <Progress style={sty} strokeWidth={14} percent={70} status="exception" />
+        <Progress style={sty} strokeWidth={14} percent={100} />
+        <Progress style={sty} strokeWidth={14} percent={50} showText={false} />
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -49,38 +53,40 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props){
-  super(props);
-  this.state = {
-    percent: 0,
+class Demo extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      percent: 0,
+    }
   }
-}
-increase(){
-  let percent = this.state.percent + 10;
-  if (percent > 100) {
-    percent = 100;
+  increase(){
+    let percent = this.state.percent + 10;
+    if (percent > 100) {
+      percent = 100;
+    }
+    this.setState({ percent });
   }
-  this.setState({ percent });
-}
-decline(){
-  let percent = this.state.percent - 10;
-  if (percent < 0) {
-    percent = 0;
+  decline(){
+    let percent = this.state.percent - 10;
+    if (percent < 0) {
+      percent = 0;
+    }
+    this.setState({ percent });
   }
-  this.setState({ percent });
-}
-render() {
-  const ButtonGroup = Button.Group;
-  let sty = {marginRight:15}
-  return (
-    <div style={{maxWidth:400}}>
-      <Progress percent={this.state.percent} />
-      <ButtonGroup style={sty}>
-        <Button size="mini" onClick={this.decline.bind(this)} icon="minus" />
-        <Button size="mini" onClick={this.increase.bind(this)} icon="plus" />
-      </ButtonGroup>
-    </div>
-  )
+  render() {
+    const ButtonGroup = Button.Group;
+    let sty = {marginRight:15}
+    return (
+      <div style={{maxWidth:400}}>
+        <Progress percent={this.state.percent} />
+        <ButtonGroup style={sty}>
+          <Button size="mini" onClick={this.decline.bind(this)} icon="minus" />
+          <Button size="mini" onClick={this.increase.bind(this)} icon="plus" />
+        </ButtonGroup>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -89,15 +95,17 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  let sty = {marginRight:15}
-  return (
-    <div style={{maxHeight:120}}>
-      <Progress style={sty} type="circle" percent={75} />
-      <Progress style={sty} type="circle" percent={70} status="exception" />
-      <Progress style={sty} type="circle" percent={100} />
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    let sty = {marginRight:15}
+    return (
+      <div style={{maxHeight:120}}>
+        <Progress style={sty} type="circle" percent={75} />
+        <Progress style={sty} type="circle" percent={70} status="exception" />
+        <Progress style={sty} type="circle" percent={100} />
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -108,18 +116,20 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  let sty = {marginRight:15}
-  return (
-    <div style={{maxHeight:120}}>
-      <Progress style={sty} type="circle" width={80} strokeWidth={2} percent={75} />
-      <Progress style={sty} type="circle" width={100} strokeWidth={10} percent={70} status="exception" />
-      <Progress style={sty} type="circle" percent={100} />
-      <Progress style={sty} type="circle" percent={100} strokeWidth={3}/>
-      <Progress style={sty} type="circle" width={100} strokeWidth={4} percent={70} status="exception" />
-      <Progress style={sty} type="circle" width={80} strokeWidth={2} percent={75} />
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    let sty = {marginRight:15}
+    return (
+      <div style={{maxHeight:120}}>
+        <Progress style={sty} type="circle" width={80} strokeWidth={2} percent={75} />
+        <Progress style={sty} type="circle" width={100} strokeWidth={10} percent={70} status="exception" />
+        <Progress style={sty} type="circle" percent={100} />
+        <Progress style={sty} type="circle" percent={100} strokeWidth={3}/>
+        <Progress style={sty} type="circle" width={100} strokeWidth={4} percent={70} status="exception" />
+        <Progress style={sty} type="circle" width={80} strokeWidth={2} percent={75} />
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -130,39 +140,41 @@ render() {
 
 <!--DemoStart--> 
 ```js
-constructor(props){
-  super(props)
-  this.state = {
-    percent: 10,
+class Demo extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      percent: 10,
+    }
   }
-}
-increase() {
-  let percent = this.state.percent + 10;
-  if (percent > 100) {
-    percent = 100;
+  increase() {
+    let percent = this.state.percent + 10;
+    if (percent > 100) {
+      percent = 100;
+    }
+    this.setState({ percent });
   }
-  this.setState({ percent });
-}
-decline() {
-  let percent = this.state.percent - 10;
-  if (percent < 0) {
-    percent = 0;
+  decline() {
+    let percent = this.state.percent - 10;
+    if (percent < 0) {
+      percent = 0;
+    }
+    this.setState({ percent });
   }
-  this.setState({ percent });
-}
-render() {
-  const ButtonGroup = Button.Group;
-  return (
-    <div>
-      <Progress type="circle" percent={this.state.percent} />
-      <br/>
-      <br/>
-      <ButtonGroup>
-        <Button size="small" onClick={this.decline.bind(this)} icon="minus" />
-        <Button size="small" onClick={this.increase.bind(this)} icon="plus" />
-      </ButtonGroup>
-    </div>
-  );
+  render() {
+    const ButtonGroup = Button.Group;
+    return (
+      <div>
+        <Progress type="circle" percent={this.state.percent} />
+        <br/>
+        <br/>
+        <ButtonGroup>
+          <Button size="small" onClick={this.decline.bind(this)} icon="minus" />
+          <Button size="small" onClick={this.increase.bind(this)} icon="plus" />
+        </ButtonGroup>
+      </div>
+    );
+  }
 }
 ```
 <!--End-->

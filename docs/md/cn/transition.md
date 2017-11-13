@@ -9,49 +9,51 @@ Transition 过渡动画
 
 <!--DemoStart-->
 ```js
-constructor(props) {
-  super(props);
-  this.state = { 
-    show: true,
-    options:[
-      { value: 'fadeIn down', label: '向下淡进向上淡出' }, 
-      { value: 'fadeIn up', label: '向上淡进向下淡出' }, 
-      { value: 'fadeIn right', label: '在右淡进淡出' }, 
-      { value: 'fadeIn left', label: '在左淡进淡出' }, 
-    ],
-    value: 'fadeIn down',
-    labe: "向下淡进向上淡出",
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      show: true,
+      options:[
+        { value: 'fadeIn down', label: '向下淡进向上淡出' }, 
+        { value: 'fadeIn up', label: '向上淡进向下淡出' }, 
+        { value: 'fadeIn right', label: '在右淡进淡出' }, 
+        { value: 'fadeIn left', label: '在左淡进淡出' }, 
+      ],
+      value: 'fadeIn down',
+      labe: "向下淡进向上淡出",
+    }
   }
-}
-toggleIn () {
-  this.setState({ show: !this.state.show })
-}
-onChange(e,value){
-  this.setState({ value })
-}
-render() {
-  const { show } = this.state
-  return (
-    <div>  
-      <Select onChange={this.onChange.bind(this)} style={{width:200,margin:"0 10px 0 0"}} value={this.state.value}>
-        {
-          this.state.options.map((elm,idx)=> {
-            return <Select.Option key={elm.value} label={elm.label} value={elm.value}/>
-          })
-        }
-      </Select>
-      <Button size="small" onClick={this.toggleIn.bind(this)}>
-        {show?'消失':'显示'}
-      </Button>
-      <div style={{padding:"20px 0 10px 5px",maxWidth:200}}>
-        <Transition in={show}  sequence={this.state.value}>
-          <div>
-            {this.state.labe}
-          </div>
-        </Transition>
+  toggleIn () {
+    this.setState({ show: !this.state.show })
+  }
+  onChange(e,value){
+    this.setState({ value })
+  }
+  render() {
+    const { show } = this.state
+    return (
+      <div>  
+        <Select onChange={this.onChange.bind(this)} style={{width:200,margin:"0 10px 0 0"}} value={this.state.value}>
+          {
+            this.state.options.map((elm,idx)=> {
+              return <Select.Option key={elm.value} label={elm.label} value={elm.value}/>
+            })
+          }
+        </Select>
+        <Button size="small" onClick={this.toggleIn.bind(this)}>
+          {show?'消失':'显示'}
+        </Button>
+        <div style={{padding:"20px 0 10px 5px",maxWidth:200}}>
+          <Transition in={show}  sequence={this.state.value}>
+            <div>
+              {this.state.labe}
+            </div>
+          </Transition>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 ```
 <!--End-->
@@ -60,29 +62,31 @@ render() {
 
 <!--DemoStart-->
 ```js
-constructor(props) {
-  super(props);
-  this.state = { show: true }
-}
-toggleIn () {
-  this.setState({ show: !this.state.show })
-}
-render() {
-  const { show } = this.state
-  return (
-    <div>  
-      <Button size="mini" onClick={this.toggleIn.bind(this)}>
-        {show?'消失':'显示'}
-      </Button>
-      <div style={{padding:"20px 0 10px 0",maxWidth:200}}>
-        <Transition in={show} unmountOnExit={false} sequence='fadeIn'>
-          <div>
-            淡进淡入
-          </div>
-        </Transition>
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { show: true }
+  }
+  toggleIn () {
+    this.setState({ show: !this.state.show })
+  }
+  render() {
+    const { show } = this.state
+    return (
+      <div>  
+        <Button size="mini" onClick={this.toggleIn.bind(this)}>
+          {show?'消失':'显示'}
+        </Button>
+        <div style={{padding:"20px 0 10px 0",maxWidth:200}}>
+          <Transition in={show} unmountOnExit={false} sequence='fadeIn'>
+            <div>
+              淡进淡入
+            </div>
+          </Transition>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 ```
 <!--End-->
@@ -91,44 +95,46 @@ render() {
 
 <!--DemoStart-->
 ```js
-constructor(props) {
-  super(props);
-  this.state = { 
-    show: true ,
-    show2:true
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      show: true ,
+      show2:true
+    }
   }
-}
-toggleIn (ty) {
-  this.setState({ 
-    [`${ty}`]: !this.state[ty] 
-  })
-}
-render() {
-  const { show,show2 } = this.state
-  return (
-    <div>  
-      <Button size="mini" onClick={this.toggleIn.bind(this,'show')}> {show?'消失':'显示'} </Button>
-      <div style={{padding:"20px 0 10px 0",maxWidth:200}}>
-        <Transition in={show} unmountOnExit={false} sequence='height' style={{background:"#e2e2e2"}}>
-          <div>
-            <div style={{padding:10}}>
-              高度改变动画支持
+  toggleIn (ty) {
+    this.setState({ 
+      [`${ty}`]: !this.state[ty] 
+    })
+  }
+  render() {
+    const { show,show2 } = this.state
+    return (
+      <div>  
+        <Button size="mini" onClick={this.toggleIn.bind(this,'show')}> {show?'消失':'显示'} </Button>
+        <div style={{padding:"20px 0 10px 0",maxWidth:200}}>
+          <Transition in={show} unmountOnExit={false} sequence='height' style={{background:"#e2e2e2"}}>
+            <div>
+              <div style={{padding:10}}>
+                高度改变动画支持
+              </div>
             </div>
-          </div>
-        </Transition>
-      </div>
-      <Button size="mini" onClick={this.toggleIn.bind(this,'show2')}> {show2?'消失':'显示'} </Button>
-      <div style={{padding:"20px 0 10px 0",maxWidth:200}}>
-        <Transition in={show2} unmountOnExit={false} sequence='width' style={{background:"#e2e2e2"}}>
-          <div>
-            <div style={{padding:10}}>
-              高度改变动画支持
+          </Transition>
+        </div>
+        <Button size="mini" onClick={this.toggleIn.bind(this,'show2')}> {show2?'消失':'显示'} </Button>
+        <div style={{padding:"20px 0 10px 0",maxWidth:200}}>
+          <Transition in={show2} unmountOnExit={false} sequence='width' style={{background:"#e2e2e2"}}>
+            <div>
+              <div style={{padding:10}}>
+                高度改变动画支持
+              </div>
             </div>
-          </div>
-        </Transition>
+          </Transition>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 ```
 <!--End-->
