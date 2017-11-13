@@ -59,4 +59,5 @@ Avatar.propTypes = {
 Avatar.defaultProps = {
   prefixCls: 'w-avatar',
   shape: 'circle',
+  size: 'default'
 }
