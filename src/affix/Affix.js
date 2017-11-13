@@ -1,6 +1,17 @@
 import React from 'react';
 import { Component, PropTypes, ReactDOM } from '../utils/';
 
+function getScrollTop() {
+  if (typeof window.pageYOffset !== 'undefined') {
+    return window.pageYOffset;
+  } else if (typeof document.compatMode !== 'undefined' && document.compatMode !== 'BackCompat') {
+    return document.documentElement.scrollTop;
+  } else if (typeof document.body !== 'undefined') {
+    return document.body.scrollTop;
+  }
+}
+
+
 export default class Affix extends Component {
   constructor(props) {
     super(props);
@@ -39,8 +50,9 @@ export default class Affix extends Component {
       offsetMode.top = typeof offsetTop === 'number';
       offsetMode.bottom = typeof offsetBottom === 'number';
     }
-    const { scrollTop, clientHeight, } = window.document.body;
-    if (rootElm.offsetTop < scrollTop && offsetMode.top) {
+    const { clientHeight } = document.body;
+
+    if (rootElm.offsetTop < getScrollTop() && offsetMode.top) {
       // 设置占位高宽
       this.setPlaceholderStyle({ ...elemSize })
       this.setAffixStyle({
@@ -49,7 +61,7 @@ export default class Affix extends Component {
         left: rootElm.offsetLeft,
         width: rootElm.clientWidth,
       });
-    } else if (offsetMode.bottom && (rootElm.offsetTop + rootElm.clientHeight) > (scrollTop + clientHeight)) {
+    } else if (offsetMode.bottom && (rootElm.offsetTop + rootElm.clientHeight) > (getScrollTop() + clientHeight)) {
       // 设置占位高宽
       this.setPlaceholderStyle({ ...elemSize })
       this.setAffixStyle({
