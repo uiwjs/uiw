@@ -127,7 +127,7 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 ## v1.2.10
 
-`2017-11-30`
+`2017-10-30`
 
 - 🐞 Fix file reference error. - [5e7ff94](https://github.com/uiw-react/uiw/commit/5e7ff942d32b3e6cddd459703db6c43b696dcff0) 
 - 🌟 Add a Progress component circle effect. - [52798a1](https://github.com/uiw-react/uiw/commit/52798a12f75a6a53ecb92378a54a0b70e0740e45) 
@@ -140,7 +140,7 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 ## v1.2.9
 
-`2017-11-29`
+`2017-10-29`
 
 - 🌟 Add the Avatar component. [e6b3c32](https://github.com/uiw-react/uiw/commit/e6b3c32318b79ee7b4a085b18907f630f3076e6c)
 - 🐞 Change the Badge style. [e4ea572](https://github.com/uiw-react/uiw/commit/e4ea5722c58cc581d8832253ca69818064331a36)
