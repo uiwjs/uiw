@@ -90,4 +90,5 @@ InputNumber.defaultProps = {
   prefixCls: 'w-input-number',
   onChange: (v) => v,
   step: 1,
+  value:0
 }
