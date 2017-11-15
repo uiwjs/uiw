@@ -1,16 +1,5 @@
 import React from 'react';
-import { Component, PropTypes, ReactDOM } from '../utils/';
-
-function getScrollTop() {
-  if (typeof window.pageYOffset !== 'undefined') {
-    return window.pageYOffset;
-  } else if (typeof document.compatMode !== 'undefined' && document.compatMode !== 'BackCompat') {
-    return document.documentElement.scrollTop;
-  } else if (typeof document.body !== 'undefined') {
-    return document.body.scrollTop;
-  }
-}
-
+import { Component, PropTypes, ReactDOM, getScrollTop } from '../utils/';
 
 export default class Affix extends Component {
   constructor(props) {
