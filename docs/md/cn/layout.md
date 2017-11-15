@@ -370,7 +370,7 @@ class Demo extends Component {
 | gutter | 栅格间隔间距 | number | - |
 | type | 布局模式，可选 `flex`，[现代浏览器](http://caniuse.com/#search=flex) 下有效 | string | - |
 | justify | flex 布局下的水平排列方式：`start`,`center`,`end`,`space-between`,`space-around` | number | - |
-| justify | flex 布局下的垂直对齐方式：`top`,`middle`,`bottom`,`baseline` | number | - |
+| align | flex 布局下的垂直对齐方式：`top`,`middle`,`bottom`,`baseline` | number | - |
 
 
 ### Col
