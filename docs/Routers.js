@@ -29,6 +29,7 @@ import table from 'bundle-loader?lazy&name=table!./pages/table';
 import tabs from 'bundle-loader?lazy&name=tabs!./pages/tabs';
 import tooltip from 'bundle-loader?lazy&name=tooltip!./pages/tooltip';
 import tag from 'bundle-loader?lazy&name=tag!./pages/tag';
+import tree from 'bundle-loader?lazy&name=tree!./pages/tree';
 import rate from 'bundle-loader?lazy&name=rate!./pages/rate';
 import recommendation from 'bundle-loader?lazy&name=recommendation!./pages/recommendation';
 import badge from 'bundle-loader?lazy&name=badge!./pages/badge';
@@ -109,6 +110,7 @@ const routes = {
       { path: "/:lang/rate", component: asyncComponent(rate) },
       { path: "/:lang/table", component: asyncComponent(table) },
       { path: "/:lang/tag", component: asyncComponent(tag) },
+      { path: "/:lang/tree", component: asyncComponent(tree) },
       { path: "/:lang/tooltip", component: asyncComponent(tooltip) },
     ],
     'Navigation': [
