@@ -1,23 +1,23 @@
 @w-progress-prefix: ~"w-progress";
 
-.@{w-progress-prefix}{
+.@{w-progress-prefix} {
   position: relative;
   line-height: 1;
   display: inline-block;
-  &-line{
+  &-line {
     width: 100%;
     font-size: 12px;
   }
-  &-bar{
+  &-bar {
     display: inline-block;
     width: 100%;
     vertical-align: middle;
   }
-  &-status-active &-bg{
-    background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+  &-status-active &-bg {
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
     background-size: 12px 12px;
     animation: progress-bar-stripes 1s linear infinite;
-    &:before{
+    &:before {
       content: " ";
       opacity: 0;
       position: absolute;
@@ -30,46 +30,46 @@
       animation: w-progress-active 2.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
     }
   }
-  &-status-exception{
-    .@{w-progress-prefix}-bg{
+  &-status-exception {
+    .@{w-progress-prefix}-bg {
       background-color: #dc3545;
     }
-    .@{w-progress-prefix}-text{
+    .@{w-progress-prefix}-text {
       color: #dc3545;
     }
   }
-  &-status-success{
-    .@{w-progress-prefix}-bg{
+  &-status-success {
+    .@{w-progress-prefix}-bg {
       background-color: #28a745;
     }
-    .@{w-progress-prefix}-text{
+    .@{w-progress-prefix}-text {
       color: #28a745;
     }
   }
-  &-show-text &-bar{
+  &-show-text &-bar {
     margin-right: -50px;
     padding-right: 50px;
   }
-  &-inner{
+  &-inner {
     height: 100%;
     width: 100%;
     background-color: #f7f7f7;
   }
-  &-bg{
+  &-bg {
     height: 100%;
     border-radius: 100px;
     background-color: #108ee9;
-    transition: all .4s cubic-bezier(.08,.82,.17,1) 0s;
+    transition: all .4s cubic-bezier(.08, .82, .17, 1) 0s;
     position: relative;
   }
-  &-text{
+  &-text {
     color: #48576a;
     display: inline-block;
     vertical-align: middle;
     margin-left: 10px;
     line-height: 1;
   }
-  &-circle &-text i[class^="w-icon-"]{
+  &-circle &-text i[class^="w-icon-"] {
     font-size: 18px;
   }
   &-circle &-text {
@@ -79,7 +79,7 @@
     width: 100%;
     text-align: center;
     margin: 0;
-    transform: translate(0,-50%);
+    transform: translate(0, -50%);
     font-size: 16px;
   }
 }

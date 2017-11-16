@@ -1,23 +1,18 @@
 @import "~uiw-iconfont/fonts/w-iconfont.css";
-
-
-.w-icon-spin:before{
+.w-icon-spin:before {
   animation: loading-circle 1s infinite linear;
 }
-
-[class^="w-icon-"]:before,{
+[class^="w-icon-"]:before, {
   vertical-align: middle;
   display: inline-block;
 }
-[class^="w-icon-"]:after, 
-[class*=" w-icon-"]:after,{
+[class^="w-icon-"]:after, [class*=" w-icon-"]:after {
   vertical-align: middle;
   content: '';
   height: 100%;
   width: 0;
   display: inline-block;
 }
-
 
 @keyframes loading-circle {
   0% {
@@ -26,4 +21,4 @@
   100% {
     transform: rotate(360deg);
   }
- }
+}

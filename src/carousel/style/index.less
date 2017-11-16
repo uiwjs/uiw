@@ -4,7 +4,6 @@
 @import "../../style/variables.less";
 @import "../../style/mixins/index.less";
 
-
 .w-carousel {
   .slick-slider {
     position: relative;
@@ -24,32 +23,25 @@
     &:focus {
       outline: none;
     }
-
     &.dragging {
       cursor: pointer;
     }
   }
-  .slick-slider .slick-track,
-  .slick-slider .slick-list {
+  .slick-slider .slick-track, .slick-slider .slick-list {
     transform: translate3d(0, 0, 0);
   }
-
   .slick-track {
     position: relative;
     left: 0;
     top: 0;
     display: block;
-
-    &:before,
-    &:after {
+    &:before, &:after {
       content: "";
       display: table;
     }
-
     &:after {
       clear: both;
     }
-
     .slick-loading & {
       visibility: hidden;
     }
@@ -121,21 +113,18 @@
       opacity: 0.25;
     }
   }
-
   .slick-prev {
     left: -25px;
     &:before {
-      ontent: "←";
+      content: "←";
     }
   }
-
   .slick-next {
     right: -25px;
     &:before {
       content: "→";
     }
   }
-
   // Dots
   .slick-dots {
     position: absolute;
@@ -171,7 +160,6 @@
           opacity: 0.75;
         }
       }
-     
       &.slick-active button {
         background: #fff;
         opacity: 1;
@@ -181,13 +169,12 @@
           opacity: 1;
         }
       }
-      button::before{
-        display: none
+      button::before {
+        display: none;
       }
     }
   }
 }
-
 .w-carousel-vertical {
   .slick-dots {
     width: @carousel-dot-height;

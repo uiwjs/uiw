@@ -3,7 +3,7 @@
 
 @tag-cls: ~"w-tag";
 
-.@{tag-cls}{
+.@{tag-cls} {
   display: inline-block;
   padding: @tag-padding-top @tag-padding-right @tag-padding-bottom @tag-padding-right;
   font-size: 12px;
@@ -15,56 +15,54 @@
   vertical-align: baseline;
   border-radius: .25em;
   margin-right: @tag-padding-horizontal;
-  svg{
+  svg {
     cursor: pointer;
     position: relative;
     top: -1px;
     margin-left: 2px;
   }
-  .w-icon-close{
-    margin: -4px 0 0 0px;
+  .w-icon-close {
+    margin: -4px 0 0 0;
     transform: scale(.83333333) rotate(0deg);
   }
 }
-
-.@{tag-cls}-white{
+.@{tag-cls}-white {
   color: @tag-white-color;
   border: 1px solid @tag-white-border-color;
   padding: @tag-padding-top-white @tag-padding-right;
-  background-color:@tag-white-bg;
+  background-color: @tag-white-bg;
   svg g {
     stroke: @tag-white-color;
   }
 }
-.@{tag-cls}-pink{
+.@{tag-cls}-pink {
   background-color: @tag-pink-bg;
 }
-.@{tag-cls}-red{
+.@{tag-cls}-red {
   background-color: @tag-red-bg;
 }
-.@{tag-cls}-yellow{
+.@{tag-cls}-yellow {
   background-color: @tag-yellow-bg;
 }
-.@{tag-cls}-orange{
+.@{tag-cls}-orange {
   background-color: @tag-orange-bg;
 }
-.@{tag-cls}-green{
+.@{tag-cls}-green {
   background-color: @tag-green-bg;
 }
-.@{tag-cls}-cyan{
+.@{tag-cls}-cyan {
   background-color: @tag-cyan-bg;
 }
-.@{tag-cls}-blue{
+.@{tag-cls}-blue {
   background-color: @tag-blue-bg;
 }
-.@{tag-cls}-purple{
+.@{tag-cls}-purple {
   background-color: @tag-purple-bg;
 }
-
-.@{tag-cls}.checkable,.@{tag-cls}.checked{
+.@{tag-cls}.checkable,.@{tag-cls}.checked {
   cursor: pointer;
 }
-.@{tag-cls}.checkable{
+.@{tag-cls}.checkable {
   background-color: transparent;
   color: initial;
   border-color: transparent;
