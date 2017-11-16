@@ -5,7 +5,6 @@
 
 .generate-columns(24);
 
-
 .generate-columns-bootstrap(@name, @n, @i: 1) when (@i =< @n) {
   .w-col-@{name}-@{i} {
     width: (@i * 100% / @n);
@@ -15,11 +14,11 @@
   }
   .w-col-@{name}-pull-@{i} {
     position: relative;
-    right:  (@i * 100% / @n);
+    right: (@i * 100% / @n);
   }
   .w-col-@{name}-push-@{i} {
     position: relative;
-    left:  (@i * 100% / @n);
+    left: (@i * 100% / @n);
   }
   .generate-columns-bootstrap(@name, @n, (@i + 1));
 };
@@ -39,9 +38,11 @@
 @media screen and (min-width: @screen-sm) {
   .generate-columns-bootstrap(sm,24);
 }
+
 @media screen and (min-width: @screen-md) {
   .generate-columns-bootstrap(md,24);
 }
+
 @media screen and (min-width: @screen-lg) {
   .generate-columns-bootstrap(lg,24);
 }

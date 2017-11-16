@@ -1,32 +1,32 @@
 @w-tree:~"w-tree";
 
-.@{w-tree}{
+.@{w-tree} {
   padding: 0;
   font-size: 12px;
-  li{
+  li {
     margin: 0;
     list-style: none;
   }
-  ul ul{
+  ul ul {
     padding: 0 0 0 18px;
   }
-  &-icon{
+  &-icon {
     cursor: pointer;
     width: 24px;
     height: 24px;
     line-height: 24px;
-    &.is-close::before{
+    &.is-close::before {
       transform: rotate(-90deg) scale(.59);
     }
-    &::before{
+    &::before {
       transition: transform .3s;
       transform: rotate(0deg) scale(.59);
     }
-    &.no-child::before{
+    &.no-child::before {
       content: '';
     }
   }
-  &-close{
+  &-close {
     display: none;
   }
 }
