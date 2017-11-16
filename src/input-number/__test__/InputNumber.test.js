@@ -2,18 +2,17 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { InputNumber } from '../../../src';
 
-describe('<InputNumber>',()=>{
+describe('<InputNumber>', () => {
   const wrapperState = {
-    value:0,
+    value: 0,
   }
   var wrapper = mount(<InputNumber
-    onChange={(e,value)=>{
-      console.log('value:',value)
-      wrapperState.value=value
+    onChange={(e, value) => {
+      wrapperState.value = value
     }}
-    ></InputNumber>);
+  ></InputNumber>);
 
-  it('Test the default props and node.',() => {
+  it('Test the default props and node.', () => {
     expect(wrapper.name()).toBe('InputNumber')
     // 默认值测试
     expect(wrapper.find('.w-input-number')).toHaveLength(1);
@@ -23,7 +22,7 @@ describe('<InputNumber>',()=>{
     expect(wrapper.find('.w-input').type()).toBe('div');
   })
 
-   it('Test onChange attributes.', () => {
+  it('Test onChange attributes.', () => {
     wrapper.setProps({ step: 2 });
     let push = wrapper.find('.w-input-number-push').at(0)
     push.simulate('click');
