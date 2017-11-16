@@ -9,7 +9,6 @@ describe('<Rate>', () => {
   };
   var wrapper = mount(<Rate
     onHoverChange={(e, value) => {
-      console.log("value:", value)
       warpperState.hoverValue = value
     }}
     onChange={(e, value) => {
