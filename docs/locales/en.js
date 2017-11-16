@@ -26,6 +26,7 @@ module.exports = {
     'loading': 'Loading',
     'rate': 'Rate',
     'tag': 'Tag',
+    'tree': 'Tree',
     'message': 'Message',
     'modal': 'Modal',
     'menu': 'Menu',
