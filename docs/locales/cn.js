@@ -26,6 +26,7 @@ module.exports = {
     'loading': 'Loading 加载中',
     'rate': 'Rate 评分',
     'tag': 'Tag 标签',
+    'tree': 'Tree 树形控件',
     'message': 'Message 全局提示',
     'modal': 'Modal 对话框',
     'menu': 'Menu 菜单',
