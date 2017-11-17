@@ -1,8 +1,8 @@
 @import "../../style/variables.less";
 @import "../../style/mixins/index.less";
 
-.w-chackbox-warpper{
-  .w-chackbox{
+.w-chackbox-warpper {
+  .w-chackbox {
     display: inline-block;
     font-size: 12px;
     height: @checkbox-size;
@@ -13,7 +13,7 @@
     background: transparent;
     border-radius: @checkbox-border-radius;
     transition: background @transition-time @transition-timing-functio;
-    input{
+    input {
       position: absolute;
       left: -19990px;
       height: 1px;
@@ -21,30 +21,30 @@
     }
     &:before,&.checked:before,&.checked:after,
     &.indeterminate:before,
-    &.indeterminate:after{
+    &.indeterminate:after {
       transition: background-color @transition-time @transition-timing-functio;
       content: '';
       display: inline-block;
     }
-    &:before,&.indeterminate:before{
+    &:before,&.indeterminate:before {
       display: block;
       width: 100%;
       height: 100%;
       border-radius: @checkbox-border-radius;
-      border:1px solid @checkbox-border-gray-light;
+      border: 1px solid @checkbox-border-gray-light;
     }
-    &.checked{
+    &.checked {
       background: @checkbox-bg-base;
-      &:before{
-        border:0;
+      &:before {
+        border: 0;
       }
     }
-    &.indeterminate{
-      &:before{
+    &.indeterminate {
+      &:before {
         background-color: @checkbox-default-bg-color;
-        border:1px solid @checkbox-bg-base;
+        border: 1px solid @checkbox-bg-base;
       }
-      &:after{
+      &:after {
         width: @checkbox-indeterminate-size;
         height: @checkbox-indeterminate-size;
         position: relative;
@@ -54,7 +54,7 @@
         border-radius: @checkbox-after-radius;
       }
     }
-    &.checked:after{
+    &.checked:after {
       border: solid @checkbox-default-bg-color;
       border-width: 0 2px 2px 0;
       transform: rotate(@checkbox-transform-rotate);
@@ -65,32 +65,32 @@
       height: 10px;
       width: 6px;
     }
-    &.disabled,&.disabled+span{
+    &.disabled, &.disabled + span {
       cursor: @cursor-disabled;
       color: @checkbox-disabled-color;
     }
-    &+span{
+    & + span {
       padding-left: @checkbox-label-padding-left;
       padding-right: @checkbox-label-padding-right;
-      user-select:none;
+      user-select: none;
       font-size: 12px;
     }
-    &.disabled{
+    &.disabled {
       background-color: @gray-lighter;
-      &.checked{
-        &:before{
+      &.checked {
+        &:before {
           background-color: @gray-lighter;
-          border:1px solid @checkbox-border-gray-light;
+          border: 1px solid @checkbox-border-gray-light;
         }
-        &:after{
-          border-color:@checkbox-border-gray-light;
+        &:after {
+          border-color: @checkbox-border-gray-light;
         }
       }
-      &.indeterminate{
-        &:before{
-          border:1px solid @checkbox-border-gray-light;
+      &.indeterminate {
+        &:before {
+          border: 1px solid @checkbox-border-gray-light;
         }
-        &:after{
+        &:after {
           background-color: @checkbox-border-gray-light;
         }
       }

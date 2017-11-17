@@ -1,66 +1,64 @@
-.w-timeselect,.w-timepicker{
-  .w-popper-warpper{
+.w-timeselect,.w-timepicker {
+  .w-popper-warpper {
     position: absolute;
   }
 }
-.w-timepicker-panel-popper,.w-timeselect-panel-popper{
-  
+.w-timepicker-panel-popper, .w-timeselect-panel-popper {
   position: absolute;
   top: 5px;
   z-index: 1001;
   border: 1px solid #e8e8e8;
   border-radius: 4px;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,.12), 0 0 6px rgba(0,0,0,.04);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
   box-sizing: border-box;
 }
 
-
-.w-timeselect-panel-popper{
-  .w-timeselect-panel{
+.w-timeselect-panel-popper {
+  .w-timeselect-panel {
     overflow: auto;
     max-height: 200px;
   }
-  .w-timeselect-panel div{
+  .w-timeselect-panel div {
     padding: 5px 10px;
     font-size: 14px;
-    &:hover{
+    &:hover {
       background-color: #ececec;
       cursor: pointer;
     }
-    &.w-disabled{
+    &.w-disabled {
       color: #ececec;
       cursor: not-allowed;
-      &:hover{
+      &:hover {
         background-color: transparent;
       }
     }
   }
 }
 
-.w-timepicker-panel-popper{
-  .w-timepicker-panel{
+.w-timepicker-panel-popper {
+  .w-timepicker-panel {
     overflow: auto;
     max-height: 200px;
   }
-  .w-time-spinner-select:first-child{
-    border-left:1px solid transparent;
+  .w-time-spinner-select:first-child {
+    border-left: 1px solid transparent;
   }
-  .w-time-spinner-select{
+  .w-time-spinner-select {
     position: relative;
     overflow: hidden;
     max-height: 144px;
     width: 53px;
     border-left: 1px solid #e9e9e9;
     float: left;
-    &:hover{
+    &:hover {
       overflow-y: auto;
     }
-    ul{
+    ul {
       width: 100%;
       padding: 0 0 120px;
     }
-    li{
+    li {
       display: block;
       user-select: none;
       list-style: none;
@@ -72,17 +70,17 @@
       line-height: 24px;
       text-align: left;
       cursor: pointer;
-      &:hover{
+      &:hover {
         background: #f7f7f7;
       }
-      &.w-disabled:hover{
+      &.w-disabled:hover {
         background: transparent;
       }
-      &.w-disabled{
-        color: rgba(0,0,0,.25);
+      &.w-disabled {
+        color: rgba(0, 0, 0, .25);
         cursor: not-allowed;
       }
-      &.w-checked{
+      &.w-checked {
         background: #f7f7f7;
         font-weight: 700;
       }

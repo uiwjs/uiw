@@ -1,23 +1,23 @@
 @import "../../style/variables.less";
 @import "../../style/mixins/index.less";
-.w-menu{
+.w-menu {
   outline: none;
   margin-bottom: 0;
   padding-left: 0;
   list-style: none;
   z-index: 1000;
-  color: rgba(0,0,0,.65);
+  color: rgba(0, 0, 0, .65);
   background: #fff;
   line-height: 42px;
   background-color: #f9f9f9;
-  li{
+  li {
     list-style: none;
   }
-  i[class^='w-icon']{
+  i[class^='w-icon'] {
     margin-right: 5px;
     transform: scale(0.9);
   }
-  .w-menu-item{
+  .w-menu-item {
     line-height: 42px;
     margin: 0;
     padding: 0 20px;
@@ -27,21 +27,21 @@
     white-space: nowrap;
     cursor: pointer;
     transition: color @transition-time;
-    > a{
+    > a {
       display: block;
-      color: rgba(0,0,0,.65);
+      color: rgba(0, 0, 0, .65);
     }
-    &.active{
-      color: #0fa120; 
+    &.active {
+      color: #0fa120;
     }
-    &.disabled{
-      color: rgba(0,0,0,.25)!important;
+    &.disabled {
+      color: rgba(0, 0, 0, .25) !important;
       cursor: not-allowed;
       background: none;
-      border-color: transparent!important;
+      border-color: transparent !important;
     }
-    &:hover{
-      color: #0fa120; 
+    &:hover {
+      color: #0fa120;
     }
   }
   &.w-menu-horizontal {
@@ -55,53 +55,49 @@
       height: 0;
       clear: both;
     }
-    .w-menu-item{
+    .w-menu-item {
       position: relative;
       top: 1px;
       float: left;
-      &.active{
+      &.active {
         border-bottom: 1px solid #0fa120;
         font-weight: bold;
       }
-      &.disabled{
-        color: rgba(0,0,0,.25)!important;
+      &.disabled {
+        color: rgba(0, 0, 0, .25) !important;
         border-bottom: 1px solid transparent;
       }
-      &:hover:not(.disabled){
-        border-bottom: 1px solid #0fa120;   
+      &:hover:not(.disabled) {
+        border-bottom: 1px solid #0fa120;
       }
     }
   }
-  &.w-menu-vertical {
-
-  }
-
-  .w-sub-menu{
-    .w-sub-menu-title{
+  .w-sub-menu {
+    .w-sub-menu-title {
       padding: 0 20px;
       font-size: 14px;
       line-height: 42px;
       cursor: pointer;
-      &:hover{
-        color: #0fa120; 
+      &:hover {
+        color: #0fa120;
       }
-      span + i[class^='w-icon']{
+      span + i[class^='w-icon'] {
         transition: transform @transition-time;
         margin-left: 5px;
-        transform:rotate(0deg);
+        transform: rotate(0deg);
       }
     }
-    &.opened{
-      .w-sub-menu-title span + i[class^='w-icon']{
-        transform:rotate(180deg);
+    &.opened {
+      .w-sub-menu-title span + i[class^='w-icon'] {
+        transform: rotate(180deg);
       }
     }
-    .w-sub-menu-con{
+    .w-sub-menu-con {
       display: none;
-      &.opened{
+      &.opened {
         display: block;
       }
-      .w-menu-item{
+      .w-menu-item {
         padding-left: 38px;
       }
     }

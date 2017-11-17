@@ -1,12 +1,12 @@
 @import "../../style/variables.less";
 @import "../../style/mixins/index.less";
 
-.w-heatmap{
+.w-heatmap {
   user-select: none;
-  &svg{
+  &svg {
     overflow: inherit;
   }
-  rect{
+  rect {
     cursor: pointer;
     transition: stroke @transition-time @transition-timing-functio;
   }
@@ -15,44 +15,43 @@
     stroke-width: @calendar-heatmap-stroke-width;
   }
   rect:active {
-    fill:@calendar-heatmap-fill;
+    fill: @calendar-heatmap-fill;
   }
-  .w-heatmap-week,.w-heatmap-month{
+  .w-heatmap-week,.w-heatmap-month {
     text {
       font-size: @font-size-small;
       fill: @calendar-heatmap-fill-text;
       text-anchor: middle;
     }
   }
-
 }
 
-.w-heatmap-wrapper{
+.w-heatmap-wrapper {
   position: relative;
 }
-.w-heatmap-popup{
+.w-heatmap-popup {
   width: @calendar-heatmap-popup-size;
   height: 1px;
   line-height: 1px;
   float: left;
   position: absolute;
-  .w-tooltip{
+  .w-tooltip {
     vertical-align: top;
   }
-  .w-tooltip-content{
+  .w-tooltip-content {
     line-height: initial;
   }
-  .w-tooltip-children{
+  .w-tooltip-children {
     cursor: pointer;
     margin: -1px 0 0 -1px;
     width: @calendar-heatmap-popup-size;
     height: 1px;
     transition: background @transition-time @transition-timing-functio;
-    &:hover{
+    &:hover {
       border: 1px solid @calendar-heatmap-tooltip-color;
     }
     &:active {
-      background:@calendar-heatmap-fill;
+      background: @calendar-heatmap-fill;
     }
   }
 }
