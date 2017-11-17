@@ -5,6 +5,32 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## v1.2.17
+
+`2017-11-17`
+
+- 🐞 Fix No staged files match *.css. [5712887](https://github.com/uiw-react/uiw/commit/57128871bd84b87ec5a85d422b5be8d740394df4) 
+- 🌟 Add .editorconfig file. [d82dabf](https://github.com/uiw-react/uiw/commit/d82dabfd804dd28aecec63fa21428c1e30b90186) 
+- ⛑ test: Add hook made. [2edf9a2](https://github.com/uiw-react/uiw/commit/2edf9a280ce3aaf6bf0786ad2cfea6b437032f43) 
+- ⛑ Expected single space before "{" [0d9e780](https://github.com/uiw-react/uiw/commit/0d9e780c5e00b51d8f31fd48ea0566b13e7d6442) 
+- ⛑ test: Add style lint. [e7fe79a](https://github.com/uiw-react/uiw/commit/e7fe79aeae82c4c017340fade19311494390252a) 
+- ⛑ Layout Col test (<a href="https://github.com/uiw-react/uiw/pull/17">#17</a>) : <a href="https://github.com/kooff88">@kooff88</a> [47a616f](https://github.com/uiw-react/uiw/commit/47a616f458e563c298bb5cf0d358b163b725bbe6) 
+- ⛑ Add test cases of module <code>Affix</code> and <code>Breadcrumb</code> (<a href="https://github.com/uiw-react/uiw/pull/18">#18</a>) : @xing.he [18e123b](https://github.com/uiw-react/uiw/commit/18e123beb489639ef17ff63edd857caeb27607a0) 
+- 📝 docs: Add Tree component document. [c459fe7](https://github.com/uiw-react/uiw/commit/c459fe748d61c172f74f397c416e6d83b22a8d5d) 
+- 🌟 feat(Tree): Add new component Tree. [b10f140](https://github.com/uiw-react/uiw/commit/b10f140f0bf90a589c041d0cf0cdd3908907bdeb) 
+- ⛑ Layout Row test (<a href="https://github.com/uiw-react/uiw/pull/15">#15</a>) : <a href="https://github.com/kooff88">@kooff88</a> [dd98efc](https://github.com/uiw-react/uiw/commit/dd98efc817c7dfa169e1ff3933bd9c5d348521c2) 
+- 📝 Layout md text description wrong (<a href="https://github.com/uiw-react/uiw/pull/13">#13</a>) : <a href="https://github.com/kooff88">@kooff88</a> [a8aabc4](https://github.com/uiw-react/uiw/commit/a8aabc4d4b7241202526c8e0c7820fb8a2943510) 
+- 📝 feat: Extract public method scrollTop. [6468a2f](https://github.com/uiw-react/uiw/commit/6468a2f9877d38d378c7c694e8e95c6e8537d7de) 
+- 🐞 Remove extraneous props <code>status</code> from doc and add test cases. : @xing.he [4dfeaae](https://github.com/uiw-react/uiw/commit/4dfeaae0d32c7718f07f65dfe9d22d3814095a4a) 
+- 🌟 InputNumber add defaultValue (<a href="https://github.com/uiw-react/uiw/pull/11">#11</a>) : <a href="https://github.com/kooff88">@kooff88</a> [3de1740](https://github.com/uiw-react/uiw/commit/3de17409b4ae6ad59d568ba456db1d63240e77c8) 
+- 🐞 fix(affix): Fix bug where body.scrollTop is 0. [699a175](https://github.com/uiw-react/uiw/commit/699a175742134393fe31d2b00b8e972ca5cdbf38) 
+- ⛑ Adding default value of porps size on module Avatar and some test cases. : @xing.he [b24b5fe](https://github.com/uiw-react/uiw/commit/b24b5febf62747e80000b2163312597c927101de) 
+- ⛑ input test2 (<a href="https://github.com/uiw-react/uiw/pull/9">#9</a>) : <a href="https://github.com/kooff88">@kooff88</a> [3eb889b](https://github.com/uiw-react/uiw/commit/3eb889ba9b05c45a3dd3979cf19da0cee3abd91a) 
+- 📝 docs: update changelog date [d2bf56a](https://github.com/uiw-react/uiw/commit/d2bf56a3651139ae218f0f7b2588a67522392d2a) 
+- ⛑ input test  (<a href="https://github.com/uiw-react/uiw/pull/8">#8</a>) : <a href="https://github.com/kooff88">@kooff88</a> [12e9c8d](https://github.com/uiw-react/uiw/commit/12e9c8df2359cf6dc2c1dd035e54cb9fdd0e9c5c) 
+- 📝 Change the way of writing example. [4815a87](https://github.com/uiw-react/uiw/commit/4815a8739e33c519804791f483e52d56dfae9a0e) 
+- 🌟 Update uiw-iconfont 1.2.3 [dc76f40](https://github.com/uiw-react/uiw/commit/dc76f409fb9a0a3c4615054c0a8288b2edfb48f0) 
+
 ## v1.2.16
 
 `2017-11-11`
