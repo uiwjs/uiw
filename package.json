@@ -103,7 +103,7 @@
     "extends": "react-app"
   },
   "lint-staged": {
-    "{src,docs}/**/*.less": "stylelint --syntax less"
+    "*.less": "stylelint --syntax=less"
   },
   "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT"
