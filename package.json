@@ -71,6 +71,7 @@
     "file-loader": "^1.1.5",
     "fs-extra": "^4.0.2",
     "html-webpack-plugin": "^2.30.1",
+    "husky": "^0.14.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
     "less": "^2.3.1",
@@ -104,9 +105,6 @@
   "lint-staged": {
     "{src,docs}/**/*.less": "stylelint --syntax less"
   },
-  "pre-commit": [
-    "lint-staged"
-  ],
   "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT"
 }
