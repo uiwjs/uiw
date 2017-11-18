@@ -1,13 +1,26 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import marked from 'marked';
 import { transform } from 'babel-standalone';
 
+const renderer = new marked.Renderer();
+renderer.heading = function (text, level) {
+  if (/[\u4E00-\u9FA5]/i.test(text)) {
+    return `<h${level} id="${text.toLowerCase()}">${text}</h${level}>`;
+  } else {
+    var escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+    return `<h${level} id="${escapedText}">${text}</h${level}>`;
+  }
+}
+marked.setOptions({
+  renderer: renderer,
+});
+
 export default class Canvas extends React.Component {
   constructor(props) {
     super(props);
-    this.playerId = `${parseInt(Math.random() * 1e9).toString(36)}`
+    this.playerId = `${parseInt(Math.random() * 1e9, 10).toString(36)}`
     this.document = this.props.children.match(/([^]*)\n?(```[^]+```)/);
     this.source = this.document[2].match(/```(.*)\n([^]+)```/);
     this.description = marked(this.document[1]);
@@ -26,20 +39,20 @@ export default class Canvas extends React.Component {
   }
   renderSource(value) {
     import('../../../src').then(Element => {
-      const args = ['context','React', 'ReactDOM','Component']
+      const args = ['context', 'React', 'ReactDOM', 'Component']
       const argv = [this, React, ReactDOM, Component]
       for (const key in Element) {
         args.push(key)
         argv.push(Element[key])
       }
       return { args, argv }
-    }).then(({ args, argv })=>{
+    }).then(({ args, argv }) => {
       const code = transform(`
         ${value}
         ReactDOM.render(<Demo {...context.props} />, document.getElementById('${this.playerId}'))
       `, {
-        presets: ['es2015', 'react']
-      }).code
+          presets: ['es2015', 'react']
+        }).code
       args.push(code)
       new Function(...args).apply(null, argv)
       this.source[2] = value
