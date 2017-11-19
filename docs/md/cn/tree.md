@@ -138,6 +138,55 @@ class Demo extends Component {
 ```
 <!--End-->
 
+## 连接线
+
+带连接线的树，通过设置`showLine`。
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [
+        {
+          name:"湖北省",
+          key:"0-0-0",
+          info:[
+            {name:"武汉市",key:"0-1-0",},
+            {name:"黄冈市",key:"0-2-0"},
+            {name:"黄石市",key:"0-3-0",},
+          ]
+        },{
+          name:"上海市",
+          key:"1-0-0",
+          info:[
+            {name:"黄浦区",key:"1-0-1"},
+            {name:"卢湾区",key:"1-0-2"},
+            {name:"徐汇区",key:"1-0-3",},
+          ]
+        }
+      ]
+    }
+  }
+  render() {
+    return (
+      <Tree 
+        data={this.state.data}
+        option={{
+          children: 'info',
+          label: 'name'
+        }}
+        showLine
+        onExpand={(key,expanded,data,node)=>{
+          console.log("item:",key,expanded,data,node)
+        }}
+      />
+    )
+  }
+}
+```
+<!--End-->
 
 
 ## Tree
@@ -147,6 +196,7 @@ class Demo extends Component {
 | data | 展示数据 | Array | `[]` |
 | option | 配置选项，具体看 `option` | String | `-` |
 | defaultExpandAll | 是否默认展开所有节点 | Boolean | `false` |
+| showLine | 是否展示连接线 | Boolean | `false` |
 | onExpand | 展开/收起节点时触发 | Function(key,expanded:bool,data,node) | `false` |
 
 ## data
