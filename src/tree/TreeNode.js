@@ -6,6 +6,7 @@ export default class TreeNode extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // 是否展开
       showTree: props.defaultExpandAll,
       // 默认关闭的Item
       closedItem: props.defaultExpandAll ? [] : [...props.data],
@@ -38,11 +39,13 @@ export default class TreeNode extends Component {
     })
   }
   render() {
-    const { prefixCls, data, showTree, level, option } = this.props;
+    const { prefixCls, data, showTree, showLine, level, option } = this.props;
     const { closedItem } = this.state;
     let ulCls = level > 1 ? `${prefixCls}-${showTree ? "open" : "close"}` : null;
     return (
-      <ul className={this.classNames(`${prefixCls}-item`, ulCls)}>
+      <ul className={this.classNames(`${prefixCls}-item`, ulCls, {
+        [`${prefixCls}-show-line`]: showLine
+      })}>
         {
           data.map((item, idx) => {
             let childs = item[option.children];
@@ -55,13 +58,25 @@ export default class TreeNode extends Component {
               props.showTree = true;
             }
             props.level = level + 1;
+
+            let iconname = 'caret-down';
+            if (showLine && isChild) {
+              if (index > -1) {
+                iconname = "plus-square-o";
+              } else {
+                iconname = "minus-square-o";
+              }
+            }
+            if (showLine && !isChild) {
+              iconname = "file-text";
+            }
             return (
               <li key={idx}>
                 <div className={`${prefixCls}-title`}>
                   <Icon onClick={this.onShowTree.bind(this, item)} className={this.classNames(`${prefixCls}-icon`, {
-                    "no-child": !isChild,
+                    "no-child": !isChild && !showLine,
                     "is-close": isChild && index > -1,
-                  })} type="caret-down"></Icon>
+                  })} type={iconname}></Icon>
                   <span className={`${prefixCls}-inner`}>{item[option.label]}</span>
                 </div>
                 {isChild && <TreeNode {...props} data={childs} />}
@@ -84,6 +99,7 @@ TreeNode.defaultProps = {
   },
   // 是否默认展开所有节点
   defaultExpandAll: false,
+  showLine: false,
   onExpand() { }
 }
 TreeNode.propTypes = {
@@ -91,6 +107,7 @@ TreeNode.propTypes = {
   onExpand: PropTypes.func,
   data: PropTypes.array,
   defaultExpandAll: PropTypes.bool,
+  showLine: PropTypes.bool,
   option: PropTypes.shape({
     children: PropTypes.string,
     label: PropTypes.string,

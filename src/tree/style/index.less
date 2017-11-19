@@ -6,27 +6,54 @@
   li {
     margin: 0;
     list-style: none;
+    padding: 2px 0;
   }
   ul ul {
     padding: 0 0 0 18px;
   }
+  &-title {
+    height: 100%;
+    display: inline-block;
+  }
   &-icon {
     cursor: pointer;
     width: 24px;
-    height: 24px;
-    line-height: 24px;
+    height: 22px;
+    // line-height: 24px;
+    transform: scale(.59);
     &.is-close::before {
-      transform: rotate(-90deg) scale(.59);
+      transform: rotate(-90deg);
     }
     &::before {
       transition: transform .3s;
-      transform: rotate(0deg) scale(.59);
+      transform: rotate(0deg);
     }
     &.no-child::before {
       content: '';
     }
   }
+  &-inner {
+    display: inline-block;
+  }
   &-close {
     display: none;
+  }
+  &-show-line &-icon {
+    transform: scale(1);
+    background: #fff;
+  }
+  &-show-line {
+    li {
+      position: relative;
+    }
+    li:not(:last-child):before {
+      content: " ";
+      width: 1px;
+      border-left: 1px solid #d9d9d9;
+      height: 100%;
+      position: absolute;
+      left: 12px;
+      margin: 22px 0;
+    }
   }
 }
