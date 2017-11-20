@@ -35,7 +35,7 @@ export default class Progress extends Component {
     return ret;
   }
   render() {
-    const { prefixCls, style, type, className, showText, percent, strokeWidth, width, status, ...resetProps } = this.props;
+    const { prefixCls, style, type, className, showText, percent, format, strokeWidth, width, status, ...resetProps } = this.props;
     const cls = this.classNames(prefixCls, className, {
       [`${prefixCls}-${type}`]: type,
       [`${prefixCls}-show-text`]: showText,
@@ -47,11 +47,11 @@ export default class Progress extends Component {
     if (showText) {
       let text;
       if (progressStatus === 'exception') {
-        text = <Icon type={type === 'line' ? 'circle-close' : 'close'} />
+        text = format ? format(percent) : <Icon type={type === 'line' ? 'circle-close' : 'close'} />
       } else if (progressStatus === 'success') {
-        text = <Icon type={type === 'line' ? 'circle-check' : 'check'} />
+        text = format ? format(percent) : <Icon type={type === 'line' ? 'circle-check' : 'check'} />
       } else {
-        text = percent + '%'
+        text = format ? format(percent) : `${percent}%`
       }
       progressInfo = <span className={`${prefixCls}-text`}>{text}</span>;
     }
@@ -84,6 +84,7 @@ export default class Progress extends Component {
 Progress.propTypes = {
   prefixCls: PropTypes.string,
   showText: PropTypes.bool,
+  format: PropTypes.func,
   strokeWidth: PropTypes.number,
   width: PropTypes.number,
   status: PropTypes.oneOf([
