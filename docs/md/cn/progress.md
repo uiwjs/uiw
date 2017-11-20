@@ -116,9 +116,9 @@ class Demo extends Component {
 
 <!--DemoStart--> 
 ```js
+let sty = {marginRight:15}
 class Demo extends Component {
   render() {
-    let sty = {marginRight:15}
     return (
       <div style={{maxHeight:120}}>
         <Progress style={sty} type="circle" width={80} strokeWidth={2} percent={75} />
@@ -179,6 +179,37 @@ class Demo extends Component {
 ```
 <!--End-->
 
+## 自定义文字格式
+
+`format` 属性指定格式。
+
+<!--DemoStart--> 
+```js
+const sty = {marginRight:10}
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <Progress style={sty} percent={80} type="circle" format={percent => (
+            <span>
+              {`${percent} %`}
+              <div style={{padding:"10px 0 0 0"}}>已完成</div>
+            </span>
+          )}/>
+        <Progress style={sty} percent={70} status="exception" type="circle" format={percent => (
+          <span>
+            {`${percent} %`}
+            <div style={{padding:"10px 0 0 0"}}>已关闭</div>
+          </span>
+        )}/>
+        <Progress style={sty} percent={100} type="circle" format={percent => `已完成`}/>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
 ## API
 
 ### Progress
@@ -187,6 +218,7 @@ class Demo extends Component {
 |------ |-------- |---------- |-------- |
 | percent | 百分比 | Number | `0` |
 | showText | 是否显示进度条文字内容 | Boolean | `true` |
+| format | 内容的模板函数，自定义文字格式。 | Function | - |
 | type | 类型 | Enum{'`line`', '`circle`'} | `line` |
 | strokeWidth | 进度条线的宽度 | Number | `6` |
 | width  | 圆形进度条画布宽度，单位 px ,`type="circle"`有效| Number | `126` |
