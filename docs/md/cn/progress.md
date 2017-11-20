@@ -127,6 +127,7 @@ class Demo extends Component {
         <Progress style={sty} type="circle" percent={100} strokeWidth={3}/>
         <Progress style={sty} type="circle" width={100} strokeWidth={4} percent={70} status="exception" />
         <Progress style={sty} type="circle" width={80} strokeWidth={2} percent={75} />
+        <Progress style={sty} type="circle" width={50} strokeWidth={2} percent={75} />
       </div>
     )
   }
@@ -193,16 +194,17 @@ class Demo extends Component {
         <Progress style={sty} percent={80} type="circle" format={percent => (
             <span>
               {`${percent} %`}
-              <div style={{padding:"10px 0 0 0"}}>已完成</div>
+              <div style={{padding:"10px 0 0 0",fontSize:21}}>已完成</div>
             </span>
           )}/>
         <Progress style={sty} percent={70} status="exception" type="circle" format={percent => (
           <span>
             {`${percent} %`}
-            <div style={{padding:"10px 0 0 0"}}>已关闭</div>
+            <div style={{padding:"10px 0 0 0",fontSize:21}}>已关闭</div>
           </span>
         )}/>
         <Progress style={sty} percent={100} type="circle" format={percent => `已完成`}/>
+        <Progress style={sty} percent={70} format={percent => `${percent}℃`}/>
       </div>
     )
   }
