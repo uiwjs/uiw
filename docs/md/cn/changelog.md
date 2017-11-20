@@ -5,7 +5,13 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
-## v1.2.17
+## v1.2.18
+
+`2017-11-18`
+
+- 🐞 fix:Compile and exclude test files. [c910285](https://github.com/uiw-react/uiw/commit/c910285eb3875d8158f0be87a27fd46a2fdcf8ca)  
+
+## ~~v1.2.17 ⚠️~~
 
 `2017-11-17`
 

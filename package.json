@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "1.2.17",
+  "version": "1.2.18",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiw-react.github.io",
   "authors": [
@@ -17,7 +17,7 @@
     "coverage": "node script/test.js --config .jest.js -- --coverage",
     "start": "node script/start.js",
     "build": "node script/build.js",
-    "build:lib": "BABEL_ENV=production babel  --plugins transform-runtime src --out-dir lib --copy-files ",
+    "build:lib": "BABEL_ENV=production babel  --ignore=src/**/__test__ --plugins transform-runtime src --out-dir lib --copy-files ",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
     "lint-staged": "lint-staged",
     "deploy": "./script/deploy.sh"
