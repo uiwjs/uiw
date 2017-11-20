@@ -88,7 +88,6 @@ class Demo extends Component {
 ```
 <!--End-->
 
-
 ## 指定字段渲染
 
 默认每个节点通过`label`显示标题，通过`children`来设置展开的子节点数据，下面这个实例是通过设置option，将默认渲染标题的`label`改成`name`，默认的`children`改成`info`。
@@ -124,6 +123,7 @@ class Demo extends Component {
     return (
       <Tree 
         data={this.state.data}
+        selectedKeys={['0-0-0']}
         option={{
           children: 'info',
           label: 'name'
@@ -151,7 +151,9 @@ class Demo extends Component {
       data: [
         {
           name:"湖北省",
+          label:"湖北省",
           key:"0-0-0",
+          renderTitle:(title)=>`${title} - 标题`,
           info:[
             {name:"武汉市",key:"0-1-0",},
             {name:"黄冈市",key:"0-2-0"},
@@ -178,6 +180,9 @@ class Demo extends Component {
           label: 'name'
         }}
         showLine
+        onSelect={(key,data,e)=>{
+          console.log("onSelect",key,data,e)
+        }}
         onExpand={(key,expanded,data,node)=>{
           console.log("item:",key,expanded,data,node)
         }}
@@ -194,10 +199,12 @@ class Demo extends Component {
 | 参数 | 说明 | 类型 | 默认值 |
 | ----- | ----- | ----- | ----- |
 | data | 展示数据 | Array | `[]` |
-| option | 配置选项，具体看 `option` | String | `-` |
+| selectedKeys | 设置选中的树节点 | String[] | `[]` |
+| option | 配置选项，具体看 `option` | Object | `-` |
 | defaultExpandAll | 是否默认展开所有节点 | Boolean | `false` |
 | showLine | 是否展示连接线 | Boolean | `false` |
-| onExpand | 展开/收起节点时触发 | Function(key,expanded:bool,data,node) | `false` |
+| onSelect | 点击树节点触发 | Function(key,data,e) | - |
+| onExpand | 展开/收起节点时触发 | Function(key,expanded:bool,data,node) | - |
 
 ## data
 
