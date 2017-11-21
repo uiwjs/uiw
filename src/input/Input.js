@@ -60,12 +60,12 @@ export default class Input extends Component {
         [`${prefixCls}-icon-left`]: type === 'preIcon' && preIcon,
         [`${prefixCls}-icon-right`]: type === 'icon' && icon,
         [`event`]: (type === 'preIcon' && onPreIconClick) ||
-        (type === 'icon' && onIconClick) ||
-        (type === 'preIcon' && onPreIconMouseOut) ||
-        (type === 'icon' && onIconMouseOut) ||
-        (type === 'preIcon' && onPreIconMouseOut) ||
-        (type === 'icon' && onIconMouseOver) ||
-        (type === 'preIcon' && onPreIconMouseOver)
+          (type === 'icon' && onIconClick) ||
+          (type === 'preIcon' && onPreIconMouseOut) ||
+          (type === 'icon' && onIconMouseOut) ||
+          (type === 'preIcon' && onPreIconMouseOut) ||
+          (type === 'icon' && onIconMouseOver) ||
+          (type === 'preIcon' && onPreIconMouseOver)
       })}>
         {
           (typeof preIcon === 'string' && icons) || (typeof icon === 'string' && icons)
