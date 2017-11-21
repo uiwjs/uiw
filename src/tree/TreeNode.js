@@ -104,28 +104,9 @@ export default class TreeNode extends Component {
 
 TreeNode.defaultProps = {
   prefixCls: 'w-tree',
-  data: [],
-  option: {
-    children: "children",
-    label: "label",
-  },
-  // 是否默认展开所有节点
-  defaultExpandAll: false,
-  showLine: false,
-  onExpand() { },
-  onSelect() { }
 }
 TreeNode.propTypes = {
   prefixCls: PropTypes.string,
-  onExpand: PropTypes.func,
-  onSelect: PropTypes.func,
-  data: PropTypes.array,
-  defaultExpandAll: PropTypes.bool,
-  showLine: PropTypes.bool,
-  option: PropTypes.shape({
-    children: PropTypes.string,
-    label: PropTypes.string,
-  }),
 }
 
 TreeNode.contextTypes = {

@@ -5,6 +5,26 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## v1.3.0
+
+`2017-11-21`
+
+- 👣 style: Input code formatting. [47cb6b8](https://github.com/uiw-react/uiw/commit/47cb6b85fcf2ef256c0052bf5894e4685a4ca772) 
+- 📝 docs(Tree): Add selectedKeys example. [99e9829](https://github.com/uiw-react/uiw/commit/99e9829048cbb6b375552381512b5ad18a1a0fd7) 
+- ⛑ test(Tree): Add test case. [db00000](https://github.com/uiw-react/uiw/commit/db00000572dc7a6512d657ac53becc60fdff19b9) 
+- 🐞 fix(Tree): Fixed selectedKeys can not be changed. [9b4b828](https://github.com/uiw-react/uiw/commit/9b4b8283f7d6b1e96c2feefa9ecc2dbb2c38d6d4) 
+- 📝 doc: Add selected and event example. [1fe5be7](https://github.com/uiw-react/uiw/commit/1fe5be7d9d336431a1657964d07bd42d7560da27) 
+- 🌟 feat(Tree): Add selected, and event. [ebf7dd7](https://github.com/uiw-react/uiw/commit/ebf7dd75935acd058e10a1666ac4fac67ab1ca80) 
+- 📝 docs: Circle text font style auto-size example. [7dab1e5](https://github.com/uiw-react/uiw/commit/7dab1e5bad68438c9e805a262b05f42d9f7d7c39) 
+- 🌟 feat(Progress): Circle text font style auto size. [c4980bf](https://github.com/uiw-react/uiw/commit/c4980bf26faa1e318c948a36d3b22920d1e9fe36) 
+- 📝 doc: Progress component to add the format attribute instance. [6304906](https://github.com/uiw-react/uiw/commit/63049061e55c00e5f58d5ba9cdcebcf995b14d5e) 
+- 🌟 feat(Progress): Add custom text formatting. [563e1b0](https://github.com/uiw-react/uiw/commit/563e1b03d09d0a738f73811a15733cf9370cc622) 
+- ⛑ Progress test ([#21](https://github.com/uiw-react/uiw/pull/21)) : [@kooff88](https://github.com/kooff88) [ad18f3d](https://github.com/uiw-react/uiw/commit/ad18f3dd3498c945856754d34e41ec4fa9631ec1) 
+- 📝 doc: Add showLine example. [bc6848b](https://github.com/uiw-react/uiw/commit/bc6848ba23efacf41d10a704530762fa21b6d098) 
+- 🌟 feat(Tree): Add line display. [773b6d6](https://github.com/uiw-react/uiw/commit/773b6d6a2472eb2fa977aee5ef2be81cf90ee94b) 
+- 🐞 fix(Button): change Button component disabled style. [4a8c65f](https://github.com/uiw-react/uiw/commit/4a8c65f77dc3dc882d9c9bdb16eb55ba1a942927) 
+- 📝 doc: modify markdown title id. [6d727ad](https://github.com/uiw-react/uiw/commit/6d727adc919408166c79fab69c365a40f86438d7) 
+
 ## v1.2.18
 
 `2017-11-18`

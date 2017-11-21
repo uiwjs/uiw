@@ -123,7 +123,6 @@ class Demo extends Component {
     return (
       <Tree 
         data={this.state.data}
-        selectedKeys={['0-0-0']}
         option={{
           children: 'info',
           label: 'name'
@@ -193,6 +192,71 @@ class Demo extends Component {
 ```
 <!--End-->
 
+## 默认选中
+
+添加默认选中，可以通过设置 `selectedKeys=['key']` 默认选中菜单。
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [
+        {
+          label:"湖北省",
+          key:"0-0-0",
+          children:[
+            {
+              label:"武汉市",
+              key:"0-1-0",
+              children:[
+                {label:"新洲区",key:"0-1-1"},
+                {label:"武昌区",key:"0-1-2"},
+                {label:"汉南区",key:"0-1-3"},
+              ]
+            },
+            {label:"黄冈市",key:"0-2-0"},
+          ]
+        },{
+          label:"上海市",
+          key:"1-0-0",
+          children:[
+            {label:"黄浦区",key:"1-0-1"},
+            {label:"卢湾区",key:"1-0-2"},
+            {
+              label:"徐汇区",
+              key:"1-0-3",
+              children:[
+                {label:"半淞园路街道",key:"1-1-0"},
+                {label:"南京东路街道",key:"1-2-0"},
+                {label:"外滩街道",key:"1-3-0"},
+              ]
+            },
+          ]
+        }
+      ],
+      selectedKeys:['0-0-0']
+    }
+  }
+  render() {
+    return (
+      <div>
+        <Button style={{margin:"0 0 10px 0"}} onClick={()=>{
+          this.setState({
+            selectedKeys:this.state.selectedKeys[0]?[]:['0-0-0']
+          })
+        }} size="mini">点击取消选中或者选中“湖北省”</Button>
+        <Tree 
+          selectedKeys={this.state.selectedKeys}
+          data={this.state.data}
+        />
+      </div>
+    )
+  }
+}
+```
+<!--End-->
 
 ## Tree
 
