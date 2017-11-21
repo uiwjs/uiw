@@ -72,9 +72,9 @@ class Demo extends Component {
 
 <!--DemoStart--> 
 ```js
+let titleStyle = {padding: `10px 16px`};
 class Demo extends Component {
   render() {
-    let titleStyle = {padding: `10px 16px`}
     return (
       <Card style={{ width: 240 }} bodyStyle={{ padding: 0 }}>
         <div>
@@ -91,7 +91,7 @@ class Demo extends Component {
 ```
 <!--End-->
 
-## 更灵活的内容展示
+## 栅格卡片
 
 跟栅格进行配合排版。
 
@@ -101,19 +101,53 @@ class Demo extends Component {
   render() {
     const {Row,Col} = Layout;
     return (
-    <div style={{ background: '#ECECEC', padding: '20px 10px' }}>
-      <Row gutter={16}>
-        <Col span={8}>
-          <Card title="卡片标题" bordered={false}>卡片内容！</Card>
-        </Col>
-        <Col span={8}>
-          <Card title="卡片标题" bordered={false}>卡片内容！</Card>
-        </Col>
-        <Col span={8}>
-          <Card title="卡片标题" bordered={false}>卡片内容！</Card>
-        </Col>
-      </Row>
-    </div>
+      <div style={{ background: '#ECECEC', padding: '20px 10px' }}>
+        <Row gutter={16}>
+          <Col span={8}>
+            <Card title="卡片标题" bordered={false}>卡片内容！</Card>
+          </Col>
+          <Col span={8}>
+            <Card title="卡片标题" bordered={false}>卡片内容！</Card>
+          </Col>
+          <Col span={8}>
+            <Card title="卡片标题" bordered={false}>卡片内容！</Card>
+          </Col>
+        </Row>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
+## 添加页脚
+
+<!--DemoStart--> 
+```js
+const {Row,Col} = Layout;
+const titleStyle = {padding: `10px 16px`};
+const footer = (
+  <a href="https://uiw-react.github.io">
+    <Icon type='user' />&nbsp;
+    16 Friends
+  </a>
+)
+class Demo extends Component {
+  render() {
+    return (
+      <Card 
+        footer={footer}
+        style={{ width: 240 }} 
+        bodyStyle={{ padding: 0 }}
+      >
+        <div>
+          <img alt="example" width="100%" src="http://7xi8d6.com1.z0.glb.clouddn.com/20171018091347_Z81Beh_nini.nicky_18_10_2017_9_13_35_727.jpeg" />
+        </div>
+        <div style={titleStyle}>
+          <h3 style={{margin:0}}>我爱漂亮妹妹</h3>
+          <p style={{margin:0}}><a href="https://uiw-react.github.io">https://uiw-react.github.io</a></p>
+        </div>
+      </Card>
     )
   }
 }
@@ -127,6 +161,7 @@ class Demo extends Component {
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | title | 卡片标题 | String/ReactNode | - |
+| footer | 页脚内容的简写 | String/ReactNode | - |
 | extra | 卡片右上角的操作区域 | String/ReactNode | - |
 | bordered | 是否显示边框 | Boolean | `true` |
 | noHover | 取消鼠标移过浮起 | Boolean | `false` |
