@@ -21,16 +21,18 @@ Icon 图标
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
-      <Icon type="arrow-down" />
-      <Icon type="minus" />
-      <Icon type="plus" />
-      <Icon type="check" />
-      <Icon type="close" />
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <Icon type="arrow-down" />
+        <Icon type="minus" />
+        <Icon type="plus" />
+        <Icon type="check" />
+        <Icon type="close" />
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -84,15 +86,17 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  return (
-    <div>
-      <Icon type="circle-close" />  图标名称：circle-close，[circle圈]-[关闭close]
-      <br/>
-      <br/>
-      <Icon type="circle-close-o" /> 图标名称：circle-close-o，[circle圈]-[关闭close]-[o描线]
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <Icon type="circle-close" />  图标名称：circle-close，[circle圈]-[关闭close]
+        <br/>
+        <br/>
+        <Icon type="circle-close-o" /> 图标名称：circle-close-o，[circle圈]-[关闭close]-[o描线]
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -107,6 +111,7 @@ render() {
 
 ## 实例
 
+> 点击图标复制代码。
 
 ### 图标旋转实例
 
@@ -114,28 +119,33 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
-  const iconList = ["loading",'reload']
-  return (
-    <div>
-      <Row gutter="10">
-      {
-        iconList.map((item,idx) => {
-          return (
-            <Col key={idx} xs="8" sm="6" md="4" lg="4">
-              <div style={styleItem}>
-                <Icon type={item} spin style={{fontSize:16,marginBottom:10}}/>
-                <div>{item}</div>
-              </div>
-            </Col>
-          )
-        }) 
-      }
-      </Row>
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+    const iconStyle = {color:"#525252"};
+    const iconList = ["loading",'reload'];
+    return (
+      <div>
+        <Row gutter="10">
+        {
+          iconList.map((item,idx) => {
+            return (
+              <Col key={idx} xs="8" sm="6" md="4" lg="4">
+                <div style={styleItem}>
+                  <CopyToClipboard style={iconStyle} text={`<Icon type="${item}" spin />`} tooltip="复制成功！">
+                    <Icon type={item} spin style={{fontSize:18,marginBottom:10}}/>
+                    <div>{item}</div>
+                  </CopyToClipboard>
+                </div>
+              </Col>
+            )
+          }) 
+        }
+        </Row>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -144,36 +154,42 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
-  const iconList = [
+const iconList = [
   'caret-down', 'arrow-down','down-square-o','down-square',  'down-circle-o', 'down-circle',
   'caret-up','arrow-up', ,'up-square-o', 'up-square','up-circle-o','up-circle',
   'caret-left',  'arrow-left','left-square-o','left-square',  'left-circle-o', 'left-circle',
   'caret-right','arrow-right','right-square-o', 'right-square','right-circle-o', 'right-circle',
   'shrink','arrows-alt','d-arrow-left','d-arrow-right','enter', 
-   
+
   'rollback', 'd-caret','backward','forward',  'logout', 'login',  'swap-right', 'swap', 
-  'verticle-left', 'verticle-right','play-circle-o',  'play-circle','menu-fold', 'menu-unfold',  ]
-  return (
-    <div>
-      <Row gutter="10">
-      {
-        iconList.map((item,idx) => {
-          return (
-            <Col key={idx} xs="8" sm="6" md="4" lg="4">
-              <div style={styleItem}>
-                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
-                <div>{item}</div>
-              </div>
-            </Col>
-          )
-        }) 
-      }
-      </Row>
-    </div>
-  )
+  'verticle-left', 'verticle-right','play-circle-o',  'play-circle','menu-fold', 'menu-unfold',  
+]
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+    const iconStyle = {color:"#525252"};
+    return (
+      <div>
+        <Row gutter="10">
+        {
+          iconList.map((item,idx) => {
+            return (
+              <Col key={idx} xs="8" sm="6" md="4" lg="4">
+                <div style={styleItem}>
+                  <CopyToClipboard style={iconStyle} text={`<Icon type="${item}" />`} tooltip="复制成功！">
+                    <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                    <div>{item}</div>
+                  </CopyToClipboard>
+                </div>
+              </Col>
+            )
+          }) 
+        }
+        </Row>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -182,31 +198,36 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
-  const iconList = [ 
-    'smile-o', 'smile','frown-o', 'frown','meh', 'meh-o',
-    'pause','pause-circle', 'pause-circle-o', 'information', "information-o", 'warning-o', 'warning',
-  ]
-  return (
-    <div>
-      <Row gutter="10">
-      {
-        iconList.map((item,idx) => {
-          return (
-            <Col key={idx} xs="8" sm="6" md="4" lg="4">
-              <div style={styleItem}>
-                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
-                <div>{item}</div>
-              </div>
-            </Col>
-          )
-        }) 
-      }
-      </Row>
-    </div>
-  )
+const iconList = [ 
+  'smile-o', 'smile','frown-o', 'frown','meh', 'meh-o',
+  'pause','pause-circle', 'pause-circle-o', 'information', "information-o", 'warning-o', 'warning',
+]
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+    const iconStyle = {color:"#525252"};
+    return (
+      <div>
+        <Row gutter="10">
+        {
+          iconList.map((item,idx) => {
+            return (
+              <Col key={idx} xs="8" sm="6" md="4" lg="4">
+                <div style={styleItem}>
+                  <CopyToClipboard style={iconStyle} text={`<Icon type="${item}" />`} tooltip="复制成功！">
+                    <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                    <div>{item}</div>
+                  </CopyToClipboard>
+                </div>
+              </Col>
+            )
+          }) 
+        }
+        </Row>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -215,33 +236,38 @@ render() {
 
 <!--DemoStart--> 
 ```js
-render() {
-  const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
-  const iconList = [ 
-    "plus", 'plus-circle-o','plus-circle', 'plus-square', 'plus-square-o', "question-circle-o", 
-    "minus", 'minus-circle-o', 'minus-circle', 'minus-square', 'minus-square-o',"question-circle", 
-    "close", "circle-close-o", "circle-close",'close-square', 'close-square-o', "asterisk", 
-    "check", "circle-check-o", "circle-check",'check-square','check-square-o', "copyright",
-  ]
-  return (
-    <div>
-      <Row gutter="10">
-      {
-        iconList.map((item,idx) => {
-          return (
-            <Col key={idx} xs="8" sm="6" md="4" lg="4">
-              <div style={styleItem}>
-                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
-                <div>{item}</div>
-              </div>
-            </Col>
-          )
-        }) 
-      }
-      </Row>
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+    const iconStyle = {color:"#525252"};
+    const iconList = [ 
+      "plus", 'plus-circle-o','plus-circle', 'plus-square', 'plus-square-o', "question-circle-o", 
+      "minus", 'minus-circle-o', 'minus-circle', 'minus-square', 'minus-square-o',"question-circle", 
+      "close", "circle-close-o", "circle-close",'close-square', 'close-square-o', "asterisk", 
+      "check", "circle-check-o", "circle-check",'check-square','check-square-o', "copyright",
+    ]
+    return (
+      <div>
+        <Row gutter="10">
+        {
+          iconList.map((item,idx) => {
+            return (
+              <Col key={idx} xs="8" sm="6" md="4" lg="4">
+                <div style={styleItem}>
+                  <CopyToClipboard style={iconStyle} text={`<Icon type="${item}" />`} tooltip="复制成功！">
+                    <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                    <div>{item}</div>
+                  </CopyToClipboard>
+                </div>
+              </Col>
+            )
+          }) 
+        }
+        </Row>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -250,37 +276,42 @@ render() {
 
 <!--DemoStart-->  
 ```js
-render() {
-  const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
-  const iconList = [ 
-    'heart-off', 'heart-on', 'star-on', 'star-off','lock', 'unlock',
-    'area-chart', 'bar-chart', 'dot-chart','pie-chart', 'folder-add', 'folder-open', 
-    'dislike-o', 'like-o','loading', 'reload','appstore', 'appstore-o',
-    'file-text', 'file-jpg', 'file-unknown', 'file-add', 'file-excel', 'file-pdf',
-    'tag', 'tag-o','tags','tags-o', 'setting','setting-o',
-    'cloud-upload','cloud-upload-o', 'cloud-download','cloud-download-o', 'message','message-o',
-    'user', 'usergroup-add', 'zoom-in', 'zoom-out','time', 'time-o',
-    "bell", 'camera-o', 'coffee', 'document', 'delete', 'date', 'edit', 'download', 'eye-o', 'environment-o', 'filter', 'global', 'inbox', 'home', 'laptop', 'link',  'menu', 'mobile', 'more', 'notification', 'paper-clip', 'picture', 'picasa', 'pay-circle-o', 'pay', 'poweroff',  'save', 'safety', 'search', 'shopping-cart', 'share',   'upload', 'verification', 'video-camera', 'wifi', 
-  ]
-  return (
-    <div>
-      <Row gutter="10">
-      {
-        iconList.map((item,idx) => {
-          return (
-            <Col key={idx} xs="8" sm="6" md="4" lg="4">
-              <div style={styleItem}>
-                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
-                <div>{item}</div>
-              </div>
-            </Col>
-          )
-        }) 
-      }
-      </Row>
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+    const iconStyle = {color:"#525252"};
+    const iconList = [ 
+      'heart-off', 'heart-on', 'star-on', 'star-off','lock', 'unlock',
+      'area-chart', 'bar-chart', 'dot-chart','pie-chart', 'folder-add', 'folder-open', 
+      'dislike-o', 'like-o','loading', 'reload','appstore', 'appstore-o',
+      'file-text', 'file-jpg', 'file-unknown', 'file-add', 'file-excel', 'file-pdf',
+      'tag', 'tag-o','tags','tags-o', 'setting','setting-o',
+      'cloud-upload','cloud-upload-o', 'cloud-download','cloud-download-o', 'message','message-o',
+      'user', 'usergroup-add', 'zoom-in', 'zoom-out','time', 'time-o',
+      "bell", 'camera-o', 'coffee', 'document', 'delete', 'date', 'edit', 'download', 'eye-o', 'environment-o', 'filter', 'global', 'inbox', 'home', 'laptop', 'link',  'menu', 'mobile', 'more', 'notification', 'paper-clip', 'picture', 'picasa', 'pay-circle-o', 'pay', 'poweroff',  'save', 'safety', 'search', 'shopping-cart', 'share',   'upload', 'verification', 'video-camera', 'wifi', 
+    ]
+    return (
+      <div>
+        <Row gutter="10">
+        {
+          iconList.map((item,idx) => {
+            return (
+              <Col key={idx} xs="8" sm="6" md="4" lg="4">
+                <div style={styleItem}>
+                  <CopyToClipboard style={iconStyle} text={`<Icon type="${item}" />`} tooltip="复制成功！">
+                    <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                    <div>{item}</div>
+                  </CopyToClipboard>
+                </div>
+              </Col>
+            )
+          }) 
+        }
+        </Row>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -289,28 +320,33 @@ render() {
 
 <!--DemoStart-->  
 ```js
-render() {
-  const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
-  const iconList = ['uiw', 'windows', "linux", 'apple', 'facebook', 'twitter', 'adobe', "baidu", "ali-pay", 'reddit', 'android', 'github', 'github-o', "aliwangwang",   "dingding", "foursquare", "linkedin", "pinterest", "qq",  "weibo", "taobao", "weixin", 'css3', 'html5', ]
-  return (
-    <div>
-      <Row gutter="10">
-      {
-        iconList.map((item,idx) => {
-          return (
-            <Col key={idx} xs="8" sm="6" md="4" lg="4">
-              <div style={styleItem}>
-                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
-                <div>{item}</div>
-              </div>
-            </Col>
-          )
-        }) 
-      }
-      </Row>
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+    const iconStyle = {color:"#525252"};
+    const iconList = ['uiw', 'windows', "linux", 'apple', 'facebook', 'twitter', 'adobe', "baidu", "ali-pay", 'reddit', 'android', 'github', 'github-o', "aliwangwang",   "dingding", "foursquare", "linkedin", "pinterest", "qq",  "weibo", "taobao", "weixin", 'css3', 'html5', ]
+    return (
+      <div>
+        <Row gutter="10">
+        {
+          iconList.map((item,idx) => {
+            return (
+              <Col key={idx} xs="8" sm="6" md="4" lg="4">
+                <div style={styleItem}>
+                  <CopyToClipboard style={iconStyle} text={`<Icon type="${item}" />`} tooltip="复制成功！">
+                    <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                    <div>{item}</div>
+                  </CopyToClipboard>
+                </div>
+              </Col>
+            )
+          }) 
+        }
+        </Row>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
@@ -319,30 +355,35 @@ render() {
 
 <!--DemoStart-->  
 ```js
-render() {
-  const {Row,Col} = Layout;
-  const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
-  const iconList = [
-    "chrome", "safari", "firefox", "opera", "ie", 
-  ]
-  return (
-    <div>
-      <Row gutter="10">
-      {
-        iconList.map((item,idx) => {
-          return (
-            <Col key={idx} xs="8" sm="6" md="4" lg="4">
-              <div style={styleItem}>
-                <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
-                <div>{item}</div>
-              </div>
-            </Col>
-          )
-        }) 
-      }
-      </Row>
-    </div>
-  )
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+    const iconStyle = {color:"#525252"};
+    const iconList = [
+      "chrome", "safari", "firefox", "opera", "ie", 
+    ]
+    return (
+      <div>
+        <Row gutter="10">
+        {
+          iconList.map((item,idx) => {
+            return (
+              <Col key={idx} xs="8" sm="6" md="4" lg="4">
+                <div style={styleItem}>
+                  <CopyToClipboard style={iconStyle} text={`<Icon type="${item}" />`} tooltip="复制成功！">
+                    <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                    <div>{item}</div>
+                  </CopyToClipboard>
+                </div>
+              </Col>
+            )
+          }) 
+        }
+        </Row>
+      </div>
+    )
+  }
 }
 ```
 <!--End-->
