@@ -6,6 +6,7 @@ module.exports = {
     'color': 'Color',
     'checkbox': 'Checkbox',
     'card': 'Card',
+    'copy-to-clipboard': 'CopyToClipboard',
     'affix': 'Affix',
     'collapse': 'Collapse',
     'date-picker': 'DatePicker',
@@ -51,6 +52,7 @@ module.exports = {
     'Data Display': "Data Display",
     'Navigation': "Navigation",
     'Feedback': "Feedback",
+    'Other': "Other",
   },
   markdown: {
     'show': 'Show',
