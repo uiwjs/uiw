@@ -35,7 +35,7 @@ export default class Progress extends Component {
     return ret;
   }
   render() {
-    const { prefixCls, style, type, className, showText, percent, strokeWidth, width, status, ...resetProps } = this.props;
+    const { prefixCls, style, type, className, showText, percent, format, strokeWidth, width, status, ...resetProps } = this.props;
     const cls = this.classNames(prefixCls, className, {
       [`${prefixCls}-${type}`]: type,
       [`${prefixCls}-show-text`]: showText,
@@ -45,20 +45,23 @@ export default class Progress extends Component {
     let progress, progressInfo;
     const progressStatus = parseInt(percent.toString(), 10) >= 100 && !('status' in this.props) ? 'success' : status;
     if (showText) {
-      let text;
+      let text, circleStyle = {};
       if (progressStatus === 'exception') {
-        text = <Icon type={type === 'line' ? 'circle-close' : 'close'} />
+        text = format ? format(percent) : <Icon type={type === 'line' ? 'circle-close' : 'close'} />
       } else if (progressStatus === 'success') {
-        text = <Icon type={type === 'line' ? 'circle-check' : 'check'} />
+        text = format ? format(percent) : <Icon type={type === 'line' ? 'circle-check' : 'check'} />
       } else {
-        text = percent + '%'
+        text = format ? format(percent) : `${percent}%`
       }
-      progressInfo = <span className={`${prefixCls}-text`}>{text}</span>;
+      if (type === 'circle') {
+        circleStyle.fontSize = width * 0.16 + 6;
+      }
+      progressInfo = <span className={`${prefixCls}-text`} style={{ ...circleStyle }}>{text}</span>;
     }
     if (type === 'line') {
       const percentStyle = {
         width: `${percent}%`,
-        height: strokeWidth,
+        height: strokeWidth
       }
       progress = (
         <div className={`${prefixCls}-bar`}>
@@ -84,6 +87,7 @@ export default class Progress extends Component {
 Progress.propTypes = {
   prefixCls: PropTypes.string,
   showText: PropTypes.bool,
+  format: PropTypes.func,
   strokeWidth: PropTypes.number,
   width: PropTypes.number,
   status: PropTypes.oneOf([

@@ -10,7 +10,12 @@ export default class TreeNode extends Component {
       showTree: props.defaultExpandAll,
       // 默认关闭的Item
       closedItem: props.defaultExpandAll ? [] : [...props.data],
+      // 默认选中的
+      // selectedKeys: props.selectedKeys || [],
     }
+  }
+  parent() {
+    return this.context.component;
   }
   // 获取关闭节点的数据
   getCloseItemIndex(item, closedItem) {
@@ -38,10 +43,19 @@ export default class TreeNode extends Component {
       onExpand(item.key, idx > -1, item, this)
     })
   }
+  onSelect(item, e) {
+    const { onSelect } = this.props;
+    const { selectedKeys } = this.parent().state;
+    const { setSelecteKeys } = this.parent();
+    setSelecteKeys(selectedKeys.filter((key) => key === item.key).length > 0 ? [] : [item.key], () => {
+      onSelect(item.key, item, e)
+    })
+  }
   render() {
     const { prefixCls, data, showTree, showLine, level, option } = this.props;
     const { closedItem } = this.state;
-    let ulCls = level > 1 ? `${prefixCls}-${showTree ? "open" : "close"}` : null;
+    const { selectedKeys } = this.parent().state;
+    const ulCls = level > 1 ? `${prefixCls}-${showTree ? "open" : "close"}` : null;
     return (
       <ul className={this.classNames(`${prefixCls}-item`, ulCls, {
         [`${prefixCls}-show-line`]: showLine
@@ -50,22 +64,15 @@ export default class TreeNode extends Component {
           data.map((item, idx) => {
             let childs = item[option.children];
             let isChild = childs && childs.length > 0;
-            const props = Object.assign({}, this.props, { parent: this });
-            let index = this.getCloseItemIndex(item, closedItem)
-            if (index > -1) {
-              props.showTree = false;
-            } else {
-              props.showTree = true;
-            }
+            let props = Object.assign({}, this.props, { parent: this });
+            let index = this.getCloseItemIndex(item, closedItem);
+
+            props.showTree = index > -1 ? false : true;
             props.level = level + 1;
 
             let iconname = 'caret-down';
             if (showLine && isChild) {
-              if (index > -1) {
-                iconname = "plus-square-o";
-              } else {
-                iconname = "minus-square-o";
-              }
+              iconname = index > -1 ? "plus-square-o" : "minus-square-o";
             }
             if (showLine && !isChild) {
               iconname = "file-text";
@@ -77,7 +84,13 @@ export default class TreeNode extends Component {
                     "no-child": !isChild && !showLine,
                     "is-close": isChild && index > -1,
                   })} type={iconname}></Icon>
-                  <span className={`${prefixCls}-inner`}>{item[option.label]}</span>
+                  <span
+                    onClick={this.onSelect.bind(this, item)}
+                    className={this.classNames(`${prefixCls}-inner`, {
+                      [`${prefixCls}-selected`]: selectedKeys.filter((key) => key === item.key).length > 0
+                    })}>
+                    {item[option.label]}
+                  </span>
                 </div>
                 {isChild && <TreeNode {...props} data={childs} />}
               </li>
@@ -89,7 +102,6 @@ export default class TreeNode extends Component {
   }
 }
 
-
 TreeNode.defaultProps = {
   prefixCls: 'w-tree',
   data: [],
@@ -100,11 +112,13 @@ TreeNode.defaultProps = {
   // 是否默认展开所有节点
   defaultExpandAll: false,
   showLine: false,
-  onExpand() { }
+  onExpand() { },
+  onSelect() { }
 }
 TreeNode.propTypes = {
   prefixCls: PropTypes.string,
   onExpand: PropTypes.func,
+  onSelect: PropTypes.func,
   data: PropTypes.array,
   defaultExpandAll: PropTypes.bool,
   showLine: PropTypes.bool,
@@ -113,3 +127,7 @@ TreeNode.propTypes = {
     label: PropTypes.string,
   }),
 }
+
+TreeNode.contextTypes = {
+  component: PropTypes.any
+};
