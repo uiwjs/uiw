@@ -9,6 +9,7 @@ import affix from 'bundle-loader?lazy&name=affix!./pages/affix';
 import Color from 'bundle-loader?lazy&name=color!./pages/color';
 import Collapse from 'bundle-loader?lazy&name=collapse!./pages/collapse';
 import changelog from 'bundle-loader?lazy&name=changelog!./pages/changelog';
+import CopyToClipboard from 'bundle-loader?lazy&name=changelog!./pages/copy-to-clipboard';
 import Layout from 'bundle-loader?lazy&name=layout!./pages/layout';
 import icon from 'bundle-loader?lazy&name=icon!./pages/icon';
 import button from 'bundle-loader?lazy&name=button!./pages/button';
@@ -129,6 +130,9 @@ const routes = {
       { path: "/:lang/notification", component: asyncComponent(notification) },
       { path: "/:lang/loading", component: asyncComponent(loading) },
       { path: "/:lang/transition", component: asyncComponent(transition) },
+    ],
+    'Other': [
+      { path: "/:lang/copy-to-clipboard", component: asyncComponent(CopyToClipboard) },
     ]
   },
   redirect: [
