@@ -32,7 +32,13 @@
     "ui",
     "framework"
   ],
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
   "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "async-validator": "~1.8.1",
     "babel-polyfill": "~6.26.0",
     "babel-runtime": "~6.26.0",
@@ -82,9 +88,7 @@
     "postcss-loader": "^2.0.8",
     "prismjs": "^1.8.3",
     "raw-loader": "^0.5.1",
-    "react": "^16.0.0",
     "react-dev-utils": "^4.1.0",
-    "react-dom": "^16.0.0",
     "react-error-overlay": "^2.0.2",
     "react-hot-loader": "^3.1.1",
     "react-router-dom": "^4.2.2",
