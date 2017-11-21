@@ -20,13 +20,6 @@ export default class TimeSpinner extends Component {
     this.renderItem = this.renderItem.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
-  componentDidMount() {
-    const { several } = this.state;
-    let { spinner } = this.refs;
-    if (spinner.children && spinner.children[0]) {
-      spinner.style.width = spinner.children[0].offsetWidth * several.length + 'px'
-    }
-  }
   // 生成时间
   rangeTime(end, ty) {
     return TimeSpinner.items(end, ty, this.props);
@@ -82,7 +75,17 @@ export default class TimeSpinner extends Component {
     const { several } = this.state;
 
     return (
-      <div ref="spinner" className={this.classNames(`${prefixCls}`)}>
+      <div
+        ref={(elm) => {
+          if (elm) {
+            const { several } = this.state;
+            if (elm.children && elm.children[0]) {
+              elm.style.width = elm.children[0].offsetWidth * several.length + 'px'
+            }
+          }
+        }}
+        className={this.classNames(`${prefixCls}`)}
+      >
         {several.indexOf('HH') > -1 && this.renderItem(this.rangeTime(24, 'hours'))}
         {several.indexOf('mm') > -1 && this.renderItem(this.rangeTime(60, 'minutes'))}
         {several.indexOf('ss') > -1 && this.renderItem(this.rangeTime(60, 'seconds'))}

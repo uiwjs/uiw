@@ -73,7 +73,6 @@ export default class Animate extends Component {
       <Transition
         {...other}
         style={other.style}
-        ref="transition"
         className={prefixCls}
         in={transitionIn}
         timeout={timeout}

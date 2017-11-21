@@ -120,7 +120,6 @@ export default class Input extends Component {
         {icon && this.renderIcon.bind(this)('icon')}
         <input
           {...other}
-          ref="input"
           type={type}
           className={this.classNames(`${prefixCls}-inner`, {
             [`${prefixCls}-p-left`]: preIcon,
