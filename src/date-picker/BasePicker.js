@@ -44,12 +44,6 @@ export default class BasePicker extends Component {
       { ...this.propsToState(props) }
     )
   }
-  componentDidMount() {
-    this.input = ReactDOM.findDOMNode(this.refs.input);
-    this.setState({
-      inputWidth: this.input.getBoundingClientRect().width
-    })
-  }
   componentWillReceiveProps(nextProps) {
     this.setState({ ...this.propsToState(nextProps) })
   }
@@ -71,9 +65,6 @@ export default class BasePicker extends Component {
   }
   onMouseDown(e) {
     const { visible } = this.state;
-    if (this.refs.input) {
-      this.refs.input.focus();
-    }
     if (!visible) {
       // 单选展开菜单
       this.toggleMenu(e);
@@ -150,7 +141,6 @@ export default class BasePicker extends Component {
       <span style={style} className={this.classNames(states.className, className, 'w-date-base')}>
         <Input
           type="text"
-          ref="input"
           {...props}
           value={text}
           onMouseDown={this.onMouseDown.bind(this)}
