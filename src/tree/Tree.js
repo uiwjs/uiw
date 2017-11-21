@@ -20,6 +20,11 @@ export default class Tree extends Component {
       callback && callback()
     })
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedKeys !== this.props.selectedKeys) {
+      this.setState({ selectedKeys: nextProps.selectedKeys })
+    }
+  }
   render() {
     const { prefixCls, className, ...resetProps } = this.props;
     const cls = this.classNames(className, `${prefixCls}`)
@@ -34,10 +39,29 @@ export default class Tree extends Component {
 Tree.defaultProps = {
   prefixCls: 'w-tree',
   selectedKeys: [],
+  showLine: false,
+  data: [],
+  // 是否默认展开所有节点
+  defaultExpandAll: false,
+  option: {
+    children: "children",
+    label: "label",
+  },
+  onExpand() { },
+  onSelect() { },
 }
 Tree.propTypes = {
   prefixCls: PropTypes.string,
   selectedKeys: PropTypes.array,
+  showLine: PropTypes.bool,
+  data: PropTypes.array,
+  defaultExpandAll: PropTypes.bool,
+  option: PropTypes.shape({
+    children: PropTypes.string,
+    label: PropTypes.string,
+  }),
+  onExpand: PropTypes.func,
+  onSelect: PropTypes.func,
 }
 
 Tree.childContextTypes = {
