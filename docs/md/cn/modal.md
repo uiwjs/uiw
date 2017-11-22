@@ -391,7 +391,6 @@ class Demo extends Component {
       <div> 
         <Button size="small" onClick={this.handleShow.bind(this)}>Modals自定义Footer</Button>
         <Modal 
-          ref="modal"
           title="Modals自定义Footer" 
           visible={this.state.visible}
           onOk={this.handleOk} // 点击确定提交按钮
@@ -404,7 +403,6 @@ class Demo extends Component {
           footer={(
             <div>
               <Button size="small" onClick={()=>{
-                //this.refs.modal.onCancel
                 this.setState({
                   visible:false
                 })
