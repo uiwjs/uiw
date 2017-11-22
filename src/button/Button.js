@@ -19,7 +19,7 @@ export default class Button extends Component {
       [`${prefixCls}-loading`]: loading,  // 加载
       'disabled': disabled || loading,    // 禁用状态
       'active': active,                   // 激活状态
-      'block': block,                     // （块级元素）Block level 
+      'block': block,                     // （块级元素）Block level
 
       [className]: className
     });
