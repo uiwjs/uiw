@@ -19,7 +19,7 @@ export default class Radio extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.checked !== nextProps.checked) {
       this.setState({ checked: nextProps.checked }, () => {
-        this.refs.radio.checked = nextProps.checked;
+        this.radio.checked = nextProps.checked;
       })
     }
   }
@@ -33,7 +33,7 @@ export default class Radio extends Component {
     return (
       <label {...other} className={cls}>
         <span className={`${prefixCls}-inner`}>
-          <input ref="radio" type="radio" disabled={disabled} value={value || children} onChange={this.handleChange.bind(this)} />
+          <input ref={(node) => { this.radio = node }} checked={checked} type="radio" disabled={disabled} value={value || children} onChange={this.handleChange.bind(this)} />
         </span>
         <span className={`${prefixCls}-text`}>{children || value}</span>
       </label>
