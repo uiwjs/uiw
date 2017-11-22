@@ -93,7 +93,7 @@ export default class Affix extends Component {
     const cls = this.classNames(className, `${prefixCls}`)
     return (
       <div {...resetProps} style={{ ...this.state.placeholderStyle, ...this.props.style }}>
-        <div className={cls} ref="fixedNode" style={this.state.affixStyle}>
+        <div className={cls} style={this.state.affixStyle}>
           {children}
         </div>
       </div>
