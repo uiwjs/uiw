@@ -8,12 +8,6 @@ Timestamp 时间戳
 <!--DemoStart--> 
 ```js
 class Demo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 20
-    }
-  }
   render() {
     return (
       <Timestamp value="Wed Nov 22 2017 02:06:01 GMT+0800 (CST)"/>
@@ -44,6 +38,21 @@ class Demo extends Component {
 ```
 <!--End-->
 
+## 时区转换
+
+`TZC` 为服务器时间时区，将时间转换到东八区时间
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  render() {
+    return (
+      <Timestamp TZC={8} format="yyyy年MM月dd日 hh:mm:ss" value="Wed Nov 22 2017 02:06:01 GMT+0800 (CST)"/>
+    )
+  }
+}
+```
+<!--End-->
 
 ## 安装和使用
 
@@ -52,7 +61,7 @@ npm install uiw --save
 ```
 
 ```js
-import { CopyToClipboard } from 'uiw';
+import { Timestamp } from 'uiw';
 // or
 import Timestamp from 'uiw/lib/timestamp';
 ```
@@ -63,3 +72,4 @@ import Timestamp from 'uiw/lib/timestamp';
 |--------- |-------- |--------- |-------- |
 | value | 日期值作为ISO8601字符串或Date对象 | String | - |
 | format | 格式化时间 | String | - |
+| TZC | 服务器时区，解决因时区变更，导致显示服务器时间不准确 time Zone Converter | Number | - |
