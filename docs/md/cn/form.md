@@ -36,7 +36,7 @@ class Demo extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.refs.form.validate((valid, dataValues) => {
+    this.form.validate((valid, dataValues) => {
       console.log("返回内容:", dataValues, valid)
       if (valid) {
         alert('submit!');
@@ -69,7 +69,7 @@ class Demo extends Component {
       },
     }
     return (
-      <Form style={{width:500,padding:"30px 0 0 0"}} className="sss" ref="form" model={form} rules={rules}>
+      <Form style={{width:500,padding:"30px 0 0 0"}} className="sss" ref={(component)=>{this.form=component}} model={form} rules={rules}>
         <FormItem label={<span>用户名</span>} field="name" {...formItemLayout} >
           <Input
             value={form.name}
@@ -187,7 +187,7 @@ class Demo extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.refs.form.validate((valid,dataValues) => {
+    this.form.validate((valid,dataValues) => {
       console.log("返回内容:",dataValues,valid)
       if (valid) {
         alert('submit!');
@@ -201,7 +201,7 @@ class Demo extends Component {
   handleReset(e) {
     e.preventDefault();
     console.log("--reset22:",this.state.form)
-    this.refs.form.resetFields((model)=>{
+    this.form.resetFields((model)=>{
       this.setState({form:model})
     });
   }
@@ -229,7 +229,7 @@ class Demo extends Component {
       },
     }
     return (
-      <Form style={{width:500}} ref="form" model={form} rules={rules}>
+      <Form style={{width:500}} ref={(component)=>{this.form=component}} model={form} rules={rules}>
         <FormItem label={<span>用户名</span>} field="name" {...formItemLayout} >
           <Input 
             value={form.name} 
@@ -377,7 +377,7 @@ class Demo extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.refs.form.validate((valid,dataValues) => {
+    this.form.validate((valid,dataValues) => {
       console.log("返回内容:",dataValues,valid)
       if (valid) {
         alert('submit!');
@@ -390,7 +390,7 @@ class Demo extends Component {
 
   handleReset(e) {
     e.preventDefault();
-    this.refs.form.resetFields((model)=>{
+    this.form.resetFields((model)=>{
       this.setState({form:model})
     });
   }
@@ -406,7 +406,7 @@ class Demo extends Component {
       wrapperCol: { xs: {span: 24, offset: 0, }, sm: {span: 14, offset: 4, }, },
     }
     return (
-      <Form layout="inline" style={{width:500,padding:"10px 0 0 0"}} ref="form" model={form} rules={rules}>
+      <Form layout="inline" style={{width:500,padding:"10px 0 0 0"}} ref={(component)=>{this.form=component}} model={form} rules={rules}>
         <FormItem field="name" {...formItemLayout} >
           <Input 
             value={form.name} 
@@ -480,7 +480,7 @@ class Demo extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.refs.form.validate((valid,dataValues) => {
+    this.form.validate((valid,dataValues) => {
       console.log("返回内容:",dataValues,valid)
       if (valid) {
         alert('submit!');
@@ -493,7 +493,7 @@ class Demo extends Component {
 
   handleReset(e) {
     e.preventDefault();
-    this.refs.form.resetFields((model)=>{
+    this.form.resetFields((model)=>{
       this.setState({form:model})
     });
   }
@@ -535,7 +535,7 @@ class Demo extends Component {
         />
         <Form 
           layout={formLayout} 
-          style={{width:formLayout == "inline"?"auto":500}} ref="form" model={form} rules={rules}>
+          style={{width:formLayout == "inline"?"auto":500}} ref={(component)=>{this.form=component}} model={form} rules={rules}>
           <FormItem label={<span>用户名</span>} field="name" {...formItemLayout} >
             <Input 
               value={form.name} 
@@ -583,10 +583,28 @@ class Demo extends Component {
 ### Form refs
 
 ```html
-<Form ref="form"></Form>
+<Form ref={(component)=>{this.form=component}}></Form>
 ```
 
-上面定义form的ref值为`form`
+上面定义`<Form/>`的ref值赋值给`this.form`
+
+```js
+// 表单重置
+this.form.resetFields((model)=>{
+  this.setState({form:model})
+});
+
+// 表单验证
+this.form.validate((valid,dataValues) => {
+  console.log("返回内容:",dataValues,valid)
+  if (valid) {
+    alert('submit!');
+  } else {
+    console.log('error submit!!');
+    return false;
+  }
+});
+```
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
