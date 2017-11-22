@@ -25,6 +25,7 @@ export { default as Tooltip } from './tooltip/'
 export { default as Tree } from './tree/'
 export { default as TimePicker } from './time-picker/';
 export { default as TimeSelect } from './time-select/';
+export { default as Timestamp } from './timestamp';
 export { default as Switch } from './switch/';
 export { default as Select } from './select/';
 export { default as Slider } from './slider/';
