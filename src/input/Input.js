@@ -25,8 +25,6 @@ export default class Input extends Component {
   // Input-Number 等其它组件使用的方法
   focus() {
     (this.input || this.textarea).focus();
-    setTimeout(() => {
-    });
   }
   blur() {
     (this.input || this.textarea).blur();
