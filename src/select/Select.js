@@ -67,10 +67,12 @@ export default class Select extends Component {
     }
   }
   componentDidMount() {
-    this.input = ReactDOM.findDOMNode(this.refs.input);
-    this.setState({
-      inputWidth: this.input.getBoundingClientRect().width
-    })
+    if (this.input.input) {
+      let input = ReactDOM.findDOMNode(this.input.input);
+      this.setState({
+        inputWidth: input.getBoundingClientRect().width
+      })
+    }
     this.selectedData(true);
   }
   handleClickOutside(e) {
@@ -121,14 +123,13 @@ export default class Select extends Component {
     }
   }
   resetInputHeight(init) {
-    const { input, tags } = this.refs;
     const { filterable } = this.props;
-    input.refs.input.style.height = tags.clientHeight + 'px';
+    this.input.input.style.height = this.tags.clientHeight + 'px';
     if (!init) {
       if (filterable) {
         this.inputMultipleFocus()
       } else {
-        input.refs.input.focus();
+        this.input.focus();
       }
     }
   }
@@ -188,10 +189,9 @@ export default class Select extends Component {
   }
   inputMultipleFocus() {
     const { multiple, filterable } = this.props;
-    const { filterInput } = this.refs;
     // 多标签输入过滤获得焦点
     if (multiple && filterable) {
-      filterInput.refs.input.focus();
+      this.filterInput.input.focus();
     }
   }
   // 输入内容，回调事件
@@ -206,14 +206,13 @@ export default class Select extends Component {
   }
   // 多标签搜索方法
   onInputFilterChange(e, value) {
-    const { filterInput, filterInputWidth } = this.refs;
     this.setState({ query: value, selectedLabel: " " }, () => {
-      if (filterInput && filterInputWidth) {
-        let width = filterInputWidth.offsetWidth + 10
-        if (filterInputWidth.offsetWidth + 20 > this.refs.root.offsetWidth) {
-          width = this.refs.root.offsetWidth - 20
+      if (this.filterInput && this.filterInputWidth) {
+        let width = this.filterInputWidth.offsetWidth + 10
+        if (this.filterInputWidth.offsetWidth + 20 > this.rootNode.offsetWidth) {
+          width = this.rootNode.offsetWidth - 20
         };
-        ReactDOM.findDOMNode(filterInput).style.width = width + 10 + 'px';
+        ReactDOM.findDOMNode(this.filterInput.input).style.width = width + 10 + 'px';
         this.resetInputHeight(true)
       }
     })
@@ -268,7 +267,7 @@ export default class Select extends Component {
     const { selected } = this.state;
     if (!multiple) return null;
     return (
-      <div ref="tags" className={`${prefixCls}-tags`} onClick={this.toggleMenu.bind(this)}>
+      <div ref={(elm) => { this.tags = elm }} className={`${prefixCls}-tags`} onClick={this.toggleMenu.bind(this)}>
         {
           selected.map((item, idx) => {
             return (
@@ -281,9 +280,11 @@ export default class Select extends Component {
         }
         {filterable && (
           <div className={`${prefixCls}-tags-filter`}>
-            <div className="cal" ref="filterInputWidth">{this.state.query}</div>
+            <div className="cal"
+              ref={(elm) => { this.filterInputWidth = elm }}
+            >{this.state.query}</div>
             <Input
-              ref="filterInput"
+              ref={(component) => { this.filterInput = component }}
               style={{ width: 21 }}
               value={this.state.query}
               onChange={this.onInputFilterChange.bind(this)}
@@ -301,7 +302,7 @@ export default class Select extends Component {
     return (
       <div
         {...resetProps}
-        ref="root"
+        ref={(elm) => { this.rootNode = elm }}
         className={this.classNames(`${prefixCls}`, {
           "unfold": this.state.visible, // 是否展开
           [`${prefixCls}-multiple`]: multiple
@@ -310,7 +311,7 @@ export default class Select extends Component {
         {this.renderMultipleTags()}
         <Input
           type="text"
-          ref="input"
+          ref={(component) => { this.input = component; }}
           name={name}
           size={size}
           disabled={disabled}
