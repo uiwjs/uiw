@@ -18,12 +18,13 @@ export default class Popper extends Component {
     clickOutside && clickOutside(e);
   }
   render() {
-    const { style, className,prefixCls, tag, clickOutside, children, ...other } = this.props;
+    const { style, className, prefixCls, tag, clickOutside, children, ...other } = this.props;
     let wrapStyle = Object.assign.apply(null, [style, {}])
     return (
-      <div className={`${prefixCls}-warpper`}>{
-        React.createElement(tag, { style: wrapStyle, className: this.classNames(prefixCls, className), ...other }, children)
-      }
+      <div className={`${prefixCls}-warpper`}>
+        {
+          React.createElement(tag, { style: wrapStyle, className: this.classNames(prefixCls, className), ...other }, children)
+        }
       </div>
     )
   }
