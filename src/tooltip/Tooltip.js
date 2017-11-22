@@ -99,14 +99,13 @@ export default class Tooltip extends Component {
   // 弹出的位置
   styles() {
     const { placement } = this.props;
-    const { reference, popup } = this.refs;
     let top = 0, left = 0;
 
-    let popwidth = popup.offsetWidth
-    let popheight = popup.offsetHeight
+    let popwidth = this.popup.offsetWidth
+    let popheight = this.popup.offsetHeight
 
-    let refwidth = reference.offsetWidth
-    let refheight = reference.offsetHeight
+    let refwidth = this.reference.offsetWidth
+    let refheight = this.reference.offsetHeight
 
     let diffwidth = popwidth - refwidth;
     let diffheight = popheight - refheight;
@@ -199,8 +198,8 @@ export default class Tooltip extends Component {
 
     return (
       <div className={cls} style={style || {}} {...props}>
-        <div ref="reference" className={`${prefixCls}-children`}> {children} </div>
-        <div ref="popup" style={stylesPopup} className={`${prefixCls}-popup`}>
+        <div ref={(node) => { this.reference = node }} className={`${prefixCls}-children`}> {children} </div>
+        <div ref={(node) => { this.popup = node }} style={stylesPopup} className={`${prefixCls}-popup`}>
           <Transition in={showTooltip} sequence='fadeIn'>
             <div>
               {!disabled && <div className={`${prefixCls}-content`}>
