@@ -31,6 +31,7 @@ class Demo extends Component {
         <div><Timestamp format="yyyy" value="Wed Nov 22 2017 02:06:01 GMT+0800 (CST)"/></div>
         <div><Timestamp format="MM月" value="Wed Nov 22 2017 02:06:01 GMT+0800 (CST)"/></div>
         <div><Timestamp format="dd日" value="Wed Nov 22 2017 02:06:01 GMT+0800 (CST)"/></div>
+        <div><Timestamp format="dd日" value="Wed Nov 22 2017 02:06:01 GMT+0800 (CST)"/></div>
       </div>
     )
   }
@@ -47,7 +48,7 @@ class Demo extends Component {
 class Demo extends Component {
   render() {
     return (
-      <Timestamp TZC={8} format="yyyy年MM月dd日 hh:mm:ss" value="Wed Nov 22 2017 02:06:01 GMT+0800 (CST)"/>
+      <Timestamp tzc={8} format="yyyy年MM月dd日 hh:mm:ss" value="Wed Nov 22 2017 02:06:01 GMT+0800 (CST)"/>
     )
   }
 }
@@ -72,4 +73,4 @@ import Timestamp from 'uiw/lib/timestamp';
 |--------- |-------- |--------- |-------- |
 | value | 日期值作为ISO8601字符串或Date对象 | String | - |
 | format | 格式化时间 | String | - |
-| TZC | 服务器时区，解决因时区变更，导致显示服务器时间不准确 time Zone Converter | Number | - |
+| tzc | 服务器时区，解决因时区变更，导致显示服务器时间不准确 time Zone Converter | Number | - |

@@ -35,15 +35,15 @@ export default class Timestamp extends Component {
     }
   }
   componentDidMount() {
-    const { value, format, TZC } = this.props
+    const { value, format, tzc } = this.props
     this.setState({
-      date: formatDate(timeZoneConverter(value, TZC), format)
+      date: formatDate(timeZoneConverter(value, tzc), format)
     })
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value || nextProps.format !== this.props.format) {
       this.setState({
-        date: formatDate(timeZoneConverter(nextProps.value, nextProps.TZC), nextProps.format)
+        date: formatDate(timeZoneConverter(nextProps.value, nextProps.tzc), nextProps.format)
       })
     }
   }
@@ -60,7 +60,7 @@ export default class Timestamp extends Component {
 
 Timestamp.propTypes = {
   prefixCls: PropTypes.string,
-  TZC: PropTypes.number,
+  tzc: PropTypes.number, // time Zone Converter
   value: PropTypes.oneOfType([
     PropTypes.string, // ISO-8601 string
     PropTypes.object  // Date object
