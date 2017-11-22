@@ -24,14 +24,12 @@ export default class Input extends Component {
   }
   // Input-Number 等其它组件使用的方法
   focus() {
+    (this.input || this.textarea).focus();
     setTimeout(() => {
-      (this.refs.input || this.refs.textarea).focus();
     });
   }
   blur() {
-    setTimeout(() => {
-      (this.refs.input || this.refs.textarea).blur();
-    });
+    (this.input || this.textarea).blur();
   }
   handleChange(e) {
     const { onChange, length } = this.props;
@@ -103,7 +101,7 @@ export default class Input extends Component {
         {...other}
         value={value}
         placeholder={!value ? this.state.placeholder : ''}
-        ref="textarea"
+        ref={(elm) => { this.textarea = elm; }}
         type={type}
         style={style}
         onChange={this.handleChange.bind(this)}
@@ -121,6 +119,7 @@ export default class Input extends Component {
         <input
           {...other}
           type={type}
+          ref={(elm) => { this.input = elm; }}
           className={this.classNames(`${prefixCls}-inner`, {
             [`${prefixCls}-p-left`]: preIcon,
             [`${prefixCls}-p-right`]: icon
