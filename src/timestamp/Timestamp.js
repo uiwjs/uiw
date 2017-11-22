@@ -2,7 +2,7 @@ import React from 'react';
 import { Component, PropTypes } from '../utils/';
 
 function formatDate(date, formatStr) {
-  date = new Date(date)
+  // date = new Date(date)
   let timeFormat = {
     "M+": date.getMonth() + 1, //month
     "d+": date.getDate(), //day
@@ -21,6 +21,12 @@ function formatDate(date, formatStr) {
   return formatStr;
 }
 
+function timeZoneConverter(date, timeZone) {
+  let old_date = new Date(date), new_date = new Date(), stamp = old_date.getTime();
+  if (!timeZone) return old_date
+  return (isNaN(timeZone) && !timeZone) ? old_date : new Date(stamp + new_date.getTimezoneOffset() * 60 * 1000 + timeZone * 60 * 60 * 1000);
+}
+
 export default class Timestamp extends Component {
   constructor(props) {
     super(props);
@@ -29,15 +35,15 @@ export default class Timestamp extends Component {
     }
   }
   componentDidMount() {
-    const { value, format } = this.props
+    const { value, format, TZC } = this.props
     this.setState({
-      date: formatDate(value, format)
+      date: formatDate(timeZoneConverter(value, TZC), format)
     })
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value || nextProps.format !== this.props.format) {
       this.setState({
-        date: formatDate(nextProps.value, nextProps.format)
+        date: formatDate(timeZoneConverter(nextProps.value, nextProps.TZC), nextProps.format)
       })
     }
   }
@@ -54,6 +60,7 @@ export default class Timestamp extends Component {
 
 Timestamp.propTypes = {
   prefixCls: PropTypes.string,
+  TZC: PropTypes.number,
   value: PropTypes.oneOfType([
     PropTypes.string, // ISO-8601 string
     PropTypes.object  // Date object
