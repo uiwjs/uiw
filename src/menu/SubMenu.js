@@ -4,7 +4,7 @@ import MixinComponent from './MixinComponent';
 import Icon from '../icon';
 
 export default class SubMenu extends MixinComponent {
-  constructor(props: Object) {
+  constructor(props) {
     super(props);
     this.instanceType = 'SubMenu';
     this.state = {
