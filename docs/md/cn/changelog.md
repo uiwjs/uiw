@@ -7,6 +7,8 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 ## v1.3.1
 
+`2017-11-22`
+
 Feature:
 
 - 🌟 feat(Timestamp): Add Timestamp Component. - [685b3de](https://github.com/uiw-react/uiw/commit/685b3de0be26cdbe3a43c48232b6989ea444e943)
