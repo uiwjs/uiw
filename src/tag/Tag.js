@@ -59,7 +59,7 @@ export default class Tag extends Component {
     return visible ? (
       <span {...others} style={styles} className={cls}>
         {children}
-        {(onClose && checked !== true && checked !== false) && <Icon type="close" onClick={this.close} ref="iconclose" />}
+        {(onClose && checked !== true && checked !== false) && <Icon type="close" onClick={this.close} />}
       </span>
     ) : null;
   }

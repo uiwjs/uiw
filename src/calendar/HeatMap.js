@@ -18,17 +18,15 @@ export default class HeatMap extends Component {
     this.hideTooltip()
   }
   hideTooltip() {
-    const { tooltipRefs, tooltipConRefs } = this.refs;
-    tooltipConRefs.hideTooltip();
-    tooltipRefs.style.display = 'none'
+    this.tooltip.hideTooltip();
+    this.heatmap.style.display = 'none'
   }
   onMouseOver(e, datestr, date) {
     const { onMouseOver, emptyMessage, message } = this.props;
-    const { tooltipRefs, tooltipConRefs } = this.refs;
     // 空消息不提示
     if (!emptyMessage && !date.count) {
-      tooltipConRefs.hideTooltip()
-      tooltipRefs.style.display = 'none';
+      this.tooltip.hideTooltip()
+      this.heatmap.style.display = 'none';
       return;
     };
 
@@ -44,15 +42,15 @@ export default class HeatMap extends Component {
       tooltipConten = emptyMessage;
     }
 
-    if (tooltipRefs && e && e.target) {
-      tooltipRefs.style.marginLeft = e.target.x.animVal.value + "px"
-      tooltipRefs.style.marginTop = (e.target.y.animVal.value - 5) + "px";
-      tooltipConRefs.setState({
+    if (this.heatmap && e && e.target) {
+      this.heatmap.style.marginLeft = e.target.x.animVal.value + "px"
+      this.heatmap.style.marginTop = (e.target.y.animVal.value - 5) + "px";
+      this.tooltip.setState({
         content: tooltipConten
       }, () => {
-        tooltipRefs.style.display = 'block';
+        this.heatmap.style.display = 'block';
         onMouseOver(e, datestr, date);
-        tooltipConRefs.showTooltip();
+        this.tooltip.showTooltip();
       })
     }
   }
@@ -63,8 +61,10 @@ export default class HeatMap extends Component {
     return (
       <div className={this.classNames(`${prefixCls}-wrapper`, className)}>
         {tooltip &&
-          <div ref="tooltipRefs" className={`${prefixCls}-popup`}>
-            <Tooltip trigger="click" ref="tooltipConRefs" visible={tooltipShow}> </Tooltip>
+          <div
+            ref={(node) => { this.heatmap = node; }}
+            className={`${prefixCls}-popup`}>
+            <Tooltip trigger="click" ref={(component) => { this.tooltip = component; }} visible={tooltipShow}> </Tooltip>
           </div>
         }
         <HeatMapSVG />
