@@ -30,10 +30,18 @@ export default class Radio extends Component {
       'disabled': disabled, // 禁用状态
       'checked': checked,   // 选中
     });
+    const inputProps = {
+      ref: (node) => { this.radio = node },
+      type: 'radio',
+      disabled: disabled,
+      checked: checked || false,
+      value: value || children,
+      onChange: this.handleChange.bind(this),
+    }
     return (
       <label {...other} className={cls}>
         <span className={`${prefixCls}-inner`}>
-          <input ref={(node) => { this.radio = node }} checked={checked} type="radio" disabled={disabled} value={value || children} onChange={this.handleChange.bind(this)} />
+          <input {...inputProps} />
         </span>
         <span className={`${prefixCls}-text`}>{children || value}</span>
       </label>
