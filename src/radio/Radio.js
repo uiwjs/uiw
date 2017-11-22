@@ -5,7 +5,9 @@ export default class Radio extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: props.checked
+      checked: props.checked,
+      disabled: props.disabled,
+      isButton: false,
     };
   }
   handleChange(e) {
@@ -13,29 +15,32 @@ export default class Radio extends Component {
     const { children } = this.props;
     if (checked) {
       this.props.onChange(e, (this.props.value || children), checked);
+      this.setState({ checked: checked })
     }
   }
   // fixed jest test error.
   componentWillReceiveProps(nextProps) {
     if (this.props.checked !== nextProps.checked) {
-      this.setState({ checked: nextProps.checked }, () => {
-        this.radio.checked = nextProps.checked;
-      })
+      this.setState({ checked: nextProps.checked })
+    }
+    if (this.props.disabled !== nextProps.disabled) {
+      this.setState({ disabled: nextProps.disabled })
     }
   }
   render() {
-    const { prefixCls, className, children, onChange, disabled, value, ...other } = this.props;
-    const { checked } = this.state;
+    const { prefixCls, className, children, onChange, value, ...other } = this.props;
+    const { checked, disabled, isButton } = this.state;
     const cls = this.classNames(`${prefixCls}`, className, {
       'disabled': disabled, // 禁用状态
       'checked': checked,   // 选中
+      [`${prefixCls}-button`]: isButton,
     });
     const inputProps = {
       ref: (node) => { this.radio = node },
       type: 'radio',
-      disabled: disabled,
-      checked: checked || false,
       value: value || children,
+      checked: checked,
+      disabled: disabled,
       onChange: this.handleChange.bind(this),
     }
     return (
@@ -60,5 +65,7 @@ Radio.propTypes = {
 Radio.defaultProps = {
   prefixCls: "w-radio",
   disabled: false,
+  checked: false,
+  value: '',
   onChange: (v) => v,
 }
