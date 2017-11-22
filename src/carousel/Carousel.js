@@ -3,48 +3,46 @@ import { Component, PropTypes } from '../utils/';
 import SlickCarousel from 'react-slick';
 
 export default class Carousel extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
+    this.state = {
     }
     this.onWindowResized = this.onWindowResized.bind(this)
   }
 
-  componentDidMount (){
+  componentDidMount() {
     const { autoplay } = this.props;
     if (autoplay) {
-      window.addEventListener('resize',this.onWindowResized);
+      window.addEventListener('resize', this.onWindowResized);
     }
     const { slick } = this.refs;
     this.innerSlider = slick && slick.innerSlider;
   }
 
-  componentWillUnMount(){
+  componentWillUnMount() {
     const { autoplay } = this.props;
-    if (autoplay){
-      window.removeEventListener('resize',this.onWindowResized);
+    if (autoplay) {
+      window.removeEventListener('resize', this.onWindowResized);
     }
   }
 
   // 自动切换
-  onWindowResized(){
-    const {slick} = this.refs;
+  onWindowResized() {
+    const { slick } = this.refs;
     const { autoplay } = this.props;
-    if( autoplay && slick && slick.innerSlider && slick.innerSlider.autoPlay ) {
+    if (autoplay && slick && slick.innerSlider && slick.innerSlider.autoPlay) {
       slick.innerSlider.autoPlay()
     }
   }
 
-  render(){
+  render() {
     let props = { ...this.props }
     props.fade = props.effect === 'fade' ? true : false
     let cls = props.prefixCls;
     if (props.vertical) {
-      cls = this.classNames(
-        cls,
-        `${cls}-vertical`,
+      cls = this.classNames(cls, `${cls}-vertical`, {
         [props.className]: props.className
-      )
+      })
     }
     return (
       <div className={cls} style={props.style} >
@@ -62,11 +60,11 @@ Carousel.defaultProps = {
   arrows: false, // 左右箭头
   prefixCls: 'w-carousel',
   draggable: false, // 拖拽切换
-  fade:false, // 切换效果(渐显) 
-  dots:true,  // 是否显示下标
+  fade: false, // 切换效果(渐显)
+  dots: true,  // 是否显示下标
 };
 Carousel.propTypes = {
-  effect:PropTypes.oneOf(['scrollx', 'fade']),
+  effect: PropTypes.oneOf(['scrollx', 'fade']),
   dots: PropTypes.bool,
   vertical: PropTypes.bool,
   autoplay: PropTypes.bool,
@@ -78,8 +76,8 @@ Carousel.propTypes = {
   focusOnSelect: PropTypes.bool,
   initialSlide: PropTypes.number,
   slide: PropTypes.string,
-  draggable:PropTypes.bool,
-  arrows:PropTypes.bool,
+  draggable: PropTypes.bool,
+  arrows: PropTypes.bool,
   nextArrow: PropTypes.any,
   prevArrow: PropTypes.any,
 }
