@@ -23,8 +23,8 @@ export default class Thead extends Component {
     const { cloneElement } = this.props;
     if (!cloneElement) {
       this.props.setFixedWidth(
-        this.getTableThwidth(this.refs.thead, 'left'),
-        this.getTableThwidth(this.refs.thead, 'right')
+        this.getTableThwidth(this.thead, 'left'),
+        this.getTableThwidth(this.thead, 'right')
       )
     }
   }
@@ -129,11 +129,6 @@ export default class Thead extends Component {
         }
         if (ischecked && i === 0) attr.className = '_select';
 
-        // let _headchecked = headchecked
-        // if (headIndeterminate && !headchecked) {
-        //   _headchecked = false;
-        // }
-
         subitem.push(
           <th key={i} {...attr}>
             {
@@ -167,7 +162,7 @@ export default class Thead extends Component {
                 )
                 : columns[i].title
             }
-          </th >
+          </th>
         );
       }
     }
@@ -182,7 +177,7 @@ export default class Thead extends Component {
     // 计算层级
     let rowLevel = this.getRowSpan(columns);
     return (
-      <thead ref="thead">
+      <thead ref={(node) => { this.thead = node }}>
         {this.renderHead.bind(this)(indeterminate, columns, rowLevel.rowSpanNum)}
       </thead>
     )

@@ -73,10 +73,10 @@ export default class Table extends Component {
   }
   componentDidMount() {
     // leftFixedTop
-    if (this.refs.tableThead && this.refs.tableThead.refs.thead
-      && this.refs.tableThead.refs.thead.offsetHeight > 0) {
+    if (this.refs.tableThead && this.refs.tableThead.thead
+      && this.refs.tableThead.thead.offsetHeight > 0) {
       this.setState({
-        leftFixedTop: this.refs.tableThead.refs.thead.offsetHeight
+        leftFixedTop: this.refs.tableThead.thead.offsetHeight
       })
     }
   }
@@ -124,29 +124,28 @@ export default class Table extends Component {
   }
   //横向滚动事件
   onScroll(e) {
-    const { headerWrapper, bodyWrapper, fixedBodyWrapper, leftBodyWrapper, rightBodyWrapper } = this.refs;
     const { prefixCls } = this.props;
-    const target = e && e.target ? e.target : bodyWrapper.target;
+    const target = e && e.target ? e.target : this.bodyWrapper.target;
 
     if (target instanceof HTMLDivElement) {
 
-      if (e.target === leftBodyWrapper) {
-        bodyWrapper && (bodyWrapper.scrollTop = target.scrollTop);
-        rightBodyWrapper && (rightBodyWrapper.scrollTop = target.scrollTop);
+      if (e.target === this.leftBodyWrapper) {
+        this.bodyWrapper && (this.bodyWrapper.scrollTop = target.scrollTop);
+        this.rightBodyWrapper && (this.rightBodyWrapper.scrollTop = target.scrollTop);
       }
-      if (e.target === rightBodyWrapper) {
-        bodyWrapper && (bodyWrapper.scrollTop = target.scrollTop);
-        leftBodyWrapper && (leftBodyWrapper.scrollTop = target.scrollTop);
+      if (e.target === this.rightBodyWrapper) {
+        this.bodyWrapper && (this.bodyWrapper.scrollTop = target.scrollTop);
+        this.leftBodyWrapper && (this.leftBodyWrapper.scrollTop = target.scrollTop);
       }
-      if (e.target === bodyWrapper) {
-        headerWrapper.scrollLeft = target.scrollLeft;
+      if (e.target === this.bodyWrapper) {
+        this.headerWrapper.scrollLeft = target.scrollLeft;
 
-        leftBodyWrapper && (leftBodyWrapper.scrollTop = target.scrollTop);
-        rightBodyWrapper && (rightBodyWrapper.scrollTop = target.scrollTop);
+        this.leftBodyWrapper && (this.leftBodyWrapper.scrollTop = target.scrollTop);
+        this.rightBodyWrapper && (this.rightBodyWrapper.scrollTop = target.scrollTop);
       }
     }
 
-    if (!fixedBodyWrapper) return;
+    if (!this.fixedBodyWrapper) return;
     let scrollRight = target.scrollWidth - (target.scrollLeft + target.clientWidth)
     let fixedClassNames = "";
     if (target.scrollLeft < 1) {
@@ -158,8 +157,8 @@ export default class Table extends Component {
     if (scrollRight < 1) {
       fixedClassNames = `${prefixCls}-fixed ${prefixCls}-scroll-position-right`;
     }
-    if (e && e.target === bodyWrapper) {
-      fixedBodyWrapper.className = fixedClassNames;
+    if (e && e.target === this.bodyWrapper) {
+      this.fixedBodyWrapper.className = fixedClassNames;
     }
 
   }
@@ -213,13 +212,13 @@ export default class Table extends Component {
     )
 
     let tableColgroup = (<Colgroup columns={columns} />);
-    let tableCaption = caption && (<div ref="caption" className={`${prefixCls}-caption`}>{caption}</div>);
+    let tableCaption = caption && (<div className={`${prefixCls}-caption`}>{caption}</div>);
     let tableFooter = footer && (<div className={`${prefixCls}-footer`}>{footer}</div>)
 
     let pagingView = paging && <Paging className={`${prefixCls}-paging`} {...paging} />;
     if (height || width || rowSelection || loading === (true || false)) {
       let fixedCloneTable = (width) ? (
-        <div ref="fixedBodyWrapper" className={this.classNames(`${prefixCls}-fixed`, `${prefixCls}-scroll-position-left`)}
+        <div ref={(node) => { this.fixedBodyWrapper = node; }} className={this.classNames(`${prefixCls}-fixed`, `${prefixCls}-scroll-position-left`)}
           style={{ marginTop: -this.state.leftFixedTop }}
         >
           {this.isColumnsFixed(columns, 'left') &&
@@ -233,7 +232,7 @@ export default class Table extends Component {
                   })}
                 </table>
               </div>
-              <div ref="leftBodyWrapper" onScroll={this.onScroll.bind(this)} style={{ height }} className={`${prefixCls}-fixed-body-left`}>
+              <div ref={(node) => { this.leftBodyWrapper = node; }} onScroll={this.onScroll.bind(this)} style={{ height }} className={`${prefixCls}-fixed-body-left`}>
                 <table>
                   {React.cloneElement(tableColgroup, { cloneElement: "left" })}
                   {React.cloneElement(tableTbody('tbody_left'), { cloneElement: "left" })}
@@ -252,7 +251,7 @@ export default class Table extends Component {
                   })}
                 </table>
               </div>
-              <div ref="rightBodyWrapper" style={{ height }} className={`${prefixCls}-fixed-body-right`}>
+              <div ref={(node) => { this.rightBodyWrapper = node; }} style={{ height }} className={`${prefixCls}-fixed-body-right`}>
                 <table>
                   {React.cloneElement(tableColgroup, { cloneElement: "right" })}
                   {React.cloneElement(tableTbody('tbody_right'), { cloneElement: "right" })}
@@ -271,7 +270,7 @@ export default class Table extends Component {
             [`is-footer`]: tableFooter,
           })}>
             {tableCaption}
-            <div ref="headerWrapper" className={`${prefixCls}-head`}>
+            <div ref={(node) => { this.headerWrapper = node; }} className={`${prefixCls}-head`}>
               <table style={{ width }}>
                 {tableColgroup}
                 {tableThead("tableThead")}
@@ -280,7 +279,7 @@ export default class Table extends Component {
             <Loading loading={this.props.loading === undefined ? false : loading}>
               {data.length === 0 ?
                 <div className="placeholder"><Icon type="frown-o" /> 暂无数据</div> :
-                <div ref="bodyWrapper" onScroll={this.onScroll.bind(this)} style={{ height }} className={`${prefixCls}-body`}>
+                <div ref={(node) => { this.bodyWrapper = node; }} onScroll={this.onScroll.bind(this)} style={{ height }} className={`${prefixCls}-body`}>
                   <table style={{ width }}>
                     {tableColgroup}
                     {tableTbody('tbody')}
