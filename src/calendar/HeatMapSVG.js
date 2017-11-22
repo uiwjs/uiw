@@ -152,7 +152,7 @@ export default class HeatMapSVG extends Component {
     const { rectWidth, rectHeight } = this.parent().props;
     const cls = this.classNames(prefixCls, className);
     return (
-      <svg ref="svg" className={cls} width={`100%`} height={`${rectHeight * 7 + 60}px`}>
+      <svg className={cls} width={`100%`} height={`${rectHeight * 7 + 60}px`}>
         <g className={`${prefixCls}-week`} transform="translate(0, 10)">
           {this.renderPanelHeader('week')}
         </g>
