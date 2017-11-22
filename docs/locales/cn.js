@@ -34,6 +34,7 @@ module.exports = {
     'notification': 'Notification 通知提醒框',
     'carousel': 'Carousel 走马灯',
     'transition': 'Transition 过渡动画',
+    'timestamp': 'Timestamp 时间戳',
     'calendar': 'Calendar 日历',
     'table': 'Table 表格',
     'tabs': 'Tabs 标签页',

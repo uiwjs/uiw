@@ -34,6 +34,7 @@ module.exports = {
     'notification': 'Notification',
     'carousel': 'Carousel',
     'transition': 'Transition',
+    'timestamp': 'Timestamp',
     'calendar': 'Calendar',
     'table': 'Tables',
     'tabs': 'Tabs',
