@@ -35,8 +35,7 @@ export default class Slider extends Component {
     };
   }
   getSliderSize() {
-    const { slider } = this.refs;
-    return parseInt(this.props.vertical ? slider.offsetHeight : slider.offsetWidth, 10);
+    return parseInt(this.props.vertical ? this.slider.offsetHeight : this.slider.offsetWidth, 10);
   }
   isRange() {
     const { value } = this.props;
@@ -51,7 +50,7 @@ export default class Slider extends Component {
     const { firsValue, secendValue } = this.state;
     if (this.dragging) return;
     if (disabled) return;
-    const sliderOffset = this.refs.slider.getBoundingClientRect();
+    const sliderOffset = this.slider.getBoundingClientRect();
     let sliderOffsetValue = 0
     if (vertical) {
       sliderOffsetValue = (sliderOffset.bottom - event.clientY) / this.getSliderSize() * 100;
@@ -62,26 +61,22 @@ export default class Slider extends Component {
 
     if (this.isRange()) {
       let range = secendValue - firsValue;
-      // let btn1 = this.refs.btn1.refs.button.style[vertical ? 'bottom' : 'left'];
-      // let btn2 = this.refs.btn2.refs.button.style[vertical ? 'bottom' : 'left'];
-      // btn1 = parseInt(btn1, 10);
-      // btn2 = parseInt(btn2, 10);
       if (range + firsValue > sliderOffsetValue) {
-        this.refs.btn1.startPoint = sliderOffsetValue;
+        this.btn1.startPoint = sliderOffsetValue;
         this.setState({ firsValue: sliderOffsetValue }, () => {
           this.setSliderBar(sliderOffsetValue, secendValue)
         })
-        this.setButtonPosition(this.refs.btn1, sliderOffsetValue);
+        this.setButtonPosition(this.btn1, sliderOffsetValue);
       } else {
-        this.refs.btn2.startPoint = sliderOffsetValue;
+        this.btn2.startPoint = sliderOffsetValue;
         this.setState({ secendValue: sliderOffsetValue }, () => {
           this.setSliderBar(firsValue, sliderOffsetValue)
         })
-        this.setButtonPosition(this.refs.btn2, sliderOffsetValue);
+        this.setButtonPosition(this.btn2, sliderOffsetValue);
       }
     } else {
-      this.refs.btn1.startPoint = sliderOffsetValue;
-      this.setButtonPosition(this.refs.btn1, sliderOffsetValue);
+      this.btn1.startPoint = sliderOffsetValue;
+      this.setButtonPosition(this.btn1, sliderOffsetValue);
       this.setSliderBar(sliderOffsetValue, secendValue)
     }
   }
@@ -145,11 +140,11 @@ export default class Slider extends Component {
 
     if (value instanceof Array && value.length > 1) {
       !isMount && this.onChange(firsValue, secendValue)
-      this.refs.bar.style[vertical ? 'bottom' : 'left'] = leftv + '%';
-      this.refs.bar.style[vertical ? 'height' : 'width'] = widthv + '%';
+      this.bar.style[vertical ? 'bottom' : 'left'] = leftv + '%';
+      this.bar.style[vertical ? 'height' : 'width'] = widthv + '%';
     } else {
       !isMount && this.onChange(firsValue, secendValue)
-      this.refs.bar.style[vertical ? 'height' : 'width'] = firsValue + '%';
+      this.bar.style[vertical ? 'height' : 'width'] = firsValue + '%';
     }
   }
   // 设置按钮的位置
@@ -157,9 +152,9 @@ export default class Slider extends Component {
     const { vertical } = this.props;
     num = this.setMarkPosition(num)
     if (vertical) {
-      comp.refs.button.style.bottom = num + '%';
+      comp.button.style.bottom = num + '%';
     } else {
-      comp.refs.button.style.left = num + '%';
+      comp.button.style.left = num + '%';
     }
   }
   // 判断是否冗余过多触发事件
@@ -185,7 +180,7 @@ export default class Slider extends Component {
   onFirstValueChange(firsValue) {
     const { secendValue } = this.state;
     this.setState({ firsValue }, () => {
-      this.setButtonPosition(this.refs.btn1, firsValue);
+      this.setButtonPosition(this.btn1, firsValue);
       this.setSliderBar(firsValue, secendValue)
       this.onDragChange()
 
@@ -194,7 +189,7 @@ export default class Slider extends Component {
   onSecondValueChange(secendValue) {
     const { firsValue } = this.state;
     this.setState({ secendValue }, () => {
-      this.setButtonPosition(this.refs.btn2, secendValue);
+      this.setButtonPosition(this.btn2, secendValue);
       this.setSliderBar(firsValue, secendValue)
       this.onDragChange()
     })
@@ -247,7 +242,7 @@ export default class Slider extends Component {
     const { prefixCls, marks, className, color, style, disabled, vertical } = this.props;
     const { firsValue, secendValue } = this.state;
     return (
-      <div ref="slider" style={style}
+      <div ref={(node) => { this.slider = node }} style={style}
         className={this.classNames(`${prefixCls}`, className, {
           'w-disabled': disabled,
           [`${prefixCls}-vertical`]: vertical,
@@ -255,10 +250,10 @@ export default class Slider extends Component {
         onClick={this.onSliderClick.bind(this)}
       >
         <div className={this.classNames(`${prefixCls}-track`)}>
-          <div ref="bar" style={{ backgroundColor: color }} className={`${prefixCls}-bar`}> </div>
-          <Button ref="btn1" value={firsValue} onChange={this.onFirstValueChange.bind(this)} />
+          <div ref={(node) => { this.bar = node }} style={{ backgroundColor: color }} className={`${prefixCls}-bar`}> </div>
+          <Button ref={(node) => { this.btn1 = node }} value={firsValue} onChange={this.onFirstValueChange.bind(this)} />
           {
-            this.isRange() && <Button ref="btn2" value={secendValue} onChange={this.onSecondValueChange.bind(this)} />
+            this.isRange() && <Button ref={(node) => { this.btn2 = node }} value={secendValue} onChange={this.onSecondValueChange.bind(this)} />
           }
           {
             marks && this.stepArray().map((item, idx) => {

@@ -57,7 +57,7 @@ export default class Button extends Component {
     const { onChange } = this.props;
     window.removeEventListener('mousemove', this.onDragging, true);
     window.removeEventListener('mouseup', this.onDragEnd, true);
-    let startPoint = parseInt(this.refs.button.style[this.isVertical() ? 'bottom' : 'left'], 10) || 0;
+    let startPoint = parseInt(this.button.style[this.isVertical() ? 'bottom' : 'left'], 10) || 0;
     if (this.startPoint !== startPoint) {
       onChange(startPoint);
     }
@@ -83,7 +83,7 @@ export default class Button extends Component {
   render() {
     const { prefixCls, value } = this.props;
     return (
-      <div ref="button" className={`${prefixCls}-btn-wapper`}
+      <div ref={(node) => { this.button = node }} className={`${prefixCls}-btn-wapper`}
         onMouseDown={this.onButtonDown.bind(this)}
       >
         {this.isTooltip() ?
