@@ -43,7 +43,6 @@ export default class Notification extends Component {
     }
     return (
       <Alert
-        ref="alerts"
         onMouseLeave={this.startTimer.bind(this)}
         onMouseEnter={this.stopTimer.bind(this)}
         visible={this.state.visible}

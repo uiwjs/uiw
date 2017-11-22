@@ -79,7 +79,7 @@ export default class Progress extends Component {
       )
     }
     return (
-      <div ref="progress" className={cls} style={style}  {...resetProps}>{progress}{progressInfo}</div>
+      <div className={cls} style={style} {...resetProps}>{progress}{progressInfo}</div>
     )
   }
 }
