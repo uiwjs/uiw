@@ -15,8 +15,7 @@ export default class Carousel extends Component {
     if (autoplay) {
       window.addEventListener('resize', this.onWindowResized);
     }
-    const { slick } = this.refs;
-    this.innerSlider = slick && slick.innerSlider;
+    this.innerSlider = this.slickcarousel && this.slickcarousel.innerSlider;
   }
 
   componentWillUnMount() {
@@ -28,10 +27,9 @@ export default class Carousel extends Component {
 
   // 自动切换
   onWindowResized() {
-    const { slick } = this.refs;
     const { autoplay } = this.props;
-    if (autoplay && slick && slick.innerSlider && slick.innerSlider.autoPlay) {
-      slick.innerSlider.autoPlay()
+    if (autoplay && this.slickcarousel && this.slickcarousel.innerSlider && this.slickcarousel.innerSlider.autoPlay) {
+      this.slickcarousel.innerSlider.autoPlay()
     }
   }
 
@@ -47,7 +45,7 @@ export default class Carousel extends Component {
     return (
       <div className={cls} style={props.style} >
         <SlickCarousel
-          ref="slick"
+          ref={(component) => { this.slickcarousel = component }}
           {...props}
         />
       </div>
