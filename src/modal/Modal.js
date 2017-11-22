@@ -79,7 +79,7 @@ export default class Modal extends Component {
     }
     defaultFooter = (footer === null ? null : <div className={`${prefixCls}-footer`}>{defaultFooter}</div>)
     return (
-      <div ref="modal" className={cls}>
+      <div className={cls}>
         <Transition in={visible} sequence="fadeIn">
           <div className={`${prefixCls}-mask`} style={styleMask} onClick={() => this.onCancel('mask')}></div>
         </Transition>

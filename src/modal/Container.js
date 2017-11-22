@@ -13,7 +13,7 @@ class ContainerModel extends Component {
     }
   }
   closeModals(...args) {
-    this.refs.modals.onCancel()
+    this.modal.onCancel()
   }
   onExited() {
     this.props.removeChild()
@@ -43,7 +43,7 @@ class ContainerModel extends Component {
     }
     return (
       <Modals
-        ref="modals"
+        ref={(component) => { this.modal = component }}
         { ...others }
         className={classNames(prefixCls, className, {
           [`${type}`]: type
