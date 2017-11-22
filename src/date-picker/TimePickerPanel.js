@@ -10,7 +10,7 @@ export default class TimePickerPanel extends Component {
     const { prefixCls, className, visible, handleClickOutside, inputWidth, ...other } = this.props;
     return (
       <Transition in={visible} sequence='fadeIn' >
-        <Popper ref="popper"
+        <Popper
           className={this.classNames(`${prefixCls}-popper`)}
           clickOutside={handleClickOutside}
         >
