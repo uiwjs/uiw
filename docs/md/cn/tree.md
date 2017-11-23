@@ -5,7 +5,7 @@ Tree 树形控件
 
 ## 基本用法
 
-最简单的用法，默认不展开，可以通过设置 `defaultExpandAll={true}` 默认展开菜单。
+最简单的用法，默认不展开。
 
 <!--DemoStart--> 
 ```js
@@ -149,22 +149,38 @@ class Demo extends Component {
     this.state = {
       data: [
         {
-          name:"湖北省",
+          label:"湖北省",
           label:"湖北省",
           key:"0-0-0",
           renderTitle:(title)=>`${title} - 标题`,
-          info:[
-            {name:"武汉市",key:"0-1-0",},
-            {name:"黄冈市",key:"0-2-0"},
-            {name:"黄石市",key:"0-3-0",},
+          children:[
+            {
+              label:"武汉市",
+              key:"0-1-0",
+              children:[
+                {label:"新洲区",key:"0-1-1"},
+                {label:"武昌区",key:"0-1-2"},
+                {label:"汉南区",key:"0-1-3"},
+              ]
+            },
+            {label:"黄冈市",key:"0-2-0"},
+            {
+              label:"黄石市",
+              key:"0-3-0",
+              children:[
+                {label:"青山区",key:"0-3-1"},
+                {label:"黄陂区",key:"0-3-2"},
+                {label:"青山区",key:"0-3-2"},
+              ]
+            }
           ]
         },{
-          name:"上海市",
+          label:"上海市",
           key:"1-0-0",
-          info:[
-            {name:"黄浦区",key:"1-0-1"},
-            {name:"卢湾区",key:"1-0-2"},
-            {name:"徐汇区",key:"1-0-3",},
+          children:[
+            {label:"黄浦区",key:"1-0-1"},
+            {label:"卢湾区",key:"1-0-2"},
+            {label:"徐汇区",key:"1-0-3",},
           ]
         }
       ]
@@ -174,10 +190,6 @@ class Demo extends Component {
     return (
       <Tree 
         data={this.state.data}
-        option={{
-          children: 'info',
-          label: 'name'
-        }}
         showLine
         onSelect={(key,data,e)=>{
           console.log("onSelect",key,data,e)
@@ -252,6 +264,77 @@ class Demo extends Component {
           data={this.state.data}
         />
       </div>
+    )
+  }
+}
+```
+<!--End-->
+
+## 默认展开菜单
+
+可以通过设置 `defaultExpandAll={true}` 默认展开菜单
+
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [
+        {
+          label:"湖北省",
+          key:"0-0-0",
+          children:[
+            {
+              label:"武汉市",
+              key:"0-1-0",
+              children:[
+                {label:"新洲区",key:"0-1-1"},
+                {label:"武昌区",key:"0-1-2"},
+                {label:"汉南区",key:"0-1-3"},
+              ]
+            },
+            {label:"黄冈市",key:"0-2-0"},
+            {
+              label:"黄石市",
+              key:"0-3-0",
+              children:[
+                {label:"青山区",key:"0-3-1"},
+                {label:"黄陂区",key:"0-3-2"},
+                {label:"青山区",key:"0-3-2"},
+              ]
+            },
+          ]
+        },{
+          label:"上海市",
+          key:"1-0-0",
+          children:[
+            {label:"黄浦区",key:"1-0-1"},
+            {label:"卢湾区",key:"1-0-2"},
+            {
+              label:"徐汇区",
+              key:"1-0-3",
+              children:[
+                {label:"半淞园路街道",key:"1-1-0"},
+                {label:"南京东路街道",key:"1-2-0"},
+                {label:"外滩街道",key:"1-3-0"},
+              ]
+            },
+          ]
+        },
+      ]
+    }
+  }
+  render() {
+    return (
+      <Tree 
+        defaultExpandAll={true}
+        data={this.state.data}
+        onExpand={(key,expanded,data,node)=>{
+          console.log("item:",key,expanded,data,node)
+        }}
+      />
     )
   }
 }

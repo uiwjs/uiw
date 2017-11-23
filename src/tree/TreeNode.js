@@ -7,7 +7,7 @@ export default class TreeNode extends Component {
     super(props);
     this.state = {
       // 是否展开
-      // showTree: props.defaultExpandAll,
+      showTree: props.defaultExpandAll,
       // 默认关闭的Item
       closedItem: props.defaultExpandAll ? [] : [...props.data],
     };
