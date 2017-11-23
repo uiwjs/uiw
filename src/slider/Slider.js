@@ -97,18 +97,10 @@ export default class Slider extends Component {
   }
   // 拖拽刻度
   setMarkPosition(num) {
-    const { min, max, step, dots } = this.props;
+    const { min, max, step } = this.props;
     const stepWidth = (100 * step) / (max - min); // 实际占用 宽度值
     const rem = num % stepWidth; // 实际间隔余 宽度值
-    const range = ((step - min) / (max - min)) * 100; // 实际间隔 宽度值
-    const currentv = parseInt((min + ((num * (max - min)) / 100)), 10); // 当前值
     // num，stepWidth 是转换后的值
-    // 倍数
-    const multiple = parseInt(((num / range) + 1), 10);
-    if (!dots) return num;
-    if (currentv % step >= step / 2) {
-      return multiple * range;
-    }
     return num - rem;
   }
   onChange(firsValue, secendValue) {
@@ -117,10 +109,10 @@ export default class Slider extends Component {
     firsValue = parseInt((min + ((firsValue * (max - min)) / 100)), 10);
     secendValue = parseInt((min + ((secendValue * (max - min)) / 100)), 10);
     // 相同值不触发 事件
-    if (this._firsValue === firsValue) return;
-    if (this.isRange() && this._firsValue === firsValue && this._secendValue === secendValue) return;
-    this._firsValue = firsValue;
-    this._secendValue = secendValue;
+    if (this.firsValue === firsValue) return;
+    if (this.isRange() && this.firsValue === firsValue && this.secendValue === secendValue) return;
+    this.firsValue = firsValue;
+    this.secendValue = secendValue;
 
     if (this.isRange()) {
       onChange([firsValue, secendValue]);
@@ -136,7 +128,6 @@ export default class Slider extends Component {
 
     let widthv = firsValue > secendValue ? firsValue - leftv : secendValue - leftv;
     widthv = this.setMarkPosition(widthv);
-
     if (value instanceof Array && value.length > 1) {
       !isMount && this.onChange(firsValue, secendValue);
       this.bar.style[vertical ? 'bottom' : 'left'] = `${leftv}%`;
@@ -169,10 +160,10 @@ export default class Slider extends Component {
     firsValue = parseInt((min + ((firsValue * (max - min)) / 100)), 10);
     secendValue = parseInt((min + ((secendValue * (max - min)) / 100)), 10);
     // 相同值不触发 事件
-    if (this.__firsValue === firsValue && this.__secendValue === secendValue) return;
-    if (this.isRange() && this._firsValue === firsValue && this._secendValue === secendValue) return;
-    this.__firsValue = firsValue;
-    this.__secendValue = secendValue;
+    if (this.firsValue === firsValue && this.secendValue === secendValue) return;
+    if (this.isRange() && this.firsValue === firsValue && this.secendValue === secendValue) return;
+    this.firsValue = firsValue;
+    this.secendValue = secendValue;
 
     onDragChange(this.isRange() ? [firsValue, secendValue] : firsValue);
   }
@@ -216,9 +207,7 @@ export default class Slider extends Component {
         {
           Object.keys(marks).map((item, idx) => {
             let label = marks[item];
-            let style = {
-              [vertical ? 'bottom' : 'left']: `${parseInt((item - min) / ((max - min) * 100), 10)}%`,
-            };
+            let style = { [vertical ? 'bottom' : 'left']: `${parseInt(((item - min) / (max - min)) * 100, 10)}%` };
             if (label instanceof Object) {
               style = { ...style, ...label.style };
               label = label.label || '';
@@ -239,11 +228,10 @@ export default class Slider extends Component {
     );
   }
   render() {
-    const { prefixCls, marks, className, color, style, disabled, tooltip, vertical } = this.props;
+    const { prefixCls, marks, className, color, style, disabled, vertical } = this.props;
     const { firsValue, secendValue } = this.state;
     return (
-      <div
-        ref={(node) => { this.slider = node; }}
+      <div ref={(node) => { this.slider = node; }}
         style={style}
         className={this.classNames(`${prefixCls}`, className, {
           'w-disabled': disabled,
@@ -253,19 +241,20 @@ export default class Slider extends Component {
       >
         <div className={this.classNames(`${prefixCls}-track`)}>
           <div ref={(node) => { this.bar = node; }} style={{ backgroundColor: color }} className={`${prefixCls}-bar`} />
-          <Button ref={(node) => { this.btn1 = node; }} value={firsValue} tooltip={tooltip} onChange={this.onFirstValueChange.bind(this)} />
+          <Button ref={(node) => { this.btn1 = node; }} value={firsValue} onChange={this.onFirstValueChange.bind(this)} />
           {
             this.isRange() && <Button ref={(node) => { this.btn2 = node; }} value={secendValue} onChange={this.onSecondValueChange.bind(this)} />
           }
           {
             marks && this.stepArray().map((item, idx) => {
               return (
-                <div
-                  key={idx}
+                <div key={idx}
                   className={this.classNames(`${prefixCls}-step`, {
                     'w-active': this.isActive(item),
                   })}
-                  style={vertical ? { bottom: `${item}%` } : { left: `${item}%` }}
+                  style={{
+                    [`${vertical ? 'bottom' : 'left'}`]: `${item}%`,
+                  }}
                 />
               );
             })
