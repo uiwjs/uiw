@@ -7,30 +7,30 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 ## 1.3.2
 
-`2017-11-22`
+`2017-11-23`
 
 Feature:
 
-- 🌟 feat(Timestamp): Add TZC props. e787e0c 
+- 🌟 feat(Timestamp): Add TZC props. [e787e0c](https://github.com/uiw-react/uiw/commit/e787e0c2a985d9ec566f3caf365c706247c00a9e) 
 
 Bug fixed:
 
-- 🐞 fix(Tree): The default expand menu. 92999b6 
-- 🐞 fix(Timestamp): Spell TZC in lowercase zc. 063c00e 
-- 🐞 fix(Radio): Controlled component problem. 8c6b125 
-- 🐞 fix(Radio): Radio checked can not be undefined. 1319139 
-- 🐞 fix(Tag/Carousel/HeatMap): remove string refs. d4857eb 
-- 🐞 fix(Radio): fixed default cannot be selected. remove string refs. 287f945 
-- 🎨 style(Select):Modify the drop-down style. b3775c9 
+- 🐞 fix(Tree): The default expand menu. [92999b6](https://github.com/uiw-react/uiw/commit/92999b66b439a4f043782e7fe3bccf1c878bf9d4)
+- 🐞 fix(Timestamp): Spell TZC in lowercase zc. [063c00e](https://github.com/uiw-react/uiw/commit/063c00e69f77670ed3457b72dd60ed2f8b91623f)
+- 🐞 fix(Radio): Controlled component problem. [8c6b125](https://github.com/uiw-react/uiw/commit/8c6b1253642c22ff342e99eddc6bcbdfc9656afe) 
+- 🐞 fix(Radio): Radio checked can not be undefined. [1319139](https://github.com/uiw-react/uiw/commit/13191395581cdc2f3f052c5564b528aad67a2bcc) 
+- 🐞 fix(Tag/Carousel/HeatMap): remove string refs. [d4857eb](https://github.com/uiw-react/uiw/commit/d4857eb7c7acf7a537ab0e489a0303eabfe056f7) 
+- 🐞 fix(Radio): fixed default cannot be selected. remove string refs. [287f945](https://github.com/uiw-react/uiw/commit/287f94521d48301fc1cb230ab1fadf02dbe7ae56) 
+- 🎨 style(Select):Modify the drop-down style. [b3775c9](https://github.com/uiw-react/uiw/commit/b3775c909f736b4aa65d983ca2e4a9965333935d) 
 
 Add Test Case:
 
-- ⛑ test: Add eslint. 360a090 
+- ⛑ test: Add eslint. [360a090](https://github.com/uiw-react/uiw/commit/360a090ef7d30b4fa1d012163973dccaf1b54dd8) 
 
 Document Update:
 
-- 📝 Update recommendation.md 03516d7 
-- 📝 doc: remove string refs in docs. e9fb6d4 
+- 📝 Update recommendation.md [03516d7](https://github.com/uiw-react/uiw/commit/03516d7c4e3b3fede1243b9432e27bb958c91eaa) 
+- 📝 doc: remove string refs in docs. [e9fb6d4](https://github.com/uiw-react/uiw/commit/e9fb6d4373d3ead2a660551763354a4ae006c787) 
 
 ## v1.3.1
 
