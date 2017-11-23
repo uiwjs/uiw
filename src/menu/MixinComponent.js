@@ -14,5 +14,5 @@ export default class MixinComponent extends Component {
 }
 
 MixinComponent.contextTypes = {
-  component: PropTypes.any
+  component: PropTypes.any,
 };

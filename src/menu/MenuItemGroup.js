@@ -6,25 +6,25 @@ export default class MenuItemGroup extends Component {
     super(props);
     this.instanceType = 'SubMenu';
     this.state = {
-      active: false
+      active: false,
     };
   }
   render() {
-    const { prefixCls, className, ...others } = this.props;
+    const { prefixCls, className } = this.props;
     return (
-      <li className={this.classNames(`${prefixCls}`, {
+      <li className={this.classNames(`${prefixCls}`, className, {
         // 'is-active': this.state.active,
         // 'is-opened': this.opened()
-      })}>
-      </li>
-    )
+      })}
+      />
+    );
   }
 }
 
 MenuItemGroup.propTypes = {
   prefixCls: PropTypes.string,
-}
+};
 
 MenuItemGroup.defaultProps = {
-  prefixCls: "w-menu-item-group",
-}
+  prefixCls: 'w-menu-item-group',
+};

@@ -9,4 +9,4 @@ function getScrollTop() {
     return document.body.scrollTop;
   }
 }
-export { getScrollTop }
+export default { getScrollTop };

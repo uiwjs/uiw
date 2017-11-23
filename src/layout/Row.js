@@ -1,11 +1,11 @@
 import { Children, cloneElement, createElement } from 'react';
-import { Component, PropTypes } from '../utils/';
 import assign from 'object-assign';
+import { Component, PropTypes } from '../utils/';
 
 export default class Row extends Component {
   getChildContext() {
     return {
-      gutter: this.props.gutter
+      gutter: this.props.gutter,
     };
   }
   render() {
@@ -34,14 +34,14 @@ export default class Row extends Component {
         // flex 布局下的垂直对齐方式
         [`${prefixCls}-align-${align}`]: type && align,
       }),
-      ...others
+      ...others,
     }, cols);
   }
 }
 
 
 Row.childContextTypes = {
-  gutter: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  gutter: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 Row.propTypes = {
@@ -52,12 +52,12 @@ Row.propTypes = {
   type: PropTypes.oneOf(['flex']),
   justify: PropTypes.oneOf([
     'start', 'end', 'center',
-    'space-around', 'space-between'
+    'space-around', 'space-between',
   ]),
   align: PropTypes.oneOf(['top', 'middle', 'bottom', 'baseline']),
-}
+};
 
 Row.defaultProps = {
-  prefixCls: "w-row",
-  tag: 'div'
-}
+  prefixCls: 'w-row',
+  tag: 'div',
+};

@@ -6,11 +6,12 @@ describe('<Radio>', () => {
   const warpperState = {
     value: 0,
   };
-  var wrapper = mount(<Radio
+  const wrapper = mount(<Radio
     onChange={(e, value) => {
-      console.log("value::", value)
-      warpperState.value = value
-    }}>label</Radio>);
+      warpperState.value = value;
+    }}
+  >label
+                        </Radio>);
   it('Test the default props and node.', () => {
     expect(wrapper.name()).toBe('Radio');
     expect(wrapper.type()).toEqual(Radio);
@@ -21,10 +22,9 @@ describe('<Radio>', () => {
   });
 
   it('Test value and checked and disabled attributes.', () => {
-    wrapper.setProps({ 'value': "1212", checked: true, disabled: true });
-    expect(wrapper.find('input').at(0).getDOMNode().checked).toBe(true)
-    expect(wrapper.find('input').at(0).getDOMNode().disabled).toEqual(true)
-    expect(wrapper.find('input').at(0).getDOMNode().value).toBe("1212")
+    wrapper.setProps({ value: '1212', checked: true, disabled: true });
+    expect(wrapper.find('input').at(0).getDOMNode().checked).toBe(true);
+    expect(wrapper.find('input').at(0).getDOMNode().disabled).toEqual(true);
+    expect(wrapper.find('input').at(0).getDOMNode().value).toBe('1212');
   });
-
-})
+});

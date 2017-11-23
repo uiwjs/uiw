@@ -5,8 +5,8 @@ export default class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fields: []
-    }
+      fields: [],
+    };
   }
 
   // https://facebook.github.io/react/docs/context.html
@@ -15,8 +15,8 @@ export default class Form extends Component {
   // 都能通过定义 contextTypes 访问
   getChildContext() {
     return {
-      component: this
-    }
+      component: this,
+    };
   }
   // 验证数据
   validate(callback) {
@@ -28,7 +28,7 @@ export default class Form extends Component {
     if (fields.length === 0 && callback) callback(true);
 
     fields.forEach((field, idx) => {
-      field.validate('', errors => {
+      field.validate('', (errors) => {
         if (errors) {
           valid = false;
         }
@@ -45,19 +45,22 @@ export default class Form extends Component {
 
   // 重置字段方法
   resetFields(callback) {
-    this.state.fields.forEach(field => {
+    this.state.fields.forEach((field) => {
       field.resetField();
     });
-    callback && callback(this.props.model)
+    callback && callback(this.props.model);
   }
 
   render() {
     const { prefixCls, className, layout, model, rules, ...other } = this.props;
 
     return (
-      <form className={this.classNames(className, `${prefixCls}`, {
-        [`${prefixCls}-${layout}`]: layout
-      })}  {...other} >
+      <form
+        className={this.classNames(className, `${prefixCls}`, {
+        [`${prefixCls}-${layout}`]: layout,
+      })}
+        {...other}
+      >
         {this.props.children}
       </form>
     );
@@ -65,7 +68,7 @@ export default class Form extends Component {
 }
 
 Form.childContextTypes = {
-  component: PropTypes.any
+  component: PropTypes.any,
 };
 
 Form.propTypes = {
@@ -73,9 +76,9 @@ Form.propTypes = {
   layout: PropTypes.oneOf(['horizontal', 'vertical', 'inline']),
   model: PropTypes.object,
   rules: PropTypes.object,
-}
+};
 
 Form.defaultProps = {
   prefixCls: 'w-form',
   layout: 'horizontal',
-}
+};

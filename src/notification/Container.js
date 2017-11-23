@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Warpper from './Warpper';
 import { randomid } from '../utils/strings';
 
-let NotifyIndex = {}
+const NotifyIndex = {};
 export default function NotificationCreate(props = {}, type) {
   if (typeof props === 'string') {
     props = { message: props };
@@ -13,7 +13,7 @@ export default function NotificationCreate(props = {}, type) {
     props.type = type;
   }
   if (!props.placement) {
-    props['placement'] = 'topRight'
+    props.placement = 'topRight';
   }
 
   if (props.placement && !NotifyIndex[props.placement]) {
@@ -28,12 +28,12 @@ export default function NotificationCreate(props = {}, type) {
       willUnmount(nprops) {
         if (!nprops) return;
         nprops.onClose && nprops.onClose();
-      }
-    })
+      },
+    });
   }
 }
 
-['success', 'warning', 'info', 'error'].forEach(type => {
+['success', 'warning', 'info', 'error'].forEach((type) => {
   NotificationCreate[type] = (options = {}) => {
     return NotificationCreate(options, type);
   };
