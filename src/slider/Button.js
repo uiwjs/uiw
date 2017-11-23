@@ -34,12 +34,15 @@ export default class Button extends Component {
   isVertical() {
     return this.parent().props.vertical;
   }
+  isTooltip() {
+    return this.parent().props.tooltip;
+  }
   onDragging(event) {
     const { onChange } = this.props;
     const count = this.parent().getSliderSize();
     const currentX = event.clientX;
     const currentY = event.clientY;
-    const move = (this.isVertical() ? (this.startY - currentY) : (currentX - this.startX)) / (count * 100);
+    const move = ((this.isVertical() ? (this.startY - currentY) : (currentX - this.startX)) / count) * 100;
     const startPoint = this.startPoint + parseInt(move, 10);
     if (startPoint < 0 || startPoint > 100) return;
     if (
@@ -78,14 +81,14 @@ export default class Button extends Component {
     return parseInt((this.getMin() + ((num * (this.getMax() - this.getMin())) / 100)), 10);
   }
   render() {
-    const { prefixCls, tooltip, value } = this.props;
+    const { prefixCls, value } = this.props;
     return (
       <div
         ref={(node) => { this.button = node; }}
         className={`${prefixCls}-btn-wapper`}
         onMouseDown={this.onButtonDown.bind(this)}
       >
-        {tooltip ?
+        {this.isTooltip() ?
           <Tooltip content={this.showNumber(value)}>
             <div style={{ backgroundColor: this.parent().props.color }} className={`${prefixCls}-btn-inner`} />
           </Tooltip> :
