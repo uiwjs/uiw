@@ -5,6 +5,33 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.3.2
+
+`2017-11-22`
+
+Feature:
+
+- 🌟 feat(Timestamp): Add TZC props. e787e0c 
+
+Bug fixed:
+
+- 🐞 fix(Tree): The default expand menu. 92999b6 
+- 🐞 fix(Timestamp): Spell TZC in lowercase zc. 063c00e 
+- 🐞 fix(Radio): Controlled component problem. 8c6b125 
+- 🐞 fix(Radio): Radio checked can not be undefined. 1319139 
+- 🐞 fix(Tag/Carousel/HeatMap): remove string refs. d4857eb 
+- 🐞 fix(Radio): fixed default cannot be selected. remove string refs. 287f945 
+- 🎨 style(Select):Modify the drop-down style. b3775c9 
+
+Add Test Case:
+
+- ⛑ test: Add eslint. 360a090 
+
+Document Update:
+
+- 📝 Update recommendation.md 03516d7 
+- 📝 doc: remove string refs in docs. e9fb6d4 
+
 ## v1.3.1
 
 `2017-11-22`
