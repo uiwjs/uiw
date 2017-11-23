@@ -21,8 +21,10 @@ class Demo extends Component {
         <Switch checked={this.state.checked} 
           style={styl} 
           onChange={(e,checked)=>{
-          console.log(`${checked?"选中":'没有选中'}`)
-        }}/>
+            this.setState({checked})
+            console.log(`${checked?"选中":'没有选中'}`)
+          }}
+        />
         <Button size="mini" onClick={()=>{
           console.log("-->>",this.state.checked)
           this.setState({
