@@ -9,7 +9,7 @@ export default class Panel extends Component {
     const cls = this.classNames([`${prefixCls}-item`], className, {
       [`${prefixCls}-active`]: isActive,
       [`${prefixCls}-disabled`]: disabled,
-    })
+    });
     return (
       <div className={cls} {...resetProps}>
         <div
@@ -19,13 +19,13 @@ export default class Panel extends Component {
           {showArrow && <Icon type="arrow-down" />}
           {header}
         </div>
-        <Transition in={isActive} className={this.classNames([`${prefixCls}-conten`])} unmountOnExit={false} sequence='height'>
+        <Transition in={isActive} className={this.classNames([`${prefixCls}-conten`])} unmountOnExit={false} sequence="height">
           <div>
             {children}
           </div>
         </Transition>
       </div>
-    )
+    );
   }
 }
 
@@ -40,8 +40,8 @@ Panel.propTypes = {
     PropTypes.number,
     PropTypes.node,
   ]),
-}
+};
 
 Panel.defaultProps = {
   disabled: false,
-}
+};

@@ -11,11 +11,11 @@ export default class Menu extends Component {
       // dd
       openedMenu: props.defaultOpened ? props.defaultOpened.slice(0) : [],
       // 子菜单
-      submenus: {}
+      submenus: {},
     };
   }
   getChildContext() {
-    return { component: this }
+    return { component: this };
   }
   // 菜单选择事件
   handleSelect(index, menuItem) {
@@ -27,21 +27,21 @@ export default class Menu extends Component {
     this.setState({ defaultActive });
   }
   // 打开子菜单
-  openMenu(index, indexPath) {
-    let { openedMenu } = this.state;
+  openMenu(index) {
+    const { openedMenu } = this.state;
     if (openedMenu.indexOf(index) !== -1) return;
     openedMenu.push(index);
     this.setState({ openedMenu });
   }
   // 关闭子菜单
   closeMenu(index) {
-    let { openedMenu } = this.state;
+    const { openedMenu } = this.state;
     openedMenu.splice(openedMenu.indexOf(index), 1);
     this.setState({ openedMenu });
   }
   // 点击子菜单的标题事件
   handleSubmenuClick(index) {
-    let isOpened = this.state.openedMenu.indexOf(index) !== -1;
+    const isOpened = this.state.openedMenu.indexOf(index) !== -1;
 
     if (isOpened) {
       this.closeMenu(index);
@@ -58,17 +58,20 @@ export default class Menu extends Component {
   render() {
     const { prefixCls, className, style, mode } = this.props;
     return (
-      <ul style={style} className={this.classNames(className, `${prefixCls}`, {
-        [`${prefixCls}-${mode}`]: mode
-      })}>
+      <ul
+        style={style}
+        className={this.classNames(className, `${prefixCls}`, {
+          [`${prefixCls}-${mode}`]: mode,
+        })}
+      >
         {this.props.children}
       </ul>
-    )
+    );
   }
 }
 
 Menu.childContextTypes = {
-  component: PropTypes.any
+  component: PropTypes.any,
 };
 
 Menu.propTypes = {
@@ -79,6 +82,6 @@ Menu.propTypes = {
 };
 
 Menu.defaultProps = {
-  prefixCls: "w-menu",
+  prefixCls: 'w-menu',
   mode: 'vertical',
-}
+};

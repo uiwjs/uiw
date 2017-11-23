@@ -24,44 +24,47 @@ export default class Table extends Component {
       ...this.initalState(props),
       ischecked: !!props.rowSelection, // 是否存在选择功能
 
-      trHoverClassName: [],       // 行移入移除事件，
+      trHoverClassName: [], // 行移入移除事件，
       scrollLeft: 0,
       scrollRight: 0,
       scrollTop: 0,
-      leftFixedWidth: 0,   // 左边固定的宽度
-      rightFixedWidth: 0,  // 右边固定的宽度
-      leftFixedTop: null      // 左边固定的距离顶部距离
-    }
+      leftFixedWidth: 0, // 左边固定的宽度
+      rightFixedWidth: 0, // 右边固定的宽度
+      leftFixedTop: null, // 左边固定的距离顶部距离
+    };
   }
   getChildContext() {
     return { component: this };
   }
   // 初始化数据
   initalState(props) {
-    let { data, columns } = props
-    let rowsCount = 0, rowsChecked = {}, rowsDisabled = {}, rowCheckedDisable = {};
-    for (let i = 0; i < data.length; i++) {
+    const { data, columns } = props;
+    let rowsCount = 0;
+    const rowsChecked = {};
+    const rowsDisabled = {};
+    const rowCheckedDisable = {};
+    for (let i = 0; i < data.length; i += 1) {
       if (data[i]._checked && data[i]._disabled) {
-        rowCheckedDisable[i] = data[i]
+        rowCheckedDisable[i] = data[i];
       }
       if (data[i]._checked) {
         delete data[i]._checked;
         rowsCount += 1;
-        rowsChecked[i] = data[i]
+        rowsChecked[i] = data[i];
       }
       if (data[i]._disabled) {
         delete data[i]._disabled;
-        rowsDisabled[i] = data[i]
+        rowsDisabled[i] = data[i];
       }
       // 值为false的也清除
       delete data[i]._checked;
       delete data[i]._disabled;
     }
-    if (!!props.rowSelection) {
-      columns.unshift({ title: "_select", key: "_select", fixed: 'left' })
+    if (props.rowSelection) {
+      columns.unshift({ title: '_select', key: '_select', fixed: 'left' });
     }
     return {
-      data: data,
+      data,
       rowsCount,
       rowsChecked,
       rowsDisabled,
@@ -69,66 +72,64 @@ export default class Table extends Component {
       columns,
       headIndeterminate: rowsCount > 0 && rowsCount < data.length,
       headchecked: rowsCount === data.length,
-    }
+    };
   }
   componentDidMount() {
     // leftFixedTop
-    if (this.refs.tableThead && this.refs.tableThead.thead
-      && this.refs.tableThead.thead.offsetHeight > 0) {
+    if (this.tableThead && this.tableThead.thead
+      && this.tableThead.thead.offsetHeight > 0) {
       this.setState({
-        leftFixedTop: this.refs.tableThead.thead.offsetHeight
-      })
+        leftFixedTop: this.tableThead.thead.offsetHeight,
+      });
     }
   }
   // 单行选择事件
   onRowSelection = (row, index, checked, e) => {
     const { rowsChecked, rowsCount } = this.state;
     const { data, rowSelection } = this.props;
-    let _rowsChecked = rowsChecked
-    let count = Math.abs(checked ? rowsCount + 1 : rowsCount - 1);
+    const rowsCheckedNew = rowsChecked;
+    const count = Math.abs(checked ? rowsCount + 1 : rowsCount - 1);
     if (checked) {
-      _rowsChecked[index] = row
+      rowsCheckedNew[index] = row;
     } else {
-      delete _rowsChecked[index]
+      delete rowsCheckedNew[index];
     }
     this.setState({
-      rowsChecked: _rowsChecked,
+      rowsChecked: rowsCheckedNew,
       rowsCount: count,
       headchecked: count === data.length,
-      headIndeterminate: count > 0 && count < data.length
-    })
-    rowSelection.onSelect && rowSelection.onSelect(row, index, checked, rowsChecked, e)
+      headIndeterminate: count > 0 && count < data.length,
+    });
+    rowSelection.onSelect && rowSelection.onSelect(row, index, checked, rowsChecked, e);
   }
   // 全选
   selectedAll = (e, checked) => {
     const { rowSelection } = this.props;
     const { data, rowsDisabled, rowCheckedDisable } = this.state;
-    let _rowsChecked = {}, count = 0
+    const rowsCheckedNew = {};
+    let count = 0;
     data.map((item, idx) => {
       if (checked && !rowCheckedDisable[idx] && !rowsDisabled[idx]) {
-        _rowsChecked[idx] = item;
-        ++count;
-      } else {
-        if (rowCheckedDisable[idx]) {
-          _rowsChecked[idx] = item;
-        }
+        rowsCheckedNew[idx] = item;
+        count += 1;
+      } else if (rowCheckedDisable[idx]) {
+        rowsCheckedNew[idx] = item;
       }
-      return item
-    })
+      return item;
+    });
     this.setState({
-      rowsChecked: _rowsChecked,
+      rowsChecked: rowsCheckedNew,
       rowsCount: count,
     }, () => {
-      rowSelection.onSelectAll && rowSelection.onSelectAll(_rowsChecked, checked, e);
-    })
+      rowSelection.onSelectAll && rowSelection.onSelectAll(rowsCheckedNew, checked, e);
+    });
   }
-  //横向滚动事件
+  // 横向滚动事件
   onScroll(e) {
     const { prefixCls } = this.props;
     const target = e && e.target ? e.target : this.bodyWrapper.target;
 
     if (target instanceof HTMLDivElement) {
-
       if (e.target === this.leftBodyWrapper) {
         this.bodyWrapper && (this.bodyWrapper.scrollTop = target.scrollTop);
         this.rightBodyWrapper && (this.rightBodyWrapper.scrollTop = target.scrollTop);
@@ -146,8 +147,8 @@ export default class Table extends Component {
     }
 
     if (!this.fixedBodyWrapper) return;
-    let scrollRight = target.scrollWidth - (target.scrollLeft + target.clientWidth)
-    let fixedClassNames = "";
+    const scrollRight = target.scrollWidth - (target.scrollLeft + target.clientWidth);
+    let fixedClassNames = '';
     if (target.scrollLeft < 1) {
       fixedClassNames = `${prefixCls}-fixed ${prefixCls}-scroll-position-left`;
     }
@@ -160,29 +161,28 @@ export default class Table extends Component {
     if (e && e.target === this.bodyWrapper) {
       this.fixedBodyWrapper.className = fixedClassNames;
     }
-
   }
   setFixedWidth = (leftWidth, rightWidth) => {
     this.setState({
       leftFixedWidth: leftWidth,
       rightFixedWidth: rightWidth,
-    })
+    });
   }
   onTrHover = (ty, idx) => {
     this.setState({
-      trHoverClassName: ty === 'enter' ? [idx] : []
-    })
+      trHoverClassName: ty === 'enter' ? [idx] : [],
+    });
   }
   // 是否有固定列
   isColumnsFixed(columns, type) {
     let isFixed = false;
-    for (let i = 0; i < columns.length; i++) {
+    for (let i = 0; i < columns.length; i += 1) {
       if (columns[i].fixed === type) {
         isFixed = true;
         break;
       }
       if (columns[i].children && columns[i].children.length) {
-        isFixed = this.isColumnsFixed(columns[i].children, type)
+        isFixed = this.isColumnsFixed(columns[i].children, type);
         if (isFixed === true) break;
       }
     }
@@ -190,71 +190,80 @@ export default class Table extends Component {
   }
   render() {
     const { prefixCls, className, rowSelection, caption, footer, data, width, paging, loading } = this.props;
-    const { headchecked, trHoverClassName, columns } = this.state
-    let { height } = this.props;
-    let tableTbody = (refname) => (<Tbody
-      ref={refname}
+    const { headchecked, trHoverClassName, columns } = this.state;
+    const { height } = this.props;
+    const tableTbody = refname => (<Tbody
+      ref={(componet) => { this[refname] = componet; }}
       type={refname}
       rowSelection={rowSelection}
       trHoverClassName={trHoverClassName}
       onTrHover={this.onTrHover}
       onRowSelection={this.onRowSelection}
-      columns={columns} data={data} />
-    )
+      columns={columns}
+      data={data}
+    />
+    );
 
-    let tableThead = (refname) => (<Thead
-      ref={refname}
+    const tableThead = refname => (<Thead
+      ref={(componet) => { this[refname] = componet; }}
       rowSelection={rowSelection}
       setFixedWidth={this.setFixedWidth}
       headchecked={headchecked}
       selectedAll={this.selectedAll}
-      columns={columns} />
-    )
+      columns={columns}
+    />
+    );
 
-    let tableColgroup = (<Colgroup columns={columns} />);
-    let tableCaption = caption && (<div className={`${prefixCls}-caption`}>{caption}</div>);
-    let tableFooter = footer && (<div className={`${prefixCls}-footer`}>{footer}</div>)
+    const tableColgroup = (<Colgroup columns={columns} />);
+    const tableCaption = caption && (<div className={`${prefixCls}-caption`}>{caption}</div>);
+    const tableFooter = footer && (<div className={`${prefixCls}-footer`}>{footer}</div>);
 
-    let pagingView = paging && <Paging className={`${prefixCls}-paging`} {...paging} />;
+    const pagingView = paging && <Paging className={`${prefixCls}-paging`} {...paging} />;
     if (height || width || rowSelection || loading === (true || false)) {
-      let fixedCloneTable = (width) ? (
-        <div ref={(node) => { this.fixedBodyWrapper = node; }} className={this.classNames(`${prefixCls}-fixed`, `${prefixCls}-scroll-position-left`)}
+      const fixedCloneTable = (width) ? (
+        <div
+          ref={(node) => { this.fixedBodyWrapper = node; }}
+          className={this.classNames(`${prefixCls}-fixed`, `${prefixCls}-scroll-position-left`)}
           style={{ marginTop: -this.state.leftFixedTop }}
         >
           {this.isColumnsFixed(columns, 'left') &&
-            <div className={this.classNames(`${prefixCls}-fixed-left`)}
-              style={{ width: this.state.leftFixedWidth }}>
+            <div
+              className={this.classNames(`${prefixCls}-fixed-left`)}
+              style={{ width: this.state.leftFixedWidth }}
+            >
               <div className={`${prefixCls}-fixed-head-left`}>
                 <table>
                   {React.cloneElement(tableColgroup)}
                   {React.cloneElement(tableThead(), {
-                    cloneElement: "left",
+                    cloneElement: 'left',
                   })}
                 </table>
               </div>
               <div ref={(node) => { this.leftBodyWrapper = node; }} onScroll={this.onScroll.bind(this)} style={{ height }} className={`${prefixCls}-fixed-body-left`}>
                 <table>
-                  {React.cloneElement(tableColgroup, { cloneElement: "left" })}
-                  {React.cloneElement(tableTbody('tbody_left'), { cloneElement: "left" })}
+                  {React.cloneElement(tableColgroup, { cloneElement: 'left' })}
+                  {React.cloneElement(tableTbody('tbody_left'), { cloneElement: 'left' })}
                 </table>
               </div>
             </div>
           }
           {this.isColumnsFixed(columns, 'right') &&
-            <div className={this.classNames(`${prefixCls}-fixed-right`)}
-              style={{ width: this.state.rightFixedWidth }}>
+            <div
+              className={this.classNames(`${prefixCls}-fixed-right`)}
+              style={{ width: this.state.rightFixedWidth }}
+            >
               <div className={`${prefixCls}-fixed-head-right`}>
                 <table>
                   {React.cloneElement(tableColgroup)}
                   {React.cloneElement(tableThead(), {
-                    cloneElement: "right",
+                    cloneElement: 'right',
                   })}
                 </table>
               </div>
               <div ref={(node) => { this.rightBodyWrapper = node; }} style={{ height }} className={`${prefixCls}-fixed-body-right`}>
                 <table>
-                  {React.cloneElement(tableColgroup, { cloneElement: "right" })}
-                  {React.cloneElement(tableTbody('tbody_right'), { cloneElement: "right" })}
+                  {React.cloneElement(tableColgroup, { cloneElement: 'right' })}
+                  {React.cloneElement(tableTbody('tbody_right'), { cloneElement: 'right' })}
                 </table>
               </div>
             </div>
@@ -266,14 +275,15 @@ export default class Table extends Component {
       return (
         <div className={`${prefixCls}-warpper`}>
           <div className={this.classNames(className, prefixCls, `${prefixCls}-scroll`, {
-            [`is-empty`]: data.length === 0,
-            [`is-footer`]: tableFooter,
-          })}>
+            'is-empty': data.length === 0,
+            'is-footer': tableFooter,
+          })}
+          >
             {tableCaption}
             <div ref={(node) => { this.headerWrapper = node; }} className={`${prefixCls}-head`}>
               <table style={{ width }}>
                 {tableColgroup}
-                {tableThead("tableThead")}
+                {tableThead('tableThead')}
               </table>
             </div>
             <Loading loading={this.props.loading === undefined ? false : loading}>
@@ -292,25 +302,28 @@ export default class Table extends Component {
             </Loading>
           </div>
         </div>
-      )
+      );
     }
 
     return (
       <div className={`${prefixCls}-warpper`}>
         <div className={this.classNames(className, prefixCls, `${prefixCls}-default`, {
-          [`is-empty`]: data.length === 0,
-          [`is-footer`]: tableFooter,
-        })}>
+          'is-empty': data.length === 0,
+          'is-footer': tableFooter,
+        })}
+        >
           {tableCaption}
           <table>
             {tableColgroup}
-            {tableThead("tableThead")}
+            {tableThead('tableThead')}
             {data.length === 0 ? (
               <tbody>
                 <tr>
                   <td ref={(elm) => {
-                    if (elm) { elm.colSpan = this.refs.tableThead.getColSpan(columns); }
-                  }}><Icon type="frown-o" /> 暂无数据</td>
+                    if (elm) { elm.colSpan = this.tableThead.getColSpan(columns); }
+                  }}
+                  ><Icon type="frown-o" /> 暂无数据
+                  </td>
                 </tr>
               </tbody>
             ) : tableTbody()}
@@ -319,7 +332,7 @@ export default class Table extends Component {
         </div>
         {pagingView}
       </div>
-    )
+    );
   }
 }
 
@@ -328,7 +341,7 @@ Table.defaultProps = {
   size: 'default',
   // loading: false,
   data: [],
-  columns: []
+  columns: [],
 };
 
 Table.propTypes = {
@@ -341,10 +354,10 @@ Table.propTypes = {
   rowSelection: PropTypes.shape({
     onSelect: PropTypes.func,
     onSelectAll: PropTypes.func,
-    onCellClick: PropTypes.func
+    onCellClick: PropTypes.func,
   }),
   paging: PropTypes.object,
   // onSelectAll: PropTypes.func,
   // onSelect: PropTypes.func,
   scroll: PropTypes.object,
-}
+};

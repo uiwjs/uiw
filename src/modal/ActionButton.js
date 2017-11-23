@@ -21,7 +21,7 @@ export default class ActionButton extends Component {
   }
   onClick(...args) {
     const { onOk, closeModals } = this.props;
-    if (!onOk) return closeModals("ok", ...args);
+    if (!onOk) return closeModals('ok', ...args);
 
     let ret;
     if (onOk.length) ret = onOk(closeModals);
@@ -31,8 +31,8 @@ export default class ActionButton extends Component {
 
     if (ret && ret.then) {
       this.setState({ loading: true });
-      ret.then((...args) => {
-        closeModals(...args);
+      ret.then((...argsRet) => {
+        closeModals(...argsRet);
       });
     }
   }

@@ -6,17 +6,17 @@ export default class Notification extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: true
-    }
+      visible: true,
+    };
     this.onClose = this.onClose.bind(this);
   }
-  onClose(e) {
+  onClose() {
     const { delNotify, willUnmount } = this.props;
     this.stopTimer();
     if (!delNotify) return;
     delNotify(this.props);
     this.setState({
-      visible: false
+      visible: false,
     }, () => {
       willUnmount && willUnmount(this.props);
     });
@@ -27,12 +27,12 @@ export default class Notification extends Component {
   duration() {
     return this.props.duration * 1000;
   }
-  stopTimer() { clearTimeout(this.timeout) }
+  stopTimer() { clearTimeout(this.timeout); }
   startTimer() {
     if (this.props.duration) {
       this.timeout = setTimeout(() => {
         this.onClose();
-      }, this.duration())
+      }, this.duration());
     }
   }
   render() {
@@ -49,7 +49,7 @@ export default class Notification extends Component {
         className={this.classNames(`${prefixCls}`, className)}
         type={type}
         closable
-        showIcon={type ? true : false}
+        showIcon={!!type}
         onClose={this.onClose}
         transition={transition}
         message={message}
@@ -67,13 +67,13 @@ Notification.propTypes = {
   showIcon: PropTypes.bool,
   placement: PropTypes.oneOf(['topLeft', 'topRight', 'bottomLeft', 'bottomRight']),
   type: PropTypes.oneOf(['success', 'warning', 'warn', 'info', 'error']),
-}
+};
 
 Notification.defaultProps = {
   prefixCls: 'w-notification',
   duration: 24.5,
   showIcon: false,
   top: 12,
-  placement: "topRight",
-  onClose() { }
-}
+  placement: 'topRight',
+  onClose() { },
+};

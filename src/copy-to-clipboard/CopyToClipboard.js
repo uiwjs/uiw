@@ -1,9 +1,9 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
-import Tooltip from '../tooltip'
+import Tooltip from '../tooltip';
 
 function copyTextToClipboard(text, cb) {
-  var textArea = document.createElement("textarea");
+  const textArea = document.createElement('textarea');
   //
   // *** This styling is an extra step which is likely not required. ***
   //
@@ -21,29 +21,29 @@ function copyTextToClipboard(text, cb) {
   // Place in top-left corner of screen regardless of scroll position.
 
   textArea.style = {
-    position: "fixed",
+    position: 'fixed',
     top: '-100px',
     left: 0,
     // Ensure it has a small width and height. Setting to 1px / 1em
     // doesn't work as this gives a negative w/h on some browsers.
-    width: "2em",
-    height: "2em",
+    width: '2em',
+    height: '2em',
     // We don't need padding, reducing the size if it does flash render.
     padding: 0,
     // Clean up any borders.
-    border: "none",
-    outline: "none",
-    boxShadow: "none",
+    border: 'none',
+    outline: 'none',
+    boxShadow: 'none',
     // Avoid flash of white box if rendered for any reason.
-    background: "transparent",
-  }
+    background: 'transparent',
+  };
   textArea.value = text;
   document.body.appendChild(textArea);
   textArea.select();
   try {
-    var successful = document.execCommand('copy');
-    var isCopy = successful ? true : false;
-    cb && cb(isCopy)
+    const successful = document.execCommand('copy');
+    const isCopy = !!successful;
+    cb && cb(isCopy);
   } catch (err) {
     // console.log('Oops, unable to copy');
   }
@@ -54,26 +54,26 @@ export default class CopyToClipboard extends Component {
   onClick(e) {
     const { onClick, text } = this.props;
     copyTextToClipboard(text, (isCopy) => {
-      onClick(text, isCopy, e)
-    })
+      onClick(text, isCopy, e);
+    });
   }
   render() {
     const { prefixCls, text, tooltip, children, leaveDelay, ...resetProps } = this.props;
-    let concatProps = {
+    const concatProps = {
       ...resetProps,
       ...{
         onClick: this.onClick.bind(this),
         className: `${prefixCls}`,
-      }
-    }
+      },
+    };
     return (
       <a {...concatProps}>
-        <Tooltip {...{ content: tooltip, trigger: "click", leaveDelay: leaveDelay || 1000 }}>
+        <Tooltip {...{ content: tooltip, trigger: 'click', leaveDelay: leaveDelay || 1000 }}>
           <span className={`${prefixCls}-select`}>{text}</span>
           {children}
         </Tooltip>
       </a>
-    )
+    );
   }
 }
 CopyToClipboard.propTypes = {
@@ -82,10 +82,10 @@ CopyToClipboard.propTypes = {
   tooltip: PropTypes.string,
   onClick: PropTypes.func,
   leaveDelay: PropTypes.number,
-}
+};
 
 CopyToClipboard.defaultProps = {
   prefixCls: 'w-copy-to-clipboard',
   tooltip: '复制成功！',
   onClick() { },
-}
+};

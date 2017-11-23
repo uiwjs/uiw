@@ -94,7 +94,7 @@ class Demo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 1
+      value: 0.1
     }
   }
   onChange(e,value) {
@@ -109,7 +109,7 @@ class Demo extends Component {
       <InputNumber 
         preIcon="pay" 
         icon="search" 
-        step="0.5"
+        step="0.2"
         length={10} 
         value={this.state.value} 
         onChange={this.onChange.bind(this)}

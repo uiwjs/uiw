@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
-import "./style/buttons-group.less";
+import './style/buttons-group.less';
 
 export default class ButtonGroup extends Component {
   render() {
@@ -8,7 +8,7 @@ export default class ButtonGroup extends Component {
     const cls = this.classNames({
       [`${prefixCls}-group`]: true,
       [`${prefixCls}-group-vertical`]: vertical,
-      [className]: className
+      [className]: className,
     });
 
     return (
@@ -17,13 +17,13 @@ export default class ButtonGroup extends Component {
       </div>
     );
   }
-};
+}
 
 ButtonGroup.propTypes = {
   prefixCls: PropTypes.string,
-  vertical: PropTypes.bool
+  vertical: PropTypes.bool,
 };
 ButtonGroup.defaultProps = {
-  prefixCls: "w-btn",
-  vertical: false
+  prefixCls: 'w-btn',
+  vertical: false,
 };

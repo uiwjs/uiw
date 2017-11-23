@@ -4,7 +4,7 @@ import { Component, PropTypes } from '../utils/';
 export default class Breadcrumb extends Component {
   getChildContext() {
     return {
-      separator: this.props.separator
+      separator: this.props.separator,
     };
   }
 
@@ -14,7 +14,7 @@ export default class Breadcrumb extends Component {
       <div {...other} className={this.classNames(prefixCls, className)}>
         {this.props.children}
       </div>
-    )
+    );
   }
 }
 
@@ -25,9 +25,9 @@ Breadcrumb.childContextTypes = {
 Breadcrumb.propTypes = {
   prefixCls: PropTypes.string,
   separator: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-}
+};
 
 Breadcrumb.defaultProps = {
-  prefixCls: "w-breadcrumb",
-  separator: '/'
-}
+  prefixCls: 'w-breadcrumb',
+  separator: '/',
+};

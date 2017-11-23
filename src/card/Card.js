@@ -36,10 +36,10 @@ Card.propTypes = {
   footer: PropTypes.node,
   noHover: PropTypes.bool,
   bodyStyle: PropTypes.object,
-}
+};
 
 Card.defaultProps = {
   prefixCls: 'w-card',
   bordered: true,
   noHover: false,
-}
+};

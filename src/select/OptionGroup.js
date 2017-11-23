@@ -11,7 +11,7 @@ export default class OptionGroup extends Component {
           {this.props.children}
         </ul>
       </li>
-    )
+    );
   }
 }
 

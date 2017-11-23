@@ -1,13 +1,13 @@
 import React from 'react';
-import { Component, PropTypes } from '../utils/';
 import SlickCarousel from 'react-slick';
+import { Component, PropTypes } from '../utils/';
 
 export default class Carousel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    }
-    this.onWindowResized = this.onWindowResized.bind(this)
+    };
+    this.onWindowResized = this.onWindowResized.bind(this);
   }
 
   componentDidMount() {
@@ -17,8 +17,7 @@ export default class Carousel extends Component {
     }
     this.innerSlider = this.slickcarousel && this.slickcarousel.innerSlider;
   }
-
-  componentWillUnMount() {
+  componentWillMount() {
     const { autoplay } = this.props;
     if (autoplay) {
       window.removeEventListener('resize', this.onWindowResized);
@@ -29,29 +28,28 @@ export default class Carousel extends Component {
   onWindowResized() {
     const { autoplay } = this.props;
     if (autoplay && this.slickcarousel && this.slickcarousel.innerSlider && this.slickcarousel.innerSlider.autoPlay) {
-      this.slickcarousel.innerSlider.autoPlay()
+      this.slickcarousel.innerSlider.autoPlay();
     }
   }
 
   render() {
-    let props = { ...this.props }
-    props.fade = props.effect === 'fade' ? true : false
+    const props = { ...this.props };
+    props.fade = props.effect === 'fade';
     let cls = props.prefixCls;
     if (props.vertical) {
       cls = this.classNames(cls, `${cls}-vertical`, {
-        [props.className]: props.className
-      })
+        [props.className]: props.className,
+      });
     }
     return (
       <div className={cls} style={props.style} >
         <SlickCarousel
-          ref={(component) => { this.slickcarousel = component }}
+          ref={(component) => { this.slickcarousel = component; }}
           {...props}
         />
       </div>
-    )
+    );
   }
-
 }
 
 Carousel.defaultProps = {
@@ -59,7 +57,7 @@ Carousel.defaultProps = {
   prefixCls: 'w-carousel',
   draggable: false, // 拖拽切换
   fade: false, // 切换效果(渐显)
-  dots: true,  // 是否显示下标
+  dots: true, // 是否显示下标
 };
 Carousel.propTypes = {
   effect: PropTypes.oneOf(['scrollx', 'fade']),
@@ -78,4 +76,4 @@ Carousel.propTypes = {
   arrows: PropTypes.bool,
   nextArrow: PropTypes.any,
   prevArrow: PropTypes.any,
-}
+};

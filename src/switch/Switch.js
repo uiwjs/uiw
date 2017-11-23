@@ -5,23 +5,23 @@ export default class Switch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      _checked: props.checked
-    }
+      _checked: props.checked,
+    };
     this.onChange = this.onChange.bind(this);
   }
 
-  componentWillReceiveProps(nextProps, nextState) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.checked !== nextProps.checked) {
-      this.setState({ _checked: nextProps.checked })
+      this.setState({ _checked: nextProps.checked });
     }
   }
 
   onChange(e) {
     const { onChange } = this.props;
     this.setState({
-      _checked: e.target.checked
-    })
-    onChange && onChange(e, e.target.checked)
+      _checked: e.target.checked,
+    });
+    onChange && onChange(e, e.target.checked);
   }
   render() {
     const { prefixCls, className, style, size, disabled, checkedChildren, unCheckedChildren, color, unColor } = this.props;
@@ -31,18 +31,21 @@ export default class Switch extends Component {
       [`${prefixCls}-disabled`]: disabled,
       [`${prefixCls}-checked`]: _checked,
       [`${prefixCls}-${size}`]: size,
-      [`${prefixCls}-color`]: (color || unColor) ? true : false,
+      [`${prefixCls}-color`]: !!((color || unColor)),
     });
 
     return (
-      <label style={{
-        backgroundColor: _checked ? color : unColor,
-        ...style
-      }} className={cls}>
+      <label
+        style={{
+          backgroundColor: _checked ? color : unColor,
+          ...style,
+        }}
+        className={cls}
+      >
         <input disabled={disabled} checked={_checked} onChange={this.onChange} type="checkbox" />
         <span>{_checked ? checkedChildren : unCheckedChildren}</span>
       </label>
-    )
+    );
   }
 }
 
@@ -56,10 +59,10 @@ Switch.propTypes = {
   size: PropTypes.oneOf(['mini', 'small', 'default', 'large']),
   unCheckedChildren: PropTypes.string,
   onChange: PropTypes.func,
-}
+};
 
 Switch.defaultProps = {
-  prefixCls: "w-switch",
+  prefixCls: 'w-switch',
   size: 'default',
-  disabled: false
-}
+  disabled: false,
+};
