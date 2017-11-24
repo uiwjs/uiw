@@ -127,10 +127,7 @@ export default class BasePicker extends Component {
     onChange && onChange(date, this.parseDate(date));
   }
   createPickerPanel() {
-    return this.pickerPanel(
-      this.state,
-      Object.assign({}, { ...this.props })
-    );
+    return this.pickerPanel(this.state);
   }
   render() {
     const { className, style,

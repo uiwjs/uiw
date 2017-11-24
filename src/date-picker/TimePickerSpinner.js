@@ -73,7 +73,6 @@ export default class TimeSpinner extends Component {
   render() {
     const { prefixCls } = this.props;
     const { several } = this.state;
-
     return (
       <div
         ref={(elm) => {

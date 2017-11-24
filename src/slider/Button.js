@@ -50,6 +50,7 @@ export default class Button extends Component {
     ) {
       this.parent().isDragging(true);
       this.currentPoint = startPoint;
+      this.button.style.zIndex = 99999;
       onChange(startPoint);
     }
   }
@@ -62,6 +63,7 @@ export default class Button extends Component {
       onChange(startPoint);
     }
     this.startPoint = startPoint;
+    this.button.style.zIndex = 1001;
     // 拖拽和点击，导致设置值不准确
     this.timeout = setTimeout(() => {
       this.parent().isDragging(false);

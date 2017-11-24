@@ -40,4 +40,3 @@ describe('<Menu>', () => {
     expect(menu.html()).toContain('<li class="w-menu-item active">天猫超市</li>');
   });
 });
-
