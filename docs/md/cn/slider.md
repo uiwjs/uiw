@@ -154,7 +154,7 @@ class Demo extends Component {
   render() {
     return (
       <div>
-        <div style={{height:30}}>
+        <div style={{height:80,padding: "30px 10px", overflow: "hidden"}}>
           <Slider value={20}
             marks={this.state.marks} 
             step={10}
@@ -168,7 +168,7 @@ class Demo extends Component {
             onDragChange={(value)=>console.log(`Drag value: ${value}`)} 
           />
         </div>
-        <div style={{height:30}}>
+        <div style={{height:40,padding: "0px 10px"}}>
           <Slider value={30}
             marks={true} 
             step={10}
@@ -219,6 +219,7 @@ class Demo extends Component {
 }
 ```
 <!--End-->
+
 
 
 ### 区间范围选择
@@ -272,7 +273,7 @@ class Demo extends Component {
   render() {
     return (
       <div>
-        <div style={{height:60}}>
+        <div style={{height:80,padding: "30px 10px", overflow: "hidden"}}>
           <Slider value={[0,30]}
             marks={this.state.marks} 
             max={50}
