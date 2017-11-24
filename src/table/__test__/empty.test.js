@@ -40,15 +40,14 @@ describe('Table', () => {
   it('renders empty table', () => {
     const wrapper = render(
       <Table data={[]} columns={columns} />
-    )
-    expect(wrapper).toMatchSnapshot()
-  })
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
 
   it('renders empty table with fixed columns', () => {
     const wrapper = render(
       <Table dataSource={[]} columns={columnsFixed} />
     );
-    expect(wrapper).toMatchSnapshot()
-  })
-
+    expect(wrapper).toMatchSnapshot();
+  });
 });

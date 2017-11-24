@@ -4,12 +4,11 @@ import { Modal } from '../../../src';
 
 describe('<Modal>', () => {
   const warpperState = {
-    value: 0
+    value: 0,
   };
-  var wrapper = mount(<Modal
-    onCancel={(e, value) => {
-      warpperState.value = value
-    }}></Modal>);
+  const wrapper = mount(
+    <Modal onCancel={(e, value) => { warpperState.value = value; }} />
+  );
   it('Test the default props and node.', () => {
     expect(wrapper.name()).toBe('Modal');
     // 默认值测试
@@ -20,7 +19,7 @@ describe('<Modal>', () => {
     expect(wrapper.at(0).prop('visible')).toBe(false);
     expect(wrapper.at(0).prop('confirmLoading')).toBe(false);
   });
-  
+
   it('Test visible attributes.', () => {
     wrapper.setProps({ visible: true });
     expect(wrapper.find('.w-modal').at(0).prop('className')).toBe('w-modal w-modal-wrap');
@@ -30,7 +29,7 @@ describe('<Modal>', () => {
     wrapper.setProps({ width: 1000 });
     expect(wrapper.at(0).prop('width')).toBe(1000);
   });
-})
+});
 
 class ModalTester extends React.Component {
   constructor(props) {
@@ -67,11 +66,9 @@ describe('Modal', () => {
     const wrapper = mount(<ModalTester />);
     expect(wrapper.render()).toMatchSnapshot();
   });
-  //toMatchSnapshot api 判断两个条件一致与否
+  // toMatchSnapshot api 判断两个条件一致与否
   it('render without footer', () => {
     const wrapper = mount(<ModalTester footer={null} />);
     expect(wrapper.render()).toMatchSnapshot();
   });
 });
-
-

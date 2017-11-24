@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, render } from 'enzyme';
+import { mount } from 'enzyme';
 import { Table } from '../../../src';
 
 describe('Table.rowSelection', () => {
@@ -25,16 +25,13 @@ describe('Table.rowSelection', () => {
         columns={columns}
         data={data}
         rowSelection={{
-          onSelectAll:(selectDatas,checked,e)=>{
-            console.log("选择或取消选择所有选项！",selectDatas)
-          },
-          onSelect:(row, index, checked, rowsChecked, e)=>{
+          onSelect: (row, index) => {
             wrapperState.value = index;
-          }
+          },
         }}
         {...props}
       />
-    )
+    );
   }
 
   it('select by checkbox', () => {
@@ -44,6 +41,5 @@ describe('Table.rowSelection', () => {
     checkboxAll.simulate('change', { target: { checked: true } });
     expect(wrapperState.value).toEqual(3);
   });
-
-})  
+});
 
