@@ -164,5 +164,5 @@ class Demo extends Component {
 | footer | 页脚内容的简写 | String/ReactNode | - |
 | extra | 卡片右上角的操作区域 | String/ReactNode | - |
 | bordered | 是否显示边框 | Boolean | `true` |
-| noHover | 取消鼠标移过浮起 | Boolean | `false` |
+| noHover | 取消鼠标移过时边框阴影 | Boolean | `false` |
 | bodyStyle | 设置 body 的样式 | Object | - |
