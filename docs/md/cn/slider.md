@@ -273,7 +273,7 @@ class Demo extends Component {
   render() {
     return (
       <div>
-        <div style={{height:60}}>
+        <div style={{height:80,padding: "30px 10px", overflow: "hidden"}}>
           <Slider value={[0,30]}
             marks={this.state.marks} 
             max={50}
