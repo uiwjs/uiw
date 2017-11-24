@@ -7,13 +7,14 @@ describe('<Rate>', () => {
     value: 0,
     hoverValue: 0,
   };
-  var wrapper = mount(<Rate
+  const wrapper = mount(<Rate
     onHoverChange={(e, value) => {
-      warpperState.hoverValue = value
+      warpperState.hoverValue = value;
     }}
     onChange={(e, value) => {
-      warpperState.value = value
-    }}></Rate>);
+      warpperState.value = value;
+    }}
+  />);
   it('Test the default props and node.', () => {
     expect(wrapper.name()).toBe('Rate');
     // 默认值测试
@@ -42,7 +43,7 @@ describe('<Rate>', () => {
 
   it('Test onChange event.', () => {
     wrapper.setProps({ disabled: false });
-    let rate2 = wrapper.find('.w-rate li').at(3);
+    const rate2 = wrapper.find('.w-rate li').at(3);
     rate2.simulate('click');
     expect(warpperState.value).toBe(4);
     expect(rate2.html()).toContain('<li class="star-on"><i class="w-icon-star-on"><i class="w-icon-star-on"></i></i></li>');
@@ -52,18 +53,19 @@ describe('<Rate>', () => {
     expect(wrapper.find('.w-rate li').at(0).prop('className')).toBe('star-on');
     expect(wrapper.find('.w-rate li').at(1).prop('className')).toBe('star-on');
     wrapper.setProps({ count: 5 });
-    expect(wrapper.find('.w-rate li').at(4).prop('className')).toBe('')
-    expect(wrapper.find('.w-rate li').at(5).length).toBe(0)
+    expect(wrapper.find('.w-rate li').at(4).prop('className')).toBe('');
+    expect(wrapper.find('.w-rate li').at(5).length).toBe(0);
   });
   it('Test color attributes.', () => {
-    wrapper.setProps({ value: 5, color: "rgb(216, 0, 0)" });
-    expect(wrapper.find('.w-rate li').at(0).find('i').at(1).html()).toContain('<i class="w-icon-star-on" style="color: rgb(216, 0, 0);"></i>')
+    wrapper.setProps({ value: 5, color: 'rgb(216, 0, 0)' });
+    expect(wrapper.find('.w-rate li').at(0).find('i').at(1)
+      .html()).toContain('<i class="w-icon-star-on" style="color: rgb(216, 0, 0);"></i>');
   });
 
   it('Test onHoverChange event.', () => {
-    let rate2 = wrapper.find('.w-rate li').at(3);
+    const rate2 = wrapper.find('.w-rate li').at(3);
     rate2.simulate('mousemove');
     expect(warpperState.hoverValue).toBe(4);
-    expect(rate2.at(0).find('i').at(1).html()).toContain('<i class="w-icon-star-on" style="color: rgb(216, 0, 0);"></i>')
+    expect(rate2.at(0).find('i').at(1).html()).toContain('<i class="w-icon-star-on" style="color: rgb(216, 0, 0);"></i>');
   });
-})
+});

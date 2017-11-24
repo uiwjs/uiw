@@ -5,6 +5,76 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.3.2
+
+`2017-11-23`
+
+Feature:
+
+- 🌟 feat(Timestamp): Add TZC props. [e787e0c](https://github.com/uiw-react/uiw/commit/e787e0c2a985d9ec566f3caf365c706247c00a9e) 
+
+Bug fixed:
+
+- 🐞 fix(Tree): The default expand menu. [92999b6](https://github.com/uiw-react/uiw/commit/92999b66b439a4f043782e7fe3bccf1c878bf9d4)
+- 🐞 fix(Timestamp): Spell TZC in lowercase zc. [063c00e](https://github.com/uiw-react/uiw/commit/063c00e69f77670ed3457b72dd60ed2f8b91623f)
+- 🐞 fix(Radio): Controlled component problem. [8c6b125](https://github.com/uiw-react/uiw/commit/8c6b1253642c22ff342e99eddc6bcbdfc9656afe) 
+- 🐞 fix(Radio): Radio checked can not be undefined. [1319139](https://github.com/uiw-react/uiw/commit/13191395581cdc2f3f052c5564b528aad67a2bcc) 
+- 🐞 fix(Tag/Carousel/HeatMap): remove string refs. [d4857eb](https://github.com/uiw-react/uiw/commit/d4857eb7c7acf7a537ab0e489a0303eabfe056f7) 
+- 🐞 fix(Radio): fixed default cannot be selected. remove string refs. [287f945](https://github.com/uiw-react/uiw/commit/287f94521d48301fc1cb230ab1fadf02dbe7ae56) 
+- 🎨 style(Select):Modify the drop-down style. [b3775c9](https://github.com/uiw-react/uiw/commit/b3775c909f736b4aa65d983ca2e4a9965333935d) 
+
+Add Test Case:
+
+- ⛑ test: Add eslint. [360a090](https://github.com/uiw-react/uiw/commit/360a090ef7d30b4fa1d012163973dccaf1b54dd8) 
+
+Document Update:
+
+- 📝 Update recommendation.md [03516d7](https://github.com/uiw-react/uiw/commit/03516d7c4e3b3fede1243b9432e27bb958c91eaa) 
+- 📝 doc: remove string refs in docs. [e9fb6d4](https://github.com/uiw-react/uiw/commit/e9fb6d4373d3ead2a660551763354a4ae006c787) 
+
+## v1.3.1
+
+`2017-11-22`
+
+Feature:
+
+- 🌟 feat(Timestamp): Add Timestamp Component. - [685b3de](https://github.com/uiw-react/uiw/commit/685b3de0be26cdbe3a43c48232b6989ea444e943)
+- 🌟 feat(Card): Card component add footer props. - [76e5303](https://github.com/uiw-react/uiw/commit/76e5303c1bcba257dc66cb537b41462e1a238c3a)
+- 🌟 feat: Add CopyToClipboard component. - [9868d80](https://github.com/uiw-react/uiw/commit/9868d8035f56b73013ced02542efbbbd78f54777)
+
+Bug fixed:
+
+- 🐞 fix(Carousel): fix syntax error. - [83da0fa](https://github.com/uiw-react/uiw/commit/83da0fa7f322dfb09c24266e6f21fb9b5f664b2f)
+- 👣 clean: Propper code formatting. - [9f220a6](https://github.com/uiw-react/uiw/commit/9f220a6055e98af4457e3072bbe64217833997dd)
+- 👣 clean(Input/Button): Code formatting. - [9039410](https://github.com/uiw-react/uiw/commit/90394103db20f5890d483c4baef5c3d187197f64)
+- 🐞 style(TimePicker): Modify font size. - [5fd5c94](https://github.com/uiw-react/uiw/commit/5fd5c9438dfb4093708345edf1d799e48cd2b4f2)
+
+Bug fixed in React16.1.1:
+
+> [Legacy API: String Refs](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) removed in one of the react16.1.1+ releases.
+
+- 🐞 fix(TimePicker/TimeSelect): remove string refs. - [d540992](https://github.com/uiw-react/uiw/commit/d540992492cd60ad45539e548d382dbaa7058448)
+- 🐞 fix(Tooltip): remove string refs. - [7d12e32](https://github.com/uiw-react/uiw/commit/7d12e3216fb38ad0a2064b7724258164396a5ec1)
+- 🐞 fix(Table): remove string refs. - [7177272](https://github.com/uiw-react/uiw/commit/71772721599f72aa8ab73536e38198d2f553cbb5)
+- 🐞 fix(Slider): remove string refs. - [032ff34](https://github.com/uiw-react/uiw/commit/032ff34b181141c00891a8e8888129581a01436d)
+- 🐞 fix(Select/Progress/Notification):remove string refs. - [5ee106b](https://github.com/uiw-react/uiw/commit/5ee106b819044c1793b46c4bcac2d7bf2645f0cd)
+- 🐞 fix(Modal): remove string refs. - [97a785d](https://github.com/uiw-react/uiw/commit/97a785dd47c981a02edac6e15c0c01f929d3a4cd)
+- 🐞 fix(Menu): fix syntax error. - [27b8519](https://github.com/uiw-react/uiw/commit/27b8519317f8833f5de93d180908b49ee0338fa2)
+- 🐞 fix(Calendar.HeatMap): remove string refs. - [682a019](https://github.com/uiw-react/uiw/commit/682a01949723c982606c74ce936ac98536961f8c)
+- 🐞 fix(Affix): remove string refs. - [256fdd5](https://github.com/uiw-react/uiw/commit/256fdd5b68a1c7cec1e49e1069404abb1ca3701a)
+- 🐞 fix(Checkbox): Remove String Refs. - [52e0e28](https://github.com/uiw-react/uiw/commit/52e0e283e9bc99aa5b45c6c911f71662b2f5169b)
+- 🐞 fix(Input/InputNumber): Remove String Refs - [1551329](https://github.com/uiw-react/uiw/commit/15513298156795d4a2aa25c2fbe212e1e703f243)
+- 🐞 fix: Refs Must Have Owner Warning in React 16.1.1 - [bd3d8d8](https://github.com/uiw-react/uiw/commit/bd3d8d830ca1e6dda3c45fd0ed0d813395480900)
+
+Add Test Case:
+
+- ⛑ test(Menu):Add Menu component test case. ([#23](https://github.com/uiw-react/uiw/pull/23)) : [@kooff88](https://github.com/kooff88) - [e5d320e]
+
+Document Update:
+
+- 📝 doc(Icon): Add icon to copy. - [c67652d](https://github.com/uiw-react/uiw/commit/c67652d1d435301c1a3eeb5b70471d4a3c2887a1)
+- 📝 Add package.json in peerDependencies. - [91695e7](https://github.com/uiw-react/uiw/commit/91695e71a0ba71ab7e34dd8a88c985c640ee2557)
+
 ## v1.3.0
 
 `2017-11-21`

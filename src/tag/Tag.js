@@ -1,35 +1,32 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
 import Icon from '../icon';
-import "./style/index.less";
+import './style/index.less';
 
 export default class Tag extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: true
-    }
+      visible: true,
+    };
   }
   close = (e) => {
     const { onClose, children } = this.props;
     if (onClose) onClose(e, children);
     if (e.isDefaultPrevented()) return;
     this.setState({
-      visible: false
-    })
+      visible: false,
+    });
   }
 
   isColorValue(color) {
-    var span = document.createElement("span");
+    const span = document.createElement('span');
     span.style.color = color;
-    if (span.style.color !== "") return true;
-    else {
-      span = null;
-      return false;
-    }
+    if (span.style.color !== '') return true;
+    return false;
   }
   isPresetColor(color) {
-    return /^(white|pink|red|yellow|orange|cyan|green|blue|purple)?$/.test(color)
+    return /^(white|pink|red|yellow|orange|cyan|green|blue|purple)?$/.test(color);
   }
   render() {
     const { prefixCls, color, onClose, className, checked, children, data, ...others } = this.props;
@@ -45,13 +42,13 @@ export default class Tag extends Component {
     }
     const cls = this.classNames(prefixCls, {
       [`${prefixCls}-${colors}`]: this.isPresetColor(colors),
-      'checkable': checked === false,
-      'checked': checked,
-      'className': className,
+      checkable: checked === false,
+      checked,
+      className,
     });
 
     // 自定义颜色值
-    let styles = {}
+    const styles = {};
     if (!this.isPresetColor(colors) && this.isColorValue(colors)) {
       styles.backgroundColor = colors;
     }
@@ -59,7 +56,7 @@ export default class Tag extends Component {
     return visible ? (
       <span {...others} style={styles} className={cls}>
         {children}
-        {(onClose && checked !== true && checked !== false) && <Icon type="close" onClick={this.close} ref="iconclose" />}
+        {(onClose && checked !== true && checked !== false) && <Icon type="close" onClick={this.close} />}
       </span>
     ) : null;
   }
@@ -73,5 +70,5 @@ Tag.propTypes = {
 };
 Tag.defaultProps = {
   color: 'default',
-  prefixCls: "w-tag"
-}
+  prefixCls: 'w-tag',
+};

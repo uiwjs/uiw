@@ -5,13 +5,13 @@ import Tag from './Tag';
 export default class CheckedTag extends Component {
   state = {
     checked: false || this.props.checked,
-    checkedValue: []
+    checkedValue: [],
   }
   componentDidMount() {
-    let { checkedValues } = this.parent().props;
+    const { checkedValues } = this.parent().props;
     this.setState({
-      checkedValue: checkedValues
-    })
+      checkedValue: checkedValues,
+    });
   }
   parent() {
     return this.context.component;
@@ -21,19 +21,19 @@ export default class CheckedTag extends Component {
     const { options, onChange, isRadio } = this.parent().props;
     const { checkedValue } = this.state;
 
-    let children = data.value;
+    const children = data.value;
     if (options && checked) {
-      let values = []
+      let values = [];
       if (isRadio) {
-        values.push(children)
+        values.push(children);
       } else {
-        values = [...checkedValue]
-        let idx = values.indexOf(children);
+        values = [...checkedValue];
+        const idx = values.indexOf(children);
         idx > -1 ? values.splice(idx, 1) : values.push(children);
       }
       this.setState({ checkedValue: values, checked: !this.state.checked }, () => {
-        //父组件的props.onChange
-        onChange && onChange(e, values, options)
+        // 父组件的props.onChange
+        onChange && onChange(e, values, options);
       });
     }
   }
@@ -43,5 +43,5 @@ export default class CheckedTag extends Component {
   }
 }
 CheckedTag.contextTypes = {
-  component: PropTypes.any
+  component: PropTypes.any,
 };

@@ -5,25 +5,24 @@ import Radio from './Radio';
 export default class RadioGroup extends Component {
   getChildContext() {
     return {
-      component: this
+      component: this,
     };
   }
   onChange(e, value) {
     if (this.props.onChange) {
-      this.props.onChange(e, value)
+      this.props.onChange(e, value);
     }
   }
   getValue(option) {
     if (typeof option === 'string') {
       return option;
-    } else {
-      return option.value;
     }
+    return option.value;
   }
   render() {
     const { prefixCls, options } = this.props;
 
-    let children = this.props.children
+    let children = this.props.children;
 
     if (options && options.length > 0) {
       children = options.map((option, idx) => {
@@ -37,35 +36,35 @@ export default class RadioGroup extends Component {
           >
             {option && option.label}
           </Radio>
-        )
-      })
+        );
+      });
     }
 
     return (
       <div className={this.classNames(`${prefixCls}`)}>
         {
-          React.Children.map(children, element => {
+          React.Children.map(children, (element) => {
             return React.cloneElement(element, Object.assign({}, element.props, {
               onChange: this.onChange.bind(this),
               checked: element.props.value === this.props.value,
-              value: element.props.value
-            }))
+              value: element.props.value,
+            }));
           })
         }
       </div>
-    )
+    );
   }
 }
 
 
 RadioGroup.childContextTypes = {
-  component: PropTypes.any
+  component: PropTypes.any,
 };
 
 RadioGroup.propTypes = {
-  prefixCls: PropTypes.string
-}
+  prefixCls: PropTypes.string,
+};
 
 RadioGroup.defaultProps = {
   prefixCls: 'w-radio-group',
-}
+};

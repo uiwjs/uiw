@@ -1,35 +1,34 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
-import Transition from '../transition'
+import Transition from '../transition';
 
 export default class Tooltip extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showTooltip: props.visible,
-      popupwidth: 0,
       content: props.content,
-      stylesPopup: {}
-    }
+      stylesPopup: {},
+    };
     this.hideTooltip = this.hideTooltip.bind(this);
     this.showTooltip = this.showTooltip.bind(this);
     this.styles = this.styles.bind(this);
   }
   componentDidMount() {
     this.setState({
-      stylesPopup: this.styles()
-    })
+      stylesPopup: this.styles(),
+    });
   }
-  componentWillReceiveProps(nextProps, nextState) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.content !== nextProps.content) {
       this.setState({
-        content: nextProps.content
+        content: nextProps.content,
       }, () => {
         // console
         this.setState({
-          stylesPopup: this.styles()
-        })
-      })
+          stylesPopup: this.styles(),
+        });
+      });
     }
     if (this.props.visible !== nextProps.visible) {
       const { enterDelay, onVisibleChange } = this.props;
@@ -37,10 +36,10 @@ export default class Tooltip extends Component {
       // 解决无法获取节点样式
       setTimeout(() => {
         this.setState({
-          stylesPopup: this.styles()
-        })
-        onVisibleChange(true)
-      }, enterDelay || 0)
+          stylesPopup: this.styles(),
+        });
+        onVisibleChange(true);
+      }, enterDelay || 0);
     }
   }
   showTooltip() {
@@ -51,121 +50,119 @@ export default class Tooltip extends Component {
       this.leaveTime = setTimeout(() => {
         this.setState({
           showTooltip: true,
-          stylesPopup: this.styles()
+          stylesPopup: this.styles(),
         }, () => {
-          onVisibleChange(true)
-        })
-      }, enterDelay)
+          onVisibleChange(true);
+        });
+      }, enterDelay);
     } else {
       this.setState({
         showTooltip: true,
-        stylesPopup: this.styles()
+        stylesPopup: this.styles(),
       }, () => {
-        onVisibleChange(true)
-      })
+        onVisibleChange(true);
+      });
     }
     // 解决无法获取节点样式
     this.styleTime = setTimeout(() => {
       this.setState({
-        stylesPopup: this.styles()
-      })
-    }, enterDelay || 0)
+        stylesPopup: this.styles(),
+      });
+    }, enterDelay || 0);
   }
   hideTooltip(e, isDelay) {
     const { leaveDelay, onVisibleChange } = this.props;
     const { showTooltip } = this.state;
-    clearTimeout(this.leaveTime)
+    clearTimeout(this.leaveTime);
 
     if (isDelay === true) {
       this.setState({
-        showTooltip: !showTooltip
+        showTooltip: !showTooltip,
       }, () => {
         this.setState({
-          stylesPopup: this.styles()
-        })
-      })
-
-
-      onVisibleChange && onVisibleChange(false)
+          stylesPopup: this.styles(),
+        });
+      });
+      onVisibleChange && onVisibleChange(false);
     } else {
       this.leaveTime = setTimeout(() => {
         this.setState({
-          showTooltip: false
-        })
-        onVisibleChange && onVisibleChange(false)
-      }, leaveDelay || 0)
+          showTooltip: false,
+        });
+        onVisibleChange && onVisibleChange(false);
+      }, leaveDelay || 0);
     }
   }
   // 弹出的位置
   styles() {
     const { placement } = this.props;
-    const { reference, popup } = this.refs;
-    let top = 0, left = 0;
+    let top = 0;
+    let left = 0;
 
-    let popwidth = popup.offsetWidth
-    let popheight = popup.offsetHeight
+    const popwidth = this.popup.offsetWidth;
+    const popheight = this.popup.offsetHeight;
 
-    let refwidth = reference.offsetWidth
-    let refheight = reference.offsetHeight
+    const refwidth = this.reference.offsetWidth;
+    const refheight = this.reference.offsetHeight;
 
-    let diffwidth = popwidth - refwidth;
-    let diffheight = popheight - refheight;
+    const diffwidth = popwidth - refwidth;
+    const diffheight = popheight - refheight;
 
     switch (placement) {
-      case "top":
+      case 'top':
         top = -(refheight > popheight ? refheight : popheight);
         left = diffwidth > 0 ? -(diffwidth / 2) : Math.abs(diffwidth / 2);
         break;
-      case "topLeft":
+      case 'topLeft':
         top = -(refheight > popheight ? refheight : popheight);
         left = 0;
         break;
-      case "topRight":
+      case 'topRight':
         top = -(refheight > popheight ? refheight : popheight);
         left = -(refwidth > popwidth ? refwidth - popwidth : popwidth - refwidth);
         break;
-      case "left":
+      case 'left':
         top = diffheight > 0 ? -(diffheight / 2) : Math.abs(diffheight / 2);
         left = -popwidth;
         break;
-      case "leftTop":
+      case 'leftTop':
         top = 0;
         left = -popwidth;
         break;
-      case "leftBottom":
+      case 'leftBottom':
         top = (refheight > popheight ? (refheight - popheight) : -(popheight - refheight));
         left = -popwidth;
         break;
-      case "right":
+      case 'right':
         top = diffheight > 0 ? -(diffheight / 2) : Math.abs(diffheight / 2);
         left = refwidth;
         break;
-      case "rightTop":
+      case 'rightTop':
         top = 0;
         left = refwidth;
         break;
-      case "rightBottom":
+      case 'rightBottom':
         top = (refheight > popheight ? (refheight - popheight) : -(popheight - refheight));
         left = refwidth;
         break;
-      case "bottom":
-        top = refheight
+      case 'bottom':
+        top = refheight;
         left = diffwidth > 0 ? -(diffwidth / 2) : Math.abs(diffwidth / 2);
         break;
-      case "bottomLeft":
+      case 'bottomLeft':
         top = refheight;
         left = 0;
         break;
-      case "bottomRight":
+      case 'bottomRight':
         top = refheight;
         left = -(refwidth > popwidth ? refwidth - popwidth : popwidth - refwidth);
         break;
       default: break;
     }
-    let sty = {};
-    if (top || top === 0) sty.top = top + 'px';
-    if (left) sty.left = left + 'px';
-    return sty
+    const sty = {};
+    if (top || top === 0) sty.top = `${top}px`;
+    if (left) sty.left = `${left}px`;
+    return sty;
   }
 
   render() {
@@ -174,39 +171,41 @@ export default class Tooltip extends Component {
     const { stylesPopup, content, showTooltip } = this.state;
     const cls = this.classNames(prefixCls, className, {
       [`${prefixCls}-placement-${placement}`]: placement,
-      [`${prefixCls}-${effect}`]: effect
-    })
+      [`${prefixCls}-${effect}`]: effect,
+    });
 
-    const props = {}
+    const props = {};
     if (trigger === 'hover') {
-      props.onMouseEnter = this.showTooltip
-      props.onMouseLeave = this.hideTooltip
+      props.onMouseEnter = this.showTooltip;
+      props.onMouseLeave = this.hideTooltip;
     } else {
-      props.onClick = (e) => {
+      props.onClick = () => {
         if (leaveDelay) {
           this.setState({
-            showTooltip: true
+            showTooltip: true,
           }, () => {
             this.setState({
-              stylesPopup: this.styles()
-            })
-          })
+              stylesPopup: this.styles(),
+            });
+          });
         }
-        clearTimeout(this.clickLeaveTimeout)
-        this.clickLeaveTimeout = setTimeout((f) => this.hideTooltip(f, true), leaveDelay || 0)
-      }
+        clearTimeout(this.clickLeaveTimeout);
+        this.clickLeaveTimeout = setTimeout(f => this.hideTooltip(f, true), leaveDelay || 0);
+      };
     }
 
     return (
       <div className={cls} style={style || {}} {...props}>
-        <div ref="reference" className={`${prefixCls}-children`}> {children} </div>
-        <div ref="popup" style={stylesPopup} className={`${prefixCls}-popup`}>
-          <Transition in={showTooltip} sequence='fadeIn'>
+        <div ref={(node) => { this.reference = node; }} className={`${prefixCls}-children`}> {children} </div>
+        <div ref={(node) => { this.popup = node; }} style={stylesPopup} className={`${prefixCls}-popup`}>
+          <Transition in={showTooltip} sequence="fadeIn">
             <div>
-              {!disabled && <div className={`${prefixCls}-content`}>
-                {visibleArrow && <div className={`${prefixCls}-arrow`}></div>}
-                <div className={`${prefixCls}-inner`}>{content}</div>
-              </div>}
+              {!disabled &&
+                <div className={`${prefixCls}-content`}>
+                  {visibleArrow && <div className={`${prefixCls}-arrow`} />}
+                  <div className={`${prefixCls}-inner`}>{content}</div>
+                </div>
+              }
             </div>
           </Transition>
         </div>
@@ -224,7 +223,7 @@ Tooltip.propTypes = {
     'top', 'topLeft', 'topRight',
     'left', 'leftTop', 'leftBottom',
     'right', 'rightTop', 'rightBottom',
-    'bottom', 'bottomLeft', 'bottomRight'
+    'bottom', 'bottomLeft', 'bottomRight',
   ]),
   // 默认提供的主题: dark, light
   effect: PropTypes.oneOf(['dark', 'light']),
@@ -244,12 +243,12 @@ Tooltip.propTypes = {
 };
 
 Tooltip.defaultProps = {
-  prefixCls: "w-tooltip",
-  effect: "dark",
-  placement: "top",
+  prefixCls: 'w-tooltip',
+  effect: 'dark',
+  placement: 'top',
   disabled: false,
   visible: false,
   visibleArrow: true,
-  trigger: "hover",
-  onVisibleChange: e => (e)
+  trigger: 'hover',
+  onVisibleChange: e => (e),
 };

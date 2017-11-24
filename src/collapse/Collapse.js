@@ -11,14 +11,14 @@ function toArray(activeKey) {
 
 export default class Collapse extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      activeKey: toArray(props.activeKey)
-    }
+      activeKey: toArray(props.activeKey),
+    };
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.activeKey !== this.props.activeKey) {
-      this.setState({ activeKey: toArray(nextProps.activeKey) })
+      this.setState({ activeKey: toArray(nextProps.activeKey) });
     }
   }
   onItemClick(key) {
@@ -37,39 +37,39 @@ export default class Collapse extends Component {
       }
     }
     this.setState({ activeKey }, () => {
-      onChange && onChange(activeKey, this.props)
+      onChange && onChange(activeKey, this.props);
     });
   }
   render() {
-    const { prefixCls, className, children, accordion, bordered, activeKey, showArrow, ...resetProps } = this.props;
+    const { prefixCls, className, children, accordion, bordered, showArrow, ...resetProps } = this.props;
     const cls = this.classNames(prefixCls, className, {
-      'no-border': bordered
-    })
+      'no-border': bordered,
+    });
     return (
       <div className={cls} {...resetProps}>
         {React.Children.map(children, (child, index) => {
           // 如果没有密钥提供，请使用面板顺序作为默认密钥
           const key = child.key || String(index);
           const { disabled } = child.props;
-          let activeKey = this.state.activeKey;
+          const activeKey = this.state.activeKey;
           let isActive = false;
-          if (accordion) {// 手风琴模式下默认选择第一个
+          if (accordion) { // 手风琴模式下默认选择第一个
             isActive = activeKey[0] === key;
           } else {
             isActive = activeKey.indexOf(key) > -1;
           }
-          let childProps = {
-            prefixCls: prefixCls,
-            isActive: isActive,
-            disabled: disabled,
-            showArrow: showArrow,
+          const childProps = {
+            prefixCls,
+            isActive,
+            disabled,
+            showArrow,
             onItemClick: disabled ? () => { } : () => this.onItemClick(key),
-            ...child.props
-          }
-          return React.cloneElement(child, childProps)
+            ...child.props,
+          };
+          return React.cloneElement(child, childProps);
         })}
       </div>
-    )
+    );
   }
 }
 
@@ -82,10 +82,10 @@ Collapse.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
-}
+};
 
 Collapse.defaultProps = {
   prefixCls: 'w-collapse',
   accordion: false,
   showArrow: true,
-}
+};

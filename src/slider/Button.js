@@ -14,7 +14,7 @@ export default class Button extends Component {
   componentDidMount() {
     const { value } = this.props;
     this.startPoint = value;
-    this.parent().setButtonPosition(this, value)
+    this.parent().setButtonPosition(this, value);
   }
   parent() {
     return this.context.component;
@@ -39,34 +39,36 @@ export default class Button extends Component {
   }
   onDragging(event) {
     const { onChange } = this.props;
-    let count = this.parent().getSliderSize();
-    let currentX = event.clientX;
-    let currentY = event.clientY;
-    let move = (this.isVertical() ? (this.startY - currentY) : (currentX - this.startX)) / count * 100;
-    let startPoint = this.startPoint + parseInt(move, 10);
+    const count = this.parent().getSliderSize();
+    const currentX = event.clientX;
+    const currentY = event.clientY;
+    const move = ((this.isVertical() ? (this.startY - currentY) : (currentX - this.startX)) / count) * 100;
+    const startPoint = this.startPoint + parseInt(move, 10);
     if (startPoint < 0 || startPoint > 100) return;
     if (
       this.startPoint !== startPoint && this.currentPoint !== startPoint
     ) {
       this.parent().isDragging(true);
       this.currentPoint = startPoint;
+      this.button.style.zIndex = 99999;
       onChange(startPoint);
     }
   }
-  onDragEnd(event) {
+  onDragEnd() {
     const { onChange } = this.props;
     window.removeEventListener('mousemove', this.onDragging, true);
     window.removeEventListener('mouseup', this.onDragEnd, true);
-    let startPoint = parseInt(this.refs.button.style[this.isVertical() ? 'bottom' : 'left'], 10) || 0;
+    const startPoint = parseInt(this.button.style[this.isVertical() ? 'bottom' : 'left'], 10) || 0;
     if (this.startPoint !== startPoint) {
       onChange(startPoint);
     }
     this.startPoint = startPoint;
+    this.button.style.zIndex = 1001;
     // 拖拽和点击，导致设置值不准确
     this.timeout = setTimeout(() => {
       this.parent().isDragging(false);
       clearTimeout(this.timeout);
-    }, 0)
+    }, 0);
   }
   onButtonDown(event) {
     if (this.isDisabled()) return;
@@ -78,33 +80,35 @@ export default class Button extends Component {
     window.addEventListener('mouseup', this.onDragEnd, true);
   }
   showNumber(num) {
-    return parseInt((this.getMin() + num * (this.getMax() - this.getMin()) / 100), 10)
+    return parseInt((this.getMin() + ((num * (this.getMax() - this.getMin())) / 100)), 10);
   }
   render() {
     const { prefixCls, value } = this.props;
     return (
-      <div ref="button" className={`${prefixCls}-btn-wapper`}
+      <div
+        ref={(node) => { this.button = node; }}
+        className={`${prefixCls}-btn-wapper`}
         onMouseDown={this.onButtonDown.bind(this)}
       >
         {this.isTooltip() ?
           <Tooltip content={this.showNumber(value)}>
-            <div style={{ backgroundColor: this.parent().props.color }} className={`${prefixCls}-btn-inner`}></div>
+            <div style={{ backgroundColor: this.parent().props.color }} className={`${prefixCls}-btn-inner`} />
           </Tooltip> :
-          <div className={`${prefixCls}-btn-inner`}></div>
+          <div className={`${prefixCls}-btn-inner`} />
         }
       </div>
-    )
+    );
   }
 }
 
 Button.contextTypes = {
-  component: PropTypes.any
+  component: PropTypes.any,
 };
 
 Button.propTypes = {
   prefixCls: PropTypes.string,
-}
+};
 
 Button.defaultProps = {
   prefixCls: 'w-slider',
-}
+};

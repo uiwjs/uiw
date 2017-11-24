@@ -70,6 +70,8 @@ class Demo extends Component {
 
 ### 固定时间范围
 
+可以通过`hideDisabled={true}`来设置禁用的不显示。
+
 <!--DemoStart--> 
 ```js
 class Demo extends Component {
@@ -121,7 +123,7 @@ class Demo extends Component {
 
 ### 任意时间点
 
-可以选择任意时间
+可以选择任意时间。
 
 <!--DemoStart--> 
 ```js

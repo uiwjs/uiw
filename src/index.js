@@ -9,6 +9,7 @@ export { default as Calendar } from './calendar/';
 export { default as Checkbox } from './checkbox/';
 export { default as Collapse } from './collapse/';
 export { default as Card } from './card/';
+export { default as CopyToClipboard } from './copy-to-clipboard/';
 export { default as Hotkeys } from './hotkeys/';
 export { default as Modal } from './modal/';
 export { default as Message } from './message/';
@@ -20,10 +21,11 @@ export { default as Table } from './table/';
 export { default as Tabs } from './tabs/';
 export { default as Paging } from './paging/';
 export { default as Progress } from './progress/';
-export { default as Tooltip } from './tooltip/'
-export { default as Tree } from './tree/'
-export { TimePicker } from './date-picker/';
+export { default as Tooltip } from './tooltip/';
+export { default as Tree } from './tree/';
+export { default as TimePicker } from './time-picker/';
 export { default as TimeSelect } from './time-select/';
+export { default as Timestamp } from './timestamp';
 export { default as Switch } from './switch/';
 export { default as Select } from './select/';
 export { default as Slider } from './slider/';

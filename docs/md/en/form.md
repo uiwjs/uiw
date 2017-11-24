@@ -94,7 +94,7 @@ onChange(key,e, value) {
 
 handleSubmit(e) {
   e.preventDefault();
-  this.refs.form.validate((valid,dataValues) => {
+  this.form.validate((valid,dataValues) => {
     console.log("返回内容:",dataValues,valid)
     if (valid) {
       alert('submit!');
@@ -107,8 +107,8 @@ handleSubmit(e) {
 
 handleReset(e) {
   e.preventDefault();
-  console.log("--reset22:",this.state.form)
-  this.refs.form.resetFields((model)=>{
+  // console.log("--reset22:",this.state.form)
+  this.form.resetFields((model)=>{
     this.setState({form:model})
   });
 }
@@ -136,7 +136,7 @@ render() {
     },
   }
   return (
-    <Form style={{width:500}} ref="form" model={form} rules={rules}>
+    <Form style={{width:500}} ref={(component)=>{this.form=component}} model={form} rules={rules}>
       <FormItem label={<span>用户名</span>} field="name" {...formItemLayout} >
         <Input 
           value={form.name} 
@@ -286,7 +286,7 @@ onChange(key,e, value) {
 
 handleSubmit(e) {
   e.preventDefault();
-  this.refs.form.validate((valid,dataValues) => {
+  this.form.validate((valid,dataValues) => {
     console.log("返回内容:",dataValues,valid)
     if (valid) {
       alert('submit!');
@@ -299,7 +299,7 @@ handleSubmit(e) {
 
 handleReset(e) {
   e.preventDefault();
-  this.refs.form.resetFields((model)=>{
+  this.form.resetFields((model)=>{
     this.setState({form:model})
   });
 }
@@ -326,7 +326,7 @@ render() {
     },
   }
   return (
-    <Form style={{width:500}} ref="form" model={form} rules={rules}>
+    <Form style={{width:500}} ref={(component)=>{this.form=component}} model={form} rules={rules}>
       <FormItem label={<span>用户名</span>} field="name" {...formItemLayout} >
         <Input 
           value={form.name} 
@@ -405,7 +405,7 @@ onChange(key,e, value) {
 
 handleSubmit(e) {
   e.preventDefault();
-  this.refs.form.validate((valid,dataValues) => {
+  this.form.validate((valid,dataValues) => {
     console.log("返回内容:",dataValues,valid)
     if (valid) {
       alert('submit!');
@@ -418,7 +418,7 @@ handleSubmit(e) {
 
 handleReset(e) {
   e.preventDefault();
-  this.refs.form.resetFields((model)=>{
+  this.form.resetFields((model)=>{
     this.setState({form:model})
   });
 }
@@ -460,7 +460,7 @@ render() {
       />
       <Form 
         layout={formLayout} 
-        style={{width:formLayout == "inline"?"auto":500}} ref="form" model={form} rules={rules}>
+        style={{width:formLayout == "inline"?"auto":500}} ref={(component)=>{this.form=component}} model={form} rules={rules}>
         <FormItem label={<span>用户名</span>} field="name" {...formItemLayout} >
           <Input 
             value={form.name} 
@@ -507,10 +507,28 @@ render() {
 ### Form refs
 
 ```html
-<Form ref="form"></Form>
+<Form ref={(component)=>{this.form=component}}></Form>
 ```
 
-上面定义form的ref值为`form`
+上面定义form的ref值赋值给`this.form`
+
+```js
+// 表单重置
+this.form.resetFields((model)=>{
+  this.setState({form:model})
+});
+
+// 表单验证
+this.form.validate((valid,dataValues) => {
+  console.log("返回内容:",dataValues,valid)
+  if (valid) {
+    alert('submit!');
+  } else {
+    console.log('error submit!!');
+    return false;
+  }
+});
+```
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |

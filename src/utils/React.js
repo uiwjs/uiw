@@ -1,5 +1,5 @@
-import React from 'react'
-import ReactDOM, { findDOMNode } from 'react-dom'
+import React from 'react';
+import ReactDOM, { findDOMNode } from 'react-dom';
 
 
 function firstChild(props) {
@@ -7,4 +7,4 @@ function firstChild(props) {
   return childrenArray[0] || null;
 }
 
-export { ReactDOM, findDOMNode, firstChild }
+export { ReactDOM, findDOMNode, firstChild };

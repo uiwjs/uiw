@@ -4,21 +4,21 @@ import Checkbox from '../checkbox/';
 
 export default class Tbody extends Component {
   static contextTypes = {
-    component: PropTypes.any
+    component: PropTypes.any,
   }
   constructor(props) {
     super(props);
-    this.renderTbodyTd = this.renderTbodyTd.bind(this)
+    this.renderTbodyTd = this.renderTbodyTd.bind(this);
   }
   parent() {
     return this.context.component;
   }
   getRenders(columns, headelm = {}) {
-    for (let i = 0; i < columns.length; i++) {
+    for (let i = 0; i < columns.length; i += 1) {
       if (columns[i] && columns[i].key && (!columns[i].children || columns[i].children.length < 1)) {
         headelm[columns[i].key] = { ...columns[i] };
-        let method = ['render', 'onCellClick', 'className']
-        for (let a in method) {
+        const method = ['render', 'onCellClick', 'className'];
+        for (const a in method) {
           if (method[a] in columns[i]) {
             headelm[columns[i].key][method[a]] = columns[i][method[a]];
           }
@@ -31,11 +31,13 @@ export default class Tbody extends Component {
     return headelm;
   }
   jsonToArray(json) {
-    let newarr = []
-    for (let a in json) {
-      newarr.push(json[a])
+    const newarr = [];
+    for (const a in json) {
+      if (Object.prototype.hasOwnProperty.call(json, a)) {
+        newarr.push(json[a]);
+      }
     }
-    return newarr
+    return newarr;
   }
   // rownum 第几条数据
   // item 每条数据的详细内容
@@ -43,63 +45,75 @@ export default class Tbody extends Component {
   renderTbodyTd(item, rownum) {
     const { columns = [], cloneElement } = this.props;
     const { ischecked, rowsChecked, rowsDisabled } = this.parent().state;
-    var renders = this.getRenders(columns);
-    let itemArr = this.jsonToArray(item);
-    let fixedItems = [], items = [], currentItem = [];
+    const renders = this.getRenders(columns);
+    const itemArr = this.jsonToArray(item);
+    const fixedItems = [];
+    const currentItem = [];
+    let items = [];
 
-    for (let i = 0; i < columns.length; i++) {
-      let keyname = columns[i].key
-      let attri = {}
+    for (let i = 0; i < columns.length; i += 1) {
+      const keyname = columns[i].key;
+      const attri = {};
       if (renders[keyname] && renders[keyname].onCellClick) {
-        attri.onClick = renders[keyname].onCellClick.bind(this, item[keyname])
+        attri.onClick = renders[keyname].onCellClick.bind(this, item[keyname]);
       }
       if (renders[keyname] && renders[keyname].className) {
-        attri.className = renders[keyname].className
+        attri.className = renders[keyname].className;
       }
       if (ischecked && i === 0) {
-        attri.className = "_select"
+        attri.className = '_select';
         items = (
           <td key={`${i + 1}`} {...attri}>
             <Checkbox
-              checked={rowsChecked[rownum] ? true : false}
-              disabled={rowsDisabled[rownum] ? true : false}
+              checked={!!rowsChecked[rownum]}
+              disabled={!!rowsDisabled[rownum]}
               onChange={(e, checked) => {
                 if (checked === false || checked === true) {
-                  this.props.onRowSelection(item, rownum, checked, e)
+                  this.props.onRowSelection(item, rownum, checked, e);
                 }
-              }}>
-            </Checkbox>
+              }}
+            />
           </td>
-        )
+        );
       } else {
-        let dataIndex = columns[i].dataIndex, idx = ischecked ? i - 1 : i;
+        const dataIndex = columns[i].dataIndex;
+        const idx = ischecked ? i - 1 : i;
+
+        const renderContent = () => {
+          if (dataIndex) {
+            if (renders[keyname] && renders[keyname].render) {
+              return renders[keyname].render(item[keyname], item, i);
+            }
+            return item[keyname];
+          }
+          if (renders[keyname] && renders[keyname].render) {
+            return renders[keyname].render(itemArr[idx], itemArr, idx);
+          }
+          return itemArr[idx];
+        };
         items = (
           <td key={`${i + 1}`} {...attri}>
-            {dataIndex ? (renders[keyname] && renders[keyname].render) ? renders[keyname].render(item[keyname], item, i) : item[keyname] :
-              (renders[keyname] && renders[keyname].render) ? renders[keyname].render(itemArr[idx], itemArr, idx) : itemArr[idx]
-            }
+            {renderContent()}
           </td>
-        )
+        );
       }
 
-      if (cloneElement === "left") {
-        if ((ischecked && i === 0) || (columns[i] && columns[i].fixed === "left")) {
+      if (cloneElement === 'left') {
+        if ((ischecked && i === 0) || (columns[i] && columns[i].fixed === 'left')) {
           fixedItems.push(items);
         }
-      } else if (cloneElement === "right") {
-        if (columns[i] && columns[i].fixed === "right") {
+      } else if (cloneElement === 'right') {
+        if (columns[i] && columns[i].fixed === 'right') {
           fixedItems.push(items);
         }
       } else {
-        currentItem.push(items)
+        currentItem.push(items);
       }
-
     }
-    if (cloneElement === "left" || cloneElement === "right") {
+    if (cloneElement === 'left' || cloneElement === 'right') {
       return fixedItems;
-    } else {
-      return currentItem;
     }
+    return currentItem;
   }
   onMouseOver(ty, idx) {
     this.props.onTrHover(ty, idx);
@@ -112,26 +126,27 @@ export default class Tbody extends Component {
           return (
             <tr
               className={this.classNames({
-                [`${prefixCls}-tr-hover`]: trHoverClassName[0] === index
+                [`${prefixCls}-tr-hover`]: trHoverClassName[0] === index,
               })}
               onMouseEnter={() => this.onMouseOver('enter', index)}
               onMouseLeave={() => this.onMouseOver('leave', index)}
-              key={index}>
+              key={index}
+            >
               {this.renderTbodyTd(item, index)}
             </tr>
-          )
+          );
         })}
       </tbody>
-    )
+    );
   }
 }
 
 Tbody.defaultProps = {
   prefixCls: 'w-table',
-  columns: []
+  columns: [],
 };
 Tbody.propTypes = {
   columns: PropTypes.array,
   prefixCls: PropTypes.string,
   data: PropTypes.array,
-}
+};

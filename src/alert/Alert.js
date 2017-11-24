@@ -1,23 +1,23 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
 import Transition from '../transition';
-import Icon from '../icon'
+import Icon from '../icon';
 
 export default class Alert extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: props.visible
-    }
+      visible: props.visible,
+    };
   }
 
-  componentWillReceiveProps(nextProps, nextState) {
-    this.setState({ ...nextProps })
+  componentWillReceiveProps(nextProps) {
+    this.setState({ ...nextProps });
   }
 
   handleClose(e) {
     e && e.preventDefault();
-    this.setState({ visible: false })
+    this.setState({ visible: false });
     this.props.onClose && this.props.onClose(e);
   }
 
@@ -26,10 +26,10 @@ export default class Alert extends Component {
     let icon;
     if (showIcon) {
       switch (type) {
-        case "success": icon = <Icon type="circle-check" />; break;
-        case "info": icon = <Icon type="information" />; break;
-        case "warning": icon = <Icon type="question-circle" />; break;
-        case "error": icon = <Icon type="circle-close" />; break;
+        case 'success': icon = <Icon type="circle-check" />; break;
+        case 'info': icon = <Icon type="information" />; break;
+        case 'warning': icon = <Icon type="question-circle" />; break;
+        case 'error': icon = <Icon type="circle-close" />; break;
         default: break;
       }
     }
@@ -37,11 +37,11 @@ export default class Alert extends Component {
       [`${prefixCls}-${type}`]: type,
       [`${prefixCls}-icon`]: showIcon && icon,
       [`${prefixCls}-icon-description`]: description,
-      [className]: className
+      [className]: className,
     });
 
     return (
-      <Transition in={this.state.visible} sequence={transition}  { ...others }>
+      <Transition in={this.state.visible} sequence={transition} {...others}>
         <div className={cls}>
           {message && <span className={!description ? `${prefixCls}-description` : `${prefixCls}-message`}>{icon}{message}</span>}
           {description && <span className={`${prefixCls}-description`}>{description}</span>}
@@ -54,6 +54,7 @@ export default class Alert extends Component {
 }
 
 Alert.propTypes = {
+  prefixCls: PropTypes.string,
   type: PropTypes.string,
   visible: PropTypes.bool,
   showIcon: PropTypes.bool,
@@ -65,9 +66,10 @@ Alert.propTypes = {
 };
 Alert.defaultProps = {
   type: 'default',
-  prefixCls: "w-alert",
-  transition: "fadeIn",
+  prefixCls: 'w-alert',
+  transition: 'fadeIn',
   visible: true,
   showIcon: false,
   closable: false,
-}
+  onClose() { },
+};

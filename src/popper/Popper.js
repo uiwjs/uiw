@@ -18,14 +18,15 @@ export default class Popper extends Component {
     clickOutside && clickOutside(e);
   }
   render() {
-    const { style, className,prefixCls, tag, clickOutside, children, ...other } = this.props;
-    let wrapStyle = Object.assign.apply(null, [style, {}])
+    const { style, className, prefixCls, tag, clickOutside, children, ...other } = this.props;
+    const wrapStyle = Object.assign.apply(null, [style, {}]);
     return (
-      <div className={`${prefixCls}-warpper`}>{
-        React.createElement(tag, { style: wrapStyle, className: this.classNames(prefixCls, className), ...other }, children)
-      }
+      <div className={`${prefixCls}-warpper`}>
+        {
+          React.createElement(tag, { style: wrapStyle, className: this.classNames(prefixCls, className), ...other }, children)
+        }
       </div>
-    )
+    );
   }
 }
 
@@ -33,11 +34,11 @@ Popper.propTypes = {
   prefixCls: PropTypes.string,
   tag: PropTypes.string,
   onChange: PropTypes.func,
-}
+};
 
 Popper.defaultProps = {
   prefixCls: 'w-popper',
   tag: 'div',
   style: {},
-  onChange() { }
-}
+  onChange() { },
+};

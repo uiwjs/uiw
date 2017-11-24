@@ -10,105 +10,111 @@ export default class TreeNode extends Component {
       showTree: props.defaultExpandAll,
       // 默认关闭的Item
       closedItem: props.defaultExpandAll ? [] : [...props.data],
-      // 默认选中的
-      // selectedKeys: props.selectedKeys || [],
-    }
+    };
   }
-  parent() {
-    return this.context.component;
+  onShowTree(item) {
+    const { onExpand, option } = this.props;
+    if (!item[option.children]) return;
+    const { closedItem } = this.state;
+    const idx = this.getCloseItemIndex(item, closedItem);
+    if (idx > -1) {
+      closedItem.splice(idx, 1);
+    } else {
+      closedItem.push(item);
+    }
+    this.setState({
+      closedItem,
+    }, () => {
+      onExpand(item.key, idx > -1, item, this);
+    });
+  }
+  onSelect(item, e) {
+    const { onSelect } = this.props;
+    const { selectedKeys } = this.parent().state;
+    const { setSelecteKeys } = this.parent();
+    setSelecteKeys(selectedKeys.filter((key) => {
+      return key === item.key;
+    }).length > 0 ? [] : [item.key], () => {
+      onSelect(item.key, item, e);
+    });
   }
   // 获取关闭节点的数据
-  getCloseItemIndex(item, closedItem) {
+  getCloseItemIndex = (item, closedItem) => {
     let idx = -1;
-    for (let i = 0; i < closedItem.length; i++) {
+    for (let i = 0; i < closedItem.length; i += 1) {
       if (item.key === closedItem[i].key) {
         idx = i;
       }
     }
     return idx;
   }
-  onShowTree(item, e) {
-    const { onExpand, option } = this.props;
-    if (!item[option.children]) return;
-    let { closedItem } = this.state;
-    let idx = this.getCloseItemIndex(item, closedItem)
-    if (idx > -1) {
-      closedItem.splice(idx, 1)
-    } else {
-      closedItem.push(item)
-    }
-    this.setState({
-      closedItem
-    }, () => {
-      onExpand(item.key, idx > -1, item, this)
-    })
-  }
-  onSelect(item, e) {
-    const { onSelect } = this.props;
-    const { selectedKeys } = this.parent().state;
-    const { setSelecteKeys } = this.parent();
-    setSelecteKeys(selectedKeys.filter((key) => key === item.key).length > 0 ? [] : [item.key], () => {
-      onSelect(item.key, item, e)
-    })
+  parent() {
+    return this.context.component;
   }
   render() {
     const { prefixCls, data, showTree, showLine, level, option } = this.props;
     const { closedItem } = this.state;
     const { selectedKeys } = this.parent().state;
-    const ulCls = level > 1 ? `${prefixCls}-${showTree ? "open" : "close"}` : null;
+    const ulCls = level > 1 ? `${prefixCls}-${showTree ? 'open' : 'close'}` : null;
     return (
       <ul className={this.classNames(`${prefixCls}-item`, ulCls, {
-        [`${prefixCls}-show-line`]: showLine
-      })}>
+        [`${prefixCls}-show-line`]: showLine,
+      })}
+      >
         {
           data.map((item, idx) => {
-            let childs = item[option.children];
-            let isChild = childs && childs.length > 0;
-            let props = Object.assign({}, this.props, { parent: this });
-            let index = this.getCloseItemIndex(item, closedItem);
+            const childs = item[option.children];
+            const isChild = childs && childs.length > 0;
+            const props = Object.assign({}, this.props, { parent: this });
+            const index = this.getCloseItemIndex(item, closedItem);
 
-            props.showTree = index > -1 ? false : true;
+            props.showTree = index < 0;
             props.level = level + 1;
 
             let iconname = 'caret-down';
             if (showLine && isChild) {
-              iconname = index > -1 ? "plus-square-o" : "minus-square-o";
+              iconname = index > -1 ? 'plus-square-o' : 'minus-square-o';
             }
             if (showLine && !isChild) {
-              iconname = "file-text";
+              iconname = 'file-text';
             }
             return (
-              <li key={idx}>
+              <li key={idx.toString()}>
                 <div className={`${prefixCls}-title`}>
-                  <Icon onClick={this.onShowTree.bind(this, item)} className={this.classNames(`${prefixCls}-icon`, {
-                    "no-child": !isChild && !showLine,
-                    "is-close": isChild && index > -1,
-                  })} type={iconname}></Icon>
+                  <Icon
+                    onClick={this.onShowTree.bind(this, item)}
+                    className={this.classNames(`${prefixCls}-icon`, {
+                      'no-child': !isChild && !showLine,
+                      'is-close': isChild && index > -1,
+                    })}
+                    type={iconname}
+                  />
                   <span
                     onClick={this.onSelect.bind(this, item)}
                     className={this.classNames(`${prefixCls}-inner`, {
-                      [`${prefixCls}-selected`]: selectedKeys.filter((key) => key === item.key).length > 0
-                    })}>
+                      [`${prefixCls}-selected`]: selectedKeys.filter((key) => { return key === item.key; }).length > 0,
+                    })}
+                  >
                     {item[option.label]}
                   </span>
                 </div>
                 {isChild && <TreeNode {...props} data={childs} />}
               </li>
-            )
+            );
           })
         }
       </ul>
-    )
+    );
   }
 }
 
 TreeNode.defaultProps = {
   prefixCls: 'w-tree',
-}
+};
 TreeNode.propTypes = {
   prefixCls: PropTypes.string,
-}
+};
 
 TreeNode.contextTypes = {
-  component: PropTypes.any
+  component: PropTypes.any,
 };

@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "1.3.0",
+  "version": "1.3.2",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiw-react.github.io",
   "authors": [
@@ -20,6 +20,7 @@
     "build:lib": "BABEL_ENV=production babel  --ignore=src/**/__test__ --plugins transform-runtime src --out-dir lib --copy-files ",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
     "lint-staged": "lint-staged",
+    "lint-staged:js": "eslint src",
     "deploy": "./script/deploy.sh"
   },
   "keywords": [
@@ -32,7 +33,13 @@
     "ui",
     "framework"
   ],
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
   "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "async-validator": "~1.8.1",
     "babel-polyfill": "~6.26.0",
     "babel-runtime": "~6.26.0",
@@ -60,10 +67,10 @@
     "enzyme": "^3.1.1",
     "enzyme-adapter-react-16": "^1.0.4",
     "eslint": "4.9.0",
-    "eslint-config-react-app": "^2.0.1",
+    "eslint-config-airbnb": "^16.1.0",
     "eslint-loader": "1.9.0",
     "eslint-plugin-flowtype": "2.39.1",
-    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "5.1.1",
     "eslint-plugin-react": "^7.4.0",
     "extract-text-webpack-plugin": "^3.0.1",
@@ -82,9 +89,7 @@
     "postcss-loader": "^2.0.8",
     "prismjs": "^1.8.3",
     "raw-loader": "^0.5.1",
-    "react": "^16.0.0",
     "react-dev-utils": "^4.1.0",
-    "react-dom": "^16.0.0",
     "react-error-overlay": "^2.0.2",
     "react-hot-loader": "^3.1.1",
     "react-router-dom": "^4.2.2",
@@ -99,10 +104,8 @@
     "webpack-manifest-plugin": "^1.3.2",
     "webpack-parallel-uglify-plugin": "^1.0.0"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "lint-staged": {
+    "*.js": "lint-staged:js",
     "*.less": "stylelint --syntax=less"
   },
   "author": "kenny wang <wowohoo@qq.com>",

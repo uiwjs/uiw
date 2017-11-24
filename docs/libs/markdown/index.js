@@ -60,7 +60,7 @@ export default class Markdown extends React.Component {
         }, this.props), p1));
         return `<div id=${id}></div>`;
       }));
-      
+
       return (
         <div>
           <div className={`${prefixCls}-content-warpper`} dangerouslySetInnerHTML={{ __html: html }} />

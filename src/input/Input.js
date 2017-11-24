@@ -1,51 +1,47 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
-import Icon from '../icon'
+import Icon from '../icon';
 
 export default class Input extends Component {
   constructor(props) {
     super(props);
     this.state = {
       value: props.value,
-      placeholder: props.placeholder
-    }
+      placeholder: props.placeholder,
+    };
   }
   componentWillReceiveProps(...props) {
     this.setState({
-      ...props
+      ...props,
     });
   }
   handleKeyUp(e) {
     const { onSearch, onKeyUp } = this.props;
-    if (e.key === "Enter") {
-      onSearch(e, e.target.value)
+    if (e.key === 'Enter') {
+      onSearch(e, e.target.value);
     }
-    onKeyUp(e)
+    onKeyUp(e);
   }
   // Input-Number 等其它组件使用的方法
   focus() {
-    setTimeout(() => {
-      (this.refs.input || this.refs.textarea).focus();
-    });
+    (this.input || this.textarea).focus();
   }
   blur() {
-    setTimeout(() => {
-      (this.refs.input || this.refs.textarea).blur();
-    });
+    (this.input || this.textarea).blur();
   }
   handleChange(e) {
     const { onChange, length } = this.props;
-    let val = e.target.value
+    let val = e.target.value;
     if (val.length > length) {
       val = val.slice(0, length);
       e.target.value = val;
     }
-    this.setState({ value: val })
-    onChange(e, val)
+    this.setState({ value: val });
+    onChange(e, val);
   }
   handleClick(type, e) {
     if (this.props[type]) {
-      this.props[type](e, this.state.value)
+      this.props[type](e, this.state.value);
     }
   }
   renderIcon(type) {
@@ -55,29 +51,35 @@ export default class Input extends Component {
     if (type === 'icon' && typeof icon === 'string') icons = icon;
     if (type === 'preIcon' && typeof preIcon === 'string') icons = preIcon;
 
+    const renderIcon = () => {
+      if ((typeof preIcon === 'string' && icons) || (typeof icon === 'string' && icons)) {
+        return (
+          <Icon
+            type={icons}
+            onClick={this.handleClick.bind(this, type === 'icon' ? 'onIconClick' : 'onPreIconClick')}
+            onMouseOver={this.handleClick.bind(this, type === 'icon' ? 'onIconMouseOver' : 'onPreIconMouseOver')}
+            onMouseOut={this.handleClick.bind(this, type === 'icon' ? 'onIconMouseOut' : 'onPreIconMouseOut')}
+          />
+        );
+      }
+      return type === 'icon' ? icon : preIcon;
+    };
     return (
       <div className={this.classNames({
         [`${prefixCls}-icon-left`]: type === 'preIcon' && preIcon,
         [`${prefixCls}-icon-right`]: type === 'icon' && icon,
-        [`event`]: (type === 'preIcon' && onPreIconClick) ||
+        event: (type === 'preIcon' && onPreIconClick) ||
           (type === 'icon' && onIconClick) ||
           (type === 'preIcon' && onPreIconMouseOut) ||
           (type === 'icon' && onIconMouseOut) ||
           (type === 'preIcon' && onPreIconMouseOut) ||
           (type === 'icon' && onIconMouseOver) ||
-          (type === 'preIcon' && onPreIconMouseOver)
-      })}>
-        {
-          (typeof preIcon === 'string' && icons) || (typeof icon === 'string' && icons)
-            ? <Icon type={icons}
-              onClick={this.handleClick.bind(this, type === 'icon' ? 'onIconClick' : 'onPreIconClick')}
-              onMouseOver={this.handleClick.bind(this, type === 'icon' ? 'onIconMouseOver' : 'onPreIconMouseOver')}
-              onMouseOut={this.handleClick.bind(this, type === 'icon' ? 'onIconMouseOut' : 'onPreIconMouseOut')}
-            />
-            : (type === 'icon' ? icon : preIcon)
-        }
+          (type === 'preIcon' && onPreIconMouseOver),
+      })}
+      >
+        {renderIcon()}
       </div>
-    )
+    );
   }
   render() {
     const { prefixCls, className, style, type, size, length, preIcon, icon, value,
@@ -90,41 +92,45 @@ export default class Input extends Component {
       ...other
     } = this.props;
     const cls = this.classNames(`${prefixCls}`, className, {
-      'textarea': type === 'textarea',
-      'w-disabled': this.props.disabled
-    })
+      textarea: type === 'textarea',
+      'w-disabled': this.props.disabled,
+    });
 
     delete other.onSearch;
     // delete other.onChange;
 
-    if (type === 'textarea') return (
-      <textarea
-        className={this.classNames(cls, `${prefixCls}-inner`)}
-        {...other}
-        value={value}
-        placeholder={!value ? this.state.placeholder : ''}
-        ref="textarea"
-        type={type}
-        style={style}
-        onChange={this.handleChange.bind(this)}
-      >
-      </textarea>
-    );
+    if (type === 'textarea') {
+      return (
+        <textarea
+          className={this.classNames(cls, `${prefixCls}-inner`)}
+          {...other}
+          value={value}
+          placeholder={!value ? this.state.placeholder : ''}
+          ref={(elm) => { this.textarea = elm; }}
+          type={type}
+          style={style}
+          onChange={this.handleChange.bind(this)}
+        />
+      );
+    }
 
     return (
-      <div style={style} className={this.classNames(cls, {
-        [`${prefixCls}-${size}`]: size,
-        [`${prefixCls}-icon`]: preIcon || icon,
-      })}>
+      <div
+        style={style}
+        className={this.classNames(cls, {
+          [`${prefixCls}-${size}`]: size,
+          [`${prefixCls}-icon`]: preIcon || icon,
+        })}
+      >
         {preIcon && this.renderIcon.bind(this)('preIcon')}
         {icon && this.renderIcon.bind(this)('icon')}
         <input
           {...other}
-          ref="input"
           type={type}
+          ref={(elm) => { this.input = elm; }}
           className={this.classNames(`${prefixCls}-inner`, {
             [`${prefixCls}-p-left`]: preIcon,
-            [`${prefixCls}-p-right`]: icon
+            [`${prefixCls}-p-right`]: icon,
           })}
           value={value}
           placeholder={!value ? this.state.placeholder : ''}
@@ -147,13 +153,13 @@ Input.propTypes = {
   onChange: PropTypes.func,
   onSearch: PropTypes.func,
   onKeyUp: PropTypes.func,
-}
+};
 
 Input.defaultProps = {
   prefixCls: 'w-input',
-  type: "text",
+  type: 'text',
   autoComplete: 'off',
   onChange() { },
   onSearch() { },
   onKeyUp() { },
-}
+};

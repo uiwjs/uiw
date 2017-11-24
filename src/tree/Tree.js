@@ -7,27 +7,27 @@ export default class Tree extends Component {
     super(props);
     this.state = {
       // 默认选中的
-      selectedKeys: props.selectedKeys || []
-    }
+      selectedKeys: props.selectedKeys || [],
+    };
   }
   getChildContext() {
     return { component: this };
   }
-  setSelecteKeys = (keys, callback) => {
-    this.setState({
-      selectedKeys: keys
-    }, () => {
-      callback && callback()
-    })
-  }
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedKeys !== this.props.selectedKeys) {
-      this.setState({ selectedKeys: nextProps.selectedKeys })
+      this.setState({ selectedKeys: nextProps.selectedKeys });
     }
+  }
+  setSelecteKeys = (keys, callback) => {
+    this.setState({
+      selectedKeys: keys,
+    }, () => {
+      if (callback) callback();
+    });
   }
   render() {
     const { prefixCls, className, ...resetProps } = this.props;
-    const cls = this.classNames(className, `${prefixCls}`)
+    const cls = this.classNames(className, `${prefixCls}`);
     return (
       <div className={cls}>
         <TreeNode level={1} {...resetProps} />
@@ -44,12 +44,12 @@ Tree.defaultProps = {
   // 是否默认展开所有节点
   defaultExpandAll: false,
   option: {
-    children: "children",
-    label: "label",
+    children: 'children',
+    label: 'label',
   },
   onExpand() { },
   onSelect() { },
-}
+};
 Tree.propTypes = {
   prefixCls: PropTypes.string,
   selectedKeys: PropTypes.array,
@@ -62,9 +62,9 @@ Tree.propTypes = {
   }),
   onExpand: PropTypes.func,
   onSelect: PropTypes.func,
-}
+};
 
 Tree.childContextTypes = {
-  component: PropTypes.any
+  component: PropTypes.any,
 };
 

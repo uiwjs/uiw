@@ -9,6 +9,7 @@ module.exports = {
     'affix': 'Affix 固钉',
     'collapse': 'Collapse 折叠面板',
     'date-picker': 'DatePicker 日期选择器',
+    'copy-to-clipboard': 'CopyToClipboard 复制',
     'dropdown': 'Dropdown 下拉菜单',
     'hotkeys': "Hotkeys 快捷键",
     'switch': 'Switch 开关',
@@ -33,6 +34,7 @@ module.exports = {
     'notification': 'Notification 通知提醒框',
     'carousel': 'Carousel 走马灯',
     'transition': 'Transition 过渡动画',
+    'timestamp': 'Timestamp 时间戳',
     'calendar': 'Calendar 日历',
     'table': 'Table 表格',
     'tabs': 'Tabs 标签页',
@@ -51,6 +53,7 @@ module.exports = {
     'Data Display': "数据显示",
     'Navigation': "导航",
     'Feedback': "反馈",
+    'Other': "其它",
   },
   markdown: {
     'show': '显示代码',

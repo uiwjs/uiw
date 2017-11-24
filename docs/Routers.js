@@ -9,6 +9,7 @@ import affix from 'bundle-loader?lazy&name=affix!./pages/affix';
 import Color from 'bundle-loader?lazy&name=color!./pages/color';
 import Collapse from 'bundle-loader?lazy&name=collapse!./pages/collapse';
 import changelog from 'bundle-loader?lazy&name=changelog!./pages/changelog';
+import CopyToClipboard from 'bundle-loader?lazy&name=copy-to-clipboard!./pages/copy-to-clipboard';
 import Layout from 'bundle-loader?lazy&name=layout!./pages/layout';
 import icon from 'bundle-loader?lazy&name=icon!./pages/icon';
 import button from 'bundle-loader?lazy&name=button!./pages/button';
@@ -46,6 +47,7 @@ import notification from 'bundle-loader?lazy&name=notification!./pages/notificat
 import carousel from 'bundle-loader?lazy&name=carousel!./pages/carousel';
 import loading from 'bundle-loader?lazy&name=loading!./pages/loading';
 import transition from 'bundle-loader?lazy&name=transition!./pages/transition';
+import timestamp from 'bundle-loader?lazy&name=timestamp!./pages/timestamp';
 /* eslint import/no-webpack-loader-syntax: off */
 
 const getLang = (key) => {
@@ -112,6 +114,7 @@ const routes = {
       { path: "/:lang/tag", component: asyncComponent(tag) },
       { path: "/:lang/tree", component: asyncComponent(tree) },
       { path: "/:lang/tooltip", component: asyncComponent(tooltip) },
+      { path: "/:lang/timestamp", component: asyncComponent(timestamp) },
     ],
     'Navigation': [
       { path: "/:lang/affix", component: asyncComponent(affix) },
@@ -129,6 +132,9 @@ const routes = {
       { path: "/:lang/notification", component: asyncComponent(notification) },
       { path: "/:lang/loading", component: asyncComponent(loading) },
       { path: "/:lang/transition", component: asyncComponent(transition) },
+    ],
+    'Other': [
+      { path: "/:lang/copy-to-clipboard", component: asyncComponent(CopyToClipboard) },
     ]
   },
   redirect: [

@@ -13,7 +13,7 @@ export default class ReactHotkeys extends Component {
     this.onKeyUp = this.onKeyUp.bind(this);
     this.handleKeyUpEvent = this.handleKeyUpEvent.bind(this);
     this.isKeyDown = false;
-    this.handle = {}
+    this.handle = {};
   }
   componentDidMount() {
     Hotkeys.unbind(this.props.keyName);
@@ -28,14 +28,14 @@ export default class ReactHotkeys extends Component {
   }
   onKeyUp(e, handle) {
     const { onKeyUp } = this.props;
-    onKeyUp(handle.shortcut, e, handle)
+    onKeyUp(handle.shortcut, e, handle);
   }
   onKeyDown(e, handle) {
     const { onKeyDown } = this.props;
     if (this.isKeyDown) return;
     this.isKeyDown = true;
     this.handle = handle;
-    onKeyDown(handle.shortcut, e, handle)
+    onKeyDown(handle.shortcut, e, handle);
   }
   handleKeyUpEvent(e) {
     if (!this.isKeyDown) return;
@@ -53,9 +53,9 @@ ReactHotkeys.propTypes = {
   keyName: PropTypes.string,
   onKeyDown: PropTypes.func,
   onKeyUp: PropTypes.func,
-}
+};
 
 ReactHotkeys.defaultProps = {
   onKeyUp() { },
-  onKeyDown() { }
-}
+  onKeyDown() { },
+};

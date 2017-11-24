@@ -1,7 +1,7 @@
 import Radio from './Radio';
 import RadioGroup from './RadioGroup';
 import RadioButton from './RadioButton';
-import "./style/index.less";
+import './style/index.less';
 
 
 Radio.Button = RadioButton;

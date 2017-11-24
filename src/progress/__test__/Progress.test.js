@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import { Progress } from '../../../src';
 
 describe('<Progress>', () => {
-  var wrapper = mount(<Progress></Progress>);
+  const wrapper = mount(<Progress />);
   it('Test the default props and node.', () => {
     expect(wrapper.name()).toBe('Progress');
     // 默认值测试
@@ -16,20 +16,19 @@ describe('<Progress>', () => {
     expect(wrapper.at(0).prop('strokeWidth')).toBe(6);
     expect(wrapper.at(0).prop('type')).toBe('line');
     expect(wrapper.find('.w-progress').at(0).prop('className')).toBe('w-progress w-progress-line w-progress-show-text');
-  })
+  });
 
   it('Test type attributes.', () => {
-    wrapper.setProps({ type: 'circle'});
+    wrapper.setProps({ type: 'circle' });
     expect(wrapper.find('.w-progress').at(0).prop('className')).toBe('w-progress w-progress-circle w-progress-show-text');
   });
 
   it('Test status attributes.', () => {
-    wrapper.setProps({ status: 'active'});
+    wrapper.setProps({ status: 'active' });
     expect(wrapper.find('.w-progress').at(0).prop('className')).toBe('w-progress w-progress-circle w-progress-show-text w-progress-status-active');
-    wrapper.setProps({ status: 'exception'});
+    wrapper.setProps({ status: 'exception' });
     expect(wrapper.find('.w-progress').at(0).prop('className')).toBe('w-progress w-progress-circle w-progress-show-text w-progress-status-exception');
-    wrapper.setProps({ status: 'success'});
+    wrapper.setProps({ status: 'success' });
     expect(wrapper.find('.w-progress').at(0).prop('className')).toBe('w-progress w-progress-circle w-progress-show-text');
   });
-
-})
+});
