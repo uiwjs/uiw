@@ -9,6 +9,13 @@ export default class Paging extends Component {
     };
     this.onPrevOrNext = this.onPrevOrNext.bind(this);
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.activePage !== this.props.activePage) {
+      this.setState({
+        activePage: nextProps.activePage,
+      });
+    }
+  }
   onPrevOrNext(ty) {
     const { total, pageSize, onChange } = this.props;
     const { activePage } = this.state;
