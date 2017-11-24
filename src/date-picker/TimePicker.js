@@ -17,7 +17,7 @@ export default class TimePicker extends BasePicker {
     const value = this.dateToStr(state.value);
     return (
       <TimePickerPanel
-        {...this.panelPreps(Object.assign(state, props))}
+        {...this.panelPreps(props) }
         value={value}
         visible={state.visible}
         handleClickOutside={this.handleClickOutside.bind(this)}
