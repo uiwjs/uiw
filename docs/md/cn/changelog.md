@@ -5,6 +5,16 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.3.3
+
+`2017-11-24`
+
+- 🐞 fix(TimePicker): drop-dawn list is selected by default. [01847a8](https://github.com/uiw-react/uiw/commit/01847a802598483f7d22754140671a8b97c3c533)  
+- 🐞 fix(Slider): Fixed Tooltip is covered by the button. [0480b4d](https://github.com/uiw-react/uiw/commit/0480b4d46786a13020a2755f644a6d5f1d7ee981) 
+- 🐞 fix(slider): Drag the button to calculate the error [ece24b4](https://github.com/uiw-react/uiw/commit/ece24b4c0768520196c4779021309f2362c96c65) 
+- 📝 doc(Switch): Update example. [dcf8f6d](https://github.com/uiw-react/uiw/commit/dcf8f6de85a763cc37a88a247b079aee518aa838)
+- 📝 doc: Change Slider example style. [6465132](https://github.com/uiw-react/uiw/commit/6465132c23772f6e11b32f63f1d2f23c1c61fc4f) 
+
 ## 1.3.2
 
 `2017-11-23`
