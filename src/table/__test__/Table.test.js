@@ -3,7 +3,7 @@ import { mount, shallow, render } from 'enzyme';
 import { Table, Button } from '../../../src';
 
 describe('<Table>', () => {
-  const wrapper = mount(<Table/>);
+  const wrapper = mount(<Table />);
   it('Test the default props and node.', () => {
     expect(wrapper.name()).toBe('Table');
     // 默认值测试
@@ -30,7 +30,7 @@ describe('<Table>', () => {
       <Table data={data}>
         <Button>测试按钮</Button>
       </Table>
-    )
+    );
     expect(wrapper1).toMatchSnapshot();
   });
 
