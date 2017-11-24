@@ -1,5 +1,7 @@
 docs
 build
+coverage
+test
 script
 .DS_Store
 *.swp
@@ -12,3 +14,8 @@ yarn.lock
 .cachetest
 .travis.yml
 .babelrc
+.jest.js
+.stylelintrc
+.eslintrc
+.editorconfig
+.gitignore
