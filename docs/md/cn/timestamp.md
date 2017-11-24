@@ -72,5 +72,5 @@ import Timestamp from 'uiw/lib/timestamp';
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | value | 日期值作为ISO8601字符串或Date对象 | String | - |
-| format | 格式化时间 | String | - |
+| format | 格式化时间，例如：`yyyy年MM月dd日 hh:mm:ss`，年`yyyy`，月`MM`，日`dd`，时`hh`，分`mm`，秒`ss` | String | `yyyy-MM-dd hh:mm:ss` |
 | tzc | 服务器时区，解决因时区变更，导致显示服务器时间不准确 time Zone Converter | Number | - |
