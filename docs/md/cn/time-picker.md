@@ -27,7 +27,7 @@ class Demo extends Component {
         step="00:15"
         end="18:30"
         minTime="9:30"
-        hideDisabled={true}
+        // hideDisabled={true}
         onChange={this.handleChang.bind(this)}
         value={this.state.value}
         //placeholder="选择时间"
@@ -159,6 +159,17 @@ class Demo extends Component {
           disabledMinutes={['01','02']}
           disabled={false}
           // hideDisabled={true}
+          format="HH:mm"
+          placeholder="选择时间de拉！更改"
+          value={this.state.value}
+        />
+        <TimePicker
+          //style={{width:100}}
+          size="large" 
+          onChange={this.handleChang.bind(this)}
+          disabledHours={['00','01']}
+          disabledMinutes={['01','02']}
+          disabled={false}
           format="HH:mm:ss"
           placeholder="选择时间de拉！更改"
           value={this.state.value}
