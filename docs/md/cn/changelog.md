@@ -5,6 +5,16 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.3.4
+
+`2017-11-24`
+
+- ⛑ Test(Table): Add Message/Modal/Table test case ([#29](https://github.com/uiw-react/uiw/pull/29)) : [kooff88](https://github.com/kooff88) [c59c9d6](https://github.com/uiw-react/uiw/commit/c59c9d6fe0ff1c36e411f7b7279b7799ce406a35)
+- 🐞 fix(Paging): fix activePage props is not update. [b0d3483](https://github.com/uiw-react/uiw/commit/b0d3483b38cbea1a95a81e21875c5b11e18f26cd)
+- 📝 Update changelog.md [a76d527](https://github.com/uiw-react/uiw/commit/a76d5276ff6bc58b2d8d92de085b54f10696eb59)
+- 👣 ignore `__snapshots__` test file. [76d5a59](https://github.com/uiw-react/uiw/commit/76d5a5906f6b3e5b7271c2778a4782a80b1d003a)
+- 👣 update .npmignore file. [89115c2](https://github.com/uiw-react/uiw/commit/89115c20555d7ec4d7ed3e22135a9d7e4d83220e)
+
 ## 1.3.3
 
 `2017-11-24`
