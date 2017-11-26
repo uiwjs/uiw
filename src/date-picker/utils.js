@@ -14,7 +14,6 @@ export const getMonthToWeek = (year, month) => {
 
 // 填充一个月份界面单元格
 export const fillUpDays = (dateObject, format, selectDate) => {
-  console.log('datePanel:2---22:');
   const monthDays = solarMonthDays();
   const year = dateObject.getFullYear();
   if (isLeapYear(year)) {
