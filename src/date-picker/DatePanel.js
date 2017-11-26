@@ -12,14 +12,15 @@ export default class DatePanel extends Component {
     };
   }
   render() {
-    const { visible, prefixCls, value, onPicked, handleClickOutside } = this.props;
+    const { visible, prefixCls, handleClickOutside, ...resetProps } = this.props;
+    console.log('showToday:', resetProps);
     return (
       <Transition in={visible} sequence="fadeIn">
         <Popper
           className={this.classNames(`${prefixCls}-popper`)}
           clickOutside={handleClickOutside}
         >
-          <DatePanelBody value={value} onPicked={onPicked} />
+          <DatePanelBody {...resetProps} />
         </Popper>
       </Transition>
     );
