@@ -1,5 +1,5 @@
 import React from 'react';
-import { Component, PropTypes, formatDate } from '../utils/';
+import { Component, PropTypes, formatDate, isDate } from '../utils/';
 import { fillUpDays } from './utils';
 import DatePanelHead from './DatePanelHead';
 
@@ -7,22 +7,22 @@ export default class DatePanelBody extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: props.value || new Date(),
+      value: isDate(props.value) ? new Date(props.value) : props.value,
       labelToday: '今天',
-      isInputEmpty: !!props.value, // Input 是否为空
+      selectDate: isDate(props.value) ? props.value : null,
     };
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
       this.setState({
-        isInputEmpty: !nextProps.value,
         value: nextProps.value || new Date(),
+        selectDate: nextProps.value,
       });
     }
   }
   handleClick(item) {
     const { onPicked } = this.props;
-    onPicked(item.format);
+    onPicked(item.date);
   }
   onClickPageBtn(date) {
     this.setState({
@@ -37,7 +37,6 @@ export default class DatePanelBody extends Component {
       <a className={`${prefixCls}-today-btn`}
         onClick={() => {
           onPicked(formatDate(new Date(), format));
-          console.log(showToday);
         }}
       >
         {showToday && showToday === true ? labelToday : showToday}
@@ -46,9 +45,10 @@ export default class DatePanelBody extends Component {
   }
   render() {
     const { prefixCls, weekLabel, format } = this.props;
-    const { value, labelToday, isInputEmpty } = this.state;
+    const { value, labelToday, selectDate } = this.state;
+    const datePanel = isDate(value) ? new Date(value) : new Date();
     const headerProps = {
-      prefixCls, value,
+      prefixCls, value: datePanel,
     };
     return (
       <div className={`${prefixCls}`}>
@@ -67,13 +67,13 @@ export default class DatePanelBody extends Component {
           })}
         </div>
         <div className={`${prefixCls}-days`}>
-          {fillUpDays(value, format, this.props.value).map((item, idx) => {
+          {fillUpDays(datePanel, format, new Date(selectDate)).map((item, idx) => {
             return (
               <span key={idx}
                 title={item.today ? labelToday : item.format}
                 className={this.classNames(item.className, {
                   [`${prefixCls}-today`]: item.today,
-                  [`${prefixCls}-select-day`]: item.selectDay && !isInputEmpty,
+                  [`${prefixCls}-select-day`]: item.selectDay && selectDate,
                   [`${prefixCls}-sun`]: item.week === 0,
                   [`${prefixCls}-sat`]: item.week === 6,
                 })}

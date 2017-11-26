@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from '../utils/';
 import BasePicker from './BasePicker';
 import DatePanel from './DatePanel';
 
@@ -9,6 +10,7 @@ export default class DatePicker extends BasePicker {
     super(props, 'datepicker', {
       prefixCls: 'w-datepicker',
       placeholder: '选择日期',
+      ...props,
     });
   }
   panelPreps(props) {
@@ -26,3 +28,17 @@ export default class DatePicker extends BasePicker {
     );
   }
 }
+
+DatePicker.propTypes = {
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.instanceOf(Date),
+    PropTypes.arrayOf(PropTypes.instanceOf(Date)),
+  ]),
+  format: PropTypes.string,
+};
+DatePicker.defaultProps = {
+  value: '',
+  placeholder: '选择日期',
+  format: 'yyyy/MM/dd',
+};

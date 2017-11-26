@@ -32,7 +32,8 @@ export default class TimeSpinner extends Component {
   handleClick(item, e) {
     const { onPicked, value } = this.props;
     if (!item.disabled) {
-      const time = parseTime(value);
+      const date = new Date();
+      const time = parseTime(new Date(`${date.getFullYear()}/${date.getMonth()}/${date.getDate()} ${value}`));
       time[`${item.ty}`] = Number(item.value);
       onPicked(parseTimeStr(time), true);
       // 点击当前节点滚动到顶部

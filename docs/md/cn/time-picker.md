@@ -19,7 +19,6 @@ class Demo extends Component {
     console.log('time-select Chang: ', value,date)
   }
   render() {
-
     this.handleChang()
     return (
       <TimeSelect
@@ -132,12 +131,17 @@ class Demo extends Component {
     super(props);
     this.state = {
       value: new Date(2017, 6, 28, 15, 51),
+      showTime:'',
     }
   }
   handleChang(value,date) {
-    console.log('time-select Chang: ', value,date)
+    this.setState({
+      showTime:value,
+      value:date
+    })
   }
   render() {
+    const {showTime} = this.state;
     return (
       <div>
         <TimePicker
@@ -149,7 +153,7 @@ class Demo extends Component {
           //hideDisabled={true}
           format="HH:mm:ss"
           placeholder="选择时间de拉！"
-          value={this.state.value}
+          value={new Date(2017, 6, 28, 15, 51)}
         />
         <TimePicker
           //style={{width:100}}
@@ -174,6 +178,11 @@ class Demo extends Component {
           placeholder="选择时间de拉！更改"
           value={this.state.value}
         />
+        {showTime&&
+          <div style={{padding:"20px 0 0 0"}}>
+            {showTime}
+          </div>
+        }
       </div>
     )
   }

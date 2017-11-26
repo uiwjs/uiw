@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Component, PropTypes, isDate } from '../utils/';
+import { Component, PropTypes, isDate, formatDate } from '../utils/';
 import Input from '../input';
 import { parseTime, dateTimeToStr } from './utils';
 
@@ -8,19 +8,16 @@ export default class BasePicker extends Component {
   constructor(props, _type, state) {
     super(props);
     this.type = _type;
-    const defaultValue = props.value;
     // 合并初始化过来的数据
-    this.state = Object.assign(
-      {}, state,
+    this.state = Object.assign(state,
       {
         icon: _type === 'datepicker' ? 'date' : 'time-o',
-        value: new Date(),
+        value: props.value,
         visible: false, // 菜单是否显示
-        defaultValue,
         inputWidth: 0,
         placeholder: props.placeholder,
       },
-      { ...this.propsToState(props) }
+      { ...this.propsToState(props) },
     );
   }
   componentWillReceiveProps(nextProps) {
@@ -28,9 +25,13 @@ export default class BasePicker extends Component {
   }
   // props与当前state合并
   propsToState(props) {
+    let label = isDate(props.value) ? this.dateToStr(props.value) : '';
+    if (this.type === 'datepicker' && props.format && isDate(new Date(props.value))) {
+      label = formatDate(new Date(props.value), props.format);
+    }
     return {
-      text: isDate(props.value) ? this.dateToStr(props.value) : '',
-      value: isDate(props.value) ? props.value : new Date(),
+      text: label,
+      value: isDate(props.value) ? props.value : '',
     };
   }
   // 展示隐藏菜单
@@ -84,7 +85,7 @@ export default class BasePicker extends Component {
       return `${date.hours < 10 ? `0${date.hours}` : date.hours}:${date.minutes < 10 ? `0${date.minutes}` : date.minutes}`;
     }
   }
-  parseDate(date) {
+  parseDateTime(date) {
     let { value } = this.state;
     const { defaultValue } = this.state;
     if (!value) value = defaultValue;
@@ -97,13 +98,18 @@ export default class BasePicker extends Component {
   }
   // 选择事件
   onPicked(date, visible) {
-    const { onChange } = this.props;
+    const { onChange, format } = this.props;
+    let dateObject = this.parseDateTime(date);
+    if (this.type === 'datepicker') {
+      dateObject = new Date(date);
+      date = formatDate(new Date(date), format);
+    }
     this.setState({
       visible,
       text: date,
-      value: this.type === 'datepicker' ? new Date(date) : this.parseDate(date),
+      value: dateObject,
     });
-    onChange && onChange(date, this.parseDate(date));
+    onChange && onChange(date, dateObject);
   }
   createPickerPanel() {
     return this.pickerPanel(this.state);

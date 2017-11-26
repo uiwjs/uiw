@@ -1,7 +1,6 @@
 // 判断是否为日期
 export const isDate = function (date) {
-  if (date instanceof Date) return true;
-  return false;
+  return ((new Date(date).toString() !== 'Invalid Date' && !isNaN(new Date(date))));
 };
 
 export function formatDate(date, formatStr) {
