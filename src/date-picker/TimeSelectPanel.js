@@ -6,13 +6,6 @@ import Transition from '../transition';
 
 // 单个时间选择弹出层
 export default class TimeSelectPanel extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputWidth: 0,
-      visible: false, // 菜单是否显示
-    };
-  }
   handleClick(item) {
     const { onPicked } = this.props;
     if (!item.disabled) {

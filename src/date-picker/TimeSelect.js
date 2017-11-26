@@ -17,9 +17,10 @@ export default class TimeSelect extends BasePicker {
   }
   pickerPanel(state, props) {
     const value = this.dateToStr(state.value);
+    const resetProps = this.panelPreps(props);
     return (
       <TimeSelectPanel
-        {...this.panelPreps(props)}
+        { ...resetProps }
         value={value}
         visible={state.visible}
         handleClickOutside={this.handleClickOutside.bind(this)}
