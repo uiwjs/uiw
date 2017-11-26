@@ -12,7 +12,7 @@ export default class DatePicker extends BasePicker {
     });
   }
   panelPreps(props) {
-    return { ...(props || this.props) };
+    return { ...Object.assign({}, props, this.props) };
   }
   pickerPanel(state) {
     return (
@@ -21,7 +21,6 @@ export default class DatePicker extends BasePicker {
         value={state.value}
         visible={state.visible}
         handleClickOutside={this.handleClickOutside.bind(this)}
-        // inputWidth={state.inputWidth}
         onPicked={this.onPicked.bind(this)}
       />
     );

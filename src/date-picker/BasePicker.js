@@ -109,17 +109,14 @@ export default class BasePicker extends Component {
     return this.pickerPanel(this.state);
   }
   render() {
-    const { className, style,
-      disabledHours, placeholder, disabledMinutes, disabledSeconds, hideDisabled,
-      minTime, maxTime,
-      ...props } = this.props;
+    const { className, style, disabled } = this.props;
     const { text, ...states } = this.state;
     return (
       <span style={style} className={this.classNames(states.className, className, 'w-date-base')}>
         <Input
           type="text"
-          {...props}
           value={text}
+          disabled={disabled}
           placeholder={states.placeholder}
           onMouseDown={this.onMouseDown.bind(this)}
           onIconClick={this.onIconClick.bind(this)}

@@ -16,6 +16,7 @@ class Demo extends Component {
     return (
       <div>
         <DatePicker onChange={this.onChange.bind(this)} />
+        <DatePicker showToday={true} onChange={this.onChange.bind(this)} />
       </div>
     )
   }
@@ -43,7 +44,7 @@ import DatePicker from 'uiw/lib/date-picker';
 | placeholder | 占位内容 | String | - |
 | format | 格式化时间，例如：`yyyy年MM月dd日 hh:mm:ss`，年`yyyy`，月`MM`，日`dd`，时`hh`，分`mm`，秒`ss` | String | `yyyy-MM-dd hh:mm:ss` |
 | allowClear | 允许清除 | Boolean | - |
-| showToday | 是否展示“今天”按钮 | Boolean | - |
+| showToday | 是否展示“今天”按钮 | Boolean/Node | false |
 | disabled | 禁用日历 | Boolean | - |
 | disabledTime | 禁用时间 | Function(date) | - |
 | align | 占位内容 | Enum{`left` `center` `right`} | - |

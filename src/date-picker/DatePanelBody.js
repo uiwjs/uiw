@@ -1,5 +1,5 @@
 import React from 'react';
-import { Component, PropTypes } from '../utils/';
+import { Component, PropTypes, formatDate } from '../utils/';
 import { fillUpDays } from './utils';
 import DatePanelHead from './DatePanelHead';
 
@@ -29,8 +29,23 @@ export default class DatePanelBody extends Component {
       value: date,
     });
   }
+  renderTodayLabel = () => {
+    const { prefixCls, showToday, format, onPicked } = this.props;
+    const { labelToday } = this.state;
+    if (!showToday) return null;
+    return (
+      <a className={`${prefixCls}-today-btn`}
+        onClick={() => {
+          onPicked(formatDate(new Date(), format));
+          console.log(showToday);
+        }}
+      >
+        {showToday && showToday === true ? labelToday : showToday}
+      </a>
+    );
+  }
   render() {
-    const { prefixCls, weekLabel, format, showToday } = this.props;
+    const { prefixCls, weekLabel, format } = this.props;
     const { value, labelToday, isInputEmpty } = this.state;
     const headerProps = {
       prefixCls, value,
@@ -70,9 +85,9 @@ export default class DatePanelBody extends Component {
           })}
         </div>
         <div className={`${prefixCls}-footer`}>
-          {showToday && <a className={`${prefixCls}-today-btn`} role="button"> {labelToday} </a>}
+          {this.renderTodayLabel()}
         </div>
-      </div >
+      </div>
     );
   }
 }
@@ -82,7 +97,10 @@ DatePanelBody.propTypes = {
   format: PropTypes.string,
   allowClear: PropTypes.bool,
   onPicked: PropTypes.func,
-  showToday: PropTypes.bool,
+  showToday: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.node,
+  ]),
   weekLabel: PropTypes.arrayOf(PropTypes.string),
 };
 
