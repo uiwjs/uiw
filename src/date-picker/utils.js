@@ -9,7 +9,7 @@ export const solarMonthDays = () => {
 
 // 获取当月第一天星期几
 export const getMonthToWeek = (year, month) => {
-  return new Date(`${year}-${month}-${1}`).getDay();
+  return new Date(`${year}/${month}/${1}`).getDay();
 };
 
 // 填充一个月份界面单元格
@@ -36,6 +36,7 @@ export const fillUpDays = (dateObject, format, selectDate) => {
   if (year === currentYear && month === currentMonth) {
     isTodayMonth = true;
   }
+  console.log('week', week);
   // 1-42数组
   let i = 1;
   const arr = [];
@@ -53,7 +54,7 @@ export const fillUpDays = (dateObject, format, selectDate) => {
     } else if (i <= (monthDays[month - 1] + week)) {
       json.day = i - week;
       json.month = month;
-      date = new Date(`${year}-${month}-${json.day}`);
+      date = new Date(`${year}/${month}/${json.day}`);
       json.date = date;
       json.format = formatDate(date, format);
       json.week = date.getDay();
