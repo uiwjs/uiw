@@ -3,21 +3,17 @@ DatePicker 日期选择器
 
 用于选择或输入日期
 
-
 ## 基础实例
 
 <!--DemoStart--> 
 ```js
 class Demo extends Component {
-  onChange(date, dateString){
-    console.log('--->>>>',date, dateString);
-  }
   render() {
     return (
       <div>
-        <DatePicker onChange={this.onChange.bind(this)} />
-        <DatePicker showToday={true} onChange={this.onChange.bind(this)} />
-        <DatePicker showToday={true} value={`${new Date()}`} onChange={this.onChange.bind(this)} />
+        <DatePicker  />
+        <DatePicker showToday={true}  />
+        <DatePicker showToday={true} value={`${new Date()}`}  />
       </div>
     )
   }
@@ -42,9 +38,6 @@ class Demo extends Component {
       radioValue: 1
     }
   }
-  onChange(date, dateString){
-    console.log('--->>>>',date, dateString);
-  }
   onChangeRadio(e,value){
     const {format1,format2} = this.state;
     let format = format1;
@@ -57,10 +50,12 @@ class Demo extends Component {
     const {format1,format2} = this.state;
     return (
       <div>
-        <DatePicker showToday={true} format={this.state.format} value={this.state.value} onChange={this.onChange.bind(this)} />
+        <DatePicker showToday={true} format={this.state.format} value={this.state.value} />
         <div style={{paddingTop:10}}>
-          <Radio value={1} checked={this.state.radioValue === 1} onChange={this.onChangeRadio.bind(this)}>{format1}</Radio>
-          <Radio value={2} checked={this.state.radioValue === 2} onChange={this.onChangeRadio.bind(this)}>{format2}</Radio>
+          <Radio value={1} checked={this.state.radioValue === 1} onChange={this.onChangeRadio.bind(this)}>格式：{format1}</Radio>
+        </div>
+        <div style={{paddingTop:10}}>
+          <Radio value={2} checked={this.state.radioValue === 2} onChange={this.onChangeRadio.bind(this)}>格式：{format2}</Radio>
         </div>
       </div>
     )
@@ -94,7 +89,7 @@ class Demo extends Component {
         <DatePicker disabled={checked} showToday={true} />
         <DatePicker disabled={checked} showToday={true} value={`${new Date()}`} />
         <div style={{paddingTop:20}}>
-          <Switch onChange={this.onChange.bind(this)} checkedChildren="禁用控件" unCheckedChildren="取消禁用" color="#9C27B0" unColor="#ff4949" />
+          <Switch onChange={this.onChange.bind(this)} checked={checked} checkedChildren="取消禁用" unCheckedChildren="禁用控件" color="#3eb54c" unColor="#ff4949" />
         </div>
       </div>
     )
