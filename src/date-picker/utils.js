@@ -1,5 +1,5 @@
 
-import { formatDate, isLeapYear } from '../utils';
+import { formatDate, isLeapYear, isDate } from '../utils';
 
 // 获得太阳月，俗称阳历月份
 // 通过计算闰年第二月 可能 29天
@@ -14,6 +14,7 @@ export const getMonthToWeek = (year, month) => {
 
 // 填充一个月份界面单元格
 export const fillUpDays = (dateObject, format, selectDate) => {
+  console.log('datePanel:2---22:');
   const monthDays = solarMonthDays();
   const year = dateObject.getFullYear();
   if (isLeapYear(year)) {
@@ -45,7 +46,7 @@ export const fillUpDays = (dateObject, format, selectDate) => {
     if (i <= week) { // 上个月
       json.day = preMonthDay - (week - i);
       json.month = preMonth;
-      date = new Date(`${month === 1 ? year - 1 : year}-${preMonth}-${json.day}`);
+      date = new Date(`${month === 1 ? year - 1 : year}/${preMonth}/${json.day}`);
       json.date = date;
       json.format = formatDate(date, format);
       json.className = 'prev';
@@ -62,7 +63,7 @@ export const fillUpDays = (dateObject, format, selectDate) => {
       json.month = nextMonth;
       json.className = 'next';
       // date = new Date(month === 12 ? 1 : year, nextMonth, json.day);
-      date = new Date(`${month === 12 ? year + 1 : year}-${nextMonth}-${json.day}`);
+      date = new Date(`${month === 12 ? year + 1 : year}/${nextMonth}/${json.day}`);
       json.date = date;
       json.format = formatDate(date, format);
       json.week = date.getDay();
@@ -71,8 +72,9 @@ export const fillUpDays = (dateObject, format, selectDate) => {
     if (json.day === currentDay && isTodayMonth) {
       json.today = true;
     }
+    // if(isDate(selectDate))
     // 选中的日子
-    if (json.day === day && json.month === month && selectDate && selectDate.getFullYear() === year && month === selectDate.getMonth() + 1) {
+    if (json.day === day && json.month === month && isDate(selectDate) && selectDate.getFullYear() === year && month === selectDate.getMonth() + 1) {
       json.selectDay = true;
     }
     arr.push(json);

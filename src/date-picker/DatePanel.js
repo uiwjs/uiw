@@ -13,7 +13,6 @@ export default class DatePanel extends Component {
   }
   render() {
     const { visible, prefixCls, handleClickOutside, ...resetProps } = this.props;
-    console.log('showToday:', resetProps);
     return (
       <Transition in={visible} sequence="fadeIn">
         <Popper
