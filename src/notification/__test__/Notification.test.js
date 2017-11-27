@@ -1,10 +1,8 @@
-import React from 'react';
 import { Notification } from '../../../src';
 
 describe('Notification', () => {
-
-   it('Test the default props and node.', () => {
-     Notification({
+  it('Test the default props and node.', () => {
+    Notification({
       message: 'title',
       description: '描述',
     });
@@ -24,7 +22,6 @@ describe('Notification', () => {
     };
     ['success', 'info', 'warning', 'error'].forEach((type) => {
       openNotificationWithIcon(type);
-    }); 
+    });
   });
-
 });
