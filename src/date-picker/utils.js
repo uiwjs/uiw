@@ -36,7 +36,6 @@ export const fillUpDays = (dateObject, format, selectDate) => {
   if (year === currentYear && month === currentMonth) {
     isTodayMonth = true;
   }
-  console.log('week', week);
   // 1-42数组
   let i = 1;
   const arr = [];

@@ -110,6 +110,8 @@ import { DatePicker } from 'uiw';
 import DatePicker from 'uiw/lib/date-picker';
 ```
 
+> 输入框继承 `<Input/>` 组件。支持 Input 的部分属性如`size`,`disabled`, `size`, `autoFocus`, `preIcon`, `defaultValue`
+
 ### DatePicker
 
 | 参数 | 说明 | 类型 | 默认值 |
