@@ -115,14 +115,21 @@ export default class BasePicker extends Component {
     return this.pickerPanel(this.state);
   }
   render() {
-    const { className, style, disabled } = this.props;
+    const { className, style, ...resetProps } = this.props;
     const { text, ...states } = this.state;
+    const inputProps = {
+      disabled: resetProps.disabled,
+      size: resetProps.size,
+      autoFocus: resetProps.autoFocus,
+      preIcon: resetProps.preIcon,
+      defaultValue: resetProps.defaultValue,
+    };
     return (
       <span style={style} className={this.classNames(states.className, className, 'w-date-base')}>
         <Input
+          {...inputProps}
           type="text"
           value={text}
-          disabled={disabled}
           placeholder={states.placeholder}
           onMouseDown={this.onMouseDown.bind(this)}
           onIconClick={this.onIconClick.bind(this)}

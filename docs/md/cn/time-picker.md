@@ -169,7 +169,7 @@ class Demo extends Component {
         />
         <TimePicker
           //style={{width:100}}
-          size="large" 
+          size="mini" 
           onChange={this.handleChang.bind(this)}
           disabledHours={['00','01']}
           disabledMinutes={['01','02']}
@@ -193,7 +193,7 @@ class Demo extends Component {
 
 ## API
 
-> 输入框继承 `<Input/>` 组件。支持 Input 的大部分属性如`size`
+> 输入框继承 `<Input/>` 组件。支持 Input 的部分属性如`size`,`disabled`, `size`, `autoFocus`, `preIcon`, `defaultValue`
 
 ### 公共参数 
 
