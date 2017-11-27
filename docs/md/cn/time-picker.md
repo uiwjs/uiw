@@ -19,7 +19,6 @@ class Demo extends Component {
     console.log('time-select Chang: ', value,date)
   }
   render() {
-
     this.handleChang()
     return (
       <TimeSelect
@@ -27,7 +26,7 @@ class Demo extends Component {
         step="00:15"
         end="18:30"
         minTime="9:30"
-        hideDisabled={true}
+        // hideDisabled={true}
         onChange={this.handleChang.bind(this)}
         value={this.state.value}
         //placeholder="选择时间"
@@ -132,12 +131,17 @@ class Demo extends Component {
     super(props);
     this.state = {
       value: new Date(2017, 6, 28, 15, 51),
+      showTime:'',
     }
   }
   handleChang(value,date) {
-    console.log('time-select Chang: ', value,date)
+    this.setState({
+      showTime:value,
+      value:date
+    })
   }
   render() {
+    const {showTime} = this.state;
     return (
       <div>
         <TimePicker
@@ -149,7 +153,7 @@ class Demo extends Component {
           //hideDisabled={true}
           format="HH:mm:ss"
           placeholder="选择时间de拉！"
-          value={this.state.value}
+          value={new Date(2017, 6, 28, 15, 51)}
         />
         <TimePicker
           //style={{width:100}}
@@ -159,10 +163,26 @@ class Demo extends Component {
           disabledMinutes={['01','02']}
           disabled={false}
           // hideDisabled={true}
+          format="HH:mm"
+          placeholder="选择时间de拉！更改"
+          value={this.state.value}
+        />
+        <TimePicker
+          //style={{width:100}}
+          size="large" 
+          onChange={this.handleChang.bind(this)}
+          disabledHours={['00','01']}
+          disabledMinutes={['01','02']}
+          disabled={false}
           format="HH:mm:ss"
           placeholder="选择时间de拉！更改"
           value={this.state.value}
         />
+        {showTime&&
+          <div style={{padding:"20px 0 0 0"}}>
+            {showTime}
+          </div>
+        }
       </div>
     )
   }

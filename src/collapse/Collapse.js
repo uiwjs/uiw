@@ -41,7 +41,7 @@ export default class Collapse extends Component {
     });
   }
   render() {
-    const { prefixCls, className, children, accordion, bordered, showArrow, ...resetProps } = this.props;
+    const { prefixCls, className, children, accordion, bordered, showArrow, activeKey, ...resetProps } = this.props;
     const cls = this.classNames(prefixCls, className, {
       'no-border': bordered,
     });
@@ -51,12 +51,11 @@ export default class Collapse extends Component {
           // 如果没有密钥提供，请使用面板顺序作为默认密钥
           const key = child.key || String(index);
           const { disabled } = child.props;
-          const activeKey = this.state.activeKey;
           let isActive = false;
           if (accordion) { // 手风琴模式下默认选择第一个
-            isActive = activeKey[0] === key;
+            isActive = this.state.activeKey[0] === key;
           } else {
-            isActive = activeKey.indexOf(key) > -1;
+            isActive = this.state.activeKey.indexOf(key) > -1;
           }
           const childProps = {
             prefixCls,
