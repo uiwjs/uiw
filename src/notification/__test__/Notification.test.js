@@ -1,17 +1,14 @@
-import React from 'react';
 import { Notification } from '../../../src';
 
 describe('Notification', () => {
-
-   it('Test the default props and node.', () => {
-     Notification({
+  it('Test the default props and node.', () => {
+    Notification({
       message: 'title',
       description: '描述',
     });
     expect(document.querySelectorAll('.w-notification')[0].className).toBe('w-animate is-fadeIn is-right is-mounting w-alert w-alert-default w-alert-icon-description w-notification');
     expect(document.querySelectorAll('.w-message').length).toBe(1);
   });
-
   it('test 4 type', () => {
     const openNotificationWithIcon = (type) => {
       const iconPrefix = '.w-alert';
@@ -24,7 +21,6 @@ describe('Notification', () => {
     };
     ['success', 'info', 'warning', 'error'].forEach((type) => {
       openNotificationWithIcon(type);
-    }); 
+    });
   });
-
 });
