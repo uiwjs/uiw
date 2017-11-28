@@ -21,6 +21,7 @@ class Demo extends Component {
   render() {
     this.handleChang()
     return (
+      <div>
       <TimeSelect
         start="08:30"
         step="00:15"
@@ -31,6 +32,17 @@ class Demo extends Component {
         value={this.state.value}
         //placeholder="选择时间"
       />
+      <TimeSelect
+        start="08:30"
+        step="00:15"
+        end="18:30"
+        minTime="9:30"
+        hideDisabled={true}
+        onChange={this.handleChang.bind(this)}
+        value={null}
+        //placeholder="选择时间"
+      />
+      </div>
     )
   }
 }
