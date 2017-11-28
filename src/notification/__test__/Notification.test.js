@@ -9,6 +9,7 @@ describe('Notification', () => {
     expect(document.querySelectorAll('.w-notification')[0].className).toBe('w-animate is-fadeIn is-right is-mounting w-alert w-alert-default w-alert-icon-description w-notification');
     expect(document.querySelectorAll('.w-message').length).toBe(1);
   });
+
   it('test 4 type', () => {
     const openNotificationWithIcon = (type) => {
       const iconPrefix = '.w-alert';
