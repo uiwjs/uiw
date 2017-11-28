@@ -5,26 +5,30 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
-## 1.4.1
+## 1.4.2
 
 `2017-11-28`
 
 Feature:
 
-- feat(DatePicker/TimePicker): Component inherits porps of Input component.  [6509447](https://github.com/uiw-react/uiw/commit/65094479a0f254d7b297c6ce648afcede01c06ed)
+- 🌟 feat(DatePicker/TimePicker): Component inherits porps of Input component.  [6509447](https://github.com/uiw-react/uiw/commit/65094479a0f254d7b297c6ce648afcede01c06ed)
 
 Bug fixed:
 
-- fix(DatePicker): Change the default export of DatePikcer.  [1f5d803](https://github.com/uiw-react/uiw/commit/1f5d803c883407bc77e398efba811a82bdcbd451)
-- fix(TimePicker): fix [#32](https://github.com/uiw-react/uiw/issues/32)  default value can not be null.  [86a60a3](https://github.com/uiw-react/uiw/commit/86a60a34e7f9f19dbc1174ca566afd0795e6aaca)
-- fix(DatePicker): Fix Safari browser compatible bug.  [86653b2](https://github.com/uiw-react/uiw/commit/86653b24ffa98e957243a47efac61d82d939e4c2)
+- 🐞 fix(DatePicker): Change the default export of DatePikcer.  [1f5d803](https://github.com/uiw-react/uiw/commit/1f5d803c883407bc77e398efba811a82bdcbd451)
+- 🐞 fix(TimePicker): fix [#32](https://github.com/uiw-react/uiw/issues/32)  default value can not be null.  [86a60a3](https://github.com/uiw-react/uiw/commit/86a60a34e7f9f19dbc1174ca566afd0795e6aaca)
+- 🐞 fix(DatePicker): Fix Safari browser compatible bug.  [86653b2](https://github.com/uiw-react/uiw/commit/86653b24ffa98e957243a47efac61d82d939e4c2)
 
 Test
 
-- test(Notification): format code.  [3630297](https://github.com/uiw-react/uiw/commit/363029775f403d738355bab7b8e5afabeead2634)
-- test: update eslint-plugin-jsx-a11y.  [02c4f25](https://github.com/uiw-react/uiw/commit/02c4f25ec5f0b651d1e1b38687585aadf80b8da3)
-- Add notification test ([#31](https://github.com/uiw-react/uiw/pull/31)) : [kooff88](https://github.com/kooff88) [7c9e70d](https://github.com/uiw-react/uiw/commit/7c9e70d46f657ee061af5a4113815b23204ac048)
-- style(DatePicker): Add z-index.  [64de422](https://github.com/uiw-react/uiw/commit/64de422f90e3669b448f01c4e85b0db2d22068d8)
+- ⛑ test(Notification): format code.  [3630297](https://github.com/uiw-react/uiw/commit/363029775f403d738355bab7b8e5afabeead2634)
+- ⛑ test: update eslint-plugin-jsx-a11y.  [02c4f25](https://github.com/uiw-react/uiw/commit/02c4f25ec5f0b651d1e1b38687585aadf80b8da3)
+- ⛑ Add notification test ([#31](https://github.com/uiw-react/uiw/pull/31)) : [kooff88](https://github.com/kooff88) [7c9e70d](https://github.com/uiw-react/uiw/commit/7c9e70d46f657ee061af5a4113815b23204ac048)
+- ⛑ style(DatePicker): Add z-index.  [64de422](https://github.com/uiw-react/uiw/commit/64de422f90e3669b448f01c4e85b0db2d22068d8)
+
+## ~~1.4.1~~
+
+`bad`
 
 ## 1.4.0
 
