@@ -90,7 +90,7 @@ export default class BasePicker extends Component {
     const { defaultValue } = this.state;
     if (!value) value = defaultValue;
     date = parseTime(date);
-    value = new Date(value);
+    value = value ? new Date(value) : new Date();
     date.hours > -1 && value.setHours(date.hours);
     date.minutes > -1 && value.setMinutes(date.minutes);
     date.seconds > -1 && value.setSeconds(date.seconds);
