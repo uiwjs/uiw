@@ -23,7 +23,7 @@ export { default as Paging } from './paging/';
 export { default as Progress } from './progress/';
 export { default as Tooltip } from './tooltip/';
 export { default as Tree } from './tree/';
-export { DatePicker } from './date-picker/';
+export { default as DatePicker } from './date-picker/';
 export { default as TimePicker } from './time-picker/';
 export { default as TimeSelect } from './time-select/';
 export { default as Timestamp } from './timestamp';
