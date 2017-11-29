@@ -1,0 +1,145 @@
+@datepicker:~"w-datepicker";
+
+.@{datepicker} {
+  width: 201px;
+  position: absolute;
+  background: #d0cfcf;
+  border-radius: 5px;
+  margin-top: 5px;
+  padding: 1px;
+  font-size: 12px;
+  z-index: 1010;
+  // box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 2px 4px rgba(16, 22, 26, 0.2), 0 8px 24px rgba(16, 22, 26, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+
+  &-bar {
+    background: #fafafa;
+    border-radius: 4px 4px 0 0;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  &-month-select, &-year-select {
+    color: rgba(0, 0, 0, .65);
+    padding-right: 15px;
+    padding-left: 3px;
+    i[class^="w-icon-"] {
+      transform: scale(0.55);
+      height: 30px;
+      line-height: 30px;
+      position: absolute;
+      color: #cecece;
+    }
+    &:hover i[class^="w-icon-"] {
+      color: #333;
+    }
+  }
+  &-prev-year-btn,
+  &-prev-month-btn,
+  &-next-year-btn,
+  &-next-month-btn {
+    transform: scale(0.85);
+    color: rgba(0, 0, 0, .65);
+    font-size: 12px;
+    font-weight: normal;
+    padding: 0 3px;
+  }
+
+  &-prev-year-btn {
+    float: left;
+    margin-left: 5px;
+  }
+  &-prev-month-btn {
+    transform: rotate(90deg);
+    float: left;
+  }
+  &-next-year-btn {
+    float: right;
+    margin-right: 5px;
+  }
+  &-next-month-btn {
+    transform: rotate(-90deg);
+    float: right;
+  }
+  &-week {
+    background: #ccc;
+    height: 21px;
+    line-height: 21px;
+    color: #696969;
+    span {
+      display: inline-block;
+      width: 14.2875%;
+      text-align: center;
+      &.end {
+        background: #dcdcdc;
+      }
+    }
+  }
+  &-days {
+    background: #fafafa;
+    span {
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      box-shadow: inset -1px -1px 0 #eaeaea;
+      display: inline-block;
+      width: 14.2875%;
+      transition: all @transition-time @transition-timing-functio;
+      &:hover {
+        background: #f5f5f5;
+      }
+      &:active {
+        background: #e0e0e0;
+      }
+      &.prev, &.next {
+        color: #d3d3d3;
+      }
+    }
+  }
+  &-today {
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      right: 1px;
+      width: 0;
+      height: 0;
+      border-top: 8px solid #ff4b4b;
+      border-left: 8px solid transparent;
+      display: inline-block;
+    }
+  }
+  span&-select-day {
+    background: #d0d0d0;
+    box-shadow: inset -1px -1px 0 #eaeaea, inset 0 0 0 5px #fafafa;
+    &:hover, &:active {
+      background: #d0d0d0;
+    }
+  }
+  span&-sun, span&-sat {
+    color: #929292;
+  }
+
+  &-footer {
+    background: #fafafa;
+    border-radius: 0 0 4px 4px;
+    min-height: 10px;
+    line-height: 26px;
+    padding: 0 5px;
+  }
+  &-mode-select-year {
+    background: #f5f5f5;
+    border-radius: 0 0 5px 5px;
+    div {
+      display: inline-block;
+      padding: 15px 10px;
+      width: 33.33%;
+      line-height: 21px;
+      text-align: center;
+    }
+  }
+}

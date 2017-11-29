@@ -1,47 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Component, PropTypes } from '../utils/';
+import { Component, PropTypes, isDate, formatDate } from '../utils/';
 import Input from '../input';
-import { isDate, parseTime, dateTimeToStr } from './utils';
-
-function isTimeValid(props, propName, componentName) {
-  const dt = props[propName];
-  let _isDate = true;
-  if (!dt) return;
-  if (dt !== '') {
-    if (dt instanceof Array) {
-      for (let i = 0; i < dt.length; i += 1) {
-        if (!isDate(dt[i])) {
-          _isDate = false; break;
-        }
-      }
-    } else if (!isDate(dt)) {
-      _isDate = false;
-    }
-    if (_isDate === false) {
-      return new Error(
-        `Invalid prop \`${propName}\` supplied to  \`${componentName}\`. Validation failed.`
-      );
-    }
-  }
-}
+import { parseTime, dateTimeToStr } from './utils';
 
 export default class BasePicker extends Component {
   constructor(props, _type, state) {
     super(props);
     this.type = _type;
-    const defaultValue = props.value;
     // 合并初始化过来的数据
-    this.state = Object.assign(
-      {}, state,
+    this.state = Object.assign(state,
       {
-        icon: 'time-o',
-        value: new Date(),
+        icon: _type === 'datepicker' ? 'date' : 'time-o',
+        value: props.value,
         visible: false, // 菜单是否显示
-        defaultValue,
         inputWidth: 0,
+        placeholder: props.placeholder,
       },
-      { ...this.propsToState(props) }
+      { ...this.propsToState(props) },
     );
   }
   componentWillReceiveProps(nextProps) {
@@ -49,9 +25,13 @@ export default class BasePicker extends Component {
   }
   // props与当前state合并
   propsToState(props) {
+    let label = isDate(props.value) ? this.dateToStr(props.value) : '';
+    if (this.type === 'datepicker' && props.format && isDate(new Date(props.value))) {
+      label = formatDate(new Date(props.value), props.format);
+    }
     return {
-      text: isDate(props.value) ? this.dateToStr(props.value) : '',
-      value: isDate(props.value) ? props.value : new Date(),
+      text: label,
+      value: isDate(props.value) ? props.value : '',
     };
   }
   // 展示隐藏菜单
@@ -82,7 +62,7 @@ export default class BasePicker extends Component {
   }
   onIconClick() {
     const { onChange } = this.props;
-    this.setState({ text: '', value: '', icon: 'time' });
+    this.setState({ text: '', value: '', icon: this.type === 'datepicker' ? 'date' : 'time-o' });
     onChange && onChange();
   }
   onIconMouseOver() {
@@ -91,7 +71,7 @@ export default class BasePicker extends Component {
     }
   }
   onIconMouseOut() {
-    this.setState({ icon: 'time-o' });
+    this.setState({ icon: this.type === 'datepicker' ? 'date' : 'time-o' });
   }
   dateToStr(date) {
     const { format } = this.props;
@@ -105,42 +85,52 @@ export default class BasePicker extends Component {
       return `${date.hours < 10 ? `0${date.hours}` : date.hours}:${date.minutes < 10 ? `0${date.minutes}` : date.minutes}`;
     }
   }
-  parseDate(date) {
+  parseDateTime(date) {
     let { value } = this.state;
     const { defaultValue } = this.state;
     if (!value) value = defaultValue;
     date = parseTime(date);
-    value = new Date(value);
+    value = value ? new Date(value) : new Date();
     date.hours > -1 && value.setHours(date.hours);
     date.minutes > -1 && value.setMinutes(date.minutes);
     date.seconds > -1 && value.setSeconds(date.seconds);
     return value;
   }
+  // 选择事件
   onPicked(date, visible) {
-    const { onChange } = this.props;
+    const { onChange, format } = this.props;
+    let dateObject = this.parseDateTime(date);
+    if (this.type === 'datepicker') {
+      dateObject = new Date(date);
+      date = formatDate(new Date(date), format);
+    }
     this.setState({
       visible,
       text: date,
-      value: this.parseDate(date),
+      value: dateObject,
     });
-
-    onChange && onChange(date, this.parseDate(date));
+    onChange && onChange(date, dateObject);
   }
   createPickerPanel() {
     return this.pickerPanel(this.state);
   }
   render() {
-    const { className, style,
-      disabledHours, disabledMinutes, disabledSeconds, hideDisabled,
-      minTime, maxTime,
-      ...props } = this.props;
+    const { className, style, ...resetProps } = this.props;
     const { text, ...states } = this.state;
+    const inputProps = {
+      disabled: resetProps.disabled,
+      size: resetProps.size,
+      autoFocus: resetProps.autoFocus,
+      preIcon: resetProps.preIcon,
+      defaultValue: resetProps.defaultValue,
+    };
     return (
       <span style={style} className={this.classNames(states.className, className, 'w-date-base')}>
         <Input
+          {...inputProps}
           type="text"
-          {...props}
           value={text}
+          placeholder={states.placeholder}
           onMouseDown={this.onMouseDown.bind(this)}
           onIconClick={this.onIconClick.bind(this)}
           onIconMouseOver={this.onIconMouseOver.bind(this)}
@@ -160,7 +150,11 @@ BasePicker.propTypes = {
   disabled: PropTypes.bool,
   hideDisabled: PropTypes.bool,
   readOnly: PropTypes.bool,
-  value: (props, propName, componentName) => isTimeValid(props, propName, componentName),
+  value: PropTypes.oneOfType([
+    // PropTypes.string,
+    PropTypes.instanceOf(Date),
+    PropTypes.arrayOf(PropTypes.instanceOf(Date)),
+  ]),
 };
 BasePicker.defaultProps = {
   placeholder: '选择时间',

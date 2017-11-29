@@ -1,4 +1,4 @@
-{
+const eslintrc = {
   "parser": "babel-eslint",
   "extends": "airbnb",
   "env": {
@@ -15,10 +15,7 @@
     "prefer-destructuring": 0,
     "max-len": 0,
     "consistent-return": 0,
-    "comma-dangle": [
-      "error",
-      "always-multiline"
-    ],
+    "comma-dangle": ["error", "always-multiline"],
     "function-paren-newline": 0,
     "class-methods-use-this": 0,
     "react/sort-comp": 0,
@@ -28,11 +25,7 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".md"
-        ]
+        "extensions": [".js", ".jsx", ".md"]
       }
     ],
     "import/extensions": 0,
@@ -68,3 +61,12 @@
     "no-unused-expressions": 0
   }
 }
+
+if (process.env.NODE_ENV === 'development') {
+  Object.assign(eslintrc.rules, {
+    'no-console': 0,
+    'no-unused-vars': 0,
+  });
+}
+
+module.exports = eslintrc
