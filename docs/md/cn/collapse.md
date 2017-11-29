@@ -143,6 +143,35 @@ class Demo extends Component {
 ```
 <!--End-->
 
+## 指定折叠图标
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  render() {
+    const Panel = Collapse.Panel
+    return (
+      <Collapse activeKey={['1']} onChange={key=>console.log(key)}>
+        <Panel icon="caret-down" header={<span>大话西游 <Icon type="smile-o"/></span>} key="1">
+          <div>曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。 </div>
+          <div>如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。 </div>
+          <div>如果非要在这份爱上加上一个期限，我希望是…… </div>
+          <div>一万年</div>
+        </Panel>
+        <Panel icon={<Icon type="down-circle" />} header={<span>西游·降魔篇 <Icon type="smile-o"/></span>} key="2">
+          <div>曾经痛苦，才知道真正的痛苦；曾经执著，才能放下执著；</div>
+          <div>曾经牵挂，才能了无牵挂。</div>
+        </Panel>
+        <Panel icon={<span>折叠-</span>} header="国产零零漆" key="3">
+          <div>古有关云长全神贯注下象棋刮骨疗毒，今有我零零漆聚精会神看A片挖骨取弹头。</div>
+        </Panel>
+      </Collapse>
+    )
+  }
+}
+```
+<!--End-->
+
 ## API
 
 ### Collapse
@@ -159,7 +188,8 @@ class Demo extends Component {
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
 | disabled | 禁用后的面板展开与否将无法通过用户交互改变 | Boolean | false |
-| header | 面板头内容 | string/ReactNode | - |
+| header | 面板头内容 | String/ReactNode | - |
+| icon | 指定图标 | String/ReactNode | - |
 | isActive | 是否展开 | Boolean | - |
 | showArrow | 是否显示展开图标 | Boolean | true |
 | key | 面板头内容，非必填 | 对应 activeKey | - |

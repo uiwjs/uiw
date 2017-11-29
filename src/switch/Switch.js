@@ -65,4 +65,5 @@ Switch.defaultProps = {
   prefixCls: 'w-switch',
   size: 'default',
   disabled: false,
+  checked: false,
 };

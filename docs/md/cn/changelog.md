@@ -5,15 +5,62 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.4.2
+
+`2017-11-28`
+
+Feature:
+
+- 🌟 feat(DatePicker/TimePicker): Component inherits porps of Input component.  [6509447](https://github.com/uiw-react/uiw/commit/65094479a0f254d7b297c6ce648afcede01c06ed)
+
+Bug fixed:
+
+- 🐞 fix(DatePicker): Change the default export of DatePikcer.  [1f5d803](https://github.com/uiw-react/uiw/commit/1f5d803c883407bc77e398efba811a82bdcbd451)
+- 🐞 fix(TimePicker): fix [#32](https://github.com/uiw-react/uiw/issues/32)  default value can not be null.  [86a60a3](https://github.com/uiw-react/uiw/commit/86a60a34e7f9f19dbc1174ca566afd0795e6aaca)
+- 🐞 fix(DatePicker): Fix Safari browser compatible bug.  [86653b2](https://github.com/uiw-react/uiw/commit/86653b24ffa98e957243a47efac61d82d939e4c2)
+
+Test
+
+- ⛑ test(Notification): format code.  [3630297](https://github.com/uiw-react/uiw/commit/363029775f403d738355bab7b8e5afabeead2634)
+- ⛑ test: update eslint-plugin-jsx-a11y.  [02c4f25](https://github.com/uiw-react/uiw/commit/02c4f25ec5f0b651d1e1b38687585aadf80b8da3)
+- ⛑ Add notification test ([#31](https://github.com/uiw-react/uiw/pull/31)) : [kooff88](https://github.com/kooff88) [7c9e70d](https://github.com/uiw-react/uiw/commit/7c9e70d46f657ee061af5a4113815b23204ac048)
+- ⛑ style(DatePicker): Add z-index.  [64de422](https://github.com/uiw-react/uiw/commit/64de422f90e3669b448f01c4e85b0db2d22068d8)
+
+## ~~1.4.1~~
+
+`bad`
+
+## 1.4.0
+
+`2017-11-27`
+
+Feature:
+
+- 🌟 feat(DatePicker): Add format props. [ea2a783](https://github.com/uiw-react/uiw/commit/ea2a7835ebb7052554e9fcf349928bde5941f0ab) 
+- 🌟 feat(DatePicker): Add showToday props. [b7bd3bd](https://github.com/uiw-react/uiw/commit/b7bd3bdc5a0b00aa6663248f154f78cc471c8b47)
+- 🌟 feat(DatePicker): Add new component. [76331c3](https://github.com/uiw-react/uiw/commit/76331c38d1f7406f8ae2c55ac61881869a7df079) 
+- 🌟 feat(Collapse):Designated icon. [6d97ad2](https://github.com/uiw-react/uiw/commit/6d97ad28a1500fc2d55be9de0def2fddc5eae1b7) 
+- 🌟 feat(TimePicker):Support show hours and minutes. [dfb5500](https://github.com/uiw-react/uiw/commit/dfb550083c5d5942f04f9ef118ec9a3348828208) 
+
+Test
+
+- ⛑ refactor: eslintrc devalopment model check. [ebc3d96](https://github.com/uiw-react/uiw/commit/ebc3d96ffff24a149ee611a59b2ab046c002721a) 
+- ⛑ style: Test code formatting. [a4c1153](https://github.com/uiw-react/uiw/commit/a4c1153654138805bf4b140e80bac1441adc2731) 
+
+Document Update:
+
+- 📝 doc: Update timestamp.md. [b7cdc3f](https://github.com/uiw-react/uiw/commit/b7cdc3fcfc8870cc69e9a50988c32177a7ba811c) 
+- 📝 doc(DatePicker):update example. [eefe078](https://github.com/uiw-react/uiw/commit/eefe078672345ac41134b94102bd594459b4a760) 
+
 ## 1.3.4
 
 `2017-11-24`
 
 - ⛑ Test(Table): Add Message/Modal/Table test case ([#29](https://github.com/uiw-react/uiw/pull/29)) : [kooff88](https://github.com/kooff88) [c59c9d6](https://github.com/uiw-react/uiw/commit/c59c9d6fe0ff1c36e411f7b7279b7799ce406a35)
-- 🐞 fix(Paging): fix activePage props is not update.  <a href="[b0d3483](https://github.com/uiw-react/uiw/commit/b0d3483b38cbea1a95a81e21875c5b11e18f26cd)
-- 📝 Update changelog.md  <a href="[a76d527](https://github.com/uiw-react/uiw/commit/a76d5276ff6bc58b2d8d92de085b54f10696eb59)
-- 👣 ignore `__snapshots__` test file.  <a href="[76d5a59](https://github.com/uiw-react/uiw/commit/76d5a5906f6b3e5b7271c2778a4782a80b1d003a)
-- 👣 update .npmignore file.  <a href="[89115c2](https://github.com/uiw-react/uiw/commit/89115c20555d7ec4d7ed3e22135a9d7e4d83220e)
+- 🐞 fix(Paging): fix activePage props is not update. [b0d3483](https://github.com/uiw-react/uiw/commit/b0d3483b38cbea1a95a81e21875c5b11e18f26cd)
+- 📝 Update changelog.md [a76d527](https://github.com/uiw-react/uiw/commit/a76d5276ff6bc58b2d8d92de085b54f10696eb59)
+- 👣 ignore `__snapshots__` test file. [76d5a59](https://github.com/uiw-react/uiw/commit/76d5a5906f6b3e5b7271c2778a4782a80b1d003a)
+- 👣 update .npmignore file. [89115c2](https://github.com/uiw-react/uiw/commit/89115c20555d7ec4d7ed3e22135a9d7e4d83220e)
 
 ## 1.3.3
 
@@ -140,13 +187,13 @@ Feature:
 
 - 🌟 Add .editorconfig file. [d82dabf](https://github.com/uiw-react/uiw/commit/d82dabfd804dd28aecec63fa21428c1e30b90186) 
 - 🌟 feat(Tree): Add new component Tree. [b10f140](https://github.com/uiw-react/uiw/commit/b10f140f0bf90a589c041d0cf0cdd3908907bdeb) 
-- 🌟 InputNumber add defaultValue (<a href="https://github.com/uiw-react/uiw/pull/11">#11</a>) : <a href="https://github.com/kooff88">@kooff88</a> [3de1740]
+- 🌟 InputNumber add defaultValue ([#11](https://github.com/uiw-react/uiw/pull/11)) : [@kooff88](https://github.com/kooff88) [3de1740]
 - 🌟 Update uiw-iconfont 1.2.3 [dc76f40](https://github.com/uiw-react/uiw/commit/dc76f409fb9a0a3c4615054c0a8288b2edfb48f0) 
 
 Bug fixed:
 
 - 🐞 Fix No staged files match *.css. [5712887](https://github.com/uiw-react/uiw/commit/57128871bd84b87ec5a85d422b5be8d740394df4) 
-- 🐞 Remove extraneous props <code>status</code> from doc and add test cases. : [@xing.he](https://github.com/Xing-He) [4dfeaae]
+- 🐞 Remove extraneous props `status` from doc and add test cases. : [@xing.he](https://github.com/Xing-He) [4dfeaae]
 - 🐞 fix(affix): Fix bug where body.scrollTop is 0. [699a175](https://github.com/uiw-react/uiw/commit/699a175742134393fe31d2b00b8e972ca5cdbf38) 
 
 Add Test Case:
@@ -154,18 +201,18 @@ Add Test Case:
 - ⛑ test: Add hook made. [2edf9a2](https://github.com/uiw-react/uiw/commit/2edf9a280ce3aaf6bf0786ad2cfea6b437032f43) 
 - ⛑ Expected single space before "{" [0d9e780](https://github.com/uiw-react/uiw/commit/0d9e780c5e00b51d8f31fd48ea0566b13e7d6442) 
 - ⛑ test: Add style lint. [e7fe79a](https://github.com/uiw-react/uiw/commit/e7fe79aeae82c4c017340fade19311494390252a) 
-- ⛑ Layout Col test (<a href="https://github.com/uiw-react/uiw/pull/17">#17</a>) : <a href="https://github.com/kooff88">@kooff88</a> [47a616f](https://github.com/uiw-react/uiw/commit/47a616f458e563c298bb5cf0d358b163b725bbe6) 
-- ⛑ Add test cases of module <code>Affix</code> and <code>Breadcrumb</code> (<a href="https://github.com/uiw-react/uiw/pull/18">#18</a>) : [@xing.he](https://github.com/Xing-He) [18e123b](https://github.com/uiw-react/uiw/commit/18e123beb489639ef17ff63edd857caeb27607a0) 
-- ⛑ Layout Row test (<a href="https://github.com/uiw-react/uiw/pull/15">#15</a>) : <a href="https://github.com/kooff88">@kooff88</a> [dd98efc](https://github.com/uiw-react/uiw/commit/dd98efc817c7dfa169e1ff3933bd9c5d348521c2) 
+- ⛑ Layout Col test ([#17](https://github.com/uiw-react/uiw/pull/17)) : [@kooff88](https://github.com/kooff88) [47a616f](https://github.com/uiw-react/uiw/commit/47a616f458e563c298bb5cf0d358b163b725bbe6) 
+- ⛑ Add test cases of module `Affix` and `Breadcrumb` ([#18](https://github.com/uiw-react/uiw/pull/18)) : [@xing.he](https://github.com/Xing-He) [18e123b](https://github.com/uiw-react/uiw/commit/18e123beb489639ef17ff63edd857caeb27607a0) 
+- ⛑ Layout Row test ([#15](https://github.com/uiw-react/uiw/pull/15)) : [@kooff88](https://github.com/kooff88) [dd98efc](https://github.com/uiw-react/uiw/commit/dd98efc817c7dfa169e1ff3933bd9c5d348521c2) 
 - ⛑ Adding default value of porps size on module Avatar and some test cases. : [@xing.he](https://github.com/Xing-He) [b24b5fe](https://github.com/uiw-react/uiw/commit/b24b5febf62747e80000b2163312597c927101de) 
-- ⛑ input test2 (<a href="https://github.com/uiw-react/uiw/pull/9">#9</a>) : <a href="https://github.com/kooff88">@kooff88</a> [3eb889b](https://github.com/uiw-react/uiw/commit/3eb889ba9b05c45a3dd3979cf19da0cee3abd91a) 
-- ⛑ input test  (<a href="https://github.com/uiw-react/uiw/pull/8">#8</a>) : <a href="https://github.com/kooff88">@kooff88</a> [12e9c8d](https://github.com/uiw-react/uiw/commit/12e9c8df2359cf6dc2c1dd035e54cb9fdd0e9c5c) 
+- ⛑ input test2 ([#9<](https://github.com/uiw-react/uiw/pull/9)) : [@kooff88](https://github.com/kooff88) [3eb889b](https://github.com/uiw-react/uiw/commit/3eb889ba9b05c45a3dd3979cf19da0cee3abd91a) 
+- ⛑ input test  ([#8<](https://github.com/uiw-react/uiw/pull/8)) : [@kooff88](https://github.com/kooff88) [12e9c8d](https://github.com/uiw-react/uiw/commit/12e9c8df2359cf6dc2c1dd035e54cb9fdd0e9c5c) 
 
 Document Update:
 
 - 📝 docs: Add Tree component document. [c459fe7](https://github.com/uiw-react/uiw/commit/c459fe748d61c172f74f397c416e6d83b22a8d5d) 
-- 📝 Layout md text description wrong (<a href="https://github.com/uiw-react/uiw/pull/13">#13</a>) : <a href="https://github.com/kooff88">@kooff88</a> [a8aabc4](https://github.com/uiw-react/uiw/commit/a8aabc4d4b7241202526c8e0c7820fb8a2943510) 
-- 📝 feat: Extract public method scrollTop. [6468a2f](https://github.com/uiw-react/uiw/commit/6468a2f9877d38d378c7c694e8e95c6e8537d7de) (https://github.com/uiw-react/uiw/commit/4dfeaae0d32c7718f07f65dfe9d22d3814095a4a) (https://github.com/uiw-react/uiw/commit/3de17409b4ae6ad59d568ba456db1d63240e77c8) 
+- 📝 Layout md text description wrong ([#13](https://github.com/uiw-react/uiw/pull/13)) : [@kooff88](https://github.com/kooff88) [a8aabc4](https://github.com/uiw-react/uiw/commit/a8aabc4d4b7241202526c8e0c7820fb8a2943510) 
+- 📝 feat: Extract public method scrollTop. [6468a2f](https://github.com/uiw-react/uiw/commit/6468a2f9877d38d378c7c694e8e95c6e8537d7de) (https://github.com/uiw-react/uiw/commit/4dfeaae0d32c7718f07f65dfe9d22d3814095a4a)
 - 📝 docs: update changelog date [d2bf56a](https://github.com/uiw-react/uiw/commit/d2bf56a3651139ae218f0f7b2588a67522392d2a) 
 - 📝 Change the way of writing example. [4815a87](https://github.com/uiw-react/uiw/commit/4815a8739e33c519804791f483e52d56dfae9a0e) 
 
