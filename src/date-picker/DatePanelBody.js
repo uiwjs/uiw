@@ -2,6 +2,7 @@ import React from 'react';
 import { Component, PropTypes, formatDate, isDate } from '../utils/';
 import { fillUpDays } from './utils';
 import DatePanelHead from './DatePanelHead';
+import DatePanelMode from './DatePanelMode';
 
 export default class DatePanelBody extends Component {
   constructor(props) {
@@ -10,6 +11,8 @@ export default class DatePanelBody extends Component {
       value: isDate(props.value) ? new Date(props.value) : props.value,
       labelToday: '今天',
       selectDate: isDate(props.value) ? props.value : null,
+      selectYear: false,
+      selectMonth: false,
     };
   }
   componentWillReceiveProps(nextProps) {
@@ -34,33 +37,64 @@ export default class DatePanelBody extends Component {
     const { labelToday } = this.state;
     if (!showToday) return null;
     return (
-      <a className={`${prefixCls}-today-btn`}
-        onClick={() => {
-          onPicked(formatDate(new Date(), format));
-        }}
-      >
+      <a className={`${prefixCls}-today-btn`} onClick={() => { onPicked(formatDate(new Date(), format)); }}>
         {showToday && showToday === true ? labelToday : showToday}
       </a>
     );
   }
+  onPickerYear(year, isShow) {
+    this.setState({
+      selectYear: isShow,
+      selectMonth: !isShow,
+    });
+  }
+  onPickerMonth(month, isShow) {
+    this.setState({
+      selectYear: !isShow,
+      selectMonth: isShow,
+    });
+  }
+  renderPanelBody() {
+
+  }
   render() {
     const { prefixCls, weekLabel, format } = this.props;
-    const { value, labelToday, selectDate } = this.state;
+    const { value, labelToday, selectDate, selectYear, selectMonth } = this.state;
     const datePanel = isDate(value) ? new Date(value) : new Date();
     const headerProps = {
-      prefixCls, value: datePanel,
+      prefixCls, value: datePanel, selectYear, selectMonth,
+
     };
+
+    const DatePanelHeadLabel = (
+      <DatePanelHead {...headerProps}
+        onClickPageBtn={this.onClickPageBtn.bind(this)}
+        onPickerYear={this.onPickerYear.bind(this)}
+        onPickerMonth={this.onPickerMonth.bind(this)}
+      />
+    );
+
+    const LabelFooter = (
+      <div className={`${prefixCls}-footer`}>
+        {this.renderTodayLabel()}
+      </div>
+    );
+
+    if (selectYear || selectMonth) {
+      return (
+        <div className={`${prefixCls}`}>
+          {DatePanelHeadLabel}
+          <DatePanelMode onClickPageBtn={this.onClickPageBtn.bind(this)} {...headerProps} />
+        </div>
+      );
+    }
     return (
       <div className={`${prefixCls}`}>
-        <DatePanelHead {...headerProps} onClickPageBtn={this.onClickPageBtn.bind(this)} />
+        {DatePanelHeadLabel}
         <div className={`${prefixCls}-week`}>
           {weekLabel.map((label, idx) => {
             return (
-              <span key={idx}
-                className={this.classNames({
-                  end: idx === 0 || idx === 6,
-                })}
-              >
+              <span key={idx} className={this.classNames({ end: idx === 0 || idx === 6 })} >
                 {label}
               </span>
             );
@@ -84,9 +118,7 @@ export default class DatePanelBody extends Component {
             );
           })}
         </div>
-        <div className={`${prefixCls}-footer`}>
-          {this.renderTodayLabel()}
-        </div>
+        {LabelFooter}
       </div>
     );
   }

@@ -30,12 +30,8 @@ export const fillUpDays = (dateObject, format, selectDate) => {
 
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
-  const currentMonth = currentDate.getMonth() + 1;
+  // const currentMonth = currentDate.getMonth() + 1;
   const currentDay = currentDate.getDate();
-  let isTodayMonth = false;
-  if (year === currentYear && month === currentMonth) {
-    isTodayMonth = true;
-  }
   // 1-42数组
   let i = 1;
   const arr = [];
@@ -68,7 +64,7 @@ export const fillUpDays = (dateObject, format, selectDate) => {
       json.week = date.getDay();
     }
     // 判断是否为今天
-    if (json.day === currentDay && isTodayMonth) {
+    if (json.day === currentDay && json.month === month && year === currentYear) {
       json.today = true;
     }
     // if(isDate(selectDate))
