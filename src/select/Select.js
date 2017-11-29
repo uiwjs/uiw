@@ -148,7 +148,7 @@ export default class Select extends Component {
   onSelectedChange(option) {
     const { onChange } = this.props;
     const { value } = this.state;
-    onChange && onChange(option, option.props.value, value);
+    onChange && onChange(option, value, option.props.value);
   }
   // 点击选中事件, 选中设置Select值
   onOptionClick(option) {
