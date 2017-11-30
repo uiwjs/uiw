@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, render } from 'enzyme';
 import Card from '../';
 
 describe('<Card>', () => {
@@ -39,8 +39,14 @@ describe('<Card>', () => {
     expect(C.getDOMNode().className.split(' ')).toContain('w-card-no-hover');
   });
 
-  // TODO
-  // it('Test `Card` with props `bodyStyle`', () => {
-  //   C.setProps({ bodyStyle: { border: '2px solid #ddd' } });
-  // });
+  it('Test `Card` with props `bodyStyle`', () => {
+    const _C_ = render(
+      <Card title="Card标题" extra={<a href="#">更多</a>} bodyStyle={{ border: '2px solid #ddd', color: 'red' }} style={{ width: 300, height: 200 }} >
+        卡片内容<br />
+        卡片内容<br />
+        卡片内容<br />
+      </Card>
+    );
+    expect(_C_.find('.w-card-body')[0].attribs.style).toEqual(expect.stringContaining('border:2px solid #ddd'));
+  });
 });
