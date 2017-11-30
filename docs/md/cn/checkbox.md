@@ -287,4 +287,4 @@ class Demo extends Component {
 | options | 指定可选 | string[] | [] |
 | checkedValues | 默认选中的选 | string[] | [] |
 | onChange | 变化时回调函数 | Function(e:Event,checkedValues:Array, value:String, checked:Boolean) | - |
-| disabled | 禁用所有，[options]中设置，disabled=false 取消禁用 | Jay | false |
+| disabled | 禁用所有，[options]中设置，disabled=false 取消禁用 | Boolean | false |
