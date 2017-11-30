@@ -10,7 +10,7 @@ export default class DatePanelBody extends Component {
     this.state = {
       value: isDate(props.value) ? new Date(props.value) : props.value,
       labelToday: '今天',
-      selectDate: isDate(props.value) ? props.value : null,
+      selectDate: isDate(props.value) ? new Date(props.value) : null,
       selectYear: false,
       selectMonth: false,
     };
@@ -54,16 +54,25 @@ export default class DatePanelBody extends Component {
       selectMonth: isShow,
     });
   }
-  renderPanelBody() {
-
+  onClicPanelkMode(date) {
+    const { selectDate } = this.state;
+    const { onPicked } = this.props;
+    this.setState({
+      selectYear: false,
+      selectMonth: false,
+      value: date,
+    }, () => {
+      if (selectDate) {
+        onPicked(date);
+      }
+    });
   }
   render() {
-    const { prefixCls, weekLabel, format } = this.props;
+    const { prefixCls, weekLabel, format, onPicked } = this.props;
     const { value, labelToday, selectDate, selectYear, selectMonth } = this.state;
     const datePanel = isDate(value) ? new Date(value) : new Date();
     const headerProps = {
-      prefixCls, value: datePanel, selectYear, selectMonth,
-
+      prefixCls, value: datePanel, defaultValue: this.props.value, selectYear, selectMonth, selectDate, onPicked,
     };
 
     const DatePanelHeadLabel = (
@@ -81,10 +90,13 @@ export default class DatePanelBody extends Component {
     );
 
     if (selectYear || selectMonth) {
+      headerProps.onClicPanelkMode = this.onClicPanelkMode.bind(this);
       return (
         <div className={`${prefixCls}`}>
           {DatePanelHeadLabel}
-          <DatePanelMode onClickPageBtn={this.onClickPageBtn.bind(this)} {...headerProps} />
+          <DatePanelMode onClickPageBtn={this.onClickPageBtn.bind(this)}
+            { ...headerProps }
+          />
         </div>
       );
     }

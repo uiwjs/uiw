@@ -9,25 +9,31 @@ export default class DatePanelMonth extends Component {
 
     };
   }
-  onClickMonth(item) {
-    console.log('item::', item);
+  onClickMonth(month) {
+    const { value, onClicPanelkMode } = this.props;
+    const time = value.setMonth(month);
+    // console.log('item::', value.setMonth(month), month, onPicked);
+    // onPicked(value.setMonth(month).getTime());
+    // console.log('time', time);
+    // onPicked(new Date(time));
+    if (onClicPanelkMode) onClicPanelkMode(new Date(time));
   }
   render() {
-    const { prefixCls, selectYear, selectMonth } = this.props;
-    // if (selectYear) {
-    //   return (
-    //     <div className={`${prefixCls}-select-month`}>
-    //       test year
-    //     </div>
-    //   );
-    // }
-    // console.log('solarMonthDays:', solarMonthDays);
-    // value, selectYear, selectMonth
-    console.log('selectYear,::', selectYear, selectMonth);
+    const { prefixCls, selectMonth, defaultValue, value } = this.props;
+    console.log('value', value, '==>', defaultValue);
     return (
       <div className={`${prefixCls}-mode-select-year`}>
         {selectMonth && solarMonthDays().map((item, idx) => {
-          return (<div key={idx} onClick={this.onClickMonth.bind(this, item)}>{idx + 1}月</div>);
+          return (
+            <div key={idx}
+              className={this.classNames({
+                select: idx === value.getMonth(),
+              })}
+              onClick={this.onClickMonth.bind(this, idx, item)}
+            >
+              <span>{idx + 1}月</span>
+            </div>
+          );
         })}
       </div>
     );

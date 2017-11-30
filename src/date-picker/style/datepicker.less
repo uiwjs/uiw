@@ -134,12 +134,26 @@
   &-mode-select-year {
     background: #f5f5f5;
     border-radius: 0 0 5px 5px;
+    padding: 20px 0;
     div {
       display: inline-block;
-      padding: 15px 10px;
+      padding: 10px 16px;
       width: 33.33%;
       line-height: 21px;
       text-align: center;
+      span {
+        display: block;
+        height: 100%;
+        width: 100%;
+        border-radius: 3px;
+        cursor: pointer;
+        &:hover {
+          background-color: #dcdcdc;
+        }
+      }
+    }
+    div.select span {
+      background-color: #d0d0d0;
     }
   }
 }
