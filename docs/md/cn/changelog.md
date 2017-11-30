@@ -5,6 +5,35 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.4.3
+
+`2017-12-01`
+
+Feature:
+
+- 🌟 feat(DatePicker): Add flip pages time linkage. [ddc6be6](https://github.com/uiw-react/uiw/commit/ddc6be6eb1ed6f70e9fbbc06f4870cdcd052b77a)
+- 🌟 feat(DatePikcer): Add year selecter panel range. - [f18914a](https://github.com/uiw-react/uiw/commit/f18914a22cc0d1fa2ff5d62966e0cbdbb7ee8347)
+- 🌟 feat(DatePicker): Add year selecter panel. - [157ecac](https://github.com/uiw-react/uiw/commit/157ecac9930335c4c7b03a1c53a52d248ec904ee)
+- 🌟 feat(DatePicker): Add month seleter panel. - [2904a56](https://github.com/uiw-react/uiw/commit/2904a569efb8b8c56b50720cd79d345c9995573b)
+
+Bug fixed:
+
+- 🐞 fix(Tag.Group): Fix the wrong return value.  - [d50bf78](https://github.com/uiw-react/uiw/commit/d50bf785de80424319c082c504413b0baced1d53)
+- 🐞 Cancel validation when changed props : [@Xing-He](https://github.com/xing-he) - [12fa90f](https://github.com/uiw-react/uiw/commit/12fa90f60e5572e09aa6bde07cf60af67902b3a8)
+- 🐞 Fix the Select multiple return parameters : [@Xing-He](https://github.com/xing-he) - [1474dc6](https://github.com/uiw-react/uiw/commit/1474dc6da71be5230de379c72b97b30cd3d8d551)
+- 🐞 fix(DataPicker): fixed [#34](https://github.com/uiw-react/uiw/issues/34) showToday error.  - [a8d4962](https://github.com/uiw-react/uiw/commit/a8d49625c21d4bc161feda43fe6f29c18c826364)
+- 🐞 Modify typo error of Checkbox : [@Xing-He](https://github.com/xing-he) - [9e53725](https://github.com/uiw-react/uiw/commit/9e5372524b0dac3a49faeab7a84cd61fa0ea2957)
+
+Test Case: 
+
+- ⛑ Add test case of Card with props `bodyStyle` : [@Xing-He](https://github.com/xing-he) - [6ef557d](https://github.com/uiw-react/uiw/commit/6ef557d354db32169b789227f620c397e0763967)
+- ⛑ Test(Card):Add card test [#35](https://github.com/uiw-react/uiw/pull/35) [@kooff88](href="https://github.com/kooff88)- [47ff4e8](https://github.com/uiw-react/uiw/commit/47ff4e8286e8d7000b840a60e2b6a90ae72dd938)
+- ⛑ Test(Paging):Add paging test [#33](https://github.com/uiw-react/uiw/pull/33) [@kooff88](https://github.com/kooff88) - [3db9c79](https://github.com/uiw-react/uiw/commit/3db9c790b71ccb00afdc36acb7a4f67491ff62bc)
+
+Document Update:
+
+- 📝 doc: Correcting doc description errors : [@Xing-He](https://github.com/xing-he) - [7700ade](https://github.com/uiw-react/uiw/commit/7700ade0d2c1359fa7b934de01f65b7e372d40ef)
+
 ## 1.4.2
 
 `2017-11-28`
@@ -23,7 +52,7 @@ Test
 
 - ⛑ test(Notification): format code.  [3630297](https://github.com/uiw-react/uiw/commit/363029775f403d738355bab7b8e5afabeead2634)
 - ⛑ test: update eslint-plugin-jsx-a11y.  [02c4f25](https://github.com/uiw-react/uiw/commit/02c4f25ec5f0b651d1e1b38687585aadf80b8da3)
-- ⛑ Add notification test ([#31](https://github.com/uiw-react/uiw/pull/31)) : [kooff88](https://github.com/kooff88) [7c9e70d](https://github.com/uiw-react/uiw/commit/7c9e70d46f657ee061af5a4113815b23204ac048)
+- ⛑ Add notification test [#31](https://github.com/uiw-react/uiw/pull/31) : [kooff88](https://github.com/kooff88) [7c9e70d](https://github.com/uiw-react/uiw/commit/7c9e70d46f657ee061af5a4113815b23204ac048)
 - ⛑ style(DatePicker): Add z-index.  [64de422](https://github.com/uiw-react/uiw/commit/64de422f90e3669b448f01c4e85b0db2d22068d8)
 
 ## ~~1.4.1~~
