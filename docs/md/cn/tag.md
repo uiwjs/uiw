@@ -129,7 +129,7 @@ class Demo extends Component {
             checkedValues={this.state.plainValues}
             onChange={(e,value2)=>{
               this.setState({plainValues:value2})
-              console.log("value::",e,value2)
+              console.log("value::",value2)
             }}
           />
         </Col>

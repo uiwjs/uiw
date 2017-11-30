@@ -40,11 +40,9 @@ export default class Tag extends Component {
       case 'info': colors = 'blue'; break;
       default: colors = color; break;
     }
-    const cls = this.classNames(prefixCls, {
-      [`${prefixCls}-${colors}`]: this.isPresetColor(colors),
+    const cls = this.classNames(prefixCls, className, checked, {
+      [`${prefixCls}-${colors}`]: this.isPresetColor(colors) && color,
       checkable: checked === false,
-      checked,
-      className,
     });
 
     // 自定义颜色值
@@ -56,7 +54,14 @@ export default class Tag extends Component {
     return visible ? (
       <span {...others} style={styles} className={cls}>
         {children}
-        {(onClose && checked !== true && checked !== false) && <Icon type="close" onClick={this.close} />}
+        {(onClose && checked !== true && checked !== false) &&
+          <Icon type="close"
+            className={this.classNames({
+              [`${prefixCls}-icon-close`]: onClose,
+            })}
+            onClick={this.close}
+          />
+        }
       </span>
     ) : null;
   }
