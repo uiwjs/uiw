@@ -2,7 +2,6 @@ import React from 'react';
 import { Component } from '../utils/';
 import { solarMonthDays } from './utils';
 
-
 const rangesYear = (year) => {
   year = parseInt(year, 10) || 0;
   const arr = [];
@@ -33,6 +32,7 @@ export default class DatePanelMonth extends Component {
   }
   render() {
     const { prefixCls, selectMonth, selectYear, value } = this.props;
+    const rangesYearArr = rangesYear(value.getFullYear());
     return (
       <div className={this.classNames(`${prefixCls}-mode-select`, {
         [`${prefixCls}-mode-select-year`]: selectYear,
@@ -50,11 +50,12 @@ export default class DatePanelMonth extends Component {
             </div>
           );
         })}
-        {selectYear && rangesYear(value.getFullYear()).map((item, idx) => {
+        {selectYear && <div className={`${prefixCls}-panel-range`}>{rangesYearArr[0]} ~ {rangesYearArr[rangesYearArr.length - 1]}</div>}
+        {selectYear && rangesYearArr.map((item, idx) => {
           return (
             <div key={idx}
               className={this.classNames({
-                select: idx === value.getMonth(),
+                select: item === value.getFullYear(),
               })}
               onClick={this.onClickMonth.bind(this, item, idx)}
             >
