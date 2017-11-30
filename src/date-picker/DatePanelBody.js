@@ -28,8 +28,14 @@ export default class DatePanelBody extends Component {
     onPicked(item.date);
   }
   onClickPageBtn(date) {
-    this.setState({
-      value: date,
+    const { selectDate } = this.state;
+    const { onPicked } = this.props;
+    const data = { value: date };
+    if (selectDate) {
+      data.selectDate = date;
+    }
+    this.setState({ ...data }, () => {
+      if (selectDate) onPicked(date);
     });
   }
   renderTodayLabel = () => {
