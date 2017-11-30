@@ -1,27 +1,46 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Card, Icon } from '../../../src';
+import Card from '../';
 
 describe('<Card>', () => {
-  const footer = (
-    <a href="https://uiw-react.github.io">
-      <Icon type="user" />&nbsp;
-      16 Friends
-    </a>
+  const C = mount(
+    <Card title="Card标题" extra={<a href="#">更多</a>} style={{ width: 300, height: 200 }} >
+      卡片内容<br />
+      卡片内容<br />
+      卡片内容<br />
+    </Card>
   );
-  const wrapper = mount(<Card
-    title="我是标题"
-    footer={footer}
-  />);
-  it('Test the default props and node.', () => {
-    expect(wrapper.name()).toBe('Card');
-    // 默认值测试
-    expect(wrapper.find('.w-card')).toHaveLength(1);
-    expect(wrapper.find('.w-card-head-title')).toHaveLength(1);
-    expect(wrapper.find('.w-card-footer')).toHaveLength(1);
-    expect(wrapper.type()).toEqual(Card);
-    expect(wrapper.at(0).prop('prefixCls')).toBe('w-card');
-    expect(wrapper.at(0).prop('bordered')).toBe(true);
-    expect(wrapper.at(0).prop('noHover')).toBe(false);
+
+  it('The name of module must be "Card"', () => {
+    expect(C.name()).toBe('Card');
   });
+
+  it('Test `Card` without bordered', () => {
+    C.setProps({ bordered: false });
+    expect(C.find('.w-card').getDOMNode().className.split(' ').includes('w-card-bordered')).toBe(false);
+  });
+
+  it('Test `Card` with props `title`', () => {
+    C.setProps({ title: 'Title for Card' });
+    expect(C.find('.w-card-head-title').text()).toEqual('Title for Card');
+  });
+
+  it('Test `Card` with extra element', () => {
+    C.setProps({ extra: (<a href="#">更多</a>) });
+    expect(C.find('.w-card-extra').children().at(0).html()).toEqual('<a href="#">更多</a>');
+  });
+
+  it('Test `Card` with children', () => {
+    expect(C.find('.w-card-body').html()).toEqual('<div class="w-card-body">卡片内容<br>卡片内容<br>卡片内容<br></div>');
+  });
+
+  it('Test `Card` with props `noHover`', () => {
+    C.setProps({ noHover: true });
+    expect(C.getDOMNode().className.split(' ')).toContain('w-card-no-hover');
+  });
+
+  // TODO
+  // it('Test `Card` with props `bodyStyle`', () => {
+  //   C.setProps({ bodyStyle: { border: '2px solid #ddd' } });
+  // });
 });

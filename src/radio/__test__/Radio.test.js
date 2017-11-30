@@ -6,12 +6,13 @@ describe('<Radio>', () => {
   const warpperState = {
     value: 0,
   };
-  const wrapper = mount(<Radio
-    onChange={(e, value) => {
-      warpperState.value = value;
-    }}
-  >label
-                        </Radio>);
+  const wrapper = mount(
+    <Radio
+      onChange={(e, value) => {
+        warpperState.value = value;
+      }}
+    >label
+    </Radio>);
   it('Test the default props and node.', () => {
     expect(wrapper.name()).toBe('Radio');
     expect(wrapper.type()).toEqual(Radio);

@@ -2,6 +2,17 @@ import React from 'react';
 import { Component } from '../utils/';
 import { solarMonthDays } from './utils';
 
+
+const rangesYear = (year) => {
+  year = parseInt(year, 10) || 0;
+  const arr = [];
+  const panelNum = 12;
+  for (let i = 0; i < panelNum; i += 1) {
+    arr.push(year - ((panelNum / 2) - i));
+  }
+  return arr;
+};
+
 export default class DatePanelMonth extends Component {
   constructor(props) {
     super(props);
@@ -9,25 +20,47 @@ export default class DatePanelMonth extends Component {
 
     };
   }
-  onClickMonth(item) {
-    console.log('item::', item);
+  onClickMonth(num) {
+    const { value, selectYear, selectMonth, onClicPanelkMode } = this.props;
+    const time = value;
+    if (selectMonth) {
+      time.setMonth(num);
+    }
+    if (selectYear) {
+      time.setFullYear(num);
+    }
+    if (onClicPanelkMode) onClicPanelkMode(new Date(time));
   }
   render() {
-    const { prefixCls, selectYear, selectMonth } = this.props;
-    // if (selectYear) {
-    //   return (
-    //     <div className={`${prefixCls}-select-month`}>
-    //       test year
-    //     </div>
-    //   );
-    // }
-    // console.log('solarMonthDays:', solarMonthDays);
-    // value, selectYear, selectMonth
-    console.log('selectYear,::', selectYear, selectMonth);
+    const { prefixCls, selectMonth, selectYear, value } = this.props;
     return (
-      <div className={`${prefixCls}-mode-select-year`}>
+      <div className={this.classNames(`${prefixCls}-mode-select`, {
+        [`${prefixCls}-mode-select-year`]: selectYear,
+      })}
+      >
         {selectMonth && solarMonthDays().map((item, idx) => {
-          return (<div key={idx} onClick={this.onClickMonth.bind(this, item)}>{idx + 1}月</div>);
+          return (
+            <div key={idx}
+              className={this.classNames({
+                select: idx === value.getMonth(),
+              })}
+              onClick={this.onClickMonth.bind(this, idx, item)}
+            >
+              <span>{idx + 1}月</span>
+            </div>
+          );
+        })}
+        {selectYear && rangesYear(value.getFullYear()).map((item, idx) => {
+          return (
+            <div key={idx}
+              className={this.classNames({
+                select: idx === value.getMonth(),
+              })}
+              onClick={this.onClickMonth.bind(this, item, idx)}
+            >
+              <span>{item}年</span>
+            </div>
+          );
         })}
       </div>
     );
