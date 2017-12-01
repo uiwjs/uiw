@@ -4,10 +4,12 @@ import Icon from '../icon';
 
 export default class DatePanelHead extends Component {
   onClick(type) {
-    const { value, onClickPageBtn } = this.props;
+    const { value, onClickPageBtn, selectYear } = this.props;
     let year = value.getFullYear();
     let month = value.getMonth() + 1;
     const day = value.getDate();
+    // 年份翻页
+    if (selectYear) year -= 4;
     switch (type) {
       case 'prevYear': year -= 1; break;
       case 'prevMonth':
@@ -33,7 +35,6 @@ export default class DatePanelHead extends Component {
   }
   onPickerYear(year) {
     const { onPickerYear } = this.props;
-    console.log('year:', year);
     if (onPickerYear) {
       onPickerYear(year, true);
     }

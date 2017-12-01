@@ -41,9 +41,10 @@ export default class FormItem extends Component {
     }
   }
   componentWillReceiveProps() {
-    if (this.fieldValue()) {
-      this.validate('blur');
-    }
+    // TODO Cancel validation when changed props
+    // if (this.fieldValue()) {
+    //   this.validate('blur');
+    // }
   }
   getInitialValue() {
     const model = this.parent().props.model;

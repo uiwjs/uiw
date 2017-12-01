@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
 
-export default class Chackbox extends Component {
+export default class Checkbox extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,13 +48,13 @@ export default class Chackbox extends Component {
   }
 }
 
-Chackbox.defaultProps = {
-  prefixCls: 'w-chackbox',
+Checkbox.defaultProps = {
+  prefixCls: 'w-checkbox',
   checked: false,
   indeterminate: false,
   onChange() { },
 };
-Chackbox.propTypes = {
+Checkbox.propTypes = {
   prefixCls: PropTypes.string,
   indeterminate: PropTypes.bool,
   disabled: PropTypes.bool,
