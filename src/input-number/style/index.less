@@ -1,7 +1,9 @@
 @import "../../style/variables.less";
 @import "../../style/mixins/index.less";
 
-.w-input-number {
+@w-input-number:~'w-input-number';
+
+.@{w-input-number} {
   display: inline-block;
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
@@ -17,18 +19,17 @@
       color: #333;
     }
   }
-}
-.w-input-number-control {
-  font-size: 12px;
-  position: absolute;
-  bottom: 0;
-  top: 1px;
-  right: 1px;
-  left: 0;
-  opacity: 0;
-  transition: all @transition-time @transition-timing-functio;
-  .w-input-number-minus,
-  .w-input-number-push {
+  &-control {
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+    top: 1px;
+    right: 1px;
+    left: 0;
+    opacity: 0;
+    transition: all @transition-time @transition-timing-functio;
+  }
+  &-minus, &-push {
     overflow: hidden;
     height: 50%;
     padding: 0 5px;
@@ -44,7 +45,7 @@
       box-shadow: inset 0 8px 32px -8px rgba(0, 0, 0, 0.1);
     }
   }
-  .w-input-number-push {
+  &-push {
     box-shadow: 0 -1px 0 0 #e8e8e8 inset;
     margin-bottom: -1px;
     z-index: 1;
@@ -55,11 +56,14 @@
       transform: scale(.58333333) rotate(0deg);
     }
   }
-  .w-input-number-minus {
+  &-minus {
     border-radius: 0 0 3px;
     i {
       transform: scale(0.58333333) translateY(-4px);
     }
+  }
+  .w-disabled &-control {
+    display: none;
   }
 }
 
