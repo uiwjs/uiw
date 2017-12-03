@@ -40,10 +40,7 @@ export default class Tree extends Component {
     }
     return arr;
   }
-  isChildrenSelectAll() {
-
-  }
-  setCheckedKeys = (item, checked, parentData) => {
+  setCheckedKey = (item, checked, parentData) => {
     const { checkedKeys } = this.state;
     const { onCheck } = this.props;
     let childKeys = this.getChildrenKeys(item.children || []);
