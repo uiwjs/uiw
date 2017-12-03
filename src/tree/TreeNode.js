@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
 import Icon from '../icon';
+import Checkbox from '../checkbox';
 
 export default class TreeNode extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ export default class TreeNode extends Component {
     setSelecteKeys(selectedKeys.filter((key) => {
       return key === item.key;
     }).length > 0 ? [] : [item.key], () => {
-      onSelect(item.key, item, e);
+      onSelect([item.key], item, e);
     });
   }
   // 获取关闭节点的数据
@@ -51,10 +52,15 @@ export default class TreeNode extends Component {
   parent() {
     return this.context.component;
   }
+  onChangeChecked(item, e, checked) {
+    const { parentData } = this.props;
+    this.parent().setCheckedKeys(item, checked, parentData);
+  }
   render() {
-    const { prefixCls, data, showTree, showLine, level, option } = this.props;
+    const { prefixCls, data, showTree, showLine, checkedKeys, checkable, level, option } = this.props;
     const { closedItem } = this.state;
     const { selectedKeys } = this.parent().state;
+    const { getChildrenKeys } = this.parent();
     const ulCls = level > 1 ? `${prefixCls}-${showTree ? 'open' : 'close'}` : null;
     return (
       <ul className={this.classNames(`${prefixCls}-item`, ulCls, {
@@ -78,6 +84,21 @@ export default class TreeNode extends Component {
             if (showLine && !isChild) {
               iconname = 'file-text';
             }
+            const checkProps = {};
+            if (checkedKeys.indexOf(item.key) > -1) {
+              checkProps.checked = true;
+            }
+            const childKeys = getChildrenKeys(childs);
+            const childFilterKeys = childKeys.filter((key) => {
+              return checkedKeys.indexOf(key) > -1;
+            });
+            if (childFilterKeys.length > 0 && childFilterKeys.length === childKeys.length) {
+              checkProps.checked = true;
+            }
+            if (childFilterKeys.length > 0 && childFilterKeys.length < childKeys.length) {
+              checkProps.indeterminate = true;
+              checkProps.checked = false;
+            }
             return (
               <li key={idx.toString()}>
                 <div className={`${prefixCls}-title`}>
@@ -89,6 +110,7 @@ export default class TreeNode extends Component {
                     })}
                     type={iconname}
                   />
+                  {checkable && <Checkbox onChange={this.onChangeChecked.bind(this, item)} {...checkProps} className={`${prefixCls}-checkbox`} />}
                   <span
                     onClick={this.onSelect.bind(this, item)}
                     className={this.classNames(`${prefixCls}-inner`, {
@@ -98,7 +120,7 @@ export default class TreeNode extends Component {
                     {item[option.label]}
                   </span>
                 </div>
-                {isChild && <TreeNode {...props} data={childs} />}
+                {isChild && <TreeNode {...props} data={childs} parentData={item} />}
               </li>
             );
           })
