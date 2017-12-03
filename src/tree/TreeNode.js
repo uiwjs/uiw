@@ -29,7 +29,8 @@ export default class TreeNode extends Component {
       onExpand(item.key, idx > -1, item, this);
     });
   }
-  onSelect(item, e) {
+  onSelect(item, disabled, e) {
+    if (disabled) return;
     const { onSelect } = this.props;
     const { selectedKeys } = this.parent().state;
     const { setSelecteKeys } = this.parent();
@@ -57,7 +58,7 @@ export default class TreeNode extends Component {
     this.parent().setCheckedKeys(item, checked, parentData);
   }
   render() {
-    const { prefixCls, data, showTree, showLine, checkedKeys, checkable, level, option } = this.props;
+    const { prefixCls, data, showTree, showLine, disabled, checkedKeys, checkable, level, option } = this.props;
     const { closedItem } = this.state;
     const { selectedKeys } = this.parent().state;
     const { getChildrenKeys } = this.parent();
@@ -92,16 +93,26 @@ export default class TreeNode extends Component {
             const childFilterKeys = childKeys.filter((key) => {
               return checkedKeys.indexOf(key) > -1;
             });
+            // 是否选中判断
             if (childFilterKeys.length > 0 && childFilterKeys.length === childKeys.length) {
               checkProps.checked = true;
             }
+            // 半需状态
             if (childFilterKeys.length > 0 && childFilterKeys.length < childKeys.length) {
               checkProps.indeterminate = true;
               checkProps.checked = false;
             }
+            // 节点是否禁用
+            if (Array.isArray(disabled) && disabled.indexOf(item.key) > -1) {
+              checkProps.disabled = true;
+            }
+
+            const labelClass = this.classNames(`${prefixCls}-item-label`, {
+              [`${prefixCls}-disabled`]: checkProps.disabled,
+            });
             return (
               <li key={idx.toString()}>
-                <div className={`${prefixCls}-title`}>
+                <div className={labelClass}>
                   <Icon
                     onClick={this.onShowTree.bind(this, item)}
                     className={this.classNames(`${prefixCls}-icon`, {
@@ -112,9 +123,9 @@ export default class TreeNode extends Component {
                   />
                   {checkable && <Checkbox onChange={this.onChangeChecked.bind(this, item)} {...checkProps} className={`${prefixCls}-checkbox`} />}
                   <span
-                    onClick={this.onSelect.bind(this, item)}
+                    onClick={this.onSelect.bind(this, item, checkProps.disabled)}
                     className={this.classNames(`${prefixCls}-inner`, {
-                      [`${prefixCls}-selected`]: selectedKeys.filter((key) => { return key === item.key; }).length > 0,
+                      [`${prefixCls}-selected`]: selectedKeys.filter(key => key === item.key).length > 0,
                     })}
                   >
                     {item[option.label]}

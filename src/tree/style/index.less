@@ -11,9 +11,16 @@
   ul ul {
     padding: 0 0 0 18px;
   }
-  &-title {
+  &-item-label {
     height: 100%;
     display: inline-block;
+  }
+  &-disabled {
+    color: #00000040;
+    cursor: not-allowed;
+  }
+  &-disabled &-inner {
+    cursor: not-allowed;
   }
   &-icon {
     cursor: pointer;
