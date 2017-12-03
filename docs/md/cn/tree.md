@@ -120,7 +120,7 @@ class Demo extends Component {
               children:[
                 {label:"青山区",key:"0-3-1"},
                 {label:"黄陂区",key:"0-3-2"},
-                {label:"青山区",key:"0-3-2"},
+                {label:"青山区",key:"0-3-3"},
               ]
             },
           ]
@@ -167,6 +167,71 @@ class Demo extends Component {
         data={this.state.data}
         checkable={true}
         checkedKeys={this.state.checkedKeys}
+        onSelect={(key,date,e)=>{
+          console.log(key,date,e)
+        }}
+        onCheck={(keys,date,e)=>{
+          console.log(keys,date,e)
+        }}
+        onExpand={(key,expanded,data,node)=>{
+          console.log("item:",key,expanded,data,node)
+        }}
+      />
+    )
+  }
+}
+```
+<!--End-->
+
+## 禁用节点
+
+通过设置`disabled={['0-3-2']}`来禁用对应的节点。
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [
+        {
+          label:"湖北省",
+          key:"0-0-0",
+          children:[
+            {
+              label:"武汉市",
+              key:"0-1-0",
+              children:[
+                {label:"新洲区",key:"0-1-1"},
+                {label:"武昌区",key:"0-1-2"},
+                {label:"汉南区",key:"0-1-3"},
+              ]
+            },
+            {label:"黄冈市",key:"0-2-0"},
+            {
+              label:"黄石市",
+              key:"0-3-0",
+              children:[
+                {label:"青山区",key:"0-3-1"},
+                {label:"黄陂区",key:"0-3-2"},
+                {label:"青山区",key:"0-3-3"},
+              ]
+            },
+          ]
+        },
+      ],
+      checkedKeys: ['0-3-2'],
+      disabled: ['0-3-2'],
+    }
+  }
+  render() {
+    return (
+      <Tree 
+        data={this.state.data}
+        checkable={true}
+        checkedKeys={this.state.checkedKeys}
+        disabled={this.state.disabled}
+        defaultExpandAll={true}
         onSelect={(key,date,e)=>{
           console.log(key,date,e)
         }}
@@ -448,7 +513,8 @@ class Demo extends Component {
 | defaultExpandAll | 是否默认展开所有节点 | Boolean | `false` |
 | showLine | 是否展示连接线 | Boolean | `false` |
 | checkable | 节点前添加 `Checkbox` 复选框 | Boolean | `false` |
-| onSelect | 点击树节点触发 | Function(key,data,e) | - |
+| disabled | 数组字符串，禁用响应对于 key 的节点  | String[] | `false` |
+| onSelect | 点击树节点触发 | Function(keys,data,e) | - |
 | onCheck | 点击复选框触发 | Function(keys,data,e) | - |
 | onExpand | 展开/收起节点时触发 | Function(key,expanded:bool,data,node) | - |
 
