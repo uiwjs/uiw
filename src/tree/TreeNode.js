@@ -55,7 +55,7 @@ export default class TreeNode extends Component {
   }
   onChangeChecked(item, e, checked) {
     const { parentData } = this.props;
-    this.parent().setCheckedKeys(item, checked, parentData);
+    this.parent().setCheckedKey(item, checked, parentData);
   }
   render() {
     const { prefixCls, data, showTree, showLine, disabled, checkedKeys, checkable, level, option } = this.props;
