@@ -183,7 +183,7 @@ class Demo extends Component {
 ```
 <!--End-->
 
-## 禁用节点
+## 禁用节点和操控节点
 
 通过设置`disabled={['0-3-2']}`来禁用对应的节点。
 
@@ -501,6 +501,97 @@ class Demo extends Component {
 ```
 <!--End-->
 
+## 设置组件
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [
+        {
+          label:"湖北省",
+          key:"0-0-0",
+          children:[
+            {
+              label:"武汉市",
+              key:"0-1-0",
+              children:[
+                {label:"新洲区",key:"0-1-1"},
+                {label:"武昌区",key:"0-1-2"},
+                {label:"汉南区",key:"0-1-3"},
+              ]
+            },
+            {label:"黄冈市",key:"0-2-0"},
+            {
+              label:"黄石市",
+              key:"0-3-0",
+              children:[
+                {label:"青山区",key:"0-3-1"},
+                {label:"黄陂区",key:"0-3-2"},
+                {label:"青山区",key:"0-3-3"},
+              ]
+            },
+          ]
+        },
+      ],
+      checkedKeys: ['0-3-2'],
+      disabled: ['0-3-2'],
+      selectedKeys: ['0-1-3'],
+    }
+  }
+  setCheckedKeys(){
+    this.setState({
+      checkedKeys:['0-1-1','0-1-3']
+    })
+  }
+  setSelecteKeys(){
+    this.setState({
+      selectedKeys:['0-1-1']
+    })
+  }
+  resetClean(){
+    
+    this.setState({
+      checkedKeys:[],
+      selectedKeys:[],
+    })
+  }
+  render() {
+    const ButtonGroup = Button.Group;
+    return (
+      <div>
+        <ButtonGroup>
+          <Button size="mini" onClick={()=>this.setCheckedKeys()}>指定节点勾选</Button>
+          <Button size="mini" onClick={()=>this.setSelecteKeys()}>指定节点选中</Button>
+          <Button size="mini" onClick={()=>this.resetClean()}>清空</Button>
+        </ButtonGroup>
+        <Tree 
+          ref={e=>this.tree = e}
+          data={this.state.data}
+          checkable={true}
+          checkedKeys={this.state.checkedKeys}
+          selectedKeys={this.state.selectedKeys}
+          disabled={this.state.disabled}
+          defaultExpandAll={true}
+          onSelect={(key,date,e)=>{
+            console.log(key,date,e)
+          }}
+          onCheck={(keys,date,e)=>{
+            console.log(keys,date,e)
+          }}
+          onExpand={(key,expanded,data,node)=>{
+            console.log("item:",key,expanded,data,node)
+          }}
+        />
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
 ## Tree
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -514,9 +605,6 @@ class Demo extends Component {
 | showLine | 是否展示连接线 | Boolean | `false` |
 | checkable | 节点前添加 `Checkbox` 复选框 | Boolean | `false` |
 | disabled | 数组字符串，禁用响应对于 key 的节点  | String[] | `false` |
-| onSelect | 点击树节点触发 | Function(keys,data,e) | - |
-| onCheck | 点击复选框触发 | Function(keys,data,e) | - |
-| onExpand | 展开/收起节点时触发 | Function(key,expanded:bool,data,node) | - |
 
 ## data
 
@@ -532,3 +620,11 @@ class Demo extends Component {
 | ----- |----- | ----- |----- |
 | children | 指定子树的数据对象 | String | `children` |
 | label | 指定节点标题 | String | `label` |
+
+## 事件
+
+| 参数 | 说明 | 类型 | 默认值 |
+| ----- |----- | ----- |----- |
+| onSelect | 点击树节点触发 | Function(keys,data,e) | - |
+| onCheck | 点击复选框触发 | Function(keys,data,e) | - |
+| onExpand | 展开/收起节点时触发 | Function(key,expanded:bool,data,node) | - |
