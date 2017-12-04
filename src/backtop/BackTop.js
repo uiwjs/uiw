@@ -19,7 +19,6 @@ export default class BackTop extends Component {
     this.rafId = window.requestAnimationFrame(this.move2Top);
   }
 
-
   componentDidMount() {
     !this.props.showAlways && window.addEventListener('scroll', this.onScroll);
   }
