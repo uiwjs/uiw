@@ -85,6 +85,6 @@ class Demo extends Component {
 | bordered | 是否显示边框 | Bool | `true` |
 | radius | 是否圆角(shape为`rectangle`适用) | Bool | `true` |
 | speed | 滚动速度 | Number | `300` |
-| style | CSS样式 | String | - |
+| style | CSS样式 | Object | - |
 | className | CSS类名称 | String | - |
 | onClick | 点击回调 | Function | - |
