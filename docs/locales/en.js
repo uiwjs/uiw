@@ -16,6 +16,7 @@ module.exports = {
     'select': 'Select',
     'slider': 'Slider',
     'steps': 'Steps',
+    'backtop': 'BackTop',
     'alert': 'Alert',
     'avatar': 'Avatar',
     'badge': 'Badge',
