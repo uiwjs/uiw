@@ -8,13 +8,9 @@ export default class BackTop extends Component {
     this.state = {
       show: false,
     };
-
-    this.onClick = this.onClick.bind(this);
-    this.cancelScroll = this.cancelScroll.bind(this);
-    this.onScroll = this.onScroll.bind(this);
   }
 
-  onClick(e) {
+  onClick = (e) => {
     this.props.onClick && this.props.onClick(e);
     this.rafId = window.requestAnimationFrame(this.move2Top);
   }
@@ -23,7 +19,7 @@ export default class BackTop extends Component {
     !this.props.showAlways && window.addEventListener('scroll', this.onScroll);
   }
 
-  onScroll() {
+  onScroll = () => {
     if (window.pageYOffset > this.props.showBelow) {
       if (!this.state.show) {
         this.setState({ show: true });
@@ -46,17 +42,17 @@ export default class BackTop extends Component {
     this.rafId && window.cancelAnimationFrame(this.rafId);
   }
 
-  cancelScroll() {
+  cancelScroll = () => {
     this.rafId && window.cancelAnimationFrame(this.rafId);
   }
 
   render() {
-    const { prefixCls, showAlways, showIcon, showBelow, shape, showText, bordered, radius, style, text, speed, className, icon, onClick, ...others } = this.props;
+    const { prefixCls, showAlways, showIcon, showBelow, fixed, shape, showText, bordered, radius, style, text, speed, className, icon, onClick, ...others } = this.props;
     const { show } = this.state;
     const children = this.props.children;
-    const cls = this.classNames(prefixCls, {
-      [`${className}`]: className,
+    const cls = this.classNames(prefixCls, className, {
       [`${shape}`]: shape,
+      [`${prefixCls}-fixed`]: fixed,
       bordered,
       radius,
     });
@@ -86,6 +82,7 @@ BackTop.propTypes = {
   showText: PropTypes.bool,
   radius: PropTypes.bool,
   bordered: PropTypes.bool,
+  fixed: PropTypes.bool,
   showAlways: PropTypes.bool,
   showBelow: PropTypes.number,
   showIcon: PropTypes.bool,
@@ -99,9 +96,10 @@ BackTop.defaultProps = {
   text: 'TOP',
   showText: true,
   bordered: true,
+  fixed: true,
   radius: true,
   showAlways: false,
   showBelow: 100,
   showIcon: true,
-  speed: 300,
+  speed: 100,
 };
