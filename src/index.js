@@ -31,6 +31,7 @@ export { default as Switch } from './switch/';
 export { default as Select } from './select/';
 export { default as Slider } from './slider/';
 export { default as Steps } from './steps';
+export { default as BackTop } from './back-top';
 export { default as Icon } from './icon/';
 export { default as Input } from './input/';
 export { default as InputNumber } from './input-number/';

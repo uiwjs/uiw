@@ -16,6 +16,7 @@ module.exports = {
     'select': 'Select 选择器',
     'slider': 'Slider 滑块',
     'steps': 'Steps 步骤条',
+    'backtop': 'BackTop 返回顶部',
     'alert': 'Alert 警告',
     'avatar': 'Avatar 头像',
     'badge': 'Badge 标记',

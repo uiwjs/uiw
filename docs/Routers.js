@@ -40,6 +40,7 @@ import progress from 'bundle-loader?lazy&name=progress!./pages/progress';
 import breadcrumb from 'bundle-loader?lazy&name=breadcrumb!./pages/breadcrumb';
 import dropdown from 'bundle-loader?lazy&name=dropdown!./pages/dropdown';
 import steps from 'bundle-loader?lazy&name=steps!./pages/steps';
+import backtop from 'bundle-loader?lazy&name=timestamp!./pages/backtop';
 import alert from 'bundle-loader?lazy&name=alert!./pages/alert';
 import modal from 'bundle-loader?lazy&name=modal!./pages/modal';
 import message from 'bundle-loader?lazy&name=message!./pages/message';
@@ -135,6 +136,7 @@ const routes = {
     ],
     'Other': [
       { path: "/:lang/copy-to-clipboard", component: asyncComponent(CopyToClipboard) },
+      { path: "/:lang/backtop", component: asyncComponent(backtop) },
     ]
   },
   redirect: [

@@ -16,14 +16,27 @@ export default class FormItem extends Component {
       valid: false, // 是否有效
       initialValue: null,
     };
+    this.oldValue = null;
+  }
+
+  setOldValue(value) {
+    if (value && value.constructor) {
+      switch (value.constructor.name) {
+        case 'Array': this.oldValue = [...value]; break;
+        case 'Object': this.oldValue = { ...value }; break;
+        default: this.oldValue = value;
+      }
+    } else {
+      this.oldValue = value;
+    }
   }
 
   componentDidMount() {
     const { field } = this.props;
     let { isRequired } = this.props;
-
     if (field) {
       const value = this.getInitialValue();
+      this.setOldValue(value);
       this.parent().addField(this);
       // 是否必填处理
       const rules = this.getRules();
@@ -41,11 +54,15 @@ export default class FormItem extends Component {
     }
   }
   componentWillReceiveProps() {
-    // TODO Cancel validation when changed props
-    // if (this.fieldValue()) {
-    //   this.validate('blur');
-    // }
+    const oldValue = this.oldValue;
+    const curValue = this.fieldValue();
+    // Validating when changing values
+    if (JSON.stringify(oldValue) !== JSON.stringify(curValue)) {
+      this.setOldValue(curValue);
+      this.validate('change');
+    }
   }
+
   getInitialValue() {
     const model = this.parent().props.model;
     return model[this.props.field];
