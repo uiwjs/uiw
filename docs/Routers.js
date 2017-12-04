@@ -125,7 +125,6 @@ const routes = {
       { path: "/:lang/breadcrumb", component: asyncComponent(breadcrumb) },
       { path: "/:lang/dropdown", component: asyncComponent(dropdown) },
       { path: "/:lang/steps", component: asyncComponent(steps) },
-      { path: "/:lang/backtop", component: asyncComponent(backtop) },
     ],
     'Feedback': [
       { path: "/:lang/alert", component: asyncComponent(alert) },
@@ -137,6 +136,7 @@ const routes = {
     ],
     'Other': [
       { path: "/:lang/copy-to-clipboard", component: asyncComponent(CopyToClipboard) },
+      { path: "/:lang/backtop", component: asyncComponent(backtop) },
     ]
   },
   redirect: [

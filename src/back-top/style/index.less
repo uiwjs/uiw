@@ -3,11 +3,12 @@
   transition: opacity 0.2s linear 0s, visibility;
   line-height: 1.0;
   text-align: center;
+  cursor: pointer;
   &.bordered {
     border: 1px solid #dddee1;
   }
   &.rectangle {
-    padding: 2px 5px;
+    padding: 5px;
     &.radius {
       border-radius: 3px;
     }
@@ -26,5 +27,11 @@
   &-text {
     display: block;
     font-size: 12px;
+  }
+  &-fixed {
+    position: fixed;
+    z-index: 1006;
+    right: 50px;
+    bottom: 50px;
   }
 }
