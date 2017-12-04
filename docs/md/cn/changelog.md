@@ -5,6 +5,33 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.5.0
+
+`2017-12-04`
+
+Feature:
+
+- 🌟 feat(BackTop): Add fixed props, Adjust the document.  [fbb6f35](https://github.com/uiw-react/uiw/commit/fbb6f35eea294eb2a57d50814be377b00ccda170)
+- 🌟 Add component BackTop : [@Xing-He](https://github.com/xing-he) [10a9636](https://github.com/uiw-react/uiw/commit/10a9636f0b05a8bc0d52b15a43f2d20a3d5be344)
+- 🌟 feat(Tree): Add disabled prop.  [4bf567f](https://github.com/uiw-react/uiw/commit/4bf567f7b47ad6353405c25a9df780ec5b9394b9)
+- 🌟 feat(Tree): Add Chackbox the Tree Component.  [2b2d7cc](https://github.com/uiw-react/uiw/commit/2b2d7ccdb39988c98d30f34323469f238423ae29)
+
+Bug fixed:
+
+- 🐞 fix(InputNumber): fix [#36(https://github.com/uiw-react/uiw/issues/36)] Disable button control invalid.  [c96c9af](https://github.com/uiw-react/uiw/commit/c96c9af1cedd844bcbcab3854495cfc616b46b6a) 
+- 🐞 Validating when changing values : [@Xing-He](https://github.com/xing-he) [1d63fbf](https://github.com/uiw-react/uiw/commit/1d63fbff9d23f6528559331910619e268ea91daf)
+
+Test Case: 
+
+- ⛑ Test(Slider):Add Slider test ([#38](https://github.com/uiw-react/uiw/pull/38)) : [@kooff88](href="https://github.com/kooff88) [d22f5cf](https://github.com/uiw-react/uiw/commit/d22f5cf5159bfad7f662ebee779a50f7af03ac1e) 
+- ⛑ Test(Switch):Add switch test ([#37](https://github.com/uiw-react/uiw/pull/37)) : [@kooff88](href="https://github.com/kooff88) [7a39033](https://github.com/uiw-react/uiw/commit/7a39033e6bcbaa9ceba5b741885957366aa4d6f3)  
+- ⛑ fefactor(Tree): code optimization.  [675c600](https://github.com/uiw-react/uiw/commit/675c60024682d90c0c6a5f6a7008c10ba4db1756) 
+
+Document Update:
+
+- 📝 Modify doc's description : [@Xing-He](https://github.com/xing-he) [69de493](https://github.com/uiw-react/uiw/commit/69de4931f2bf611a19f7ec8b019c0a103b197669) 
+- 📝 doc(Tree): Add example.  [0d1fbd7](https://github.com/uiw-react/uiw/commit/0d1fbd77942bd0f40773510ce3232d7e0efdb483) 
+
 ## 1.4.3
 
 `2017-12-01`
