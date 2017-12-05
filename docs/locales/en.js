@@ -47,6 +47,7 @@ module.exports = {
     'recommendation': 'Third-Party Libraries',
     'input': 'Input',
     'input-number': 'InputNumber',
+    'input-password': 'InputPassword',
   },
   category: {
     'Form': "Form",

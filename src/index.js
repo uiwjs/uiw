@@ -35,6 +35,7 @@ export { default as BackTop } from './back-top';
 export { default as Icon } from './icon/';
 export { default as Input } from './input/';
 export { default as InputNumber } from './input-number/';
+export { default as InputPassword } from './input-password/';
 export { default as Rate } from './rate/';
 export { default as Radio } from './radio/';
 export { default as Notification } from './notification/';
