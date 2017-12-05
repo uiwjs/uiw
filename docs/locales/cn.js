@@ -47,6 +47,7 @@ module.exports = {
     'recommendation': '精选开源组件',
     'input': 'Input 输入框',
     'input-number': 'InputNumber 数字输入框',
+    'input-password': 'InputPassword 密码输入框',
   },
   category: {
     'Form': "表单",

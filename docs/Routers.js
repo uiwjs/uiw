@@ -23,6 +23,7 @@ import SwitchCom from 'bundle-loader?lazy&name=switch!./pages/switch';
 import slider from 'bundle-loader?lazy&name=slider!./pages/slider';
 import input from 'bundle-loader?lazy&name=input!./pages/input';
 import inputNumber from 'bundle-loader?lazy&name=input-number!./pages/input-number';
+import inputPassword from 'bundle-loader?lazy&name=input-password!./pages/input-password';
 import timePicker from 'bundle-loader?lazy&name=time-picker!./pages/time-picker';
 import datePicker from 'bundle-loader?lazy&name=date-picker!./pages/date-picker';
 import calendar from 'bundle-loader?lazy&name=calendar!./pages/calendar';
@@ -99,6 +100,7 @@ const routes = {
       { path: "/:lang/switch", component: asyncComponent(SwitchCom) },
       { path: "/:lang/input", component: asyncComponent(input) },
       { path: "/:lang/input-number", component: asyncComponent(inputNumber) },
+      { path: "/:lang/input-password", component: asyncComponent(inputPassword) },
       { path: "/:lang/time-picker", component: asyncComponent(timePicker) },
       { path: "/:lang/date-picker", component: asyncComponent(datePicker) },
     ],
