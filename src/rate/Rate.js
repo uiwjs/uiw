@@ -71,7 +71,7 @@ export default class Rate extends Component {
     return arr;
   }
   render() {
-    const { prefixCls, count, className, allowHalf, disabled, value, onHoverChange, color, ...other } = this.props;
+    const { prefixCls, count, className, character, allowHalf, disabled, value, onHoverChange, color, ...other } = this.props;
     return (
       <ul
         {...other}
@@ -82,17 +82,21 @@ export default class Rate extends Component {
           return (
             <li
               key={k}
-              className={this.classNames({
-                'star-on': this.starOn(k),
-                'star-half-on': this.starHalfOn(k),
-                'w-disabled': disabled,
-              })}
+              className={this.classNames({ 'w-disabled': disabled })}
               onClick={e => this.onClick(e, k)}
               onMouseMove={e => this.onMouseMove(e, k)}
             >
-              <Icon type="star-on">
-                <Icon style={{ color: this.starOn(k) || this.starHalfOn(k) ? color : '' }} type="star-on" />
-              </Icon>
+              <div className={this.classNames(`${prefixCls}-hight`, {
+                'star-on': this.starOn(k),
+                'half-on': this.starHalfOn(k),
+              })}
+                style={{ color: this.starOn(k) || this.starHalfOn(k) ? color : '' }}
+              >
+                {character || <Icon type="star-on" />}
+              </div>
+              <div className={`${prefixCls}-bg`}>
+                {character || <Icon type="star-on" />}
+              </div>
             </li>
           );
         })}
