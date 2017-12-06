@@ -1,4 +1,4 @@
-Input Password 密码输入框
+InputPassword 密码输入框
 ===
 
 显示或隐藏输入的密码
@@ -23,7 +23,12 @@ class Demo extends Component {
     return (
       <Row>
         <Col xs="8" sm="8" md="8" xs="24">
-          <InputPassword value={this.state.value} placeholder="请输入密码" onChange={this.onChange.bind(this)} length={6} icon="eye-o"/>
+          <InputPassword 
+            value={this.state.value} 
+            placeholder="请输入密码" 
+            onChange={this.onChange.bind(this)} 
+            length={6}
+          />
         </Col>
       </Row>
     )
@@ -32,7 +37,17 @@ class Demo extends Component {
 ```
 <!--End-->
 
-## API
+## 安装和使用
+
+```bash
+npm install uiw --save
+```
+
+```js
+import { InputPassword } from 'uiw';
+// or
+import InputPassword from 'uiw/lib/input-password';
+```
 
 ### InputPassword
 
