@@ -3,14 +3,15 @@ import Bundle from "./lazyload";
 import locales from './locales';
 /* eslint import/no-webpack-loader-syntax: off */
 import QuickStart from 'bundle-loader?lazy&name=quick-start!./pages/quick-start';
-import Theme from 'bundle-loader?lazy&name=theme!./pages/theme';
+import theme from 'bundle-loader?lazy&name=theme!./pages/theme';
 import Avatar from 'bundle-loader?lazy&name=avatar!./pages/avatar';
 import affix from 'bundle-loader?lazy&name=affix!./pages/affix';
 import Color from 'bundle-loader?lazy&name=color!./pages/color';
 import Collapse from 'bundle-loader?lazy&name=collapse!./pages/collapse';
 import changelog from 'bundle-loader?lazy&name=changelog!./pages/changelog';
 import CopyToClipboard from 'bundle-loader?lazy&name=copy-to-clipboard!./pages/copy-to-clipboard';
-import Layout from 'bundle-loader?lazy&name=layout!./pages/layout';
+import layout from 'bundle-loader?lazy&name=layout!./pages/layout';
+import list from 'bundle-loader?lazy&name=list!./pages/list';
 import icon from 'bundle-loader?lazy&name=icon!./pages/icon';
 import button from 'bundle-loader?lazy&name=button!./pages/button';
 import hotkeys from 'bundle-loader?lazy&name=hotkeys!./pages/hotkeys';
@@ -79,14 +80,14 @@ const asyncComponent = (comp) => (props) => {
 const routes = {
   documents: [
     { path: "/:lang/quick-start", exact: true, component: asyncComponent(QuickStart) },
-    { path: "/:lang/theme", component: asyncComponent(Theme) },
+    { path: "/:lang/theme", component: asyncComponent(theme) },
     { path: "/:lang/changelog", component: asyncComponent(changelog) },
     { path: "/:lang/recommendation", component: asyncComponent(recommendation) },
   ],
   components: {
     'Basic': [
       { path: "/:lang/color", component: asyncComponent(Color) },
-      { path: "/:lang/layout", component: asyncComponent(Layout) },
+      { path: "/:lang/layout", component: asyncComponent(layout) },
       { path: "/:lang/icon", component: asyncComponent(icon) },
       { path: "/:lang/button", component: asyncComponent(button) },
       { path: "/:lang/hotkeys", component: asyncComponent(hotkeys) },
@@ -111,6 +112,7 @@ const routes = {
       { path: "/:lang/carousel", component: asyncComponent(carousel) },
       { path: "/:lang/collapse", component: asyncComponent(Collapse) },
       { path: "/:lang/card", component: asyncComponent(card) },
+      { path: "/:lang/list", component: asyncComponent(list) },
       { path: "/:lang/progress", component: asyncComponent(progress) },
       { path: "/:lang/rate", component: asyncComponent(rate) },
       { path: "/:lang/table", component: asyncComponent(table) },
