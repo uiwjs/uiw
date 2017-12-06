@@ -26,6 +26,7 @@ module.exports = {
     'paging': 'Paging',
     'progress': 'Progress',
     'loading': 'Loading',
+    'list': 'List',
     'rate': 'Rate',
     'tag': 'Tag',
     'tree': 'Tree',

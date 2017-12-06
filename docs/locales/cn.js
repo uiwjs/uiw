@@ -26,6 +26,7 @@ module.exports = {
     'paging': 'Paging 分页',
     'progress': 'Progress 进度条',
     'loading': 'Loading 加载中',
+    'list': 'List 列表',
     'rate': 'Rate 评分',
     'tag': 'Tag 标签',
     'tree': 'Tree 树形控件',
