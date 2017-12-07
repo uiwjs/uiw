@@ -340,7 +340,7 @@ export default class Select extends Component {
           onChange={this.onInputChangeValue.bind(this)}
           onKeyUp={this.onInputChange.bind(this)}
         />
-        <Transition in={visible && children && children.length > 0} sequence="fadeIn">
+        <Transition in={!!(visible && children)} sequence="fadeIn">
           <Popper
             className={this.classNames(`${prefixCls}-popper`)}
             clickOutside={this.handleClickOutside.bind(this)}
