@@ -524,8 +524,8 @@ render() {
 |--------- |-------- |--------- |-------- |
 | visible | 对话框是否可见 | boolean | - |
 | title | 标题 | string、ReactNode | - |
-| okText | 点击确定回调 | string | 确定 |
-| onOk | 确认按钮文字 | function(e) | - |
+| okText | 确认按钮文字 | string | 确定 |
+| onOk | 点击确定回调 | function(e) | - |
 | confirmLoading | 确定按钮 loading | boolean | false |
 | cancelText | 取消按钮文字 | string | 取消 |
 | onCancel | 点击遮罩层或右上角叉或取消按钮的回调 | function(e) | - |
