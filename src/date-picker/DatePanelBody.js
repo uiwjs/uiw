@@ -73,8 +73,11 @@ export default class DatePanelBody extends Component {
       }
     });
   }
+  handleShortcutClick(shortcut) {
+    shortcut.onClick();
+  }
   render() {
-    const { prefixCls, weekLabel, format, onPicked } = this.props;
+    const { prefixCls, weekLabel, format, onPicked, shortcutinline, shortcuts } = this.props;
     const { value, labelToday, selectDate, selectYear, selectMonth } = this.state;
     const datePanel = isDate(value) ? new Date(value) : new Date();
     const headerProps = {
@@ -136,6 +139,31 @@ export default class DatePanelBody extends Component {
             );
           })}
         </div>
+        {
+          shortcuts && Array.isArray(shortcuts) && (
+            <div className={
+              this.classNames(`${prefixCls}-shortcut`, {
+                inline: shortcutinline,
+                block: !shortcutinline,
+                [shortcuts.className]: shortcuts.className,
+              })
+            }
+            >
+              {
+                shortcuts.map((e, idx) => {
+                  return (
+                    <span
+                      key={idx}
+                      className={`${prefixCls}-shortcut-item`}
+                      onClick={() => this.handleShortcutClick(e)}
+                    >{e.text}
+                    </span>
+                  );
+                })
+              }
+            </div>
+          )
+        }
         {LabelFooter}
       </div>
     );

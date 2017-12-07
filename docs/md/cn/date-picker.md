@@ -8,10 +8,37 @@ DatePicker 日期选择器
 <!--DemoStart--> 
 ```js
 class Demo extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      value : new Date()
+    }
+  }
+
   render() {
+    const { value } = this.state;
     return (
       <div>
-        <DatePicker  />
+        <DatePicker
+        showToday
+        value={`${value}`}
+        shortcutinline={true}
+        shortcuts={[{
+            text: '昨天',
+            onClick: ()=> {
+              this.setState({value: new Date(Date.now() - 86400000)})
+            }
+          }, {
+            text: '一周前',
+            onClick: ()=> {
+             this.setState({value: new Date(Date.now() - 86400000 * 7)})
+            }
+          }, {
+            text: '一月前',
+            onClick: ()=> {
+             this.setState({value: new Date(Date.now() - 86400000 * 30)})
+            }
+          }]}/>
         <DatePicker showToday={true}  />
         <DatePicker showToday={true} value={`${new Date()}`}  />
       </div>
@@ -124,4 +151,6 @@ import DatePicker from 'uiw/lib/date-picker';
 | disabled | 禁用日历 | Boolean | - |
 | disabledTime | 禁用时间 | Function(date) | - |
 | align | 占位内容 | Enum{`left` `center` `right`} | - |
+| shorts | 快捷按钮 | Array | - |
+| shortcutinline | inline 显示 | Boolean | `true` |
 | onChange | 时间发生变化的回调 time:`2017-12-18 12:18:43`、timeString:`Fri Jul 28 2017 09:45:00 GMT+0800 (CST)` | function(time:String, timeString: String) | - |
