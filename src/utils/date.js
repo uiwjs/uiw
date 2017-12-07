@@ -3,6 +3,13 @@ export const isDate = function (date) {
   return ((new Date(date).toString() !== 'Invalid Date' && !isNaN(new Date(date))));
 };
 
+// 判断是否为正确的时间格式
+// 15:21:21 = true
+// 15:21 = true
+export const isDateTime = function (timeStr) {
+  return /^([01][0-9]|[2][0-3]):([0-5][0-9])(?::([0-5][0-9])(\.\d{1,3})?)?$/.test(timeStr);
+};
+
 export function formatDate(date, formatStr) {
   const timeFormat = {
     'M+': date.getMonth() + 1, // month

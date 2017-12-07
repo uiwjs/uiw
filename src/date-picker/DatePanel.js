@@ -5,12 +5,6 @@ import Popper from '../popper/';
 import DatePanelBody from './DatePanelBody';
 
 export default class DatePanel extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
   render() {
     const { visible, prefixCls, handleClickOutside, ...resetProps } = this.props;
     return (
