@@ -3,34 +3,34 @@
 
 @w-upload : ~"w-upload";
 
-.@{w-upload}-dragger{
-  padding : 0;
+.@{w-upload}-dragger {
+  padding: 0;
   border: 1px dashed @upload-border-color;
   border-radius: @border-radius-base;
   background: @upload-bg-color;
 
-  &-wrap{
+  &-wrap {
     text-align: center;
     > button {
-      margin-top:5px;
+      margin-top: 5px;
       background: transparent;
       border-color: @upload-bg-color;
-      &:hover,&:active,&:visited{
+      &:hover,&:active,&:visited {
         background-color: transparent;
         box-shadow: none;
         border-color: @upload-button-border-color;
       }
-      &:hover{
+      &:hover {
         i,span {
           color: @upload-button-border-color;
         }
       }
-      span{
+      span {
         font-size: @font-size-small;
         color: @upload-font-color;
         line-height: 24px;
         vertical-align: bottom;
-        i[class^="w-icon"]{
+        i[class^="w-icon"] {
           font-size: 24px;
           margin-right: 5px;
         }
@@ -39,10 +39,10 @@
     > span {
       font-size: @font-size-small;
     }
-    > input[type="file"]{
+    > input[type="file"] {
       display: none;
     }
-    > p{
+    > p {
       font-size: @font-size-small;
       color: @upload-font-color;
       font-weight: lighter;
@@ -59,44 +59,44 @@
         position: relative;
         overflow: hidden;
         margin-right: 8px;
-        &:hover{
+        &:hover {
           cursor: all-scroll;
           p {
             opacity: 1;
           }
         }
-        > div{
+        > div {
           width: 100%;
           height: 100%;
           background-size: cover;
           background-position: center;
           background-repeat: no-repeat;
         }
-        > p{
+        > p {
           position: absolute;
           transition: all .3s;
           opacity: 0;
-          top:0;
+          top: 0;
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(0,0,0,.3);
+          background: rgba(0, 0, 0, .3);
           text-align: center;
-          span{
+          span {
             display: block;
-            color:white;
+            color: white;
             font-size: @font-size-small;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
           }
-          i{
+          i {
             position: relative;
-            color:white;
+            color: white;
             font-size: 16px;
             padding: 10px;
             display: inline;
-            &:hover{
+            &:hover {
               cursor: pointer;
             }
           }

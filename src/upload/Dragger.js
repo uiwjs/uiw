@@ -56,7 +56,7 @@ export default class Dragger extends Component {
     onChange && onChange(files);
   }
 
-  scanFiles(item, container) {
+  scanFiles(item) {
     const reader = new FileReader();
     reader.onloadend = (e) => {
       const { files } = this.state;
@@ -101,7 +101,7 @@ export default class Dragger extends Component {
           key={`preview-key-${index}`}
           data-index={index}
           draggable
-          onDragEnd={(e) => {
+          onDragEnd={() => {
             const { files } = this.state;
             if (this.dragOverIndex === null || this.dragOverIndex === index) return;
             file = files[index];
@@ -137,7 +137,7 @@ export default class Dragger extends Component {
   }
 
   render() {
-    const { prefixCls, className, disabled, ...others } = this.props;
+    const { prefixCls, className, disabled } = this.props;
     const cls = this.classNames(`${prefixCls}`, className);
     return (
       <div className={cls}>
@@ -148,7 +148,7 @@ export default class Dragger extends Component {
           }}
         >
           <Button
-            disabled={this.props.disabled}
+            disabled={disabled}
             size="small"
             onClick={() => {
               this.fileRef.click();
