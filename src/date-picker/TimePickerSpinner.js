@@ -3,6 +3,18 @@ import ReactDOM from 'react-dom';
 import { Component, PropTypes } from '../utils/';
 import { parseTime, parseTimeStr } from './utils';
 
+// http://easings.net/zh-cn
+// https://github.com/tweenjs/tween.js/blob/master/src/Tween.js#L451
+// 缓动函数
+// 比方说我们要从位置0的地方运动到100，时间是10秒钟，此时，b, c, d三个参数就已经确认了
+// b=0
+// c=100 变化值c就是100-0就是100
+// d=10 只要给一个小于最终时间10的值
+// 假设 当前进入到第五秒 easeInQuad(5,0,100,10)
+const easeInQuad = (t, b, c, d) => {
+  return (c * (t /= d) * t) + b;
+};
+
 // 时间滚动内容调整时间
 export default class TimeSpinner extends Component {
   constructor(props) {
@@ -13,9 +25,6 @@ export default class TimeSpinner extends Component {
       hours: 0,
       minutes: 0,
       seconds: 0,
-      // hoursList: this.rangeTime(24, 'hours'),
-      // minutesLisit: this.rangeTime(60, 'minutes'),
-      // secondsList: this.rangeTime(60, 'seconds'),
     };
     this.renderItem = this.renderItem.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -27,7 +36,19 @@ export default class TimeSpinner extends Component {
   // 点击当前节点滚动到顶部
   scrollTopNow(elm) {
     const currentDom = ReactDOM.findDOMNode(elm);
-    if (currentDom.offsetParent) currentDom.offsetParent.scrollTop = currentDom.offsetTop;
+    const offsetTop = currentDom.offsetTop;
+    const rootTop = currentDom.parentNode.parentNode.scrollTop;
+    const startTime = Date.now();
+    const frameFunc = () => {
+      const timestamp = Date.now();
+      const time = timestamp - startTime;
+      const offsetTopMove = parseInt(easeInQuad(time, rootTop, offsetTop, offsetTop), 10);
+      if (currentDom.offsetParent) currentDom.offsetParent.scrollTop = offsetTopMove > offsetTop ? offsetTop : offsetTopMove;
+      if (currentDom.offsetParent && currentDom.offsetParent.scrollTop < offsetTop) {
+        window.requestAnimationFrame(frameFunc);
+      }
+    };
+    window.requestAnimationFrame(frameFunc);
   }
   handleClick(item, e) {
     const { onPicked, value } = this.props;
@@ -52,7 +73,8 @@ export default class TimeSpinner extends Component {
                 <li
                   ref={(tag) => {
                     if (tag && item.checked) {
-                      this.scrollTopNow(tag);
+                      const currentDom = ReactDOM.findDOMNode(tag);
+                      if (currentDom.offsetParent) currentDom.offsetParent.scrollTop = currentDom.offsetTop;
                     }
                   }}
                   key={`${idx}`}

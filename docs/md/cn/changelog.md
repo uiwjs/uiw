@@ -5,6 +5,33 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.5.1
+
+`2017-12-07`
+
+Feature:
+
+- 🌟 feat(TimePicker): Page scrolling effect. [8ccf435](https://github.com/uiw-react/uiw/commit/8ccf43546b746a54ec8fd7fc5ae4dcac52ceb81f)
+- 🌟 feat(InputPassword): Add Password component that can show or hide values : [@Xing-He](https://github.com/xing-he) [e66ed86](https://github.com/uiw-react/uiw/commit/e66ed862b336c9c18ce4fac6a7d239fdf395fb7b)
+- 🌟 feat(List): Add new component. [beecfd3](https://github.com/uiw-react/uiw/commit/beecfd3e91535ad8d442418aa01cad27d8adc51e)
+- 🌟 feat(Rate): Support custom element. [509c708](https://github.com/uiw-react/uiw/commit/509c708ad8c08680c5e5f358f0c5f40f83db6c52)
+
+Bug fixed:
+
+- 🐞 fix(Input): Disable state style modify. [bf99ec0](https://github.com/uiw-react/uiw/commit/bf99ec0cdef2cc0f8931d8055ca26684c1d4da81)
+- 🐞 fix(WebSite): Modify the menu style. [b9ee37d](https://github.com/uiw-react/uiw/commit/b9ee37de43524999348e2b9963c1bbbbfdc3b4f6)
+
+Test Case: 
+
+- ⛑ Test(Tag):Add tag test ([#40](https://github.com/uiw-react/uiw/pull/40)) : [@kooff88](https://github.com/kooff88) [e569880](https://github.com/uiw-react/uiw/commit/e569880f280815a77f2d451b7af50737029544b3)
+- ⛑ Test(Steps):Add steps test ([#39](https://github.com/uiw-react/uiw/pull/39)) : [@kooff88](https://github.com/kooff88) [3bee862](https://github.com/uiw-react/uiw/commit/3bee8622ac2d22a5569b6ca35b9f02acee80e8e3)
+
+Document Update:
+
+- 📝 doc(InputPassword): Update example. [692775c](https://github.com/uiw-react/uiw/commit/692775ce11dee433fccd544f023a91b01f695e53)
+- 📝 doc(Modal): Update Modal desc. : [@gonghengda](https://github.com/gonghengda) [201f7dc](https://github.com/uiw-react/uiw/commit/201f7dcaaa7246deb2d2cb302c98cf1caf71d5cc)
+- 📝 doc(TimePicker): Add example. [e486e97](https://github.com/uiw-react/uiw/commit/e486e97cc465c60e0359aa91c960d60f9c493e14)
+
 ## 1.5.0
 
 `2017-12-04`
