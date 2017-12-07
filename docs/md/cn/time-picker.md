@@ -1,7 +1,41 @@
-Time Picker 时间选择器
+TimePicker 时间选择器
 ===
 
 用于选择或输入日期
+
+### 基本用法
+
+<!--DemoStart--> 
+使用 `<TimeSelect>` ，分别通过`star`、`end`和`step`指定可选的起始时间、结束时间和步长，通过`minTime`和`maxTime`来限制时间。
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: new Date(2017, 6, 28, 15, 51),
+    }
+  }
+  handleChang(value,date) {
+    console.log('TimePicker:Chang:', value,date)
+  }
+  render() {
+    return (
+      <div>
+        <TimePicker
+          onChange={this.handleChang.bind(this)}
+          disabledHours={['00','01']}
+          disabledMinutes={['01','02']}
+          disabled={false}
+          format="HH:mm:ss"
+          placeholder="选择时间de拉！更改"
+          value={this.state.value}
+        />
+      </div>
+    )
+  }
+}
+```
+<!--End-->
 
 ### 固定时间点
 
@@ -19,29 +53,28 @@ class Demo extends Component {
     console.log('time-select Chang: ', value,date)
   }
   render() {
-    this.handleChang()
     return (
       <div>
-      <TimeSelect
-        start="08:30"
-        step="00:15"
-        end="18:30"
-        minTime="9:30"
-        // hideDisabled={true}
-        onChange={this.handleChang.bind(this)}
-        value={this.state.value}
-        //placeholder="选择时间"
-      />
-      <TimeSelect
-        start="08:30"
-        step="00:15"
-        end="18:30"
-        minTime="9:30"
-        hideDisabled={true}
-        onChange={this.handleChang.bind(this)}
-        value={null}
-        //placeholder="选择时间"
-      />
+        <TimeSelect
+          start="08:30"
+          step="00:15"
+          end="18:30"
+          minTime="9:30"
+          // hideDisabled={true}
+          onChange={this.handleChang.bind(this)}
+          value={this.state.value}
+          //placeholder="选择时间"
+        />
+        <TimeSelect
+          start="08:30"
+          step="00:15"
+          end="18:30"
+          minTime="9:30"
+          hideDisabled={true}
+          onChange={this.handleChang.bind(this)}
+          value={null}
+          //placeholder="选择时间"
+        />
       </div>
     )
   }
@@ -203,7 +236,18 @@ class Demo extends Component {
 <!--End-->
 
 
-## API
+## 安装和使用
+
+```bash
+npm install uiw --save
+```
+
+```js
+import { TimePicker, TimeSelect } from 'uiw';
+// or
+import TimePicker from 'uiw/lib/time-picker';
+import TimeSelect from 'uiw/lib/time-select';
+```
 
 > 输入框继承 `<Input/>` 组件。支持 Input 的部分属性如`size`,`disabled`, `size`, `autoFocus`, `preIcon`, `defaultValue`
 
