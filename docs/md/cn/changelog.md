@@ -12,7 +12,7 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 Feature:
 
 - 🌟 feat(TimePicker): Page scrolling effect. [8ccf435](https://github.com/uiw-react/uiw/commit/8ccf43546b746a54ec8fd7fc5ae4dcac52ceb81f)
-- 🌟 feat(InputPassword): Add Password component that can show or hide values : @xing.he [e66ed86](https://github.com/uiw-react/uiw/commit/e66ed862b336c9c18ce4fac6a7d239fdf395fb7b)
+- 🌟 feat(InputPassword): Add Password component that can show or hide values : [@Xing-He](https://github.com/xing-he) [e66ed86](https://github.com/uiw-react/uiw/commit/e66ed862b336c9c18ce4fac6a7d239fdf395fb7b)
 - 🌟 feat(List): Add new component. [beecfd3](https://github.com/uiw-react/uiw/commit/beecfd3e91535ad8d442418aa01cad27d8adc51e)
 - 🌟 feat(Rate): Support custom element. [509c708](https://github.com/uiw-react/uiw/commit/509c708ad8c08680c5e5f358f0c5f40f83db6c52)
 
