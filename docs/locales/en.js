@@ -46,6 +46,7 @@ module.exports = {
     'form': 'Form',
     'radio': 'Radio',
     'recommendation': 'Third-Party Libraries',
+    'upload': 'Upload',
     'input': 'Input',
     'input-number': 'InputNumber',
     'input-password': 'InputPassword',
