@@ -151,7 +151,7 @@ import DatePicker from 'uiw/lib/date-picker';
 | disabled | 禁用日历 | Boolean | - |
 | disabledTime | 禁用时间 | Function(date) | - |
 | align | 占位内容 | Enum{`left` `center` `right`} | - |
-| shorts | 快捷按钮 | Array | - |
+| shortcuts | 快捷按钮 | Array | - |
 | shortcutinline | inline 显示 | Boolean | `true` |
 | shortcutClassName | 快捷键样式类名称 | String | - |
 | onChange | 时间发生变化的回调 time:`2017-12-18 12:18:43`、timeString:`Fri Jul 28 2017 09:45:00 GMT+0800 (CST)` | function(time:String, timeString: String) | - |
