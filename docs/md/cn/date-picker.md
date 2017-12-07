@@ -155,3 +155,10 @@ import DatePicker from 'uiw/lib/date-picker';
 | shortcutinline | inline 显示 | Boolean | `true` |
 | shortcutClassName | 快捷键样式类名称 | String | - |
 | onChange | 时间发生变化的回调 time:`2017-12-18 12:18:43`、timeString:`Fri Jul 28 2017 09:45:00 GMT+0800 (CST)` | function(time:String, timeString: String) | - |
+
+#### shortcut
+
+| 参数 | 说明 | 类型 | 默认值 |
+|--------- |-------- |--------- |-------- |
+| text | 显示文本内容 | String | - |
+| onClick | 点击回调函数 | Function | - |
