@@ -43,4 +43,4 @@ export { default as Notification } from './notification/';
 export { default as Carousel } from './carousel/';
 export { default as Form } from './form/';
 export { default as version } from './version';
-
+export { default as Upload } from './upload';
