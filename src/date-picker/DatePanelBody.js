@@ -77,7 +77,7 @@ export default class DatePanelBody extends Component {
     shortcut.onClick();
   }
   render() {
-    const { prefixCls, weekLabel, format, onPicked, shortcutinline, shortcutClassName, shortcuts } = this.props;
+    const { prefixCls, weekLabel, format, onPicked, shortcutinline, renderDate, shortcutClassName, shortcuts } = this.props;
     const { value, labelToday, selectDate, selectYear, selectMonth } = this.state;
     const datePanel = isDate(value) ? new Date(value) : new Date();
     const headerProps = {
@@ -123,6 +123,13 @@ export default class DatePanelBody extends Component {
         </div>
         <div className={`${prefixCls}-days`}>
           {fillUpDays(datePanel, format, new Date(selectDate)).map((item, idx) => {
+            if (renderDate) {
+              const child = renderDate(item, item.selectDay && selectDate);
+              return React.cloneElement(child, {
+                key: idx,
+                onClick: () => this.handleClick(item),
+              });
+            }
             return (
               <span key={idx}
                 title={item.today ? labelToday : item.format}
@@ -175,6 +182,7 @@ DatePanelBody.propTypes = {
   format: PropTypes.string,
   allowClear: PropTypes.bool,
   onPicked: PropTypes.func,
+  renderDate: PropTypes.func,
   showToday: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.node,
