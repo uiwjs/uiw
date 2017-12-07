@@ -77,7 +77,7 @@ export default class DatePanelBody extends Component {
     shortcut.onClick();
   }
   render() {
-    const { prefixCls, weekLabel, format, onPicked, shortcutinline, shortcuts } = this.props;
+    const { prefixCls, weekLabel, format, onPicked, shortcutinline, shortcutClassName, shortcuts } = this.props;
     const { value, labelToday, selectDate, selectYear, selectMonth } = this.state;
     const datePanel = isDate(value) ? new Date(value) : new Date();
     const headerProps = {
@@ -145,7 +145,7 @@ export default class DatePanelBody extends Component {
               this.classNames(`${prefixCls}-shortcut`, {
                 inline: shortcutinline,
                 block: !shortcutinline,
-                [shortcuts.className]: shortcuts.className,
+                [shortcutClassName]: shortcutClassName,
               })
             }
             >
