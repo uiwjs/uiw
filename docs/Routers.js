@@ -51,6 +51,7 @@ import carousel from 'bundle-loader?lazy&name=carousel!./pages/carousel';
 import loading from 'bundle-loader?lazy&name=loading!./pages/loading';
 import transition from 'bundle-loader?lazy&name=transition!./pages/transition';
 import timestamp from 'bundle-loader?lazy&name=timestamp!./pages/timestamp';
+import upload from 'bundle-loader?lazy&name=upload!./pages/upload';
 /* eslint import/no-webpack-loader-syntax: off */
 
 const getLang = (key) => {
@@ -104,6 +105,7 @@ const routes = {
       { path: "/:lang/input-password", component: asyncComponent(inputPassword) },
       { path: "/:lang/time-picker", component: asyncComponent(timePicker) },
       { path: "/:lang/date-picker", component: asyncComponent(datePicker) },
+      { path: "/:lang/upload", component: asyncComponent(upload) },
     ],
     'Data Display': [
       { path: "/:lang/avatar", component: asyncComponent(Avatar) },

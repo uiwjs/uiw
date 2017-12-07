@@ -45,6 +45,7 @@ module.exports = {
     'icon': 'Icon 图标',
     'form': 'Form 表单',
     'radio': 'Radio 单选框',
+    'upload': 'Upload 上传图片',
     'recommendation': '精选开源组件',
     'input': 'Input 输入框',
     'input-number': 'InputNumber 数字输入框',
