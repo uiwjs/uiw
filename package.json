@@ -19,7 +19,6 @@
     "build": "node script/build.js",
     "build:lib": "BABEL_ENV=production babel  --ignore=src/**/__test__ --plugins transform-runtime src --out-dir lib --copy-files ",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
-    "lint-staged": "lint-staged",
     "lint-staged:js": "NODE_ENV=production eslint src",
     "deploy": "./script/deploy.sh"
   },
@@ -34,19 +33,17 @@
     "framework"
   ],
   "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
   },
   "dependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
     "async-validator": "~1.8.1",
     "babel-polyfill": "~6.26.0",
     "babel-runtime": "~6.26.0",
     "classnames": "~2.2.5",
-    "hotkeys-js": "~2.0.4",
+    "hotkeys-js": "~2.0.5",
     "prop-types": "~15.6.0",
-    "react-slick": "~0.15.4",
+    "react-slick": "~0.16.0",
     "react-transition-group": "~2.2.1",
     "uiw-iconfont": "^1.2.4"
   },

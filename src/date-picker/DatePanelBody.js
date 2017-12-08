@@ -73,8 +73,11 @@ export default class DatePanelBody extends Component {
       }
     });
   }
+  handleShortcutClick(shortcut) {
+    shortcut.onClick();
+  }
   render() {
-    const { prefixCls, weekLabel, format, onPicked } = this.props;
+    const { prefixCls, weekLabel, format, onPicked, shortcutinline, renderDate, shortcutClassName, shortcuts } = this.props;
     const { value, labelToday, selectDate, selectYear, selectMonth } = this.state;
     const datePanel = isDate(value) ? new Date(value) : new Date();
     const headerProps = {
@@ -120,6 +123,13 @@ export default class DatePanelBody extends Component {
         </div>
         <div className={`${prefixCls}-days`}>
           {fillUpDays(datePanel, format, new Date(selectDate)).map((item, idx) => {
+            if (renderDate) {
+              const child = renderDate(item, item.selectDay && selectDate);
+              return React.cloneElement(child, {
+                key: idx,
+                onClick: () => this.handleClick(item),
+              });
+            }
             return (
               <span key={idx}
                 title={item.today ? labelToday : item.format}
@@ -136,6 +146,31 @@ export default class DatePanelBody extends Component {
             );
           })}
         </div>
+        {
+          shortcuts && Array.isArray(shortcuts) && (
+            <div className={
+              this.classNames(`${prefixCls}-shortcut`, {
+                inline: shortcutinline,
+                block: !shortcutinline,
+                [shortcutClassName]: shortcutClassName,
+              })
+            }
+            >
+              {
+                shortcuts.map((e, idx) => {
+                  return (
+                    <span
+                      key={idx}
+                      className={`${prefixCls}-shortcut-item`}
+                      onClick={() => this.handleShortcutClick(e)}
+                    >{e.text}
+                    </span>
+                  );
+                })
+              }
+            </div>
+          )
+        }
         {LabelFooter}
       </div>
     );
@@ -147,6 +182,7 @@ DatePanelBody.propTypes = {
   format: PropTypes.string,
   allowClear: PropTypes.bool,
   onPicked: PropTypes.func,
+  renderDate: PropTypes.func,
   showToday: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.node,

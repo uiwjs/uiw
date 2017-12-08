@@ -36,9 +36,12 @@ DatePicker.propTypes = {
     PropTypes.arrayOf(PropTypes.instanceOf(Date)),
   ]),
   format: PropTypes.string,
+  shortcutinline: PropTypes.bool,
+  shorts: PropTypes.array,
 };
 DatePicker.defaultProps = {
   value: '',
   placeholder: '选择日期',
   format: 'yyyy/MM/dd',
+  shortcutinline: true,
 };

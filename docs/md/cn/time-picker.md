@@ -4,9 +4,9 @@ TimePicker 时间选择器
 用于选择或输入日期
 
 ### 基本用法
+点击 `TimePicker`，然后可以在浮层中选择或者输入某一时间。
 
 <!--DemoStart--> 
-使用 `<TimeSelect>` ，分别通过`star`、`end`和`step`指定可选的起始时间、结束时间和步长，通过`minTime`和`maxTime`来限制时间。
 ```js
 class Demo extends Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Component, PropTypes, isDate, formatDate } from '../utils/';
+import { Component, PropTypes, isDate, isDateTime, formatDate } from '../utils/';
 import Input from '../input';
 import { parseTime, dateTimeToStr } from './utils';
 
@@ -99,10 +99,14 @@ export default class BasePicker extends Component {
   // 选择事件
   onPicked(date, visible) {
     const { onChange, format } = this.props;
+    const { value } = this.state;
     let dateObject = this.parseDateTime(date);
     if (this.type === 'datepicker') {
       dateObject = new Date(date);
       date = formatDate(new Date(date), format);
+    }
+    if ((this.type === 'timepicker' || this.type === 'timeselect') && !isDateTime(date)) {
+      dateObject = value;
     }
     this.setState({
       visible,
@@ -113,6 +117,26 @@ export default class BasePicker extends Component {
   }
   createPickerPanel() {
     return this.pickerPanel(this.state);
+  }
+  onInputChange(e, timeStr) {
+    const dateData = { text: timeStr };
+    const { value } = this.state;
+
+    if (this.type === 'timeselect') return;
+    if (this.type !== 'datepicker') {
+      if (isDateTime(timeStr)) {
+        dateData.value = this.parseDateTime(timeStr);
+      }
+      if (this.timer) clearTimeout(this.timer);
+      if (this.type === 'timepicker' && !isDateTime(timeStr)) {
+        this.timer = setTimeout(() => {
+          this.setState({
+            value, text: this.dateToStr(value),
+          });
+        }, 1000);
+      }
+    }
+    this.setState({ ...dateData });
   }
   render() {
     const { className, style, ...resetProps } = this.props;
@@ -135,7 +159,7 @@ export default class BasePicker extends Component {
           onIconClick={this.onIconClick.bind(this)}
           onIconMouseOver={this.onIconMouseOver.bind(this)}
           onIconMouseOut={this.onIconMouseOut.bind(this)}
-          onChange={(e, value) => this.setState({ value })}
+          onChange={(e, value) => this.onInputChange(e, value)}
           icon={this.state.icon}
         />
         {this.createPickerPanel()}

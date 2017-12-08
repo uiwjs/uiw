@@ -8,12 +8,93 @@ DatePicker 日期选择器
 <!--DemoStart--> 
 ```js
 class Demo extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      value : new Date()
+    }
+  }
+
   render() {
+    const { value } = this.state;
     return (
       <div>
-        <DatePicker  />
+        <DatePicker
+        showToday
+        value={`${value}`}
+        shortcutinline={true}
+        shortcuts={[
+          {
+            text: '昨天',
+            onClick: ()=> {
+              this.setState({value: new Date(Date.now() - 86400000)})
+            }
+          }, {
+            text: '一周前',
+            onClick: ()=> {
+             this.setState({value: new Date(Date.now() - 86400000 * 7)})
+            }
+          }, {
+            text: '一月前',
+            onClick: ()=> {
+             this.setState({value: new Date(Date.now() - 86400000 * 30)})
+            }
+          }
+        ]}/>
         <DatePicker showToday={true}  />
         <DatePicker showToday={true} value={`${new Date()}`}  />
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
+## 定制日期单元格
+
+使用 `renderDate` 可以自定义日期单元格的内容和样式。
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      value : new Date()
+    }
+  }
+
+  render() {
+    const { value } = this.state;
+    return (
+      <div>
+        <DatePicker 
+          renderDate={(item,isSelect)=>{
+            const style = {};
+            if(item.today){
+              style.color='red';
+              style.fontWeight='bold';
+            }
+            if(item.className === 'prev'){
+              style.color='#ffa4a4';
+              style.background='#efefef';
+            }
+            if(item.className === 'next'){
+              style.color='#95bdff';
+              style.background='#efefef';
+            }
+            if(item.week === 0){
+              style.color='#ffba78';
+            }
+            if(isSelect){
+              style.background='#ff7070';
+              style.color='#fff';
+            }
+            return (
+              <span style={style}>{item.day}</span>
+            )
+          }}
+          showToday={true} value={`${new Date()}`}  />
       </div>
     )
   }
@@ -123,5 +204,16 @@ import DatePicker from 'uiw/lib/date-picker';
 | showToday | 是否展示“今天”按钮 | Boolean/Node | false |
 | disabled | 禁用日历 | Boolean | - |
 | disabledTime | 禁用时间 | Function(date) | - |
+| renderDate | 自定义日期单元格的内容 | Function(item:{ `tody`,`className['prev','next']`,`week`,`month`,`date`,`format`}, isSelect) | - |
 | align | 占位内容 | Enum{`left` `center` `right`} | - |
+| shortcuts | 快捷按钮 | Array | - |
+| shortcutinline | inline 显示 | Boolean | `true` |
+| shortcutClassName | 快捷键样式类名称 | String | - |
 | onChange | 时间发生变化的回调 time:`2017-12-18 12:18:43`、timeString:`Fri Jul 28 2017 09:45:00 GMT+0800 (CST)` | function(time:String, timeString: String) | - |
+
+### shortcut
+
+| 参数 | 说明 | 类型 | 默认值 |
+|--------- |-------- |--------- |-------- |
+| text | 显示文本内容 | String | - |
+| onClick | 点击回调函数 | Function | - |
