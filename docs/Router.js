@@ -4,7 +4,7 @@ import locales from './locales';
 import { Icon, version } from "../src";
 import Logo from "./assets/logo.svg";
 import ScrollToTop from 'react-scroll-up';
-import { routes,getLang } from "./Routers";
+import { routes, getLang } from "./Routers";
 
 // 获取所有路由
 const getRoutesTotal = (obj) => {
@@ -51,6 +51,7 @@ const renderMenuLi = (item, idx) => {
   if (getPageName(window.location.href) === getPageName(item.path)) {
     return <li key={`${idx}`} className="active" key={idx}>{getLang(`page.${getPageName(item.path)}`)}</li>
   }
+  console.log('item.path::', item.path)
   return (
     <li key={`${idx}`}>
       <Link to={`/${getLangName()}/${getPageName(item.path)}`}>
