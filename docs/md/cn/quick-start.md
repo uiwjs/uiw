@@ -53,6 +53,8 @@ import { Button as ButtonView } from 'uiw';
 $ git clone https://github.com/uiw-react/uiw.git
 $ cd uiw
 $ npm install # or  yarn install
+# or 解决phantomjs下载失败问题
+$ npm install --phantomjs_cdnurl=http://npm.taobao.org/mirrors/phantomjs
 ```
 
 要开发，运行自重新构建：
