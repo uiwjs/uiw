@@ -42,6 +42,7 @@ onSelect() {}
       <Menu 
         defaultActive="1" 
         defaultOpened={['5']}
+        style={{width:240}}
         onClose={this.onClose.bind(this)}
         onSelect={this.onSelect.bind(this)}>
           <Menu.Item index="1"><Icon type="date" />聚划算</Menu.Item>
@@ -50,7 +51,7 @@ onSelect() {}
             <Menu.Item index="2-2">食品饮料</Menu.Item>
             <Menu.Item index="2-3">美容洗护</Menu.Item>
           </Menu.SubMenu>
-          <Menu.Item disabled index="3"><Icon type="upload1" />淘抢购</Menu.Item>
+          <Menu.Item disabled index="3"><Icon type="windows"/>淘抢购</Menu.Item>
           <Menu.Item index="4"><Icon type="star-on" />电器城</Menu.Item>
           <Menu.SubMenu index="5" title={<span><Icon type="verification" /><span>折叠菜单</span></span>}>
             <Menu.Item index="5-1">生活电器</Menu.Item>
@@ -58,6 +59,57 @@ onSelect() {}
             <Menu.Item index="5-3">健康电器</Menu.Item>
             <Menu.Item index="5-4">手机配件</Menu.Item>
           </Menu.SubMenu>
+      </Menu>
+    )
+  }
+}
+```
+<!--End-->
+
+### 内嵌菜单
+
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+onSelect() {}
+  onClose(index) {
+    console.log("index::",index)
+  }
+  onOpen(index) {
+    console.log("index::",index)
+  }
+  render() {
+    return (
+      <Menu 
+        defaultActive="1-1-1" 
+        className="demo" 
+        style={{width:260}}
+        onOpen={this.onOpen.bind(this)} 
+        onClose={this.onClose.bind(this)}
+      >
+        <Menu.SubMenu index="1-1" title={<span><Icon type="apple"/>导航一</span>}>
+          <Menu.ItemGroup title="分组一">
+            <Menu.Item index="1-1-1">选项1</Menu.Item>
+            <Menu.Item index="1-1-2">选项2</Menu.Item>
+          </Menu.ItemGroup>
+          <Menu.ItemGroup title="分组2">
+            <Menu.Item index="1-1-3">选项3</Menu.Item>
+          </Menu.ItemGroup>
+        </Menu.SubMenu>
+        <Menu.SubMenu index="2" title={<span><Icon type="android"/>导航二</span>}>
+          <Menu.Item index="2-1">选项1</Menu.Item>
+          <Menu.Item index="2-2">选项2</Menu.Item>
+          <Menu.SubMenu index="2-3" title={<span>导航二子菜单</span>}>
+            <Menu.Item index="2-3-1">选项1</Menu.Item>
+            <Menu.Item index="2-3-2">选项2</Menu.Item>
+            <Menu.SubMenu index="2-3-3" title={<span>三级子菜单</span>}>
+              <Menu.Item index="2-3-3-1">选项1</Menu.Item>
+              <Menu.Item index="2-3-3-2">选项2</Menu.Item>
+            </Menu.SubMenu>
+          </Menu.SubMenu>
+        </Menu.SubMenu>
+        <Menu.Item index="3"><Icon type="linux"/>导航三</Menu.Item>
       </Menu>
     )
   }
