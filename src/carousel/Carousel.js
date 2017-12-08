@@ -48,22 +48,29 @@ export default class Carousel extends Component {
       this.slickcarousel.innerSlider.autoPlay();
     }
   }
-
+  next() {
+    // https://github.com/akiran/react-slick/blob/master/examples/PreviousNextMethods.js
+    this.slickcarousel.slickNext();
+  }
+  prev() {
+    this.slickcarousel.slickPrev();
+  }
+  goTo(num) {
+    // https://github.com/akiran/react-slick/blob/master/examples/SlickGoTo.js
+    this.slickcarousel.slickGoTo(num);
+  }
   render() {
+    const { prefixCls } = this.props;
     const props = { ...this.props };
     props.fade = props.effect === 'fade';
-    let cls = props.prefixCls;
-    if (props.vertical) {
-      cls = this.classNames(cls, `${cls}-vertical`, {
-        [props.className]: props.className,
-      });
-    }
+    const cls = this.classNames(prefixCls, {
+      [`${prefixCls}-vertical`]: props.vertical,
+      [props.className]: props.className,
+    });
+
     return (
       <div className={cls} style={props.style} >
-        <SlickCarousel
-          ref={(component) => { this.slickcarousel = component; }}
-          {...props}
-        />
+        <SlickCarousel ref={(node) => { this.slickcarousel = node; }} {...props} />
       </div>
     );
   }
