@@ -1,6 +1,23 @@
 import React from 'react';
-import SlickCarousel from 'react-slick';
+// import SlickCarousel from 'react-slick';
 import { Component, PropTypes } from '../utils/';
+
+// matchMedia polyfill for
+// https://github.com/WickyNilliams/enquire.js/issues/82
+if (typeof window !== 'undefined') {
+  const matchMediaPolyfill = (mediaQuery) => {
+    return {
+      media: mediaQuery,
+      matches: false,
+      addListener() { },
+      removeListener() { },
+    };
+  };
+  window.matchMedia = window.matchMedia || matchMediaPolyfill;
+}
+// Use require over import (will be lifted up)
+// make sure matchMedia polyfill run before require('react-slick')
+const SlickCarousel = require('react-slick').default;
 
 export default class Carousel extends Component {
   constructor(props) {
