@@ -11,6 +11,7 @@ module.exports = {
     'date-picker': 'DatePicker 日期选择器',
     'copy-to-clipboard': 'CopyToClipboard 复制',
     'dropdown': 'Dropdown 下拉菜单',
+    'divider': 'Divider 分割线',
     'hotkeys': "Hotkeys 快捷键",
     'switch': 'Switch 开关',
     'select': 'Select 选择器',
