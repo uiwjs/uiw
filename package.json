@@ -43,7 +43,7 @@
     "classnames": "~2.2.5",
     "hotkeys-js": "~2.0.5",
     "prop-types": "~15.6.0",
-    "react-slick": "~0.15.4",
+    "react-slick": "~0.16.0",
     "react-transition-group": "~2.2.1",
     "uiw-iconfont": "^1.2.4"
   },
