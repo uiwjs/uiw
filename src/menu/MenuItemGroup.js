@@ -10,13 +10,19 @@ export default class MenuItemGroup extends Component {
     };
   }
   render() {
-    const { prefixCls, className } = this.props;
+    const { prefixCls, className, title, children, resetProps } = this.props;
+    console.log('ttt', this.props);
+    // const
     return (
-      <li className={this.classNames(`${prefixCls}`, className, {
-        // 'is-active': this.state.active,
-        // 'is-opened': this.opened()
-      })}
-      />
+      <li className={this.classNames(`${prefixCls}`, className)} {...resetProps} >
+        <div className={`${prefixCls}-title`}>{title}</div>
+        <ul>
+          {React.Children.map(children, (child) => {
+            const childProps = {};
+            return React.cloneElement(child, childProps);
+          })}
+        </ul>
+      </li>
     );
   }
 }
