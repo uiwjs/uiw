@@ -7,8 +7,8 @@
 
 .@{w-menu} {
   outline: none;
-  margin-bottom: 0;
-  padding-left: 0;
+  margin: 0;
+  padding: 0;
   list-style: none;
   z-index: 1000;
   color: rgba(0, 0, 0, .65);
@@ -17,6 +17,7 @@
   li {
     list-style: none;
     margin: 0;
+    padding: 0;
   }
   i[class^='w-icon'] {
     margin-right: 5px;
@@ -24,7 +25,7 @@
   &-item {
     line-height: 42px;
     margin: 0;
-    padding: 0 10px 0 20px;
+    padding: 0 10px 0 20px !important;
     font-size: 14px;
     position: relative;
     display: block;
@@ -118,7 +119,7 @@
     top: 0;
   }
   &-con &-title {
-    padding-left: 21px;
+    padding-left: 20px;
   }
   & & {
     padding-left: 20px;
@@ -132,7 +133,7 @@
       display: block;
     }
     .w-menu-item {
-      padding-left: 40px;
+      padding-left: 40px !important;
     }
   }
 }
@@ -142,7 +143,7 @@
     font-size: 14px;
     color: rgba(0, 0, 0, 0.45);
     line-height: 1.5;
-    padding: 8px 16px 8px 32px;
+    padding: 8px 16px 8px 30px;
     transition: all .3s;
   }
 }
