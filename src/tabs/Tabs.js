@@ -122,27 +122,25 @@ export default class Tabs extends Component {
             {Line}
           </div>
         </div>
-        <div ref={(elm) => { this.tabcon = elm; }} className={`${prefixCls}-content`}>
+        <div className={`${prefixCls}-content`}>
           {
             React.Children.map(children, (item) => {
               const { key, props } = item;
               return (
                 <Transition
-                  ref={(elm) => {
-                    const elmNode = ReactDOM.findDOMNode(elm);
-                    if (elmNode && key === activeKey && elmNode.clientHeight && this.tabcon) {
-                      this.tabcon.style.height = `${elmNode.clientHeight}px`;
-                    }
-                  }}
                   in={key === activeKey}
                   sequence={props.sequence ? props.sequence : sequence}
                   mountOnEnter={false}
                   unmountOnExit={false}
+                  ref={(elm) => {
+                    const elmNode = ReactDOM.findDOMNode(elm);
+                    if (elmNode && key === activeKey) {
+                      elmNode.parentNode.style.height = `${elmNode.clientHeight}px`;
+                    }
+                  }}
                 >
-                  <div className={this.classNames(`${prefixCls}-pane`, {
-                    'w-disabled': props.disabled,
-                  })}
-                  > {props.children}
+                  <div className={this.classNames(`${prefixCls}-pane`, { 'w-disabled': props.disabled })}>
+                    {props.children}
                   </div>
                 </Transition>
               );
