@@ -51,7 +51,6 @@ const renderMenuLi = (item, idx) => {
   if (getPageName(window.location.href) === getPageName(item.path)) {
     return <li key={`${idx}`} className="active" key={idx}>{getLang(`page.${getPageName(item.path)}`)}</li>
   }
-  console.log('item.path::', item.path)
   return (
     <li key={`${idx}`}>
       <Link to={`/${getLangName()}/${getPageName(item.path)}`}>
