@@ -11,6 +11,7 @@ module.exports = {
     'collapse': 'Collapse',
     'date-picker': 'DatePicker',
     'dropdown': 'Dropdown',
+    'divider': 'Divider',
     'hotkeys': "Hotkeys",
     'switch': 'Switch',
     'select': 'Select',

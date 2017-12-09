@@ -56,13 +56,14 @@ export default class Menu extends Component {
     }
   }
   render() {
-    const { prefixCls, className, style, mode } = this.props;
+    const { prefixCls, className, style, mode, resetProps } = this.props;
     return (
       <ul
         style={style}
         className={this.classNames(className, `${prefixCls}`, {
           [`${prefixCls}-${mode}`]: mode,
         })}
+        {...resetProps}
       >
         {this.props.children}
       </ul>
