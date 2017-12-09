@@ -57,13 +57,15 @@ export default class Dragger extends Component {
   }
 
   scanFiles(item) {
+    const { limit } = this.props;
     const reader = new FileReader();
     reader.onloadend = (e) => {
-      const { files } = this.state;
+      let { files } = this.state;
       files.push({
         name: item.name,
         value: e.target.result,
       });
+      files = limit > 0 ? files.slice(0, limit) : files;
       this.setState({ files });
       this.handleChange(files);
     };
@@ -84,8 +86,7 @@ export default class Dragger extends Component {
       (event) => {
         const items = event.dataTransfer.files;
         event.preventDefault();
-        let length = items.length;
-        length = length > 4 ? 5 : length;
+        const length = items.length;
         for (let i = 0; i < length; i += 1) {
           this.scanFiles(items[i], this.listing);
         }
@@ -139,6 +140,14 @@ export default class Dragger extends Component {
   render() {
     const { prefixCls, className, disabled } = this.props;
     const cls = this.classNames(`${prefixCls}`, className);
+    const files = this.state.files;
+    let limit = this.props.limit;
+    let disabledBtn = false;
+    /*
+      limit 限制上传张数，到最大数量禁用Button
+    */
+    if (limit <= 0) limit = files.length + 1;
+    if (files.length >= limit || disabled) disabledBtn = true;
     return (
       <div className={cls}>
         <div
@@ -148,7 +157,7 @@ export default class Dragger extends Component {
           }}
         >
           <Button
-            disabled={disabled}
+            disabled={disabledBtn}
             size="small"
             onClick={() => {
               this.fileRef.click();
