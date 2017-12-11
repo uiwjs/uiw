@@ -4,7 +4,7 @@ import './style/index.less';
 
 export default class List extends Component {
   render() {
-    const { prefixCls, className, children, bordered, header, footer, size, dataSource, renderItem, ...resetProps } = this.props;
+    const { prefixCls, className, children, bordered, striped, header, footer, size, dataSource, renderItem, ...resetProps } = this.props;
     let items;
     if (dataSource && dataSource.length > 0) {
       items = dataSource.map((item, index) => renderItem(item, index));
@@ -15,6 +15,7 @@ export default class List extends Component {
       key: index,
     }));
     const classString = this.classNames(`${prefixCls}`, className, {
+      [`${prefixCls}-striped`]: striped,
       [`${prefixCls}-bordered`]: bordered,
       [`${prefixCls}-size-${size}`]: size && size !== 'default',
     });
@@ -31,6 +32,7 @@ export default class List extends Component {
 List.propTypes = {
   prefixCls: PropTypes.string,
   bordered: PropTypes.bool,
+  striped: PropTypes.bool,
   header: PropTypes.node,
   size: PropTypes.oneOf(['small', 'default', 'large']),
   renderItem: PropTypes.oneOfType([
@@ -47,6 +49,7 @@ List.propTypes = {
 List.defaultProps = {
   prefixCls: 'w-list',
   bordered: true,
+  striped: false,
   header: null,
   size: 'default',
   renderItem() { },
