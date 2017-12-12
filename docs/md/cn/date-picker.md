@@ -184,60 +184,24 @@ class Demo extends Component {
 <!--DemoStart--> 
 ```js
 class Demo extends Component {
-  constructor(props) {
+  constructor(props){
     super(props);
     this.state = {
-      value: new Date(2017, 6, 28, 15, 51),
-      showTime:'',
+      checked:true
     }
   }
-  handleChang(value,date) {
-    console.log('value;',value)
-    this.setState({
-      showTime:value,
-      value:date
-    })
+  onChange(e, checked){
+    this.setState({checked})
   }
   render() {
-    const {showTime} = this.state;
+    const {checked} = this.state;
     return (
       <div>
-        <TimePicker
-          //style={{width:100}}
-          onChange={this.handleChang.bind(this)}
-          disabledHours={['00','01']}
-          disabledMinutes={['01','02']}
-          disabled={true}
-          //hideDisabled={true}
-          format="H:i:s"
-          placeholder="选择时间de拉！"
-          value={new Date(2017, 6, 28, 15, 51)}
-        />
-        <TimePicker
-          //style={{width:100}}
-          size="large" 
-          onChange={this.handleChang.bind(this)}
-          disabledHours={['00','01']}
-          disabledMinutes={['01','02']}
-          disabled={false}
-          // hideDisabled={true}
-          format="H:i"
-          placeholder="选择时间de拉！更改"
-          value={this.state.value}
-        />
-        <TimePicker
-          //style={{width:100}}
-          size="mini" 
-          onChange={this.handleChang.bind(this)}
-          disabledHours={['00','01']}
-          disabledMinutes={['01','02']}
-          disabled={false}
-          format="H:i:s"
-          placeholder="选择时间de拉！更改"
-          value={this.state.value}
-        />
-        <div style={{padding:"20px 0 0 0"}}>
-          选择时间：{showTime}
+        <DatePicker format="Y年m月d日 H:i:s" showTime={true}/>
+        <DatePicker format="Y/m/d H:i:s" showToday={true} showTime={true} />
+        <DatePicker format="Y年m月d日 H:i:s" showToday={true} showTime={true} value={`${new Date()}`} />
+        <div style={{paddingTop:20}}>
+          <Switch onChange={this.onChange.bind(this)} checked={checked} checkedChildren="取消禁用" unCheckedChildren="禁用控件" color="#3eb54c" unColor="#ff4949" />
         </div>
       </div>
     )
