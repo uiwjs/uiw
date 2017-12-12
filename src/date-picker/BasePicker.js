@@ -27,7 +27,7 @@ export default class BasePicker extends Component {
   propsToState(props) {
     let label = isDate(props.value) ? this.dateToStr(props.value) : '';
     if (this.type === 'datepicker' && props.format && isDate(new Date(props.value))) {
-      label = formatDate(new Date(props.value), props.format);
+      label = formatDate(props.format, new Date(props.value));
     }
     return {
       text: label,
@@ -103,17 +103,17 @@ export default class BasePicker extends Component {
     let dateObject = this.parseDateTime(date);
     if (this.type === 'datepicker') {
       dateObject = new Date(date);
-      date = formatDate(new Date(date), format);
     }
     if ((this.type === 'timepicker' || this.type === 'timeselect') && !isDateTime(date)) {
       dateObject = value;
     }
+    const text = formatDate(format, new Date(dateObject));
     this.setState({
       visible,
-      text: date,
+      text,
       value: dateObject,
     });
-    onChange && onChange(date, dateObject);
+    onChange && onChange(text, dateObject);
   }
   createPickerPanel() {
     return this.pickerPanel(this.state);

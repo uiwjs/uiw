@@ -113,9 +113,9 @@ class Demo extends Component {
     super(props);
     this.state = {
       value:'2017/11/28',
-      format:'yyyy闰年?MM月dd日',
-      format1:'yyyy闰年?MM月dd日',
-      format2:'yyyy/MM/dd',
+      format:'Y闰年?m月d日',
+      format1:'Y闰年?m月d日',
+      format2:'Y/m/d',
       radioValue: 1
     }
   }
@@ -144,7 +144,6 @@ class Demo extends Component {
 }
 ```
 <!--End-->
-
 
 ## 禁用控件
 
@@ -179,6 +178,75 @@ class Demo extends Component {
 ```
 <!--End-->
 
+
+## 选择时分秒
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: new Date(2017, 6, 28, 15, 51),
+      showTime:'',
+    }
+  }
+  handleChang(value,date) {
+    console.log('value;',value)
+    this.setState({
+      showTime:value,
+      value:date
+    })
+  }
+  render() {
+    const {showTime} = this.state;
+    return (
+      <div>
+        <TimePicker
+          //style={{width:100}}
+          onChange={this.handleChang.bind(this)}
+          disabledHours={['00','01']}
+          disabledMinutes={['01','02']}
+          disabled={true}
+          //hideDisabled={true}
+          format="H:i:s"
+          placeholder="选择时间de拉！"
+          value={new Date(2017, 6, 28, 15, 51)}
+        />
+        <TimePicker
+          //style={{width:100}}
+          size="large" 
+          onChange={this.handleChang.bind(this)}
+          disabledHours={['00','01']}
+          disabledMinutes={['01','02']}
+          disabled={false}
+          // hideDisabled={true}
+          format="H:i"
+          placeholder="选择时间de拉！更改"
+          value={this.state.value}
+        />
+        <TimePicker
+          //style={{width:100}}
+          size="mini" 
+          onChange={this.handleChang.bind(this)}
+          disabledHours={['00','01']}
+          disabledMinutes={['01','02']}
+          disabled={false}
+          format="H:i:s"
+          placeholder="选择时间de拉！更改"
+          value={this.state.value}
+        />
+        <div style={{padding:"20px 0 0 0"}}>
+          选择时间：{showTime}
+        </div>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
+
 ## 安装和使用
 
 ```bash
@@ -199,9 +267,10 @@ import DatePicker from 'uiw/lib/date-picker';
 |--------- |-------- |--------- |-------- |
 | value | 日期 | Date | - |
 | placeholder | 占位内容 | String | - |
-| format | 格式化时间，例如：`yyyy年MM月dd日 hh:mm:ss`，年`yyyy`，月`MM`，日`dd`，时`hh`，分`mm`，秒`ss` | String | `yyyy/MM/dd` |
+| format | 格式化时间，例如：`Y年m月d日 H:i:s`，年`Y`，月`m`，日`d`，时`H`，分`i`，秒`s` | String | `Y/m/d` |
 | allowClear | 允许清除 | Boolean | - |
 | showToday | 是否展示“今天”按钮 | Boolean/Node | false |
+| showTime | 是否展示“选择时间”按钮 | Boolean/Object | false |
 | disabled | 禁用日历 | Boolean | - |
 | disabledTime | 禁用时间 | Function(date) | - |
 | renderDate | 自定义日期单元格的内容 | Function(item:{ `tody`,`className['prev','next']`,`week`,`month`,`date`,`format`}, isSelect) | - |

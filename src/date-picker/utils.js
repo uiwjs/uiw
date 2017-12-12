@@ -26,14 +26,13 @@ export const fillUpDays = (dateObject, format, selectDate) => {
   const nextMonth = month + 1 > 12 ? 1 : month + 1;
 
   const preMonthDay = monthDays[preMonth - 1];
-  // const nextMonthDay = monthDays[nextMonth - 1];
 
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
-  // const currentMonth = currentDate.getMonth() + 1;
   const currentDay = currentDate.getDate();
   // 1-42数组
   let i = 1;
+  const timeLabel = `${selectDate.getHours()}:${selectDate.getMinutes()}:${selectDate.getSeconds()}`;
   const arr = [];
   for (; i < 43; i += 1) {
     const json = {};
@@ -41,26 +40,26 @@ export const fillUpDays = (dateObject, format, selectDate) => {
     if (i <= week) { // 上个月
       json.day = preMonthDay - (week - i);
       json.month = preMonth;
-      date = new Date(`${month === 1 ? year - 1 : year}/${preMonth}/${json.day}`);
+      date = new Date(`${month === 1 ? year - 1 : year}/${preMonth}/${json.day} ${timeLabel}`);
       json.date = date;
-      json.format = formatDate(date, format);
+      json.format = formatDate(format, date);
       json.className = 'prev';
       json.week = date.getDay();
     } else if (i <= (monthDays[month - 1] + week)) {
       json.day = i - week;
       json.month = month;
-      date = new Date(`${year}/${month}/${json.day}`);
+      date = new Date(`${year}/${month}/${json.day} ${timeLabel}`);
       json.date = date;
-      json.format = formatDate(date, format);
+      json.format = formatDate(format, date);
       json.week = date.getDay();
     } else { // 下个月
       json.day = i - (monthDays[month - 1] + week);
       json.month = nextMonth;
       json.className = 'next';
       // date = new Date(month === 12 ? 1 : year, nextMonth, json.day);
-      date = new Date(`${month === 12 ? year + 1 : year}/${nextMonth}/${json.day}`);
+      date = new Date(`${month === 12 ? year + 1 : year}/${nextMonth}/${json.day} ${timeLabel}`);
       json.date = date;
-      json.format = formatDate(date, format);
+      json.format = formatDate(format, date);
       json.week = date.getDay();
     }
     // 判断是否为今天
@@ -82,9 +81,7 @@ export const parseTimeStr = (obj) => {
   const time = [];
   for (const a in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, a)) {
-      time.push(
-        obj[a] < 10 ? `0${obj[a]}` : obj[a]
-      );
+      time.push(obj[a] < 10 ? `0${obj[a]}` : obj[a]);
     }
   }
   return time.join(':');
@@ -127,13 +124,13 @@ export const dateTimeToStr = (date, format = 'HH:mm:ss') => {
   const _format = format.split(':');
   date = parseTime(date);
   if (!date) return '';
-  if (_format.indexOf('HH') > -1) {
+  if (_format.length > 0) {
     time.push(date.hours < 10 ? `0${date.hours}` : date.hours);
   }
-  if (_format.indexOf('mm') > -1) {
+  if (_format.length > 1) {
     time.push(date.minutes < 10 ? `0${date.minutes}` : date.minutes);
   }
-  if (_format.indexOf('ss') > -1) {
+  if (_format.length > 2) {
     time.push(date.seconds < 10 ? `0${date.seconds}` : date.seconds);
   }
   return time.join(':');

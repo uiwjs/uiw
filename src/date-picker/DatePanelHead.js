@@ -31,7 +31,7 @@ export default class DatePanelHead extends Component {
         break;
       default: break;
     }
-    if (onClickPageBtn) onClickPageBtn(new Date(year, month - 1, day));
+    if (onClickPageBtn) onClickPageBtn(new Date(year, month - 1, day, value.getHours(), value.getMinutes(), value.getSeconds()));
   }
   onPickerYear(year) {
     const { onPickerYear } = this.props;

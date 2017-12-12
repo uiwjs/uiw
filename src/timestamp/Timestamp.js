@@ -21,13 +21,13 @@ export default class Timestamp extends Component {
   componentDidMount() {
     const { value, format, tzc } = this.props;
     this.setState({
-      date: formatDate(timeZoneConverter(value, tzc), format),
+      date: formatDate(format, timeZoneConverter(value, tzc)),
     });
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value || nextProps.format !== this.props.format) {
       this.setState({
-        date: formatDate(timeZoneConverter(nextProps.value, nextProps.tzc), nextProps.format),
+        date: formatDate(nextProps.format, timeZoneConverter(nextProps.value, nextProps.tzc)),
       });
     }
   }
@@ -54,5 +54,5 @@ Timestamp.propTypes = {
 
 Timestamp.defaultProps = {
   prefixCls: 'w-timestamp',
-  format: 'yyyy-MM-dd hh:mm:ss',
+  format: 'Y-m-d h:i:s',
 };

@@ -3,13 +3,16 @@ import { Component, PropTypes, formatDate, isDate } from '../utils/';
 import { fillUpDays } from './utils';
 import DatePanelHead from './DatePanelHead';
 import DatePanelMode from './DatePanelMode';
+import TimePickerSpinner from './TimePickerSpinner';
 
 export default class DatePanelBody extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: isDate(props.value) ? new Date(props.value) : props.value,
+      value: isDate(props.value) && props.value ? new Date(props.value) : new Date(),
       labelToday: '今天',
+      labelTimeVisible: false,
+      selectTime: false,
       selectDate: isDate(props.value) ? new Date(props.value) : null,
       selectYear: false,
       selectMonth: false,
@@ -19,7 +22,8 @@ export default class DatePanelBody extends Component {
     if (nextProps.value !== this.props.value) {
       this.setState({
         value: nextProps.value || new Date(),
-        selectDate: nextProps.value,
+        selectDate: nextProps.value || null,
+        selectTime: !!nextProps.value,
       });
     }
   }
@@ -39,14 +43,31 @@ export default class DatePanelBody extends Component {
     });
   }
   renderTodayLabel = () => {
-    const { prefixCls, showToday, format, onPicked } = this.props;
+    const { prefixCls, showToday, onPicked } = this.props;
     const { labelToday } = this.state;
     if (!showToday) return null;
     return (
-      <a className={`${prefixCls}-today-btn`} onClick={() => { onPicked(formatDate(new Date(), format)); }}>
+      <a className={`${prefixCls}-today-btn`} onClick={() => { onPicked(new Date()); }}>
         {showToday && showToday === true ? labelToday : showToday}
       </a>
     );
+  }
+  renderTimeLabel = () => {
+    const { prefixCls, showTime } = this.props;
+    const { labelTimeVisible } = this.state;
+    if (!showTime) return null;
+    const timeLabel = labelTimeVisible ? '选择日期' : '选择时间';
+    return (
+      <a className={`${prefixCls}-time-btn`} onClick={this.onSelectTime}>
+        {showTime ? timeLabel : ''}
+      </a>
+    );
+  }
+  onSelectTime = () => {
+    const { labelTimeVisible } = this.state;
+    this.setState({
+      labelTimeVisible: !labelTimeVisible,
+    });
   }
   onPickerYear(year, isShow) {
     this.setState({
@@ -73,12 +94,27 @@ export default class DatePanelBody extends Component {
       }
     });
   }
+  onPickedSelectTime(date) {
+    // date = 09:34:30
+    const { value } = this.state;
+    const { onPicked } = this.props;
+    date.split(':').forEach((time, index) => {
+      if (index === 0) value.setHours(parseInt(time, 10));
+      if (index === 1) value.setMinutes(parseInt(time, 10));
+      if (index === 2) value.setSeconds(parseInt(time, 10));
+    });
+    this.setState({
+      value, selectDate: value,
+    }, () => {
+      onPicked(value);
+    });
+  }
   handleShortcutClick(shortcut) {
     shortcut.onClick();
   }
   render() {
-    const { prefixCls, weekLabel, format, onPicked, shortcutinline, renderDate, shortcutClassName, shortcuts } = this.props;
-    const { value, labelToday, selectDate, selectYear, selectMonth } = this.state;
+    const { prefixCls, weekLabel, format, onPicked, shortcutinline, showTime, renderDate, shortcutClassName, shortcuts } = this.props;
+    const { value, labelToday, selectDate, selectTime, selectYear, selectMonth, labelTimeVisible } = this.state;
     const datePanel = isDate(value) ? new Date(value) : new Date();
     const headerProps = {
       prefixCls, value: datePanel, defaultValue: this.props.value, selectYear, selectMonth, selectDate, onPicked,
@@ -95,6 +131,7 @@ export default class DatePanelBody extends Component {
     const LabelFooter = (
       <div className={`${prefixCls}-footer`}>
         {this.renderTodayLabel()}
+        {this.renderTimeLabel()}
       </div>
     );
 
@@ -109,8 +146,21 @@ export default class DatePanelBody extends Component {
         </div>
       );
     }
+    let timeProps = {
+      className: `${prefixCls}-select-time-panel`,
+      format: 'H:i:s',
+      isDatePicker: true,
+      value: selectTime ? formatDate('H:i:s', value) : '',
+      onPicked: this.onPickedSelectTime.bind(this),
+    };
+    if (showTime) {
+      timeProps = { ...showTime, ...timeProps };
+    }
     return (
       <div className={`${prefixCls}`}>
+        {labelTimeVisible && (
+          <TimePickerSpinner {...timeProps} />
+        )}
         {DatePanelHeadLabel}
         <div className={`${prefixCls}-week`}>
           {weekLabel.map((label, idx) => {
@@ -187,13 +237,18 @@ DatePanelBody.propTypes = {
     PropTypes.bool,
     PropTypes.node,
   ]),
+  showTime: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.object,
+  ]),
   weekLabel: PropTypes.arrayOf(PropTypes.string),
 };
 
 DatePanelBody.defaultProps = {
   allowClear: false,
-  format: 'yyyy-MM-dd',
+  format: 'Y/m/d',
   showToday: false, // 是否展示“今天”按钮
+  showTime: false, // 是否展示“选择时间”按钮
   prefixCls: 'w-datepicker',
   weekLabel: ['日', '一', '二', '三', '四', '五', '六'],
   onPicked() { },
