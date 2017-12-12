@@ -216,7 +216,7 @@ class Demo extends Component {
 | footer | 列表底部 | String/ReactNode | - |
 | header | 列表头部 | String/ReactNode | - |
 | dataSource | 是否展示边框 | Boolean | - |
-| renderItem | 是否展示边框 | Boolean | - |
+| renderItem | 通过毁掉函数返回Dome，渲染列表每个行 | Function(item,index) | - |
 
 ## List.Item
 
