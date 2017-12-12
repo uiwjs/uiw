@@ -5,6 +5,23 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.5.3
+
+`2017-12-12`
+
+Feature:
+
+- 🌟 feat(DatePicker): Add select Time. - [db1b509](https://github.com/uiw-react/uiw/commit/db1b509d1be999a14447b1e978e32deea96bccea) 
+- 🌟 feat(Timestamp):Add timestamp test ([#49](https://github.com/uiw-react/uiw/pull/49)) : [@kooff88](https://github.com/kooff88) - [6b8f27e](https://github.com/uiw-react/uiw/commit/6b8f27e450e29806e416a9080930ac07f02b5698) 
+- 🌟 feat(List): Add striped effect. - [11d2c62](https://github.com/uiw-react/uiw/commit/11d2c6251f7cf7cca16839ac38e4d72325ae6268) 
+- 🌟 feat(Upload):Add upload picture limit ([#48](https://github.com/uiw-react/uiw/pull/48)) : [@kooff88](https://github.com/kooff88) - [7209c4a](https://github.com/uiw-react/uiw/commit/7209c4afa799e3080d6a8632d8bbcc68283c8b0c) 
+
+Style Update:
+
+- 💄 style(Breadcrumb): Change styles. - [edcebe3](https://github.com/uiw-react/uiw/commit/edcebe3647c699bd7eec20fa4844415d42db9a18) 
+- 💄 style(List): Change list border radius. - [09b3448](https://github.com/uiw-react/uiw/commit/09b34487cc2dd72181621823258fcc889a5fa482) 
+- 💄 style(Menu): Change SubMenu style. - [ab4e6b0](https://github.com/uiw-react/uiw/commit/ab4e6b0d7f1c00edb1cea321df96d7e8ae659dc7) 
+
 ## 1.5.2
 
 `2017-12-09`
