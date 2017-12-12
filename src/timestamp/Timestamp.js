@@ -99,8 +99,8 @@ Timestamp.propTypes = {
     PropTypes.number,
     PropTypes.instanceOf(Date),
   ]),
-  onCountDownEnd: PropTypes.func,
-  onCountDownChange: PropTypes.func,
+  onCountEnd: PropTypes.func,
+  onCountChange: PropTypes.func,
 };
 
 Timestamp.defaultProps = {
