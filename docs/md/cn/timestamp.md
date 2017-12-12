@@ -41,6 +41,34 @@ class Demo extends Component {
 ```
 <!--End-->
 
+## 倒计时
+
+<!--DemoStart--> 
+```js
+const fillZero = num => (num < 10 ? `0${num}` : num);
+const hours = 60 * 60 * 1000;
+const minutes = 60 * 1000;
+
+class Demo extends Component {
+  renderTime(time){
+    const h = fillZero(Math.floor(time / hours));
+    const m = fillZero(Math.floor((time - (h * hours)) / minutes));
+    const s = fillZero(Math.floor((time - (h * hours) - (m * minutes)) / 1000));
+    return `${h}时 ${m}分 ${s}秒`;
+  }
+  render() {
+    return (
+      <div>
+        <div><Timestamp countDown={true} value={Date.now() + 26400000}/></div>
+        <div><Timestamp renderTime={this.renderTime.bind(this)} countDown={true} value={Date.now() + 26400000}/></div>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
+
 ## 时区转换
 
 `TZC` 为服务器时间时区，将时间转换到东八区时间
@@ -73,6 +101,12 @@ import Timestamp from 'uiw/lib/timestamp';
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| value | 日期值作为ISO8601字符串或Date对象 | String | - |
+| value | 日期值作为ISO8601字符串或Date对象，`countDown=true`的时候，它是一个倒计时结束时间。 | String | - |
 | format | 格式化时间，例如：`Y年m月d日 H:i:s`，年`Y`，月`m`，日`d`，时`H`，分`i`，秒`s` | String | `Y-m-d H:i:s` |
 | tzc | 服务器时区，解决因时区变更，导致显示服务器时间不准确 time Zone Converter | Number | - |
+| startTime | 倒计时，起始时间 | Number/String/Date | `new Date()` |
+| countDown | 倒计时，开关 | Boolean | `false` |
+| renderTime | 倒计时，回调函数返回Dom，用于格式化时间 | Function(Date) | `new Date()` |
+| interval | 倒计时，间隔时间 | Number | `1000`ms |
+| onCountChange | 倒计时，间隔时间出发事件 | Number | `1000`ms |
+| onCountEnd | 倒计时结束触发事件 | Number | `1000`ms |
