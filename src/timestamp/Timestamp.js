@@ -41,16 +41,17 @@ export default class Timestamp extends Component {
   }
   tick() {
     const { interval } = this.props;
+    this.clear();
     this.timer = setInterval(() => this.count(), interval);
   }
   clear() {
     this.timer && clearInterval(this.timer);
   }
   count() {
-    const { interval, renderTime, onCountEnd, onCountChange } = this.props;
+    const { interval, renderDate, onCountEnd, onCountChange } = this.props;
     if (this.timeleft > interval) {
       this.timeleft = this.timeleft - interval;
-      this.setState({ date: formatCountDown(this.timeleft, renderTime) }, () => {
+      this.setState({ date: formatCountDown(this.timeleft, renderDate) }, () => {
         onCountChange(this.timeleft);
       });
     } else {
@@ -69,7 +70,7 @@ export default class Timestamp extends Component {
     }
   }
   render() {
-    const { prefixCls, className, format, renderTime, tzc, value, countDown, onCountEnd, onCountChange, startTime, ...resetProps } = this.props;
+    const { prefixCls, className, format, renderDate, tzc, value, countDown, onCountEnd, onCountChange, startTime, ...resetProps } = this.props;
     const { date } = this.state;
     return (
       <span className={this.classNames(`${prefixCls}`, className)} {...resetProps}>
@@ -88,7 +89,7 @@ Timestamp.propTypes = {
     PropTypes.instanceOf(Date),
   ]),
   format: PropTypes.string,
-  renderTime: PropTypes.oneOfType([
+  renderDate: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.node,
   ]),
@@ -107,7 +108,6 @@ Timestamp.defaultProps = {
   prefixCls: 'w-timestamp',
   value: new Date(),
   format: 'Y-m-d h:i:s',
-  renderTime: null,
   interval: 1000,
   countDown: false,
   startTime: new Date(),
