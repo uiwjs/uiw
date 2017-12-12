@@ -42,6 +42,6 @@ DatePicker.propTypes = {
 DatePicker.defaultProps = {
   value: '',
   placeholder: '选择日期',
-  format: 'yyyy/MM/dd',
+  format: 'Y/m/d',
   shortcutinline: true,
 };

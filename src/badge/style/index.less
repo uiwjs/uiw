@@ -1,9 +1,10 @@
-.w-badge {
+@w-badge:~"w-badge";
+.@{w-badge} {
   position: relative;
   display: inline-block;
   line-height: 1;
   vertical-align: middle;
-  sup.w-badge-count {
+  sup&-count {
     position: absolute;
     transform: translateX(-50%);
     top: -10px;
@@ -21,7 +22,7 @@
     font-family: tahoma;
     box-shadow: 0 0 0 1px #fff;
   }
-  &.nowrap sup.w-badge-count {
+  &.nowrap sup&-count {
     top: auto;
     display: block;
     position: relative;
@@ -32,6 +33,8 @@
     position: absolute;
     transform: translateX(-50%);
     transform-origin: 0 center;
+    overflow: hidden;
+    color: transparent;
     top: -4px;
     height: 8px;
     width: 8px;
