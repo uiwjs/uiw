@@ -71,9 +71,16 @@ class Demo extends Component {
         <DatePicker 
           renderDate={(item,isSelect)=>{
             const style = {};
+            let todayLabel ='';
             if(item.today){
               style.color='red';
               style.fontWeight='bold';
+              style.fontSize=12;
+              todayLabel = <span style={{
+                transform:'scale(0.6)',
+                width:'100%',
+                boxShadow:'inset 0 0 0',
+              }}>今天</span>
             }
             if(item.className === 'prev'){
               style.color='#ffa4a4';
@@ -91,7 +98,7 @@ class Demo extends Component {
               style.color='#fff';
             }
             return (
-              <span style={style}>{item.day}</span>
+              <span style={style}>{item.today?todayLabel:item.day}</span>
             )
           }}
           showToday={true} value={`${new Date()}`}  />

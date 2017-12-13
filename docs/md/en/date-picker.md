@@ -91,7 +91,7 @@ class Demo extends Component {
               style.color='#fff';
             }
             return (
-              <span style={style}>{item.day}</span>
+              <span style={style}>{item.today?'今天':item.day}</span>
             )
           }}
           showToday={true} value={`${new Date()}`}  />
