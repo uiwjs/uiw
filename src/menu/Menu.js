@@ -17,6 +17,16 @@ export default class Menu extends Component {
   getChildContext() {
     return { component: this };
   }
+  componentWillReceiveProps(props) {
+    if (props.defaultActive !== this.props.defaultActive) {
+      this.setState({
+        defaultActive: props.defaultActive,
+      });
+    }
+    if (props.defaultOpened !== this.props.defaultOpened) {
+      this.setState({ openedMenu: props.defaultOpened });
+    }
+  }
   // 菜单选择事件
   handleSelect(index, menuItem) {
     let { defaultActive } = this.state;
