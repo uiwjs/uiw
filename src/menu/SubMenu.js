@@ -30,7 +30,6 @@ export default class SubMenu extends MixinComponent {
   }
   render() {
     const { prefixCls, className } = this.props;
-
     return (
       <li className={this.classNames(className, `${prefixCls}`, { opened: this.opened() })} >
         <div ref={(elm) => { this.submenu = elm; }} className={`${prefixCls}-title`}>
