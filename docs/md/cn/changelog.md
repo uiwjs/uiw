@@ -5,6 +5,38 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.5.4
+
+`2017-12-13`
+
+Feature:
+
+- 🌟 feat(Timestamp): Add date time befor ago show. : [045894b](https://github.com/uiw-react/uiw/commit/045894bdfaf360987b7bd49a4aa3f8edcf06b591) 
+- 🌟 feat(Icon): Add 7 icons. : [fed27d9](https://github.com/uiw-react/uiw/commit/fed27d9931522f1fbda136bf01078167f5c798e7) 
+- 🌟 feat(Timestamp): Add count down. : [2f781c0](https://github.com/uiw-react/uiw/commit/2f781c09673d90c54abd8a89250fbcd1a2640793) 
+
+Bug fixed:
+
+- 🐞 fix(Menu): fix [#51](https://github.com/uiw-react/uiw/issues/51) Change the defaultActive props. : [fb5463b](https://github.com/uiw-react/uiw/commit/fb5463b5ab2a3cc636a98cad0e44c6ceac093259) 
+- 🐞 fix(Timestamp): Repair method name is wrong. : [a18c959](https://github.com/uiw-react/uiw/commit/a18c959a7c2e4bdeeaef813345d37e89fd5fbd36) 
+- 🐞 fix(DatePicker): Fix layout problem. : [f07301f](https://github.com/uiw-react/uiw/commit/f07301f657842f6f6c9a32476c48c0b440ff10d2) 
+- 🐞 fix(Badge): Dot style problem. : [64d248d](https://github.com/uiw-react/uiw/commit/64d248d95371d8bf1e6b7911cf09bd8398e4975b) 
+- 🐞 refactor(Timestamp): Change the method name. : [0da9728](https://github.com/uiw-react/uiw/commit/0da9728902b34869918cb5ae897cd90b1c56c569) 
+
+Test Case: 
+
+- ⛑ Test(Collapse):Add Collapse test ([#50](https://github.com/uiw-react/uiw/pull/50)) : [@kooff88](https://github.com/kooff88) : [3b002f1](https://github.com/uiw-react/uiw/commit/3b002f11c9e3b6620991039abcd742371bbe36cd) 
+
+Style Update:
+
+- 💄 style(Card): Modify line height. : [c5cffdf](https://github.com/uiw-react/uiw/commit/c5cffdf5ef790d08ba7ec7c95b745ef464e4afd1) 
+- 💄 style(DatePicker): Change day picker style. : [4adb34f](https://github.com/uiw-react/uiw/commit/4adb34fef98fc97d42a462dfe8a72f984401e26b) 
+
+Document Update:
+
+- 📖 doc(DatePicker): Add example. : [de757cd](https://github.com/uiw-react/uiw/commit/de757cddfc83e3450155afd21d2d58207f49f69e) 
+- 📖 doc(List): Modify document error. : [4206539](https://github.com/uiw-react/uiw/commit/4206539c3bac8e8e1862739c173ff081b4697f8c) 
+
 ## 1.5.3
 
 `2017-12-12`
