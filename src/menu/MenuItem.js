@@ -12,15 +12,16 @@ export default class MenuItem extends MixinComponent {
     }
   }
   render() {
-    const { prefixCls, className, style } = this.props;
+    const { prefixCls, className, style, resetProps } = this.props;
     return (
       <li
         style={style}
         className={this.classNames(className, `${prefixCls}`, {
-        active: this.active(),
-        disabled: this.props.disabled,
-      })}
+          active: this.active(),
+          disabled: this.props.disabled,
+        })}
         onClick={this.handleClick.bind(this)}
+        {...resetProps}
       >
         {this.props.children}
       </li>

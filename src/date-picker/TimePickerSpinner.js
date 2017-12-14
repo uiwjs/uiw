@@ -56,6 +56,7 @@ export default class TimeSpinner extends Component {
       const date = new Date();
       const time = parseTime(new Date(`${date.getFullYear()}/${date.getMonth()}/${date.getDate()} ${value}`));
       time[`${item.ty}`] = Number(item.value);
+
       onPicked(parseTimeStr(time), true);
       // 点击当前节点滚动到顶部
       this.scrollTopNow(e.target);
@@ -65,7 +66,12 @@ export default class TimeSpinner extends Component {
     const { prefixCls, hideDisabled } = this.props;
     return (
       <div className={this.classNames(`${prefixCls}-select`)}>
-        <ul>
+        <ul ref={(tag) => {
+          if (tag) {
+            tag.style.paddingBottom = `${tag.parentNode.clientHeight - tag.firstChild.clientHeight}px`;
+          }
+        }}
+        >
           {
             arr.map((item, idx) => {
               if (hideDisabled && item.disabled) return null;
@@ -94,22 +100,20 @@ export default class TimeSpinner extends Component {
     );
   }
   render() {
-    const { prefixCls } = this.props;
+    const { prefixCls, className, isDatePicker } = this.props;
     const { several } = this.state;
     return (
       <div
         ref={(elm) => {
-          if (elm) {
-            if (elm.children && elm.children[0]) {
-              elm.style.width = `${elm.children[0].offsetWidth * several.length}px`;
-            }
+          if (!isDatePicker && elm && elm.children && elm.children[0]) {
+            // elm.style.width = `${elm.children[0].offsetWidth * several.length}px`;
           }
         }}
-        className={this.classNames(`${prefixCls}`)}
+        className={this.classNames(`${prefixCls}`, className)}
       >
-        {several.indexOf('HH') > -1 && this.renderItem(this.rangeTime(24, 'hours'))}
-        {several.indexOf('mm') > -1 && this.renderItem(this.rangeTime(60, 'minutes'))}
-        {several.indexOf('ss') > -1 && this.renderItem(this.rangeTime(60, 'seconds'))}
+        {several.length > 0 && this.renderItem(this.rangeTime(24, 'hours'))}
+        {several.length > 1 && this.renderItem(this.rangeTime(60, 'minutes'))}
+        {several.length > 2 && this.renderItem(this.rangeTime(60, 'seconds'))}
       </div>
     );
   }
@@ -141,11 +145,22 @@ TimeSpinner.propTypes = {
   hours: PropTypes.number, // 时
   minutes: PropTypes.number, // 分
   seconds: PropTypes.number, // 秒
+  value: PropTypes.string.isRequired,
+  format: PropTypes.string, // 时间序列化
+  isDatePicker: PropTypes.bool, // 是否为时间选择器
+  disabledHours: PropTypes.array, // 禁用时
+  disabledMinutes: PropTypes.array, // 禁用分
+  disabledSeconds: PropTypes.array, // 禁用秒
   isShowSeconds: PropTypes.bool, // 是否显示秒
 };
 
 TimeSpinner.defaultProps = {
   prefixCls: 'w-time-spinner',
+  isDatePicker: false,
+  format: 'H:i:s',
+  disabledHours: [], // 时
+  disabledMinutes: [], // 分
+  disabledSeconds: [], // 秒
   hours: 0, // 时
   minutes: 0, // 分
   seconds: 0, // 秒

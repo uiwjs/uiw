@@ -4,7 +4,6 @@
   font-size: 14px;
   line-height: 1.5;
   color: #52575c;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -17,6 +16,7 @@
   &-bordered &-item {
     &:last-child {
       border-bottom: 0;
+      border-radius: 0 0 4px 4px;
     }
     &.w-disabled {
       cursor: not-allowed;
@@ -33,6 +33,9 @@
     &:hover {
       background: #f8f8f9;
     }
+  }
+  &-striped &-item:nth-of-type(2n) {
+    background: #f8f8f9;
   }
   &-bordered &-item,
   &-bordered &-header {

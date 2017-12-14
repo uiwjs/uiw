@@ -23,7 +23,8 @@ class Demo extends Component {
         showToday
         value={`${value}`}
         shortcutinline={true}
-        shortcuts={[{
+        shortcuts={[
+          {
             text: '昨天',
             onClick: ()=> {
               this.setState({value: new Date(Date.now() - 86400000)})
@@ -38,9 +39,69 @@ class Demo extends Component {
             onClick: ()=> {
              this.setState({value: new Date(Date.now() - 86400000 * 30)})
             }
-          }]}/>
+          }
+        ]}/>
         <DatePicker showToday={true}  />
         <DatePicker showToday={true} value={`${new Date()}`}  />
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
+## 定制日期单元格
+
+使用 `renderDate` 可以自定义日期单元格的内容和样式。
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      value : new Date()
+    }
+  }
+
+  render() {
+    const { value } = this.state;
+    return (
+      <div>
+        <DatePicker 
+          renderDate={(item,isSelect)=>{
+            const style = {};
+            let todayLabel ='';
+            if(item.today){
+              style.color='red';
+              style.fontWeight='bold';
+              style.fontSize=12;
+              todayLabel = <span style={{
+                transform:'scale(0.6)',
+                width:'100%',
+                boxShadow:'inset 0 0 0',
+              }}>今天</span>
+            }
+            if(item.className === 'prev'){
+              style.color='#ffa4a4';
+              style.background='#efefef';
+            }
+            if(item.className === 'next'){
+              style.color='#95bdff';
+              style.background='#efefef';
+            }
+            if(item.week === 0){
+              style.color='#ffba78';
+            }
+            if(isSelect){
+              style.background='#ff7070';
+              style.color='#fff';
+            }
+            return (
+              <span style={style}>{item.today?todayLabel:item.day}</span>
+            )
+          }}
+          showToday={true} value={`${new Date()}`}  />
       </div>
     )
   }
@@ -59,9 +120,9 @@ class Demo extends Component {
     super(props);
     this.state = {
       value:'2017/11/28',
-      format:'yyyy闰年?MM月dd日',
-      format1:'yyyy闰年?MM月dd日',
-      format2:'yyyy/MM/dd',
+      format:'Y闰年?m月d日',
+      format1:'Y闰年?m月d日',
+      format2:'Y/m/d',
       radioValue: 1
     }
   }
@@ -90,7 +151,6 @@ class Demo extends Component {
 }
 ```
 <!--End-->
-
 
 ## 禁用控件
 
@@ -125,6 +185,39 @@ class Demo extends Component {
 ```
 <!--End-->
 
+
+## 选择时分秒
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      checked:true
+    }
+  }
+  onChange(e, checked){
+    this.setState({checked})
+  }
+  render() {
+    const {checked} = this.state;
+    return (
+      <div>
+        <DatePicker format="Y年m月d日 H:i:s" showTime={true}/>
+        <DatePicker format="Y/m/d H:i:s" showToday={true} showTime={true} />
+        <DatePicker format="Y年m月d日 H:i:s" showToday={true} showTime={true} value={`${new Date()}`} />
+        <div style={{paddingTop:20}}>
+          <Switch onChange={this.onChange.bind(this)} checked={checked} checkedChildren="取消禁用" unCheckedChildren="禁用控件" color="#3eb54c" unColor="#ff4949" />
+        </div>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
+
 ## 安装和使用
 
 ```bash
@@ -145,18 +238,20 @@ import DatePicker from 'uiw/lib/date-picker';
 |--------- |-------- |--------- |-------- |
 | value | 日期 | Date | - |
 | placeholder | 占位内容 | String | - |
-| format | 格式化时间，例如：`yyyy年MM月dd日 hh:mm:ss`，年`yyyy`，月`MM`，日`dd`，时`hh`，分`mm`，秒`ss` | String | `yyyy/MM/dd` |
+| format | 格式化时间，例如：`Y年m月d日 H:i:s`，年`Y`，月`m`，日`d`，时`H`，分`i`，秒`s` | String | `Y/m/d` |
 | allowClear | 允许清除 | Boolean | - |
 | showToday | 是否展示“今天”按钮 | Boolean/Node | false |
+| showTime | 是否展示“选择时间”按钮 | Boolean/Object | false |
 | disabled | 禁用日历 | Boolean | - |
 | disabledTime | 禁用时间 | Function(date) | - |
+| renderDate | 自定义日期单元格的内容 | Function(item:{ `tody`,`className['prev','next']`,`week`,`month`,`date`,`format`}, isSelect) | - |
 | align | 占位内容 | Enum{`left` `center` `right`} | - |
 | shortcuts | 快捷按钮 | Array | - |
 | shortcutinline | inline 显示 | Boolean | `true` |
 | shortcutClassName | 快捷键样式类名称 | String | - |
 | onChange | 时间发生变化的回调 time:`2017-12-18 12:18:43`、timeString:`Fri Jul 28 2017 09:45:00 GMT+0800 (CST)` | function(time:String, timeString: String) | - |
 
-#### shortcut
+### shortcut
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |

@@ -18,6 +18,7 @@ class Demo extends Component {
           onRemove={(value2)=>{
             console.log("value2::",value2)
           }}
+          limit={3}
         />
       </div>
     )
@@ -37,3 +38,4 @@ class Demo extends Component {
 | onChange | 拖拽完成触发,可获取图片的base64编码以及二进制编码容器blob | function(value) | - |
 | onRemove | 删除某张图片 | function(value) | - |
 | disabled | 禁止点击按钮 | Boolean | `false` |
+| limit    | 限制上传张数 | Number | - |

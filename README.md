@@ -68,6 +68,8 @@ To develop, run the self-reloading build, Get the code:
 $ git clone https://github.com/uiw-react/uiw.git
 $ cd uiw
 $ npm install # or  yarn install
+# or
+$ npm install --phantomjs_cdnurl=http://npm.taobao.org/mirrors/phantomjs
 ```
 
 To develop, run the self-reloading build:

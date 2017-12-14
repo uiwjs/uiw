@@ -125,11 +125,38 @@ class Demo extends Component {
 class Demo extends Component {
   render() {
     return (
-      <List header={<div>列表头部</div>} footer={<div>列表尾部</div>}>
+      <List size="small" header={<div>列表头部</div>} footer={<div>列表尾部</div>}>
         <List.Item active>"X战警新变种人"首曝海报特写诡异人脸</List.Item>
         <List.Item>六大变五大？传迪士尼600亿收购福斯</List.Item>
         <List.Item>快跑!《侏罗纪世界2》正式预告要来了</List.Item>
       </List>
+    )
+  }
+}
+```
+<!--End-->
+
+### 斑马线
+
+<!--DemoStart--> 
+```js
+const data = [
+  '人总是在接近幸福时倍感幸福，在幸福进行时却患得患失。',
+  '因为爱过，所以慈悲；因为懂得，所以宽容。',
+  '你如果认识从前的我，也许你会原谅现在的我。',
+  <span>你还不来，我怎敢老去。</span>,
+];
+class Demo extends Component {
+  render() {
+    return (
+      <List
+        dataSource={data}
+        striped={true}
+        size="small"
+        renderItem={item => {
+          return (<List.Item>{item}</List.Item>);
+        }}
+      />
     )
   }
 }
@@ -185,10 +212,11 @@ class Demo extends Component {
 |--------- |-------- |--------- |-------- |
 | size | 设置行尺寸，分别大、中、小三种尺寸 | Enum{`small`,`default`,`large`} | `default` |
 | bordered | 是否展示边框 | Boolean | `true` |
+| striped | 斑马线效果 | Boolean | `false` |
 | footer | 列表底部 | String/ReactNode | - |
 | header | 列表头部 | String/ReactNode | - |
 | dataSource | 是否展示边框 | Boolean | - |
-| renderItem | 是否展示边框 | Boolean | - |
+| renderItem | 通过毁掉函数返回Dome，渲染列表每个行 | Function(item,index) | - |
 
 ## List.Item
 
