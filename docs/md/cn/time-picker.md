@@ -4,9 +4,9 @@ TimePicker 时间选择器
 用于选择或输入日期
 
 ### 基本用法
+点击 `TimePicker`，然后可以在浮层中选择或者输入某一时间。
 
 <!--DemoStart--> 
-使用 `<TimeSelect>` ，分别通过`star`、`end`和`step`指定可选的起始时间、结束时间和步长，通过`minTime`和`maxTime`来限制时间。
 ```js
 class Demo extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class Demo extends Component {
           disabledHours={['00','01']}
           disabledMinutes={['01','02']}
           disabled={false}
-          format="HH:mm:ss"
+          format="H:i:s"
           placeholder="选择时间de拉！更改"
           value={this.state.value}
         />
@@ -180,6 +180,7 @@ class Demo extends Component {
     }
   }
   handleChang(value,date) {
+    console.log('value;',value)
     this.setState({
       showTime:value,
       value:date
@@ -196,7 +197,7 @@ class Demo extends Component {
           disabledMinutes={['01','02']}
           disabled={true}
           //hideDisabled={true}
-          format="HH:mm:ss"
+          format="H:i:s"
           placeholder="选择时间de拉！"
           value={new Date(2017, 6, 28, 15, 51)}
         />
@@ -208,7 +209,7 @@ class Demo extends Component {
           disabledMinutes={['01','02']}
           disabled={false}
           // hideDisabled={true}
-          format="HH:mm"
+          format="H:i"
           placeholder="选择时间de拉！更改"
           value={this.state.value}
         />
@@ -219,15 +220,13 @@ class Demo extends Component {
           disabledHours={['00','01']}
           disabledMinutes={['01','02']}
           disabled={false}
-          format="HH:mm:ss"
+          format="H:i:s"
           placeholder="选择时间de拉！更改"
           value={this.state.value}
         />
-        {showTime&&
-          <div style={{padding:"20px 0 0 0"}}>
-            {showTime}
-          </div>
-        }
+        <div style={{padding:"20px 0 0 0"}}>
+          选择时间：{showTime}
+        </div>
       </div>
     )
   }
@@ -277,8 +276,8 @@ import TimeSelect from 'uiw/lib/time-select';
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
-| format | 默认显示时分秒，可以定义`HH:mm`只显示十分 | String | `HH:mm:ss` |
+| format | 默认显示时分秒，可以定义`H:i`只显示十分 | String | `H:i:s` |
 | disabledHours | 禁止选择部分`小时`选项 | Array | [] |
 | disabledMinutes | 禁止选择部分`分钟`选项 | Array | [] |
-| disabledSeconds | 禁止选择部分`秒`选项 | String | `HH:mm:ss` |
+| disabledSeconds | 禁止选择部分`秒`选项 | String | [] |
 | onChange | 时间发生变化的回调 time:`9:30`、timeString:`Fri Jul 28 2017 09:45:00 GMT+0800 (CST)` | function(time:String, timeString: String) | - |

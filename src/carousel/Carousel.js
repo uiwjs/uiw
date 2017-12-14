@@ -1,6 +1,23 @@
 import React from 'react';
-import SlickCarousel from 'react-slick';
+// import SlickCarousel from 'react-slick';
 import { Component, PropTypes } from '../utils/';
+
+// matchMedia polyfill for
+// https://github.com/WickyNilliams/enquire.js/issues/82
+if (typeof window !== 'undefined') {
+  const matchMediaPolyfill = (mediaQuery) => {
+    return {
+      media: mediaQuery,
+      matches: false,
+      addListener() { },
+      removeListener() { },
+    };
+  };
+  window.matchMedia = window.matchMedia || matchMediaPolyfill;
+}
+// Use require over import (will be lifted up)
+// make sure matchMedia polyfill run before require('react-slick')
+const SlickCarousel = require('react-slick').default;
 
 export default class Carousel extends Component {
   constructor(props) {
@@ -31,22 +48,29 @@ export default class Carousel extends Component {
       this.slickcarousel.innerSlider.autoPlay();
     }
   }
-
+  next() {
+    // https://github.com/akiran/react-slick/blob/master/examples/PreviousNextMethods.js
+    this.slickcarousel.slickNext();
+  }
+  prev() {
+    this.slickcarousel.slickPrev();
+  }
+  goTo(num) {
+    // https://github.com/akiran/react-slick/blob/master/examples/SlickGoTo.js
+    this.slickcarousel.slickGoTo(num);
+  }
   render() {
+    const { prefixCls } = this.props;
     const props = { ...this.props };
     props.fade = props.effect === 'fade';
-    let cls = props.prefixCls;
-    if (props.vertical) {
-      cls = this.classNames(cls, `${cls}-vertical`, {
-        [props.className]: props.className,
-      });
-    }
+    const cls = this.classNames(prefixCls, {
+      [`${prefixCls}-vertical`]: props.vertical,
+      [props.className]: props.className,
+    });
+
     return (
       <div className={cls} style={props.style} >
-        <SlickCarousel
-          ref={(component) => { this.slickcarousel = component; }}
-          {...props}
-        />
+        <SlickCarousel ref={(node) => { this.slickcarousel = node; }} {...props} />
       </div>
     );
   }

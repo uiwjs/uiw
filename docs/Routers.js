@@ -27,6 +27,7 @@ import inputNumber from 'bundle-loader?lazy&name=input-number!./pages/input-numb
 import inputPassword from 'bundle-loader?lazy&name=input-password!./pages/input-password';
 import timePicker from 'bundle-loader?lazy&name=time-picker!./pages/time-picker';
 import datePicker from 'bundle-loader?lazy&name=date-picker!./pages/date-picker';
+import divider from 'bundle-loader?lazy&name=divider!./pages/divider';
 import calendar from 'bundle-loader?lazy&name=calendar!./pages/calendar';
 import table from 'bundle-loader?lazy&name=table!./pages/table';
 import tabs from 'bundle-loader?lazy&name=tabs!./pages/tabs';
@@ -143,6 +144,7 @@ const routes = {
     'Other': [
       { path: "/:lang/copy-to-clipboard", component: asyncComponent(CopyToClipboard) },
       { path: "/:lang/backtop", component: asyncComponent(backtop) },
+      { path: "/:lang/divider", component: asyncComponent(divider) },
     ]
   },
   redirect: [

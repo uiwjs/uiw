@@ -5,6 +5,92 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.5.4
+
+`2017-12-13`
+
+Feature:
+
+- 🌟 feat(Timestamp): Add date time befor ago show. : [045894b](https://github.com/uiw-react/uiw/commit/045894bdfaf360987b7bd49a4aa3f8edcf06b591) 
+- 🌟 feat(Icon): Add 7 icons. : [fed27d9](https://github.com/uiw-react/uiw/commit/fed27d9931522f1fbda136bf01078167f5c798e7) 
+- 🌟 feat(Timestamp): Add count down. : [2f781c0](https://github.com/uiw-react/uiw/commit/2f781c09673d90c54abd8a89250fbcd1a2640793) 
+
+Bug fixed:
+
+- 🐞 fix(Menu): fix [#51](https://github.com/uiw-react/uiw/issues/51) Change the defaultActive props. : [fb5463b](https://github.com/uiw-react/uiw/commit/fb5463b5ab2a3cc636a98cad0e44c6ceac093259) 
+- 🐞 fix(Timestamp): Repair method name is wrong. : [a18c959](https://github.com/uiw-react/uiw/commit/a18c959a7c2e4bdeeaef813345d37e89fd5fbd36) 
+- 🐞 fix(DatePicker): Fix layout problem. : [f07301f](https://github.com/uiw-react/uiw/commit/f07301f657842f6f6c9a32476c48c0b440ff10d2) 
+- 🐞 fix(Badge): Dot style problem. : [64d248d](https://github.com/uiw-react/uiw/commit/64d248d95371d8bf1e6b7911cf09bd8398e4975b) 
+- 🐞 refactor(Timestamp): Change the method name. : [0da9728](https://github.com/uiw-react/uiw/commit/0da9728902b34869918cb5ae897cd90b1c56c569) 
+
+Test Case: 
+
+- ⛑ Test(Collapse):Add Collapse test ([#50](https://github.com/uiw-react/uiw/pull/50)) : [@kooff88](https://github.com/kooff88) : [3b002f1](https://github.com/uiw-react/uiw/commit/3b002f11c9e3b6620991039abcd742371bbe36cd) 
+
+Style Update:
+
+- 💄 style(Card): Modify line height. : [c5cffdf](https://github.com/uiw-react/uiw/commit/c5cffdf5ef790d08ba7ec7c95b745ef464e4afd1) 
+- 💄 style(DatePicker): Change day picker style. : [4adb34f](https://github.com/uiw-react/uiw/commit/4adb34fef98fc97d42a462dfe8a72f984401e26b) 
+
+Document Update:
+
+- 📖 doc(DatePicker): Add example. : [de757cd](https://github.com/uiw-react/uiw/commit/de757cddfc83e3450155afd21d2d58207f49f69e) 
+- 📖 doc(List): Modify document error. : [4206539](https://github.com/uiw-react/uiw/commit/4206539c3bac8e8e1862739c173ff081b4697f8c) 
+
+## 1.5.3
+
+`2017-12-12`
+
+Feature:
+
+- 🌟 feat(DatePicker): Add select Time. - [db1b509](https://github.com/uiw-react/uiw/commit/db1b509d1be999a14447b1e978e32deea96bccea) 
+- 🌟 feat(Timestamp):Add timestamp test ([#49](https://github.com/uiw-react/uiw/pull/49)) : [@kooff88](https://github.com/kooff88) - [6b8f27e](https://github.com/uiw-react/uiw/commit/6b8f27e450e29806e416a9080930ac07f02b5698) 
+- 🌟 feat(List): Add striped effect. - [11d2c62](https://github.com/uiw-react/uiw/commit/11d2c6251f7cf7cca16839ac38e4d72325ae6268) 
+- 🌟 feat(Upload):Add upload picture limit ([#48](https://github.com/uiw-react/uiw/pull/48)) : [@kooff88](https://github.com/kooff88) - [7209c4a](https://github.com/uiw-react/uiw/commit/7209c4afa799e3080d6a8632d8bbcc68283c8b0c) 
+
+Style Update:
+
+- 💄 style(Breadcrumb): Change styles. - [edcebe3](https://github.com/uiw-react/uiw/commit/edcebe3647c699bd7eec20fa4844415d42db9a18) 
+- 💄 style(List): Change list border radius. - [09b3448](https://github.com/uiw-react/uiw/commit/09b34487cc2dd72181621823258fcc889a5fa482) 
+- 💄 style(Menu): Change SubMenu style. - [ab4e6b0](https://github.com/uiw-react/uiw/commit/ab4e6b0d7f1c00edb1cea321df96d7e8ae659dc7) 
+
+## 1.5.2
+
+`2017-12-09`
+
+Feature:
+
+- 🌟 feat(Menu): Add support submenu nested.  [e8df7e1](https://github.com/uiw-react/uiw/commit/e8df7e1d62c38518082c16e996d2e5056bbf0ea7) 
+- 🌟 feat(Divider): Add Divider component.  [6293516](https://github.com/uiw-react/uiw/commit/6293516dc58bad228c930152732dbc7244338d53) 
+- 🌟 feat(Carousel): Add jump method.  [eeb03a4](https://github.com/uiw-react/uiw/commit/eeb03a4f67436a322d070b595d485066d6762fea) 
+- 🌟 feat(Carousel): Update version v0.16.0  [9b9e9e2](https://github.com/uiw-react/uiw/commit/9b9e9e2d3a9a479efd264655846eb6845d3bb3cd) 
+- 🌟 feat(DatePicker): Add renderDate custom date cells. [42086b5](https://github.com/uiw-react/uiw/commit/42086b5c9dcaaa8a8c8805d612dc17e19eb1c058) 
+- 🌟 feat(DatePicker): Add shortcuts to DatePicker : [@Xing-He](https://github.com/xing-he) [9a9be75](https://github.com/uiw-react/uiw/commit/9a9be755774b68e68b7fd5c996ba4b8e5c9f9880) 
+- 🌟 feat(Upload):Add Upload Component ([#44](https://github.com/uiw-react/uiw/pull/44)) : [@kooff88](https://github.com/kooff88) [9ed5c91](https://github.com/uiw-react/uiw/commit/9ed5c9106094b043e7b57b385f5cebce7103af7d) 
+
+Test Case: 
+
+- ⛑ test(Transition):Add transition test ([#47](https://github.com/uiw-react/uiw/pull/47)) [@kooff88](https://github.com/kooff88) [f1cce8a](https://github.com/uiw-react/uiw/commit/f1cce8a77d128312f650240087dfcad5aadc67c3) 
+- ⛑ test(Tabs):Add Tabs test ([#46](https://github.com/uiw-react/uiw/pull/46)) : [@kooff88](https://github.com/kooff88) [1ac4b5e](https://github.com/uiw-react/uiw/commit/1ac4b5e6a0814fffb422d663eb7c6d62ac08fef9) 
+
+Bug fixed:
+
+- 🐞 fix(Tabs): Switch content bug.  [83ccd6a](https://github.com/uiw-react/uiw/commit/83ccd6aec3436b8b9448cac472fb57b5906eb0bd) 
+- 🐞 fix(Carousel): matchMedia not present, legacy browsers require a polyfill [d61bdc9](https://github.com/uiw-react/uiw/commit/d61bdc931ca4d328831c9d2cffd66952bcaa8ffe) 
+- 🐞 fix(TimePicker): fix [#45](https://github.com/uiw-react/uiw/issues/45) Choose the NaN that appears. [d5aac9f](https://github.com/uiw-react/uiw/commit/d5aac9fd7ae24373600b15c300328b2c222e9fff) 
+- 🐞 fix(DatePicker): Modify props shortcutClassName and doc : [@Xing-He](https://github.com/xing-he) [1bba805](https://github.com/uiw-react/uiw/commit/1bba8058cdd6a89ef1322adc5094866340d257bc) 
+- 🐞 fix(Select): Select couldn't pop subview when only one directly option element : [@Xing-He](https://github.com/xing-he) [5b8be69](https://github.com/uiw-react/uiw/commit/5b8be69d6feb1a1a9f7fc4e225b06b839e31c85e) 
+- 🐞 Update hotkeys.js v2.0.5  [a684baf](https://github.com/uiw-react/uiw/commit/a684bafce4ee53249dfd6323b0364d771985a58d) 
+
+Document Update:
+
+- 📖 doc: Update quick-start.md  [96dc3f9](https://github.com/uiw-react/uiw/commit/96dc3f9571251236950b5b6e33d2d391c7910267) 
+- 📖 doc(Divider): Document display Divider component.  [a5c2d1a](https://github.com/uiw-react/uiw/commit/a5c2d1a8aabce45259b140543fa73defbfc19def) 
+- 📖 doc: Update development install problems.  [9de1e44](https://github.com/uiw-react/uiw/commit/9de1e445a935b22d78de510c9346eb0f10e0de7c) 
+- 📖 doc(DatePicker): Add description of shortcut : [@Xing-He](https://github.com/xing-he) [dadab82](https://github.com/uiw-react/uiw/commit/dadab82747912a9b758ed378566efeb8be37239c) 
+- 📖 doc(DatePicker): Modify typo error : [@Xing-He](https://github.com/xing-he) [286003f](https://github.com/uiw-react/uiw/commit/286003f1e394ad4918868cf79fe4be638014a021) 
+- 🌍 website: Fix menu switch warning: unmountComponentAtNode.  [de6d28d](https://github.com/uiw-react/uiw/commit/de6d28d8845d1466db419dc2e72e88354d1b8a7d) 
+
 ## 1.5.1
 
 `2017-12-07`

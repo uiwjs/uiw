@@ -123,6 +123,9 @@
   span&-sun, span&-sat {
     color: #929292;
   }
+  span&-sat {
+    box-shadow: inset 0 -1px 0 #eaeaea;
+  }
 
   &-footer {
     background: #fafafa;
@@ -130,6 +133,11 @@
     min-height: 10px;
     line-height: 26px;
     padding: 0 5px;
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
   }
   &-mode-select {
     background: #f5f5f5;
@@ -195,5 +203,21 @@
         padding: 5px;
       }
     }
+  }
+
+  &-time-btn {
+    float: right;
+  }
+  &-select-time-panel {
+    position: absolute;
+    background: #fff;
+    border: solid #eaeaea;
+    border-width: 1px 0;
+    height: inherit;
+    top: 31px;
+    bottom: 27px;
+    right: 1px;
+    left: 1px;
+    z-index: 9;
   }
 }
