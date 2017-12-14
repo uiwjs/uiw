@@ -21,6 +21,7 @@ export default class Avatar extends Component {
     const cls = this.classNames(prefixCls, {
       [`${prefixCls}-large`]: size === 'large',
       [`${prefixCls}-small`]: size === 'small',
+      [`${prefixCls}-mini`]: size === 'mini',
       [`${prefixCls}-${shape}`]: shape,
       [`${prefixCls}-image`]: src,
     });
@@ -49,6 +50,7 @@ Avatar.propTypes = {
     'large',
     'default',
     'small',
+    'mini',
   ]),
   shape: PropTypes.oneOf([
     'square', // 正方形
