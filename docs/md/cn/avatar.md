@@ -5,7 +5,7 @@ Avatar 头像
 
 ## 基本用法
 
-头像有三种尺寸，两种形状可选。
+头像有四种尺寸，两种形状可选。
 
 <!--DemoStart--> 
 ```js
@@ -14,15 +14,16 @@ class Demo extends Component {
     return (
       <div>
         <div style={{paddingBottom:20}}>
-          <Avatar size="mini" icon={<Icon type="user"/>} />
           <Avatar size="large" icon={<Icon type="user"/>} />
           <Avatar icon="user" />
           <Avatar size="small" icon="user" />
+          <Avatar size="mini" icon={<Icon type="user"/>} />
         </div>
         <div>
           <Avatar shape="square" size="large" icon="user" />
           <Avatar shape="square" icon="user" />
           <Avatar shape="square" size="small" icon="user" />
+          <Avatar shape="square" size="mini" icon="user" />
         </div>
       </div>
     )
