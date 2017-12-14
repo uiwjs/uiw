@@ -1,5 +1,5 @@
 
-function getScrollTop() {
+export function getScrollTop() {
   if (!window || !document) return 0;
   if (typeof window.pageYOffset !== 'undefined') {
     return window.pageYOffset;
@@ -9,4 +9,3 @@ function getScrollTop() {
     return document.body.scrollTop;
   }
 }
-export default { getScrollTop };

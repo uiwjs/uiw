@@ -11,8 +11,6 @@ export default class MenuItemGroup extends Component {
   }
   render() {
     const { prefixCls, className, title, children, resetProps } = this.props;
-    console.log('ttt', this.props);
-    // const
     return (
       <li className={this.classNames(`${prefixCls}`, className)} {...resetProps} >
         <div className={`${prefixCls}-title`}>{title}</div>
