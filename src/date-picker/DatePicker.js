@@ -36,6 +36,7 @@ DatePicker.propTypes = {
     PropTypes.arrayOf(PropTypes.instanceOf(Date)),
   ]),
   format: PropTypes.string,
+  weekLabel: PropTypes.array,
   shortcutinline: PropTypes.bool,
   shorts: PropTypes.array,
 };

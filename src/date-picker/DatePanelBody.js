@@ -113,12 +113,18 @@ export default class DatePanelBody extends Component {
     shortcut.onClick();
   }
   render() {
-    const { prefixCls, weekLabel, format, onPicked, shortcutinline, showTime, renderDate, shortcutClassName, disabledDate, shortcuts } = this.props;
+    const { prefixCls, format, weekLabel, onPicked, shortcutinline, showTime, renderDate, shortcutClassName, disabledDate, shortcuts } = this.props;
     const { value, labelToday, selectDate, selectTime, selectYear, selectMonth, labelTimeVisible } = this.state;
     const datePanel = isDate(value) ? new Date(value) : new Date();
+
     const headerProps = {
       prefixCls, value: datePanel, defaultValue: this.props.value, selectYear, selectMonth, selectDate, onPicked, disabledDate,
     };
+    if (selectDate && isDate(selectDate)) {
+      headerProps.selectDate = new Date(selectDate);
+    } else {
+      headerProps.selectDate = null;
+    }
 
     const DatePanelHeadLabel = (
       <DatePanelHead {...headerProps}
@@ -165,7 +171,7 @@ export default class DatePanelBody extends Component {
         <DatePanelBodyDay
           format={format}
           weekLabel={weekLabel}
-          selectDate={selectDate}
+          selectDate={headerProps.selectDate}
           disabledDate={disabledDate}
           date={datePanel}
           renderDate={renderDate}
@@ -218,7 +224,6 @@ DatePanelBody.propTypes = {
     PropTypes.bool,
     PropTypes.object,
   ]),
-  weekLabel: PropTypes.arrayOf(PropTypes.string),
 };
 
 DatePanelBody.defaultProps = {
@@ -227,6 +232,5 @@ DatePanelBody.defaultProps = {
   showToday: false, // 是否展示“今天”按钮
   showTime: false, // 是否展示“选择时间”按钮
   prefixCls: 'w-datepicker',
-  weekLabel: ['日', '一', '二', '三', '四', '五', '六'],
   onPicked() { },
 };

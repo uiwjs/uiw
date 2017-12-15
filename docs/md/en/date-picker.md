@@ -44,6 +44,7 @@ class Demo extends Component {
         />
         <DatePicker showToday={true} />
         <DatePicker showToday={true} value={new Date()}  />
+        <DatePicker showToday={true} value={new Date()} weekLabel={['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']}/>
       </div>
     )
   }
@@ -260,6 +261,7 @@ import DatePicker from 'uiw/lib/date-picker';
 | allowClear | 允许清除 | Boolean | - |
 | showToday | 是否展示“今天”按钮 | Boolean/Node | false |
 | showTime | 是否展示“选择时间”按钮 | Boolean/Object | false |
+| weekLabel | 星期显示文本 | Array | `['日', '一', '二', '三', '四', '五', '六']` |
 | disabled | 禁用日历 | Boolean | - |
 | disabledDate | 不可选择的日期 | function(dateItem:{day,month,date,format,week})=> boolean | - |
 | disabledTime | 禁用时间 | Function(date) | - |
