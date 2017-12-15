@@ -137,7 +137,7 @@ import HeatMap from 'uiw/lib/heat-map';
 ```js
 import { Calendar } from 'uiw';
 // or
-import Calendar from 'uiw/lib/heat-map';
+import Calendar from 'uiw/lib/calendar';
 const CalendarHeatMap = Calendar.HeatMap;
 ```
 
