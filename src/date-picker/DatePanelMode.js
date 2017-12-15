@@ -47,8 +47,9 @@ export default class DatePanelMonth extends Component {
           };
           const dateValue = value;
           const date = new Date(dateValue.setMonth(idx));
-          if (disabledDate && !disabledDate(parseDate(date))) {
-            monthProps.onClick = () => this.onClickMonth(idx);
+          let onClick = () => { };
+          if (!disabledDate || (disabledDate && !disabledDate(parseDate(date)))) {
+            onClick = () => this.onClickMonth(idx);
           } else {
             monthProps.className = this.classNames(monthProps.className, {
               [`${prefixCls}-disable`]: disabledDate && disabledDate(parseDate(date)),
@@ -56,7 +57,7 @@ export default class DatePanelMonth extends Component {
           }
 
           return (
-            <div {...monthProps}> <span>{idx + 1}月</span> </div>
+            <div {...monthProps}> <span onClick={onClick}>{idx + 1}月</span> </div>
           );
         })}
         {selectYear && <div className={`${prefixCls}-panel-range`}>{rangesYearArr[0]} ~ {rangesYearArr[rangesYearArr.length - 1]}</div>}
@@ -67,8 +68,10 @@ export default class DatePanelMonth extends Component {
           };
           const dateValue = value;
           const date = new Date(dateValue.setFullYear(item));
-          if (disabledDate && !disabledDate(parseDate(date))) {
-            yearProps.onClick = () => this.onClickMonth(item);
+          let onClick = () => { };
+
+          if (!disabledDate || (disabledDate && !disabledDate(parseDate(date)))) {
+            onClick = () => this.onClickMonth(item);
           } else {
             yearProps.className = this.classNames(yearProps.className, {
               [`${prefixCls}-disable`]: disabledDate && disabledDate(parseDate(date)),
@@ -76,7 +79,7 @@ export default class DatePanelMonth extends Component {
           }
 
           return (
-            <div {...yearProps}> <span>{item}年</span> </div>
+            <div {...yearProps}> <span onClick={onClick}>{item}年</span> </div>
           );
         })}
       </div>

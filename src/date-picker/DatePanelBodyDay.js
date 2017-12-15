@@ -8,35 +8,61 @@ export default class DatePanelBodyDay extends Component {
     this.state = {};
   }
   render() {
-    const { prefixCls, format, selectDate, disabledDate, date, renderDate, labelToday, onClick } = this.props;
+    const { prefixCls, format, weekLabel, selectDate, disabledDate, date, renderDate, labelToday, onClick } = this.props;
+    const items = [];
+    let td = [];
+    fillUpDays(date, format, selectDate).forEach((item, index) => {
+      const isInteger = ((index + 1) / 7) % 1;
+      const dayProps = { key: index };
+      if (!disabledDate || (disabledDate && !disabledDate(item))) {
+        dayProps.onClick = () => onClick(item);
+      }
+      if (renderDate) {
+        const child = renderDate(item, item.selectDay && selectDate);
+        td.push(React.cloneElement(<td>{child}</td>, { ...dayProps }));
+      } else {
+        td.push(React.createElement('td', {
+          ...dayProps,
+          title: item.today ? labelToday : item.format,
+          className: this.classNames(item.className, {
+            [`${prefixCls}-today`]: item.today,
+            [`${prefixCls}-disable`]: disabledDate && disabledDate(item),
+            [`${prefixCls}-select-day`]: item.selectDay && selectDate,
+            [`${prefixCls}-sun`]: item.week === 0,
+            [`${prefixCls}-sat`]: item.week === 6,
+          }),
+        }, item.day));
+      }
+      if (isInteger === 0) {
+        items.push(td);
+        td = [];
+      }
+    });
     return (
-      <div className={`${prefixCls}-days`}>
-        {fillUpDays(date, format, selectDate).map((item, idx) => {
-          const dayProps = { key: idx };
-          if (!disabledDate || (disabledDate && !disabledDate(item))) {
-            dayProps.onClick = () => onClick(item);
+      <table className={`${prefixCls}-days`}>
+        <thead>
+          <tr className={`${prefixCls}-week`}>
+            {weekLabel.map((label, idx) => {
+              return (
+                <th key={idx} title={label} className={this.classNames({ end: idx === 0 || idx === 6 })} >
+                  {label}
+                </th>
+              );
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {
+            items.map((item, index) => {
+              return (
+                <tr key={index}>
+                  {item}
+                </tr>
+              );
+            })
           }
-          if (renderDate) {
-            const child = renderDate(item, item.selectDay && selectDate);
-            return React.cloneElement(child, { ...dayProps });
-          }
-          return (
-            <span
-              title={item.today ? labelToday : item.format}
-              className={this.classNames(item.className, {
-                [`${prefixCls}-today`]: item.today,
-                [`${prefixCls}-disable`]: disabledDate && disabledDate(item),
-                [`${prefixCls}-select-day`]: item.selectDay && selectDate,
-                [`${prefixCls}-sun`]: item.week === 0,
-                [`${prefixCls}-sat`]: item.week === 6,
-              })}
-              { ...dayProps }
-            >
-              {item.day}
-            </span>
-          );
-        })}
-      </div>
+        </tbody>
+      </table>
     );
   }
 }

@@ -71,7 +71,9 @@ class Demo extends Component {
       <div>
         <DatePicker 
           renderDate={(item,isSelect)=>{
-            const style = {};
+            const style = {
+              display: 'block',
+            };
             let todayLabel ='';
             if(item.today){
               style.color='red';
@@ -81,7 +83,7 @@ class Demo extends Component {
                 transform:'scale(0.6)',
                 width:'100%',
                 boxShadow:'inset 0 0 0',
-              }}>今天</span>
+              }}>o</span>
             }
             if(item.className === 'prev'){
               style.color='#ffa4a4';
