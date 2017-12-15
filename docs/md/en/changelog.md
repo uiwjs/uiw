@@ -5,6 +5,13 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.5.6
+
+`2017-12-15`
+
+- fix(DatePicker): Repair type problem raised error. [b2bfa71](https://github.com/uiw-react/uiw/commit/b2bfa71190abca49bfe4cb9a00eae5581cdc133d) 
+- feat(HeadMap): The HeadMap component is detached from the Calendar. [d8537c1](https://github.com/uiw-react/uiw/commit/d8537c16418767403ba37ea3313ceeaf22f13972) 
+- doc(HeatMap): Modify the doc error. [591e9ef](https://github.com/uiw-react/uiw/commit/591e9efea6dea6e54d3738ff2e872a277fdee8c6) 
 
 ## 1.5.5
 
@@ -23,7 +30,6 @@ Document Update:
 
 - 📖 docs(Avatar): update doc's description : @Xing-He [d1bf545](https://github.com/uiw-react/uiw/commit/d1bf54526d314cacfd02e345ec2b4b9f7a0e7909) 
 - 📖 doc(DatePicker): Add example. : [af215e1](https://github.com/uiw-react/uiw/commit/af215e1e6806ea2e7c7b240a1aeac638eb770169) 
-
 
 
 ## 1.5.4
