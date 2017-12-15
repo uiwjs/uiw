@@ -24,7 +24,7 @@ export default class Badge extends Component {
       warpperProps.style = style;
     }
     return (
-      <div {...warpperProps}>
+      <span {...warpperProps}>
         {status && (<span className={`${prefixCls}-dot`} />)}
         {children}
         {count !== 0 && !status &&
@@ -32,7 +32,7 @@ export default class Badge extends Component {
             {!dot && count > max ? `${max}+` : count}
           </sup>
         }
-      </div>
+      </span>
     );
   }
 }

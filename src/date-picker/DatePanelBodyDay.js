@@ -8,7 +8,7 @@ export default class DatePanelBodyDay extends Component {
     this.state = {};
   }
   render() {
-    const { prefixCls, format, weekLabel, selectDate, disabledDate, date, renderDate, labelToday, onClick } = this.props;
+    const { prefixCls, format, weekLabel, selectDate, disabledDate, dateCellRender, date, renderDate, labelToday, onClick } = this.props;
     const items = [];
     let td = [];
     fillUpDays(date, format, selectDate).forEach((item, index) => {
@@ -17,9 +17,16 @@ export default class DatePanelBodyDay extends Component {
       if (!disabledDate || (disabledDate && !disabledDate(item))) {
         dayProps.onClick = () => onClick(item);
       }
+      const marked = dateCellRender ? (
+        <div key={`mark${index}`} className={`${prefixCls}-marked`}>
+          <div className={`${prefixCls}-inner`}>
+            {typeof dateCellRender === 'function' && dateCellRender(item)}
+          </div>
+        </div>
+      ) : null;
       if (renderDate) {
         const child = renderDate(item, item.selectDay && selectDate);
-        td.push(React.cloneElement(<td>{child}</td>, { ...dayProps }));
+        td.push(React.cloneElement(<td>{child}{marked}</td>, { ...dayProps }));
       } else {
         td.push(React.createElement('td', {
           ...dayProps,
@@ -31,7 +38,7 @@ export default class DatePanelBodyDay extends Component {
             [`${prefixCls}-sun`]: item.week === 0,
             [`${prefixCls}-sat`]: item.week === 6,
           }),
-        }, item.day));
+        }, [<div key={`label${index}`} className={`${prefixCls}-label`}>{item.day}</div>, marked]));
       }
       if (isInteger === 0) {
         items.push(td);
@@ -74,6 +81,7 @@ DatePanelBodyDay.propTypes = {
   selectDate: PropTypes.instanceOf(Date),
   date: PropTypes.instanceOf(Date),
   weekLabel: PropTypes.arrayOf(PropTypes.string),
+  dateCellRender: PropTypes.func,
 };
 
 DatePanelBodyDay.defaultProps = {
@@ -83,4 +91,5 @@ DatePanelBodyDay.defaultProps = {
   selectDate: null,
   onClick() { },
   weekLabel: ['日', '一', '二', '三', '四', '五', '六'],
+  dateCellRender: null,
 };
