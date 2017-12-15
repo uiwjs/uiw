@@ -23,6 +23,7 @@ import select from 'bundle-loader?lazy&name=select!./pages/select';
 import SwitchCom from 'bundle-loader?lazy&name=switch!./pages/switch';
 import slider from 'bundle-loader?lazy&name=slider!./pages/slider';
 import input from 'bundle-loader?lazy&name=input!./pages/input';
+import HeatMap from 'bundle-loader?lazy&name=heat-map!./pages/heat-map';
 import inputNumber from 'bundle-loader?lazy&name=input-number!./pages/input-number';
 import inputPassword from 'bundle-loader?lazy&name=input-password!./pages/input-password';
 import timePicker from 'bundle-loader?lazy&name=time-picker!./pages/time-picker';
@@ -123,6 +124,7 @@ const routes = {
       { path: "/:lang/tree", component: asyncComponent(tree) },
       { path: "/:lang/tooltip", component: asyncComponent(tooltip) },
       { path: "/:lang/timestamp", component: asyncComponent(timestamp) },
+      { path: "/:lang/heat-map", component: asyncComponent(HeatMap) },
     ],
     'Navigation': [
       { path: "/:lang/affix", component: asyncComponent(affix) },

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Component } from '../utils/';
-import './style/index.less';
 
 export default class Calendar extends Component {
   constructor(props) {

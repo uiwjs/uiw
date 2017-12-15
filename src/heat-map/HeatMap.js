@@ -2,7 +2,6 @@ import React from 'react';
 import { Component, PropTypes } from '../utils/';
 import Tooltip from '../tooltip';
 import HeatMapSVG from './HeatMapSVG';
-import './style/index.less';
 
 export default class HeatMap extends Component {
   constructor(props) {

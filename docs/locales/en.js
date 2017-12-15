@@ -44,6 +44,7 @@ module.exports = {
     'tooltip': 'Tooltip',
     'time-picker': 'TimePicker',
     'icon': 'Icon',
+    'heat-map': 'HeatMap',
     'form': 'Form',
     'radio': 'Radio',
     'recommendation': 'Third-Party Libraries',
