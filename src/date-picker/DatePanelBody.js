@@ -119,7 +119,6 @@ export default class DatePanelBody extends Component {
     const headerProps = {
       prefixCls, value: datePanel, defaultValue: this.props.value, selectYear, selectMonth, selectDate, onPicked, disabledDate,
     };
-    console.log('selectDate:', selectDate);
 
     const DatePanelHeadLabel = (
       <DatePanelHead {...headerProps}
@@ -163,17 +162,9 @@ export default class DatePanelBody extends Component {
           <TimePickerSpinner {...timeProps} />
         )}
         {DatePanelHeadLabel}
-        <div className={`${prefixCls}-week`}>
-          {weekLabel.map((label, idx) => {
-            return (
-              <span key={idx} title={label} className={this.classNames({ end: idx === 0 || idx === 6 })} >
-                {label}
-              </span>
-            );
-          })}
-        </div>
         <DatePanelBodyDay
           format={format}
+          weekLabel={weekLabel}
           selectDate={selectDate}
           disabledDate={disabledDate}
           date={datePanel}
