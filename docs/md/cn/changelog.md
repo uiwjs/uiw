@@ -12,12 +12,12 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 Feature:
 
-- feat(DatePicker): Add disabledDate props. : [724b2a4](https://github.com/uiw-react/uiw/commit/724b2a473112a1d333c0e2d7aeb7cdcea00270ba) 
-- feat(Avatar): add mini size : @Xing-He [8a9861b](https://github.com/uiw-react/uiw/commit/8a9861bcf25c1dcc52dd1d7c5800ef125c85ab7b) 
+- 🌟 feat(DatePicker): Add disabledDate props. : [724b2a4](https://github.com/uiw-react/uiw/commit/724b2a473112a1d333c0e2d7aeb7cdcea00270ba) 
+- 🌟 feat(Avatar): add mini size : @Xing-He [8a9861b](https://github.com/uiw-react/uiw/commit/8a9861bcf25c1dcc52dd1d7c5800ef125c85ab7b) 
 
 Bug fixed:
 
-- fix(scrollTop): Method does not exist. : [5a07641](https://github.com/uiw-react/uiw/commit/5a07641808d0c0bb66bd7d23338724adb4ba6279) 
+- 🐞 fix(scrollTop): Method does not exist. : [5a07641](https://github.com/uiw-react/uiw/commit/5a07641808d0c0bb66bd7d23338724adb4ba6279) 
 
 Document Update:
 
