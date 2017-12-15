@@ -29,10 +29,11 @@ export const fillUpDays = (dateObject, format, selectDate) => {
 
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth() + 1;
   const currentDay = currentDate.getDate();
   // 1-42数组
   let i = 1;
-  const timeLabel = `${selectDate.getHours()}:${selectDate.getMinutes()}:${selectDate.getSeconds()}`;
+  const timeLabel = `${(selectDate || currentDate).getHours()}:${(selectDate || currentDate).getMinutes()}:${(selectDate || currentDate).getSeconds()}`;
   const arr = [];
   for (; i < 43; i += 1) {
     const json = {};
@@ -56,19 +57,17 @@ export const fillUpDays = (dateObject, format, selectDate) => {
       json.day = i - (monthDays[month - 1] + week);
       json.month = nextMonth;
       json.className = 'next';
-      // date = new Date(month === 12 ? 1 : year, nextMonth, json.day);
       date = new Date(`${month === 12 ? year + 1 : year}/${nextMonth}/${json.day} ${timeLabel}`);
       json.date = date;
       json.format = formatDate(format, date);
       json.week = date.getDay();
     }
     // 判断是否为今天
-    if (json.day === currentDay && json.month === month && year === currentYear) {
+    if (json.day === currentDay && json.month === currentMonth && year === currentYear) {
       json.today = true;
     }
-    // if(isDate(selectDate))
     // 选中的日子
-    if (json.day === day && json.month === month && isDate(selectDate) && selectDate.getFullYear() === year && month === selectDate.getMonth() + 1) {
+    if (json.day === day && json.month === month && selectDate && isDate(selectDate) && selectDate.getFullYear() === year && month === selectDate.getMonth() + 1) {
       json.selectDay = true;
     }
     arr.push(json);
