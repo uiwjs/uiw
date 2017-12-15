@@ -12,6 +12,7 @@ export { default as Card } from './card/';
 export { default as CopyToClipboard } from './copy-to-clipboard/';
 export { default as Divider } from './divider/';
 export { default as Hotkeys } from './hotkeys/';
+export { default as HeatMap } from './heat-map/';
 export { default as Modal } from './modal/';
 export { default as Message } from './message/';
 export { default as Menu } from './menu/';

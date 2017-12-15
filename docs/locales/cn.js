@@ -44,6 +44,7 @@ module.exports = {
     'tooltip': 'Tooltip 文字提示',
     'time-picker': 'TimePicker 时间选择器',
     'icon': 'Icon 图标',
+    'heat-map': 'HeatMap 日历热图',
     'form': 'Form 表单',
     'radio': 'Radio 单选框',
     'upload': 'Upload 上传图片',
