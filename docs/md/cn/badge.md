@@ -156,6 +156,38 @@ class Demo extends Component {
 ```
 <!--End-->
 
+### 状态点
+
+用于表示状态的小圆点。
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <Badge status="success" />
+        <Badge status="error" />
+        <Badge status="default" />
+        <Badge status="processing" />
+        <Badge status="warning" />
+        <br />
+        <Badge status="success">Success</Badge>
+        <br />
+        <Badge status="error">Error</Badge>
+        <br />
+        <Badge status="default">Default</Badge>
+        <br />
+        <Badge status="processing">Processing</Badge>
+        <br />
+        <Badge status="warning">Warning</Badge>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
 ## API
 
 ### Badge
@@ -165,4 +197,4 @@ class Demo extends Component {
 | count | 展示的数字 | Number | - |
 | max | 最大值，超过最大值会显示 '{max}+' | Number | `99` |
 | dot | 不展示数字，只有一个小红点 | Boolean | `false` |
-| label | 在设置了 status 的前提下有效，设置状态点的文本 | String | - |
+| status | 设置 Badge 为状态点 | Enum{`success`, `processing`,`default`, `error`, `warning` } | - |
