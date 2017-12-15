@@ -4,25 +4,31 @@ import { Component, PropTypes } from '../utils/';
 export default class Badge extends Component {
   render() {
     const { prefixCls, style, max, dot, status, className, count, children, ...other } = this.props;
+    const supProps = {
+      className: this.classNames({
+        [`${prefixCls}-count`]: !dot,
+        'w-dot': dot,
+      }),
+    };
+    const warpperProps = {
+      ...other,
+      className: this.classNames(className, `${prefixCls}`, {
+        nowrap: !children,
+        [`${prefixCls}-status`]: status,
+        [`${prefixCls}-status-${status}`]: status,
+      }),
+    };
+    if (!status) {
+      supProps.style = style;
+    } else {
+      warpperProps.style = style;
+    }
     return (
-      <div
-        {...other}
-        className={this.classNames(className, `${prefixCls}`, {
-          nowrap: !children,
-          [`${prefixCls}-status`]: status,
-          [`${prefixCls}-status-${status}`]: status,
-        })}
-      >
+      <div {...warpperProps}>
         {status && (<span className={`${prefixCls}-dot`} />)}
         {children}
         {count !== 0 && !status &&
-          <sup
-            style={style}
-            className={this.classNames({
-              [`${prefixCls}-count`]: !dot,
-              'w-dot': dot,
-            })}
-          >
+          <sup {...supProps}>
             {!dot && count > max ? `${max}+` : count}
           </sup>
         }
