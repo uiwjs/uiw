@@ -26,6 +26,10 @@ class Demo extends Component {
 
 <!--DemoStart--> 
 ```js
+function disabledDate(current) {
+  // 每个月 12 号禁止选中
+  return current.day === 12;
+}
 function getListData(value) {
   let listData;
   switch (value) {
@@ -78,9 +82,10 @@ class Demo extends Component {
   render() {
     return (
       <Calendar 
+        disabledDate={disabledDate}
         weekLabel={['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']}
         dateCellRender={dateCellRender}
-        />
+      />
     )
   }
 }
