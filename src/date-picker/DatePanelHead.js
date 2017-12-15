@@ -8,8 +8,6 @@ export default class DatePanelHead extends Component {
     let year = value.getFullYear();
     let month = value.getMonth() + 1;
     const day = value.getDate();
-    // 年份翻页
-    if (selectYear) year -= 4;
     switch (type) {
       case 'prevYear': year -= 1; break;
       case 'prevMonth':
@@ -30,6 +28,13 @@ export default class DatePanelHead extends Component {
         }
         break;
       default: break;
+    }
+    // 年份翻页
+    if (selectYear && type === 'prevYear') {
+      year -= 8;
+    }
+    if (selectYear && type === 'nextYear') {
+      year += 8;
     }
     if (onClickPageBtn) onClickPageBtn(new Date(year, month - 1, day, value.getHours(), value.getMinutes(), value.getSeconds()));
   }

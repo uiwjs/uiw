@@ -113,11 +113,11 @@ export default class DatePanelBody extends Component {
     shortcut.onClick();
   }
   render() {
-    const { prefixCls, weekLabel, format, onPicked, shortcutinline, showTime, renderDate, shortcutClassName, shortcuts } = this.props;
+    const { prefixCls, weekLabel, format, onPicked, shortcutinline, showTime, renderDate, shortcutClassName, disabledDate, shortcuts } = this.props;
     const { value, labelToday, selectDate, selectTime, selectYear, selectMonth, labelTimeVisible } = this.state;
     const datePanel = isDate(value) ? new Date(value) : new Date();
     const headerProps = {
-      prefixCls, value: datePanel, defaultValue: this.props.value, selectYear, selectMonth, selectDate, onPicked,
+      prefixCls, value: datePanel, defaultValue: this.props.value, selectYear, selectMonth, selectDate, onPicked, disabledDate,
     };
 
     const DatePanelHeadLabel = (
@@ -165,7 +165,7 @@ export default class DatePanelBody extends Component {
         <div className={`${prefixCls}-week`}>
           {weekLabel.map((label, idx) => {
             return (
-              <span key={idx} className={this.classNames({ end: idx === 0 || idx === 6 })} >
+              <span key={idx} title={label} className={this.classNames({ end: idx === 0 || idx === 6 })} >
                 {label}
               </span>
             );
@@ -173,23 +173,25 @@ export default class DatePanelBody extends Component {
         </div>
         <div className={`${prefixCls}-days`}>
           {fillUpDays(datePanel, format, new Date(selectDate)).map((item, idx) => {
+            const dayProps = { key: idx };
+            if (disabledDate && !disabledDate(item)) {
+              dayProps.onClick = () => this.handleClick(item);
+            }
             if (renderDate) {
               const child = renderDate(item, item.selectDay && selectDate);
-              return React.cloneElement(child, {
-                key: idx,
-                onClick: () => this.handleClick(item),
-              });
+              return React.cloneElement(child, { ...dayProps });
             }
             return (
-              <span key={idx}
+              <span
                 title={item.today ? labelToday : item.format}
                 className={this.classNames(item.className, {
                   [`${prefixCls}-today`]: item.today,
+                  [`${prefixCls}-disable`]: disabledDate && disabledDate(item),
                   [`${prefixCls}-select-day`]: item.selectDay && selectDate,
                   [`${prefixCls}-sun`]: item.week === 0,
                   [`${prefixCls}-sat`]: item.week === 6,
                 })}
-                onClick={() => this.handleClick(item)}
+                { ...dayProps }
               >
                 {item.day}
               </span>
@@ -233,6 +235,7 @@ DatePanelBody.propTypes = {
   allowClear: PropTypes.bool,
   onPicked: PropTypes.func,
   renderDate: PropTypes.func,
+  disabledDate: PropTypes.func,
   showToday: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.node,
