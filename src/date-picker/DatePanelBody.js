@@ -174,7 +174,7 @@ export default class DatePanelBody extends Component {
         <div className={`${prefixCls}-days`}>
           {fillUpDays(datePanel, format, new Date(selectDate)).map((item, idx) => {
             const dayProps = { key: idx };
-            if (disabledDate && !disabledDate(item)) {
+            if (!disabledDate || (disabledDate && !disabledDate(item))) {
               dayProps.onClick = () => this.handleClick(item);
             }
             if (renderDate) {
