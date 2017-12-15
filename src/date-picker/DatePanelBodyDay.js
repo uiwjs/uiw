@@ -73,6 +73,7 @@ DatePanelBodyDay.propTypes = {
   format: PropTypes.string,
   selectDate: PropTypes.instanceOf(Date),
   date: PropTypes.instanceOf(Date),
+  weekLabel: PropTypes.arrayOf(PropTypes.string),
 };
 
 DatePanelBodyDay.defaultProps = {
@@ -81,4 +82,5 @@ DatePanelBodyDay.defaultProps = {
   date: new Date(),
   selectDate: null,
   onClick() { },
+  weekLabel: ['日', '一', '二', '三', '四', '五', '六'],
 };
