@@ -126,6 +126,14 @@
   span&-sat {
     box-shadow: inset 0 -1px 0 #eaeaea;
   }
+  &-days &-disable {
+    background: #efefef;
+    cursor: not-allowed;
+    color: #d3d3d3;
+    &:hover {
+      background: #efefef;
+    }
+  }
 
   &-footer {
     background: #fafafa;
@@ -137,6 +145,12 @@
       content: '';
       display: block;
       clear: both;
+    }
+  }
+  &-mode-select div&-disable {
+    color: rgba(0, 0, 0, 0.25);
+    span:hover {
+      background-color: transparent;
     }
   }
   &-mode-select {

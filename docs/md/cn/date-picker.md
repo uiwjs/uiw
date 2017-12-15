@@ -185,6 +185,34 @@ class Demo extends Component {
 ```
 <!--End-->
 
+## 禁用时间
+
+通过设置`disabledDate`来禁止选择部分日期。
+
+<!--DemoStart--> 
+```js
+function disabledDate(current) {
+  // 今天和今天之前不能选择几天
+  return current && current.date.valueOf() < Date.now();
+}
+class Demo extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      value : ''
+    }
+  }
+  render() {
+    const { value } = this.state;
+    return (
+      <div>
+        <DatePicker disabledDate={disabledDate} showToday={true} value={value}  />
+      </div>
+    )
+  }
+}
+```
+<!--End-->
 
 ## 选择时分秒
 
@@ -243,6 +271,7 @@ import DatePicker from 'uiw/lib/date-picker';
 | showToday | 是否展示“今天”按钮 | Boolean/Node | false |
 | showTime | 是否展示“选择时间”按钮 | Boolean/Object | false |
 | disabled | 禁用日历 | Boolean | - |
+| disabledDate | 不可选择的日期 | function(dateItem:{day,month,date,format,week})=> boolean | - |
 | disabledTime | 禁用时间 | Function(date) | - |
 | renderDate | 自定义日期单元格的内容 | Function(item:{ `tody`,`className['prev','next']`,`week`,`month`,`date`,`format`}, isSelect) | - |
 | align | 占位内容 | Enum{`left` `center` `right`} | - |
