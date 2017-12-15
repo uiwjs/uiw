@@ -82,6 +82,7 @@ DatePanelBodyDay.propTypes = {
   date: PropTypes.instanceOf(Date),
   weekLabel: PropTypes.arrayOf(PropTypes.string),
   dateCellRender: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 DatePanelBodyDay.defaultProps = {
