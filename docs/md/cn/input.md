@@ -95,6 +95,7 @@ class Demo extends Component {
           <Input type="textarea"placeholder="请输入内容"/>
 
           <br/>
+          <br/>
 
           <Input 
             type="textarea" 

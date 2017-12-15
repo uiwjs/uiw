@@ -11,7 +11,7 @@
   background-color: #fff;
   background-image: none;
   border-radius: @border-radius-base;
-  border: 1px solid #e8e8e8;
+  border: 0 solid #e8e8e8;
   box-sizing: border-box;
   color: #1f2d3d;
   font-size: inherit;
@@ -21,24 +21,24 @@
   outline: 0;
   padding: 3px 10px;
   display: inline-block;
-  transition: border-color @transition-time @transition-timing-functio;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 0 rgba(0, 0, 0, 0), inset 0 0 0 1px rgba(23, 23, 23, 0.15), inset 0 1px 1px rgba(25, 25, 25, 0.2);
+  transition: box-shadow @transition-time, color @transition-time;
   &::placeholder {
     color: #ccc;
     font-weight: @input-font-weight;
-    transition: color @transition-time @transition-timing-functio;
   }
   &:hover {
-    border: 1px solid #aeaeae;
+    box-shadow: inset 0 0 0 1px #45af52;
   }
   &:focus {
-    border-color: #0fa120;
-    box-shadow: 0 0 0 2px rgba(84, 220, 103, 0.14);
+    box-shadow: 0 0 0 1px #45af52, 0 0 0 3px rgba(179, 179, 179, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2);
   }
   &:focus&::placeholder {
     color: #d5d5d5;
   }
   &:disabled {
     cursor: @cursor-disabled;
+    box-shadow: 0 0 0 1px #e4e4e4;
   }
   &.w-input-p-left {
     padding-left: 24px;
@@ -50,6 +50,7 @@
 }
 
 .w-input.w-disabled {
+  color: #969696;
   position: relative;
   &:before {
     cursor: @cursor-disabled;
