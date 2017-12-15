@@ -194,6 +194,7 @@ class Demo extends Component {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
+| style | 默认设置计数圆点样式，设置`status`，`style`设置外层节点样式 | Object | - |
 | count | 展示的数字 | Number | - |
 | max | 最大值，超过最大值会显示 '{max}+' | Number | `99` |
 | dot | 不展示数字，只有一个小红点 | Boolean | `false` |
