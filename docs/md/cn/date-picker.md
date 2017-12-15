@@ -20,29 +20,30 @@ class Demo extends Component {
     return (
       <div>
         <DatePicker
-        showToday
-        value={`${value}`}
-        shortcutinline={true}
-        shortcuts={[
-          {
-            text: '昨天',
-            onClick: ()=> {
-              this.setState({value: new Date(Date.now() - 86400000)})
+          showToday
+          value={`${value}`}
+          shortcutinline={true}
+          shortcuts={[
+            {
+              text: '昨天',
+              onClick: ()=> {
+                this.setState({value: new Date(Date.now() - 86400000)})
+              }
+            }, {
+              text: '一周前',
+              onClick: ()=> {
+              this.setState({value: new Date(Date.now() - 86400000 * 7)})
+              }
+            }, {
+              text: '一月前',
+              onClick: ()=> {
+              this.setState({value: new Date(Date.now() - 86400000 * 30)})
+              }
             }
-          }, {
-            text: '一周前',
-            onClick: ()=> {
-             this.setState({value: new Date(Date.now() - 86400000 * 7)})
-            }
-          }, {
-            text: '一月前',
-            onClick: ()=> {
-             this.setState({value: new Date(Date.now() - 86400000 * 30)})
-            }
-          }
-        ]}/>
-        <DatePicker showToday={true}  />
-        <DatePicker showToday={true} value={`${new Date()}`}  />
+          ]}
+        />
+        <DatePicker showToday={true} />
+        <DatePicker showToday={true} value={new Date()}  />
       </div>
     )
   }

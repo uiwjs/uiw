@@ -126,8 +126,9 @@ const replaceChars = {
  * @param {*} formatStr
  */
 export function formatDate(formatStr, date) {
+  date = isDate(date) ? new Date(date) : new Date();
   return formatStr.replace(/(\\?)(.)/g, (_, esc, chr) => {
-    return (esc === '' && replaceChars[chr]) ? replaceChars[chr].call(date || new Date()) : chr;
+    return (esc === '' && replaceChars[chr]) ? replaceChars[chr].call(date) : chr;
   });
 }
 
