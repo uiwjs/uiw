@@ -220,25 +220,12 @@ class Demo extends Component {
 <!--DemoStart--> 
 ```js
 class Demo extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      checked:true
-    }
-  }
-  onChange(e, checked){
-    this.setState({checked})
-  }
   render() {
-    const {checked} = this.state;
     return (
       <div>
         <DatePicker format="Y年m月d日 H:i:s" showTime={true}/>
         <DatePicker format="Y/m/d H:i:s" showToday={true} showTime={true} />
         <DatePicker format="Y年m月d日 H:i:s" showToday={true} showTime={true} value={`${new Date()}`} />
-        <div style={{paddingTop:20}}>
-          <Switch onChange={this.onChange.bind(this)} checked={checked} checkedChildren="取消禁用" unCheckedChildren="禁用控件" color="#3eb54c" unColor="#ff4949" />
-        </div>
       </div>
     )
   }

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Component, PropTypes, formatDate, isDate } from '../utils/';
-import { fillUpDays } from './utils';
 import DatePanelHead from './DatePanelHead';
 import DatePanelMode from './DatePanelMode';
 import TimePickerSpinner from './TimePickerSpinner';
+import DatePanelBodyDay from './DatePanelBodyDay';
 
 export default class DatePanelBody extends Component {
   constructor(props) {
@@ -119,6 +119,7 @@ export default class DatePanelBody extends Component {
     const headerProps = {
       prefixCls, value: datePanel, defaultValue: this.props.value, selectYear, selectMonth, selectDate, onPicked, disabledDate,
     };
+    console.log('selectDate:', selectDate);
 
     const DatePanelHeadLabel = (
       <DatePanelHead {...headerProps}
@@ -171,33 +172,15 @@ export default class DatePanelBody extends Component {
             );
           })}
         </div>
-        <div className={`${prefixCls}-days`}>
-          {fillUpDays(datePanel, format, new Date(selectDate)).map((item, idx) => {
-            const dayProps = { key: idx };
-            if (!disabledDate || (disabledDate && !disabledDate(item))) {
-              dayProps.onClick = () => this.handleClick(item);
-            }
-            if (renderDate) {
-              const child = renderDate(item, item.selectDay && selectDate);
-              return React.cloneElement(child, { ...dayProps });
-            }
-            return (
-              <span
-                title={item.today ? labelToday : item.format}
-                className={this.classNames(item.className, {
-                  [`${prefixCls}-today`]: item.today,
-                  [`${prefixCls}-disable`]: disabledDate && disabledDate(item),
-                  [`${prefixCls}-select-day`]: item.selectDay && selectDate,
-                  [`${prefixCls}-sun`]: item.week === 0,
-                  [`${prefixCls}-sat`]: item.week === 6,
-                })}
-                { ...dayProps }
-              >
-                {item.day}
-              </span>
-            );
-          })}
-        </div>
+        <DatePanelBodyDay
+          format={format}
+          selectDate={selectDate}
+          disabledDate={disabledDate}
+          date={datePanel}
+          renderDate={renderDate}
+          labelToday={labelToday}
+          onClick={this.handleClick.bind(this)}
+        />
         {
           shortcuts && Array.isArray(shortcuts) && (
             <div className={

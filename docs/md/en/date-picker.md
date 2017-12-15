@@ -20,29 +20,30 @@ class Demo extends Component {
     return (
       <div>
         <DatePicker
-        showToday
-        value={`${value}`}
-        shortcutinline={true}
-        shortcuts={[
-          {
-            text: '昨天',
-            onClick: ()=> {
-              this.setState({value: new Date(Date.now() - 86400000)})
+          showToday
+          value={`${value}`}
+          shortcutinline={true}
+          shortcuts={[
+            {
+              text: '昨天',
+              onClick: ()=> {
+                this.setState({value: new Date(Date.now() - 86400000)})
+              }
+            }, {
+              text: '一周前',
+              onClick: ()=> {
+              this.setState({value: new Date(Date.now() - 86400000 * 7)})
+              }
+            }, {
+              text: '一月前',
+              onClick: ()=> {
+              this.setState({value: new Date(Date.now() - 86400000 * 30)})
+              }
             }
-          }, {
-            text: '一周前',
-            onClick: ()=> {
-             this.setState({value: new Date(Date.now() - 86400000 * 7)})
-            }
-          }, {
-            text: '一月前',
-            onClick: ()=> {
-             this.setState({value: new Date(Date.now() - 86400000 * 30)})
-            }
-          }
-        ]}/>
-        <DatePicker showToday={true}  />
-        <DatePicker showToday={true} value={`${new Date()}`}  />
+          ]}
+        />
+        <DatePicker showToday={true} />
+        <DatePicker showToday={true} value={new Date()}  />
       </div>
     )
   }
@@ -71,9 +72,16 @@ class Demo extends Component {
         <DatePicker 
           renderDate={(item,isSelect)=>{
             const style = {};
+            let todayLabel ='';
             if(item.today){
               style.color='red';
               style.fontWeight='bold';
+              style.fontSize=12;
+              todayLabel = <span style={{
+                transform:'scale(0.6)',
+                width:'100%',
+                boxShadow:'inset 0 0 0',
+              }}>今天</span>
             }
             if(item.className === 'prev'){
               style.color='#ffa4a4';
@@ -91,7 +99,7 @@ class Demo extends Component {
               style.color='#fff';
             }
             return (
-              <span style={style}>{item.today?'今天':item.day}</span>
+              <span style={style}>{item.today?todayLabel:item.day}</span>
             )
           }}
           showToday={true} value={`${new Date()}`}  />
@@ -178,67 +186,46 @@ class Demo extends Component {
 ```
 <!--End-->
 
+## 禁用时间
+
+通过设置`disabledDate`来禁止选择部分日期。
+
+<!--DemoStart--> 
+```js
+function disabledDate(current) {
+  // 今天和今天之前不能选择几天
+  return current && current.date.valueOf() < Date.now();
+}
+class Demo extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      value : ''
+    }
+  }
+  render() {
+    const { value } = this.state;
+    return (
+      <div>
+        <DatePicker disabledDate={disabledDate} showToday={true} value={value}  />
+      </div>
+    )
+  }
+}
+```
+<!--End-->
 
 ## 选择时分秒
 
 <!--DemoStart--> 
 ```js
 class Demo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: new Date(2017, 6, 28, 15, 51),
-      showTime:'',
-    }
-  }
-  handleChang(value,date) {
-    console.log('value;',value)
-    this.setState({
-      showTime:value,
-      value:date
-    })
-  }
   render() {
-    const {showTime} = this.state;
     return (
       <div>
-        <TimePicker
-          //style={{width:100}}
-          onChange={this.handleChang.bind(this)}
-          disabledHours={['00','01']}
-          disabledMinutes={['01','02']}
-          disabled={true}
-          //hideDisabled={true}
-          format="H:i:s"
-          placeholder="选择时间de拉！"
-          value={new Date(2017, 6, 28, 15, 51)}
-        />
-        <TimePicker
-          //style={{width:100}}
-          size="large" 
-          onChange={this.handleChang.bind(this)}
-          disabledHours={['00','01']}
-          disabledMinutes={['01','02']}
-          disabled={false}
-          // hideDisabled={true}
-          format="H:i"
-          placeholder="选择时间de拉！更改"
-          value={this.state.value}
-        />
-        <TimePicker
-          //style={{width:100}}
-          size="mini" 
-          onChange={this.handleChang.bind(this)}
-          disabledHours={['00','01']}
-          disabledMinutes={['01','02']}
-          disabled={false}
-          format="H:i:s"
-          placeholder="选择时间de拉！更改"
-          value={this.state.value}
-        />
-        <div style={{padding:"20px 0 0 0"}}>
-          选择时间：{showTime}
-        </div>
+        <DatePicker format="Y年m月d日 H:i:s" showTime={true}/>
+        <DatePicker format="Y/m/d H:i:s" showToday={true} showTime={true} />
+        <DatePicker format="Y年m月d日 H:i:s" showToday={true} showTime={true} value={`${new Date()}`} />
       </div>
     )
   }
@@ -272,6 +259,7 @@ import DatePicker from 'uiw/lib/date-picker';
 | showToday | 是否展示“今天”按钮 | Boolean/Node | false |
 | showTime | 是否展示“选择时间”按钮 | Boolean/Object | false |
 | disabled | 禁用日历 | Boolean | - |
+| disabledDate | 不可选择的日期 | function(dateItem:{day,month,date,format,week})=> boolean | - |
 | disabledTime | 禁用时间 | Function(date) | - |
 | renderDate | 自定义日期单元格的内容 | Function(item:{ `tody`,`className['prev','next']`,`week`,`month`,`date`,`format`}, isSelect) | - |
 | align | 占位内容 | Enum{`left` `center` `right`} | - |
