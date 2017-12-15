@@ -22,10 +22,14 @@ class Demo extends Component {
 
 ## 通知事项日历
 
-在日历面板上面添加通知事件。
+在日历面板上面添加通知事件，还可以通过设置`disabledDate`来禁止部分日期点击，如下实例每月`12`号不能点击。
 
 <!--DemoStart--> 
 ```js
+function disabledDate(current) {
+  // 每个月 12 号禁止选中
+  return current.day === 12;
+}
 function getListData(value) {
   let listData;
   switch (value) {
@@ -74,13 +78,18 @@ function dateCellRender(dateItem){
   );
 };
 
+function onClick(item){
+  console.log('item:',item);
+}
 class Demo extends Component {
   render() {
     return (
       <Calendar 
+        disabledDate={disabledDate}
         weekLabel={['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']}
         dateCellRender={dateCellRender}
-        />
+        onClick={onClick}
+      />
     )
   }
 }
@@ -105,3 +114,5 @@ import Calendar from 'uiw/lib/calendar';
 |--------- |-------- |--------- |-------- |
 | weekLabel | 星期显示文本 | Array | `['日', '一', '二', '三', '四', '五', '六']` |
 | dateCellRender | 自定义渲染日期单元格，返回内容会被追加到单元格 | function(date:{day,month,date,format,week})=> ReactNode | - |
+| disabledDate | 不可选择的日期 | function(date:{day,month,date,format,week})=> ReactNode | - |
+| onClick | 点击选择日期回调 | function(date:{day,month,date,format,week})=> ReactNode | - |
