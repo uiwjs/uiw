@@ -3,6 +3,14 @@ import { Component, PropTypes } from '../utils/';
 import Icon from '../icon';
 
 export default class Input extends Component {
+  static defaultProps = {
+    prefixCls: 'w-input',
+    type: 'text',
+    autoComplete: 'off',
+    onChange() { },
+    onSearch() { },
+    onKeyUp() { },
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -55,6 +63,7 @@ export default class Input extends Component {
       if ((typeof preIcon === 'string' && icons) || (typeof icon === 'string' && icons)) {
         return (
           <Icon
+            className="w-input-icon-inner"
             type={icons}
             onClick={this.handleClick.bind(this, type === 'icon' ? 'onIconClick' : 'onPreIconClick')}
             onMouseOver={this.handleClick.bind(this, type === 'icon' ? 'onIconMouseOver' : 'onPreIconMouseOver')}
@@ -83,21 +92,21 @@ export default class Input extends Component {
   }
   render() {
     const { prefixCls, className, style, type, size, length, preIcon, icon, value,
+      onSearch,
       onIconClick,
       onPreIconClick,
       onIconMouseOut,
       onPreIconMouseOut,
       onIconMouseOver,
       onPreIconMouseOver,
+      addonBefore,
+      addonAfter,
       ...other
     } = this.props;
     const cls = this.classNames(`${prefixCls}`, className, {
       textarea: type === 'textarea',
       'w-disabled': this.props.disabled,
     });
-
-    delete other.onSearch;
-    // delete other.onChange;
 
     if (type === 'textarea') {
       return (
@@ -120,8 +129,10 @@ export default class Input extends Component {
         className={this.classNames(cls, {
           [`${prefixCls}-${size}`]: size,
           [`${prefixCls}-icon`]: preIcon || icon,
+          [`${prefixCls}-addon`]: addonBefore || addonAfter,
         })}
       >
+        {addonBefore && <span className={`${prefixCls}-addon-before`}>{addonBefore}</span>}
         {preIcon && this.renderIcon.bind(this)('preIcon')}
         {icon && this.renderIcon.bind(this)('icon')}
         <input
@@ -131,12 +142,15 @@ export default class Input extends Component {
           className={this.classNames(`${prefixCls}-inner`, {
             [`${prefixCls}-p-left`]: preIcon,
             [`${prefixCls}-p-right`]: icon,
+            'addon-before': addonBefore,
+            'addon-after': addonAfter,
           })}
           value={value}
           placeholder={!value ? this.state.placeholder : ''}
           onChange={this.handleChange.bind(this)}
           onKeyUp={this.handleKeyUp.bind(this)}
         />
+        {addonAfter && <span className={`${prefixCls}-addon-after`}>{addonAfter}</span>}
       </div>
     );
   }
@@ -153,13 +167,6 @@ Input.propTypes = {
   onChange: PropTypes.func,
   onSearch: PropTypes.func,
   onKeyUp: PropTypes.func,
-};
-
-Input.defaultProps = {
-  prefixCls: 'w-input',
-  type: 'text',
-  autoComplete: 'off',
-  onChange() { },
-  onSearch() { },
-  onKeyUp() { },
+  addonBefore: PropTypes.node,
+  addonAfter: PropTypes.node,
 };
