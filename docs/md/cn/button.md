@@ -138,7 +138,7 @@ class Demo extends Component {
     const ButtonGroup = Button.Group;
     return (
       <div>
-        <ButtonGroup vertical>
+        <ButtonGroup vertical={true}>
           <Button>Left</Button>
           <Button>Middle</Button>
           <Button disabled>Disabled</Button>
@@ -353,12 +353,23 @@ class Demo extends Component {
 ```
 <!--End-->
 
-## API
+## 安装和使用
+
+```bash
+npm install uiw --save
+```
+
+```js
+import { Button } from 'uiw';
+// or
+import Button from 'uiw/lib/button';
+const ButtonGroup = Button.Group;
+```
 
 ### Button
 
 | 参数 | 说明 | 类型 | 默认值 |
-|--------- |-------- |--------- |-------- |
+| -------- | -------- | -------- | -------- |
 | size | `large`, `default`, `small`, `mini` |String | - |
 | type | `default`,`primary`,`success`,`info`,`warn`,`error`,`danger` |String | - |
 | htmlType | 设置 `button` 原生的 `type` 值，可选值请参考 [HTML 标准](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) |String | `button` |
@@ -368,3 +379,9 @@ class Demo extends Component {
 | active | 激活状态，其表现为被按压下去（底色更深、边框夜色更深、向内投射阴影）。 |Boolean | false |
 | loading | 加载中状态 | Boolean | false |
 | onClick | click 事件的 handler |function | - |
+
+### Button.Group
+
+| 参数 | 说明 | 类型 | 默认值 |
+| -------- | -------- | -------- | -------- |
+| vertical | 竖排列 | Boolean | `false` |
