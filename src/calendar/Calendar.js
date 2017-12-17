@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
 import DatePanelBodyDay from '../date-picker/DatePanelBodyDay';
+import DatePanelMonth from './DatePanelMonth';
 import Button from '../button/';
 
 export default class Calendar extends Component {
@@ -8,7 +9,7 @@ export default class Calendar extends Component {
     super(props);
     this.state = {
       date: props.date,
-      mode: 'month',
+      mode: props.mode,
     };
   }
   componentWillReceiveProps(nextProps) {
@@ -64,14 +65,15 @@ export default class Calendar extends Component {
           <div className={`${prefixCls}-caption-btn`}>
             <Button.Group>
               <Button {...buttonProps} icon="d-arrow-left" onClick={this.onClickBarPageBtn.bind(this, 'prev')} />
-              <Button {...buttonProps} active={mode === 'year'} onClick={this.onClickBarBtn.bind(this, 'year')}>年份</Button>
-              <Button {...buttonProps} active={mode === 'month'} onClick={this.onClickBarBtn.bind(this, 'month')}>月份</Button>
+              <Button {...buttonProps} active={mode === 'year'} onClick={this.onClickBarBtn.bind(this, 'year')}>年</Button>
+              <Button {...buttonProps} active={mode === 'month'} onClick={this.onClickBarBtn.bind(this, 'month')}>月</Button>
               <Button {...buttonProps} onClick={this.onClickBarBtn.bind(this, 'today')}>今天</Button>
               <Button {...buttonProps} icon="d-arrow-right" onClick={this.onClickBarPageBtn.bind(this, 'next')} />
             </Button.Group>
           </div>
         </div>
-        <DatePanelBodyDay {...resetProps} date={date} />
+        {mode === 'month' && <DatePanelBodyDay {...resetProps} date={date} />}
+        {mode === 'year' && <DatePanelMonth {...resetProps} date={date} />}
       </div>
     );
   }
@@ -82,11 +84,14 @@ Calendar.propTypes = {
   prefixCls: PropTypes.string,
   date: PropTypes.instanceOf(Date),
   dateCellRender: PropTypes.func,
+  monthCellRender: PropTypes.func,
   mode: PropTypes.oneOf(['year', 'month', 'week']),
 };
 
 Calendar.defaultProps = {
   prefixCls: 'w-calendar',
   date: new Date(),
+  mode: 'month',
   dateCellRender: () => { },
+  monthCellRender: () => { },
 };
