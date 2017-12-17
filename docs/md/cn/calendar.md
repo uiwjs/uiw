@@ -116,3 +116,5 @@ import Calendar from 'uiw/lib/calendar';
 | dateCellRender | 自定义渲染日期单元格，返回内容会被追加到单元格 | function(date:{day,month,date,format,week})=> ReactNode | - |
 | disabledDate | 不可选择的日期 | function(date:{day,month,date,format,week})=> ReactNode | - |
 | onClick | 点击选择日期回调 | function(date:{day,month,date,format,week})=> ReactNode | - |
+| date | 默认展示今天 | Date | `new Date()` |
+| mode | 展示日期面板 | Enum{`year`, `month`, `week`} | `month` |

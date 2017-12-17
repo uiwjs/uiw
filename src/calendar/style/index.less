@@ -21,6 +21,29 @@
     display: inline-block;
     font-weight: 200;
   }
+  &-caption-btn {
+    float: right;
+    padding: 12px 0 0;
+    button {
+      font-size: 14px;
+      padding-left: 5px;
+      padding-right: 5px;
+      line-height: .8;
+      color: #333;
+      &.w-btn.active {
+        background: #3333331f;
+      }
+      i {
+        font-size: 12px;
+        margin: -5px 0 0 0;
+        vertical-align: middle;
+        position: relative;
+      }
+    }
+    button.w-btn:not(:first-child):not(:last-child) {
+      border-radius: 3px;
+    }
+  }
   .w-datepicker-inner {
     width: 100%;
     position: absolute;
@@ -47,5 +70,11 @@
       right: 0;
       background: #00000008;
     }
+  }
+  .w-datepicker-today::before {
+    border-top-width: 12px;
+    border-left-width: 12px;
+    right: 0;
+    top: -1px;
   }
 }
