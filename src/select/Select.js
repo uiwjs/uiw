@@ -56,6 +56,7 @@ export default class Select extends Component {
     if (props.value !== this.state.value) {
       this.setState({
         value: props.value,
+        selectedLabel: this.showLabelText(props),
       }, () => {
         this.selectedData();
       });
