@@ -107,15 +107,16 @@ TimeSelectPanel.propTypes = {
   prefixCls: PropTypes.string,
   start: PropTypes.string,
   end: PropTypes.string,
+  format: PropTypes.string, // 时间序列化
   step: PropTypes.string,
   minTime: PropTypes.string,
   maxTime: PropTypes.string,
-  // value: PropTypes.string,
 };
 
 TimeSelectPanel.defaultProps = {
   prefixCls: 'w-timeselect-panel',
   start: '09:00',
+  format: 'H:i',
   end: '18:00',
   step: '00:30',
 };
