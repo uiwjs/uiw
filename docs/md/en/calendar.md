@@ -129,7 +129,8 @@ function getListData(value) {
       listData = [
         { type: 'warning', content: '小弟调调，生日' },
         { type: 'success', content: '见客户' },
-      ]; break;
+      ]; 
+      break;
     case 10:
       listData = [
         { type: 'warning', content: 'DatePicker添加disabledDate禁用属性.' },
@@ -141,8 +142,9 @@ function getListData(value) {
         { type: 'warning', content: 'DatePicker添加disabledDate禁用属性.' },
         { type: 'success', content: '组件Avatar添加小尺寸.' },
         { type: 'error', content: 'scrollTop方法问题修复。' },
-      ]; break;
-    default:
+      ]; 
+      break;
+    default: listData=[]; break;
   }
   return listData || [];
 }
@@ -209,7 +211,7 @@ import Calendar from 'uiw/lib/calendar';
 | weekLabel | 星期显示文本 | Array | `['日', '一', '二', '三', '四', '五', '六']` |
 | dateCellRender | 自定义渲染日期单元格，返回内容会被追加到单元格 | function(date:{day,month,date,format,week})=> ReactNode | - |
 | monthCellRender | 自定义渲染月单元格，返回内容会被追加到单元格 | function(date:{date,month})=> ReactNode | - |
-| disabledDate | 不可选择的日期 | function(date:{day,month,date,format,week})=> ReactNode | - |
+| disabledDate | 不可选择的日期 | function(date:{day,month,date,format,week})=> Boolean | - |
 | onClick | 点击选择日期回调 | function(date:{day,month,date,format,week})=> ReactNode | - |
 | date | 默认展示今天 | Date | `new Date()` |
 | mode | 展示日期面板 | Enum{`year`, `month`, `week`} | `month` |
