@@ -1,6 +1,7 @@
 import React from 'react';
 import BasePicker from './BasePicker';
 import TimeSelectPanel from './TimeSelectPanel';
+import PropTypes from '../utils/PropTypes';
 
 export default class TimeSelect extends BasePicker {
   constructor(props) {
@@ -30,3 +31,11 @@ export default class TimeSelect extends BasePicker {
     );
   }
 }
+
+TimeSelect.propTypes = {
+  format: PropTypes.string,
+};
+
+TimeSelect.defaultProps = {
+  format: 'H:i',
+};
