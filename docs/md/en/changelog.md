@@ -5,13 +5,45 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.6.0
+
+`2017-12-18`
+
+Feature:
+
+- 🌟 feat(Calendar): Add month panel. [b84167d](https://github.com/uiw-react/uiw/commit/b84167d50355b7d3c4506346523b6f18b530c3ad) 
+- 🌟 feat(Calendar): Add date,mode props. [4f2fb40](https://github.com/uiw-react/uiw/commit/4f2fb40def806a8f4c4349743828a3e0f90c2cd1) 
+- 🌟 feat(Input): Add addonAfter,addonAfter props. [645811f](https://github.com/uiw-react/uiw/commit/645811fe769c847674b92df8999ac13384c4b5ee) 
+- 🌟 feat(Calendar): Add new component. [6b08d74](https://github.com/uiw-react/uiw/commit/6b08d743f371486e7bc1357ad65886baec11221d) 
+- 🌟 feat(Badge): Enhance the style props. [ec07ed2](https://github.com/uiw-react/uiw/commit/ec07ed292b4a2d9c7fa57025349845013ed1a6e2) 
+- 🌟 feat(Badge): Add status props. [d24a433](https://github.com/uiw-react/uiw/commit/d24a433783a2cbf551dec6cc80edd70dd88da107) 
+- 🌟 feat(DatePicker): Add weekLabel props. [2e364d4](https://github.com/uiw-react/uiw/commit/2e364d4244c375e5dc324498d7366942fbee7044) 
+- 🌟 feat(Calendar): Add panel header. [4193aa3](https://github.com/uiw-react/uiw/commit/4193aa36e68fe3198197b6d461deb57d4c808cd9) 
+- 🌟 feat(DatePicker): Add disabledDate props. [80aec0c](https://github.com/uiw-react/uiw/commit/80aec0c997f8ffd6eebb7efa6190c20aa2f3c27d) 
+
+Style Update:
+
+- 💄 style(Input): Modify Input box-shadow style. [2431184](https://github.com/uiw-react/uiw/commit/2431184f23cc6580c2574cbba2a6376c3cb62de9) 
+- 💄 style(Input): Change input style. [022727d](https://github.com/uiw-react/uiw/commit/022727dc2061468476defaf065e5bd955960a01f) 
+
+Bug fixed:
+
+- 🐞 fix(DatePicker): export component. [7b8b765](https://github.com/uiw-react/uiw/commit/7b8b76513b5f420d5a0c6c661574e75b27c9989a) 
+- 🐞 fix(DatePicker): Marked wrong today. [6f69ba5](https://github.com/uiw-react/uiw/commit/6f69ba5daf47dbda458c49fd2e19dbda90175b55) 
+- 👙 refactor(DatePicker): Refactor Day Panel. [a5d6a8d](https://github.com/uiw-react/uiw/commit/a5d6a8dcdce711eb2fd39de723b0ccaaf53afd2c) 
+
+Document Update:
+
+- 📖 doc(HotKeys): Add example. [3559133](https://github.com/uiw-react/uiw/commit/3559133aaabe05dfd91151cc5c30d890e6b55bea) 
+- 📖 doc(Button): Update api document. [c9a8ed7](https://github.com/uiw-react/uiw/commit/c9a8ed7fefa1b3e74787c2809c3cfe362877a123) 
+
 ## 1.5.6
 
 `2017-12-15`
 
-- fix(DatePicker): Repair type problem raised error. [b2bfa71](https://github.com/uiw-react/uiw/commit/b2bfa71190abca49bfe4cb9a00eae5581cdc133d) 
-- feat(HeadMap): The HeadMap component is detached from the Calendar. [d8537c1](https://github.com/uiw-react/uiw/commit/d8537c16418767403ba37ea3313ceeaf22f13972) 
-- doc(HeatMap): Modify the doc error. [591e9ef](https://github.com/uiw-react/uiw/commit/591e9efea6dea6e54d3738ff2e872a277fdee8c6) 
+- 🐞 fix(DatePicker): Repair type problem raised error. [b2bfa71](https://github.com/uiw-react/uiw/commit/b2bfa71190abca49bfe4cb9a00eae5581cdc133d) 
+- 🌟 feat(HeadMap): The HeadMap component is detached from the Calendar. [d8537c1](https://github.com/uiw-react/uiw/commit/d8537c16418767403ba37ea3313ceeaf22f13972) 
+- 📖 doc(HeatMap): Modify the doc error. [591e9ef](https://github.com/uiw-react/uiw/commit/591e9efea6dea6e54d3738ff2e872a277fdee8c6) 
 
 ## 1.5.5
 
