@@ -5,6 +5,18 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+
+## 1.6.1
+
+`2017-12-19`
+
+- 🐞 fix(Select): Repair value update props display. [4d4e48f](https://github.com/uiw-react/uiw/commit/4d4e48f1168c0a7949949446557ca0a12e177c77) 
+- 🐞 fix(TimeSelect): Add the default format value. [57e4387](https://github.com/uiw-react/uiw/commit/57e4387a5d2fa394a9a251e5201986f8f214e6c9) 
+- 💄 style(Input): Component control alignment. [8bcd6d1](https://github.com/uiw-react/uiw/commit/8bcd6d1368043e516ac01c8589040fd9add02315) 
+- 💄 style(Form): Modify the Form error style. [e131a86](https://github.com/uiw-react/uiw/commit/e131a86cb6f9d4ed3698ed3d95bd65670f5d906b) 
+- 💄 style(Menu): Modify menu padding. [c43487d](https://github.com/uiw-react/uiw/commit/c43487dabe21402fbbff6785c0a0c2cb0a34e4d2) 
+- 📖 doc(Calendar): Update api document. [a752016](https://github.com/uiw-react/uiw/commit/a752016cc03adc29a8ce2fa29cbae4cb4ab10128) 
+
 ## 1.6.0
 
 `2017-12-18`
