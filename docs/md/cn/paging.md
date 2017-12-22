@@ -13,13 +13,8 @@ class Demo extends Component {
   render() {
     return (
       <div>
-        <Paging activePage={5} total={250} onChange={(pageNumber)=>{
-          console.log('Page: ', pageNumber);
-          }}/>
-          <br />
-        <Paging total={60} onChange={(pageNumber)=>{
-          console.log('Page: ', pageNumber);
-        }}/>
+        <Paging pageSize={5} total={28}/>
+        <Paging pageSize={5} total={46} activePage={1}/>
       </div>
     )
   }
