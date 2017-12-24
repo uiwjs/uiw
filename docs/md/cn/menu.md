@@ -162,7 +162,6 @@ class Demo extends Component {
           <Menu.SubMenu index="1-1" title={<span><Icon type="apple"/>导航一</span>}>
             <Menu.ItemGroup title="分组一">
               <Menu.Item index="1-1-1">选项1</Menu.Item>
-              <Menu.Divider />
               <Menu.Item index="1-1-2">选项2</Menu.Item>
             </Menu.ItemGroup>
             <Menu.ItemGroup title="分组2">
@@ -207,8 +206,9 @@ class Demo extends Component {
         <Menu.Item index="2-1">选项1</Menu.Item>
         <Menu.Divider />
         <Menu.Item index="2-2">选项2</Menu.Item>
-        <Menu.Divider style={{background:'red'}}/>
+        <Menu.Divider style={{background:'#3c90f2'}}/>
         <Menu.Item index="2-3">选项2</Menu.Item>
+        <Menu.Divider style={{background:'#3c90f2',height:3}}/>
         <Menu.Item index="2-4">选项2</Menu.Item>
         <Menu.Item index="2-5">选项2</Menu.Item>
         <Menu.Item index="2-6">选项2</Menu.Item>
