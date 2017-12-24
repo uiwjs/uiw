@@ -20,8 +20,14 @@ export default class Container extends Component {
   }
   delMessage(props) {
     const { message } = this.state;
+    const { willUnmount } = this.props;
     if (message[props.id]) {
       delete message[props.id];
+      this.setState({ message });
+    }
+    const keys = Object.keys(message);
+    if (keys.length === 0) {
+      willUnmount();
     }
   }
   render() {
