@@ -162,6 +162,7 @@ class Demo extends Component {
           <Menu.SubMenu index="1-1" title={<span><Icon type="apple"/>导航一</span>}>
             <Menu.ItemGroup title="分组一">
               <Menu.Item index="1-1-1">选项1</Menu.Item>
+              <Menu.Divider />
               <Menu.Item index="1-1-2">选项2</Menu.Item>
             </Menu.ItemGroup>
             <Menu.ItemGroup title="分组2">
@@ -186,6 +187,33 @@ class Demo extends Component {
           <Button type="primary" size="small" onClick={this.onButtonClick.bind(this)}>激活选项2菜单</Button>
         </div>
       </div>
+    )
+  }
+}
+```
+<!--End-->
+
+
+### 菜单项分割线
+
+此分割线只是简单的做一下分割样式，你可以自定义`className`、`style`、`children`等。
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  render() {
+    return (
+      <Menu style={{width:200}}>
+        <Menu.Item index="2-1">选项1</Menu.Item>
+        <Menu.Divider />
+        <Menu.Item index="2-2">选项2</Menu.Item>
+        <Menu.Divider style={{background:'red'}}/>
+        <Menu.Item index="2-3">选项2</Menu.Item>
+        <Menu.Item index="2-4">选项2</Menu.Item>
+        <Menu.Item index="2-5">选项2</Menu.Item>
+        <Menu.Item index="2-6">选项2</Menu.Item>
+        <Menu.Item index="2-7">选项2</Menu.Item>
+      </Menu>
     )
   }
 }
@@ -220,3 +248,8 @@ class Demo extends Component {
 | index | `SubMenu` 的唯一标志 | String | vertical |
 
 
+### Menu.Divider
+
+| 参数 | 说明 | 类型 | 默认值 |
+|--------- |-------- |--------- |-------- |
+| className | 元素的类的名称。 | String | `w-menu-item-divider` |
