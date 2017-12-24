@@ -1,11 +1,13 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
+import Icon from '../icon';
 
 export default class Paging extends Component {
   constructor(props) {
     super(props);
     this.state = {
       activePage: props.activePage,
+      hoverMoreBtn: 'more',
     };
     this.onPrevOrNext = this.onPrevOrNext.bind(this);
   }
@@ -96,7 +98,7 @@ export default class Paging extends Component {
   }
   render() {
     const { prefixCls, className, style, alignment, size, total, pageSize, onChange } = this.props;
-    const { activePage } = this.state;
+    const { activePage, hoverMoreBtn } = this.state;
 
     const totalPage = total / pageSize; // 总页数
     return (
@@ -115,9 +117,22 @@ export default class Paging extends Component {
           })}
         />
         {this.getPages().map((item, idx) => {
-          if (item === 'prev' || item === 'next') {
+          if (item === 'next' || item === 'prev') {
             return (
-              <li key={idx} onClick={() => this.onPrevOrNext(`jump-${item}`)} className={this.classNames(`${prefixCls}-jump-${item}`)}><a>...</a></li>
+              <li key={idx}
+                onMouseEnter={() => this.setState({ hoverMoreBtn: item })}
+                onMouseLeave={() => this.setState({ hoverMoreBtn: 'more' })}
+                onClick={() => this.onPrevOrNext(`jump-${item}`)}
+                className={this.classNames(`${prefixCls}-jump-${item}`)}
+              >
+                <a>
+                  {item === 'next' && hoverMoreBtn === 'next' && <Icon className="arrow" type="d-arrow-right" />}
+                  {item === 'prev' && hoverMoreBtn === 'prev' && <Icon className="arrow" type="d-arrow-left" />}
+                  {item === 'prev' && hoverMoreBtn === 'next' && <Icon className="arrow" type="more" />}
+                  {item === 'next' && hoverMoreBtn === 'prev' && <Icon className="arrow" type="more" />}
+                  {(item === 'next' || item === 'prev') && hoverMoreBtn === 'more' && <Icon type="more" />}
+                </a>
+              </li>
             );
           }
           return (
