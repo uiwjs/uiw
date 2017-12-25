@@ -5,6 +5,19 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.6.2
+
+`2017-12-25`
+
+- 🌟 feat(Menu): The Menu component add  divider. [fb51a3c](https://github.com/uiw-react/uiw/commit/fb51a3cf3629fec77e303191f0e7fb78ae4824ab) 
+- 🌟 feat(Paging): Jump flip add hover icon. [dfc9606](https://github.com/uiw-react/uiw/commit/dfc9606de57bfd15cfe8b5eac3f5eda11865fd19) 
+- 🐞 fix(TimeSelect): Drop down selection. [ac1f8ba](https://github.com/uiw-react/uiw/commit/ac1f8ba6957ec502bbad5ffb4207a57a0189b97a) 
+- 🐞 fix(Paging): Fix #52 the page calculation error. [a819407](https://github.com/uiw-react/uiw/commit/a8194078ccdcca25225b4a53639926a2f3ab1cd1) 
+- 💄 chore(Message): Message component root node cleanup. [cbc6912](https://github.com/uiw-react/uiw/commit/cbc691277d6f35d80b70a5041337bc3766c6f9c4) 
+- 💄 clean: format the code. [966a4bc](https://github.com/uiw-react/uiw/commit/966a4bc18cb83229b514200816807d6c1b406ac4) 
+- 📖 doc(Menu): Update example. [e96ce68](https://github.com/uiw-react/uiw/commit/e96ce68a7c9254b7d253d1079e7e644fe444240f) 
+- 📖 doc: update recommendation. [a2bfdb4](https://github.com/uiw-react/uiw/commit/a2bfdb475be7a389d4caac955ac32477686c5590) 
+
 ## 1.6.1
 
 `2017-12-19`
