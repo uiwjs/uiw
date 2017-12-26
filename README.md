@@ -100,10 +100,6 @@ Folders
 └── src            # react source code 
 ```
 
-### License
-
-Licensed under the MIT License.
-
 ### Contributors
 
 This project exists thanks to all the people who contribute, either by submitting packages or with code.
@@ -114,3 +110,7 @@ This project exists thanks to all the people who contribute, either by submittin
 [<img alt="gonghengda" src="https://avatars2.githubusercontent.com/u/30465062?v=4&s=68" width="34" />](https://github.com/gonghengda)
 [<img alt="margox" src="https://avatars2.githubusercontent.com/u/7866354?v=4&s=68" width="34" />](https://github.com/margox)
 [<img alt="52cik" src="https://avatars0.githubusercontent.com/u/5033310?v=4&s=68" width="34" />](https://github.com/52cik)
+
+### License
+
+Licensed under the MIT License.
