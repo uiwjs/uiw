@@ -11,6 +11,7 @@ export { default as Collapse } from './collapse/';
 export { default as Card } from './card/';
 export { default as CopyToClipboard } from './copy-to-clipboard/';
 export { default as Divider } from './divider/';
+export { default as Dropdown } from './dropdown/';
 export { default as Hotkeys } from './hotkeys/';
 export { default as HeatMap } from './heat-map/';
 export { default as Modal } from './modal/';
