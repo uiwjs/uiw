@@ -73,6 +73,40 @@ class Demo extends Component {
 <!--End-->
 
 
+## 可以点击
+
+<!--DemoStart--> 
+```js
+const menu = (
+  <Menu>
+    <Menu.Item index="0">
+      <a target="_blank" rel="noopener noreferrer" href="http://uiw-react.github.io/">UI组件库官方文档</a>
+    </Menu.Item>
+    <Menu.Item index="1">
+      <a target="_blank" rel="noopener noreferrer" href="javascript:;">个人网站</a>
+    </Menu.Item>
+    <Menu.Divider/>
+    <Menu.Item index="3" disabled>老铁就是你了</Menu.Item>
+  </Menu>
+);
+
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <Dropdown trigger="click" menu={menu}>
+          <a className="ant-dropdown-link" href="javascript:;">
+            Hover me <Icon type="arrow-down" />
+          </a>
+        </Dropdown>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
+
 ## 安装和使用
 
 ```bash
@@ -92,3 +126,4 @@ import Dropdown from 'uiw/lib/dropdown';
 | visible | 菜单是否显示 |	Boolean	| `false` |
 | menu | 菜单 |	Menu	| - |
 | trigger | 触发下拉的行为 |	Enum{`click`,`hover`}	| `hover` |
+| onVisibleChange | 菜单显示状态改变时调用，参数为 visible |	Function(visible)	| - |
