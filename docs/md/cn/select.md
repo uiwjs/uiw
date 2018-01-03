@@ -527,7 +527,7 @@ class Demo extends Component {
 | disabled | 是否禁用 | Boolean | false |
 | multiple | 是否可多选 | Boolean | false |
 | filterable | 是否可搜索，设置`true`组件可以输入文字 | Boolean | false |
-| clearable | 是否可多选 | Boolean | false |
+| clearable | 是否可清空单选 | Boolean | false |
 | onChange | 选中值发生变化时触发 | function(option, curruntValue,values[]) | - |
 
 ### Option
