@@ -5,25 +5,34 @@ import { randomid } from '../utils/strings';
 import './style/index.less';
 
 const div = document.createElement('div');
-document.body.appendChild(div);
 
-const container = ReactDOM.render(<Container />, div);
-function create(type) {
-  return (content, msg) => {
-    let message = msg || {};
-    if (typeof message === 'string') message = { type: message };
-    if (type) message.type = type;
-    message.id = randomid();
-    message.content = content;
-    message.placement = message.placement;
-    message.duration = message.duration || 3;
-    container.addMessage(message);
-  };
+export default function Message(content, props = {}) {
+  if (div) document.body.appendChild(div);
+  if (typeof content === 'string' || React.isValidElement(content)) {
+    props.content = content;
+  }
+  if (!props.type) props.type = 'info';
+
+  const component = React.createElement(Container, Object.assign(props, {
+    id: randomid(),
+    duration: props.duration || 3,
+    willUnmount: () => {
+      ReactDOM.unmountComponentAtNode(div);
+      document.body.removeChild(div);
+
+      if (props.onClose instanceof Function) {
+        props.onClose();
+      }
+    },
+  }));
+
+  const container = ReactDOM.render(component, div);
+  container.addMessage(props);
 }
 
-export default {
-  warning: create('warning'),
-  info: create('info'),
-  error: create('error'),
-  success: create('success'),
-};
+['success', 'warning', 'info', 'error'].forEach((type) => {
+  Message[type] = (content, options = {}) => {
+    options.type = type;
+    return Message(content, options);
+  };
+});

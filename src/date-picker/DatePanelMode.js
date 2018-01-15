@@ -12,14 +12,16 @@ const rangesYear = (year) => {
   return arr;
 };
 
+const parseDate = (date) => {
+  return {
+    month: date.getMonth() + 1,
+    day: date.getDate(),
+    week: date.getDay(),
+    date,
+  };
+};
 export default class DatePanelMonth extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
-  onClickMonth(num) {
+  onClickMonth = (num) => {
     const { value, selectYear, selectMonth, onClicPanelkMode } = this.props;
     const time = value;
     if (selectMonth) {
@@ -31,7 +33,7 @@ export default class DatePanelMonth extends Component {
     if (onClicPanelkMode) onClicPanelkMode(new Date(time));
   }
   render() {
-    const { prefixCls, selectMonth, selectYear, value } = this.props;
+    const { prefixCls, selectMonth, selectYear, disabledDate, value } = this.props;
     const rangesYearArr = rangesYear(value.getFullYear());
     return (
       <div className={this.classNames(`${prefixCls}-mode-select`, {
@@ -39,28 +41,45 @@ export default class DatePanelMonth extends Component {
       })}
       >
         {selectMonth && solarMonthDays().map((item, idx) => {
+          const monthProps = {
+            key: idx,
+            className: this.classNames({ select: idx === value.getMonth() }),
+          };
+          const dateValue = value;
+          const date = new Date(dateValue.setMonth(idx));
+          let onClick = () => { };
+          if (!disabledDate || (disabledDate && !disabledDate(parseDate(date)))) {
+            onClick = () => this.onClickMonth(idx);
+          } else {
+            monthProps.className = this.classNames(monthProps.className, {
+              [`${prefixCls}-disable`]: disabledDate && disabledDate(parseDate(date)),
+            });
+          }
+
           return (
-            <div key={idx}
-              className={this.classNames({
-                select: idx === value.getMonth(),
-              })}
-              onClick={this.onClickMonth.bind(this, idx, item)}
-            >
-              <span>{idx + 1}月</span>
-            </div>
+            <div {...monthProps}> <span onClick={onClick}>{idx + 1}月</span> </div>
           );
         })}
         {selectYear && <div className={`${prefixCls}-panel-range`}>{rangesYearArr[0]} ~ {rangesYearArr[rangesYearArr.length - 1]}</div>}
         {selectYear && rangesYearArr.map((item, idx) => {
+          const yearProps = {
+            key: idx,
+            className: this.classNames({ select: item === value.getFullYear() }),
+          };
+          const dateValue = value;
+          const date = new Date(dateValue.setFullYear(item));
+          let onClick = () => { };
+
+          if (!disabledDate || (disabledDate && !disabledDate(parseDate(date)))) {
+            onClick = () => this.onClickMonth(item);
+          } else {
+            yearProps.className = this.classNames(yearProps.className, {
+              [`${prefixCls}-disable`]: disabledDate && disabledDate(parseDate(date)),
+            });
+          }
+
           return (
-            <div key={idx}
-              className={this.classNames({
-                select: item === value.getFullYear(),
-              })}
-              onClick={this.onClickMonth.bind(this, item, idx)}
-            >
-              <span>{item}年</span>
-            </div>
+            <div {...yearProps}> <span onClick={onClick}>{item}年</span> </div>
           );
         })}
       </div>

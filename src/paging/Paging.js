@@ -1,11 +1,13 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
+import Icon from '../icon';
 
 export default class Paging extends Component {
   constructor(props) {
     super(props);
     this.state = {
       activePage: props.activePage,
+      hoverMoreBtn: 'more',
     };
     this.onPrevOrNext = this.onPrevOrNext.bind(this);
   }
@@ -37,66 +39,68 @@ export default class Paging extends Component {
       onChange && onChange(num, total, pageSize);
     }
   }
+  getPages() {
+    const { pageSize, total } = this.props;
+    const pagerCount = 5;
+    const activePage = Number(this.state.activePage); // 当前页数
+    const totalPage = parseInt((total / pageSize), 0) + (total % pageSize > 0 ? 1 : 0); // 总页数
+    const offset = Math.floor(pagerCount / 2); // 左右各显示条数
+
+    let showPrevMore = false; // 更多向前翻页
+    let showNextMore = false; // 更多向后翻页
+
+    if (totalPage > pagerCount) {
+      if (activePage > pagerCount) showPrevMore = true;
+      if (activePage < totalPage - offset) showNextMore = true;
+    }
+
+    let items = [];
+
+    // 当前少于缩进页数
+    if (pagerCount + 1 >= totalPage) {
+      for (let i = 1; i < totalPage + 1; i += 1) {
+        items.push(i);
+      }
+      return items;
+    }
+
+    for (let i = 1; i < pagerCount + 1; i += 1) {
+      items.push(i);
+    }
+
+    items = items.map((item) => {
+      if (pagerCount < activePage) {
+        item = (activePage - offset - 1) + item;
+      }
+      if (activePage > totalPage - offset) {
+        return item - (offset + (activePage - totalPage));
+      }
+      return item;
+    });
+
+    if (showNextMore && showPrevMore) {
+      items.unshift(1, 'prev');
+      if ((activePage + offset + 1) !== totalPage) {
+        items.push('next', totalPage);
+      } else {
+        items.push(totalPage);
+      }
+    } else if (showNextMore && !showPrevMore) {
+      if (totalPage === pagerCount + 1) {
+        items.push(totalPage);
+      } else {
+        items.push('next', totalPage);
+      }
+    } else if (!showNextMore && showPrevMore) {
+      items.unshift(1, 'prev');
+    }
+    return items;
+  }
   render() {
     const { prefixCls, className, style, alignment, size, total, pageSize, onChange } = this.props;
-    const { activePage } = this.state;
+    const { activePage, hoverMoreBtn } = this.state;
 
-    const items = [];
     const totalPage = total / pageSize; // 总页数
-
-    items.push(
-      <li
-        key="prev"
-        onClick={() => this.onPrevOrNext('prev')}
-        className={this.classNames(`${prefixCls}-prev`, {
-          [`${prefixCls}-disable`]: activePage === 1,
-        })}
-      />
-    );
-
-    const curActvePage = activePage;
-    const itemsJump = ty => (
-      <li key={ty} onClick={() => this.onPrevOrNext(ty)} className={this.classNames(`${prefixCls}-${ty}`)}><a>...</a></li>
-    );
-
-    for (let i = 0; i < totalPage; i += 1) {
-      if (i + 1 === curActvePage - 3 && curActvePage - 3 !== 1 && totalPage > 5) {
-        items.push(itemsJump('jump-prev'));
-      }
-      if (i + 1 === curActvePage + 3 && curActvePage + 3 !== totalPage && totalPage > 5) {
-        items.push(itemsJump('jump-next'));
-      }
-
-      if (curActvePage === i + 1
-        || i + 1 === 1
-        || i + 1 === totalPage
-        || (i + 1 < 6 && totalPage < 6)
-        || (i + 1 > curActvePage - 3 && i + 1 < curActvePage)
-        || (i + 1 < curActvePage + 3 && i + 1 > curActvePage)
-      ) {
-        items.push(
-          <li
-            key={i + 1}
-            className={activePage === i + 1 ? `${prefixCls}-active` : `${prefixCls}-item`}
-            onClick={() => {
-              this.setState({ activePage: i + 1 });
-              onChange && onChange(i + 1, total, pageSize);
-            }}
-          >
-            <a>{i + 1}</a>
-          </li>
-        );
-      }
-    }
-    items.push(
-      <li
-        key="next"
-        onClick={() => this.onPrevOrNext('next')}
-        className={this.classNames(`${prefixCls}-next`, {
-          [`${prefixCls}-disable`]: activePage === totalPage || activePage > totalPage,
-        })}
-      />
-    );
     return (
       <ul
         style={style}
@@ -105,7 +109,52 @@ export default class Paging extends Component {
           [`${prefixCls}-${size}`]: size,
         })}
       >
-        {items}
+        <li
+          key="prev"
+          onClick={() => this.onPrevOrNext('prev')}
+          className={this.classNames(`${prefixCls}-prev`, {
+            [`${prefixCls}-disable`]: activePage === 1,
+          })}
+        />
+        {this.getPages().map((item, idx) => {
+          if (item === 'next' || item === 'prev') {
+            return (
+              <li key={idx}
+                onMouseEnter={() => this.setState({ hoverMoreBtn: item })}
+                onMouseLeave={() => this.setState({ hoverMoreBtn: 'more' })}
+                onClick={() => this.onPrevOrNext(`jump-${item}`)}
+                className={this.classNames(`${prefixCls}-jump-${item}`)}
+              >
+                <a>
+                  {item === 'next' && hoverMoreBtn === 'next' && <Icon className="arrow" type="d-arrow-right" />}
+                  {item === 'prev' && hoverMoreBtn === 'prev' && <Icon className="arrow" type="d-arrow-left" />}
+                  {item === 'prev' && hoverMoreBtn === 'next' && <Icon className="arrow" type="more" />}
+                  {item === 'next' && hoverMoreBtn === 'prev' && <Icon className="arrow" type="more" />}
+                  {(item === 'next' || item === 'prev') && hoverMoreBtn === 'more' && <Icon type="more" />}
+                </a>
+              </li>
+            );
+          }
+          return (
+            <li
+              key={idx}
+              className={activePage === item ? `${prefixCls}-active` : `${prefixCls}-item`}
+              onClick={() => {
+                this.setState({ activePage: item });
+                onChange && onChange(item, total, pageSize);
+              }}
+            >
+              <a>{item}</a>
+            </li>
+          );
+        })}
+        <li
+          key="next"
+          onClick={() => this.onPrevOrNext('next')}
+          className={this.classNames(`${prefixCls}-next`, {
+            [`${prefixCls}-disable`]: activePage === totalPage || activePage > totalPage,
+          })}
+        />
       </ul>
     );
   }

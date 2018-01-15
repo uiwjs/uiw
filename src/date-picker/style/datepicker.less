@@ -64,31 +64,33 @@
     float: right;
   }
   &-week {
-    background: #ccc;
+    background: #dedede;
     height: 21px;
     line-height: 21px;
     color: #696969;
-    span {
-      display: inline-block;
-      width: 14.2875%;
+    th {
+      font-weight: normal;
       text-align: center;
+      user-select: none;
+      width: 14.285%;
       &.end {
-        background: #dcdcdc;
+        background: #ececec;
       }
     }
   }
   &-days {
     background: #fafafa;
-    span {
+    min-width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    td {
       height: 28px;
       line-height: 28px;
       text-align: center;
-      vertical-align: middle;
       cursor: pointer;
       box-shadow: inset -1px -1px 0 #eaeaea;
-      display: inline-block;
-      width: 14.2875%;
       transition: all @transition-time @transition-timing-functio;
+      user-select: none;
       &:hover {
         background: #f5f5f5;
       }
@@ -113,18 +115,24 @@
       display: inline-block;
     }
   }
-  span&-select-day {
+  td&-select-day {
     background: #d0d0d0;
     box-shadow: inset -1px -1px 0 #eaeaea, inset 0 0 0 5px #fafafa;
     &:hover, &:active {
       background: #d0d0d0;
     }
   }
-  span&-sun, span&-sat {
+  td&-sun, td&-sat {
     color: #929292;
   }
-  span&-sat {
-    box-shadow: inset 0 -1px 0 #eaeaea;
+  &-days &-disable {
+    background: #f9f9f9;
+    cursor: not-allowed;
+    color: #d3d3d3;
+    box-shadow: inset -1px -1px 0 #eaeaea, inset 0 0 0 0 #fafafa;
+    &:hover {
+      background: #f9f9f9;
+    }
   }
 
   &-footer {
@@ -137,6 +145,12 @@
       content: '';
       display: block;
       clear: both;
+    }
+  }
+  &-mode-select div&-disable {
+    color: rgba(0, 0, 0, 0.25);
+    span:hover {
+      background-color: transparent;
     }
   }
   &-mode-select {

@@ -1,57 +1,99 @@
-@import "../../style/variables.less";
-@import "../../style/mixins/index.less";
+@w-calendar:~"w-calendar";
 
-.w-heatmap {
-  user-select: none;
-  &svg {
-    overflow: inherit;
+.@{w-calendar} {
+  table th {
+    line-height: 32px;
   }
-  rect {
-    cursor: pointer;
-    transition: stroke @transition-time @transition-timing-functio;
+  table td {
+    line-height: 28px;
+    text-align: right;
+    position: relative;
+    padding: 0 10px;
   }
-  rect:hover {
-    stroke: @calendar-heatmap-stroke-bg;
-    stroke-width: @calendar-heatmap-stroke-width;
+  &-caption-year {
+    font-size: 34px;
+    display: inline-block;
+    font-weight: 200;
   }
-  rect:active {
-    fill: @calendar-heatmap-fill;
+  &-caption-month {
+    font-size: 28px;
+    padding-left: 6px;
+    display: inline-block;
+    font-weight: 200;
   }
-  .w-heatmap-week,.w-heatmap-month {
-    text {
-      font-size: @font-size-small;
-      fill: @calendar-heatmap-fill-text;
-      text-anchor: middle;
+  &-caption-btn {
+    float: right;
+    padding: 12px 0 0;
+    button {
+      font-size: 14px;
+      padding-left: 5px;
+      padding-right: 5px;
+      line-height: .8;
+      color: #333;
+      &.w-btn.active {
+        background: #3333331f;
+      }
+      i {
+        font-size: 12px;
+        margin: -5px 0 0 0;
+        vertical-align: middle;
+        position: relative;
+      }
+    }
+    button.w-btn:not(:first-child):not(:last-child) {
+      border-radius: 3px;
+    }
+  }
+
+  .w-datepicker-inner {
+    &:extend(.w-calendar-month-inner);
+  }
+  .w-datepicker-marked {
+    &:extend(.w-calendar-month-marked);
+  }
+  .w-datepicker-disable {
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #00000008;
+    }
+  }
+  .w-datepicker-today::before {
+    border-top-width: 12px;
+    border-left-width: 12px;
+    right: 0;
+    top: -1px;
+  }
+
+  &-month {
+    box-shadow: inset 0 1px 0 #eaeaea;
+    min-width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    td {
+      box-shadow: inset 0 -1px 0 #eaeaea;
     }
   }
 }
 
-.w-heatmap-wrapper {
-  position: relative;
-}
-.w-heatmap-popup {
-  width: @calendar-heatmap-popup-size;
-  height: 1px;
-  line-height: 1px;
-  float: left;
+.w-calendar-month-inner {
+  width: 100%;
   position: absolute;
-  .w-tooltip {
-    vertical-align: top;
-  }
-  .w-tooltip-content {
-    line-height: initial;
-  }
-  .w-tooltip-children {
-    cursor: pointer;
-    margin: -1px 0 0 -1px;
-    width: @calendar-heatmap-popup-size;
-    height: 1px;
-    transition: background @transition-time @transition-timing-functio;
-    &:hover {
-      border: 1px solid @calendar-heatmap-tooltip-color;
-    }
-    &:active {
-      background: @calendar-heatmap-fill;
-    }
-  }
+  height: 90px;
+  overflow-y: auto;
+}
+.w-calendar-month-marked {
+  line-height: 18px;
+  height: 90px;
+  overflow-y: auto;
+  position: relative;
+  width: auto;
+  left: auto;
+  bottom: auto;
+  text-align: left;
 }

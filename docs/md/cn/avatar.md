@@ -5,7 +5,7 @@ Avatar 头像
 
 ## 基本用法
 
-头像有三种尺寸，两种形状可选。
+头像有四种尺寸，两种形状可选。
 
 <!--DemoStart--> 
 ```js
@@ -17,11 +17,13 @@ class Demo extends Component {
           <Avatar size="large" icon={<Icon type="user"/>} />
           <Avatar icon="user" />
           <Avatar size="small" icon="user" />
+          <Avatar size="mini" icon={<Icon type="user"/>} />
         </div>
         <div>
           <Avatar shape="square" size="large" icon="user" />
           <Avatar shape="square" icon="user" />
           <Avatar shape="square" size="small" icon="user" />
+          <Avatar shape="square" size="mini" icon="user" />
         </div>
       </div>
     )
@@ -104,6 +106,6 @@ class Demo extends Component {
 |--------- |-------- |--------- |-------- |
 | icon | 设置头像的图标类型，参考 Icon 组件 | String、ReactNode | - |
 | shape | 指定头像的形状`square`正方形或者`circle`圆	 | Enum{'`circle`', '`square`' } | - |
-| size | 设置头像的大小 | Enum{ '`large`', '`small`', '`default`' } | `default` |
+| size | 设置头像的大小 | Enum{ '`large`', '`small`','`mini`', '`default`' } | `default` |
 | src | 图片类头像的资源地址 | String | - |
 | alt | 规定图像的替代文本 | String | - |

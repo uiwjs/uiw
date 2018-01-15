@@ -3,27 +3,36 @@ import { Component, PropTypes } from '../utils/';
 
 export default class Badge extends Component {
   render() {
-    const { prefixCls, style, max, dot, className, count, children, ...other } = this.props;
+    const { prefixCls, style, max, dot, status, className, count, children, ...other } = this.props;
+    const supProps = {
+      className: this.classNames({
+        [`${prefixCls}-count`]: !dot,
+        'w-dot': dot,
+      }),
+    };
+    const warpperProps = {
+      ...other,
+      className: this.classNames(className, `${prefixCls}`, {
+        nowrap: !children,
+        [`${prefixCls}-status`]: status,
+        [`${prefixCls}-status-${status}`]: status,
+      }),
+    };
+    if (!status) {
+      supProps.style = style;
+    } else {
+      warpperProps.style = style;
+    }
     return (
-      <div
-        {...other}
-        className={this.classNames(className, `${prefixCls}`, {
-          nowrap: !children,
-        })}
-      >
+      <span {...warpperProps}>
+        {status && (<span className={`${prefixCls}-dot`} />)}
         {children}
-        {count !== 0 &&
-          <sup
-            style={style}
-            className={this.classNames({
-              [`${prefixCls}-count`]: !dot,
-              'w-dot': dot,
-            })}
-          >
+        {count !== 0 && !status &&
+          <sup {...supProps}>
             {!dot && count > max ? `${max}+` : count}
           </sup>
         }
-      </div>
+      </span>
     );
   }
 }
@@ -33,10 +42,14 @@ Badge.propTypes = {
   count: PropTypes.number,
   dot: PropTypes.bool,
   max: PropTypes.number,
+  status: PropTypes.oneOf([
+    'success', 'processing', 'default', 'error', 'warning',
+  ]),
 };
 
 Badge.defaultProps = {
   prefixCls: 'w-badge',
   dot: false,
   max: 99,
+  status: null,
 };

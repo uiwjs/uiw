@@ -15,7 +15,7 @@ module.exports = {
   entry: [
     // 默认加载一些兼容方法
     "babel-polyfill",
-    // 为WebpackDevServer添加备用客户端。 
+    // 为WebpackDevServer添加备用客户端。
     // 客户端的工作是通过socket连接到WebpackDevServer，并获得有关更改的通知。
     // 保存文件时，客户端将应用热更新（在更改CSS的情况下）或刷新页面（如果是JS更改）。
     // 当您发出语法错误时，此客户端将显示语法错误覆盖。
@@ -32,11 +32,11 @@ module.exports = {
     path: paths.appBuild,
     // 高级输出配置
     // https://webpack.js.org/configuration/output/#output-path
-    // 告诉Webpack将包含有关所包含模块信息的包含注释。 
+    // 告诉Webpack将包含有关所包含模块信息的包含注释。
     // 此选项默认为false，不应在生产中使用，但在读取生成的代码时非常有用。
     pathinfo: true,
-    // 这不会产生真实的文件。 
-    // 这只是WebpackDevServer在开发中提供的虚拟路径。 
+    // 这不会产生真实的文件。
+    // 这只是WebpackDevServer在开发中提供的虚拟路径。
     // 这是包含所有入口点的代码和Webpack运行时的JS包。
     filename: 'static/js/bundle.js',
     // 这是应用程式的网址。 我们在开发中使用“/”。
@@ -45,7 +45,7 @@ module.exports = {
     devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
   resolve: {
-    // 这允许您设置Webpack应该查找模块的后备。 
+    // 这允许您设置Webpack应该查找模块的后备。
     // 我们将这些路径放在第二位，因为如果有任何冲突，我们想要“node_modules”来“win”。
     // 这符合节点解析机制。
     // https://github.com/facebookincubator/create-react-app/issues/253

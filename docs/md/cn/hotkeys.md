@@ -44,6 +44,63 @@ class Demo extends Component {
 ```
 <!--End-->
 
+### 基础用法
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      keyout:""
+    }
+  }
+  onKeyUp(keyName, e, handle) {
+    this.setState({
+      keyout: '',
+    });
+  }
+  onKeyDown(keyName, e, handle) {
+    this.setState({
+      keyout: `${keyName}`,
+    });
+  }
+  render() {
+    const {keyout} = this.state;
+    return (
+      <Hotkeys 
+        keyName="a,c,e,g,1,2,3" 
+        onKeyDown={this.onKeyDown.bind(this)}
+        onKeyUp={this.onKeyUp.bind(this)}
+      >
+        <div className="dome_key">
+          <div className={`dome_key_bg ${keyout === 'a' ? 'press': ''}`}><div className="text">a</div></div>
+        </div>
+        <div className="dome_key black">
+          <div className={`dome_key_bg ${keyout === '1' ? 'press': ''}`}><div className="text">1</div></div>
+        </div>
+        <div className="dome_key">
+          <div className={`dome_key_bg ${keyout === 'c' ? 'press': ''}`}><div className="text">c</div></div>
+        </div>
+        <div className="dome_key black">
+          <div className={`dome_key_bg ${keyout === '2' ? 'press': ''}`}><div className="text">2</div></div>
+        </div>
+        <div className="dome_key">
+          <div className={`dome_key_bg ${keyout === 'e' ? 'press': ''}`}><div className="text">e</div></div>
+        </div>
+        <div className="dome_key black">
+          <div className={`dome_key_bg ${keyout === '3' ? 'press': ''}`}><div className="text">3</div></div>
+        </div>
+        <div className="dome_key">
+          <div className={`dome_key_bg ${keyout === 'g' ? 'press': ''}`}><div className="text">g</div></div>
+        </div>
+        <div>您摁下了：{this.state.keyout}</div>
+      </Hotkeys>
+    )
+  }
+}
+```
+<!--End-->
 
 ## API
 

@@ -82,7 +82,7 @@
       position: relative;
       top: 1px;
       float: left;
-      padding: 0 20px;
+      padding: 0 20px !important;
       transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), padding 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
       &.active {
         border-bottom: 1px solid #0fa120;
@@ -146,4 +146,11 @@
     padding: 8px 16px 8px 30px;
     transition: all .3s;
   }
+}
+
+.w-menu-item-divider {
+  height: 1px;
+  overflow: hidden;
+  background-color: #e8e8e8;
+  line-height: 0;
 }

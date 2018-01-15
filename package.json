@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "1.5.3",
+  "version": "1.6.2",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiw-react.github.io",
   "authors": [
@@ -45,7 +45,7 @@
     "prop-types": "~15.6.0",
     "react-slick": "~0.16.0",
     "react-transition-group": "~2.2.1",
-    "uiw-iconfont": "^1.2.4"
+    "uiw-iconfont": "^1.2.6"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",
