@@ -7,7 +7,7 @@ describe('Notification', () => {
       description: '描述',
     });
     expect(document.querySelectorAll('.w-notification')[0].className).toBe('w-animate is-fadeIn is-right is-mounting w-alert w-alert-default w-alert-icon-description w-notification');
-    expect(document.querySelectorAll('.w-message').length).toBe(1);
+    expect(document.querySelectorAll('.w-message').length).toBe(0);
   });
 
   it('test 4 type', () => {
