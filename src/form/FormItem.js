@@ -1,33 +1,45 @@
 import React from 'react';
+import AsyncValidator from 'async-validator';
 import { Component, PropTypes } from '../utils/';
 import Layout from '../layout/';
-import AsyncValidator from 'async-validator';
 
 const { Row, Col } = Layout;
 
 export default class FormItem extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      error: '',         // 错误信息
-      help: '',          // 帮助信息
+      error: '', // 错误信息
+      help: '', // 帮助信息
       isRequired: false, // 是否 【必填】
       validating: false, // 是否验证成功
-      valid: false,      // 是否有效
-      initialValue: null
+      valid: false, // 是否有效
+      initialValue: null,
+    };
+    this.oldValue = null;
+  }
+
+  setOldValue(value) {
+    if (value && value.constructor) {
+      switch (value.constructor.name) {
+        case 'Array': this.oldValue = [...value]; break;
+        case 'Object': this.oldValue = { ...value }; break;
+        default: this.oldValue = value;
+      }
+    } else {
+      this.oldValue = value;
     }
   }
 
   componentDidMount() {
     const { field } = this.props;
-    let { isRequired, help } = this.props;
-
+    let { isRequired } = this.props;
     if (field) {
-      const value = this.getInitialValue()
+      const value = this.getInitialValue();
+      this.setOldValue(value);
       this.parent().addField(this);
       // 是否必填处理
-      let rules = this.getRules();
+      const rules = this.getRules();
       if (rules && rules.length) {
         rules.every((rule) => {
           if (rule && rule.required) isRequired = true;
@@ -35,23 +47,29 @@ export default class FormItem extends Component {
         });
       }
       this.setState({
-        isRequired, help,
-        initialValue: value
-      })
+        isRequired,
+        // help: 11,
+        initialValue: value,
+      });
     }
   }
-  componentWillReceiveProps(nextProps) {
-    if (this.fieldValue()) {
-      this.validate('blur');
+  componentWillReceiveProps() {
+    const oldValue = this.oldValue;
+    const curValue = this.fieldValue();
+    // Validating when changing values
+    if (JSON.stringify(oldValue) !== JSON.stringify(curValue)) {
+      this.setOldValue(curValue);
+      this.validate('change');
     }
   }
+
   getInitialValue() {
-    let model = this.parent().props.model
-    return model[this.props.field]
+    const model = this.parent().props.model;
+    return model[this.props.field];
   }
   // 获取 Form组件的 校验规则
   getRules() {
-    let formRules = this.parent().props.rules;
+    const formRules = this.parent().props.rules;
     return [].concat(this.props.rules || formRules ? formRules[this.props.field] : [] || []);
   }
 
@@ -63,19 +81,19 @@ export default class FormItem extends Component {
 
     this.setState({ valid, error });
 
-    let val = this.fieldValue()
-    let model = this.parent().props.model;
+    const val = this.fieldValue();
+    const model = this.parent().props.model;
     if (Array.isArray(val)) {
       model[this.props.field] = this.state.initialValue || [];
     } else {
-      model[this.props.field] = this.state.initialValue
+      model[this.props.field] = this.state.initialValue;
     }
   }
 
   getFilteredRule() {
     const rules = this.getRules();
     // 过滤数组中的undefined
-    return rules.filter(rule => {
+    return rules.filter((rule) => {
       return rule;
     });
   }
@@ -94,7 +112,7 @@ export default class FormItem extends Component {
     const validator = new AsyncValidator(descriptor);
     const model = { [this.props.field]: this.fieldValue() };
 
-    validator.validate(model, { firstFields: true }, errors => {
+    validator.validate(model, { firstFields: true }, (errors) => {
       valid = !errors;
       error = errors ? errors[0].message : '';
       cb && cb(errors);
@@ -102,13 +120,12 @@ export default class FormItem extends Component {
     });
 
     this.setState({ validating, valid, error });
-
   }
 
   fieldValue() {
     const model = this.parent().props.model;
     if (!model || !this.props.field) { return; }
-    let str = model[this.props.field];
+    const str = model[this.props.field];
     return str;
   }
 
@@ -121,13 +138,13 @@ export default class FormItem extends Component {
 
   layoutFilter(col) {
     const { layout } = this.parent().props;
-    if (layout === "vertical") {
-      return { span: 0 }
+    if (layout === 'vertical') {
+      return { span: 0 };
     }
-    if (layout === "inline") {
-      return { span: 0 }
+    if (layout === 'inline') {
+      return { span: 0 };
     }
-    return col
+    return col;
   }
 
   renderLabel() {
@@ -141,7 +158,7 @@ export default class FormItem extends Component {
       <Col {...this.layoutFilter(labelCol) } className={labelColClassName}>
         {label && <label className={`${prefixCls}-field`}>{label}</label>}
       </Col>
-    )
+    );
   }
   renderWrapper() {
     const { prefixCls, wrapperCol, children } = this.props;
@@ -150,9 +167,10 @@ export default class FormItem extends Component {
     const className = this.classNames(
       `${prefixCls}-control`,
       wrapperCol && wrapperCol.className,
-    )
+    );
     return (
-      <Col {...this.layoutFilter(wrapperCol) }
+      <Col
+        {...this.layoutFilter(wrapperCol) }
         className={className}
         onChange={this.onFieldChange.bind(this)}
       >
@@ -161,17 +179,17 @@ export default class FormItem extends Component {
           (error || help) && <div className={this.classNames(`${prefixCls}-explain`)}>{error || help}</div>
         }
       </Col>
-    )
+    );
   }
   render() {
     const { prefixCls, className, label, labelCol, wrapperCol, ...resetProps } = this.props;
     const { isRequired, error, help } = this.state;
     const cls = this.classNames(className, {
       [`${prefixCls}`]: true,
-      'required': isRequired,
-      'error': error !== '',
-      'help': help !== '',
-    })
+      required: isRequired,
+      error: error !== '',
+      help: help !== '',
+    });
     return (
       <Row className={cls} {...resetProps}>
         {this.renderLabel.bind(this)()}
@@ -182,7 +200,7 @@ export default class FormItem extends Component {
 }
 
 FormItem.contextTypes = {
-  component: PropTypes.any
+  component: PropTypes.any,
 };
 
 FormItem.propTypes = {
@@ -191,9 +209,9 @@ FormItem.propTypes = {
   labelCol: PropTypes.object,
   wrapperCol: PropTypes.object,
   name: PropTypes.string,
-}
+};
 
 FormItem.defaultProps = {
   prefixCls: 'w-form-item',
   label: '',
-}
+};

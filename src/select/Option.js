@@ -4,17 +4,17 @@ import Icon from '../icon/';
 
 function isSreachIndexOF(oldstr, kw) {
   if (!oldstr || !kw) return false;
-  return oldstr.toLowerCase().indexOf(kw.toLowerCase()) > -1 ? true : false;
+  return oldstr.toLowerCase().indexOf(kw.toLowerCase()) > -1;
 }
 
 export default class Option extends Component {
-  static names = "option"
+  static names = 'option'
   constructor(props) {
     super(props);
     this.mounted = true;
     this.state = {
-      visible: true
-    }
+      visible: true,
+    };
     this.queryChange = this.queryChange.bind(this);
   }
   componentWillUnmount() {
@@ -26,7 +26,7 @@ export default class Option extends Component {
     this.parent().onOptionCreate(this);
     // 初始化搜索过滤方法
     if ((filterable && selectedLabel) || (filterable && multiple && selectedLabel.length > 0)) {
-      this.queryChange()
+      this.queryChange();
     }
   }
   parent() { return this.context.component; }
@@ -37,7 +37,7 @@ export default class Option extends Component {
     }
   }
   isSelected() {
-    let { selected } = this.parent().state;
+    const { selected } = this.parent().state;
     const { value } = this.props;
     if (selected) {
       if (Object.prototype.toString.call(selected) === '[object Object]') {
@@ -49,7 +49,7 @@ export default class Option extends Component {
     return false;
   }
   isMultiple() {
-    return this.parent().props.multiple
+    return this.parent().props.multiple;
   }
   currentLabel() {
     const { label, value } = this.props;
@@ -62,7 +62,7 @@ export default class Option extends Component {
     if (!_query) {
       _query = multiple ? query : selectedLabel;
     }
-    let visible = isSreachIndexOF(this.currentLabel(), _query)
+    let visible = isSreachIndexOF(this.currentLabel(), _query);
     // 没有输入内容的情况
     if (!query) visible = true;
     // 判断组件是否挂载
@@ -79,8 +79,8 @@ export default class Option extends Component {
       <li
         onClick={this.selectOptionClick.bind(this)}
         className={this.classNames({
-          'disabled': disabled,
-          'selected': this.isSelected()
+          disabled,
+          selected: this.isSelected(),
         })}
       >
         {children || <span>{this.currentLabel()}</span>}
@@ -91,15 +91,15 @@ export default class Option extends Component {
 }
 
 Option.contextTypes = {
-  component: PropTypes.any
+  component: PropTypes.any,
 };
 
 Option.propTypes = {
   prefixCls: PropTypes.string,
   disabled: PropTypes.bool,
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-}
+};
 
 Option.defaultProps = {
   prefixCls: 'w-select',
-}
+};

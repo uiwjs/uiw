@@ -3,14 +3,14 @@ import { mount } from 'enzyme';
 import Alert from '../';
 
 describe('<Alert>', () => {
-
   const Component = mount(<Alert
     onClose={() => {
-      console.log("trigger event onClose")
+      // console.log('trigger event onClose');
     }}
     message="Error Text"
     description="Error Description"
-    type="warning" />);
+    type="warning"
+  />);
   it('The name of module must be "Alert"', () => {
     expect(Component.name()).toBe('Alert');
   });
@@ -24,4 +24,4 @@ describe('<Alert>', () => {
     expect(typeof (Component.prop('type'))).toBe('string');
   });
   // TODO how to trigger click event
-})
+});

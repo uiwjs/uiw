@@ -13,13 +13,9 @@ class Demo extends Component {
   render() {
     return (
       <div>
-        <Paging activePage={5} total={250} onChange={(pageNumber)=>{
-          console.log('Page: ', pageNumber);
-          }}/>
-          <br />
-        <Paging total={60} onChange={(pageNumber)=>{
-          console.log('Page: ', pageNumber);
-        }}/>
+        <Paging activePage={7} pageSize={5} total={249}/>
+        <Divider />
+        <Paging pageSize={5} total={38}/>
       </div>
     )
   }
@@ -27,16 +23,24 @@ class Demo extends Component {
 ```
 <!--End-->
 
-### 只有一页
+### 没有翻页缩进
 
 <!--DemoStart--> 
 ```js
 class Demo extends Component {
   render() {
     return (
-      <Paging activePage={1} total={5} onChange={(pageNumber) => { 
-        console.log(`pageNumber:${pageNumber}`)
-      }} />
+      <div>
+        <Paging activePage={1} total={5} onChange={(pageNumber) => { 
+          console.log(`pageNumber:${pageNumber}`)
+        }} />
+        <Divider />
+        <Paging pageSize={5} total={11}/>
+        <Divider />
+        <Paging pageSize={5} total={25}/>
+        <Divider />
+        <Paging pageSize={5} total={28}/>
+      </div>
     )
   }
 }

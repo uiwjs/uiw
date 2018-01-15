@@ -5,58 +5,54 @@ import Icon from '../icon';
 
 export default class Tabs extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       children: props.children,
       activeKey: props.activeKey,
-      isFirstMount: true,
       slideStyle: {
         width: 0,
-        left: 0
-      }
-    }
+        left: 0,
+      },
+    };
   }
   componentDidMount() {
-    this.updateFirstMount()
+    this.updateFirstMount();
   }
-  componentWillReceiveProps(nextProps, nextState) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.position !== this.props.position) {
       setTimeout(() => {
-        this.calcSlideStyle()
-      })
+        this.calcSlideStyle();
+      });
     }
   }
   updateFirstMount() {
-    this.setState({
-      isFirstMount: false
-    }, () => {
-      this.calcSlideStyle()
-    })
+    setTimeout(() => {
+      this.calcSlideStyle();
+    });
   }
   calcSlideStyle() {
     if (!this.tabsBar.length) return;
     const { activeKey } = this.state;
-    let children = this.state.children instanceof Array ? this.state.children : [this.state.children];
-    let style = {}
+    const children = this.state.children instanceof Array ? this.state.children : [this.state.children];
+    const style = {};
     let left = 0;
     children.every((item, idx) => {
-      let elm = this.tabsBar[idx];
+      const elm = this.tabsBar[idx];
       if (item.key === activeKey) {
         style.width = elm.clientWidth;
         return false;
-      } else {
-        left += elm.clientWidth
-        return true;
       }
-    })
+      left += elm.clientWidth;
+      return true;
+    });
     style.left = left;
-    this.setState({ slideStyle: style })
+    this.setState({ slideStyle: style });
   }
   onTabREmove(item, idx, e) {
-    let { children, activeKey } = this.state;
+    const { children, activeKey } = this.state;
     const { onTabRemove } = this.props;
-    let state = {};
-    state.children = [...children]
+    const state = {};
+    state.children = [...children];
     e.stopPropagation();
     state.children.splice(idx, 1);
 
@@ -71,11 +67,11 @@ export default class Tabs extends Component {
     const { onTabClick } = this.props;
     if (item.props.disabled) return;
     this.setState({
-      activeKey: key
+      activeKey: key,
     }, () => {
       this.calcSlideStyle(key);
-      onTabClick(item, key, e)
-    })
+      onTabClick(item, key, e);
+    });
   }
   render() {
     const { prefixCls, className, position, type, sequence, onTabClick, closable, onTabRemove, ...other } = this.props;
@@ -84,11 +80,11 @@ export default class Tabs extends Component {
       [`${prefixCls}-${position}`]: position,
       [`${prefixCls}-${type}`]: type,
       [`${prefixCls}-vertical`]: position === 'left' || position === 'right',
-    })
+    });
     // 寄存Dom节点实体
     this.tabsBar = [];
     delete other.activeKey;
-    let Line = (type === 'line' && (position === 'top' || position === 'bottom')) && <div style={slideStyle} className={this.classNames(`${prefixCls}-slide`)}></div>;
+    const Line = (type === 'line' && (position === 'top' || position === 'bottom')) && <div style={slideStyle} className={this.classNames(`${prefixCls}-slide`)} />;
 
     return (
       <div className={cls} {...other}>
@@ -98,17 +94,24 @@ export default class Tabs extends Component {
               React.Children.map(children, (item, idx) => {
                 const { label, disabled } = item.props;
                 return (
-                  <Transition ref={(elm) => {
-                    let _elm = ReactDOM.findDOMNode(elm)
-                    if (_elm) {
-                      this.tabsBar.push(_elm)
-                    }
-                  }} in={true} unmountOnExit={false}>
-                    <div className={this.classNames(`${prefixCls}-tab`, {
-                      'w-disabled': disabled,
-                      'w-active': item.key === activeKey,
-                      'w-closable': closable
-                    })} onClick={this.onTabClick.bind(this, item, item.key)}>
+                  <Transition
+                    ref={(elm) => {
+                      const elmNode = ReactDOM.findDOMNode(elm);
+                      if (elmNode) {
+                        this.tabsBar.push(elmNode);
+                      }
+                    }}
+                    in
+                    unmountOnExit={false}
+                  >
+                    <div
+                      className={this.classNames(`${prefixCls}-tab`, {
+                        'w-disabled': disabled,
+                        'w-active': item.key === activeKey,
+                        'w-closable': closable,
+                      })}
+                      onClick={this.onTabClick.bind(this, item, item.key)}
+                    >
                       {label}
                       {item.props.closable !== false && closable && <Icon type="close" onClick={this.onTabREmove.bind(this, item, idx)} />}
                     </div>
@@ -119,25 +122,26 @@ export default class Tabs extends Component {
             {Line}
           </div>
         </div>
-        <div ref='tabcon' className={`${prefixCls}-content`}>
+        <div className={`${prefixCls}-content`}>
           {
-            React.Children.map(children, item => {
+            React.Children.map(children, (item) => {
               const { key, props } = item;
               return (
                 <Transition
-                  ref={(elm) => {
-                    let _elm = ReactDOM.findDOMNode(elm);
-                    if (_elm && key === activeKey && _elm.clientHeight && this.refs.tabcon) {
-                      this.refs.tabcon.style.height = _elm.clientHeight + 'px';
-                    }
-                  }}
-                  in={key === activeKey} sequence={props.sequence ? props.sequence : sequence}
+                  in={key === activeKey}
+                  sequence={props.sequence ? props.sequence : sequence}
                   mountOnEnter={false}
                   unmountOnExit={false}
+                  ref={(elm) => {
+                    const elmNode = ReactDOM.findDOMNode(elm);
+                    if (elmNode && key === activeKey) {
+                      elmNode.parentNode.style.height = `${elmNode.clientHeight}px`;
+                    }
+                  }}
                 >
-                  <div className={this.classNames(`${prefixCls}-pane`, {
-                    'w-disabled': props.disabled,
-                  })}> {props.children} </div>
+                  <div className={this.classNames(`${prefixCls}-pane`, { 'w-disabled': props.disabled })}>
+                    {props.children}
+                  </div>
                 </Transition>
               );
             })
@@ -153,12 +157,12 @@ Tabs.propTypes = {
   sequence: PropTypes.string,
   type: PropTypes.oneOf(['line', 'card']),
   activeKey: PropTypes.string, // 当前激活 tab 面板的 key
-  onTabClick: PropTypes.func,   // tab 被点击的回调
-  onTabRemove: PropTypes.func,   // tab 被点击的回调
+  onTabClick: PropTypes.func, // tab 被点击的回调
+  onTabRemove: PropTypes.func, // tab 被点击的回调
   disabled: PropTypes.bool,
   closable: PropTypes.bool,
-  position: PropTypes.oneOf(['top', 'right', 'bottom', 'left'])
-}
+  position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+};
 
 Tabs.defaultProps = {
   prefixCls: 'w-tabs',
@@ -168,5 +172,5 @@ Tabs.defaultProps = {
   closable: false,
   position: 'top',
   onTabClick() { },
-  onTabRemove() { }
-}
+  onTabRemove() { },
+};

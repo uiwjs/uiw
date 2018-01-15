@@ -170,7 +170,7 @@ class Demo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 3
+      value: "3"
     }
   }
   onChange(e,value) {
@@ -210,7 +210,7 @@ class Demo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 3
+      value: "3"
     }
   }
   onChange(e,value) {

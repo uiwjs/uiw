@@ -1,84 +1,85 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
 import Tag from './Tag';
-import CheckedTag from './CheckedTag';
-import "./style/tag-group.less";
-
+import './style/tag-group.less';
 
 export default class TagGroup extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       dynamicTags: props.options,
-      checkedValues: props.checkedValues
-    }
+    };
   }
   getChildContext() {
-    return { component: this }
+    return { component: this };
   }
-  onFieldChange(e) { this.getValue(e) }
+  onFieldChange = (e) => { this.getValue(e); }
   getValue(e) {
     const { options, onChange } = this.props;
     onChange(e, this.getFilteredTags(options));
   }
-  getFilteredTags(tags) {
-    return tags.map(tag => {
+  getFilteredTags = (tags) => {
+    return tags.map((tag) => {
       return typeof (tag) === 'object' ? tag.value : tag;
     });
   }
   handleClose(tag, e) {
     const { onChange } = this.props;
-    let { dynamicTags } = this.state;
+    const { dynamicTags } = this.state;
     dynamicTags.splice(dynamicTags.indexOf(tag), 1);
 
     this.setState({ dynamicTags }, () => {
-      onChange(e, this.getFilteredTags(dynamicTags))
-    })
+      onChange(e, this.getFilteredTags(dynamicTags));
+    });
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.options !== nextProps.options) {
-      this.setState({ dynamicTags: nextProps.options })
+      this.setState({ dynamicTags: nextProps.options });
     }
   }
 
+  onClickTag(data, checked, e) {
+    const { options, onChange, isRadio, checkedValues } = this.props;
+    const checkedValue = options.map((item) => {
+      return item.value;
+    }).filter((value) => {
+      if (isRadio) {
+        return value === data.value;
+      }
+      let checkeds = checkedValues;
+      if (checkeds.indexOf(value) < 0 && value === data.value) {
+        checkeds.push(value);
+      } else if (checked && checkeds.indexOf(value) > -1) {
+        checkeds = checkeds.filter((val) => { return val !== data.value; });
+      }
+      return checkeds.indexOf(value) > -1;
+    });
+    onChange(e, checkedValue);
+  }
   render() {
     const { prefixCls, children, options, isRadio, checkedValues, onChange, checked, className, ...other } = this.props;
-    const cls = this.classNames({
-      [`${prefixCls}`]: true,
-      [className]: className
-    });
-
+    const cls = this.classNames(`${prefixCls}`, className);
     return (
       <div className={cls} {...other}>
-        {
-          options.map((tags, idx) => {
-            let prop = {};
-            let label = '';
-            if (typeof (tags) === "object") {
-              prop.color = tags.color ? tags.color : "";
-            }
-
-            if (typeof (tags) === "string") label = tags;
-            if (tags.label || tags.value) label = tags.label || tags.value;
-
-            if (Array.isArray(checkedValues) && (checked || isRadio)) {
-              let isChecked = false;
-              if (checkedValues.indexOf(tags) > -1 || checkedValues.indexOf(tags.value) > -1 || checkedValues.indexOf(tags.label) > -1) {
-                isChecked = true;
-              }
-              return (
-                <CheckedTag data={tags} checked={isChecked} {...prop} key={Math.random()}>{label}</CheckedTag>
-              )
-            }
-            return <Tag data={tags} {...prop} key={Math.random()} onClose={this.handleClose.bind(this, tags)}>{label}</Tag>
-          })
-        }
+        {options.map((item, idx) => {
+          const data = typeof item === 'string' ? { value: item, label: item } : item;
+          const prop = {
+            data,
+            color: item.color ? item.color : 'default',
+          };
+          if (checked === false || checked === true) {
+            prop.checked = checkedValues.indexOf(data.value) > -1;
+          }
+          return (
+            <Tag {...prop} key={idx} onClose={this.handleClose.bind(this, item)} onClick={this.onClickTag.bind(this, item, prop.checked)}>{prop.data.label || prop.data.value}</Tag>
+          );
+        })}
         {children &&
           <div
             className={this.classNames(`${prefixCls}-children`)}
-            onBlur={this.onFieldChange.bind(this)}
-            onKeyUp={this.onFieldChange.bind(this)}
+            onBlur={this.onFieldChange}
+            onKeyUp={this.onFieldChange}
           >
             {children}
           </div>
@@ -86,11 +87,10 @@ export default class TagGroup extends Component {
       </div>
     );
   }
-};
-
+}
 
 TagGroup.childContextTypes = {
-  component: PropTypes.any
+  component: PropTypes.any,
 };
 
 TagGroup.propTypes = {
@@ -103,7 +103,7 @@ TagGroup.propTypes = {
 };
 
 TagGroup.defaultProps = {
-  prefixCls: "w-tag-group",
+  prefixCls: 'w-tag-group',
   checkedValues: [],
-  onChange: v => (v)
+  onChange: v => (v),
 };

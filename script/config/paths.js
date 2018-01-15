@@ -32,35 +32,30 @@ function getServedPath(appPackageJson) {
   return ensureSlash(servedUrl, true);
 }
 
-
 // 返回 UI 组件库所有路径的 Array
 // 这些路径用于Webpack配置中
-function readSrcSync(filepath, ret){
-    var ret = ret || [],
-        files = fs.readdirSync(filepath);
-    for (var i = 0; i < files.length; i++) {
-      let curPath = path.resolve(filepath,files[i]);
-      if(isDir(curPath) ){
-
-        if(files[i] !=='style' || files[i] !=='font'){
-
-          readSrcSync(curPath, ret);
-        }
-
+function readSrcSync(filepath, ret) {
+  ret = ret || [];
+  let files = fs.readdirSync(filepath);
+  for (var i = 0; i < files.length; i++) {
+    let curPath = path.resolve(filepath, files[i]);
+    if (isDir(curPath)) {
+      if (files[i] !== 'style' && files[i] !== 'font' && files[i] !== '__test__') {
+        readSrcSync(curPath, ret);
       }
-      else if(/\.(js)$/.test(files[i])) {
-        ret.push(curPath);
-      }
+    } else if (/\.(js)$/.test(files[i])) {
+      ret.push(curPath);
     }
-    return ret;
+  }
+  return ret;
 }
 //判断是不是目录
-function isDir(_path){
-    return exists(_path) && fs.statSync(_path).isDirectory();
+function isDir(_path) {
+  return exists(_path) && fs.statSync(_path).isDirectory();
 }
 //检查指定路径的文件或者目录是否存在
-function exists(_path){
-    return fs.existsSync(_path);
+function exists(_path) {
+  return fs.existsSync(_path);
 }
 
 module.exports = {

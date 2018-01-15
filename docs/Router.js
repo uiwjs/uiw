@@ -4,7 +4,7 @@ import locales from './locales';
 import { Icon, version } from "../src";
 import Logo from "./assets/logo.svg";
 import ScrollToTop from 'react-scroll-up';
-import { routes,getLang } from "./Routers";
+import { routes, getLang } from "./Routers";
 
 // 获取所有路由
 const getRoutesTotal = (obj) => {

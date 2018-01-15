@@ -1,19 +1,22 @@
 @import "../../style/variables.less";
 @import "../../style/mixins/index.less";
 @import './time-select.less';
+@import './datepicker.less';
 
-.w-date-base{
+.w-date-base {
   position: relative;
   display: inline-block;
-  & + .w-date-base{
+  font-size: 12px;
+  & + .w-date-base {
     margin-left: 5px;
   }
-  .w-animate{
+  .w-animate {
     position: relative;
+    z-index: 1004;
   }
-  .w-disabled{
+  .w-disabled {
     color: #ccc;
-    input{
+    input {
       color: #ccc;
     }
   }

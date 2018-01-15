@@ -1,32 +1,32 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
-import Alert from '../alert'
+import Alert from '../alert';
 
 export default class Message extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       duration: props.duration,
-      visible: true
-    }
+      visible: true,
+    };
   }
   componentDidMount() {
-    const { duration } = this.props
+    const { duration } = this.props;
     if (duration > 0) {
-      this.timeout = setTimeout(this.dismiss.bind(this), duration * 1000)
+      this.timeout = setTimeout(this.dismiss.bind(this), duration * 1000);
     }
   }
   dismiss() {
-    const { onClose } = this.props
+    const { onClose } = this.props;
     this.setState({ visible: false }, () => {
-      onClose && onClose()
-    })
+      onClose && onClose();
+    });
   }
   /**
    * 动画完成之后删除根节点
    */
   onExited() {
-    this.props.delMessage(this.props, this)
+    this.props.delMessage(this.props, this);
   }
   render() {
     const { content, type, className, ...other } = this.props;
@@ -36,7 +36,16 @@ export default class Message extends Component {
     delete other.duration;
     return (
       <span>
-        <Alert showIcon type={type} transition="fadeIn down" onExited={this.onExited.bind(this)} visible={visible} message={content} className={className} {...other} />
+        <Alert
+          showIcon
+          type={type}
+          transition="fadeIn down"
+          onExited={this.onExited.bind(this)}
+          visible={visible}
+          message={content}
+          className={className}
+          {...other}
+        />
       </span>
     );
   }
@@ -45,5 +54,5 @@ export default class Message extends Component {
 Message.propTypes = {
   content: PropTypes.node,
   duration: PropTypes.number, // 持续时间
-  type: PropTypes.string
-}
+  type: PropTypes.string,
+};

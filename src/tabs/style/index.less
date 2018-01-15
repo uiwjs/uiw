@@ -1,44 +1,43 @@
 @import "../../style/variables.less";
 @w-tabs:~'w-tabs';
-.@{w-tabs}{
-  overflow: hidden;
+.@{w-tabs} {
   position: relative;
   font-size: 14px;
-  &-content{
+  &-content {
     position: relative;
   }
-  &-pane{
+  &-pane {
     position: absolute;
     width: 100%;
-    &.is-unmounted{
+    &.is-unmounted {
       display: none;
     }
   }
-  &-bar{
+  &-bar {
     position: relative;
     border-bottom: 1px solid #d9d9d9;
     z-index: 9;
   }
-  &-tab{
+  &-tab {
     display: inline-block;
     height: 100%;
     box-sizing: border-box;
     position: relative;
     cursor: pointer;
     text-decoration: none;
-    i[class^="w-icon-"]{
+    i[class^="w-icon-"] {
       margin-right: 5px;
     }
-    &.w-disabled{
+    &.w-disabled {
       cursor: not-allowed;
       pointer-events: none;
-      color: rgba(0,0,0,.25);
+      color: rgba(0, 0, 0, .25);
     }
-    &.w-active{
+    &.w-active {
       color: #108ee9;
     }
   }
-  &-slide{
+  &-slide {
     z-index: 1;
     position: absolute;
     left: 0;
@@ -49,44 +48,44 @@
     width: 50px;
     transition: all @transition-time @transition-timing-functio;
   }
-  &-line &-bar{
+  &-line &-bar {
     margin-bottom: 16px;
     outline: none;
   }
-  &-line &-bar &-tab{
+  &-line &-bar &-tab {
     padding: 8px 20px;
   }
 }
 
-.@{w-tabs}{
-  &-card &-bar &-tab{
+.@{w-tabs} {
+  &-card &-bar &-tab {
     margin: 0;
     border: 1px solid #d9d9d9;
     border-bottom: 0;
-    padding: 7px 18px 7px;
+    padding: 7px 18px;
     border-radius: 4px 4px 0 0;
     background: #f9f9f9;
     margin-right: 2px;
     bottom: -1px;
-    .w-icon-close{
+    .w-icon-close {
       width: 14px;
       height: 14px;
       font-size: 12px;
       margin: 0 0 0 4px;
-      &:before{
+      &:before {
         margin: -2px 0 0 0;
       }
-      &:hover{
+      &:hover {
         color: white;
         border-radius: 50%;
         background: #dc3545;
       }
     }
-    &.w-disabled{
+    &.w-disabled {
       border: 1px solid #e8e8e8;
       border-bottom: 0;
     }
-    &.w-active{
+    &.w-active {
       background: #fff;
       border-color: #d9d9d9;
       padding-top: 7px;
@@ -94,37 +93,37 @@
     }
   }
   // 对齐样式
-  &-vertical{
-    &:after,&:before{
+  &-vertical {
+    &:after,&:before {
       content: " ";
       display: table;
     }
-    &:after{
+    &:after {
       clear: both;
       visibility: hidden;
       font-size: 0;
       height: 0;
     }
   }
-  &-vertical &-bar{
+  &-vertical &-bar {
     border-bottom: 0;
     height: 100%;
   }
-  &-vertical &-tab{
+  &-vertical &-tab {
     display: block;
   }
-  &-vertical &-content{
+  &-vertical &-content {
     overflow: hidden;
     width: auto;
   }
-  &-vertical&-left &-bar{
+  &-vertical&-left &-bar {
     float: left;
     border-right: 1px solid #e9e9e9;
   }
-  &-vertical&-left &-content{
+  &-vertical&-left &-content {
     padding-left: 24px;
   }
-  &-vertical&-right &-bar{
+  &-vertical&-right &-bar {
     float: right;
     border-left: 1px solid #e9e9e9;
   }

@@ -129,7 +129,7 @@ class Demo extends Component {
             checkedValues={this.state.plainValues}
             onChange={(e,value2)=>{
               this.setState({plainValues:value2})
-              console.log("value::",e,value2)
+              console.log("value::",value2)
             }}
           />
         </Col>
@@ -233,7 +233,7 @@ class Demo extends Component {
 
   showInput() {
     this.setState({ inputVisible: true }, () => {
-      this.refs.saveTagInput.focus();
+      this.input.focus();
     });
   }
 
@@ -261,7 +261,7 @@ class Demo extends Component {
           <Input
             className="input-new-tag"
             value={this.state.inputValue}
-            ref="saveTagInput"
+            ref={(component)=>{this.input = component}}
             size="mini"
             style={styl}
             onChange={this.handleChange.bind(this)}

@@ -12,8 +12,8 @@ export default class Step extends Component {
         [`${prefixCls}-custom`]: icon,
       }
     );
-    const stepItemStyle = { ...style }
-    const stepItemDotStyle = {}
+    const stepItemStyle = { ...style };
+    const stepItemDotStyle = {};
     if (itemWidth) {
       stepItemStyle.width = itemWidth;
     }
@@ -25,25 +25,27 @@ export default class Step extends Component {
     }
     let iconNode = null;
     if (progressDot) {
-      iconNode = <span className={`${prefixCls}-dot`}></span>;
-    } else if (icon && typeof icon !== "string") {
+      iconNode = <span className={`${prefixCls}-dot`} />;
+    } else if (icon && typeof icon !== 'string') {
       iconNode = <span className={`${prefixCls}-icon`}>{icon}</span>;
-    } else if ((icon && typeof icon === "string") || status === 'finish' || status === 'error') {
-      iconNode = <Icon type={this.classNames({
-        [`${icon}`]: icon && typeof icon === "string",
-        [`check`]: !icon && status === 'finish',
-        [`close`]: !icon && status === 'error',
-      })} />
+    } else if ((icon && typeof icon === 'string') || status === 'finish' || status === 'error') {
+      iconNode = (<Icon type={this.classNames({
+        [`${icon}`]: icon && typeof icon === 'string',
+        check: !icon && status === 'finish',
+        close: !icon && status === 'error',
+      })}
+      />);
     } else {
       iconNode = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
     }
     return (
       <div {...restProps} className={classString} style={stepItemStyle}>
-        <div className={`${prefixCls}-item-tail`} style={stepItemDotStyle}><i></i></div>
+        <div className={`${prefixCls}-item-tail`} style={stepItemDotStyle}><i /></div>
         <div className={`${prefixCls}-item-head`}>
           <div className={this.classNames(`${prefixCls}-item-inner`, {
-            'is-icon': icon
-          })}>
+            'is-icon': icon,
+          })}
+          >
             {iconNode}
           </div>
         </div>
@@ -54,7 +56,7 @@ export default class Step extends Component {
           {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -74,4 +76,4 @@ Step.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-}
+};

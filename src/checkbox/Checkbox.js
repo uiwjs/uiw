@@ -1,16 +1,16 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
 
-export default class Chackbox extends Component {
+export default class Checkbox extends Component {
   constructor(props) {
     super(props);
     this.state = {
       checked: props.checked,
       indeterminate: props.indeterminate,
-      value: props.children
-    }
+      value: props.children,
+    };
   }
-  componentWillReceiveProps(nextProps, nextState) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.indeterminate !== nextProps.indeterminate) {
       this.setState({ indeterminate: nextProps.indeterminate, checked: false });
     }
@@ -20,11 +20,11 @@ export default class Chackbox extends Component {
   }
   handleChange(e) {
     const { onChange, children } = this.props;
-    let checked = !this.state.checked;
+    const checked = !this.state.checked;
     this.setState({
-      checked: checked,
+      checked,
       indeterminate: false,
-      value: children
+      value: children,
     });
     onChange(e, checked);
   }
@@ -32,9 +32,9 @@ export default class Chackbox extends Component {
     const { prefixCls, className, children, disabled, onChange, ...resetProps } = this.props;
     const { checked, indeterminate } = this.state;
     const cls = this.classNames(prefixCls, {
-      'disabled': disabled,             // 禁用状态
-      'indeterminate': indeterminate,   // 半选中
-      'checked': checked,               // 选中
+      disabled, // 禁用状态
+      indeterminate, // 半选中
+      checked, // 选中
     });
     delete resetProps.indeterminate;
     return (
@@ -44,20 +44,20 @@ export default class Chackbox extends Component {
         </span>
         {children && <span>{children}</span>}
       </label>
-    )
+    );
   }
 }
 
-Chackbox.defaultProps = {
-  prefixCls: 'w-chackbox',
+Checkbox.defaultProps = {
+  prefixCls: 'w-checkbox',
   checked: false,
   indeterminate: false,
   onChange() { },
 };
-Chackbox.propTypes = {
+Checkbox.propTypes = {
   prefixCls: PropTypes.string,
   indeterminate: PropTypes.bool,
   disabled: PropTypes.bool,
   checked: PropTypes.bool,
   onChange: PropTypes.func,
-}
+};

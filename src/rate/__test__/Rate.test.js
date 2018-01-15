@@ -7,14 +7,14 @@ describe('<Rate>', () => {
     value: 0,
     hoverValue: 0,
   };
-  var wrapper = mount(<Rate
+  const wrapper = mount(<Rate
     onHoverChange={(e, value) => {
-      console.log("value:", value)
-      warpperState.hoverValue = value
+      warpperState.hoverValue = value;
     }}
     onChange={(e, value) => {
-      warpperState.value = value
-    }}></Rate>);
+      warpperState.value = value;
+    }}
+  />);
   it('Test the default props and node.', () => {
     expect(wrapper.name()).toBe('Rate');
     // 默认值测试
@@ -30,41 +30,42 @@ describe('<Rate>', () => {
   });
   it('Test value attributes.', () => {
     wrapper.setProps({ value: 2 });
-    expect(wrapper.find('.w-rate li').at(0).prop('className')).toBe('star-on');
-    expect(wrapper.find('.w-rate li').at(1).prop('className')).toBe('star-on');
+    expect(wrapper.find('.w-rate li').at(0).prop('className')).toBe('');
+    expect(wrapper.find('.w-rate li').at(1).prop('className')).toBe('');
     expect(wrapper.find('.w-rate li').at(2).prop('className')).toBe('');
   });
   it('Test disabled attributes', () => {
     wrapper.setProps({ disabled: true });
-    expect(wrapper.find('.w-rate li').at(0).prop('className')).toBe('star-on w-disabled');
-    expect(wrapper.find('.w-rate li').at(1).prop('className')).toBe('star-on w-disabled');
+    expect(wrapper.find('.w-rate li').at(0).prop('className')).toBe('w-disabled');
+    expect(wrapper.find('.w-rate li').at(1).prop('className')).toBe('w-disabled');
     expect(wrapper.find('.w-rate li').at(2).prop('className')).toBe('w-disabled');
   });
 
   it('Test onChange event.', () => {
     wrapper.setProps({ disabled: false });
-    let rate2 = wrapper.find('.w-rate li').at(3);
+    const rate2 = wrapper.find('.w-rate li').at(3);
     rate2.simulate('click');
     expect(warpperState.value).toBe(4);
-    expect(rate2.html()).toContain('<li class="star-on"><i class="w-icon-star-on"><i class="w-icon-star-on"></i></i></li>');
+    expect(rate2.html()).toContain('<li class=""><div class="w-rate-hight star-on"><i class="w-icon-star-on"></i></div><div class="w-rate-bg"><i class="w-icon-star-on"></i></div></li>');
   });
   it('Test count attributes.', () => {
     wrapper.setProps({ count: 2 });
-    expect(wrapper.find('.w-rate li').at(0).prop('className')).toBe('star-on');
-    expect(wrapper.find('.w-rate li').at(1).prop('className')).toBe('star-on');
+    expect(wrapper.find('.w-rate li').at(0).prop('className')).toBe('');
+    expect(wrapper.find('.w-rate li').at(1).prop('className')).toBe('');
     wrapper.setProps({ count: 5 });
-    expect(wrapper.find('.w-rate li').at(4).prop('className')).toBe('')
-    expect(wrapper.find('.w-rate li').at(5).length).toBe(0)
+    expect(wrapper.find('.w-rate li').at(4).prop('className')).toBe('');
+    expect(wrapper.find('.w-rate li').at(5).length).toBe(0);
   });
   it('Test color attributes.', () => {
-    wrapper.setProps({ value: 5, color: "rgb(216, 0, 0)" });
-    expect(wrapper.find('.w-rate li').at(0).find('i').at(1).html()).toContain('<i class="w-icon-star-on" style="color: rgb(216, 0, 0);"></i>')
+    wrapper.setProps({ value: 5, color: 'rgb(216, 0, 0)' });
+    expect(wrapper.find('.w-rate li').at(0).find('i').at(1)
+      .html()).toContain('<i class="w-icon-star-on"></i>');
   });
 
   it('Test onHoverChange event.', () => {
-    let rate2 = wrapper.find('.w-rate li').at(3);
+    const rate2 = wrapper.find('.w-rate li').at(3);
     rate2.simulate('mousemove');
     expect(warpperState.hoverValue).toBe(4);
-    expect(rate2.at(0).find('i').at(1).html()).toContain('<i class="w-icon-star-on" style="color: rgb(216, 0, 0);"></i>')
+    expect(rate2.at(0).find('i').at(1).html()).toContain('<i class="w-icon-star-on"></i>');
   });
-})
+});

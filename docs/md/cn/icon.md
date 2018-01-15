@@ -111,6 +111,7 @@ class Demo extends Component {
 
 ## 实例
 
+> 点击图标复制代码。
 
 ### 图标旋转实例
 
@@ -122,7 +123,8 @@ class Demo extends Component {
   render() {
     const {Row,Col} = Layout;
     const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
-    const iconList = ["loading",'reload']
+    const iconStyle = {color:"#525252"};
+    const iconList = ["loading",'reload'];
     return (
       <div>
         <Row gutter="10">
@@ -131,8 +133,10 @@ class Demo extends Component {
             return (
               <Col key={idx} xs="8" sm="6" md="4" lg="4">
                 <div style={styleItem}>
-                  <Icon type={item} spin style={{fontSize:16,marginBottom:10}}/>
-                  <div>{item}</div>
+                  <CopyToClipboard style={iconStyle} text={`<Icon type="${item}" spin />`} tooltip="复制成功！">
+                    <Icon type={item} spin style={{fontSize:18,marginBottom:10}}/>
+                    <div>{item}</div>
+                  </CopyToClipboard>
                 </div>
               </Col>
             )
@@ -164,6 +168,7 @@ class Demo extends Component {
   render() {
     const {Row,Col} = Layout;
     const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+    const iconStyle = {color:"#525252"};
     return (
       <div>
         <Row gutter="10">
@@ -172,8 +177,10 @@ class Demo extends Component {
             return (
               <Col key={idx} xs="8" sm="6" md="4" lg="4">
                 <div style={styleItem}>
-                  <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
-                  <div>{item}</div>
+                  <CopyToClipboard style={iconStyle} text={`<Icon type="${item}" />`} tooltip="复制成功！">
+                    <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                    <div>{item}</div>
+                  </CopyToClipboard>
                 </div>
               </Col>
             )
@@ -199,6 +206,7 @@ class Demo extends Component {
   render() {
     const {Row,Col} = Layout;
     const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+    const iconStyle = {color:"#525252"};
     return (
       <div>
         <Row gutter="10">
@@ -207,8 +215,10 @@ class Demo extends Component {
             return (
               <Col key={idx} xs="8" sm="6" md="4" lg="4">
                 <div style={styleItem}>
-                  <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
-                  <div>{item}</div>
+                  <CopyToClipboard style={iconStyle} text={`<Icon type="${item}" />`} tooltip="复制成功！">
+                    <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                    <div>{item}</div>
+                  </CopyToClipboard>
                 </div>
               </Col>
             )
@@ -230,6 +240,7 @@ class Demo extends Component {
   render() {
     const {Row,Col} = Layout;
     const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+    const iconStyle = {color:"#525252"};
     const iconList = [ 
       "plus", 'plus-circle-o','plus-circle', 'plus-square', 'plus-square-o', "question-circle-o", 
       "minus", 'minus-circle-o', 'minus-circle', 'minus-square', 'minus-square-o',"question-circle", 
@@ -244,8 +255,48 @@ class Demo extends Component {
             return (
               <Col key={idx} xs="8" sm="6" md="4" lg="4">
                 <div style={styleItem}>
-                  <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
-                  <div>{item}</div>
+                  <CopyToClipboard style={iconStyle} text={`<Icon type="${item}" />`} tooltip="复制成功！">
+                    <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                    <div>{item}</div>
+                  </CopyToClipboard>
+                </div>
+              </Col>
+            )
+          }) 
+        }
+        </Row>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
+### 文件
+
+<!--DemoStart-->  
+```js
+class Demo extends Component {
+  render() {
+    const {Row,Col} = Layout;
+    const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+    const iconStyle = {color:"#525252"};
+    const iconList = [ 
+      'file-text', 'file-jpg', 'file-unknown', 'file-add', 'file-excel', 'file-pdf',
+      'folder-add', 'folder-open', 'paper-clip', 
+    ]
+    return (
+      <div>
+        <Row gutter="10">
+        {
+          iconList.map((item,idx) => {
+            return (
+              <Col key={idx} xs="8" sm="6" md="4" lg="4">
+                <div style={styleItem}>
+                  <CopyToClipboard style={iconStyle} text={`<Icon type="${item}" />`} tooltip="复制成功！">
+                    <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                    <div>{item}</div>
+                  </CopyToClipboard>
                 </div>
               </Col>
             )
@@ -267,15 +318,15 @@ class Demo extends Component {
   render() {
     const {Row,Col} = Layout;
     const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+    const iconStyle = {color:"#525252"};
     const iconList = [ 
-      'heart-off', 'heart-on', 'star-on', 'star-off','lock', 'unlock',
-      'area-chart', 'bar-chart', 'dot-chart','pie-chart', 'folder-add', 'folder-open', 
+      'heart-off', 'heart-on', 'star-on', 'star-off','lock', 'unlock','dashboard',
+      'area-chart', 'bar-chart', 'dot-chart','pie-chart', 
       'dislike-o', 'like-o','loading', 'reload','appstore', 'appstore-o',
-      'file-text', 'file-jpg', 'file-unknown', 'file-add', 'file-excel', 'file-pdf',
-      'tag', 'tag-o','tags','tags-o', 'setting','setting-o',
-      'cloud-upload','cloud-upload-o', 'cloud-download','cloud-download-o', 'message','message-o',
+      'tag', 'tag-o','tags','tags-o', 'setting','setting-o','map','table','qrcode','barcode','printer',
+      'cloud-upload','cloud-upload-o', 'cloud-download','cloud-download-o', 'download','message','message-o',
       'user', 'usergroup-add', 'zoom-in', 'zoom-out','time', 'time-o',
-      "bell", 'camera-o', 'coffee', 'document', 'delete', 'date', 'edit', 'download', 'eye-o', 'environment-o', 'filter', 'global', 'inbox', 'home', 'laptop', 'link',  'menu', 'mobile', 'more', 'notification', 'paper-clip', 'picture', 'picasa', 'pay-circle-o', 'pay', 'poweroff',  'save', 'safety', 'search', 'shopping-cart', 'share',   'upload', 'verification', 'video-camera', 'wifi', 
+      "bell", 'camera-o', 'coffee', 'document', 'delete', 'date', 'edit',  'eye-o', 'environment-o', 'filter', 'global', 'inbox', 'home', 'laptop', 'link',  'menu', 'mobile', 'more', 'notification', 'picture', 'picasa', 'pay-circle-o', 'pay', 'poweroff',  'save', 'safety', 'search', 'shopping-cart', 'share',   'upload', 'verification', 'video-camera', 'wifi', 
     ]
     return (
       <div>
@@ -285,8 +336,10 @@ class Demo extends Component {
             return (
               <Col key={idx} xs="8" sm="6" md="4" lg="4">
                 <div style={styleItem}>
-                  <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
-                  <div>{item}</div>
+                  <CopyToClipboard style={iconStyle} text={`<Icon type="${item}" />`} tooltip="复制成功！">
+                    <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                    <div>{item}</div>
+                  </CopyToClipboard>
                 </div>
               </Col>
             )
@@ -308,7 +361,8 @@ class Demo extends Component {
   render() {
     const {Row,Col} = Layout;
     const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
-    const iconList = ['uiw', 'windows', "linux", 'apple', 'facebook', 'twitter', 'adobe', "baidu", "ali-pay", 'reddit', 'android', 'github', 'github-o', "aliwangwang",   "dingding", "foursquare", "linkedin", "pinterest", "qq",  "weibo", "taobao", "weixin", 'css3', 'html5', ]
+    const iconStyle = {color:"#525252"};
+    const iconList = ['uiw', 'windows', "linux", 'apple', 'facebook', 'twitter', 'adobe', "baidu", "ali-pay", 'android-o', 'android','reddit', 'github', 'github-o', "aliwangwang",   "dingding", "foursquare", "linkedin", "pinterest", "qq",  "weibo", "taobao", "weixin", 'css3', 'html5', ]
     return (
       <div>
         <Row gutter="10">
@@ -317,8 +371,10 @@ class Demo extends Component {
             return (
               <Col key={idx} xs="8" sm="6" md="4" lg="4">
                 <div style={styleItem}>
-                  <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
-                  <div>{item}</div>
+                  <CopyToClipboard style={iconStyle} text={`<Icon type="${item}" />`} tooltip="复制成功！">
+                    <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                    <div>{item}</div>
+                  </CopyToClipboard>
                 </div>
               </Col>
             )
@@ -340,6 +396,7 @@ class Demo extends Component {
   render() {
     const {Row,Col} = Layout;
     const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
+    const iconStyle = {color:"#525252"};
     const iconList = [
       "chrome", "safari", "firefox", "opera", "ie", 
     ]
@@ -351,8 +408,10 @@ class Demo extends Component {
             return (
               <Col key={idx} xs="8" sm="6" md="4" lg="4">
                 <div style={styleItem}>
-                  <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
-                  <div>{item}</div>
+                  <CopyToClipboard style={iconStyle} text={`<Icon type="${item}" />`} tooltip="复制成功！">
+                    <Icon type={item} style={{fontSize:18,marginBottom:10}}/>
+                    <div>{item}</div>
+                  </CopyToClipboard>
                 </div>
               </Col>
             )

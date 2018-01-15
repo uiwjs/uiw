@@ -9,34 +9,33 @@ export default class Slider extends Component {
       currentValue: props.value,
       firstValue: 0,
       secondValue: 0,
-    }
+    };
   }
   componentWillMount() {
     let { firsValue, secendValue } = this.state;
     const { value } = this.props;
 
     if (value instanceof Array) {
-      firsValue = this.setResultConversion(value[0])
+      firsValue = this.setResultConversion(value[0]);
       secendValue = this.setResultConversion(value[1]);
     } else {
       firsValue = this.setResultConversion(value);
     }
     this.setState({
-      firsValue, secendValue
-    })
+      firsValue, secendValue,
+    });
   }
   componentDidMount() {
     const { firsValue, secendValue } = this.state;
-    this.setSliderBar(firsValue, secendValue, true)
+    this.setSliderBar(firsValue, secendValue, true);
   }
   getChildContext() {
     return {
-      component: this
+      component: this,
     };
   }
   getSliderSize() {
-    const { slider } = this.refs;
-    return parseInt(this.props.vertical ? slider.offsetHeight : slider.offsetWidth, 10);
+    return parseInt(this.props.vertical ? this.slider.offsetHeight : this.slider.offsetWidth, 10);
   }
   isRange() {
     const { value } = this.props;
@@ -44,94 +43,81 @@ export default class Slider extends Component {
     return false;
   }
   isDragging(bool) {
-    this.dragging = bool
+    this.dragging = bool;
   }
   onSliderClick(event) {
     const { vertical, disabled } = this.props;
     const { firsValue, secendValue } = this.state;
     if (this.dragging) return;
     if (disabled) return;
-    const sliderOffset = this.refs.slider.getBoundingClientRect();
-    let sliderOffsetValue = 0
+    const sliderOffset = this.slider.getBoundingClientRect();
+    let sliderOffsetValue = 0;
     if (vertical) {
-      sliderOffsetValue = (sliderOffset.bottom - event.clientY) / this.getSliderSize() * 100;
+      sliderOffsetValue = ((sliderOffset.bottom - event.clientY) / this.getSliderSize()) * 100;
     } else {
-      sliderOffsetValue = ((event.clientX - sliderOffset.left) / this.getSliderSize() * 100)
+      sliderOffsetValue = ((event.clientX - sliderOffset.left) / this.getSliderSize()) * 100;
     }
     sliderOffsetValue = parseInt(sliderOffsetValue, 10);
 
     if (this.isRange()) {
-      let range = secendValue - firsValue;
-      // let btn1 = this.refs.btn1.refs.button.style[vertical ? 'bottom' : 'left'];
-      // let btn2 = this.refs.btn2.refs.button.style[vertical ? 'bottom' : 'left'];
-      // btn1 = parseInt(btn1, 10);
-      // btn2 = parseInt(btn2, 10);
+      const range = secendValue - firsValue;
       if (range + firsValue > sliderOffsetValue) {
-        this.refs.btn1.startPoint = sliderOffsetValue;
+        this.btn1.startPoint = sliderOffsetValue;
         this.setState({ firsValue: sliderOffsetValue }, () => {
-          this.setSliderBar(sliderOffsetValue, secendValue)
-        })
-        this.setButtonPosition(this.refs.btn1, sliderOffsetValue);
+          this.setSliderBar(sliderOffsetValue, secendValue);
+        });
+        this.setButtonPosition(this.btn1, sliderOffsetValue);
       } else {
-        this.refs.btn2.startPoint = sliderOffsetValue;
+        this.btn2.startPoint = sliderOffsetValue;
         this.setState({ secendValue: sliderOffsetValue }, () => {
-          this.setSliderBar(firsValue, sliderOffsetValue)
-        })
-        this.setButtonPosition(this.refs.btn2, sliderOffsetValue);
+          this.setSliderBar(firsValue, sliderOffsetValue);
+        });
+        this.setButtonPosition(this.btn2, sliderOffsetValue);
       }
     } else {
-      this.refs.btn1.startPoint = sliderOffsetValue;
-      this.setButtonPosition(this.refs.btn1, sliderOffsetValue);
-      this.setSliderBar(sliderOffsetValue, secendValue)
+      this.btn1.startPoint = sliderOffsetValue;
+      this.setButtonPosition(this.btn1, sliderOffsetValue);
+      this.setSliderBar(sliderOffsetValue, secendValue);
     }
   }
   // 刻度显示
-  stepArray(marks) {
+  stepArray() {
     const { min, max, step } = this.props;
     const pointCount = (max - min) / step;
-    const stepWidth = 100 * step / (max - min);
+    const stepWidth = (100 * step) / (max - min);
     const result = [];
-    for (let i = 1; i < pointCount; i++) {
+    for (let i = 1; i < pointCount; i += 1) {
       result.push(i * stepWidth);
     }
-    return result
+    return result;
   }
   setResultConversion(num) {
     const { min, max } = this.props;
-    return parseInt((num - min) / (max - min) * 100, 10)
+    return parseInt(((num - min) / (max - min)) * 100, 10);
   }
   // 拖拽刻度
   setMarkPosition(num) {
-    const { min, max, step, dots } = this.props;
-    const stepWidth = 100 * step / (max - min);     // 实际占用 宽度值
-    let rem = num % stepWidth;                      // 实际间隔余 宽度值
-    const range = (step - min) / (max - min) * 100; // 实际间隔 宽度值
-    let currentv = parseInt((min + num * (max - min) / 100), 10)  // 当前值
+    const { min, max, step } = this.props;
+    const stepWidth = (100 * step) / (max - min); // 实际占用 宽度值
+    const rem = num % stepWidth; // 实际间隔余 宽度值
     // num，stepWidth 是转换后的值
-    // 倍数
-    let multiple = parseInt((num / range + 1), 10);
-    if (!dots) return num
-    if (currentv % step >= step / 2) {
-      return multiple * range
-    } else {
-      return num - rem
-    }
+    return num - rem;
   }
   onChange(firsValue, secendValue) {
     const { max, min, onChange } = this.props;
     // 百分百转换值
-    firsValue = parseInt((min + firsValue * (max - min) / 100), 10)
-    secendValue = parseInt((min + secendValue * (max - min) / 100), 10)
+    firsValue = parseInt((min + ((firsValue * (max - min)) / 100)), 10);
+    secendValue = parseInt((min + ((secendValue * (max - min)) / 100)), 10);
     // 相同值不触发 事件
-    if (this._firsValue === firsValue) return;
-    if (this.isRange() && this._firsValue === firsValue && this._secendValue === secendValue) return;
-    this._firsValue = firsValue;
-    this._secendValue = secendValue;
+    if (this.firsValue === firsValue) return;
+    if (this.isRange() && this.firsValue === firsValue && this.secendValue === secendValue) return;
+    this.firsValue = firsValue;
+    this.secendValue = secendValue;
 
     if (this.isRange()) {
-      onChange([firsValue, secendValue])
+      onChange([firsValue, secendValue]);
     } else {
-      onChange(firsValue)
+      onChange(firsValue);
     }
   }
   setSliderBar(firsValue, secendValue, isMount) {
@@ -142,24 +128,23 @@ export default class Slider extends Component {
 
     let widthv = firsValue > secendValue ? firsValue - leftv : secendValue - leftv;
     widthv = this.setMarkPosition(widthv);
-
     if (value instanceof Array && value.length > 1) {
-      !isMount && this.onChange(firsValue, secendValue)
-      this.refs.bar.style[vertical ? 'bottom' : 'left'] = leftv + '%';
-      this.refs.bar.style[vertical ? 'height' : 'width'] = widthv + '%';
+      !isMount && this.onChange(firsValue, secendValue);
+      this.bar.style[vertical ? 'bottom' : 'left'] = `${leftv}%`;
+      this.bar.style[vertical ? 'height' : 'width'] = `${widthv}%`;
     } else {
-      !isMount && this.onChange(firsValue, secendValue)
-      this.refs.bar.style[vertical ? 'height' : 'width'] = firsValue + '%';
+      !isMount && this.onChange(firsValue, secendValue);
+      this.bar.style[vertical ? 'height' : 'width'] = `${firsValue}%`;
     }
   }
   // 设置按钮的位置
   setButtonPosition(comp, num) {
     const { vertical } = this.props;
-    num = this.setMarkPosition(num)
+    num = this.setMarkPosition(num);
     if (vertical) {
-      comp.refs.button.style.bottom = num + '%';
+      comp.button.style.bottom = `${num}%`;
     } else {
-      comp.refs.button.style.left = num + '%';
+      comp.button.style.left = `${num}%`;
     }
   }
   // 判断是否冗余过多触发事件
@@ -172,49 +157,47 @@ export default class Slider extends Component {
     if (disabled) return;
 
     // 百分百转换值
-    firsValue = parseInt((min + firsValue * (max - min) / 100), 10)
-    secendValue = parseInt((min + secendValue * (max - min) / 100), 10)
+    firsValue = parseInt((min + ((firsValue * (max - min)) / 100)), 10);
+    secendValue = parseInt((min + ((secendValue * (max - min)) / 100)), 10);
     // 相同值不触发 事件
-    if (this.__firsValue === firsValue && this.__secendValue === secendValue) return;
-    if (this.isRange() && this._firsValue === firsValue && this._secendValue === secendValue) return;
-    this.__firsValue = firsValue;
-    this.__secendValue = secendValue;
+    if (this.firsValue === firsValue && this.secendValue === secendValue) return;
+    if (this.isRange() && this.firsValue === firsValue && this.secendValue === secendValue) return;
+    this.firsValue = firsValue;
+    this.secendValue = secendValue;
 
     onDragChange(this.isRange() ? [firsValue, secendValue] : firsValue);
   }
   onFirstValueChange(firsValue) {
     const { secendValue } = this.state;
     this.setState({ firsValue }, () => {
-      this.setButtonPosition(this.refs.btn1, firsValue);
-      this.setSliderBar(firsValue, secendValue)
-      this.onDragChange()
-
-    })
+      this.setButtonPosition(this.btn1, firsValue);
+      this.setSliderBar(firsValue, secendValue);
+      this.onDragChange();
+    });
   }
   onSecondValueChange(secendValue) {
     const { firsValue } = this.state;
     this.setState({ secendValue }, () => {
-      this.setButtonPosition(this.refs.btn2, secendValue);
-      this.setSliderBar(firsValue, secendValue)
-      this.onDragChange()
-    })
+      this.setButtonPosition(this.btn2, secendValue);
+      this.setSliderBar(firsValue, secendValue);
+      this.onDragChange();
+    });
   }
   isActive(num) {
     const { value } = this.props;
     const { firsValue, secendValue } = this.state;
     if (value instanceof Array) {
       if (firsValue < secendValue && num > firsValue && num < secendValue) {
-        return true
+        return true;
       }
       if (firsValue > secendValue && num > secendValue && num < firsValue) {
-        return true
+        return true;
       }
-      return false
+      return false;
     } else if (num < firsValue) {
-      return true
-    } else {
-      return false
+      return true;
     }
+    return false;
   }
   // 刻度标记
   renderMarks() {
@@ -224,30 +207,32 @@ export default class Slider extends Component {
         {
           Object.keys(marks).map((item, idx) => {
             let label = marks[item];
-            let style = {
-              [vertical ? 'bottom' : 'left']: parseInt((item - min) / (max - min) * 100, 10) + '%'
-            }
+            let style = { [vertical ? 'bottom' : 'left']: `${parseInt(((item - min) / (max - min)) * 100, 10)}%` };
             if (label instanceof Object) {
               style = { ...style, ...label.style };
               label = label.label || '';
             }
             return (
-              <div key={idx} className={this.classNames(`${prefixCls}-marks-text`, {
-                [`w-active`]: this.isActive(item)
-              })}
+              <div
+                key={idx}
+                className={this.classNames(`${prefixCls}-marks-text`, {
+                  'w-active': this.isActive(item),
+                })}
                 style={style}
-              >{label}</div>
-            )
+              >{label}
+              </div>
+            );
           })
         }
       </div>
-    )
+    );
   }
   render() {
     const { prefixCls, marks, className, color, style, disabled, vertical } = this.props;
     const { firsValue, secendValue } = this.state;
     return (
-      <div ref="slider" style={style}
+      <div ref={(node) => { this.slider = node; }}
+        style={style}
         className={this.classNames(`${prefixCls}`, className, {
           'w-disabled': disabled,
           [`${prefixCls}-vertical`]: vertical,
@@ -255,30 +240,34 @@ export default class Slider extends Component {
         onClick={this.onSliderClick.bind(this)}
       >
         <div className={this.classNames(`${prefixCls}-track`)}>
-          <div ref="bar" style={{ backgroundColor: color }} className={`${prefixCls}-bar`}> </div>
-          <Button ref="btn1" value={firsValue} onChange={this.onFirstValueChange.bind(this)} />
+          <div ref={(node) => { this.bar = node; }} style={{ backgroundColor: color }} className={`${prefixCls}-bar`} />
+          <Button ref={(node) => { this.btn1 = node; }} value={firsValue} onChange={this.onFirstValueChange.bind(this)} />
           {
-            this.isRange() && <Button ref="btn2" value={secendValue} onChange={this.onSecondValueChange.bind(this)} />
+            this.isRange() && <Button ref={(node) => { this.btn2 = node; }} value={secendValue} onChange={this.onSecondValueChange.bind(this)} />
           }
           {
             marks && this.stepArray().map((item, idx) => {
               return (
-                <div key={idx} className={this.classNames(`${prefixCls}-step`, {
-                  [`w-active`]: this.isActive(item)
-                })} style={vertical ? { 'bottom': item + '%' } : { 'left': item + '%' }}>
-                </div>
-              )
+                <div key={idx}
+                  className={this.classNames(`${prefixCls}-step`, {
+                    'w-active': this.isActive(item),
+                  })}
+                  style={{
+                    [`${vertical ? 'bottom' : 'left'}`]: `${item}%`,
+                  }}
+                />
+              );
             })
           }
           {marks && marks instanceof Object && this.renderMarks()}
         </div>
       </div>
-    )
+    );
   }
 }
 
 Slider.childContextTypes = {
-  component: PropTypes.any
+  component: PropTypes.any,
 };
 
 Slider.propTypes = {
@@ -300,7 +289,8 @@ Slider.propTypes = {
   disabled: PropTypes.bool,
   vertical: PropTypes.bool,
   onChange: PropTypes.func,
-}
+  onDragChange: PropTypes.func,
+};
 
 Slider.defaultProps = {
   prefixCls: 'w-slider',
@@ -313,5 +303,5 @@ Slider.defaultProps = {
   disabled: false,
   vertical: false,
   onChange() { },
-  onDragChange() { }
-}
+  onDragChange() { },
+};

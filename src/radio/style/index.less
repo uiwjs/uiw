@@ -1,7 +1,7 @@
 @import "../../style/variables.less";
 @import "../../style/mixins/index.less";
 
-.w-radio-inner{
+.w-radio-inner {
   input[type="radio"] {
     position: relative;
     width: 16px;
@@ -13,7 +13,7 @@
     border-radius: 50%;
     background-color: #fff;
     border: 1px solid #d7d7d7;
-    transition: border .25s,box-shadow .25s;
+    transition: border .25s, box-shadow .25s;
     &:before {
       content: ' ';
       display: block;
@@ -23,7 +23,7 @@
       border-radius: 50%;
       margin: 3px 0 0 3px;
       opacity: 0;
-      transition: opacity .25s,transform .25s;
+      transition: opacity .25s, transform .25s;
       background-color: #0fa120;
     }
     &:checked {
@@ -33,44 +33,43 @@
         transform: scale(1) rotate(0deg);
       }
     }
-    &:focus{
+    &:focus {
       outline: none;
       box-shadow: 0 0 0 2px rgba(84, 220, 103, 0.14);
     }
   }
 }
-
-.w-radio-text{
+.w-radio-text {
   margin-left: 4px;
   margin-right: 5px;
 }
 
-.w-radio{
+.w-radio {
   white-space: nowrap;
   font-size: 12px;
   cursor: pointer;
-  & + .w-radio{
+  & + .w-radio {
     margin-left: 5px;
   }
-  &.disabled{
+  &.disabled {
     z-index: 2;
     color: #c7c7c7;
     cursor: @cursor-disabled;
-    input{
+    input {
       cursor: @cursor-disabled;
       background-color: #ececec;
       border: 1px solid #d7d7d7;
-      &[type="radio"]:checked{
+      &[type="radio"]:checked {
         border: 1px solid #d7d7d7;
       }
-      &:before{
+      &:before {
         background-color: #d7d7d7;
       }
     }
   }
 }
 
-.w-radio-group{
+.w-radio-group {
   display: inline-block;
   font-size: 12px;
 }
@@ -83,12 +82,12 @@
   border-radius: 0 4px 4px 0;
 }
 
-.w-radio-button{
+.w-radio-button {
   position: relative;
   margin: 0;
   height: 30px;
   line-height: 28px;
-  color: rgba(0,0,0,.65);
+  color: rgba(0, 0, 0, .65);
   display: inline-block;
   transition: all .3s ease;
   vertical-align: middle;
@@ -97,22 +96,22 @@
   border-left: 0;
   background: #fff;
   padding: 0 10px;
-  & + .w-radio-button{
+  & + .w-radio-button {
     margin-left: 0;
-    &:last-child{
+    &:last-child {
       margin-left: -1px;
     }
   }
-  .w-radio-inner{
+  .w-radio-inner {
     display: none;
   }
-  &.checked{
+  &.checked {
     background-color: #0fa120;
     border-color: #0fa120;
     color: #fff;
     z-index: 2;
   }
-  &.disabled{
+  &.disabled {
     background-color: #f2f2f2;
   }
 }

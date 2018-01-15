@@ -1,16 +1,5 @@
 import React from 'react';
-import { Component, PropTypes, ReactDOM } from '../utils/';
-
-function getScrollTop() {
-  if (typeof window.pageYOffset !== 'undefined') {
-    return window.pageYOffset;
-  } else if (typeof document.compatMode !== 'undefined' && document.compatMode !== 'BackCompat') {
-    return document.documentElement.scrollTop;
-  } else if (typeof document.body !== 'undefined') {
-    return document.body.scrollTop;
-  }
-}
-
+import { Component, PropTypes, ReactDOM, getScrollTop } from '../utils/';
 
 export default class Affix extends Component {
   constructor(props) {
@@ -18,8 +7,8 @@ export default class Affix extends Component {
     this.state = {
       placeholderStyle: null,
       affixStyle: null,
-    }
-    this.updatePosition = this.updatePosition.bind(this)
+    };
+    this.updatePosition = this.updatePosition.bind(this);
   }
   events = [
     'resize',
@@ -32,16 +21,17 @@ export default class Affix extends Component {
   ]
   eventHandlers = {}
   componentDidMount() {
-    this.setTargetEventListeners()
+    this.setTargetEventListeners();
   }
-  updatePosition(evn) {
-    let { offsetTop, offsetBottom } = this.props;
-    const rootElm = ReactDOM.findDOMNode(this)
+  updatePosition() {
+    let { offsetTop } = this.props;
+    const { offsetBottom } = this.props;
+    const rootElm = ReactDOM.findDOMNode(this);
     const elemSize = {
       width: rootElm.clientWidth,
       height: rootElm.clientHeight,
     };
-    let offsetMode = { top: false, bottom: false };
+    const offsetMode = { top: false, bottom: false };
     // 默认钉在顶部还是底部
     if (typeof offsetTop !== 'number' && typeof offsetBottom !== 'number') {
       offsetMode.top = true;
@@ -54,7 +44,7 @@ export default class Affix extends Component {
 
     if (rootElm.offsetTop < getScrollTop() && offsetMode.top) {
       // 设置占位高宽
-      this.setPlaceholderStyle({ ...elemSize })
+      this.setPlaceholderStyle({ ...elemSize });
       this.setAffixStyle({
         position: 'fixed',
         top: offsetTop || 0,
@@ -63,7 +53,7 @@ export default class Affix extends Component {
       });
     } else if (offsetMode.bottom && (rootElm.offsetTop + rootElm.clientHeight) > (getScrollTop() + clientHeight)) {
       // 设置占位高宽
-      this.setPlaceholderStyle({ ...elemSize })
+      this.setPlaceholderStyle({ ...elemSize });
       this.setAffixStyle({
         position: 'fixed',
         bottom: offsetBottom || 0,
@@ -71,15 +61,15 @@ export default class Affix extends Component {
         width: rootElm.clientWidth,
       });
     } else {
-      this.setPlaceholderStyle(null)
-      this.setAffixStyle(null)
+      this.setPlaceholderStyle(null);
+      this.setAffixStyle(null);
     }
   }
   setAffixStyle(affixStyle) {
     const { onChange } = this.props;
     const affixed = !!this.state.affixStyle;
     this.setState({ affixStyle }, () => {
-      onChange(affixed)
+      onChange(affixed);
     });
   }
   setPlaceholderStyle(placeholderStyle) {
@@ -88,27 +78,27 @@ export default class Affix extends Component {
   // 设置监听事件
   setTargetEventListeners() {
     this.clearEventListeners();
-    this.events.forEach(eventName => {
+    this.events.forEach((eventName) => {
       this.eventHandlers[eventName] = this.updatePosition;
       window.addEventListener(eventName, this.updatePosition, false);
     });
   }
   clearEventListeners() {
-    this.events.forEach(eventName => {
+    this.events.forEach((eventName) => {
       const handler = this.eventHandlers[eventName];
-      window.removeEventListener(eventName, handler, false)
+      window.removeEventListener(eventName, handler, false);
     });
   }
   render() {
     const { prefixCls, className, children, offsetTop, offsetBottom, ...resetProps } = this.props;
-    const cls = this.classNames(className, `${prefixCls}`)
+    const cls = this.classNames(className, `${prefixCls}`);
     return (
       <div {...resetProps} style={{ ...this.state.placeholderStyle, ...this.props.style }}>
-        <div className={cls} ref="fixedNode" style={this.state.affixStyle}>
+        <div className={cls} style={this.state.affixStyle}>
           {children}
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -116,9 +106,10 @@ Affix.propTypes = {
   prefixCls: PropTypes.string,
   offsetTop: PropTypes.number,
   offsetBottom: PropTypes.number,
-}
+  onChange: PropTypes.func,
+};
 
 Affix.defaultProps = {
   prefixCls: 'w-affix',
-  onChange() { }
-}
+  onChange() { },
+};

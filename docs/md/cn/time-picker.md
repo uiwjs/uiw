@@ -1,12 +1,46 @@
-Time Picker 时间选择器
+TimePicker 时间选择器
 ===
 
 用于选择或输入日期
 
+### 基本用法
+点击 `TimePicker`，然后可以在浮层中选择或者输入某一时间。
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: new Date(2017, 6, 28, 15, 51),
+    }
+  }
+  handleChang(value,date) {
+    console.log('TimePicker:Chang:', value,date)
+  }
+  render() {
+    return (
+      <div>
+        <TimePicker
+          onChange={this.handleChang.bind(this)}
+          disabledHours={['00','01']}
+          disabledMinutes={['01','02']}
+          disabled={false}
+          format="H:i:s"
+          placeholder="选择时间de拉！更改"
+          value={this.state.value}
+        />
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
 ### 固定时间点
 
 <!--DemoStart--> 
-使用 `TimeSelect` 标签，分别通过`star`、`end`和`step`指定可选的起始时间、结束时间和步长，通过`minTime`和`maxTime`来限制时间。
+使用 `<TimeSelect>` ，分别通过`star`、`end`和`step`指定可选的起始时间、结束时间和步长，通过`minTime`和`maxTime`来限制时间。
 ```js
 class Demo extends Component {
   constructor(props) {
@@ -19,19 +53,29 @@ class Demo extends Component {
     console.log('time-select Chang: ', value,date)
   }
   render() {
-
-    this.handleChang()
     return (
-      <TimeSelect
-        start="08:30"
-        step="00:15"
-        end="18:30"
-        minTime="9:30"
-        hideDisabled={true}
-        onChange={this.handleChang.bind(this)}
-        value={this.state.value}
-        //placeholder="选择时间"
-      />
+      <div>
+        <TimeSelect
+          start="08:30"
+          step="00:15"
+          end="18:30"
+          minTime="9:30"
+          // hideDisabled={true}
+          onChange={this.handleChang.bind(this)}
+          value={this.state.value}
+          //placeholder="选择时间"
+        />
+        <TimeSelect
+          start="08:30"
+          step="00:15"
+          end="18:30"
+          minTime="9:30"
+          hideDisabled={true}
+          onChange={this.handleChang.bind(this)}
+          value={null}
+          //placeholder="选择时间"
+        />
+      </div>
     )
   }
 }
@@ -69,6 +113,8 @@ class Demo extends Component {
 <!--End-->
 
 ### 固定时间范围
+
+可以通过`hideDisabled={true}`来设置禁用的不显示。
 
 <!--DemoStart--> 
 ```js
@@ -121,7 +167,7 @@ class Demo extends Component {
 
 ### 任意时间点
 
-可以选择任意时间
+使用 `<TimePicker>`，可以选择任意时间。
 
 <!--DemoStart--> 
 ```js
@@ -130,12 +176,18 @@ class Demo extends Component {
     super(props);
     this.state = {
       value: new Date(2017, 6, 28, 15, 51),
+      showTime:'',
     }
   }
   handleChang(value,date) {
-    console.log('time-select Chang: ', value,date)
+    console.log('value;',value)
+    this.setState({
+      showTime:value,
+      value:date
+    })
   }
   render() {
+    const {showTime} = this.state;
     return (
       <div>
         <TimePicker
@@ -145,9 +197,9 @@ class Demo extends Component {
           disabledMinutes={['01','02']}
           disabled={true}
           //hideDisabled={true}
-          format="HH:mm:ss"
+          format="H:i:s"
           placeholder="选择时间de拉！"
-          value={this.state.value}
+          value={new Date(2017, 6, 28, 15, 51)}
         />
         <TimePicker
           //style={{width:100}}
@@ -157,10 +209,24 @@ class Demo extends Component {
           disabledMinutes={['01','02']}
           disabled={false}
           // hideDisabled={true}
-          format="HH:mm:ss"
+          format="H:i"
           placeholder="选择时间de拉！更改"
           value={this.state.value}
         />
+        <TimePicker
+          //style={{width:100}}
+          size="mini" 
+          onChange={this.handleChang.bind(this)}
+          disabledHours={['00','01']}
+          disabledMinutes={['01','02']}
+          disabled={false}
+          format="H:i:s"
+          placeholder="选择时间de拉！更改"
+          value={this.state.value}
+        />
+        <div style={{padding:"20px 0 0 0"}}>
+          选择时间：{showTime}
+        </div>
       </div>
     )
   }
@@ -169,9 +235,20 @@ class Demo extends Component {
 <!--End-->
 
 
-## API
+## 安装和使用
 
-> 输入框继承 `<Input/>` 组件。支持 Input 的大部分属性如`size`
+```bash
+npm install uiw --save
+```
+
+```js
+import { TimePicker, TimeSelect } from 'uiw';
+// or
+import TimePicker from 'uiw/lib/time-picker';
+import TimeSelect from 'uiw/lib/time-select';
+```
+
+> 输入框继承 `<Input/>` 组件。支持 Input 的部分属性如`size`,`disabled`, `size`, `autoFocus`, `preIcon`, `defaultValue`
 
 ### 公共参数 
 
@@ -199,8 +276,8 @@ class Demo extends Component {
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
-| format | 默认显示时分秒，可以定义`HH:mm`只显示十分 | String | `HH:mm:ss` |
+| format | 默认显示时分秒，可以定义`H:i`只显示十分 | String | `H:i:s` |
 | disabledHours | 禁止选择部分`小时`选项 | Array | [] |
 | disabledMinutes | 禁止选择部分`分钟`选项 | Array | [] |
-| disabledSeconds | 禁止选择部分`秒`选项 | String | `HH:mm:ss` |
+| disabledSeconds | 禁止选择部分`秒`选项 | String | [] |
 | onChange | 时间发生变化的回调 time:`9:30`、timeString:`Fri Jul 28 2017 09:45:00 GMT+0800 (CST)` | function(time:String, timeString: String) | - |

@@ -1,6 +1,6 @@
 import Breadcrumb from './Breadcrumb';
 import BreadcrumbItem from './BreadcrumbItem';
-import "./style/index.less";
+import './style/index.less';
 
 Breadcrumb.Item = BreadcrumbItem;
 

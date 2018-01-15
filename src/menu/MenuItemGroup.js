@@ -6,25 +6,29 @@ export default class MenuItemGroup extends Component {
     super(props);
     this.instanceType = 'SubMenu';
     this.state = {
-      active: false
+      active: false,
     };
   }
   render() {
-    const { prefixCls, className, ...others } = this.props;
+    const { prefixCls, className, title, children, resetProps } = this.props;
     return (
-      <li className={this.classNames(`${prefixCls}`, {
-        // 'is-active': this.state.active,
-        // 'is-opened': this.opened()
-      })}>
+      <li className={this.classNames(`${prefixCls}`, className)} {...resetProps} >
+        <div className={`${prefixCls}-title`}>{title}</div>
+        <ul>
+          {React.Children.map(children, (child) => {
+            const childProps = {};
+            return React.cloneElement(child, childProps);
+          })}
+        </ul>
       </li>
-    )
+    );
   }
 }
 
 MenuItemGroup.propTypes = {
   prefixCls: PropTypes.string,
-}
+};
 
 MenuItemGroup.defaultProps = {
-  prefixCls: "w-menu-item-group",
-}
+  prefixCls: 'w-menu-item-group',
+};

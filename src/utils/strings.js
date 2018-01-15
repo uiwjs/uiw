@@ -1,5 +1,3 @@
-let uid = Date.now()
-function randomid() {
-  return (uid++).toString(36)
+export function randomid() {
+  return parseInt(Math.random() * 1e15, 10).toString(36);
 }
-export { randomid }

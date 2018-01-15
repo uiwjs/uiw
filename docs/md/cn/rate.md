@@ -57,6 +57,26 @@ class Demo extends Component {
 ```
 <!--End-->
 
+### 定义文本
+
+按钮样式的单选组合。
+
+<!--DemoStart--> 
+```js
+const style = {marginRight:20};
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <Rate value={2} allowHalf={true} style={style} character={<Icon type="heart-on" />} color="#d80000"/>
+        <Rate value={2} allowHalf={true} style={style} character="好" color="#d80000"/>
+        <Rate value={2} allowHalf={true} character="美" color="#d80000"/>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
 
 ### 文本展现
 

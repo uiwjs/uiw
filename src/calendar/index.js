@@ -1,5 +1,4 @@
 import Calendar from './Calendar';
-import HeatMap from './HeatMap';
+import './style/index.less';
 
-Calendar.HeatMap = HeatMap;
 export default Calendar;

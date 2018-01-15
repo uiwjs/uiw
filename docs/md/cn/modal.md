@@ -391,7 +391,6 @@ class Demo extends Component {
       <div> 
         <Button size="small" onClick={this.handleShow.bind(this)}>Modals自定义Footer</Button>
         <Modal 
-          ref="modal"
           title="Modals自定义Footer" 
           visible={this.state.visible}
           onOk={this.handleOk} // 点击确定提交按钮
@@ -404,7 +403,6 @@ class Demo extends Component {
           footer={(
             <div>
               <Button size="small" onClick={()=>{
-                //this.refs.modal.onCancel
                 this.setState({
                   visible:false
                 })
@@ -533,8 +531,8 @@ class Demo extends Component {
 |--------- |-------- |--------- |-------- |
 | visible | 对话框是否可见 | boolean | - |
 | title | 标题 | string、ReactNode | - |
-| okText | 点击确定回调 | string | 确定 |
-| onOk | 确认按钮文字 | function(e) | - |
+| okText | 确认按钮文字 | string | 确定 |
+| onOk | 点击确定回调 | function(e) | - |
 | confirmLoading | 确定按钮 loading | boolean | false |
 | cancelText | 取消按钮文字 | string | 取消 |
 | onCancel | 点击遮罩层或右上角叉或取消按钮的回调 | function(e) | - |

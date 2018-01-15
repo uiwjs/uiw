@@ -9,17 +9,17 @@ export default class BreadcrumbItem extends Component {
         <span className={this.classNames(`${prefixCls}`, className)}>
           <a href={href} {...other} className={`${prefixCls}-link`}>
             <span className={`${prefixCls}-inner`}>{this.props.children}</span>
-            <span className={`${prefixCls}-separator`}>{separator ? separator : this.context.separator}</span>
+            <span className={`${prefixCls}-separator`}>{separator || this.context.separator}</span>
           </a>
         </span>
-      )
+      );
     }
     return (
       <span {...other} className={this.classNames(prefixCls, className)}>
         <span className={`${prefixCls}-inner`}>{this.props.children}</span>
-        <span className={`${prefixCls}-separator`}>{separator ? separator : this.context.separator}</span>
+        <span className={`${prefixCls}-separator`}>{separator || this.context.separator}</span>
       </span>
-    )
+    );
   }
 }
 
@@ -31,7 +31,7 @@ BreadcrumbItem.contextTypes = {
 BreadcrumbItem.propTypes = {
   prefixCls: PropTypes.string,
   href: PropTypes.string,
-}
+};
 BreadcrumbItem.defaultProps = {
-  prefixCls: "w-breadcrumb-item",
-}
+  prefixCls: 'w-breadcrumb-item',
+};

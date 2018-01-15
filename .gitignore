@@ -7,6 +7,8 @@
 /.vscode
 .cache
 
+__snapshots__
+
 # testing
 /coverage
 

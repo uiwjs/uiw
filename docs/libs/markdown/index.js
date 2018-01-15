@@ -21,10 +21,10 @@ export default class Markdown extends React.Component {
   }
   renderDOM() {
     for (const [id, component] of this.components) {
-      const div = document.getElementById(id);
-      if (div instanceof HTMLElement) {
-        ReactDOM.unmountComponentAtNode(div);
-        ReactDOM.render(component, div, () => {
+      this.div = document.getElementById(id);
+      if (this.div instanceof HTMLElement) {
+        ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this.div));
+        ReactDOM.render(component, this.div, () => {
           prism.highlightAll();
         });
       }
@@ -60,7 +60,7 @@ export default class Markdown extends React.Component {
         }, this.props), p1));
         return `<div id=${id}></div>`;
       }));
-      
+
       return (
         <div>
           <div className={`${prefixCls}-content-warpper`} dangerouslySetInnerHTML={{ __html: html }} />

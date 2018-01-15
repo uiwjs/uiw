@@ -2,7 +2,8 @@ import React from 'react';
 import { Component, PropTypes } from '../utils/';
 import Transition from '../transition';
 import Button from '../button';
-import Icon from '../icon'
+import Icon from '../icon';
+
 const ButtonGroup = Button.Group;
 
 export default class Modal extends Component {
@@ -10,11 +11,11 @@ export default class Modal extends Component {
     super(props);
     this.state = {
       visible: props.visible,
-    }
+    };
   }
-  componentWillMount(nextProps) {
+  componentWillMount() {
     if (this.props.visible) {
-      this.isMount = true
+      this.isMount = true;
     }
   }
   componentWillReceiveProps(nextProps) {
@@ -25,27 +26,27 @@ export default class Modal extends Component {
       }
       this.setState({
         visible: nextProps.visible,
-      })
+      });
     }
   }
   onExited(props) {
     const { onCancel, onExited } = this.props;
-    this.isMount = false
+    this.isMount = false;
     // 动画事件不同步，带来的闪烁问题
-    let timer = setTimeout(() => {
+    const timer = setTimeout(() => {
       if (!this.isMount) {
-        onExited(props)
+        onExited(props);
       }
-      clearTimeout(timer)
-    }, 100)
+      clearTimeout(timer);
+    }, 100);
     if (!this.isMount) {
-      onCancel()
+      onCancel();
     }
   }
-  onCancel = (ismask, e) => {
+  onCancel = (ismask) => {
     // 禁止遮罩层关闭
-    if (ismask === "mask" && !this.props.maskClosable) return;
-    this.setState({ visible: false })
+    if (ismask === 'mask' && !this.props.maskClosable) return;
+    this.setState({ visible: false });
   }
   handleOk = (e) => {
     const { onOk } = this.props;
@@ -68,7 +69,7 @@ export default class Modal extends Component {
       [`${prefixCls}-wrap`]: this.isMount,
       [`${prefixCls}-horizontal-left`]: horizontal === 'left' && this.isMount,
       [`${prefixCls}-horizontal-right`]: horizontal === 'right' && this.isMount,
-      [className]: className
+      [className]: className,
     });
 
     let AnimateType = '';
@@ -77,14 +78,14 @@ export default class Modal extends Component {
       case 'right': AnimateType = 'fadeIn right'; break;
       default: AnimateType = 'fadeIn down'; break;
     }
-    defaultFooter = (footer === null ? null : <div className={`${prefixCls}-footer`}>{defaultFooter}</div>)
+    defaultFooter = (footer === null ? null : <div className={`${prefixCls}-footer`}>{defaultFooter}</div>);
     return (
-      <div ref="modal" className={cls}>
+      <div className={cls}>
         <Transition in={visible} sequence="fadeIn">
-          <div className={`${prefixCls}-mask`} style={styleMask} onClick={() => this.onCancel('mask')}></div>
+          <div className={`${prefixCls}-mask`} style={styleMask} onClick={() => this.onCancel('mask')} />
         </Transition>
         <Transition onExited={this.onExited.bind(this)} onEntered={onEntered} in={visible} sequence={AnimateType}>
-          <div className={`${prefixCls}-content`} style={{ width: width, ...other.style }}>
+          <div className={`${prefixCls}-content`} style={{ width, ...other.style }}>
             <div className={`${prefixCls}-header`}>
               <div className={`${prefixCls}-title`}>{title}</div>
               <a onClick={() => this.onCancel()} className={`${prefixCls}-close-icon`}><Icon type="close" /></a>
@@ -95,20 +96,19 @@ export default class Modal extends Component {
         </Transition>
       </div>
     );
-
   }
 }
 
 Modal.defaultProps = {
-  prefixCls: "w-modal",
+  prefixCls: 'w-modal',
   width: 520,
   visible: false,
   maskClosable: true,
   confirmLoading: false,
-  onCancel: (v) => v,
-  onExited: (v) => v,
-  onEntered: (v) => v
-}
+  onCancel: v => v,
+  onExited: v => v,
+  onEntered: v => v,
+};
 Modal.propTypes = {
   visible: PropTypes.bool,
   horizontal: PropTypes.oneOf(['left', 'right']),
@@ -122,6 +122,6 @@ Modal.propTypes = {
   onExited: PropTypes.func,
   onEntered: PropTypes.func,
   width: PropTypes.oneOfType([
-    PropTypes.number, PropTypes.string
+    PropTypes.number, PropTypes.string,
   ]),
-}
+};
