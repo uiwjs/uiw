@@ -1,2 +1,64 @@
 @import "../../style/variables.less";
 @import "../../style/mixins/index.less";
+
+@upload-prefix-cls: ~"w-upload";
+@upload-item: ~"w-upload-list-item";
+@upload-pictrue-card-size: 96px;
+
+.@{upload-prefix-cls} {
+  font-size: @font-size-base;
+  outline: 0;
+
+  &-btn {
+    display: block;
+    width: 100%;
+    outline: none;
+  }
+
+  input[type="file"] {
+    cursor: pointer;
+  }
+
+  &&-select {
+    display: inline-block;
+  }
+}
+
+.@{upload-prefix-cls}-list {
+  overflow: hidden;
+  &-item {
+    // overflow: hidden;
+    margin-top: 4px;
+    font-size: @font-size-base;
+    position: relative;
+    height: 35px;
+    &-name {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-left: 16px;
+      display: inline-block;
+    }
+
+    &-info {
+      line-height: 27px;
+      padding: 0 12px 0 4px;
+      transition: background-color .3s;
+    }
+
+    &:hover &-info {
+      background-color: hsl(205, 95%, 75%);
+    }
+
+    &-progress {
+      line-height: 0;
+      font-size: @font-size-base;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+    }
+  }
+  .@{upload-prefix-cls}-success-icon {
+    color: #00a854;
+    font-weight: bold;
+  }
+}

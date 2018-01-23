@@ -93,9 +93,9 @@ class Demo extends Component {
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
-| disabled | 禁止上传 | Boolean | `false` |
+| disabled | 禁止点击按钮 | Boolean | `false` |
 | defaultFileList | 默认已经上传的文件列表 | object[] | - |
-| fileList | 已经上传的文件列表（受控 | object[] | - |
+| fileList | 已经上传的文件列表（受控）| object[] | - |
 | onChange | 上传文件改变时的状态 | function | - |
 | onRemove | 删除某张图片 | function(file) | - |
 | onPreview | 点击文件链接或预览图标时的回调 | function(file) | - |
