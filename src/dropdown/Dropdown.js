@@ -74,7 +74,7 @@ export default class Dropdown extends Component {
     }
   }
   render() {
-    const { prefixCls, className, children, disabled, menu, trigger, ...resetProps } = this.props;
+    const { prefixCls, className, children, disabled, menu, trigger, onVisibleChange, ...resetProps } = this.props;
     const { visible } = this.state;
 
     if (trigger === 'click') {
