@@ -8,7 +8,7 @@ export default class Menu extends Component {
     this.instanceType = 'Menu';
     this.state = {
       defaultActive: props.defaultActive,
-      // dd
+      // 打开子菜单
       openedMenu: props.defaultOpened ? props.defaultOpened.slice(0) : [],
       // 子菜单
       submenus: {},
@@ -32,7 +32,7 @@ export default class Menu extends Component {
     let { defaultActive } = this.state;
     defaultActive = index;
     if (this.props.onSelect) {
-      this.props.onSelect(index, menuItem);
+      this.props.onSelect(index, menuItem, this);
     }
     this.setState({ defaultActive });
   }
@@ -66,7 +66,7 @@ export default class Menu extends Component {
     }
   }
   render() {
-    const { prefixCls, className, style, mode, resetProps } = this.props;
+    const { prefixCls, className, style, mode, defaultActive, onSelect, onOpen, defaultOpened, ...resetProps } = this.props;
     return (
       <ul
         style={style}
