@@ -252,4 +252,4 @@ class Demo extends Component {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| className | 元素的类的名称。 | String | `w-menu-item-divider` |
+| className | 元素的类的名称。 | String | - |
