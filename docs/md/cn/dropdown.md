@@ -77,27 +77,34 @@ class Demo extends Component {
 
 <!--DemoStart--> 
 ```js
-const menu = (
-  <Menu>
-    <Menu.Item index="0">
-      <a target="_blank" rel="noopener noreferrer" href="http://uiw-react.github.io/">UI组件库官方文档</a>
-    </Menu.Item>
-    <Menu.Item index="1">
-      <a target="_blank" rel="noopener noreferrer" href="javascript:;">个人网站</a>
-    </Menu.Item>
-    <Menu.Divider/>
-    <Menu.Item index="3" disabled>老铁就是你了</Menu.Item>
-  </Menu>
-);
 
 class Demo extends Component {
+  messageBox() {
+    console.log('====>')
+  }
   render() {
+    const menu = (
+      <Menu onSelect={this.messageBox}>
+        <Menu.Item index="0">
+          历史记录
+        </Menu.Item>
+        <Menu.Item index="1">
+          关于我们
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item index="3" disabled>老铁就是你了</Menu.Item>
+      </Menu>
+    );
     return (
       <div>
         <Dropdown trigger="click" menu={menu}>
           <a className="ant-dropdown-link" href="javascript:;">
-            Hover me <Icon type="arrow-down" />
+            点击我出现下拉菜单 <Icon type="arrow-down" />
           </a>
+        </Dropdown>
+        <Divider />
+        <Dropdown trigger="click" menu={menu}>
+          <Button>下拉菜单</Button>
         </Dropdown>
       </div>
     )
