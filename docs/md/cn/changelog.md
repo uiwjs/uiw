@@ -5,6 +5,24 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+
+## 1.7.0
+
+`2018-02-09`
+
+- 🌟 feat(Menu): Inherit more dom attributes. [1e8896e](https://github.com/uiw-react/uiw/commit/1e8896e293fe9b72d367601db01950ed8be8d757)
+- 🌟 feat(Dropdown): Add onVisibleChange props. [c7aa3df](https://github.com/uiw-react/uiw/commit/c7aa3dfb6256c474971c747c31516e8750894cfa)
+- 🌟 feat(Dropdown): Add new component. [4102367](https://github.com/uiw-react/uiw/commit/41023674d96f6e01e891a35e11deb21ebb43bd13)
+- 🎨 style(Icon): Modify icon default font size. [bfdb370](https://github.com/uiw-react/uiw/commit/bfdb37048078d967ed7a8a1519ee431684d4935e)
+- 🎨 style(Button): Modify Button to disable the style. [ba2d8d0](https://github.com/uiw-react/uiw/commit/ba2d8d0b15b59c359b4cfb07d3f6ce1569adab7b)
+- 🐞 fix(Dropdown): Repair Menu component failure problem. [de25e78](https://github.com/uiw-react/uiw/commit/de25e78b51c7e8a076d2c9fa81df33383d0c0370)
+- 🐞 fix(Dropdown): Unknown event handler property . [2e319db](https://github.com/uiw-react/uiw/commit/2e319dbfb2d20b400c6ff189d10946f06af50b8a)
+- ⛑ test: Fix Rate test case & Recommended chart library ([#54](https://github.com/uiw-react/uiw/pull/54)) : [@kooff88](https://github.com/kooff88) [dbe20c5](https://github.com/uiw-react/uiw/commit/dbe20c55d996e4c9a2bf34de0ec5854ca93e23a8)
+- 📖 doc(Menu): Fixed api document error. [915b526](https://github.com/uiw-react/uiw/commit/915b52676f2aba4bd9d5205d0bf1af433aeaa41c)
+- 📖 doc(Dropdown): Update Example. [0337a50](https://github.com/uiw-react/uiw/commit/0337a502dc984677d51f927ee8bfdee48ea7b17b)
+- 📖 doc(Select): Update select.md ([#53](https://github.com/uiw-react/uiw/pull/53)) : [@gonghengda](https://github.com/gonghengda) [1310375](https://github.com/uiw-react/uiw/commit/131037556a7b98030894ec7e0c9035aadd57d1ec)
+- 📖 doc: Update recommendation.md [8fd23bc](https://github.com/uiw-react/uiw/commit/8fd23bc233b5dc8f257b14b45990d3c716f8ea52)
+
 ## 1.6.2
 
 `2017-12-25`
