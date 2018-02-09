@@ -9,7 +9,7 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 `2018-02-09`
 
-- 🐞 feat(Menu): fix(Dropdown): Fixed menu hidden failure. [1e8896e](https://github.com/uiw-react/uiw/commit/1e8896e293fe9b72d367601db01950ed8be8d757)
+- 🐞 feat(Menu): fix(Dropdown): Fixed menu hidden failure. [0a0e9f4](https://github.com/uiw-react/uiw/commit/0a0e9f4)
 
 ## 1.7.0
 
