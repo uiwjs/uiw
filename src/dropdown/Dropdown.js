@@ -64,11 +64,12 @@ export default class Dropdown extends Component {
       });
     }, 300);
   }
-  onSelectMenu = () => {
+  onSelectMenu = (index, menuItem, menu) => {
     const { onVisibleChange } = this.props;
     if (this.showDropdown) {
       this.setState({ visible: false }, () => {
         this.showDropdown = false;
+        menu && menu.props && menu.props.onSelect && menu.props.onSelect(index, menuItem, menu);
         onVisibleChange(this.state.visible);
       });
     }
@@ -95,9 +96,7 @@ export default class Dropdown extends Component {
         {React.Children.map(children, (child, index) => React.cloneElement(child, { key: index }))}
         <Transition in={visible} sequence="fadeIn">
           <div className={`${prefixCls}-menu-warpper`}>
-            {menu && !disabled && React.cloneElement(menu, {
-              onSelect: this.onSelectMenu,
-            })}
+            {!disabled && menu}
           </div>
         </Transition>
       </div>
