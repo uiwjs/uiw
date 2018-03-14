@@ -20,7 +20,7 @@
     "build:lib": "BABEL_ENV=production babel  --ignore=src/**/__test__ --plugins transform-runtime src --out-dir lib --copy-files ",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
     "lint-staged:js": "NODE_ENV=production eslint src",
-    "deploy": "./script/deploy.sh"
+    "deploy": "node ./script/deploy.js"
   },
   "keywords": [
     "uiw",
@@ -74,6 +74,7 @@
     "favicons-webpack-plugin": "0.0.7",
     "file-loader": "1.1.5",
     "fs-extra": "4.0.2",
+    "gh-pages": "^1.1.0",
     "html-webpack-plugin": "2.30.1",
     "husky": "0.14.3",
     "identity-obj-proxy": "3.0.0",
@@ -81,6 +82,7 @@
     "less": "2.3.1",
     "less-loader": "^4.0.5",
     "lint-staged": "^5.0.0",
+    "loading-cli": "^1.0.6",
     "marked": "^0.3.6",
     "postcss-flexbugs-fixes": "^3.2.0",
     "postcss-loader": "^2.0.8",
