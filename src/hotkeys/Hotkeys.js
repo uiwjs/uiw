@@ -22,7 +22,7 @@ export default class ReactHotkeys extends Component {
   }
   componentWillUnmount() {
     Hotkeys.unbind(this.props.keyName);
-    this.isKeyDown = false;
+    this.isKeyDown = true;
     this.handle = {};
     document.removeEventListener('keyup', this.handleKeyUpEvent);
   }
