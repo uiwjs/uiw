@@ -14,12 +14,21 @@ class Demo extends Component {
   render() {
     return (
       <Menu defaultActive="1" mode="horizontal" onSelect={this.onSelect.bind(this)}>
-        <Menu.Item index="1">聚划算</Menu.Item>
-        <Menu.Item index="2">天猫超市</Menu.Item>
-        <Menu.Item disabled index="3">淘抢购</Menu.Item>
-        <Menu.Item index="4">电器城</Menu.Item>
+        <Menu.Item index="1"><Icon type="date" />聚划算</Menu.Item>
+        <Menu.Item index="2"><Icon type="menu" />天猫超市</Menu.Item>
+        <Menu.Item disabled index="3"><Icon type="verification" />淘抢购</Menu.Item>
+        <Menu.Item index="4"><Icon type="windows" />电器城</Menu.Item>
+        <Menu.SubMenu index="2" title={<span><Icon type="star-on" /><span>天猫超市</span></span>}>
+          <Menu.ItemGroup title="分组一">
+            <Menu.Item index="1-1-1">选项1</Menu.Item>
+            <Menu.Item index="1-1-2">选项2</Menu.Item>
+          </Menu.ItemGroup>
+          <Menu.ItemGroup title="分组2">
+            <Menu.Item index="1-1-3">选项3</Menu.Item>
+          </Menu.ItemGroup>
+        </Menu.SubMenu>
         <Menu.Item index="5">
-            <a href="https://github.com/jaywcjlove" target="_blank" rel="noopener noreferrer">电器城- Link</a>
+          <a href="https://github.com/jaywcjlove" target="_blank" rel="noopener noreferrer">电器城- Link</a>
         </Menu.Item>
       </Menu>
     )
