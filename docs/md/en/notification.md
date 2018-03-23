@@ -12,7 +12,7 @@ render() {
     <div>
       <Button onClick={this.open.bind(this)}>4.5秒后可自动关闭</Button>
       <Button onClick={this.open2.bind(this)}>不会自动关闭</Button>
-      <Button onClick={this.open3.bind(this)}>10秒后自动关闭</Button>
+      <Button onClick={this.open3.bind(this)}>4.5秒后自动关闭</Button>
     </div>
   )
 }
