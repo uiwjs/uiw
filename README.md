@@ -106,6 +106,7 @@ This project exists thanks to all the people who contribute, either by submittin
 
 [<img alt="jaywcjlove" src="https://avatars1.githubusercontent.com/u/1680273?v=4&s=68" width="34" />](https://github.com/jaywcjlove)
 [<img alt="Xing-He" src="https://avatars0.githubusercontent.com/u/11990205?v=4&s=68" width="34" />](https://github.com/Xing-He)
+[<img alt="xr" src="https://avatars0.githubusercontent.com/u/10526437?v=4&s=68" width="34" />](https://github.com/xurui3762791)
 [<img alt="kooff88" src="https://avatars0.githubusercontent.com/u/23475830?v=4&s=68" width="34" />](https://github.com/kooff88)
 [<img alt="gonghengda" src="https://avatars2.githubusercontent.com/u/30465062?v=4&s=68" width="34" />](https://github.com/gonghengda)
 [<img alt="margox" src="https://avatars2.githubusercontent.com/u/7866354?v=4&s=68" width="34" />](https://github.com/margox)
