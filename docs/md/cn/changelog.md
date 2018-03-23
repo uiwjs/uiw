@@ -5,6 +5,17 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.7.2
+
+`2018-03-23`
+
+- 🐞 fix(Menu): Horizontal mode secondary menu display issue. [#58](https://github.com/uiw-react/uiw/issues/58) [54ff5ed](https://github.com/uiw-react/uiw/commit/54ff5ed86f0ee7892397a500d8824add1028fc38)
+- 🐞 fix(Notification): Modify the automatic closing time. ([#57](https://github.com/uiw-react/uiw/pull/57)) [@xurui3762791](https://github.com/xurui3762791) [027c2c8](https://github.com/uiw-react/uiw/commit/027c2c81b26be8008c39272eb3bbc45f262c9780)
+- 🐞 fix(HotKeys): Fix an event after fixing HotKey unmount. [384064b](https://github.com/uiw-react/uiw/commit/384064bf7987e68210f4755b4b3fcf7d6fcf2c27) 
+- 💄 refactor: Update deploy command. [8903382](https://github.com/uiw-react/uiw/commit/89033821bbb4f6c581bd5885a6ced13e0acd279a) 
+- 💄 refactor: Update uiw-iconfont package. [1bc8629](https://github.com/uiw-react/uiw/commit/1bc8629102611af2a1f1dc7ac5cff0e5d26d41cb) 
+- 📖 doc: Updatee Changelog. [bf6b951](https://github.com/uiw-react/uiw/commit/bf6b9515753014293fa6c8817e9c848317a6a14f) 
+
 ## 1.7.1
 
 `2018-02-09`
