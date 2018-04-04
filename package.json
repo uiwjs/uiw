@@ -20,7 +20,7 @@
     "build:lib": "BABEL_ENV=production babel  --ignore=src/**/__test__ --plugins transform-runtime src --out-dir lib --copy-files ",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
     "lint-staged:js": "NODE_ENV=production eslint src",
-    "deploy": "node ./script/deploy.js"
+    "deploy": "npm run build:lib && npm run build && node ./script/deploy.js"
   },
   "keywords": [
     "uiw",
