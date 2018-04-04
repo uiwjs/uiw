@@ -5,6 +5,12 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.7.3
+
+`2018-04-04`
+
+- 🐞 feat(Menu): Update uiw-iconfont v1.2.8. [72ac4a2](https://github.com/uiw-react/uiw/commit/72ac4a2c7250af9d702e4336603354d1e95c2d79)
+
 ## 1.7.2
 
 `2018-03-23`
