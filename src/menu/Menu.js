@@ -66,12 +66,13 @@ export default class Menu extends Component {
     }
   }
   render() {
-    const { prefixCls, className, style, mode, defaultActive, onSelect, onOpen, defaultOpened, ...resetProps } = this.props;
+    const { prefixCls, className, style, mode, theme, defaultActive, onSelect, onOpen, defaultOpened, ...resetProps } = this.props;
     return (
       <ul
         style={style}
         className={this.classNames(className, `${prefixCls}`, {
           [`${prefixCls}-${mode}`]: mode,
+          [`${prefixCls}-${theme}`]: theme,
         })}
         {...resetProps}
       >
@@ -88,6 +89,7 @@ Menu.childContextTypes = {
 Menu.propTypes = {
   prefixCls: PropTypes.string,
   mode: PropTypes.string,
+  theme: PropTypes.oneOf(['light', 'dark']),
   defaultActive: PropTypes.string,
   onSelect: PropTypes.func,
 };
@@ -95,4 +97,5 @@ Menu.propTypes = {
 Menu.defaultProps = {
   prefixCls: 'w-menu',
   mode: 'vertical',
+  theme: 'light',
 };

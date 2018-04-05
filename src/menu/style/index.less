@@ -133,6 +133,29 @@
   }
 }
 
+.@{w-menu}-dark {
+  background: #343a40;
+  color: #fff;
+  .disabled {
+    color: rgba(255, 255, 255, 0.36) !important;
+  }
+  .@{w-menu}-item {
+    &-group-title {
+      color: #afafaf;
+    }
+    > a {
+      color: #fff;
+    }
+    &.active {
+      background-color: #0ea042;
+      color: #fff;
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
 .@{w-sub-menu} {
   &-title {
     padding: 0 20px;
