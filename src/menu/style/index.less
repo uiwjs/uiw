@@ -99,9 +99,17 @@
         border-bottom: 1px solid #0fa120;
       }
     }
+    .w-sub-menu-selected .w-sub-menu-title {
+      border-bottom: 1px solid #0fa120;
+      font-weight: bold;
+      color: #0fa120;
+    }
     .w-sub-menu {
       float: left;
       position: relative;
+      .w-menu-item.active {
+        border-bottom: 0;
+      }
       .w-sub-menu-arrow {
         position: static;
       }
@@ -133,6 +141,7 @@
   }
 }
 
+// 暗主题样式
 .@{w-menu}-dark {
   background: #343a40;
   color: #fff;
