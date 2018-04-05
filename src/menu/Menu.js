@@ -88,7 +88,7 @@ Menu.childContextTypes = {
 
 Menu.propTypes = {
   prefixCls: PropTypes.string,
-  mode: PropTypes.string,
+  mode: PropTypes.oneOf(['vertical', 'inline', 'horizontal']),
   theme: PropTypes.oneOf(['light', 'dark']),
   defaultActive: PropTypes.string,
   onSelect: PropTypes.func,
