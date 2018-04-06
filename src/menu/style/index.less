@@ -99,7 +99,8 @@
         border-bottom: 1px solid #0fa120;
       }
     }
-    .w-sub-menu-selected .w-sub-menu-title {
+    .w-sub-menu-selected .w-sub-menu-title,
+    .w-sub-menu:hover .w-sub-menu-title {
       border-bottom: 1px solid #0fa120;
       font-weight: bold;
       color: #0fa120;
@@ -107,11 +108,21 @@
     .w-sub-menu {
       float: left;
       position: relative;
+      top: 1px;
       .w-menu-item.active {
         border-bottom: 0;
       }
       .w-sub-menu-arrow {
         position: static;
+        &::before {
+          position: absolute;
+          transform: rotate(0deg);
+          transition: transform .3s;
+        }
+      }
+      &:hover .w-sub-menu-arrow::before {
+        position: absolute;
+        transform: rotate(180deg);
       }
       &:hover .w-sub-menu-con {
         display: block;
@@ -138,6 +149,23 @@
         }
       }
     }
+  }
+}
+
+// 横向菜单按主题样式
+.@{w-menu}-horizontal.w-menu-dark {
+  .w-menu-item {
+    top: 0;
+    &.disabled {
+      color: rgba(255, 255, 255, 0.42) !important;
+    }
+  }
+  .w-sub-menu-selected .w-sub-menu-title,
+  .w-sub-menu:hover .w-sub-menu-title {
+    border-bottom: 0;
+  }
+  .w-sub-menu-con, .w-sub-menu-con a {
+    color: rgba(0, 0, 0, 0.65);
   }
 }
 
