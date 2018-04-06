@@ -14,9 +14,11 @@ function getMenuKeyList(key, menus) {
   if (menuFilter.length > 0) return true;
   let isAtive = false;
   menus.forEach((item) => {
-    if (toString.apply(item.props.children) === '[object Array]' && getMenuKeyList(key, item.props.children)) {
-      isAtive = true;
-    } else if (item.props && item.props.index === key) {
+    if (
+      (item.props && item.props.index === key) ||
+      (toString.apply(item.props.children) === '[object Array]' && getMenuKeyList(key, item.props.children)) ||
+      (toString.apply(item.props.children) === '[object Object]' && item.props.children.props.index === key)
+    ) {
       isAtive = true;
     }
   });
