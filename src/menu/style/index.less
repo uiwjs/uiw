@@ -26,7 +26,7 @@
     }
   }
   &-item {
-    line-height: 42px;
+    line-height: 43px;
     margin: 0;
     padding: 0 10px 0 20px !important;
     font-size: 14px;
@@ -160,12 +160,22 @@
       color: rgba(255, 255, 255, 0.42) !important;
     }
   }
+  .w-sub-menu {
+    top: 0;
+  }
+  .w-menu-item:hover:not(.disabled) {
+    border-bottom: 1px solid #0fa120;
+  }
   .w-sub-menu-selected .w-sub-menu-title,
   .w-sub-menu:hover .w-sub-menu-title {
-    border-bottom: 0;
+    background-color: #0ea042;
+    color: #fff;
   }
   .w-sub-menu-con, .w-sub-menu-con a {
     color: rgba(0, 0, 0, 0.65);
+  }
+  .w-sub-menu-selected .w-sub-menu-con a {
+    color: #fff;
   }
 }
 
