@@ -7,13 +7,20 @@ import Icon from '../icon';
  * getMenuKeyList 获取菜单选中的，一条线的所有key
  * @param {String} key 当前选中的 key
  * @param {Array} menus 菜单
- * @param {Array} keys 返回 key 的数组 => ['1','1-2','1-2-3'];
  */
 function getMenuKeyList(key, menus) {
-  const menuFilter = menus.filter(item => item.props.index === key);
-  if (menuFilter.length > 0) return true;
+  console.log('item::', menus);
+  // const menuFilter = menus.filter(item => item.props.index === key);
+  // if (menuFilter.length > 0) return true;
+  let menuArray = [];
+  if (toString.apply(menus) === '[object Object]') {
+    menuArray.push(menus);
+  } else {
+    menuArray = menus;
+  }
+
   let isAtive = false;
-  menus.forEach((item) => {
+  menuArray.forEach((item) => {
     if (
       (item.props && item.props.index === key) ||
       (toString.apply(item.props.children) === '[object Array]' && getMenuKeyList(key, item.props.children)) ||
@@ -53,9 +60,13 @@ export default class SubMenu extends MixinComponent {
   opened() {
     return this.menu().state.openedMenu.indexOf(this.props.index) !== -1;
   }
+  onMouseEnter = () => {
+    console.log('!~~~');
+  }
   render() {
     const { prefixCls, index, className, title, ...resetProps } = this.props;
     const isSelected = this.isCheckMenuItem(index);
+    console.log('!~~~');
     return (
       <li
         className={this.classNames(className, `${prefixCls}`, {
@@ -64,7 +75,7 @@ export default class SubMenu extends MixinComponent {
         })}
         {...resetProps}
       >
-        <div ref={(elm) => { this.submenu = elm; }} className={`${prefixCls}-title`}>
+        <div onMouseEnter={this.onMouseEnter} ref={(elm) => { this.submenu = elm; }} className={`${prefixCls}-title`}>
           <span>{this.props.title}</span>
           <Icon
             className={this.classNames(`${prefixCls}-arrow`, {

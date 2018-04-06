@@ -3,64 +3,6 @@ Menu 菜单
 
 为页面和功能提供导航的菜单列表。
 
-
-### 主题
-
-内建了两套主题 `light|dark`，默认 `light`。
-
-<!--DemoStart--> 
-```js
-class Demo extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      checked: true,
-    };
-  }
-  onSelect(index, menuItem) {
-    console.log("index::",index)
-  }
-  render() {
-    return (
-      <div>
-        <Switch checkedChildren="dark" unCheckedChildren="light" checked={this.state.checked}
-          onChange={(e,checked)=>{
-            this.setState({checked})
-            console.log(`${checked?"选中":'没有选中'}${checked}`)
-          }}
-        />
-        <br />
-        <br />
-        <Menu
-          defaultActive="1"
-          theme={this.state.checked?'dark':'light'}
-          onSelect={this.onSelect.bind(this)}
-          style={{width:240}}
-        >
-          <Menu.Item index="1"><Icon type="date" />聚划算</Menu.Item>
-          <Menu.Item index="2"><Icon type="menu" />天猫超市</Menu.Item>
-          <Menu.Item disabled index="3"><Icon type="verification" />淘抢购</Menu.Item>
-          <Menu.Item index="4"><Icon type="windows" />电器城</Menu.Item>
-          <Menu.SubMenu index="2" title={<span><Icon type="star-on" /><span>天猫超市</span></span>}>
-            <Menu.ItemGroup title="分组一">
-              <Menu.Item index="1-1-1">选项1</Menu.Item>
-              <Menu.Item index="1-1-2">选项2</Menu.Item>
-            </Menu.ItemGroup>
-            <Menu.ItemGroup title="分组2">
-              <Menu.Item index="1-1-3">选项3</Menu.Item>
-            </Menu.ItemGroup>
-          </Menu.SubMenu>
-          <Menu.Item index="5">
-            <a href="https://github.com/jaywcjlove" target="_blank" rel="noopener noreferrer">电器城- Link</a>
-          </Menu.Item>
-        </Menu>
-      </div>
-    )
-  }
-}
-```
-<!--End-->
-
 ### 基本用法
 
 <!--DemoStart--> 
@@ -71,22 +13,61 @@ class Demo extends Component {
   }
   render() {
     return (
-      <Menu defaultActive="1" mode="horizontal" onSelect={this.onSelect.bind(this)}>
+      <div>
+        <Menu defaultActive="1" mode="horizontal" onSelect={this.onSelect.bind(this)}>
+          <Menu.Item index="1"><Icon type="date" />聚划算</Menu.Item>
+          <Menu.Item index="2"><Icon type="menu" />天猫超市</Menu.Item>
+          <Menu.Item disabled index="3"><Icon type="verification" />淘抢购</Menu.Item>
+          <Menu.Item index="4"><Icon type="windows" />电器城</Menu.Item>
+          <Menu.SubMenu index="5" title={<span><Icon type="star-on" /><span>天猫超市</span></span>}>
+            <Menu.ItemGroup title="分组一">
+              <Menu.Item index="5-1">选项1</Menu.Item>
+              <Menu.Item index="5-2">选项2</Menu.Item>
+            </Menu.ItemGroup>
+            <Menu.ItemGroup title="分组2">
+              <Menu.Item index="5-3">选项3</Menu.Item>
+            </Menu.ItemGroup>
+          </Menu.SubMenu>
+          <Menu.Item index="6">
+            <a href="https://github.com/uiw-react/uiw" target="_blank" rel="noopener noreferrer">电器城- Link</a>
+          </Menu.Item>
+        </Menu>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
+### 横向菜单暗主题
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  onSelect(index, menuItem) {
+    console.log("index::",index)
+  }
+  render() {
+    return (
+      <Menu defaultActive="1" theme="dark" mode="horizontal" onSelect={this.onSelect.bind(this)}>
         <Menu.Item index="1"><Icon type="date" />聚划算</Menu.Item>
-        <Menu.Item index="2"><Icon type="menu" />天猫超市</Menu.Item>
+        <Menu.SubMenu index="2" title={<span><Icon type="star-on" /><span>天猫超市</span></span>}>
+          <Menu.Item index="2-1">选项1</Menu.Item>
+          <Menu.Item index="2-2">选项1</Menu.Item>
+        </Menu.SubMenu>
         <Menu.Item disabled index="3"><Icon type="verification" />淘抢购</Menu.Item>
         <Menu.Item index="4"><Icon type="windows" />电器城</Menu.Item>
-        <Menu.SubMenu index="2" title={<span><Icon type="star-on" /><span>天猫超市</span></span>}>
+        <Menu.SubMenu index="5" title={<span><Icon type="star-on" /><span>天猫超市</span></span>}>
           <Menu.ItemGroup title="分组一">
-            <Menu.Item index="1-1-1">选项1</Menu.Item>
-            <Menu.Item index="1-1-2">选项2</Menu.Item>
+            <Menu.Item index="5-1">选项1</Menu.Item>
+            <Menu.Item index="5-2"><a href="https://github.com/uiw-react/uiw" target="_blank" rel="noopener noreferrer">我的博客- Link</a></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="分组2">
-            <Menu.Item index="1-1-3">选项3</Menu.Item>
+            <Menu.Item index="5-3">选项3</Menu.Item>
           </Menu.ItemGroup>
         </Menu.SubMenu>
-        <Menu.Item index="5">
-          <a href="https://github.com/jaywcjlove" target="_blank" rel="noopener noreferrer">电器城- Link</a>
+        <Menu.Item index="6">
+          <a href="https://github.com/uiw-react/uiw" target="_blank" rel="noopener noreferrer">电器城- Link</a>
         </Menu.Item>
       </Menu>
     )
@@ -107,7 +88,7 @@ onSelect() {}
   render() {
     return (
       <Menu 
-        defaultActive="1" 
+        defaultActive="1"
         defaultOpened={['5']}
         style={{width:240}}
         onClose={this.onClose.bind(this)}
@@ -177,6 +158,63 @@ onSelect() {}
         </Menu.SubMenu>
         <Menu.Item index="3"><Icon type="linux"/>导航三</Menu.Item>
       </Menu>
+    )
+  }
+}
+```
+<!--End-->
+
+### 主题
+
+内建了两套主题 `light|dark`，默认 `light`。
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      checked: true,
+    };
+  }
+  onSelect(index, menuItem) {
+    console.log("index::",index)
+  }
+  render() {
+    return (
+      <div>
+        <Switch checkedChildren="dark" unCheckedChildren="light" checked={this.state.checked}
+          onChange={(e,checked)=>{
+            this.setState({checked})
+            console.log(`${checked?"选中":'没有选中'}${checked}`)
+          }}
+        />
+        <br />
+        <br />
+        <Menu
+          defaultActive="1"
+          theme={this.state.checked?'dark':'light'}
+          onSelect={this.onSelect.bind(this)}
+          style={{width:240}}
+        >
+          <Menu.Item index="1"><Icon type="date" />聚划算</Menu.Item>
+          <Menu.Item index="2"><Icon type="menu" />天猫超市</Menu.Item>
+          <Menu.Item disabled index="3"><Icon type="verification" />淘抢购</Menu.Item>
+          <Menu.Item index="4"><Icon type="windows" />电器城</Menu.Item>
+          <Menu.SubMenu index="2" title={<span><Icon type="star-on" /><span>天猫超市</span></span>}>
+            <Menu.ItemGroup title="分组一">
+              <Menu.Item index="1-1-1">选项1</Menu.Item>
+              <Menu.Item index="1-1-2">选项2</Menu.Item>
+            </Menu.ItemGroup>
+            <Menu.ItemGroup title="分组2">
+              <Menu.Item index="1-1-3">选项3</Menu.Item>
+            </Menu.ItemGroup>
+          </Menu.SubMenu>
+          <Menu.Item index="5">
+            <a href="https://github.com/uiw-react/uiw" target="_blank" rel="noopener noreferrer">电器城- Link</a>
+          </Menu.Item>
+        </Menu>
+      </div>
     )
   }
 }
@@ -294,7 +332,7 @@ class Demo extends Component {
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | mode | 菜单类型，可选值为 horizontal（水平） 和 vertical（垂直） 默认垂直所以参数`vertical`   | String | vertical |
-| theme | 主题颜色 | String[light|dark] | light |
+| theme | 主题颜色 | String[light,dark] | light |
 | defaultActive | 当前默认选中的菜单项 `index` | String | - |
 | defaultOpened | 当前默认打开的菜单项 `index` | String[] | - |
 | onClose | 折叠菜单关闭事件 | Function(index) | - |
