@@ -66,13 +66,14 @@ export default class Menu extends Component {
     }
   }
   render() {
-    const { prefixCls, className, style, mode, theme, defaultActive, onSelect, onOpen, defaultOpened, ...resetProps } = this.props;
+    const { prefixCls, className, style, mode, theme, defaultActive, inlineCollapsed, onSelect, onOpen, defaultOpened, ...resetProps } = this.props;
     return (
       <ul
         style={style}
         className={this.classNames(className, `${prefixCls}`, {
           [`${prefixCls}-${mode}`]: mode,
           [`${prefixCls}-${theme}`]: theme,
+          [`${prefixCls}-inline-collapsed`]: inlineCollapsed && mode === 'inline',
         })}
         {...resetProps}
       >
@@ -91,11 +92,13 @@ Menu.propTypes = {
   mode: PropTypes.oneOf(['vertical', 'inline', 'horizontal']),
   theme: PropTypes.oneOf(['light', 'dark']),
   defaultActive: PropTypes.string,
+  inlineCollapsed: PropTypes.bool,
   onSelect: PropTypes.func,
 };
 
 Menu.defaultProps = {
   prefixCls: 'w-menu',
   mode: 'vertical',
+  inlineCollapsed: false,
   theme: 'light',
 };
