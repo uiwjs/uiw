@@ -9,9 +9,6 @@ import Icon from '../icon';
  * @param {Array} menus 菜单
  */
 function getMenuKeyList(key, menus) {
-  console.log('item::', menus);
-  // const menuFilter = menus.filter(item => item.props.index === key);
-  // if (menuFilter.length > 0) return true;
   let menuArray = [];
   if (toString.apply(menus) === '[object Object]') {
     menuArray.push(menus);
@@ -38,20 +35,54 @@ export default class SubMenu extends MixinComponent {
     this.instanceType = 'SubMenu';
     this.state = {
       active: false,
+      mode: null,
     };
+    this.handleClick = this.handleClick.bind(this);
+    this.handleMouseOut = this.handleMouseOut.bind(this);
   }
   componentDidMount() {
     // 记录 组件对象
     this.menu().state.submenus[this.props.index] = this;
     this.initEvents();
+    this.setState({
+      mode: this.menu().props.mode,
+    });
+  }
+  componentWillReceiveProps() {
+    if (this.state.mode !== this.menu().props.mode) {
+      this.unMountEvents();
+      this.setState({
+        mode: this.menu().props.mode,
+      });
+    }
+  }
+  unMountEvents() {
+    this.submenu.removeEventListener('click', this.handleClick);
+    this.submenuwarpper.removeEventListener('mouseenter', this.handleClick);
+    this.submenuwarpper.removeEventListener('mouseleave', this.handleMouseOut);
+    this.initEvents();
   }
   initEvents() {
-    if (this.menu().props.mode !== 'horizontal') {
-      this.submenu.addEventListener('click', this.handleClick.bind(this));
+    // 切换 mode 弹出的浮层隐藏
+    this.menu().closeMenu(this.props.index);
+    // horizontal(水平) 和 vertical(垂直) 和 inline
+    if (this.menu().props.mode === 'vertical') {
+      this.submenu.addEventListener('click', this.handleClick);
+    } else if (this.menu().props.mode === 'inline') {
+      this.submenuwarpper.addEventListener('mouseenter', this.handleClick);
+      this.submenuwarpper.addEventListener('mouseleave', this.handleMouseOut);
     }
+  }
+  handleMouseOut() {
+    this.menu().handleSubmenuClick(this.props.index);
   }
   handleClick() {
     this.menu().handleSubmenuClick(this.props.index);
+    const parent = this.submenulist.parentNode;
+    if (parent && this.menu().props.mode === 'inline') {
+      this.submenulist.style.left = `${parent.clientWidth}px`;
+      this.submenulist.style.top = 0;
+    }
   }
   isCheckMenuItem(idx) {
     if (!idx) return false;
@@ -60,22 +91,19 @@ export default class SubMenu extends MixinComponent {
   opened() {
     return this.menu().state.openedMenu.indexOf(this.props.index) !== -1;
   }
-  onMouseEnter = () => {
-    console.log('!~~~');
-  }
   render() {
     const { prefixCls, index, className, title, ...resetProps } = this.props;
     const isSelected = this.isCheckMenuItem(index);
-    console.log('!~~~');
     return (
       <li
+        ref={(elm) => { this.submenuwarpper = elm; }}
         className={this.classNames(className, `${prefixCls}`, {
           opened: this.opened(),
           [`${prefixCls}-selected`]: isSelected,
         })}
         {...resetProps}
       >
-        <div onMouseEnter={this.onMouseEnter} ref={(elm) => { this.submenu = elm; }} className={`${prefixCls}-title`}>
+        <div ref={(elm) => { this.submenu = elm; }} className={`${prefixCls}-title`}>
           <span>{this.props.title}</span>
           <Icon
             className={this.classNames(`${prefixCls}-arrow`, {
@@ -84,7 +112,7 @@ export default class SubMenu extends MixinComponent {
             type="arrow-down"
           />
         </div>
-        <ul className={this.classNames(`${prefixCls}-con`, { opened: this.opened() })} >
+        <ul ref={(elm) => { this.submenulist = elm; }} className={this.classNames(`${prefixCls}-con`, { opened: this.opened() })} >
           {this.props.children}
         </ul>
       </li>
