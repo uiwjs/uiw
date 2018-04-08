@@ -5,6 +5,12 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.8.2
+
+`2018-04-09`
+
+- 🐞 fix(Menu): Fix Menu shake issue. [5a24fd3](https://github.com/uiw-react/uiw/commit/5a24fd3ff5385461551a5e9d9bc389aa6d8249e5)
+
 ## 1.8.1
 
 `2018-04-08`
