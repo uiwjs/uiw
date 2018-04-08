@@ -5,6 +5,23 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.8.0
+
+`2018-04-08`
+
+- 🌟 feat(Menu): Add mode inline parameters. [1f991d2](https://github.com/uiw-react/uiw/commit/1f991d242ac39c444b5d136acb0e8e52caa4e85d)
+- 🌟 feat(Menu): Add horizontal menu dark theme. [dc82719](https://github.com/uiw-react/uiw/commit/dc827196c9f5dbccf40223eda41f390f77ad371a)
+- 🌟 feat(Menu): Add theme attribute. [e39be69](https://github.com/uiw-react/uiw/commit/e39be69dbd9d3cae904ae2292eb91d1a1497ae37)
+- 🌟 feat(Menu): mode adde inline [b819d1c](https://github.com/uiw-react/uiw/commit/b819d1c3be02042006a5525be131cd631c64dfad)
+- 🐞 fix(Menu): Fix Menu selected style. [9e4a3cd](https://github.com/uiw-react/uiw/commit/9e4a3cddfda332e892c06cf9168885eb245b27aa)
+- 🐞 fix(Menu): Fix the submenu selection issue. [bd1e4b2](https://github.com/uiw-react/uiw/commit/bd1e4b2d0b9e0f892167a605760514f94bcbd028)
+- 🐞 fix(Menu): fix horizontal mode without selectinng styles. [d4ad53f](https://github.com/uiw-react/uiw/commit/d4ad53feecc3513d2469b9ea26f020323f6eac3a)
+- 📖 doc: Update Menu Component doc. [d51a8fb](https://github.com/uiw-react/uiw/commit/d51a8fb0412ff36ee94d23bebddcbbff0f8584c0)
+- 📖 doc(Menu): Update example. [3d329f8](https://github.com/uiw-react/uiw/commit/3d329f8f81541278b61228fc8e224946eafdf4a3)
+- 📖 Update uiw-doc.png [2a5b007](https://github.com/uiw-react/uiw/commit/2a5b0075b95e1f520916d782dca9ae663009becb)
+- 💄 chore: Update deploy command. [a1cad27](https://github.com/uiw-react/uiw/commit/a1cad2784f688b98cdf00bb9fd70e8b375b7bc54)
+- 💄 style(Mennu): Change menu ative style. [68eef21](https://github.com/uiw-react/uiw/commit/68eef2148aa980263199bb69f682e5c4985bace1)
+
 ## 1.7.3
 
 `2018-04-04`
