@@ -34,7 +34,17 @@ export default class Menu extends Component {
     if (this.props.onSelect) {
       this.props.onSelect(index, menuItem, this);
     }
-    this.setState({ defaultActive });
+    this.setState({ defaultActive }, () => {
+      if (this.props.mode === 'inline') {
+        // 处理菜单 mouseenter 引发的抖动问题
+        this.modeinlineTimer = true;
+        this.setState({ openedMenu: [] });
+        this.timer = setTimeout(() => {
+          this.modeinlineTimer = false;
+          clearTimeout(this.timer);
+        }, 0);
+      }
+    });
   }
   // 打开子菜单
   openMenu(index) {
@@ -50,9 +60,9 @@ export default class Menu extends Component {
     this.setState({ openedMenu });
   }
   // 点击子菜单的标题事件
-  handleSubmenuClick(index) {
+  handleSubmenuClick(index, type) {
     const isOpened = this.state.openedMenu.indexOf(index) !== -1;
-    if (isOpened) {
+    if (type === 'enter' || isOpened) {
       this.closeMenu(index);
       if (this.props.onClose) {
         this.props.onClose(index);
