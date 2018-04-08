@@ -475,7 +475,7 @@ class Demo extends Component {
         <Menu.Item index="2-2">选项2</Menu.Item>
         <Menu.Divider style={{background:'#3c90f2'}}/>
         <Menu.Item index="2-3">选项2</Menu.Item>
-        <Menu.Divider style={{background:'#3c90f2',height:3}}/>
+        <Menu.Divider style={{background:'#0fa120',height:3}}/>
         <Menu.Item index="2-4">选项2</Menu.Item>
         <Menu.Item index="2-5">选项2</Menu.Item>
         <Menu.Item index="2-6">选项2</Menu.Item>
