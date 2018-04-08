@@ -5,6 +5,13 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.8.3
+
+`2018-04-09`
+
+- 🎨 style(Menu): Modify the popup style. [60193af](https://github.com/uiw-react/uiw/commit/60193af3157ea55704d6b2f9fbf0e3b1d4556f2a)
+- 💄 chore(Menu): Add lib build watch command. [1752d28](https://github.com/uiw-react/uiw/commit/1752d280a8b0a5c299a923207849ba19cfd1fc9a)
+
 ## 1.8.2
 
 `2018-04-09`
