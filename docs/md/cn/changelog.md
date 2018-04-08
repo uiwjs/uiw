@@ -5,6 +5,12 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.8.1
+
+`2018-04-08`
+
+- 🐞 fix(Menu): Fix Menu defaultOpened fail. [f49af35](https://github.com/uiw-react/uiw/commit/f49af354b65d807e5c8f2d38fe3f57b29047ce36)
+
 ## 1.8.0
 
 `2018-04-08`
