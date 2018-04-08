@@ -52,7 +52,6 @@ export default class Menu extends Component {
   // 点击子菜单的标题事件
   handleSubmenuClick(index) {
     const isOpened = this.state.openedMenu.indexOf(index) !== -1;
-
     if (isOpened) {
       this.closeMenu(index);
       if (this.props.onClose) {
@@ -92,6 +91,7 @@ Menu.propTypes = {
   mode: PropTypes.oneOf(['vertical', 'inline', 'horizontal']),
   theme: PropTypes.oneOf(['light', 'dark']),
   defaultActive: PropTypes.string,
+  defaultOpened: PropTypes.array,
   inlineCollapsed: PropTypes.bool,
   onSelect: PropTypes.func,
 };
@@ -99,6 +99,7 @@ Menu.propTypes = {
 Menu.defaultProps = {
   prefixCls: 'w-menu',
   mode: 'vertical',
+  defaultOpened: [],
   inlineCollapsed: false,
   theme: 'light',
 };

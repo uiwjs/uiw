@@ -51,6 +51,7 @@ export default class SubMenu extends MixinComponent {
   componentWillReceiveProps() {
     if (this.state.mode !== this.menu().props.mode) {
       this.unMountEvents();
+      this.menu().closeMenu(this.props.index);
       this.setState({
         mode: this.menu().props.mode,
       });
@@ -64,7 +65,6 @@ export default class SubMenu extends MixinComponent {
   }
   initEvents() {
     // 切换 mode 弹出的浮层隐藏
-    this.menu().closeMenu(this.props.index);
     // horizontal(水平) 和 vertical(垂直) 和 inline
     if (this.menu().props.mode === 'vertical') {
       this.submenu.addEventListener('click', this.handleClick);
