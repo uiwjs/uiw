@@ -38,11 +38,11 @@ export default class SubMenu extends MixinComponent {
       mode: null,
     };
     this.handleClick = this.handleClick.bind(this);
-    this.handleMouseOut = this.handleMouseOut.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
   }
   componentDidMount() {
     // 记录 组件对象
-    this.menu().state.submenus[this.props.index] = this;
+    // this.menu().state.submenus[this.props.index] = this;
     this.initEvents();
     this.setState({
       mode: this.menu().props.mode,
@@ -60,7 +60,7 @@ export default class SubMenu extends MixinComponent {
   unMountEvents() {
     this.submenu.removeEventListener('click', this.handleClick);
     this.submenuwarpper.removeEventListener('mouseenter', this.handleClick);
-    this.submenuwarpper.removeEventListener('mouseleave', this.handleMouseOut);
+    this.submenuwarpper.removeEventListener('mouseleave', this.handleMouseLeave);
     this.initEvents();
   }
   initEvents() {
@@ -70,16 +70,24 @@ export default class SubMenu extends MixinComponent {
       this.submenu.addEventListener('click', this.handleClick);
     } else if (this.menu().props.mode === 'inline') {
       this.submenuwarpper.addEventListener('mouseenter', this.handleClick);
-      this.submenuwarpper.addEventListener('mouseleave', this.handleMouseOut);
+      this.submenuwarpper.addEventListener('mouseleave', this.handleMouseLeave);
     }
   }
-  handleMouseOut() {
-    this.menu().handleSubmenuClick(this.props.index);
+  isModeLineHideMenu() {
+    const mode = this.menu().props.mode;
+    if (mode === 'inline' && this.menu().modeinlineTimer) return true;
+    return false;
+  }
+  handleMouseLeave() {
+    if (this.isModeLineHideMenu()) return;
+    this.menu().handleSubmenuClick(this.props.index, 'enter');
   }
   handleClick() {
+    if (this.isModeLineHideMenu()) return;
     this.menu().handleSubmenuClick(this.props.index);
+    const mode = this.menu().props.mode;
     const parent = this.submenulist.parentNode;
-    if (parent && this.menu().props.mode === 'inline') {
+    if (parent && mode === 'inline') {
       this.submenulist.style.left = `${parent.clientWidth}px`;
       this.submenulist.style.top = 0;
     }

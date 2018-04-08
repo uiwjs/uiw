@@ -338,6 +338,13 @@
   .w-sub-menu-con .w-sub-menu-arrow {
     display: inherit !important;
   }
+  .w-sub-menu-con i[class^='w-icon'] {
+    display: none;
+  }
+  .w-sub-menu-con i[class^='w-icon'] + span {
+    display: block;
+    opacity: 1;
+  }
 }
 
 // 暗主题样式
@@ -346,6 +353,9 @@
   color: #fff;
   .disabled {
     color: rgba(255, 255, 255, 0.36) !important;
+  }
+  .@{w-menu}-vertical {
+    border-right-color: transparent;
   }
   .@{w-menu}-item {
     &-group-title {
