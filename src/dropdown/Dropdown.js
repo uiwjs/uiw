@@ -97,6 +97,7 @@ export default class Dropdown extends Component {
         <Transition in={visible} sequence="fadeIn">
           <div className={`${prefixCls}-menu-warpper`}>
             {!disabled && menu && !disabled && React.cloneElement(menu, {
+              ...menu.props,
               onSelect: this.onSelectMenu,
             })}
           </div>
