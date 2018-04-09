@@ -66,10 +66,10 @@ export default class Dropdown extends Component {
   }
   onSelectMenu = (index, menuItem) => {
     const { menu, onVisibleChange } = this.props;
-    if (this.showDropdown && menu) {
+    if (menu && menu.props) {
       this.setState({ visible: false }, () => {
         this.showDropdown = false;
-        menu && menu.props && menu.props.onSelect && menu.props.onSelect(index, menuItem, menu);
+        menu.props.onSelect && menu.props.onSelect(index, menuItem, menu);
         onVisibleChange(this.state.visible);
       });
     }
