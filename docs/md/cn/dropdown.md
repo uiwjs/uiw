@@ -108,7 +108,7 @@ class Demo extends Component {
         </Dropdown>
         <Divider />
         <Dropdown trigger="hover" menu={menu}>
-          <Button>下拉菜单</Button>
+          <Button>Hover下拉菜单</Button>
         </Dropdown>
       </div>
     )
