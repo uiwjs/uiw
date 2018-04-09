@@ -5,11 +5,17 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.8.7
+
+`2018-04-10`
+
+- 🐞 fix(Dropdown): Menu event in Dropdown fails. [2176361](https://github.com/uiw-react/uiw/commit/2176361954b59b472ff31e095f4244e3cfb32838)
+
 ## 1.8.6
 
 `2018-04-09`
 
-- 🎨 - style(Menu): Modify popup style. [92b11f8](https://github.com/uiw-react/uiw/commit/92b11f87bc396cc66b1e6020672de01e529ffc33)
+- 🎨 style(Menu): Modify popup style. [92b11f8](https://github.com/uiw-react/uiw/commit/92b11f87bc396cc66b1e6020672de01e529ffc33)
 
 ## 1.8.3
 
