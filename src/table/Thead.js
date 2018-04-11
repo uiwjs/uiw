@@ -94,12 +94,6 @@ export default class Thead extends Component {
     }
     return arr;
   }
-  // /**
-  //  * 获取被禁用的勾选数量
-  //  */
-  // getCheckedDisableCount() {
-  //   const {} = this.parent()
-  // }
   /**
    * [renderHead 返回tr节点]
    * @param  {[bool]}   indeterminate [是否全选状态]
