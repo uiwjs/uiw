@@ -9,7 +9,7 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 `2018-04-11`
 
-- 🐞 fix(Table): Table component will receive props. [e044e02](hhttps://github.com/uiw-react/uiw/commit/985ccd1af8fe869d6ca445e501e8b32b353c15c1)
+- 🐞 fix(Table): Table component will receive props. [e044e02](https://github.com/uiw-react/uiw/commit/e044e024e3d1797fa3b1675ceb75e95468d23128)
 
 ## 1.8.8
 
