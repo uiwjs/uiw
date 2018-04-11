@@ -205,12 +205,13 @@ export default class Table extends Component {
     return isFixed;
   }
   render() {
-    const { prefixCls, className, rowSelection, caption, footer, data, width, paging, loading } = this.props;
+    const { prefixCls, className, rowClassName, rowSelection, caption, footer, data, width, paging, loading } = this.props;
     const { headchecked, trHoverClassName, columns } = this.state;
     const { height } = this.props;
     const tableTbody = refname => (<Tbody
       ref={(componet) => { this[refname] = componet; }}
       type={refname}
+      rowClassName={rowClassName}
       rowSelection={rowSelection}
       trHoverClassName={trHoverClassName}
       onTrHover={this.onTrHover}
@@ -363,6 +364,10 @@ Table.defaultProps = {
 Table.propTypes = {
   columns: PropTypes.array,
   prefixCls: PropTypes.string,
+  rowClassName: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.string,
+  ]),
   dataIndex: PropTypes.string,
   size: PropTypes.oneOf(['large', 'default', 'small']),
   data: PropTypes.array,

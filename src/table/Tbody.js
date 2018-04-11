@@ -119,14 +119,16 @@ export default class Tbody extends Component {
     this.props.onTrHover(ty, idx);
   }
   render() {
-    const { data, trHoverClassName, prefixCls } = this.props;
+    const { data, trHoverClassName, rowClassName, prefixCls } = this.props;
     return (
       <tbody>
         {data.map((item, index) => {
+          const trClassName = typeof (rowClassName) === 'function' ? rowClassName(item, index) : rowClassName;
           return (
             <tr
               className={this.classNames({
                 [`${prefixCls}-tr-hover`]: trHoverClassName[0] === index,
+                [`${trClassName}`]: trClassName,
               })}
               onMouseEnter={() => this.onMouseOver('enter', index)}
               onMouseLeave={() => this.onMouseOver('leave', index)}
