@@ -30,7 +30,7 @@ describe('<Menu>', () => {
 
   it('Test mode attributes.', () => {
     wrapper.setProps({ mode: 'vertical' });
-    expect(wrapper.find('.w-menu').at(0).prop('className')).toBe('w-menu w-menu-vertical');
+    expect(wrapper.find('.w-menu').at(0).prop('className')).toBe('w-menu w-menu-vertical w-menu-light');
   });
 
   it('Test onSelect event.', () => {
