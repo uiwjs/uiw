@@ -60,7 +60,7 @@ export default class Table extends Component {
       delete data[i]._checked;
       delete data[i]._disabled;
     }
-    if (props.rowSelection) {
+    if (props.rowSelection && columns.length > 0 && columns.filter(item => item.key === '_select').length === 0) {
       columns.unshift({ title: '_select', key: '_select', fixed: 'left' });
     }
     return {
@@ -73,6 +73,22 @@ export default class Table extends Component {
       headIndeterminate: rowsCount > 0 && rowsCount < data.length,
       headchecked: rowsCount === data.length,
     };
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.data !== this.props.data) {
+      const rowsDisabled = {};
+      const rowsChecked = {};
+      const rowCheckedDisable = {};
+      nextProps.data.forEach((item, idx) => {
+        if (item._checked && item._disabled) rowCheckedDisable[idx] = item;
+        if (item._disabled) rowsDisabled[idx] = item;
+        if (item._checked) rowsChecked[idx] = item;
+      });
+      this.setState({ data: nextProps.data, rowsDisabled, rowCheckedDisable });
+    }
+    if (nextProps.columns !== this.props.columns) {
+      this.setState({ columns: nextProps.columns });
+    }
   }
   componentDidMount() {
     // leftFixedTop
