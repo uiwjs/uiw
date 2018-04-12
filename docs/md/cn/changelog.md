@@ -5,6 +5,21 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.8.11
+
+`2018-04-12`
+
+- style(Button): Transition animation changes. [8856f35](https://github.com/uiw-react/uiw/commit/8856f354c884d38d20821ccc6300d24ea28db219)
+- style(Card): Modify the Card style. [#60](https://github.com/uiw-react/uiw/commit/8856f354c884d38d20821ccc6300d24ea28db219) [18459bd](https://github.com/uiw-react/uiw/commit/18459bde583a03339102e71e60cd79256ad58737)
+- style(Modal): Modify the status icon. [e6a671c](https://github.com/uiw-react/uiw/commit/e6a671cd9ea752c78d084849a892ca2cf2b7e48b)
+- test(Menu): Update Menu test case. [3467030](https://github.com/uiw-react/uiw/commit/3467030f1ccdd3ae40edf4fc7224e57cccb8f6e8)
+
+## 1.8.10
+
+`2018-04-11`
+
+- feat(Tabel): Add rowClassName props. [360109c](https://github.com/uiw-react/uiw/commit/360109cbc36f50d7f2a075835f388b16761fff6a)
+
 ## 1.8.9
 
 `2018-04-11`
