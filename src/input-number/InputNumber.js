@@ -55,8 +55,8 @@ export default class InputNumber extends Component {
     const { prefixCls } = this.props;
     return (
       <div className={`${prefixCls}-control`}>
-        <div className={this.classNames(`${prefixCls}-push`, 'w-transition-base')} onClick={this.handleClick.bind(this, 'up')}><Icon type="arrow-up" /></div>
-        <div className={this.classNames(`${prefixCls}-minus`, 'w-transition-base')} onClick={this.handleClick.bind(this, 'down')}><Icon type="arrow-down" /></div>
+        <div className={this.classNames(`${prefixCls}-push`)} onClick={this.handleClick.bind(this, 'up')}><Icon type="arrow-up" /></div>
+        <div className={this.classNames(`${prefixCls}-minus`)} onClick={this.handleClick.bind(this, 'down')}><Icon type="arrow-down" /></div>
       </div>
     );
   }

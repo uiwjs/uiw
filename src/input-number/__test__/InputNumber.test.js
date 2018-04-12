@@ -27,6 +27,6 @@ describe('<InputNumber>', () => {
     const push = wrapper.find('.w-input-number-push').at(0);
     push.simulate('click');
     expect(wrapperState.value).toBe(2);
-    expect(push.html()).toContain('<div class="w-input-number-push w-transition-base"><i class="w-icon-arrow-up"></i></div>');
+    expect(push.html()).toContain('<div class="w-input-number-push"><i class="w-icon-arrow-up"></i></div>');
   });
 });
