@@ -84,7 +84,16 @@ export default class Table extends Component {
         if (item._disabled) rowsDisabled[idx] = item;
         if (item._checked) rowsChecked[idx] = item;
       });
-      this.setState({ data: nextProps.data, rowsDisabled, rowCheckedDisable });
+      this.setState({
+        data: nextProps.data.map((item) => {
+          delete item._checked;
+          delete item._disabled;
+          return item;
+        }),
+        rowsDisabled,
+        rowsChecked,
+        rowCheckedDisable,
+      });
     }
     if (nextProps.columns !== this.props.columns) {
       this.setState({ columns: nextProps.columns });
