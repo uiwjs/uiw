@@ -530,11 +530,10 @@ class Demo extends Component {
 |------ |-------- |---------- |-------- |
 | onSelect | 用户手动选择/取消选择某一行的回调，配置onSelect | Function(选中行的数据, 选中的行数, 是否选中, 选中的所有数据,e) | - |
 | onSelectAll | 用户手动选择/取消选择所有列的回调 | Function(selectedRowKeys, selectedRows) | - |
-| onCellClick | 单元格点击回调 | Function(selectDatas, lineNumber, checked) | - |
 
 ### Table data
 
-Tables中的data描述数
+Tables中的data描述数, 注意参数是有顺序的，必须放置最前面
 
 | 参数 | 说明 | 类型 | 默认值 |
 |------ |-------- |---------- |-------- |
