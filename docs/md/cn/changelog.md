@@ -5,6 +5,12 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.8.13
+
+`2018-04-14`
+
+- 🌟 feat(Table): Table column event onCellClick enhancement. [2a79dbb](https://github.com/uiw-react/uiw/commit/2a79dbbe97a7ba048ab0ec9cd888a8a5562a8925)
+
 ## 1.8.12
 
 `2018-04-13`
