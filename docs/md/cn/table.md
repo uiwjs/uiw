@@ -511,7 +511,7 @@ class Demo extends Component {
 
 ### Table Column
 
-列描述数据对象，是 columns 中的一项，Column 使用相同的 API。
+列描述数据对象，是 columns 中的一项，`Column` 使用相同的 API。
 
 | 参数 | 说明 | 类型 | 默认值 |
 |------ |-------- |---------- |-------- |
@@ -520,7 +520,7 @@ class Demo extends Component {
 | fixed | 列是否固定，`left`、`right` | string | - |
 | render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前行数据，行索引，@return里面可以设置表格行/列合并 | Function(text, rowData, index) {} | - |
 | className | 列的 className | string | - |
-| onCellClick | 单元格点击回调 | Function(rowData, event) | - |
+| onCellClick | 单元格点击回调 | Function(cellData, colNumber, rowNum, columnKey, rowData, ischecked, event) | - |
 
 ### Table rowSelection
 

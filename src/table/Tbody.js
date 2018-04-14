@@ -55,7 +55,7 @@ export default class Tbody extends Component {
       const keyname = columns[i].key;
       const attri = {};
       if (renders[keyname] && renders[keyname].onCellClick) {
-        attri.onClick = renders[keyname].onCellClick.bind(this, item[keyname]);
+        attri.onClick = renders[keyname].onCellClick.bind(this, item[keyname], i, rownum, keyname, item, !!rowsChecked[rownum]);
       }
       if (renders[keyname] && renders[keyname].className) {
         attri.className = renders[keyname].className;
