@@ -105,6 +105,9 @@
       border-bottom: 1px solid #0fa120;
       color: #0fa120;
     }
+    .w-sub-menu-arrow {
+      line-height: 0;
+    }
     .w-sub-menu {
       float: left;
       position: relative;
@@ -159,6 +162,9 @@
     line-height: 42px;
     position: relative;
     white-space: nowrap;
+    & > * {
+      line-height: 42px;
+    }
     cursor: pointer;
       transition: color @transition-time;
     &:hover {
@@ -168,6 +174,7 @@
   &-arrow {
     transition: transform @transition-time;
     position: absolute;
+    vertical-align: middle;
     margin-left: 5px;
     transform: rotate(0deg) scale(0.9);
     right: 16px;

@@ -72,8 +72,8 @@ class Demo extends Component {
           <Breadcrumb.Item href="https://github.com/jaywcjlove" target="_blank">
             <Icon type="verification"/><span>活动管理</span>
           </Breadcrumb.Item>
-          <Breadcrumb.Item separator="/">
-              <a href="/">活动列表</a>
+          <Breadcrumb.Item separator=">">
+            <a href="/">活动列表</a>
           </Breadcrumb.Item>
           <Breadcrumb.Item>活动详情</Breadcrumb.Item>
         </Breadcrumb>

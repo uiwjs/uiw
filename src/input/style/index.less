@@ -83,9 +83,15 @@
       height: 100%;
       text-align: center;
       vertical-align: middle;
-    }
-    &-left &-inner, &-right &-inner {
-      width: 100%;
+      > i, &::after {
+        vertical-align: middle;
+      }
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 100%;
+      }
     }
     &-inner:before {
       position: relative;

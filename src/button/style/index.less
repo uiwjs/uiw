@@ -20,6 +20,11 @@
   .button-size(@padding-base-vertical, @padding-base-horizontal, @font-size-base, @line-height-base, @btn-border-radius-base);
   user-select: none;
   outline: 0;
+  i >, > span {
+    pointer-events: none;
+    vertical-align: middle;
+    line-height: 1;
+  }
   & + & {
     margin-left: 5px;
   }
@@ -69,7 +74,6 @@
   }
   i[class^="w-icon"] + span {
     margin-left: 5px;
-    vertical-align: middle;
   }
   &.w-transition-base.disabled:after,
   &.w-transition-base[disabled]:after {

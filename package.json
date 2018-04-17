@@ -46,7 +46,7 @@
     "prop-types": "~15.6.0",
     "react-slick": "~0.16.0",
     "react-transition-group": "~2.2.1",
-    "uiw-iconfont": "^1.2.8"
+    "uiw-iconfont": "^1.2.9"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",

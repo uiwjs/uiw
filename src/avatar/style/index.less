@@ -13,8 +13,11 @@
   font-size: 18px;
   width: 30px;
   height: 30px;
-  line-height: 30px;
+  line-height: 32px;
   border-radius: 3px;
+  > * {
+    line-height: inherit;
+  }
   & + .@{avatar-prefix-cls} {
     margin-left: 5px;
   }
@@ -22,18 +25,24 @@
     height: 18px;
     width: 18px;
     font-size: 12px;
+  }
+  &-mini, &-small > * {
     line-height: 18px;
   }
   &-small {
     height: 24px;
     width: 24px;
     font-size: 12px;
+  }
+  &-small, &-small > * {
     line-height: 24px;
   }
   &-large {
     height: 40px;
     width: 40px;
     font-size: 24px;
+  }
+  &-large, &-large > * {
     line-height: 40px;
   }
   &-circle {

@@ -16,7 +16,7 @@ class Demo extends Component {
         <Button type="primary" active>Button</Button>
         <Button type="primary" size="small">more <Icon type="arrow-down" /></Button>
         <Button type="link"> (超连接样式)link </Button>
-        <br/><br/>
+        <Divider />
         <Button type="primary">主要按钮</Button>
         <Button type="success">成功按钮</Button>
         <Button type="info">信息按钮</Button>
@@ -44,27 +44,24 @@ class Demo extends Component {
           <Button disabled>Disabled</Button>
           <Button>Right</Button>
         </ButtonGroup>
-
-        &nbsp;&nbsp;
+        
+        <Divider />
 
         <ButtonGroup>
           <Button>Left</Button>
         </ButtonGroup>
-        <br/>
-        <br/>
+        <Divider />
         <ButtonGroup>
           <Button size="small" type="info">Secondary Normal</Button>
           <Button size="small" type="info">Secondary Disabled</Button>
         </ButtonGroup>
-        <br/>
-        <br/>
+        <Divider />
         <ButtonGroup>
           <Button size="small">Secondary Normal</Button>
           <Button size="small">Secondary Disabled</Button>
           <Button size="small"><Icon type="arrow-down" /></Button>
         </ButtonGroup>
-        <br/>
-        <br/>
+        <Divider />
         <ButtonGroup>
           <Button type="warn">Warn Normal</Button>
           <Button type="warn" disabled>Disabled</Button>
@@ -91,14 +88,32 @@ class Demo extends Component {
           <Button type="success" icon="edit" />
         </ButtonGroup>
 
-        &nbsp;&nbsp;
+        <Divider />
 
         <ButtonGroup>
           <Button size="small"><Icon type="arrow-left" />返回</Button>
           <Button size="small">前进<Icon type="arrow-right" /></Button>
         </ButtonGroup>
+        
 
-        <br/><br/>
+        <ButtonGroup>
+          <Button size="small" icon="upload" />
+          <Button size="small">返回</Button>
+          <Button size="small">前进<Icon type="arrow-right" /></Button>
+        </ButtonGroup>
+        
+        <ButtonGroup>
+          <Button size="default"><Icon type="arrow-left" /></Button>
+          <Button size="default"><Icon type="arrow-right" /></Button>
+        </ButtonGroup>
+
+        <ButtonGroup>
+          <Button size="large"><Icon type="arrow-left" />返回</Button>
+          <Button size="large">前进<Icon type="arrow-right" /></Button>
+        </ButtonGroup>
+
+
+        <Divider />
 
         <ButtonGroup>
           <Button icon="upload" />
@@ -109,7 +124,7 @@ class Demo extends Component {
           <Button icon="verification" />
         </ButtonGroup>
 
-        <br/><br/>
+        <Divider />
 
         <ButtonGroup>
           <Button type="link" icon="upload" />
