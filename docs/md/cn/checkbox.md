@@ -17,9 +17,9 @@ class Demo extends Component {
   render() {
     return (
       <div>
-          <Checkbox onChange={this.log.bind(this)}>未选中</Checkbox>
-          <Checkbox onChange={this.log.bind(this)} checked >选中</Checkbox>
-          <Checkbox onChange={this.log.bind(this)} indeterminate >半选中</Checkbox>
+        <Checkbox onChange={this.log.bind(this)}>未选中</Checkbox>
+        <Checkbox onChange={this.log.bind(this)} checked >选中</Checkbox>
+        <Checkbox onChange={this.log.bind(this)} indeterminate >半选中</Checkbox>
       </div>
     )
   }
@@ -41,52 +41,15 @@ class Demo extends Component {
   render() {
     return (
       <div>
-          <Checkbox disabled onChange={this.log.bind(this)}>未选中禁用</Checkbox>
-          <Checkbox disabled onChange={this.log.bind(this)} checked>选中禁用</Checkbox>
-          <Checkbox disabled onChange={this.log.bind(this)} indeterminate>半选中禁用</Checkbox>
+        <Checkbox disabled onChange={this.log.bind(this)}>未选中禁用</Checkbox>
+        <Checkbox disabled onChange={this.log.bind(this)} checked>选中禁用</Checkbox>
+        <Checkbox disabled onChange={this.log.bind(this)} indeterminate>半选中禁用</Checkbox>
       </div>
     )
   }
 }
 ```
 <!--End-->
-
-
-
-### 受控的
-
-联动 checkbox。
-
-<!--DemoStart-->
-```js
-class Demo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      indeterminate: true
-    }
-  }
-  log(e,value){
-    console.log(`checked = ${e.target.checked} - ${value}`);
-  }
-  handleChange(){
-    console.log("!this.state.indeterminate::",!this.state.indeterminate)
-    this.setState({
-      indeterminate:!this.state.indeterminate
-    })
-  }
-  render() {
-    return (
-      <div>
-        <Checkbox indeterminate={this.state.indeterminate} onChange={this.log.bind(this)}>半选中</Checkbox>
-        <Button size="mini" onClick={this.handleChange.bind(this)}>切换半选中</Button>
-      </div>
-    )
-  }
-}
-```
-<!--End-->
-
 
 ### 切换半选中
 
@@ -170,7 +133,7 @@ class Demo extends Component {
     ];
     const CheckboxGroup = Checkbox.Group;
     return (
-      <div>            
+      <div>
         <CheckboxGroup 
           options={plainOptions} 
           checkedValues={['Apple']} 
@@ -267,6 +230,59 @@ class Demo extends Component {
 }
 ```
 <!--End-->
+
+### 受控的
+
+联动 checkbox。
+
+<!--DemoStart-->
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      indeterminate: true,
+      plainOptions: ['Apple', 'Pear', 'Orange'],
+      checkedValues: ['Apple']
+    }
+  }
+  log(e,value){
+    console.log(`checked = ${e.target.checked} - ${value}`);
+  }
+  handleChange(){
+    console.log("!this.state.indeterminate::", !this.state.indeterminate)
+    this.setState({
+      indeterminate:!this.state.indeterminate
+    })
+  }
+  handleGroupChange() {
+    this.setState({
+      checkedValues: this.state.checkedValues.length === 0 ? this.state.plainOptions : [],
+    })
+  }
+  render() {
+    return (
+      <div>
+        <Checkbox.Group 
+          options={this.state.plainOptions} 
+          checkedValues={this.state.checkedValues} 
+          onChange={(e,checkedValues,value,checked)=>{
+            this.setState({checkedValues});
+          }} 
+        />
+        <Button size="mini" onClick={this.handleGroupChange.bind(this)}>
+          {this.state.checkedValues.length === 0 ? '全部选中' : '全部取消选中'}
+        </Button>
+        <Divider />
+        <Checkbox indeterminate={this.state.indeterminate} onChange={this.log.bind(this)}>半选中</Checkbox>
+        <Button size="mini" onClick={this.handleChange.bind(this)}>切换半选中</Button>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
 
 ## API
 
