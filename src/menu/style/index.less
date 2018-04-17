@@ -23,6 +23,9 @@
   }
   i[class^='w-icon'] {
     margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
     &:before {
       vertical-align: top;
     }
@@ -116,7 +119,7 @@
         border-bottom: 0;
       }
       .w-sub-menu-arrow {
-        position: static;
+        position: static !important;
         &::before {
           position: absolute;
           transform: rotate(0deg);
@@ -173,7 +176,7 @@
   }
   &-arrow {
     transition: transform @transition-time;
-    position: absolute;
+    position: absolute !important;
     vertical-align: middle;
     margin-left: 5px;
     transform: rotate(0deg) scale(0.9);
