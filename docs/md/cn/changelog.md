@@ -5,6 +5,16 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.8.14
+
+`2018-04-17`
+
+- 🎨 style(Menu): Modify Menu icon style. b5874cc 
+- 🎨 style(Icon): Modify icon font style. 26cc2cd 
+- 🎨 style(Checkbox): Update Checkbox styles. 5306bd7 
+- 📖 doc(Checkbox): Add example. 5e8ab62 
+- 📖 doc(Table): Update document. a3a0a7e 
+
 ## 1.8.13
 
 `2018-04-14`
