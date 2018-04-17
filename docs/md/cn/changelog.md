@@ -9,11 +9,11 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 `2018-04-17`
 
-- 🎨 style(Menu): Modify Menu icon style. b5874cc 
-- 🎨 style(Icon): Modify icon font style. 26cc2cd 
-- 🎨 style(Checkbox): Update Checkbox styles. 5306bd7 
-- 📖 doc(Checkbox): Add example. 5e8ab62 
-- 📖 doc(Table): Update document. a3a0a7e 
+- 🎨 style(Menu): Modify Menu icon style. [b5874cc](https://github.com/uiw-react/uiw/commit/b5874cc162fef9f2f7360ea08a2dafedd99dee5d)
+- 🎨 style(Icon): Modify icon font style. [26cc2cd](https://github.com/uiw-react/uiw/commit/26cc2cd154ba57c081c0bd9e23ab5f17379ae064) 
+- 🎨 style(Checkbox): Update Checkbox styles. [5306bd7](https://github.com/uiw-react/uiw/commit/5306bd7437dee9c0e8b634d25af3698e1d410b74) 
+- 📖 doc(Checkbox): Add example. [5e8ab62](https://github.com/uiw-react/uiw/commit/5e8ab62ba22d1935e3cbb64038bc33420506a968) 
+- 📖 doc(Table): Update document. [a3a0a7e](https://github.com/uiw-react/uiw/commit/a3a0a7e73641b2d474981c6cc9576d8b036b19ae) 
 
 ## 1.8.13
 
