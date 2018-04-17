@@ -98,7 +98,7 @@ class Demo extends Component {
     return (
       <div>
         <Dropdown trigger="click" menu={menu}>
-          <a className="ant-dropdown-link" href="javascript:;">
+          <a href="javascript:;">
             点击我出现下拉菜单 <Icon type="arrow-down" />
           </a>
         </Dropdown>

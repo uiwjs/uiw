@@ -4,18 +4,16 @@
   animation: loading-circle 1s infinite linear;
 }
 [class^="w-icon-"], [class*=" w-icon-"] {
-  font-size: 12px;
+  line-height: initial;
+  display: inline-block;
+  // vertical-align: middle;
+  font-style: normal;
+  vertical-align: baseline;
+  text-align: center;
+  text-transform: none;
 }
 [class^="w-icon-"]:before, {
-  vertical-align: middle;
-  display: inline-block;
-}
-[class^="w-icon-"]:after, [class*=" w-icon-"]:after {
-  vertical-align: middle;
-  content: '';
-  height: 100%;
-  width: 0;
-  display: inline-block;
+  display: block;
 }
 
 @keyframes loading-circle {

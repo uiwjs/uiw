@@ -3,6 +3,10 @@
 .@{w-dropdown} {
   display: inline;
   vertical-align: middle;
+  [class^="w-icon-"], [class*=" w-icon-"] {
+    vertical-align: middle;
+    transform: scale(.8) rotate(0deg);
+  }
   &-disabled, &-disabled a, &-disabled a:hover {
     color: #a3a6a9;
     cursor: not-allowed;
