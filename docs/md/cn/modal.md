@@ -537,7 +537,7 @@ class Demo extends Component {
 | cancelText | 取消按钮文字 | string | 取消 |
 | onCancel | 点击遮罩层或右上角叉或取消按钮的回调 | function(e) | - |
 | footer | 底部内容，当不需要默认底部按钮时，可以设为 footer={null} | string、ReactNode | 确定取消按钮 |
-| width | 宽度 | number | 520 |
+| width | 宽度, 字符串的时候需要带单位如`300px` | number|string | 520 |
 | maskClosable | 点击蒙层是否允许关闭 | boolean | true |
 | styleMask | 遮罩层样式 | object | - |
 | style | 可用于设置浮层的样式，调整浮层位置等 | object | - |
