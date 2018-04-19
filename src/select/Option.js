@@ -62,9 +62,9 @@ export default class Option extends Component {
     if (!_query) {
       _query = multiple ? query : selectedLabel;
     }
-    let visible = isSreachIndexOF(this.currentLabel(), _query);
+    const visible = isSreachIndexOF(this.currentLabel(), _query);
     // 没有输入内容的情况
-    if (!query) visible = true;
+    // if (!query) visible = true;
     // 判断组件是否挂载
     if (this.mounted) {
       this.setState({ visible });
