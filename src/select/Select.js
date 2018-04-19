@@ -29,7 +29,7 @@ export default class Select extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      placeholder: props.placeholder || '请选择',
+      placeholder: props.placeholder,
       inputHovering: false,
       selected: props.multiple ? [] : undefined,
       selectedLabel: props.value, // 默认选中的值 多选为数组
@@ -197,7 +197,7 @@ export default class Select extends Component {
     }
   }
   // 输入内容，回调事件
-  onInputChange() {
+  onInputKeyUpChange() {
     if (this.props.filterable && this.state.selectedLabel !== this.state.value) {
       this.setState({ visible: true }, () => {
         this.setState({
@@ -205,6 +205,10 @@ export default class Select extends Component {
         });
       });
     }
+  }
+  onChange(e, value) {
+    const { onChange } = this.props;
+    onChange(e, value, this.state.value);
   }
   // 多标签搜索方法
   onInputFilterChange(e, value) {
@@ -216,11 +220,14 @@ export default class Select extends Component {
         }
         ReactDOM.findDOMNode(this.filterInput.input).style.width = `${width + 10}px`;
         this.resetInputHeight(true);
+        this.onChange(e, value);
       }
     });
   }
   onInputChangeValue(e) {
-    this.setState({ selectedLabel: e.target.value, query: e.target.value });
+    const value = e.target.value;
+    this.setState({ selectedLabel: value, query: value });
+    this.onChange(e, value);
   }
   onMouseDown(e) {
     e.preventDefault();
@@ -301,7 +308,7 @@ export default class Select extends Component {
     );
   }
   render() {
-    const { prefixCls, size, name, clearable, multiple, filterable, disabled, children, ...resetProps } = this.props;
+    const { prefixCls, size, name, clearable, multiple, filterable, disabled, children, onChange, searchPlaceholder, ...resetProps } = this.props;
     const { visible, inputWidth, selectedLabel, filterItems, query } = this.state;
     const inputValue = () => {
       if (selectedLabel && multiple) {
@@ -339,7 +346,7 @@ export default class Select extends Component {
           onIconMouseOut={this.onIconMouseOut.bind(this)}
           onIconMouseOver={this.onIconMouseOver.bind(this)}
           onChange={this.onInputChangeValue.bind(this)}
-          onKeyUp={this.onInputChange.bind(this)}
+          onKeyUp={this.onInputKeyUpChange.bind(this)}
         />
         <Transition in={!!(visible && children)} sequence="fadeIn">
           <Popper
@@ -350,7 +357,7 @@ export default class Select extends Component {
             }}
           >
             <ul className={`${prefixCls}-warp`}>
-              {filterable && query && filterItems && filterItems.length === 0 ? <li>Not Fount</li> : children}
+              {filterable && query && filterItems && filterItems.length === 0 ? <li>{searchPlaceholder}</li> : children}
             </ul>
           </Popper>
         </Transition>
@@ -367,6 +374,8 @@ Select.childContextTypes = {
 Select.propTypes = {
   prefixCls: PropTypes.string,
   placeholder: PropTypes.string,
+  searchPlaceholder: PropTypes.string,
+  onChange: PropTypes.func,
   disabled: PropTypes.bool, // 是否禁用
   filterable: PropTypes.bool, // 是否可过滤搜索
   multiple: PropTypes.bool, // 是否可多选
@@ -380,5 +389,8 @@ Select.propTypes = {
 
 Select.defaultProps = {
   prefixCls: 'w-select',
+  placeholder: '请选择',
+  searchPlaceholder: '没有匹配的数据',
   disabled: false,
+  onChange: () => {},
 };
