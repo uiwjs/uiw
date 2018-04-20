@@ -5,6 +5,7 @@ import Input from '../input/';
 import Tag from '../tag';
 import Transition from '../transition';
 import Popper from '../popper/';
+import { isSreachIndexOF } from './utils';
 
 function getChildrensComponent(_children) {
   if (!_children) _children = [];
@@ -138,12 +139,21 @@ export default class Select extends Component {
   onQueryChange(query) {
     const { options } = this.state;
     const { filterable } = this.props;
-    const filterItems = [];
+    let filterItems = [];
     filterable && options.forEach((option) => {
-      const visible = option.queryChange(query);
-      if (visible) filterItems.push(option);
+      const { label, value } = option.props;
+      if (label && value && (isSreachIndexOF(label, query) || isSreachIndexOF(value, query))) {
+        filterItems.push(option);
+      }
     });
-    this.setState({ filterItems });
+    if (!query) {
+      filterItems = options;
+    }
+    this.setState({ filterItems }, () => {
+      filterItems.forEach((option) => {
+        option.queryChange(query);
+      });
+    });
   }
   // 触发onChange事件
   onSelectedChange(option) {
@@ -290,15 +300,11 @@ export default class Select extends Component {
         }
         {filterable && (
           <div className={`${prefixCls}-tags-filter`}>
-            <div
-              className="cal"
-              ref={(elm) => { this.filterInputWidth = elm; }}
-            >{this.state.query}
-            </div>
+            <div className="cal" ref={elm => this.filterInputWidth = elm}>{this.state.query}</div>
             <Input
               ref={(component) => { this.filterInput = component; }}
               style={{ width: 21 }}
-              value={this.state.query}
+              value={this.state.query || ''}
               onChange={this.onInputFilterChange.bind(this)}
               size="mini"
             />
@@ -307,18 +313,18 @@ export default class Select extends Component {
       </div>
     );
   }
+  renderListItem() {
+    const { filterable, searchPlaceholder, children } = this.props;
+    const { filterItems, query } = this.state;
+    if (filterable && query && filterItems && filterItems.length === 0) {
+      return <li>{searchPlaceholder}</li>;
+    }
+    return children;
+  }
   render() {
     const { prefixCls, size, name, clearable, multiple, filterable, disabled, children, onChange, searchPlaceholder, ...resetProps } = this.props;
-    const { visible, inputWidth, selectedLabel, filterItems, query } = this.state;
-    const inputValue = () => {
-      if (selectedLabel && multiple) {
-        if (selectedLabel.length > 0) {
-          return ' ';
-        }
-        return '';
-      }
-      return selectedLabel;
-    };
+    const { visible, inputWidth, selectedLabel } = this.state;
+    const inputValue = selectedLabel && multiple ? '' : selectedLabel;
     return (
       <div
         {...resetProps}
@@ -335,7 +341,7 @@ export default class Select extends Component {
           name={name}
           size={size}
           disabled={disabled}
-          value={inputValue()}
+          value={inputValue}
           icon={multiple ? null : this.state.icon}
           readOnly={!filterable || multiple}
           placeholder={this.state.placeholder}
@@ -357,7 +363,7 @@ export default class Select extends Component {
             }}
           >
             <ul className={`${prefixCls}-warp`}>
-              {filterable && query && filterItems && filterItems.length === 0 ? <li>{searchPlaceholder}</li> : children}
+              {this.renderListItem()}
             </ul>
           </Popper>
         </Transition>
