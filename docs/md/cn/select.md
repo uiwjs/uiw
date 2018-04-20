@@ -524,6 +524,7 @@ class Demo extends Component {
 | value | 指定当前选中的条目，值为`value` 或`label` | String/String[] | - |
 | name | `Select` 是通过 `input` 实现的，这里是设置 `name` 的属性 | String | - |
 | placeholder | 这里是 `input` 占位符 | String | `请选择` |
+| searchPlaceholder | 搜索结果为空的占位符 | String/ReactNode | `请选择` |
 | disabled | 是否禁用 | Boolean | false |
 | multiple | 是否可多选 | Boolean | false |
 | filterable | 是否可搜索，设置`true`组件可以输入文字 | Boolean | false |
