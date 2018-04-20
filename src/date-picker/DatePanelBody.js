@@ -45,7 +45,6 @@ export default class DatePanelBody extends Component {
   renderTodayLabel = () => {
     const { prefixCls, showToday, onPicked } = this.props;
     const { labelToday } = this.state;
-    if (!showToday) return null;
     return (
       <a className={`${prefixCls}-today-btn`} onClick={() => { onPicked(new Date()); }}>
         {showToday && showToday === true ? labelToday : showToday}
@@ -55,7 +54,6 @@ export default class DatePanelBody extends Component {
   renderTimeLabel = () => {
     const { prefixCls, showTime } = this.props;
     const { labelTimeVisible } = this.state;
-    if (!showTime) return null;
     const timeLabel = labelTimeVisible ? '选择日期' : '选择时间';
     return (
       <a className={`${prefixCls}-time-btn`} onClick={this.onSelectTime}>
@@ -113,7 +111,7 @@ export default class DatePanelBody extends Component {
     shortcut.onClick();
   }
   render() {
-    const { prefixCls, format, weekLabel, onPicked, shortcutinline, showTime, renderDate, shortcutClassName, disabledDate, shortcuts } = this.props;
+    const { prefixCls, format, weekLabel, onPicked, shortcutinline, showTime, renderDate, shortcutClassName, showToday, disabledDate, shortcuts } = this.props;
     const { value, labelToday, selectDate, selectTime, selectYear, selectMonth, labelTimeVisible } = this.state;
     const datePanel = isDate(value) ? new Date(value) : new Date();
 
@@ -136,8 +134,8 @@ export default class DatePanelBody extends Component {
 
     const LabelFooter = (
       <div className={`${prefixCls}-footer`}>
-        {this.renderTodayLabel()}
-        {this.renderTimeLabel()}
+        {showToday && this.renderTodayLabel()}
+        {showTime && this.renderTimeLabel()}
       </div>
     );
 
