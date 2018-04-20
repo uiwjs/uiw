@@ -43,7 +43,7 @@ class Demo extends Component {
           ]}
         />
         <DatePicker showToday={true} />
-        <DatePicker showToday={true} value={new Date()}  />
+        <DatePicker showToday={'Today'} value={new Date()}  />
         <DatePicker showToday={true} value={new Date()} weekLabel={['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']}/>
       </div>
     )
