@@ -9,14 +9,14 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 `2018-04-21`
 
-- 🐞 fix(Select): fix the search result matching issue. 2867b46 
-- 🐞 fix(Select): Fix onChange event issue. f4174be 
-- 🎨 style(Model): Modify document. #61 47b9e6a 
-- 🎨 style(Tag): Modify the label icon style. 3077169 
-- 💄 chore(DatePicker): Optimization code. a65a034 
-- 📖 doc(DatePicker): Update document api. 7588628 
-- 📖 doc(Select): Update document api. b272adf 
-- 📖 doc(Modal): Modify document api. @xyf 5d3b9d1 
+- 🐞 fix(Select): fix the search result matching issue. [2867b46](https://github.com/uiw-react/uiw/commit/2867b469160765cd806fa626e2a4b2fecb2193c1) 
+- 🐞 fix(Select): Fix onChange event issue. [f4174be](https://github.com/uiw-react/uiw/commit/f4174bea53b090415bfbf431541f01c67010ce5b) 
+- 🎨 style(Model): Modify document. [#61](https://github.com/uiw-react/uiw/pull/61) [47b9e6a](https://github.com/uiw-react/uiw/commit/47b9e6afe975c00710da9648246925866d2eee03) 
+- 🎨 style(Tag): Modify the label icon style. [3077169](https://github.com/uiw-react/uiw/commit/307716985fe8208adc91943b364e049af00e25c8) 
+- 💄 chore(DatePicker): Optimization code. [a65a034](https://github.com/uiw-react/uiw/commit/a65a03401feb5cf9bd270dbd59e570d2d0759842) 
+- 📖 doc(DatePicker): Update document api. [7588628](https://github.com/uiw-react/uiw/commit/758862819339132e7ffb9bcd5dddd6a25ee52e80) 
+- 📖 doc(Select): Update document api. [b272adf](https://github.com/uiw-react/uiw/commit/b272adff37cef60f009caf7fff9031e14ebfe275) 
+- 📖 doc(Modal): Modify document api. [@xyf](https://github.com/xyf) [5d3b9d1](https://github.com/uiw-react/uiw/commit/5d3b9d137f3529f8402c5fedc8dc2b67e50a8d4c) 
 
 ## 1.8.14
 
