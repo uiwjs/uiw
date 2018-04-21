@@ -5,6 +5,19 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.9.1
+
+`2018-04-21`
+
+- 🐞 fix(Select): fix the search result matching issue. 2867b46 
+- 🐞 fix(Select): Fix onChange event issue. f4174be 
+- 🎨 style(Model): Modify document. #61 47b9e6a 
+- 🎨 style(Tag): Modify the label icon style. 3077169 
+- 💄 chore(DatePicker): Optimization code. a65a034 
+- 📖 doc(DatePicker): Update document api. 7588628 
+- 📖 doc(Select): Update document api. b272adf 
+- 📖 doc(Modal): Modify document api. @xyf 5d3b9d1 
+
 ## 1.8.14
 
 `2018-04-17`
