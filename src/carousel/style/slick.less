@@ -67,25 +67,28 @@
   [dir="rtl"] & {
     float: right;
   }
+  > * {
+    outline: 0;
+  }
   img {
-      display: block;
+    display: block;
   }
   &.slick-loading img {
-      display: none;
+    display: none;
   }
 
   display: none;
 
   &.dragging img {
-      pointer-events: none;
+    pointer-events: none;
   }
 
   .slick-initialized & {
-      display: block;
+    display: block;
   }
 
   .slick-loading & {
-      visibility: hidden;
+    visibility: hidden;
   }
 
   .slick-vertical & {
@@ -110,11 +113,13 @@
   cursor: pointer;
   background: transparent;
   color: transparent;
+  margin-top: -10px;
   top: 50%;
   transform: translate(0, -50%);
   padding: 0;
   border: none;
   outline: none;
+  z-index: 1;
   &:hover, &:focus {
     outline: none;
     background: transparent;
@@ -138,10 +143,10 @@
 }
 
 .slick-prev {
-    left: -25px;
+    left: 10px;
     [dir="rtl"] & {
       left: auto;
-      right: -25px;
+      right: 10px;
     }
     &:before {
       content: @slick-prev-character;
@@ -152,9 +157,9 @@
 }
 
 .slick-next {
-  right: -25px;
+  right: 10px;
   [dir="rtl"] & {
-    left: -25px;
+    left: 10px;
     right: auto;
   }
   &:before {
@@ -172,9 +177,11 @@
 }
 
 .slick-dots {
+  position: absolute;
   list-style: none;
   display: block;
   text-align: center;
+  bottom: 12px;
   padding: 0;
   margin: 0;
   width: 100%;
