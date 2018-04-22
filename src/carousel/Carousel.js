@@ -1,23 +1,6 @@
 import React from 'react';
-// import SlickCarousel from 'react-slick';
+import Slider from 'react-slick';
 import { Component, PropTypes } from '../utils/';
-
-// matchMedia polyfill for
-// https://github.com/WickyNilliams/enquire.js/issues/82
-if (typeof window !== 'undefined') {
-  const matchMediaPolyfill = (mediaQuery) => {
-    return {
-      media: mediaQuery,
-      matches: false,
-      addListener() { },
-      removeListener() { },
-    };
-  };
-  window.matchMedia = window.matchMedia || matchMediaPolyfill;
-}
-// Use require over import (will be lifted up)
-// make sure matchMedia polyfill run before require('react-slick')
-const SlickCarousel = require('react-slick').default;
 
 export default class Carousel extends Component {
   constructor(props) {
@@ -69,16 +52,14 @@ export default class Carousel extends Component {
     });
 
     return (
-      <div className={cls} style={props.style} >
-        <SlickCarousel ref={(node) => { this.slickcarousel = node; }} {...props} />
-      </div>
+      <Slider className={cls} ref={node => this.slickcarousel = node} {...props} />
     );
   }
 }
 
 Carousel.defaultProps = {
-  arrows: false, // 左右箭头
   prefixCls: 'w-carousel',
+  arrows: false, // 左右箭头
   draggable: false, // 拖拽切换
   fade: false, // 切换效果(渐显)
   dots: true, // 是否显示下标
@@ -89,15 +70,37 @@ Carousel.propTypes = {
   vertical: PropTypes.bool,
   autoplay: PropTypes.bool,
   easing: PropTypes.string,
-  prefixCls: PropTypes.string,
   beforeChange: PropTypes.func,
   afterChange: PropTypes.func,
-  fade: PropTypes.bool,
-  focusOnSelect: PropTypes.bool,
-  initialSlide: PropTypes.number,
-  slide: PropTypes.string,
-  draggable: PropTypes.bool,
-  arrows: PropTypes.bool,
+  prefixCls: PropTypes.string,
+  accessibility: PropTypes.bool,
   nextArrow: PropTypes.any,
   prevArrow: PropTypes.any,
+  pauseOnHover: PropTypes.bool,
+  className: PropTypes.string,
+  adaptiveHeight: PropTypes.bool,
+  arrows: PropTypes.bool,
+  autoplaySpeed: PropTypes.number,
+  centerMode: PropTypes.bool,
+  centerPadding: PropTypes.any,
+  cssEase: PropTypes.any,
+  dotsClass: PropTypes.string,
+  draggable: PropTypes.bool,
+  fade: PropTypes.bool,
+  focusOnSelect: PropTypes.bool,
+  infinite: PropTypes.bool,
+  initialSlide: PropTypes.number,
+  lazyLoad: PropTypes.bool,
+  rtl: PropTypes.bool,
+  slide: PropTypes.string,
+  slidesToShow: PropTypes.number,
+  slidesToScroll: PropTypes.number,
+  speed: PropTypes.number,
+  swipe: PropTypes.bool,
+  swipeToSlide: PropTypes.bool,
+  touchMove: PropTypes.bool,
+  touchThreshold: PropTypes.number,
+  variableWidth: PropTypes.bool,
+  useCSS: PropTypes.bool,
+  slickGoTo: PropTypes.number,
 };
