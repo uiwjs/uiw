@@ -1,37 +1,24 @@
 {
-  "env": {
-    "development": {
-      "presets": [
-        "es2015",
-        "stage-1",
-        "react"
-      ],
-      "plugins": [
-        "react-hot-loader/babel"
-      ]
-    },
-    "test": {
-      "presets": [
-        "es2015",
-        "stage-1",
-        "react"
-      ]
-    },
-    "production": {
-      "presets": [
-        [
-          "es2015",
-          {
-            "modules": false,
-            "loose": true
-          }
-        ],
-        "stage-1",
-        "react"
-      ]
-    },
-    "plugins": [
-      "transform-runtime"
-    ]
-  }
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "ie >= 10"
+          ]
+        }
+      }
+    ],
+    "react"
+  ],
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-decorators-legacy",
+    "syntax-dynamic-import",
+    "transform-async-to-generator",
+    "transform-class-properties",
+    "transform-runtime"
+  ]
 }

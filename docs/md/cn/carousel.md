@@ -13,17 +13,23 @@ class Demo extends Component {
     let style = {
       textAlign: 'center',
       height: 160,
-      width:100,
-      linearHeight: 160,
       background: '#b7b7b7',
       overflow: 'hidden',
     };
     return (
-      <Carousel   easing='linear'  afterChange={this.onChange} >
-        <div style={style}><h3 style={{color:'#fff'}}>1</h3></div>
-        <div style={style}><h3 style={{color:'#fff'}}>2</h3></div>
-        <div style={style}><h3 style={{color:'#fff'}}>3</h3></div>
-        <div style={style}><h3 style={{color:'#fff'}}>4</h3></div>
+      <Carousel easing='linear' afterChange={this.onChange} >
+        <div>
+          <div style={style}>1</div>
+        </div>
+        <div>
+          <div style={style}>2</div>
+        </div>
+        <div>
+          <div style={style}>3</div>
+        </div>
+        <div>
+          <div style={style}>4</div>
+        </div>
       </Carousel>
     )
   }
@@ -44,17 +50,24 @@ class Demo extends Component {
     let style = {
       textAlign: 'center',
       height: 160,
-      linearHeight: 160,
       background: '#b7b7b7',
       overflow: 'hidden',
     };
     return (
       <div>
-        <Carousel ref={(node)=>{this.carousel = node}} vertical afterChange={this.onChange} >
-          <div style={style}><h3 style={{color:'#fff'}}>1</h3></div>
-          <div style={style}><h3 style={{color:'#fff'}}>2</h3></div>
-          <div style={style}><h3 style={{color:'#fff'}}>3</h3></div>
-          <div style={style}><h3 style={{color:'#fff'}}>4</h3></div>
+        <Carousel ref={slider => (this.carousel = slider)} vertical afterChange={this.onChange}>
+          <div>
+            <div style={style}>1</div>
+          </div>
+          <div>
+            <div style={style}>2</div>
+          </div>
+          <div>
+            <div style={style}>3</div>
+          </div>
+          <div>
+            <div style={style}>4</div>
+          </div>
         </Carousel>
         <div style={{paddingTop:10}}>
           <Button size="small" onClick={()=>this.carousel.next()}>下一页</Button>
@@ -79,17 +92,23 @@ class Demo extends Component {
     let style = {
       textAlign: 'center',
       height: 160,
-      linearHeight: 160,
-      width:50,
       background: '#b7b7b7',
       overflow: 'hidden',
     };
     return (
-      <Carousel effect="fade" afterChange={this.onChange} >
-        <div style={style}><h3 style={{color:'#fff'}}>1</h3></div>
-        <div style={style}><h3 style={{color:'#fff'}}>2</h3></div>
-        <div style={style}><h3 style={{color:'#fff'}}>3</h3></div>
-        <div style={style}><h3 style={{color:'#fff'}}>4</h3></div>
+      <Carousel effect="fade" afterChange={this.onChange}>
+        <div>
+          <div style={style}>1</div>
+        </div>
+        <div>
+          <div style={style}>2</div>
+        </div>
+        <div>
+          <div style={style}>3</div>
+        </div>
+        <div>
+          <div style={style}>4</div>
+        </div>
       </Carousel>
     )
   }
@@ -110,16 +129,24 @@ class Demo extends Component {
     let style = {
       textAlign: 'center',
       height: 160,
-      linearHeight: 160,
       background: '#b7b7b7',
       overflow: 'hidden',
     };
+    // dots: true,
     return (
-      <Carousel autoplay afterChange={this.onChange} >
-        <div style={style}><h3 style={{color:'#fff'}}>1</h3></div>
-        <div style={style}><h3 style={{color:'#fff'}}>2</h3></div>
-        <div style={style}><h3 style={{color:'#fff'}}>3</h3></div>
-        <div style={style}><h3 style={{color:'#fff'}}>4</h3></div>
+      <Carousel dots autoplay afterChange={this.onChange}>
+        <div>
+          <div style={style}>1</div>
+        </div>
+        <div>
+          <div style={style}>2</div>
+        </div>
+        <div>
+          <div style={style}>3</div>
+        </div>
+        <div>
+          <div style={style}>4</div>
+        </div>
       </Carousel>
     )
   }
@@ -141,24 +168,30 @@ class Demo extends Component {
     let style = {
       textAlign: 'center',
       height: 160,
-      linearHeight: 160,
       background: '#b7b7b7',
       overflow: 'hidden',
     };
     let arrowBtn = {
       dots: true,
       infinite: true,
-      draggable: true,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      rtl:true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
     }
     return (
       <Carousel autoplay afterChange={this.onChange} {...arrowBtn}>
-        <div style={style}><h3 style={{color:'#fff'}}>1</h3></div>
-        <div style={style}><h3 style={{color:'#fff'}}>2</h3></div>
-        <div style={style}><h3 style={{color:'#fff'}}>3</h3></div>
-        <div style={style}><h3 style={{color:'#fff'}}>4</h3></div>
+        <div>
+          <div style={style}>1</div>
+        </div>
+        <div>
+          <div style={style}>2</div>
+        </div>
+        <div>
+          <div style={style}>3</div>
+        </div>
+        <div>
+          <div style={style}>4</div>
+        </div>
       </Carousel>
     )
   }
