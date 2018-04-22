@@ -70,6 +70,7 @@ Carousel.propTypes = {
   vertical: PropTypes.bool,
   autoplay: PropTypes.bool,
   easing: PropTypes.string,
+  appendDots: PropTypes.func,
   beforeChange: PropTypes.func,
   afterChange: PropTypes.func,
   prefixCls: PropTypes.string,
