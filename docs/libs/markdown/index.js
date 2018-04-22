@@ -34,19 +34,16 @@ export default class Markdown extends React.Component {
   renderMarkdown(locale, fileName) {
     return import(`../../md/${locale}/${fileName}.md`).then(module => {
       this.setState({
-        markdown: module
-      })
+        markdown: module.default || module,
+      });
     })
   }
   getLang() {
-    return localStorage.getItem('WUI_LANG') || 'cn'
+    return localStorage.getItem('WUI_LANG') || 'cn';
   }
   getPageName() {
     const routes = window.location.hash.match(/(?:\/(.+))?(\/(.+)\?|\/(.+))/);
-    if (routes) {
-      return routes[3] || routes[4];
-    }
-    return 'quick-start';
+    return routes ? (routes[3] || routes[4]) : 'quick-start';
   }
   render() {
     const { markdown } = this.state;
@@ -70,11 +67,10 @@ export default class Markdown extends React.Component {
           </div>
         </div>
       )
-    } else {
-      return (
-        <span></span>
-      )
     }
+    return (
+      <span />
+    )
   }
 }
 

@@ -1,81 +1,42 @@
-// 把它作为第一件事，这样读它的任何代码都知道正确的环境。
-process.env.BABEL_ENV = 'development';
-process.env.NODE_ENV = 'development';
-// 使脚本在未处理的拒绝中崩溃，而不是默默地忽略它们。
-// 未处理的承诺拒绝将以非零退出代码终止Node.js进程。
-process.on('unhandledRejection', err => {
-  throw err;
+import webpack from 'webpack';
+import path from 'path';
+import detect from 'detect-port';
+import opn from 'opn';
+import WebpackDevServer from 'webpack-dev-server';
+import load from 'loading-cli';
+import 'colors-cli/toxic';
+import conf from './conf/webpack.config.dev';
+
+let PORT = 2087;
+const HOST = 'localhost';
+
+const compiler = webpack(conf);
+const loading = load('Compiler is running...'.green).start();
+loading.color = 'green';
+
+// https://webpack.js.org/api/compiler-hooks/#aftercompile
+// 编译完成之后打印日志
+compiler.hooks.done.tap('done', () => {
+  loading.stop();
+  // eslint-disable-next-line
+  console.log(`\nDev Server Listening at ${`http://${HOST}:${PORT}`.green}`);
 });
 
-const webpack = require('webpack');
-const color = require('colors-cli/safe')
-const WebpackDevServer = require('webpack-dev-server');
-const openBrowser = require('react-dev-utils/openBrowser');
-const clearConsole = require('react-dev-utils/clearConsole');
-const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
-const {
-  choosePort,
-  createCompiler,
-  prepareUrls,
-} = require('react-dev-utils/WebpackDevServerUtils');
-const paths = require('./config/paths');
-const config = require('./config/webpack.conf.dev');
-const createDevServerConfig = require('./config/webpack.server.conf.dev');
-
-
-const isInteractive = process.stdout.isTTY;
-
-// 如果需要的文件不存在，警告并崩溃
-if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
-  process.exit(1);
-}
-
-const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 2087;
-const HOST = process.env.HOST || '0.0.0.0';
-
-
-
-choosePort(HOST, DEFAULT_PORT)
-  .then(port => {
-    if (port == null) {
-      // 我们还没有找到一个端口。
-      return;
+detect(PORT).then((_port) => {
+  if (PORT !== _port) PORT = _port;
+  new WebpackDevServer(compiler, {
+    // contentBase: conf.output.appPublic,
+    publicPath: conf.output.publicPath,
+    hot: true,
+    historyApiFallback: true,
+    quiet: true,
+  }).listen(PORT, HOST, (err) => {
+    if (err) {
+      return console.log(err); // eslint-disable-line
     }
-    const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
-    const appName = require(paths.appPackage).name;
-    const urls = prepareUrls(protocol, HOST, port);
-
-    // 创建配置有自定义消息的Webpack编译器。
-    const compiler = createCompiler(webpack, config, appName, urls);
-    // 通过Web服务器提供由编译器生成的webpack资源
-    const serverConfig = createDevServerConfig(
-      urls.lanUrlForConfig
-    );
-    const devServer = new WebpackDevServer(compiler, serverConfig);
-
-    // Launch WebpackDevServer.
-    devServer.listen(port, HOST, err => {
-      if (err) {
-        return console.log(err);
-      }
-      if (isInteractive) {
-        clearConsole();
-      }
-      console.log(color.cyan('Starting the development server...\n'));
-      openBrowser(urls.localUrlForBrowser);
-    });
-
-    ['SIGINT', 'SIGTERM'].forEach(function (sig) {
-      process.on(sig, function () {
-        devServer.close();
-        process.exit();
-      });
-    });
-
-  })
-  .catch(err => {
-    if (err && err.message) {
-      console.log(err, err.message);
-    }
-    process.exit(1);
+    // open browser
+    opn(`http://${HOST}:${PORT}`);
   });
+}).catch((err) => {
+  console.log(err); // eslint-disable-line
+});

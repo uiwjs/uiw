@@ -52,7 +52,7 @@ export default class Canvas extends React.Component {
         ReactDOM.render(<Demo {...context.props} />, document.getElementById('${this.playerId}'))
       `, {
           presets: ['es2015', 'react']
-        }).code
+        }).code;
       args.push(code)
       new Function(...args).apply(null, argv)
       this.source[2] = value
@@ -78,17 +78,18 @@ export default class Canvas extends React.Component {
           <div ref="highlight" className={`${prefixCls}-demo-highlight`} dangerouslySetInnerHTML={{ __html: this.highlight }}></div>
         </div>
         {
-          this.state.showBlock ?
+          this.state.showBlock ? (
             <div className={`${prefixCls}-demo-control`} onClick={this.blockControl.bind(this)}>
               <span>{this.props.locale.hide}</span>
             </div>
-            :
+          ) : (
             <div className={`${prefixCls}-demo-control`} onClick={this.blockControl.bind(this)}>
               <span>{this.props.locale.show}</span>
             </div>
+          )
         }
       </div>
-    )
+    );
   }
 }
 

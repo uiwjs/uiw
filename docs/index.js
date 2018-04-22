@@ -1,5 +1,7 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom'
+// import { render } from 'react-dom';
+import { hot } from 'react-hot-loader'
 import { AppContainer } from 'react-hot-loader';
 
 /* eslint import/no-webpack-loader-syntax: off */
@@ -18,11 +20,6 @@ import Router from './Router';
 import './style/base.less';
 import '../src/index.less';
 
-render(<AppContainer><Router /></AppContainer>, document.getElementById('app'));
-
-if (module.hot) {
-  module.hot.accept('./Router', () => {
-    const Router = require('./Router').default;
-    render(<AppContainer><Router /></AppContainer>, document.getElementById('app'));
-  });
-}
+// render(<Router />, document.getElementById('app'));
+// render(hot(module)(Router), document.getElementById('app'));
+ReactDOM.render(<AppContainer><Router /></AppContainer>, document.getElementById('app'));
