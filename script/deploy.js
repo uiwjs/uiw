@@ -21,7 +21,7 @@ function pushDirToBranch(dir, branch, callback) {
   ghpages.publish(path.resolve(path.join(process.cwd(), dir)), {
     branch,
     repo: ORIGIN,
-    message: `Update dms v${pkg.version}., ${new Date()}!`,
+    message: `Update uiw v${pkg.version}., ${new Date()}!`,
   }, (err) => {
     load.stop();
     if (err) {
