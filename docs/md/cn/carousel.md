@@ -16,8 +16,16 @@ class Demo extends Component {
       background: '#b7b7b7',
       overflow: 'hidden',
     };
+    const attr = {
+      arrows: true,
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    }
     return (
-      <Carousel easing='linear' afterChange={this.onChange} >
+      <Carousel easing='linear' {...attr} afterChange={this.onChange} >
         <div>
           <div style={style}>1</div>
         </div>
