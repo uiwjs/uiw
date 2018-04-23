@@ -5,6 +5,18 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.9.2
+
+`2018-04-23`
+
+- 🌟 feat(Carousel): Update react-slick v0.23.1 [053a7d4](https://github.com/uiw-react/uiw/commit/053a7d4c717715bef6240be583d866bc30739bc7) 
+- ⛑ test(Select): Update test case. [db9ef0f](https://github.com/uiw-react/uiw/commit/db9ef0f94435a81811e4a8ce0f686abecc695c7d) 
+- ⛑ test(Modal): Update test case. [989c55c](https://github.com/uiw-react/uiw/commit/989c55cc968a8929e8acbbd632355f35e41f9190) 
+- 🎨 style(InputNumber): Modify icon style. [fec4880](https://github.com/uiw-react/uiw/commit/fec4880df5cbb5a101fc40ae3056d116db9a86a1) 
+- 🎨 style(Carousel): Update styles. [35fb22b](https://github.com/uiw-react/uiw/commit/35fb22bc974eb09bb8f74de168b48a0f1421408d) 
+- 📖 doc(Carousel): Update Example. [a0bbbc1](https://github.com/uiw-react/uiw/commit/a0bbbc1167a39a949ae6fbb0554594a15ca7e14b) 
+- 💄 Upgrade webpack to v4 [ddf38c7](https://github.com/uiw-react/uiw/commit/ddf38c7660cf91740b3766a9e7fc5eeccc8e2318) 
+
 ## 1.9.1
 
 `2018-04-21`
