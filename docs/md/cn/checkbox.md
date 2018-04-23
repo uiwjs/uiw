@@ -137,11 +137,19 @@ class Demo extends Component {
         <CheckboxGroup 
           options={plainOptions} 
           checkedValues={['Apple']} 
-          onChange={(e,checkedValues,value,checked)=>{
-            console.log('checked = ', checkedValues);
+          onChange={(e,checkedValues,value,checked,option)=>{
+            console.log('checked = ', checkedValues,option);
           }} 
         />
-        <br />
+        <Divider />
+        <CheckboxGroup 
+          options={options} 
+          checkedValues={['Apple']} 
+          onChange={(e,checkedValues,value,checked,option)=>{
+            console.log('checked = ', checkedValues,option);
+          }} 
+        />
+        <Divider />
         <CheckboxGroup 
           options={optionsWithDisabled} 
           disabled 
@@ -302,5 +310,5 @@ class Demo extends Component {
 |--------- |-------- |---------- |-------- |
 | options | 指定可选 | string[] | [] |
 | checkedValues | 默认选中的选 | string[] | [] |
-| onChange | 变化时回调函数 | Function(e:Event,checkedValues:Array, value:String, checked:Boolean) | - |
+| onChange | 变化时回调函数 | Function(e:Event,checkedValues:Array, value:String, checked:Boolean, option) | - |
 | disabled | 禁用所有，[options]中设置，disabled=false 取消禁用 | Boolean | false |
