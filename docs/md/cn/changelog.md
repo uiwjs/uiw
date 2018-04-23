@@ -9,6 +9,12 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 `2018-04-23`
 
+- feat(Checkbox.Group): onChange enhancements. [d7bdf30](https://github.com/uiw-react/uiw/commit/d7bdf3083a5407ab4c9db08ed8d74a2141827c4c) 
+
+## 1.9.2
+
+`2018-04-23`
+
 - 🌟 feat(Carousel): Update react-slick v0.23.1 [053a7d4](https://github.com/uiw-react/uiw/commit/053a7d4c717715bef6240be583d866bc30739bc7) 
 - ⛑ test(Select): Update test case. [db9ef0f](https://github.com/uiw-react/uiw/commit/db9ef0f94435a81811e4a8ce0f686abecc695c7d) 
 - ⛑ test(Modal): Update test case. [989c55c](https://github.com/uiw-react/uiw/commit/989c55cc968a8929e8acbbd632355f35e41f9190) 
