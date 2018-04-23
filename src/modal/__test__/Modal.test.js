@@ -63,12 +63,12 @@ class ModalTester extends React.Component {
 
 describe('Modal', () => {
   it('render correctly', () => {
-    const wrapper = mount(<ModalTester />);
-    expect(wrapper.render()).toMatchSnapshot();
+    const warpper = mount(<ModalTester />);
+    expect(warpper.render()).toMatchSnapshot();
   });
   // toMatchSnapshot api 判断两个条件一致与否
   it('render without footer', () => {
-    const wrapper = mount(<ModalTester footer={null} />);
-    expect(wrapper.render()).toMatchSnapshot();
+    const warpper = mount(<ModalTester footer={null} />);
+    expect(warpper.render()).toMatchSnapshot();
   });
 });
