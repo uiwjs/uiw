@@ -27,7 +27,7 @@ export default class Group extends Component {
               key={i}
               onChange={(e, checked) => {
                 const values = this.checkedValuesResult(options, value, checked);
-                onChange(e, values, value, checked);
+                onChange(e, values, value, checked, item);
               }}
               disabled={item.disabled === false ? false : disabled}
               checked={checkedValues.indexOf(value) > -1}
