@@ -45,7 +45,7 @@ describe('<Select>', () => {
   });
 
   it('Test onChange func', () => {
-    const select = wrapper.find('.w-select').at(0).find('.w-input').at(0);
+    const select = wrapper.find('.w-select').at(0).find('input').at(0);
     select.simulate('change');
     expect(wrapperState.value).toBe(7);
   });
