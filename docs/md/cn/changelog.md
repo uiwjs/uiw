@@ -9,7 +9,7 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 `2018-04-23`
 
-- feat(Checkbox.Group): onChange enhancements. [d7bdf30](https://github.com/uiw-react/uiw/commit/d7bdf3083a5407ab4c9db08ed8d74a2141827c4c) 
+- 🌟 feat(Checkbox.Group): onChange enhancements. [d7bdf30](https://github.com/uiw-react/uiw/commit/d7bdf3083a5407ab4c9db08ed8d74a2141827c4c) 
 
 ## 1.9.2
 
