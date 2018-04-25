@@ -1,5 +1,4 @@
 import webpack from 'webpack';
-import path from 'path';
 import detect from 'detect-port';
 import opn from 'opn';
 import WebpackDevServer from 'webpack-dev-server';
