@@ -148,7 +148,9 @@ export default {
   // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
   optimization: {
     runtimeChunk: true,
-    minimizer: [ ],
+    minimizer: [
+      new OptimizeCSSAssetsPlugin({}),
+    ],
     splitChunks: {
       chunks: 'all',
       minSize: 0,
@@ -194,7 +196,6 @@ export default {
     new webpack.DefinePlugin({
       VERSION: JSON.stringify(pkg.version),
     }),
-    // new OptimizeCSSAssetsPlugin({}),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
