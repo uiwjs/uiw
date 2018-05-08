@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Component, PropTypes, randomid } from '../utils/';
 import Input from '../input/';
 import Tag from '../tag';
+import Icon from '../icon';
 import Transition from '../transition';
 import Popper from '../popper/';
 import { isSreachIndexOF } from './utils';
@@ -138,7 +139,11 @@ export default class Select extends Component {
   }
   onQueryChange(query) {
     const { options } = this.state;
-    const { filterable } = this.props;
+    const { filterable, onSearch } = this.props;
+    if (onSearch) {
+      if (query) onSearch(query);
+      return;
+    }
     let filterItems = [];
     filterable && options.forEach((option) => {
       const { label, value } = option.props;
@@ -159,7 +164,7 @@ export default class Select extends Component {
   onSelectedChange(option) {
     const { onChange } = this.props;
     const { value } = this.state;
-    onChange && onChange(option, value, option.props.value);
+    onChange(option, value, option.props.value);
   }
   // 点击选中事件, 选中设置Select值
   onOptionClick(option) {
@@ -314,15 +319,32 @@ export default class Select extends Component {
     );
   }
   renderListItem() {
-    const { filterable, searchPlaceholder, children } = this.props;
+    const { filterable, searchPlaceholder, onSearch, loading, children } = this.props;
     const { filterItems, query } = this.state;
-    if (filterable && query && filterItems && filterItems.length === 0) {
-      return <li>{searchPlaceholder}</li>;
+    const notFound = <li>{searchPlaceholder}</li>;
+    if (!onSearch && filterable && query && filterItems && filterItems.length === 0) {
+      return notFound;
+    }
+    if (onSearch) {
+      if (loading) {
+        return <li><Icon type="loading" spin /></li>;
+      }
+      if (!loading && children.length < 1) {
+        return notFound;
+      }
     }
     return children;
   }
+  showIcon() {
+    const { multiple, onSearch } = this.props;
+    let icon = null;
+    if (!multiple && !onSearch) {
+      icon = this.state.icon;
+    }
+    return icon;
+  }
   render() {
-    const { prefixCls, size, name, clearable, multiple, filterable, disabled, children, onChange, searchPlaceholder, ...resetProps } = this.props;
+    const { prefixCls, size, name, clearable, multiple, filterable, disabled, children, onChange, onSearch, loading, searchPlaceholder, ...resetProps } = this.props;
     const { visible, inputWidth, selectedLabel } = this.state;
     const inputValue = selectedLabel && multiple ? '' : selectedLabel;
     return (
@@ -341,8 +363,8 @@ export default class Select extends Component {
           name={name}
           size={size}
           disabled={disabled}
-          value={inputValue}
-          icon={multiple ? null : this.state.icon}
+          value={inputValue || ''}
+          icon={this.showIcon()}
           readOnly={!filterable || multiple}
           placeholder={this.state.placeholder}
           onMouseDown={this.onMouseDown.bind(this)}
@@ -382,6 +404,8 @@ Select.propTypes = {
   placeholder: PropTypes.string,
   searchPlaceholder: PropTypes.string,
   onChange: PropTypes.func,
+  onSearch: PropTypes.func,
+  loading: PropTypes.bool, // onSearch 搜索的时候 loading效果
   disabled: PropTypes.bool, // 是否禁用
   filterable: PropTypes.bool, // 是否可过滤搜索
   multiple: PropTypes.bool, // 是否可多选
@@ -398,5 +422,7 @@ Select.defaultProps = {
   placeholder: '请选择',
   searchPlaceholder: '没有匹配的数据',
   disabled: false,
+  loading: false,
   onChange: () => {},
+  onSearch: null,
 };
