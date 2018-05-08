@@ -5,7 +5,14 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
-## 1.9.2
+## 1.9.4
+
+`2018-05-08`
+
+- 🌟 feat(Select): Add onSearch & loading props. [8227082](https://github.com/uiw-react/uiw/commit/8227082dde9b0503e705410c141da773467f3247) 
+- 💄 chore: Minimizer css. [a97929a](https://github.com/uiw-react/uiw/commit/a97929acd1aa1004ee90b80c0e3c058dcfc21326) 
+
+## 1.9.3
 
 `2018-04-23`
 
