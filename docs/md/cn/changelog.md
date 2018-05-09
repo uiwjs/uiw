@@ -5,6 +5,14 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+
+## 1.9.5
+
+`2018-05-09`
+
+- 🐞 fix(Select): Fix placeholder props issue. [7268fa2](https://github.com/uiw-react/uiw/commit/7268fa2c5db175beaf240de9cab8f2e04f7246b8) 
+- 🐞 fix(Input): Fix placeholder props issue. [4137f9b](https://github.com/uiw-react/uiw/commit/4137f9bb587eb788098eaac4d56dafb3dba469c8) 
+
 ## 1.9.4
 
 `2018-05-08`
