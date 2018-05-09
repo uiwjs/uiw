@@ -6,6 +6,7 @@ export default class Input extends Component {
   static defaultProps = {
     prefixCls: 'w-input',
     type: 'text',
+    placeholder: '',
     autoComplete: 'off',
     onChange() { },
     onSearch() { },
@@ -15,7 +16,6 @@ export default class Input extends Component {
     super(props);
     this.state = {
       value: props.value,
-      placeholder: props.placeholder,
     };
   }
   componentWillReceiveProps(...props) {
@@ -114,7 +114,7 @@ export default class Input extends Component {
           className={this.classNames(cls, `${prefixCls}-inner`)}
           {...other}
           value={value}
-          placeholder={!value ? this.state.placeholder : ''}
+          placeholder={this.props.placeholder}
           ref={(elm) => { this.textarea = elm; }}
           type={type}
           style={style}
@@ -146,7 +146,7 @@ export default class Input extends Component {
             'addon-after': addonAfter,
           })}
           value={value}
-          placeholder={!value ? this.state.placeholder : ''}
+          placeholder={this.props.placeholder}
           onChange={this.handleChange.bind(this)}
           onKeyUp={this.handleKeyUp.bind(this)}
         />
