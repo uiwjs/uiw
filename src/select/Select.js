@@ -108,9 +108,10 @@ export default class Select extends Component {
       selectedLabel = selected.map((option) => {
         return this.showLabelText(option.props);
       });
-      this.setState({
-        selected, selectedLabel,
-      }, () => {
+      // 修复多选 placeholder 内容隐藏
+      const state = { selected, selectedLabel };
+      state.placeholder = selectedLabel.length > 0 ? '' : this.props.placeholder;
+      this.setState({ ...state }, () => {
         this.resetInputHeight(init);
       });
     } else {
@@ -347,6 +348,7 @@ export default class Select extends Component {
     const { prefixCls, size, name, clearable, multiple, filterable, disabled, children, onChange, onSearch, loading, searchPlaceholder, ...resetProps } = this.props;
     const { visible, inputWidth, selectedLabel } = this.state;
     const inputValue = selectedLabel && multiple ? '' : selectedLabel;
+
     return (
       <div
         {...resetProps}
