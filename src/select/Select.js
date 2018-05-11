@@ -57,8 +57,8 @@ export default class Select extends Component {
     }
     if (props.value !== this.state.value) {
       this.setState({
-        value: props.value,
-        selectedLabel: this.showLabelText(props),
+        value: props.value || this.state.selectedLabel,
+        selectedLabel: this.showLabelText(props) || this.state.selectedLabel,
       }, () => {
         this.selectedData();
       });
@@ -365,7 +365,7 @@ export default class Select extends Component {
           name={name}
           size={size}
           disabled={disabled}
-          value={inputValue || ''}
+          value={inputValue}
           icon={this.showIcon()}
           readOnly={!filterable || multiple}
           placeholder={this.state.placeholder}
@@ -422,6 +422,7 @@ Select.propTypes = {
 Select.defaultProps = {
   prefixCls: 'w-select',
   placeholder: '请选择',
+  value: '',
   searchPlaceholder: '没有匹配的数据',
   disabled: false,
   loading: false,
