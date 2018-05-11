@@ -289,7 +289,7 @@ class Demo extends Component {
   }
 
   onSearch(query) {
-    if (query !== '') {
+    if (!!query) {
       this.setState({
         loading: true
       });
