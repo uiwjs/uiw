@@ -6,6 +6,14 @@
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 
+## 1.9.6
+
+`2018-05-11`
+
+- 🐞 fix(Select): Fix remote search selected issue. [1d70283](https://github.com/uiw-react/uiw/commit/425ce46ae5de3b28198255097173a3c0b79b7c65) 
+- 🐞 Update hotkeys-js@3.3.1 [03c67db](https://github.com/uiw-react/uiw/commit/03c67db1d70c3521ed4b48d3387236b0383f2a29) 
+- 💄 chore: Update webpack devDependencies. [747ae5d](https://github.com/uiw-react/uiw/commit/747ae5d3015c8cb739921508c5ae3b9d19a39c9c) 
+
 ## 1.9.5
 
 `2018-05-09`
