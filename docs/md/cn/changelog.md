@@ -5,6 +5,11 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.9.7
+
+`2018-05-11`
+
+- fix(Select): Fix onSearch props issue. [49d37c4](https://github.com/uiw-react/uiw/commit/49d37c4babe3e184f82abd4a2bd150622a03d138)
 
 ## 1.9.6
 
