@@ -34,7 +34,10 @@ export default class Option extends Component {
   }
   isSelected() {
     const { selected } = this.parent().state;
+    const { onSearch, filterable } = this.parent().props;
     const { value } = this.props;
+    // 过滤搜索不需要选中
+    if (onSearch && filterable) return false;
     if (selected) {
       if (Object.prototype.toString.call(selected) === '[object Object]') {
         return value === selected.props.value;
