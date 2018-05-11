@@ -142,7 +142,7 @@ export default class Select extends Component {
     const { options } = this.state;
     const { filterable, onSearch } = this.props;
     if (onSearch) {
-      if (query) onSearch(query);
+      onSearch(query);
       return;
     }
     let filterItems = [];
@@ -170,7 +170,7 @@ export default class Select extends Component {
   // 点击选中事件, 选中设置Select值
   onOptionClick(option) {
     const { multiple } = this.props;
-    let { value } = this.state;
+    let { value, selectedLabel } = this.state;
     if (multiple) {
       if (value.indexOf(option.props.value) > -1) {
         value.splice(value.indexOf(option.props.value), 1);
@@ -179,12 +179,13 @@ export default class Select extends Component {
       }
     } else {
       value = option.props.value;
+      selectedLabel = option.props.label || value;
       this.setState({ visible: false });
     }
-    this.setState({ value, query: '' }, () => {
+    this.setState({ value, selectedLabel, query: '' }, () => {
       this.selectedData();
       this.onSelectedChange(option);
-      this.onQueryChange();
+      this.onQueryChange(option.props.value);
     });
   }
   onTagClose(item) {
