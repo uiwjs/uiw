@@ -19,6 +19,16 @@ export default class Tabs extends Component {
     this.updateFirstMount();
   }
   componentWillReceiveProps(nextProps) {
+    if (nextProps.children !== this.props.children) {
+      this.setState({
+        children: nextProps.children,
+      });
+    }
+    if (nextProps.activeKey !== this.props.activeKey) {
+      this.setState({
+        activeKey: nextProps.activeKey,
+      });
+    }
     if (nextProps.position !== this.props.position) {
       setTimeout(() => {
         this.calcSlideStyle();
@@ -85,7 +95,6 @@ export default class Tabs extends Component {
     this.tabsBar = [];
     delete other.activeKey;
     const Line = (type === 'line' && (position === 'top' || position === 'bottom')) && <div style={slideStyle} className={this.classNames(`${prefixCls}-slide`)} />;
-
     return (
       <div className={cls} {...other}>
         <div className={`${prefixCls}-bar`}>
