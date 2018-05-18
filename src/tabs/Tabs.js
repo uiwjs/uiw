@@ -27,6 +27,8 @@ export default class Tabs extends Component {
     if (nextProps.activeKey !== this.props.activeKey) {
       this.setState({
         activeKey: nextProps.activeKey,
+      }, () => {
+        this.calcSlideStyle(nextProps.activeKey);
       });
     }
     if (nextProps.position !== this.props.position) {
@@ -38,7 +40,7 @@ export default class Tabs extends Component {
   updateFirstMount() {
     setTimeout(() => {
       this.calcSlideStyle();
-    });
+    }, 300);
   }
   calcSlideStyle() {
     if (!this.tabsBar.length) return;
