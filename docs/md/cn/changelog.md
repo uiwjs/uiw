@@ -5,6 +5,12 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.9.9
+
+`2018-05-18`
+
+- fix(Tabs): The component will receive the props activeKey style issue. 
+
 ## 1.9.8
 
 `2018-05-18`
