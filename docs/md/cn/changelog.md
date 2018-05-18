@@ -5,11 +5,17 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.9.8
+
+`2018-05-18`
+
+- 🐞 fix(Tabs): The component will receive props children & activeKey fail. [35e0e24](https://github.com/uiw-react/uiw/commit/35e0e2409e65ab93550c3320ce95f9aeafcad636) 
+
 ## 1.9.7
 
 `2018-05-11`
 
-- fix(Select): Fix onSearch props issue. [49d37c4](https://github.com/uiw-react/uiw/commit/49d37c4babe3e184f82abd4a2bd150622a03d138)
+- 🐞 fix(Select): Fix onSearch props issue. [49d37c4](https://github.com/uiw-react/uiw/commit/49d37c4babe3e184f82abd4a2bd150622a03d138)
 
 ## 1.9.6
 
