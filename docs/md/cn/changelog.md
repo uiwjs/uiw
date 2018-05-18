@@ -6,38 +6,6 @@
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 
-<!--DemoStart--> 
-```js
-class Demo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeKey: '1',
-    };
-  }
-  render() {
-    return (
-      <div>
-        <Button onClick={() => {
-          this.setState({activeKey:''})
-        }}>annn</Button>
-        <Tabs activeKey={this.state.activeKey} onTabClick={(tab, key, e) => {
-            this.setState({activeKey:key})
-            console.log("=>",key,tab)
-          }}>
-          <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
-          <Tabs.Pane label="配置管理" key="2">配置管理</Tabs.Pane>
-          <Tabs.Pane sequence="fadeIn up" label="角色管理" key="3">角色管理</Tabs.Pane>
-          <Tabs.Pane label="大爷欢乐多" key="4"><div>大爷欢乐多</div><div>大爷欢乐多</div></Tabs.Pane>
-        </Tabs>
-      </div>
-    )
-  }
-}
-```
-<!--End-->
-
-
 ## 1.10.0
 
 `2018-05-18`
