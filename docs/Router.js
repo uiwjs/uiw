@@ -91,7 +91,7 @@ const RoutersContainer = withRouter(({ history, location, ...props }) => {
           <div className={`${prefixCls}-logo`}>
             <a href="https://uiw-react.github.io">
               <img src={Logo} alt="logo" />
-              <span>uiw <i className="version">{version} </i> <sup>beta</sup></span>
+              <span>uiw <i className="version">{version} </i> <sup /></span>
             </a>
           </div>
           <ul className={`${prefixCls}-menu-list`}>
