@@ -47,6 +47,12 @@ export default class Tabs extends Component {
     const { activeKey } = this.state;
     const children = this.state.children instanceof Array ? this.state.children : [this.state.children];
     const style = {};
+    if (!activeKey) {
+      this.setState({
+        slideStyle: { width: 0, left: 0 },
+      });
+      return;
+    }
     let left = 0;
     children.every((item, idx) => {
       const elm = this.tabsBar[idx];
