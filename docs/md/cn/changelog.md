@@ -6,17 +6,24 @@
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 
+## 1.11.0
+
+`2018-05-21`
+
+- 🐞 fix(Tabel): fix props _checked issue. [7999fcd](https://github.com/uiw-react/uiw/commit/7999fcd475a5febc80b0a80818cbeab053d5d390) 
+- 🎨 style(Form): Update form component style alignment. [ebbd4ff](https://github.com/uiw-react/uiw/commit/ebbd4ff7461448e771bf4b656eedbc064b0bdadf) 
+
 ## 1.10.0
 
 `2018-05-18`
 
-- fix(Tabs): The component will receive the props activeKey style issue. 
+- 🐞 fix(Tabs): Style issue with no activeKey. [7bbc69f](https://github.com/uiw-react/uiw/commit/7bbc69f42f44ecf0473ca6210f7cc26b71081246)
 
 ## 1.9.9
 
 `2018-05-18`
 
-- fix(Tabs): The component will receive the props activeKey style issue. 
+- 🐞 fix(Tabs): The component will receive the props activeKey style issue. 
 
 ## 1.9.8
 
