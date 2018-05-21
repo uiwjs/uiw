@@ -5,6 +5,17 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.11.2
+
+`2018-05-22`
+
+- 🌟 feat(Select): Add onClear props. [d49056d](https://github.com/uiw-react/uiw/commit/7999fcd475a5febc80b0a80818cbeab053d5d390)
+
+## 1.11.1
+
+`2018-05-22`
+
+- 🐞 fix(Select): fix issue with remove search get value. [3c7d05b](https://github.com/uiw-react/uiw/commit/3c7d05b7ba72ab0b87f39bec08647fe32d344e70)
 
 ## 1.11.0
 
