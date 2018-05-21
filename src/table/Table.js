@@ -18,8 +18,6 @@ export default class Table extends Component {
       // rowsCount: 0,              //选中的行数
       // rowsChecked: {},           //选中的数据
       // rowsDisabled: {},          //禁用的数据
-      // headIndeterminate: false,  //表头半选中状态
-      // headchecked: false,        //表头选中状态
       // rowCheckedDisable:{},      //选中并禁用的
       ...this.initalState(props),
       ischecked: !!props.rowSelection, // 是否存在选择功能
@@ -70,8 +68,6 @@ export default class Table extends Component {
       rowsDisabled,
       rowCheckedDisable,
       columns,
-      headIndeterminate: rowsCount > 0 && rowsCount < data.length,
-      headchecked: rowsCount === data.length,
     };
   }
   componentWillReceiveProps(nextProps) {
@@ -111,7 +107,7 @@ export default class Table extends Component {
   // 单行选择事件
   onRowSelection = (row, index, checked, e) => {
     const { rowsChecked, rowsCount } = this.state;
-    const { data, rowSelection } = this.props;
+    const { rowSelection } = this.props;
     const rowsCheckedNew = rowsChecked;
     const count = Math.abs(checked ? rowsCount + 1 : rowsCount - 1);
     if (checked) {
@@ -122,8 +118,6 @@ export default class Table extends Component {
     this.setState({
       rowsChecked: rowsCheckedNew,
       rowsCount: count,
-      headchecked: count === data.length,
-      headIndeterminate: count > 0 && count < data.length,
     });
     rowSelection.onSelect && rowSelection.onSelect(row, index, checked, rowsChecked, e);
   }
@@ -215,7 +209,7 @@ export default class Table extends Component {
   }
   render() {
     const { prefixCls, className, rowClassName, rowSelection, caption, footer, data, width, paging, loading } = this.props;
-    const { headchecked, trHoverClassName, columns } = this.state;
+    const { trHoverClassName, columns } = this.state;
     const { height } = this.props;
     const tableTbody = refname => (<Tbody
       ref={(componet) => { this[refname] = componet; }}
@@ -234,7 +228,6 @@ export default class Table extends Component {
       ref={(componet) => { this[refname] = componet; }}
       rowSelection={rowSelection}
       setFixedWidth={this.setFixedWidth}
-      headchecked={headchecked}
       selectedAll={this.selectedAll}
       columns={columns}
     />

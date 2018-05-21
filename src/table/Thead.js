@@ -105,9 +105,17 @@ export default class Thead extends Component {
   renderHead(indeterminate, columns, spanNum, childrens = [], level = 0, headelm = []) {
     const subitem = [];
     const { cloneElement } = this.props;
-    const { ischecked, headIndeterminate, headchecked, rowsChecked, rowsDisabled, rowCheckedDisable, data } = this.parent().state;
+    const { ischecked, rowsChecked, rowsDisabled, rowCheckedDisable, data } = this.parent().state;
+    let headchecked = false;
+    let headIndeterminate = false;
     if (cloneElement) {
       columns = this.renderColumnsFixed(columns, cloneElement);
+    }
+    if (rowsChecked && data) {
+      const rowsCheckedLength = Object.keys(rowsChecked).length;
+      if (rowsCheckedLength !== 0 && rowsCheckedLength === data.length) headchecked = true;
+      if (rowsCheckedLength !== 0 && rowsCheckedLength < data.length) headIndeterminate = true;
+      if (rowsCheckedLength === 0) headchecked = false;
     }
     for (let i = 0; i < columns.length; i += 1) {
       if (columns[i]) {
@@ -128,25 +136,14 @@ export default class Thead extends Component {
                   <div
                     className="w-table-selection"
                     onClick={(e) => {
-                      const props = {};
                       const disabledKeys = Object.keys(rowsDisabled);
                       const checkedKeys = Object.keys(rowsChecked);
                       const checkedDisableKeys = Object.keys(rowCheckedDisable);
                       if (checkedKeys.length === data.length || (checkedKeys.length - checkedDisableKeys.length) === (data.length - disabledKeys.length)) {
-                        props.headIndeterminate = false;
-                        props.headchecked = false;
                         this.props.selectedAll(e, false);
                       } else {
-                        if ((disabledKeys.length - checkedDisableKeys.length) === 0) {
-                          props.headIndeterminate = false;
-                          props.headchecked = true;
-                        } else {
-                          props.headIndeterminate = true;
-                          props.headchecked = false;
-                        }
                         this.props.selectedAll(e, true);
                       }
-                      this.parent().setState({ ...props });
                     }}
                   >
                     <Checkbox indeterminate={headIndeterminate} checked={headchecked} />
