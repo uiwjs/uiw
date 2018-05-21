@@ -57,8 +57,8 @@ export default class Select extends Component {
     }
     if (props.value !== this.state.value) {
       this.setState({
-        value: props.value || this.state.selectedLabel,
-        selectedLabel: this.showLabelText(props) || this.state.selectedLabel,
+        value: props.value,
+        selectedLabel: this.showLabelText(props),
       }, () => {
         this.selectedData();
       });
@@ -215,7 +215,7 @@ export default class Select extends Component {
   }
   // 输入内容，回调事件
   onInputKeyUpChange() {
-    if (this.props.filterable && this.state.selectedLabel !== this.state.value) {
+    if (this.props.filterable) {
       this.setState({ visible: true }, () => {
         this.setState({
           selectedLabel: this.state.selectedLabel,
