@@ -256,13 +256,15 @@ export default class Select extends Component {
   }
   // 清空选中内容
   onIconClick(e) {
-    const { multiple } = this.props;
+    const { multiple, onClear } = this.props;
     if (this.state.icon === 'close') {
       this.setState({
         selectedLabel: multiple ? [] : '',
         selected: multiple ? [] : '',
         value: multiple ? [] : '',
         icon: 'arrow-down',
+      }, () => {
+        onClear(this.state);
       });
       return;
     }
@@ -346,7 +348,7 @@ export default class Select extends Component {
     return icon;
   }
   render() {
-    const { prefixCls, size, name, clearable, multiple, filterable, disabled, children, onChange, onSearch, loading, searchPlaceholder, ...resetProps } = this.props;
+    const { prefixCls, size, name, clearable, multiple, filterable, disabled, children, onChange, onClear, onSearch, loading, searchPlaceholder, ...resetProps } = this.props;
     const { visible, inputWidth, selectedLabel } = this.state;
     const inputValue = selectedLabel && multiple ? '' : selectedLabel;
 
@@ -408,6 +410,7 @@ Select.propTypes = {
   searchPlaceholder: PropTypes.string,
   onChange: PropTypes.func,
   onSearch: PropTypes.func,
+  onClear: PropTypes.func,
   loading: PropTypes.bool, // onSearch 搜索的时候 loading效果
   disabled: PropTypes.bool, // 是否禁用
   filterable: PropTypes.bool, // 是否可过滤搜索
@@ -428,5 +431,6 @@ Select.defaultProps = {
   disabled: false,
   loading: false,
   onChange: () => {},
+  onClear: () => {},
   onSearch: null,
 };

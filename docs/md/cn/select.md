@@ -162,10 +162,19 @@ class Demo extends Component {
   onChange(e,value){
     console.log("onChange:",value,e)
   }
+  onClear(state){
+    console.log("onChange:", state)
+  }
   render() {
     return (
       <div>
-        <Select clearable={true} onChange={this.onChange.bind(this)} style={{width:200}} value={this.state.value}>
+        <Select
+          clearable={true}
+          onClear={this.onClear.bind(this)}
+          onChange={this.onChange.bind(this)}
+          style={{width:200}}
+          value={this.state.value}
+        >
           {
             this.state.options.map(elm => {
               return <Select.Option key={elm.value} label={elm.label} value={elm.value} disabled={elm.disabled} />
@@ -642,6 +651,7 @@ class Demo extends Component {
 | clearable | 是否可清空单选 | Boolean | false |
 | loading | 是否可清空单选 | Boolean | false |
 | onChange | 是否正在从远程获取数据 | function(option, curruntValue,values[]) | - |
+| onClear | 可清空的单选模式下用户点击清空按钮时触发 | function(state) | - |
 | onSearch | 输入值发生变化时触发，此事件配合 `filterable` 和 `loading` 使用 | function(query) | Null |
 
 ### Option
