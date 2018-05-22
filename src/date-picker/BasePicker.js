@@ -121,22 +121,27 @@ export default class BasePicker extends Component {
   onInputChange(e, timeStr) {
     const dateData = { text: timeStr };
     const { value } = this.state;
+    const { onChange } = this.props;
 
     if (this.type === 'timeselect') return;
     if (this.type !== 'datepicker') {
       if (isDateTime(timeStr)) {
         dateData.value = this.parseDateTime(timeStr);
       }
-      if (this.timer) clearTimeout(this.timer);
-      if (this.type === 'timepicker' && !isDateTime(timeStr)) {
-        this.timer = setTimeout(() => {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        if (!isDateTime(timeStr)) {
           this.setState({
             value, text: this.dateToStr(value),
           });
-        }, 1000);
-      }
+        }
+      }, 800);
     }
-    this.setState({ ...dateData });
+    this.setState({ ...dateData }, () => {
+      if (this.type !== 'datepicker' && isDateTime(timeStr)) {
+        onChange && onChange(this.dateToStr(this.state.value), this.state.value);
+      }
+    });
   }
   render() {
     const { className, style, ...resetProps } = this.props;
