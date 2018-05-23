@@ -6,6 +6,13 @@
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 
+## 1.11.5
+
+`2018-05-23`
+
+- 🌟 feat(Loading): Add reset props. [04ccaff](https://github.com/uiw-react/uiw/commit/04ccaffa9f23dabb83c3b7598ed0fac7d2333c9a) 
+
+
 ## 1.11.3
 
 `2018-05-22`
