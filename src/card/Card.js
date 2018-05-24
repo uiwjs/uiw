@@ -4,26 +4,21 @@ import { Component, PropTypes } from '../utils/';
 export default class Card extends Component {
   render() {
     const { prefixCls, className, title, extra, footer, bordered, noHover, bodyStyle, children, ...resetProps } = this.props;
-
     const cls = this.classNames(prefixCls, className, {
       [`${prefixCls}-bordered`]: bordered,
       [`${prefixCls}-no-hover`]: noHover,
     });
 
-    let head;
-    if (title || extra) {
-      head = (
-        <div className={`${prefixCls}-head`}>
-          {title ? <div className={`${prefixCls}-head-title`}>{title}</div> : null}
-          {extra ? <div className={`${prefixCls}-extra`}>{extra}</div> : null}
-        </div>
-      );
-    }
     return (
       <div {...resetProps} className={cls}>
-        {head}
-        <div className={`${prefixCls}-body`} style={bodyStyle}>{children}</div>
-        {footer ? <div className={`${prefixCls}-footer`}>{footer}</div> : null}
+        {(title || extra) && (
+          <div className={`${prefixCls}-head`}>
+            {title && <div className={`${prefixCls}-head-title`}>{title}</div>}
+            {extra && <div className={`${prefixCls}-extra`}>{extra}</div>}
+          </div>
+        )}
+        {children && <div className={`${prefixCls}-body`} style={bodyStyle}>{children}</div>}
+        {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
       </div>
     );
   }
