@@ -6,6 +6,15 @@
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 
+## 1.12.1
+
+`2018-05-24`
+
+- 🌟 feat(Card): Optimization code & Modify header and footer style. [fb39458](https://github.com/uiw-react/uiw/commit/fb3945857332ba2757e9d163e77a88a47fa9dd86) 
+- 🎨 style(Form): Inline style modify. [f0ba46b](https://github.com/uiw-react/uiw/commit/f0ba46b0522be10fdfa6fedd843e6b2b7a3daac4) 
+- 🎨 style(Message): Modify style z-index. [e7771a0](https://github.com/uiw-react/uiw/commit/e7771a0eaf921197f900e2a4bd7bab0f67bf28b4) 
+- 🎨 style(Loading): Modify Loading componnent styles. [7d51f9e](https://github.com/uiw-react/uiw/commit/7d51f9e63c78a2ecfb89e6a0be9c1ae3218a08cb) 
+
 ## 1.11.5
 
 `2018-05-23`
