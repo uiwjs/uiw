@@ -22,6 +22,8 @@ export default class Tabs extends Component {
     if (nextProps.children !== this.props.children) {
       this.setState({
         children: nextProps.children,
+      }, () => {
+        this.calcSlideStyle();
       });
     }
     if (nextProps.activeKey !== this.props.activeKey) {
