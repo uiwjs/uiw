@@ -6,6 +6,12 @@
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 
+## 1.12.2
+
+`2018-05-24`
+
+- 🐞 fix(Tabs): Fix data change check effect issue. [cce14cc](https://github.com/uiw-react/uiw/commit/cce14cc63a2bb0f046c39c1a8af4566bbf5fdc56)
+
 ## 1.12.1
 
 `2018-05-24`
