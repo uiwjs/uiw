@@ -55,10 +55,10 @@ export default class Select extends Component {
         placeholder: props.placeholder,
       });
     }
-    if (props.value !== this.state.value) {
+    if (props.value !== this.props.value) {
       this.setState({
         value: props.value,
-        selectedLabel: this.showLabelText(props),
+        selectedLabel: props.value,
       }, () => {
         this.selectedData();
       });
@@ -91,7 +91,7 @@ export default class Select extends Component {
   // 将所有渲染后的组件，寄存在当前state option上面
   onOptionCreate(option) {
     this.state.options.push(option);
-    this.setState(this.state);
+    this.setState({ options: this.state.options });
   }
   showLabelText(props) {
     return props.label ? props.label : props.value;
@@ -170,7 +170,7 @@ export default class Select extends Component {
   // 点击选中事件, 选中设置Select值
   onOptionClick(option) {
     const { multiple } = this.props;
-    let { value, selectedLabel } = this.state;
+    let { value, selectedLabel, filterItems } = this.state;
     if (multiple) {
       if (value.indexOf(option.props.value) > -1) {
         value.splice(value.indexOf(option.props.value), 1);
@@ -180,9 +180,10 @@ export default class Select extends Component {
     } else {
       value = option.props.value;
       selectedLabel = option.props.label || value;
+      filterItems = [option];
       this.setState({ visible: false });
     }
-    this.setState({ value, selectedLabel, query: '' }, () => {
+    this.setState({ value, selectedLabel, query: '', filterItems }, () => {
       this.selectedData();
       this.onSelectedChange(option);
       this.onQueryChange(option.props.value);
@@ -243,8 +244,9 @@ export default class Select extends Component {
   }
   onInputChangeValue(e) {
     const value = e.target.value;
-    this.setState({ selectedLabel: value, query: value });
-    this.onChange(e, value);
+    this.setState({ selectedLabel: value, query: value }, () => {
+      this.onChange(e, value);
+    });
   }
   onMouseDown(e) {
     e.preventDefault();
@@ -278,18 +280,10 @@ export default class Select extends Component {
       });
     }
   }
-  onIconMouseOver() {
-    this.showCloseIcon('close');
-  }
-  onIconMouseOut() {
-    this.showCloseIcon('arrow-down');
-  }
-  onMouseEnter() {
-    this.showCloseIcon('close');
-  }
-  onMouseLeave() {
-    this.showCloseIcon('arrow-down');
-  }
+  onIconMouseOver() { this.showCloseIcon('close'); }
+  onIconMouseOut() { this.showCloseIcon('arrow-down'); }
+  onMouseEnter() { this.showCloseIcon('close'); }
+  onMouseLeave() { this.showCloseIcon('arrow-down'); }
   renderMultipleTags() {
     const { multiple, filterable, prefixCls } = this.props;
     const { selected } = this.state;
