@@ -34,6 +34,12 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 - 🐞 fix(TimePicker): Fix an input error time trigger an event fail. [86c38b4](https://github.com/uiw-react/uiw/commit/86c38b44b28215c1920fe723bcf9a44084422824) 
 
+## 1.11.3
+
+`2018-05-27`
+
+- 🌟 fix(Select): Fix value props issue. [524b044](https://github.com/uiw-react/uiw/commit/524b044300e5cda16283dd294c451a2708148a54)
+
 ## 1.11.2
 
 `2018-05-22`
