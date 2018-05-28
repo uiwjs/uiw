@@ -6,9 +6,9 @@
 .@{w-breadcrumb} {
   color: #595959;
   font-size: 14px;
+  line-height: 1.5;
   &-item:last-child {
     color: #c0c0c0;
-    vertical-align: middle;
   }
   &-item:last-child &-item-separator {
     display: none;
@@ -19,18 +19,16 @@
       color: #3d90f2;
     }
   }
-  &-item-inner {
+  i[class^="w-icon-"] {
     vertical-align: middle;
-    > * {
-      vertical-align: middle;
-    }
+    margin-top: -3px;
+  }
+  &-item-inner {
     > i[class^="w-icon-"] + span {
       margin-left: 5px;
     }
   }
   &-item-separator {
-    vertical-align: middle;
-    font-size: 12px;
     margin: 0 8px;
     color: #adadad;
   }
