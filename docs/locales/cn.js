@@ -6,6 +6,7 @@ module.exports = {
     'color': 'Color 颜色',
     'checkbox': 'Checkbox 多选框',
     'card': 'Card 卡片',
+    'capsule': 'Capsule 胶囊',
     'affix': 'Affix 固钉',
     'collapse': 'Collapse 折叠面板',
     'date-picker': 'DatePicker 日期选择器',
