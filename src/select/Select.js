@@ -56,10 +56,14 @@ export default class Select extends Component {
       });
     }
     if (props.value !== this.props.value) {
-      this.setState({
+      const state = {
         value: props.value,
         selectedLabel: props.value,
-      }, () => {
+      };
+      if (!state.value) {
+        state.selected = [];
+      }
+      this.setState(state, () => {
         this.selectedData();
       });
     }

@@ -38,6 +38,7 @@ class Demo extends Component {
     };
   }
   onChange(e,value){
+    this.setState({ value });
     console.log("onChange:",value,e)
   }
   render() {
@@ -160,6 +161,7 @@ class Demo extends Component {
     };
   }
   onChange(e,value){
+    this.setState({ value });
     console.log("onChange:",value,e)
   }
   onClear(state){
@@ -211,6 +213,7 @@ class Demo extends Component {
     };
   }
   onChange(e,value){
+    this.setState({ value });
     console.log("onChange:",value,e)
   }
   render() {
@@ -293,7 +296,8 @@ class Demo extends Component {
         { value: "摩根大通公司（JPMORGAN CHASE & CO.)", label: "摩根大通公司（JPMORGAN CHASE & CO.)" },
         { value: "英国法通保险公司（LEGAL & GENERAL GROUP)", label: "英国法通保险公司（LEGAL & GENERAL GROUP)" },
         { value: "日本电报电话公司（NIPPON TELEGRAPH & TELEPHONE)", label: "日本电报电话公司（NIPPON TELEGRAPH & TELEPHONE)" },
-      ]
+      ],
+      value: '',
     }
   }
 
@@ -318,6 +322,7 @@ class Demo extends Component {
     }
   }
   onChange(option, curruntValue,values) {
+    this.setState({ value: curruntValue });
     console.log('~~~~~onChange~~~~~~::', option, curruntValue,values);
   }
   render() {
