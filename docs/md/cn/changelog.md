@@ -34,6 +34,22 @@ Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 - 🐞 fix(TimePicker): Fix an input error time trigger an event fail. [86c38b4](https://github.com/uiw-react/uiw/commit/86c38b44b28215c1920fe723bcf9a44084422824) 
 
+## 1.12.4
+
+`2018-05-29`
+
+- 🌟 feat(Capsule): Add Capsule component. [a8a5ac0](https://github.com/uiw-react/uiw/commit/a8a5ac0644ec4fe97f791a2311c579e795437fdb) 
+- 🌟 feat(Card): Optimization code & Modify header and footer style. [fb39458](https://github.com/uiw-react/uiw/commit/fb3945857332ba2757e9d163e77a88a47fa9dd86) 
+- 🌟 feat(Loading): Add reset props. [04ccaff](https://github.com/uiw-react/uiw/commit/04ccaffa9f23dabb83c3b7598ed0fac7d2333c9a) 
+- 🐞 fix(Select): Null value, empty selected state. [e25037b](https://github.com/uiw-react/uiw/commit/e25037b3ac6e09ac43e0f85c08b8ce83a91b5734) 
+- 🐞 fix(Select): Fix value props issue. [524b044](https://github.com/uiw-react/uiw/commit/524b044300e5cda16283dd294c451a2708148a54) 
+- 🐞 fix(Tabs): Fix data change check effect issue. [cce14cc](https://github.com/uiw-react/uiw/commit/cce14cc63a2bb0f046c39c1a8af4566bbf5fdc56) 
+- 🎨 style(Breadcrumb): Modify the icon style. [b7d4436](https://github.com/uiw-react/uiw/commit/b7d4436c21aa0f6ec48e4bff5e9f84a20ebd481f) 
+- 🎨 style(Tabs): Modify the close button style. [1739888](https://github.com/uiw-react/uiw/commit/1739888a7db0c5fb3f625532cc47541c6d81623f) 
+- 🎨 style(Form): Inline style modify. [f0ba46b](https://github.com/uiw-react/uiw/commit/f0ba46b0522be10fdfa6fedd843e6b2b7a3daac4) 
+- 🎨 style(Message): Modify style z-index. [e7771a0](https://github.com/uiw-react/uiw/commit/e7771a0eaf921197f900e2a4bd7bab0f67bf28b4) 
+- 🎨 style(Loading): Modify Loading componnent styles. [7d51f9e](https://github.com/uiw-react/uiw/commit/7d51f9e63c78a2ecfb89e6a0be9c1ae3218a08cb) 
+
 ## 1.11.3
 
 `2018-05-27`
