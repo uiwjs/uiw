@@ -6,6 +6,7 @@ module.exports = {
     'color': 'Color',
     'checkbox': 'Checkbox',
     'card': 'Card',
+    'capsule': 'Capsule',
     'copy-to-clipboard': 'CopyToClipboard',
     'affix': 'Affix',
     'collapse': 'Collapse',
