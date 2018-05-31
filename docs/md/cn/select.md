@@ -77,9 +77,12 @@ class Demo extends Component {
       value: ''
     };
   }
+  onChange(e, d) {
+    console.log('~~',e, d);
+  }
   render() {
     return (
-      <Select style={{width:200}} value={this.state.value} disabled={true}>
+      <Select onChange={this.onChange.bind(this)} style={{width:200}} value={this.state.value} disabled={true}>
         {
           this.state.options.map(el => {
             return <Select.Option key={el.value} label={el.label} value={el.value} />

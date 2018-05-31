@@ -50,6 +50,17 @@ export default class Select extends Component {
     return { component: this };
   }
   componentWillReceiveProps(props) {
+    let { selectedLabel, selected } = this.state;
+    if (props.children !== this.props.children && !props.multiple) {
+      // 当下拉菜单，比 value 值后传进来，应当显示 label
+      props.children.forEach((item) => {
+        if (item.props.value === selectedLabel) {
+          selectedLabel = item.props.label;
+          selected = item;
+        }
+      });
+      this.setState({ selectedLabel, selected });
+    }
     if (props.placeholder !== this.props.placeholder) {
       this.setState({
         placeholder: props.placeholder,
