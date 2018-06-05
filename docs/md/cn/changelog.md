@@ -6,6 +6,14 @@
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 
+## 1.13.2
+
+`2018-06-05`
+
+- 🌟 feat(Checkbox): Props option add label. [f4e46f0](https://github.com/uiw-react/uiw/commit/f4e46f08c999b6af8bf5e5d60d9ddccfe03806cb)
+- 🌟 feat(Select): Children option change value. [1dff528](https://github.com/uiw-react/uiw/commit/1dff528a4ea0d21846ab8692e6c065ec0ef17a5a)
+- 📖 doc(Checkbox): Update document. [c44938b](https://github.com/uiw-react/uiw/commit/c44938be27e8fda101843f3ddd4c21519479e12f)
+
 ## 1.12.2
 
 `2018-05-24`
