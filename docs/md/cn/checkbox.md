@@ -126,6 +126,11 @@ class Demo extends Component {
       { value: 'Pear' },
       { value: 'Orange' },
     ];
+    const optionsLabel = [
+      { value: 'Apple', label: '苹果' },
+      { value: 'Pear', label: '梨' },
+      { value: 'Orange', label: '橘子' },
+    ];
     const optionsWithDisabled = [
       { value: 'Apple' },
       { value: 'Pear' },
@@ -138,7 +143,15 @@ class Demo extends Component {
           options={plainOptions} 
           checkedValues={['Apple']} 
           onChange={(e,checkedValues,value,checked,option)=>{
-            console.log('checked = ', checkedValues,option);
+            console.log('checked = ', checkedValues,value,option);
+          }} 
+        />
+        <Divider />
+        <CheckboxGroup 
+          options={optionsLabel} 
+          checkedValues={['Pear']} 
+          onChange={(e,checkedValues,value,checked,option)=>{
+            console.log('checked = ', checkedValues,value,option);
           }} 
         />
         <Divider />
