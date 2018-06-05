@@ -21,6 +21,7 @@ export default class Group extends Component {
       <div style={style} className={this.classNames(prefixCls, className)}>
         {Array.from(options, (item, i) => {
           const value = item.value ? item.value : item;
+          const label = item.label ? item.label : value;
           this.checkboxs = {};
           return (
             <Checkbox
@@ -34,7 +35,8 @@ export default class Group extends Component {
               ref={(component) => {
                 this.checkboxs[`checkbox${i}`] = component;
               }}
-            >{value}
+            >
+              {label}
             </Checkbox>
           );
         })}
