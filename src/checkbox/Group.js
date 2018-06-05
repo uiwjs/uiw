@@ -16,12 +16,16 @@ export default class Group extends Component {
     return values;
   }
   render() {
-    const { prefixCls, style, onChange, options, checkedValues, disabled, className } = this.props;
+    const { prefixCls, className, onChange, options, checkedValues, disabled, ...otherProps } = this.props;
     return (
-      <div style={style} className={this.classNames(prefixCls, className)}>
+      <div className={this.classNames(prefixCls, className)} {...otherProps}>
         {Array.from(options, (item, i) => {
           const value = item.value ? item.value : item;
           const label = item.label ? item.label : value;
+          let props = {};
+          if (typeof item === 'object') {
+            props = { ...item };
+          }
           this.checkboxs = {};
           return (
             <Checkbox
@@ -35,6 +39,7 @@ export default class Group extends Component {
               ref={(component) => {
                 this.checkboxs[`checkbox${i}`] = component;
               }}
+              {...props}
             >
               {label}
             </Checkbox>
@@ -48,12 +53,14 @@ export default class Group extends Component {
 Group.defaultProps = {
   prefixCls: 'w-checkbox-group',
   options: [],
+  disabled: false,
   checkedValues: [],
   onChange() { },
 };
 Group.propTypes = {
   prefixCls: PropTypes.string,
   options: PropTypes.array,
+  disabled: PropTypes.bool,
   checkedValues: PropTypes.array,
   onChange: PropTypes.func,
 };

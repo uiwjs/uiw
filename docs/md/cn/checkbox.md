@@ -127,7 +127,7 @@ class Demo extends Component {
       { value: 'Orange' },
     ];
     const optionsLabel = [
-      { value: 'Apple', label: '苹果' },
+      { value: 'Apple', label: '苹果', disabled: true },
       { value: 'Pear', label: '梨' },
       { value: 'Orange', label: '橘子' },
     ];
