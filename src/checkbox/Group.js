@@ -4,17 +4,6 @@ import Checkbox from './';
 
 
 export default class Group extends Component {
-  checkedValuesResult(checkedValues, value, checked) {
-    const values = [];
-    for (let i = 0; i < checkedValues.length; i += 1) {
-      const _value = this.checkboxs[`checkbox${i}`].state.value;
-      const _checked = this.checkboxs[`checkbox${i}`].state.checked;
-      if ((_checked && value !== _value) || (checked && value === _value)) {
-        values.push(_value);
-      }
-    }
-    return values;
-  }
   render() {
     const { prefixCls, className, onChange, options, checkedValues, disabled, ...otherProps } = this.props;
     return (
@@ -26,19 +15,20 @@ export default class Group extends Component {
           if (typeof item === 'object') {
             props = { ...item };
           }
-          this.checkboxs = {};
+          this.checkedValues = checkedValues;
           return (
             <Checkbox
               key={i}
               onChange={(e, checked) => {
-                const values = this.checkedValuesResult(options, value, checked);
-                onChange(e, values, value, checked, item);
+                if (checked) {
+                  if (this.checkedValues.indexOf(value) === -1) this.checkedValues.push(value);
+                } else if (this.checkedValues.indexOf(value) > -1) {
+                  this.checkedValues = this.checkedValues.filter(_item => _item !== value);
+                }
+                onChange(e, this.checkedValues, value, checked, item);
               }}
               disabled={item.disabled === false ? false : disabled}
               checked={checkedValues.indexOf(value) > -1}
-              ref={(component) => {
-                this.checkboxs[`checkbox${i}`] = component;
-              }}
               {...props}
             >
               {label}

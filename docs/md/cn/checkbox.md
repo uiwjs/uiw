@@ -321,7 +321,17 @@ class Demo extends Component {
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
-| options | 指定可选 | string[] | [] |
+| options | 指定可选 | string[],object[] | [] |
 | checkedValues | 默认选中的选 | string[] | [] |
 | onChange | 变化时回调函数 | Function(e:Event,checkedValues:Array, value:String, checked:Boolean, option) | - |
+| disabled | 禁用所有，[options]中设置，disabled=false 取消禁用 | Boolean | false |
+
+### Checkbox Group Options
+
+Options 是个数组，里面可以是对象，也可以是字符串，为字符串，默认界面上显示的和 `value` 是一样的，对象是分界面展示的 `label` 和 `value` 值。
+
+| 参数      | 说明    | 类型      |  默认值   |
+|--------- |-------- |---------- |-------- |
+| value | CheckBox值，必填 | string | - |
+| label | 界面上展示的文本，此值没有，展示 `value` 值，选填 | string | - |
 | disabled | 禁用所有，[options]中设置，disabled=false 取消禁用 | Boolean | false |
