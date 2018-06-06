@@ -5,6 +5,17 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.13.4
+
+`2018-06-06`
+
+- 🐞 fix(CheckBox): The onChange return an incorrect value. [a59ae0c](https://github.com/uiw-react/uiw/commit/a59ae0c871c1377c9df60d4a70727216eb460a5e) 
+
+## 1.13.3
+
+`2018-06-05`
+
+- 🐞 fix(Checkbox): Enhance props. [0adf065](https://github.com/uiw-react/uiw/commit/0adf0650cffbd505fa4d95ebcd016bcd151ff316) 
 
 ## 1.13.2
 
