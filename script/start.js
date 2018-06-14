@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 import detect from 'detect-port';
-import opn from 'opn';
+import openBrowsers from 'open-browsers';
 import WebpackDevServer from 'webpack-dev-server';
 import load from 'loading-cli';
 import 'colors-cli/toxic';
@@ -34,7 +34,14 @@ detect(PORT).then((_port) => {
       return console.log(err); // eslint-disable-line
     }
     // open browser
-    opn(`http://${HOST}:${PORT}`);
+    openBrowsers(`http://${HOST}:${DEFAULT_PORT}`);
+
+    ['SIGINT', 'SIGTERM'].forEach((sig) => {
+      process.on(sig, () => {
+        devServer.close();
+        process.exit();
+      });
+    });
   });
 }).catch((err) => {
   console.log(err); // eslint-disable-line
