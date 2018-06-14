@@ -23,13 +23,14 @@ compiler.hooks.done.tap('done', () => {
 
 detect(PORT).then((_port) => {
   if (PORT !== _port) PORT = _port;
-  new WebpackDevServer(compiler, {
+  const devServer = new WebpackDevServer(compiler, {
     // contentBase: conf.output.appPublic,
     publicPath: conf.output.publicPath,
     hot: true,
     historyApiFallback: true,
     quiet: true,
-  }).listen(PORT, HOST, (err) => {
+  })
+  devServer.listen(PORT, HOST, (err) => {
     if (err) {
       return console.log(err); // eslint-disable-line
     }
