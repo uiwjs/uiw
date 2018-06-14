@@ -19,15 +19,17 @@ export default class Modal extends Component {
       this.setState({ isMount: true });
     }
   }
+  componentWillUnmount() {
+    document.body.style.overflow = 'inherit';
+  }
   componentWillReceiveProps(nextProps) {
     if (this.props.visible !== nextProps.visible) {
       document.body.style.overflow = nextProps.visible ? 'hidden' : 'inherit';
+      const props = { visible: nextProps.visible };
       if (nextProps.visible) {
-        this.setState({ isMount: true });
+        props.isMount = true;
       }
-      this.setState({
-        visible: nextProps.visible,
-      });
+      this.setState({ ...props });
     }
   }
   onExited(props) {
