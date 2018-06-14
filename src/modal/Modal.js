@@ -11,18 +11,19 @@ export default class Modal extends Component {
     super(props);
     this.state = {
       visible: props.visible,
+      isMount: false,
     };
   }
   componentWillMount() {
     if (this.props.visible) {
-      this.isMount = true;
+      this.setState({ isMount: true });
     }
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.visible !== nextProps.visible) {
       document.body.style.overflow = nextProps.visible ? 'hidden' : 'inherit';
       if (nextProps.visible) {
-        this.isMount = true;
+        this.setState({ isMount: true });
       }
       this.setState({
         visible: nextProps.visible,
@@ -31,17 +32,18 @@ export default class Modal extends Component {
   }
   onExited(props) {
     const { onCancel, onExited } = this.props;
-    this.isMount = false;
-    // 动画事件不同步，带来的闪烁问题
-    const timer = setTimeout(() => {
-      if (!this.isMount) {
-        onExited(props);
+    this.setState({ isMount: false }, () => {
+      // 动画事件不同步，带来的闪烁问题
+      const timer = setTimeout(() => {
+        if (!this.state.isMount) {
+          onExited(props);
+        }
+        clearTimeout(timer);
+      }, 100);
+      if (!this.state.isMount) {
+        onCancel();
       }
-      clearTimeout(timer);
-    }, 100);
-    if (!this.isMount) {
-      onCancel();
-    }
+    });
   }
   onCancel = (ismask) => {
     // 禁止遮罩层关闭
@@ -54,7 +56,7 @@ export default class Modal extends Component {
   }
   render() {
     const { prefixCls, className, title, footer, horizontal, styleMask, children, confirmLoading, onCancel, cancelText, okText, width, onEntered, ...other } = this.props;
-    const { visible } = this.state;
+    const { visible, isMount } = this.state;
     let defaultFooter = !footer ? (
       <ButtonGroup>
         <Button key="cancel" size="small" onClick={this.onCancel}>
@@ -66,9 +68,9 @@ export default class Modal extends Component {
       </ButtonGroup>
     ) : footer;
     const cls = this.classNames(prefixCls, {
-      [`${prefixCls}-wrap`]: this.isMount,
-      [`${prefixCls}-horizontal-left`]: horizontal === 'left' && this.isMount,
-      [`${prefixCls}-horizontal-right`]: horizontal === 'right' && this.isMount,
+      [`${prefixCls}-wrap`]: isMount,
+      [`${prefixCls}-horizontal-left`]: horizontal === 'left' && isMount,
+      [`${prefixCls}-horizontal-right`]: horizontal === 'right' && isMount,
       [className]: className,
     });
 
