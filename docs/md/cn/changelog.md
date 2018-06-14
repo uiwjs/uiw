@@ -5,6 +5,42 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible3:false,
+    }
+  }
+  render() {
+    return (
+      <div> 
+        <Button size="small" onClick={()=>{
+          this.setState({visible3:true})
+        }}>Modals居中显示，</Button> &nbsp;
+        <Modal 
+          title="Modals自定义Footer" 
+          visible={this.state.visible3}
+          onOk={()=>{
+            // 点击确定提交按钮
+          }} 
+          onCancel={()=>this.setState({visible3:false})}
+          okText="OK" 
+          cancelText="Cancel"
+        >
+          <p style={{color:"#333"}}>Bla bla ...</p>
+          <p>Bla bla ...</p>
+          <p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p><p>Bla bla ...</p>
+        </Modal>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
 ## 1.13.4
 
 `2018-06-06`
