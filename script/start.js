@@ -34,7 +34,7 @@ detect(PORT).then((_port) => {
       return console.log(err); // eslint-disable-line
     }
     // open browser
-    openBrowsers(`http://${HOST}:${DEFAULT_PORT}`);
+    openBrowsers(`http://${HOST}:${PORT}`);
 
     ['SIGINT', 'SIGTERM'].forEach((sig) => {
       process.on(sig, () => {
