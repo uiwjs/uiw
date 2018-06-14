@@ -530,7 +530,7 @@ class Demo extends Component {
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | visible | 对话框是否可见 | boolean | - |
-| title | 标题 | string、ReactNode | - |
+| title | 标题，标题为空，标题将不展示，标题右侧关闭按钮同样不展示 | string、ReactNode | - |
 | okText | 确认按钮文字 | string | 确定 |
 | onOk | 点击确定回调 | function(e) | - |
 | confirmLoading | 确定按钮 loading | boolean | false |

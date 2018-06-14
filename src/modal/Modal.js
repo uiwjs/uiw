@@ -86,10 +86,12 @@ export default class Modal extends Component {
         </Transition>
         <Transition onExited={this.onExited.bind(this)} onEntered={onEntered} in={visible} sequence={AnimateType}>
           <div className={`${prefixCls}-content`} style={{ width, ...other.style }}>
-            <div className={`${prefixCls}-header`}>
-              <div className={`${prefixCls}-title`}>{title}</div>
-              <a onClick={() => this.onCancel()} className={`${prefixCls}-close-icon`}><Icon type="close" /></a>
-            </div>
+            {title && (
+              <div className={`${prefixCls}-header`}>
+                <div className={`${prefixCls}-title`}>{title}</div>
+                <a onClick={() => this.onCancel()} className={`${prefixCls}-close-icon`}><Icon type="close" /></a>
+              </div>
+            )}
             <div className={`${prefixCls}-body`}>{children}</div>
             {defaultFooter}
           </div>
@@ -102,6 +104,7 @@ export default class Modal extends Component {
 Modal.defaultProps = {
   prefixCls: 'w-modal',
   width: 520,
+  title: '',
   visible: false,
   maskClosable: true,
   confirmLoading: false,
