@@ -37,19 +37,28 @@ class Demo extends Component {
       value: '选项1'
     };
   }
-  onChange(e,value){
+  onChange(e, value) {
     this.setState({ value });
-    console.log("onChange:",value,e)
+    console.log('onChange:', value, e);
+  }
+  onSelectChange(e, value) {
+    console.log('onChange:', value, e);
   }
   render() {
     return (
-      <Select onChange={this.onChange.bind(this)} style={{width:200}} value={this.state.value}>
-        {
-          this.state.options.map(elm => {
-            return <Select.Option key={elm.value} label={elm.label} value={elm.value} disabled={elm.disabled} />
-          })
-        }
-      </Select>
+      <div>
+        <Select onChange={this.onSelectChange.bind(this)} style={{ width: 200 }}>
+          <Select.Option label="普通管理员" value="0" />
+          <Select.Option label="管理员" value="1" />
+        </Select>
+        <Select onChange={this.onChange.bind(this)} style={{width:200}} value={this.state.value}>
+          {
+            this.state.options.map(elm => {
+              return <Select.Option key={elm.value} label={elm.label} value={elm.value} disabled={elm.disabled} />
+            })
+          }
+        </Select>
+      </div>
     )
   }
 }
