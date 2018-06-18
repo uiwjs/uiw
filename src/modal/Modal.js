@@ -69,13 +69,11 @@ export default class Modal extends Component {
         </Button>
       </ButtonGroup>
     ) : footer;
-    const cls = this.classNames(prefixCls, {
+    const cls = this.classNames(prefixCls, className, {
       [`${prefixCls}-wrap`]: isMount,
       [`${prefixCls}-horizontal-left`]: horizontal === 'left' && isMount,
       [`${prefixCls}-horizontal-right`]: horizontal === 'right' && isMount,
-      [className]: className,
     });
-
     let AnimateType = '';
     switch (horizontal) {
       case 'left': AnimateType = 'fadeIn left'; break;
@@ -117,6 +115,7 @@ Modal.defaultProps = {
   onEntered: v => v,
 };
 Modal.propTypes = {
+  prefixCls: PropTypes.string,
   visible: PropTypes.bool,
   horizontal: PropTypes.oneOf(['left', 'right']),
   maskClosable: PropTypes.bool,
