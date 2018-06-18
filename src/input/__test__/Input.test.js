@@ -46,21 +46,21 @@ describe('<Input>', () => {
     wrapper.setProps({ type: 'text' });
     const input = wrapper.find('.w-input').at(0);
     input.simulate('change');
-    expect(input.html()).toContain('<div class="w-input"><input type="text" autocomplete="off" class="w-input-inner"></div>');
+    expect(input.html()).toContain('<div class="w-input"><input type="text" placeholder="" autocomplete="off" class="w-input-inner"></div>');
   });
 
   it('Test onSearch event.', () => {
     wrapper.setProps({ type: 'input' });
     const input = wrapper.find('.w-input').at(0);
     input.simulate('change');
-    expect(input.html()).toContain('<div class="w-input"><input type="input" autocomplete="off" class="w-input-inner"></div>');
+    expect(input.html()).toContain('<div class="w-input"><input type="input" placeholder="" autocomplete="off" class="w-input-inner"></div>');
   });
 
   it('Test onKeyUp event.', () => {
     wrapper.setProps({ type: 'input' });
     const input = wrapper.find('.w-input').at(0);
     input.simulate('keyup');
-    expect(input.html()).toContain('<div class="w-input"><input type="input" autocomplete="off" class="w-input-inner"></div>');
+    expect(input.html()).toContain('<div class="w-input"><input type="input" placeholder="" autocomplete="off" class="w-input-inner"></div>');
   });
 
   it('Test defaultValue attributes.', () => {

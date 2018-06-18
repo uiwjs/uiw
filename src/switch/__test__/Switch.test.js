@@ -37,6 +37,6 @@ describe('<Switch>', () => {
     const S = wrapper.find('.w-switch input').at(0);
     S.simulate('change');
     expect(wrapperState.value).toBe(true);
-    expect(S.html()).toContain('<input type="checkbox">');
+    expect(S.html()).toContain('<input type="checkbox" value="on">');
   });
 });
