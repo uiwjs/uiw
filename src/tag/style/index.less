@@ -14,9 +14,11 @@
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25em;
-  margin-right: @tag-padding-horizontal;
   [class^="w-icon-"], [class*=" w-icon-"] {
     vertical-align: middle;
+  }
+  & + .@{tag-cls} {
+    margin-left: @tag-padding-horizontal;
   }
   svg {
     cursor: pointer;
