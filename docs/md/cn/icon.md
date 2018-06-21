@@ -122,9 +122,9 @@ class Demo extends Component {
 class Demo extends Component {
   render() {
     const {Row,Col} = Layout;
-    const styleItem = {textAlign:"center",padding:"20px 10px",background: "#f4f4f4",marginBottom:10};
-    const iconStyle = {color:"#525252"};
-    const iconList = ["loading",'reload'];
+    const styleItem = { textAlign: "center", padding: "20px 10px", background: "#f4f4f4", marginBottom: 10 };
+    const iconStyle = { color: '#525252' };
+    const iconList = ['loading', 'reload', 'picasa'];
     return (
       <div>
         <Row gutter="10">
