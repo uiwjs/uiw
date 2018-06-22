@@ -89,6 +89,7 @@
     "less-loader": "^4.1.0",
     "lint-staged": "^5.0.0",
     "loading-cli": "^1.0.6",
+    "local-ip-url": "^1.0.1",
     "marked": "^0.3.6",
     "mini-css-extract-plugin": "^0.4.0",
     "open-browsers": "^1.1.1",
