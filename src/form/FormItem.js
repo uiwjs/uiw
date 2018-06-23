@@ -192,7 +192,7 @@ export default class FormItem extends Component {
     });
     return (
       <Row className={cls} {...resetProps}>
-        {this.renderLabel.bind(this)()}
+        {label && this.renderLabel()}
         {this.renderWrapper.bind(this)()}
       </Row>
     );
