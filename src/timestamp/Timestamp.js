@@ -31,6 +31,9 @@ export default class Timestamp extends Component {
     };
   }
   componentDidMount() {
+    this.initDate();
+  }
+  initDate() {
     const { value, format, startTime, tzc, beforeDate, renderDate, countDown, renderTime } = this.props;
     let date = formatDate(format, timeZoneConverter(value, tzc));
     if (countDown && (isDate(value) && isDate(startTime))) {
@@ -78,10 +81,8 @@ export default class Timestamp extends Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value || nextProps.format !== this.props.format) {
-      this.setState({
-        date: formatDate(nextProps.format, timeZoneConverter(nextProps.value, nextProps.tzc)),
-      });
+    if (nextProps.props) {
+      this.initDate();
     }
   }
   render() {
