@@ -46,6 +46,7 @@ export default class Timestamp extends Component {
       date = renderDate(dateLeft(value));
       this.tick();
     }
+    console.log('date:', date);
     this.setState({ date });
   }
   tick() {
@@ -80,10 +81,8 @@ export default class Timestamp extends Component {
       });
     }
   }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.props) {
-      this.initDate();
-    }
+  componentWillReceiveProps() {
+    this.initDate();
   }
   render() {
     const { prefixCls, className, format, beforeDate, renderDate, tzc, value, countDown, onDateEnd, onDateChange, startTime, ...resetProps } = this.props;
