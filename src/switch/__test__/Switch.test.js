@@ -38,6 +38,13 @@ describe('<Switch>', () => {
     const S = wrapper.find('.w-switch input').at(0);
     S.simulate('change', { target: { checked: true } });
     expect(wrapperState.value).toBe(true);
-    expect(S.html()).toContain('<input type="checkbox" value="on">');
+
+    const SwitchExp = mount(<Switch
+      onChange={(e, checked) => {
+        expect(e.foo.checked).toBe(true);
+        expect(checked).toBe(false);
+      }}
+    />);
+    SwitchExp.find('input').simulate('change', { foo: { checked: true } });
   });
 });
