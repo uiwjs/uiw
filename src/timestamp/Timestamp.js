@@ -46,7 +46,6 @@ export default class Timestamp extends Component {
       date = renderDate(dateLeft(value));
       this.tick();
     }
-    console.log('date:', date);
     this.setState({ date });
   }
   tick() {
