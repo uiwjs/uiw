@@ -6,6 +6,72 @@
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
 
+<!--DemoStart--> 
+```js
+const minute = 1000 * 60;
+const hour = minute * 60;
+const day = hour * 24;
+const halfamonth = day * 15;
+const month = day * 30;
+const year = month * 12;
+
+class Demo extends Component {
+  constructor() {
+    super();
+    this.state = {
+      value: Date.now(),
+    };
+  }
+  onDateChange(number){
+    console.log('number', number);
+    let label = '';
+    const _year = number/year;
+    const _month = number/month;
+    const _week = number/(7*day);
+    const _day = number/day;
+    const _hour = number/hour;
+    const _min = number/minute;
+
+    if(_year>=1) label=parseInt(_year) + "年前";
+    else if(_month>=1) label=parseInt(_month) + "个月前";
+    else if(_week>=1) label=parseInt(_week) + "周前";
+    else if(_day>=1) label=parseInt(_day) +"天前";
+    else if(_hour>=1) label=parseInt(_hour) +"个小时前";
+    else if(_min>=1) label=parseInt(_min) +"分钟前";
+    else label="刚刚";
+    return (
+      <span>{label}</span>
+    )
+  }
+  render() {
+    return (
+      <div>
+        <Button
+          onClick={() => {
+            console.log('~~');
+            this.setState({
+              value: Date.now() - minute * 246
+            });
+          }}
+        >
+          特殊图
+        </Button>
+        <div>
+        <Timestamp
+          beforeDate={true}
+          interval={0}
+          renderDate={this.onDateChange.bind(this)}
+          value={this.state.value}
+        />
+        </div>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
+
 ## 1.13.4
 
 `2018-06-06`
