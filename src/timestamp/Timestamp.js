@@ -31,10 +31,14 @@ export default class Timestamp extends Component {
     };
   }
   componentDidMount() {
-    this.initDate();
-  }
-  initDate() {
     const { value, format, startTime, tzc, beforeDate, renderDate, countDown, renderTime } = this.props;
+    this.initDate(value, format, startTime, tzc, beforeDate, renderDate, countDown, renderTime);
+  }
+  componentWillReceiveProps(nextProps) {
+    const { value, format, startTime, tzc, beforeDate, renderDate, countDown, renderTime } = nextProps;
+    this.initDate(value, format, startTime, tzc, beforeDate, renderDate, countDown, renderTime);
+  }
+  initDate(value, format, startTime, tzc, beforeDate, renderDate, countDown, renderTime) {
     let date = formatDate(format, timeZoneConverter(value, tzc));
     if (countDown && (isDate(value) && isDate(startTime))) {
       this.timeleft = (new Date(value)).getTime() - (new Date(startTime)).getTime();
@@ -42,7 +46,7 @@ export default class Timestamp extends Component {
       this.tick();
     }
     if (beforeDate) {
-      this.timeleft = (new Date()).getTime() - (new Date(value)).getTime();
+      this.timeleft = Date.now() - value;
       date = renderDate(dateLeft(value));
       this.tick();
     }
@@ -79,9 +83,6 @@ export default class Timestamp extends Component {
         onDateEnd(this.timeleft);
       });
     }
-  }
-  componentWillReceiveProps() {
-    this.initDate();
   }
   render() {
     const { prefixCls, className, format, beforeDate, renderDate, tzc, value, countDown, onDateEnd, onDateChange, startTime, ...resetProps } = this.props;
