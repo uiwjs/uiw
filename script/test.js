@@ -14,9 +14,10 @@ process.on('unhandledRejection', err => {
 const jest = require('jest');
 const argv = process.argv.slice(2);
 
+// console.log(argv, argv[argv.length -1])
 // 除非在CI或覆盖模式下监听
-if (!process.env.CI && argv.indexOf('--coverage') < 0) {
-  argv.push('--watch');
-}
+// if (argv[argv.length - 1].indexOf('--coverage') < 0) {
+//   argv.push('--watch');
+// }
 
 jest.run(argv);
