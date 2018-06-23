@@ -34,9 +34,10 @@ describe('<Switch>', () => {
   });
 
   it('Test onChange event.', () => {
+    wrapper.setProps({ checked: true });
     const S = wrapper.find('.w-switch input').at(0);
     S.simulate('change', { target: { checked: true } });
     expect(wrapperState.value).toBe(true);
-    expect(S.html()).toContain('<input type="checkbox">');
+    expect(S.html()).toContain('<input type="checkbox" value="on">');
   });
 });
