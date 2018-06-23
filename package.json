@@ -14,8 +14,9 @@
   "scripts": {
     "release": "npm run build:lib && release-it --src.tagName='v%s'",
     "precommit": "lint-staged",
-    "coverage": "node script/test.js --config .jest.js -- --coverage",
+    "coverage": "node script/test.js --config .jest.js --coverage",
     "test": "babel-node script/test.js --config .jest.js",
+    "test:watch": "babel-node script/test.js --config .jest.js --watch",
     "start": "babel-node script/start.js",
     "build": "babel-node script/build.js",
     "build:lib": "BABEL_ENV=production babel --ignore=src/**/__test__ --plugins transform-runtime src --out-dir lib --copy-files ",
