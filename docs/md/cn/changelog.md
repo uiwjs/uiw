@@ -5,72 +5,50 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## 1.13.17
 
-<!--DemoStart--> 
-```js
-const minute = 1000 * 60;
-const hour = minute * 60;
-const day = hour * 24;
-const halfamonth = day * 15;
-const month = day * 30;
-const year = month * 12;
+`2018-06-24`
 
-class Demo extends Component {
-  constructor() {
-    super();
-    this.state = {
-      value: Date.now(),
-    };
-  }
-  onDateChange(number){
-    console.log('number', number);
-    let label = '';
-    const _year = number/year;
-    const _month = number/month;
-    const _week = number/(7*day);
-    const _day = number/day;
-    const _hour = number/hour;
-    const _min = number/minute;
-
-    if(_year>=1) label=parseInt(_year) + "年前";
-    else if(_month>=1) label=parseInt(_month) + "个月前";
-    else if(_week>=1) label=parseInt(_week) + "周前";
-    else if(_day>=1) label=parseInt(_day) +"天前";
-    else if(_hour>=1) label=parseInt(_hour) +"个小时前";
-    else if(_min>=1) label=parseInt(_min) +"分钟前";
-    else label="刚刚";
-    return (
-      <span>{label}</span>
-    )
-  }
-  render() {
-    return (
-      <div>
-        <Button
-          onClick={() => {
-            console.log('~~');
-            this.setState({
-              value: Date.now() - minute * 246
-            });
-          }}
-        >
-          特殊图
-        </Button>
-        <div>
-        <Timestamp
-          beforeDate={true}
-          interval={0}
-          renderDate={this.onDateChange.bind(this)}
-          value={this.state.value}
-        />
-        </div>
-      </div>
-    )
-  }
-}
-```
-<!--End-->
-
+- 🌟 feat: Add release command. 20e7910 
+- 🌟 feat(Modal): The param title is an empty hidden title. 4adb6f6 
+- 🐞 fix(Timestamp): Receive props issue. f2fc5dc 
+- 🐞 fix(Timestamp): Receive props value issue. 80ca06c 
+- 🐞 fix(Timestamp): Receive props issue. 4636764 
+- 🐞 Fix(Modal): Fix scrolling issue. 6456f6b 
+- ⛑ test(Switch): Add test case. 5478618 
+- ⛑ test(Input & Timestamp): Update test case. 733d427 
+- ⛑ test(Input & Switch): Update test case. 04011ab 
+- ⛑ test(Switch): Update Test onChange event. a5e45bf 
+- ⛑ test(Switch): Update test case. 0b8b90a 
+- ⛑ test: Formatting code. 2a2d15b 
+- ⛑ test: Update jest config. 7ba8ba0 
+- ⛑ test: Update test command. 4a4e641 
+- ⛑ test: Update .travis.yml 5153661 
+- ⛑ test: Update travis config. 88f4521 
+- ⛑ test: Update travis config. 8526507 
+- ⛑ test: Update test command. 848b709 
+- ⛑ test(Input & Switch): Update test case. 763e2fb 
+- 💄 chore(Form): Parameter does not exist label does not show. e37a436 
+- 💄 chore: Update devDependencies. a17717a 
+- 💄 chore: Update development command. 6ee0fdf 
+- 💄 chore: Modify the URL display in the command line. 34487e7 
+- 💄 chore: Update dependencies gh-pages@1.2.0 3cbd8bc 
+- 💄 chore(Icon): Add example. f2c40e7 
+- 💄 chore(Tag): Modify spacing style. 89a9902 
+- 💄 chore: Update dependencies. 591818d 
+- 💄 chore(Modal): Add PropTypes prefixCls. 099233e 
+- 💄 chore: Fix start command error. 10813dc 
+- 💄 chore: Modify start command error. 37bbd02 
+- 💄 chore(Modal): Optimize animation display. e56ec78 
+- 💄 chore: Update start command. 7873744 
+- 🎨 style(Form): Modify line height. 42d3384 
+- 🎨 style(CopyToClipboard): Modify cursor style. e1342d0 
+- 🎨 style(Button): Modify Button disabled style. e905b2e 
+- 🎨 style(Button): Modify button line height style. 75475f4 
+- 🎨 style(Tag): Modify line height. 90642b5 
+- 📖 doc(Select): Add example. ee10c92 
+- 📖 doc: Update quick start document. 195887e 
+- 📖 doc: Update changelog 683115c 
 
 ## 1.13.4
 
