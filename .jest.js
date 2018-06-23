@@ -9,6 +9,7 @@ module.exports = {
   "moduleNameMapper": {
     "\\.(css|less)$": "identity-obj-proxy"
   },
+  "modulePaths": ['<rootDir>/src'],
   // 用于编译 ES6/ES7 语法，需配合 babel-jest 使用
   "transform": {
     // "\\.(png|eot|svg|ttf|woff|woff2)(\\?.+)?$": "<rootDir>/tests/jest/mock.js",
@@ -17,10 +18,6 @@ module.exports = {
   "roots": ["<rootDir>/src/"],
   "collectCoverageFrom": [
     'src/**/*.{js,jsx}',
-    '!src/*/style/index.{js,jsx}',
-    '!src/style/index.{js,jsx}',
-    '!src/*/locale/index.{js,jsx}',
-    '!src/*/__tests__/**/type.{js,jsx}',
   ],
   "setupTestFrameworkScriptFile": "<rootDir>/test/jest.config.js",
   // 代表支持加载的文件名，
