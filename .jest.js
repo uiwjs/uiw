@@ -1,14 +1,8 @@
 
 module.exports = {
-  "testRegex": ".*\\.test\\.js$",
+  "testRegex": "\\.test\\.js$",
   "testPathIgnorePatterns": [
     "/node_modules/",
-    "docs",
-    "node",
-    "lib",
-    "tests",
-    "dist",
-    "build"
   ],
   // 代表需要被 Mock 的资源名称。如果需要 Mock 静态资源（如less、scss等），
   // 则需要配置 Mock 的路径 <rootDir>/__mocks__/yourMock.js
@@ -20,7 +14,8 @@ module.exports = {
     // "\\.(png|eot|svg|ttf|woff|woff2)(\\?.+)?$": "<rootDir>/tests/jest/mock.js",
     "^.+\\.js$": "babel-jest"
   },
-  collectCoverageFrom: [
+  "roots": ["<rootDir>/src/"],
+  "collectCoverageFrom": [
     'src/**/*.{js,jsx}',
     '!src/*/style/index.{js,jsx}',
     '!src/style/index.{js,jsx}',
