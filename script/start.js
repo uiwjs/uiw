@@ -8,7 +8,7 @@ import 'colors-cli/toxic';
 import conf from './conf/webpack.config.dev';
 
 let PORT = 2087;
-const HOST = 'localhost';
+const HOST = '0.0.0.0';
 
 const compiler = webpack(conf);
 const loading = load('Compiler is running...'.green).start();
