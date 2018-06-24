@@ -3,7 +3,7 @@ import { Component, PropTypes } from '../utils/';
 
 export default class Card extends Component {
   render() {
-    const { prefixCls, className, title, extra, footer, bordered, noHover, bodyStyle, children, ...resetProps } = this.props;
+    const { prefixCls, className, title, extra, footer, bordered, noHover, bodyStyle, bodyClassName, children, ...resetProps } = this.props;
     const cls = this.classNames(prefixCls, className, {
       [`${prefixCls}-bordered`]: bordered,
       [`${prefixCls}-no-hover`]: noHover,
@@ -17,7 +17,7 @@ export default class Card extends Component {
             {extra && <div className={`${prefixCls}-extra`}>{extra}</div>}
           </div>
         )}
-        {children && <div className={`${prefixCls}-body`} style={bodyStyle}>{children}</div>}
+        {children && <div className={this.classNames(`${prefixCls}-body`, bodyClassName)} style={bodyStyle}>{children}</div>}
         {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
       </div>
     );
@@ -31,6 +31,7 @@ Card.propTypes = {
   footer: PropTypes.node,
   noHover: PropTypes.bool,
   bodyStyle: PropTypes.object,
+  bodyClassName: PropTypes.string,
 };
 
 Card.defaultProps = {
