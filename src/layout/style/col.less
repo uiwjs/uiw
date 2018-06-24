@@ -32,17 +32,24 @@
 
 .generate-columns-order(24);
 
-// @media screen and (max-width: @screen-xs) {
-//   .generate-columns-bootstrap(xs,24);
-// }
-@media screen and (min-width: @screen-sm) {
-  .generate-columns-bootstrap(sm,24);
+@media screen and (min-width: @screen-xs-min) {
+  .generate-columns-bootstrap(xs, 24);
+  .w-col-24.w-form-item-label {
+    text-align: left;
+    label::after {
+      display: none;
+    }
+  }
 }
 
-@media screen and (min-width: @screen-md) {
-  .generate-columns-bootstrap(md,24);
+@media screen and (min-width: @screen-sm-min) {
+  .generate-columns-bootstrap(sm, 24);
 }
 
-@media screen and (min-width: @screen-lg) {
-  .generate-columns-bootstrap(lg,24);
+@media screen and (min-width: @screen-md-min) {
+  .generate-columns-bootstrap(md, 24);
+}
+
+@media screen and (min-width: @screen-lg-min) {
+  .generate-columns-bootstrap(lg, 24);
 }
