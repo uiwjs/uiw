@@ -173,6 +173,32 @@ class Demo extends Component {
 ```
 <!--End-->
 
+### 附加内容
+
+可以在页签右边添加附加操作。
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  render() {
+    return (
+      <Tabs
+        activeKey="1"
+        tabBarExtra={<Button size="mini">添加更多功能</Button>}
+        onTabClick={(tab, key, e) => {
+          console.log("=>",key,tab)
+        }}>
+        <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
+        <Tabs.Pane label="配置管理" key="2">配置管理</Tabs.Pane>
+        <Tabs.Pane sequence="fadeIn up" label="角色管理" key="3">角色管理</Tabs.Pane>
+        <Tabs.Pane label="大爷欢乐多" key="4"><div>大爷欢乐多</div><div>大爷欢乐多</div></Tabs.Pane>
+      </Tabs>
+    )
+  }
+}
+```
+<!--End-->
+
 ## API
 
 ### Tags 
@@ -181,6 +207,7 @@ class Demo extends Component {
 |--------- |-------- |---------- |-------- |
 | type | 页签的基本样式，可选 `line`、`card` `editable-card` 类型 | String | `white` |
 | activeKey | 当前激活 `tab` 面板的 `key` | String | - |
+| tabBarExtra | `tab` `bar` 上额外的元素 | String\ReactNode | - |
 | onTabClick | tab 被点击的回调 | Function | `(item,key,e)=>{}` |
 | onTabRemove | 点击 tab 被移除的回调事件 | Function | `(item,key,e)=>{}` |
 | position | 页选项卡位置，可选值有 `top` `right` `bottom` `left` | String | `top` |

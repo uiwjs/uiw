@@ -94,7 +94,7 @@ export default class Tabs extends Component {
     });
   }
   render() {
-    const { prefixCls, className, position, type, sequence, onTabClick, closable, onTabRemove, ...other } = this.props;
+    const { prefixCls, className, position, type, sequence, tabBarExtra, onTabClick, closable, onTabRemove, ...other } = this.props;
     const { activeKey, children, slideStyle } = this.state;
     const cls = this.classNames(prefixCls, className, {
       [`${prefixCls}-${position}`]: position,
@@ -108,6 +108,7 @@ export default class Tabs extends Component {
     return (
       <div className={cls} {...other}>
         <div className={`${prefixCls}-bar`}>
+          <div className={`${prefixCls}-nav-extra`}>{tabBarExtra}</div>
           <div className={`${prefixCls}-nav`}>
             {
               React.Children.map(children, (item, idx) => {
@@ -174,6 +175,7 @@ export default class Tabs extends Component {
 Tabs.propTypes = {
   prefixCls: PropTypes.string,
   sequence: PropTypes.string,
+  tabBarExtra: PropTypes.node,
   type: PropTypes.oneOf(['line', 'card']),
   activeKey: PropTypes.string, // 当前激活 tab 面板的 key
   onTabClick: PropTypes.func, // tab 被点击的回调
