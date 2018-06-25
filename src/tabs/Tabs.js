@@ -86,8 +86,13 @@ export default class Tabs extends Component {
   }
   onTabAdd(e) {
     const { onTabAdd, children } = this.props;
-    const lastChild = children.filter((item, idx) => idx === children.length - 1)[0];
+    let lastChild = null;
     let lastKey = '';
+    if (children.length > 0) {
+      lastChild = children.filter((item, idx) => idx === children.length - 1)[0];
+    } else if (children.key) {
+      lastChild = children;
+    }
     if (lastChild) lastKey = lastChild.key;
     onTabAdd && onTabAdd(lastKey, lastChild, e);
   }
