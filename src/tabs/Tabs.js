@@ -77,11 +77,19 @@ export default class Tabs extends Component {
     state.children.splice(idx, 1);
 
     if (item.key === activeKey && state.children.length > 0) {
-      state.activeKey = state.children[0].key;
+      state.activeKey = state.children[state.children.length - 1].key;
     }
     this.setState({ ...state }, () => {
+      this.calcSlideStyle(idx);
       onTabRemove(item, idx, e);
     });
+  }
+  onTabAdd(e) {
+    const { onTabAdd, children } = this.props;
+    const lastChild = children.filter((item, idx) => idx === children.length - 1)[0];
+    let lastKey = '';
+    if (lastChild) lastKey = lastChild.key;
+    onTabAdd && onTabAdd(lastKey, lastChild, e);
   }
   onTabClick(item, key, e) {
     const { onTabClick } = this.props;
@@ -94,7 +102,7 @@ export default class Tabs extends Component {
     });
   }
   render() {
-    const { prefixCls, className, position, type, sequence, tabBarExtra, onTabClick, closable, onTabRemove, ...other } = this.props;
+    const { prefixCls, className, position, type, sequence, tabBarExtra, onTabClick, onTabAdd, onTabRemove, closable, ...other } = this.props;
     const { activeKey, children, slideStyle } = this.state;
     const cls = this.classNames(prefixCls, className, {
       [`${prefixCls}-${position}`]: position,
@@ -108,7 +116,10 @@ export default class Tabs extends Component {
     return (
       <div className={cls} {...other}>
         <div className={`${prefixCls}-bar`}>
-          <div className={`${prefixCls}-nav-extra`}>{tabBarExtra}</div>
+          <div className={`${prefixCls}-nav-extra`}>
+            {tabBarExtra}
+            {onTabAdd && <Icon onClick={this.onTabAdd.bind(this)} className={`${prefixCls}-new-tab`} type="plus" />}
+          </div>
           <div className={`${prefixCls}-nav`}>
             {
               React.Children.map(children, (item, idx) => {
@@ -180,6 +191,7 @@ Tabs.propTypes = {
   activeKey: PropTypes.string, // 当前激活 tab 面板的 key
   onTabClick: PropTypes.func, // tab 被点击的回调
   onTabRemove: PropTypes.func, // tab 被点击的回调
+  onTabAdd: PropTypes.func, // tab 添加按钮的回调
   disabled: PropTypes.bool,
   closable: PropTypes.bool,
   position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
@@ -194,4 +206,5 @@ Tabs.defaultProps = {
   position: 'top',
   onTabClick() { },
   onTabRemove() { },
+  onTabAdd: null,
 };
