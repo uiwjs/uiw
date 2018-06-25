@@ -22,6 +22,23 @@
     float: right;
     line-height: 36px;
   }
+  &-new-tab {
+    width: 21px;
+    height: 21px;
+    line-height: 21px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    color: rgba(0, 0, 0, .65);
+    vertical-align: middle;
+    border-radius: 4px;
+    transition: all .3s;
+    &:hover {
+      color: #1890ff;
+      border-color: #1890ff;
+    }
+  }
   &-tab {
     display: inline-block;
     height: 100%;
@@ -59,7 +76,10 @@
     outline: none;
   }
   &-line &-bar &-tab {
-    padding: 8px 20px;
+    padding: 7px 10px;
+    .w-icon-close {
+      margin: -2px 0 0 4px;
+    }
   }
 }
 
@@ -68,7 +88,7 @@
     margin: 0;
     border: 1px solid #d9d9d9;
     border-bottom: 0;
-    padding: 7px 18px;
+    padding: 7px 16px;
     border-radius: 4px 4px 0 0;
     background: #f9f9f9;
     margin-right: 2px;

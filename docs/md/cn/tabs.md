@@ -180,7 +180,19 @@ class Demo extends Component {
 <!--DemoStart--> 
 ```js
 class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      panes: [
+        { title: '用户管理', content: '用户管理内容1', key: '1' },
+        { title: '配置管理', content: '配置管理内容2', key: '2' },
+        { title: '角色管理', content: '角色管理内容3', key: '3', closable: false },
+        { title: '大爷欢乐多', content: <div>大爷欢乐多大爷欢乐多</div>, key: '4' },
+      ]
+    }
+  }
   render() {
+    const { panes } = this.state;
     return (
       <Tabs
         activeKey="1"
@@ -188,16 +200,69 @@ class Demo extends Component {
         onTabClick={(tab, key, e) => {
           console.log("=>",key,tab)
         }}>
-        <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
-        <Tabs.Pane label="配置管理" key="2">配置管理</Tabs.Pane>
-        <Tabs.Pane sequence="fadeIn up" label="角色管理" key="3">角色管理</Tabs.Pane>
-        <Tabs.Pane label="大爷欢乐多" key="4"><div>大爷欢乐多</div><div>大爷欢乐多</div></Tabs.Pane>
+        {panes.map((item) => {
+          return (
+            <Tabs.Pane key={item.key} label={item.title}>{item.content}</Tabs.Pane>
+          );
+        })}
       </Tabs>
     )
   }
 }
 ```
 <!--End-->
+
+### 新增和关闭页签
+
+设置参数 `onTabAdd` 按钮将被展示。
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      panes: [
+        { title: '用户管理', content: '用户管理内容1', key: '1' },
+        { title: '配置管理', content: '配置管理内容2', key: '2' },
+        { title: '角色管理', content: '角色管理内容3', key: '3', closable: false },
+        { title: '大爷欢乐多', content: <div>大爷欢乐多大爷欢乐多</div>, key: '4' },
+      ],
+      activeKey: '1',
+    }
+  }
+  render() {
+    const { panes, activeKey } = this.state;
+    return (
+      <Tabs
+        closable
+        activeKey={activeKey}
+        tabBarExtra={<Button size="mini">添加更多功能</Button>}
+        onTabAdd={(lastKey, lastChild, e) => {
+          const panes = this.state.panes;
+          // lastKey = parseInt(lastKey, 10)
+          const activeKey = String(parseInt(lastKey, 10) + 1);
+          panes.push({ title: '新标签', content: '新标签内容', key: activeKey });
+          this.setState({ panes, activeKey });
+          console.log('onTabAdd:', lastKey, lastChild, e);
+        }}
+        onTabClick={(tab, key, e) => {
+          this.setState({ activeKey: key });
+          console.log("=>",key,tab)
+        }}
+      >
+        {panes.map((item) => {
+          return (
+            <Tabs.Pane key={item.key} label={item.title}>{item.content}</Tabs.Pane>
+          );
+        })}
+      </Tabs>
+    )
+  }
+}
+```
+<!--End-->
+
 
 ## API
 
@@ -208,8 +273,9 @@ class Demo extends Component {
 | type | 页签的基本样式，可选 `line`、`card` `editable-card` 类型 | String | `white` |
 | activeKey | 当前激活 `tab` 面板的 `key` | String | - |
 | tabBarExtra | `tab` `bar` 上额外的元素 | String\ReactNode | - |
-| onTabClick | tab 被点击的回调 | Function | `(item,key,e)=>{}` |
-| onTabRemove | 点击 tab 被移除的回调事件 | Function | `(item,key,e)=>{}` |
+| onTabClick | `tab` 被点击的回调 | Function | `(item,key,e)=>{}` |
+| onTabRemove | 点击 `tab` 被移除的回调事件 | Function | `(item,key,e)=>{}` |
+| onTabAdd | 点击 `tab` 添加按钮的回调事件，事件存在按 | Function | `(lastKey, lastChild, e)=>{}` |
 | position | 页选项卡位置，可选值有 `top` `right` `bottom` `left` | String | `top` |
 | sequence | 设置`<Tabs.Pane>`进出动画，默认动画效果参考 `<Transition>` | String | `fadeIn` |
 
