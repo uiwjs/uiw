@@ -16,7 +16,7 @@
   background-image: none;
   vertical-align: middle;
   white-space: nowrap;
-  transition: background @transition-time @transition-timing-functio;
+  transition: all @transition-time @transition-timing-functio;
   .button-size(@padding-base-vertical, @padding-base-horizontal, @font-size-base, @line-height-base, @btn-border-radius-base);
   user-select: none;
   outline: 0;
@@ -169,7 +169,7 @@
 // 'large',         //（大按钮）Large button
 
 .w-btn-size-mini {
-  .button-size-loading(@btn-extra-small-top,@font-size-small);
+  .button-size-loading(@btn-extra-small-top, ceil(@font-size-base * 0.70));
   //（超小尺寸）mini button
   .button-size(@padding-mini-vertical, @padding-mini-horizontal, @font-size-small, @line-height-mini, @btn-border-radius-small);
 }
