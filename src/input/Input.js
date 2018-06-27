@@ -38,14 +38,8 @@ export default class Input extends Component {
     (this.input || this.textarea).blur();
   }
   handleChange(e) {
-    const { onChange, length } = this.props;
-    let val = e.target.value;
-    if (val.length > length) {
-      val = val.slice(0, length);
-      e.target.value = val;
-    }
-    this.setState({ value: val });
-    onChange(e, val);
+    const { onChange } = this.props;
+    onChange(e, e.target.value);
   }
   handleClick(type, e) {
     if (this.props[type]) {
