@@ -5,4 +5,4 @@ cache:
   directories:
     - node_modules
 script:
-  - travis_wait 30 npm test
+  - travis_wait 100 npm test
