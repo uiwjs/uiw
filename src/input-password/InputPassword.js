@@ -11,10 +11,10 @@ export default class InputPassword extends Input {
   }
 
   render() {
-    const { prefixCls, value, onIconClick, onChange, ...other } = this.props;
+    const { prefixCls, onIconClick, ...other } = this.props;
     const { toggle } = this.state;
     const cls = this.classNames(prefixCls, {
-      'password-show': toggle,
+      isShow: toggle,
     });
 
     return (
@@ -22,11 +22,9 @@ export default class InputPassword extends Input {
         {...other}
         className={cls}
         type={toggle ? 'text' : 'password'}
-        value={value}
         onIconClick={() => {
           this.setState({ toggle: !toggle }, onIconClick);
         }}
-        onChange={onChange}
       />
     );
   }

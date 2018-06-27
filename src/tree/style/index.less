@@ -25,8 +25,8 @@
   &-icon {
     cursor: pointer;
     width: 24px;
-    height: 22px;
-    // line-height: 24px;
+    height: 18px;
+    line-height: 16px;
     transform: scale(.59);
     &.is-close::before {
       transform: rotate(-90deg);
@@ -37,6 +37,10 @@
     }
     &.no-child::before {
       content: '';
+    }
+    &.w-icon-caret-down {
+      font-size: 18px;
+      line-height: 12px;
     }
   }
   &-inner {
