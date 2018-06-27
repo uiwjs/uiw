@@ -230,7 +230,7 @@ Input 的其他属性和 React 自带的 [input](https://facebook.github.io/reac
 | addonAfter | 	带标签的 input，设置后置标签 | String/ReactNode | - |
 | addonAfter | 带标签的 input，设置前置标签 | String/ReactNode | - |
 | size | 指定输入框的尺寸，除了默认的大小外，还提供了 `large`、`small` 和 `mini` 三种尺寸。 | String | - |
-| length | 输入的最大长度 | Number | Infinity |
+| ~~length~~ | ~~输入的最大长度~~ | Number | Infinity |
 | autoFocus | 当页面加载时，文本区域自动获得焦点。`HTML5` 中的新属性。  | Boolean | `false` |
 | preIcon | 输入框`前`面放置图标  | String、ReactNode | - |
 | icon | 输入框`后`面放置图标  | String、ReactNode | - |
