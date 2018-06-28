@@ -26,6 +26,9 @@
   <a href="https://www.npmjs.com/package/uiw">
     <img src="https://img.shields.io/npm/v/uiw.svg">
   </a>
+  <a href="https://github.com/facebook/jest">
+    <img src="https://facebook.github.io/jest/img/jest-badge.svg">
+  </a>
 </p>
 
 uiw
