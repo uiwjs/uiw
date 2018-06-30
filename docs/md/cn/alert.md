@@ -161,8 +161,8 @@ class Demo extends Component {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| message | 警告提示内容 | String、ReactNode | - |
-| description | 警告提示的辅助性文字介绍 | String、ReactNode | - |
+| message | 警告提示内容 | String/ReactNode | - |
+| description | 警告提示的辅助性文字介绍 | String/ReactNode | - |
 | onClose | 关闭时触发的回调函数 | Function | - |
 | closable | 显示关闭按钮 | Boolean | - |
 | showIcon | 是否显示图标 | Boolean | false |
