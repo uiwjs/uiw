@@ -61,7 +61,7 @@ Alert.propTypes = {
   transition: PropTypes.string,
   message: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   closable: PropTypes.bool,
-  description: PropTypes.string,
+  description: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   onClose: PropTypes.func,
 };
 Alert.defaultProps = {
