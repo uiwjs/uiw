@@ -5,6 +5,31 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## v1.14.10
+
+`2018-07-04`
+
+- 🌟 feat(Modal): Add drag and drop. 1fdf1de 
+- 🌟 feat(Transition): Add animation. 70252b6 
+- 🌟 feat(Tabs): Add onTabAdd props. 0f5dbeb 
+- 🌟 feat(Tabs): Add tabBarExtra prameter. f24aa56 
+- 🌟 feat(Card): Add props bodyClassName. 86045a3 
+- 🐞 fix(Alert): Add PropTypes node. c461809 
+- 🐞 fix(Innput): Remove redundant apis. dc56538 
+- 🐞 fix(Tabs): Fix onTabAdd issue. 7cd7b8e 
+- 🎨 style(Collapse): Modify border radius. f4de3a6 
+- 🎨 style: Adjust icon alignment style. a88d4b4 
+- 🎨 style(Button): Modify small size button. a09bf83 
+- 🎨 style(Table): Modify table td style. 5ad7b91 
+- 🎨 styles(Button): Modify the spacing between button groups and buttons. f3f15fe 
+- 🎨 styles(Layout): Modify screen mini width styles. c330efe 
+- 🎨 style(Form): Modify column styles. a517133 
+- 🎨 style(Button): Modify the spacing between buttons. 76bb9f5 
+- 💄 chore(Icon): Update the size of all icon borders. 9705f5e 
+- 💄 Update uiw-iconfont@1.2.11 c9166ad 
+- 📖 doc(Input): Update document. c99c3af 
+- 📖 Add jest badge. 229786d 
+
 ## 1.13.17
 
 `2018-06-24`
