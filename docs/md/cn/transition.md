@@ -139,6 +139,44 @@ class Demo extends Component {
 ```
 <!--End-->
 
+## 停止动画效果
+
+拿到 `ref` 可以获得停止动画效果的方法 `this.transition.animation=false`, 对动画效果是破坏性的，应用场景如：`Modal` 弹出对话框的时候需要隐藏动画效果。
+
+<!--DemoStart-->
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { show: true }
+  }
+  toggleIn () {
+    this.setState({ show: !this.state.show })
+  }
+  render() {
+    const { show } = this.state
+    return (
+      <div>
+        <Button size="mini" onClick={() => this.transition.animation = false}>
+          关闭动画效果
+        </Button>
+        <Button size="mini" onClick={this.toggleIn.bind(this)}>
+          {show?'消失':'显示'}
+        </Button>
+        <div style={{padding:"20px 0 10px 0", maxWidth:200}}>
+          <Transition ref={tran => this.transition = tran} in={show} unmountOnExit={false} sequence='fadeIn'>
+            <div>
+              淡进淡入
+            </div>
+          </Transition>
+        </div>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
 
 ## 自定义动画
 
@@ -179,8 +217,6 @@ class Demo extends Component {
 
 可以通过 [Animate.css](https://daneden.github.io/animate.css/) 制作更多的过度动画。变化比较大，动画库重写了，请使用最新版本。动画组件根据[react-transition-group](https://reactcommunity.org/react-transition-group/#Transition) 动画过渡组件二次封装
 
-**v1.1.15+**
-
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
 | sequence | 动画效果 默认可选`fadeIn`、`down`、`up`、`right`、`left`、`height`、`width` | String | - |
@@ -200,17 +236,3 @@ class Demo extends Component {
 | onExit | 在应用`exiting`状态之前启动回调。 | Function(node: HtmlElement) -> void | - |
 | onExiting | 在`exiting`状态被应用后，回调触发。 | Function(node: HtmlElement) -> void | - |
 | onExited | 在`exited`状态被应用后，回调触发。 | Function(node: HtmlElement) -> void | - |
-
-**v1.1.13**
-
-| 参数      | 说明    | 类型      |  默认值   |
-|--------- |-------- |---------- |-------- |
-| type | 指定可选项 `fade-in` 、`fade-left`、 `fade-right` 、 `fade-down` | String | - |
-| visible | 动画会产生一个根节点，设置 `false` 销毁 | Bool | `true` |
-| appear | 出现 | Bool | `true` |
-| leave | 离开 | Bool | `true` |
-| enter | 进入 | Bool | `true` |
-| AppearTimeout | 出现时间[自定义过渡效果起作用] | Number | 250 |
-| LeaveTimeout | 离开时间[自定义过渡效果起作用] | Number | 250 |
-| EnterTimeout | 进入时间[自定义过渡效果起作用] | Number | 500 |
-| prefixCls | 自定义过渡效果。自带过渡效果，时间设置是没有用的，通过这个来自定义一个样式，默认样式 “w-animate”，自定义样式会拼接成 “w-animate-fade-in”，在CSS样式里面，根据react-transition-group规则最终需要这样写样式，".w-animate-fade-in-leave" | String | w-animate |
