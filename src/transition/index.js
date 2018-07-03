@@ -19,6 +19,9 @@ export default class Animate extends Component {
     };
   }
   componentDidMount() {
+    // 提供一个停止动画的对象
+    // 例如 Modal 拖拽的时候，先要停止动画，进行拖拽，完事儿之后，关闭 Modal 框需要动画继续
+    this.animation = true;
     if (this.props.in === true) {
       this.setState({
         in: true,
@@ -57,14 +60,13 @@ export default class Animate extends Component {
     };
     const childStyle = (child) => {
       return Object.assign({}, child && child.props ? child.props.style : {}, other.style, {
-        transitionDuration: `${duration}ms`,
+        transitionDuration: `${this.animation ? duration : 0}ms`,
       });
     };
     const childClassName = (child, transitionStatus) => {
       const clss = this.classNames(
-        prefixCls, {
-          [`${className}`]: className,
-        },
+        { [`${prefixCls}`]: prefixCls && this.animation },
+        className,
         sequenceClassNames,
         transitionStatus && animationStyles[transitionStatus],
         child && child.props && child.props.className
@@ -82,7 +84,10 @@ export default class Animate extends Component {
         {status => React.cloneElement(children, {
           className: childClassName(children, status),
           style: childStyle(children, status),
-          ref: elm => this.refsSizeChange(elm, status),
+          ref: (elm) => {
+            this.dom = elm;
+            this.refsSizeChange(elm, status);
+          },
         })}
       </Transition>
     );
