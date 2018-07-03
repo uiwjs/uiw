@@ -587,6 +587,7 @@ class Demo extends Component {
 | footer | 底部内容，当不需要默认底部按钮时，可以设为 footer={null} | string、ReactNode | 确定取消按钮 |
 | width | 宽度, 字符串的时候需要带单位如`300px` | number|string | 520 |
 | maskClosable | 点击蒙层是否允许关闭 | boolean | true |
+| dragable | 会话框是否允许拖拽 | boolean | false |
 | styleMask | 遮罩层样式 | object | - |
 | style | 可用于设置浮层的样式，调整浮层位置等 | object | - |
 | onEntered | 动画进入完成，`<Transition>` 动画库方法 | Function | - |
