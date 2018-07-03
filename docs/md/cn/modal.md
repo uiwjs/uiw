@@ -524,6 +524,54 @@ class Demo extends Component {
 ```
 <!--End-->
 
+### 对话框可拖拽
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible:false,
+    }
+  }
+  render() {
+    return (
+      <div> 
+        <Button
+          size="small"
+          onClick={()=>{
+            this.setState({visible:true});
+          }}
+        >
+          对话框可拖拽
+        </Button>
+        <Modal 
+          title="Modal Title"
+          dragable
+          visible={this.state.visible}
+          onOk={()=>{
+            this.setState({visible:false})
+          }} // 点击确定提交按钮
+          width={600} // 有默认值可以不传递
+          style={{top: 20}} // 可以设定容器的位置以及样式
+          onCancel={()=>{
+            this.setState({visible:false})
+          }}
+          maskClosable={false} // 禁止遮罩层关闭
+          okText="OK" 
+          cancelText="Cancel"
+        >
+          <p style={{ color:'#333' }}>Bla bla ...</p>
+          <p>Bla bla ...</p>
+          <p>Bla bla ...</p>
+        </Modal>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
 
 ### Modal Attributes
 

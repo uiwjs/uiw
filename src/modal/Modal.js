@@ -13,6 +13,9 @@ export default class Modal extends Component {
       visible: props.visible,
       isMount: false,
     };
+    this.onDragEnd = this.onDragEnd.bind(this);
+    this.onDragging = this.onDragging.bind(this);
+    this.onMouseDown = this.onMouseDown.bind(this);
   }
   componentWillMount() {
     if (this.props.visible) {
@@ -21,6 +24,8 @@ export default class Modal extends Component {
   }
   componentWillUnmount() {
     document.body.style.overflow = 'inherit';
+    window.removeEventListener('mousemove', this.onDragging);
+    window.removeEventListener('mouseup', this.onDragEnd);
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.visible !== nextProps.visible) {
@@ -56,8 +61,34 @@ export default class Modal extends Component {
     const { onOk } = this.props;
     onOk && onOk(e);
   }
+  onDragging(event) {
+    const currentX = event.clientX;
+    const currentY = event.clientY;
+    if (this.moveDom && this.moveDom.dom) {
+      this.moveDom.dom.style.left = `${this.pointDomX - (this.startX - currentX)}px`;
+      this.moveDom.dom.style.top = `${this.pointDomY - (this.startY - currentY)}px`;
+    }
+  }
+  onDragEnd() {
+    this.moveDom.animation = true;
+    window.removeEventListener('mousemove', this.onDragging, false);
+    window.removeEventListener('mouseup', this.onDragEnd, false);
+  }
+  onMouseDown(event) {
+    const { dragable } = this.props;
+    if (!dragable) return;
+    if (!this.moveDom || !this.moveDom.dom) return;
+    this.moveDom.animation = false;
+    this.startX = event.clientX;
+    this.startY = event.clientY;
+    this.pointDomX = parseInt(this.moveDom.dom.style.left, 10) || 0;
+    this.pointDomY = parseInt(this.moveDom.dom.style.top, 10) || 0;
+    window.addEventListener('mousemove', this.onDragging, false);
+    window.addEventListener('mouseup', this.onDragEnd, false);
+    this.setState({ isMove: true });
+  }
   render() {
-    const { prefixCls, className, title, footer, horizontal, styleMask, children, confirmLoading, onCancel, cancelText, okText, width, onEntered, ...other } = this.props;
+    const { prefixCls, className, title, footer, horizontal, styleMask, children, confirmLoading, dragable, onCancel, cancelText, okText, width, onEntered, ...other } = this.props;
     const { visible, isMount } = this.state;
     let defaultFooter = !footer ? (
       <ButtonGroup>
@@ -86,11 +117,18 @@ export default class Modal extends Component {
         <Transition in={visible} sequence="fadeIn">
           <div className={`${prefixCls}-mask`} style={styleMask} onClick={() => this.onCancel('mask')} />
         </Transition>
-        <Transition onExited={this.onExited.bind(this)} onEntered={onEntered} in={visible} sequence={AnimateType}>
+        <Transition ref={node => this.moveDom = node} onExited={this.onExited.bind(this)} onEntered={onEntered} in={visible} sequence={AnimateType}>
           <div className={`${prefixCls}-content`} style={{ width, ...other.style }}>
             {title && (
-              <div className={`${prefixCls}-header`}>
-                <div className={`${prefixCls}-title`}>{title}</div>
+              <div
+                className={this.classNames(`${prefixCls}-header`, {
+                  [`${prefixCls}-dragable`]: dragable,
+                })}
+                onMouseDown={this.onMouseDown}
+              >
+                <div className={`${prefixCls}-title`}>
+                  {title}
+                </div>
                 <a onClick={() => this.onCancel()} className={`${prefixCls}-close-icon`}><Icon type="close" /></a>
               </div>
             )}
@@ -108,6 +146,7 @@ Modal.defaultProps = {
   width: 520,
   title: '',
   visible: false,
+  dragable: false,
   maskClosable: true,
   confirmLoading: false,
   onCancel: v => v,
@@ -118,6 +157,7 @@ Modal.propTypes = {
   prefixCls: PropTypes.string,
   visible: PropTypes.bool,
   horizontal: PropTypes.oneOf(['left', 'right']),
+  dragable: PropTypes.bool,
   maskClosable: PropTypes.bool,
   styleMask: PropTypes.object,
   style: PropTypes.object,
