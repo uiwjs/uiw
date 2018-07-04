@@ -45,6 +45,7 @@
     }
     .@{w-modal}-content {
       padding: @modal-confirm-content-padding;
+      position: relative;
     }
     .@{w-modal}-confirm-title {
       padding-bottom: @line-height-computed;
@@ -81,6 +82,15 @@
   &-dragable {
     cursor: move;
     user-select: none;
+  }
+  &-resizeable {
+    cursor: nwse-resize;
+    user-select: none;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    bottom: -5px;
+    right: -5px;
   }
   &-title {
     font-weight: @modal-title-font-weight;

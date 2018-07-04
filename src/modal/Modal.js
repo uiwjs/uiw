@@ -62,11 +62,18 @@ export default class Modal extends Component {
     onOk && onOk(e);
   }
   onDragging(event) {
-    const currentX = event.clientX;
-    const currentY = event.clientY;
     if (this.moveDom && this.moveDom.dom) {
-      this.moveDom.dom.style.left = `${this.pointDomX - (this.startX - currentX)}px`;
-      this.moveDom.dom.style.top = `${this.pointDomY - (this.startY - currentY)}px`;
+      const currentX = event.clientX;
+      const currentY = event.clientY;
+      if (this.type === 'drag' && this.props.dragable) {
+        this.moveDom.dom.style.left = `${this.pointDomX - (this.startX - currentX)}px`;
+        this.moveDom.dom.style.top = `${this.pointDomY - (this.startY - currentY)}px`;
+      } else if (this.type === 'size' && this.props.resizeable) {
+        const width = currentX - this.startX;
+        const height = currentY - this.startY;
+        this.moveDom.dom.style.width = `${this.startWidth + width}px`;
+        this.bodyDom.style.height = `${this.startHeight + height}px`;
+      }
     }
   }
   onDragEnd() {
@@ -74,21 +81,27 @@ export default class Modal extends Component {
     window.removeEventListener('mousemove', this.onDragging, false);
     window.removeEventListener('mouseup', this.onDragEnd, false);
   }
-  onMouseDown(event) {
-    const { dragable } = this.props;
-    if (!dragable) return;
-    if (!this.moveDom || !this.moveDom.dom) return;
+  onMouseDown(type, event) {
+    const { dragable, resizeable } = this.props;
+    if (!dragable && !resizeable) return;
+    if (!this.moveDom || !this.moveDom.dom || !this.bodyDom) return;
+    this.type = type;
     this.moveDom.animation = false;
     this.startX = event.clientX;
     this.startY = event.clientY;
+
     this.pointDomX = parseInt(this.moveDom.dom.style.left, 10) || 0;
     this.pointDomY = parseInt(this.moveDom.dom.style.top, 10) || 0;
+
+    this.startWidth = this.moveDom.dom.clientWidth;
+    this.startHeight = this.bodyDom.clientHeight;
+
     window.addEventListener('mousemove', this.onDragging, false);
     window.addEventListener('mouseup', this.onDragEnd, false);
     this.setState({ isMove: true });
   }
   render() {
-    const { prefixCls, className, title, footer, horizontal, styleMask, children, confirmLoading, dragable, onCancel, cancelText, okText, width, onEntered, ...other } = this.props;
+    const { prefixCls, className, title, footer, horizontal, styleMask, children, confirmLoading, dragable, resizeable, onCancel, cancelText, okText, width, onEntered, ...other } = this.props;
     const { visible, isMount } = this.state;
     let defaultFooter = !footer ? (
       <ButtonGroup>
@@ -124,7 +137,7 @@ export default class Modal extends Component {
                 className={this.classNames(`${prefixCls}-header`, {
                   [`${prefixCls}-dragable`]: dragable,
                 })}
-                onMouseDown={this.onMouseDown}
+                onMouseDown={this.onMouseDown.bind(this, 'drag')}
               >
                 <div className={`${prefixCls}-title`}>
                   {title}
@@ -132,11 +145,12 @@ export default class Modal extends Component {
                 <a onClick={() => this.onCancel()} className={`${prefixCls}-close-icon`}><Icon type="close" /></a>
               </div>
             )}
-            <div className={`${prefixCls}-body`}>{children}</div>
+            <div className={`${prefixCls}-body`} ref={node => this.bodyDom = node}>{children}</div>
             {defaultFooter}
+            {resizeable && <div className={`${prefixCls}-resizeable`} onMouseDown={this.onMouseDown.bind(this, 'size')} />}
           </div>
         </Transition>
-      </div>
+      </div >
     );
   }
 }
@@ -147,6 +161,7 @@ Modal.defaultProps = {
   title: '',
   visible: false,
   dragable: false,
+  resizeable: false,
   maskClosable: true,
   confirmLoading: false,
   onCancel: v => v,
