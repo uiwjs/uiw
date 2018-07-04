@@ -573,6 +573,55 @@ class Demo extends Component {
 ```
 <!--End-->
 
+### 对话框可改变尺寸
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible:false,
+    }
+  }
+  render() {
+    return (
+      <div> 
+        <Button
+          size="small"
+          onClick={()=>{
+            this.setState({visible:true});
+          }}
+        >
+          对话框可改变尺寸
+        </Button>
+        <Modal 
+          resizeable
+          title="Modal Title"
+          visible={this.state.visible}
+          onOk={()=>{
+            this.setState({visible:false})
+          }} // 点击确定提交按钮
+          width={600} // 有默认值可以不传递
+          style={{top: 20}} // 可以设定容器的位置以及样式
+          onCancel={()=>{
+            this.setState({visible:false})
+          }}
+          maskClosable={false} // 禁止遮罩层关闭
+          okText="OK" 
+          cancelText="Cancel"
+        >
+          <p style={{ color:'#333' }}>Bla bla ...</p>
+          <p>Bla bla ...</p>
+          <p>Bla bla ...</p>
+        </Modal>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
 ### Modal Attributes
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -588,6 +637,7 @@ class Demo extends Component {
 | width | 宽度, 字符串的时候需要带单位如`300px` | number|string | 520 |
 | maskClosable | 点击蒙层是否允许关闭 | boolean | true |
 | dragable | 会话框是否允许拖拽 | boolean | false |
+| resizeable | 会话框是否允许改变尺寸 | boolean | false |
 | styleMask | 遮罩层样式 | object | - |
 | style | 可用于设置浮层的样式，调整浮层位置等 | object | - |
 | onEntered | 动画进入完成，`<Transition>` 动画库方法 | Function | - |
