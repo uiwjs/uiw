@@ -210,7 +210,7 @@ export default class Table extends Component {
   render() {
     const { prefixCls, className, rowClassName, rowSelection, caption, footer, data, width, paging, loading } = this.props;
     const { trHoverClassName, columns } = this.state;
-    const { height } = this.props;
+    const { height, showHeader } = this.props;
     const tableTbody = refname => (<Tbody
       ref={(componet) => { this[refname] = componet; }}
       type={refname}
@@ -253,7 +253,7 @@ export default class Table extends Component {
               <div className={`${prefixCls}-fixed-head-left`}>
                 <table>
                   {React.cloneElement(tableColgroup)}
-                  {React.cloneElement(tableThead(), {
+                  {showHeader && React.cloneElement(tableThead(), {
                     cloneElement: 'left',
                   })}
                 </table>
@@ -274,7 +274,7 @@ export default class Table extends Component {
               <div className={`${prefixCls}-fixed-head-right`}>
                 <table>
                   {React.cloneElement(tableColgroup)}
-                  {React.cloneElement(tableThead(), {
+                  {showHeader && React.cloneElement(tableThead(), {
                     cloneElement: 'right',
                   })}
                 </table>
@@ -302,7 +302,7 @@ export default class Table extends Component {
             <div ref={(node) => { this.headerWrapper = node; }} className={`${prefixCls}-head`}>
               <table style={{ width }}>
                 {tableColgroup}
-                {tableThead('tableThead')}
+                {showHeader && tableThead('tableThead')}
               </table>
             </div>
             <Loading loading={this.props.loading === undefined ? false : loading}>
@@ -334,7 +334,7 @@ export default class Table extends Component {
           {tableCaption}
           <table>
             {tableColgroup}
-            {tableThead('tableThead')}
+            {showHeader && tableThead('tableThead')}
             {data.length === 0 ? (
               <tbody>
                 <tr>
@@ -360,12 +360,14 @@ Table.defaultProps = {
   size: 'default',
   // loading: false,
   data: [],
+  showHeader: true,
   columns: [],
 };
 
 Table.propTypes = {
   columns: PropTypes.array,
   prefixCls: PropTypes.string,
+  showHeader: PropTypes.bool,
   rowClassName: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.string,
