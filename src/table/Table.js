@@ -339,7 +339,9 @@ export default class Table extends Component {
               <tbody>
                 <tr>
                   <td ref={(elm) => {
-                    if (elm) { elm.colSpan = this.tableThead.getColSpan(columns); }
+                    if (elm && this.tableThead && showHeader) {
+                      elm.colSpan = this.tableThead.getColSpan(columns);
+                    }
                   }}
                   ><Icon type="frown-o" /> 暂无数据
                   </td>
