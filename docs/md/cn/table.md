@@ -504,6 +504,7 @@ class Demo extends Component {
 | width | 设置属性 width 出现横向滚动条，若列头与内容不对齐，请指定列的宽度 width | number | - |
 | defaultChecked | 默认选中的选项 | string | [] |
 | onChange | 变化时回调函数 | Function(checkedValues:Array, value:String, checked:Boolean, e:Event) | - |
+| showHeader | 是否显示表头 | Boolean | `true` |
 | paging | 分页器，配置项参考 paging，设为 false 时不展示和进行分页 | Object | - |
 | rowSelection | 选择功能的配置。方法参考下面 `rowSelection` 文档 | Object | - |
 | rowClassName | 表格行的类名 | Function(record, index):string | - |
