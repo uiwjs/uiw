@@ -109,6 +109,7 @@ class Demo extends Component {
         password: "",
         email: "wwww@qq.com",
         select: "选项4",
+        selectMultiple: ['选项1','选项3','选项5'],
         timeSelect: new Date(2017, 6, 28, 15, 51),
         online: true,
         carte: ['湖北菜'],
@@ -135,6 +136,17 @@ class Demo extends Component {
         {color:"purple", value:'苹果'},
         {color:"orange", value:'橘子'},
         {color:"green", value:'香蕉'}
+      ],
+      selectMultipleOptions:[
+        { value: '选项1', label: '红葡萄酒' }, 
+        { value: '选项2', label: '绍兴黄酒'}, 
+        { value: '选项3', label: '燕京啤酒' }, 
+        { value: '选项4', label: '楚乡王白酒' }, 
+        { value: '选项5', label: '五粮液' },
+        { value: '选项6', label: '绍兴黄酒', disabled: true}, 
+        { value: '选项7', label: '燕京啤酒' }, 
+        { value: '选项8', label: '楚乡王白酒' }, 
+        { value: '选项9', label: '五粮液' },
       ],
       radioOptionsDisabled:[
         {label: '乔布斯', value: '乔布斯' },
@@ -235,6 +247,19 @@ class Demo extends Component {
             value={form.name} 
             placeholder="请输入用户名"
             onChange={this.onChange.bind(this, 'name')} />
+        </FormItem>
+        <FormItem label={<span>用户名</span>} field="name" {...formItemLayout} >
+          <Select
+            onChange={this.onChange.bind(this)}
+            filterable={true}
+            multiple={true}
+            style={{ width: 300 }}
+            value={form.selectMultiple}
+          >
+            {this.state.selectMultipleOptions.map((elm, idx) => {
+              return <Select.Option key={idx} label={elm.label} value={elm.value} disabled={elm.disabled} />
+            })}
+          </Select>
         </FormItem>
         <FormItem label="密码" field="password" help="这里显示对密码的帮助，比如只能英文字母"  {...formItemLayout} >
           <Input 
