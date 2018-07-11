@@ -66,6 +66,7 @@ export default class Select extends Component {
         placeholder: props.placeholder,
       });
     }
+    console.log(props.value, this.props.value);
     if (props.value !== this.props.value) {
       const state = {
         value: props.value,
@@ -113,7 +114,7 @@ export default class Select extends Component {
   }
   // 初始化默认选中
   selectedData(init) {
-    const { multiple, children } = this.props;
+    const { multiple, filterable, children } = this.props;
     let { selectedLabel, selected } = this.state;
     const { value } = this.state;
     if (multiple && Array.isArray(value)) {
@@ -127,7 +128,7 @@ export default class Select extends Component {
       const state = { selected, selectedLabel };
       state.placeholder = selectedLabel.length > 0 ? '' : this.props.placeholder;
       this.setState({ ...state }, () => {
-        this.resetInputHeight(init);
+        filterable && this.resetInputHeight(init);
       });
     } else {
       // 过滤改变 selectedLabel 的value对应的值
