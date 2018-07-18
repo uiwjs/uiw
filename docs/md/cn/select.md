@@ -74,7 +74,6 @@ class Demo extends Component {
 class Demo extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       options: [
         { value: '选项1', label: '红葡萄酒' }, 
@@ -87,7 +86,7 @@ class Demo extends Component {
     };
   }
   onChange(e, d) {
-    console.log('~~',e, d);
+    console.log('~~', e, d);
   }
   render() {
     return (
@@ -124,7 +123,7 @@ class Demo extends Component {
         { value: 'Shenzhen', label: '深圳' }, 
         { value: 'Guangzhou', label: '广州' }
       ],
-      value: ''
+      value: '',
     };
   }
   render() {
@@ -174,10 +173,10 @@ class Demo extends Component {
   }
   onChange(e,value){
     this.setState({ value });
-    console.log("onChange:",value,e)
+    console.log('onChange:', value, e);
   }
   onClear(state){
-    console.log("onChange:", state)
+    console.log('onChange:', state);
   }
   render() {
     return (
@@ -221,12 +220,12 @@ class Demo extends Component {
         { value: '选项6', label: '绍兴黄酒', disabled: true}, 
         { value: '选项7', label: '燕京啤酒' }, 
       ],
-      value: ''
+      value: '',
     };
   }
   onChange(e,value){
     this.setState({ value });
-    console.log("onChange:",value,e)
+    console.log('onChange:', value, e);
   }
   render() {
     return (

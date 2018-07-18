@@ -66,7 +66,6 @@ export default class Select extends Component {
         placeholder: props.placeholder,
       });
     }
-    console.log(props.value, this.props.value);
     if (props.value !== this.props.value) {
       const state = {
         value: props.value,
