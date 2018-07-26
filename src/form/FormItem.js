@@ -204,7 +204,7 @@ FormItem.propTypes = {
   prefixCls: PropTypes.string,
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   labelCol: PropTypes.object,
-  field: PropTypes.string.isRequired,
+  field: PropTypes.string,
   wrapperCol: PropTypes.object,
   name: PropTypes.string,
 };

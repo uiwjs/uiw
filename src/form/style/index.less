@@ -1,3 +1,5 @@
+@import "../../style/variables.less";
+
 @form-cls: ~"w-form";
 @form-item-cls: ~"@{form-cls}-item";
 
@@ -74,5 +76,49 @@
   }
   .w-form-item-explain {
     position: absolute;
+  }
+}
+
+// Form layout
+//== Vertical Form
+.make-vertical-layout-label() {
+  padding: 0 0 8px;
+  margin: 0;
+  display: block;
+  text-align: left;
+  line-height: 1.5;
+
+  label:after {
+    display: none;
+  }
+}
+
+.make-vertical-layout() {
+  .@{form-item-cls}-label,
+  .@{form-item-cls}-control {
+    display: block;
+    width: 100%;
+  }
+  .@{form-item-cls}-label {
+    .make-vertical-layout-label();
+  }
+}
+
+@media screen and (max-width: @screen-xs-max) {
+  .make-vertical-layout();
+  .w-col-xs-24.@{form-item-cls}-label {
+    .make-vertical-layout-label();
+  }
+}
+
+@media (max-width: @screen-sm-max) {
+  .w-col-sm-24.@{form-item-cls}-label {
+    .make-vertical-layout-label();
+  }
+}
+
+@media (max-width: @screen-md-max) {
+  .w-col-md-24.@{form-item-cls}-label {
+    .make-vertical-layout-label();
   }
 }

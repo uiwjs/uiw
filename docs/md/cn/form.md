@@ -69,7 +69,13 @@ class Demo extends Component {
       },
     }
     return (
-      <Form style={{width:500,padding:"30px 0 0 0"}} className="sss" ref={(component)=>{this.form=component}} model={form} rules={rules}>
+      <Form
+        style={{ maxWidth: 500, padding: '30px 0 0 0' }}
+        ref={(component)=>{this.form=component}}
+        className="sss"
+        model={form}
+        rules={rules}
+      >
         <FormItem label={<span>用户名</span>} field="name" {...formItemLayout} >
           <Input
             value={form.name}
@@ -241,7 +247,12 @@ class Demo extends Component {
       },
     }
     return (
-      <Form style={{width:500}} ref={(component)=>{this.form=component}} model={form} rules={rules}>
+      <Form
+        style={{ maxWidth: 500 }}
+        ref={component => this.form = component}
+        model={form}
+        rules={rules}
+      >
         <FormItem label={<span>用户名</span>} field="name" {...formItemLayout} >
           <Input 
             value={form.name} 
@@ -253,7 +264,7 @@ class Demo extends Component {
             onChange={this.onChange.bind(this)}
             filterable={true}
             multiple={true}
-            style={{ width: 300 }}
+            style={{ maxWidth: 300 }}
             value={form.selectMultiple}
           >
             {this.state.selectMultipleOptions.map((elm, idx) => {
@@ -431,7 +442,13 @@ class Demo extends Component {
       wrapperCol: { xs: {span: 24, offset: 0, }, sm: {span: 14, offset: 4, }, },
     }
     return (
-      <Form layout="inline" style={{width:500,padding:"10px 0 0 0"}} ref={(component)=>{this.form=component}} model={form} rules={rules}>
+      <Form
+        layout="inline"
+        style={{ maxWidth: 500, padding: '10px 0 0 0' }}
+        ref={(component)=>{this.form=component}}
+        model={form}
+        rules={rules}
+      >
         <FormItem field="name" {...formItemLayout} >
           <Input 
             value={form.name} 
@@ -560,7 +577,11 @@ class Demo extends Component {
         />
         <Form 
           layout={formLayout} 
-          style={{width:formLayout == "inline"?"auto":500}} ref={(component)=>{this.form=component}} model={form} rules={rules}>
+          style={{ maxWidth: formLayout == 'inline' ? 'auto' : 500 }}
+          ref={(component)=>{this.form=component}}
+          model={form}
+          rules={rules}
+        >
           <FormItem label={<span>用户名</span>} field="name" {...formItemLayout} >
             <Input 
               value={form.name} 
