@@ -179,7 +179,7 @@ export default class FormItem extends Component {
     );
   }
   render() {
-    const { prefixCls, className, label, labelCol, wrapperCol, ...resetProps } = this.props;
+    const { prefixCls, className, label, field, labelCol, wrapperCol, ...resetProps } = this.props;
     const { isRequired, error, help } = this.state;
     const cls = this.classNames(className, {
       [`${prefixCls}`]: true,
@@ -204,6 +204,7 @@ FormItem.propTypes = {
   prefixCls: PropTypes.string,
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   labelCol: PropTypes.object,
+  field: PropTypes.string.isRequired,
   wrapperCol: PropTypes.object,
   name: PropTypes.string,
 };
