@@ -33,7 +33,6 @@
   &-item {
     line-height: 43px;
     margin: 0;
-    padding: 0 10px 0 20px !important;
     font-size: 14px;
     position: relative;
     display: block;
@@ -56,24 +55,6 @@
     &:hover {
       color: #0fa120;
     }
-  }
-  &-vertical {
-    border-right: 1px solid #e8e8e8;
-  }
-  &-vertical &-item:after {
-    content: "";
-    position: absolute;
-    right: -1px;
-    top: 0;
-    bottom: 0;
-    opacity: 0;
-    transform: scaleY(0.0001);
-    border-right: 3px solid #0ea042;
-    transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-  &-vertical &-item.active:after {
-    transform: scaleY(1);
-    opacity: 1;
   }
   &-horizontal {
     border: 0;
@@ -110,6 +91,9 @@
     }
     .w-sub-menu-arrow {
       line-height: 0;
+    }
+    .w-sub-menu-title {
+      padding: 0 20px !important;
     }
     .w-sub-menu {
       float: left;
@@ -157,10 +141,8 @@
     }
   }
 }
-
 .@{w-sub-menu} {
   &-title {
-    padding: 0 20px;
     font-size: 14px;
     line-height: 42px;
     position: relative;
@@ -183,12 +165,6 @@
     right: 16px;
     top: 0;
   }
-  &-con &-title {
-    padding-left: 20px;
-  }
-  & & {
-    padding-left: 20px;
-  }
   &-arrow.opened {
     transform: rotate(180deg);
   }
@@ -196,9 +172,6 @@
     display: none;
     &.opened {
       display: block;
-    }
-    .w-menu-item {
-      padding-left: 40px !important;
     }
   }
 }
@@ -209,7 +182,7 @@
     font-size: 14px;
     color: rgba(0, 0, 0, 0.45);
     line-height: 1.5;
-    padding: 8px 16px 8px 30px;
+    padding: 8px 16px 8px 0;
     transition: color .3s;
   }
 }
@@ -268,6 +241,9 @@
       margin-right: 0;
     }
   }
+  .w-sub-menu {
+    padding: 0 10px !important;
+  }
   .w-menu-item {
     padding: 0 10px !important;
     .w-tooltip-popup {
@@ -289,8 +265,28 @@
   }
 }
 
+.@{w-menu} {
+  &-inline {
+    border-right: 1px solid #e8e8e8;
+  }
+  &-inline &-item:after {
+    content: "";
+    position: absolute;
+    right: -1px;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    transform: scaleY(0.0001);
+    border-right: 3px solid #0ea042;
+    transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  &-inline &-item.active:after {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
 // 缩起内嵌菜单
-.@{w-menu}-inline {
+.@{w-menu}-vertical {
   &.w-menu-dark {
     .w-sub-menu, .w-menu-item, .w-menu-item-group {
       background-color: #343a40;

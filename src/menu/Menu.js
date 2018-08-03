@@ -1,6 +1,24 @@
 import React from 'react';
 import { Component, PropTypes } from '../utils/';
 
+function getLevelNumber(items, key, index = 0) {
+  if (!key) return index;
+  let indexCurrent = null;
+  items.forEach((item) => {
+    if (item.props.children && Array.isArray(item.props.children)) {
+      const childs = item.props.children.filter((_item) => {
+        return _item.props && _item.props.index;
+      });
+      if (childs && childs.length > 0) {
+        const indexChild = getLevelNumber(childs, key, index + 1);
+        if (indexChild) indexCurrent = indexChild;
+      }
+    }
+    if (item.props.index === key) indexCurrent = index;
+  });
+  return indexCurrent;
+}
+
 export default class Menu extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +53,7 @@ export default class Menu extends Component {
       this.props.onSelect(index, menuItem, this);
     }
     this.setState({ defaultActive }, () => {
-      if (this.props.mode === 'inline') {
+      if (this.props.mode === 'vertical') {
         // 处理菜单 mouseenter 引发的抖动问题
         this.modeinlineTimer = true;
         this.setState({ openedMenu: [] });
@@ -74,15 +92,18 @@ export default class Menu extends Component {
       }
     }
   }
+  getLevelNumber(key, idx = 1) {
+    return getLevelNumber(this.props.children, key, idx);
+  }
   render() {
-    const { prefixCls, className, style, mode, theme, defaultActive, inlineCollapsed, onSelect, onOpen, defaultOpened, ...resetProps } = this.props;
+    const { prefixCls, inlineIndent, className, style, mode, theme, defaultActive, inlineCollapsed, onSelect, onOpen, defaultOpened, ...resetProps } = this.props;
     return (
       <ul
         style={style}
         className={this.classNames(className, `${prefixCls}`, {
           [`${prefixCls}-${mode}`]: mode,
           [`${prefixCls}-${theme}`]: theme,
-          [`${prefixCls}-inline-collapsed`]: inlineCollapsed && mode === 'inline',
+          [`${prefixCls}-inline-collapsed`]: inlineCollapsed && mode === 'vertical',
         })}
         {...resetProps}
       >
@@ -103,12 +124,14 @@ Menu.propTypes = {
   defaultActive: PropTypes.string,
   defaultOpened: PropTypes.array,
   inlineCollapsed: PropTypes.bool,
+  inlineIndent: PropTypes.number,
   onSelect: PropTypes.func,
 };
 
 Menu.defaultProps = {
   prefixCls: 'w-menu',
   mode: 'vertical',
+  inlineIndent: 18,
   defaultOpened: [],
   inlineCollapsed: false,
   theme: 'light',
