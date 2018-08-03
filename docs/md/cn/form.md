@@ -197,16 +197,15 @@ class Demo extends Component {
   }
 
   onChange(key,e, value) {
-    const {form} = this.state;
-    console.log("value:==:",key,value,e)
+    const { form } = this.state;
     form[key] = value;
     this.setState({form});
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.form.validate((valid,dataValues) => {
-      console.log("返回内容:",dataValues,valid)
+    this.form.validate((valid, dataValues) => {
+      console.log('返回内容:', dataValues, valid);
       if (valid) {
         alert('submit!');
       } else {
@@ -259,9 +258,9 @@ class Demo extends Component {
             placeholder="请输入用户名"
             onChange={this.onChange.bind(this, 'name')} />
         </FormItem>
-        <FormItem label={<span>用户名</span>} field="name" {...formItemLayout} >
+        <FormItem label={<span>用户名</span>} field="selectMultiple" {...formItemLayout} >
           <Select
-            onChange={this.onChange.bind(this)}
+            onChange={this.onChange.bind(this, 'selectMultiple')}
             filterable={true}
             multiple={true}
             style={{ maxWidth: 300 }}
