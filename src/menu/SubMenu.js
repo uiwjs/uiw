@@ -66,9 +66,9 @@ export default class SubMenu extends MixinComponent {
   initEvents() {
     // 切换 mode 弹出的浮层隐藏
     // horizontal(水平) 和 vertical(垂直) 和 inline
-    if (this.menu().props.mode === 'vertical') {
+    if (this.menu().props.mode === 'inline') {
       this.submenu.addEventListener('click', this.handleClick);
-    } else if (this.menu().props.mode === 'inline') {
+    } else if (this.menu().props.mode === 'vertical') {
       this.submenuwarpper.addEventListener('mouseenter', this.handleClick);
       this.submenuwarpper.addEventListener('mouseleave', this.handleMouseLeave);
     }
@@ -87,7 +87,7 @@ export default class SubMenu extends MixinComponent {
     this.menu().handleSubmenuClick(this.props.index);
     const mode = this.menu().props.mode;
     const parent = this.submenulist.parentNode;
-    if (parent && mode === 'inline') {
+    if (parent && mode === 'vertical') {
       this.submenulist.style.left = `${parent.clientWidth}px`;
       this.submenulist.style.top = 0;
     }
@@ -100,8 +100,13 @@ export default class SubMenu extends MixinComponent {
     return this.menu().state.openedMenu.indexOf(this.props.index) !== -1;
   }
   render() {
-    const { prefixCls, index, className, title, ...resetProps } = this.props;
+    const { prefixCls, style, index, className, title, ...resetProps } = this.props;
+    const { inlineIndent, mode } = this.menu().props;
     const isSelected = this.isCheckMenuItem(index);
+    const styles = {};
+    if (mode === 'inline') {
+      styles.paddingLeft = inlineIndent;
+    }
     return (
       <li
         ref={(elm) => { this.submenuwarpper = elm; }}
@@ -110,6 +115,7 @@ export default class SubMenu extends MixinComponent {
           [`${prefixCls}-selected`]: isSelected,
         })}
         {...resetProps}
+        style={{ ...style, ...styles }}
       >
         <div ref={(elm) => { this.submenu = elm; }} className={`${prefixCls}-title`}>
           <span>{this.props.title}</span>

@@ -24,17 +24,21 @@ export default class MenuItem extends MixinComponent {
     return showTooltip;
   }
   render() {
-    const { prefixCls, className, style, resetProps } = this.props;
-    const inlineCollapsed = this.menu().props.inlineCollapsed;
+    const { prefixCls, className, style, index, ...resetProps } = this.props;
+    const { inlineCollapsed, inlineIndent, mode } = this.menu().props;
+    const styles = {};
+    if (mode === 'inline') {
+      styles.paddingLeft = inlineIndent;
+    }
     return (
       <li
-        style={style}
         className={this.classNames(className, `${prefixCls}`, {
           active: this.active(),
           disabled: this.props.disabled,
         })}
         onClick={this.handleClick.bind(this)}
         {...resetProps}
+        style={{ ...style, ...styles }}
       >
         {inlineCollapsed && this.isShowTooltip() ? (
           <Tooltip placement="right" content={this.props.children}>

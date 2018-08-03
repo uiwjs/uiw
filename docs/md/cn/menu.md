@@ -90,6 +90,7 @@ onSelect() {}
       <Menu 
         defaultActive="1"
         defaultOpened={['5']}
+        mode="inline"
         style={{width:240}}
         onClose={this.onClose.bind(this)}
         onSelect={this.onSelect.bind(this)}
@@ -131,7 +132,8 @@ class Demo extends Component {
     return (
       <Menu 
         defaultActive="1-1-1" 
-        className="demo" 
+        className="demo"
+        mode="inline"
         style={{width:260}}
         onOpen={this.onOpen.bind(this)} 
         onClose={this.onClose.bind(this)}
@@ -194,6 +196,7 @@ class Demo extends Component {
         <br />
         <Menu
           defaultActive="1"
+          mode="inline"
           theme={this.state.checked?'dark':'light'}
           onSelect={this.onSelect.bind(this)}
           style={{width:240}}
@@ -256,8 +259,8 @@ class Demo extends Component {
         <br />
         <div style={{width:240}}>
           <Menu 
-            mode={this.state.mode?'inline':'vertical'}
-            theme={this.state.checked?'dark':'light'}
+            theme={this.state.checked ? 'dark' : 'light'}
+            mode={this.state.mode ? 'inline' : 'vertical'}
             defaultActive="1-1-1" 
             className="demo"
           >
@@ -317,7 +320,7 @@ class Demo extends Component {
     return (
       <div>
         Change Mode&nbsp;
-        <Switch checkedChildren="inline" unCheckedChildren="vertical" checked={this.state.mode}
+        <Switch checkedChildren="vertical" unCheckedChildren="inline" checked={this.state.mode}
           onChange={(e, mode)=>{
             this.setState({mode});
           }}
@@ -338,7 +341,7 @@ class Demo extends Component {
             mode={this.state.mode?'inline':'vertical'}
             theme={this.state.checked?'dark':'light'}
             onSelect={this.onSelect.bind(this)}
-            inlineCollapsed={this.state.mode}
+            inlineCollapsed={true}
           >
             <Menu.Item index="1"><Icon type="date" /><span>关于我们</span></Menu.Item>
             <Menu.Item index="2"><Icon type="menu" /><span>成功案例</span></Menu.Item>
@@ -419,6 +422,7 @@ class Demo extends Component {
       <div>
         <Menu 
           defaultActive={defaultActive}
+          mode="inline"
           defaultOpened={defaultOpened}
           className="demo" 
           style={{width:260}}
@@ -469,7 +473,7 @@ class Demo extends Component {
 class Demo extends Component {
   render() {
     return (
-      <Menu style={{width:200}}>
+      <Menu mode="inline" style={{width:200}}>
         <Menu.Item index="2-1">选项1</Menu.Item>
         <Menu.Divider />
         <Menu.Item index="2-2">选项2</Menu.Item>
@@ -493,8 +497,8 @@ class Demo extends Component {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| mode | 菜单类型，可选值为 horizontal(水平) 和 vertical(垂直) 和 inline(垂直弹出层) 默认垂直参数`vertical` | String | `vertical` |
-| theme | 主题颜色 | String[light,dark] | light |
+| mode | 菜单类型，可选值为 `horizontal`(水平) 和 ~~`vertical`(垂直) 和 `inline`(垂直弹出层)~~ 默认垂直参数`vertical`。 `uiw 1.15.5+` `vertical`(垂直弹出层) 和 `inline`(垂直)  | String | `vertical` |
+| theme | 主题颜色 | String[light,dark] | `light` |
 | inlineCollapsed | inline 时菜单是否收起状态 | boolean | `false` |
 | inlineIndent | inline 模式的菜单缩进宽度 | boolean | `24` |
 | defaultActive | 当前默认选中的菜单项 `index` | String | - |
@@ -507,15 +511,15 @@ class Demo extends Component {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| disabled | 是否禁用 | Boolean | false |
-| index | `item` 的唯一标志 | String | vertical |
+| disabled | 是否禁用 | Boolean | `false` |
+| index | `item` 的唯一标志 | String | `vertical` |
 
 ### Menu.SubMenu
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| title | 折叠菜单标题 | String,React.ReactNode | vertical |
-| index | `SubMenu` 的唯一标志 | String | vertical |
+| title | 折叠菜单标题 | String,React.ReactNode | `vertical` |
+| index | `SubMenu` 的唯一标志 | String | `vertical` |
 
 
 ### Menu.Divider
