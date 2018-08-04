@@ -12,7 +12,7 @@
     background-color: #fff;
     background-image: none;
     border-radius: @border-radius-base;
-    border: 0 solid #e8e8e8;
+    border: 1px solid #d9d9d9;
     box-sizing: border-box;
     color: #1f2d3d;
     font-size: inherit;
@@ -29,9 +29,11 @@
       font-weight: @input-font-weight;
     }
     &:hover {
+      border: 1px solid #0fa120;
       box-shadow: 0 0 0 0 #0fa120, 0 0 0 0 rgba(0, 0, 0, 0), inset 0 0 0 1px #0fa120, inset 0 1px 1px rgba(25, 25, 25, 0.2);
     }
     &:focus {
+      border: 1px solid #0fa120;
       box-shadow: 0 0 0 0 #009813, 0 0 0 2px rgba(0, 165, 21, 0.25), inset 0 0 0 1px #0fa120, inset 0 1px 1px rgba(31, 31, 31, 0.2);
     }
     &:focus&::placeholder {
