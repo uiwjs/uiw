@@ -14,6 +14,9 @@ class Demo extends Component {
         <Loading size="small" />
         <Loading />
         <Loading size="large" />
+        <Loading type="donut" size="small" />
+        <Loading type="donut" />
+        <Loading type="donut" size="large" />
       </div>
     )
   }
@@ -36,6 +39,16 @@ class Demo extends Component {
     return (
       <div>
         <Loading loading={this.state.loading}>
+          <Alert 
+            message="Alert message title"
+            description="Further details about the context of this alert."
+            type="default"
+            onClose={()=>{
+                console.log("onClose::")  
+            }}
+            />
+        </Loading>
+        <Loading type="donut" loading={this.state.loading}>
           <Alert 
             message="Alert message title"
             description="Further details about the context of this alert."
@@ -76,6 +89,13 @@ class Demo extends Component {
     return (
       <div>
         <Loading tip="正在加载...">
+          <Alert 
+            message="Error Text"
+            description="Error Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error Description"
+            type="error"
+          />
+        </Loading>
+        <Loading type="donut" tip="正在加载...">
           <Alert 
             message="Error Text"
             description="Error Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error DescriptionError Description Error Description Error Description Error Description Error Description Error Description"
