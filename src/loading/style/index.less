@@ -20,6 +20,15 @@
       vertical-align: middle;
     }
   }
+  .w-loading-icon-donut {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #10a400;
+    border-radius: 50%;
+    margin: 0 auto;
+    width: @loading-horizontal;
+    height: @loading-horizontal;
+    animation: _donut_spin 1.2s linear infinite;
+  }
   .w-loading-icon {
     width: @loading-horizontal;
     height: @loading-horizontal;
@@ -35,7 +44,7 @@
       border-radius: 50%;
       position: absolute;
       margin-left: -50%;
-      animation: _double-bounce-sk-doubleBounce 2s infinite ease-in-out;
+      animation: _double_bounce 2s infinite ease-in-out;
     }
     &:before {
       opacity: .5;
@@ -65,21 +74,34 @@
   }
 }
 
-.w-loading-small .w-loading-icon {
-  width: @loading-horizontal-small;
-  height: @loading-horizontal-small;
+.w-loading-small {
+  .w-loading-icon, .w-loading-icon-donut {
+    width: @loading-horizontal-small;
+    height: @loading-horizontal-small;
+  }
 }
 
-.w-loading-large .w-loading-icon {
-  width: @loading-horizontal-large;
-  height: @loading-horizontal-large;
+.w-loading-large {
+  .w-loading-icon, .w-loading-icon-donut {
+    width: @loading-horizontal-large;
+    height: @loading-horizontal-large;
+  }
 }
 
-@keyframes _double-bounce-sk-doubleBounce {
+@keyframes _double_bounce {
   0%, to {
     transform: scale(0);
   }
   50% {
     transform: scale(1);
+  }
+}
+
+@keyframes _donut_spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
