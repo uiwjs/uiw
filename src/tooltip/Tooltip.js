@@ -96,9 +96,10 @@ export default class Tooltip extends Component {
   // 弹出的位置
   styles() {
     const { placement } = this.props;
+    const sty = {};
     let top = 0;
     let left = 0;
-
+    if (!this.popup) return sty;
     const popwidth = this.popup.offsetWidth;
     const popheight = this.popup.offsetHeight;
 
@@ -159,7 +160,6 @@ export default class Tooltip extends Component {
         break;
       default: break;
     }
-    const sty = {};
     if (top || top === 0) sty.top = `${top}px`;
     if (left) sty.left = `${left}px`;
     return sty;
