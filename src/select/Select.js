@@ -127,7 +127,7 @@ export default class Select extends Component {
       const state = { selected, selectedLabel };
       state.placeholder = selectedLabel.length > 0 ? '' : this.props.placeholder;
       this.setState({ ...state }, () => {
-        filterable && this.resetInputHeight(init);
+        (filterable || multiple) && this.resetInputHeight(init);
       });
     } else {
       // 过滤改变 selectedLabel 的value对应的值
