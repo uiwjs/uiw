@@ -12,12 +12,14 @@ compiler.run((err, stats) => {
   // 官方输出参数
   // https://webpack.js.org/configuration/stats/
   // https://github.com/webpack/webpack/issues/538#issuecomment-59586196
-  /* eslint-disable */
-  console.log(stats.toString({
-    colors: true,
-    children: false,
-    chunks: false,
-    modules: false,
-  }));
-  /* eslint-enable */
+  if (stats) {
+    /* eslint-disable */
+    console.log(stats.toString({
+      colors: true,
+      children: false,
+      chunks: false,
+      modules: false,
+    }));
+    /* eslint-enable */
+  }
 });
