@@ -5,6 +5,34 @@
 
 Github [更新日志](https://github.com/uiw-react/uiw/releases)
 
+## v1.16.0
+
+`2018-09-01`
+
+- 🌟 feat(Menu): Add inlineIndent props. e5438f0 
+- 🌟 feat(Table): Add showHeader props. e418569 
+- 🌟 feat(Modal):提交尺寸改变属性 : [@Xing-He](https://github.com/Xing-He) 3ab3384 
+- 🎨 style(Input): Modify Input styles. c541591 
+- 🎨 style(Input): Modify Input border styles. a8ddfbc 
+- 🎨 style(Form): Modify vertical layout styles. b3758c2 
+- 🎨 style(Alert): Modify description word break. 5491046 
+- 🐞 Fix(Select) fix multi-select box height issue. d1360fc 
+- 🐞 Fix(Form): Fix field props issues. cec9037 
+- 🐞 Fix button style issue in Safari. 45fdc7f 
+- 🐞 fix(Table): fix showHeader issue. 150eca2 
+- 💄 refactor(Breadcrumb): Optimization code. be2e6b6 
+- 💄 refactor(Tooltip): Increase judgment d7e27c8 
+- 💄 chore: Fix  build command errors. a85adc9 
+- 💄 chore(Select): Optimize the filterable parameters. 3960937 
+- 💄 Add type props. bf1260b 
+- 💄 #64 Jest compatible with babel7. 03b145c 
+- 💄 Upgrade to Babel 7. c82e753 
+- 💄 Update Form document. e455ca2 
+- 💄 Update uiw-iconfont@1.2.13 f34886c 
+- 📖 doc(Form): Add expample. 0197332 
+- 📖 doc(Modal): Update document. 55ecd66 
+- 📖 doc: Update changelog v1.14.10 461e95c 
+
 ## v1.14.10
 
 `2018-07-04`
