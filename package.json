@@ -19,8 +19,8 @@
     "test:watch": "babel-node script/test.js --config .jest.js --watch --updateSnapshot",
     "start": "babel-node script/start.js",
     "build": "babel-node script/build.js",
-    "build:lib": "BABEL_ENV=production babel --ignore=src/**/__test__ src --out-dir lib --copy-files ",
-    "lib:watch": "BABEL_ENV=production babel -w --ignore=src/**/__test__ src --out-dir lib --copy-files ",
+    "build:lib": "BABEL_ENV=production babel --ignore=src/**/__test__ src --out-dir lib --copy-files --verbose",
+    "lib:watch": "BABEL_ENV=production babel -w --ignore=src/**/__test__ src --out-dir lib --copy-files --verbose",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
     "lint-staged:js": "NODE_ENV=production eslint src",
     "deploy": "npm run build:lib && npm run build && node ./script/deploy.js"
