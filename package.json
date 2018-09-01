@@ -92,7 +92,7 @@
     "lint-staged": "^5.0.0",
     "loading-cli": "^1.0.6",
     "local-ip-url": "^1.0.1",
-    "marked": "^0.4.0",
+    "marked": "^0.5.0",
     "mini-css-extract-plugin": "^0.4.0",
     "open-browsers": "^1.1.1",
     "optimize-css-assets-webpack-plugin": "^4.0.0",
