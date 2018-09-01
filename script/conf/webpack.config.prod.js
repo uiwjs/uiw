@@ -10,6 +10,11 @@ import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import paths from './path';
 import pkg from '../../package.json';
 
+
+function resolve(dir) {
+  return path.join(__dirname, '..', '..', dir)
+}
+
 export default {
   mode: 'production',
   entry: [
@@ -148,30 +153,46 @@ export default {
   // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
   optimization: {
     runtimeChunk: true,
-    minimizer: [
-      new OptimizeCSSAssetsPlugin({}),
-    ],
     splitChunks: {
       chunks: 'all',
-      minSize: 0,
-      maxAsyncRequests: Infinity,
-      maxInitialRequests: Infinity,
-      name: true,
       cacheGroups: {
-        vendors: {
+        libs: {
+          name: 'chunk-libs',
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          enforce: true,
-          chunks: 'all'
+          priority: 10,
+          chunks: 'initial' // 只打包初始时依赖的第三方
         },
-        styles: {
-          name: 'styles',
-          test: /\.css$/,
-          chunks: 'all',
-          enforce: true,
+        standalone: {
+          name: 'chunk-standalone', // 单独将 standalone 拆包
+          priority: 20, // 权重要大于 libs 和 app 不然会被打包进 libs 或者 app
+          test: /[\\/]node_modules[\\/]\@babel[\\/]standalone[\\/]/
         },
-      },
+        commons: {
+          name: 'chunk-comomns',
+          test: resolve('src'), // 可自定义拓展你的规则
+          minChunks: 2, // 最小公用次数
+          priority: 20,
+          chunks: 'async', // 只打包初始时依赖的第三方
+          // reuseExistingChunk: true // 如果当前块包含已从主束拆分的模块，则将重用它而不是生成新的块。
+        }
+      }
     },
+    runtimeChunk: 'single',
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          mangle: {
+            safari10: true
+          }
+        },
+        sourceMap: false,
+        cache: true,
+        parallel: true
+      }),
+      // Compress extracted CSS. We are using this plugin so that possible
+      // duplicated CSS from different components can be deduped.
+      new OptimizeCSSAssetsPlugin()
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
