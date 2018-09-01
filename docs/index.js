@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 // import { render } from 'react-dom';
-import { hot } from 'react-hot-loader'
 import { AppContainer } from 'react-hot-loader';
 
 /* eslint import/no-webpack-loader-syntax: off */
@@ -10,7 +9,7 @@ import { AppContainer } from 'react-hot-loader';
 // 这里将他们做一个标记，便于公共依赖提出来，减小打包体积
 import marked from 'marked';
 import prism from 'prismjs';
-import transform from 'babel-standalone';
+import transform from '@babel/standalone';
 import Markdown from './libs/markdown/index.js';
 import Canvas from './libs/markdown/canvas.js';
 /* eslint import/no-webpack-loader-syntax: off */

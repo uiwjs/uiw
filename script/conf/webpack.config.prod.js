@@ -103,7 +103,7 @@ export default {
               // directory for faster rebuilds.
               cacheDirectory: true,
               // 按需加载缩小体积
-              plugins: ['transform-runtime']
+              plugins: ['@babel/plugin-transform-runtime']
             },
           },
           {
