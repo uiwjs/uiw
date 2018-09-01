@@ -19,12 +19,15 @@ describe('<Steps>', () => {
     expect(wrapper.at(0).prop('status')).toBe('process');
     expect(wrapper.at(0).prop('direction')).toBe('horizontal');
     expect(wrapper.at(0).prop('current')).toBe(1);
-    expect(wrapper.at(0).find('.w-steps-item .w-steps-item-process').html()).toContain('<div class="w-steps-item w-steps-item-process" style="width: 33.333333333333336%; margin-right: -1px;"><div class="w-steps-item-tail"><i></i></div><div class="w-steps-item-head"><div class="w-steps-item-inner"><span class="w-steps-icon">2</span></div></div><div class="w-steps-item-main"><div class="w-steps-item-title">步骤二</div><div class="w-steps-item-description">这里是步骤二的说明，可以很长很长哦。</div></div></div>');
+    expect(wrapper.find('.w-steps-item').at(0).prop('className')).toBe('w-steps-item w-steps-item-finish');
+    expect(wrapper.find('.w-steps-item').at(1).prop('className')).toBe('w-steps-item w-steps-item-process');
+    expect(wrapper.find('.w-steps-item').at(2).prop('className')).toBe('w-steps-item w-steps-item-wait');
+    expect(wrapper.find('.w-steps-item').at(3).prop('className')).toBe('w-steps-item w-steps-item-wait');
   });
 
-  it('Test current attributes', () => {
-    wrapper.setProps({ current: 2 });
-    expect(wrapper.at(0).find('.w-steps-item .w-steps-item-process').html()).toContain('<div class="w-steps-item w-steps-item-process" style="width: 33.333333333333336%; margin-right: -1px;"><div class="w-steps-item-tail"><i></i></div><div class="w-steps-item-head"><div class="w-steps-item-inner"><span class="w-steps-icon">3</span></div></div><div class="w-steps-item-main"><div class="w-steps-item-title">步骤三</div><div class="w-steps-item-description">这里是步骤三的说明，可以很长很长哦。</div></div></div>');
+  it('Test current attributes', async () => {
+    await wrapper.setProps({ current: 2 });
+    expect(wrapper.find('.w-steps-item-process').at(0).prop('className')).toBe('w-steps-item w-steps-item-process');
   });
 
   it('Test status attributes', () => {
