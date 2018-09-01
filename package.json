@@ -69,6 +69,7 @@
     "babel-jest": "^23.4.2",
     "babel-loader": "^8.0.0-beta.6",
     "bundle-loader": "^0.5.6",
+    "clean-webpack-plugin": "^0.1.19",
     "colors-cli": "^1.0.9",
     "css-loader": "^0.28.11",
     "detect-port": "^1.2.2",

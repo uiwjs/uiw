@@ -1,7 +1,8 @@
 import webpack from 'webpack';
 import autoprefixer from 'autoprefixer';
 import path from 'path';
-import loaderUtils from 'loader-utils'; // webpack 内部插件
+import CleanWebpackPlugin from 'clean-webpack-plugin';
+// import loaderUtils from 'loader-utils'; // webpack 内部插件
 import postcssFlexbugsFixes from 'postcss-flexbugs-fixes';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -195,6 +196,9 @@ export default {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(paths.appBuildDist, {
+      root: process.cwd(),
+    }),
     new HtmlWebpackPlugin({
       favicon: paths.appFavicon,
       title: 'UIW React, A high quality UI Toolkit, A Component Library for React 16+.',
