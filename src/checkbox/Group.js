@@ -4,6 +4,15 @@ import Checkbox from './';
 
 
 export default class Group extends Component {
+  constructor(props) {
+    super(props);
+    this.checkedValues = props.checkedValues;
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.checkedValues !== this.props.checkedValues) {
+      this.checkedValues = nextProps.checkedValues;
+    }
+  }
   render() {
     const { prefixCls, className, onChange, options, checkedValues, disabled, ...otherProps } = this.props;
     return (
@@ -15,7 +24,6 @@ export default class Group extends Component {
           if (typeof item === 'object') {
             props = { ...item };
           }
-          this.checkedValues = checkedValues;
           return (
             <Checkbox
               key={i}
