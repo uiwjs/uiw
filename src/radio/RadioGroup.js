@@ -31,7 +31,6 @@ export default class RadioGroup extends Component {
             key={idx}
             disabled={option && option.disabled}
             value={this.getValue(option)}
-            onChange={this.onRadioChange}
             checked={this.props.value === this.getValue(option)}
           >
             {option && option.label}
