@@ -20,7 +20,7 @@ export default class RadioGroup extends Component {
     return option.value;
   }
   render() {
-    const { prefixCls, options } = this.props;
+    const { prefixCls, options, className, ...other } = this.props;
 
     let children = this.props.children;
 
@@ -41,7 +41,7 @@ export default class RadioGroup extends Component {
     }
 
     return (
-      <div className={this.classNames(`${prefixCls}`)}>
+      <div {...other} className={this.classNames(`${prefixCls}`, className)}>
         {
           React.Children.map(children, (element) => {
             return React.cloneElement(element, Object.assign({}, element.props, {
