@@ -12,9 +12,8 @@ export default class Radio extends Component {
   }
   handleChange(e) {
     const checked = e.target.checked;
-    const { children } = this.props;
     if (checked) {
-      this.props.onChange(e, (this.props.value || children), checked);
+      this.props.onChange(e, this.props.value, checked);
       this.setState({ checked });
     }
   }
