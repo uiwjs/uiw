@@ -55,7 +55,7 @@ export default class Radio extends Component {
 
 Radio.propTypes = {
   prefixCls: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
   checked: PropTypes.bool,
