@@ -1,0 +1,47 @@
+.title {
+  color: #fff;
+  padding: 20px 20px 10px;
+  margin: 0;
+  font-size: 20px;
+  font-weight: normal;
+  span {
+    vertical-align: middle;
+    color: #b1b1b1;
+  }
+  svg {
+    vertical-align: middle;
+    fill: #b1b1b1;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    path {
+      fill: #b1b1b1;
+    }
+  }
+}
+
+.menu {
+  overflow: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 57px;
+  padding: 0 10px;
+  a {
+    padding: 5px 14px;
+    margin: 2px 0;
+    display: block;
+    color: #fff;
+    border-radius: 3px;
+    &:hover, &.selected {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.12);
+    }
+  }
+  .divider {
+    padding: 10px 12px 10px;
+    color: #aaa;
+    font-weight: normal;
+  }
+}

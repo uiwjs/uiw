@@ -1,8 +1,7 @@
 {
-  "name": "uiw",
-  "version": "2.0.0",
+  "name": "@uiw/core",
+  "version": "1.16.12",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
-  "private": true,
   "homepage": "https://uiw-react.github.io",
   "authors": [
     "Kenny Wang <wowohoo@qq.com>"
@@ -11,10 +10,8 @@
     "type": "git",
     "url": "https://github.com/uiw-react/uiw.git"
   },
-  "scripts": {
-    "start": "kkt start",
-    "build": "kkt build"
-  },
+  "main": "lib/index.js",
+  "scripts": {},
   "keywords": [
     "uiw",
     "uiw-react",
@@ -30,17 +27,14 @@
     "react-dom": ">=16.0.0"
   },
   "dependencies": {
-    "@rematch/core": "^1.0.6",
-    "history": "^4.7.2",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-dynamic-loadable": "^1.1.2",
-    "react-redux": "^6.0.0",
-    "react-router-dom": "^4.3.1"
+    "@babel/polyfill": "~7.0.0",
+    "@babel/runtime": "^7.0.0",
+    "uiw-iconfont": "^1.2.18"
   },
-  "devDependencies": {
-    "@kkt/plugin-less": "^1.0.2",
-    "kkt": "^3.0.0-beta.2"
+  "devDependencies": {},
+  "lint-staged": {
+    "*.js": "lint-staged:js",
+    "*.less": "stylelint --syntax=less"
   },
   "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT"
