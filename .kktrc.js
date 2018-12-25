@@ -1,5 +1,7 @@
 module.exports = {
-  plugins: [],
+  plugins: [
+    require.resolve('@kkt/plugin-less'),
+  ],
   // Modify the webpack config
   config: (conf, { dev, env }, webpack) => {
     if (env === 'prod') {
