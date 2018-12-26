@@ -36,7 +36,7 @@ class Demo extends Component {
   }
   render() {
     const styles = {
-      flex: 1, height: 63, color: '#fff', textAlign: 'center',
+      flex: 1, height: 63, maxWidth: 120, color: '#fff', textAlign: 'center',
       display: 'flex', justifyContent: 'center', flexDirection: 'column',
     }
     return (
@@ -67,30 +67,20 @@ class Demo extends Component {
     super();
     this.state = {
       color: [
-        {
-          name: 'Green', cn: '成功-绿色', color: '#07C32A',
-        },
-        {
-          name: 'Cyan', cn: '信息-青色', color: '#1EABCD',
-        },
-        {
-          name: 'Navy', cn: '导航-藏青', color: '#393E48',
-        },
-        {
-          name: 'Yellow', cn: '成功-绿色', color: '#EEB719',
-        },
-        {
-          name: 'Orange', cn: '信息-青色', color: '#F95C2B',
-        },
-        {
-          name: 'Red', cn: '导航-藏青', color: '#E23028',
-        },
+        { name: 'Green', cn: '成功-绿色', color: '#28a745' },
+        { name: 'Blue', cn: '主要-蓝色', color: '#008EF0' },
+        { name: 'Cyan', cn: '信息-青色', color: '#1EABCD' },
+        { name: 'Navy', cn: '导航-藏青', color: '#393E48' },
+        { name: 'Yellow', cn: '警告-黄色', color: '#ffc107' },
+        { name: 'Orange', cn: '提醒-橙色', color: '#F95C2B' },
+        { name: 'Red', cn: '危险-红色', color: '#dc3545' },
       ],
     };
   }
   render() {
     const styles = {
-      flex: 1, height: 63, color: '#fff', textAlign: 'center',
+      position: 'relative', minWidth: 80,
+      flex: 1, height: 83, color: '#fff', textAlign: 'center',
       display: 'flex', flexDirection: 'column', justifyContent: 'center',
     }
     return (
@@ -98,8 +88,9 @@ class Demo extends Component {
         {this.state.color.map((item, idx) => {
           return (
             <div key={idx} style={{ background: item.color, ...styles }}>
+              <div style={{position: 'absolute', top: 3, left: 5, fontSize: 12, color: 'rgba(255, 255, 255, 0.65)'}}>{item.color}</div>
               <div>{item.name}</div>
-              <div>{item.color}</div>
+              <div>{item.cn}</div>
             </div>
           );
         })}
@@ -121,36 +112,16 @@ class Demo extends Component {
     super();
     this.state = {
       color: [
-        {
-          name: '白色', color: '#FFFFFF', fontColor: '#6F6F6F',
-        },
-        {
-          name: '背景', color: '#F6F6F6', fontColor: '#6F6F6F',
-        },
-        {
-          name: '分割线', color: '#F2F2F2', fontColor: '#6F6F6F',
-        },
-        {
-          name: '边框', color: '#EEEEEE', fontColor: '#6F6F6F',
-        },
-        {
-          name: '失效', color: '#EAEAEA', fontColor: '#6F6F6F',
-        },
-        {
-          name: '辅助', color: '#DDDDDD', fontColor: '#6F6F6F',
-        },
-        {
-          name: '正文', color: '#C2C2C2',
-        },
-        {
-          name: '图标', color: '#B9B9B9',
-        },
-        {
-          name: '文本', color: '#A5A5A5',
-        },
-        {
-          name: '标题', color: '#6E6E6E',
-        },
+        { name: '白色', color: '#FFFFFF', fontColor: '#6F6F6F' },
+        { name: '背景', color: '#F6F6F6', fontColor: '#6F6F6F' },
+        { name: '分割线', color: '#F2F2F2', fontColor: '#6F6F6F' },
+        { name: '边框', color: '#EEEEEE', fontColor: '#6F6F6F' },
+        { name: '失效', color: '#EAEAEA', fontColor: '#6F6F6F' },
+        { name: '辅助', color: '#DDDDDD', fontColor: '#6F6F6F' },
+        { name: '正文', color: '#C2C2C2' },
+        { name: '图标', color: '#B9B9B9' },
+        { name: '文本', color: '#A5A5A5' },
+        { name: '标题', color: '#6E6E6E' },
       ],
     };
   }
@@ -159,7 +130,7 @@ class Demo extends Component {
       <div style={{display: 'flex', flexWrap: 'wrap'}}>
         {this.state.color.map((item, idx) => {
           const styles = {
-            flex: 1, height: 63, color: '#fff', textAlign: 'center',
+            flex: 1, height: 63, color: '#fff', textAlign: 'center', minWidth: 80,
             flexDirection: 'column', display: 'flex', justifyContent: 'center',
           }
           if (item.fontColor) {
@@ -193,13 +164,13 @@ class Demo extends Component {
     this.state = {
       color: [
         {
-          name: '警告-黄色', backgroundColor: '#EEB719', des: 'warning',
+          name: '警告-黄色', backgroundColor: '#ffc107', des: 'warning',
         },
         {
           name: '提醒-橙色', backgroundColor: '#F95C2B', des: 'remind',
         },
         {
-          name: '危险-红色', backgroundColor: '#E23028', des: 'danger',
+          name: '危险-红色', backgroundColor: '#dc3545', des: 'danger',
         },
         {
           name: '导航-藏青', backgroundColor: '#393E48', des: 'NavMenu',
@@ -221,16 +192,20 @@ class Demo extends Component {
       <div style={{display: 'flex', flexWrap: 'wrap'}}>
         {this.state.color.map((item, idx) => {
           const styles = {
-            flex: 1, height: 63, color: '#fff', textAlign: 'center',
+            padding: '21px 0 7px 5px', minWidth: 100,
+            position: 'relative', flex: 1, height: 63, color: '#fff',
             flexDirection: 'column', display: 'flex', justifyContent: 'center',
           }
+          const colorFontSty = {position: 'absolute', top: 3, left: 5, fontSize: 12, color: 'rgba(255, 255, 255, 0.65)'};
           if (item.color) {
             styles.color = item.color;
+            colorFontSty.color = item.color;
           }
           return (
             <div key={idx} style={{ background: item.backgroundColor, ...styles }}>
+              <div style={colorFontSty}>{item.backgroundColor}</div>
               <div>{item.name}</div>
-              <div>{item.des}</div>
+              <div style={{ fontSize: 12 }}>{item.des}</div>
             </div>
           );
         })}

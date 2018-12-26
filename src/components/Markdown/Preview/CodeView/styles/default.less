@@ -1,0 +1,177 @@
+:global {
+  .highlight {
+    border-left: 1px solid #f1f1f1;
+    display: block;
+    overflow-x: auto;
+    padding: 12px 16px;
+    font-size: 85%;
+    color: #333;
+    background: #f6f8fa;
+    .line-number {
+      position: absolute;
+      color: rgba(27,31,35,0.3);
+      user-select: none;
+      width: 100%;
+      &:hover {
+        color: #333;
+        &:before {
+          text-decoration: underline;
+        }
+      }
+      &:before {
+        content: attr(data-start);
+        cursor: pointer;
+        text-align: right;
+        display: inline-block;
+        font-size: 12px;
+        min-width: 40px;
+        min-height: 20px;
+        padding-right: 5px;
+        padding-left: 10px;
+      }
+    }
+    .class-name {
+      color: #000896;
+    }
+    .comment,
+    .quote {
+      color: #998;
+    }
+
+    .keyword,
+    .selector-tag,
+    .subst {
+      color: #d73a49;
+    }
+
+    .key,
+    .number,
+    .literal,
+    .variable,
+    .template-variable,
+    .tag .attr {
+      color: #008080;
+    }
+
+    .string, .doctag {
+      color: #0065da;
+    }
+
+    .title,
+    .section,
+    .selector-id {
+      color: #900;
+      font-weight: bold;
+    }
+
+    .subst {
+      font-weight: normal;
+    }
+
+    .type,
+    .class .title {
+      color: #458;
+      font-weight: bold;
+    }
+
+    .function, .operator {
+      color: #000bc5;
+    }
+    .tag,
+    .name,
+    .attribute {
+      color: #002ade;
+      font-weight: normal;
+    }
+
+    .url {
+      color: #3c04ff;
+    }
+
+    .boolean {
+      color: #005cc5;
+    }
+
+    .property {
+      color: #032f62;
+    }
+
+    .null, .selector {
+      color: #005cc5;
+    }
+
+    .constant {
+      color: #d73a49;
+    }
+
+    .punctuation {
+      color: #A595A5;
+    }
+    .attr-name {
+      color: #8F4919;
+    }
+    .attr-value {
+      color: #13239F;
+    }
+    .tag {
+      .punctuation {
+        color: #A595A5;
+      }
+      .attr-name {
+        color: #8F4919;
+      }
+      .attr-value {
+        color: #13239F;
+      }
+      .attr-value .punctuation,
+      .script-punctuation {
+        color: #A595A5;
+      }
+      .script .keyword {
+        color: #090080;
+      }
+      .language-javascript {
+        color: #6f42c1;
+      }
+    }
+
+    .regexp, .regex,
+    .link {
+      color: #009926;
+    }
+
+    .symbol,
+    .bullet {
+      color: #990073;
+    }
+
+    .built_in,
+    .builtin-name {
+      color: #0086b3;
+    }
+
+    .meta {
+      color: #999;
+      font-weight: bold;
+    }
+
+    .deletion {
+      background: #fdd;
+    }
+
+    .addition {
+      background: #dfd;
+    }
+
+    .emphasis {
+      font-style: italic;
+    }
+
+    .strong {
+      font-weight: bold;
+    }
+    .shebang, .important {
+      color: #FF1717;
+    }
+  }
+}

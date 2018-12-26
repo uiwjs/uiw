@@ -6,6 +6,12 @@
 ## 安装
 
 ```bash
+npm i @uiw/core # 安装 v2.x.x 最新版本
+```
+
+安装 `v1.x.x` 版本
+
+```bash
 npm install uiw --save
 
 # 通过GitHub仓库安装
