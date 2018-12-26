@@ -19,9 +19,6 @@ export const getRouterData = () => {
     '/components': {
       component: dynamicWrapper([], () => import('../routes/overview')),
     },
-    // '/guide': {
-    //   component: dynamicWrapper([], () => import('../layouts/ComponentsLayout')),
-    // },
     '/guide/quick-start': {
       component: dynamicWrapper([], () => import('../routes/guide/quick-start')),
     },
@@ -29,7 +26,13 @@ export const getRouterData = () => {
       component: dynamicWrapper([], () => import('../routes/guide/changelog')),
     },
     '/guide/recommendation': {
-      component: dynamicWrapper([], () => import('../routes/overview')),
+      component: dynamicWrapper([], () => import('../routes/guide/recommendation')),
+    },
+    '/components/colors': {
+      component: dynamicWrapper([], () => import('../routes/components/colors')),
+    },
+    '/components/layout': {
+      component: dynamicWrapper([], () => import('../routes/components/layout')),
     },
   };
   return conf;

@@ -30,8 +30,11 @@
     "react-dom": ">=16.0.0"
   },
   "dependencies": {
+    "@babel/standalone": "^7.2.5",
     "@rematch/core": "^1.0.6",
+    "@uiw/react-codemirror": "^1.0.19",
     "history": "^4.7.2",
+    "marked": "^0.5.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-dynamic-loadable": "^1.1.2",
@@ -40,7 +43,8 @@
   },
   "devDependencies": {
     "@kkt/plugin-less": "^1.0.2",
-    "kkt": "^3.0.0-beta.2"
+    "kkt": "^3.0.0-beta.4",
+    "raw-loader": "^1.0.0"
   },
   "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT"

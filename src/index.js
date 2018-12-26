@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router, withRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import history from './history';
-import { getRouterData } from './routes';
+import { getRouterData } from './common/router';
 import RoutersController from './Router';
 import { store } from './store';
 import './styles/index.less';
