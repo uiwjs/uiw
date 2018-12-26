@@ -1,18 +1,8 @@
-import React, { PureComponent } from 'react';
-// import { Link } from 'react-router-dom';
-// import logo from '../../components/icons/logo';
-// import styles from './index.module.less';
+import Markdown from '../../../components/Markdown';
 
-export default class QuickStart extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    return (
-      <div>
-        Quick Start
-      </div>
-    );
+export default class Page extends Markdown {
+  async renderPage() {
+    const md = await import('./index.md');
+    return md.default || md;
   }
 }

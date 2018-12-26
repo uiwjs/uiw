@@ -2,21 +2,26 @@ import React, { PureComponent } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import Nav from '../components/Nav';
 import SiderMenu from '../components/SiderMenu';
+import { getMenuData, getMenuCurrentData } from '../common/menu';
 import logo from '../components/icons/logo';
-import styles from './ComponentsLayout.module.less';
+import styles from './index.module.less';
 
 export default class UserLayout extends PureComponent {
   render() {
     const { routerData } = this.props;
+    const menuData = getMenuData();
     const RouteComponents = [];
     Object.keys(routerData).forEach((path, idx) => {
-      if (/^(\/components|\/guide)/.test(path) && !/^(\/components|\/guide)$/.test(path)) {
+      if (/^(\/components|\/guide)/.test(path)) {
         RouteComponents.push(
           <Route
             exact
             key={idx + 1}
             path={path}
-            component={routerData[path].component}
+            render={(props) => {
+              const Com = routerData[path].component;
+              return <Com {...props} pageData={getMenuCurrentData(props.location.pathname)} />;
+            }}
           />
         );
       }
@@ -27,10 +32,10 @@ export default class UserLayout extends PureComponent {
           <div className={styles.logo}>
             <Link to="/"> {logo.dark} </Link>
           </div>
-          <Nav />
+          <Nav menuData={menuData} />
         </div>
         <div className={styles.sidebar}>
-          <SiderMenu {...this.props} />
+          <SiderMenu menuData={menuData} {...this.props} />
         </div>
         <div className={styles.content}>
           <Switch>

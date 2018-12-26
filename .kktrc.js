@@ -33,6 +33,17 @@ module.exports = {
       //   }
       // };
     }
+    conf.module.rules = [
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: require.resolve('raw-loader'),
+          },
+        ]
+      },
+      ...conf.module.rules,
+    ]
     return conf;
   },
 };

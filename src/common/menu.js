@@ -1,6 +1,5 @@
-
-const menuData = {
-  guide: {
+const menuData = [
+  {
     name: '指南',
     path: 'guide',
     icon: 'home',
@@ -10,12 +9,16 @@ const menuData = {
         path: 'quick-start',
       },
       {
-        name: '日志',
+        name: '更新日志',
         path: 'changelog',
+      },
+      {
+        name: '社区精选组件',
+        path: 'recommendation',
       },
     ],
   },
-  components: {
+  {
     name: '组件',
     path: 'components',
     icon: 'component',
@@ -78,41 +81,59 @@ const menuData = {
       },
     ],
   },
-  issue: {
+  {
     name: '提交问题',
     icon: 'issue',
     path: 'https://github.com/uiw-react/uiw/issues/new',
   },
-  github: {
+  {
     name: 'Github',
     icon: 'github',
     path: 'https://github.com/uiw-react/uiw',
   },
+];
+
+function formatter(data, parentPath = '/', pathname) {
+  return Object.keys(data).map((item) => {
+    let { path } = data[item];
+    if (/^https?:(?:\/\/)?/.test(path)) {
+      path = data[item].path;
+    } else {
+      path = parentPath + data[item].path;
+    }
+    const result = { ...data[item], path };
+    if (data[item].children) {
+      result.children = formatter(data[item].children, `${parentPath}${data[item].path}/`, data[item].authority);
+    }
+    return result;
+  });
+}
+
+
+function formatterCurrent(data, pathname, parentPath = '/', result) {
+  for (let i = 0; i < data.length; i += 1) {
+    let path = data[i].path;
+    if (/^https?:(?:\/\/)?/.test(path)) {
+      path = data[i].path;
+    } else {
+      path = parentPath + data[i].path;
+    }
+    if (path === pathname) {
+      result = data[i];
+      break;
+    }
+    if (data[i].children && data[i].children.length > 0 && !result) {
+      result = formatterCurrent(data[i].children, pathname, `${path}/`);
+    }
+  }
+  return result;
+}
+
+
+const getMenuData = () => formatter(menuData);
+const getMenuCurrentData = path => formatterCurrent(menuData, path);
+
+export {
+  getMenuData,
+  getMenuCurrentData,
 };
-
-export { menuData };
-
-// /* eslint no-useless-escape:0 */
-// const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/g;
-// function isUrl(path) {
-//   return reg.test(path);
-// }
-// function formatter(data, parentPath = '/', parentAuthority) {
-//   return data.map((item) => {
-//     let { path } = item;
-//     if (!isUrl(path)) {
-//       path = parentPath + item.path;
-//     }
-//     const result = {
-//       ...item,
-//       path,
-//       authority: item.authority || parentAuthority,
-//     };
-//     if (item.children) {
-//       result.children = formatter(item.children, `${parentPath}${item.path}/`, item.authority);
-//     }
-//     return result;
-//   });
-// }
-
-// export const getMenuData = () => formatter(menuData);
