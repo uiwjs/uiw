@@ -3,8 +3,8 @@
 /* .cm-s-monokai.CodeMirror { background: #eff1f3; color: #3f51b5; } */
 .cm-s-monokai.CodeMirror { background: transparent;}
 .cm-s-monokai div.CodeMirror-selected { background: #d4dde6; }
-.cm-s-monokai .CodeMirror-line::selection, .cm-s-monokai .CodeMirror-line > span::selection, .cm-s-monokai .CodeMirror-line > span > span::selection { background: rgba(73, 72, 62, .79); }
-.cm-s-monokai .CodeMirror-line::-moz-selection, .cm-s-monokai .CodeMirror-line > span::-moz-selection, .cm-s-monokai .CodeMirror-line > span > span::-moz-selection { background: rgba(73, 72, 62, .79); }
+.cm-s-monokai .CodeMirror-line::selection, .cm-s-monokai .CodeMirror-line > span::selection, .cm-s-monokai .CodeMirror-line > span > span::selection { background: #d4dde6; }
+.cm-s-monokai .CodeMirror-line::-moz-selection, .cm-s-monokai .CodeMirror-line > span::-moz-selection, .cm-s-monokai .CodeMirror-line > span > span::-moz-selection { background: #d4dde6; }
 .cm-s-monokai .CodeMirror-gutters { background: #272822; border-right: 0px; }
 .cm-s-monokai .CodeMirror-guttermarker { color: white; }
 .cm-s-monokai .CodeMirror-guttermarker-subtle { color: #d0d0d0; }

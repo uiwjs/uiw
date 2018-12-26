@@ -37,5 +37,27 @@
   border-top: 1px solid #d5d5d5;
   background-color: #eff1f3;
   border-radius: 0 0 3px 3px;
-  padding: 10px;
+  transition: all .3s;
+}
+
+.visible {
+  height: 0;
+  padding: 0;
+  border-top: 0;
+}
+
+.controlBtn {
+  background-color: #EAEAEA;
+  display: inline-block;
+  padding: 2px 5px;
+  font-size: 12px;
+  margin-top: 5px;
+  border-radius: 3px;
+  color: #808080;
+  cursor: pointer;
+  transition: all .3s;
+  &:hover {
+    background-color: #07C32A;
+    color: #fff;
+  }
 }
