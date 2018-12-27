@@ -36,7 +36,7 @@
     "react-dom": ">=16.0.0"
   },
   "dependencies": {
-    "uiw-iconfont": "^1.2.20"
+    "uiw-iconfont": "^1.2.23"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

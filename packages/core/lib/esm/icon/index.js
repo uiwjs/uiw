@@ -55,18 +55,17 @@ function (_React$PureComponent) {
       var _this$props = this.props,
           prefixCls = _this$props.prefixCls,
           color = _this$props.color,
-          size = _this$props.size,
           type = _this$props.type,
           spin = _this$props.spin,
           verticalAlign = _this$props.verticalAlign,
           _this$props$tagName = _this$props.tagName,
           TagName = _this$props$tagName === void 0 ? 'span' : _this$props$tagName,
-          others = _objectWithoutProperties(_this$props, ["prefixCls", "color", "size", "type", "spin", "verticalAlign", "tagName"]);
+          others = _objectWithoutProperties(_this$props, ["prefixCls", "color", "type", "spin", "verticalAlign", "tagName"]);
 
       var paths = this.renderSvgPaths(type);
 
       var propps = _objectSpread({}, others, {
-        className: classnames(prefixCls, "".concat(prefixCls, "-").concat(verticalAlign), _defineProperty({}, "".concat(prefixCls, "-").concat(spin), spin))
+        className: classnames(prefixCls, "".concat(prefixCls, "-").concat(verticalAlign), _defineProperty({}, "".concat(prefixCls, "-spin"), spin))
       });
 
       return React.createElement(TagName, propps, React.createElement("svg", {
@@ -83,14 +82,12 @@ Icon.propTypes = {
   type: PropTypes.string.isRequired,
   style: PropTypes.object,
   verticalAlign: PropTypes.oneOf(['middle', 'baseline']),
-  size: PropTypes.number,
   spin: PropTypes.bool
 };
 Icon.defaultProps = {
   prefixCls: 'w-icon',
   style: {},
-  verticalAlign: 'middle',
-  size: 24,
+  verticalAlign: 'baseline',
   spin: false
 };
 //# sourceMappingURL=index.js.map
