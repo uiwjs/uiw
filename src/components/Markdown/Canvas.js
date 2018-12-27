@@ -31,10 +31,11 @@ export default class Canvas extends React.Component {
     try {
       const args = ['context', 'React', 'ReactDOM', 'Component'];
       const argv = [this, React, ReactDOM, Component];
+      const Elm = this.props.dependencies;
       // eslint-disable-next-line
-      for (const key in Element) {
+      for (const key in Elm) {
         args.push(key);
-        argv.push(Element[key]);
+        argv.push(Elm[key]);
       }
       const input = `
         ${codeStr}
@@ -54,40 +55,38 @@ export default class Canvas extends React.Component {
   }
   render() {
     return (
-      <>
-        <div className={styles.warpper}>
-          <div className={styles.demo}>
-            <div className={styles.background}>
-              <svg width="100%" height="100%" preserveAspectRatio="none" style={{ display: 'flex' }}>
-                <pattern id="pattern" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
-                  <rect fill="rgba(0, 0, 0, 0.06)" x="0" width="8" height="8" y="0" />
-                  <rect fill="rgba(0, 0, 0, 0.06)" x="8" width="8" height="8" y="8" />
-                </pattern>
-                <rect fill="url(#pattern)" x="0" y="0" width="100%" height="100%" />
-              </svg>
-            </div>
-            <div className={styles.source} id={this.playerId} />
+      <div className={styles.warpper}>
+        <div className={styles.demo}>
+          <div className={styles.background}>
+            <svg width="100%" height="100%" preserveAspectRatio="none" style={{ display: 'flex' }}>
+              <pattern id="pattern" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+                <rect fill="rgba(0, 0, 0, 0.06)" x="0" width="8" height="8" y="0" />
+                <rect fill="rgba(0, 0, 0, 0.06)" x="8" width="8" height="8" y="8" />
+              </pattern>
+              <rect fill="url(#pattern)" x="0" y="0" width="100%" height="100%" />
+            </svg>
           </div>
-          <div
-            className={classNames(styles.code, {
-              [styles.visible]: !this.state.visible,
-            })}
-          >
-            <CodeMirror
-              value={trim(this.state.code)}
-              onChange={(editor) => {
-                this.executeCode(editor.getValue());
-              }}
-              options={{
-                theme: 'monokai',
-                keyMap: 'sublime',
-                mode: 'jsx',
-              }}
-            />
-          </div>
+          <div className={styles.source} id={this.playerId} />
+        </div>
+        <div
+          className={classNames(styles.code, {
+            [styles.visible]: !this.state.visible,
+          })}
+        >
+          <CodeMirror
+            value={trim(this.state.code)}
+            onChange={(editor) => {
+              this.executeCode(editor.getValue());
+            }}
+            options={{
+              theme: 'monokai',
+              keyMap: 'sublime',
+              mode: 'jsx',
+            }}
+          />
         </div>
         <div className={styles.controlBtn} onClick={this.onSwitchSource.bind(this)}>{this.state.visible ? '隐藏代码' : '显示代码'}</div>
-      </>
+      </div>
     );
   }
 }

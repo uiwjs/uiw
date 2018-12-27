@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "private": true,
+  "sideEffects": true,
   "homepage": "https://uiw-react.github.io",
   "authors": [
     "Kenny Wang <wowohoo@qq.com>"
@@ -32,12 +33,15 @@
   "dependencies": {
     "@babel/standalone": "^7.2.5",
     "@rematch/core": "^1.0.6",
+    "@uiw/core": "file:./packages/core",
     "@uiw/react-codemirror": "^1.0.19",
+    "classnames": "^2.2.6",
     "history": "^4.7.2",
-    "marked": "^0.5.2",
+    "prismjs": "^1.15.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-dynamic-loadable": "^1.1.2",
+    "react-markdown": "^4.0.4",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1"
   },
