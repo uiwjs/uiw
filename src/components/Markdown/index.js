@@ -35,7 +35,7 @@ export default class CreatePage extends React.Component {
         const id = offset.toString(36);
         const codeStr = code.match(/```(.*)\n([^]+)```/);
         this.components.set(id, React.createElement(Canvas, Object.assign({
-          // name: ''
+          dependencies: this.dependencies || {},
         }, this.props), codeStr[2]));
         return `<div id=${id}></div>`;
       });

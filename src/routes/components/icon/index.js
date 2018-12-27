@@ -1,18 +1,11 @@
-import React, { PureComponent } from 'react';
-// import { Link } from 'react-router-dom';
-// import logo from '../../components/icons/logo';
-// import styles from './index.module.less';
+import { Icon } from '@uiw/core';
+import Markdown from '../../../components/Markdown';
 
-export default class Icon extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  render() {
-    return (
-      <div>
-        Quick Start
-      </div>
-    );
+export default class Page extends Markdown {
+  path = 'src/routes/components/colors/index.md';
+  dependencies = { Icon };
+  async renderPage() {
+    const md = await import('../../../../packages/core/src/icon/index.md');
+    return md.default || md;
   }
 }

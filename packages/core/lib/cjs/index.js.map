@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/index.js"],"names":[],"mappings":";;;;;;;;;;;;AACA","sourcesContent":["\nexport { Icon } from './icon'\n"],"file":"index.js"}

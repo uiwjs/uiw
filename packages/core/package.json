@@ -1,8 +1,11 @@
 {
   "name": "@uiw/core",
-  "version": "1.16.12",
+  "version": "2.0.0",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiw-react.github.io",
+  "sideEffects": true,
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
   "authors": [
     "Kenny Wang <wowohoo@qq.com>"
   ],
@@ -10,8 +13,14 @@
     "type": "git",
     "url": "https://github.com/uiw-react/uiw.git"
   },
-  "main": "lib/index.js",
-  "scripts": {},
+  "scripts": {
+    "build:watch:cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose -w",
+    "build:watch:esm": "BABEL_ENV=esm babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose -w",
+    "build-cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose",
+    "build-esm": "BABEL_ENV=esm babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose",
+    "build": "npm run build-cjs && npm run build-esm",
+    "watch": "npm run build:watch:esm && npm run build:watch:cjs"
+  },
   "keywords": [
     "uiw",
     "uiw-react",
@@ -27,14 +36,18 @@
     "react-dom": ">=16.0.0"
   },
   "dependencies": {
-    "@babel/polyfill": "~7.0.0",
-    "@babel/runtime": "^7.0.0",
-    "uiw-iconfont": "^1.2.18"
+    "uiw-iconfont": "^1.2.20"
   },
-  "devDependencies": {},
-  "lint-staged": {
-    "*.js": "lint-staged:js",
-    "*.less": "stylelint --syntax=less"
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
   },
   "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT"
