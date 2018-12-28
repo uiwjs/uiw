@@ -60,7 +60,7 @@ const Demo = () => (
 ```js
 let titleStyle = { padding: `10px 16px` };
 const Demo = () => (
-  <Card style={{ width: 240 }} bodyStyle={{ padding: 0 }}>
+  <Card style={{ width: 240 }} bodyStyle={{ padding: 10 }}>
     <div>
       <img alt="example" width="100%" src="https://avatars1.githubusercontent.com/u/1680273?v=4" />
     </div>
@@ -72,3 +72,45 @@ const Demo = () => (
 )
 ```
 <!--End-->
+
+## 添加页脚
+
+<!--DemoStart--> 
+```js
+const footer = (
+  <a href="https://uiw-react.github.io">
+    <Icon type='user' />&nbsp;
+    16 Friends
+  </a>
+)
+const Demo = () => (
+  <Card
+    title="Card标题"
+    footer={footer}
+    style={{ width: 240 }} 
+    bodyStyle={{ padding: 0 }}
+  >
+    <div>
+      <img alt="example" width="100%" src="https://avatars1.githubusercontent.com/u/1680273?v=4" />
+    </div>
+    <div style={{ padding: `10px 16px` }}>
+      <h3 style={{margin:0}}>我爱漂亮妹妹</h3>
+      <p style={{margin:0}}><a href="https://uiw-react.github.io">https://uiw-react.github.io</a></p>
+    </div>
+  </Card>
+);
+```
+<!--End-->
+
+
+## API
+
+| 参数 | 说明 | 类型 | 默认值 |
+|--------- |-------- |--------- |-------- |
+| title | 卡片标题 | String/ReactNode | - |
+| footer | 页脚内容的简写 | String/ReactNode | - |
+| extra | 卡片右上角的操作区域 | String/ReactNode | - |
+| bordered | 是否显示边框 | Boolean | `true` |
+| noHover | 取消鼠标移过时边框阴影 | Boolean | `false` |
+| bodyStyle | 设置 `body` 的样式 | Object | - |
+| bodyClassName | 设置 `body` 的 `className` | String | - |
