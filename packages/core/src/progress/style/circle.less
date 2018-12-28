@@ -1,0 +1,26 @@
+@w-progress-prefix: ~"w-progress";
+
+.@{w-progress-prefix} {
+  &-circle &-text {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    transform: translate(0, -50%);
+    font-size: 16px;
+  }
+  &-trail {
+    stroke: #e5e9f2;
+  }
+  &-stroke {
+    stroke: #20a0ff;
+  }
+  &-status-success &-stroke {
+    stroke: #28a745;
+  }
+  &-status-exception &-stroke {
+    stroke: #ff4949;
+  }
+}

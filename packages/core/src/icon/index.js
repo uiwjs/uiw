@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import svgPaths from 'uiw-iconfont/fonts/w-icon.json';
 import './style/index.less';
 
-export class Icon extends React.PureComponent {
+export default class Icon extends React.PureComponent {
   renderSvgPaths = (type) => {
     const pathStrings = svgPaths[type];
     if (pathStrings == null) {
