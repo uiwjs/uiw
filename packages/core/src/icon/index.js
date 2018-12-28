@@ -25,7 +25,7 @@ export default class Icon extends React.PureComponent {
     } else {
       svg = <svg fill={color} viewBox={`0 0 24 24`}>{this.renderSvgPaths(type)}</svg>;
     }
-    
+    others.style = { fill: 'currentColor', ...others.style };
     const propps = { ...others,
       className: classnames(prefixCls, `${prefixCls}-${verticalAlign}`, { [`${prefixCls}-spin`]: spin }),
     }

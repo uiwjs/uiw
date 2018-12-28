@@ -29,13 +29,13 @@ const Demo = () => (
       <Input preIcon="delete" placeholder="请输入内容" />
     </div>
     <div style={stylItem}>
-      <Input preIcon="delete" placeholder="请输入内容" />
+      <Input preIcon="tag" placeholder="请输入内容" />
     </div>
     <div style={stylItem}>
-      <Input preIcon="delete" placeholder="请输入内容" />
+      <Input preIcon="picasa" placeholder="请输入内容" />
     </div>
     <div style={stylItem}>
-      <Input preIcon="delete" placeholder="请输入内容" />
+      <Input preIcon="like-o" placeholder="请输入内容" />
     </div>
   </div>
 )

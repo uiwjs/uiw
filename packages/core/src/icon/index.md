@@ -135,7 +135,7 @@ class Demo extends Component {
 const Demo = () => (
   <div style={{ fontSize: 21, color: 'green' }}>
     <Icon type="loading" spin={true} color="red" />
-    <Icon type="reload" spin={true} style={{fill: 'currentColor'}} />
+    <Icon type="reload" spin={true} />
     <Icon type="picasa" spin={true} style={{fill: 'blue'}} />
     <Icon type="smile-o" spin={true} style={{fill: 'blue'}} />
   </div>

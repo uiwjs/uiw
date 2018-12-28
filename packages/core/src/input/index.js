@@ -19,7 +19,7 @@ export default class Input extends React.Component {
     });
     return (
       <div className={cls}>
-        <Icon type={preIcon} style={{ fill: 'currentColor' }} />
+        <Icon type={preIcon} />
         <input
           type={type}
           {...props}

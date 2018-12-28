@@ -5,7 +5,7 @@ import Icon from '../icon';
 import './style/index.less';
 import './style/circle.less';
 
-const IconProgress = ({ type }) => <Icon type={type} style={{ fill: 'currentColor' }} />;
+const IconProgress = ({ type }) => <Icon type={type} />;
 
 export default class Circle extends React.Component {
   relativeStrokeWidth(bl, type, elm) {
