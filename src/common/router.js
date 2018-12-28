@@ -49,6 +49,9 @@ export const getRouterData = () => {
     '/components/progress': {
       component: dynamicWrapper([], () => import('../routes/components/progress')),
     },
+    '/components/input': {
+      component: dynamicWrapper([], () => import('../routes/components/input')),
+    },
   };
   return conf;
 };
