@@ -1,6 +1,6 @@
-*.log
+/lib/cjs/
+/lib/esm/
 node_modules
+*.log
 .DS_Store
-/commonjs/
-/esm/
 .cache
