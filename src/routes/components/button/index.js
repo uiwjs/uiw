@@ -1,22 +1,12 @@
-import React, { PureComponent } from 'react';
-import CreatePage from '../../../utils/CreatePage';
+import { Card, Icon, Divider, Button } from '@uiw/core';
+import Markdown from '../../../components/Markdown';
 
-export default CreatePage({
-  examples: [
-    'basic',
-    'appearance',
-    'size',
-    'color',
-    'custom',
-    'icon-button',
-    'block',
-    'disabled',
-    'active',
-    'loading',
-    'group-basic',
-    'vertical',
-    'toolbar',
-    'justified'
-  ],
-  dependencies: {}
-});
+
+export default class Page extends Markdown {
+  path = 'src/routes/components/button/index.md';
+  dependencies = { Card, Icon, Button, Divider };
+  async renderPage() {
+    const md = await import('../../../../packages/core/src/button/index.md');
+    return md.default || md;
+  }
+}

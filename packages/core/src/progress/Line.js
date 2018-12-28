@@ -5,7 +5,7 @@ import Icon from '../icon';
 import './style/index.less';
 import './style/line.less';
 
-const IconProgress = ({ type }) => <Icon type={type} style={{ fill: 'currentColor' }} />;
+const IconProgress = ({ type }) => <Icon type={type} />;
 
 export default class Line extends React.Component {
   render() {

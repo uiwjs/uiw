@@ -52,6 +52,9 @@ export const getRouterData = () => {
     '/components/input': {
       component: dynamicWrapper([], () => import('../routes/components/input')),
     },
+    '/components/button': {
+      component: dynamicWrapper([], () => import('../routes/components/button')),
+    },
   };
   return conf;
 };
