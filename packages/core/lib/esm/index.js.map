@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../src/index.js"],"names":["Icon"],"mappings":"AACA,SAASA,IAAT,QAAqB,QAArB","sourcesContent":["\nexport { Icon } from './icon'\n"],"file":"index.js"}
