@@ -46,6 +46,9 @@ export const getRouterData = () => {
     '/components/badge': {
       component: dynamicWrapper([], () => import('../routes/components/badge')),
     },
+    '/components/progress': {
+      component: dynamicWrapper([], () => import('../routes/components/progress')),
+    },
   };
   return conf;
 };
