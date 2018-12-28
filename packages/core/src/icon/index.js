@@ -15,23 +15,29 @@ export default class Icon extends React.PureComponent {
 
   render() {
     const { prefixCls, color, type, spin, verticalAlign, tagName: TagName = 'span', ...others } = this.props;
-    const paths = this.renderSvgPaths(type);
+    let svg = null;
+    if (type == null || typeof type === "boolean") {
+      return null;
+    } else if (typeof type !== "string") {
+      svg = React.cloneElement(type, {
+        fill: color,
+      });
+    } else {
+      svg = <svg fill={color} viewBox={`0 0 24 24`}>{this.renderSvgPaths(type)}</svg>;
+    }
+    
     const propps = { ...others,
       className: classnames(prefixCls, `${prefixCls}-${verticalAlign}`, { [`${prefixCls}-spin`]: spin }),
     }
     return (
-      <TagName {...propps}>
-        <svg fill={color} viewBox={`0 0 24 24`}>
-          {paths}
-        </svg>
-      </TagName>
+      <TagName {...propps}>{svg}</TagName>
     )
   }
 }
 
 Icon.propTypes = {
   prefixCls: PropTypes.string,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   style: PropTypes.object,
   verticalAlign: PropTypes.oneOf(['middle', 'baseline']),
   spin: PropTypes.bool,
