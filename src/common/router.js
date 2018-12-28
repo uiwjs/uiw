@@ -43,6 +43,9 @@ export const getRouterData = () => {
     '/components/card': {
       component: dynamicWrapper([], () => import('../routes/components/card')),
     },
+    '/components/badge': {
+      component: dynamicWrapper([], () => import('../routes/components/badge')),
+    },
   };
   return conf;
 };
