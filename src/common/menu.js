@@ -4,18 +4,9 @@ const menuData = [
     path: 'guide',
     icon: 'home',
     children: [
-      {
-        name: '快速开始',
-        path: 'quick-start',
-      },
-      {
-        name: '更新日志',
-        path: 'changelog',
-      },
-      {
-        name: '社区精选组件',
-        path: 'recommendation',
-      },
+      { name: '快速开始', path: 'quick-start' },
+      { name: '更新日志', path: 'changelog' },
+      { name: '社区精选组件', path: 'recommendation' },
     ],
   },
   {
@@ -23,62 +14,22 @@ const menuData = [
     path: 'components',
     icon: 'component',
     children: [
-      {
-        divider: true,
-        name: '基本',
-      },
-      {
-        name: 'Color 颜色',
-        path: 'colors',
-      },
-      {
-        name: 'Layout 布局',
-        path: 'layout',
-      },
-      {
-        name: 'Icon 图标',
-        path: 'icon',
-      },
-      {
-        name: 'Button 按钮',
-        path: 'button',
-      },
-      {
-        divider: true,
-        name: '表单',
-      },
-      {
-        name: 'Form 表单',
-        path: 'form',
-      },
-      {
-        name: 'Radio 单选框',
-        path: 'radio',
-      },
-      {
-        name: 'Checkbox 多选框',
-        path: 'checkbox',
-      },
-      {
-        name: 'Switch 开关',
-        path: 'switch',
-      },
-      {
-        name: 'Input 输入框',
-        path: 'input',
-      },
-      {
-        divider: true,
-        name: '数据显示',
-      },
-      {
-        name: 'Tag 标签',
-        path: 'tag',
-      },
-      {
-        name: 'Rate 评分',
-        path: 'rate',
-      },
+      { divider: true, name: '基本' },
+      { name: 'Color 颜色', path: 'colors' },
+      { name: 'Layout 布局', path: 'layout' },
+      { name: 'Icon 图标', path: 'icon' },
+      { name: 'Button 按钮', path: 'button' },
+      { divider: true, name: '表单' },
+      { name: 'Form 表单', path: 'form' },
+      { name: 'Radio 单选框', path: 'radio' },
+      { name: 'Checkbox 多选框', path: 'checkbox' },
+      { name: 'Switch 开关', path: 'switch' },
+      { name: 'Input 输入框', path: 'input' },
+      { divider: true, name: '数据显示' },
+      { name: 'Tag 标签', path: 'tag' },
+      { name: 'Rate 评分', path: 'rate' },
+      { divider: true, name: '其它' },
+      { name: 'Divider 分割线', path: 'divider' },
     ],
   },
   {
