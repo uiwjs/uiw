@@ -37,6 +37,9 @@ export const getRouterData = () => {
     '/components/icon': {
       component: dynamicWrapper([], () => import('../routes/components/icon')),
     },
+    '/components/divider': {
+      component: dynamicWrapper([], () => import('../routes/components/divider')),
+    },
   };
   return conf;
 };
