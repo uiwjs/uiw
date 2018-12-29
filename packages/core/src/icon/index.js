@@ -46,7 +46,7 @@ Icon.propTypes = {
 Icon.defaultProps = {
   prefixCls: 'w-icon',
   style: {},
-  verticalAlign: 'baseline',
+  verticalAlign: 'middle',
   spin: false,
 };
 

@@ -48,7 +48,7 @@ Button.propTypes = {
   active: PropTypes.bool,
   basic: PropTypes.bool,
   htmlType: PropTypes.string,
-  icon: PropTypes.string,
+  type: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   type: PropTypes.oneOf(['primary', 'success', 'warning', 'danger', 'light', 'dark', 'link']),
   size: PropTypes.oneOf(['large', 'default', 'small']),
 };
