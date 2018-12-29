@@ -62,3 +62,40 @@ const Demo = () => (
 );
 ```
 <!--End-->
+
+
+### block
+
+<!--DemoStart--> 
+```js
+const Demo = () => (
+  <div>
+    <Button block type="primary">主要按钮</Button>
+    <Button block type="success">成功按钮</Button>
+    <Button block type="warning">警告按钮</Button>
+    <Button block type="danger">错误按钮</Button>
+    <Button block type="light">亮按钮</Button>
+    <Button block type="dark">暗按钮</Button>
+  </div>
+);
+```
+<!--End-->
+
+### size大小
+
+`size` 在 `Button.Group`下面不支持。
+
+<!--DemoStart--> 
+```js
+const Demo = () => (
+  <div>
+    <Button size="small" type="primary">主要按钮</Button>
+    <Button size="default" type="success">成功按钮</Button>
+    <Button size="large" type="warning">警告按钮</Button>
+    <Button size="small" type="danger">错误按钮</Button>
+    <Button size="default" type="light">亮按钮</Button>
+    <Button size="large" type="dark">暗按钮</Button>
+  </div>
+);
+```
+<!--End-->

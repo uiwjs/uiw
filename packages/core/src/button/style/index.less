@@ -28,6 +28,13 @@
   }
 }
 
+.button-size(@padding-vertical, @padding-horizontal, @font-size, @line-height, @min-height) {
+  padding: @padding-vertical @padding-horizontal;
+  font-size: @font-size;
+  line-height: @line-height;
+  min-height: @min-height;
+}
+
 .@{w-btn} {
   display: inline-flex;
   -webkit-box-orient: horizontal;
@@ -42,18 +49,23 @@
   padding: 5px 10px;
   vertical-align: middle;
   text-align: left;
+  line-height: 14px;
   font-size: 14px;
   min-width: 30px;
   min-height: 30px;
   color: #fff;
   transition: background-color .5s, opacity 1s;
+  & + &:not(.block) {
+    margin-left: 5px;
+  }
+  &.block {
+    display: block;
+    width: 100%;
+  }
   &.disabled, &[disabled] {
     cursor: not-allowed;
     opacity: .75;
     box-shadow: none;
-  }
-  & + & {
-    margin-left: 5px;
   }
   &-primary {
     .button-variant(#fff, #008EF0);
@@ -92,5 +104,11 @@
         text-decoration: inherit;
       }
     }
+  }
+  &-large {
+    .button-size(10px, 14px, 16px, 16px, 30px)
+  }
+  &-small {
+    .button-size(5px, 10px, 12px, 12px, 24px)
   }
 }
