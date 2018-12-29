@@ -9,7 +9,7 @@ export default class Button extends React.Component {
     const { prefixCls, type, size, icon, active, disabled, block, className, loading, children, htmlType, ...others } = this.props;
     let types = type;
     const cls = classnames(className, prefixCls, {
-      [`${prefixCls}-size-${size}`]: size,
+      [`${prefixCls}-${size}`]: size,
       [`${prefixCls}-${types}`]: types,
       [`${prefixCls}-loading`]: loading, // 加载
       disabled: disabled || loading, // 禁用状态

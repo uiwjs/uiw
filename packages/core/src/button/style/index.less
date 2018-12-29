@@ -21,10 +21,8 @@
   }
   &.disabled, &[disabled] {
     &:hover,
-    &:focus,
-    &.focus,
-    &:active,
-    &.active {
+    &:focus, &.focus,
+    &:active, &.active {
       background-color: @background;
     }
   }
@@ -53,9 +51,6 @@
     cursor: not-allowed;
     opacity: .75;
     box-shadow: none;
-    &, &:hover {
-      // color: rgba(255, 255, 255, 0.6);
-    }
   }
   & + & {
     margin-left: 5px;
@@ -84,9 +79,18 @@
       color: darken(#008EF0, 12%);
       text-decoration: underline;
     }
-    &:active {
+    &:active, &.active {
       color: darken(#008EF0, 32%);
       box-shadow: none;
+      text-decoration: underline;
+    }
+    &.disabled, &[disabled] {
+      &:hover,
+      &:focus, &.focus,
+      &:active, &.active {
+        color: #008EF0;
+        text-decoration: inherit;
+      }
     }
   }
 }

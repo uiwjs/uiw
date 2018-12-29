@@ -27,6 +27,24 @@ const Demo = () => (
 <!--End-->
 
 
+### 激活按钮样式
+
+<!--DemoStart--> 
+```js
+const Demo = () => (
+  <div>
+    <Button active type="primary">主要按钮</Button>
+    <Button active type="success">成功按钮</Button>
+    <Button active type="warning">警告按钮</Button>
+    <Button active type="danger">错误按钮</Button>
+    <Button active type="light">亮按钮</Button>
+    <Button active type="dark">暗按钮</Button>
+    <Button active type="link"> (超连接样式)link </Button>
+  </div>
+);
+```
+<!--End-->
+
 ### 禁用按钮样式
 
 <!--DemoStart--> 
@@ -39,6 +57,7 @@ const Demo = () => (
     <Button disabled type="danger">错误按钮</Button>
     <Button disabled type="light">亮按钮</Button>
     <Button disabled type="dark">暗按钮</Button>
+    <Button disabled type="link"> (超连接样式)link </Button>
   </div>
 );
 ```
