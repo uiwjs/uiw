@@ -21,11 +21,50 @@ const Demo = () => (
     <Button type="danger">错误按钮</Button>
     <Button type="light">亮按钮</Button>
     <Button type="dark">暗按钮</Button>
+    <Divider />
+    <Button basic type="primary">主要按钮</Button>
+    <Button basic type="success">成功按钮</Button>
+    <Button basic type="warning">警告按钮</Button>
+    <Button basic type="danger">错误按钮</Button>
+    <Button basic type="light">亮按钮</Button>
+    <Button basic type="dark">暗按钮</Button>
   </div>
 );
 ```
 <!--End-->
 
+### 基本按钮
+
+设置 `basic=true` 即可获得基本按钮，没有背景颜色的状态按钮。
+
+<!--DemoStart--> 
+```js
+const Demo = () => (
+  <div>
+    <Button basic type="primary">主要按钮</Button>
+    <Button basic type="success">成功按钮</Button>
+    <Button basic type="warning">警告按钮</Button>
+    <Button basic type="danger">错误按钮</Button>
+    <Button basic type="light">亮按钮</Button>
+    <Button basic type="dark">暗按钮</Button>
+    <Divider style={{ maxWidth: 120 }}>激活</Divider>
+    <Button basic active type="primary">主要按钮</Button>
+    <Button basic active type="success">成功按钮</Button>
+    <Button basic active type="warning">警告按钮</Button>
+    <Button basic active type="danger">错误按钮</Button>
+    <Button basic active type="light">亮按钮</Button>
+    <Button basic active type="dark">暗按钮</Button>
+    <Divider style={{ maxWidth: 120 }}>禁用</Divider>
+    <Button basic disabled type="primary">主要按钮</Button>
+    <Button basic disabled type="success">成功按钮</Button>
+    <Button basic disabled type="warning">警告按钮</Button>
+    <Button basic disabled type="danger">错误按钮</Button>
+    <Button basic disabled type="light">亮按钮</Button>
+    <Button basic disabled type="dark">暗按钮</Button>
+  </div>
+);
+```
+<!--End-->
 
 ### 激活按钮样式
 
@@ -95,6 +134,47 @@ const Demo = () => (
     <Button size="small" type="danger">错误按钮</Button>
     <Button size="default" type="light">亮按钮</Button>
     <Button size="large" type="dark">暗按钮</Button>
+  </div>
+);
+```
+<!--End-->
+
+
+### 添加图标
+
+`size` 在 `Button.Group`下面不支持。
+
+<!--DemoStart--> 
+```js
+const Demo = () => (
+  <div>
+    <Button size="small" type="primary">主要按钮</Button>
+    <Button size="default" type="success">成功按钮</Button>
+    <Button size="large" type="warning">警告按钮</Button>
+    <Button size="small" type="danger">错误按钮</Button>
+    <Button size="default" type="light">亮按钮</Button>
+    <Button size="large" type="dark">暗按钮</Button>
+  </div>
+);
+```
+<!--End-->
+
+
+### 背景浅字体深
+
+通过设置 `intent` 即可将按钮设置为，背景颜色浅，字体颜色深
+
+<!--DemoStart--> 
+```js
+const Demo = () => (
+  <div>
+    <Divider />
+    <Button intent type="primary">主要按钮</Button>
+    <Button intent type="success">成功按钮</Button>
+    <Button intent type="warning">警告按钮</Button>
+    <Button intent type="danger">错误按钮</Button>
+    <Button intent type="light">亮按钮</Button>
+    <Button intent type="dark">暗按钮</Button>
   </div>
 );
 ```

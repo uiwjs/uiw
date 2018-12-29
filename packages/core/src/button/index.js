@@ -6,11 +6,12 @@ import './style/index.less';
 
 export default class Button extends React.Component {
   render() {
-    const { prefixCls, type, size, icon, active, disabled, block, className, loading, children, htmlType, ...others } = this.props;
+    const { prefixCls, type, size, icon, active, disabled, block, basic, intent, className, loading, children, htmlType, ...others } = this.props;
     let types = type;
     const cls = classnames(className, prefixCls, {
       [`${prefixCls}-${size}`]: size,
       [`${prefixCls}-${types}`]: types,
+      [`${prefixCls}-basic`]: basic,
       [`${prefixCls}-loading`]: loading, // 加载
       disabled: disabled || loading, // 禁用状态
       active, // 激活状态
@@ -34,6 +35,7 @@ Button.defaultProps = {
   active: false,
   loading: false,
   block: false,
+  basic: false,
   htmlType: 'button',
   type: 'light',
   size: 'default',
@@ -44,6 +46,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   block: PropTypes.bool,
   active: PropTypes.bool,
+  basic: PropTypes.bool,
   htmlType: PropTypes.string,
   icon: PropTypes.string,
   type: PropTypes.oneOf(['primary', 'success', 'warning', 'danger', 'light', 'dark', 'link']),
