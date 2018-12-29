@@ -66,6 +66,7 @@
   border-radius: 3px;
   cursor: pointer;
   padding: 5px 10px;
+  position: relative;
   vertical-align: middle;
   text-align: left;
   line-height: 14px;
@@ -74,6 +75,9 @@
   min-height: 30px;
   color: #fff;
   transition: background-color .5s, opacity 1s;
+  > *:not(:last-child) {
+    margin-right: 5px;
+  }
   & + &:not(.block) {
     margin-left: 5px;
   }
@@ -129,5 +133,8 @@
   }
   &-small {
     .button-size(5px, 10px, 12px, 12px, 24px)
+  }
+  & .w-icon:not(:last-child) {
+    margin-right: 5px;
   }
 }
