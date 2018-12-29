@@ -8,7 +8,7 @@
   }
   &:focus, &.focus {
     outline: 0;
-    box-shadow: 0 0 0 2px fadeout(@background, 74%);;
+    box-shadow: 0 0 0 2px fadeout(@background, 74%);
   }
   &:hover {
     color: @color;
@@ -24,6 +24,25 @@
     &:focus, &.focus,
     &:active, &.active {
       background-color: @background;
+    }
+  }
+  &.@{w-btn}-basic {
+    background-color: transparent !important;
+    color: @background;
+    &:hover {
+      background-color: lighten(@background, 42%) !important;
+    }
+    &:active, &.active {
+      color: @background;
+      background-color: lighten(@background, 32%) !important;
+      background-image: none;
+    }
+    &.disabled, &[disabled] {
+      &:hover,
+      &:focus, &.focus,
+      &:active, &.active {
+        background-color: transparent !important;
+      }
     }
   }
 }
