@@ -57,21 +57,145 @@ const Demo = () => (
       <Button type="light">亮按钮</Button>
       <Button type="dark">暗按钮</Button>
     </ButtonGroup>
-    <Divider style={{ maxWidth: 220 }}>垂直</Divider>
+    <ButtonGroup style={{ marginTop: 5 }}>
+      <Button size="small" type="primary">按钮</Button>
+      <Button size="small" type="primary">按钮</Button>
+      <Button size="small" type="primary">按钮</Button>
+      <Button size="small" type="primary">按钮</Button>
+    </ButtonGroup>
+    <ButtonGroup style={{ marginTop: 5 }}>
+      <Button type="light">按钮</Button>
+      <Button type="light">按钮</Button>
+      <Button type="light">按钮</Button>
+      <Button type="light">按钮</Button>
+    </ButtonGroup>
+    <Divider style={{ maxWidth: 220 }}>添加图标</Divider>
     <ButtonGroup>
-      <Button type="primary">按钮</Button>
-      <Button type="primary">按钮</Button>
-      <Button type="primary">按钮</Button>
-      <Button type="primary">按钮</Button>
+      <Button icon="copy" type="primary">复制</Button>
+      <Button icon="delete" type="success">删除</Button>
+      <Button icon="file-add" type="warning">添加文件</Button>
+      <Button icon="map" type="danger">地图</Button>
+      <Button icon="linux" type="light">Linux</Button>
+      <Button icon="apple" type="dark">Apple</Button>
     </ButtonGroup>
-    <ButtonGroup style={{ marginTop: 10 }}>
-      <Button type="light">按钮</Button>
-      <Button type="light">按钮</Button>
-      <Button type="light">按钮</Button>
-      <Button type="light">按钮</Button>
+    <ButtonGroup style={{ marginTop: 5 }}>
+      <Button icon="copy" type="primary">复制</Button>
+      <Button icon="delete" type="primary">删除</Button>
+      <Button icon="file-add" type="primary">添加文件</Button>
+      <Button icon="map" type="primary">地图</Button>
+      <Button icon="linux" type="primary">Linux</Button>
+      <Button icon="apple" type="primary">Apple</Button>
     </ButtonGroup>
-    <Divider style={{ maxWidth: 220 }}>垂直</Divider>
+    <ButtonGroup style={{ marginTop: 5 }}>
+      <Button icon="copy">复制</Button>
+      <Button icon="delete">删除</Button>
+      <Button icon="file-add">添加文件</Button>
+      <Button icon="map">地图</Button>
+      <Button icon="linux">Linux</Button>
+      <Button icon="apple">Apple</Button>
+    </ButtonGroup>
+    <ButtonGroup style={{ marginTop: 5 }}>
+      <Button icon="copy" />
+      <Button icon="delete" />
+      <Button icon="file-add" />
+      <Button icon="map" />
+      <Button icon="linux" />
+      <Button icon="apple" />
+    </ButtonGroup>
+  </>
+);
+```
+<!--End-->
+
+
+### 禁用按钮组
+
+<!--DemoStart--> 
+```js
+const Demo = () => (
+  <>
+    <ButtonGroup>
+      <Button disabled type="primary">主要按钮</Button>
+      <Button disabled type="success">成功按钮</Button>
+      <Button disabled type="warning">警告按钮</Button>
+      <Button disabled type="danger">错误按钮</Button>
+      <Button disabled type="light">亮按钮</Button>
+      <Button disabled type="dark">暗按钮</Button>
+    </ButtonGroup>
+    <ButtonGroup style={{ marginTop: 5 }}>
+      <Button disabled type="primary">按钮</Button>
+      <Button disabled type="primary">按钮</Button>
+      <Button disabled type="primary">按钮</Button>
+      <Button disabled type="primary">按钮</Button>
+    </ButtonGroup>
+    <ButtonGroup style={{ marginTop: 5 }}>
+      <Button disabled type="light">按钮</Button>
+      <Button disabled type="light">按钮</Button>
+      <Button type="light">按钮</Button>
+      <Button disabled type="light">按钮</Button>
+    </ButtonGroup>
+    <Divider style={{ maxWidth: 220 }}>添加图标</Divider>
+    <ButtonGroup>
+      <Button disabled icon="copy" type="primary">复制</Button>
+      <Button disabled icon="delete" type="success">删除</Button>
+      <Button disabled icon="file-add" type="warning">添加文件</Button>
+      <Button disabled icon="map" type="danger">地图</Button>
+      <Button disabled icon="linux" type="light">Linux</Button>
+      <Button disabled icon="apple" type="dark">Apple</Button>
+    </ButtonGroup>
+    <ButtonGroup style={{ marginTop: 5 }}>
+      <Button disabled icon="copy" type="primary">复制</Button>
+      <Button disabled icon="delete" type="primary">删除</Button>
+      <Button icon="file-add" type="primary">添加文件</Button>
+      <Button disabled icon="map" type="primary">地图</Button>
+      <Button disabled icon="linux" type="primary">Linux</Button>
+      <Button disabled icon="apple" type="primary">Apple</Button>
+    </ButtonGroup>
+    <ButtonGroup style={{ marginTop: 5 }}>
+      <Button disabled icon="copy">复制</Button>
+      <Button disabled icon="delete">删除</Button>
+      <Button disabled icon="file-add">添加文件</Button>
+      <Button disabled icon="map">地图</Button>
+      <Button disabled icon="linux">Linux</Button>
+      <Button disabled icon="apple">Apple</Button>
+    </ButtonGroup>
+    <div style={{ marginTop: 5 }}>
+      <Button disabled icon="weibo" basic type="primary" />
+      <Button disabled icon="chrome" basic type="success" />
+      <Button disabled icon="taobao" basic type="warning" />
+      <Button disabled icon="apple" basic type="danger" />
+      <Button disabled icon="weibo" basic type="dark" />
+    </div>
+  </>
+);
+```
+<!--End-->
+
+### 垂直按钮组
+
+<!--DemoStart--> 
+```js
+const Demo = () => (
+  <div style={{ maxWidth: 200 }}>
     <ButtonGroup vertical>
+      <Button type="primary">按钮</Button>
+      <Button type="primary">按钮</Button>
+      <Button type="primary">按钮</Button>
+      <Button type="primary">按钮</Button>
+    </ButtonGroup>
+    <ButtonGroup vertical style={{ marginTop: 5 }}>
+      <Button type="success">按钮</Button>
+      <Button disabled type="success">按钮</Button>
+      <Button type="success">按钮</Button>
+      <Button type="success">按钮</Button>
+    </ButtonGroup>
+    <ButtonGroup vertical style={{ marginTop: 5 }}>
+      <Button type="light">按钮</Button>
+      <Button type="light">按钮</Button>
+      <Button type="light">按钮</Button>
+      <Button type="light">按钮</Button>
+    </ButtonGroup>
+    <ButtonGroup vertical style={{ marginTop: 5 }}>
       <Button type="primary">主要按钮</Button>
       <Button type="success">成功按钮</Button>
       <Button type="warning">警告按钮</Button>
@@ -79,7 +203,7 @@ const Demo = () => (
       <Button type="light">亮按钮</Button>
       <Button type="dark">暗按钮</Button>
     </ButtonGroup>
-  </>
+  </div>
 );
 ```
 <!--End-->
@@ -268,4 +392,5 @@ const Demo = () => (
 
 | 参数 | 说明 | 类型 | 默认值 |
 | -------- | -------- | -------- | -------- |
+| vertical | 竖排列 | Boolean | `false` |
 | vertical | 竖排列 | Boolean | `false` |
