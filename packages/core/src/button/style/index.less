@@ -3,6 +3,7 @@
 .button-variant(@color, @background) {
   color: @color;
   background-color: @background;
+  z-index: 1;
   &:hover {
     background-color: darken(@background, 10%);
   }
@@ -13,6 +14,7 @@
   &:hover {
     color: @color;
     background-color: darken(@background, 10%);
+    z-index: 2;
   }
   &:active, &.active {
     color: @color;
@@ -20,11 +22,8 @@
     background-image: none;
   }
   &.disabled, &[disabled] {
-    &:hover,
-    &:focus, &.focus,
-    &:active, &.active {
-      background-color: @background;
-    }
+    background-color: lighten(@background, 20%);
+    z-index: 0;
   }
   &.@{w-btn}-basic {
     background-color: transparent !important;
@@ -38,11 +37,8 @@
       background-image: none;
     }
     &.disabled, &[disabled] {
-      &:hover,
-      &:focus, &.focus,
-      &:active, &.active {
-        background-color: transparent !important;
-      }
+      background-color: transparent !important;
+      color: lighten(@background, 10%);
     }
   }
 }
@@ -87,8 +83,8 @@
   }
   &.disabled, &[disabled] {
     cursor: not-allowed;
-    opacity: .75;
-    box-shadow: none;
+    // opacity: .65;
+    // box-shadow: none;
   }
   &-primary {
     .button-variant(#fff, #008EF0);
@@ -104,6 +100,10 @@
   }
   &-light {
     .button-variant(#393E48, #f8f9fa);
+    &.disabled, &[disabled] {
+      color: lighten(#393E48, 20%);
+      z-index: 0;
+    }
   }
   &-dark {
     .button-variant(#fff, #393E48);
@@ -120,12 +120,8 @@
       text-decoration: underline;
     }
     &.disabled, &[disabled] {
-      &:hover,
-      &:focus, &.focus,
-      &:active, &.active {
-        color: #008EF0;
-        text-decoration: inherit;
-      }
+      background-color: lighten(#008EF0, 20%);
+      z-index: 0;
     }
   }
   &-large {
