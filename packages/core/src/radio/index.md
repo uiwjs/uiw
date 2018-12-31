@@ -10,7 +10,7 @@ Radio 单选框
 <!--DemoStart--> 
 ```js
 const Demo = () => (
-  <div>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <Radio>Radio</Radio>
     <Radio checked>选中</Radio>
     <Radio disabled>禁用</Radio>
@@ -27,7 +27,7 @@ const Demo = () => (
 <!--DemoStart--> 
 ```js
 const Demo = () => (
-  <div>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <Radio name="sex">男</Radio>
     <Radio name="sex">女</Radio>
     <Radio name="sex" disabled>人妖</Radio>
@@ -54,17 +54,19 @@ class Demo extends Component {
   }
   render() {
     return (
-      <RadioGroup name="sex" value={this.state.value} onChange={this.onChange.bind(this)}>
-        <div>Group 1</div>
-        <Radio value="男">男</Radio>
-        <Radio value="女">女</Radio>
-        <div>Group 2</div>
-        <Radio value="人妖" disabled>人妖</Radio>
-        <Radio value="未知">未知</Radio>
-        <div>Group 3</div>
-        <Radio value="E" style={{ display: 'block' }}>Item E</Radio>
-        <Radio value="F" style={{ display: 'block' }}>Item F</Radio>
-      </RadioGroup>
+      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+        <RadioGroup name="sex" value={this.state.value} onChange={this.onChange.bind(this)}>
+          <div>Group 1</div>
+          <Radio value="男">男</Radio>
+          <Radio value="女">女</Radio>
+          <div>Group 2</div>
+          <Radio value="人妖" disabled>人妖</Radio>
+          <Radio value="未知">未知</Radio>
+          <div>Group 3</div>
+          <Radio value="E" style={{ display: 'block' }}>Item E</Radio>
+          <Radio value="F" style={{ display: 'block' }}>Item F</Radio>
+        </RadioGroup>
+      </div>
     )
   }
 }
@@ -76,6 +78,7 @@ class Demo extends Component {
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | value | 根据 value 进行比较，判断是否选中 | String/Number/Boolean | - |
+| name | 用于表单对应的名称 | String | - |
 | checked | Radio是否被选中 | Boolean | `false` |
 | disabled | 是否禁用 | Boolean | `false` |
 | onChange | 数值改变时的回调，返回当前值 | Funtcion(e:Even) | - |
@@ -85,4 +88,5 @@ class Demo extends Component {
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | value | 根据 value 进行比较，判断是否选中 | String/Number/Boolean | - |
+| name | 用于表单对应的名称 | String | - |
 | onChange | 数值改变时的回调，返回当前值 | Funtcion(e:Even) | - |
