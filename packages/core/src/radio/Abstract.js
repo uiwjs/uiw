@@ -4,8 +4,10 @@ import classnames from 'classnames';
 
 export default class Radio extends React.Component {
   render() {
-    const { prefixCls, className, style, children, checked, disabled, value, ...other } = this.props;
-    const cls = classnames(`${prefixCls}`, className, { disabled, checked });
+    const { prefixCls, className, style, children, checked, disabled, size, value, ...other } = this.props;
+    const cls = classnames(`${prefixCls}`, className, {
+      disabled, checked, [`${prefixCls}-${size}`]: size,
+    });
     other.disabled = disabled;
     other.defaultChecked = other.defaultChecked || checked;
     other.value = value;
