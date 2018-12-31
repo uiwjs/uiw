@@ -58,6 +58,9 @@ export const getRouterData = () => {
     '/components/avatar': {
       component: dynamicWrapper([], () => import('../routes/components/avatar')),
     },
+    '/components/radio': {
+      component: dynamicWrapper([], () => import('../routes/components/radio')),
+    },
   };
   return conf;
 };
