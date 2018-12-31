@@ -10,3 +10,4 @@ export { default as Input } from './input';
 export { default as Radio } from './radio/Radio';
 export { default as RadioGroup } from './radio/RadioGroup';
 export { default as Progress } from './progress';
+export { default as Switch } from './switch';
