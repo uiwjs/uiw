@@ -7,6 +7,6 @@ export { default as Button } from './button';
 export { default as ButtonGroup } from './button/ButtonGroup';
 export { default as Icon } from './icon';
 export { default as Input } from './input';
-export { default as Radio } from './radio';
+export { default as Radio } from './radio/Radio';
 export { default as RadioGroup } from './radio/RadioGroup';
 export { default as Progress } from './progress';
