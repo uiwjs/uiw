@@ -16,7 +16,7 @@ const menuData = [
     children: [
       { divider: true, name: '基本' },
       { name: 'Color 颜色', path: 'colors' },
-      { name: 'Layout 布局', path: 'layout' },
+      { name: 'Grid 删格', path: 'Grid' },
       { name: 'Icon 图标', path: 'icon' },
       { name: 'Button 按钮', path: 'button' },
       { divider: true, name: '表单' },
