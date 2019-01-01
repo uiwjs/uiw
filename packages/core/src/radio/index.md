@@ -3,6 +3,10 @@ Radio 单选框
 
 单选框，在一组备选项中进行单选。
 
+```jsx
+import { Radio, RadioGroup } from '@uiw/core';
+```
+
 ### 基础用法
 
 适用广泛的基础最简单的用法，展示各种状态下的样式。
@@ -55,7 +59,7 @@ class Demo extends Component {
   render() {
     return (
       <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
-        <RadioGroup name="sex" value={this.state.value} onChange={this.onChange.bind(this)}>
+        <RadioGroup name="other" value={this.state.value} onChange={this.onChange.bind(this)}>
           <div>Group 1</div>
           <Radio value="男">男</Radio>
           <Radio value="女">女</Radio>

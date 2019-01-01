@@ -12,7 +12,7 @@ import { Button, ButtonGroup } from '@uiw/core';
 <!--DemoStart--> 
 ```js
 const Demo = () => (
-  <div style={{padding: 10, backgroundColor: '#fff'}}>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <Button>Normal</Button>
     <Button disabled>Disabled</Button>
     <Button type="primary" active>Button</Button>
@@ -48,7 +48,7 @@ const Demo = () => (
 <!--DemoStart--> 
 ```js
 const Demo = () => (
-  <>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <ButtonGroup>
       <Button type="primary">主要按钮</Button>
       <Button type="success">成功按钮</Button>
@@ -102,7 +102,7 @@ const Demo = () => (
       <Button icon="linux" />
       <Button icon="apple" />
     </ButtonGroup>
-  </>
+  </div>
 );
 ```
 <!--End-->
@@ -113,7 +113,7 @@ const Demo = () => (
 <!--DemoStart--> 
 ```js
 const Demo = () => (
-  <>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <ButtonGroup>
       <Button disabled type="primary">主要按钮</Button>
       <Button disabled type="success">成功按钮</Button>
@@ -166,7 +166,7 @@ const Demo = () => (
       <Button disabled icon="apple" basic type="danger" />
       <Button disabled icon="weibo" basic type="dark" />
     </div>
-  </>
+  </div>
 );
 ```
 <!--End-->
@@ -215,7 +215,7 @@ const Demo = () => (
 <!--DemoStart--> 
 ```js
 const Demo = () => (
-  <div style={{padding: 10, backgroundColor: '#fff'}}>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <Button basic type="primary">主要按钮</Button>
     <Button basic type="success">成功按钮</Button>
     <Button basic type="warning">警告按钮</Button>
@@ -252,7 +252,7 @@ const chat = (
   </svg>
 )
 const Demo = () => (
-  <div style={{padding: 10, backgroundColor: '#fff'}}>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <Button icon="weibo" type="primary">主要按钮</Button>
     <Button icon="chrome" type="success">成功按钮</Button>
     <Button icon="taobao" type="warning">警告按钮</Button>
@@ -284,7 +284,7 @@ const chat = (
   </svg>
 )
 const Demo = () => (
-  <div style={{padding: 10, backgroundColor: '#fff'}}>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <Button icon="weibo" basic type="primary">主要按钮</Button>
     <Button icon="chrome" basic type="success">成功按钮</Button>
     <Button icon="taobao" basic type="warning">警告按钮</Button>
@@ -306,7 +306,7 @@ const Demo = () => (
 <!--DemoStart--> 
 ```js
 const Demo = () => (
-  <div style={{padding: 10, backgroundColor: '#fff'}}>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <Button active type="primary">主要按钮</Button>
     <Button active type="success">成功按钮</Button>
     <Button active type="warning">警告按钮</Button>
@@ -324,7 +324,7 @@ const Demo = () => (
 <!--DemoStart--> 
 ```js
 const Demo = () => (
-  <div>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <Button disabled type="primary">主要按钮</Button>
     <Button disabled type="success">成功按钮</Button>
     <Button disabled type="warning">警告按钮</Button>
