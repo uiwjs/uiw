@@ -5,11 +5,11 @@ import classnames from 'classnames';
 export default class Radio extends React.Component {
   render() {
     const { prefixCls, className, style, children, checked, disabled, size, value, ...other } = this.props;
-    const cls = classnames(`${prefixCls}`, className, {
-      disabled, checked, [`${prefixCls}-${size}`]: size,
+    const cls = classnames(prefixCls, className, {
+      disabled, checked: checked || other.defaultChecked, [`${prefixCls}-${size}`]: size,
     });
     other.disabled = disabled;
-    other.defaultChecked = other.defaultChecked || checked;
+    other.checked = checked;
     other.value = value;
     const label = children || value;
     return (
@@ -24,15 +24,17 @@ export default class Radio extends React.Component {
 Radio.propTypes = {
   prefixCls: PropTypes.string,
   type: PropTypes.string,
+  onChange: PropTypes.func,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   disabled: PropTypes.bool,
-  checked: PropTypes.bool,
+  checked: PropTypes.oneOf([undefined, false, true]),
 };
 
 Radio.defaultProps = {
   prefixCls: 'w-radio',
   type: 'radio',
   disabled: false,
-  checked: false,
+  checked: undefined,
   value: '',
+  onChange() {},
 };

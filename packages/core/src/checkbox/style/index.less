@@ -11,6 +11,9 @@
     appearance: none;
     background-color: #d7d7d7;
     transition: background-color .3s;
+    &:after {
+      content: "";
+    }
   }
   &.disabled, &.disabled input[type=checkbox] {
     cursor: not-allowed;
@@ -24,8 +27,7 @@
   &.indeterminate input[type=checkbox], &.indeterminate input[type=checkbox]:checked  {
     background-color: transparent;
     box-shadow: inset 0 0 0 1px rgb(0, 142, 240);
-    &::after {
-      content: "";
+    &:after {
       display: inline-block;
       background-color: #008df8;
       transform: rotate(0);
@@ -41,11 +43,10 @@
   input[type=checkbox], &-text {
     vertical-align: middle;
   }
-  input[type=checkbox]:checked, &.checked input[type=checkbox]:checked {
+  input[type=checkbox]:checked, &.checked input[type=checkbox]:checked, &.checked input[type=checkbox]{
     background-color: #008EF0;
-    &::after {
+    &:after {
       transition: background-color .2s ease-in;
-      content: "";
       display: inline-block;
       border: solid #fff;
       border-width: 0 2px 2px 0;

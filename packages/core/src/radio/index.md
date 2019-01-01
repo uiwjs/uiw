@@ -70,6 +70,16 @@ class Demo extends Component {
           <Radio value="E" style={{ display: 'block' }}>Item E</Radio>
           <Radio value="F" style={{ display: 'block' }}>Item F</Radio>
         </RadioGroup>
+        <Divider />
+        <Button
+          type="primary"
+          onClick={() => {
+            // console.log('set::', ['东北菜', '北京烤鸭']);
+            this.setState({ value: '女' });
+          }}
+        >
+          选中两个
+        </Button>
       </div>
     )
   }
