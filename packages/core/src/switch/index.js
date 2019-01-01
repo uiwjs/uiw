@@ -15,12 +15,12 @@ Switch.propTypes = {
   prefixCls: PropTypes.string,
   type: PropTypes.string,
   disabled: PropTypes.bool,
-  checked: PropTypes.bool,
+  checked: PropTypes.oneOf([undefined, false, true]),
 };
 
 Switch.defaultProps = {
   prefixCls: 'w-switch',
   type: 'checkbox',
   disabled: false,
-  checked: false,
+  checked: undefined,
 };

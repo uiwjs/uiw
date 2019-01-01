@@ -12,12 +12,14 @@ import { Checkbox } from '@uiw/core';
 
 单独使用可以表示两种状态之间的切换，半选中只是样式上的表现。
 
-
 <!--DemoStart--> 
 ```js
 const Demo = () => (
   <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
-    <Checkbox>未选中</Checkbox>
+    <Checkbox onChange={(e) =>{
+      console.log(e.target.checked)
+      console.log(e.target)
+    }}>未选中</Checkbox>
     <Checkbox checked >选中</Checkbox>
     <Checkbox indeterminate >半选中</Checkbox>
   </div>
@@ -25,9 +27,9 @@ const Demo = () => (
 ```
 <!--End-->
 
-
-
 ### 禁用样式
+
+通过设置 `disabled` 属性来禁用多选框。
 
 <!--DemoStart--> 
 ```js
@@ -38,5 +40,53 @@ const Demo = () => (
     <Checkbox disabled indeterminate>半选中禁用</Checkbox>
   </div>
 );
+```
+<!--End-->
+
+### 多选组
+
+方便的从数组生成 `Checkbox` 组。
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: ['四川菜', '新疆菜'],
+    };
+  }
+  onChange(e, list) {
+    console.log('Value:-->', e.target.value, list);
+    this.setState({ value: list });
+  }
+  render() {
+    return (
+      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+        <Checkbox.Group name="cuisine" value={this.state.value} onChange={this.onChange.bind(this)}>
+          <div>川菜</div>
+          <Checkbox value="四川菜">四川菜</Checkbox>
+          <Checkbox value="湖北菜">湖北菜</Checkbox>
+          <div>本帮江浙菜</div>
+          <Checkbox value="西北菜">西北菜</Checkbox>
+          <Checkbox value="新疆菜">新疆菜</Checkbox>
+          <div>家常菜</div>
+          <Checkbox value="东北菜">东北菜</Checkbox>
+          <Checkbox value="北京烤鸭">北京烤鸭</Checkbox>
+        </Checkbox.Group>
+        <Divider />
+        <Button
+          type="primary"
+          onClick={() => {
+            // console.log('set::', ['东北菜', '北京烤鸭']);
+            this.setState({ value: ['东北菜', '北京烤鸭'] });
+          }}
+        >
+          选中两个
+        </Button>
+      </div>
+    )
+  }
+}
 ```
 <!--End-->
