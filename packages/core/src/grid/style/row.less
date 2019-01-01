@@ -1,0 +1,30 @@
+@w-row:~"w-row";
+
+@justifyContentProps: flex-start flex-end center space-between space-around space-evenly;
+
+.@{w-row} {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 1 auto;
+  // -webkit-box-orient: horizontal;
+  // -webkit-box-direction: normal;
+  flex-direction: row;
+  flex-wrap: wrap;
+  each(@justifyContentProps, {
+    &.@{w-row}-justify-@{value} {
+      justify-content: @value;
+    }
+  })
+  &-align-top {
+    align-items: flex-start;
+  }
+  &-align-middle {
+    align-items: center;
+  }
+  &-align-bottom {
+    align-items: flex-end;
+  }
+  &-align-baseline {
+    align-items: baseline;
+  }
+}

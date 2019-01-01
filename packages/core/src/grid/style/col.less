@@ -1,0 +1,38 @@
+@w-col:~"w-col";
+
+.@{w-col} {
+  min-width: 0;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%;
+  &-fixed {
+    flex: 0 1 auto;
+  }
+  &-align-top {
+    align-self: flex-start;
+  }
+  &-align-middle {
+    align-self: center;
+  }
+  &-align-bottom {
+    align-self: flex-end;
+  }
+  &-align-baseline {
+    align-self: baseline;
+  }
+}
+
+each(range(11), {
+  .@{w-col}-grow-@{value} {
+    flex-grow: @value;
+  }
+});
+
+each(range(24), {
+  .@{w-col}-@{value} {
+    flex-basis: (100% / 24) * @value;
+    max-width: (100% / 24) * @value;
+  }
+});
