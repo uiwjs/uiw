@@ -94,7 +94,7 @@ const Demo = () => (
 <!--DemoStart--> 
 ```js
 const Demo = () => (
-  <div>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <Badge status="success" />
     <Badge status="error" />
     <Badge status="default" />

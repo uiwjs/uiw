@@ -3,6 +3,10 @@ Switch 开关
 
 表示两种相互对立的状态间的切换，多用于触发「开/关」。选中时的内容支持响应式。
 
+```jsx
+import { Switch } from '@uiw/core';
+```
+
 ### 基本用法
 
 <!--DemoStart--> 

@@ -64,6 +64,9 @@ export const getRouterData = () => {
     '/components/switch': {
       component: dynamicWrapper([], () => import('../routes/components/switch')),
     },
+    '/components/checkbox': {
+      component: dynamicWrapper([], () => import('../routes/components/checkbox')),
+    },
   };
   return conf;
 };
