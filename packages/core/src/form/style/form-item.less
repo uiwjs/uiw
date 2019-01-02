@@ -1,0 +1,26 @@
+@w-form:~"w-form";
+
+.@{w-form} {
+  &-item-error {
+    .@{w-form}-help {
+      color: red;
+    }
+    .w-input-inner,.w-input-inner:hover,.w-input-inner:focus.w-input-inner:hover {
+      box-shadow: 0 0 0 1px #dc3545, 0 0 0 3px rgba(220, 53, 69, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
+    }
+  }
+  &-label {
+    line-height: 32px;
+    min-height: 32px;
+    font-weight: 600;
+    font-size: 14px;
+    padding-right: 5px;
+  }
+  &-row {
+
+  }
+  &-help {
+    color: #607580;
+    font-size: 12px;
+  }
+}

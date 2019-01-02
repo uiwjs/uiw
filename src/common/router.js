@@ -70,6 +70,9 @@ export const getRouterData = () => {
     '/components/grid': {
       component: dynamicWrapper([], () => import('../routes/components/grid')),
     },
+    '/components/form': {
+      component: dynamicWrapper([], () => import('../routes/components/form')),
+    },
   };
   return conf;
 };
