@@ -176,34 +176,42 @@ const Demo = () => (
 <!--DemoStart--> 
 ```js
 const Demo = () => (
-  <div style={{ maxWidth: 200 }}>
-    <ButtonGroup vertical>
-      <Button type="primary">按钮</Button>
-      <Button type="primary">按钮</Button>
-      <Button type="primary">按钮</Button>
-      <Button type="primary">按钮</Button>
-    </ButtonGroup>
-    <ButtonGroup vertical style={{ marginTop: 5 }}>
-      <Button type="success">按钮</Button>
-      <Button disabled type="success">按钮</Button>
-      <Button type="success">按钮</Button>
-      <Button type="success">按钮</Button>
-    </ButtonGroup>
-    <ButtonGroup vertical style={{ marginTop: 5 }}>
-      <Button type="light">按钮</Button>
-      <Button type="light">按钮</Button>
-      <Button type="light">按钮</Button>
-      <Button type="light">按钮</Button>
-    </ButtonGroup>
-    <ButtonGroup vertical style={{ marginTop: 5 }}>
-      <Button type="primary">主要按钮</Button>
-      <Button type="success">成功按钮</Button>
-      <Button type="warning">警告按钮</Button>
-      <Button type="danger">错误按钮</Button>
-      <Button type="light">亮按钮</Button>
-      <Button type="dark">暗按钮</Button>
-    </ButtonGroup>
-  </div>
+    <Row gutter={10}>
+      <Col style={{ maxWidth: 120 }}>
+        <ButtonGroup vertical>
+          <Button type="primary">按钮</Button>
+          <Button type="primary">按钮</Button>
+          <Button type="primary">按钮</Button>
+          <Button type="primary">按钮</Button>
+        </ButtonGroup>
+      </Col>
+      <Col style={{ maxWidth: 120 }}>
+        <ButtonGroup vertical>
+          <Button type="success">按钮</Button>
+          <Button disabled type="success">按钮</Button>
+          <Button type="success">按钮</Button>
+          <Button type="success">按钮</Button>
+        </ButtonGroup>
+      </Col>
+      <Col style={{ maxWidth: 120 }}>
+        <ButtonGroup vertical>
+          <Button type="light">按钮</Button>
+          <Button type="light">按钮</Button>
+          <Button type="light">按钮</Button>
+          <Button type="light">按钮</Button>
+        </ButtonGroup>
+      </Col>
+      <Col style={{ maxWidth: 120 }}>
+        <ButtonGroup vertical>
+          <Button type="primary">主要按钮</Button>
+          <Button type="success">成功按钮</Button>
+          <Button type="warning">警告按钮</Button>
+          <Button type="danger">错误按钮</Button>
+          <Button type="light">亮按钮</Button>
+          <Button type="dark">暗按钮</Button>
+        </ButtonGroup>
+      </Col>
+    </Row>
 );
 ```
 <!--End-->

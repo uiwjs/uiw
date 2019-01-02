@@ -14,3 +14,5 @@ export { default as Radio } from './radio/Radio';
 export { default as RadioGroup } from './radio/RadioGroup';
 export { default as Progress } from './progress';
 export { default as Switch } from './switch';
+export { default as Form } from './form/Form';
+export { default as FormItem } from './form/FormItem';
