@@ -11,14 +11,15 @@ import { Row, Col } from '@uiw/core';
 
 <!--DemoStart--> 
 ```js
-const styl = { border: '1px solid #A5A5A5', textAlign: 'center', paddingTop: 5, paddingButton: 5 };
 const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
+const styl = { textAlign: 'center', paddingTop: 5, paddingBottom: 5 };
+const Box = ({ num, height, width, style, background }) => <div style={{...styl, ...style,background, width, height}}>Col {num}</div>
 const Demo = () => (
   <div style={boxStyl}>
     <Row>
-      <Col fixed style={{...styl, width: 120}}> Col 1 </Col>
-      <Col grow={2} style={styl}> Col 2 </Col>
-      <Col grow={1} style={styl}> Col 3 </Col>
+      <Col fixed style={{ width: 150 }}> <Box num="1" background="#A5A5A5" /> </Col>
+      <Col grow={2}> <Box num="2" background="#dedede" /> </Col>
+      <Col grow={1}> <Box num="3" background="#A5A5A5" /> </Col>
     </Row>
   </div>
 );
@@ -31,20 +32,20 @@ const Demo = () => (
 
 <!--DemoStart--> 
 ```js
-const styl = { border: '1px solid #A5A5A5', textAlign: 'center', padding: '5px 0' };
 const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
-const Box = ({ num }) => <div style={styl}>Col {num}</div>
+const styl = { textAlign: 'center', paddingTop: 5, paddingBottom: 5 };
+const Blank = ({ num, height, width, style, background }) => <div style={{...styl, ...style,background, width, height}}>Col {num}</div>
 const Demo = () => (
   <div style={boxStyl}>
     <Row gutter={10}>
-      <Col> <Box num={1}/> </Col>
-      <Col> <Box num={2}/> </Col>
-      <Col> <Box num={3}/> </Col>
+      <Col> <Blank background="#A5A5A5" num={1}/> </Col>
+      <Col> <Blank background="#dedede" num={2}/> </Col>
+      <Col> <Blank background="#A5A5A5" num={3}/> </Col>
     </Row>
     <Row style={{ marginTop: 10 }}>
-      <Col> <Box num={1}/> </Col>
-      <Col> <Box num={2}/> </Col>
-      <Col> <Box num={3}/> </Col>
+      <Col> <Blank background="#A5A5A5" num={1}/> </Col>
+      <Col> <Blank background="#dedede" num={2}/> </Col>
+      <Col> <Blank background="#A5A5A5" num={3}/> </Col>
     </Row>
   </div>
 );
@@ -56,35 +57,35 @@ const Demo = () => (
 
 <!--DemoStart--> 
 ```js
-const styl = { border: '1px solid #A5A5A5', textAlign: 'center', padding: '5px 0' };
-const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
-const Box = ({ num, height, style }) => <div style={{...styl, ...style, height}}>Col {num}</div>
+const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
+const colStyl = { backgroundColor: 'rgba(230, 230, 230, 0.67)', marginBottom: 10 }
+const Blank = ({ num, height, style, background = '#2EA3F4' }) => <div style={{...styl, ...style,background, height}}>Col {num}</div>
 const Demo = () => (
-  <div style={boxStyl}>
-    <Row gutter={10} justify="center" align="top">
-      <Col span="2"> <Box height={35} num={1}/> </Col>
-      <Col span="2"> <Box height={50} num={2}/> </Col>
-      <Col span="2"> <Box height={70} num={3}/> </Col>
+  <div>
+    <Row gutter={10} justify="center" align="top" style={colStyl}>
+      <Col span="2"> <Blank height={35} num={1}/> </Col>
+      <Col span="2"> <Blank height={50} num={2}/> </Col>
+      <Col span="2"> <Blank height={70} num={3}/> </Col>
     </Row>
-    <Row gutter={10} justify="space-around" align="middle">
-      <Col span="2"> <Box height={35} num={1}/> </Col>
-      <Col span="2"> <Box height={50} num={2}/> </Col>
-      <Col span="2"> <Box height={70} num={3}/> </Col>
+    <Row gutter={10} justify="space-around" align="middle"  style={colStyl}>
+      <Col span="2"> <Blank height={35} num={1}/> </Col>
+      <Col span="2"> <Blank height={50} num={2}/> </Col>
+      <Col span="2"> <Blank height={70} num={3}/> </Col>
     </Row>
-    <Row gutter={10} justify="space-between" align="bottom">
-      <Col span="2"> <Box height={35} num={1}/> </Col>
-      <Col span="2"> <Box height={50} num={2}/> </Col>
-      <Col span="2"> <Box height={70} num={3}/> </Col>
+    <Row gutter={10} justify="space-between" align="bottom" style={colStyl}>
+      <Col span="2"> <Blank height={35} num={1}/> </Col>
+      <Col span="2"> <Blank height={50} num={2}/> </Col>
+      <Col span="2"> <Blank height={70} num={3}/> </Col>
     </Row>
-    <Row gutter={10} justify="flex-end" align="bottom">
-      <Col span="2"> <Box height={35} num={1}/> </Col>
-      <Col span="2"> <Box height={50} num={2}/> </Col>
-      <Col span="2"> <Box height={70} num={3}/> </Col>
+    <Row gutter={10} justify="flex-end" align="bottom" style={colStyl}>
+      <Col span="2"> <Blank height={35} num={1}/> </Col>
+      <Col span="2"> <Blank height={50} num={2}/> </Col>
+      <Col span="2"> <Blank height={70} num={3}/> </Col>
     </Row>
-    <Row gutter={10} justify="center" align="baseline">
-      <Col span="2"> <Box height={85} style={{ lineHeight: '85px' }} num={1}/> </Col>
-      <Col span="2"> <Box height={50} num={2}/> </Col>
-      <Col span="2"> <Box height={70} num={3}/> </Col>
+    <Row gutter={10} justify="center" align="baseline"  style={colStyl}>
+      <Col span="2"> <Blank height={85} style={{ lineHeight: '85px' }} num={1}/> </Col>
+      <Col span="2"> <Blank height={50} num={2}/> </Col>
+      <Col span="2"> <Blank height={70} num={3}/> </Col>
     </Row>
   </div>
 );
@@ -95,21 +96,58 @@ const Demo = () => (
 
 <!--DemoStart--> 
 ```js
-const styl = { border: '1px solid #A5A5A5', textAlign: 'center', padding: '5px 0' };
+const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
 const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
-const Box = ({ num, height }) => <div style={{...styl }}>Col {num}</div>
+const Blank = ({ num, style, background = '#2EA3F4' }) => <div style={{...styl, ...style,background}}>Col {num}</div>
 const Demo = () => (
   <div style={boxStyl}>
     <Row gutter={10} style={{height: 130}}>
-      <Col align="top"> <Box num={1}/> </Col>
-      <Col align="middle"> <Box num={2}/> </Col>
-      <Col align="bottom"> <Box num={3}/> </Col>
+      <Col align="top"> <Blank num={1}/> </Col>
+      <Col align="middle"> <Blank num={2}/> </Col>
+      <Col align="bottom"> <Blank num={3}/> </Col>
     </Row>
   </div>
 );
 ```
 <!--End-->
 
+### 对齐内容
+
+<!--DemoStart--> 
+```js
+const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
+const rowStyl = { backgroundColor: 'rgba(230, 230, 230, 0.67)', marginBottom: 10 }
+const Blank = ({ num, height, width, style, background = '#2EA3F4' }) => <div style={{...styl, ...style,background, width, height}}>Col {num}</div>
+const Demo = () => (
+  <div>
+    <Row gutter={10} justify="flex-start" style={rowStyl}>
+      <Col span="2"> <Blank num={1}/> </Col>
+      <Col span="2"> <Blank num={2}/> </Col>
+    </Row>
+    <Row gutter={10} justify="center" style={rowStyl}>
+      <Col span="2"> <Blank num={1}/> </Col>
+      <Col span="2"> <Blank num={2}/> </Col>
+    </Row>
+    <Row gutter={10} justify="flex-end" style={rowStyl}>
+      <Col span="2"> <Blank num={1}/> </Col>
+      <Col span="2"> <Blank num={2}/> </Col>
+    </Row>
+    <Row gutter={10} justify="space-between" style={rowStyl}>
+      <Col span="2"> <Blank num={1}/> </Col>
+      <Col span="2"> <Blank num={2}/> </Col>
+    </Row>
+    <Row gutter={10} justify="space-around" style={rowStyl}>
+      <Col span="2"> <Blank num={1}/> </Col>
+      <Col span="2"> <Blank num={2}/> </Col>
+    </Row>
+    <Row gutter={10} justify="space-evenly" style={rowStyl}>
+      <Col span="2"> <Blank num={1}/> </Col>
+      <Col span="2"> <Blank num={2}/> </Col>
+    </Row>
+  </div>
+);
+```
+<!--End-->
 
 ### 24删格
 
@@ -117,37 +155,37 @@ const Demo = () => (
 
 <!--DemoStart--> 
 ```js
-const styl = { border: '1px solid #A5A5A5', textAlign: 'center', padding: '5px 0' };
+const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
 const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
-const Box = ({ num }) => <div style={styl}>Col {num}</div>
+const Blank = ({ num, height, width, style, background = '#2EA3F4' }) => <div style={{...styl, ...style,background, width, height}}>Col {num}</div>
 const Demo = () => (
   <div style={boxStyl}>
     <Row gutter={10} style={{ marginBottom: 10 }}>
-      <Col span="2"> <Box num={1}/> </Col>
-      <Col span="2"> <Box num={2}/> </Col>
-      <Col span="2"> <Box num={3}/> </Col>
-      <Col span="2"> <Box num={4}/> </Col>
-      <Col span="2"> <Box num={5}/> </Col>
-      <Col span="2"> <Box num={6}/> </Col>
-      <Col span="2"> <Box num={7}/> </Col>
-      <Col span="2"> <Box num={8}/> </Col>
-      <Col span="2"> <Box num={9}/> </Col>
-      <Col span="2"> <Box num={10}/> </Col>
-      <Col span="2"> <Box num={11}/> </Col>
-      <Col span="2"> <Box num={12}/> </Col>
+      <Col span="2"> <Blank num={1}/> </Col>
+      <Col span="2"> <Blank num={2}/> </Col>
+      <Col span="2"> <Blank num={3}/> </Col>
+      <Col span="2"> <Blank num={4}/> </Col>
+      <Col span="2"> <Blank num={5}/> </Col>
+      <Col span="2"> <Blank num={6}/> </Col>
+      <Col span="2"> <Blank num={7}/> </Col>
+      <Col span="2"> <Blank num={8}/> </Col>
+      <Col span="2"> <Blank num={9}/> </Col>
+      <Col span="2"> <Blank num={10}/> </Col>
+      <Col span="2"> <Blank num={11}/> </Col>
+      <Col span="2"> <Blank num={12}/> </Col>
     </Row>
     <Row gutter={10} style={{ marginBottom: 10 }}>
-      <Col span="16"> <Box num={1}/> </Col>
-      <Col span="8"> <Box num={2}/> </Col>
+      <Col span="16"> <Blank num={1}/> </Col>
+      <Col span="8"> <Blank num={2}/> </Col>
     </Row>
     <Row gutter={10} style={{ marginBottom: 10 }}>
-      <Col span="8"> <Box num={1}/> </Col>
-      <Col span="8"> <Box num={2}/> </Col>
-      <Col span="8"> <Box num={3}/> </Col>
+      <Col span="8"> <Blank num={1}/> </Col>
+      <Col span="8"> <Blank num={2}/> </Col>
+      <Col span="8"> <Blank num={3}/> </Col>
     </Row>
     <Row gutter={10} style={{ marginBottom: 10 }}>
-      <Col span="12"> <Box num={1}/> </Col>
-      <Col span="12"> <Box num={2}/> </Col>
+      <Col span="12"> <Blank num={1}/> </Col>
+      <Col span="12"> <Blank num={2}/> </Col>
     </Row>
   </div>
 );
@@ -158,19 +196,19 @@ const Demo = () => (
 
 <!--DemoStart--> 
 ```js
-const styl = { border: '1px solid #A5A5A5', textAlign: 'center', padding: '5px 0' };
+const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
 const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
-const Box = ({ num }) => <div style={styl}>Col {num}</div>
+const Blank = ({ num, style, background = '#2EA3F4' }) => <div style={{...styl, ...style,background}}>Col {num}</div>
 const Demo = () => (
   <div style={boxStyl}>
     <Row gutter={10} style={{ marginBottom: 10 }}>
-      <Col> <Box num={1}/> </Col>
-      <Col grow={2}> <Box num={2}/> </Col>
+      <Col> <Blank num={1}/> </Col>
+      <Col grow={2}> <Blank num={2}/> </Col>
     </Row>
     <Row gutter={10}>
-      <Col> <Box num={1}/> </Col>
-      <Col grow={2}> <Box num={2}/> </Col>
-      <Col grow={5}> <Box num={3}/> </Col>
+      <Col> <Blank num={1}/> </Col>
+      <Col grow={2}> <Blank num={2}/> </Col>
+      <Col grow={5}> <Blank num={3}/> </Col>
     </Row>
   </div>
 );
