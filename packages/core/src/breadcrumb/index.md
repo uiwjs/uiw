@@ -59,10 +59,10 @@ const Demo = () => (
       <Breadcrumb.Item data-separator=">">
         <a href="#"><Icon style={stylIcon} type="pie-chart"/>Chart</a>
       </Breadcrumb.Item>
-      <Breadcrumb.Item separator={false}>
-        <a href="#">Chart</a>
+      <Breadcrumb.Item data-separator="">
+        <a href="#"><Icon style={{...stylIcon, marginRight: 0}} type="star-on"/> Chart</a>
       </Breadcrumb.Item>
-      <Breadcrumb.Item active>Data</Breadcrumb.Item>
+      <Breadcrumb.Item data-separator="" active>Data</Breadcrumb.Item>
     </Breadcrumb>
   </div>
 )

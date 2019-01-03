@@ -5,9 +5,8 @@ import './style/item.less';
 
 export default class BreadcrumbItem extends React.Component {
   render() {
-    const { prefixCls, className, active, separator, ...other } = this.props;
-    console.log('separator:', separator);
-    const cls = classnames(prefixCls, className, { active, separator });
+    const { prefixCls, className, active, ...other } = this.props;
+    const cls = classnames(prefixCls, className, { active, ['no-separator']: !other['data-separator'] });
     return (
       <span {...{ className: cls, ...other }}>{this.props.children}</span>
     );
