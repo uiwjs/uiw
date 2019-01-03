@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import './style/group.less';
 
-export default class RadioGroup extends React.Component {
+export default class CheckboxGroup extends React.Component {
   render() {
     const { prefixCls, className, name, value, onChange, ...other } = this.props;
     this.values = [];
@@ -29,12 +29,12 @@ export default class RadioGroup extends React.Component {
   }
 }
 
-RadioGroup.propTypes = {
+CheckboxGroup.propTypes = {
   prefixCls: PropTypes.string,
   value: PropTypes.array,
 };
 
-RadioGroup.defaultProps = {
-  prefixCls: 'w-radio-group',
+CheckboxGroup.defaultProps = {
+  prefixCls: 'w-checkbox-group',
   value: [],
 };

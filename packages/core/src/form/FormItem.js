@@ -8,16 +8,16 @@ import './style/form-item.less';
 export default class FormItem extends React.PureComponent {
   renderItem
   render() {
-    const { prefixCls, className, label, labelFor, labelClassName, help, inline, hasError } = this.props;
+    const { prefixCls, className, style, label, labelFor, labelClassName, labelStyle, help, inline, hasError } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-error`]: hasError
     });
     const labelCls = classnames('w-form-label', labelClassName);
     if (inline) {
       return (
-        <div className={cls}>
+        <div className={cls} style={style}>
           <Row>
-            <Col fixed className={labelCls}><label htmlFor={labelFor}>{label}</label></Col>
+            <Col fixed className={labelCls}><label style={labelStyle} htmlFor={labelFor}>{label}</label></Col>
             <Col className="w-form-row">
               {this.props.children}
             </Col>
@@ -31,8 +31,8 @@ export default class FormItem extends React.PureComponent {
       );
     }
     return (
-      <div className={cls}>
-        <label className={labelCls} htmlFor={labelFor}>{label}</label>
+      <div className={cls} style={style}>
+        {label && <label className={labelCls} style={labelStyle} htmlFor={labelFor}>{label}</label>}
         <Col className="w-form-row">{this.props.children}</Col>
         {help && <div className="w-form-help">{help}</div>}
       </div>
@@ -42,6 +42,12 @@ export default class FormItem extends React.PureComponent {
 
 FormItem.propTypes = {
   prefixCls: PropTypes.string,
+  inline: PropTypes.bool,
+  hasError: PropTypes.bool,
+  label: PropTypes.string,
+  labelFor: PropTypes.string,
+  labelClassName: PropTypes.string,
+  help: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
 };
 
 FormItem.defaultProps = {

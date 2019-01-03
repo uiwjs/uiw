@@ -27,20 +27,6 @@ export default class Form extends React.PureComponent {
       this.state.current[name] = initialValue(fields[name].initialValue);
     }
   }
-  onChange = (name, validator, cb) => val => {
-    const value = val.target && 'value' in val.target ? val.target.value : val;
-    const nextState = { current: { ...this.state.current, [name]: value } };
-    this.setState({ test: !this.state.test });
-    const error = validator && validator(value);
-    if (!error) {
-      nextState.errors = { ...this.state.errors };
-      delete nextState.errors[name];
-    }
-    if (typeof val.persist === 'function') val.persist();
-
-    if (cb) this.setState(nextState, () => cb(val));
-    else this.setState(nextState);
-  };
   onSubmit = e => {
     e && e.preventDefault();
     const { onSubmit, resetOnSubmit, onSubmitError } = this.props;
@@ -91,7 +77,32 @@ export default class Form extends React.PureComponent {
     }
     return !submitting && passesValidators;
   }
-  controlField = ({ children = <Input type="text" />, validator, name, initialValue }) => {
+  onChange = (name, validator, element, cb) => (val, list) => {
+    let value = val.target && 'value' in val.target ? val.target.value : val;
+    // 控件 Checkbox.Group 多选值的处理
+    value = list || value;
+    // 控件 Checkbox 值的处理
+    if (element.props.type === 'checkbox') {
+      value = val.target.checked ? element.props.value : '';
+    }
+    // 控件 Switch 值的处理
+    if (element.props.type === 'switch') {
+      value = val.target.checked;
+    }
+
+    const nextState = { current: { ...this.state.current, [name]: value } };
+    this.setState({ test: !this.state.test });
+    const error = validator && validator(value);
+    if (!error) {
+      nextState.errors = { ...this.state.errors };
+      delete nextState.errors[name];
+    }
+    if (typeof val.persist === 'function') val.persist();
+
+    if (cb) this.setState(nextState, () => cb(val));
+    else this.setState(nextState);
+  };
+  controlField = ({ children = <Input type="text" />, validator, name }) => {
     const element = typeof children !== 'function'
       ? children
       : children({
@@ -103,12 +114,16 @@ export default class Form extends React.PureComponent {
     const props = { name: element.props.name || name };
     const hasCurrentValue = this.state.current.hasOwnProperty(name);
     props.id = element.props.id;
-    if (element.props.type === 'checkbox') {
+    props.value = hasCurrentValue ? (this.state.current && this.state.current[name]) : element.props.value;
 
-    } else {
-      props.value = hasCurrentValue ? (this.state.current && this.state.current[name]) : element.props.value;
-      props.onChange = this.onChange(name, validator, element.props.onChange);
+    const type = element.props.type;
+    if (type === 'checkbox' || type === 'switch') {
+      props.checked = !!props.value;
     }
+    if (type === 'switch') {
+      delete props.value;
+    }
+    props.onChange = this.onChange(name, validator, element, element.props.onChange);
     return React.cloneElement(element, props);
   }
   render() {
@@ -130,7 +145,9 @@ export default class Form extends React.PureComponent {
       <form {...{ ...others, className: classnames(prefixCls, className), onSubmit: this.onSubmit }}>
         <fieldset {...{ disabled: submitting }}>
           {children({
-            fields: formUnits, state: this.state, canSubmit: this.canSubmit,
+            fields: formUnits,
+            state: this.state,
+            canSubmit: this.canSubmit,
           })}
         </fieldset>
       </form>

@@ -1,11 +1,14 @@
 @w-form:~"w-form";
 
 .@{w-form} {
+  &-item {
+    margin-bottom: 10px;
+  }
   &-item-error {
-    .@{w-form}-help {
-      color: red;
+    .@{w-form}-help, .@{w-form}-label {
+      color: #dc3545;
     }
-    .w-input-inner,.w-input-inner:hover,.w-input-inner:focus.w-input-inner:hover {
+    .w-input-inner, .w-input-inner:hover, .w-input-inner:focus.w-input-inner:hover {
       box-shadow: 0 0 0 1px #dc3545, 0 0 0 3px rgba(220, 53, 69, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
     }
   }
@@ -15,12 +18,16 @@
     font-weight: 600;
     font-size: 14px;
     padding-right: 5px;
+    label {
+      display: inline-block;
+    }
   }
   &-row {
-
+    align-items: center;
+    display: flex;
   }
   &-help {
-    color: #607580;
+    color: #C2C2C2;
     font-size: 12px;
   }
 }

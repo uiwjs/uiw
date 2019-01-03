@@ -7,7 +7,7 @@ import './style/index.less';
 export default class Switch extends React.Component {
   render() {
     const props = this.props;
-    return <Abstract {...props} />;
+    return <Abstract {...{ ...props, type: 'checkbox' }} />;
   }
 }
 
@@ -20,7 +20,7 @@ Switch.propTypes = {
 
 Switch.defaultProps = {
   prefixCls: 'w-switch',
-  type: 'checkbox',
+  type: 'switch',
   disabled: false,
   checked: undefined,
 };
