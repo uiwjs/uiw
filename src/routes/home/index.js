@@ -13,11 +13,15 @@ export default class Home extends PureComponent {
       <div className={styles.App}>
         <header className={styles.AppHeader}>
           <div className={styles.Logo}>{logo.dark}</div>
+          <div className={styles.Title}>
+            uiw
+          </div>
           <div className={styles.Des}>
-            A high quality UI Toolkit, A Component Library for React 16+.
+            A Component Library for React 16+.
           </div>
           <div>
-            <Link className={styles.AppLink} to="/components"> 组件库 </Link>
+            <Link className={styles.AppLink} to="/guide/quick-start"> Guide </Link>
+            <Link className={styles.AppLink} to="/components"> Components </Link>
             <a
               className={styles.AppLink}
               href="https://github.com/jaywcjlove/kkt"
