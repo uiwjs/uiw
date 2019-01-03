@@ -8,6 +8,7 @@ export { default as Row } from './grid/Row';
 export { default as Checkbox } from './checkbox';
 export { default as Button } from './button';
 export { default as ButtonGroup } from './button/ButtonGroup';
+export { default as Breadcrumb } from './breadcrumb';
 export { default as Icon } from './icon';
 export { default as Input } from './input';
 export { default as Radio } from './radio/Radio';

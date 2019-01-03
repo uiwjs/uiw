@@ -1,0 +1,17 @@
+@breadcrumb-item-prefix:~"w-breadcrumb-item";
+
+.@{breadcrumb-item-prefix} {
+  display: inline-flex;
+  & + & {
+    &::before {
+      display: inline-block;
+      padding-right: 8px;
+      padding-left: 8px;
+      color: #6E6E6E;
+      content: attr(data-separator);
+    }
+  }
+  &.active {
+    color: #6E6E6E;
+  }
+}
