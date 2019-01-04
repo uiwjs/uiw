@@ -3,6 +3,9 @@ List列表
 
 列表组件
 
+```jsx
+import { List } from '@uiw/core';
+```
 
 ### 基础用法
 
