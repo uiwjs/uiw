@@ -90,7 +90,6 @@ const data = [
 class Demo extends Component {
   onClick(item,index,e){
     e.stopPropagation();
-    if (item.disabled) return;
     console.log('item',item,e);
   }
   render() {
