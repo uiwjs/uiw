@@ -3,6 +3,10 @@ Tag 标签
 
 进行标记和分类的小标签，胶囊。
 
+```jsx
+import { Tag } from '@uiw/core';
+```
+
 ## 基础用法
 
 <!--DemoStart--> 
@@ -93,5 +97,5 @@ const Demo = () => (
 |--------- |-------- |--------- |-------- |
 | title | 胶囊标题，配合 `children` 是否存在，展示胶囊样式 | String/ReactNode | - |
 | titleColor | 胶囊标题颜色 | String/ReactNode | - |
-| color | 胶囊颜色 | String | `#1C7CEB` |
-| disabled | 胶囊禁用 | Boolean | `false` |
+| color | 颜色 | String | `#1C7CEB` |
+| disabled | 禁用 | Boolean | `false` |

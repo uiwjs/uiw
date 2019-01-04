@@ -7,7 +7,6 @@ Checkbox 多选框
 import { Checkbox } from '@uiw/core';
 ```
 
-
 ### 基础用法
 
 单独使用可以表示两种状态之间的切换，半选中只是样式上的表现。

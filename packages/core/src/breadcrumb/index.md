@@ -3,6 +3,10 @@ Breadcrumb 面包屑
 
 显示当前页面的路径，快速返回之前的任意页面。
 
+```jsx
+import { Breadcrumb } from '@uiw/core';
+```
+
 ### 基础用法
 
 适用广泛的基础用法，在 `Breadcrumb` 中使用 `Breadcrumb.Item` 标签表示从首页开始的每一级。

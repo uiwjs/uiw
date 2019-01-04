@@ -37,6 +37,7 @@ const menuData = [
       { name: 'Breadcrumb 面包屑', path: 'breadcrumb' },
       { divider: true, name: '其它' },
       { name: 'Divider 分割线', path: 'divider' },
+      { name: 'CopyToClipboard 复制', path: 'copy-to-clipboard' },
     ],
   },
   {
