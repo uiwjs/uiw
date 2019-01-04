@@ -79,6 +79,9 @@ export const getRouterData = () => {
     '/components/list': {
       component: dynamicWrapper([], () => import('../routes/components/list')),
     },
+    '/components/tag': {
+      component: dynamicWrapper([], () => import('../routes/components/tag')),
+    },
   };
   return conf;
 };
