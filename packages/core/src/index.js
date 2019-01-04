@@ -11,6 +11,7 @@ export { default as ButtonGroup } from './button/ButtonGroup';
 export { default as Breadcrumb } from './breadcrumb';
 export { default as Icon } from './icon';
 export { default as Input } from './input';
+export { default as List } from './list';
 export { default as Radio } from './radio/Radio';
 export { default as RadioGroup } from './radio/RadioGroup';
 export { default as Progress } from './progress';

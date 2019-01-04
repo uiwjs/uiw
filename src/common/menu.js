@@ -32,6 +32,7 @@ const menuData = [
       { name: 'Tag 标签', path: 'tag' },
       { name: 'Progress 进度条', path: 'progress' },
       { name: 'Rate 评分', path: 'rate' },
+      { name: 'List 列表', path: 'list' },
       { divider: true, name: '导航' },
       { name: 'Breadcrumb 面包屑', path: 'breadcrumb' },
       { divider: true, name: '其它' },

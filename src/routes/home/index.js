@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../components/icons/logo';
 import styles from './index.module.less';
+import pkg from '../../../packages/core/package.json';
 
 export default class Home extends PureComponent {
   constructor(props) {
@@ -14,7 +15,7 @@ export default class Home extends PureComponent {
         <header className={styles.AppHeader}>
           <div className={styles.Logo}>{logo.dark}</div>
           <div className={styles.Title}>
-            uiw
+            uiw<sup>{pkg.version}</sup>
           </div>
           <div className={styles.Des}>
             A Component Library for React 16+.
