@@ -76,6 +76,9 @@ export const getRouterData = () => {
     '/components/breadcrumb': {
       component: dynamicWrapper([], () => import('../routes/components/breadcrumb')),
     },
+    '/components/list': {
+      component: dynamicWrapper([], () => import('../routes/components/list')),
+    },
   };
   return conf;
 };
