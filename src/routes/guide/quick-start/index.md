@@ -35,6 +35,7 @@ yarn add uiw-react/uiw
 2. 删除大部分组件冗余功能，直接使用样式就可以展现组件效果。
 2. 删除冗余组件，例如组件 `Capsule 胶囊` 与 `Tag 标签` 组件合并。
 3. 抽离组件，需要单独安装，如 `HeatMap 日历热图`
+4. 支持服务端渲染，可以通过 [kkt-ssr](https://github.com/jaywcjlove/kkt-ssr) 工具建立实例。
 
 ## 使用
 
