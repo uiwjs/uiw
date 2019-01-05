@@ -9,19 +9,32 @@
 npm i @uiw/core # 安装 v2.x.x 最新版本
 ```
 
+> `v1.x` 不可以升级到 `v2.x`，`v2`是对 v1 的重构和简化  
+
 安装 `v1.x.x` 版本
 
 ```bash
 npm install uiw --save
+```
 
-# 通过GitHub仓库安装
+## 通过 GitHub 仓库安装
+
+```bash
 npm i -S uiw-react/uiw
 # 指定版本
 npm i -S uiw-react/uiw#v1.2.12
 # 或者
 yarn add uiw-react/uiw
 ```
-> ps: **通过GitHub仓库安装**的 win 用户请在 `Git Bash` 下执行，因为需要用到 git。
+
+>  **通过GitHub仓库安装**的 `win` 用户请在 `Git Bash` 下执行，因为需要用到 `git`。
+
+## 对新版本 v2.x 的更新内容
+
+1. 优化大部分组件，让组件变得更小更简单。
+2. 删除大部分组件冗余功能，直接使用样式就可以展现组件效果。
+2. 删除冗余组件，例如组件 `Capsule 胶囊` 与 `Tag 标签` 组件合并。
+3. 抽离组件，需要单独安装，如 `HeatMap 日历热图`
 
 ## 使用
 

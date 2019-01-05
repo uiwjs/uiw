@@ -56,6 +56,7 @@
   "devDependencies": {
     "@kkt/plugin-less": "^1.0.2",
     "kkt": "^3.0.0-beta.9",
+    "raw-loader": "^1.0.0",
     "react-test-renderer": "^16.7.0"
   },
   "author": "kenny wang <wowohoo@qq.com>",
