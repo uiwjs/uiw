@@ -5,6 +5,7 @@ const menuData = [
     icon: 'home',
     children: [
       { name: '快速开始', path: 'quick-start' },
+      { name: '在 create-react-app 中使用', path: 'create-react-app' },
       { name: '更新日志', path: 'changelog' },
       { name: '社区精选组件', path: 'recommendation' },
     ],
