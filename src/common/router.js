@@ -25,6 +25,9 @@ export const getRouterData = () => {
     '/guide/create-react-app': {
       component: dynamicWrapper([], () => import('../routes/guide/create-react-app')),
     },
+    '/guide/kkt': {
+      component: dynamicWrapper([], () => import('../routes/guide/kkt')),
+    },
     '/guide/changelog': {
       component: dynamicWrapper([], () => import('../routes/guide/changelog')),
     },

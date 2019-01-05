@@ -31,6 +31,7 @@ Markdown 渲染 | [markdown-to-jsx](https://github.com/probablyup/markdown-to-js
 地图 | [react-google-maps](https://github.com/tomchentw/react-google-maps) / [google-map-react](https://github.com/istarkov/google-map-react) / [react-amap高德](https://github.com/ElemeFE/react-amap)
 Emoji | [emoji-mart](https://github.com/missive/emoji-mart)
 右键菜单 | [react-contextmenu](https://github.com/vkbansal/react-contextmenu/) / [react-contexify](https://github.com/fkhadra/react-contexify)
+快捷键 | [hotkeys.js](https://github.com/jaywcjlove/hotkeys) / [react-hotkeys](https://github.com/jaywcjlove/react-hotkeys)
 分割面板 | [react-split-pane](https://github.com/tomkp/react-split-pane)
 图片裁切 | [react-image-crop](https://github.com/DominicTobias/react-image-crop)
 趋势线 | [react-sparklines](https://github.com/borisyankov/react-sparklines)
