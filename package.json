@@ -14,7 +14,15 @@
   },
   "scripts": {
     "start": "kkt start",
-    "build": "kkt build"
+    "build": "kkt build",
+    "test": "kkt test --env=jsdom",
+    "test:coverage": "kkt test --env=jsdom --coverage"
+  },
+  "jest": {
+    "testMatch": [
+      "<rootDir>/packages/core/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "<rootDir>/packages/core/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
+    ]
   },
   "keywords": [
     "uiw",
@@ -47,8 +55,8 @@
   },
   "devDependencies": {
     "@kkt/plugin-less": "^1.0.2",
-    "kkt": "^3.0.0-beta.4",
-    "raw-loader": "^1.0.0"
+    "kkt": "^3.0.0-beta.9",
+    "react-test-renderer": "^16.7.0"
   },
   "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT"
