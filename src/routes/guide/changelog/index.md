@@ -1,9 +1,25 @@
 更新日志
 ===
 
-严格遵循 [Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/) 语义化版本规范。
+严格遵循 [`Semantic Versioning 2.0.0`](http://semver.org/lang/zh-CN/) 语义化版本规范。
 
-Github [更新日志](https://github.com/uiw-react/uiw/releases)
+Github [`更新日志`](https://github.com/uiw-react/uiw/releases)
+
+## v1.16.12
+
+`2019-01-01`
+
+- 🌟 feat(Radio): Value supports more types. e9a6de3 
+- 🌟 feat(Radio): Add Group Radio styles. 63f1cf6 
+- 🐞 fix(Radio): Fix onChange return value error. 1eca34c 
+- 🐞 fix(Icon): Modify the icon font file name. e3752a7 
+- 🐞 fix(Icon): Fix icon font error. 9ead09e 
+- 🐞 fix will receive value props. a4c5d0f 
+- 🐞 fix running test error. #64 23280ca 
+- 💄 chore: Update the dependencies uiw-iconfont. 9502a54 
+- 💄 chore: Update jest dependencies. ce31328 
+- 🎨 style(Input): Modify the Input disable style. d803f05 
+- 🎨 style(Input): Modify input style. 1206584 
 
 ## v1.16.0
 
