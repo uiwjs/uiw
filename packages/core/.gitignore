@@ -1,6 +1,7 @@
 /lib/cjs/
 /lib/esm/
 node_modules
+__snapshots__
 *.log
 .DS_Store
 .cache
