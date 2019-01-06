@@ -21,10 +21,9 @@ const Demo = () => (
 
 <!--DemoStart--> 
 ```js
-const styl = { justifyContent: 'center', display: 'flex' };
 const stylItem = { margin: 20 };
 const Demo = () => (
-  <div style={styl}>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0',justifyContent: 'center', display: 'flex' }}>
     <div style={stylItem}>
       <Input preIcon="delete" placeholder="请输入内容" />
     </div>
