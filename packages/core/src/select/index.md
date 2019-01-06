@@ -40,9 +40,8 @@ import '@uiw/core/lib/esm/select/style/index.less';
 
 <!--DemoStart--> 
 ```js
-const styl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
 const Demo = () => (
-  <Row style={styl}>
+  <Row style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <Col fixed>
       <select className="w-select" defaultValue="w">
         <option value="w">Choose an item...</option>
