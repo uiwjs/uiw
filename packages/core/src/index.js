@@ -14,6 +14,7 @@ export { default as Input } from './input';
 export { default as List } from './list';
 export { default as Progress } from './progress';
 export { default as Row } from './grid/Row';
+export { default as Rate } from './rate';
 export { default as Radio } from './radio/Radio';
 export { default as RadioGroup } from './radio/RadioGroup';
 export { default as Switch } from './switch';
