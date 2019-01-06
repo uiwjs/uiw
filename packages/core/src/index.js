@@ -17,6 +17,7 @@ export { default as Row } from './grid/Row';
 export { default as Rate } from './rate';
 export { default as Radio } from './radio/Radio';
 export { default as RadioGroup } from './radio/RadioGroup';
+export { default as Select } from './select';
 export { default as Switch } from './switch';
 export { default as Tag } from './tag';
 export { default as Form } from './form/Form';
