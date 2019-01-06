@@ -89,3 +89,21 @@ class Demo extends Component {
 }
 ```
 <!--End-->
+
+## Checkbox
+
+| 参数      | 说明    | 类型      |  默认值   |
+|--------- |-------- |---------- |-------- |
+| options | 指定当前是否选中 | Boolean | false |
+| disabled | 禁用 | Boolean | false |
+| onChange | 变化时回调函数 | Function(e:Event, checked:Boolean) | - |
+| checked | 指定当前是否选中 | Boolean | false |
+| indeterminate | 半选中，只负责样式控制 | Boollean | false |
+
+## Checkbox.Group
+
+| 参数      | 说明    | 类型      |  默认值   |
+|--------- |-------- |---------- |-------- |
+| name | 隐藏输入的名称，在表单中使用时很有用 | string | - |
+| value | 控制时 `select` 的值必须与 `onChange` 函数一起使用才能更新 `select` 的值 | Array | `[]` |
+| onChange | 变化时回调函数 | Function(e:Event,checkedValues:Array, value:String, checked:Boolean, option) | - |
