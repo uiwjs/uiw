@@ -26,6 +26,7 @@ const menuData = [
       { name: 'Radio 单选框', path: 'radio' },
       { name: 'Checkbox 多选框', path: 'checkbox' },
       { name: 'Switch 开关', path: 'switch' },
+      { name: 'Select 选择器', path: 'select' },
       { name: 'Input 输入框', path: 'input' },
       { divider: true, name: '数据显示' },
       { name: 'Avatar 头像', path: 'avatar' },

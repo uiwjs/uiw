@@ -79,7 +79,7 @@ Rate.propTypes = {
   onHoverChange: PropTypes.func,
   onChange: PropTypes.func,
 };
-// ★☆
+
 Rate.defaultProps = {
   prefixCls: 'w-rate',
   value: 0,

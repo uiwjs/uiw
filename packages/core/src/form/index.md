@@ -255,14 +255,14 @@ const Demo = () => (
           labelClassName: 'fieldLabel',
           labelStyle: { width: 60 },
           inline: true,
-          label: '姓'
+          label: '姓氏'
         },
         lastName: {
           labelClassName: 'fieldLabel',
           labelStyle: { width: 60 },
           initialValue: '先生',
           inline: true,
-          label: '名',
+          label: '名字',
         },
         email: {
           labelClassName: 'fieldLabel',
@@ -273,6 +273,22 @@ const Demo = () => (
           },
           inline: true,
           label: 'Email',
+        },
+        select: {
+          labelClassName: 'fieldLabel',
+          labelStyle: { width: 60 },
+          initialValue: '4',
+          inline: true,
+          label: '选择器',
+          children: (
+            <Select>
+              <Select.Option value="w">Choose an item...</Select.Option>
+              <Select.Option value="1">One</Select.Option>
+              <Select.Option value="2">Two</Select.Option>
+              <Select.Option value="3">Three</Select.Option>
+              <Select.Option value="4">Four</Select.Option>
+            </Select>
+          ),
         },
       }}
     >
@@ -286,6 +302,7 @@ const Demo = () => (
             </Row>
             <Row>
               <Col>{fields.email}</Col>
+              <Col>{fields.select}</Col>
             </Row>
             <Row>
               <Col />

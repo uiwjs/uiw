@@ -3,6 +3,9 @@ Rate 评分
 
 评分组件
 
+```jsx
+import { Rate } from '@uiw/core';
+```
 
 ### 基本用法
 
