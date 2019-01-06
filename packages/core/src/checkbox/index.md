@@ -106,4 +106,4 @@ class Demo extends Component {
 |--------- |-------- |---------- |-------- |
 | name | 隐藏输入的名称，在表单中使用时很有用 | string | - |
 | value | 控制时 `select` 的值必须与 `onChange` 函数一起使用才能更新 `select` 的值 | Array | `[]` |
-| onChange | 变化时回调函数 | Function(e:Event,checkedValues:Array, value:String, checked:Boolean, option) | - |
+| onChange | 变化时回调函数 | Function(e:Event, checkedValues: Array) | - |
