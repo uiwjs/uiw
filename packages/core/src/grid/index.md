@@ -61,7 +61,7 @@ const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
 const colStyl = { backgroundColor: 'rgba(230, 230, 230, 0.67)', marginBottom: 10 }
 const Blank = ({ num, height, style, background = '#2EA3F4' }) => <div style={{...styl, ...style,background, height}}>Col {num}</div>
 const Demo = () => (
-  <div>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <Row gutter={10} justify="center" align="top" style={colStyl}>
       <Col span="2"> <Blank height={35} num={1}/> </Col>
       <Col span="2"> <Blank height={50} num={2}/> </Col>
@@ -82,7 +82,7 @@ const Demo = () => (
       <Col span="2"> <Blank height={50} num={2}/> </Col>
       <Col span="2"> <Blank height={70} num={3}/> </Col>
     </Row>
-    <Row gutter={10} justify="center" align="baseline"  style={colStyl}>
+    <Row gutter={10} justify="center" align="baseline"  style={{ ...colStyl, marginBottom: 0 }}>
       <Col span="2"> <Blank height={85} style={{ lineHeight: '85px' }} num={1}/> </Col>
       <Col span="2"> <Blank height={50} num={2}/> </Col>
       <Col span="2"> <Blank height={70} num={3}/> </Col>
@@ -119,7 +119,7 @@ const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
 const rowStyl = { backgroundColor: 'rgba(230, 230, 230, 0.67)', marginBottom: 10 }
 const Blank = ({ num, height, width, style, background = '#2EA3F4' }) => <div style={{...styl, ...style,background, width, height}}>Col {num}</div>
 const Demo = () => (
-  <div>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <Row gutter={10} justify="flex-start" style={rowStyl}>
       <Col span="2"> <Blank num={1}/> </Col>
       <Col span="2"> <Blank num={2}/> </Col>
@@ -140,7 +140,7 @@ const Demo = () => (
       <Col span="2"> <Blank num={1}/> </Col>
       <Col span="2"> <Blank num={2}/> </Col>
     </Row>
-    <Row gutter={10} justify="space-evenly" style={rowStyl}>
+    <Row gutter={10} justify="space-evenly" style={{...rowStyl, marginBottom: 0 }}>
       <Col span="2"> <Blank num={1}/> </Col>
       <Col span="2"> <Blank num={2}/> </Col>
     </Row>
@@ -183,7 +183,7 @@ const Demo = () => (
       <Col span="8"> <Blank num={2}/> </Col>
       <Col span="8"> <Blank num={3}/> </Col>
     </Row>
-    <Row gutter={10} style={{ marginBottom: 10 }}>
+    <Row gutter={10}>
       <Col span="12"> <Blank num={1}/> </Col>
       <Col span="12"> <Blank num={2}/> </Col>
     </Row>
