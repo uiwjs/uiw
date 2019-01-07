@@ -13,21 +13,17 @@ import { Rate } from '@uiw/core';
 
 <!--DemoStart--> 
 ```js
-class Demo extends Component {
-  render() {
-    return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
-        <Rate value={3} />
-        <Divider />
-        <Rate color="#393E48" character="☆" value={4} />
-        <Divider />
-        <Rate color="#28a745" character={<Icon type="heart-on" />} value={3} />
-        <Divider />
-        <Rate color="#dc3545" character="✿" value={4} />
-      </div>
-    )
-  }
-}
+const Demo = () => (
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+    <Rate value={3} />
+    <Divider />
+    <Rate color="#393E48" character="☆" value={4} />
+    <Divider />
+    <Rate color="#28a745" character={<Icon type="heart-on" />} value={3} />
+    <Divider />
+    <Rate color="#dc3545" character="✿" value={4} />
+  </div>
+)
 ```
 <!--End-->
 
@@ -37,21 +33,17 @@ class Demo extends Component {
 
 <!--DemoStart--> 
 ```js
-class Demo extends Component {
-  render() {
-    return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
-        <Rate readOnly value={3} />
-        <Divider />
-        <Rate readOnly character="☆" value={4} />
-        <Divider />
-        <Rate readOnly character={<Icon type="heart-on" />} value={3} />
-        <Divider />
-        <Rate readOnly character="✿" value={4} />
-      </div>
-    )
-  }
-}
+const Demo = () => (
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+    <Rate readOnly value={3} />
+    <Divider />
+    <Rate readOnly character="☆" value={4} />
+    <Divider />
+    <Rate readOnly character={<Icon type="heart-on" />} value={3} />
+    <Divider />
+    <Rate readOnly character="✿" value={4} />
+  </div>
+)
 ```
 <!--End-->
 
@@ -61,19 +53,15 @@ class Demo extends Component {
 
 <!--DemoStart--> 
 ```js
-class Demo extends Component {
-  render() {
-    return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
-        <Rate character="美" value={4} />
-        <Divider />
-        <Rate color="#d80000" character="好" value={3} />
-        <Divider />
-        <Rate character="传" value={4} />
-      </div>
-    )
-  }
-}
+const Demo = () => (
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+    <Rate character="美" value={4} />
+    <Divider />
+    <Rate color="#d80000" character="好" value={3} />
+    <Divider />
+    <Rate character="传" value={4} />
+  </div>
+)
 ```
 <!--End-->
 
@@ -81,17 +69,25 @@ class Demo extends Component {
 
 <!--DemoStart--> 
 ```js
-class Demo extends Component {
-  render() {
-    return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
-        <Rate character={<Icon type="heart-on" />} value={3.3} />
-        <Divider />
-        <Rate color="#d80000" character={<Icon type="heart-on" />} value={4.3} />
-      </div>
-    )
-  }
-}
+const Demo = () => (
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+    <Rate character={<Icon type="heart-on" />} value={3.3} />
+    <Divider />
+    <Rate color="#d80000" character={<Icon type="heart-on" />} value={4.3} />
+  </div>
+)
+```
+<!--End-->
+
+### 尺寸
+
+<!--DemoStart--> 
+```js
+const Demo = () => (
+    <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <Rate style={{ fontSize: 34 }} character={<Icon type="heart-on" />} value={3} />
+    </div>
+  )
 ```
 <!--End-->
 

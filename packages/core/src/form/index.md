@@ -277,12 +277,11 @@ const Demo = () => (
         select: {
           labelClassName: 'fieldLabel',
           labelStyle: { width: 60 },
-          initialValue: '4',
           inline: true,
           label: '选择器',
           children: (
             <Select>
-              <Select.Option value="w">Choose an item...</Select.Option>
+              <Select.Option>Choose an item...</Select.Option>
               <Select.Option value="1">One</Select.Option>
               <Select.Option value="2">Two</Select.Option>
               <Select.Option value="3">Three</Select.Option>
