@@ -32,9 +32,10 @@ export default class Rate extends React.Component {
   }
   render() {
     const { prefixCls, count, value, className, character, readOnly, disabled, onHoverChange, color, ...other } = this.props;
-    const cls = classnames(prefixCls, { disabled });
+    const cls = classnames(prefixCls, className, { disabled });
     return (
       <div
+        {...other}
         className={cls}
         onMouseLeave={e => this.onMouseLeave(e)}
       >
