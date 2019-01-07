@@ -9,6 +9,7 @@ export default class index extends Component {
     this.state = {};
   }
   render() {
+    const { routerData } = this.props;
     return (
       <div className={styles.nav}>
         {this.props.menuData.map((item, idx) => {
@@ -19,7 +20,11 @@ export default class index extends Component {
           if (/^https?:(?:\/\/)?/.test(item.path)) {
             return <a key={idx} target="__blank" href={item.path}>{icon}</a>;
           }
-          return <NavLink activeClassName={styles.selected} key={idx} to={item.path}>{icon}</NavLink>;
+          let noPath = null;
+          if (!routerData[item.path] && item.children && item.children.length > 0) {
+            noPath = item.children[0].path;
+          }
+          return <NavLink activeClassName={styles.selected} key={idx} to={noPath || item.path}>{icon}</NavLink>;
         })}
       </div>
     );

@@ -7,6 +7,7 @@ import Components from './layouts/Components';
 class RoutersController extends React.PureComponent {
   render() {
     const { resetProps } = this.props;
+    console.log('resetProps:', resetProps);
     return (
       <Switch>
         <Route path="/components" render={props => <Components {...props} {...resetProps} />} />

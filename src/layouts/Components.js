@@ -32,7 +32,7 @@ export default class UserLayout extends PureComponent {
           <div className={styles.logo}>
             <Link to="/"> {logo.dark} </Link>
           </div>
-          <Nav menuData={menuData} />
+          <Nav menuData={menuData} routerData={routerData} />
         </div>
         <div className={styles.sidebar}>
           <SiderMenu menuData={menuData} {...this.props} />
