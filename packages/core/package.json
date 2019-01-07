@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "uiw-iconfont": "^1.2.23"
+    "uiw-iconfont": "^1.2.27"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

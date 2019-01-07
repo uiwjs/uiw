@@ -348,6 +348,33 @@ const Demo = () => (
 ```
 <!--End-->
 
+### 文件
+
+<!--DemoStart-->
+```js
+const iconList = [
+  'file-text', 'file-jpg', 'file-unknown', 'file-add', 'file-excel', 'file-pdf',
+  'folder-add', 'folder-open', 'paper-clip', 
+]
+const itemStyl = {
+  fontSize: 18, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
+  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
+}
+const Demo = () => (
+  <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
+    {iconList.map((type, idx) => {
+      return (
+        <div key={idx} style={itemStyl}>
+          <Icon type={type} />
+          <div style={{ color: '#525252', fontSize: 12, paddingTop: 8 }}>{type}</div>
+        </div>
+      )
+    })}
+  </div>
+)
+```
+<!--End-->
+
 ### 其它
 
 <!--DemoStart-->
@@ -359,7 +386,7 @@ const iconList = [
   'tag', 'tag-o','tags','tags-o', 'setting','setting-o','map','table','qrcode','barcode','printer',
   'cloud-upload','cloud-upload-o', 'cloud-download','cloud-download-o', 'download','message','message-o',
   'user', 'usergroup-add', 'zoom-in', 'zoom-out','time', 'time-o',
-  "bell", 'camera-o', 'coffee', 'document', 'delete', 'date', 'edit',  'eye-o', 'environment-o', 'filter', 'global', 'inbox', 'home', 'laptop', 'link'
+  "bell", 'camera-o', 'coffee', 'document', 'delete', 'date', 'edit',  'eye-o', 'environment-o', 'filter', 'global', 'inbox', 'home', 'laptop', 'link', 'copy'
 ]
 const itemStyl = {
   fontSize: 18, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
