@@ -5,10 +5,14 @@ import './style/index.less';
 
 export default class Breadcrumb extends React.Component {
   render() {
-    const { prefixCls, className, ...other } = this.props;
+    const { prefixCls, className, separator, ...other } = this.props;
     const cls = classnames(prefixCls, className);
     return (
-      <div {...{ className: cls, ...other }}>{this.props.children}</div>
+      <div {...{ className: cls, ...other }}>
+        {React.Children.map(this.props.children, (element) => {
+          return React.cloneElement(element, Object.assign({ separator }, element.props, {}));
+        })}
+      </div>
     );
   }
 }
@@ -19,4 +23,5 @@ Breadcrumb.propTypes = {
 
 Breadcrumb.defaultProps = {
   prefixCls: 'w-breadcrumb',
+  separator: '/',
 };
