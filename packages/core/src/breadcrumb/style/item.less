@@ -1,14 +1,19 @@
-@breadcrumb-item-prefix:~"w-breadcrumb-item";
+@breadcrumb-prefix:~"w-breadcrumb";
 
-.@{breadcrumb-item-prefix} {
+.@{breadcrumb-prefix}-item {
   display: inline-flex;
   & + & {
-    &::before {
-      display: inline-block;
+    &::before, .@{breadcrumb-prefix}-separator {
       padding-right: 8px;
       padding-left: 8px;
       color: #6E6E6E;
+    }
+    &::before {
+      display: inline-block;
       content: attr(data-separator);
+    }
+    &.no-before:before {
+      display: none;
     }
     &.no-separator {
       margin-left: 6px;

@@ -17,7 +17,7 @@ const Demo = () => (
   <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <Breadcrumb>
       <Breadcrumb.Item>首页</Breadcrumb.Item>
-      <Breadcrumb.Item data-separator=">">活动管理</Breadcrumb.Item>
+      <Breadcrumb.Item separator=">">活动管理</Breadcrumb.Item>
       <Breadcrumb.Item>活动列表</Breadcrumb.Item>
       <Breadcrumb.Item active>活动详情</Breadcrumb.Item>
     </Breadcrumb>
@@ -36,7 +36,15 @@ const Demo = () => (
   <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <Breadcrumb>
       <Breadcrumb.Item><a href="#">Home</a></Breadcrumb.Item>
-      <Breadcrumb.Item data-separator=">"><a href="#">Library</a></Breadcrumb.Item>
+      <Breadcrumb.Item separator=">"><a href="#">Library</a></Breadcrumb.Item>
+      <Breadcrumb.Item active>Data</Breadcrumb.Item>
+    </Breadcrumb>
+    <Divider />
+    <Breadcrumb separator="#">
+      <Breadcrumb.Item><a href="#">Home</a></Breadcrumb.Item>
+      <Breadcrumb.Item separator={<span>+</span>}><a href="#">Home</a></Breadcrumb.Item>
+      <Breadcrumb.Item separator={<Icon type="home" verticalAlign="baseline" />}><a href="#">Icon</a></Breadcrumb.Item>
+      <Breadcrumb.Item separator=">"><a href="#">Library</a></Breadcrumb.Item>
       <Breadcrumb.Item active>Data</Breadcrumb.Item>
     </Breadcrumb>
   </div>
@@ -57,16 +65,16 @@ const Demo = () => (
       <Breadcrumb.Item>
         <a href="#"><Icon style={stylIcon} type="home"/></a>
       </Breadcrumb.Item>
-      <Breadcrumb.Item data-separator=">">
+      <Breadcrumb.Item separator=">">
         <a href="#"><Icon style={stylIcon} type="apple"/>Library</a>
       </Breadcrumb.Item>
-      <Breadcrumb.Item data-separator=">">
+      <Breadcrumb.Item separator=">">
         <a href="#"><Icon style={stylIcon} type="pie-chart"/>Chart</a>
       </Breadcrumb.Item>
-      <Breadcrumb.Item data-separator="">
+      <Breadcrumb.Item separator="">
         <a href="#"><Icon style={{...stylIcon, marginRight: 0}} type="star-on"/> Chart</a>
       </Breadcrumb.Item>
-      <Breadcrumb.Item data-separator="" active>Data</Breadcrumb.Item>
+      <Breadcrumb.Item separator="" active>Data</Breadcrumb.Item>
     </Breadcrumb>
   </div>
 )
@@ -79,11 +87,12 @@ const Demo = () => (
 |--------- |-------- |--------- |-------- |
 | style | 样式 | String | - |
 | className | 样式名称 | String | `w-breadcrumb` |
+| separator | 分隔符自定义，定义所有子组件的分隔符。 | String | `/` |
 
 ## Breadcrumb.Item
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | className | 样式名称 | String | `w-breadcrumb-itme` |
-| separator | 分隔符自定义，子组件可以单独定义不同的分隔符。 | String | `/` |
+| separator | 分隔符自定义，子组件可以单独定义不同的分隔符。 | String | - |
 

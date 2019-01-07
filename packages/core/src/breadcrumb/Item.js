@@ -5,10 +5,18 @@ import './style/item.less';
 
 export default class BreadcrumbItem extends React.Component {
   render() {
-    const { prefixCls, className, active, ...other } = this.props;
-    const cls = classnames(prefixCls, className, { active, ['no-separator']: !other['data-separator'] });
+    const { prefixCls, className, active, separator, ...other } = this.props;
+    const isElm = React.isValidElement(separator);
+    const cls = classnames(`${prefixCls}-item`, className, { active, ['no-separator']: !separator, ['no-before']: isElm });
+    const props = { className: cls, ...other }
+    if (!isElm) {
+      props['data-separator'] = separator;
+    }
     return (
-      <span {...{ className: cls, ...other }}>{this.props.children}</span>
+      <span {...props}>
+        {isElm && <span className={`${prefixCls}-separator`}>{separator}</span>}
+        {this.props.children}
+      </span>
     );
   }
 }
@@ -18,6 +26,5 @@ BreadcrumbItem.propTypes = {
 };
 
 BreadcrumbItem.defaultProps = {
-  prefixCls: 'w-breadcrumb-item',
-  ['data-separator']: '/',
+  prefixCls: 'w-breadcrumb',
 };

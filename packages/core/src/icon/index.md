@@ -93,8 +93,8 @@ const Demo = () => (
 ```js
 const Demo = () => (
   <div>
-    <h3 style={{ margin: 0 }}>Exit <Icon type="baidu" /></h3>
-    <span>uiw</span><Icon type="uiw" style={{fill: '#009688', fontSize: 21}} />
+    <h3 style={{ margin: 0 }}>Exit <Icon verticalAlign="baseline" type="baidu" /></h3>
+    <span>uiw</span><Icon type="uiw" verticalAlign="baseline" style={{fill: '#009688', fontSize: 21}} />
   </div>
 )
 ```
