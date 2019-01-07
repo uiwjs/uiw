@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://uiw-react.github.io">
-    <img width="150" src="https://raw.githubusercontent.com/uiw-react/uiw/master/docs/assets/logo-README.svg?sanitize=true">
+    <img width="150" src="https://raw.githubusercontent.com/uiw-react/uiw/master/src/assets/logo-README.svg?sanitize=true">
   </a>
 </p>
 <p align="center">
@@ -60,7 +60,7 @@ ReactDOM.render(
 Visit the [uiw-react.github.io](https://uiw-react.github.io) website for more information.
 
 <p align="center">
-<a href="https://uiw-react.github.io"><img src="https://raw.githubusercontent.com/uiw-react/uiw/master/docs/assets/uiw-doc.png" /></a>
+<a href="https://uiw-react.github.io"><img src="https://raw.githubusercontent.com/uiw-react/uiw/master/src/assets/uiw-doc.png" /></a>
 </p>
 
 ### Development
