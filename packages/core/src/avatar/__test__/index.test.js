@@ -20,7 +20,7 @@ describe('<Avatar />', () => {
     let tree = component.toJSON();
     expect(isCompositeComponent(component.getInstance())).toBe(true);
     expect(isDOMComponent(component.getInstance())).toBe(false);
-    expect(tree).toMatchSnapshot();
+    // expect(tree).toMatchSnapshot();
     expect(tree.type).toBe('span');
     expect(tree.children).toBeNull();
     expect(tree.props.className).toBe('w-avatar w-avatar-default w-avatar-circle');
