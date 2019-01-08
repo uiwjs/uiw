@@ -228,6 +228,6 @@ const Demo = () => (
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| fixed | 如果为`true`，则列宽固定为其内容的宽度 | boolean | - |
+| fixed | 如果为 `true`，则列宽固定为其内容的宽度 | boolean | - |
 | grow | 列的宽度相对于同一网格中其他列的比率 | number | - |
 | align | 网格中列的对齐方式 | Enum{`top`, `middle`, `bottom`, `baseline`} | - |
