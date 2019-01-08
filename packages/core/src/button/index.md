@@ -399,4 +399,3 @@ const Demo = () => (
 | 参数 | 说明 | 类型 | 默认值 |
 | -------- | -------- | -------- | -------- |
 | vertical | 竖排列 | Boolean | `false` |
-| vertical | 竖排列 | Boolean | `false` |

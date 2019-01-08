@@ -43,7 +43,7 @@ const Demo = () => (
 <!--DemoStart-->
 ```js
 const Demo = () => (
-  <div>
+  <div style={{ fontSize: 18, lineHeight: '12px' }}>
     <Icon type="heart-on" />
     <Icon type="pie-chart" />
     <Icon type="tag" />

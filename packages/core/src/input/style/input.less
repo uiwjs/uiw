@@ -36,14 +36,50 @@
     width: 100%;
   }
 
-  :last-child {
+  > :last-child:not(input) {
     right: 0;
+    height: 100%;
   }
-  .w-icon {
+  > .w-icon {
     position: absolute;
     margin: 0 7px 0 7px;
     transform: translateY(-50%);
-    color: #393E48;
     top: 50%;
+  }
+  &-addon-after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 3px;
+    .w-tag, .w-btn {
+      display: table;
+      height: 100%;
+      line-height: 14px;
+      > span {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+    .w-tag {
+      background: transparent;
+      > span {
+        height: 100%;
+      }
+    }
+    .w-btn:focus {
+      box-shadow: 0 0 0 0;
+    }
+  }
+  &-large {
+    .@{w-input}-inner {
+      line-height: 36px;
+      height: 36px;
+    }
+  }
+  &-small {
+    .@{w-input}-inner {
+      line-height: 24px;
+      height: 24px;
+    }
   }
 }
