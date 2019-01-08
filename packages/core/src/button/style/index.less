@@ -43,11 +43,13 @@
   }
 }
 
-.button-size(@padding-vertical, @padding-horizontal, @font-size, @line-height, @min-height) {
-  padding: @padding-vertical @padding-horizontal;
+.button-size(@font-size, @icon-size, @line-height, @min-height) {
   font-size: @font-size;
   line-height: @line-height;
   min-height: @min-height;
+  .w-icon {
+    font-size: @icon-size;
+  }
 }
 
 .@{w-btn} {
@@ -124,11 +126,15 @@
       z-index: 0;
     }
   }
+  .w-icon {
+    font-size: 16px;
+  }
   &-large {
-    .button-size(10px, 14px, 16px, 16px, 30px)
+    .button-size(16px, 20px, 16px, 36px)
   }
   &-small {
-    .button-size(5px, 10px, 12px, 12px, 24px)
+    padding: 0 7px;
+    .button-size(12px, 14px, 12px, 24px)
   }
   & .w-icon:not(:last-child) {
     margin-right: 5px;

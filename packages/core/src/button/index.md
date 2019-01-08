@@ -370,6 +370,11 @@ const Demo = () => (
     <Button size="small" type="danger">错误按钮</Button>
     <Button size="default" type="light">亮按钮</Button>
     <Button size="large" type="dark">暗按钮</Button>
+    <Divider />
+    <Button icon="weibo" size="small" type="primary">微博</Button>
+    <Button icon="chrome" size="small" type="success">谷歌浏览器</Button>
+    <Button icon="chrome" type="success">谷歌浏览器</Button>
+    <Button icon="apple" size="large" type="warning">淘宝</Button>
   </div>
 );
 ```
