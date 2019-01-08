@@ -4,12 +4,27 @@ import classnames from 'classnames';
 import Icon from '../icon';
 import './style/input.less';
 
+const FancyButton = React.forwardRef((props, ref) => (
+  <span ref={ref} className={props.className}>
+    {props.children}
+  </span>
+));
+
 export default class Input extends React.Component {
   static defaultProps = {
     prefixCls: 'w-input',
     preIcon: null,
     type: 'text',
     size: 'default',
+  }
+  constructor(props) {
+    super(props);
+    this.addonRef = React.createRef();
+  }
+  componentDidMount() {
+    if (this.addonRef.current && this.input) {
+      this.input.style.paddingRight = `${this.addonRef.current.clientWidth}px`;
+    }
   }
   render() {
     const { prefixCls, size, type, preIcon, addonAfter, ...props } = this.props;
@@ -21,6 +36,7 @@ export default class Input extends React.Component {
       <div className={cls}>
         <Icon type={preIcon} />
         <input
+          ref={node => this.input = node}
           type={type}
           {...props}
           className={classnames(`${prefixCls}-inner`, {
@@ -28,9 +44,7 @@ export default class Input extends React.Component {
           })}
         />
         {addonAfter && (
-          <span className={`${prefixCls}-addon-after`} ref={this.addonAfter}>
-            {addonAfter}
-          </span>
+          <FancyButton className={`${prefixCls}-addon-after`} ref={this.addonRef}> {addonAfter} </FancyButton>
         )}
       </div>
     );
