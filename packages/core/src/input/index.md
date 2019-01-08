@@ -43,6 +43,8 @@ const Demo = () => (
 
 ### 后面插入内容
 
+向后面插入 [`Button`](/components/button) 或者 [`Tag`](/components/tag)
+
 <!--DemoStart--> 
 ```js
 const Demo = () => (
@@ -64,7 +66,7 @@ const Demo = () => (
       </Col>
       <Col fixed>
         <Input
-          preIcon="tag"
+          preIcon="search"
           placeholder="请输入内容"
           addonAfter={<Button icon="apple" size="small" type="primary">按钮</Button>}
         />
@@ -102,9 +104,9 @@ const Demo = () => (
       </Col>
       <Col fixed>
         <Input
-          preIcon="tag"
+          preIcon="search"
           placeholder="请输入内容"
-          addonAfter={<Tag title="1000" titleColor="#28a745" />}
+          addonAfter={<Button icon="arrow-right" basic size="small" type="dark" />}
         />
       </Col>
       <Col fixed>
@@ -152,9 +154,9 @@ const Demo = () => (
       </Col>
       <Col fixed>
         <Input
-          preIcon="tag"
+          preIcon="search"
           placeholder="请输入内容"
-          addonAfter={<Button icon="apple" size="small" type="primary">按钮</Button>}
+          addonAfter={<Button size="small" type="primary">搜索</Button>}
         />
       </Col>
       <Col fixed>
@@ -177,18 +179,54 @@ const Demo = () => (
       <Col fixed>
         <Input
           placeholder="请输入内容"
-          addonAfter={<Button icon="apple" size="small" type="danger">按钮</Button>}
+          addonAfter={<Button size="small" type="danger">按钮</Button>}
         />
       </Col>
       <Col fixed>
         <Input
           placeholder="请输入内容"
-          addonAfter={<Button icon="apple" size="small" type="warning">按钮</Button>}
+          addonAfter={<Button size="small" type="warning">按钮</Button>}
         />
       </Col>
     </Row>
   </div>
 )
+```
+<!--End-->
+
+
+### 密码输入框
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor() {
+    super();
+    this.state = {
+      btnIcon: 'lock',
+    }
+  }
+  onClick() {
+    console.log('this.state.btnIcon:',this.state.btnIcon);
+    this.setState({
+      btnIcon: this.state.btnIcon === 'lock' ? 'unlock' : 'lock',
+    })
+  }
+  render() {
+    return (
+      <Row gutter={10} style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+        <Col fixed>
+          <Input
+            preIcon="like-o"
+            type={this.state.btnIcon === 'lock' ? 'password' : 'text'}
+            placeholder="请输入密码"
+            addonAfter={<Button icon={this.state.btnIcon} onClick={this.onClick.bind(this)} size="small" basic type="dark" />}
+          />
+        </Col>
+      </Row>
+    )
+  }
+}
 ```
 <!--End-->
 
