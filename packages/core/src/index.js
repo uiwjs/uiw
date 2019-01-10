@@ -9,6 +9,7 @@ export { default as Breadcrumb } from './breadcrumb';
 export { default as Col } from './grid/Col';
 export { default as CopyToClipboard } from './copy-to-clipboard';
 export { default as Checkbox } from './checkbox';
+export { default as Overlay } from './overlay';
 export { default as Icon } from './icon';
 export { default as Input } from './input';
 export { default as List } from './list';
