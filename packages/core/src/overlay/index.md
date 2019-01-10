@@ -16,6 +16,46 @@ class Demo extends React.PureComponent {
     super(props);
     this.state = {
       isOpen: false,
+      hasBackdrop: true,
+    }
+  }
+  toggleOverlay(hasBackdrop, e) {
+    console.log('hasBackdrop:---->', e, hasBackdrop);
+    this.setState({ isOpen: !this.state.isOpen, hasBackdrop });
+  }
+  render() {
+    console.log('hasBackdrop:', this.state.hasBackdrop);
+    return (
+      <div>
+        <Button type="primary" onClick={this.toggleOverlay.bind(this, true)}>点击弹出内容</Button>
+        <Button type="primary" onClick={this.toggleOverlay.bind(this, false)}>弹出内容没有遮罩层</Button>
+        <Overlay hasBackdrop={this.state.hasBackdrop} isOpen={this.state.isOpen} onClose={this.toggleOverlay.bind(this)}>
+          <Card bordered={false} style={{ width: 500 }}>
+            <h3 style={{marginTop: 0}}>基础弹出层</h3>
+            <div>
+              这是一个基础的弹出层组件，其它弹出层组件基于它来扩展比如 Modal、Alert
+            </div>
+            <Button type="danger" onClick={this.toggleOverlay.bind(this)}>关闭</Button>
+          </Card>
+        </Overlay>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
+### usePortal
+
+[`Portals`](https://reactjs.org/docs/portals.html#event-bubbling-through-portals) 是 react 16 提供的官方解决方案，使得组件可以脱离父组件层级挂载在 DOM 树的任何位置，我们利用这个方法，可将模态对话框生成到根节点的外面，默认情况生成到跟节点的外面，通过将 `usePortal` 设置为 `false` 将对话框生成在父组件层级挂载的 DOM 树中。 
+
+<!--DemoStart--> 
+```js
+class Demo extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false,
     }
   }
   toggleOverlay(e) {
@@ -25,11 +65,11 @@ class Demo extends React.PureComponent {
     return (
     <div>
       <Button type="primary" onClick={this.toggleOverlay.bind(this)}>点击弹出内容</Button>
-      <Overlay isOpen={this.state.isOpen} onClose={this.toggleOverlay.bind(this)}>
-        <Card bordered={false} style={{ width: 500 }}>
-            <h3 style={{marginTop: 0}}>基础弹出层</h3>
-            <Divider />
-            <Button type="danger" onClick={this.toggleOverlay.bind(this)}>关闭</Button>
+      <Overlay usePortal={false} isOpen={this.state.isOpen} onClose={this.toggleOverlay.bind(this)}>
+        <Card style={{ width: 500 }}>
+          <h3 style={{marginTop: 0}}>基础弹出层</h3>
+          <p>Portals 是 react 16 提供的官方解决方案，使得组件可以脱离父组件层级挂载在DOM树的任何位置，我们利用这个方法，可将模态对话框生成到根节点的外面，默认情况生成到跟节点的外面，通过将 usePortal 设置为 false 将对话框生成在父组件层级挂载的DOM树中。</p>
+          <Button type="danger" onClick={this.toggleOverlay.bind(this)}>关闭</Button>
         </Card>
       </Overlay>
     </div>
@@ -99,9 +139,10 @@ class Demo extends React.PureComponent {
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | isOpen | 对话框是否可见 | boolean | `false` |
+| usePortal | 使用 react 16 提供的官方解决方案 [`Portals`](https://reactjs.org/docs/portals.html#event-bubbling-through-portals)，将模态对话框生成到根节点的外面。 |  boolean | `true` |
 | maskClosable | 点击遮罩层是否允许关闭 | bool | `true` |
 | backdropProps | 遮罩层 HTML 属性设置 | object | `{}` |
-| hasBackdrop | 是否向 `<body>` 添加样式 `.w-overlay-open` 防止滚动条出现 | bool | `true` |
+| hasBackdrop | 是否有背景，是否向 `<body>` 添加样式 `.w-overlay-open` 防止滚动条出现 | bool | `true` |
 | transitionName | 内部 [`CSSTransitionsss`](http://reactcommunity.org/react-transition-group/css-transition/) 的转换名称。在此提供您自己的名称将需要定义新的 CSS 过渡属性。 | string | `w-overlay` |
 | transitionDuration | 持续时间 | number | `300` |
 | onOpening | 顺序 `1`，**`打开`**立即执行，在应用 `enter-active` 或 `appear-active` 类后立即触发 [`<Transition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。 | Function(node: HtmlElement, isAppearing: bool) | - |

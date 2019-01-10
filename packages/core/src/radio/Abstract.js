@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-export default class Radio extends React.Component {
+export default class Abstract extends React.Component {
   render() {
     const { prefixCls, className, style, children, checked, disabled, size, value, ...other } = this.props;
     const cls = classnames(prefixCls, className, {
@@ -21,7 +21,7 @@ export default class Radio extends React.Component {
   }
 }
 
-Radio.propTypes = {
+Abstract.propTypes = {
   prefixCls: PropTypes.string,
   type: PropTypes.string,
   onChange: PropTypes.func,
@@ -30,7 +30,7 @@ Radio.propTypes = {
   checked: PropTypes.oneOf([undefined, false, true]),
 };
 
-Radio.defaultProps = {
+Abstract.defaultProps = {
   prefixCls: 'w-radio',
   type: 'radio',
   disabled: false,
