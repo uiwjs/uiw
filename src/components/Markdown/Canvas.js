@@ -58,7 +58,7 @@ export default class Canvas extends React.Component {
       <div className={styles.warpper}>
         <div className={styles.demo}>
           <div className={styles.background}>
-            <svg width="100%" height="100%" preserveAspectRatio="none" style={{ display: 'flex' }}>
+            <svg width="100%" height="100%" preserveAspectRatio="none" style={{ display: 'block' }}>
               <pattern id="pattern" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
                 <rect fill="rgba(0, 0, 0, 0.06)" x="0" width="8" height="8" y="0" />
                 <rect fill="rgba(0, 0, 0, 0.06)" x="8" width="8" height="8" y="8" />
