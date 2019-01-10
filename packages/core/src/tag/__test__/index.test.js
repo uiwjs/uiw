@@ -8,5 +8,6 @@ describe('<Tag />', () => {
     let component = renderer.create(<Tag />);
     let tree = component.toJSON();
     expect(isCompositeComponent(component.getInstance())).toBe(true)
+    expect(isDOMComponent(component.getInstance())).toBe(false);
   })
 })
