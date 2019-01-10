@@ -38,6 +38,8 @@ const menuData = [
       { name: 'List 列表', path: 'list' },
       { divider: true, name: '导航' },
       { name: 'Breadcrumb 面包屑', path: 'breadcrumb' },
+      { divider: true, name: '反馈' },
+      { name: 'Overlay 基础弹出层', path: 'overlay' },
       { divider: true, name: '其它' },
       { name: 'Divider 分割线', path: 'divider' },
       { name: 'CopyToClipboard 复制', path: 'copy-to-clipboard' },

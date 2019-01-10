@@ -97,6 +97,9 @@ export const getRouterData = () => {
     '/components/rate': {
       component: dynamicWrapper([], () => import('../routes/components/rate')),
     },
+    '/components/overlay': {
+      component: dynamicWrapper([], () => import('../routes/components/overlay')),
+    },
   };
   return conf;
 };
