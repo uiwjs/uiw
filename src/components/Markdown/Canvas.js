@@ -14,18 +14,16 @@ export default class Canvas extends React.Component {
     super(props);
     this.state = {
       code: '',
+      height: 0,
       visible: false,
     };
     this.playerId = `${parseInt(Math.random() * 1e9, 10).toString(36)}`;
   }
   componentDidMount() {
-    this.setState({
-      code: this.props.children,
-    });
     this.executeCode(this.props.children);
   }
   onSwitchSource() {
-    this.setState({ visible: !this.state.visible });
+    this.setState({ height: this.state.height === 0 ? this.codeDom.clientHeight : 0 });
   }
   executeCode(codeStr) {
     try {
@@ -69,21 +67,23 @@ export default class Canvas extends React.Component {
           <div className={styles.source} id={this.playerId} />
         </div>
         <div
-          className={classNames(styles.code, {
-            [styles.visible]: !this.state.visible,
-          })}
+          style={{ height: this.state.height }}
+          className={classNames(styles.code)}
         >
-          <CodeMirror
-            value={trim(this.state.code)}
-            onChange={(editor) => {
-              this.executeCode(editor.getValue());
-            }}
-            options={{
-              theme: 'monokai',
-              keyMap: 'sublime',
-              mode: 'jsx',
-            }}
-          />
+          <div ref={node => this.codeDom = node}>
+            <CodeMirror
+              value={trim(this.props.children)}
+              onChange={(editor) => {
+                this.executeCode(editor.getValue());
+              }}
+              options={{
+                theme: 'monokai',
+                keyMap: 'sublime',
+                mode: 'jsx',
+                lineNumbers: false,
+              }}
+            />
+          </div>
         </div>
         <div className={styles.controlBtn} onClick={this.onSwitchSource.bind(this)}>{this.state.visible ? '隐藏代码' : '显示代码'}</div>
       </div>
