@@ -31,6 +31,10 @@
   </a>
 </p>
 
+<p align="center">
+  <a href="https://uiw-react.github.io"><img src="https://raw.githubusercontent.com/uiw-react/uiw/master/src/assets/uiw-doc.png" /></a>
+</p>
+
 uiw
 ---
 
@@ -58,10 +62,6 @@ ReactDOM.render(
 ### Documentation
 
 Visit the [uiw-react.github.io](https://uiw-react.github.io) website for more information.
-
-<p align="center">
-<a href="https://uiw-react.github.io"><img src="https://raw.githubusercontent.com/uiw-react/uiw/master/src/assets/uiw-doc.png" /></a>
-</p>
 
 ### Development
 
