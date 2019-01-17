@@ -38,7 +38,7 @@ export default class Overlay extends React.Component {
   }
   handleDocumentClick = (e) => {
     const { maskClosable, hasBackdrop, isOpen, onClose } = this.props;
-    if (isOpen && maskClosable) {
+    if (isOpen && maskClosable && hasBackdrop) {
       onClose(hasBackdrop, e);
     }
   }

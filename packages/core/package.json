@@ -49,6 +49,7 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
+    "babel-plugin-transform-remove-imports": "^1.0.6",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },
