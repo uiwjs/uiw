@@ -2,9 +2,11 @@ import React, { PureComponent } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import Nav from '../components/Nav';
 import SiderMenu from '../components/SiderMenu';
+import VersionSelect from '../components/VersionSelect';
 import { getMenuData, getMenuCurrentData } from '../common/menu';
 import logo from '../components/icons/logo';
 import styles from './index.module.less';
+import version from '../version.json';
 
 export default class UserLayout extends PureComponent {
   render() {
@@ -38,6 +40,9 @@ export default class UserLayout extends PureComponent {
           <SiderMenu menuData={menuData} {...this.props} />
         </div>
         <div className={styles.content}>
+          <div className={styles.toolbar}>
+            <VersionSelect data={version} />
+          </div>
           <Switch>
             {RouteComponents}
           </Switch>

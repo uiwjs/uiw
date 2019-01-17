@@ -57,7 +57,7 @@ const menuData = [
   },
 ];
 
-function formatter(data, parentPath = '/', pathname) {
+function formatter(data, parentPath = '/') {
   return Object.keys(data).map((item) => {
     let { path } = data[item];
     if (/^https?:(?:\/\/)?/.test(path)) {
