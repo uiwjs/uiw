@@ -28,7 +28,7 @@ import { Icon } from '@uiw/core';
 
 示例如下:
 
-```js
+```jsx
 const Demo = () => (
   <div>
     <Icon type="arrow-down" />
@@ -190,7 +190,7 @@ import 'uiw-iconfont/fonts/w-icon.css';
 
 在 React 中使用：
 
-```js
+```jsx
 const Demo = () => (
   <div style={{ color: 'green' }}>
     <i className="w-icon-apple" />
