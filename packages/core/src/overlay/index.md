@@ -35,7 +35,7 @@ class Demo extends React.PureComponent {
             <div>
               这是一个基础的弹出层组件，其它弹出层组件基于它来扩展比如 Modal、Alert
             </div>
-            <Button type="danger" onClick={this.toggleOverlay.bind(this)}>关闭</Button>
+            <Button type="danger" onClick={this.toggleOverlay.bind(this, false)}>关闭</Button>
           </Card>
         </Overlay>
       </div>
