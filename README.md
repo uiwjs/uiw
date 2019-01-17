@@ -43,15 +43,17 @@ A high quality UI Toolkit, A Component Library for React 16+. 💘
 ### Installation
 
 ```bash
-npm install uiw --save
+npm install @uiw/core@2.0.0-beta.1 --save
 ```
+
+You can use the [`uiw v1.x`](https://github.com/uiw-react/uiw/tree/v1) version.
 
 ### Basic Usage
 
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from 'uiw';
+import { Button } from '@uiw/core';
 
 ReactDOM.render(
   <Button type="primary">Hello</Button>, 
@@ -71,8 +73,6 @@ To develop, run the self-reloading build, Get the code:
 $ git clone https://github.com/uiw-react/uiw.git
 $ cd uiw
 $ npm install # or  yarn install
-# or
-$ npm install --phantomjs_cdnurl=http://npm.taobao.org/mirrors/phantomjs
 ```
 
 To develop, run the self-reloading build:
@@ -84,7 +84,7 @@ To develop, run the self-reloading build:
 $ npm start
 ```
 
-Open your browser and visit http://127.0.0.1:2087
+Open your browser and visit http://localhost:19870
 
 Update the document
 
@@ -95,12 +95,27 @@ npm run deploy
 Folders
 
 ```bash
-├── dist           # document the static file.
-├── docs           # documentation in markdown
-├── lib            
+├── LICENSE
+├── README.md
 ├── package.json
-├── script
-└── src            # react source code 
+├── packages        # Component library source code
+│   └── core
+│       ├── lib
+│       └── src
+├── public          # Document the static file.
+└── src             # Document website source code.
+    ├── Router.js
+    ├── assets
+    ├── common      # Menu and routing configuration.
+    ├── components
+    ├── history.js
+    ├── index.js
+    ├── layouts
+    ├── models
+    ├── routes
+    ├── store
+    ├── styles
+    └── utils
 ```
 
 ### License
