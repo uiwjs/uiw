@@ -9,5 +9,11 @@ describe('<Tag />', () => {
     let tree = component.toJSON();
     expect(isCompositeComponent(component.getInstance())).toBe(true)
     expect(isDOMComponent(component.getInstance())).toBe(false);
+    expect(tree.type).toBe('span');
+  })
+  test('Basic component loading 2', () => {
+    const app = TestUtils.renderIntoDocument(<Tag />);
+    let TagElm = TestUtils.scryRenderedDOMComponentsWithTag(app, 'span');
+    expect(TagElm.length).toBe(1)
   })
 })
