@@ -23,7 +23,7 @@ export default {
   ],
   output: {
     path: paths.appBuildDist,
-    publicPath: '/',
+    publicPath: './',
     filename: 'js/[name].[chunkhash:8].js',
   },
   resolve: {
