@@ -3,6 +3,7 @@ export * from './badge';
 export * from './card';
 export * from './divider';
 export { default as Avatar } from './avatar';
+export { default as BackTop } from './back-top';
 export { default as Button } from './button';
 export { default as ButtonGroup } from './button/ButtonGroup';
 export { default as Breadcrumb } from './breadcrumb';
