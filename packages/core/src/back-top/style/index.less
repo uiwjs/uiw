@@ -1,0 +1,22 @@
+@w-back-top:~"w-back-top";
+
+.@{w-back-top} {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  cursor: pointer;
+  z-index: 1006;
+  transition: all 1s;
+  &.no-fixed {
+    cursor: auto;
+    position: static;
+  }
+  &-hide{
+    transition: all 1s;
+    opacity: 0;
+    height: 0px;  
+  }
+  &-show{
+    opacity: 1;
+  }
+}

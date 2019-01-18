@@ -41,8 +41,9 @@ const menuData = [
       { divider: true, name: '反馈' },
       { name: 'Overlay 基础弹出层', path: 'overlay' },
       { divider: true, name: '其它' },
-      { name: 'Divider 分割线', path: 'divider' },
+      { name: 'BackTop 返回顶部', path: 'back-top' },
       { name: 'CopyToClipboard 复制', path: 'copy-to-clipboard' },
+      { name: 'Divider 分割线', path: 'divider' },
     ],
   },
   {

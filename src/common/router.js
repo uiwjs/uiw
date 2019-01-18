@@ -100,6 +100,9 @@ export const getRouterData = () => {
     '/components/overlay': {
       component: dynamicWrapper([], () => import('../routes/components/overlay')),
     },
+    '/components/back-top': {
+      component: dynamicWrapper([], () => import('../routes/components/back-top')),
+    },
   };
   return conf;
 };
