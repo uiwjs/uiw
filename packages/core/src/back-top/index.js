@@ -36,7 +36,7 @@ export default class BackTop extends React.Component {
     return (
       <div onClick={() => clickable && this.scrollToTop()} className={cls} {...other}>
         {content}
-        {children && children({ ...this.state, scrollToTop: this.scrollToTop.bind(this) })}
+        {typeof children !== 'function' ? children : children({ ...this.state, scrollToTop: this.scrollToTop.bind(this) })}
       </div>
     );
   }

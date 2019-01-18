@@ -25,7 +25,7 @@ class Demo extends Component {
 ```
 <!--End-->
 
-## 不固定
+## 函数子组件
 
 点击按钮滚动到顶部
 
@@ -47,6 +47,25 @@ class Demo extends Component {
     );
   }
 }
+```
+<!--End-->
+
+
+## 组件子节点
+
+点击按钮滚动到顶部
+
+<!--DemoStart--> 
+```js
+const Demo = () => (
+  <BackTop
+    fixed={false}
+    step={500}
+    speed={10}
+  >
+    <Button type="success">点击滚动到顶部</Button>
+  </BackTop>
+)
 ```
 <!--End-->
 
