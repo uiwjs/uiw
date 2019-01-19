@@ -2,10 +2,10 @@ import { Form, FormItem, Row, Col, Divider, Button, Input, Checkbox, Switch, Rad
 import Markdown from '../../../components/Markdown';
 
 export default class Page extends Markdown {
-  path = 'src/routes/components/form/index.md';
+  path = 'src/routes/components/form/README.md';
   dependencies = { Form, FormItem, Row, Col, Divider, Button, Input, Checkbox, Switch, Radio, RadioGroup, Select };
   async renderPage() {
-    const md = await import('../../../../packages/core/src/form/index.md');
+    const md = await import('../../../../packages/core/src/form/README.md');
     return md.default || md;
   }
 }

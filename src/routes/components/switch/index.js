@@ -3,10 +3,10 @@ import Markdown from '../../../components/Markdown';
 
 
 export default class Page extends Markdown {
-  path = 'src/routes/components/switch/index.md';
+  path = 'src/routes/components/switch/README.md';
   dependencies = { Switch, Divider };
   async renderPage() {
-    const md = await import('../../../../packages/core/src/switch/index.md');
+    const md = await import('../../../../packages/core/src/switch/README.md');
     return md.default || md;
   }
 }
