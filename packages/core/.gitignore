@@ -1,8 +1,7 @@
-/lib/cjs/
-/lib/esm/
+/lib
 node_modules
 docs
-README.md
+/README.md
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

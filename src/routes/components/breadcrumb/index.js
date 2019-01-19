@@ -2,10 +2,10 @@ import { Breadcrumb, Icon, Divider } from '@uiw/core';
 import Markdown from '../../../components/Markdown';
 
 export default class Page extends Markdown {
-  path = 'src/routes/components/breadcrumb/index.md';
+  path = 'src/routes/components/breadcrumb/README.md';
   dependencies = { Breadcrumb, Icon, Divider };
   async renderPage() {
-    const md = await import('../../../../packages/core/src/breadcrumb/index.md');
+    const md = await import('../../../../packages/core/src/breadcrumb/README.md');
     return md.default || md;
   }
 }

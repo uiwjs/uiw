@@ -3,10 +3,10 @@ import Markdown from '../../../components/Markdown';
 
 
 export default class Page extends Markdown {
-  path = 'src/routes/components/select/index.md';
+  path = 'src/routes/components/select/README.md';
   dependencies = { Select, Row, Col };
   async renderPage() {
-    const md = await import('../../../../packages/core/src/select/index.md');
+    const md = await import('../../../../packages/core/src/select/README.md');
     return md.default || md;
   }
 }
