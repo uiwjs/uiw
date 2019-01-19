@@ -40,6 +40,7 @@ const menuData = [
       { name: 'Breadcrumb 面包屑', path: 'breadcrumb' },
       { divider: true, name: '反馈' },
       { name: 'Overlay 基础弹出层', path: 'overlay' },
+      { name: 'Tooltip 文字提示', path: 'tooltip' },
       { divider: true, name: '其它' },
       { name: 'BackTop 返回顶部', path: 'back-top' },
       { name: 'CopyToClipboard 复制', path: 'copy-to-clipboard' },
