@@ -10,11 +10,11 @@
  * https://daneden.github.io/animate.css/
  */
 
-import React from 'react';
+import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { CSSTransition, TransitionGroup, Transition } from "react-transition-group";
 import classnames from 'classnames';
-import Portal from './Portal';
+import Portal from '../portal';
 import './style/index.less';
 
 const noop = () => undefined;
@@ -74,7 +74,7 @@ export default class Overlay extends React.Component {
   }
   maybeRenderChild(child) {
     const { prefixCls } = this.props;
-    if (child == null) {
+    if (child == null && !this.state.isMount) {
       return null;
     }
     const decoratedChild =
@@ -109,7 +109,7 @@ export default class Overlay extends React.Component {
       transitionDuration,
       transitionName,
     } = this.props;
-    if (hasBackdrop && isOpen) {
+    if (hasBackdrop && isOpen && this.state.isMount) {
       return (
         <CSSTransition classNames={transitionName} key="__backdrop" timeout={transitionDuration}>
           <div
@@ -126,14 +126,14 @@ export default class Overlay extends React.Component {
   }
   handleKeyDown() {}
   render() {
-    const { prefixCls, className, style, isOpen, usePortal, children } = this.props;
+    const { prefixCls, className, style, isOpen, usePortal, children, portalProps } = this.props;
+
     const childrenWithTransitions = isOpen ? React.Children.map(children, this.maybeRenderChild.bind(this)) : [];
     childrenWithTransitions.unshift(this.maybeRenderBackdrop());
     const cls = classnames(prefixCls, className, { open: this.state.isMount, [`${prefixCls}-inline`]: !usePortal });
 
     const TransitionGroupComp = (
       <TransitionGroup
-        appear={true}
         style={style}
         className={cls}
         component="div"
@@ -145,7 +145,7 @@ export default class Overlay extends React.Component {
     )
     if (usePortal) {
       return (
-        <Portal className={this.props.portalClassName} container={this.props.portalContainer}>
+        <Portal {...portalProps}>
           {TransitionGroupComp}
         </Portal>
       );
@@ -160,6 +160,7 @@ Overlay.propTypes = {
   isOpen: PropTypes.bool,
   usePortal: PropTypes.bool,
   maskClosable: PropTypes.bool,
+  portalProps: PropTypes.object,
   backdropProps: PropTypes.object,
   hasBackdrop: PropTypes.bool,
   unmountOnExit: PropTypes.bool,
@@ -177,6 +178,7 @@ Overlay.defaultProps = {
   usePortal: true,
   maskClosable: true,
   backdropProps: {},
+  portalProps: {},
   hasBackdrop: true,
   unmountOnExit: false, // 设置 true 销毁根节点
   transitionDuration: 300,

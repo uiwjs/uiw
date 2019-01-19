@@ -141,6 +141,7 @@ class Demo extends React.PureComponent {
 | isOpen | 对话框是否可见 | boolean | `false` |
 | usePortal | 使用 react 16 提供的官方解决方案 [`Portals`](https://reactjs.org/docs/portals.html#event-bubbling-through-portals)，将模态对话框生成到根节点的外面。 |  boolean | `true` |
 | maskClosable | 点击遮罩层是否允许关闭 | bool | `true` |
+| portalProps | 设置 [`Portal`](https://reactjs.org/docs/portals.html#event-bubbling-through-portals) 组件属性 | object | `{}` |
 | backdropProps | 遮罩层 HTML 属性设置 | object | `{}` |
 | hasBackdrop | 是否有背景，是否向 `<body>` 添加样式 `.w-overlay-open` 防止滚动条出现 | bool | `true` |
 | transitionName | 内部 [`CSSTransitionsss`](http://reactcommunity.org/react-transition-group/css-transition/) 的转换名称。在此提供您自己的名称将需要定义新的 CSS 过渡属性。 | string | `w-overlay` |
