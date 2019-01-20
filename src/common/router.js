@@ -106,6 +106,12 @@ export const getRouterData = () => {
     '/components/back-top': {
       component: dynamicWrapper([], () => import('../routes/components/back-top')),
     },
+    '/components/portal': {
+      component: dynamicWrapper([], () => import('../routes/components/portal')),
+    },
+    '/components/overlay-trigger': {
+      component: dynamicWrapper([], () => import('../routes/components/overlay-trigger')),
+    },
   };
   return conf;
 };

@@ -1,5 +1,4 @@
 @tooltip: ~"w-tooltip";
-
 @tooltip-bg: rgba(0,0,0,.75);
 
 .@{tooltip} {
@@ -22,37 +21,66 @@
     text-align: left;
     text-decoration: none;
     background-color: @tooltip-bg;
-    white-space: nowrap;
     border-radius: 4px;
     min-height: 23px;
     box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
   }
-  &.right &-arrow {
+
+  &.right &-arrow,
+  &.rightTop &-arrow,
+  &.rightBottom &-arrow {
     border-right-color: @tooltip-bg;
     border-width: 5px 5px 5px 0;
     left: 0;
     margin-top: -5px;
     top: 50%;
   }
-  &.top &-arrow {
-    border-top-color: @tooltip-bg;
-    border-width: 5px 5px 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -5px;
-  }
-  &.left &-arrow {
+
+  &.left &-arrow,
+  &.leftTop &-arrow,
+  &.leftBottom &-arrow {
     border-left-color: @tooltip-bg;
     border-width: 5px 0 5px 5px;
     margin-top: -5px;
     right: 0;
     top: 50%;
   }
-  &.bottom &-arrow {
+  &.leftTop &-arrow,
+  &.rightTop &-arrow {
+    top: 15px;
+  }
+  &.leftBottom &-arrow,
+  &.rightBottom &-arrow {
+    bottom: 10px;
+    top: auto;
+  }
+
+  &.top &-arrow,
+  &.topLeft &-arrow,
+  &.topRight &-arrow {
+    border-top-color: @tooltip-bg;
+    border-width: 5px 5px 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -5px;
+  }
+
+  &.bottom &-arrow,
+  &.bottomLeft &-arrow,
+  &.bottomRight &-arrow {
     border-bottom-color: @tooltip-bg;
     border-width: 0 5px 5px;
     left: 50%;
     margin-left: -5px;
     top: 0;
+  }
+  &.bottomLeft &-arrow,
+  &.topLeft &-arrow {
+    left: 15px;
+  }
+  &.bottomRight &-arrow,
+  &.topRight &-arrow {
+    right: 10px;
+    left: auto;
   }
 }
