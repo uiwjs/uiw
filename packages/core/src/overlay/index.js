@@ -12,7 +12,7 @@
 
 import React, { cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { CSSTransition, TransitionGroup, Transition } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 import classnames from 'classnames';
 import Portal from '../portal';
 import './style/index.less';
@@ -78,7 +78,7 @@ export default class Overlay extends React.Component {
     const { onOpening, onOpened, onClosing } = this.props;
     const decoratedChild =
       typeof children === 'object' ? (
-        React.cloneElement(children, {
+        cloneElement(children, {
           className: classnames(children.props.className, `${prefixCls}-content`),
           tabIndex: 0,
         })
@@ -98,13 +98,13 @@ export default class Overlay extends React.Component {
       >
         {(status) => (
           <div className={classnames(prefixCls, className, { [`${prefixCls}-inline`]: !usePortal })} ref={this.container} style={style}>
-            {hasBackdrop && React.cloneElement(<div />, {
+            {hasBackdrop && cloneElement(<div />, {
               ...backdropProps,
               className: classnames(`${prefixCls}-backdrop`, backdropProps.className),
               onMouseDown: this.handleBackdropMouseDown.bind(this),
               tabIndex: this.props.maskClosable ? 0 : null
             })}
-            {React.cloneElement(decoratedChild, {
+            {cloneElement(decoratedChild, {
               [`data-status`]: status
             })}
           </div>
