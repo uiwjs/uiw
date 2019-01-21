@@ -5,22 +5,30 @@ import Overlay from '../overlay';
 import contains from './utils';
 import './style/index.less';
 
-class RefHolder extends React.Component {
+class RefHolder extends React.PureComponent {
   render = () => this.props.children;
 }
 
 const normalizeDelay = delay => delay && typeof delay === 'object' ? delay : { show: delay, hide: delay };
 let zIndex = 999;
 
-export default class OverlayTrigger extends React.Component {
+export default class OverlayTrigger extends React.PureComponent {
   constructor(props, context) {
     super(props, context);
     this.trigger = React.createRef();
     this.popup = React.createRef();
     this.state = {
-      show: !!props.defaultShow,
+      show: !!props.defaultVisible,
       overlayStyl: {}
     };
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.defaultVisible !== this.props.defaultVisible) {
+      !!this.props.defaultVisible ? this.show() : this.hide();
+    }
+  }
+  componentDidMount() {
+    !!this.props.defaultVisible && this.setState({ overlayStyl: { ...this.styles() } });
   }
   getTarget = () => ReactDOM.findDOMNode(this.trigger.current);
   getPopupTarget = () => ReactDOM.findDOMNode(this.popup.current);
@@ -88,12 +96,14 @@ export default class OverlayTrigger extends React.Component {
     }
   }
   hide() {
+    if (!this.state.show) return;
     const { onVisibleChange } = this.props;
     zIndex = zIndex - 1;
     this.setState({ show: false }, () => onVisibleChange(false));
   }
 
   show() {
+    if(this.state.show) return;
     const { onVisibleChange } = this.props;
     zIndex += 1;
     this.setState({
@@ -103,9 +113,8 @@ export default class OverlayTrigger extends React.Component {
       this.setState({ overlayStyl: { ...this.styles() } });
     });
   }
-
   styles() {
-    const { placement } = this.props;
+    const { placement, fixRect } = this.props;
     const sty = {};
     let dom = this.getTarget();
     if (!dom || !document) return sty;
@@ -113,12 +122,15 @@ export default class OverlayTrigger extends React.Component {
     const scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft
     const rect = dom.getBoundingClientRect();
     const popRect = this.getPopupTarget().getBoundingClientRect();
-    
+    if (fixRect) {
+      popRect.width = popRect.width * fixRect;
+      popRect.height = popRect.height * fixRect;
+    }
     const diffwidth = popRect.width - rect.width;
     const diffheight = popRect.height - rect.height;
 
-    sty.left = scrollLeft + rect.left
-    sty.top = scrollTop + rect.top
+    sty.left = scrollLeft + rect.left;
+    sty.top = scrollTop + rect.top;
 
     switch (placement) {
       case 'topLeft':
@@ -193,11 +205,12 @@ export default class OverlayTrigger extends React.Component {
         </RefHolder>
         <Overlay
           {...props}
-          ref={this.popup}
+          className="w-overlay-trigger"
+          usePortal={true}
           isOpen={this.state.show}
           hasBackdrop={false}
         >
-          {cloneElement(overlay, { placement: this.props.placement })}
+          {cloneElement(overlay, { placement: this.props.placement, ref: this.popup })}
         </Overlay>
       </>
     );
@@ -207,7 +220,8 @@ export default class OverlayTrigger extends React.Component {
 OverlayTrigger.propTypes = {
   prefixCls: PropTypes.string,
   onVisibleChange: PropTypes.func,
-  defaultShow: PropTypes.bool,
+  defaultVisible: PropTypes.bool,
+  fixRect: PropTypes.number,
   delay: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.shape({
@@ -227,8 +241,9 @@ OverlayTrigger.propTypes = {
 };
 
 OverlayTrigger.defaultProps = {
-  prefixCls: 'w-overlay-trigger',
+  prefixCls: 'w-overlay',
+  fixRect: 2,
   onVisibleChange: () => null,
-  defaultShow: false,
+  defaultVisible: false,
   trigger: 'hover',
 };

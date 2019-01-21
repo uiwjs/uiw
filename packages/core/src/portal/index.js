@@ -7,10 +7,15 @@ const cannotCreatePortal = !(typeof ReactDOM.createPortal === 'function');
 
 export default class Portal extends React.Component {
   state = {
-    hasMounted: true,
+    hasMounted: false,
   }
   componentDidMount() {
     this.setState({ hasMounted: true }, this.props.onChildrenMount);
+    if (cannotCreatePortal) {
+      this.unstableRenderNoPortal();
+    }
+  }
+  componentDidUpdate() {
     if (cannotCreatePortal) {
       this.unstableRenderNoPortal();
     }

@@ -121,16 +121,16 @@ const Demo = () => {
 ```js
 const tooltip = (
   <Tooltip>
-    <strong>Hellow uiw!</strong> Check this info. Check this info.
+    <strong>Hellow uiw!</strong>
   </Tooltip>
 );
 const Demo = () => (
   <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
 
-    <OverlayTrigger trigger="hover" placement="top" overlay={tooltip}>
+    <OverlayTrigger usePortal={false} trigger="hover" placement="top" overlay={tooltip}>
       <Button type="primary">悬浮弹出文字提示(top)</Button>
     </OverlayTrigger>
-    <OverlayTrigger trigger="click" placement="top" overlay={tooltip}>
+    <OverlayTrigger usePortal={false} trigger="click" placement="top" overlay={tooltip}>
       <Button type="primary">点击弹出提示(top)</Button>
     </OverlayTrigger>
 
@@ -156,7 +156,7 @@ const Demo = () => (
     <OverlayTrigger trigger="hover" placement="top" overlay={tooltip}>
       <Button type="primary">悬浮弹出文字提示(top)</Button>
     </OverlayTrigger>
-    <OverlayTrigger trigger="click" placement="right" overlay={tooltip}>
+    <OverlayTrigger usePortal={false} trigger="click" placement="right" overlay={tooltip}>
       <Button type="primary">点击弹出提示(right)</Button>
     </OverlayTrigger>
 

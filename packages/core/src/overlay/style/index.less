@@ -8,7 +8,7 @@
   left: 0;
   outline: 0;
   bottom: 0;
-  z-index: -1;
+  z-index: 999;
   -webkit-overflow-scrolling: touch;
   text-align: center;
   height: 100%;
@@ -35,6 +35,7 @@
   }
   &-content {
     display: inline-block;
+    vertical-align: middle;
     text-align: left;
     z-index: 20;
   }
@@ -52,49 +53,51 @@
   }
 }
 
-.@{overlay-prefix}-backdrop.@{overlay-prefix} {
-  &-enter {
-    opacity: 0.01;
-  }
-  &-enter-active {
-    opacity: 1;
-    transition: opacity 300ms ease-in;
-  }
-  &-exit {
-    opacity: 1;
-  }
-  &-exit-active {
-    opacity: 0.01;
-    transition: opacity 300ms ease-in;
-  }
+.@{overlay-prefix}-enter .@{overlay-prefix}-backdrop {
+  opacity: 0.01;
 }
 
-.@{overlay-prefix}-content.@{overlay-prefix} {
-  &-enter, &-exit-active {
-    transform: scale(.5);
-    opacity: 0;
-  }
+.@{overlay-prefix}-enter-active .@{overlay-prefix}-backdrop {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
 
-  &-enter-active {
+.@{overlay-prefix}-exit .@{overlay-prefix}-backdrop {
+  opacity: 1;
+}
+
+.@{overlay-prefix}-exit-active .@{overlay-prefix}-backdrop {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}
+
+// Content animation
+.@{overlay-prefix}-enter .@{overlay-prefix}-content,
+.@{overlay-prefix}-exit-done .@{overlay-prefix}-content,
+.@{overlay-prefix}-exit-active .@{overlay-prefix}-content {
+  transform: scale(.5);
+  opacity: 0;
+}
+
+.@{overlay-prefix}-enter-active .@{overlay-prefix}-content {
+  transform: translate(0);
+  opacity: 1;
+  transition-property: transform, opacity;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+  transition-delay: 0;
+}
+
+.@{overlay-prefix}-exit .@{overlay-prefix}-content {
     transform: translate(0);
     opacity: 1;
-    transition-property: transform, opacity;
-    transition-duration: 300ms;
-    transition-timing-function: ease;
-    transition-delay: 0
-  }
+}
 
-  &-exit {
-    transform: translate(0);
-    opacity: 1
-  }
-
-  &-exit-active {
-    transform: scale(.5);
-    opacity: 0;
-    transition-property: transform,opacity;
-    transition-duration: 300ms;
-    transition-timing-function: ease;
-    transition-delay: 0
-  }
+.@{overlay-prefix}-exit-active .@{overlay-prefix}-content {
+  transform: scale(.5);
+  opacity: 0;
+  transition-property: transform,opacity;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+  transition-delay: 0;
 }
