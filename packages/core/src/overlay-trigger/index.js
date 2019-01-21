@@ -18,17 +18,17 @@ export default class OverlayTrigger extends React.PureComponent {
     this.trigger = React.createRef();
     this.popup = React.createRef();
     this.state = {
-      show: !!props.defaultVisible,
+      show: !!props.visible,
       overlayStyl: {}
     };
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.defaultVisible !== this.props.defaultVisible) {
-      !!this.props.defaultVisible ? this.show() : this.hide();
+    if (prevProps.visible !== this.props.visible) {
+      !!this.props.visible ? this.show() : this.hide();
     }
   }
   componentDidMount() {
-    !!this.props.defaultVisible && this.setState({ overlayStyl: { ...this.styles() } });
+    !!this.props.visible && this.setState({ overlayStyl: { ...this.styles() } });
   }
   getTarget = () => ReactDOM.findDOMNode(this.trigger.current);
   getPopupTarget = () => ReactDOM.findDOMNode(this.popup.current);
@@ -220,7 +220,7 @@ export default class OverlayTrigger extends React.PureComponent {
 OverlayTrigger.propTypes = {
   prefixCls: PropTypes.string,
   onVisibleChange: PropTypes.func,
-  defaultVisible: PropTypes.bool,
+  visible: PropTypes.bool,
   fixRect: PropTypes.number,
   delay: PropTypes.oneOfType([
     PropTypes.number,
@@ -244,6 +244,6 @@ OverlayTrigger.defaultProps = {
   prefixCls: 'w-overlay',
   fixRect: 2,
   onVisibleChange: () => null,
-  defaultVisible: false,
+  visible: false,
   trigger: 'hover',
 };

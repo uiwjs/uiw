@@ -181,7 +181,7 @@ class Demo extends React.Component {
       <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
         <OverlayTrigger
           onVisibleChange={this.onVisibleChange.bind(this)}
-          defaultVisible={this.state.isVisbale}
+          visible={this.state.isVisbale}
           placement="right"
           overlay={card}
         >
@@ -204,5 +204,5 @@ class Demo extends React.Component {
 | trigger | 指定弹出框位置 | Enum{`hover`, `click`} | `hover` |
 | fixRect | 获取宽度问题，默认弹框动画出现之前将弹框缩小一倍，动画进入是一个放大效果，这个时候去获取样式的时候就会有计算不准确的情况，如目前自带动画效果，样式 `transform: scale(.5)` 将原来的节点缩小一半，我们获取 Dom 节点的宽度只有原来的一半，这个时候可以通过这个方法来校准，才能获取动画完成之后的尺寸。<br />⚠️ 这不是一个永久 `API` 后期会解决此问题 | Number | `2` |
 | delay | 延迟进入和消失，`{ show: 2000, hide: 4000 }` 或者直接设置 `2000`，只对 `trigger=hover` 有效 | Object/Number | - |
-| defaultVisible | 默认是否显示弹窗 | Enum{`hover`, `click`} | `hover` |
+| visible | 默认是否显示弹窗 | Enum{`hover`, `click`} | `hover` |
 | onVisibleChange | 显示隐藏的回调 | Function(isVisible:bool) | - |
