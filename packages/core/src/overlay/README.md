@@ -20,11 +20,11 @@ class Demo extends React.PureComponent {
     }
   }
   toggleOverlay(hasBackdrop, e) {
-    console.log('hasBackdrop:---->', e, hasBackdrop);
+    // console.log('hasBackdrop:---->', e, hasBackdrop);
     this.setState({ isOpen: !this.state.isOpen, hasBackdrop });
   }
   render() {
-    console.log('hasBackdrop:', this.state.hasBackdrop);
+    // console.log('hasBackdrop:', this.state.hasBackdrop);
     return (
       <div>
         <Button type="primary" onClick={this.toggleOverlay.bind(this, true)}>点击弹出内容</Button>
@@ -63,9 +63,48 @@ class Demo extends React.PureComponent {
   }
   render() {
     return (
+      <div>
+        <Button type="primary" onClick={this.toggleOverlay.bind(this)}>点击弹出内容</Button>
+        <Overlay usePortal={false} isOpen={this.state.isOpen} onClose={this.toggleOverlay.bind(this)}>
+          <Card style={{ width: 500 }}>
+            <h3 style={{marginTop: 0}}>基础弹出层</h3>
+            <p>Portals 是 react 16 提供的官方解决方案，使得组件可以脱离父组件层级挂载在DOM树的任何位置，我们利用这个方法，可将模态对话框生成到根节点的外面，默认情况生成到跟节点的外面，通过将 usePortal 设置为 false 将对话框生成在父组件层级挂载的DOM树中。</p>
+            <Button type="danger" onClick={this.toggleOverlay.bind(this)}>关闭</Button>
+          </Card>
+        </Overlay>
+      </div>
+    );
+  }
+}
+```
+<!--End-->
+
+### 自定义动画
+
+动画时长参数 `transitionDuration={1000}` 是根据 CSS 动画样式持续时长来定义。
+
+<!--DemoStart--> 
+```js
+class Demo extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false,
+    }
+  }
+  toggleOverlay(e) {
+    this.setState({ isOpen: !this.state.isOpen });
+  }
+  render() {
+    return (
     <div>
       <Button type="primary" onClick={this.toggleOverlay.bind(this)}>点击弹出内容</Button>
-      <Overlay usePortal={false} isOpen={this.state.isOpen} onClose={this.toggleOverlay.bind(this)}>
+      <Overlay
+        transitionName="animation-flipX"
+        transitionDuration={1000}
+        isOpen={this.state.isOpen}
+        onClose={this.toggleOverlay.bind(this)}
+      >
         <Card style={{ width: 500 }}>
           <h3 style={{marginTop: 0}}>基础弹出层</h3>
           <p>Portals 是 react 16 提供的官方解决方案，使得组件可以脱离父组件层级挂载在DOM树的任何位置，我们利用这个方法，可将模态对话框生成到根节点的外面，默认情况生成到跟节点的外面，通过将 usePortal 设置为 false 将对话框生成在父组件层级挂载的DOM树中。</p>
@@ -79,57 +118,79 @@ class Demo extends React.PureComponent {
 ```
 <!--End-->
 
-## 动画样式
 
-可以根据动画样式看 [`animate.css`](https://daneden.github.io/animate.css/) 添加不同的出入动画。下面是 `Overlay` 组件默认的 [`Less`](http://lesscss.org/) 生成 CSS 动画的实例代码，定义 `transitionName` 动画样式名字为 `w-overlay`
+你可以根据动画样式库 [**`animate.css`**](https://daneden.github.io/animate.css/) 添加不同的出入动画。默认通过的 [`Less`](http://lesscss.org/) 生成 CSS 动画的实例代码，定义 `transitionName` 动画样式名字为 `animation-bouce`，下面是上面实例的样式：
 
 ```less
-@overlay-prefix:~"w-overlay";
+@animation-prefix:~"animation-flipX";
 // 遮罩层动画
-.@{overlay-prefix}-backdrop.@{overlay-prefix} {
-  &-enter {
-    opacity: 0.01;
-  }
-  &-enter-active {
-    opacity: 1;
-    transition: opacity 300ms ease-in;
-  }
-  &-exit {
-    opacity: 1;
-  }
-  &-exit-active {
-    opacity: 0.01;
-    transition: opacity 300ms ease-in;
-  }
+// Background animation
+.@{animation-prefix}-enter .w-overlay-backdrop {
+  opacity: 0.01;
+}
+.@{animation-prefix}-enter-active .w-overlay-backdrop {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+.@{animation-prefix}-exit .w-overlay-backdrop {
+  opacity: 1;
+}
+.@{animation-prefix}-exit-active .w-overlay-backdrop {
+  opacity: 0.01;
+  transition: opacity 1s ease-in;
 }
 // 对话框动画
-.@{overlay-prefix}-content.@{overlay-prefix} {
-  &-enter, &-exit-active {
-    transform: scale(.5);
-    opacity: 0;
+// Content animation
+.@{animation-prefix}-enter-active .w-overlay-content {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: flipInX
+}
+.@{animation-prefix}-exit-active .w-overlay-content {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: flipOutX
+}
+
+@keyframes flipOutX {
+  0% {
+      transform: perspective(400px)
   }
 
-  &-enter-active {
-    transform: translate(0);
-    opacity: 1;
-    transition-property: transform, opacity;
-    transition-duration: 300ms;
-    transition-timing-function: ease;
-    transition-delay: 0
+  30% {
+      transform: perspective(400px) rotateX(-20deg);
+      opacity: 1
   }
 
-  &-exit {
-    transform: translate(0);
+  to {
+      transform: perspective(400px) rotateX(90deg);
+      opacity: 0
+  }
+}
+
+@keyframes flipInX {
+  0% {
+    transform: perspective(400px) rotateX(90deg);
+    animation-timing-function: ease-in;
+    opacity: 0
+  }
+
+  40% {
+    transform: perspective(400px) rotateX(-20deg);
+    animation-timing-function: ease-in
+  }
+
+  60% {
+    transform: perspective(400px) rotateX(10deg);
     opacity: 1
   }
 
-  &-exit-active {
-    transform: scale(.5);
-    opacity: 0;
-    transition-property: transform,opacity;
-    transition-duration: 300ms;
-    transition-timing-function: ease;
-    transition-delay: 0
+  80% {
+    transform: perspective(400px) rotateX(-5deg)
+  }
+
+  to {
+    transform: perspective(400px)
   }
 }
 ```
@@ -143,6 +204,7 @@ class Demo extends React.PureComponent {
 | maskClosable | 点击遮罩层是否允许关闭 | bool | `true` |
 | portalProps | 设置 [`Portal`](https://reactjs.org/docs/portals.html#event-bubbling-through-portals) 组件属性 | object | `{}` |
 | backdropProps | 遮罩层 HTML 属性设置 | object | `{}` |
+| unmountOnExit | 默认 `true` 退出动画卸载组件 | bool | `true` |
 | hasBackdrop | 是否有背景，是否向 `<body>` 添加样式 `.w-overlay-open` 防止滚动条出现 | bool | `true` |
 | transitionName | 内部 [`CSSTransitionsss`](http://reactcommunity.org/react-transition-group/css-transition/) 的转换名称。在此提供您自己的名称将需要定义新的 CSS 过渡属性。 | string | `w-overlay` |
 | transitionDuration | 持续时间 | number | `300` |

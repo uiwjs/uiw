@@ -1,5 +1,6 @@
 import { Overlay, Button, Card, Divider } from '@uiw/core';
 import Markdown from '../../../components/Markdown';
+import './index.less';
 
 export default class Page extends Markdown {
   path = 'src/routes/components/overlay/README.md';

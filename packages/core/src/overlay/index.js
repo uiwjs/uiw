@@ -25,6 +25,7 @@ export default class Overlay extends React.Component {
     this.state = {
       isMount: false,
     }
+    this.container = React.createRef();
   }
   componentDidMount() {
     if (this.props.isOpen) {
@@ -43,9 +44,9 @@ export default class Overlay extends React.Component {
     }
   }
   overlayWillOpen() {
-    const { prefixCls, maskClosable, hasBackdrop } = this.props;
+    const { prefixCls, maskClosable, hasBackdrop, usePortal } = this.props;
     this.setState({ isMount: true });
-    if (this.props.hasBackdrop) {
+    if (this.props.hasBackdrop && usePortal) {
       // add a class to the body to prevent scrolling of content below the overlay
       document.body.classList.add(`${prefixCls}-open`);
     }
@@ -72,83 +73,46 @@ export default class Overlay extends React.Component {
     const { onClosed } = this.props;
     this.setState({ isMount: false }, onClosed.bind(this, e));
   }
-  maybeRenderChild(child) {
-    const { prefixCls } = this.props;
-    if (child == null && !this.state.isMount) {
-      return null;
-    }
+  render() {
+    const { prefixCls, className, style, isOpen, usePortal, children, unmountOnExit, transitionDuration, transitionName, backdropProps, hasBackdrop, portalProps } = this.props;
+    const { onOpening, onOpened, onClosing } = this.props;
     const decoratedChild =
-      typeof child === "object" ? (
-        React.cloneElement(child, {
-          className: classnames(child.props.className, `${prefixCls}-content`),
+      typeof children === "object" ? (
+        React.cloneElement(children, {
+          className: classnames(children.props.className, `${prefixCls}-content`),
           tabIndex: 0,
         })
-      ) : <span className={`${prefixCls}-content`}>{child}</span>;
+      ) : <span className={`${prefixCls}-content`}>{children}</span>;
 
-    const { onOpening, onOpened, onClosing, /*onClosed, */transitionDuration, transitionName } = this.props;
-    return (
+    const TransitionGroupComp = (
       <CSSTransition
+        in={isOpen}
+        unmountOnExit={unmountOnExit}
         classNames={transitionName}
         onEntering={onOpening}
         onEntered={onOpened}
         onExiting={onClosing}
         onExited={this.onClosed.bind(this)}
         timeout={transitionDuration}
+        classNames={transitionName}
       >
-        {decoratedChild}
+        {(status) => (
+          <div className={classnames(prefixCls, className, { [`${prefixCls}-inline`]: !usePortal })} ref={this.container} style={style}>
+            {hasBackdrop && React.cloneElement(<div />, {
+              ...backdropProps,
+              className: classnames(`${prefixCls}-backdrop`, backdropProps.className),
+              onMouseDown: this.handleBackdropMouseDown.bind(this),
+              tabIndex: this.props.maskClosable ? 0 : null
+            })}
+            {React.cloneElement(decoratedChild, {
+              [`data-status`]: status
+            })}
+          </div>
+        )}
       </CSSTransition>
-    );
-  }
-  maybeRenderBackdrop() {
-    const {
-      prefixCls,
-      backdropClassName,
-      backdropProps,
-      hasBackdrop,
-      isOpen,
-      transitionDuration,
-      transitionName,
-    } = this.props;
-    if (hasBackdrop && isOpen && this.state.isMount) {
-      return (
-        <CSSTransition classNames={transitionName} key="__backdrop" timeout={transitionDuration}>
-          <div
-            {...backdropProps}
-            className={classnames(`${prefixCls}-backdrop`, backdropClassName, backdropProps.className)}
-            onMouseDown={this.handleBackdropMouseDown.bind(this)}
-            tabIndex={this.props.maskClosable ? 0 : null}
-          />
-        </CSSTransition>
-      );
-    } else {
-      return null;
-    }
-  }
-  handleKeyDown() {}
-  render() {
-    const { prefixCls, className, style, isOpen, usePortal, children, portalProps } = this.props;
-
-    const childrenWithTransitions = isOpen ? React.Children.map(children, this.maybeRenderChild.bind(this)) : [];
-    childrenWithTransitions.unshift(this.maybeRenderBackdrop());
-    const cls = classnames(prefixCls, className, { open: this.state.isMount, [`${prefixCls}-inline`]: !usePortal });
-
-    const TransitionGroupComp = (
-      <TransitionGroup
-        style={style}
-        className={cls}
-        component="div"
-        onKeyDown={this.handleKeyDown}
-        ref={this.container}
-      >
-        {childrenWithTransitions}
-      </TransitionGroup>
     )
     if (usePortal) {
-      return (
-        <Portal {...portalProps}>
-          {TransitionGroupComp}
-        </Portal>
-      );
+      return <Portal {...portalProps}> {TransitionGroupComp} </Portal>;
     } else {
       return TransitionGroupComp;
     }
@@ -180,7 +144,7 @@ Overlay.defaultProps = {
   backdropProps: {},
   portalProps: {},
   hasBackdrop: true,
-  unmountOnExit: false, // 设置 true 销毁根节点
+  unmountOnExit: true, // 设置 true 销毁根节点
   transitionDuration: 300,
   transitionName: 'w-overlay',
   onOpening: noop,
