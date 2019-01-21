@@ -77,7 +77,7 @@ export default class Overlay extends React.Component {
     const { prefixCls, className, style, isOpen, usePortal, children, unmountOnExit, transitionDuration, transitionName, backdropProps, hasBackdrop, portalProps } = this.props;
     const { onOpening, onOpened, onClosing } = this.props;
     const decoratedChild =
-      typeof children === "object" ? (
+      typeof children === 'object' ? (
         React.cloneElement(children, {
           className: classnames(children.props.className, `${prefixCls}-content`),
           tabIndex: 0,
