@@ -8,7 +8,7 @@ export default class Button extends React.Component {
   render() {
     const { prefixCls, type, size, icon, active, disabled, block, basic, intent, className, loading, children, htmlType, ...others } = this.props;
     const cls = classnames(className, prefixCls, {
-      [`${prefixCls}-${size}`]: size,
+      [`${prefixCls}-size-${size}`]: size,
       [`${prefixCls}-${type}`]: type,
       [`${prefixCls}-basic`]: basic,
       [`${prefixCls}-loading`]: loading, // 加载
