@@ -28,12 +28,24 @@ export default class OverlayTrigger extends React.PureComponent {
     }
   }
   componentDidMount() {
+    document && document.addEventListener('mousedown', this.handleClickOutside, true);
     !!this.props.visible && this.setState({ overlayStyl: { ...this.styles() } });
+  }
+  componentWillUnmount() {
+    document && document.removeEventListener('mousedown', this.handleClickOutside, true);
   }
   getTarget = () => ReactDOM.findDOMNode(this.trigger.current);
   getPopupTarget = () => ReactDOM.findDOMNode(this.popup.current);
   getChildProps() {
     return React.Children.only(this.props.children).props;
+  }
+  handleClickOutside = (e) => {
+    const { trigger } = this.props;
+    const popNode = this.getPopupTarget();
+    const child = this.getTarget();
+    if (popNode && e.target && !popNode.contains(e.target) && !child.contains(e.target)) {
+      this.hide();
+    }
   }
   handleClick = (e) => {
     const { onClick } = this.getChildProps();

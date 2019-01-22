@@ -57,7 +57,6 @@ class Demo extends React.Component {
 ```
 <!--End-->
 
-
 ### 位置
 
 位置有 `12` 个方向，根据 `placement` 参数来设置。
