@@ -41,6 +41,7 @@ const menuData = [
       { divider: true, name: '反馈' },
       { name: 'Overlay 基础弹出层', path: 'overlay' },
       { name: 'OverlayTrigger 基础弹出触发', path: 'overlay-trigger' },
+      { name: 'Popover 气泡卡片', path: 'popover' },
       { name: 'Tooltip 文字提示', path: 'tooltip' },
       { divider: true, name: '其它' },
       { name: 'BackTop 返回顶部', path: 'back-top' },
