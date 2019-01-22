@@ -11,6 +11,7 @@
  */
 
 import React, { cloneElement } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { CSSTransition } from "react-transition-group";
 import classnames from 'classnames';
@@ -25,22 +26,23 @@ export default class Overlay extends React.Component {
     this.state = {
       isMount: false,
     }
-    this.container = React.createRef();
   }
   componentDidMount() {
     if (this.props.isOpen) {
       this.overlayWillOpen();
     }
   }
+
   overlayWillClose() {
     const { prefixCls } = this.props;
-    document.removeEventListener("mousedown", this.handleDocumentClick);
+    document.removeEventListener('mousedown', this.handleDocumentClick, false);
     document.body.classList.remove(`${prefixCls}-open`);
   }
   handleDocumentClick = (e) => {
-    const { maskClosable, hasBackdrop, isOpen, onClose } = this.props;
-    if (isOpen && maskClosable && hasBackdrop) {
-      onClose(hasBackdrop, e);
+    const { maskClosable, isOpen, onClose } = this.props;
+    const domNode = ReactDOM.findDOMNode(this);
+    if (isOpen && maskClosable && (domNode.nextSibling === e.target || domNode.nextElementSibling === e.target)) {
+      this.setState({ isMount: false }, onClose.bind(this));
     }
   }
   overlayWillOpen() {
@@ -50,9 +52,8 @@ export default class Overlay extends React.Component {
       // add a class to the body to prevent scrolling of content below the overlay
       document.body.classList.add(`${prefixCls}-open`);
     }
-
     if (maskClosable && !hasBackdrop) {
-      document.addEventListener("mousedown", this.handleDocumentClick);
+      document.addEventListener('mousedown', this.handleDocumentClick, false);
     }
   }
   componentDidUpdate(prevProps) {
@@ -63,15 +64,19 @@ export default class Overlay extends React.Component {
     }
   }
   handleBackdropMouseDown(e) {
-    const { backdropProps, maskClosable, hasBackdrop, onClose } = this.props;
+    const { backdropProps, maskClosable, onClose } = this.props;
     if (maskClosable) {
-      onClose(hasBackdrop, e);
+      onClose(false, e);
     }
     backdropProps.onMouseDown && backdropProps.onMouseDown(e);
   }
   onClosed(e) {
     const { onClosed } = this.props;
-    this.setState({ isMount: false }, onClosed.bind(this, e));
+    if (this.state.isMount) {
+      this.setState({ isMount: false }, onClosed.bind(this, e));
+    } else {
+      onClosed(e)
+    }
   }
   render() {
     const { prefixCls, className, style, isOpen, usePortal, children, unmountOnExit, transitionDuration, transitionName, backdropProps, hasBackdrop, portalProps } = this.props;
@@ -97,7 +102,7 @@ export default class Overlay extends React.Component {
         classNames={transitionName}
       >
         {(status) => (
-          <div className={classnames(prefixCls, className, { [`${prefixCls}-inline`]: !usePortal })} ref={this.container} style={style}>
+          <div className={classnames(prefixCls, className, { [`${prefixCls}-inline`]: !usePortal })} style={style}>
             {hasBackdrop && cloneElement(<div />, {
               ...backdropProps,
               className: classnames(`${prefixCls}-backdrop`, backdropProps.className),
@@ -151,4 +156,5 @@ Overlay.defaultProps = {
   onOpened: noop,
   onClosing: noop,
   onClosed: noop,
+  onClose: noop,
 };
