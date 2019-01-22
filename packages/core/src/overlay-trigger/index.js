@@ -114,18 +114,24 @@ export default class OverlayTrigger extends React.PureComponent {
     });
   }
   styles() {
-    const { placement, fixRect } = this.props;
+    const { placement } = this.props;
     const sty = {};
     let dom = this.getTarget();
     if (!dom || !document) return sty;
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
     const scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft
     const rect = dom.getBoundingClientRect();
-    const popRect = this.getPopupTarget().getBoundingClientRect();
-    if (fixRect) {
-      popRect.width = popRect.width * fixRect;
-      popRect.height = popRect.height * fixRect;
-    }
+    const popTarget = this.getPopupTarget();
+    const popRect = popTarget.getBoundingClientRect();
+    const popStyle = document.defaultView.getComputedStyle(popTarget);
+
+    popRect.width = parseInt(popStyle.width, 10);
+    popRect.height = parseInt(popStyle.height, 10);
+    popRect.paddingLeft = parseInt(popStyle.paddingLeft, 10);
+    popRect.paddingRight = parseInt(popStyle.paddingRight, 10);
+    popRect.paddingTop = parseInt(popStyle.paddingTop, 10);
+    popRect.paddingBottom = parseInt(popStyle.paddingBottom, 10);
+
     const diffwidth = popRect.width - rect.width;
     const diffheight = popRect.height - rect.height;
 
@@ -134,7 +140,7 @@ export default class OverlayTrigger extends React.PureComponent {
 
     switch (placement) {
       case 'topLeft':
-        sty.left = sty.left - 5;
+        sty.left = sty.left - popRect.paddingLeft;
         sty.top = sty.top - popRect.height;
         break
       case 'top':
@@ -142,12 +148,12 @@ export default class OverlayTrigger extends React.PureComponent {
         sty.top = sty.top - popRect.height;
         break
       case 'topRight':
-        sty.left = sty.left - popRect.width + rect.width + 5;
+        sty.left = sty.left - popRect.width + rect.width + popRect.paddingLeft;
         sty.top = sty.top - popRect.height;
         break
       case 'leftTop':
         sty.left = sty.left - popRect.width;
-        sty.top = sty.top - 5;
+        sty.top = sty.top - popRect.paddingTop;
         break
       case 'left':
         sty.left = sty.left - popRect.width
@@ -155,11 +161,11 @@ export default class OverlayTrigger extends React.PureComponent {
         break
       case 'leftBottom':
         sty.left = sty.left - popRect.width
-        sty.top = sty.top - popRect.height + rect.height + 5
+        sty.top = sty.top - popRect.height + rect.height + popRect.paddingBottom;
         break
       case 'rightTop':
         sty.left = sty.left + rect.width
-        sty.top = sty.top - 5;
+        sty.top = sty.top - popRect.paddingTop;
         break
       case 'right':
         sty.left = sty.left + rect.width
@@ -167,10 +173,10 @@ export default class OverlayTrigger extends React.PureComponent {
         break
       case 'rightBottom':
         sty.left = sty.left + rect.width
-        sty.top = sty.top - popRect.height + rect.height + 5
+        sty.top = sty.top - popRect.height + rect.height + popRect.paddingBottom;
         break
       case 'bottomLeft':
-        sty.left = sty.left - 5;
+        sty.left = sty.left - popRect.paddingLeft;
         sty.top = sty.top + rect.height
         break
       case 'bottom':
@@ -178,7 +184,7 @@ export default class OverlayTrigger extends React.PureComponent {
         sty.top = sty.top + rect.height
         break
       case 'bottomRight':
-        sty.left = sty.left - popRect.width + rect.width + 5;
+        sty.left = sty.left - popRect.width + rect.width + popRect.paddingRight;
         sty.top = sty.top + rect.height
         break
     }
@@ -221,7 +227,6 @@ OverlayTrigger.propTypes = {
   prefixCls: PropTypes.string,
   onVisibleChange: PropTypes.func,
   visible: PropTypes.bool,
-  fixRect: PropTypes.number,
   delay: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.shape({
@@ -242,7 +247,6 @@ OverlayTrigger.propTypes = {
 
 OverlayTrigger.defaultProps = {
   prefixCls: 'w-overlay',
-  fixRect: 2,
   onVisibleChange: () => null,
   visible: false,
   trigger: 'hover',

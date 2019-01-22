@@ -14,11 +14,13 @@ import { Card } from '@uiw/core';
 <!--DemoStart--> 
 ```js
 const Demo = () => (
-  <Card title="Card标题" extra={<a href="#">更多</a>} style={{ width: 300 }}>
-    卡片内容<br/>
-    卡片内容<br/>
-    卡片内容<br/>
-  </Card>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+    <Card title="Card标题" extra={<a href="#">更多</a>} style={{ width: 300 }}>
+      卡片内容<br/>
+      卡片内容<br/>
+      卡片内容<br/>
+    </Card>
+  </div>
 )
 ```
 <!--End-->
@@ -26,7 +28,6 @@ const Demo = () => (
 ## 无边框
 
 在灰色背景上使用无边框的卡片。
-
 
 <!--DemoStart--> 
 ```js
