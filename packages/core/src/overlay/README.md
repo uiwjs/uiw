@@ -201,11 +201,11 @@ class Demo extends React.PureComponent {
 |--------- |-------- |--------- |-------- |
 | isOpen | 对话框是否可见 | boolean | `false` |
 | usePortal | 使用 react 16 提供的官方解决方案 [`Portals`](https://reactjs.org/docs/portals.html#event-bubbling-through-portals)，将模态对话框生成到根节点的外面。 |  boolean | `true` |
-| maskClosable | 点击遮罩层是否允许关闭 | bool | `true` |
+| maskClosable | 点击遮罩层是否允许关闭 | boolean | `true` |
 | portalProps | 设置 [`Portal`](https://reactjs.org/docs/portals.html#event-bubbling-through-portals) 组件属性 | object | `{}` |
 | backdropProps | 遮罩层 HTML 属性设置 | object | `{}` |
-| unmountOnExit | 默认 `true` 退出动画卸载组件 | bool | `true` |
-| hasBackdrop | 是否有背景，是否向 `<body>` 添加样式 `.w-overlay-open` 防止滚动条出现 | bool | `true` |
+| unmountOnExit | 默认 `true` 退出动画卸载组件 | boolean | `true` |
+| hasBackdrop | 是否有背景，是否向 `<body>` 添加样式 `.w-overlay-open` 防止滚动条出现 | boolean | `true` |
 | transitionName | 内部 [`CSSTransitionsss`](http://reactcommunity.org/react-transition-group/css-transition/) 的转换名称。在此提供您自己的名称将需要定义新的 CSS 过渡属性。 | string | `w-overlay` |
 | transitionDuration | 持续时间 | number | `300` |
 | onOpening | 顺序 `1`，**`打开`**立即执行，在应用 `enter-active` 或 `appear-active` 类后立即触发 [`<Transition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。 | Function(node: HtmlElement, isAppearing: bool) | - |

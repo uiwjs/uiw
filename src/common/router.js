@@ -112,6 +112,9 @@ export const getRouterData = () => {
     '/components/overlay-trigger': {
       component: dynamicWrapper([], () => import('../routes/components/overlay-trigger')),
     },
+    '/components/popover': {
+      component: dynamicWrapper([], () => import('../routes/components/popover')),
+    },
   };
   return conf;
 };
