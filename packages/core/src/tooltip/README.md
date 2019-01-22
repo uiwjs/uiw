@@ -14,20 +14,20 @@ import { Tooltip, OverlayTrigger } from '@uiw/core';
 <!--DemoStart--> 
 ```js
 const Demo = () => (
-  <>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <Tooltip placement="right" content="右边文字提示">
-      <Button type="primary">右边文字提示(right)</Button>
+      <Button>右边文字提示(right)</Button>
     </Tooltip>
     <Tooltip placement="top" content="上边文字提示">
-      <Button type="primary">上边文字提示(top)</Button>
+      <Button>上边文字提示(top)</Button>
     </Tooltip>
     <Tooltip placement="left" content="左边文字提示">
-      <Button type="primary">左边文字提示(left)</Button>
+      <Button>左边文字提示(left)</Button>
     </Tooltip>
     <Tooltip placement="bottom" content="下边文字提示">
-      <Button type="primary">下边文字提示(bottom)</Button>
+      <Button>下边文字提示(bottom)</Button>
     </Tooltip>
-  </>
+  </div>
 )
 ```
 <!--End-->
@@ -39,79 +39,75 @@ const Demo = () => (
 
 <!--DemoStart-->
 ```js
-const Demo = () => {
-  return (
-    <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
-      <Tooltip placement="left" content={<strong>Hello uiw!</strong>}>
-        <Button type="primary">左边文字提示(left)</Button>
-      </Tooltip>
+const btnStl = {position: 'relative', width: 70 }
+const Demo = () => (
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+    <Tooltip placement="left" content={<strong>Hello uiw!</strong>}>
+      <Button type="primary">左边文字提示(left)</Button>
+    </Tooltip>
 
-      <Tooltip placement="top" content={<strong>Hello uiw!</strong>}>
-        <Button type="primary">上边文字提示(top)</Button>
-      </Tooltip>
+    <Tooltip placement="top" content={<strong>Hello uiw!</strong>}>
+      <Button type="primary">上边文字提示(top)</Button>
+    </Tooltip>
 
-      <Tooltip placement="bottom" content={<strong>Hello uiw!</strong>}>
-        <Button type="primary">下边文字提示(bottom)</Button>
-      </Tooltip>
+    <Tooltip placement="bottom" content={<strong>Hello uiw!</strong>}>
+      <Button type="primary">下边文字提示(bottom)</Button>
+    </Tooltip>
 
-      <Tooltip placement="right" content={<strong>Hello uiw!</strong>}>
-        <Button type="primary">右边文字提示(right)</Button>
-      </Tooltip>
+    <Tooltip placement="right" content={<strong>Hello uiw!</strong>}>
+      <Button type="primary">右边文字提示(right)</Button>
+    </Tooltip>
 
-      <Divider />
-
+    <Divider />
+    <div style={{ position: 'relative' }}>
       <Tooltip placement="topLeft" content={<strong>Hello uiw!</strong>}>
-        <Button type="primary">上左(topLeft)</Button>
+        <Button style={{ ...btnStl, left: 70 }}>TL</Button>
       </Tooltip>
       <Tooltip placement="top" content={<strong>Hello uiw!</strong>}>
-        <Button type="primary">上(top)</Button>
+        <Button style={{ ...btnStl, left: 70}}>Top</Button>
       </Tooltip>
       <Tooltip placement="topRight" content={<strong>Hello uiw!</strong>}>
-        <Button type="primary">上右(topRight)</Button>
+        <Button style={{ ...btnStl, left: 70 }}>TR</Button>
       </Tooltip>
-
-      <Divider />
-
-      <Tooltip placement="leftTop" content={<strong>Hello uiw!</strong>}>
-        <Button type="primary">左上(leftTop)</Button>
-      </Tooltip>
-      <Tooltip placement="rightTop" content={<strong>Hello uiw!</strong>}>
-        <Button type="primary">上右(rightTop)</Button>
-      </Tooltip>
-
-      <Divider />
-
-      <Tooltip placement="left" content={<strong>Hello uiw!</strong>}>
-        <Button type="primary">左(left)</Button>
-      </Tooltip>
-      <Tooltip placement="right" content={<strong>Hello uiw!</strong>}>
-        <Button type="primary">右(right)</Button>
-      </Tooltip>
-
-      <Divider />
-
-      <Tooltip placement="leftBottom" content={<strong>Hello uiw!</strong>}>
-        <Button type="primary">左下(leftBottom)</Button>
-      </Tooltip>
-      <Tooltip placement="rightBottom" content={<strong>Hello uiw!</strong>}>
-        <Button type="primary">右下(rightBottom)</Button>
-      </Tooltip>
-
-      <Divider />
-
-      <Tooltip placement="bottomLeft" content={<strong>Hello uiw!</strong>}>
-        <Button type="primary">下左(bottomLeft)</Button>
-      </Tooltip>
-      <Tooltip placement="bottom" content={<strong>Hello uiw!</strong>}>
-        <Button type="primary">下(bottom)</Button>
-      </Tooltip>
-      <Tooltip placement="bottomRight" content={<strong>Hello uiw!</strong>}>
-        <Button type="primary">下右(right)</Button>
-      </Tooltip>
-
     </div>
-  )
-}
+    <div style={{ position: 'relative', paddingTop: 10 }}>
+      <Tooltip placement="leftTop" content={<span><strong>Hello uiw!</strong> 位置有 12 个方向，根据 placement 参数来设置。</span>}>
+        <Button style={{ ...btnStl }}>LT</Button>
+      </Tooltip>
+      <Tooltip placement="rightTop" content={<span><strong>Hello uiw!</strong> 位置有 12 个方向，根据 placement 参数来设置。</span>}>
+        <Button style={{ ...btnStl, left: 216 }}>RT</Button>
+      </Tooltip>
+    </div>
+    <div style={{ position: 'relative', paddingTop: 10 }}>
+      <Tooltip placement="left" content={<span><strong>Hello uiw!</strong> 位置有 12 个方向，根据 placement 参数来设置。</span>}>
+        <Button style={{ ...btnStl }}>Left</Button>
+      </Tooltip>
+      <Tooltip placement="right" content={<span><strong>Hello uiw!</strong> 位置有 12 个方向，根据 placement 参数来设置。</span>}>
+        <Button style={{ ...btnStl, left: 216 }}>Right</Button>
+      </Tooltip>
+    </div>
+    <div style={{ position: 'relative', paddingTop: 10 }}>
+      <Tooltip placement="leftBottom" content={<span><strong>Hello uiw!</strong> 位置有 12 个方向，根据 placement 参数来设置。</span>}>
+        <Button style={{ ...btnStl }}>LB</Button>
+      </Tooltip>
+      <Tooltip placement="rightBottom" content={<span><strong>Hello uiw!</strong> 位置有 12 个方向，根据 placement 参数来设置。</span>}>
+        <Button style={{ ...btnStl, left: 216 }}>RB</Button>
+      </Tooltip>
+    </div>
+    <div style={{ position: 'relative', paddingTop: 10 }}>
+      <Tooltip placement="bottomLeft" content={<span><strong>Hello uiw!</strong> 位置有 12 个方向，根据 placement 参数来设置。</span>}>
+        <Button style={{ ...btnStl, left: 70 }}>BL</Button>
+      </Tooltip>
+      <Tooltip placement="bottom" content={<span><strong>Hello uiw!</strong> 位置有 12 个方向，根据 placement 参数来设置。</span>}>
+        <Button style={{ ...btnStl, left: 70 }}>Bottom</Button>
+      </Tooltip>
+      <Tooltip placement="bottomRight" content={<span><strong>Hello uiw!</strong> 位置有 12 个方向，根据 placement 参数来设置。</span>}>
+        <Button style={{ ...btnStl, left: 70 }}>BR</Button>
+      </Tooltip>
+    </div>
+
+  </div>
+)
 ```
 <!--End-->
 
@@ -128,7 +124,7 @@ const Demo = () => (
       <Button type="primary">悬浮弹出文字提示(top)</Button>
     </Tooltip>
     <Tooltip trigger="click" placement="top" content="Hello uiw!">
-      <Button type="primary">点击弹出提示(top)</Button>
+      <Button type="success">点击弹出提示(top)</Button>
     </Tooltip>
 
   </div>
@@ -149,11 +145,48 @@ const Demo = () => (
       <Button type="primary">悬浮弹出文字提示(top)</Button>
     </Tooltip>
     <Tooltip visibleArrow={false} trigger="click" placement="right" content="Hello uiw!">
-      <Button type="primary">点击弹出提示(right)</Button>
+      <Button type="success">点击弹出提示(right)</Button>
     </Tooltip>
 
   </div>
 )
+```
+<!--End-->
+
+### 受控组件
+
+<!--DemoStart-->
+```js
+class Demo extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      isVisbale: false,
+    }
+  }
+  onChange(e) {
+    this.setState({ isVisbale: e.target.checked });
+  }
+  onVisibleChange(isVisbale) {
+    this.setState({ isVisbale });
+  }
+  render() {
+    return (
+      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+        <Tooltip
+          visible={this.state.isVisbale}
+          onVisibleChange={this.onVisibleChange.bind(this)}
+          placement="top"
+          content="Hello uiw!"
+        >
+          <span>鼠标移动到此处，显示和消失触发事件，也可以通过 Switch 组件来控制</span>
+        </Tooltip>
+        <Divider />
+        <Switch checked={this.state.isVisbale} onChange={this.onChange.bind(this)} />
+      </div>
+    )
+  }
+}
 ```
 <!--End-->
 
