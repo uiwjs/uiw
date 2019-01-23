@@ -5,10 +5,11 @@ import './style/index.less';
 
 export class Card extends React.Component {
   render() {
-    const { prefixCls, className, title, extra, footer, bordered, noHover, bodyStyle, bodyClassName, children, ...resetProps } = this.props;
+    const { prefixCls, className, title, extra, footer, bordered, noHover, active, bodyStyle, bodyClassName, children, ...resetProps } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-bordered`]: bordered,
       [`${prefixCls}-no-hover`]: noHover,
+      active,
     });
 
     return (
@@ -32,6 +33,7 @@ Card.propTypes = {
   extra: PropTypes.node,
   footer: PropTypes.node,
   noHover: PropTypes.bool,
+  active: PropTypes.bool,
   bodyStyle: PropTypes.object,
   bodyClassName: PropTypes.string,
 };
@@ -40,4 +42,5 @@ Card.defaultProps = {
   prefixCls: 'w-card',
   bordered: true,
   noHover: false,
+  active: false,
 };

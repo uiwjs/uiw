@@ -107,6 +107,37 @@ const Demo = () => (
 ```
 <!--End-->
 
+## 激活
+
+设置属性 `active=true` 将激活卡片，默认展示鼠标经过的样式。
+
+<!--DemoStart--> 
+```js
+const footer = (
+  <a href="https://uiw-react.github.io">
+    <Icon type='user' />&nbsp;
+    16 Friends
+  </a>
+)
+const Demo = () => (
+  <Card
+    active
+    title="Card标题"
+    footer={footer}
+    style={{ width: 240 }} 
+    bodyStyle={{ padding: 0 }}
+  >
+    <div>
+      <img alt="example" width="100%" src="https://avatars1.githubusercontent.com/u/1680273?v=4" />
+    </div>
+    <div style={{ padding: `10px 16px` }}>
+      <h3 style={{margin:0}}>我爱漂亮妹妹</h3>
+      <p style={{margin:0}}><a href="https://uiw-react.github.io">https://uiw-react.github.io</a></p>
+    </div>
+  </Card>
+);
+```
+<!--End-->
 
 ## API
 
@@ -116,6 +147,7 @@ const Demo = () => (
 | footer | 页脚内容的简写 | String/ReactNode | - |
 | extra | 卡片右上角的操作区域 | String/ReactNode | - |
 | bordered | 是否显示边框 | Boolean | `true` |
+| active | 展示鼠标经过的样式。 | Boolean | `false` |
 | noHover | 取消鼠标移过时边框阴影 | Boolean | `false` |
 | bodyStyle | 设置 `body` 的样式 | Object | - |
 | bodyClassName | 设置 `body` 的 `className` | String | - |
