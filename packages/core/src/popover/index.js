@@ -15,7 +15,7 @@ const Arrow = ({ prefixCls }) => (
 
 export default class Popover extends React.Component {
   render() {
-    const { prefixCls, className, placement, visible, trigger, delay, visibleArrow, onVisibleChange, ...other } = this.props;
+    const { prefixCls, className, placement, content, visible, trigger, delay, visibleArrow, onVisibleChange, ...other } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${placement}`]: placement,
     });
