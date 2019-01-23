@@ -1,7 +1,7 @@
 Overlay 基础弹出层
 ===
 
-这是一个基础的弹出层组件，其它弹出层组件基于它来扩展比如 [`<Modal />`](#)、[`<Alert />`](#)
+这是一个基础的弹出层组件，其它弹出层组件基于它来扩展比如 [`<Modal />`](#)、[`<Alert />`](#)、[`<OverlayTrigger />`](#)、[`<Popover />`](#)、[`<Tooltip />`](#) 等。
 
 ```jsx
 import { Overlay } from '@uiw/core';
@@ -31,7 +31,7 @@ class Demo extends React.PureComponent {
         <Button type="primary" onClick={this.toggleOverlay.bind(this, true)}>点击弹出内容</Button>
         <Button type="primary" onClick={this.toggleOverlay.bind(this, false)}>弹出内容没有遮罩层</Button>
         <Overlay hasBackdrop={this.state.hasBackdrop} isOpen={this.state.isOpen} onClose={this.onClose.bind(this)}>
-          <Card bordered={false} style={{ width: 500 }}>
+          <Card active bordered={!this.state.hasBackdrop} style={{ width: 500 }}>
             <h3 style={{marginTop: 0}}>基础弹出层</h3>
             <div>
               这是一个基础的弹出层组件，其它弹出层组件基于它来扩展比如 Modal、Alert
@@ -67,7 +67,7 @@ class Demo extends React.PureComponent {
       <div>
         <Button type="primary" onClick={this.toggleOverlay.bind(this)}>点击弹出内容</Button>
         <Overlay usePortal={false} isOpen={this.state.isOpen} onClose={this.toggleOverlay.bind(this)}>
-          <Card style={{ width: 500 }}>
+          <Card active style={{ width: 500 }}>
             <h3 style={{marginTop: 0}}>基础弹出层</h3>
             <p>Portals 是 react 16 提供的官方解决方案，使得组件可以脱离父组件层级挂载在DOM树的任何位置，我们利用这个方法，可将模态对话框生成到根节点的外面，默认情况生成到跟节点的外面，通过将 usePortal 设置为 false 将对话框生成在父组件层级挂载的DOM树中。</p>
             <Button type="danger" onClick={this.toggleOverlay.bind(this)}>关闭</Button>
