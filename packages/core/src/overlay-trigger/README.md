@@ -33,7 +33,7 @@ const Demo = () => (
 <!--DemoStart--> 
 ```js
 const card = (
-  <Card>
+  <Card active>
     <strong>Hellow uiw!</strong> Check this info.<br />
     展示 12 个方向位置
   </Card>
@@ -51,7 +51,7 @@ const Demo = () => (
 <!--DemoStart--> 
 ```js
 const card = (
-  <Card>
+  <Card active>
     <strong>Hellow uiw!</strong> Check this info.<br />
     展示 12 个方向位置
   </Card>
@@ -91,7 +91,7 @@ class Demo extends React.Component {
 <!--DemoStart--> 
 ```js
 const card = (
-  <Card>
+  <Card active>
     <strong>Hellow uiw!</strong> Check this info.<br />
     展示 12 个方向位置
   </Card>
@@ -134,7 +134,7 @@ class Demo extends React.Component {
 <!--DemoStart--> 
 ```js
 const card = (
-  <Card>
+  <Card active>
     <strong>Hellow uiw!</strong> Check this info.<br />
     展示 12 个方向位置
   </Card>
@@ -155,7 +155,7 @@ const Demo = () => (
 <!--DemoStart--> 
 ```js
 const card = (
-  <Card>
+  <Card active>
     <strong>Hellow uiw!</strong> Check this info.<br />
     展示 12 个方向位置
   </Card>
@@ -166,17 +166,20 @@ class Demo extends React.Component {
     super()
     this.state = {
       isVisbale: false,
+      checked: false
     }
   }
   onChange(e) {
+    console.log('test2 +++onChange', e.target.checked);
     this.setState({ isVisbale: e.target.checked });
-    console.log('test2 ', e.target.checked);
   }
   onVisibleChange(isVisbale) {
-    this.setState({ isVisbale });
-    console.log('test1 ',isVisbale);
+    console.log('isVisbale1:', isVisbale);
+    // console.log('isVisbale2:',this.state.checked);
+    this.setState({ isVisbale});
   }
   render() {
+    console.log('test1render ', this.state.checked, this.state.isVisbale);
     return (
       <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
         <OverlayTrigger
