@@ -115,7 +115,7 @@ export default class OverlayTrigger extends React.PureComponent {
   }
 
   show() {
-    if(this.state.show) return;
+    if (this.state.show) return;
     const { onVisibleChange } = this.props;
     zIndex += 1;
     this.setState({

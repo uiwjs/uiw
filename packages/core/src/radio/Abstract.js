@@ -3,13 +3,31 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 export default class Abstract extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checked: props.checked,
+    }
+  }
+  componentWillReceiveProps(preProps) {
+    if (preProps.checked !== this.props.checked) {
+      this.setState({
+        checked: preProps.checked,
+      });
+    }
+  }
+  onChange = (e) => {
+    this.props.onChange(e);
+    this.setState({ checked: e.target.checked });
+  }
   render() {
     const { prefixCls, className, style, children, checked, disabled, size, value, ...other } = this.props;
     const cls = classnames(prefixCls, className, {
-      disabled, checked: checked || other.defaultChecked, [`${prefixCls}-${size}`]: size,
+      disabled, checked: this.state.checked, [`${prefixCls}-${size}`]: size,
     });
     other.disabled = disabled;
-    other.checked = checked;
+    other.checked = this.state.checked;
+    other.onChange = this.onChange
     other.value = value;
     const label = children || value;
     return (
@@ -34,7 +52,7 @@ Abstract.defaultProps = {
   prefixCls: 'w-radio',
   type: 'radio',
   disabled: false,
-  checked: undefined,
+  checked: false,
   value: '',
   onChange() {},
 };

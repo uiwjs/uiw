@@ -90,6 +90,44 @@ class Demo extends Component {
 ```
 <!--End-->
 
+### 控制组件
+
+通过 `checked` 属性改变 `Checkbox` 组件状态。
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checked: true
+    }
+  }
+  onChange(e) {
+    console.log('e.target.checked:', e.target.checked);
+    this.setState({ checked: e.target.checked });
+  }
+  render() {
+    return (
+      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+        <Checkbox onChange={this.onChange.bind(this)} checked={this.state.checked} style={{ marginRight: 10 }} />
+        <Button
+          size="small"
+          type="primary"
+          onClick={() => {
+            this.setState({ checked: !this.state.checked });
+          }}
+        >
+          点击按钮改变 Checkbox 状态
+        </Button>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
+
 ## Checkbox
 
 | 参数      | 说明    | 类型      |  默认值   |
