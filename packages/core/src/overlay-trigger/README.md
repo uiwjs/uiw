@@ -166,20 +166,16 @@ class Demo extends React.Component {
     super()
     this.state = {
       isVisbale: false,
-      checked: false
     }
   }
   onChange(e) {
-    console.log('test2 +++onChange', e.target.checked);
+    this.clickChecked = false;
     this.setState({ isVisbale: e.target.checked });
   }
   onVisibleChange(isVisbale) {
-    console.log('isVisbale1:', isVisbale);
-    // console.log('isVisbale2:',this.state.checked);
-    this.setState({ isVisbale});
+    console.log('onVisibleChange: ', isVisbale);
   }
   render() {
-    console.log('test1render ', this.state.checked, this.state.isVisbale);
     return (
       <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
         <OverlayTrigger
