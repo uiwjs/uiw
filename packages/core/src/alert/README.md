@@ -184,10 +184,10 @@ class Demo extends React.Component {
           这个对话框有两个按钮，单击 “<b>确定按钮</b>” 或 “<b>取消按钮</b>” 后，此对话框将关闭，触发 “<b>onConfirm</b>” 或 “<b>onCancel</b>” 事件。用作通知用户重要信息。
         </Alert>
         <ButtonGroup style={{ marginTop: 5 }}>
-          <Button onClick={this.onClick.bind(this, 'visible1')} type="primary">主要按钮</Button>
-          <Button onClick={this.onClick.bind(this, 'visible2')} type="success">成功按钮</Button>
-          <Button onClick={this.onClick.bind(this, 'visible3')} type="warning">警告按钮</Button>
-          <Button onClick={this.onClick.bind(this, 'visible4')} type="danger">错误按钮</Button>
+          <Button onClick={this.onClick.bind(this, 'visible1')} type="primary">主要</Button>
+          <Button onClick={this.onClick.bind(this, 'visible2')} type="success">成功</Button>
+          <Button onClick={this.onClick.bind(this, 'visible3')} type="warning">警告</Button>
+          <Button onClick={this.onClick.bind(this, 'visible4')} type="danger">错误</Button>
           <Button onClick={this.onClick.bind(this, 'visible5')} type="light">亮按钮</Button>
           <Button onClick={this.onClick.bind(this, 'visible6')} type="dark">暗按钮</Button>
         </ButtonGroup>
@@ -208,6 +208,6 @@ class Demo extends React.Component {
 | onConfirm | 点击确定按钮回调 | Function(e) | - |
 | cancelText | 取消按钮文字， | String | - |
 | confirmText | 确认按钮文字 | String | `确认` |
-| icon | 设置对话框右上角图标，设置 `type` 将图标设置不同的颜色。 | String | `确认` |
+| icon | 设置对话框右上角图标，，设置 `type` 将图标设置不同的颜色。当前属性为 [`<Icon>`]](/components/icon) 组件的 `type` 属性，所以可以参考该组件自定义图标。 | String/ReactNode | `确认` |
 | isOpen[`<Overlay>`](/components/overlay) | 对话框是否可见 | Boolean | `false` |
 | type | 按钮类型跟 `<Button>` 组件的 `type` 参数一致，同时会影响按钮颜色。 | String | `light` |
