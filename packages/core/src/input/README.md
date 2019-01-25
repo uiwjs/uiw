@@ -230,11 +230,36 @@ class Demo extends Component {
 ```
 <!--End-->
 
+### 输入框被禁用
+
+<!--DemoStart--> 
+```js
+const stylItem = { margin: 20 };
+const Demo = () => (
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0',justifyContent: 'center', display: 'flex' }}>
+    <div style={stylItem}>
+      <Input disabled preIcon="delete" placeholder="请输入内容" />
+    </div>
+    <div style={stylItem}>
+      <Input disabled preIcon="tag" placeholder="请输入内容" />
+    </div>
+    <div style={stylItem}>
+      <Input disabled preIcon="picasa" placeholder="请输入内容" />
+    </div>
+    <div style={stylItem}>
+      <Input disabled preIcon="like-o" placeholder="请输入内容" />
+    </div>
+  </div>
+)
+```
+<!--End-->
+
 ## Input
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | value | 绑定值 | String | - |
+| disabled | 禁用输入框 | String | - |
 | preIcon | 输入框`前`面放置图标  | String、ReactNode | - |
 | addonAfter | 	带标签的 input，设置后置标签 | String/ReactNode | - |
 | size | 指定输入框的尺寸，除了默认的大小外，还提供了 `large`、`small` 和 `default` 三种尺寸。 | String | - |

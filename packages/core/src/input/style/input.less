@@ -31,6 +31,13 @@
     &:focus&:hover {
       box-shadow: 0 0 0 1px #6E6E6E, 0 0 0 3px rgba(57, 62, 72, 0.17), inset 0 1px 1px rgba(16,22,26,.2);
     }
+    &:disabled {
+      box-shadow: none;
+      background: rgba(206,217,224,.5);
+      cursor: not-allowed;
+      color: rgba(92,112,128,.5);
+      resize: none;
+    }
   }
   & &-inner {
     width: 100%;
