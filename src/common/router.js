@@ -115,6 +115,9 @@ export const getRouterData = () => {
     '/components/popover': {
       component: dynamicWrapper([], () => import('../routes/components/popover')),
     },
+    '/components/alert': {
+      component: dynamicWrapper([], () => import('../routes/components/alert')),
+    },
   };
   return conf;
 };

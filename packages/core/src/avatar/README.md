@@ -11,10 +11,6 @@ import { Avatar } from '@uiw/core';
 
 头像有四种尺寸，两种形状可选。
 
-## 基本用法
-
-头像有四种尺寸，两种形状可选。
-
 <!--DemoStart--> 
 ```js
 const Demo = () => (
@@ -42,19 +38,15 @@ const Demo = () => (
 
 <!--DemoStart--> 
 ```js
-class Demo extends Component {
-  render() {
-    return (
-      <div>
-        <Avatar icon={<Icon type="user"/>} />
-        <Avatar>U</Avatar>
-        <Avatar src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" />
-        <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
-        <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
-      </div>
-    )
-  }
-}
+const Demo = () => (
+  <div>
+    <Avatar icon={<Icon type="user"/>} />
+    <Avatar>U</Avatar>
+    <Avatar src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" />
+    <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
+    <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
+  </div>
+)
 ```
 <!--End-->
 
@@ -64,20 +56,16 @@ class Demo extends Component {
 
 <!--DemoStart--> 
 ```js
-class Demo extends Component {
-  render() {
-    return (
-      <div>
-        <Avatar src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" />
-        <Avatar>
-          <img src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" onError={()=>{
-            console.log("图片加载错误！")
-          }}/>
-        </Avatar>
-      </div>
-    )
-  }
-}
+const Demo = () => (
+  <div>
+    <Avatar src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" />
+    <Avatar>
+      <img src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" onError={()=>{
+        console.log("图片加载错误！")
+      }}/>
+    </Avatar>
+  </div>
+)
 ```
 <!--End-->
 
@@ -85,25 +73,20 @@ class Demo extends Component {
 
 <!--DemoStart--> 
 ```js
-class Demo extends Component {
-  render() {
-    return (
-      <div>
-        <span style={{ marginRight: 24 }}>
-          <Badge count={1}><Avatar shape="square" icon="user" /></Badge>
-        </span>
-        <span>
-          <Badge dot><Avatar shape="square" icon="user" /></Badge>
-        </span>
-      </div>
-    )
-  }
-}
+const Demo = () => (
+  <div>
+    <span style={{ marginRight: 24 }}>
+      <Badge count={1}><Avatar shape="square" icon="user" /></Badge>
+    </span>
+    <span>
+      <Badge dot><Avatar shape="square" icon="user" /></Badge>
+    </span>
+  </div>
+)
 ```
 <!--End-->
 
-
-## Avatar
+## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |

@@ -1,0 +1,43 @@
+@alert: ~"w-alert";
+
+.@{alert} {
+  &-inner {
+    padding: 20px;
+    width: 400px;
+    background: #fff;
+    border-radius: 5px;
+  }
+  &-body {
+    font-size: 14px;
+    display: table;
+    .w-icon {
+      display: table-cell;
+      padding-right: 20px;
+      font-size: 40px;
+    }
+  }
+  &.primary .w-icon {
+    color: #008EF0;
+  }
+  &.success .w-icon {
+    color: #28a745;
+  }
+  &.warning .w-icon {
+    color: #ffc107;
+  }
+  &.danger .w-icon {
+    color: #dc3545;
+  }
+  &-content {
+    display: table-cell;
+    vertical-align: top;
+  }
+  &-footer {
+    display: flex;
+    margin-top: 15px;
+    flex-direction: row-reverse;
+    .w-btn + .w-btn {
+      margin-right: 10px;
+    }
+  }
+}
