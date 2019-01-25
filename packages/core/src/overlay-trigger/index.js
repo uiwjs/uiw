@@ -122,18 +122,21 @@ export default class OverlayTrigger extends React.PureComponent {
       show: true,
     }, () => {
       onVisibleChange(true);
-      this.setState({ overlayStyl: { ...this.styles() } });
     });
+  }
+  onOpening = (node, isAppearing) => {
+    this.setState({ overlayStyl: { ...this.styles() } }, this.props.onOpening.bind(this, node, isAppearing));
   }
   styles() {
     const { placement } = this.props;
     const sty = {};
     let dom = this.getTarget();
     if (!dom || !document) return sty;
-    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-    const scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
     const rect = dom.getBoundingClientRect();
     const popTarget = this.getPopupTarget();
+    if (!popTarget) return;
     const popRect = popTarget.getBoundingClientRect();
     const popStyle = document.defaultView.getComputedStyle(popTarget);
 
@@ -223,6 +226,7 @@ export default class OverlayTrigger extends React.PureComponent {
         </RefHolder>
         <Overlay
           {...props}
+          onOpening={this.onOpening}
           className="w-overlay-trigger"
           usePortal={true}
           isOpen={this.state.show}
@@ -260,6 +264,7 @@ OverlayTrigger.propTypes = {
 OverlayTrigger.defaultProps = {
   prefixCls: 'w-overlay',
   onVisibleChange: () => null,
+  onOpening: () => null,
   visible: false,
   trigger: 'hover',
 };

@@ -25,6 +25,7 @@ export default class Overlay extends React.Component {
     super(props);
     this.state = {
       isMount: false,
+      isOpen: props.isOpen,
     }
   }
   componentDidMount() {
@@ -37,9 +38,11 @@ export default class Overlay extends React.Component {
     const { prefixCls } = this.props;
     document.removeEventListener('mousedown', this.handleDocumentClick, false);
     document.body.classList.remove(`${prefixCls}-open`);
+    this.setState({ isOpen: false });
   }
   handleDocumentClick = (e) => {
-    const { maskClosable, isOpen, onClose } = this.props;
+    const { maskClosable, onClose } = this.props;
+    const { isOpen } = this.state;
     const domNode = ReactDOM.findDOMNode(this);
     if (isOpen && maskClosable && (domNode.nextSibling === e.target || domNode.nextElementSibling === e.target)) {
       this.setState({ isMount: false }, onClose.bind(this));
@@ -47,7 +50,7 @@ export default class Overlay extends React.Component {
   }
   overlayWillOpen() {
     const { prefixCls, maskClosable, hasBackdrop, usePortal } = this.props;
-    this.setState({ isMount: true });
+    this.setState({ isMount: true, isOpen: true });
     if (this.props.hasBackdrop && usePortal) {
       // add a class to the body to prevent scrolling of content below the overlay
       document.body.classList.add(`${prefixCls}-open`);
@@ -77,6 +80,7 @@ export default class Overlay extends React.Component {
     } else {
       onClosed(e)
     }
+    this.overlayWillClose();
   }
   render() {
     const { prefixCls, className, style, isOpen, usePortal, children, unmountOnExit, transitionDuration, transitionName, backdropProps, hasBackdrop, portalProps } = this.props;
@@ -91,7 +95,7 @@ export default class Overlay extends React.Component {
 
     const TransitionGroupComp = (
       <CSSTransition
-        in={isOpen}
+        in={this.state.isOpen}
         unmountOnExit={unmountOnExit}
         classNames={transitionName}
         onEntering={onOpening}

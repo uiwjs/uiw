@@ -182,6 +182,9 @@ class Demo extends React.Component {
           onVisibleChange={this.onVisibleChange.bind(this)}
           visible={this.state.isVisbale}
           placement="right"
+          onOpening={(node, isAppearing) => {
+            console.log('~~', node, isAppearing);
+          }}
           overlay={card}
         >
           <span>鼠标移动到此处，显示和消失触发事件，延迟 `4s` 消失</span>
