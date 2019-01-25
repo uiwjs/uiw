@@ -118,6 +118,9 @@ export const getRouterData = () => {
     '/components/alert': {
       component: dynamicWrapper([], () => import('../routes/components/alert')),
     },
+    '/components/textarea': {
+      component: dynamicWrapper([], () => import('../routes/components/textarea')),
+    },
   };
   return conf;
 };
