@@ -24,15 +24,12 @@ export default class Alert extends React.Component {
     this.overlay.onClosed(e);
   }
   render() {
-    const { prefixCls, className, usePortal, autoFocus, isOpen, delay, content, cancelText, confirmText, type, icon, ...other } = this.props;
+    const { prefixCls, className, useButton, autoFocus, content, cancelText, confirmText, type, icon, ...other } = this.props;
     const cls = classnames(prefixCls, className, { [`${type}`]: type });
     return (
       <Overlay
         {...other}
         ref={(node) => this.overlay = node}
-        usePortal={usePortal}
-        isOpen={isOpen}
-        delay={delay}
         className={cls}
       >
         <div>
@@ -43,13 +40,15 @@ export default class Alert extends React.Component {
                 {this.props.children || content}
               </div>
             </div>
-            <div className={`${prefixCls}-footer`}>
-              <Button autoFocus={autoFocus} type={type} disabled={this.state.loading} onClick={this.handleConfirm}>
-                {this.state.loading && <Icon type="loading" spin={this.state.loading} />}
-                {confirmText}
-              </Button>
-              {cancelText && <Button onClick={this.handleCancel} >{cancelText}</Button>}
-            </div>
+            {useButton && (
+              <div className={`${prefixCls}-footer`}>
+                <Button autoFocus={autoFocus} type={type} disabled={this.state.loading} onClick={this.handleConfirm}>
+                  {this.state.loading && <Icon type="loading" spin={this.state.loading} />}
+                  {confirmText}
+                </Button>
+                {cancelText && <Button onClick={this.handleCancel} >{cancelText}</Button>}
+              </div>
+            )}
           </div>
         </div>
       </Overlay>
@@ -61,6 +60,7 @@ Alert.propTypes = {
   prefixCls: PropTypes.string,
   cancelText: PropTypes.string,
   confirmText: PropTypes.string,
+  useButton: PropTypes.bool,
   usePortal: PropTypes.bool,
   autoFocus: PropTypes.bool,
   isOpen: PropTypes.bool,
@@ -72,6 +72,7 @@ Alert.propTypes = {
 Alert.defaultProps = {
   prefixCls: 'w-alert',
   confirmText: '确认',
+  useButton: true,
   usePortal: true,
   autoFocus: false,
   isOpen: false,
