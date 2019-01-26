@@ -25,12 +25,43 @@ const Demo = () => (
         <Select.Option value="4">Four</Select.Option>
       </Select>
     </Col>
+    <Col fixed>
+      <Select disabled defaultValue="3">
+        <Select.Option value="w">Choose an item...</Select.Option>
+        <Select.Option value="1">One</Select.Option>
+        <Select.Option value="2">Two</Select.Option>
+        <Select.Option value="3">Three</Select.Option>
+        <Select.Option value="4">Four</Select.Option>
+      </Select>
+    </Col>
   </Row>
 );
 ```
 <!--End-->
 
-### 纯样式使用
+
+### 禁用选择器
+
+<!--DemoStart--> 
+```js
+const styl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
+const Demo = () => (
+  <Row style={styl}>
+    <Col fixed>
+      <Select disabled defaultValue="3">
+        <Select.Option value="w">Choose an item...</Select.Option>
+        <Select.Option value="1">One</Select.Option>
+        <Select.Option value="2">Two</Select.Option>
+        <Select.Option value="3">Three</Select.Option>
+        <Select.Option value="4">Four</Select.Option>
+      </Select>
+    </Col>
+  </Row>
+);
+```
+<!--End-->
+
+### HTML select
 
 这个组件是最简单的基础样式组件，可以直接引用样式，使用 `w-select` 纯样式即可达到效果，下拉框右边箭头效果通过样式更改，通过 [`b64`](http://b64.io/) 工具，转换成 `base64` 格式。
 
@@ -61,4 +92,5 @@ const Demo = () => (
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | value | 控制时 `select` 的值必须与 `onChange` 函数一起使用才能更新 `select` 的值 | Any | - |
+| disabled | 禁用选择器 | Boolean | `false` |
 | defaultValue | 根据 `value` 进行比较，判断是否选中 | Any | - |
