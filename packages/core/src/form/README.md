@@ -92,6 +92,11 @@ const Demo = () => (
             </RadioGroup>
           )
         },
+        textarea: {
+          initialValue: '',
+          label: '多行文本输入框',
+          children: <Textarea placeholder="请输入内容" />
+        },
         terms: {
           validator: (currentValue) => {
             return !currentValue ? '必须统一服务条款' : null;
@@ -118,6 +123,9 @@ const Demo = () => (
             </Row>
             <Row gutter="10">
               <Col>{fields.switch}</Col>
+            </Row>
+            <Row gutter="10">
+              <Col>{fields.textarea}</Col>
             </Row>
             <Row gutter="10">
               <Col fixed>
