@@ -32,24 +32,22 @@ export default class Alert extends React.Component {
         ref={(node) => this.overlay = node}
         className={cls}
       >
-        <div>
-          <div className={`${prefixCls}-inner`}>
-            <div className={`${prefixCls}-body`}>
-              {icon && <Icon type={icon} />}
-              <div className={`${prefixCls}-content`}>
-                {this.props.children || content}
-              </div>
+        <div className={`${prefixCls}-inner`}>
+          <div className={`${prefixCls}-body`}>
+            {icon && <Icon type={icon} />}
+            <div className={`${prefixCls}-content`}>
+              {this.props.children || content}
             </div>
-            {useButton && (
-              <div className={`${prefixCls}-footer`}>
-                <Button autoFocus={autoFocus} type={type} disabled={this.state.loading} onClick={this.handleConfirm}>
-                  {this.state.loading && <Icon type="loading" spin={this.state.loading} />}
-                  {confirmText}
-                </Button>
-                {cancelText && <Button onClick={this.handleCancel} >{cancelText}</Button>}
-              </div>
-            )}
           </div>
+          {useButton && (
+            <div className={`${prefixCls}-footer`}>
+              <Button autoFocus={autoFocus} type={type} disabled={this.state.loading} onClick={this.handleConfirm}>
+                {this.state.loading && <Icon type="loading" spin={this.state.loading} />}
+                {confirmText}
+              </Button>
+              {cancelText && <Button onClick={this.handleCancel} >{cancelText}</Button>}
+            </div>
+          )}
         </div>
       </Overlay>
     );
