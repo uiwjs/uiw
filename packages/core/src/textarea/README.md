@@ -34,9 +34,15 @@ const Demo = () => (
 
 ### HTML Textarea
 
-```html
-<textarea class="w-textarea" placeholder="请输入内容"> </div>
+<!--DemoStart--> 
+```js
+const Demo = () => (
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+    <textarea className="w-textarea" placeholder="请输入内容" defaultValue="" />
+  </div>
+)
 ```
+<!--End-->
 
 ## Props
 
