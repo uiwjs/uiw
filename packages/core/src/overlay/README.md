@@ -1,7 +1,7 @@
 Overlay 基础弹出层
 ===
 
-这是一个基础的弹出层组件，其它弹出层组件基于它来扩展比如 [`<Modal />`](#)、[`<Alert />`](#)、[`<OverlayTrigger />`](#)、[`<Popover />`](#)、[`<Tooltip />`](#) 等。
+这是一个基础的弹出层组件，其它弹出组件的抽象组件，都基于它来扩展比如 [`<Modal />`](#)、[`<Alert />`](#)、[`<OverlayTrigger />`](#)、[`<Popover />`](#)、[`<Tooltip />`](#) 等。
 
 ```jsx
 import { Overlay } from '@uiw/core';
@@ -209,7 +209,7 @@ class Demo extends React.PureComponent {
 | hasBackdrop | 是否有背景，是否向 `<body>` 添加样式 `.w-overlay-open` 防止滚动条出现 | boolean | `true` |
 | transitionName | 内部 [`CSSTransitionsss`](http://reactcommunity.org/react-transition-group/css-transition/) 的转换名称。在此提供您自己的名称将需要定义新的 CSS 过渡属性。 | string | `w-overlay` |
 | transitionDuration | 持续时间 | number | `300` |
-| onClose | 点击遮罩层回调函数，通过这个函数设置 `isOpen=false` 关闭 | Function | - |
+| onClose | 点击遮罩层回调函数，通过这个函数设置 `isOpen=false` 关闭。**`onClosed`** 是弹出框关闭动画执行完成后的回调函数，有明显区别容易混淆。 | Function | - |
 | onOpening | 顺序 `1`，**`打开`**立即执行，在应用 `enter-active` 或 `appear-active` 类后立即触发 [`<Transition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。 | Function(node: HtmlElement, isAppearing: bool) | - |
 | onOpened | 顺序 `2`，**`打开`**动画播放完成执行，在应用 `exiting` 状态之前启动回调。 | Function(node: HtmlElement, isAppearing: bool) | - |
 | onClosing | 顺序 `3`，**`关闭`**立即执行，应用 `exit-active` 后立即触发 [`<Transition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。 | Function(node: HtmlElement) | - |
