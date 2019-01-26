@@ -198,6 +198,53 @@ class Demo extends React.Component {
 ```
 <!--End-->
 
+### 自定义按钮
+
+这个对话框有两个按钮，单击 **`确定按钮`** 或 **`取消按钮`** 后，此对话框将关闭，将不触发 ~~`onConfirm`~~ 或 ~~`onCancel`~~ 事件。因为这俩按钮是自定义按钮。你可以正对自定义按钮外面的对象定义 `className="w-alert-footer"` 将显示默认样式。
+
+<!--DemoStart--> 
+```js
+class Demo extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      visible: false,
+    }
+  }
+  onClick(type) {
+    this.setState({ visible: !this.statevisible });
+  }
+  onClosed(type) {
+    this.setState({ visible: false });
+  }
+  render() {
+    return (
+      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+        <Alert
+          isOpen={this.state.visible}
+          type="danger"
+          useButton={false}
+          maskClosable={true}
+          onClose={this.onClosed.bind(this, 'visible')}
+          // onClosed={this.onClosed.bind(this, 'visible')}
+          content="这个对话框只有两个个按钮，单击“确定按钮”后，此对话框将关闭。用作通知用户重要信息。"
+        >
+          这个对话框有两个按钮，单击 “<b>确定按钮</b>” 或 “<b>取消按钮</b>” 后，此对话框将关闭，将不触发 “<del>onConfirm</del>” 或 “<del>onCancel</del>” 事件。因为这俩按钮是自定义按钮。
+          <div className="w-alert-footer">
+            <Button type="danger" onClick={this.onClosed.bind(this)} >确定按钮</Button>
+            <Button onClick={this.onClosed.bind(this)} >取消按钮</Button>
+          </div>
+        </Alert>
+        <ButtonGroup style={{ marginTop: 5 }}>
+          <Button onClick={this.onClick.bind(this, 'visible')}>单个按钮确认对话框</Button>
+        </ButtonGroup>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
 ## Props
 
 此组件继承 [`<Overlay>`](/components/overlay) 的属性，所以部分参数可以参考 `<Overlay>` 组件。
@@ -209,5 +256,7 @@ class Demo extends React.Component {
 | cancelText | 取消按钮文字， | String | - |
 | confirmText | 确认按钮文字 | String | `确认` |
 | icon | 设置对话框右上角图标，，设置 `type` 将图标设置不同的颜色。当前属性为 [`<Icon>`]](/components/icon) 组件的 `type` 属性，所以可以参考该组件自定义图标。 | String/ReactNode | `确认` |
-| isOpen[`<Overlay>`](/components/overlay) | 对话框是否可见 | Boolean | `false` |
+| useButton | 是否使用默认按钮，如果设置 `false` 需要自定义按钮关闭 | Boolean | `true` |
 | type | 按钮类型跟 `<Button>` 组件的 `type` 参数一致，同时会影响按钮颜色。 | String | `light` |
+| isOpen[`<Overlay>`](/components/overlay) | 对话框是否可见 | Boolean | `false` |
+| maskClosable[`<Overlay>`](/components/overlay) | 点击遮罩层是否允许关闭 | boolean | `true` |
