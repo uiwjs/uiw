@@ -69,7 +69,7 @@ export default class Overlay extends React.Component {
   handleBackdropMouseDown(e) {
     const { backdropProps, maskClosable, onClose } = this.props;
     if (maskClosable) {
-      onClose(false, e);
+      this.setState({ isMount: false }, onClose.bind(this, e));
     }
     backdropProps.onMouseDown && backdropProps.onMouseDown(e);
   }
