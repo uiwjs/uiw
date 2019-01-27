@@ -16,6 +16,7 @@ export { default as OverlayTrigger } from './overlay-trigger';
 export { default as Icon } from './icon';
 export { default as Input } from './input';
 export { default as List } from './list';
+export { default as Modal } from './modal';
 export { default as Popover } from './popover';
 export { default as Progress } from './progress';
 export { default as Portal } from './portal';
