@@ -28,7 +28,7 @@ export default class Modal extends React.PureComponent {
   }
   onClose = (e) => this.overlay.onClosed(e);
   render() {
-    const { prefixCls, className, useButton, autoFocus, title, content, cancelText, confirmText, type, icon, isCloseButtonShown, ...other } = this.props;
+    const { prefixCls, className, useButton, autoFocus, title, content, cancelText, confirmText, type, icon, width, isCloseButtonShown, ...other } = this.props;
     const cls = classnames(prefixCls, className, { [`${type}`]: type });
     return (
       <Overlay
@@ -38,12 +38,14 @@ export default class Modal extends React.PureComponent {
         className={cls}
       >
         <div className={`${prefixCls}-container`}>
-          <div className={`${prefixCls}-inner`}>
-            <div className={`${prefixCls}-header`}>
-              {icon && <Icon type={icon} />}
-              {title && <h4>{title}</h4>}
-              {title && isCloseButtonShown && <Button basic onClick={this.handleCancel} icon="close" type="light" />}
-            </div>
+          <div className={`${prefixCls}-inner`} style={{ maxWidth: width }}>
+            {(title || icon) && (
+              <div className={`${prefixCls}-header`}>
+                {icon && <Icon type={icon} />}
+                {title && <h4>{title}</h4>}
+                {title && isCloseButtonShown && <Button basic onClick={this.handleCancel} icon="close" type="light" />}
+              </div>
+            )}
             <div className={`${prefixCls}-body`}>
               {this.props.children || content}
             </div>
@@ -74,6 +76,7 @@ Modal.propTypes = {
   autoFocus: PropTypes.bool,
   isCloseButtonShown: PropTypes.bool,
   isOpen: PropTypes.bool,
+  width: PropTypes.number,
   type: PropTypes.oneOf(['primary', 'success', 'warning', 'danger', 'light', 'dark']),
   onCancel: PropTypes.func,
   onConfirm: PropTypes.func,
@@ -87,6 +90,7 @@ Modal.defaultProps = {
   autoFocus: false,
   isCloseButtonShown: true,
   isOpen: false,
+  width: 500,
   type: 'light',
   onCancel: () => null,
   onConfirm: () => null,
