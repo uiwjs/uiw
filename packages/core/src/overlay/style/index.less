@@ -16,22 +16,8 @@
   &.open {
     z-index: 9999;
   }
-  &:before {
-    content: " ";
-    display: inline-block;
-    height: 100%;
-    width: 0.1px;
-    vertical-align: middle;
-  }
   &-open {
     overflow: hidden;
-  }
-  &-inline {
-    position: absolute;
-    overflow: initial;
-  }
-  &-inline &-backdrop {
-    position: absolute;
   }
   &-content {
     position: relative;
@@ -39,7 +25,34 @@
     display: inline-block;
     vertical-align: middle;
     text-align: left;
+    margin: 20px 0;
     z-index: 20;
+  }
+  &-inline {
+    position: absolute;
+    overflow: initial;
+  }
+  &-inline &-container {
+    position: relative;
+  }
+  &-inline &-backdrop {
+    position: absolute;
+  }
+  &-container {
+    position: absolute;
+    overflow: auto;
+    z-index: 21;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    &:before {
+      content: " ";
+      display: inline-block;
+      height: 100%;
+      width: 1px;
+      vertical-align: middle;
+    }
   }
   &-backdrop {
     position: fixed;

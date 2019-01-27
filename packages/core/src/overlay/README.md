@@ -32,10 +32,11 @@ class Demo extends React.PureComponent {
         <Button type="primary" onClick={this.toggleOverlay.bind(this, false)}>弹出内容没有遮罩层</Button>
         <Overlay hasBackdrop={this.state.hasBackdrop} isOpen={this.state.isOpen} onClose={this.onClose.bind(this)}>
           <Card active bordered={!this.state.hasBackdrop} style={{ width: 500 }}>
-            <h3 style={{marginTop: 0}}>基础弹出层</h3>
+            <h3 style={{margin: 0}}>基础弹出层</h3>
             <div>
               这是一个基础的弹出层组件，其它弹出层组件基于它来扩展比如 Modal、Alert
             </div>
+            <br />
             <Button type="danger" onClick={this.toggleOverlay.bind(this, false)}>关闭</Button>
           </Card>
         </Overlay>
