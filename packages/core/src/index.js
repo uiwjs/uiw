@@ -26,6 +26,7 @@ export { default as Radio } from './radio/Radio';
 export { default as RadioGroup } from './radio/RadioGroup';
 export { default as Select } from './select';
 export { default as Switch } from './switch';
+export { default as Steps } from './steps';
 export { default as Tag } from './tag';
 export { default as Tooltip } from './tooltip';
 export { default as Timestamp } from './timestamp';

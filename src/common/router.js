@@ -127,6 +127,9 @@ export const getRouterData = () => {
     '/components/timestamp': {
       component: dynamicWrapper([], () => import('../routes/components/timestamp')),
     },
+    '/components/steps': {
+      component: dynamicWrapper([], () => import('../routes/components/steps')),
+    },
   };
   return conf;
 };
