@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import Item from './Item';
 import './style/index.less';
 
 export default class List extends React.Component {
+  static Item = Item;
   render() {
     const { prefixCls, className, children, bordered, striped, header, footer, size, dataSource, renderItem, ...resetProps } = this.props;
     let items;

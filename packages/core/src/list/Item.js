@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-export default class List extends React.Component {
+export default class Item extends React.Component {
   render() {
     const { prefixCls, className, children, active, ...resetProps } = this.props;
     const cls = classnames(`${prefixCls}`, className, {
@@ -18,14 +18,14 @@ export default class List extends React.Component {
   }
 }
 
-List.propTypes = {
+Item.propTypes = {
   prefixCls: PropTypes.string,
   disabled: PropTypes.bool,
   active: PropTypes.bool,
   href: PropTypes.string,
 };
 
-List.defaultProps = {
+Item.defaultProps = {
   prefixCls: 'w-list-item',
   disabled: false,
   active: false,
