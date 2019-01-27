@@ -1,0 +1,44 @@
+@modal: ~"w-modal";
+
+.@{modal} {
+  &-inner {
+    padding-bottom: 20px;
+    width: 500px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px rgba(16,22,26,.1), 0 4px 8px rgba(16,22,26,.2), 0 18px 46px 6px rgba(16,22,26,.2);
+  }
+  &-header {
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    padding-left: 13px;
+    padding-right: 5px;
+    box-shadow: 0 1px 0 rgba(16,22,26,.15);
+    font-size: 16px;
+    > .w-icon {
+      margin-right: 10px;
+      color: #393E48;
+    }
+    h4 {
+      margin: 0;
+      padding: 0;
+      flex: 1 1 auto;
+    }
+  }
+  &-body, &-footer {
+    margin: 0 20px;
+  }
+  &-body {
+    padding-top: 20px;
+    font-size: 14px;
+  }
+  &-footer {
+    display: flex;
+    margin-top: 15px;
+    flex-direction: row-reverse;
+    .w-btn + .w-btn {
+      margin-right: 10px;
+    }
+  }
+}

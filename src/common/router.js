@@ -121,6 +121,9 @@ export const getRouterData = () => {
     '/components/textarea': {
       component: dynamicWrapper([], () => import('../routes/components/textarea')),
     },
+    '/components/modal': {
+      component: dynamicWrapper([], () => import('../routes/components/modal')),
+    },
   };
   return conf;
 };

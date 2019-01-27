@@ -43,6 +43,7 @@ const menuData = [
       { name: 'Overlay 基础弹出层', path: 'overlay' },
       { name: 'OverlayTrigger 基础弹出触发', path: 'overlay-trigger' },
       { name: 'Alert 确认对话框', path: 'alert' },
+      { name: 'Modal 模态对话框', path: 'modal' },
       { name: 'Popover 气泡卡片', path: 'popover' },
       { name: 'Tooltip 文字提示', path: 'tooltip' },
       { divider: true, name: '其它' },
