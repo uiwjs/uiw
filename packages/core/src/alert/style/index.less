@@ -1,44 +1,36 @@
 @alert: ~"w-alert";
 
 .@{alert} {
-  &-inner {
-    padding: 20px;
-    width: 400px;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 0 1px rgba(16,22,26,.1), 0 4px 8px rgba(16,22,26,.2), 0 18px 46px 6px rgba(16,22,26,.2);
-  }
-  &-body {
-    font-size: 14px;
-    display: table;
-    .w-icon {
-      display: table-cell;
-      padding-right: 20px;
-      font-size: 40px;
-    }
-  }
-  &.primary .w-icon {
-    color: #008EF0;
-  }
-  &.success .w-icon {
-    color: #28a745;
-  }
-  &.warning .w-icon {
-    color: #ffc107;
-  }
-  &.danger .w-icon {
-    color: #dc3545;
-  }
-  &-content {
+  // .w-modal-inner {
+  //   max-width: 400px;
+  // }
+  .w-modal-header, .w-modal-body {
     display: table-cell;
+  }
+  .w-modal-header {
+    padding: 20px 0 0 20px;
+    box-shadow: 0 0 0 0;
+    padding-right: 0;
+  }
+  .w-modal-header .w-icon {
+    display: table-cell;
+    font-size: 40px;
+  }
+  .w-modal-body {
+    padding-right: 20px;
+    padding-left: 20px;
     vertical-align: top;
   }
-  &-footer {
-    display: flex;
-    margin-top: 15px;
-    flex-direction: row-reverse;
-    .w-btn + .w-btn {
-      margin-right: 10px;
-    }
+  &.primary .w-modal-header .w-icon {
+    color: #008EF0;
+  }
+  &.success .w-modal-header .w-icon {
+    color: #28a745;
+  }
+  &.warning .w-modal-header .w-icon {
+    color: #ffc107;
+  }
+  &.danger .w-modal-header .w-icon {
+    color: #dc3545;
   }
 }

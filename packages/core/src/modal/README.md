@@ -34,7 +34,7 @@ class Demo extends React.Component {
           confirmText="确定按钮"
           cancelText="取消按钮"
           icon="information"
-          type="danger"
+          type="primary"
           onConfirm={() => console.log('您点击了确定按钮！')}
           onCancel={() => console.log('您点击了取消按钮！')}
           onClosed={this.onClosed.bind(this)}
@@ -53,7 +53,7 @@ class Demo extends React.Component {
           <br /><br />
           React 组件使用一个名为 render() 的方法， 接收数据作为输入，输出页面中对应展示的内容。 下面这个示例中类似XML的写法被称为JSX. 输入的数据通过 this.props 传入 render() 方法。
           <br /><br />
-          使用 React 的时候也可以不使用 JSX 语法 你可以在 Babel REPL 查看 JSX 是如何被渲染成原生 JavaScript 代码的。
+          使用 React 的时候也可以不使用 JSX 语法 你可以在 <a href="https://babeljs.io/repl/#?presets=react&code_lz=MYewdgzgLgBApgGzgWzmWBeGAeAFgRgD4AJRBEAGhgHcQAnBAEwEJsB6AwgbgChRJY_KAEMAlmDh0YWRiGABXVOgB0AczhQAokiVQAQgE8AkowAUPGDADkdECChWeASl4AlOMOBQAIgHkAssp0aIySpogoaFBUQmISdC48QA" target="_blank">Babel REPL</a> 查看 JSX 是如何被渲染成原生 JavaScript 代码的。
         </Modal>
         <ButtonGroup style={{ marginTop: 5 }}>
           <Button onClick={this.onClick.bind(this)}>确认对话框</Button>
@@ -169,7 +169,7 @@ class Demo extends React.Component {
           React 组件使用一个名为 render() 的方法， 接收数据作为输入，输出页面中对应展示的内容。 下面这个示例中类似XML的写法被称为JSX. 输入的数据通过 this.props 传入 render() 方法。
           <br /><br />
           使用 React 的时候也可以不使用 JSX 语法 你可以在 Babel REPL 查看 JSX 是如何被渲染成原生 JavaScript 代码的。
-          <div className="w-alert-footer">
+          <div className="w-modal-footer">
             <Button type="danger" onClick={this.onClosed.bind(this)} >确定按钮</Button>
             <Button onClick={this.onClosed.bind(this)} >取消按钮</Button>
           </div>
@@ -195,9 +195,10 @@ class Demo extends React.Component {
 | onConfirm | 点击确定按钮回调 | Function(e) | - |
 | cancelText | 取消按钮文字， | String | - |
 | confirmText | 确认按钮文字 | String | `确认` |
-| icon | 设置对话框右上角图标，，设置 `type` 将图标设置不同的颜色。当前属性为 [`<Icon>`]](/components/icon) 组件的 `type` 属性，所以可以参考该组件自定义图标。 | String/ReactNode | `确认` |
+| icon | 设置对话框右上角图标，，设置 `type` 将图标设置不同的颜色。当前属性为 [`<Icon>`](/components/icon) 组件的 `type` 属性，所以可以参考该组件自定义图标。 | String/ReactNode | `确认` |
 | useButton | 是否使用默认按钮，如果设置 `false` 需要自定义按钮关闭 | Boolean | `true` |
 | type | 按钮类型跟 `<Button>` 组件的 `type` 参数一致，同时会影响按钮颜色。 | String | `light` |
+| width | 宽度 | Number | `500` |
 | isCloseButtonShown | 是否在对话框的标题中显示关闭按钮。 请注意，只有在提供标题时才会呈现标题。 | Boolean | `true` |
 | isOpen[`<Overlay>`](/components/overlay) | 对话框是否可见 | Boolean | `false` |
 | maskClosable[`<Overlay>`](/components/overlay) | 点击遮罩层是否允许关闭 | boolean | `true` |
