@@ -66,9 +66,12 @@ export default class Overlay extends React.Component {
       this.overlayWillOpen();
     }
   }
-  handleBackdropMouseDown(e) {
-    const { backdropProps, maskClosable, onClose } = this.props;
-    if (maskClosable) {
+  handleBackdropMouseDown = (e) => {
+    const { backdropProps, maskClosable, hasBackdrop, usePortal, onClose } = this.props;
+    if (e.target !== this.container && usePortal) {
+      return;
+    }
+    if (maskClosable && hasBackdrop) {
       this.setState({ isMount: false }, onClose.bind(this, e));
     }
     backdropProps.onMouseDown && backdropProps.onMouseDown(e);
@@ -83,7 +86,7 @@ export default class Overlay extends React.Component {
     this.overlayWillClose();
   }
   render() {
-    const { prefixCls, className, style, isOpen, usePortal, children, unmountOnExit, transitionDuration, transitionName, backdropProps, hasBackdrop, portalProps } = this.props;
+    const { prefixCls, className, style, isOpen, maskClosable, usePortal, children, unmountOnExit, transitionDuration, transitionName, backdropProps, hasBackdrop, portalProps } = this.props;
     const { onOpening, onOpened, onClosing } = this.props;
     const decoratedChild =
       typeof children === 'object' ? (
@@ -109,13 +112,19 @@ export default class Overlay extends React.Component {
           <div className={classnames(prefixCls, className, { [`${prefixCls}-inline`]: !usePortal })} style={style}>
             {hasBackdrop && cloneElement(<div />, {
               ...backdropProps,
-              className: classnames(`${prefixCls}-backdrop`, backdropProps.className),
               onMouseDown: this.handleBackdropMouseDown.bind(this),
+              className: classnames(`${prefixCls}-backdrop`, backdropProps.className),
               tabIndex: this.props.maskClosable ? 0 : null
             })}
-            {cloneElement(decoratedChild, {
-              [`data-status`]: status
-            })}
+            {usePortal ? (
+              <div
+                ref={node => this.container = node}
+                onMouseDown={this.handleBackdropMouseDown.bind(this)}
+                className={classnames(`${prefixCls}-container`)}
+              >
+                {cloneElement(decoratedChild, { [`data-status`]: status })}
+              </div>
+            ) : cloneElement(decoratedChild, { [`data-status`]: status})}
           </div>
         )}
       </CSSTransition>
