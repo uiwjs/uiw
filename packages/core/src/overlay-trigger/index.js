@@ -41,7 +41,6 @@ export default class OverlayTrigger extends React.PureComponent {
     return React.Children.only(this.props.children).props;
   }
   handleClickOutside = (e) => {
-    const { trigger } = this.props;
     const popNode = this.getPopupTarget();
     const child = this.getTarget();
     if (popNode && e.target && !popNode.contains(e.target) && !child.contains(e.target)) {
@@ -72,8 +71,9 @@ export default class OverlayTrigger extends React.PureComponent {
     }, delay.show);
   };
 
-  handleHide = () => {
+  handleHide = (isOutside) => {
     clearTimeout(this._timeout);
+    if (!isOutside && this.props.isOutside) return;
     this._hoverState = 'hide';
 
     const delay = normalizeDelay(this.props.delay);
@@ -103,9 +103,14 @@ export default class OverlayTrigger extends React.PureComponent {
   handleMouseOverOut(handler, e, relatedNative) {
     const target = e.currentTarget;
     const related = e.relatedTarget || e.nativeEvent[relatedNative];
-
+    const popupTarget = this.getPopupTarget();
+    const currentTarget = this.getTarget();
+    let isOutside = true;
+    if (popupTarget && contains(popupTarget, related) || currentTarget && contains(currentTarget, related)) {
+      isOutside = false;
+    }
     if ((!related || related !== target) && !contains(target, related)) {
-      handler(e);
+      handler(isOutside, e);
     }
   }
   hide() {
@@ -215,7 +220,7 @@ export default class OverlayTrigger extends React.PureComponent {
   render() {
     const { prefixCls, className, children, overlay, trigger, placement, disabled, usePortal, ...other } = this.props;
     const child = React.Children.only(children);
-    const props = { ...other, placement };
+    const props = { ...other, placement, dialogProps: {} };
     const triggerProps = { };
     if (trigger === 'click' && !disabled) {
       triggerProps.onClick = this.handleClick;
@@ -223,6 +228,7 @@ export default class OverlayTrigger extends React.PureComponent {
     if (trigger === 'hover' && !disabled) {
       triggerProps.onMouseOver = this.handleMouseOver;
       triggerProps.onMouseOut = this.handleMouseOut;
+      props.dialogProps.onMouseOut = this.handleMouseOut;
     }
     props.style = { ...props.style, ...this.state.overlayStyl };
     return (
@@ -251,6 +257,7 @@ OverlayTrigger.propTypes = {
   usePortal: PropTypes.bool,
   visible: PropTypes.bool,
   disabled: PropTypes.bool,
+  isOutside: PropTypes.bool,
   delay: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.shape({
@@ -274,6 +281,7 @@ OverlayTrigger.defaultProps = {
   onVisibleChange: () => null,
   onOpening: () => null,
   usePortal: true,
+  isOutside: false,
   disabled: false,
   visible: false,
   trigger: 'hover',

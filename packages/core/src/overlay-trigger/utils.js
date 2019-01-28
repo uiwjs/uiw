@@ -1,8 +1,6 @@
 
 const canUseDOM = !!(
-  typeof window !== 'undefined' &&
-  window.document &&
-  window.document.createElement
+  typeof window !== 'undefined' && window.document && window.document.createElement
 );
 
 export default (function () {
@@ -16,7 +14,6 @@ export default (function () {
         return context === node || !!(context.compareDocumentPosition(node) & 16);
       }
       return fallback(context, node);
-
     }
     : fallback;
 })()
@@ -24,7 +21,7 @@ export default (function () {
 function fallback(context, node) {
   if (node) do {
     if (node === context) return true;
-  } while ((node = node.parentNode));
+  } while (node = node.parentNode);
 
   return false;
 }
