@@ -198,6 +198,52 @@ class Demo extends React.Component {
 ```
 <!--End-->
 
+### usePortal
+
+设置 `usePortal={false}` 将模态对话框生成到根节点的里面。
+
+<!--DemoStart--> 
+```js
+const card = (
+  <Card active>
+    <strong>Hellow uiw!</strong> Check this info.<br />
+    展示 12 个方向位置
+  </Card>
+);
+
+class Demo extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      isVisbale: false,
+    }
+  }
+  onVisibleChange(isVisbale) {
+    this.setState({ isVisbale })
+  }
+  render() {
+    return (
+      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+        <div style={{ position: 'relative' }}>
+          <OverlayTrigger
+            usePortal={false}
+            placement="top"
+            trigger="click"
+            onVisibleChange={this.onVisibleChange.bind(this)}
+            overlay={card}
+          >
+            <span>鼠标移动到此处，显示和消失触发事件</span>
+          </OverlayTrigger>
+        </div>
+        <Divider />
+        <div>状态：{this.state.isVisbale ? '' : '不'}可见</div>
+      </div>
+    );
+  }
+}
+```
+<!--End-->
+
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
