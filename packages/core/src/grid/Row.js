@@ -10,14 +10,14 @@ export default class Row extends React.Component {
     justify: null,
   }
   render() {
-    const { prefixCls, gutter, justify, align, ...props } = this.props;
-    const cls = classnames(prefixCls, {
+    const { prefixCls, className, gutter, justify, align, ...props } = this.props;
+    const cls = classnames(prefixCls, className, {
       [`${prefixCls}-align-${align}`]: align,
       [`${prefixCls}-justify-${justify}`]: justify
     });
     const gutterStyl = !gutter ? {} : { paddingLeft: gutter / 2, paddingRight: gutter / 2, }
     return (
-      <div className={cls} {...props}>
+      <div {...props} className={cls}>
         {React.Children.map(this.props.children, (element) => {
           return React.cloneElement(element, Object.assign({}, element.props, {
             style: { ...element.props.style, ...gutterStyl },
