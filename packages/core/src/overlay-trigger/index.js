@@ -128,7 +128,7 @@ export default class OverlayTrigger extends React.PureComponent {
     this.setState({ overlayStyl: { ...this.styles() } }, this.props.onOpening.bind(this, node, isAppearing));
   }
   styles() {
-    const { placement } = this.props;
+    const { placement, usePortal } = this.props;
     const sty = {};
     let dom = this.getTarget();
     if (!dom || !document) return sty;
@@ -152,6 +152,11 @@ export default class OverlayTrigger extends React.PureComponent {
 
     sty.left = scrollLeft + rect.left;
     sty.top = scrollTop + rect.top;
+
+    if (!usePortal) {
+      sty.left = 0;
+      sty.top = 0;
+    }
 
     switch (placement) {
       case 'topLeft':
@@ -207,7 +212,7 @@ export default class OverlayTrigger extends React.PureComponent {
     return sty;
   }
   render() {
-    const { children, overlay, trigger, ...other } = this.props;
+    const { children, overlay, trigger, usePortal, ...other } = this.props;
     const child = React.Children.only(children);
     const props = { ...other }
     const triggerProps = { };
@@ -228,7 +233,7 @@ export default class OverlayTrigger extends React.PureComponent {
           {...props}
           onOpening={this.onOpening}
           className="w-overlay-trigger"
-          usePortal={true}
+          usePortal={usePortal}
           isOpen={this.state.show}
           hasBackdrop={false}
         >
@@ -242,6 +247,7 @@ export default class OverlayTrigger extends React.PureComponent {
 OverlayTrigger.propTypes = {
   prefixCls: PropTypes.string,
   onVisibleChange: PropTypes.func,
+  usePortal: PropTypes.bool,
   visible: PropTypes.bool,
   delay: PropTypes.oneOfType([
     PropTypes.number,
@@ -265,6 +271,7 @@ OverlayTrigger.defaultProps = {
   prefixCls: 'w-overlay',
   onVisibleChange: () => null,
   onOpening: () => null,
+  usePortal: true,
   visible: false,
   trigger: 'hover',
 };
