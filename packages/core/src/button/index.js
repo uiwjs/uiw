@@ -20,8 +20,9 @@ export default class Button extends React.Component {
       <button {...others} disabled={disabled || loading} type={htmlType} className={cls}>
         {icon && <Icon type={icon} />}
         {children && React.Children.map(children, (child) => {
+          if (!child) return child;
           if (React.isValidElement(child)) return child;
-          return <span> {child} </span>;
+          return <span>{child}</span>;
         })}
       </button>
     );
