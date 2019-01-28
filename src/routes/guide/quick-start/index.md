@@ -9,25 +9,24 @@
 npm i @uiw/core # 安装 v2.x.x 最新版本
 ```
 
+### 安装 [**v1.x**](https://unpkg.com/uiw/dist/index.html#/cn/quick-start) 旧版本
+
 > `v1.x` 不可以升级到 `v2.x`，`v2`是对 v1 的重构和简化  
 
-安装 `v1.x.x` 版本
+安装 [**`v1.x`**](https://unpkg.com/uiw/dist/index.html#/cn/quick-start) 版本
 
 ```bash
 npm install uiw --save
-```
 
 ## 通过 GitHub 仓库安装
-
-```bash
 npm i -S uiw-react/uiw
 # 指定版本
-npm i -S uiw-react/uiw#v1.2.12
+npm i -S uiw-react/uiw#v1.16.14
 # 或者
 yarn add uiw-react/uiw
 ```
 
->  **通过GitHub仓库安装**的 `win` 用户请在 `Git Bash` 下执行，因为需要用到 `git`。
+>  **通过 GitHub 仓库安装**的 `win` 用户请在 `Git Bash` 下执行，因为需要用到 `git`。
 
 ## 对新版本 v2.x 的更新内容
 
@@ -42,7 +41,7 @@ yarn add uiw-react/uiw
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from 'uiw';
+import { Button } from '@uiw/core';
 
 ReactDOM.render(
   <Button type="primary">Hello</Button>, 
@@ -55,14 +54,7 @@ ReactDOM.render(
 重新取一个名字
 
 ```js
-import { Button as ButtonView } from 'uiw';
-```
-
-## 按需加载组件
-
-```diff
-- import { Alert } from 'uiw';
-+ import { Alert } from 'uiw/lib/alert';
+import { Button as ButtonView } from '@uiw/core';
 ```
 
 ## 开发
@@ -73,8 +65,6 @@ import { Button as ButtonView } from 'uiw';
 $ git clone https://github.com/uiw-react/uiw.git
 $ cd uiw
 $ npm install # or  yarn install
-# or 解决phantomjs下载失败问题
-$ npm install --phantomjs_cdnurl=http://npm.taobao.org/mirrors/phantomjs
 ```
 
 要开发，运行自重新构建：
@@ -84,15 +74,12 @@ $ npm install --phantomjs_cdnurl=http://npm.taobao.org/mirrors/phantomjs
 # Restart the app automatically every time code changes. 
 # Useful during development.
 $ npm start
+# Listening compiled component code.
+$ cd packages/core
+$ npm run watch
 ```
 
-打开浏览器并访问：http://127.0.0.1:2087
-
-更新文档
-
-```bash
-npm run deploy
-```
+打开浏览器并访问：http://localhost:19870
 
 ## 文件目录说明
 
