@@ -88,6 +88,8 @@ class Demo extends React.Component {
 
 ### 鼠标经过事件
 
+默认离开**触发区域**隐藏弹出目标，设置 `isOutside` 值为 `true`，在**触发区域**或**弹出目标区域**内，不隐藏**弹出目标**。
+
 <!--DemoStart--> 
 ```js
 const card = (
@@ -112,6 +114,7 @@ class Demo extends React.Component {
       <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
         <OverlayTrigger
           placement="top"
+          isOutside={true}
           onVisibleChange={this.onVisibleChange.bind(this)}
           overlay={card}
         >
@@ -253,4 +256,5 @@ class Demo extends React.Component {
 | disabled | 是否禁用弹出目标 | Boolean | `false` |
 | delay | 延迟进入和消失，`{ show: 2000, hide: 4000 }` 或者直接设置 `2000`，只对 `trigger=hover` 有效 | Object/Number | - |
 | visible | 默认是否显示弹窗 | Boolean | `false` |
+| isOutside | 默认离开**触发区域**隐藏弹出目标，设置值为 `true`，在触发区域和弹出目标区域内，不隐藏**弹出目标**。 | Boolean | `false` |
 | onVisibleChange | 显示隐藏的回调 | Function(isVisible:bool) | - |
