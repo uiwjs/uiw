@@ -250,6 +250,7 @@ class Demo extends React.Component {
 |--------- |-------- |--------- |-------- |
 | placement | 指定弹出框位置 | Enum{`top`, `topLeft`, `topRight`,<br /> `left`, `leftTop`, `leftBottom`,<br /> `right`, `rightTop`, `rightBottom`,<br /> `bottom`, `bottomLeft`, `bottomRight`} | - |
 | trigger | 悬停/点击弹出窗口 | Enum{`hover`, `click`} | `hover` |
+| disabled | 是否禁用弹出目标 | Boolean | `false` |
 | delay | 延迟进入和消失，`{ show: 2000, hide: 4000 }` 或者直接设置 `2000`，只对 `trigger=hover` 有效 | Object/Number | - |
 | visible | 默认是否显示弹窗 | Boolean | `false` |
 | onVisibleChange | 显示隐藏的回调 | Function(isVisible:bool) | - |

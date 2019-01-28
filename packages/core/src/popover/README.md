@@ -159,6 +159,59 @@ const Demo = () => (
 ```
 <!--End-->
 
+### usePortal
+
+设置 `usePortal={false}` 将模态对话框生成到根节点的里面，这样为了计算位置准确，你需要将父层样式设为 `position: relative;` 。
+
+<!--DemoStart--> 
+```js
+class Demo extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isVisbale: false,
+    }
+  }
+  onClick() {
+    this.setState({ isVisbale: false });
+  }
+  handleVisibleChange(isVisbale) {
+    this.setState({ isVisbale });
+  }
+  render() {
+    return (
+      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+        <div style={{ position: 'relative' }}>
+          <Popover
+            trigger="click"
+            placement="top"
+            usePortal={false}
+            visible={this.state.isVisbale}
+            onVisibleChange={this.handleVisibleChange.bind(this)}
+            content={
+              <Card bordered={false} title="Card标题" extra={<a href="#">更多</a>} style={{ width: 200 }}>
+                <div>Are you sure you want to delete these items? You won't be able to recover them.</div>
+                <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 15 }}>
+                  <Button size="small" onClick={this.onClick.bind(this)}>
+                    Cancel
+                  </Button>
+                  <Button type="danger" size="small" onClick={this.onClick.bind(this)}>
+                    Delete
+                  </Button>
+                </div>
+              </Card>
+            }
+          >
+            <Button>弹出目标</Button>
+          </Popover>
+        </div>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -168,5 +221,6 @@ const Demo = () => (
 | visibleArrow | 是否显示 Tooltip 箭头 | Boolean | `true` |
 | delay | 延迟进入和消失，`{ show: 2000, hide: 4000 }` 或者直接设置 `2000`，只对 `trigger=hover` 有效，继承 `<OverlayTrigger />` 组件属性 | Object/Number | - |
 | trigger | 悬停/点击弹出窗口，继承 `<OverlayTrigger />` 组件属性 | Enum{`hover`, `click`} | `hover` |
+| disabled | 是否禁用弹出目标 | Boolean | `false` |
 | visible | 默认是否显示弹窗，继承 `<OverlayTrigger />` 组件属性 | Boolean | `false` |
 | onVisibleChange | 显示隐藏的回调，继承 `<OverlayTrigger />` 组件属性 | Function(isVisible:bool) | - |
