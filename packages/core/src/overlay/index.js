@@ -86,15 +86,16 @@ export default class Overlay extends React.Component {
     this.overlayWillClose();
   }
   render() {
-    const { prefixCls, className, style, isOpen, maskClosable, usePortal, children, unmountOnExit, transitionDuration, transitionName, backdropProps, hasBackdrop, portalProps, ...otherProps } = this.props;
+    const { prefixCls, className, style, isOpen, maskClosable, usePortal, children, unmountOnExit, transitionDuration, transitionName, hasBackdrop, portalProps, backdropProps, dialogProps, ...otherProps } = this.props;
     const { onOpening, onOpened, onClosing } = this.props;
     const decoratedChild =
       typeof children === 'object' ? (
         cloneElement(children, {
+          ...dialogProps,
           className: classnames(children.props.className, `${prefixCls}-content`),
           tabIndex: 0,
         })
-      ) : <span className={`${prefixCls}-content`}>{children}</span>;
+      ) : <span {...dialogProps} className={`${prefixCls}-content`}>{children}</span>;
 
     const TransitionGroupComp = (
       <CSSTransition
