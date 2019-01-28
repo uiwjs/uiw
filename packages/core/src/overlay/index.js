@@ -86,7 +86,7 @@ export default class Overlay extends React.Component {
     this.overlayWillClose();
   }
   render() {
-    const { prefixCls, className, style, isOpen, maskClosable, usePortal, children, unmountOnExit, transitionDuration, transitionName, backdropProps, hasBackdrop, portalProps } = this.props;
+    const { prefixCls, className, style, isOpen, maskClosable, usePortal, children, unmountOnExit, transitionDuration, transitionName, backdropProps, hasBackdrop, portalProps, ...otherProps } = this.props;
     const { onOpening, onOpened, onClosing } = this.props;
     const decoratedChild =
       typeof children === 'object' ? (
@@ -100,16 +100,16 @@ export default class Overlay extends React.Component {
       <CSSTransition
         in={this.state.isOpen}
         unmountOnExit={unmountOnExit}
-        classNames={transitionName}
         onEntering={onOpening}
         onEntered={onOpened}
         onExiting={onClosing}
         onExited={this.onClosed.bind(this)}
         timeout={transitionDuration}
+        {...otherProps}
         classNames={transitionName}
       >
         {(status) => (
-          <div className={classnames(prefixCls, className, { [`${prefixCls}-inline`]: !usePortal })} style={style}>
+          <div className={classnames(prefixCls, className, { [`${prefixCls}-inline`]: !usePortal})} style={style}>
             {hasBackdrop && cloneElement(<div />, {
               ...backdropProps,
               onMouseDown: this.handleBackdropMouseDown.bind(this),

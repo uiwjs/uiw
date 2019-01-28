@@ -1,6 +1,6 @@
-@w-overlay-trigger:~"w-overlay-trigger";
+@overlay-trigger-prefix:~"w-overlay-trigger";
 
-.@{w-overlay-trigger} {
+.@{overlay-trigger-prefix} {
   position: absolute;
   top: auto;
   left: auto;
@@ -16,4 +16,41 @@
   .w-overlay-content {
     margin: 0;
   }
+  &.rightTop .w-overlay-content {
+    transform-origin: left top;
+  }
+  &.right .w-overlay-content {
+    transform-origin: left center;
+  }
+  &.rightBottom .w-overlay-content {
+    transform-origin: left bottom;
+  }
+  &.topLeft .w-overlay-content {
+    transform-origin: bottom left;
+  }
+  &.top .w-overlay-content {
+    transform-origin: bottom center;
+  }
+  &.topRight .w-overlay-content {
+    transform-origin: bottom right;
+  }
+  &.leftTop .w-overlay-content {
+    transform-origin: right top;
+  }
+  &.left .w-overlay-content {
+    transform-origin: right center;
+  }
+  &.leftBottom .w-overlay-content {
+    transform-origin: right bottom;
+  }
+  &.bottomLeft .w-overlay-content {
+    transform-origin: top left;
+  }
+  &.bottom .w-overlay-content {
+    transform-origin: top center;
+  }
+  &.bottomRight .w-overlay-content {
+    transform-origin: top right;
+  }
 }
+

@@ -1,6 +1,7 @@
 import React, { cloneElement } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Overlay from '../overlay';
 import contains from './utils';
 import './style/index.less';
@@ -212,9 +213,9 @@ export default class OverlayTrigger extends React.PureComponent {
     return sty;
   }
   render() {
-    const { children, overlay, trigger, placement, disabled, usePortal, ...other } = this.props;
+    const { prefixCls, className, children, overlay, trigger, placement, disabled, usePortal, ...other } = this.props;
     const child = React.Children.only(children);
-    const props = { ...other }
+    const props = { ...other, placement };
     const triggerProps = { };
     if (trigger === 'click' && !disabled) {
       triggerProps.onClick = this.handleClick;
@@ -223,7 +224,7 @@ export default class OverlayTrigger extends React.PureComponent {
       triggerProps.onMouseOver = this.handleMouseOver;
       triggerProps.onMouseOut = this.handleMouseOut;
     }
-    props.style = { ...props.style, ...this.state.overlayStyl }
+    props.style = { ...props.style, ...this.state.overlayStyl };
     return (
       <>
         <RefHolder ref={this.trigger}>
@@ -232,12 +233,12 @@ export default class OverlayTrigger extends React.PureComponent {
         <Overlay
           {...props}
           onOpening={this.onOpening}
-          className="w-overlay-trigger"
+          className={classNames(prefixCls, className, { [`${placement}`]: placement })}
           usePortal={usePortal}
           isOpen={this.state.show}
           hasBackdrop={false}
         >
-          {cloneElement(overlay, { placement, ref: this.popup })}
+          {cloneElement(overlay, { ref: this.popup })}
         </Overlay>
       </>
     );
@@ -269,7 +270,7 @@ OverlayTrigger.propTypes = {
 };
 
 OverlayTrigger.defaultProps = {
-  prefixCls: 'w-overlay',
+  prefixCls: 'w-overlay-trigger',
   onVisibleChange: () => null,
   onOpening: () => null,
   usePortal: true,
