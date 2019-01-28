@@ -14,7 +14,7 @@ export default class Icon extends React.PureComponent {
   }
 
   render() {
-    const { prefixCls, color, type, spin, verticalAlign, tagName: TagName = 'span', ...others } = this.props;
+    const { prefixCls, className, color, type, spin, verticalAlign, tagName: TagName = 'span', ...others } = this.props;
     let svg = null;
     if (type == null || typeof type === "boolean") {
       return null;
@@ -27,7 +27,7 @@ export default class Icon extends React.PureComponent {
     }
     others.style = { fill: 'currentColor', ...others.style };
     const propps = { ...others,
-      className: classnames(prefixCls, `${prefixCls}-${verticalAlign}`, { [`${prefixCls}-spin`]: spin }),
+      className: classnames(prefixCls, className, `${prefixCls}-${verticalAlign}`, { [`${prefixCls}-spin`]: spin }),
     }
     return (
       <TagName {...propps}>{svg}</TagName>
