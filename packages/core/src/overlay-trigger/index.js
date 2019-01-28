@@ -212,14 +212,14 @@ export default class OverlayTrigger extends React.PureComponent {
     return sty;
   }
   render() {
-    const { children, overlay, trigger, usePortal, ...other } = this.props;
+    const { children, overlay, trigger, placement, disabled, usePortal, ...other } = this.props;
     const child = React.Children.only(children);
     const props = { ...other }
     const triggerProps = { };
-    if (trigger === 'click') {
+    if (trigger === 'click' && !disabled) {
       triggerProps.onClick = this.handleClick;
     }
-    if (trigger === 'hover') {
+    if (trigger === 'hover' && !disabled) {
       triggerProps.onMouseOver = this.handleMouseOver;
       triggerProps.onMouseOut = this.handleMouseOut;
     }
@@ -237,7 +237,7 @@ export default class OverlayTrigger extends React.PureComponent {
           isOpen={this.state.show}
           hasBackdrop={false}
         >
-          {cloneElement(overlay, { placement: this.props.placement, ref: this.popup })}
+          {cloneElement(overlay, { placement, ref: this.popup })}
         </Overlay>
       </>
     );
@@ -249,6 +249,7 @@ OverlayTrigger.propTypes = {
   onVisibleChange: PropTypes.func,
   usePortal: PropTypes.bool,
   visible: PropTypes.bool,
+  disabled: PropTypes.bool,
   delay: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.shape({
@@ -272,6 +273,7 @@ OverlayTrigger.defaultProps = {
   onVisibleChange: () => null,
   onOpening: () => null,
   usePortal: true,
+  disabled: false,
   visible: false,
   trigger: 'hover',
 };

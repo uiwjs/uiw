@@ -27,8 +27,9 @@ export default class Popover extends React.Component {
         delay={delay}
         onVisibleChange={onVisibleChange}
         placement={placement}
+        {...other}
         overlay={
-          <div className={cls} {...other}>
+          <div className={cls}>
             {visibleArrow && <Arrow prefixCls={prefixCls} />}
             <div className={`${prefixCls}-inner`}>{this.props.content}</div>
           </div>

@@ -18,8 +18,9 @@ export default class Tooltip extends React.Component {
         delay={delay}
         onVisibleChange={onVisibleChange}
         placement={placement}
+        {...other}
         overlay={
-          <div className={cls} {...other}>
+          <div className={cls}>
             {visibleArrow && <div className={`${prefixCls}-arrow`} />}
             <div className={`${prefixCls}-inner`}>{this.props.content}</div>
           </div>
