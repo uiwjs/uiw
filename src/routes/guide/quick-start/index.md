@@ -70,13 +70,13 @@ $ npm install # or  yarn install
 要开发，运行自重新构建：
 
 ```bash
+# Listening compiled component code.
+$ cd packages/core
+$ npm run watch
 # Run the app
 # Restart the app automatically every time code changes. 
 # Useful during development.
 $ npm start
-# Listening compiled component code.
-$ cd packages/core
-$ npm run watch
 ```
 
 打开浏览器并访问：http://localhost:19870

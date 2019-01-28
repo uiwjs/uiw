@@ -130,6 +130,9 @@ export const getRouterData = () => {
     '/components/steps': {
       component: dynamicWrapper([], () => import('../routes/components/steps')),
     },
+    '/components/menu': {
+      component: dynamicWrapper([], () => import('../routes/components/menu')),
+    },
   };
   return conf;
 };
