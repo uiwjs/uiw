@@ -1,4 +1,4 @@
-import { Card, Icon } from '@uiw/core';
+import { Card, Icon } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 

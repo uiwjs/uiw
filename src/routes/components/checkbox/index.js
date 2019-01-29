@@ -1,4 +1,4 @@
-import { Checkbox, Button, Divider } from '@uiw/core';
+import { Checkbox, Button, Divider } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 

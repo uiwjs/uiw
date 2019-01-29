@@ -1,4 +1,4 @@
-import { List } from '@uiw/core';
+import { List } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 

@@ -1,4 +1,4 @@
-import { Textarea, Divider, Icon } from '@uiw/core';
+import { Textarea, Divider, Icon } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 export default class Page extends Markdown {

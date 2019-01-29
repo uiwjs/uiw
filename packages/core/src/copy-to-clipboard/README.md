@@ -4,7 +4,7 @@ CopyToClipboard 复制
 将文本到剪切板，复制到剪贴板功能可以应用于各种元素。
 
 ```jsx
-import { CopyToClipboard } from '@uiw/core';
+import { CopyToClipboard } from 'uiw';
 ```
 
 ## 基础实例

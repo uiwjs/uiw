@@ -4,7 +4,7 @@ Button 按钮
 按钮用于开始一个即时操作，触发业务逻辑时使用。
 
 ```jsx
-import { Button, ButtonGroup } from '@uiw/core';
+import { Button, ButtonGroup } from 'uiw';
 ```
 
 ### 基本用法

@@ -1,4 +1,4 @@
-import { BackTop, Button } from '@uiw/core';
+import { BackTop, Button } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 export default class Page extends Markdown {

@@ -4,7 +4,7 @@ Tooltip 文字提示
 简单的文字提示气泡框。
 
 ```jsx
-import { Tooltip } from '@uiw/core';
+import { Tooltip } from 'uiw';
 ```
 
 ### 基础用法

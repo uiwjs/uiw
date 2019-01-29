@@ -1,4 +1,4 @@
-import { Breadcrumb, Icon, Divider } from '@uiw/core';
+import { Breadcrumb, Icon, Divider } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 export default class Page extends Markdown {

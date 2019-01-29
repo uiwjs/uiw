@@ -4,7 +4,7 @@ Alert 确认对话框
 弹出对话框会在继续之前，通知用户重要信息，点击确定后异步关闭对话框。
 
 ```jsx
-import { Alert } from '@uiw/core';
+import { Alert } from 'uiw';
 ```
 
 ## 基本用法

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@uiw/core';
+import { Button } from 'uiw';
 import styles from './index.module.less';
 
 export default class Home extends PureComponent {

@@ -1,4 +1,4 @@
-import { Divider } from '@uiw/core';
+import { Divider } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 

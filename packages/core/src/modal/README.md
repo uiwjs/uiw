@@ -5,7 +5,7 @@ Modal 模态对话框
 
 
 ```jsx
-import { Modal } from '@uiw/core';
+import { Modal } from 'uiw';
 ```
 
 ### 基本用法

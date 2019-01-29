@@ -1,4 +1,4 @@
-import { Switch, Divider, Button } from '@uiw/core';
+import { Switch, Divider, Button } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 

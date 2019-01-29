@@ -4,7 +4,7 @@ Breadcrumb 面包屑
 显示当前页面的路径，快速返回之前的任意页面。
 
 ```jsx
-import { Breadcrumb } from '@uiw/core';
+import { Breadcrumb } from 'uiw';
 ```
 
 ### 基础用法

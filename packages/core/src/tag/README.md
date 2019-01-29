@@ -4,7 +4,7 @@ Tag 标签
 进行标记和分类的小标签，胶囊。
 
 ```jsx
-import { Tag } from '@uiw/core';
+import { Tag } from 'uiw';
 ```
 
 ## 基础用法

@@ -4,7 +4,7 @@ Rate 评分
 评分组件
 
 ```jsx
-import { Rate } from '@uiw/core';
+import { Rate } from 'uiw';
 ```
 
 ### 基本用法

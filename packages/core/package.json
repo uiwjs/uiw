@@ -1,5 +1,5 @@
 {
-  "name": "@uiw/core",
+  "name": "uiw",
   "version": "2.0.0-beta.1",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiw-react.github.io",

@@ -5,7 +5,7 @@ Portal 入口
 
 
 ```jsx
-import { Portal } from '@uiw/core';
+import { Portal } from 'uiw';
 ```
 
 ### 基本使用

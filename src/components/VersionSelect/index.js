@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Select } from '@uiw/core';
+import { Select } from 'uiw';
 import styles from './index.module.less';
 
 export default class VersionSelect extends Component {
@@ -9,7 +9,7 @@ export default class VersionSelect extends Component {
     if (isV1) {
       window.location.href = `https://unpkg.com/uiw@${version}/dist/index.html`;
     } else {
-      window.location.href = `https://unpkg.com/@uiw/core@${version}/docs/index.html`;
+      window.location.href = `https://unpkg.com/uiw@${version}/docs/index.html`;
     }
   }
   render() {

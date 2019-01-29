@@ -1,4 +1,4 @@
-import { Radio, RadioGroup, Button, Divider } from '@uiw/core';
+import { Radio, RadioGroup, Button, Divider } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 

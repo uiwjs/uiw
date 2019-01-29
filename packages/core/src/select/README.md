@@ -4,7 +4,7 @@ Select 选择器
 当选项过多时，使用下拉菜单展示并选择内容。
 
 ```jsx
-import { Select } from '@uiw/core';
+import { Select } from 'uiw';
 ```
 
 ### 基础用法
@@ -115,7 +115,7 @@ const Demo = () => (
 这个组件是最简单的基础样式组件，可以直接引用样式，使用 `w-select` 纯样式即可达到效果，下拉框右边箭头效果通过样式更改，通过 [`b64`](http://b64.io/) 工具，转换成 `base64` 格式。
 
 ```jsx
-import '@uiw/core/lib/esm/select/style/index.less';
+import 'uiw/lib/esm/select/style/index.less';
 ```
 
 <!--DemoStart--> 

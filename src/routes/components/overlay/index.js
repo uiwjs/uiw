@@ -1,4 +1,4 @@
-import { Overlay, Button, Card, Divider } from '@uiw/core';
+import { Overlay, Button, Card, Divider } from 'uiw';
 import Markdown from '../../../components/Markdown';
 import './index.less';
 

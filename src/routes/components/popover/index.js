@@ -1,4 +1,4 @@
-import { Popover, Button, Card } from '@uiw/core';
+import { Popover, Button, Card } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 export default class Page extends Markdown {

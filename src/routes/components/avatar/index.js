@@ -1,4 +1,4 @@
-import { Icon, Avatar, Badge } from '@uiw/core';
+import { Icon, Avatar, Badge } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 export default class Page extends Markdown {

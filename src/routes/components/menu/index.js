@@ -1,4 +1,4 @@
-import { Menu, Row, Col, Popover, Button } from '@uiw/core';
+import { Menu, Row, Col, Popover, Button } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 

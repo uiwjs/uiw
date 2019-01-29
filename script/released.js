@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// released `@uiw/core`
+// released `uiw`
 
 // 1. Copy `README.md` to the `/packages/core/` directory.
 // 2. Creacte document static resource.

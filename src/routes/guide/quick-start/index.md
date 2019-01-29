@@ -6,7 +6,7 @@
 ## 安装
 
 ```bash
-npm i @uiw/core # 安装 v2.x.x 最新版本
+npm i uiw # 安装 v2.x.x 最新版本
 ```
 
 ### 安装 [**v1.x**](https://unpkg.com/uiw/dist/index.html#/cn/quick-start) 旧版本
@@ -41,7 +41,7 @@ yarn add uiw-react/uiw
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from '@uiw/core';
+import { Button } from 'uiw';
 
 ReactDOM.render(
   <Button type="primary">Hello</Button>, 
@@ -54,7 +54,7 @@ ReactDOM.render(
 重新取一个名字
 
 ```js
-import { Button as ButtonView } from '@uiw/core';
+import { Button as ButtonView } from 'uiw';
 ```
 
 ## 开发

@@ -1,7 +1,7 @@
 import {
   Form, FormItem, Row, Col, Divider, Button, Input, Checkbox,
   Switch, Radio, RadioGroup, Select, Textarea,
-} from '@uiw/core';
+} from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 export default class Page extends Markdown {

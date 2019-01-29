@@ -1,4 +1,4 @@
-import { Modal, ButtonGroup, Button } from '@uiw/core';
+import { Modal, ButtonGroup, Button } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 

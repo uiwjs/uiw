@@ -43,7 +43,7 @@ A high quality UI Toolkit, A Component Library for React 16+. 💘
 ### Installation
 
 ```bash
-npm install @uiw/core@2.0.0-beta.1 --save
+npm install uiw@2.0.0-beta.1 --save
 ```
 
 You can use the [`uiw v1.x`](https://github.com/uiw-react/uiw/tree/v1) version.
@@ -53,7 +53,7 @@ You can use the [`uiw v1.x`](https://github.com/uiw-react/uiw/tree/v1) version.
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from '@uiw/core';
+import { Button } from 'uiw';
 
 ReactDOM.render(
   <Button type="primary">Hello</Button>, 

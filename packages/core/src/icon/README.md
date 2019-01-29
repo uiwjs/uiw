@@ -8,7 +8,7 @@ Icon 图标
 使用`<Icon />`组件，指定图标对应的`type`属性，示例代码：
 
 ```jsx
-import { Icon } from '@uiw/core';
+import { Icon } from 'uiw';
 ```
 
 ```jsx
@@ -169,7 +169,7 @@ const Demo = () => (
 
 ## 字体图标
 
-通过引入 [uiw-iconfont](https://github.com/uiw-react/icons) 字体样式，在 [uiw-iconfont官网](https://uiw-react.github.io/icons) 找到对应的图标名称，就可以使用了，`@uiw/core` 已经依赖 `uiw-iconfont` 你无需安装即可使用，更多使用方法[查看官方文档](https://github.com/uiw-react/icons)。
+通过引入 [uiw-iconfont](https://github.com/uiw-react/icons) 字体样式，在 [uiw-iconfont官网](https://uiw-react.github.io/icons) 找到对应的图标名称，就可以使用了，`uiw` 已经依赖 `uiw-iconfont` 你无需安装即可使用，更多使用方法[查看官方文档](https://github.com/uiw-react/icons)。
 
 ```bash
 # 如果你没有安装，可单独使用，安装

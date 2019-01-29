@@ -1,4 +1,4 @@
-import { Icon, Divider, Button, ButtonGroup, Row, Col } from '@uiw/core';
+import { Icon, Divider, Button, ButtonGroup, Row, Col } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 

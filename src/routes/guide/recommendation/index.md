@@ -1,7 +1,7 @@
 社区精选组件
 ===
 
-下面是一些基于 React 实现的优秀组件，与 [`@uiw/core`](https://github.com/uiw-react/uiw) 互补。
+下面是一些基于 React 实现的优秀组件，与 [`uiw`](https://github.com/uiw-react/uiw) 互补。
 
 > 您还可以从这里找到更多的组件 [`Awesome React Components`](https://github.com/brillout/awesome-react-components)。
 
