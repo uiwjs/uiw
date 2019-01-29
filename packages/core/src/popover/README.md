@@ -48,7 +48,7 @@ class Demo extends React.Component {
             </Card>
           }
         >
-          <Button>弹出目标</Button>
+          <Button active={this.state.isVisbale}>弹出目标</Button>
         </Popover>
       </div>
     )
@@ -224,3 +224,5 @@ class Demo extends React.Component {
 | disabled | 是否禁用弹出目标 | Boolean | `false` |
 | visible | 默认是否显示弹窗，继承 `<OverlayTrigger />` 组件属性 | Boolean | `false` |
 | onVisibleChange | 显示隐藏的回调，继承 `<OverlayTrigger />` 组件属性 | Function(isVisible:bool) | - |
+
+更多属性请参考 [OverlayTrigger](/components/overlay-trigger)。

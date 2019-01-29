@@ -13,7 +13,7 @@ export default class Menu extends React.Component {
     const { prefixCls, className, children, bordered, ...htmlProps } = this.props;
     const cls = classNames(prefixCls, className, { bordered });
     return (
-      <ul {...htmlProps} className={cls}>
+      <ul {...htmlProps} className={cls} data-menu="menu">
         {children}
       </ul>
     );

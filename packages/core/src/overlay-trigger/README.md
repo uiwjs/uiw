@@ -13,13 +13,13 @@ import { OverlayTrigger } from '@uiw/core';
 最简单的用法。
 ```js
 const tooltip = (
-  <div style={{ backgroundColor: '#fff', border: '1px solid #333' }}>
+  <div style={{ backgroundColor: '#fff', border: '1px solid #333', padding: 10, borderRadius: 3 }}>
     <strong>Hellow uiw!</strong> Check this info.<br />
     展示 12 个方向位置
   </div>
 );
 const Demo = () => (
-  <OverlayTrigger placement="top" overlay={tooltip}>
+  <OverlayTrigger isOutside={true} placement="top" overlay={tooltip}>
     <span>鼠标移动到此处，显示和消失触发事件</span>
   </OverlayTrigger>
 )
@@ -190,7 +190,7 @@ class Demo extends React.Component {
           }}
           overlay={card}
         >
-          <span>鼠标移动到此处，显示和消失触发事件，延迟 `4s` 消失</span>
+          <span>鼠标移动到此处，显示和消失触发事件</span>
         </OverlayTrigger>
         <Divider />
         <Switch checked={this.state.isVisbale} onChange={this.onChange.bind(this)} />
@@ -230,8 +230,9 @@ class Demo extends React.Component {
         <div style={{ position: 'relative' }}>
           <OverlayTrigger
             usePortal={false}
+            isOutside={true}
             placement="top"
-            trigger="click"
+            trigger="hover"
             onVisibleChange={this.onVisibleChange.bind(this)}
             overlay={card}
           >
@@ -258,3 +259,5 @@ class Demo extends React.Component {
 | visible | 默认是否显示弹窗 | Boolean | `false` |
 | isOutside | 默认离开**触发区域**隐藏弹出目标，设置值为 `true`，在触发区域和弹出目标区域内，不隐藏**弹出目标**。 | Boolean | `false` |
 | onVisibleChange | 显示隐藏的回调 | Function(isVisible:bool) | - |
+
+更多属性请参考 [Overlay](/components/overlay)。
