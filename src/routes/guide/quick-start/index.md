@@ -84,12 +84,13 @@ $ npm start
 ## 文件目录说明
 
 ```bash
-├── dist           # 生成的文档静态文件目录
-├── docs           # 文档的源文件
-├── lib            
+├── LICENSE
+├── README.md
 ├── package.json
-├── script
-└── src            # React组件在此
+├── packages        # 组件源码
+│   └── core
+├── public          # Document the static file.
+└── src             # D文档网站源码
 ```
 
 ## License
