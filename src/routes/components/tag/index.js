@@ -1,4 +1,4 @@
-import { Tag, Divider, Icon } from '@uiw/core';
+import { Tag, Divider, Icon } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 

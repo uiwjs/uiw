@@ -1,4 +1,4 @@
-import { Divider, Input, Button, Tag, Row, Col } from '@uiw/core';
+import { Divider, Input, Button, Tag, Row, Col } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 

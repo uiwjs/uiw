@@ -41,7 +41,6 @@
   "dependencies": {
     "@babel/standalone": "^7.2.5",
     "@rematch/core": "^1.0.6",
-    "@uiw/core": "file:./packages/core",
     "@uiw/react-codemirror": "^1.0.19",
     "classnames": "^2.2.6",
     "history": "^4.7.2",
@@ -51,7 +50,8 @@
     "react-dynamic-loadable": "^1.1.2",
     "react-markdown": "^4.0.4",
     "react-redux": "^6.0.0",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "uiw": "file:./packages/core"
   },
   "devDependencies": {
     "@kkt/plugin-less": "^1.0.2",

@@ -4,7 +4,7 @@ Popover 气泡卡片
 点击/鼠标移入元素，弹出气泡式的卡片浮层。
 
 ```jsx
-import { Popover } from '@uiw/core';
+import { Popover } from 'uiw';
 ```
 
 ### 基础用法

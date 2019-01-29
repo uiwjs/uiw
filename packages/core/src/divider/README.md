@@ -4,7 +4,7 @@ Divider 分割线
 区隔内容的分割线。
 
 ```jsx
-import { Divider } from '@uiw/core';
+import { Divider } from 'uiw';
 ```
 
 ## 基础实例

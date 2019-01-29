@@ -1,4 +1,4 @@
-import { Badge, Icon } from '@uiw/core';
+import { Badge, Icon } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 

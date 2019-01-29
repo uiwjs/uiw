@@ -1,4 +1,4 @@
-import { Steps, Icon, Button, Row, Col } from '@uiw/core';
+import { Steps, Icon, Button, Row, Col } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 export default class Page extends Markdown {

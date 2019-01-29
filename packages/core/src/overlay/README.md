@@ -4,7 +4,7 @@ Overlay 基础弹出层
 这是一个基础的弹出层组件，其它弹出组件的抽象组件，都基于它来扩展比如 [`<Modal />`](#)、[`<Alert />`](#)、[`<OverlayTrigger />`](#)、[`<Popover />`](#)、[`<Tooltip />`](#) 等。
 
 ```jsx
-import { Overlay } from '@uiw/core';
+import { Overlay } from 'uiw';
 ```
 
 ### 基本用法

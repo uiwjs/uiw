@@ -4,7 +4,7 @@ Timestamp 时间戳
 用于时间格式化。
 
 ```jsx
-import { Timestamp } from '@uiw/core';
+import { Timestamp } from 'uiw';
 ```
 
 ## 基础实例

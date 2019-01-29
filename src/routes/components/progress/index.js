@@ -1,4 +1,4 @@
-import { Progress } from '@uiw/core';
+import { Progress } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 export default class Page extends Markdown {

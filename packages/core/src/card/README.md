@@ -4,7 +4,7 @@ Card 卡片
 通用卡片容器，将信息聚合在卡片容器中展示，用来显示文字、列表、图文等内容。
 
 ```jsx
-import { Card } from '@uiw/core';
+import { Card } from 'uiw';
 ```
 
 ## 基础用法

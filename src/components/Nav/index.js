@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Tooltip } from '@uiw/core';
+import { Tooltip } from 'uiw';
 import nav from '../icons/nav';
 import styles from './index.module.less';
 

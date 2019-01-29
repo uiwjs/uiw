@@ -4,7 +4,7 @@ Menu 菜单
 为页面和功能提供导航的菜单列表。
 
 ```jsx
-import { Menu } from '@uiw/core';
+import { Menu } from 'uiw';
 ```
 
 ### 基本用法

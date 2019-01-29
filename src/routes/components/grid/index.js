@@ -1,4 +1,4 @@
-import { Col, Row } from '@uiw/core';
+import { Col, Row } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 

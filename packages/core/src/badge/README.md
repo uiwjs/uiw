@@ -4,7 +4,7 @@ Badge 标记
 出现在按钮、图标旁的数字或状态标记。
 
 ```jsx
-import { Badge } from '@uiw/core';
+import { Badge } from 'uiw';
 ```
 
 ### 基础用法

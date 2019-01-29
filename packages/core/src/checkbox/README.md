@@ -4,7 +4,7 @@ Checkbox 多选框
 一组备选项中进行多选
 
 ```jsx
-import { Checkbox } from '@uiw/core';
+import { Checkbox } from 'uiw';
 ```
 
 ### 基础用法

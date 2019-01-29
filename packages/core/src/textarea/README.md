@@ -4,7 +4,7 @@ Textarea 多行文本输入框
 标准的多行文本输入框。
 
 ```jsx
-import { Textarea } from '@uiw/core';
+import { Textarea } from 'uiw';
 ```
 
 ### 基础用法

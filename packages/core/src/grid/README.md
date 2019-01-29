@@ -4,7 +4,7 @@ Grid 删格
 基于 `flex` 栅格系统。
 
 ```jsx
-import { Row, Col } from '@uiw/core';
+import { Row, Col } from 'uiw';
 ```
 
 ### 基础用法

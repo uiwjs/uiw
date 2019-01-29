@@ -1,4 +1,4 @@
-import { Rate, Icon, Divider } from '@uiw/core';
+import { Rate, Icon, Divider } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 

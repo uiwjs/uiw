@@ -1,4 +1,4 @@
-import { Tooltip, OverlayTrigger, Switch, Button, Divider } from '@uiw/core';
+import { Tooltip, OverlayTrigger, Switch, Button, Divider } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 export default class Page extends Markdown {

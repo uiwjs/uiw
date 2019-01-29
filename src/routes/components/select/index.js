@@ -1,4 +1,4 @@
-import { Select, Row, Col, Button } from '@uiw/core';
+import { Select, Row, Col, Button } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 

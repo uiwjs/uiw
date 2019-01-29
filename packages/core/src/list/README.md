@@ -4,7 +4,7 @@ List列表
 列表组件
 
 ```jsx
-import { List } from '@uiw/core';
+import { List } from 'uiw';
 ```
 
 ### 基础用法

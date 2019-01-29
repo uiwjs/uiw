@@ -4,7 +4,7 @@ Radio 单选框
 单选框，在一组备选项中进行单选。
 
 ```jsx
-import { Radio, RadioGroup } from '@uiw/core';
+import { Radio, RadioGroup } from 'uiw';
 ```
 
 ### 基础用法

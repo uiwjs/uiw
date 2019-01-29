@@ -1,4 +1,4 @@
-import { Portal } from '@uiw/core';
+import { Portal } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 export default class Page extends Markdown {

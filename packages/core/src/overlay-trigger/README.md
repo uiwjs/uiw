@@ -4,7 +4,7 @@ OverlayTrigger 基础触发弹出
 基础弹出触发组件，在组件 [`<Overlay>`](/components/overlay) 的基础上添加事件和 12 个方向的位置，组件 [`<Tooltip>`](/components/tooltip)，[`<Popover>`](/components/popover) 是基于这个组件封装的，弹出框围绕对象指定位置。
 
 ```jsx
-import { OverlayTrigger } from '@uiw/core';
+import { OverlayTrigger } from 'uiw';
 ```
 
 ### 基础用法
