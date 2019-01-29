@@ -55,7 +55,7 @@ class Demo extends React.Component {
           <br /><br />
           使用 React 的时候也可以不使用 JSX 语法 你可以在 <a href="https://babeljs.io/repl/#?presets=react&code_lz=MYewdgzgLgBApgGzgWzmWBeGAeAFgRgD4AJRBEAGhgHcQAnBAEwEJsB6AwgbgChRJY_KAEMAlmDh0YWRiGABXVOgB0AczhQAokiVQAQgE8AkowAUPGDADkdECChWeASl4AlOMOBQAIgHkAssp0aIySpogoaFBUQmISdC48QA" target="_blank">Babel REPL</a> 查看 JSX 是如何被渲染成原生 JavaScript 代码的。
         </Modal>
-        <ButtonGroup style={{ marginTop: 5 }}>
+        <ButtonGroup>
           <Button onClick={this.onClick.bind(this)}>确认对话框</Button>
         </ButtonGroup>
       </div>
@@ -110,7 +110,7 @@ class Demo extends React.Component {
           这是一个单击 “<b>确定按钮</b>” 延迟关闭对话框的实例，关闭对话框触发 “<b>onConfirm</b>” 或 “<b>onCancel</b>” 事件。<br /><br /> 这里是利用 <b>Promise</b> 的特性，等它执行完成后，再去关闭窗口，达到延迟关闭的效果。<br /><br />
           这个测试例子，生成随机值判断是否大于 <b>0.5</b> 执行 <b>resolve</b> 事件，否则 执行 <b>reject</b> 触发 <b>catch</b> 错误。
         </Modal>
-        <ButtonGroup style={{ marginTop: 5 }}>
+        <ButtonGroup>
           <Button onClick={this.onClick.bind(this)}>延迟关闭对话框</Button>
         </ButtonGroup>
       </div>
@@ -174,7 +174,7 @@ class Demo extends React.Component {
             <Button onClick={this.onClosed.bind(this)} >取消按钮</Button>
           </div>
         </Modal>
-        <ButtonGroup style={{ marginTop: 5 }}>
+        <ButtonGroup>
           <Button onClick={this.onClick.bind(this)}>确认对话框</Button>
         </ButtonGroup>
       </div>

@@ -37,8 +37,9 @@ const Demo = () => (
           <Menu.Item icon="bar-chart" text="月统计报表导出">
             <Menu.Item icon="file-add" text="添加文件" />
             <Menu.Item icon="folder-add" text="添加文件夹" />
+            <Menu.Divider title="类别" />
             <Menu.Item icon="copy" text="拷贝" />
-            <Menu.Item icon="bar-chart" text="月统计报表导出">
+            <Menu.Item icon="bar-chart" text="报表">
               <Menu.Item icon="file-add" text="添加文件" />
               <Menu.Item icon="folder-add" text="添加文件夹">
                 <Menu.Item icon="file-add" text="添加文件" />
@@ -146,7 +147,8 @@ const Demo = () => (
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| className | 设置样式 | String | - |
+| className | 设置类的名称 | String | - |
+| style | 元素的行内样式 | Object | - |
 | bordered | 是否有边框 | Boolean | `false` |
 
 
@@ -159,10 +161,12 @@ const Demo = () => (
 | tagName | 设置子节点标签名 | String | `a` |
 | active | 激活选中状态 | Boolean | `false` |
 | disabled | 禁用状态 | Boolean | `false` |
-| overlayProps | 对象将传递到 `OverlayTrigger` | Object | - |
+| overlayProps | 对象将传递到 `OverlayTrigger`，相关参数参考 [`OverlayTrigger`](/components/overlay-trigger) | Object | - |
 
 ## Menu.Divider.Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
+| className | 设置类的名称 | String | - |
+| style | 元素的行内样式 | Object | - |
 | title | 标题 | String | - |

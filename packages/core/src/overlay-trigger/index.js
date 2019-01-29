@@ -234,7 +234,7 @@ export default class OverlayTrigger extends React.PureComponent {
     return (
       <>
         <RefHolder ref={this.trigger}>
-          {cloneElement(child, triggerProps)}
+          {cloneElement(child, Object.assign({}, child.props, { ...triggerProps }))}
         </RefHolder>
         <Overlay
           {...props}

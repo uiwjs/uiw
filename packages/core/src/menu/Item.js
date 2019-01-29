@@ -5,6 +5,15 @@ import Icon from '../icon';
 import OverlayTrigger from '../overlay-trigger';
 import Menu from './Menu';
 
+function checkedMenuItem(node) {
+  let isCheck = false;
+  if (node) do {
+    if (!node.dataset.menu) isCheck = true;
+    if (/^(subitem|divider)$/.test(node.dataset.menu)) isCheck = false;
+  } while (!node.dataset.menu && (node = node.parentNode));
+  return isCheck;
+}
+
 export default class MenuItem extends React.Component {
   static displayName = `uiw.MenuItem`;
   maybeRenderPopover(target, children) {
@@ -17,19 +26,28 @@ export default class MenuItem extends React.Component {
         placement="rightTop"
         trigger="hover"
         disabled={disabled}
+        ref={node => this.popup = node}
         usePortal={false}
+        isOutside={true}
         {...overlayProps}
         overlay={
-          <Menu bordered className="w-overlay-content">{children}</Menu>
+          <Menu bordered onClick={this.onClick} className="w-overlay-content">{children}</Menu>
         }
       >
         {target}
       </OverlayTrigger>
     );
   }
+  onClick = (e) => {
+    const target = e.currentTarget;
+    const related = e.relatedTarget || e.nativeEvent.toElement;
+    if (!this.popup || target.children.length < 1) return;
+    if (checkedMenuItem(related)) {
+      this.popup.hide();
+    }
+  }
   render() {
     const { prefixCls, className, tagName: TagName, children, disabled, multiline, icon, text, active, ...htmlProps } = this.props;
-    const cls = classNames();
     const hasSubmenu = children !== undefined;
     const anchorCls = classNames(prefixCls, className, { active, disabled });
     const target = (
@@ -46,7 +64,7 @@ export default class MenuItem extends React.Component {
       </TagName>
     );
     return (
-      <li {...htmlProps} className={cls}>
+      <li data-menu={hasSubmenu ? 'subitem' : 'item'}>
         {this.maybeRenderPopover(target, children)}
       </li>
     );
