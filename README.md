@@ -108,7 +108,6 @@ Folders
     ├── assets
     ├── common      # Menu and routing configuration.
     ├── components
-    ├── history.js
     ├── index.js
     ├── layouts
     ├── models
