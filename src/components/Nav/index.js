@@ -32,7 +32,7 @@ export default class index extends Component {
             noPath = item.children[0].path;
           }
           return (
-            <NavLink activeClassName={styles.selected} key={idx} to={noPath || item.path}>
+            <NavLink activeClassName={styles.selected} key={idx} to={noPath || item.path} replace>
               <Tooltip placement="right" content={item.name}>
                 {icon}
               </Tooltip>
