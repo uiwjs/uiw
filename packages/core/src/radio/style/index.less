@@ -21,7 +21,7 @@
   input[type=radio], &-text {
     vertical-align: middle;
   }
-  input[type=radio]:checked, &.checked input[type=radio] {
+  input[type=radio]:checked {
     border: 5px solid #008EF0;
     &:focus {
       box-shadow: 0 0 0 2px rgba(0, 142, 240, 0.25);
@@ -32,9 +32,6 @@
     cursor: not-allowed;
     input[type=radio] {
       cursor: not-allowed;
-    }
-    &.checked input[type=radio] {
-      opacity: .5;
     }
   }
   &.disabled:not(.checked) {

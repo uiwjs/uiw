@@ -9,21 +9,18 @@ export default class Abstract extends React.Component {
       checked: props.checked,
     }
   }
-  componentWillReceiveProps(preProps) {
-    if (preProps.checked !== this.props.checked) {
-      this.setState({
-        checked: preProps.checked,
-      });
+  componentDidUpdate(prevProps) {
+    if (prevProps.checked !== this.props.checked) {
+      this.setState({ checked: this.props.checked });
     }
   }
   onChange = (e) => {
-    this.props.onChange(e);
-    this.setState({ checked: e.target.checked });
+    this.setState({ checked: e.target.checked }, this.props.onChange.bind(this, { ...e }));
   }
   render() {
     const { prefixCls, className, style, children, checked, disabled, size, value, ...other } = this.props;
     const cls = classnames(prefixCls, className, {
-      disabled, checked: this.state.checked, [`${prefixCls}-${size}`]: size,
+      disabled, [`${prefixCls}-${size}`]: size,
     });
     other.disabled = disabled;
     other.checked = this.state.checked;

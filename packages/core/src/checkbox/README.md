@@ -20,7 +20,6 @@ const Demo = () => (
       console.log(e.target)
     }}>未选中</Checkbox>
     <Checkbox checked >选中</Checkbox>
-    <Checkbox indeterminate >半选中</Checkbox>
   </div>
 );
 ```
@@ -39,6 +38,57 @@ const Demo = () => (
     <Checkbox disabled indeterminate>半选中禁用</Checkbox>
   </div>
 );
+```
+<!--End-->
+
+### 全选
+
+<!--DemoStart--> 
+```js
+const checkedList = [ '四川菜', '湖北菜', '西北菜', '新疆菜', '东北菜' ];
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: ['四川菜', '新疆菜'],
+      indeterminate: true,
+      checkAll: false,
+    };
+  }
+  onChange(e, list) {
+    console.log('list', list);
+    console.log('list', checkedList);
+    this.setState({
+      value: list,
+      indeterminate: !!list.length && (list.length < checkedList.length),
+      checkAll: list.length === checkedList.length,
+    });
+  }
+  onCheckAllChange(e) {
+    this.setState({
+      value: e.target.checked ? checkedList : [],
+      indeterminate: false,
+      checkAll: e.target.checked,
+    });
+  }
+  render() {
+    const { indeterminate, checkAll } = this.state;
+    console.log('indeterminate:',indeterminate );
+    return (
+      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+        <Checkbox checked={checkAll} indeterminate={indeterminate} onChange={this.onCheckAllChange.bind(this)}>全选</Checkbox>
+        <Divider />
+        <Checkbox.Group name="cuisine" value={this.state.value} onChange={this.onChange.bind(this)}>
+          {checkedList.map((item, idx) => {
+            return (
+              <Checkbox key={idx} value={item}>{item}</Checkbox>
+            )
+          })}
+        </Checkbox.Group>
+      </div>
+    )
+  }
+}
 ```
 <!--End-->
 
