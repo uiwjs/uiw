@@ -15,10 +15,10 @@ import { Radio, RadioGroup } from 'uiw';
 ```js
 const Demo = () => (
   <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
-    <Radio>Radio</Radio>
-    <Radio checked>选中</Radio>
-    <Radio disabled>禁用</Radio>
-    <Radio checked disabled>选中并禁用</Radio>
+    <Radio value="1">Radio</Radio>
+    <Radio value="2" checked>选中</Radio>
+    <Radio value="3" disabled>禁用</Radio>
+    <Radio value="4" checked disabled>选中并禁用</Radio>
   </div>
 );
 ```
@@ -30,18 +30,31 @@ const Demo = () => (
 
 <!--DemoStart--> 
 ```js
-const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
-    <Radio name="sex">男</Radio>
-    <Radio name="sex">女</Radio>
-    <Radio name="sex" disabled>人妖</Radio>
-    <Radio name="sex" disabled>未知</Radio>
-  </div>
-);
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: '未知' };
+  }
+  onChange(e) {
+    this.setState({ value: e.target.value });
+  }
+  render() {
+    return (
+      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+        <RadioGroup name="sexs" value={this.state.value} onChange={this.onChange.bind(this)}>
+          <Radio value="man">男</Radio>
+          <Radio value="girl">女</Radio>
+          <Radio value="shemale" disabled>人妖</Radio>
+          <Radio value="unknown" disabled>未知</Radio>
+        </RadioGroup>
+      </div>
+    )
+  }
+}
 ```
 <!--End-->
 
-### 单选
+### 单选组
 
 设置单选初始值
 
@@ -53,7 +66,6 @@ class Demo extends Component {
     this.state = { value: '未知' };
   }
   onChange(e) {
-    // console.log('Value:-->', e.target.value);
     this.setState({ value: e.target.value });
   }
   render() {
@@ -78,7 +90,7 @@ class Demo extends Component {
             this.setState({ value: '女' });
           }}
         >
-          选中两个
+          点击按钮选"女"
         </Button>
       </div>
     )
@@ -86,43 +98,6 @@ class Demo extends Component {
 }
 ```
 <!--End-->
-
-### 控制组件
-
-通过 `checked` 属性改变 `Radio` 组件状态。
-
-<!--DemoStart--> 
-```js
-class Demo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      checked: false
-    }
-  }
-  onChange(e) {
-    this.setState({ checked: e.target.checked });
-  }
-  render() {
-    return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
-        <Radio checked={this.state.checked} onChange={this.onChange.bind(this)} name="sex">男</Radio>
-        <Button
-          size="small"
-          type="primary"
-          onClick={() => {
-            this.setState({ checked: !this.state.checked });
-          }}
-        >
-          点击按钮改变 Switch 状态
-        </Button>
-      </div>
-    )
-  }
-}
-```
-<!--End-->
-
 
 ## Radio
 
