@@ -149,6 +149,7 @@ Overlay.propTypes = {
   unmountOnExit: PropTypes.bool,
   transitionName: PropTypes.string,
   transitionDuration: PropTypes.number,
+  onEnter: PropTypes.func,
   onOpening: PropTypes.func,
   onOpened: PropTypes.func,
   onClosing: PropTypes.func,
@@ -166,6 +167,7 @@ Overlay.defaultProps = {
   unmountOnExit: true, // 设置 true 销毁根节点
   transitionDuration: 300,
   transitionName: 'w-overlay',
+  onEnter: noop,
   onOpening: noop,
   onOpened: noop,
   onClosing: noop,

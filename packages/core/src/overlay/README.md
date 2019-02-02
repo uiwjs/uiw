@@ -1,7 +1,7 @@
 Overlay 基础弹出层
 ===
 
-这是一个基础的弹出层组件，其它弹出组件的抽象组件，都基于它来扩展比如 [`<Modal />`](#)、[`<Alert />`](#)、[`<OverlayTrigger />`](#)、[`<Popover />`](#)、[`<Tooltip />`](#) 等。
+这是一个基础的弹出层组件，其它弹出组件的抽象组件，都基于它来扩展比如 [`<Modal />`](#/components/modal)、[`<Alert />`](#/components/alert)、[`<OverlayTrigger />`](#/components/overlay-trigger)、[`<Popover />`](#/components/popover)、[`<Tooltip />`](#/components/tooltip) 等。
 
 ```jsx
 import { Overlay } from 'uiw';
@@ -83,7 +83,7 @@ class Demo extends React.PureComponent {
 
 ### 自定义动画
 
-动画时长参数 `transitionDuration={1000}` 是根据 CSS 动画样式持续时长来定义。
+动画过渡效果是根据 [`react-transition-group`](https://github.com/reactjs/react-transition-group) 组件封装。动画时长参数 `transitionDuration={1000}` 是根据 CSS 动画样式持续时长来定义。
 
 <!--DemoStart--> 
 ```js
@@ -119,7 +119,6 @@ class Demo extends React.PureComponent {
 }
 ```
 <!--End-->
-
 
 你可以根据动画样式库 [**`animate.css`**](https://daneden.github.io/animate.css/) 添加不同的出入动画。默认通过的 [`Less`](http://lesscss.org/) 生成 CSS 动画的实例代码，定义 `transitionName` 动画样式名字为 `animation-bouce`，下面是上面实例的样式：
 
@@ -212,7 +211,8 @@ class Demo extends React.PureComponent {
 | transitionName | 内部 [`CSSTransitionsss`](http://reactcommunity.org/react-transition-group/css-transition/) 的转换名称。在此提供您自己的名称将需要定义新的 CSS 过渡属性。 | string | `w-overlay` |
 | transitionDuration | 持续时间 | number | `300` |
 | onClose | 点击遮罩层回调函数，通过这个函数设置 `isOpen=false` 关闭。**`onClosed`** 是弹出框关闭动画执行完成后的回调函数，有明显区别容易混淆。 | Function | - |
-| onOpening | 顺序 `1`，**`打开`**立即执行，在应用 `enter-active` 或 `appear-active` 类后立即触发 [`<Transition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。 | Function(node: HtmlElement, isAppearing: bool) | - |
-| onOpened | 顺序 `2`，**`打开`**动画播放完成执行，在应用 `exiting` 状态之前启动回调。 | Function(node: HtmlElement, isAppearing: bool) | - |
-| onClosing | 顺序 `3`，**`关闭`**立即执行，应用 `exit-active` 后立即触发 [`<Transition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。 | Function(node: HtmlElement) | - |
-| onClosed | 顺序 `4`，**`关闭`**动画播放完成立即执行，删除 `exit` 类后立即触发 [`<Transition>`](http://reactcommunity.org/react-transition-group/transition/) 回调，并将 `exit-done` 类添加到 DOM 节点。 | Function(node: HtmlElement) | - |
+| onEnter | 顺序 `1`，应用 `enter` 或 `appear` 后立即触发 [`<Transition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。。 | Function(node: HtmlElement, isAppearing: bool) | - |
+| onOpening | 顺序 `2`，**`打开`**立即执行，在应用 `enter-active` 或 `appear-active` 类后立即触发 [`<Transition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。 | Function(node: HtmlElement, isAppearing: bool) | - |
+| onOpened | 顺序 `3`，**`打开`**动画播放完成执行，在应用 `exiting` 状态之前启动回调。 | Function(node: HtmlElement, isAppearing: bool) | - |
+| onClosing | 顺序 `4`，**`关闭`**立即执行，应用 `exit-active` 后立即触发 [`<Transition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。 | Function(node: HtmlElement) | - |
+| onClosed | 顺序 `5`，**`关闭`**动画播放完成立即执行，删除 `exit` 类后立即触发 [`<Transition>`](http://reactcommunity.org/react-transition-group/transition/) 回调，并将 `exit-done` 类添加到 DOM 节点。 | Function(node: HtmlElement) | - |
