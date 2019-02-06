@@ -5,7 +5,6 @@
   position: relative;
   display: inline-block;
   outline: 0;
-  padding: 13px;
   &-arrow {
     position: absolute;
     width: 30px;
@@ -42,11 +41,11 @@
   }
   &.leftTop &-arrow,
   &.rightTop &-arrow {
-    top: 28px;
+    top: 15px;
   }
   &.leftBottom &-arrow,
   &.rightBottom &-arrow {
-    bottom: 13px;
+    bottom: 0;
     top: auto;
   }
 
@@ -69,11 +68,25 @@
   }
   &.bottomLeft &-arrow,
   &.topLeft &-arrow {
-    left: 30px;
+    left: 15px;
   }
   &.bottomRight &-arrow,
   &.topRight &-arrow {
-    right: 13px;
+    right: 0;
     left: auto;
+  }
+
+
+  &.top, &.topLeft, &.topRight {
+    padding-bottom: 13px;
+  }
+  &.bottom, &.bottomLeft, &.bottomRight {
+    padding-top: 13px;
+  }
+  &.right, &.rightTop, &.rightBottom {
+    padding-left: 13px;
+  }
+  &.left, &.leftTop, &.leftBottom {
+    padding-right: 13px;
   }
 }
