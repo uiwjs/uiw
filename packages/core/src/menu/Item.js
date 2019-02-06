@@ -25,6 +25,7 @@ export default class MenuItem extends React.Component {
       <OverlayTrigger
         placement="rightTop"
         trigger="hover"
+        autoAdjustOverflow
         disabled={disabled}
         ref={node => this.popup = node}
         usePortal={false}
