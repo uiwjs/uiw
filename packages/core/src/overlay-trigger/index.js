@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Overlay from '../overlay';
 import contains from './utils';
+import getBoundingClientRect from './util/getBoundingClientRect';
+import getScroll from './util/getScroll';
+import getOuterSizes from './util/getOuterSizes';
 import './style/index.less';
 
 class RefHolder extends React.PureComponent {
@@ -20,7 +23,7 @@ export default class OverlayTrigger extends React.PureComponent {
     this.popup = React.createRef();
     this.state = {
       show: !!props.visible,
-      overlayStyl: {}
+      overlayStyl: { placement: props.placement }
     };
   }
   componentDidUpdate(prevProps) {
@@ -130,95 +133,151 @@ export default class OverlayTrigger extends React.PureComponent {
       onVisibleChange(true);
     });
   }
-  onOpening = (node, isAppearing) => {
-    this.setState({ overlayStyl: { ...this.styles() } }, this.props.onOpening.bind(this, node, isAppearing));
+  onEnter = (node, isAppearing) => {
+    this.setState({ overlayStyl: { ...this.styles() } }, this.props.onEnter.bind(this, node, isAppearing));
   }
   styles() {
-    const { placement, usePortal } = this.props;
+    const { usePortal, autoAdjustOverflow } = this.props;
+    let { placement } = this.props;
     const sty = {};
-    let dom = this.getTarget();
-    if (!dom || !document) return sty;
-    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    const scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
-    const rect = dom.getBoundingClientRect();
-    const popTarget = this.getPopupTarget();
-    if (!popTarget) return;
-    const popRect = popTarget.getBoundingClientRect();
-    const popStyle = document.defaultView.getComputedStyle(popTarget);
+    let trigger = this.getTarget();
+    let popup = this.getPopupTarget();
+    if (!trigger || !popup || !document) return sty;
 
-    popRect.width = parseInt(popStyle.width, 10);
-    popRect.height = parseInt(popStyle.height, 10);
-    popRect.paddingLeft = parseInt(popStyle.paddingLeft, 10);
-    popRect.paddingRight = parseInt(popStyle.paddingRight, 10);
-    popRect.paddingTop = parseInt(popStyle.paddingTop, 10);
-    popRect.paddingBottom = parseInt(popStyle.paddingBottom, 10);
+    const winSizeHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    const winSizeWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
-    const diffwidth = popRect.width - rect.width;
-    const diffheight = popRect.height - rect.height;
+    sty.placement = placement;
+    const scrollTop = getScroll(trigger.ownerDocument.documentElement, 'top');
+    const scrollLeft = getScroll(trigger.ownerDocument.documentElement, 'left');
+    trigger = { ...getBoundingClientRect(trigger), ...getOuterSizes(trigger)};
+    popup = { ...getBoundingClientRect(popup), ...getOuterSizes(popup)}
 
-    sty.left = scrollLeft + rect.left;
-    sty.top = scrollTop + rect.top;
+    const bottom = winSizeHeight - trigger.bottom;
+    const right = winSizeWidth - trigger.left - trigger.width;
+
+    sty.top = trigger.top + scrollTop;
+    sty.left = trigger.left;
 
     if (!usePortal) {
-      sty.left = 0;
-      sty.top = 0;
+      sty.top = trigger.offsetTop;
+      sty.left = trigger.offsetLeft;
     }
 
-    switch (placement) {
-      case 'topLeft':
-        sty.left = sty.left - popRect.paddingLeft;
-        sty.top = sty.top - popRect.height;
-        break
-      case 'top':
-        sty.left = sty.left + (diffwidth > 0 ? -(diffwidth / 2) : Math.abs(diffwidth / 2));
-        sty.top = sty.top - popRect.height;
-        break
-      case 'topRight':
-        sty.left = sty.left - popRect.width + rect.width + popRect.paddingLeft;
-        sty.top = sty.top - popRect.height;
-        break
-      case 'leftTop':
-        sty.left = sty.left - popRect.width;
-        sty.top = sty.top - popRect.paddingTop;
-        break
-      case 'left':
-        sty.left = sty.left - popRect.width
-        sty.top = sty.top + (diffheight > 0 ? -(diffheight / 2) : Math.abs(diffheight / 2));
-        break
-      case 'leftBottom':
-        sty.left = sty.left - popRect.width
-        sty.top = sty.top - popRect.height + rect.height + popRect.paddingBottom;
-        break
-      case 'rightTop':
-        sty.left = sty.left + rect.width
-        sty.top = sty.top - popRect.paddingTop;
-        break
-      case 'right':
-        sty.left = sty.left + rect.width
-        sty.top = sty.top + (diffheight > 0 ? -(diffheight / 2) : Math.abs(diffheight / 2))
-        break
-      case 'rightBottom':
-        sty.left = sty.left + rect.width
-        sty.top = sty.top - popRect.height + rect.height + popRect.paddingBottom;
-        break
+    if (/^(top)/.test(placement)) {
+      sty.top = sty.top - popup.height;
+    }
+    if (/^(right)/.test(placement)) {
+      sty.left = sty.left + trigger.width;
+    }
+    if (/^(bottom)/.test(placement)) {
+      sty.top = sty.top + trigger.height;
+    }
+    if (/^(left)/.test(placement)) {
+      sty.left = sty.left - popup.width;
+    }
+
+    switch (sty.placement) {
       case 'bottomLeft':
-        sty.left = sty.left - popRect.paddingLeft;
-        sty.top = sty.top + rect.height
-        break
+      case 'topLeft': sty.left = sty.left; break;
       case 'bottom':
-        sty.left = sty.left + (diffwidth > 0 ? -(diffwidth / 2) : Math.abs(diffwidth / 2))
-        sty.top = sty.top + rect.height
-        break
+      case 'top': sty.left = sty.left - (popup.width - trigger.width) / 2; break;
       case 'bottomRight':
-        sty.left = sty.left - popRect.width + rect.width + popRect.paddingRight;
-        sty.top = sty.top + rect.height
-        break
+      case 'topRight': sty.left = sty.left + scrollLeft + trigger.width - popup.width; break;
+      case 'rightTop':
+      case 'leftTop': sty.top = sty.top; break;
+      case 'right':
+      case 'left': sty.top = sty.top - (popup.height - trigger.height) / 2; break;
+      case 'rightBottom':
+      case 'leftBottom': sty.top = sty.top - popup.height + trigger.height; break;
+    }
+    if (autoAdjustOverflow) {
+      if (/^(top)/.test(placement) && trigger.top < popup.height && bottom > popup.height) {
+        sty.placement = placement.replace(/^top/, 'bottom');
+        sty.top = sty.top + popup.height + trigger.height;
+      }
+      if (/^(bottom)/.test(placement) && bottom < popup.height && trigger.top > popup.height) {
+        sty.placement = placement.replace(/^bottom/, 'top');
+        sty.top = sty.top - popup.height - trigger.height;
+      }
+      if (/^(right)/.test(placement) && right < popup.width) {
+        sty.placement = placement.replace(/^right/, 'left');
+        sty.left = sty.left - trigger.width - popup.width;
+      }
+      if (/^(left)/.test(placement) && trigger.left < popup.width) {
+        sty.placement = placement.replace(/^left/, 'right');
+        sty.left = sty.left + trigger.width + popup.width;
+      }
+
+
+      if (/^(left|right)/.test(placement) && usePortal) {
+        // Top
+        if (
+          (/(Top)$/.test(placement) && trigger.top < 0) ||
+          (/(right|left)$/.test(placement) && (trigger.top + trigger.height / 2) < popup.height / 2) ||
+          (/(Bottom)$/.test(placement) && (trigger.top + trigger.height) < popup.height)
+        ) {
+          sty.top = scrollTop;
+        }
+      } else {
+        // Top
+        if (/(Top)$/.test(placement) && trigger.top < 0) {
+          sty.top -= trigger.top;
+        }
+        if (/(Bottom)$/.test(placement) && trigger.bottom < popup.height) {
+          sty.top = sty.top + (popup.height - trigger.bottom);
+        }
+        if (/(right|left)$/.test(placement) && trigger.bottom - trigger.height / 2 < popup.height / 2) {
+          sty.top = sty.top + popup.height / 2 - (trigger.bottom - trigger.height / 2);
+        }
+      }
+      // Bottom Public Part
+      if (/^(left|right)/.test(placement)) {
+        if (/(Top)$/.test(placement) && bottom + trigger.height < popup.height) {
+          sty.top = sty.top - (popup.height - bottom - trigger.height);
+        }
+        if (/(right|left)$/.test(placement) && bottom + trigger.height / 2 < popup.height / 2) {
+          sty.top = sty.top - (popup.height / 2 - bottom - trigger.height / 2);
+        }
+        if (/(Bottom)$/.test(placement) && bottom < 0) {
+          sty.top = sty.top + bottom;
+        }
+      }
+
+
+      if (/^(top|bottom)/.test(placement) && usePortal) {
+        // left
+        if (
+          (/(Left)$/.test(placement) && trigger.left < 0) ||
+          (/(top|bottom)$/.test(placement) && trigger.left + trigger.width / 2 < popup.width / 2) ||
+          (/(Right)$/.test(placement) && trigger.left + trigger.width < popup.width)
+        ) {
+          sty.left = scrollLeft;
+        }
+        // right
+        if (/(top|bottom)$/.test(placement) && right + trigger.width / 2 < popup.width / 2) {
+          sty.left = trigger.left + trigger.width + right - popup.width;
+        }
+      } else {
+        if (/(top|bottom)$/.test(placement) && right + trigger.width / 2 < popup.width / 2) {
+          sty.left = sty.left + (right + trigger.width / 2 - popup.width / 2);
+        }
+      }
+      if (/^(top|bottom)/.test(placement)) {
+        if (/(Left)$/.test(placement) && trigger.width + right < popup.width) {
+          sty.left = sty.left - (popup.width - trigger.width - right);
+        }
+        if (/(Right)$/.test(placement) && right < 0) {
+          sty.left = sty.left + right;
+        }
+      }
     }
     sty.zIndex = zIndex;
     return sty;
   }
   render() {
-    const { prefixCls, className, children, overlay, trigger, placement, disabled, usePortal, ...other } = this.props;
+    const { prefixCls, className, children, overlay, trigger, disabled, usePortal, ...other } = this.props;
+    const { placement, ...overlayStyl } = this.state.overlayStyl;
     const child = React.Children.only(children);
     const props = { ...other, placement, dialogProps: {} };
     const triggerProps = { };
@@ -230,7 +289,7 @@ export default class OverlayTrigger extends React.PureComponent {
       triggerProps.onMouseOut = this.handleMouseOut;
       props.dialogProps.onMouseOut = this.handleMouseOut;
     }
-    props.style = { ...props.style, ...this.state.overlayStyl };
+    props.style = { ...props.style, ...overlayStyl };
     return (
       <>
         <RefHolder ref={this.trigger}>
@@ -238,8 +297,8 @@ export default class OverlayTrigger extends React.PureComponent {
         </RefHolder>
         <Overlay
           {...props}
-          onOpening={this.onOpening}
-          className={classNames(prefixCls, className, { [`${placement}`]: placement })}
+          onEnter={this.onEnter}
+          className={classNames(prefixCls, className, { [placement]: placement })}
           usePortal={usePortal}
           isOpen={this.state.show}
           hasBackdrop={false}
@@ -254,6 +313,7 @@ export default class OverlayTrigger extends React.PureComponent {
 OverlayTrigger.propTypes = {
   prefixCls: PropTypes.string,
   onVisibleChange: PropTypes.func,
+  onEnter: PropTypes.func,
   usePortal: PropTypes.bool,
   visible: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -279,7 +339,7 @@ OverlayTrigger.propTypes = {
 OverlayTrigger.defaultProps = {
   prefixCls: 'w-overlay-trigger',
   onVisibleChange: () => null,
-  onOpening: () => null,
+  onEnter: () => null,
   usePortal: true,
   isOutside: false,
   disabled: false,

@@ -1,7 +1,7 @@
 OverlayTrigger 基础触发弹出
 ===
 
-基础弹出触发组件，在组件 [`<Overlay>`](/components/overlay) 的基础上添加事件和 12 个方向的位置，组件 [`<Tooltip>`](/components/tooltip)，[`<Popover>`](/components/popover) 是基于这个组件封装的，弹出框围绕对象指定位置。
+基础弹出触发组件，在组件 [`<Overlay>`](#/components/overlay) 的基础上添加事件和 12 个方向的位置，组件 [`<Tooltip>`](#/components/tooltip)，[`<Popover>`](#/components/popover) 是基于这个组件封装的，弹出框围绕对象指定位置。
 
 ```jsx
 import { OverlayTrigger } from 'uiw';
@@ -150,7 +150,6 @@ const Demo = () => (
 ```
 <!--End-->
 
-
 ### 组件受控
 
 通过设置属性visible可以文字提示手动控制状态的展示。
@@ -185,7 +184,7 @@ class Demo extends React.Component {
           onVisibleChange={this.onVisibleChange.bind(this)}
           visible={this.state.isVisbale}
           placement="right"
-          onOpening={(node, isAppearing) => {
+          onEnter={(node, isAppearing) => {
             console.log('~~', node, isAppearing);
           }}
           overlay={card}
@@ -231,8 +230,9 @@ class Demo extends React.Component {
           <OverlayTrigger
             usePortal={false}
             isOutside={true}
+            autoAdjustOverflow
             placement="top"
-            trigger="hover"
+            trigger="click"
             onVisibleChange={this.onVisibleChange.bind(this)}
             overlay={card}
           >
@@ -258,6 +258,7 @@ class Demo extends React.Component {
 | delay | 延迟进入和消失，`{ show: 2000, hide: 4000 }` 或者直接设置 `2000`，只对 `trigger=hover` 有效 | Object/Number | - |
 | visible | 默认是否显示弹窗 | Boolean | `false` |
 | isOutside | 默认离开**触发区域**隐藏弹出目标，设置值为 `true`，在触发区域和弹出目标区域内，不隐藏**弹出目标**。 | Boolean | `false` |
+| autoAdjustOverflow | 弹出层被遮挡时自动调整位置 | Boolean | `false` |
 | onVisibleChange | 显示隐藏的回调 | Function(isVisible:bool) | - |
 
 更多属性请参考 [Overlay](/components/overlay)。
