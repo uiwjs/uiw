@@ -4,7 +4,6 @@
 .@{tooltip} {
   position: relative;
   display: inline-block;
-  padding: 5px;
   &-arrow {
     position: absolute;
     width: 0;
@@ -82,5 +81,18 @@
   &.topRight &-arrow {
     right: 10px;
     left: auto;
+  }
+
+  &.bottom, &.bottomLeft, &.bottomRight {
+    padding-top: 5px;
+  }
+  &.top, &.topLeft, &.topRight {
+    padding-bottom: 5px;
+  }
+  &.right, &.rightTop, &.rightBottom {
+    padding-left: 5px;
+  }
+  &.left, &.leftTop, &.leftBottom {
+    padding-right: 5px;
   }
 }
