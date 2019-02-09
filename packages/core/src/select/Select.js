@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-// import Icon from '../icon';
-// import './style/index.less';
+import Option from './Option';
+import './style/index.less';
 
 export default class Select extends React.Component {
+  static Option = Option;
   render() {
     const { prefixCls, className, size, ...resetProps } = this.props;
     const cls = classnames(prefixCls, className, { [`${prefixCls}-${size}`]: size});
