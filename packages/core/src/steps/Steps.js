@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { findDOMNode } from 'react-dom';
+import Step from './Step';
 
 export default class Steps extends React.Component {
+  static Step = Step;
   constructor(props) {
     super(props);
     this.state = {
