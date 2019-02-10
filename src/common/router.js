@@ -91,6 +91,9 @@ export const getRouterData = () => {
     '/components/tag': {
       component: dynamicWrapper([], () => import('../routes/components/tag')),
     },
+    '/components/tabs': {
+      component: dynamicWrapper([], () => import('../routes/components/tabs')),
+    },
     '/components/tooltip': {
       component: dynamicWrapper([], () => import('../routes/components/tooltip')),
     },

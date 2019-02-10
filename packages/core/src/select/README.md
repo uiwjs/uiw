@@ -152,4 +152,4 @@ const Demo = () => (
 | value | 控制时 `select` 的值必须与 `onChange` 函数一起使用才能更新 `select` 的值 | Any | - |
 | disabled | 禁用选择器 | Boolean | `false` |
 | defaultValue | 根据 `value` 进行比较，判断是否选中 | Any | - |
-| size | `large`, `default`, `small` |String | `default` |
+| size | 选择框尺寸 | Enum {`large`, `default`, `small` } | `default` |
