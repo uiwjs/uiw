@@ -75,6 +75,57 @@ class Demo extends Component {
 ```
 <!--End-->
 
+
+### 卡片样式
+
+另一种样式的页签，不提供对应的垂直样式。
+
+<!--DemoStart--> 
+```js
+const styl = { backgroundColor: '#fff', margin: -15, padding: 10, borderRadius: '5px 5px 0 0' };
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeKey: '1',
+    };
+  }
+  render() {
+    const { activeKey } = this.state;
+    return (
+      <div style={styl}>
+        <Tabs
+          type="card"
+          activeKey={activeKey}
+          onTabClick={(activeKey, key, e) => {
+            this.setState({ activeKey });
+          }}
+        >
+          <Tabs.Pane label="用户管理" key="1" />
+          <Tabs.Pane label="配置管理" key="2" />
+          <Tabs.Pane disabled sequence="fadeIn up" label="角色管理" key="3" />
+          <Tabs.Pane label="大爷欢乐多" key="4" />
+        </Tabs>
+        <Divider />
+        {activeKey === '1' && (
+          <div>用户管理{activeKey}</div>
+        )}
+        {activeKey === '2' && (
+          <div>配置管理{activeKey}</div>
+        )}
+        {activeKey === '3' && (
+          <div>角色管理{activeKey}</div>
+        )}
+        {activeKey === '4' && (
+          <div>大爷欢乐多{activeKey}</div>
+        )}
+      </div>
+    );
+  }
+}
+```
+<!--End-->
+
 ## Tabs.Porps 
 
 | 参数 | 说明 | 类型 | 默认值 |
