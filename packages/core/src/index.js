@@ -29,6 +29,7 @@ export { default as Select } from './select/Select';
 export { default as Switch } from './switch';
 export { default as Steps } from './steps/Steps';
 export { default as Tag } from './tag';
+export { default as Tabs } from './tabs';
 export { default as Tooltip } from './tooltip';
 export { default as Timestamp } from './timestamp';
 export { default as Textarea } from './textarea';
