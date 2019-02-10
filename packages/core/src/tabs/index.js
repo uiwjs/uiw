@@ -13,6 +13,18 @@ export default class Tabs extends React.Component {
       slideStyle: { width: 0, left: 0 },
     };
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.children !== this.props.children) {
+      this.calcSlideStyle();
+    }
+    if (nextProps.activeKey !== this.props.activeKey) {
+      this.setState({
+        activeKey: nextProps.activeKey,
+      }, () => {
+        this.calcSlideStyle();
+      });
+    }
+  }
   componentDidMount() {
     this.calcSlideStyle();
   }
