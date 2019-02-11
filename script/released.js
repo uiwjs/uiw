@@ -36,6 +36,14 @@ const docVersion = join(process.cwd(), 'src', 'version.json');
 
     await execute('npm run build');
     await fs.copy(docsPath, libDocsPath);
+    await execute(`cd ${libPath} && npm run build-cjs`);
+    await execute(`cd ${libPath} && npm run build-esm`);
+    /**
+     * Bundles a minified and unminified version of [uiw] including
+     * all it's immediate dependencies (excluding React, ReactDOM, etc)
+     */
+    await execute(`cd ${libPath} && npm run bundle`);
+    await execute(`cd ${libPath} && npm run bundle:min`);
   } catch (error) {
     console.log('error:', error);
   }

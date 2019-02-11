@@ -19,6 +19,8 @@
     "build-cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose",
     "build-esm": "BABEL_ENV=esm babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose",
     "build": "npm run build-cjs && npm run build-esm",
+    "bundle": "kkt build --bundle --no-emptyDir",
+    "bundle:min": "kkt build --bundle=min --no-emptyDir",
     "watch": "npm run build:watch:esm && npm run build:watch:cjs"
   },
   "keywords": [
@@ -49,7 +51,9 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
+    "@kkt/plugin-less": "^1.2.0",
     "babel-plugin-transform-remove-imports": "^1.0.6",
+    "kkt": "^3.2.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },
