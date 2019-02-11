@@ -1,0 +1,57 @@
+.w-list {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #52575c;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  background-color: #fff;
+}
+.w-list-bordered {
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+}
+.w-list-bordered .w-list-item:last-child {
+  border-bottom: 0;
+  border-radius: 0 0 4px 4px;
+}
+.w-list-bordered .w-list-item.w-disabled {
+  cursor: not-allowed;
+  color: #a3a6a9;
+}
+.w-list-bordered .w-list-item.w-active {
+  background: #f8f8f9;
+  color: #007bff;
+}
+.w-list-bordered a.w-list-item {
+  display: block;
+  color: #52575c;
+}
+.w-list-bordered a.w-list-item:hover {
+  background: #f8f8f9;
+}
+.w-list-striped .w-list-item:nth-of-type(2n) {
+  background: #f8f8f9;
+}
+.w-list-bordered .w-list-item,
+.w-list-bordered .w-list-header {
+  border-bottom: 1px solid #e8e8e8;
+}
+.w-list-item,
+.w-list-footer,
+.w-list-header {
+  padding: 12px 18px;
+}
+.w-list-size-small .w-list-item,
+.w-list-size-small .w-list-footer,
+.w-list-size-small .w-list-header {
+  padding: 8px 16px;
+}
+.w-list-size-large .w-list-item,
+.w-list-size-large .w-list-footer,
+.w-list-size-large .w-list-header {
+  padding: 16px 24px;
+}
+
