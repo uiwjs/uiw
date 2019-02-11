@@ -16,6 +16,7 @@
     "start": "kkt start",
     "build": "kkt build",
     "test": "kkt test --env=jsdom",
+    "released": "node script/released.js",
     "test:coverage": "kkt test --env=jsdom --coverage"
   },
   "jest": {
@@ -55,7 +56,7 @@
   },
   "devDependencies": {
     "@kkt/plugin-less": "^1.0.2",
-    "kkt": "^3.0.1",
+    "kkt": "^3.2.0",
     "raw-loader": "^1.0.0",
     "react-test-renderer": "^16.7.0"
   },
