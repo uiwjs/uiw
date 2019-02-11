@@ -16,8 +16,9 @@ export default class Button extends React.Component {
       active, // 激活状态
       block, // 块级元素Block level
     });
+    others.type = htmlType;
     return (
-      <button {...others} disabled={disabled || loading} type={htmlType} className={cls}>
+      <button type="button" {...others} disabled={disabled || loading} className={cls}>
         {icon && <Icon type={icon} />}
         {children && React.Children.map(children, (child) => {
           if (!child) return child;
@@ -40,6 +41,7 @@ Button.defaultProps = {
   type: 'light',
   size: 'default',
 };
+
 Button.propTypes = {
   prefixCls: PropTypes.string,
   loading: PropTypes.bool,
@@ -51,4 +53,3 @@ Button.propTypes = {
   type: PropTypes.oneOf(['primary', 'success', 'warning', 'danger', 'light', 'dark', 'link']),
   size: PropTypes.oneOf(['large', 'default', 'small']),
 };
-

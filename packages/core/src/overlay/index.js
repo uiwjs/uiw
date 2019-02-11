@@ -13,7 +13,7 @@
 import React, { cloneElement } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { CSSTransition } from "react-transition-group";
+import { CSSTransition } from 'react-transition-group';
 import classnames from 'classnames';
 import Portal from '../portal';
 import './style/index.less';
@@ -26,7 +26,7 @@ export default class Overlay extends React.Component {
     this.state = {
       isMount: false,
       isOpen: props.isOpen,
-    }
+    };
   }
   componentDidMount() {
     if (this.props.isOpen) {
@@ -81,7 +81,7 @@ export default class Overlay extends React.Component {
     if (this.state.isMount) {
       this.setState({ isMount: false }, onClosed.bind(this, e));
     } else {
-      onClosed(e)
+      onClosed(e);
     }
     this.overlayWillClose();
   }
@@ -109,13 +109,13 @@ export default class Overlay extends React.Component {
         {...otherProps}
         classNames={transitionName}
       >
-        {(status) => (
-          <div className={classnames(prefixCls, className, { [`${prefixCls}-inline`]: !usePortal})} style={style}>
+        {status => (
+          <div className={classnames(prefixCls, className, { [`${prefixCls}-inline`]: !usePortal })} style={style}>
             {hasBackdrop && cloneElement(<div />, {
               ...backdropProps,
               onMouseDown: this.handleBackdropMouseDown.bind(this),
               className: classnames(`${prefixCls}-backdrop`, backdropProps.className),
-              tabIndex: this.props.maskClosable ? 0 : null
+              tabIndex: this.props.maskClosable ? 0 : null,
             })}
             {usePortal ? (
               <div
@@ -123,13 +123,13 @@ export default class Overlay extends React.Component {
                 onMouseDown={this.handleBackdropMouseDown.bind(this)}
                 className={classnames(`${prefixCls}-container`)}
               >
-                {cloneElement(decoratedChild, { [`data-status`]: status })}
+                {cloneElement(decoratedChild, { 'data-status': status })}
               </div>
-            ) : cloneElement(decoratedChild, { [`data-status`]: status})}
+            ) : cloneElement(decoratedChild, { 'data-status': status })}
           </div>
         )}
       </CSSTransition>
-    )
+    );
     if (usePortal) {
       return <Portal {...portalProps}> {TransitionGroupComp} </Portal>;
     } else {

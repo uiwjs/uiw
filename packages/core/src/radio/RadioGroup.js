@@ -11,7 +11,8 @@ export default class RadioGroup extends React.Component {
         {React.Children.map(this.props.children, (element) => {
           return React.cloneElement(element, Object.assign({}, element.props, {
             checked: element.props.value === value,
-            name, onChange,
+            name,
+            onChange,
           }));
         })}
       </div>

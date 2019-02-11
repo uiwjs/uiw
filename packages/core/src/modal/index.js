@@ -15,6 +15,7 @@ export default class Modal extends React.PureComponent {
     try {
       await this.props.onConfirm(e);
       this.overlay.onClosed(e);
+      // eslint-disable-next-line
     } catch (e) { }
     this.setState({ loading: false });
   }
@@ -23,10 +24,11 @@ export default class Modal extends React.PureComponent {
     try {
       await this.props.onCancel(e);
       this.overlay.onClosed(e);
+      // eslint-disable-next-line
     } catch (e) { }
     this.setState({ loading: false });
   }
-  onClose = (e) => this.overlay.onClosed(e);
+  onClose = e => this.overlay.onClosed(e);
   render() {
     const { prefixCls, className, useButton, autoFocus, title, content, cancelText, confirmText, type, icon, width, isCloseButtonShown, ...other } = this.props;
     const cls = classnames(prefixCls, className, { [`${type}`]: type });
@@ -34,7 +36,7 @@ export default class Modal extends React.PureComponent {
       <Overlay
         {...other}
         onClose={this.onClose}
-        ref={(node) => this.overlay = node}
+        ref={node => this.overlay = node}
         className={cls}
       >
         <div className={`${prefixCls}-container`}>

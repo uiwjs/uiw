@@ -35,8 +35,8 @@ export default class Tabs extends React.Component {
         width: this.activeItem.clientWidth,
         left: this.activeItem.offsetLeft,
       };
-      this.setState({ 
-        slideStyle: { ...slideStyle, ...styl}
+      this.setState({
+        slideStyle: { ...slideStyle, ...styl },
       });
     }
   }
@@ -59,12 +59,13 @@ export default class Tabs extends React.Component {
           <div className={`${prefixCls}-nav`}>
             {React.Children.map(children, (item, key) => {
               const props = {
-                key, className: classnames(`${prefixCls}-item`, {
-                  [`active`]: item.key === this.state.activeKey,
-                  [`disabled`]: item.props.disabled,
+                key,
+                className: classnames(`${prefixCls}-item`, {
+                  active: item.key === this.state.activeKey,
+                  disabled: item.props.disabled,
                 }),
                 children: item.props.label,
-              }
+              };
               if (item.props && !item.props.disabled) props.onClick = this.onTabClick.bind(this, item, item.key);
               return (
                 <div
@@ -76,14 +77,14 @@ export default class Tabs extends React.Component {
           </div>
           <div style={this.state.slideStyle} className={`${prefixCls}-slide`}/>
         </div>
-        {React.Children.map(children, (item, idx) => {
+        {React.Children.map(children, (item) => {
           if (this.state.activeKey !== item.key) {
             return null;
           }
           return React.cloneElement(item, Object.assign({}, item.props, {}));
         })}
       </div>
-    )
+    );
   }
 }
 

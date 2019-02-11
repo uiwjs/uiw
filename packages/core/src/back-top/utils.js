@@ -19,9 +19,8 @@ export function getScrollTop() {
  */
 export function ScrollToAnimate(position, step, current) {
   let start = 0;
-  let timer = setInterval(() => {
-    if (current - start >= position) {
-
+  const timer = setInterval(() => {
+    if ((current - start) >= position) {
       start += step;
       if (current - start >= position) {
         window.scrollTo(0, current - start);

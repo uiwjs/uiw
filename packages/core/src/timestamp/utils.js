@@ -1,9 +1,11 @@
 
 /**
  * 判断是否为日期
- * @param {Date} date 
+ * @param {Date} date
  */
-export const isDate = (date) => (new Date(date).toString() !== 'Invalid Date' && !isNaN(new Date(date)));
+export const isDate = (date) => {
+  return new Date(date).toString() !== 'Invalid Date' && !isNaN(new Date(date));
+};
 
 // Defining patterns
 const replaceChars = {

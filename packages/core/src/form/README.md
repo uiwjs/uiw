@@ -110,24 +110,24 @@ const Demo = () => (
         console.log('fields:-->', state);
         return (
           <div>
-            <Row gutter="10">
+            <Row gutter={10}>
               <Col>{fields.userName}</Col>
               <Col>{fields.age}</Col>
             </Row>
-            <Row gutter="10">
+            <Row gutter={10}>
               <Col>{fields.checkbox}</Col>
               <Col>{fields.checkboxOne}</Col>
             </Row>
-            <Row gutter="10">
+            <Row gutter={10}>
               <Col>{fields.radioGroup}</Col>
             </Row>
-            <Row gutter="10">
+            <Row gutter={10}>
               <Col>{fields.switch}</Col>
             </Row>
-            <Row gutter="10">
+            <Row gutter={10}>
               <Col>{fields.textarea}</Col>
             </Row>
-            <Row gutter="10">
+            <Row gutter={10}>
               <Col fixed>
                 <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
               </Col>
@@ -172,7 +172,7 @@ const Demo = () => (
       {({ fields, state, canSubmit }) => {
         console.log('fields:', state);
         return (
-          <Row gutter="10">
+          <Row gutter={10}>
             <Col fixed>{fields.username}</Col>
             <Col fixed>{fields.password}</Col>
             <Col>

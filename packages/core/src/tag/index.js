@@ -10,7 +10,7 @@ export default class Tag extends React.Component {
       'w-disabled': disabled,
       [`${prefixCls}-capsule`]: title && children,
     });
-    let conSty = { borderColor: color };
+    const conSty = { borderColor: color };
     if (title && color) {
       conSty.backgroundColor = color;
       conSty.color = '#fff';

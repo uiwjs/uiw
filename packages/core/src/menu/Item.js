@@ -5,17 +5,33 @@ import Icon from '../icon';
 import OverlayTrigger from '../overlay-trigger';
 import Menu from './Menu';
 
+const disabledProps = {
+  href: undefined,
+  onClick: undefined,
+  onMouseDown: undefined,
+  onMouseEnter: undefined,
+  onMouseLeave: undefined,
+  tabIndex: -1,
+};
+
 function checkedMenuItem(node) {
   let isCheck = false;
-  if (node) do {
-    if (!node.dataset.menu) isCheck = true;
-    if (/^(subitem|divider)$/.test(node.dataset.menu)) isCheck = false;
-  } while (!node.dataset.menu && (node = node.parentNode));
+  if (node) {
+    // eslint-disable-next-line
+    do {
+      if (!node.dataset.menu) {
+        isCheck = true;
+      }
+      if (/^(subitem|divider)$/.test(node.dataset.menu)) {
+        isCheck = false;
+      }
+    } while (!node.dataset.menu && (node = node.parentNode));
+  }
   return isCheck;
 }
 
 export default class MenuItem extends React.Component {
-  static displayName = `uiw.MenuItem`;
+  static displayName = 'uiw.MenuItem';
   maybeRenderPopover(target, children) {
     if (children == null) {
       return target;
@@ -29,7 +45,7 @@ export default class MenuItem extends React.Component {
         disabled={disabled}
         ref={node => this.popup = node}
         usePortal={false}
-        isOutside={true}
+        isOutside
         {...overlayProps}
         overlay={
           <Menu bordered onClick={this.onClick} className="w-overlay-content">{children}</Menu>
@@ -91,13 +107,3 @@ MenuItem.defaultProps = {
   disabled: false,
   active: false,
 };
-
-
-const disabledProps = {
-  href: undefined,
-  onClick: undefined,
-  onMouseDown: undefined,
-  onMouseEnter: undefined,
-  onMouseLeave: undefined,
-  tabIndex: -1,
-}
