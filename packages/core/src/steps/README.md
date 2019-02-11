@@ -182,9 +182,9 @@ class Demo extends Component {
 class Demo extends Component {
   render() {
     return (
-      <Row gutter="20">
+      <Row gutter={20}>
         <Col>
-          <Steps current={1} direction="vertical" style={{padding:"20px 0"}}>
+          <Steps current={1} direction="vertical" style={{ padding: '20px 0' }}>
             <Steps.Step title="已完成" description="这里是该步骤的描述信息" />
             <Steps.Step title="进行中" description="这里是该步骤的描述信息" />
             <Steps.Step title="待进行" description="这里是该步骤的描述信息" />
@@ -192,7 +192,7 @@ class Demo extends Component {
           </Steps>
         </Col>
         <Col>
-          <Steps direction="vertical" progressDot status="error" current={2} style={{padding:"20px 0"}}>
+          <Steps direction="vertical" progressDot status="error" current={2} style={{ padding: '20px 0' }}>
             <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。" />
             <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
             <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />

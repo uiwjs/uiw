@@ -6,9 +6,8 @@ import Input from '../input';
 import './style/form.less';
 
 const isPromise = promise => promise && typeof promise.then === 'function';
-const initialValue = initialValue => initialValue === null || initialValue === undefined ? '' : initialValue;
+const initialValue = value => ((value === null || value === undefined) ? '' : value);
 const noop = () => undefined;
-
 
 export default class Form extends React.PureComponent {
   constructor(props) {
@@ -19,30 +18,34 @@ export default class Form extends React.PureComponent {
       errors: {},
       initial: {},
       current: {},
-    }
+    };
+    // eslint-disable-next-line
     for (const name in fields) {
-      const propsField = fields[name];
-      if (!propsField) continue;
-      this.state.initial[name] = initialValue(fields[name].initialValue);
-      this.state.current[name] = initialValue(fields[name].initialValue);
+      if (Object.prototype.hasOwnProperty.call(fields, name)) {
+        const propsField = fields[name];
+        // eslint-disable-next-line
+        if (!propsField) continue;
+        this.state.initial[name] = initialValue(fields[name].initialValue);
+        this.state.current[name] = initialValue(fields[name].initialValue);
+      }
     }
   }
-  onSubmit = e => {
+  onSubmit = (e) => {
     e && e.preventDefault();
     const { onSubmit, resetOnSubmit, onSubmitError } = this.props;
     const { initial, current } = this.state;
     this.setState({ submitting: true });
     const nextState = { submitting: false };
 
-    const onError = e => {
-      this.setState({ ...nextState, errors: (onSubmitError && onSubmitError(e)) || {} });
+    const onError = (evn) => {
+      this.setState({ ...nextState, errors: (onSubmitError && onSubmitError(evn)) || {} });
     };
-    const onSuccess = response => {
+    const onSuccess = () => {
       this.setState({
         ...nextState,
         current: resetOnSubmit ? initial : current,
         initial: resetOnSubmit ? initial : current,
-        errors: {}
+        errors: {},
       });
     };
     try {
@@ -52,8 +55,8 @@ export default class Form extends React.PureComponent {
       } else {
         return onSuccess(afterSubmitPromise);
       }
-    } catch (e) {
-      onError(e);
+    } catch (evn) {
+      onError(evn);
       // throw e;
     }
   }
@@ -63,16 +66,19 @@ export default class Form extends React.PureComponent {
     this.setState({ current: initial, errors: {} });
   }
 
-  canSubmit = ({ } = {}) => {
+  canSubmit = () => {
     const { fields } = this.props;
-    const { submitting, current, initial } = this.state;
+    const { submitting, current } = this.state;
     let passesValidators = true;
     for (const name in fields) {
-      const props = fields[name];
-      if (!props) continue;
-      if (props.validator && props.validator(current[name])) {
-        passesValidators = false;
-        break;
+      if (Object.prototype.hasOwnProperty.call(fields, name)) {
+        const props = fields[name];
+        // eslint-disable-next-line
+        if (!props) continue;
+        if (props.validator && props.validator(current[name])) {
+          passesValidators = false;
+          break;
+        }
       }
     }
     return !submitting && passesValidators;
@@ -112,7 +118,7 @@ export default class Form extends React.PureComponent {
       });
     if (!element || React.Children.count(element) !== 1 || !name) return element;
     const props = { name: element.props.name || name };
-    const hasCurrentValue = this.state.current.hasOwnProperty(name);
+    const hasCurrentValue = Object.prototype.hasOwnProperty.call(this.state.current, name);
     props.id = element.props.id;
     props.value = hasCurrentValue ? (this.state.current && this.state.current[name]) : element.props.value;
 
@@ -130,16 +136,17 @@ export default class Form extends React.PureComponent {
     const { prefixCls, className, fields, children, resetOnSubmit, onSubmitError, ...others } = this.props;
     const { submitting } = this.state;
     const formUnits = {};
+    // eslint-disable-next-line
     for (const name in fields) {
-      const props = fields[name];
-      if (!props) continue;
+      const props = fields[name]; // eslint-disable-line
+      if (!props) continue; // eslint-disable-line
       const error = this.state.errors[name];
-      const children = this.controlField({ ...props, name });
+      const childrenField = this.controlField({ ...props, name });
       const help = error || props.help;
       const labelFor = props.labelFor;
       formUnits[name] = (
-        <FormItem {...{ ...props, key: name, children, help, labelFor, state: this.state, name, hasError: !!error }}/>
-      )
+        <FormItem {...{ ...props, key: name, children: childrenField, help, labelFor, state: this.state, name, hasError: !!error }}/>
+      );
     }
     return (
       <form {...{ ...others, className: classnames(prefixCls, className), onSubmit: this.onSubmit }}>

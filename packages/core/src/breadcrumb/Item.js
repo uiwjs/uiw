@@ -7,8 +7,8 @@ export default class BreadcrumbItem extends React.Component {
   render() {
     const { prefixCls, className, active, separator, ...other } = this.props;
     const isElm = React.isValidElement(separator);
-    const cls = classnames(`${prefixCls}-item`, className, { active, ['no-separator']: !separator, ['no-before']: isElm });
-    const props = { className: cls, ...other }
+    const cls = classnames(`${prefixCls}-item`, className, { active, 'no-separator': !separator, 'no-before': isElm });
+    const props = { className: cls, ...other };
     if (!isElm) {
       props['data-separator'] = separator;
     }

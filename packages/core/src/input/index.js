@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Icon from '../icon';
+import FancyButton from './FancyButton';
 import './style/input.less';
 
-const FancyButton = React.forwardRef((props, ref) => (
-  <span ref={ref} className={props.className}>
-    {props.children}
-  </span>
-));
+// const FancyButton = React.forwardRef((props, ref) => (
+//   <span ref={ref} className={props.className}>
+//     {props.children}
+//   </span>
+// ));
 
 export default class Input extends React.Component {
   static defaultProps = {
@@ -39,9 +40,7 @@ export default class Input extends React.Component {
           ref={node => this.input = node}
           type={type}
           {...props}
-          className={classnames(`${prefixCls}-inner`, {
-            
-          })}
+          className={classnames(`${prefixCls}-inner`)}
         />
         {addonAfter && (
           <FancyButton className={`${prefixCls}-addon-after`} ref={this.addonRef}> {addonAfter} </FancyButton>

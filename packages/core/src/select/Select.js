@@ -8,7 +8,7 @@ export default class Select extends React.Component {
   static Option = Option;
   render() {
     const { prefixCls, className, size, ...resetProps } = this.props;
-    const cls = classnames(prefixCls, className, { [`${prefixCls}-${size}`]: size});
+    const cls = classnames(prefixCls, className, { [`${prefixCls}-${size}`]: size });
     return (
       <select {...resetProps} className={cls}>
         {React.Children.map(this.props.children, (element) => {

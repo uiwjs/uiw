@@ -8,30 +8,30 @@ export default class Icon extends React.PureComponent {
   renderSvgPaths = (type) => {
     const pathStrings = svgPaths[type];
     if (pathStrings == null) {
-      return null
+      return null;
     }
-    return pathStrings.map((d, i) => <path key={i} d={d} fillRule="evenodd" />)
+    return pathStrings.map((d, i) => <path key={i} d={d} fillRule="evenodd" />);
   }
 
   render() {
     const { prefixCls, className, color, type, spin, verticalAlign, tagName: TagName = 'span', ...others } = this.props;
     let svg = null;
-    if (type == null || typeof type === "boolean") {
+    if (type == null || typeof type === 'boolean') {
       return null;
-    } else if (typeof type !== "string") {
+    } else if (typeof type !== 'string') {
       svg = React.cloneElement(type, {
         fill: color,
       });
     } else {
-      svg = <svg fill={color} viewBox={`0 0 20 20`}>{this.renderSvgPaths(type)}</svg>;
+      svg = <svg fill={color} viewBox="0 0 20 20">{this.renderSvgPaths(type)}</svg>;
     }
     others.style = { fill: 'currentColor', ...others.style };
     const propps = { ...others,
       className: classnames(prefixCls, className, `${prefixCls}-${verticalAlign}`, { [`${prefixCls}-spin`]: spin }),
-    }
+    };
     return (
       <TagName {...propps}>{svg}</TagName>
-    )
+    );
   }
 }
 

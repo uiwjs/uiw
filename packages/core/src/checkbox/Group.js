@@ -12,7 +12,8 @@ export default class CheckboxGroup extends React.Component {
         {React.Children.map(this.props.children, (element) => {
           value.includes(element.props.value) && this.values.push(element.props.value);
           return React.cloneElement(element, Object.assign({}, element.props, {
-            checked: value.includes(element.props.value), name,
+            name,
+            checked: value.includes(element.props.value),
             onChange: (e) => {
               const checked = e.target.checked;
               if (!this.values.includes(element.props.value) && checked) {

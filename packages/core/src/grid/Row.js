@@ -13,9 +13,9 @@ export default class Row extends React.Component {
     const { prefixCls, className, gutter, justify, align, ...props } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-align-${align}`]: align,
-      [`${prefixCls}-justify-${justify}`]: justify
+      [`${prefixCls}-justify-${justify}`]: justify,
     });
-    const gutterStyl = !gutter ? {} : { paddingLeft: gutter / 2, paddingRight: gutter / 2, }
+    const gutterStyl = !gutter ? {} : { paddingLeft: gutter / 2, paddingRight: gutter / 2 };
     return (
       <div {...props} className={cls}>
         {React.Children.map(this.props.children, (element) => {
@@ -27,3 +27,10 @@ export default class Row extends React.Component {
     );
   }
 }
+
+Row.propTypes = {
+  prefixCls: PropTypes.string,
+  gutter: PropTypes.number,
+  justify: PropTypes.oneOf(['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly']),
+  align: PropTypes.oneOf(['top', 'middle', 'bottom', 'baseline']),
+};

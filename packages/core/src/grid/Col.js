@@ -13,7 +13,7 @@ export default class Col extends React.Component {
       [`${prefixCls}-${span}`]: span,
       [`${prefixCls}-fixed`]: fixed,
       [`${prefixCls}-align-${align}`]: align,
-      [`${prefixCls}-grow-${grow}`]: grow
+      [`${prefixCls}-grow-${grow}`]: grow,
     });
     return (
       <div className={cls} {...props}>

@@ -24,7 +24,7 @@ export default class Portal extends React.Component {
     // Only render `children` once this component has mounted in a browser environment,
     // so they are immediately attached to the DOM tree.
     // See long comment on componentDidMount in https://reactjs.org/docs/portals.html#event-bubbling-through-portals
-    if (cannotCreatePortal || typeof document === "undefined" || !this.state.hasMounted) {
+    if (cannotCreatePortal || typeof document === 'undefined' || !this.state.hasMounted) {
       return null;
     } else {
       return ReactDOM.createPortal(this.props.children, this.props.container);
@@ -43,5 +43,5 @@ Portal.propTypes = {
 };
 
 Portal.defaultProps = {
-  container: typeof document !== "undefined" ? document.body : null,
+  container: typeof document !== 'undefined' ? document.body : null,
 };

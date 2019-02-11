@@ -10,7 +10,7 @@ export default class FormItem extends React.PureComponent {
   render() {
     const { prefixCls, className, style, label, labelFor, labelClassName, labelStyle, help, inline, hasError } = this.props;
     const cls = classnames(prefixCls, className, {
-      [`${prefixCls}-error`]: hasError
+      [`${prefixCls}-error`]: hasError,
     });
     const labelCls = classnames('w-form-label', labelClassName);
     if (inline) {
@@ -47,7 +47,7 @@ FormItem.propTypes = {
   label: PropTypes.string,
   labelFor: PropTypes.string,
   labelClassName: PropTypes.string,
-  help: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+  help: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
 FormItem.defaultProps = {

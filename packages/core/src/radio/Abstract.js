@@ -7,11 +7,11 @@ export default class Abstract extends React.Component {
     super(props);
     this.state = {
       checked: props.checked,
-    }
+    };
   }
-  componentDidUpdate(prevProps) {
-    if (prevProps.checked !== this.props.checked) {
-      this.setState({ checked: this.props.checked });
+  componentWillReceiveProps(nextPrrops) {
+    if (nextPrrops.checked !== this.props.checked) {
+      this.setState({ checked: nextPrrops.checked });
     }
   }
   onChange = (e) => {
@@ -24,7 +24,7 @@ export default class Abstract extends React.Component {
     });
     other.disabled = disabled;
     other.checked = this.state.checked;
-    other.onChange = this.onChange
+    other.onChange = this.onChange;
     other.value = value;
     const label = children || value;
     return (

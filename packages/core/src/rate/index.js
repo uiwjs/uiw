@@ -18,7 +18,7 @@ export default class Rate extends React.Component {
       onChange(e, key);
     });
   }
-  onMouseLeave(e) {
+  onMouseLeave() {
     this.setState({ hoverCount: -1 });
   }
   onMouseMove(e, key) {
@@ -26,7 +26,7 @@ export default class Rate extends React.Component {
     const { hoverCount } = this.state;
     if (hoverCount !== key) {
       this.setState({ hoverCount: key }, () => {
-        onHoverChange(e, key)
+        onHoverChange(e, key);
       });
     }
   }
@@ -43,9 +43,9 @@ export default class Rate extends React.Component {
           const props = {
             key: idx,
             className: classnames({
-              ['star-on']: idx < this.state.value && this.state.hoverCount === -1,
-              ['hover-on']: idx <= this.state.hoverCount,
-              ['half-on']: parseInt(this.state.value, 10) === idx && Math.ceil(this.state.value) - 1 === idx,
+              'star-on': idx < this.state.value && this.state.hoverCount === -1,
+              'hover-on': idx <= this.state.hoverCount,
+              'half-on': parseInt(this.state.value, 10) === idx && Math.ceil(this.state.value) - 1 === idx,
             }),
           };
           if (!readOnly) {

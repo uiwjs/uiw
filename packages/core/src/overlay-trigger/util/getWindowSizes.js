@@ -8,10 +8,10 @@ function getSize(axis, body, html, computedStyle) {
     html[`offset${axis}`],
     html[`scroll${axis}`],
     isIE(10)
-      ? (parseInt(html[`offset${axis}`]) + 
-      parseInt(computedStyle[`margin${axis === 'Height' ? 'Top' : 'Left'}`]) + 
-      parseInt(computedStyle[`margin${axis === 'Height' ? 'Bottom' : 'Right'}`]))
-    : 0 
+      ? (parseInt(html[`offset${axis}`], 10) +
+        parseInt(computedStyle[`margin${axis === 'Height' ? 'Top' : 'Left'}`], 10) +
+        parseInt(computedStyle[`margin${axis === 'Height' ? 'Bottom' : 'Right'}`], 10))
+      : 0,
   );
 }
 

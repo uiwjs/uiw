@@ -45,7 +45,7 @@ export default class Circle extends React.Component {
       <div className={cls} style={style} {...resetProps}>
         <svg viewBox="0 0 100 100" width={`${width}`}>
           <path ref={this.relativeStrokeWidth.bind(this, true, 'bg')} className={`${prefixCls}-trail`} fill="none" />
-          <path 
+          <path
             ref={this.relativeStrokeWidth.bind(this, true, 'track')}
             strokeLinecap="round"
             className={`${prefixCls}-stroke`}

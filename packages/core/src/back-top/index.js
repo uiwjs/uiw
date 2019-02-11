@@ -23,13 +23,13 @@ export default class BackTop extends React.Component {
   }
   scrollToTop() {
     ScrollToAnimate(this.props.offsetTop, this.props.speed, this.state.current);
-  };
+  }
   render() {
     const { prefixCls, className, content, children, offsetTop, fixed, speed, showBelow, clickable, ...other } = this.props;
     const topShowBelow = !fixed ? 0 : showBelow;
-    let visible = this.state.percent >= topShowBelow;
+    const visible = this.state.percent >= topShowBelow;
     const cls = classnames(prefixCls, className, {
-      [`no-fixed`]: !fixed,
+      'no-fixed': !fixed,
       [`${prefixCls}-show`]: visible,
       [`${prefixCls}-hide`]: !visible,
     });
