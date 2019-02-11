@@ -1,6 +1,7 @@
 /lib
-node_modules
-docs
+/dist
+/node_modules
+/docs
 /README.md
 npm-debug.log*
 yarn-debug.log*
