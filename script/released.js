@@ -26,9 +26,9 @@ const docVersion = join(process.cwd(), 'src', 'version.json');
     const readmeContent = await fs.readFile(readmePath);
     await fs.outputFile(libReadmePath, readmeContent);
 
-    console.log(`> Publish ${uiwPkgContent.version} v${uiwPkgContent.version}`);
     // Modify document version data.
     const uiwPkgContent = await fs.readJson(uiwPkg);
+    console.log(`> Publish ${uiwPkgContent.version} v${uiwPkgContent.version}`);
     const versionList = await fs.readJson(docVersion);
     if (!versionList.includes(uiwPkgContent.version)) {
       versionList.unshift(uiwPkgContent.version);
@@ -57,6 +57,9 @@ const docVersion = join(process.cwd(), 'src', 'version.json');
     await fs.copy(docsPath, libDocsPath);
     // Publish the documentation website.
     await execute('npm run deploy');
+    await execute(`git tag -a v${uiwPkgContent.version} -m "released v${uiwPkgContent.version}"`);
+    await execute('git push --tags');
+    await execute(`cd ${libPath} && npm publish`);
   } catch (error) {
     console.log('error:', error);
   }
