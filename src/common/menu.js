@@ -41,7 +41,7 @@ const menuData = [
       { divider: true, name: '导航' },
       { name: 'Breadcrumb 面包屑', path: 'breadcrumb' },
       { name: 'Menu 菜单', path: 'menu' },
-      { name: 'Steps 面包屑', path: 'steps' },
+      { name: 'Steps 步骤条', path: 'steps' },
       { name: 'Tabs 标签页', path: 'tabs' },
       { divider: true, name: '反馈' },
       { name: 'Overlay 基础弹出层', path: 'overlay' },
