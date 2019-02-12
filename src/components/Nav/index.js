@@ -20,11 +20,11 @@ export default class index extends Component {
           }
           if (/^https?:(?:\/\/)?/.test(item.path)) {
             return (
-              <a key={idx} target="__blank" href={item.path}>
-                <Tooltip placement="right" content={item.name}>
+              <Tooltip key={idx} placement="right" content={item.name}>
+                <a target="__blank" href={item.path}>
                   {icon}
-                </Tooltip>
-              </a>
+                </a>
+              </Tooltip>
             );
           }
           let noPath = null;
@@ -32,11 +32,11 @@ export default class index extends Component {
             noPath = item.children[0].path;
           }
           return (
-            <NavLink activeClassName={styles.selected} key={idx} to={noPath || item.path} replace>
-              <Tooltip placement="right" content={item.name}>
+            <Tooltip key={idx} placement="right" content={item.name}>
+              <NavLink activeClassName={styles.selected} to={noPath || item.path} replace>
                 {icon}
-              </Tooltip>
-            </NavLink>
+              </NavLink>
+            </Tooltip>
           );
         })}
       </div>
