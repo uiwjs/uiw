@@ -1,5 +1,7 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const pkg = require('./package.json');
 
 /**
  * Bundles a minified and unminified version of [uiw] including
@@ -38,7 +40,23 @@ module.exports = {
       if (raw.BUNDLE === 'min') {
         conf.output.filename = 'uiw.min.js';
         if (!conf.optimization) conf.optimization = {};
-        conf.optimization.minimizer = [new OptimizeCSSAssetsPlugin()];
+        conf.optimization.minimizer = [
+          new TerserPlugin({
+            // Use multi-process parallel running to improve the build speed
+            // Default number of concurrent runs: os.cpus().length - 1
+            parallel: true,
+            // Enable file caching
+            cache: true,
+            extractComments: {
+              condition: 'some',
+              filename: () => 'uiw.LICENSE',
+              banner: () => {
+                return `${pkg.name} ${pkg.version} MIT (c) 2019 kenny wang <wowohoo@qq.com> | https://uiw-react.github.io`;
+              },
+            },
+          }),
+          new OptimizeCSSAssetsPlugin()
+        ];
         conf.plugins = [
           ...conf.plugins,
           new MiniCssExtractPlugin({
