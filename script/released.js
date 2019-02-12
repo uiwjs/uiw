@@ -26,6 +26,7 @@ const docVersion = join(process.cwd(), 'src', 'version.json');
     const readmeContent = await fs.readFile(readmePath);
     await fs.outputFile(libReadmePath, readmeContent);
 
+    console.log(`> Publish ${uiwPkgContent.version} v${uiwPkgContent.version}`);
     // Modify document version data.
     const uiwPkgContent = await fs.readJson(uiwPkg);
     const versionList = await fs.readJson(docVersion);
@@ -33,11 +34,6 @@ const docVersion = join(process.cwd(), 'src', 'version.json');
       versionList.unshift(uiwPkgContent.version);
       await fs.outputJson(docVersion, versionList);
     }
-    /**
-     * Run KKT over the ./src directory and output compiled documents files to ./dist
-     */
-    await execute('npm run build');
-    await fs.copy(docsPath, libDocsPath);
     /**
      * Run babel over the ./packages/core/src directory and output
      * compiled common js files to ./packages/core/lib/cjs.
@@ -54,6 +50,11 @@ const docVersion = join(process.cwd(), 'src', 'version.json');
      */
     await execute(`cd ${libPath} && npm run bundle`);
     await execute(`cd ${libPath} && npm run bundle:min`);
+    /**
+     * Run KKT over the ./src directory and output compiled documents files to ./dist
+     */
+    await execute('npm run build');
+    await fs.copy(docsPath, libDocsPath);
     // Publish the documentation website.
     await execute('npm run deploy');
   } catch (error) {
