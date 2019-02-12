@@ -33,10 +33,20 @@ const docVersion = join(process.cwd(), 'src', 'version.json');
       versionList.unshift(uiwPkgContent.version);
       await fs.outputJson(docVersion, versionList);
     }
-
+    /**
+     * Run KKT over the ./src directory and output compiled documents files to ./dist
+     */
     await execute('npm run build');
     await fs.copy(docsPath, libDocsPath);
+    /**
+     * Run babel over the ./packages/core/src directory and output
+     * compiled common js files to ./packages/core/lib/cjs.
+     */
     await execute(`cd ${libPath} && npm run build-cjs`);
+    /**
+     * Run babel over the ./packages/core/src directory and output
+     * compiled es modules (but otherwise es5) to ./packages/core/lib/esm
+     */
     await execute(`cd ${libPath} && npm run build-esm`);
     /**
      * Bundles a minified and unminified version of [uiw] including
@@ -44,6 +54,8 @@ const docVersion = join(process.cwd(), 'src', 'version.json');
      */
     await execute(`cd ${libPath} && npm run bundle`);
     await execute(`cd ${libPath} && npm run bundle:min`);
+    // Publish the documentation website.
+    await execute('npm run deploy');
   } catch (error) {
     console.log('error:', error);
   }
