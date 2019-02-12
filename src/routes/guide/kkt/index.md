@@ -11,6 +11,12 @@
 npx kkt create my-app
 ```
 
+也可以直接通过下面命令创建项目，直接开始开发
+
+```bash
+npx kkt create uiw
+```
+
 此时，您将能够在本地启动默认 `kkt` 应用程序：
 
 ```bash
@@ -20,7 +26,7 @@ npm start
 
 有关 `KKT` 的更多信息，[请参阅自述文件](https://github.com/jaywcjlove/kkt)。
 
-3. 安装 [uiw](https://github.com/uiw-react/uiw) 节点模块：
+3. 安装 [uiw](https://github.com/uiw-react/uiw) 包：
 
 ```bash
 npm i uiw

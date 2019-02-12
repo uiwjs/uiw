@@ -20,7 +20,7 @@ yarn start
 
 有关 Create React App 的更多信息，[请参阅CRA自述文件](https://github.com/facebook/create-react-app)。
 
-3. 安装 [uiw](https://github.com/uiw-react/uiw) 节点模块：
+3. 安装 [uiw](https://github.com/uiw-react/uiw) 包：
 
 ```bash
 yarn add uiw
