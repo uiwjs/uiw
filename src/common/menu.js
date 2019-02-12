@@ -67,6 +67,11 @@ const menuData = [
     icon: 'github',
     path: 'https://github.com/uiw-react/uiw',
   },
+  {
+    name: 'Gitee',
+    icon: 'gitee',
+    path: 'https://gitee.com/uiw/uiw',
+  },
 ];
 
 function formatter(data, parentPath = '/') {
