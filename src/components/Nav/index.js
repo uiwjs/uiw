@@ -14,6 +14,7 @@ export default class index extends Component {
     return (
       <div className={styles.nav}>
         {this.props.menuData.map((item, idx) => {
+          console.log('item:', item);
           let icon = item.icon;
           if (Object.keys(nav).includes(icon)) {
             icon = nav[icon];

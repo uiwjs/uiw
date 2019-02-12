@@ -25,11 +25,19 @@ export default class Home extends PureComponent {
             <Link className={styles.AppLink} to="/components"> Components </Link>
             <a
               className={styles.AppLink}
-              href="https://github.com/jaywcjlove/kkt"
+              href="https://github.com/uiw-react/uiw"
               target="_blank"
               rel="noopener noreferrer"
             >
               Github
+            </a>
+            <a
+              className={styles.AppLink}
+              href="https://gitee.com/uiw/uiw"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Gitee
             </a>
           </div>
         </header>
