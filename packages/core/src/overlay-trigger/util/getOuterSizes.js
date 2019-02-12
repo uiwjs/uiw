@@ -11,8 +11,8 @@ export default function getOuterSizes(element) {
   // const x = parseFloat(styles.marginTop || 0) + parseFloat(styles.marginBottom || 0);
   // const y = parseFloat(styles.marginLeft || 0) + parseFloat(styles.marginRight || 0);
   const result = {
-    width: element.offsetWidth,
-    height: element.offsetHeight,
+    width: element.offsetWidth || element.scrollWidth || 0,
+    height: element.offsetHeight || element.scrollHeight || 0,
   };
   return result;
 }
