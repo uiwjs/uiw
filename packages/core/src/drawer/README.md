@@ -135,7 +135,12 @@ class Demo extends React.Component {
           title="抽屉标题"
           isOpen={this.state.visible}
           onClose={this.onClose.bind(this)}
-          footer="页脚，可以放点内容"
+          footer={
+            <div>
+              <Button size="small" type="danger" onClick={this.onClick.bind(this)}>关闭抽屉</Button>
+              <Button size="small" type="success">其它</Button>
+            </div>
+          }
         >
           React 可以非常轻松地创建用户交互界面。为你应用的每一个状态设计简洁的视图，在数据改变时 React 也可以高效地更新渲染界面。
           <br /><br />
