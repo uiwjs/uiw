@@ -1,13 +1,11 @@
 @alert: ~"w-alert";
 
 .@{alert} {
-  // .w-modal-inner {
-  //   max-width: 400px;
-  // }
   .w-modal-header, .w-modal-body {
     display: table-cell;
   }
   .w-modal-header {
+    background-color: transparent;
     padding: 20px 0 0 20px;
     box-shadow: 0 0 0 0;
     padding-right: 0;
@@ -21,16 +19,39 @@
     padding-left: 20px;
     vertical-align: top;
   }
-  &.primary .w-modal-header .w-icon {
+  &.primary .w-modal-header > .w-icon {
     color: #008EF0;
   }
-  &.success .w-modal-header .w-icon {
+  &.success .w-modal-header > .w-icon {
     color: #28a745;
   }
-  &.warning .w-modal-header .w-icon {
+  &.warning .w-modal-header > .w-icon {
     color: #ffc107;
   }
-  &.danger .w-modal-header .w-icon {
+  &.danger .w-modal-header > .w-icon {
     color: #dc3545;
+  }
+
+  .w-modal-shown-title.w-modal-inner {
+    .w-modal-header {
+      display: flex;
+      padding-top: 10px;
+      padding-right: 10px;
+      > .w-icon {
+        font-size: 40px;
+        position: absolute;
+        top: 18px;
+      }
+      > h4 {
+        padding-left: 60px;
+      }
+      button > .w-icon {
+        font-size: 14px;
+      }
+    }
+    .w-modal-body {
+      padding-left: 80px;
+      padding-top: 10px;
+    }
   }
 }
