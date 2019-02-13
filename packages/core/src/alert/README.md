@@ -159,7 +159,6 @@ class Demo extends React.Component {
         />
         <Alert
           isOpen={this.state.visible4}
-          title="带标题"
           confirmText="确定按钮"
           cancelText="取消按钮"
           icon="circle-close"
@@ -176,6 +175,101 @@ class Demo extends React.Component {
           content="这个对话框只有两个个按钮，单击“确定按钮”后，此对话框将关闭。用作通知用户重要信息。"
         />
         <Alert
+          isOpen={this.state.visible6}
+          confirmText="确定按钮"
+          cancelText="取消按钮"
+          type="dark"
+          onClosed={this.onClosed.bind(this, 'visible6')}
+        >
+          这个对话框有两个按钮，单击 “<b>确定按钮</b>” 或 “<b>取消按钮</b>” 后，此对话框将关闭，触发 “<b>onConfirm</b>” 或 “<b>onCancel</b>” 事件。用作通知用户重要信息。
+        </Alert>
+        <ButtonGroup style={{ marginTop: 5 }}>
+          <Button onClick={this.onClick.bind(this, 'visible1')} type="primary">主要</Button>
+          <Button onClick={this.onClick.bind(this, 'visible2')} type="success">成功</Button>
+          <Button onClick={this.onClick.bind(this, 'visible3')} type="warning">警告</Button>
+          <Button onClick={this.onClick.bind(this, 'visible4')} type="danger">错误</Button>
+          <Button onClick={this.onClick.bind(this, 'visible5')} type="light">亮按钮</Button>
+          <Button onClick={this.onClick.bind(this, 'visible6')} type="dark">暗按钮</Button>
+        </ButtonGroup>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
+
+## 带标题的弹出框
+
+<!--DemoStart--> 
+```js
+class Demo extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      visible1: false,
+      visible2: false,
+    }
+  }
+  onClick(type) {
+    this.setState({ [type]: !this.state[type] });
+  }
+  onClosed(type) {
+    this.setState({ [type]: false });
+  }
+  render() {
+    return (
+      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+        <Alert
+          title="带标题的弹出框"
+          isOpen={this.state.visible1}
+          confirmText="确定按钮"
+          cancelText="取消按钮"
+          icon="information"
+          type="primary"
+          onClosed={this.onClosed.bind(this, 'visible1')}
+          content="这个对话框只有两个个按钮，单击“确定按钮”后，此对话框将关闭。用作通知用户重要信息。"
+        />
+        <Alert
+          title="带标题的弹出框"
+          isOpen={this.state.visible2}
+          confirmText="确定按钮"
+          cancelText="取消按钮"
+          type="success"
+          onClosed={this.onClosed.bind(this, 'visible2')}
+          content="这个对话框只有两个个按钮，单击“确定按钮”后，此对话框将关闭。用作通知用户重要信息。"
+        />
+        <Alert
+          title="带标题的弹出框"
+          isOpen={this.state.visible3}
+          confirmText="确定按钮"
+          cancelText="取消按钮"
+          icon="warning"
+          type="warning"
+          onClosed={this.onClosed.bind(this, 'visible3')}
+          content="这个对话框只有两个个按钮，单击“确定按钮”后，此对话框将关闭。用作通知用户重要信息。"
+        />
+        <Alert
+          title="带标题的弹出框"
+          isOpen={this.state.visible4}
+          confirmText="确定按钮"
+          cancelText="取消按钮"
+          icon="circle-close"
+          type="danger"
+          onClosed={this.onClosed.bind(this, 'visible4')}
+          content="这个对话框只有两个个按钮，单击“确定按钮”后，此对话框将关闭。用作通知用户重要信息。"
+        />
+        <Alert
+          title="带标题的弹出框"
+          isOpen={this.state.visible5}
+          confirmText="确定按钮"
+          cancelText="取消按钮"
+          type="light"
+          onClosed={this.onClosed.bind(this, 'visible5')}
+          content="这个对话框只有两个个按钮，单击“确定按钮”后，此对话框将关闭。用作通知用户重要信息。"
+        />
+        <Alert
+          title="带标题的弹出框"
           isOpen={this.state.visible6}
           confirmText="确定按钮"
           cancelText="取消按钮"

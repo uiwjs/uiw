@@ -40,7 +40,13 @@ export default class Modal extends React.PureComponent {
         className={cls}
       >
         <div className={`${prefixCls}-container`}>
-          <div className={classnames(`${prefixCls}-inner`, { [`${prefixCls}-shown-title`]: title })} style={{ maxWidth: width }}>
+          <div
+            className={classnames(`${prefixCls}-inner`, {
+              [`${prefixCls}-shown-title`]: title,
+              [`${prefixCls}-shown-icon`]: icon,
+            })}
+            style={{ maxWidth: width }}
+          >
             {(title || icon) && (
               <div className={`${prefixCls}-header`}>
                 {icon && <Icon type={icon} />}

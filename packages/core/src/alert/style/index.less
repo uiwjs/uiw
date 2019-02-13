@@ -10,9 +10,9 @@
     box-shadow: 0 0 0 0;
     padding-right: 0;
   }
-  .w-modal-header .w-icon {
-    display: table-cell;
+  .w-modal-header > .w-icon {
     font-size: 40px;
+    margin-right: 0;
   }
   .w-modal-body {
     padding-right: 20px;
@@ -35,23 +35,30 @@
   .w-modal-shown-title.w-modal-inner {
     .w-modal-header {
       display: flex;
-      padding-top: 10px;
+      padding-top: 15px;
       padding-right: 10px;
       > .w-icon {
         font-size: 40px;
         position: absolute;
         top: 18px;
       }
-      > h4 {
-        padding-left: 60px;
+      > button {
+        margin-top: -10px;
       }
-      button > .w-icon {
+      > button > .w-icon {
         font-size: 14px;
       }
     }
     .w-modal-body {
-      padding-left: 80px;
-      padding-top: 10px;
+      padding-top: 5px;
     }
+  }
+  .w-modal-shown-icon {
+    .w-modal-header > h4 {
+      padding-left: 60px;
+    }
+  }
+  .w-modal-shown-title.w-modal-shown-icon .w-modal-body {
+    padding-left: 80px;
   }
 }
