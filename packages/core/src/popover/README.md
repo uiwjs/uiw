@@ -225,4 +225,4 @@ class Demo extends React.Component {
 | visible | 默认是否显示弹窗，继承 `<OverlayTrigger />` 组件属性 | Boolean | `false` |
 | onVisibleChange | 显示隐藏的回调，继承 `<OverlayTrigger />` 组件属性 | Function(isVisible:bool) | - |
 
-更多属性请参考 [OverlayTrigger](/components/overlay-trigger)。
+更多属性请参考 [OverlayTrigger](#/components/overlay-trigger)。

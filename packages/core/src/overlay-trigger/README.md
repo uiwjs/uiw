@@ -28,7 +28,7 @@ const Demo = () => (
 
 ### 配合组件使用
 
-下面配合 [`<Card />`](/components/card) 组件使用。
+下面配合 [`<Card />`](#/components/card) 组件使用。
 
 <!--DemoStart--> 
 ```js
@@ -261,4 +261,4 @@ class Demo extends React.Component {
 | autoAdjustOverflow | 弹出层被遮挡时自动调整位置 | Boolean | `false` |
 | onVisibleChange | 显示隐藏的回调 | Function(isVisible:bool) | - |
 
-更多属性请参考 [Overlay](/components/overlay)。
+更多属性文档请参考 [Overlay](#/components/overlay)。
