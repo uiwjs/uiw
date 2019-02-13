@@ -46,6 +46,9 @@ export const getRouterData = () => {
     '/components/divider': {
       component: dynamicWrapper([], () => import('../routes/components/divider')),
     },
+    '/components/drawer': {
+      component: dynamicWrapper([], () => import('../routes/components/drawer')),
+    },
     '/components/card': {
       component: dynamicWrapper([], () => import('../routes/components/card')),
     },

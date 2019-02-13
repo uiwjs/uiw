@@ -86,33 +86,22 @@
   transition: opacity 300ms ease-in;
 }
 
-// Content animation
-.@{overlay-prefix}-enter .@{overlay-prefix}-content,
-.@{overlay-prefix}-exit-done .@{overlay-prefix}-content,
-.@{overlay-prefix}-exit-active .@{overlay-prefix}-content {
+
+.@{overlay-prefix}-enter .@{overlay-prefix}-content {
   transform: scale(.5);
   opacity: 0;
 }
-
 .@{overlay-prefix}-enter-active .@{overlay-prefix}-content {
-  transform: translate(0);
   opacity: 1;
-  transition-property: transform, opacity;
-  transition-duration: 300ms;
-  transition-timing-function: ease;
-  transition-delay: 0;
+  transform: translate(0);
+  transition: transform 300ms ease, opacity 300ms ease;
 }
-
 .@{overlay-prefix}-exit .@{overlay-prefix}-content {
-    transform: translate(0);
-    opacity: 1;
+  opacity: 1;
+  transform: translate(0);
+  transition: transform 300ms ease, opacity 300ms ease;
 }
-
 .@{overlay-prefix}-exit-active .@{overlay-prefix}-content {
   transform: scale(.5);
   opacity: 0;
-  transition-property: transform,opacity;
-  transition-duration: 300ms;
-  transition-timing-function: ease;
-  transition-delay: 0;
 }
