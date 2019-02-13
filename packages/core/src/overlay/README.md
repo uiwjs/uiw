@@ -1,7 +1,7 @@
 Overlay 基础弹出层
 ===
 
-这是一个基础的弹出层组件，其它弹出组件的抽象组件，都基于它来扩展比如 [`<Modal />`](#/components/modal)、[`<Alert />`](#/components/alert)、[`<OverlayTrigger />`](#/components/overlay-trigger)、[`<Popover />`](#/components/popover)、[`<Tooltip />`](#/components/tooltip) 等。
+这是一个基础的弹出层组件，其它弹出组件的抽象组件，都基于它来扩展比如 [`<Modal>`](#/components/modal)、[`<Dawer>`](#/components/drawer)、[`<Alert>`](#/components/alert)、[`<OverlayTrigger>`](#/components/overlay-trigger)、[`<Popover>`](#/components/popover)、[`<Tooltip>`](#/components/tooltip) 等。
 
 ```jsx
 import { Overlay } from 'uiw';
@@ -203,7 +203,7 @@ class Demo extends React.PureComponent {
 | isOpen | 对话框是否可见 | boolean | `false` |
 | usePortal | 使用 react 16 提供的官方解决方案 [`Portals`](https://reactjs.org/docs/portals.html#event-bubbling-through-portals)，将模态对话框生成到根节点的外面。 |  boolean | `true` |
 | maskClosable | 点击遮罩层是否允许关闭 | boolean | `true` |
-| portalProps | 设置 [`Portal`](/components/portal) 组件属性 | object | `{}` |
+| portalProps | 设置 [`Portal`](#/components/portal) 组件属性 | object | `{}` |
 | backdropProps | 遮罩层 HTML 属性设置 | object | `{}` |
 | dialogProps | 弹出目标(对话框) HTML 属性设置 | object | - |
 | unmountOnExit | 默认 `true` 退出动画卸载组件 | boolean | `true` |

@@ -56,5 +56,5 @@ class Demo extends Component {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| type |水平还是垂直类型 |	enum{`horizontal`,`vertical`}	| `horizontal` |
+| type |水平还是垂直类型 | enum{`horizontal`,`vertical`}	| `horizontal` |
 | dashed |是否虚线 |	Boolean	| `false` |

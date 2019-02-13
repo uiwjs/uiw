@@ -43,7 +43,7 @@ const Demo = () => (
 
 ### 后面插入内容
 
-向后面插入 [`Button`](/components/button) 或者 [`Tag`](/components/tag)
+向后面插入 [`Button`](#/components/button) 或者 [`Tag`](#/components/tag)
 
 <!--DemoStart--> 
 ```js

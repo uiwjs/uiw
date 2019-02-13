@@ -161,7 +161,7 @@ const Demo = () => (
 | tagName | 设置子节点标签名 | String | `a` |
 | active | 激活选中状态 | Boolean | `false` |
 | disabled | 禁用状态 | Boolean | `false` |
-| overlayProps | 对象将传递到 `OverlayTrigger`，相关参数参考 [`OverlayTrigger`](/components/overlay-trigger) | Object | - |
+| overlayProps | 对象将传递到 `OverlayTrigger`，相关参数参考 [`OverlayTrigger`](#/components/overlay-trigger) | Object | - |
 
 ## Menu.Divider.Props
 
