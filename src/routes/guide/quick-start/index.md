@@ -5,13 +5,28 @@
 
 ## 安装
 
+### 使用 npm 或 yarn 安装#
+
 ```bash
-npm i uiw # 安装 v2.x.x 最新版本
+$ npm i uiw # 安装 v2.x.x 最新版本
 ```
+
+```
+$ yarn add antd
+```
+
+### 浏览器引入
+
+在浏览器中使用 `script` 和 `link` 标签直接引入文件，并使用全局变量 uiw。
+
+我们在 [`npm`](https://www.npmjs.com/package/uiw) 发布包内的 `uiw/dist` 目录下提供了 `uiw.js` `uiw.css` 以及 `uiw.min.js` `uiw.min.css`。你也可以通过 [UNPKG](https://unpkg.com/uiw/dist/) 进行下载。
+
+> ⚠️ 强烈不推荐使用已构建文件，这样无法按需加载。  
+> ⚠️ 浏览器引入只在 uiw v2.x 以上的版本支持。
 
 ### 安装 [**v1.x**](https://unpkg.com/uiw/dist/index.html#/cn/quick-start) 旧版本
 
-> `v1.x` 不可以升级到 `v2.x`，`v2`是对 v1 的重构和简化  
+> ⚠️ `v1.x` 不可以升级到 `v2.x`，`v2`是对 v1 的重构和简化  
 
 安装 [**`v1.x`**](https://unpkg.com/uiw/dist/index.html#/cn/quick-start) 版本
 
@@ -37,6 +52,8 @@ yarn add uiwjs/uiw
 4. 支持服务端渲染，可以通过 [kkt-ssr](https://github.com/jaywcjlove/kkt-ssr) 工具建立实例。
 
 ## 使用
+
+使用过程中不需要引入 `CSS`，但是需要 [`LESS`](http://lesscss.org/) 编译环境，如果对环境使用有障碍，可以通过 [`kkt`](#/guide/kkt) 工具初始化一个工程。
 
 ```js
 import React from 'react';
