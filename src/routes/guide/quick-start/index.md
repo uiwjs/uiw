@@ -1,7 +1,7 @@
 快速上手
 ===
 
-[![](https://api.travis-ci.org/uiw-react/uiw.svg?branch=master)](https://travis-ci.org/uiw-react/uiw/builds) [![](https://img.shields.io/github/issues/uiw-react/uiw.svg)](https://github.com/uiw-react/uiw/issues) [![](https://img.shields.io/github/forks/uiw-react/uiw.svg)](https://github.com/uiw-react/uiw/network) [![](https://img.shields.io/github/stars/uiw-react/uiw.svg)](https://github.com/uiw-react/uiw/stargazers) [![](https://img.shields.io/github/release/uiw-react/uiw.svg)](https://github.com/uiw-react/uiw/releases) [![Packagist](https://img.shields.io/dub/l/vibe-d.svg)](https://github.com/uiw-react/uiw) [![Packagist](https://img.shields.io/npm/v/uiw.svg)](https://www.npmjs.com/package/uiw) [![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
+[![](https://api.travis-ci.org/uiwjs/uiw.svg?branch=master)](https://travis-ci.org/uiwjs/uiw/builds) [![](https://img.shields.io/github/issues/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/issues) [![](https://img.shields.io/github/forks/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/network) [![](https://img.shields.io/github/stars/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/stargazers) [![](https://img.shields.io/github/release/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/releases) [![Packagist](https://img.shields.io/dub/l/vibe-d.svg)](https://github.com/uiwjs/uiw) [![Packagist](https://img.shields.io/npm/v/uiw.svg)](https://www.npmjs.com/package/uiw) [![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
 
 ## 安装
 
@@ -19,11 +19,11 @@ npm i uiw # 安装 v2.x.x 最新版本
 npm install uiw --save
 
 ## 通过 GitHub 仓库安装
-npm i -S uiw-react/uiw
+npm i -S uiwjs/uiw
 # 指定版本
-npm i -S uiw-react/uiw#v1.16.14
+npm i -S uiwjs/uiw#v1.16.14
 # 或者
-yarn add uiw-react/uiw
+yarn add uiwjs/uiw
 ```
 
 >  **通过 GitHub 仓库安装**的 `win` 用户请在 `Git Bash` 下执行，因为需要用到 `git`。
@@ -62,7 +62,7 @@ import { Button as ButtonView } from 'uiw';
 要开发，运行自重新构建，获取代码：
 
 ```bash
-$ git clone https://github.com/uiw-react/uiw.git
+$ git clone https://github.com/uiwjs/uiw.git
 $ cd uiw
 $ npm install # or  yarn install
 ```
