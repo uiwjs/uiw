@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM, { findDOMNode} from 'react-dom';
+import ReactDOM, { findDOMNode } from 'react-dom';
 import classnames from 'classnames';
 import Container from './Container';
 import './style/index.less';
@@ -9,7 +9,6 @@ function randomid() {
 }
 
 const notifys = {};
-const div = null;
 
 export default function NotificationCreate(props = {}, type = 'open') {
   if (!props.placement) {
