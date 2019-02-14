@@ -2,7 +2,7 @@
   "name": "uiw",
   "version": "2.0.0-beta.7",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
-  "homepage": "https://uiw-react.github.io",
+  "homepage": "https://uiwjs.github.io",
   "sideEffects": false,
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/uiw-react/uiw.git"
+    "url": "https://github.com/uiwjs/uiw.git"
   },
   "scripts": {
     "build:watch:cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose -w",

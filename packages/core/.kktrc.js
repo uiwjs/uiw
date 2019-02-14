@@ -51,7 +51,7 @@ module.exports = {
               condition: 'some',
               filename: () => 'uiw.LICENSE',
               banner: () => {
-                return `${pkg.name} ${pkg.version} MIT (c) 2019 kenny wang <wowohoo@qq.com> | https://uiw-react.github.io`;
+                return `${pkg.name} ${pkg.version} MIT (c) 2019 kenny wang <wowohoo@qq.com> | https://uiwjs.github.io`;
               },
             },
           }),
