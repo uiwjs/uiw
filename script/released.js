@@ -15,8 +15,8 @@ const libPath = join(process.cwd(), 'packages', 'core');
 const libReadmePath = join(libPath, 'README.md');
 const readmePath = join(process.cwd(), 'README.md');
 
-const libDocsPath = join(libPath, 'docs');
 const docsPath = join(process.cwd(), 'dist');
+const docRepoPath = join(process.cwd(), 'packages', 'doc');
 
 const uiwPkg = join(libPath, 'package.json');
 const docVersion = join(process.cwd(), 'src', 'version.json');
@@ -35,13 +35,28 @@ const docVersion = join(process.cwd(), 'src', 'version.json');
       await fs.outputJson(docVersion, versionList);
     }
     /**
-     * Run babel over the ./packages/core/src directory and output
-     * compiled common js files to ./packages/core/lib/cjs.
+     * Create a document website for `package.json`
+     * path => `packages/doc/package.json`
+     */
+    await fs.writeJson(join(docRepoPath, 'package.json'), {
+      "name": "@uiw/doc",
+      "version": uiwPkgContent.version,
+      "description": "Uiw documentation website.",
+      "homepage": uiwPkgContent.homepage,
+      "authors": uiwPkgContent.authors,
+      "repository": uiwPkgContent.repository,
+      "keywords": uiwPkgContent.keywords,
+      "author": uiwPkgContent.author,
+      "license": uiwPkgContent.license
+    });
+    /**
+     * Run babel over the `./packages/core/src` directory and output
+     * compiled common js files to `./packages/core/lib/cjs`.
      */
     await execute(`cd ${libPath} && npm run build-cjs`);
     /**
-     * Run babel over the ./packages/core/src directory and output
-     * compiled es modules (but otherwise es5) to ./packages/core/lib/esm
+     * Run babel over the `./packages/core/src directory` and output
+     * compiled es modules (but otherwise es5) to `./packages/core/lib/esm`
      */
     await execute(`cd ${libPath} && npm run build-esm`);
     /**
@@ -54,8 +69,12 @@ const docVersion = join(process.cwd(), 'src', 'version.json');
      * Run KKT over the ./src directory and output compiled documents files to ./dist
      */
     await execute('npm run build');
-    await fs.copy(docsPath, libDocsPath);
-    // Publish the documentation website.
+    await fs.copy(docsPath, join(docRepoPath, 'web'));
+    await execute(`cd ${docRepoPath} && npm publish`);
+    /**
+     * Publish the documentation website.
+     * Repo => `git@github.com:uiwjs/uiwjs.github.io.git`
+     */
     await execute('npm run deploy');
     await execute(`git tag -a v${uiwPkgContent.version} -m "released v${uiwPkgContent.version}"`);
     await execute('git push --tags');

@@ -1,0 +1,17 @@
+/web
+/package.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+.DS_Store
+.cache
+.vscode
+
+*.bak
+*.tem
+*.temp
+#.swp
+*.swo
+*.*~
+~*.*
