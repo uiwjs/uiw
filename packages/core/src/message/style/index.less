@@ -4,9 +4,11 @@
   padding: 10px 15px;
   position: relative;
   margin-bottom: 10px;
-  border-radius: 5px;
   &-title, &-description {
     display: block;
+  }
+  &-rounded {
+    border-radius: 5px;
   }
   &-description {
     color: rgba(0, 0, 0, 0.65);
@@ -14,16 +16,38 @@
   &-title {
     color: rgba(0, 0, 0, 0.85);
   }
+  &-title-description > .w-icon {
+    font-size: 24px;
+  }
+  &-title-description &-title {
+    font-size: 16px;
+  }
+  &-title-description &-title,
+  &-title-description &-description {
+    padding-left: 16px;
+  }
+  &-icon {
+    padding-left: 34px;
+  }
   &-success {
     background: lighten(#28a745, 40%);
+    color: #28a745;
   }
   &-warning {
     background: lighten(#ffc107, 40%);
+    color: #ffc107;
   }
   &-info {
     background: lighten(#008EF0, 40%);
+    color: #008EF0;
   }
   &-error {
     background: lighten(#dc3545, 40%);
+    color: #dc3545;
+  }
+  > .w-icon {
+    top: 14px;
+    left: 14px;
+    position: absolute;
   }
 }
