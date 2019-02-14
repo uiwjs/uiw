@@ -69,6 +69,7 @@ const docVersion = join(process.cwd(), 'src', 'version.json');
      * Run KKT over the ./src directory and output compiled documents files to ./dist
      */
     await execute('npm run build');
+    await fs.emptyDir(join(docRepoPath, 'web'))
     await fs.copy(docsPath, join(docRepoPath, 'web'));
     await execute(`cd ${docRepoPath} && npm publish`);
     /**
