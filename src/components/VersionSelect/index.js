@@ -9,7 +9,7 @@ export default class VersionSelect extends Component {
     if (isV1) {
       window.location.href = `https://unpkg.com/uiw@${version}/dist/index.html`;
     } else {
-      window.location.href = `https://unpkg.com/uiw@${version}/docs/index.html`;
+      window.location.href = `https://unpkg.com/@uiw/doc@${version}/web/index.html`;
     }
   }
   render() {
