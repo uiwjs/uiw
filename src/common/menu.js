@@ -49,6 +49,7 @@ const menuData = [
       { name: 'Alert 确认对话框', path: 'alert' },
       { name: 'Drawer 抽屉', path: 'drawer' },
       { name: 'Modal 模态对话框', path: 'modal' },
+      { name: 'Notify 消息通知', path: 'notify' },
       { name: 'Popover 气泡卡片', path: 'popover' },
       { name: 'Tooltip 文字提示', path: 'tooltip' },
       { divider: true, name: '其它' },
