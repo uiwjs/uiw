@@ -46,7 +46,13 @@ A high quality UI Toolkit, A Component Library for React 16+. 💘
 npm install uiw@2.0.0-beta.1 --save
 ```
 
-You can use the [`uiw v1.x`](https://github.com/uiwjs/uiw/tree/v1) version.
+You can use [`kkt`](https://github.com/jaywcjlove/kkt) to quickly create a react + uiw project.
+
+```bash
+npx kkt create my-app -e uiw
+```
+
+You can use the [`uiw v1.x`](https://github.com/uiwjs/uiw/tree/v1) version. [Please see here for instructions](https://github.com/uiwjs/uiw/tree/v1).
 
 ### Basic Usage
 
