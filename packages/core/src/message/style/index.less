@@ -33,6 +33,23 @@
     background: lighten(#28a745, 40%);
     color: #28a745;
   }
+  > button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    &.w-btn {
+      padding: 2px;
+      min-width: 16px;
+      min-height: 16px;
+      color: rgba(0, 0, 0, 0.38);
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.21) !important;
+      }
+      &:active {
+        background-color: rgba(0, 0, 0, 0.1) !important;
+      }
+    }
+  }
   &-warning {
     background: lighten(#ffc107, 40%);
     color: #ffc107;
@@ -50,4 +67,24 @@
     left: 14px;
     position: absolute;
   }
+  &-enter {
+    transform: scaleY(0.5);
+    opacity: 0;
+  }
+  &-enter-active {
+    opacity: 1;
+    transform: scaleY(1);
+    transition: transform 300ms ease, opacity 300ms ease;
+  }
+  &-exit {
+    opacity: 1;
+    transform: scaleY(1);
+    transition: transform 300ms ease, opacity 300ms ease;
+  }
+  &-exit-active {
+    transform: scaleY(0.5);
+    opacity: 0;
+  }
 }
+
+

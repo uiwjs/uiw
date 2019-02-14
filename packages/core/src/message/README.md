@@ -96,6 +96,31 @@ class Demo extends Component {
 ```
 <!--End-->
 
+### 关闭按钮
+
+<!--DemoStart--> 
+```js
+class Demo extends Component {
+  render() {
+    return (
+      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+        <Message
+          showIcon
+          isCloseButtonShown
+          type="success"
+          title="自定义图标"
+          description="这里设置参数 isCloseButtonShown 显示关闭按钮。这里设置 title 和 description 同时设置显示图标。"
+        />
+        <Divider />
+        <Message showIcon isCloseButtonShown type="info" title="说明提示标题，自定义图标。" />
+        <Message isCloseButtonShown type="error" title="错误提示标题，自定义图标。" />
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -105,4 +130,5 @@ class Demo extends Component {
 | description | 警告提示描述详情 | String/ReactNode | - |
 | rounded | 是否显示圆角 | Boolean | - |
 | showIcon | 设定显示图标 | Boolean | - |
+| isCloseButtonShown | 显示关闭按钮 | Boolean | - |
 | icon | 自定义图标，设置 `showIcon=true` 才会起作用。 | String/ReactNode | - |
