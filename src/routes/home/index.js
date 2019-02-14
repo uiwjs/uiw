@@ -25,7 +25,7 @@ export default class Home extends PureComponent {
             <Link className={styles.AppLink} to="/components"> Components </Link>
             <a
               className={styles.AppLink}
-              href="https://github.com/uiw-react/uiw"
+              href="https://github.com/uiwjs/uiw"
               target="_blank"
               rel="noopener noreferrer"
             >

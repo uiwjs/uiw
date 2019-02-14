@@ -62,12 +62,12 @@ const menuData = [
   {
     name: '提交问题',
     icon: 'issue',
-    path: 'https://github.com/uiw-react/uiw/issues/new',
+    path: 'https://github.com/uiwjs/uiw/issues/new',
   },
   {
     name: 'Github',
     icon: 'github',
-    path: 'https://github.com/uiw-react/uiw',
+    path: 'https://github.com/uiwjs/uiw',
   },
   {
     name: 'Gitee',

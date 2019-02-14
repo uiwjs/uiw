@@ -4,19 +4,19 @@
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "private": true,
   "sideEffects": true,
-  "homepage": "https://uiw-react.github.io",
+  "homepage": "https://uiwjs.github.io",
   "authors": [
     "Kenny Wang <wowohoo@qq.com>"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/uiw-react/uiw.git"
+    "url": "https://github.com/uiwjs/uiw.git"
   },
   "scripts": {
     "start": "kkt start",
     "build": "kkt build",
     "test": "kkt test --env=jsdom",
-    "deploy": "gh-pages -d dist -b master -r git@github.com:uiw-react/uiw-react.github.io.git",
+    "deploy": "gh-pages -d dist -b master -r git@github.com:uiwjs/uiwjs.github.io.git",
     "released": "node script/released.js",
     "test:coverage": "kkt test --env=jsdom --coverage"
   },
@@ -28,6 +28,7 @@
   },
   "keywords": [
     "uiw",
+    "uiwjs",
     "uiw-react",
     "react.js",
     "react",

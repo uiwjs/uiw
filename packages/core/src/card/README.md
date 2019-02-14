@@ -71,7 +71,7 @@ const Demo = () => (
     </div>
     <div style={titleStyle}>
       <h3 style={{margin:0}}>我爱漂亮妹妹</h3>
-      <p style={{margin:0}}><a href="https://uiw-react.github.io">https://uiw-react.github.io</a></p>
+      <p style={{margin:0}}><a href="https://uiwjs.github.io">https://uiwjs.github.io</a></p>
     </div>
   </Card>
 )
@@ -83,7 +83,7 @@ const Demo = () => (
 <!--DemoStart--> 
 ```js
 const footer = (
-  <a href="https://uiw-react.github.io">
+  <a href="https://uiwjs.github.io">
     <Icon type='user' />&nbsp;
     16 Friends
   </a>
@@ -100,7 +100,7 @@ const Demo = () => (
     </div>
     <div style={{ padding: `10px 16px` }}>
       <h3 style={{margin:0}}>我爱漂亮妹妹</h3>
-      <p style={{margin:0}}><a href="https://uiw-react.github.io">https://uiw-react.github.io</a></p>
+      <p style={{margin:0}}><a href="https://uiwjs.github.io">https://uiwjs.github.io</a></p>
     </div>
   </Card>
 );
@@ -114,7 +114,7 @@ const Demo = () => (
 <!--DemoStart--> 
 ```js
 const footer = (
-  <a href="https://uiw-react.github.io">
+  <a href="https://uiwjs.github.io">
     <Icon type='user' />&nbsp;
     16 Friends
   </a>
@@ -132,7 +132,7 @@ const Demo = () => (
     </div>
     <div style={{ padding: `10px 16px` }}>
       <h3 style={{margin:0}}>我爱漂亮妹妹</h3>
-      <p style={{margin:0}}><a href="https://uiw-react.github.io">https://uiw-react.github.io</a></p>
+      <p style={{margin:0}}><a href="https://uiwjs.github.io">https://uiwjs.github.io</a></p>
     </div>
   </Card>
 );

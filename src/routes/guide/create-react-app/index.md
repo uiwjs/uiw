@@ -1,7 +1,7 @@
 在 Create React App 中使用
 ===
 
-要开始使用 [uiw](https://github.com/uiw-react/uiw) 和 [Create React App](https://github.com/facebook/create-react-app) (CRA)，请按照下列步骤操作：
+要开始使用 [uiw](https://github.com/uiwjs/uiw) 和 [Create React App](https://github.com/facebook/create-react-app) (CRA)，请按照下列步骤操作：
 
 1. 安装最新版本的 Node LTS。 [请参阅此处获取说明](https://docs.npmjs.com/getting-started/installing-node)
 
@@ -20,7 +20,7 @@ yarn start
 
 有关 Create React App 的更多信息，[请参阅CRA自述文件](https://github.com/facebook/create-react-app)。
 
-3. 安装 [uiw](https://github.com/uiw-react/uiw) 包：
+3. 安装 [uiw](https://github.com/uiwjs/uiw) 包：
 
 ```bash
 yarn add uiw

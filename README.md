@@ -1,26 +1,26 @@
 <p align="center">
-  <a href="https://uiw-react.github.io">
-    <img width="150" src="https://raw.githubusercontent.com/uiw-react/uiw/master/src/assets/logo-README.svg?sanitize=true">
+  <a href="https://uiwjs.github.io">
+    <img width="150" src="https://raw.githubusercontent.com/uiwjs/uiw/master/src/assets/logo-README.svg?sanitize=true">
   </a>
 </p>
 <p align="center">
-  <a href="https://travis-ci.org/uiw-react/uiw">
-    <img src="https://api.travis-ci.org/uiw-react/uiw.svg?branch=master">
+  <a href="https://travis-ci.org/uiwjs/uiw">
+    <img src="https://api.travis-ci.org/uiwjs/uiw.svg?branch=master">
   </a>
-  <a href="https://github.com/uiw-react/uiw/issues">
-    <img src="https://img.shields.io/github/issues/uiw-react/uiw.svg">
+  <a href="https://github.com/uiwjs/uiw/issues">
+    <img src="https://img.shields.io/github/issues/uiwjs/uiw.svg">
   </a>
-  <a href="https://github.com/uiw-react/uiw/network">
-    <img src="https://img.shields.io/github/forks/uiw-react/uiw.svg">
+  <a href="https://github.com/uiwjs/uiw/network">
+    <img src="https://img.shields.io/github/forks/uiwjs/uiw.svg">
   </a>
-  <a href="https://github.com/uiw-react/uiw/stargazers">
-    <img src="https://img.shields.io/github/stars/uiw-react/uiw.svg">
+  <a href="https://github.com/uiwjs/uiw/stargazers">
+    <img src="https://img.shields.io/github/stars/uiwjs/uiw.svg">
   </a>
   <br>
-  <a href="https://github.com/uiw-react/uiw/releases">
-    <img src="https://img.shields.io/github/release/uiw-react/uiw.svg">
+  <a href="https://github.com/uiwjs/uiw/releases">
+    <img src="https://img.shields.io/github/release/uiwjs/uiw.svg">
   </a>
-  <a href="https://github.com/uiw-react/uiw">
+  <a href="https://github.com/uiwjs/uiw">
     <img src="https://img.shields.io/dub/l/vibe-d.svg">
   </a>
   <a href="https://www.npmjs.com/package/uiw">
@@ -32,7 +32,7 @@
 </p>
 
 <p align="center">
-  <a href="https://uiw-react.github.io"><img src="https://raw.githubusercontent.com/uiw-react/uiw/master/src/assets/uiw-doc.png" /></a>
+  <a href="https://uiwjs.github.io"><img src="https://raw.githubusercontent.com/uiwjs/uiw/master/src/assets/uiw-doc.png" /></a>
 </p>
 
 uiw
@@ -46,7 +46,7 @@ A high quality UI Toolkit, A Component Library for React 16+. 💘
 npm install uiw@2.0.0-beta.1 --save
 ```
 
-You can use the [`uiw v1.x`](https://github.com/uiw-react/uiw/tree/v1) version.
+You can use the [`uiw v1.x`](https://github.com/uiwjs/uiw/tree/v1) version.
 
 ### Basic Usage
 
@@ -63,14 +63,14 @@ ReactDOM.render(
 
 ### Documentation
 
-Visit the [uiw-react.github.io](https://uiw-react.github.io) website for more information.
+Visit the [uiwjs.github.io](https://uiwjs.github.io) website for more information.
 
 ### Development
 
 To develop, run the self-reloading build, Get the code:
 
 ```bash
-$ git clone https://github.com/uiw-react/uiw.git
+$ git clone https://github.com/uiwjs/uiw.git
 $ cd uiw
 $ npm install # or  yarn install
 ```
