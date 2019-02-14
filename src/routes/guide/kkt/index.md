@@ -3,16 +3,16 @@
 
 要开始使用 [uiw](https://github.com/uiwjs/uiw) 和 [kkt](https://github.com/jaywcjlove/kkt)，请按照下列步骤操作：
 
+1. 安装最新版本的 Node LTS。 [请参阅此处获取说明](https://docs.npmjs.com/getting-started/installing-node)
+2. 使用以下命令创建新的 `kkt` 项目：
+
 你可以直接通过下面命令初始化一个工程，直接开始开发
 
 ```bash
-npx kkt create uiw
+npx kkt create my-app -e uiw
 ```
 
 你也可以使用 [kkt](https://github.com/jaywcjlove/kkt) 工具通过下面步骤，一步一步的创建一个 [kkt](https://github.com/jaywcjlove/kkt) 工程
-
-1. 安装最新版本的 Node LTS。 [请参阅此处获取说明](https://docs.npmjs.com/getting-started/installing-node)
-2. 使用以下命令创建新的 `kkt` 项目：
 
 ```bash
 npx kkt create my-app
