@@ -1,0 +1,52 @@
+@notify-prefix: ~"w-notify";
+
+.@{notify-prefix} {
+  &-warpper & .w-modal-inner {
+    .w-modal-header {
+      > .w-icon {
+        font-size: 28px;
+      }
+      > .w-btn {
+        min-width: 18px;
+        min-height: 18px;
+        padding: 5px 5px;
+      }
+    }
+    &.w-modal-shown-icon {
+      .w-modal-header > h4 {
+        padding-left: 40px;
+      }
+      .w-modal-body {
+        padding-left: 60px;
+      }
+    }
+  }
+  &-warpper & .w-overlay-content{
+    margin: 5px;
+  }
+  &-warpper {
+    position: fixed;
+    padding: 5px;
+    z-index: 999;
+  }
+  & {
+    position: relative;
+    z-index: 9999;
+  }
+  &-warpper.topLeft {
+    top: 0;
+    left: 0;
+  }
+  &-warpper.topRight {
+    top: 0;
+    right: 0;
+  }
+  &-warpper.bottomLeft {
+    bottom: 0;
+    left: 0;
+  }
+  &-warpper.bottomRight {
+    bottom: 0;
+    right: 0;
+  }
+}

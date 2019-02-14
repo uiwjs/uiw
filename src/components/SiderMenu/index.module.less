@@ -47,4 +47,22 @@
   :last-child{
     margin-bottom: 20px;
   }
+  &::-webkit-scrollbar {
+    border-radius: 5px;
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgb(32, 34, 37);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.34);
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: transparent;
+  }
 }
