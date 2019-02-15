@@ -28,6 +28,9 @@ export const getRouterData = () => {
     '/guide/kkt': {
       component: dynamicWrapper([], () => import('../routes/guide/kkt')),
     },
+    '/guide/docs': {
+      component: dynamicWrapper([], () => import('../routes/guide/docs')),
+    },
     '/guide/changelog': {
       component: dynamicWrapper([], () => import('../routes/guide/changelog')),
     },
