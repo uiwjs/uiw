@@ -7,51 +7,6 @@ Popover 气泡卡片
 import { Popover } from 'uiw';
 ```
 
-### 输入框
-
-<!--DemoStart-->
-```js
-const btnStl = {position: 'relative', width: 70 }
-class Demo extends React.Component {
-  onClick() {
-
-  }
-  renderPopup() {
-    return (
-      <Card
-        style={{ width: 220 }}
-        bordered={false}
-        title="输入内容"
-        footer={
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button size="small" onClick={this.onClick.bind(this)}>
-              取消
-            </Button>
-            <Button type="danger" size="small" onClick={this.onClick.bind(this)}>
-              确定
-            </Button>
-          </div>
-        }
-      >
-        <div>Are you sure you want to delete these items? You won't be able to recover them.</div>
-      </Card>
-    )
-  }
-  render() {
-    return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
-        <div style={{ width: 200 }}>
-          <Popover trigger="focus" placement="top" content={this.renderPopup()}>
-            <Input placeholder="请输入内容" />
-          </Popover>
-        </div>
-      </div>
-    )
-  }
-}
-```
-<!--End-->
-
 ### 基础用法
 
 最简单的用法。
@@ -201,6 +156,79 @@ const Demo = () => (
     </Popover>
   </div>
 )
+```
+<!--End-->
+
+### 焦点展示
+
+通过设置 `trigger="focus"` 让 `Input` 组件在获取焦点的时候展示 `Popover`
+
+<!--DemoStart-->
+```js
+const btnStl = {position: 'relative', width: 70 }
+class Demo extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isOpen: false,
+      value: '',
+    }
+  }
+  onClick(val) {
+    const state = { isOpen: false }
+    if (val) {
+      state.value = val;
+    }
+    if (val === null) state.value = '';
+    this.setState({ ...state });
+  }
+  handleVisibleChange(isOpen) {
+    this.setState({ isOpen });
+  }
+  onChange(e) {
+    this.setState({ value: e.target.value });
+  }
+  renderPopup() {
+    return (
+      <Card
+        style={{ width: 220 }}
+        bordered={false}
+        footer={
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button size="small" onClick={this.onClick.bind(this, undefined)}>
+              取消
+            </Button>
+            <Button size="small" onClick={this.onClick.bind(this, null)}>
+              清空
+            </Button>
+            <Button type="success" size="small" onClick={this.onClick.bind(this, '这是向 Input 输入框插入的内容')}>
+              插入内容
+            </Button>
+          </div>
+        }
+      >
+        <div>通过设置 `trigger="focus"` 让 `Input` 组件在获取焦点的时候展示 `Popover`</div>
+      </Card>
+    )
+  }
+  render() {
+    return (
+      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+        <div style={{ width: 200 }}>
+          <Popover
+            trigger="focus"
+            placement="top"
+            isOpen={this.state.isOpen}
+            onVisibleChange={this.handleVisibleChange.bind(this)}
+            content={this.renderPopup()}
+          >
+            <Input placeholder="请输入内容" value={this.state.value} onChange={this.onChange.bind(this)}/>
+          </Popover>
+        </div>
+      </div>
+    )
+  }
+}
 ```
 <!--End-->
 
