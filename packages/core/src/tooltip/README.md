@@ -160,20 +160,20 @@ class Demo extends React.Component {
   constructor() {
     super()
     this.state = {
-      isVisbale: false,
+      isOpen: false,
     }
   }
   onChange(e) {
-    this.setState({ isVisbale: e.target.checked });
+    this.setState({ isOpen: e.target.checked });
   }
-  onVisibleChange(isVisbale) {
-    this.setState({ isVisbale });
+  onVisibleChange(isOpen) {
+    this.setState({ isOpen });
   }
   render() {
     return (
       <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
         <Tooltip
-          visible={this.state.isVisbale}
+          visible={this.state.isOpen}
           onVisibleChange={this.onVisibleChange.bind(this)}
           placement="top"
           content="Hello uiw!"
@@ -181,7 +181,7 @@ class Demo extends React.Component {
           <span>鼠标移动到此处，显示和消失触发事件，也可以通过 Switch 组件来控制</span>
         </Tooltip>
         <Divider />
-        <Switch checked={this.state.isVisbale} onChange={this.onChange.bind(this)} />
+        <Switch checked={this.state.isOpen} onChange={this.onChange.bind(this)} />
       </div>
     )
   }
@@ -200,5 +200,5 @@ class Demo extends React.Component {
 | delay | 延迟进入和消失，`{ show: 2000, hide: 4000 }` 或者直接设置 `2000`，只对 `trigger=hover` 有效，继承 `<OverlayTrigger />` 组件属性 | Object/Number | - |
 | trigger | 悬停/点击弹出窗口，继承 `<OverlayTrigger />` 组件属性 | Enum{`hover`, `click`} | `hover` |
 | disabled | 是否禁用弹出目标 | Boolean | `false` |
-| visible | 默认是否显示弹窗，继承 `<OverlayTrigger />` 组件属性 | Boolean | `false` |
+| isOpen | 默认是否显示弹窗，继承 `<OverlayTrigger />` 组件属性 | Boolean | `false` |
 | onVisibleChange | 显示隐藏的回调，继承 `<OverlayTrigger />` 组件属性 | Function(isVisible:bool) | - |

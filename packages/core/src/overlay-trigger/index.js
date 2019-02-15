@@ -19,19 +19,19 @@ export default class OverlayTrigger extends React.Component {
     this.trigger = React.createRef();
     this.popup = React.createRef();
     this.state = {
-      show: !!props.visible,
+      show: !!props.isOpen,
       overlayStyl: { placement: props.placement },
     };
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.visible !== this.props.visible) {
-      const visible = !!this.props.visible;
-      visible ? this.show() : this.hide();
+    if (prevProps.isOpen !== this.props.isOpen) {
+      const isOpen = !!this.props.isOpen;
+      isOpen ? this.show() : this.hide();
     }
   }
   componentDidMount() {
     document && document.addEventListener('mousedown', this.handleClickOutside, true);
-    !!this.props.visible && this.setState({ overlayStyl: { ...this.styles() } });
+    !!this.props.isOpen && this.setState({ overlayStyl: { ...this.styles() } });
   }
   componentWillUnmount() {
     document && document.removeEventListener('mousedown', this.handleClickOutside, true);
@@ -55,7 +55,9 @@ export default class OverlayTrigger extends React.Component {
     else this.show();
     if (onClick) onClick(e, !this.state.show);
   }
-
+  handleoFocus = (e) => {
+    this.handleShow();
+  }
   handleShow = () => {
     clearTimeout(this._timeout);
     this._hoverState = 'show';
@@ -284,6 +286,9 @@ export default class OverlayTrigger extends React.Component {
     if (trigger === 'click' && !disabled) {
       triggerProps.onClick = this.handleClick;
     }
+    if (trigger === 'focus' && !disabled) {
+      triggerProps.onFocus = this.handleoFocus;
+    }
     if (trigger === 'hover' && !disabled) {
       triggerProps.onMouseOver = this.handleMouseOver;
       triggerProps.onMouseOut = this.handleMouseOut;
@@ -315,7 +320,7 @@ OverlayTrigger.propTypes = {
   onVisibleChange: PropTypes.func,
   onEnter: PropTypes.func,
   usePortal: PropTypes.bool,
-  visible: PropTypes.bool,
+  isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
   isOutside: PropTypes.bool,
   delay: PropTypes.oneOfType([
@@ -333,7 +338,7 @@ OverlayTrigger.propTypes = {
     'bottom', 'bottomLeft', 'bottomRight',
   ]),
   overlay: PropTypes.oneOfType([PropTypes.func, PropTypes.element.isRequired]),
-  trigger: PropTypes.oneOf(['click', 'hover']),
+  trigger: PropTypes.oneOf(['click', 'hover', 'focus']),
 };
 
 OverlayTrigger.defaultProps = {
@@ -343,6 +348,6 @@ OverlayTrigger.defaultProps = {
   usePortal: true,
   isOutside: false,
   disabled: false,
-  visible: false,
+  isOpen: false,
   trigger: 'hover',
 };
