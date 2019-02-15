@@ -13,8 +13,9 @@ export default class Message extends React.Component {
       isOpen: true,
     };
   }
-  handleClosed = () => {
+  handleClosed = (e) => {
     this.setState({ isOpen: false });
+    this.props.onClose(e);
   }
   renderIcon = () => {
     const { type, showIcon } = this.props;
@@ -52,21 +53,18 @@ export default class Message extends React.Component {
     return (
       <CSSTransition
         in={this.state.isOpen}
-        unmountOnExit={true}
+        unmountOnExit
         timeout={300}
         classNames={prefixCls}
       >
         {Child}
       </CSSTransition>
-    )
+    );
   }
 }
 
 Message.propTypes = {
   prefixCls: PropTypes.string,
-  showIcon: PropTypes.bool,
-  rounded: PropTypes.bool,
-  isCloseButtonShown: PropTypes.bool,
   title: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
@@ -76,10 +74,15 @@ Message.propTypes = {
     PropTypes.element,
   ]),
   type: PropTypes.oneOf(['success', 'warning', 'info', 'error']).isRequired,
+  showIcon: PropTypes.bool,
+  rounded: PropTypes.bool,
+  isCloseButtonShown: PropTypes.bool,
+  onClose: PropTypes.func,
 };
 
 Message.defaultProps = {
   prefixCls: 'w-message',
   rounded: true,
   isCloseButtonShown: false,
+  onClose() { },
 };
