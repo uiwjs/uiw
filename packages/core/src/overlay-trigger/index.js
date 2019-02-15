@@ -55,7 +55,7 @@ export default class OverlayTrigger extends React.Component {
     else this.show();
     if (onClick) onClick(e, !this.state.show);
   }
-  handleoFocus = (e) => {
+  handleoFocus = () => {
     this.handleShow();
   }
   handleShow = () => {

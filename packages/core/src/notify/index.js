@@ -45,7 +45,7 @@ export default function NotificationCreate(props = {}, type = 'open') {
         if (!nprops) return;
         nprops.onClose && nprops.onClose();
         const keys = Object.keys(notifysChild[props.placement]);
-        if (keys.length === 0) {
+        if (keys.length === 0 && notifys[props.placement]) {
           const parentNode = findDOMNode(notifys[props.placement]).parentNode;
           delete notifys[props.placement];
           document.body.removeChild(parentNode);
