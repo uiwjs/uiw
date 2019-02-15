@@ -7,6 +7,51 @@ Popover 气泡卡片
 import { Popover } from 'uiw';
 ```
 
+### 输入框
+
+<!--DemoStart-->
+```js
+const btnStl = {position: 'relative', width: 70 }
+class Demo extends React.Component {
+  onClick() {
+
+  }
+  renderPopup() {
+    return (
+      <Card
+        style={{ width: 220 }}
+        bordered={false}
+        title="输入内容"
+        footer={
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button size="small" onClick={this.onClick.bind(this)}>
+              取消
+            </Button>
+            <Button type="danger" size="small" onClick={this.onClick.bind(this)}>
+              确定
+            </Button>
+          </div>
+        }
+      >
+        <div>Are you sure you want to delete these items? You won't be able to recover them.</div>
+      </Card>
+    )
+  }
+  render() {
+    return (
+      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+        <div style={{ width: 200 }}>
+          <Popover trigger="focus" placement="top" content={this.renderPopup()}>
+            <Input placeholder="请输入内容" />
+          </Popover>
+        </div>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
 ### 基础用法
 
 最简单的用法。
@@ -17,14 +62,14 @@ class Demo extends React.Component {
   constructor() {
     super();
     this.state = {
-      isVisbale: false,
+      isOpen: false,
     }
   }
   onClick() {
-    this.setState({ isVisbale: false });
+    this.setState({ isOpen: false });
   }
-  handleVisibleChange(isVisbale) {
-    this.setState({ isVisbale });
+  handleVisibleChange(isOpen) {
+    this.setState({ isOpen });
   }
   render() {
     return (
@@ -32,7 +77,7 @@ class Demo extends React.Component {
         <Popover
           trigger="click"
           placement="top"
-          visible={this.state.isVisbale}
+          isOpen={this.state.isOpen}
           onVisibleChange={this.handleVisibleChange.bind(this)}
           content={
             <Card bordered={false} title="Card标题" extra={<a href="#">更多</a>} style={{ width: 200 }}>
@@ -48,7 +93,7 @@ class Demo extends React.Component {
             </Card>
           }
         >
-          <Button active={this.state.isVisbale}>弹出目标</Button>
+          <Button active={this.state.isOpen}>弹出目标</Button>
         </Popover>
       </div>
     )
@@ -169,14 +214,14 @@ class Demo extends React.Component {
   constructor() {
     super();
     this.state = {
-      isVisbale: false,
+      isOpen: false,
     }
   }
   onClick() {
-    this.setState({ isVisbale: false });
+    this.setState({ isOpen: false });
   }
-  handleVisibleChange(isVisbale) {
-    this.setState({ isVisbale });
+  handleVisibleChange(isOpen) {
+    this.setState({ isOpen });
   }
   render() {
     return (
@@ -186,7 +231,7 @@ class Demo extends React.Component {
             trigger="click"
             placement="top"
             usePortal={false}
-            visible={this.state.isVisbale}
+            isOpen={this.state.isOpen}
             onVisibleChange={this.handleVisibleChange.bind(this)}
             content={
               <Card bordered={false} title="Card标题" extra={<a href="#">更多</a>} style={{ width: 200 }}>
@@ -220,9 +265,9 @@ class Demo extends React.Component {
 | placement | 气泡框位置，可现实箭头在不通的方位 | Enum{`top`, `topLeft`, `topRight`,<br /> `left`, `leftTop`, `leftBottom`,<br /> `right`, `rightTop`, `rightBottom`,<br /> `bottom`, `bottomLeft`, `bottomRight`} | `top` |
 | visibleArrow | 是否显示 Tooltip 箭头 | Boolean | `true` |
 | delay | 延迟进入和消失，`{ show: 2000, hide: 4000 }` 或者直接设置 `2000`，只对 `trigger=hover` 有效，继承 `<OverlayTrigger />` 组件属性 | Object/Number | - |
-| trigger | 悬停/点击弹出窗口，继承 `<OverlayTrigger />` 组件属性 | Enum{`hover`, `click`} | `hover` |
+| trigger| 悬停/点击弹出窗口，继承 `<OverlayTrigger />` 组件属性 | Enum{`hover`, `click`, `focus`} | `hover` |
 | disabled | 是否禁用弹出目标 | Boolean | `false` |
-| visible | 默认是否显示弹窗，继承 `<OverlayTrigger />` 组件属性 | Boolean | `false` |
+| isOpen | 默认是否显示弹窗，继承 `<OverlayTrigger />` 组件属性 | Boolean | `false` |
 | onVisibleChange | 显示隐藏的回调，继承 `<OverlayTrigger />` 组件属性 | Function(isVisible:bool) | - |
 
 更多属性请参考 [OverlayTrigger](#/components/overlay-trigger)。

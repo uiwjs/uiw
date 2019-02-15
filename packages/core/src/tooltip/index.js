@@ -6,14 +6,14 @@ import './style/index.less';
 
 export default class Tooltip extends React.Component {
   render() {
-    const { prefixCls, className, placement, visible, trigger, delay, usePortal, visibleArrow, onVisibleChange, ...other } = this.props;
+    const { prefixCls, className, placement, isOpen, trigger, delay, usePortal, visibleArrow, onVisibleChange, ...other } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${placement}`]: placement,
     });
     return (
       <OverlayTrigger
         usePortal={usePortal}
-        visible={visible}
+        isOpen={isOpen}
         trigger={trigger}
         delay={delay}
         onVisibleChange={onVisibleChange}
@@ -35,7 +35,7 @@ export default class Tooltip extends React.Component {
 Tooltip.propTypes = {
   prefixCls: PropTypes.string,
   usePortal: PropTypes.bool,
-  visible: PropTypes.bool,
+  isOpen: PropTypes.bool,
   content: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
   delay: PropTypes.oneOfType([
     PropTypes.number,
@@ -59,6 +59,6 @@ Tooltip.defaultProps = {
   prefixCls: 'w-tooltip',
   placement: 'top',
   usePortal: true,
-  visible: false,
+  isOpen: false,
   visibleArrow: true,
 };

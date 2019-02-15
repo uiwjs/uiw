@@ -15,14 +15,14 @@ const Arrow = ({ prefixCls }) => (
 
 export default class Popover extends React.Component {
   render() {
-    const { prefixCls, className, placement, content, visible, trigger, delay, usePortal, visibleArrow, onVisibleChange, ...other } = this.props;
+    const { prefixCls, className, placement, content, isOpen, trigger, delay, usePortal, visibleArrow, onVisibleChange, ...other } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${placement}`]: placement,
     });
     return (
       <OverlayTrigger
         usePortal={usePortal}
-        visible={visible}
+        isOpen={isOpen}
         trigger={trigger}
         delay={delay}
         onVisibleChange={onVisibleChange}
@@ -43,7 +43,7 @@ export default class Popover extends React.Component {
 
 Popover.propTypes = {
   prefixCls: PropTypes.string,
-  visible: PropTypes.bool,
+  isOpen: PropTypes.bool,
   usePortal: PropTypes.bool,
   content: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
   delay: PropTypes.oneOfType([
@@ -68,6 +68,6 @@ Popover.defaultProps = {
   prefixCls: 'w-popover',
   placement: 'top',
   usePortal: true,
-  visible: false,
+  isOpen: false,
   visibleArrow: true,
 };

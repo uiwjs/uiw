@@ -152,7 +152,7 @@ const Demo = () => (
 
 ### 组件受控
 
-通过设置属性visible可以文字提示手动控制状态的展示。
+通过设置属性 isOpen 可以文字提示手动控制状态的展示。
 
 <!--DemoStart--> 
 ```js
@@ -167,22 +167,22 @@ class Demo extends React.Component {
   constructor() {
     super()
     this.state = {
-      isVisbale: false,
+      isOpen: false,
     }
   }
   onChange(e) {
     this.clickChecked = false;
-    this.setState({ isVisbale: e.target.checked });
+    this.setState({ isOpen: e.target.checked });
   }
-  onVisibleChange(isVisbale) {
-    console.log('onVisibleChange: ', isVisbale);
+  onVisibleChange(isOpen) {
+    console.log('onVisibleChange: ', isOpen);
   }
   render() {
     return (
       <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
         <OverlayTrigger
           onVisibleChange={this.onVisibleChange.bind(this)}
-          visible={this.state.isVisbale}
+          isOpen={this.state.isOpen}
           placement="right"
           onEnter={(node, isAppearing) => {
             console.log('~~', node, isAppearing);
@@ -192,7 +192,7 @@ class Demo extends React.Component {
           <span>鼠标移动到此处，显示和消失触发事件</span>
         </OverlayTrigger>
         <Divider />
-        <Switch checked={this.state.isVisbale} onChange={this.onChange.bind(this)} />
+        <Switch checked={this.state.isOpen} onChange={this.onChange.bind(this)} />
       </div>
     );
   }
@@ -217,11 +217,11 @@ class Demo extends React.Component {
   constructor() {
     super()
     this.state = {
-      isVisbale: false,
+      isOpen: false,
     }
   }
-  onVisibleChange(isVisbale) {
-    this.setState({ isVisbale })
+  onVisibleChange(isOpen) {
+    this.setState({ isOpen })
   }
   render() {
     return (
@@ -240,7 +240,7 @@ class Demo extends React.Component {
           </OverlayTrigger>
         </div>
         <Divider />
-        <div>状态：{this.state.isVisbale ? '' : '不'}可见</div>
+        <div>状态：{this.state.isOpen ? '' : '不'}可见</div>
       </div>
     );
   }
@@ -253,10 +253,10 @@ class Demo extends React.Component {
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | placement | 指定弹出框位置 | Enum{`top`, `topLeft`, `topRight`,<br /> `left`, `leftTop`, `leftBottom`,<br /> `right`, `rightTop`, `rightBottom`,<br /> `bottom`, `bottomLeft`, `bottomRight`} | - |
-| trigger | 悬停/点击弹出窗口 | Enum{`hover`, `click`} | `hover` |
+| trigger | 悬停/点击弹出窗口 | Enum{`hover`, `click`, `focus`} | `hover` |
 | disabled | 是否禁用弹出目标 | Boolean | `false` |
 | delay | 延迟进入和消失，`{ show: 2000, hide: 4000 }` 或者直接设置 `2000`，只对 `trigger=hover` 有效 | Object/Number | - |
-| visible | 默认是否显示弹窗 | Boolean | `false` |
+| isOpen | 默认是否显示弹窗 | Boolean | `false` |
 | isOutside | 默认离开**触发区域**隐藏弹出目标，设置值为 `true`，在触发区域和弹出目标区域内，不隐藏**弹出目标**。 | Boolean | `false` |
 | autoAdjustOverflow | 弹出层被遮挡时自动调整位置 | Boolean | `false` |
 | onVisibleChange | 显示隐藏的回调 | Function(isVisible:bool) | - |
