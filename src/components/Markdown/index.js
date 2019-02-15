@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Divider } from 'uiw';
 import Preview from './Preview';
 import Canvas from './Canvas';
 import styles from './index.module.less';
@@ -47,7 +48,15 @@ export default class CreatePage extends React.Component {
           犯了错误还是想对文件做出贡献？
           <a href={`https://github.com/uiwjs/uiw/blob/master/${this.path}`} target="_blank" rel="noopener noreferrer">在Github上编辑本页！</a>
           <br />
-          <a href="https://github.com/uiwjs/uiw/issues" target="_blank" rel="noopener noreferrer">反馈建议</a> | <a target="_blank" rel="noopener noreferrer" href="https://github.com/uiwjs/uiw/issues/new">提交bug</a> | <a target="_blank" rel="noopener noreferrer" href="https://github.com/uiwjs/uiw">Github</a>
+          <a href="https://github.com/uiwjs/uiw/issues" target="_blank" rel="noopener noreferrer">反馈建议</a>
+          <Divider type="vertical" />
+          <a target="_blank" rel="noopener noreferrer" href="https://github.com/uiwjs/uiw/issues/new">提交bug</a>
+          <Divider type="vertical" />
+          <a target="_blank" rel="noopener noreferrer" href="https://github.com/uiwjs/uiw">Github</a>
+          <Divider type="vertical" />
+          <a target="_blank" rel="noopener noreferrer" href="https://github.com/jaywcjlove/kkt">kkt</a>
+          <Divider type="vertical" />
+          <a target="_blank" rel="noopener noreferrer" href="https://github.com/jaywcjlove/kkt-ssr">@kkt/ssr</a>
         </div>
       </div>
     );
