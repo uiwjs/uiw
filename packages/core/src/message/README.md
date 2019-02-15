@@ -132,3 +132,4 @@ class Demo extends Component {
 | showIcon | 设定显示图标 | Boolean | - |
 | isCloseButtonShown | 显示关闭按钮 | Boolean | - |
 | icon | 自定义图标，设置 `showIcon=true` 才会起作用。 | String/ReactNode | - |
+| onClose | 点击默认关闭按钮时触发的回调函数	 | Function | - |
