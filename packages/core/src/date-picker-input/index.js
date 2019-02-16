@@ -40,10 +40,10 @@ export default class DatePickerInput extends React.Component {
         }
       >
         <Input
-          value={this.state.date || ''}
           placeholder="请输入日期"
           readOnly
           {...inputProps}
+          value={this.state.date || ''}
           className={classnames(`${prefixCls}`, className)}
         />
       </Popover>
