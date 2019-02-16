@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { getFirstDayOfWeek, solarMonthDays, isSameDate } from './util';
+import { getFirstDayOfWeek, solarMonthDays, isSameDate } from '../utils';
 
 function initSameDate(date) {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
