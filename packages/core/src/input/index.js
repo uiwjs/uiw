@@ -28,8 +28,8 @@ export default class Input extends React.Component {
     }
   }
   render() {
-    const { prefixCls, size, type, preIcon, addonAfter, ...props } = this.props;
-    const cls = classnames(prefixCls, {
+    const { prefixCls, className, size, type, preIcon, addonAfter, ...props } = this.props;
+    const cls = classnames(prefixCls, className, {
       [`${prefixCls}-${size}`]: size,
       [`${prefixCls}-addon`]: addonAfter,
     });
