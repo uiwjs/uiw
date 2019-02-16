@@ -121,7 +121,7 @@ class Demo extends React.Component {
       <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
         <DatePicker
           disabledDate={disabledDate}
-          date={this.state.date}
+          date={this.state.date && new Date(this.state.date)}
           onChange={this.onChange.bind(this)}
         />
         <div>{this.state.date ? String(this.state.date) : 'no date'}</div>

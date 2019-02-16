@@ -24,11 +24,13 @@ export default class DatePicker extends React.Component {
       this.setState({ panelDate: nextProps.panelDate });
     }
   }
+  onChange = (date) => {
+    this.props.onChange(date);
+  }
   onSelected = (type) => {
     this.setState({ type });
   }
   onSelectedDate(type, month, paging) {
-    const { onChange } = this.props;
     const { panelDate, date } = this.state;
     panelDate[type](month);
     if (date) {
@@ -40,7 +42,7 @@ export default class DatePicker extends React.Component {
     }
     this.setState({ ...props }, () => {
       if (date) {
-        onChange(date);
+        this.onChange(date);
       }
     });
   }
@@ -59,7 +61,7 @@ export default class DatePicker extends React.Component {
           <PickerDay
             prefixCls={prefixCls}
             disabledDate={disabledDate}
-            onChange={onChange}
+            onChange={this.onChange}
             date={this.state.date}
             today={today || new Date()}
             panelDate={this.state.panelDate}
