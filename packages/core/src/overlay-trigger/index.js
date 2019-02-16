@@ -1,7 +1,7 @@
 import React, { cloneElement } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import Overlay from '../overlay';
 import contains from './utils';
 import getBoundingClientRect from './util/getBoundingClientRect';
@@ -303,12 +303,14 @@ export default class OverlayTrigger extends React.Component {
         <Overlay
           {...props}
           onEnter={this.onEnter}
-          className={classNames(prefixCls, className, { [placement]: placement })}
+          className={classnames(prefixCls, className, { [placement]: placement })}
           usePortal={usePortal}
           isOpen={this.state.show}
           hasBackdrop={false}
         >
-          {cloneElement(overlay, { ref: this.popup })}
+          {cloneElement(overlay, Object.assign({ ref: this.popup }, overlay.props, {
+            className: classnames(overlay.props.className, placement),
+          }))}
         </Overlay>
       </>
     );
@@ -323,6 +325,7 @@ OverlayTrigger.propTypes = {
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
   isOutside: PropTypes.bool,
+  autoAdjustOverflow: PropTypes.bool,
   delay: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.shape({
