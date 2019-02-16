@@ -23,7 +23,7 @@ export default class DatePickerInput extends React.Component {
     this.props.onChange(date);
   }
   render() {
-    const { prefixCls, className, popoverProps, inputProps, datePickerProps } = this.props;
+    const { prefixCls, className, popoverProps, datePickerProps, ...inputProps } = this.props;
     return (
       <Popover
         trigger="focus"

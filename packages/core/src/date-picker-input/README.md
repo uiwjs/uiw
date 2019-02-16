@@ -23,7 +23,8 @@ class Demo extends React.Component {
   render() {
     return (
       <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
-        <DatePickerInput onChange={this.onChange.bind(this)} />
+        <DatePickerInput onChange={this.onChange.bind(this)} style={{ marginRight: 10 }} />
+        <DatePickerInput disabled onChange={this.onChange.bind(this)} />
         <div>{this.state.date ? String(this.state.date) : 'no date'}</div>
       </div>
     )
@@ -89,5 +90,7 @@ const Demo = () => (
 | value | 初始时间值 | Date | - |
 | onChange | 选择一天时调用。 | Function(selectedDate:Date) | - |
 | popoverProps | 将参数传递给 [`<Popover>`](#/components/popover) 组件 | Object | - |
-| inputProps | 将参数传递给 [`<Input>`](#/components/input) 组件 | Object | - |
 | datePickerProps | 将参数传递给 [`<DatePicker>`](#/components/date-picker) 组件 | Object | - |
+| disabled | 组件 [`<Input>`](#/components/input) 的属性，禁用日历 | Boolean | - |
+
+更多属性文档请参考 [`<Input>`](#/components/input)。
