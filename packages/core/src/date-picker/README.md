@@ -53,9 +53,9 @@ class Demo extends React.Component {
     return (
       <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
         <DatePicker
-          weekTitle={['星期天','星期一','星期二','星期三','星期四','星期五','星期六']}
-          weekday={['日', '一', '二', '三', '四', '五', '六']}
-          monthLabel={['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']}
+          weekTitle={['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']}
+          weekday={['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']}
+          monthLabel={['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']}
           date={this.state.date}
           onChange={this.onChange.bind(this)}
         />
@@ -86,9 +86,6 @@ class Demo extends React.Component {
     return (
       <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
         <DatePicker
-          weekTitle={['星期天','星期一','星期二','星期三','星期四','星期五','星期六']}
-          weekday={['日', '一', '二', '三', '四', '五', '六']}
-          monthLabel={['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']}
           panelDate={this.state.panelDate}
           date={this.state.date}
           onChange={this.onChange.bind(this)}
@@ -109,6 +106,6 @@ class Demo extends React.Component {
 | today | 默认高亮当天日期 | Date | `new Date` |
 | panelDate | 日历面板默认展示哪一页 | Date | `new Date` |
 | onChange | 选择一天时调用。 | Function(selectedDate:Date) | - |
-| weekTitle | 星期显示文本提示 | Array | \[`Sunday`, `Monday`, `Tuesday`, <br /> `Wednesday`, `Thursday`, `Friday`, `Saturday`\] |
-| weekday | 星期显示文本 | Array | \[`Su`, `Mo`, `Tu`, `We`, `Th`, `Fr`, `Sa`\] |
-| monthLabel | 月份显示文本 | Array | \[`January`, `February`, `March`, `April`, <br /> `May`, `June`, `July`, `August`, <br /> `September`, `October`, `November`, `December`\], |
+| weekTitle | 星期显示文本提示 | Array | \[`星期天`, `星期一`, `星期二`, `星期三`, `星期四`, `星期五`, `星期六`\] |
+| weekday | 星期显示文本 | Array | \[`日`, `一`, `二`, `三`, `四`, `五`, `六`\] |
+| monthLabel | 月份显示文本 | Array | \[`一月`, `二月`, `三月`, `四月`, `五月`, `六月`, `七月`, `八月`, `九月`, `十月`, `十一月`, `十二月`\] |
