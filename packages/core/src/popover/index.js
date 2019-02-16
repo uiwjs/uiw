@@ -16,9 +16,7 @@ const Arrow = ({ prefixCls }) => (
 export default class Popover extends React.Component {
   render() {
     const { prefixCls, className, placement, content, isOpen, trigger, delay, usePortal, visibleArrow, onVisibleChange, ...other } = this.props;
-    const cls = classnames(prefixCls, className, {
-      [`${placement}`]: placement,
-    });
+    const cls = classnames(prefixCls, className);
     return (
       <OverlayTrigger
         usePortal={usePortal}

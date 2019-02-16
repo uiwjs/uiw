@@ -65,7 +65,7 @@ export default class PickerDay extends React.Component {
     const props = {
       key: num,
       onClick: this.handleClick.bind(this, cellDate),
-    }
+    };
     if (disabledDate(cellDate)) {
       cls.disabled = true;
       delete props.onClick;
