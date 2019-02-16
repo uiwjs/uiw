@@ -98,10 +98,12 @@ class Demo extends React.Component {
 
 ### 禁用时间
 
+通过 `disabledDate` 方法设置，今天和今天之前不能选择。
+
 <!--DemoStart--> 
 ```js
 function disabledDate(currentDate) {
-  // 今天和今天之前不能选择几天
+  // 今天和今天之前不能选择
   return currentDate && currentDate.valueOf() < Date.now();
 }
 class Demo extends React.Component {
