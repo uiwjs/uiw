@@ -11,7 +11,7 @@ export default class DatePicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      panelDate: props.panelDate,
+      panelDate: props.panelDate || props.today,
       date: props.date,
       type: 'day',
     };
@@ -50,7 +50,7 @@ export default class DatePicker extends React.Component {
     return (
       <div className={classnames(prefixCls, className)} {...other}>
         <PickerDayCaption
-          panelDate={panelDate}
+          panelDate={this.state.panelDate}
           date={this.state.date}
           monthLabel={monthLabel}
           onSelected={this.onSelected}
@@ -61,14 +61,14 @@ export default class DatePicker extends React.Component {
             onChange={onChange}
             date={this.state.date}
             today={today || new Date()}
-            panelDate={panelDate}
+            panelDate={this.state.panelDate}
             weekday={weekday}
             weekTitle={weekTitle}
           />
         )}
         {type === 'month' && (
           <PickerMonth
-            panelDate={panelDate}
+            panelDate={this.state.panelDate}
             date={this.state.date}
             monthLabel={monthLabel}
             prefixCls={prefixCls}
@@ -78,7 +78,7 @@ export default class DatePicker extends React.Component {
         {type === 'year' && (
           <PickerYear
             prefixCls={prefixCls}
-            panelDate={panelDate}
+            panelDate={this.state.panelDate}
             date={this.state.date}
             onSelected={this.onSelectedDate.bind(this, 'setFullYear')}
           />
@@ -112,5 +112,4 @@ DatePicker.defaultProps = {
   weekTitle: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
   monthLabel: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
   today: new Date(),
-  panelDate: new Date(),
 };
