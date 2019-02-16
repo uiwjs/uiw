@@ -75,7 +75,6 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      panelDate: new Date(1987, 3, 3),
       date: null,
     };
   }
@@ -86,7 +85,40 @@ class Demo extends React.Component {
     return (
       <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
         <DatePicker
-          panelDate={this.state.panelDate}
+          date={this.state.date}
+          onChange={this.onChange.bind(this)}
+        />
+        <div>{this.state.date ? String(this.state.date) : 'no date'}</div>
+      </div>
+    );
+  }
+}
+```
+<!--End-->
+
+### 禁用时间
+
+<!--DemoStart--> 
+```js
+function disabledDate(currentDate) {
+  // 今天和今天之前不能选择几天
+  return currentDate && currentDate.valueOf() < Date.now();
+}
+class Demo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      date: null,
+    };
+  }
+  onChange(selectedDate) {
+    this.setState({ date: selectedDate });
+  }
+  render() {
+    return (
+      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+        <DatePicker
+          disabledDate={disabledDate}
           date={this.state.date}
           onChange={this.onChange.bind(this)}
         />
@@ -105,6 +137,7 @@ class Demo extends React.Component {
 | date | 选中的日期 | Date | - |
 | today | 默认高亮当天日期 | Date | `new Date` |
 | panelDate | 日历面板默认展示哪一页 | Date | `new Date` |
+| disabledDate | 不可选择的日期，函数返回 `true` 当前日期被禁用无法选择。 | Function(currentDate) | - |
 | onChange | 选择一天时调用。 | Function(selectedDate:Date) | - |
 | weekTitle | 星期显示文本提示 | Array | \[`星期天`, `星期一`, `星期二`, `星期三`, `星期四`, `星期五`, `星期六`\] |
 | weekday | 星期显示文本 | Array | \[`日`, `一`, `二`, `三`, `四`, `五`, `六`\] |
