@@ -45,7 +45,7 @@ export default class DatePicker extends React.Component {
     });
   }
   render() {
-    const { prefixCls, className, weekday, weekTitle, monthLabel, date, today, panelDate, onChange, ...other } = this.props;
+    const { prefixCls, className, weekday, weekTitle, monthLabel, date, today, panelDate, disabledDate, onChange, ...other } = this.props;
     const { type } = this.state;
     return (
       <div className={classnames(prefixCls, className)} {...other}>
@@ -58,6 +58,7 @@ export default class DatePicker extends React.Component {
         {type === 'day' && (
           <PickerDay
             prefixCls={prefixCls}
+            disabledDate={disabledDate}
             onChange={onChange}
             date={this.state.date}
             today={today || new Date()}
@@ -97,6 +98,7 @@ const PropTypesDate = (props, propName, componentName) => {
 DatePicker.propTypes = {
   prefixCls: PropTypes.string,
   onChange: PropTypes.func,
+  disabledDate: PropTypes.func,
   weekday: PropTypes.arrayOf(PropTypes.string),
   weekTitle: PropTypes.arrayOf(PropTypes.string),
   monthLabel: PropTypes.arrayOf(PropTypes.string),
@@ -108,6 +110,7 @@ DatePicker.propTypes = {
 DatePicker.defaultProps = {
   prefixCls: 'w-datepicker',
   onChange() { },
+  disabledDate() { },
   weekday: ['日', '一', '二', '三', '四', '五', '六'],
   weekTitle: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
   monthLabel: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],

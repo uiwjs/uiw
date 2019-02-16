@@ -57,6 +57,16 @@
     &:active > div {
       background-color: #d2d2d2;
     }
+    &.disabled, &.disabled:hover, &.disabled:active {
+      > div {
+        color: #d3d3d3;
+        cursor: not-allowed;
+        background-color: #EAEAEA;
+      }
+    }
+  }
+  &-body {
+    padding-top: 5px;
   }
 }
 
@@ -64,6 +74,7 @@
   &-caption {
     text-align: center;
     padding: 3px 0;
+    border-bottom: 1px solid #ececec;
     &-year, &-month {
       transition: background-color .3s;
       display: inline-block;
