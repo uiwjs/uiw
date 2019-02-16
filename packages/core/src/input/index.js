@@ -28,13 +28,13 @@ export default class Input extends React.Component {
     }
   }
   render() {
-    const { prefixCls, className, size, type, preIcon, addonAfter, ...props } = this.props;
+    const { prefixCls, className, style, size, type, preIcon, addonAfter, ...props } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-${size}`]: size,
       [`${prefixCls}-addon`]: addonAfter,
     });
     return (
-      <div className={cls}>
+      <div className={cls} style={style}>
         <Icon type={preIcon} />
         <input
           ref={node => this.input = node}
