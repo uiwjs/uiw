@@ -55,6 +55,9 @@ export const getRouterData = () => {
     '/components/date-picker': {
       component: dynamicWrapper([], () => import('../routes/components/date-picker')),
     },
+    '/components/date-picker-input': {
+      component: dynamicWrapper([], () => import('../routes/components/date-picker-input')),
+    },
     '/components/card': {
       component: dynamicWrapper([], () => import('../routes/components/card')),
     },
