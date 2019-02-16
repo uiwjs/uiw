@@ -6,7 +6,7 @@ import Popover from '../popover';
 import DatePicker from '../date-picker';
 import './style/index.less';
 
-export default class DatePickerInput extends React.Component {
+export default class DateInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,13 +57,13 @@ const PropTypesDate = (props, propName, componentName) => {
   }
 };
 
-DatePickerInput.propTypes = {
+DateInput.propTypes = {
   prefixCls: PropTypes.string,
   value: PropTypesDate,
   onChange: PropTypes.func,
 };
 
-DatePickerInput.defaultProps = {
-  prefixCls: 'w-datepickerinput',
+DateInput.defaultProps = {
+  prefixCls: 'w-dateinput',
   onChange() { },
 };
