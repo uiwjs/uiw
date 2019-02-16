@@ -1,0 +1,83 @@
+@datepicker-prefix: ~"w-datepicker";
+
+.@{datepicker-prefix} {
+  display: inline-block;
+  position: relative;
+  border-radius: 3px;
+  background: #fff;
+  color: #393E48;
+  user-select: none;
+  padding: 5px;
+  min-width: 192px;
+  max-width: 192px;
+  box-shadow: 0 0 0 1px rgba(16,22,26,.1), 0 0 0 rgba(16,22,26,0), 0 1px 1px rgba(16,22,26,.2);
+  &-weekday, &-week {
+    display: table-row;
+  }
+  &-weekday > div, &-week > div {
+    display: table-cell;
+    width: 26px;
+    height: 26px;
+    vertical-align: middle;
+    text-align: center;
+  }
+  &-weekday > div {
+    font-weight: bold;
+  }
+  &-weekday > div.end, &-week > div.end {
+    color: #6f6f6f;
+  }
+  &-week > div {
+    border-radius: 3px;
+    cursor: pointer;
+    &.prev, &.next {
+      color: #d3d3d3;
+    }
+    > div {
+      transition: background-color .3s, color .3s;
+      margin: 0 2px;
+      border-radius: 3px;
+      line-height: 22px;
+    }
+    &.today > div {
+      background-color: #EAEAEA;
+    }
+    &.selected, &.selected:hover {
+      > div {
+        color: #fff;
+        background-color: #2EA3F4;
+      }
+    }
+    &:hover > div {
+      background-color: #EAEAEA;
+      color: #393E48;
+    }
+    &:active > div {
+      background-color: #d2d2d2;
+    }
+  }
+}
+
+.@{datepicker-prefix} {
+  &-caption {
+    text-align: center;
+    padding: 3px 0;
+    &-year, &-month {
+      transition: background-color .3s;
+      display: inline-block;
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-weight: bold;
+      cursor: pointer;
+      &:hover {
+        background-color: #EAEAEA;
+      }
+      &:active {
+        background-color: #d2d2d2;
+      }
+    }
+    &-year + &-month {
+      margin-left: 5px;
+    }
+  }
+}

@@ -33,6 +33,7 @@ const menuData = [
       { name: 'Input 输入框', path: 'input' },
       { name: 'Textarea 多行文本输入框', path: 'textarea' },
       { divider: true, name: '时间日历' },
+      { name: 'DatePicker 日期选择器', path: 'date-picker' },
       { divider: true, name: '数据显示' },
       { name: 'Avatar 头像', path: 'avatar' },
       { name: 'Badge 标记', path: 'badge' },
