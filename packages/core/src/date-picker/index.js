@@ -108,8 +108,8 @@ DatePicker.propTypes = {
 DatePicker.defaultProps = {
   prefixCls: 'w-datepicker',
   onChange() { },
-  weekday: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-  weekTitle: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  monthLabel: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+  weekday: ['日', '一', '二', '三', '四', '五', '六'],
+  weekTitle: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+  monthLabel: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
   today: new Date(),
 };
