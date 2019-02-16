@@ -25,7 +25,6 @@ class Demo extends React.Component {
       <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
         <DateInput onChange={this.onChange.bind(this)} style={{ marginRight: 10 }} />
         <DateInput disabled onChange={this.onChange.bind(this)} />
-        <div>{this.state.date ? String(this.state.date) : 'no date'}</div>
       </div>
     )
   }
@@ -59,7 +58,7 @@ const Demo = () => (
       }}
       fields={{
         date: {
-          initialValue: new Date(),
+          initialValue: '2019/02/17',
           labelClassName: 'fieldLabel',
           labelFor: 'date-inline',
           children: <DateInput id="date-inline" />
@@ -67,7 +66,6 @@ const Demo = () => (
       }}
     >
       {({ fields, state, canSubmit }) => {
-        console.log('fields:', state);
         return (
           <Row gutter={10}>
             <Col fixed>{fields.date}</Col>
@@ -88,6 +86,7 @@ const Demo = () => (
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | value | 初始时间值 | Date | - |
+| format | 格式化时间 | String | `YYYY/MM/DD` |
 | onChange | 选择一天时调用。 | Function(selectedDate:Date) | - |
 | popoverProps | 将参数传递给 [`<Popover>`](#/components/popover) 组件 | Object | - |
 | datePickerProps | 将参数传递给 [`<DatePicker>`](#/components/date-picker) 组件 | Object | - |

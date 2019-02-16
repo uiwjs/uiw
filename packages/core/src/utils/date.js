@@ -36,3 +36,11 @@ export const getFirstDayOfWeek = (year, month) => {
  * @param {Date} dateB
  */
 export const isSameDate = (dateA, dateB) => dateA.toISOString() === dateB.toISOString();
+
+/**
+ * Determine if it is a date
+ * @param {String} date
+ */
+export const isDate = function (date) {
+  return ((new Date(date).toString() !== 'Invalid Date' && !isNaN(new Date(date))));
+};

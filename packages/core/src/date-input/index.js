@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import Input from '../input';
 import Popover from '../popover';
 import DatePicker from '../date-picker';
+import Timestamp from '../timestamp';
 import './style/index.less';
 
 export default class DateInput extends React.Component {
@@ -19,11 +20,15 @@ export default class DateInput extends React.Component {
     }
   }
   onChange(date) {
+    const { format } = this.props;
     this.setState({ date });
-    this.props.onChange(date);
+    this.props.onChange(Timestamp(format, new Date(date)));
   }
   render() {
-    const { prefixCls, className, popoverProps, datePickerProps, ...inputProps } = this.props;
+    const { prefixCls, className, popoverProps, datePickerProps, format, ...inputProps } = this.props;
+    const { date } = this.state;
+    const value = date || '';
+    inputProps.value = typeof value === 'string' ? value : Timestamp(format, value);
     return (
       <Popover
         trigger="focus"
@@ -32,7 +37,7 @@ export default class DateInput extends React.Component {
         {...popoverProps}
         content={
           <DatePicker
-            date={this.state.date}
+            date={value && new Date(value)}
             className={`${prefixCls}-popover`}
             {...datePickerProps}
             onChange={this.onChange.bind(this)}
@@ -43,7 +48,6 @@ export default class DateInput extends React.Component {
           placeholder="请输入日期"
           readOnly
           {...inputProps}
-          value={this.state.date || ''}
           className={classnames(`${prefixCls}`, className)}
         />
       </Popover>
@@ -51,19 +55,18 @@ export default class DateInput extends React.Component {
   }
 }
 
-const PropTypesDate = (props, propName, componentName) => {
-  if (props[propName] && !(props[propName] instanceof Date)) {
-    return new Error(`Invalid prop \`${propName}\` supplied to \`${componentName}\`. Validation failed.`);
-  }
-};
-
 DateInput.propTypes = {
   prefixCls: PropTypes.string,
-  value: PropTypesDate,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]),
+  format: PropTypes.string,
   onChange: PropTypes.func,
 };
 
 DateInput.defaultProps = {
   prefixCls: 'w-dateinput',
+  format: 'YYYY/MM/DD',
   onChange() { },
 };
