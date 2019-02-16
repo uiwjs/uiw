@@ -16,16 +16,16 @@ const Demo = () => {
     <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
       <Button
         onClick={() => {
-          Notify.open({ title: '打开通知', description: '最简单的用法，4.5 秒后自动关闭，没有状态颜色图标。' })}
-        }
+          Notify.open({ title: '打开通知', description: '最简单的用法，4.5 秒后自动关闭，没有状态颜色图标。' });
+        }}
       >
         打开通知
       </Button>
       <Button
         type="success"
         onClick={() => {
-          Notify.success({ title: '成功通知', description: '最简单的用法，4.5 秒后自动关闭。' })}
-        }
+          Notify.success({ title: '成功通知', description: '最简单的用法，4.5 秒后自动关闭。' });
+        }}
       >
         成功通知
       </Button>
@@ -35,24 +35,24 @@ const Demo = () => {
           Notify.warning({
             title: '警告通知',
             description: '这是一个警告通知，最简单的用法，4.5 秒后自动关闭。'
-          })}
-        }
+          });
+        }}
       >
         警告通知
       </Button>
       <Button
         type="primary"
         onClick={() => {
-          Notify.info({ title: '说明通知', description: '最简单的用法，4.5 秒后自动关闭。' })}
-        }
+          Notify.info({ title: '说明通知', description: '最简单的用法，4.5 秒后自动关闭。' });
+        }}
       >
         说明通知
       </Button>
       <Button
         type="danger"
         onClick={() => {
-          Notify.error({ title: '错误通知', description: '最简单的用法，4.5 秒后自动关闭。' })}
-        }
+          Notify.error({ title: '错误通知', description: '最简单的用法，4.5 秒后自动关闭。' });
+        }}
       >
         错误通知
       </Button>
@@ -72,7 +72,7 @@ const Demo = () => {
     <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
       <Button
         onClick={() => {
-          Notify.success({ placement: 'topLeft', title: '成功通知', description: '最简单的用法，4.5 秒后自动关闭。' })
+          Notify.success({ placement: 'topLeft', title: '成功通知', description: '最简单的用法，4.5 秒后自动关闭。' });
         }}
       >
         ↖上左弹出通知
@@ -93,14 +93,14 @@ const Demo = () => {
       </Button>
       <Button
         onClick={() => {
-          Notify.info({ placement: 'bottomLeft', title: '说明通知', description: '最简单的用法，4.5 秒后自动关闭。' })
+          Notify.info({ placement: 'bottomLeft', title: '说明通知', description: '最简单的用法，4.5 秒后自动关闭。' });
         }}
       >
         ↙下左弹出通知
       </Button>
       <Button
         onClick={() => {
-          Notify.error({ placement: 'bottomRight', title: '错误通知', description: '最简单的用法，4.5 秒后自动关闭。' })
+          Notify.error({ placement: 'bottomRight', title: '错误通知', description: '最简单的用法，4.5 秒后自动关闭。' });
         }}
       >
         ↘下右通知
