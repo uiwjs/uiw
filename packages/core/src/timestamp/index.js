@@ -1,5 +1,5 @@
 
-const dateRegex = /(?=(YYYY|YY|MM|DD|HH|mm|ss|ms))\1([:\/]*)/g;
+const dateRegex = /(?=(YYYY|YY|MM|DD|HH|mm|ss|ms))\1([:/]*)/g;
 const timespan = {
   YYYY: ['getFullYear', 4],
   YY: ['getFullYear', 2],
@@ -8,7 +8,7 @@ const timespan = {
   HH: ['getHours', 2],
   mm: ['getMinutes', 2],
   ss: ['getSeconds', 2],
-  ms: ['getMilliseconds', 3]
+  ms: ['getMilliseconds', 3],
 };
 
 function timestamp(str, date, utc) {
@@ -24,11 +24,13 @@ function timestamp(str, date, utc) {
     const args = timespan[key];
     const chars = args[1];
     let name = args[0];
-    if (utc === true) name = 'getUTC' + name.slice(3);
-    const val = '00' + String(date[name]() + (args[2] || 0));
+    if (utc === true) {
+      name = `getUTC${name.slice(3)}`;
+    }
+    const val = `00${String(date[name]() + (args[2] || 0))}`;
     return val.slice(-chars) + (rest || '');
   });
-};
+}
 
 timestamp.utc = (str, date) => {
   return timestamp(str, date, true);
