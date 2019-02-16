@@ -1,10 +1,10 @@
-DatePickerInput 日期选择器输入框
+DateInput 日期选择器输入框
 ===
 
 显示一个月的日历，并允许用户选择单个日期。
 
 ```jsx
-import { DatePickerInput } from 'uiw';
+import { DateInput } from 'uiw';
 ```
 
 <!--DemoStart--> 
@@ -23,8 +23,8 @@ class Demo extends React.Component {
   render() {
     return (
       <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
-        <DatePickerInput onChange={this.onChange.bind(this)} style={{ marginRight: 10 }} />
-        <DatePickerInput disabled onChange={this.onChange.bind(this)} />
+        <DateInput onChange={this.onChange.bind(this)} style={{ marginRight: 10 }} />
+        <DateInput disabled onChange={this.onChange.bind(this)} />
         <div>{this.state.date ? String(this.state.date) : 'no date'}</div>
       </div>
     )
@@ -62,7 +62,7 @@ const Demo = () => (
           initialValue: new Date(),
           labelClassName: 'fieldLabel',
           labelFor: 'date-inline',
-          children: <DatePickerInput id="date-inline" />
+          children: <DateInput id="date-inline" />
         },
       }}
     >
