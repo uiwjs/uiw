@@ -84,7 +84,7 @@ export default class Form extends React.PureComponent {
     return !submitting && passesValidators;
   }
   onChange = (name, validator, element, cb) => (val, list) => {
-    let value = val.target && 'value' in val.target ? val.target.value : val;
+    let value = val && val.target && 'value' in val.target ? val.target.value : val;
     // 控件 Checkbox.Group 多选值的处理
     value = list || value;
     // 控件 Checkbox 值的处理
@@ -103,7 +103,7 @@ export default class Form extends React.PureComponent {
       nextState.errors = { ...this.state.errors };
       delete nextState.errors[name];
     }
-    if (typeof val.persist === 'function') val.persist();
+    if (val && val.persist && typeof val.persist === 'function') val.persist();
 
     if (cb) this.setState(nextState, () => cb(val));
     else this.setState(nextState);
