@@ -86,7 +86,7 @@ const Demo = () => (
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | value | 初始时间值 | Date | - |
-| format | 格式化时间 | String | `YYYY/MM/DD` |
+| format | 格式化时间，规则查看 [`<Timestamp>`](#/components/timestamp) 文档 | String | `YYYY/MM/DD` |
 | onChange | 选择一天时调用。 | Function(selectedDate:Date) | - |
 | popoverProps | 将参数传递给 [`<Popover>`](#/components/popover) 组件 | Object | - |
 | datePickerProps | 将参数传递给 [`<DatePicker>`](#/components/date-picker) 组件 | Object | - |
