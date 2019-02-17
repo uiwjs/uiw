@@ -7,7 +7,7 @@ export default class PickerYear extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeYear: props.date || props.panelDate,
+      activeYear: props.panelDate,
     };
   }
   onSelected(year, idx) {
@@ -22,7 +22,7 @@ export default class PickerYear extends React.Component {
     }
   }
   render() {
-    const { prefixCls, className, date, panelDate, onSelected, panelNum, ...other } = this.props;
+    const { prefixCls, className, panelDate, onSelected, panelNum, ...other } = this.props;
     return (
       <div className={classnames(`${prefixCls}-year`, className)} {...other}>
         {panelNum.map((_, idx) => {

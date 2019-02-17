@@ -7,18 +7,13 @@ DateInput 日期选择器输入框
 import { DateInput } from 'uiw';
 ```
 
+## 基本使用
+
 <!--DemoStart--> 
 ```js
 class Demo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: '',
-    };
-  }
   onChange(selectedDate) {
     console.log('selectedDate:', selectedDate)
-    this.setState({ date: selectedDate });
   }
   render() {
     return (
@@ -32,15 +27,12 @@ class Demo extends React.Component {
 ```
 <!--End-->
 
-
 ## 在表单中使用
 
 <!--DemoStart--> 
 ```js
-const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
-
 const Demo = () => (
-  <div style={boxStyl}>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
     <Form
       onSubmit={({initial, current}) => {
         if(current.date) {
@@ -81,7 +73,24 @@ const Demo = () => (
 ```
 <!--End-->
 
-### 日期格式
+## 日期格式
+
+<!--DemoStart--> 
+```js
+class Demo extends React.Component {
+  onChange(selectedDate) {
+    console.log('selectedDate:', selectedDate)
+  }
+  render() {
+    return (
+      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+        <DateInput format="YYYY # MM # DD" onChange={this.onChange.bind(this)} style={{ marginRight: 10 }} />
+      </div>
+    )
+  }
+}
+```
+<!--End-->
 
 ## Props
 
