@@ -5,6 +5,7 @@
 .@{w-input} {
   position: relative;
   font-size: 14px;
+  line-height: 14px;
   &-inner {
     outline: none;
     border: none;
@@ -81,6 +82,8 @@
     }
   }
   &-small {
+    min-width: 20px;
+    padding: 0 3px;
     .@{w-input}-inner {
       line-height: 24px;
       height: 24px;
@@ -89,9 +92,6 @@
       .w-tag, .w-btn {
         line-height: 14px;
       }
-    }
-    > :last-child:not(input) {
-      right: 2px;
     }
   }
 }

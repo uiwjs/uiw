@@ -24,7 +24,8 @@ export default class Input extends React.Component {
   }
   componentDidMount() {
     if (this.addonRef.current && this.input) {
-      this.input.style.paddingRight = `${this.addonRef.current.clientWidth}px`;
+      const input = window.getComputedStyle(this.addonRef.current, null);
+      this.input.style.paddingRight = `${this.addonRef.current.clientWidth + parseInt(input.right, 10) * 2}px`;
     }
   }
   render() {
