@@ -35,6 +35,7 @@ const menuData = [
       { divider: true, name: '时间日历' },
       { name: 'DatePicker 日期选择器', path: 'date-picker' },
       { name: 'DateInput 日期输入框', path: 'date-input' },
+      { name: 'MonthPicker 月份选择器', path: 'month-picker' },
       { name: 'Timestamp 时间戳', path: 'timestamp' },
       { divider: true, name: '数据显示' },
       { name: 'Avatar 头像', path: 'avatar' },

@@ -21,6 +21,7 @@ export { default as List } from './list/List';
 export { default as Menu } from './menu/Menu';
 export { default as Modal } from './modal';
 export { default as Message } from './message';
+export { default as MonthPicker } from './month-picker';
 export { default as Notify } from './notify';
 export { default as Popover } from './popover';
 export { default as Progress } from './progress';
