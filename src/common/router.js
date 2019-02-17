@@ -139,6 +139,9 @@ export const getRouterData = () => {
     '/components/message': {
       component: dynamicWrapper([], () => import('../routes/components/message')),
     },
+    '/components/month-picker': {
+      component: dynamicWrapper([], () => import('../routes/components/month-picker')),
+    },
     '/components/textarea': {
       component: dynamicWrapper([], () => import('../routes/components/textarea')),
     },
