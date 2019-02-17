@@ -7,7 +7,7 @@ import './style/index.less';
 export default class Tooltip extends React.Component {
   render() {
     const { prefixCls, className, placement, isOpen, trigger, delay, usePortal, visibleArrow, onVisibleChange, ...other } = this.props;
-    const cls = classnames(prefixCls, className);
+    const cls = classnames(prefixCls, className, { 'no-arrow': !visibleArrow });
     return (
       <OverlayTrigger
         usePortal={usePortal}
