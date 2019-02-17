@@ -5,11 +5,11 @@ import './style/year-month.less';
 
 export default class PickerMonth extends React.Component {
   render() {
-    const { prefixCls, className, date, panelDate, monthLabel, onSelected, ...other } = this.props;
+    const { prefixCls, className, panelDate, monthLabel, onSelected, ...other } = this.props;
     return (
       <div className={classnames(`${prefixCls}-month`, className)} {...other}>
         {[...Array(12)].map((_, idx) => {
-          const selectedMonth = (date || panelDate).getMonth();
+          const selectedMonth = panelDate.getMonth();
           return (
             <div key={idx} className={classnames({ selected: selectedMonth === idx })}>
               <span onClick={onSelected.bind(this, idx, false)}>{monthLabel[idx] || idx}</span>

@@ -5,16 +5,16 @@ import './style/caption.less';
 
 export default class PickerCaption extends React.Component {
   renderMonth() {
-    const { date, panelDate, monthLabel } = this.props;
-    const month = (date || panelDate).getMonth();
+    const { panelDate, monthLabel } = this.props;
+    const month = panelDate.getMonth();
     return (monthLabel && monthLabel[month]) || month + 1;
   }
   render() {
-    const { prefixCls, className, date, panelDate, monthLabel, onSelected, ...other } = this.props;
+    const { prefixCls, className, panelDate, monthLabel, onSelected, ...other } = this.props;
     return (
       <div className={classnames(`${prefixCls}-caption`, className)} {...other}>
         <div className={`${prefixCls}-caption-month`} onClick={onSelected.bind(this, 'month')}>{this.renderMonth()}</div>
-        <div className={`${prefixCls}-caption-year`} onClick={onSelected.bind(this, 'year')}>{(date || panelDate).getFullYear()}</div>
+        <div className={`${prefixCls}-caption-year`} onClick={onSelected.bind(this, 'year')}>{panelDate.getFullYear()}</div>
       </div>
     );
   }

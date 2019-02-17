@@ -53,7 +53,6 @@ export default class DatePicker extends React.Component {
       <div className={classnames(prefixCls, className)} {...other}>
         <PickerDayCaption
           panelDate={this.state.panelDate}
-          date={this.state.date}
           monthLabel={monthLabel}
           onSelected={this.onSelected}
         />
@@ -72,7 +71,6 @@ export default class DatePicker extends React.Component {
         {type === 'month' && (
           <PickerMonth
             panelDate={this.state.panelDate}
-            date={this.state.date}
             monthLabel={monthLabel}
             prefixCls={prefixCls}
             onSelected={this.onSelectedDate.bind(this, 'setMonth')}
@@ -82,7 +80,6 @@ export default class DatePicker extends React.Component {
           <PickerYear
             prefixCls={prefixCls}
             panelDate={this.state.panelDate}
-            date={this.state.date}
             onSelected={this.onSelectedDate.bind(this, 'setFullYear')}
           />
         )}
