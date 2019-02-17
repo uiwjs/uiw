@@ -5,6 +5,7 @@ import Input from '../input';
 import Popover from '../popover';
 import DatePicker from '../date-picker';
 import Timestamp from '../timestamp';
+import Icon from '../icon';
 import './style/index.less';
 
 export default class DateInput extends React.Component {
@@ -26,10 +27,13 @@ export default class DateInput extends React.Component {
     this.props.onChange(date);
   }
   render() {
-    const { prefixCls, className, popoverProps, datePickerProps, format, ...inputProps } = this.props;
+    const { prefixCls, className, popoverProps, datePickerProps, allowClear, format, ...inputProps } = this.props;
     const { date } = this.state;
     const value = date || '';
     inputProps.value = typeof value === 'string' ? value : Timestamp(format, value);
+    if (allowClear && inputProps.value) {
+      inputProps.addonAfter = <Icon className={`${prefixCls}-close-btn`} onClick={this.onChange.bind(this, null)} type="close" />;
+    }
     return (
       <Popover
         trigger="focus"
@@ -63,11 +67,13 @@ DateInput.propTypes = {
     PropTypes.object,
   ]),
   format: PropTypes.string,
+  allowClear: PropTypes.bool,
   onChange: PropTypes.func,
 };
 
 DateInput.defaultProps = {
   prefixCls: 'w-dateinput',
   format: 'YYYY/MM/DD',
+  allowClear: true,
   onChange() { },
 };

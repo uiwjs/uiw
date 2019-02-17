@@ -32,6 +32,7 @@ export default class Input extends React.Component {
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-${size}`]: size,
       [`${prefixCls}-addon`]: addonAfter,
+      disabled: this.props.disabled,
     });
     return (
       <div className={cls} style={style}>
