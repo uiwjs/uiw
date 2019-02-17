@@ -45,8 +45,7 @@
   }
 
   > :last-child:not(input) {
-    right: 0;
-    height: 100%;
+    right: 5px;
   }
   > .w-icon {
     position: absolute;
@@ -56,10 +55,8 @@
   }
   &-addon-after {
     position: absolute;
-    top: 0;
-    right: 0;
-    padding: 3px;
-    display: flex;
+    transform: translateY(-50%);
+    top: 50%;
     .w-tag, .w-btn {
       display: table;
       height: 100%;
@@ -71,9 +68,6 @@
     }
     .w-tag {
       background: transparent;
-      > span {
-        height: 100%;
-      }
     }
     .w-btn:focus {
       box-shadow: 0 0 0 0;
@@ -90,6 +84,14 @@
     .@{w-input}-inner {
       line-height: 24px;
       height: 24px;
+    }
+    .@{w-input}-addon-after {
+      .w-tag, .w-btn {
+        line-height: 14px;
+      }
+    }
+    > :last-child:not(input) {
+      right: 2px;
     }
   }
 }
