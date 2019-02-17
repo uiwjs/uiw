@@ -81,11 +81,15 @@ const Demo = () => (
 ```
 <!--End-->
 
+### 日期格式
+
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | value | 初始时间值 | Date | - |
+| placeholder | 输入框提示文字 | String | - |
+| allowClear | 是否显示清除按钮 | Boolean | true |
 | format | 格式化时间，规则查看 [`<Timestamp>`](#/components/timestamp) 文档 | String | `YYYY/MM/DD` |
 | onChange | 选择一天时调用。 | Function(selectedDate:Date) | - |
 | popoverProps | 将参数传递给 [`<Popover>`](#/components/popover) 组件 | Object | - |
