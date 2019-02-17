@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import './style/caption.less';
 
 export default class PickerCaption extends React.Component {
   renderMonth() {
