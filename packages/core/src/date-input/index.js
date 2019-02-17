@@ -22,7 +22,8 @@ export default class DateInput extends React.Component {
   onChange(date) {
     const { format } = this.props;
     this.setState({ date });
-    this.props.onChange(Timestamp(format, new Date(date)));
+    date = date ? Timestamp(format, new Date(date)) : date;
+    this.props.onChange(date);
   }
   render() {
     const { prefixCls, className, popoverProps, datePickerProps, format, ...inputProps } = this.props;

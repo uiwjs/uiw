@@ -1,7 +1,7 @@
 Timestamp 时间戳
 ===
 
-用于时间格式化，组件基于 [time-stamp](https://github.com/jonschlinkert/time-stamp) 更改。
+用于时间格式化，时间格式化的部分是组件基于 [time-stamp](https://github.com/jonschlinkert/time-stamp) 更改。
 
 ```jsx
 import { Timestamp } from 'uiw';
@@ -106,7 +106,7 @@ console.log(Timestamp.utc('ms'));
 
 ## 时区转换
 
-`TZC` 为服务器时间时区，将时间转换到东八区时间
+`TZC` 为时区转换，有个应用场景，服务器时间时区，将时区转换成跟客户端时区一致，例如西面是转换到东八区时间。
 
 <!--DemoStart--> 
 ```js
