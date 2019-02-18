@@ -1,16 +1,33 @@
 import React, { PureComponent } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
+import classnames from 'classnames';
 import Nav from '../components/Nav';
 import SiderMenu from '../components/SiderMenu';
 import VersionSelect from '../components/VersionSelect';
 import { getMenuData, getMenuCurrentData } from '../common/menu';
 import logo from '../components/icons/logo';
+import menu from '../components/icons/menu';
 import styles from './index.module.less';
 import version from '../version.json';
 
 export default class UserLayout extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      topmenu: false,
+    };
+  }
+  componentDidMount() {
+    this.props.history.listen(() => {
+      window.scrollTo(0, 0);
+    });
+  }
+  onSettingTopMenu = () => {
+    this.setState({ topmenu: !this.state.topmenu });
+  }
   render() {
     const { routerData } = this.props;
+    const { topmenu } = this.state;
     const menuData = getMenuData();
     const RouteComponents = [];
     Object.keys(routerData).forEach((path, idx) => {
@@ -28,18 +45,31 @@ export default class UserLayout extends PureComponent {
         );
       }
     });
+    const cls = classnames({
+      [styles.topmenu]: topmenu,
+    });
     return (
-      <>
+      <div className={cls}>
         <div className={styles.nav}>
           <div className={styles.logo}>
-            <Link to="/"> {logo.dark} </Link>
+            <Link to="/">
+              <span className={styles.svg}>{logo.dark}</span>
+              {topmenu && <span className={styles.title}>uiw</span>}
+            </Link>
           </div>
-          <Nav menuData={menuData} routerData={routerData} />
+          <Nav topmenu={topmenu} className="nav-menu" menuData={menuData} routerData={routerData} />
+          <div className={styles.btn} onClick={this.onSettingTopMenu}>{menu.menu}</div>
         </div>
-        <div className={styles.sidebar}>
+        <div className={styles.sidebar} style={{ top: topmenu ? 60 : 0, left: topmenu ? 0 : 64 }}>
           <SiderMenu menuData={menuData} {...this.props} />
         </div>
-        <div className={styles.content}>
+        <div
+          className={styles.content}
+          style={{
+            marginLeft: topmenu ? 250 : 314,
+            paddingTop: topmenu ? 90 : 20,
+          }}
+        >
           <div className={styles.toolbar}>
             <VersionSelect data={version} />
           </div>
@@ -47,7 +77,7 @@ export default class UserLayout extends PureComponent {
             {RouteComponents}
           </Switch>
         </div>
-      </>
+      </div>
     );
   }
 }

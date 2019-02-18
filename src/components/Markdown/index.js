@@ -22,7 +22,7 @@ export default class CreatePage extends React.Component {
     for (const [id, component] of this.components) {
       this.div = document.getElementById(id);
       if (this.div instanceof HTMLElement) {
-        ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this.div));
+        // ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this.div));
         ReactDOM.render(component, this.div);
       }
     }

@@ -13,25 +13,25 @@ import { Button, ButtonGroup } from 'uiw';
 ```js
 const Demo = () => (
   <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
-    <Button>Normal</Button>
-    <Button disabled>Disabled</Button>
-    <Button type="primary" active>Button</Button>
-    <Button type="primary" size="small">more <Icon type="arrow-down" /></Button>
-    <Button type="link"> (超连接样式)link </Button>
-    <Divider style={{ maxWidth: 220 }}>状态按钮</Divider>
     <Button type="primary">主要按钮</Button>
     <Button type="success">成功按钮</Button>
     <Button type="warning">警告按钮</Button>
     <Button type="danger">错误按钮</Button>
     <Button type="light">亮按钮</Button>
     <Button type="dark">暗按钮</Button>
-    <Divider style={{ maxWidth: 220 }}>基本按钮</Divider>
+    <Divider />
     <Button basic type="primary">主要按钮</Button>
     <Button basic type="success">成功按钮</Button>
     <Button basic type="warning">警告按钮</Button>
     <Button basic type="danger">错误按钮</Button>
     <Button basic type="light">亮按钮</Button>
     <Button basic type="dark">暗按钮</Button>
+    <Divider />
+    <Button>Normal</Button>
+    <Button disabled>Disabled</Button>
+    <Button type="primary" active>Button</Button>
+    <Button type="primary" size="small">more <Icon type="arrow-down" /></Button>
+    <Button type="link"> (超连接样式)link </Button>
   </div>
 );
 ```
@@ -199,43 +199,44 @@ const Demo = () => (
 
 <!--DemoStart--> 
 ```js
+const styl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
 const Demo = () => (
-    <Row gutter={10}>
-      <Col style={{ maxWidth: 120 }}>
-        <ButtonGroup vertical>
-          <Button type="primary">按钮</Button>
-          <Button type="primary">按钮</Button>
-          <Button type="primary">按钮</Button>
-          <Button type="primary">按钮</Button>
-        </ButtonGroup>
-      </Col>
-      <Col style={{ maxWidth: 120 }}>
-        <ButtonGroup vertical>
-          <Button type="success">按钮</Button>
-          <Button disabled type="success">按钮</Button>
-          <Button type="success">按钮</Button>
-          <Button type="success">按钮</Button>
-        </ButtonGroup>
-      </Col>
-      <Col style={{ maxWidth: 120 }}>
-        <ButtonGroup vertical>
-          <Button type="light">按钮</Button>
-          <Button type="light">按钮</Button>
-          <Button type="light">按钮</Button>
-          <Button type="light">按钮</Button>
-        </ButtonGroup>
-      </Col>
-      <Col style={{ maxWidth: 120 }}>
-        <ButtonGroup vertical>
-          <Button type="primary">主要按钮</Button>
-          <Button type="success">成功按钮</Button>
-          <Button type="warning">警告按钮</Button>
-          <Button type="danger">错误按钮</Button>
-          <Button type="light">亮按钮</Button>
-          <Button type="dark">暗按钮</Button>
-        </ButtonGroup>
-      </Col>
-    </Row>
+  <Row gutter={10} style={styl}>
+    <Col style={{ maxWidth: 120 }}>
+      <ButtonGroup vertical>
+        <Button type="primary">按钮</Button>
+        <Button type="primary">按钮</Button>
+        <Button type="primary">按钮</Button>
+        <Button type="primary">按钮</Button>
+      </ButtonGroup>
+    </Col>
+    <Col style={{ maxWidth: 120 }}>
+      <ButtonGroup vertical>
+        <Button type="success">按钮</Button>
+        <Button disabled type="success">按钮</Button>
+        <Button type="success">按钮</Button>
+        <Button type="success">按钮</Button>
+      </ButtonGroup>
+    </Col>
+    <Col style={{ maxWidth: 120 }}>
+      <ButtonGroup vertical>
+        <Button type="light">按钮</Button>
+        <Button type="light">按钮</Button>
+        <Button type="light">按钮</Button>
+        <Button type="light">按钮</Button>
+      </ButtonGroup>
+    </Col>
+    <Col style={{ maxWidth: 120 }}>
+      <ButtonGroup vertical>
+        <Button type="primary">主要按钮</Button>
+        <Button type="success">成功按钮</Button>
+        <Button type="warning">警告按钮</Button>
+        <Button type="danger">错误按钮</Button>
+        <Button type="light">亮按钮</Button>
+        <Button type="dark">暗按钮</Button>
+      </ButtonGroup>
+    </Col>
+  </Row>
 );
 ```
 <!--End-->
@@ -297,6 +298,7 @@ const Demo = () => (
     <Button icon="taobao" basic type="warning" />
     <Button icon="apple" basic type="danger" />
     <Button icon="weibo" basic type="dark" />
+    <Button icon="weibo" basic type="dark" />
   </div>
 );
 ```
@@ -343,15 +345,18 @@ const Demo = () => (
 
 <!--DemoStart--> 
 ```js
+const styl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
 const Demo = () => (
-  <div>
-    <Button block type="primary">主要按钮</Button>
-    <Button block type="success">成功按钮</Button>
-    <Button block type="warning">警告按钮</Button>
-    <Button block type="danger">错误按钮</Button>
-    <Button block type="light">亮按钮</Button>
-    <Button block type="dark">暗按钮</Button>
-  </div>
+  <Row gutter={10} style={styl}>
+    <Col style={{ maxWidth: 120 }}>
+      <Button block type="primary">主要按钮</Button>
+      <Button block type="success">成功按钮</Button>
+      <Button block type="warning">警告按钮</Button>
+      <Button block type="danger">错误按钮</Button>
+      <Button block type="light">亮按钮</Button>
+      <Button block type="dark">暗按钮</Button>
+    </Col>
+  </Row>
 );
 ```
 <!--End-->
@@ -362,8 +367,9 @@ const Demo = () => (
 
 <!--DemoStart--> 
 ```js
+const styl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
 const Demo = () => (
-  <div>
+  <div style={styl}>
     <Button size="small" type="primary">主要按钮</Button>
     <Button size="default" type="success">成功按钮</Button>
     <Button size="large" type="warning">警告按钮</Button>
