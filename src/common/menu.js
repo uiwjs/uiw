@@ -41,6 +41,7 @@ const menuData = [
       { name: 'Avatar 头像', path: 'avatar' },
       { name: 'Badge 标记', path: 'badge' },
       { name: 'Card 卡片', path: 'card' },
+      { name: 'Collapse 折叠面板', path: 'collapse' },
       { name: 'Tag 标签', path: 'tag' },
       { name: 'Progress 进度条', path: 'progress' },
       { name: 'Rate 评分', path: 'rate' },

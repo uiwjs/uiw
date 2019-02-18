@@ -115,6 +115,9 @@ export const getRouterData = () => {
     '/components/copy-to-clipboard': {
       component: dynamicWrapper([], () => import('../routes/components/copy-to-clipboard')),
     },
+    '/components/collapse': {
+      component: dynamicWrapper([], () => import('../routes/components/collapse')),
+    },
     '/components/rate': {
       component: dynamicWrapper([], () => import('../routes/components/rate')),
     },

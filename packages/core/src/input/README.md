@@ -12,8 +12,10 @@ import { Input } from 'uiw';
 <!--DemoStart--> 
 ```js
 const Demo = () => (
-  <Input placeholder="请输入内容" />
-)
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+    <Input placeholder="请输入内容" />
+  </div>
+);
 ```
 <!--End-->
 
@@ -23,19 +25,21 @@ const Demo = () => (
 ```js
 const stylItem = { margin: 20 };
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0',justifyContent: 'center', display: 'flex' }}>
-    <div style={stylItem}>
-      <Input preIcon="delete" placeholder="请输入内容" />
-    </div>
-    <div style={stylItem}>
-      <Input preIcon="tag" placeholder="请输入内容" />
-    </div>
-    <div style={stylItem}>
-      <Input preIcon="picasa" placeholder="请输入内容" />
-    </div>
-    <div style={stylItem}>
-      <Input preIcon="like-o" placeholder="请输入内容" />
-    </div>
+  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+    <Row gutter={10}>
+      <Col fixed>
+        <Input preIcon="delete" placeholder="请输入内容" />
+      </Col>
+      <Col fixed>
+        <Input preIcon="tag" placeholder="请输入内容" />
+      </Col>
+      <Col fixed>
+        <Input preIcon="picasa" placeholder="请输入内容" />
+      </Col>
+      <Col fixed>
+        <Input preIcon="like-o" placeholder="请输入内容" />
+      </Col>
+    </Row>
   </div>
 )
 ```
@@ -54,7 +58,7 @@ const Demo = () => (
         <Input
           preIcon="like-o"
           placeholder="请输入密码"
-          addonAfter={<Button icon="lock" size="small" basic type="dark" />}
+          addonAfter={<Button icon="lock" size="small" basic type="light" />}
         />
       </Col>
       <Col fixed>
@@ -99,7 +103,7 @@ const Demo = () => (
           preIcon="like-o"
           size="large"
           placeholder="请输入密码"
-          addonAfter={<Button icon="lock" basic type="dark" />}
+          addonAfter={<Button icon="lock" basic type="light" />}
         />
       </Col>
       <Col fixed>
@@ -220,7 +224,7 @@ class Demo extends Component {
             preIcon="like-o"
             type={this.state.btnIcon === 'lock' ? 'password' : 'text'}
             placeholder="请输入密码"
-            addonAfter={<Button icon={this.state.btnIcon} onClick={this.onClick.bind(this)} size="small" basic type="dark" />}
+            addonAfter={<Button icon={this.state.btnIcon} onClick={this.onClick.bind(this)} size="small" basic type="light" />}
           />
         </Col>
       </Row>
@@ -236,21 +240,21 @@ class Demo extends Component {
 ```js
 const stylItem = { margin: 20 };
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0',justifyContent: 'center', display: 'flex' }}>
-    <div style={stylItem}>
+  <Row gutter={10} style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+    <Col fixed>
       <Input disabled preIcon="delete" placeholder="请输入内容" />
-    </div>
-    <div style={stylItem}>
+    </Col>
+    <Col fixed>
       <Input disabled preIcon="tag" placeholder="请输入内容" />
-    </div>
-    <div style={stylItem}>
+    </Col>
+    <Col fixed>
       <Input disabled preIcon="picasa" placeholder="请输入内容" />
-    </div>
-    <div style={stylItem}>
+    </Col>
+    <Col fixed>
       <Input disabled preIcon="like-o" placeholder="请输入内容" />
-    </div>
-  </div>
-)
+    </Col>
+  </Row>
+);
 ```
 <!--End-->
 
