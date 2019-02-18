@@ -1,5 +1,6 @@
 .nav {
   padding-top: 25px;
+  flex: 1;
   svg {
     height: 18px;
     width: 18px;
@@ -9,7 +10,7 @@
     }
   }
   a {
-    color: #fff;
+    color: #9e9e9e;
     display: block;
     padding: 10px 0;
     text-align: center;
@@ -24,5 +25,31 @@
 .selected {
   svg path {
     fill: #fff;
+  }
+}
+
+.topmenu {
+  padding-top: 0;
+  padding-right: 10px;
+  flex: 1;
+  svg {
+    height: 15px;
+    width: 15px;
+  }
+  a {
+    display: inline-block;
+    margin: 0 10px;
+    > * {
+      vertical-align: middle;
+    }
+    svg + span {
+      margin-left: 5px;
+    }
+  }
+  .selected {
+    color: #fff;
+    svg path {
+      fill: #fff;
+    }
   }
 }

@@ -1,6 +1,8 @@
 .nav {
   background: #202225;
   position: fixed;
+  display: flex;
+  flex-direction: column;
   padding: 10px;
   width: 64px;
   left: 0;
@@ -32,4 +34,59 @@
 .toolbar {
   position: absolute;
   right: 18px;
+}
+
+.btn {
+  color: #fff;
+  user-select: none;
+  > svg {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    cursor: pointer;
+    rect {
+      transition: fill .3s;
+    }
+    &:hover {
+      g rect:first-child {
+        fill: #fff;
+      }
+      g rect:last-child {
+        fill: #969696;
+      }
+    }
+  }
+}
+
+.topmenu {
+  .btn {
+    display: flex;
+    align-items: center;
+    > svg {
+      margin-bottom: 0;
+      margin-right: 8px;
+    }
+  }
+  .nav {
+    text-align: right;
+    width: initial;
+    bottom: initial;
+    flex-direction: row;
+    right: 0;
+    display: flex;
+    z-index: 9999;
+    .logo {
+      display: inline-block;
+      margin: 0 6px;
+      white-space: nowrap;
+      * {
+        vertical-align: middle;
+      }
+      span.title {
+        color: #fff;
+        font-size: 24px;
+        margin-left: 10px;
+      }
+    }
+  }
 }

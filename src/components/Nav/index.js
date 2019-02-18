@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import classnames from 'classnames';
 import { Tooltip } from 'uiw';
 import nav from '../icons/nav';
 import styles from './index.module.less';
@@ -10,15 +11,22 @@ export default class index extends Component {
     this.state = {};
   }
   render() {
-    const { routerData } = this.props;
+    const { className, topmenu, routerData } = this.props;
     return (
-      <div className={styles.nav}>
+      <div className={classnames(styles.nav, className, { [`${styles.topmenu}`]: topmenu })}>
         {this.props.menuData.map((item, idx) => {
           let icon = item.icon;
           if (Object.keys(nav).includes(icon)) {
             icon = nav[icon];
           }
           if (/^https?:(?:\/\/)?/.test(item.path)) {
+            if (topmenu) {
+              return (
+                <a key={idx} target="__blank" href={item.path}>
+                  {icon}<span>{item.name}</span>
+                </a>
+              );
+            }
             return (
               <Tooltip key={idx} placement="right" content={item.name}>
                 <a target="__blank" href={item.path}>
@@ -30,6 +38,13 @@ export default class index extends Component {
           let noPath = null;
           if (!routerData[item.path] && item.children && item.children.length > 0) {
             noPath = item.children[0].path;
+          }
+          if (topmenu) {
+            return (
+              <NavLink key={idx} activeClassName={styles.selected} to={noPath || item.path} replace>
+                {icon}<span>{item.name}</span>
+              </NavLink>
+            );
           }
           return (
             <Tooltip key={idx} placement="right" content={item.name}>
