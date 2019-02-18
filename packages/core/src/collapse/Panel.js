@@ -10,7 +10,7 @@ export default class Panel extends React.Component {
       return;
     }
     if (status === 'exited' || status === 'exiting') {
-      instance.style.height = 0;
+      instance.style.height = '1px';
     }
     if (status === 'entered' || status === 'entering') {
       instance.style.height = `${instance.scrollHeight}px`;
@@ -26,7 +26,7 @@ export default class Panel extends React.Component {
 
     const childStyle = (child) => {
       return Object.assign({}, child && child.props ? child.props.style : {}, {
-        transitionDuration: `300ms`,
+        transitionDuration: '300ms',
       });
     };
     return (
