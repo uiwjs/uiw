@@ -13,8 +13,9 @@ import version from '../version.json';
 export default class UserLayout extends PureComponent {
   constructor(props) {
     super(props);
+    const topmenu = localStorage.getItem('_menu');
     this.state = {
-      topmenu: false,
+      topmenu: topmenu === 'true',
     };
   }
   componentDidMount() {
@@ -23,6 +24,7 @@ export default class UserLayout extends PureComponent {
     });
   }
   onSettingTopMenu = () => {
+    localStorage.setItem('_menu', !this.state.topmenu);
     this.setState({ topmenu: !this.state.topmenu });
   }
   render() {
@@ -58,9 +60,9 @@ export default class UserLayout extends PureComponent {
             </Link>
           </div>
           <Nav topmenu={topmenu} className="nav-menu" menuData={menuData} routerData={routerData} />
-          <div className={styles.btn} onClick={this.onSettingTopMenu}>{menu.menu}</div>
+          <div className={styles.btn} onClick={this.onSettingTopMenu}>{topmenu ? menu.menu : menu.menutop}</div>
         </div>
-        <div className={styles.sidebar} style={{ top: topmenu ? 60 : 0, left: topmenu ? 0 : 64 }}>
+        <div className={styles.sidebar} style={{ top: topmenu ? 57 : 0, left: topmenu ? 0 : 64 }}>
           <SiderMenu menuData={menuData} {...this.props} />
         </div>
         <div
