@@ -22,8 +22,8 @@ export default class index extends Component {
           if (/^https?:(?:\/\/)?/.test(item.path)) {
             if (topmenu) {
               return (
-                <a key={idx} target="__blank" href={item.path}>
-                  {icon}<span>{item.name}</span>
+                <a key={idx} target="__blank" href={item.path} className={styles.outerUrl}>
+                  {icon}
                 </a>
               );
             }
