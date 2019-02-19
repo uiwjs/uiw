@@ -38,3 +38,38 @@ $ npm install --save-dev @uiw/doc@2.0.0-beta.12
 cd node_modules/@uiw/doc/web
 ssr # 启动服务
 ```
+
+**文档编写**
+
+在 Markdown 文档中编写代 React 码实例，文档爬取代码实例进行预览。
+
+
+```html
+<\!--DemoStart--> 
+```js
+const Demo = () => (
+  <div>
+    <Button basic type="primary">主要按钮</Button>
+  </div>
+);
+\```
+<\!--End-->
+```
+
+使用 `<\!--DemoStart-->` 和 `<\!--End-->` 标识字符串，包裹一段代码高亮区域，文档将自动匹配，进行预览该区域代码，提供源码编辑器，编辑并实时预览。
+
+> ⚠️ 上面实例中的转义字符 `\` 可以忽悠，避免被匹配预览。  
+
+被包裹的标识字符串是 `HTML` 注释，在 markdown 预览的时候将起到不显示的作用，在 GitHub 中预览 `标识字符串` 会被。
+
+标识符在 `2.0.0+` 版本文档，可以传递参数，传递方法: 
+
+```markdown
+<!--DemoStart,bgWhite,noCode,noPreview-->
+```
+
+参数用英文逗号隔开
+
+- `bgWhite` 设置代码预览背景白色，否则为格子背景。
+- `noCode` 不显示代码编辑器。 
+- `noPreview` 不显示代码预览效果。

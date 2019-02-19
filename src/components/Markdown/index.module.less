@@ -32,10 +32,10 @@
 .source {
   position: relative;
   padding: 15px;
+  min-height: 80px;
 }
 
 .code {
-  box-shadow: inset 0 1px 0 0 #d5d5d5;
   background-color: #f0f0f0;
   border-radius: 0 0 3px 3px;
   transition: all .3s;
@@ -50,22 +50,22 @@
 
 .controlBtn {
   cursor: pointer;
-  background-color: rgba(0,0,0,.03);
-  border-top: 1px solid #d5d5d5;
-  padding: 3px 6px;
-  color: rgba(0,0,0,.65);
-  // background-color: #EAEAEA;
-  // display: inline-block;
-  // padding: 2px 5px;
-  // font-size: 12px;
-  // margin-top: 2px;
-  // margin-bottom: 3px;
-  // border-radius: 3px;
-  // color: #808080;
-  // cursor: pointer;
-  // transition: all .3s;
-  // &:hover {
-  //   background-color: #07C32A;
-  //   color: #fff;
-  // }
+  background-color: rgba(0, 0, 0, 0.03);
+  box-shadow: inset 1px 0 0 0 #d5d5d5;
+  padding: 9px 3px;
+  margin: 0 auto;
+  color: rgba(0, 0, 0, 0.65);
+  letter-spacing: 1px;
+  writing-mode: tb-rl;
+  width: 29px;
+}
+
+.warpper {
+  display: flex;
+  .demo {
+    flex: 1;
+    .scroll {
+      overflow: auto;
+    }
+  }
 }
