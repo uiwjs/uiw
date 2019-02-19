@@ -63,7 +63,7 @@ export default class UserLayout extends PureComponent {
           <div className={styles.btn} onClick={this.onSettingTopMenu}>{topmenu ? menu.menu : menu.menutop}</div>
         </div>
         <div className={styles.sidebar} style={{ top: topmenu ? 57 : 0, left: topmenu ? 0 : 64 }}>
-          <SiderMenu menuData={menuData} {...this.props} />
+          <SiderMenu topmenu={topmenu} menuData={menuData} {...this.props} />
         </div>
         <div
           className={styles.content}
