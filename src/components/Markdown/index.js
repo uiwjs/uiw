@@ -32,11 +32,19 @@ export default class CreatePage extends React.Component {
     if (typeof this.state.markdown === 'string') {
       this.components.clear();
       // eslint-disable-next-line
-      markdown = this.state.markdown.replace(/<!--\s?DemoStart\s?-->([^]+?)<!--\s?End\s?-->/g, (match, code, offset) => {
+      markdown = this.state.markdown.replace(/<!--\s?DemoStart\s?(.*)-->([^]+?)<!--\s?End\s?-->/g, (match, parame, code, offset) => {
+        parame = parame.replace(/(^,*)|(,*$)/g, '');
+        parame = parame ? parame.split(',') : [];
+
+        const bgWhite = parame.indexOf('bgWhite') > -1;
+        const noCode = parame.indexOf('noCode') > -1;
+        const noPreview = parame.indexOf('noPreview') > -1;
+
         const id = offset.toString(36);
         const codeStr = code.match(/```(.*)\n([^]+)```/);
         this.components.set(id, React.createElement(Canvas, Object.assign({
           dependencies: this.dependencies || {},
+          parame: { bgWhite, noCode, noPreview },
         }, this.props), codeStr[2]));
         return `<div id=${id}></div>`;
       });
