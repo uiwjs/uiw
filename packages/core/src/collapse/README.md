@@ -11,14 +11,13 @@ import { Collapse } from 'uiw';
 
 可以同时展开多个面板，这个例子默认展开了第一个。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
-const styl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
 class Demo extends Component {
   render() {
     const Panel = Collapse.Panel
     return (
-      <div style={styl}>
+      <div>
         <Collapse activeKey={['1']} onChange={key=>console.log(key)}>
           <Panel header="大话西游" key="1">
             <div>曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。 </div>
@@ -45,7 +44,7 @@ class Demo extends Component {
 
 手风琴，每次只打开一个tab。默认打开第一个。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 `Panel`的`key`属性并非必须。
 ```js
 class Demo extends Component {
@@ -58,7 +57,7 @@ class Demo extends Component {
   render() {
     const Panel = Collapse.Panel
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <Button
           type="primary"
           style={{marginBottom: '15px'}}
@@ -92,14 +91,13 @@ class Demo extends Component {
 
 通过设置`bordered={true}`没有边框的简洁样式。
 
-<!--DemoStart--> 
-`Panel`的`key`属性并非必须。
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends Component {
   render() {
     const Panel = Collapse.Panel
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <Collapse accordion bordered={true} activeKey={[]} onChange={key=>console.log(key)}>
           <Panel header="大话西游">
             <div>曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。 </div>
@@ -124,13 +122,13 @@ class Demo extends Component {
 
 ## 自定义面板标题
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends Component {
   render() {
     const Panel = Collapse.Panel
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <Collapse showArrow={false} activeKey={['1']} onChange={key=>console.log(key)}>
           <Panel header={<span>大话西游 <Icon type="smile-o"/></span>} key="1">
             <div>曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。 </div>
@@ -155,13 +153,13 @@ class Demo extends Component {
 
 ## 指定折叠图标
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends Component {
   render() {
     const Panel = Collapse.Panel
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <Collapse activeKey={['1']} onChange={key=>console.log(key)}>
           <Panel icon="caret-down" header={<span>大话西游 <Icon type="smile-o"/></span>} key="1">
             <div>曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。 </div>

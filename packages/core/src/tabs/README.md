@@ -11,13 +11,12 @@ import { Tabs } from 'uiw';
 
 基础的、简洁的卡片式标签页。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
-const styl = { backgroundColor: '#fff', margin: -15, padding: 10, borderRadius: '5px 5px 0 0' };
 class Demo extends Component {
   render() {
     return (
-      <Tabs activeKey="1" style={styl} onTabClick={(tab, key, e) => {
+      <Tabs activeKey="1" onTabClick={(tab, key, e) => {
           console.log("=>", key, tab);
         }}>
         <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
@@ -35,13 +34,12 @@ class Demo extends Component {
 
 基础的、简洁的卡片式标签页。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
-const styl = { backgroundColor: '#fff', margin: -15, padding: 10, borderRadius: '5px 5px 0 0' };
 class Demo extends Component {
   render() {
     return (
-      <Tabs type="line" activeKey="1" style={styl} onTabClick={(tab, key, e) => {
+      <Tabs type="line" activeKey="1" onTabClick={(tab, key, e) => {
           console.log("=>", key, tab);
         }}>
         <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
@@ -59,13 +57,12 @@ class Demo extends Component {
 
 另一种样式的页签，不提供对应的垂直样式。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
-const styl = { backgroundColor: '#fff', margin: -15, padding: 10, borderRadius: '5px 5px 0 0' };
 class Demo extends Component {
   render() {
     return (
-      <Tabs type="card" activeKey="1" style={styl} onTabClick={(tab, key, e) => {
+      <Tabs type="card" activeKey="1" onTabClick={(tab, key, e) => {
           console.log("=>", key, tab);
         }}>
         <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
@@ -84,9 +81,8 @@ class Demo extends Component {
 
 另一种样式的页签，不提供对应的垂直样式。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
-const styl = { backgroundColor: '#fff', margin: -15, padding: 10, borderRadius: '5px 5px 0 0' };
 class Demo extends Component {
   constructor(props) {
     super(props);
@@ -97,7 +93,7 @@ class Demo extends Component {
   render() {
     const { activeKey } = this.state;
     return (
-      <div style={styl}>
+      <div>
         <Tabs
           type="card"
           activeKey={activeKey}

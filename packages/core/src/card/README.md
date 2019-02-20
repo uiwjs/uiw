@@ -11,7 +11,7 @@ import { Card } from 'uiw';
 
 包含标题、内容、操作区域。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
   <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
@@ -45,7 +45,7 @@ const Demo = () => (
 
 只包含内容区域。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
   <Card style={{ width: 300 }}>
@@ -61,7 +61,7 @@ const Demo = () => (
 
 可以调整默认边距，设定宽度。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 let titleStyle = { padding: `10px 16px` };
 const Demo = () => (
@@ -80,7 +80,7 @@ const Demo = () => (
 
 ## 添加页脚
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const footer = (
   <a href="https://uiwjs.github.io">
@@ -111,7 +111,7 @@ const Demo = () => (
 
 设置属性 `active=true` 将激活卡片，默认展示鼠标经过的样式。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const footer = (
   <a href="https://uiwjs.github.io">

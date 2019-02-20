@@ -9,19 +9,16 @@ import { Row, Col } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
-const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
 const styl = { textAlign: 'center', paddingTop: 5, paddingBottom: 5 };
 const Box = ({ num, height, width, style, background }) => <div style={{...styl, ...style,background, width, height}}>Col {num}</div>
 const Demo = () => (
-  <div style={boxStyl}>
-    <Row>
-      <Col fixed style={{ width: 150 }}> <Box num="1" background="#A5A5A5" /> </Col>
-      <Col grow={2}> <Box num="2" background="#dedede" /> </Col>
-      <Col grow={1}> <Box num="3" background="#A5A5A5" /> </Col>
-    </Row>
-  </div>
+  <Row>
+    <Col fixed style={{ width: 150 }}> <Box num="1" background="#A5A5A5" /> </Col>
+    <Col grow={2}> <Box num="2" background="#dedede" /> </Col>
+    <Col grow={1}> <Box num="3" background="#A5A5A5" /> </Col>
+  </Row>
 );
 ```
 <!--End-->
@@ -30,13 +27,12 @@ const Demo = () => (
 
 栅格间隔，可以写成像素值
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
-const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
 const styl = { textAlign: 'center', paddingTop: 5, paddingBottom: 5 };
 const Blank = ({ num, height, width, style, background }) => <div style={{...styl, ...style,background, width, height}}>Col {num}</div>
 const Demo = () => (
-  <div style={boxStyl}>
+  <div>
     <Row gutter={10}>
       <Col> <Blank background="#A5A5A5" num={1}/> </Col>
       <Col> <Blank background="#dedede" num={2}/> </Col>
@@ -55,7 +51,7 @@ const Demo = () => (
 
 ### Flex 行设置列对齐
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
 const colStyl = { backgroundColor: 'rgba(230, 230, 230, 0.67)', marginBottom: 10 }
@@ -94,13 +90,12 @@ const Demo = () => (
 
 ### Flex 列对齐
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
-const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
 const Blank = ({ num, style, background = '#2EA3F4' }) => <div style={{...styl, ...style,background}}>Col {num}</div>
 const Demo = () => (
-  <div style={boxStyl}>
+  <div>
     <Row gutter={10} style={{height: 130}}>
       <Col align="top"> <Blank num={1}/> </Col>
       <Col align="middle"> <Blank num={2}/> </Col>
@@ -113,7 +108,7 @@ const Demo = () => (
 
 ### 对齐内容
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
 const rowStyl = { backgroundColor: 'rgba(230, 230, 230, 0.67)', marginBottom: 10 }
@@ -153,13 +148,12 @@ const Demo = () => (
 
 可以通过指定 `24` 列中每列的宽度来创建基本网格系统。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
-const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
 const Blank = ({ num, height, width, style, background = '#2EA3F4' }) => <div style={{...styl, ...style,background, width, height}}>Col {num}</div>
 const Demo = () => (
-  <div style={boxStyl}>
+  <div>
     <Row gutter={10} style={{ marginBottom: 10 }}>
       <Col span="2"> <Blank num={1}/> </Col>
       <Col span="2"> <Blank num={2}/> </Col>
@@ -194,13 +188,12 @@ const Demo = () => (
 
 ### 动态列增长
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
-const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
 const Blank = ({ num, style, background = '#2EA3F4' }) => <div style={{...styl, ...style,background}}>Col {num}</div>
 const Demo = () => (
-  <div style={boxStyl}>
+  <div>
     <Row gutter={10} style={{ marginBottom: 10 }}>
       <Col> <Blank num={1}/> </Col>
       <Col grow={2}> <Blank num={2}/> </Col>

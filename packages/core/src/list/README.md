@@ -9,7 +9,7 @@ import { List } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const data = [
   '"X战警新变种人"首曝海报特写诡异人脸',
@@ -54,7 +54,7 @@ const Demo = () => (
 
 通过`dataSource`和`renderItem`来创建列表，这两个属性是一起使用。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const data = [
   '"X战警新变种人"首曝海报特写诡异人脸',
@@ -76,7 +76,7 @@ const Demo = () => (
 
 ### 禁用行
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const data = [
   {
@@ -120,7 +120,7 @@ class Demo extends Component {
 
 `List.Item` 设置 `active` 属性即可设置这张被激活的样式。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
   <List size="small" header={<div>列表头部</div>} footer={<div>列表尾部</div>}>
@@ -134,7 +134,7 @@ const Demo = () => (
 
 ### 斑马线
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const data = [
   '人总是在接近幸福时倍感幸福，在幸福进行时却患得患失。',
@@ -159,7 +159,7 @@ const Demo = () => (
 
 `List.Item` 设置了 `href`，`List.Item`就可以设置标签`<a>`的所有属性了。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const data = [
   {

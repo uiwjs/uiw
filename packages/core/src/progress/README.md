@@ -10,7 +10,7 @@ const { Line, Circle } = Progress;
 
 ### 基本用法
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const { Line } = Progress;
 const sty = {marginBottom:10}
@@ -30,7 +30,7 @@ const Demo = () => (
 
 设置参数`strokeWidth`即可
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const { Line } = Progress;
 const sty = {marginBottom:10}
@@ -48,7 +48,7 @@ const Demo = () => (
 
 ### 圆圈进度条
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const { Circle } = Progress;
 const sty = {marginBottom:10}
@@ -67,7 +67,7 @@ const Demo = () => (
 
 通过`strokeWidth`设置圆圈进度宽带，通过`width`（`type="circle"`有效）设置圆圈大小，
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 let sty = {marginRight:15}
 const Demo = () => (
@@ -85,7 +85,7 @@ const Demo = () => (
 
 进度条动态展示更直观。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends Component {
   constructor(props){
@@ -129,7 +129,7 @@ class Demo extends Component {
 
 `format` 属性指定格式。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const sty = {marginRight:10}
 class Demo extends Component {

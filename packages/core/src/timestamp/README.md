@@ -14,11 +14,11 @@ console.log(Timestamp.utc());
 
 ## 基础实例
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => {
   return (
-    <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+    <div>
       <Tag title="Timestamp('YYYY ? MM # DD')" color="#1C7CEB">{Timestamp('YYYY ? MM # DD')}</Tag>
       <Divider />
       <Tag title="Timestamp.utc()">{Timestamp.utc()}</Tag>
@@ -108,13 +108,12 @@ console.log(Timestamp.utc('ms'));
 
 `TZC` 为时区转换，有个应用场景，服务器时间时区，将时区转换成跟客户端时区一致，例如西面是转换到东八区时间。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => {
   const date = Timestamp.tzc('Wed Nov 22 2017 02:06:01 GMT+100 (CST)', 8);
-  console.log('date:', date);
   return (
-    <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+    <div>
       {Timestamp('YYYY / MM / DD', new Date(date))}
       <Divider />
       {date.toString()}

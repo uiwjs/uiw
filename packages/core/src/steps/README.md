@@ -11,7 +11,7 @@ import { Steps } from 'uiw';
 
 简单的步骤条。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends Component {
   render() {
@@ -32,7 +32,7 @@ class Demo extends Component {
 
 简单的步骤条。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends Component {
   render() {
@@ -53,7 +53,7 @@ class Demo extends Component {
 
 通过设置 `Steps.Step` 的 `icon` 属性，可以启用自定义图标。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends Component {
   render() {
@@ -73,7 +73,7 @@ class Demo extends Component {
 
 使用 `Steps` 的 `status` 属性来指定当前步骤的状态。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends Component {
   render() {
@@ -94,7 +94,7 @@ class Demo extends Component {
 
 包含步骤点的进度条。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends Component {
   render() {
@@ -115,7 +115,7 @@ class Demo extends Component {
 
 通常配合内容及按钮使用，表示一个流程的处理进度。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends Component {
   constructor(props) {
@@ -181,7 +181,7 @@ class Demo extends Component {
 
 简单的竖直方向的步骤条。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends Component {
   render() {

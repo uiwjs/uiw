@@ -10,7 +10,7 @@ import { Modal } from 'uiw';
 
 ### 基本用法
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 class Demo extends React.Component {
   constructor() {
@@ -27,7 +27,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <Modal
           title="模态对话框"
           isOpen={this.state.visible}
@@ -69,7 +69,7 @@ class Demo extends React.Component {
 
 这里是利用 `Promise` 等它执行完成再去关闭窗口
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 class Demo extends React.Component {
   constructor() {
@@ -86,7 +86,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <Modal
           title="模态对话框"
           isOpen={this.state.visible}
@@ -124,7 +124,7 @@ class Demo extends React.Component {
 
 设置 `useButton={false}` 隐藏默认的按钮，再根据自己需求定义按钮。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 class Demo extends React.Component {
   constructor() {
@@ -141,7 +141,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <Modal
           title="模态对话框"
           isOpen={this.state.visible}

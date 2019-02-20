@@ -9,14 +9,14 @@ import { MonthPicker } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 function onChange(date, dateString) {
   console.log(date, dateString);
 }
 
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <MonthPicker onChange={onChange} placeholder="Select month" />
   </div>
 )
@@ -25,10 +25,10 @@ const Demo = () => (
 
 ## 在表单中使用
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Form
       onSubmit={({initial, current}) => {
         if(current.date) {

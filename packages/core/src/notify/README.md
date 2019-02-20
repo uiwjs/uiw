@@ -9,11 +9,11 @@ import { Notify } from 'uiw';
 
 ### 基本用法
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => {
   return (
-    <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+    <div>
       <Button
         onClick={() => {
           Notify.open({ title: '打开通知', description: '最简单的用法，4.5 秒后自动关闭，没有状态颜色图标。' });
@@ -65,11 +65,11 @@ const Demo = () => {
 
 ### 弹出位置
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => {
   return (
-    <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+    <div>
       <Button
         onClick={() => {
           Notify.success({ placement: 'topLeft', title: '成功通知', description: '最简单的用法，4.5 秒后自动关闭。' });
@@ -114,11 +114,11 @@ const Demo = () => {
 
 ### 弹出通知不消失
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => {
   return (
-    <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+    <div>
       <Button
         onClick={() => {
           Notify.warning({

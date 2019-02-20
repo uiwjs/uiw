@@ -11,10 +11,10 @@ import { Checkbox } from 'uiw';
 
 单独使用可以表示两种状态之间的切换，半选中只是样式上的表现。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Checkbox onChange={(e) =>{
       console.log(e.target.checked)
       console.log(e.target)
@@ -29,10 +29,10 @@ const Demo = () => (
 
 通过设置 `disabled` 属性来禁用多选框。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Checkbox disabled checked>未选中禁用</Checkbox>
     <Checkbox disabled checked>选中禁用</Checkbox>
     <Checkbox disabled indeterminate>半选中禁用</Checkbox>
@@ -43,7 +43,7 @@ const Demo = () => (
 
 ### 全选
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const checkedList = [ '四川菜', '湖北菜', '西北菜', '新疆菜', '东北菜' ];
 class Demo extends Component {
@@ -75,7 +75,7 @@ class Demo extends Component {
     const { indeterminate, checkAll } = this.state;
     console.log('indeterminate:',indeterminate );
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <Checkbox checked={checkAll} indeterminate={indeterminate} onChange={this.onCheckAllChange.bind(this)}>全选</Checkbox>
         <Divider />
         <Checkbox.Group name="cuisine" value={this.state.value} onChange={this.onChange.bind(this)}>
@@ -96,7 +96,7 @@ class Demo extends Component {
 
 方便的从数组生成 `Checkbox` 组。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 class Demo extends Component {
   constructor(props) {
@@ -111,7 +111,7 @@ class Demo extends Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <Checkbox.Group name="cuisine" value={this.state.value} onChange={this.onChange.bind(this)}>
           <div>川菜</div>
           <Checkbox value="四川菜">四川菜</Checkbox>
@@ -144,7 +144,7 @@ class Demo extends Component {
 
 通过 `checked` 属性改变 `Checkbox` 组件状态。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 class Demo extends Component {
   constructor(props) {
@@ -159,7 +159,7 @@ class Demo extends Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <Checkbox onChange={this.onChange.bind(this)} checked={this.state.checked} style={{ marginRight: 10 }} />
         <Button
           size="small"

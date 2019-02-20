@@ -9,10 +9,10 @@ import { Textarea } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Textarea placeholder="请输入内容" />
   </div>
 )
@@ -22,10 +22,10 @@ const Demo = () => (
 
 ### 禁用
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Textarea placeholder="请输入内容" disabled />
   </div>
 )
@@ -34,10 +34,10 @@ const Demo = () => (
 
 ### HTML Textarea
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <textarea className="w-textarea" placeholder="请输入内容" defaultValue="" />
   </div>
 )

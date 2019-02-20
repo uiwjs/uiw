@@ -11,10 +11,10 @@ import { Breadcrumb } from 'uiw';
 
 适用广泛的基础用法，在 `Breadcrumb` 中使用 `Breadcrumb.Item` 标签表示从首页开始的每一级。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Breadcrumb>
       <Breadcrumb.Item>首页</Breadcrumb.Item>
       <Breadcrumb.Item separator=">">活动管理</Breadcrumb.Item>
@@ -30,10 +30,10 @@ const Demo = () => (
 
 使用 `separator=">"` 可以自定义分隔符，分隔符也可以是图标。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Breadcrumb>
       <Breadcrumb.Item><a href="#">Home</a></Breadcrumb.Item>
       <Breadcrumb.Item separator=">"><a href="#">Library</a></Breadcrumb.Item>
@@ -56,11 +56,11 @@ const Demo = () => (
 
 图标放在文字前面。注意文字要使用 `span` 包裹起来，图标 `<Icon />` 需要跟 `span` 同级。`Breadcrumb.Item` 定义 `href` 参数的话，`Item` 上的参数就全部是超链原始属性。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const stylIcon = { marginRight: 3, top: 2, display: 'inline-flex' }
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Breadcrumb>
       <Breadcrumb.Item>
         <a href="#"><Icon style={stylIcon} type="home"/></a>

@@ -11,10 +11,10 @@ import { Tooltip } from 'uiw';
 
 最简单的用法。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Tooltip placement="right" content="右边文字提示">
       <Button>右边文字提示(right)</Button>
     </Tooltip>
@@ -36,11 +36,11 @@ const Demo = () => (
 
 位置有 `12` 个方向，根据 `placement` 参数来设置。
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const btnStl = {position: 'relative', width: 70 }
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Tooltip placement="left" content={<strong>Hello uiw!</strong>}>
       <Button type="primary">左边文字提示(left)</Button>
     </Tooltip>
@@ -114,10 +114,10 @@ const Demo = () => (
 
 文字提示组件 `<Tooltip />`，通过设置属性 `trigger` 可以文字提示操作方式。
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
 
     <Tooltip trigger="hover" placement="top" content="Hello uiw!">
       <Button type="primary">悬浮弹出文字提示(top)</Button>
@@ -135,10 +135,10 @@ const Demo = () => (
 
 通过设置属性 `visibleArrow` 可以文字提示框不显示箭头。
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
 
     <Tooltip visibleArrow={false} trigger="hover" placement="top" content="Hello uiw!">
       <Button type="primary">悬浮弹出文字提示(top)</Button>
@@ -154,7 +154,7 @@ const Demo = () => (
 
 ### 受控组件
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 class Demo extends React.Component {
   constructor() {
@@ -171,7 +171,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <Tooltip
           visible={this.state.isOpen}
           onVisibleChange={this.onVisibleChange.bind(this)}

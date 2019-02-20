@@ -9,7 +9,7 @@ import { Switch } from 'uiw';
 
 ### 基本用法
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
   <div>
@@ -23,7 +23,7 @@ const Demo = () => (
 
 ### 设置文字
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
   <div>
@@ -43,10 +43,10 @@ const Demo = () => (
 
 ### 禁用状态
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 10, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Switch disabled checked style={{ marginRight: 10 }} />
     <Switch disabled style={{ marginRight: 10 }} />
     <Switch disabled data-checked="开" data-unchecked="关">电源</Switch>
@@ -57,10 +57,10 @@ const Demo = () => (
 
 ### 尺寸
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 10, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Switch size="large" style={{ marginRight: 10 }} data-checked="开" data-unchecked="关" />
     <Switch size="large" checked style={{ marginRight: 10 }} />
     <Switch style={{ marginRight: 10 }} />
@@ -75,7 +75,7 @@ const Demo = () => (
 
 通过 `checked` 属性改变 `Switch` 组件状态。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 class Demo extends Component {
   constructor(props) {

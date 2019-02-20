@@ -9,7 +9,7 @@ import { Drawer } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 class Demo extends React.Component {
   constructor() {
@@ -26,7 +26,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <Drawer
           title="抽屉标题"
           isOpen={this.state.visible}
@@ -58,7 +58,7 @@ class Demo extends React.Component {
 
 ### 显示位置
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 class Demo extends React.Component {
   constructor() {
@@ -76,7 +76,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <Drawer
           title="抽屉标题"
           icon="information"
@@ -113,7 +113,7 @@ class Demo extends React.Component {
 
 ### 添加页脚
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 class Demo extends React.Component {
   constructor() {
@@ -130,7 +130,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <Drawer
           title="抽屉标题"
           isOpen={this.state.visible}
