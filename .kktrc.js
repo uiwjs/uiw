@@ -4,6 +4,16 @@ module.exports = {
   ],
   // Modify the webpack config
   config: (conf, { dev, env }, webpack) => {
+    if (dev) {
+      conf = {
+        ...conf,
+        devServer: {
+          ...conf.devServer,
+          // fix 'Invalid Host header'
+          disableHostCheck: true,
+        }
+      }
+    }
     if (env === 'prod') {
       conf.output.publicPath = './';
       conf = {
