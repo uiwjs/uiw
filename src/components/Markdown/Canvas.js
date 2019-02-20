@@ -30,42 +30,43 @@ export default class Canvas extends React.Component {
     this.initHeight = 3;
   }
   setOutsideHeight(fullScreen) {
+    const { width } = this.state;
     if (this.warpper) {
-      this.warpper.style.height = fullScreen ? '100%' : `${this.oldHeight}px`;
+      let height = this.oldHeight < 300 ? 300 : this.oldHeight;
+      if ((width === 1 && fullScreen === false)) {
+        height = this.oldHeight;
+        console.log('height:1:', height);
+      }
+      console.log('height:2:', height);
+      this.warpper.style.height = fullScreen ? '100%' : `${height}px`;
     }
   }
   onFullScreen() {
     const { fullScreen } = this.state;
-    this.initOldHeight();
     this.setState({ fullScreen: !fullScreen }, () => {
       this.setOutsideHeight(!fullScreen);
       document.body.style.overflow = !fullScreen ? 'hidden' : 'inherit';
-      if (this.demoDom) {
-        // this.initHeight = !fullScreen ? this.demoDom.clientHeight : this.oldHeight;
-        this.setState({
-          // width: 1,
-          // height: this.initHeight,
-        });
-      }
     });
   }
   initOldHeight() {
     const demo = document.getElementById(this.playerId);
-    this.oldHeight = demo.clientHeight;
-    this.initHeight = demo.clientHeight;
-    const width = demo.clientWidth / 2;
-    this.oldWidth = width < 300 ? demo.clientWidth : width;
+    if (this.initHeight === 3) {
+      this.oldHeight = demo.clientHeight;
+      this.initHeight = demo.clientHeight;
+      const width = demo.clientWidth / 2;
+      this.oldWidth = width < 300 ? demo.clientWidth : width;
+    }
   }
   onSwitchSource() {
     const { fullScreen } = this.state;
     if (this.demoDom) {
-      if (this.initHeight === 3) {
-        this.initOldHeight();
-      }
-      this.setOutsideHeight(fullScreen);
+      this.initOldHeight();
       this.setState({
         width: this.state.width === 1 ? this.oldWidth : 1,
         visible: true,
+      }, () => {
+        this.editor.focus();
+        this.setOutsideHeight(fullScreen);
       });
     }
   }
@@ -93,6 +94,12 @@ export default class Canvas extends React.Component {
       }
     } finally {
       // console.log('@@@');
+    }
+  }
+  getInstance = (instance) => {
+    if (instance) {
+      this.codemirror = instance.codemirror;
+      this.editor = instance.editor;
     }
   }
   render() {
@@ -130,6 +137,7 @@ export default class Canvas extends React.Component {
             {this.state.visible && (
               <CodeMirror
                 value={trim(this.props.children)}
+                ref={this.getInstance}
                 onChange={(editor) => {
                   this.executeCode(editor.getValue());
                 }}
@@ -137,7 +145,6 @@ export default class Canvas extends React.Component {
                   theme: 'monokai',
                   keyMap: 'sublime',
                   mode: 'jsx',
-                  lineNumbers: false,
                 }}
               />
             )}
@@ -145,7 +152,7 @@ export default class Canvas extends React.Component {
         )}
         {!noCode && (
           <div className={styles.control}>
-            <div className={styles.btn} onClick={this.onSwitchSource.bind(this)}>{this.state.width === 1 ? '显示代码' : '隐藏代码'}</div>
+            <div className={styles.btn} onClick={this.onSwitchSource.bind(this)}>{this.state.width === 1 ? '显示代码' : '隐藏编辑器'}</div>
             <div className={styles.fullScreenBtn} onClick={this.onFullScreen.bind(this)}>
               {icon.full}
             </div>
