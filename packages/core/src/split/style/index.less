@@ -1,0 +1,59 @@
+@split-prefix: ~"w-split";
+
+.@{split-prefix} {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  &-bar {
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    background: rgb(248, 248, 249);
+    &::before, &::after {
+      content: '';
+      display: block;
+    }
+  }
+  &-pane {
+    flex: 1;
+  }
+  &-horizontal > &-bar {
+    cursor: col-resize;
+    width: 6px;
+    height: 100%;
+    box-shadow: inset 1px 0 0 0 #d5d5d5, 1px 0 0 0 #d5d5d5;
+    &::before, &::after {
+      height: 3px;
+      width: 100%;
+      box-shadow: inset 0 1px 0 0 #d5d5d5, 0 1px 0 0 #d5d5d5;
+    }
+    &::before {
+      margin-top: -1px;
+    }
+    &::after {
+      margin-top: 3px;
+    }
+  }
+  &-vertical {
+    flex-direction: column;
+  }
+  &-vertical > &-bar {
+    cursor: row-resize;
+    width: 100%;
+    height: 6px;
+    align-items: center;
+    flex-direction: row;
+    box-shadow: inset 0 1px 0 0 #d5d5d5, 0 1px 0 0 #d5d5d5;
+    &::before, &::after {
+      height: 100%;
+      width: 3px;
+      box-shadow: inset 1px 0 0 0 #d5d5d5, 1px 0 0 0 #d5d5d5;
+    }
+    &::before {
+      margin-left: -1px;
+    }
+    &::after {
+      margin-left: 3px;
+    }
+  }
+}

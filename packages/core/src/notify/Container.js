@@ -45,22 +45,12 @@ export default class Container extends React.Component {
       delete notifys[placement][key];
       props.willUnmount(props, notifys);
     });
-    // const { message } = this.state;
-    // const { willUnmount } = this.props;
-    // if (message[props.id]) {
-    //   delete message[props.id];
-    //   this.setState({ message });
-    // }
-    // const keys = Object.keys(message);
-    // if (keys.length === 0) {
-    //   willUnmount();
-    // }
   }
   render() {
     const { prefixCls } = this.props;
     const { placement } = this.state;
     return (
-      <>
+      <React.Fragment>
         {placement && Object.keys(this.state.notifys[placement]).map((key) => {
           const { description, isOpen, ...alertProps } = this.state.notifys[placement][key];
           if (alertProps.type === 'open') {
@@ -80,7 +70,7 @@ export default class Container extends React.Component {
             />
           );
         })}
-      </>
+      </React.Fragment>
     );
   }
 }

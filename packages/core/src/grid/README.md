@@ -11,8 +11,7 @@ import { Row, Col } from 'uiw';
 
 <!--DemoStart,bgWhite--> 
 ```js
-const styl = { textAlign: 'center', paddingTop: 5, paddingBottom: 5 };
-const Box = ({ num, height, width, style, background }) => <div style={{...styl, ...style,background, width, height}}>Col {num}</div>
+const Box = ({ num, height, width, style, background }) => <div style={{ ...style, textAlign: 'center', paddingTop: 5, paddingBottom: 5, background, width, height}}>Col {num}</div>
 const Demo = () => (
   <Row>
     <Col fixed style={{ width: 150 }}> <Box num="1" background="#A5A5A5" /> </Col>
@@ -29,8 +28,7 @@ const Demo = () => (
 
 <!--DemoStart,bgWhite--> 
 ```js
-const styl = { textAlign: 'center', paddingTop: 5, paddingBottom: 5 };
-const Blank = ({ num, height, width, style, background }) => <div style={{...styl, ...style,background, width, height}}>Col {num}</div>
+const Blank = ({ num, height, width, style, background }) => <div style={{ ...style, textAlign: 'center', paddingTop: 5,paddingBottom: 5, background, width, height}}>Col {num}</div>
 const Demo = () => (
   <div>
     <Row gutter={10}>
@@ -53,11 +51,10 @@ const Demo = () => (
 
 <!--DemoStart,bgWhite--> 
 ```js
-const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
 const colStyl = { backgroundColor: 'rgba(230, 230, 230, 0.67)', marginBottom: 10 }
-const Blank = ({ num, height, style, background = '#2EA3F4' }) => <div style={{...styl, ...style,background, height}}>Col {num}</div>
+const Blank = ({ num, height, style, background = '#2EA3F4' }) => <div style={{ ...style, textAlign: 'center', color: '#fff', paddingTop: 5, paddingBottom: 5, background, height}}>Col {num}</div>
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Row gutter={10} justify="center" align="top" style={colStyl}>
       <Col span="2"> <Blank height={35} num={1}/> </Col>
       <Col span="2"> <Blank height={50} num={2}/> </Col>
@@ -92,8 +89,7 @@ const Demo = () => (
 
 <!--DemoStart,bgWhite--> 
 ```js
-const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
-const Blank = ({ num, style, background = '#2EA3F4' }) => <div style={{...styl, ...style,background}}>Col {num}</div>
+const Blank = ({ num, style, background = '#2EA3F4' }) => <div style={{ ...style, textAlign: 'center', color: '#fff', paddingTop: 5, paddingBottom: 5, background }}>Col {num}</div>
 const Demo = () => (
   <div>
     <Row gutter={10} style={{height: 130}}>
@@ -110,11 +106,10 @@ const Demo = () => (
 
 <!--DemoStart,bgWhite--> 
 ```js
-const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
 const rowStyl = { backgroundColor: 'rgba(230, 230, 230, 0.67)', marginBottom: 10 }
-const Blank = ({ num, height, width, style, background = '#2EA3F4' }) => <div style={{...styl, ...style,background, width, height}}>Col {num}</div>
+const Blank = ({ num, height, width, style, background = '#2EA3F4' }) => <div style={{ ...style, textAlign: 'center', color: '#fff', paddingTop: 5, paddingBottom: 5, background, width, height}}>Col {num}</div>
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Row gutter={10} justify="flex-start" style={rowStyl}>
       <Col span="2"> <Blank num={1}/> </Col>
       <Col span="2"> <Blank num={2}/> </Col>
@@ -150,8 +145,7 @@ const Demo = () => (
 
 <!--DemoStart,bgWhite--> 
 ```js
-const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
-const Blank = ({ num, height, width, style, background = '#2EA3F4' }) => <div style={{...styl, ...style,background, width, height}}>Col {num}</div>
+const Blank = ({ num, height, width, style, background = '#2EA3F4' }) => <div style={{ ...style, textAlign: 'center', color: '#fff', paddingTop: 5, paddingBottom: 5, background, width, height}}>Col {num}</div>
 const Demo = () => (
   <div>
     <Row gutter={10} style={{ marginBottom: 10 }}>
@@ -190,8 +184,7 @@ const Demo = () => (
 
 <!--DemoStart,bgWhite--> 
 ```js
-const styl = { textAlign: 'center', padding: '5px 0', color: '#fff' };
-const Blank = ({ num, style, background = '#2EA3F4' }) => <div style={{...styl, ...style,background}}>Col {num}</div>
+const Blank = ({ num, style, background = '#2EA3F4' }) => <div style={{ ...style, textAlign: 'center', color: '#fff', paddingTop: 5, paddingBottom: 5, background }}>Col {num}</div>
 const Demo = () => (
   <div>
     <Row gutter={10} style={{ marginBottom: 10 }}>

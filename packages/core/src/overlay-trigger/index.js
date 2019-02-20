@@ -296,7 +296,7 @@ export default class OverlayTrigger extends React.Component {
     }
     props.style = { ...props.style, ...overlayStyl };
     return (
-      <>
+      <React.Fragment>
         <RefHolder ref={this.trigger}>
           {cloneElement(child, Object.assign({}, child.props, { ...triggerProps }))}
         </RefHolder>
@@ -312,7 +312,7 @@ export default class OverlayTrigger extends React.Component {
             className: classnames(overlay.props.className, placement),
           }))}
         </Overlay>
-      </>
+      </React.Fragment>
     );
   }
 }

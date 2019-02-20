@@ -21,9 +21,12 @@ const menuData = [
     children: [
       { divider: true, name: '基本' },
       { name: 'Color 颜色', path: 'colors' },
-      { name: 'Grid 删格', path: 'Grid' },
       { name: 'Icon 图标', path: 'icon' },
       { name: 'Button 按钮', path: 'button' },
+      { divider: true, name: '布局' },
+      { name: 'Divider 分割线', path: 'divider' },
+      { name: 'Grid 删格', path: 'Grid' },
+      { name: 'Split 面板分割', path: 'Split' },
       { divider: true, name: '表单' },
       { name: 'Form 表单', path: 'form' },
       { name: 'Radio 单选框', path: 'radio' },
@@ -65,7 +68,6 @@ const menuData = [
       { name: 'BackTop 返回顶部', path: 'back-top' },
       { name: 'CopyToClipboard 复制', path: 'copy-to-clipboard' },
       { name: 'Portal 入口', path: 'portal' },
-      { name: 'Divider 分割线', path: 'divider' },
     ],
   },
   {
