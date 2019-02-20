@@ -73,17 +73,24 @@ Visit the [uiwjs.github.io](https://uiwjs.github.io) website for more informatio
 
 ### Development
 
-To develop, run the self-reloading build, Get the code:
+Use Gitpod, a free online dev environment for GitHub.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/uiwjs/uiw)
+
+Or clone locally:
 
 ```bash
 $ git clone https://github.com/uiwjs/uiw.git
 $ cd uiw
 $ npm install # or  yarn install
+$ cd uiw/packages/core && npm install
 ```
 
 To develop, run the self-reloading build:
 
 ```bash
+$ cd ./packages/core
+npm run watch
 # Run the app
 # Restart the app automatically every time code changes. 
 # Useful during development.
@@ -105,9 +112,9 @@ Folders
 ├── README.md
 ├── package.json
 ├── packages        # Component library source code
-│   └── core
-│       ├── lib
-│       └── src
+│   ├── core
+│   |   └── src
+│   └── doc
 ├── public          # Document the static file.
 └── src             # Document website source code.
     ├── Router.js
