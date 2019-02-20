@@ -1,0 +1,12 @@
+ports:
+- port: 19870
+  onOpen: open-preview
+
+tasks:
+- before: >
+    export DEV_HOST=$(gp url 19870) &&
+    cd /workspace/uiw/packages/core &&
+    npm install &&
+    npm run watch
+  init: npm install
+  command: npm start
