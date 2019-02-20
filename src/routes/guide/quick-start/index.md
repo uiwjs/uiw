@@ -76,6 +76,10 @@ import { Button as ButtonView } from 'uiw';
 
 ## 开发
 
+使用Gitpod，GitHub的免费在线开发环境，点击打开下面链接，自动初始化项目，将开发环境跑起来。
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/uiwjs/uiw)
+
 要开发，运行自重新构建，获取代码：
 
 ```bash
@@ -84,15 +88,19 @@ $ cd uiw
 $ npm install # or  yarn install
 ```
 
-要开发，运行自重新构建：
+要开发，运行自重新构建，这里将要跑两个任务：
 
 ```bash
 # Listening compiled component code.
-$ cd packages/core
+$ cd ./packages/core
 $ npm run watch
+```
+
+```bash
 # Run the app
 # Restart the app automatically every time code changes. 
 # Useful during development.
+$ cd ./
 $ npm start
 ```
 
