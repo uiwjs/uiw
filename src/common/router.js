@@ -82,6 +82,9 @@ export const getRouterData = () => {
     '/components/select': {
       component: dynamicWrapper([], () => import('../routes/components/select')),
     },
+    '/components/split': {
+      component: dynamicWrapper([], () => import('../routes/components/split')),
+    },
     '/components/switch': {
       component: dynamicWrapper([], () => import('../routes/components/switch')),
     },

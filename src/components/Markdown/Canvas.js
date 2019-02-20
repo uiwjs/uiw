@@ -59,7 +59,7 @@ export default class Canvas extends React.Component {
   }
   onSwitchSource() {
     const { fullScreen } = this.state;
-    if (this.demoDom) {
+    if (this.warpper) {
       this.initOldHeight();
       this.setState({
         width: this.state.width === 1 ? this.oldWidth : 1,
@@ -111,7 +111,7 @@ export default class Canvas extends React.Component {
           [styles.fullScreen]: this.state.fullScreen,
         })}
       >
-        <div className={styles.demo} ref={node => this.demoDom = node}>
+        <div className={styles.demo}>
           {!bgWhite && (
             <div className={styles.background}>
               <svg width="100%" height="100%" preserveAspectRatio="none" style={{ display: 'block' }}>
@@ -129,6 +129,7 @@ export default class Canvas extends React.Component {
             </div>
           )}
         </div>
+        {/* <div className={styles.split}>ss</div> */}
         {!noCode && (
           <div
             style={{ width: this.state.width, height: this.state.height }}
