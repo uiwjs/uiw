@@ -40,7 +40,7 @@ const Demo = () => (
 )
 ```
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
   <div style={{ fontSize: 18, lineHeight: '12px' }}>
@@ -56,7 +56,7 @@ const Demo = () => (
 
 默认情况下，图标非常小，它们继承了父级的字体大小。 如果没有设置字体大小，可以通过 `size` 来设置尺寸。通常情况 `size` 会很累赘没有什么用。
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
   <div style={{ fontSize: '28px' }}>
@@ -74,7 +74,7 @@ const Demo = () => (
 
 > 一个有用的技巧是将 `fill` 设置为 `currentColor`，以便从图标容器的文本颜色继承填充颜色。
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
   <div style={{ fontSize: '28px',color: 'green' }}>
@@ -89,7 +89,7 @@ const Demo = () => (
 
 ### 与文本对齐
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
   <div>
@@ -110,7 +110,7 @@ const Demo = () => (
 > 默认：`w-icon-` 默认引用的字体文件作用域  
 > 自定定义：`w-icon-uiw-` 自定定义作用域  
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 class Demo extends Component {
   render() {
@@ -130,7 +130,7 @@ class Demo extends Component {
 
 通过设置参数 `spin={true}` 来设置图标旋转。
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
   <div style={{ fontSize: 21, color: 'green' }}>
@@ -145,7 +145,7 @@ const Demo = () => (
 
 ### 自定义图标
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const chat = (
   <svg width="20" height="20" viewBox="0 0 20 20">
@@ -213,7 +213,7 @@ const Demo = () => (
 
 ### 方向性图标
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const iconList = [
   'down-square-o','down-square','up-square-o', 'up-square','left-square-o','left-square', 'right-square-o', 'right-square',
@@ -239,7 +239,7 @@ const Demo = () => (
 
 圆圈方向性图标
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const iconList = [
   'down-circle-o', 'down-circle','up-circle-o','up-circle','left-circle-o', 'left-circle','right-circle-o', 'right-circle','play-circle-o',  'play-circle',
@@ -265,7 +265,7 @@ const Demo = () => (
 
 其它方向性图标
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const iconList = [
   'caret-down', 'arrow-down', 'caret-up','arrow-up', 'caret-left',  'arrow-left', 'caret-right','arrow-right',
@@ -294,7 +294,7 @@ const Demo = () => (
 
 ### 提示建议性图标
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const iconList = [
   'smile-o', 'smile','frown-o', 'frown','meh', 'meh-o',
@@ -321,7 +321,7 @@ const Demo = () => (
 
 ## 符号
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const iconList = [
   "plus", 'plus-circle-o','plus-circle', 'plus-square', 'plus-square-o', "question-circle-o",
@@ -350,7 +350,7 @@ const Demo = () => (
 
 ### 文件
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const iconList = [
   'file-text', 'file-jpg', 'file-unknown', 'file-add', 'file-excel', 'file-pdf',
@@ -377,7 +377,7 @@ const Demo = () => (
 
 ### 其它
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const iconList = [
   'heart-off', 'heart-on', 'star-on', 'star-off','lock', 'unlock','dashboard',
@@ -409,7 +409,7 @@ const Demo = () => (
 
 ### 品牌标识
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const iconList = ['uiw', 'windows', "linux", 'apple', 'facebook', 'twitter', 'adobe', "baidu", "ali-pay", 'android-o', 'android','reddit', 'github', 'github-o', "aliwangwang",   "dingding", "foursquare", "linkedin", "pinterest", "qq",  "weibo", "taobao", "weixin", 'css3', 'html5', ];
 
@@ -434,7 +434,7 @@ const Demo = () => (
 
 ### 浏览器图标
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const iconList = [ "chrome", "safari", "firefox", "opera", "ie", ];
 const itemStyl = {

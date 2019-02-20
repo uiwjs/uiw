@@ -9,7 +9,7 @@ import { DatePicker } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <DatePicker date={this.state.date} onChange={this.onChange.bind(this)} />
         <div>{this.state.date ? String(this.state.date) : 'no date'}</div>
       </div>
@@ -36,7 +36,7 @@ class Demo extends React.Component {
 
 ### 设置本地语言
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends React.Component {
   constructor(props) {
@@ -51,7 +51,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <DatePicker
           weekTitle={['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']}
           weekday={['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']}
@@ -69,7 +69,7 @@ class Demo extends React.Component {
 
 ### 初始展示日期
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends React.Component {
   constructor(props) {
@@ -83,7 +83,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <DatePicker
           date={this.state.date}
           onChange={this.onChange.bind(this)}
@@ -100,7 +100,7 @@ class Demo extends React.Component {
 
 通过 `disabledDate` 方法设置，今天和今天之前不能选择。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 function disabledDate(currentDate) {
   // 今天和今天之前不能选择
@@ -118,7 +118,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <DatePicker
           disabledDate={disabledDate}
           date={this.state.date && new Date(this.state.date)}

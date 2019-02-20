@@ -9,10 +9,10 @@ import { Tag } from 'uiw';
 
 ## 基础用法
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Tag>限购一份</Tag>
     <Tag color="red">限购一份</Tag>
     <Tag color="#1C7CEB">限购一份</Tag>
@@ -42,10 +42,10 @@ const Demo = () => (
 
 设置 `title="折扣"`。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Tag title="折扣" color="red">限购一份</Tag>
     <Tag title="折扣" color="#1C7CEB">限购一份</Tag>
     <Tag title="折扣" disabled color="#1C7CEB">限购一份</Tag>
@@ -74,10 +74,10 @@ const Demo = () => (
 
 ## 添加图标
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Tag title={(
       <>
         <Icon type="heart-on" verticalAlign="baseline" />

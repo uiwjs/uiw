@@ -11,7 +11,7 @@ import { Avatar } from 'uiw';
 
 头像有四种尺寸，两种形状可选。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
   <div>
@@ -36,7 +36,7 @@ const Demo = () => (
 
 支持三种类型：Icon 以及字符，其中 Icon 和字符型可以自定义图标颜色及背景色。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
   <div>
@@ -54,7 +54,7 @@ const Demo = () => (
 
 在组件上没有暴露`onError`事件，可以直接使用`<img/>`标签。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
   <div>
@@ -71,7 +71,7 @@ const Demo = () => (
 
 ## 带徽标的头像
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
   <div>

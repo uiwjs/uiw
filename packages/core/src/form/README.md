@@ -9,12 +9,10 @@ import { Form, FormItem } from 'uiw';
 
 ## 自定义校验
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
-const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
-
 const Demo = () => (
-  <div style={boxStyl}>
+  <div>
     <Form
       onSubmit={({initial, current}) => {
         const errorObj = {};
@@ -146,12 +144,10 @@ const Demo = () => (
 
 ## 水平登录栏
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
-const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
-
 const Demo = () => (
-  <div style={boxStyl}>
+  <div>
     <Form
       onSubmit={({initial, current}) => {
         console.log('-->>', initial, current);
@@ -189,12 +185,10 @@ const Demo = () => (
 
 ## 登录
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
-const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
-
 const Demo = () => (
-  <div style={boxStyl}>
+  <div>
     <Form
       onSubmit={({initial, current}) => {
         console.log('-->>', initial, current);
@@ -248,12 +242,10 @@ const Demo = () => (
 
 ## 表单提交
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
-const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
-
 const Demo = () => (
-  <div style={boxStyl}>
+  <div>
     <Form
       onSubmit={({initial, current}) => {
         console.log('-->>', initial, current);
@@ -328,12 +320,10 @@ const Demo = () => (
 
 对组件 `FormItem` 竖排展示示例。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
-const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
-
 const Demo = () => (
-  <div style={boxStyl}>
+  <div>
     <FormItem
       label="可选字段"
       labelFor="basic-input"
@@ -359,12 +349,10 @@ const Demo = () => (
 
 对组件 `FormItem` 横排展示示例。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
-const boxStyl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
-
 const Demo = () => (
-  <div style={boxStyl}>
+  <div>
     <FormItem
       inline={true}
       label="可选字段"

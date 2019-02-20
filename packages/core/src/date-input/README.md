@@ -9,7 +9,7 @@ import { DateInput } from 'uiw';
 
 ## 基本使用
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends React.Component {
   onChange(selectedDate) {
@@ -17,7 +17,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <DateInput onChange={this.onChange.bind(this)} style={{ marginRight: 10 }} />
         <DateInput disabled onChange={this.onChange.bind(this)} />
       </div>
@@ -29,10 +29,10 @@ class Demo extends React.Component {
 
 ## 在表单中使用
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Form
       onSubmit={({initial, current}) => {
         if(current.date) {
@@ -75,7 +75,7 @@ const Demo = () => (
 
 ## 日期格式
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends React.Component {
   onChange(selectedDate) {
@@ -83,7 +83,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <DateInput format="YYYY # MM # DD" onChange={this.onChange.bind(this)} style={{ marginRight: 10 }} />
       </div>
     )

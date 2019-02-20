@@ -9,62 +9,60 @@ import { Menu } from 'uiw';
 
 ### 基本用法
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: '15px 15px 15px 10px', borderRadius: '5px 5px 0 0' }}>
-    <Row justify="flex-start" gutter={10}>
-      <Col fixed>
-        <Menu bordered style={{ maxWidth: 200 }}>
-          <Menu.Item icon="reload" text="重新加载" />
-          <Menu.Divider />
-          <Menu.Item icon="heart-on" text="另存为" active />
-          <Menu.Item icon="appstore" text="应用商城" />
-          <Menu.Item icon="bar-chart" text="月统计报表导出" />
-          <Menu.Item icon="setting" text="偏好设置" />
-          <Menu.Divider />
-          <Menu.Item icon="map" text="谷歌地图" />
-        </Menu>
-      </Col>
-      <Col>
-        <Menu bordered style={{ maxWidth: 200 }}>
-          <Menu.Divider title="编辑" />
+  <Row justify="flex-start" gutter={10}>
+    <Col fixed>
+      <Menu bordered style={{ maxWidth: 200 }}>
+        <Menu.Item icon="reload" text="重新加载" />
+        <Menu.Divider />
+        <Menu.Item icon="heart-on" text="另存为" active />
+        <Menu.Item icon="appstore" text="应用商城" />
+        <Menu.Item icon="bar-chart" text="月统计报表导出" />
+        <Menu.Item icon="setting" text="偏好设置" />
+        <Menu.Divider />
+        <Menu.Item icon="map" text="谷歌地图" />
+      </Menu>
+    </Col>
+    <Col>
+      <Menu bordered style={{ maxWidth: 200 }}>
+        <Menu.Divider title="编辑" />
+        <Menu.Item icon="file-add" text="添加文件" />
+        <Menu.Item icon="folder-add" text="添加文件夹" />
+        <Menu.Item icon="copy" text="拷贝" />
+        <Menu.Item icon="delete" disabled text="删除" />
+        <Menu.Divider title="其它" />
+        <Menu.Item icon="bar-chart" text="月统计报表导出">
           <Menu.Item icon="file-add" text="添加文件" />
           <Menu.Item icon="folder-add" text="添加文件夹" />
+          <Menu.Divider title="类别" />
           <Menu.Item icon="copy" text="拷贝" />
-          <Menu.Item icon="delete" disabled text="删除" />
-          <Menu.Divider title="其它" />
-          <Menu.Item icon="bar-chart" text="月统计报表导出">
+          <Menu.Item icon="bar-chart" text="报表">
             <Menu.Item icon="file-add" text="添加文件" />
-            <Menu.Item icon="folder-add" text="添加文件夹" />
-            <Menu.Divider title="类别" />
-            <Menu.Item icon="copy" text="拷贝" />
-            <Menu.Item icon="bar-chart" text="报表">
+            <Menu.Item icon="folder-add" text="添加文件夹">
               <Menu.Item icon="file-add" text="添加文件" />
-              <Menu.Item icon="folder-add" text="添加文件夹">
-                <Menu.Item icon="file-add" text="添加文件" />
-                <Menu.Item icon="folder-add" text="添加文件夹" />
-              </Menu.Item>
+              <Menu.Item icon="folder-add" text="添加文件夹" />
             </Menu.Item>
           </Menu.Item>
-          <Menu.Item icon="bar-chart" text="月统计报表导出" />
-          <Menu.Item icon="setting" disabled text="偏好设置">
-            <Menu.Item icon="file-add" text="添加文件" />
-            <Menu.Item icon="folder-add" text="添加文件夹" />
-          </Menu.Item>
-          <Menu.Item icon="setting" disabled text="偏好设置" />
-          <Menu.Item icon="map" text="谷歌地图" />
-        </Menu>
-      </Col>
-    </Row>
-  </div>
+        </Menu.Item>
+        <Menu.Item icon="bar-chart" text="月统计报表导出" />
+        <Menu.Item icon="setting" disabled text="偏好设置">
+          <Menu.Item icon="file-add" text="添加文件" />
+          <Menu.Item icon="folder-add" text="添加文件夹" />
+        </Menu.Item>
+        <Menu.Item icon="setting" disabled text="偏好设置" />
+        <Menu.Item icon="map" text="谷歌地图" />
+      </Menu>
+    </Col>
+  </Row>
 )
 ```
 <!--End-->
 
 ### 下拉菜单
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const btnStl = {position: 'relative', width: 70 }
 const content = (
@@ -81,7 +79,7 @@ const content = (
   </Menu>
 )
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <div style={{ position: 'relative' }}>
 
       <Popover trigger="click" placement="topLeft" content={content}>

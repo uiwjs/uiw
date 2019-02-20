@@ -9,7 +9,7 @@ import { CopyToClipboard } from 'uiw';
 
 ## 基础实例
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends Component {
   constructor() {
@@ -20,7 +20,7 @@ class Demo extends Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <CopyToClipboard
           text="我被一个连接复制了！"
           onClick={() => {
@@ -43,7 +43,7 @@ class Demo extends Component {
 
 ## 复制输入框内容
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends Component {
   constructor(props){
@@ -60,7 +60,7 @@ class Demo extends Component {
   render() {
     const { copyText } = this.state;
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <div>
           <Input
             type="text"

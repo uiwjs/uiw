@@ -11,7 +11,7 @@ import { Popover } from 'uiw';
 
 最简单的用法。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends React.Component {
   constructor() {
@@ -28,7 +28,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <Popover
           trigger="click"
           placement="top"
@@ -61,7 +61,7 @@ class Demo extends React.Component {
 
 位置有 `12` 个方向，根据 `placement` 参数来设置。
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const btnStl = {position: 'relative', width: 70 }
 const content = (
@@ -70,7 +70,7 @@ const content = (
   </Card>
 )
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <div style={{ position: 'relative' }}>
 
       <Popover trigger="click" placement="topLeft" content={content}>
@@ -134,7 +134,7 @@ const Demo = () => (
 
 ### 鼠标经过弹出目标
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const btnStl = {position: 'relative', width: 70 }
 const content = (
@@ -150,7 +150,7 @@ const content = (
   </Card>
 )
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Popover trigger="hover" placement="top" content={content}>
       <Button>鼠标经过弹出目标</Button>
     </Popover>
@@ -163,7 +163,7 @@ const Demo = () => (
 
 通过设置 `trigger="focus"` 让 `Input` 组件在获取焦点的时候展示 `Popover`
 
-<!--DemoStart-->
+<!--DemoStart,bgWhite-->
 ```js
 const btnStl = {position: 'relative', width: 70 }
 class Demo extends React.Component {
@@ -213,7 +213,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <div style={{ width: 200 }}>
           <Popover
             trigger="focus"
@@ -236,7 +236,7 @@ class Demo extends React.Component {
 
 设置 `usePortal={false}` 将模态对话框生成到根节点的里面，这样为了计算位置准确，你需要将父层样式设为 `position: relative;` 。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends React.Component {
   constructor() {
@@ -253,7 +253,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <div style={{ position: 'relative' }}>
           <Popover
             trigger="click"

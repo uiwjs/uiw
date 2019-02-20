@@ -9,7 +9,7 @@ import { Overlay } from 'uiw';
 
 ### 基本用法
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends React.PureComponent {
   constructor(props) {
@@ -51,7 +51,7 @@ class Demo extends React.PureComponent {
 
 [`Portals`](https://reactjs.org/docs/portals.html#event-bubbling-through-portals) 是 react 16 提供的官方解决方案，使得组件可以脱离父组件层级挂载在 DOM 树的任何位置，我们利用这个方法，可将模态对话框生成到根节点的外面，默认情况生成到跟节点的外面，通过将 `usePortal` 设置为 `false` 将对话框生成在父组件层级挂载的 DOM 树中。 
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends React.PureComponent {
   constructor(props) {
@@ -85,7 +85,7 @@ class Demo extends React.PureComponent {
 
 动画过渡效果是根据 [`react-transition-group`](https://github.com/reactjs/react-transition-group) 组件封装。动画时长参数 `transitionDuration={1000}` 是根据 CSS 动画样式持续时长来定义。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends React.PureComponent {
   constructor(props) {

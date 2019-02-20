@@ -11,11 +11,10 @@ import { Select } from 'uiw';
 
 适用广泛的基础单选 `value` 的值为当前被选中的 `Option` 的 `value` 属性值。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
-const styl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
 const Demo = () => (
-  <Row style={styl}>
+  <Row>
     <Col fixed>
       <Select defaultValue="w">
         <Select.Option value="w">Choose an item...</Select.Option>
@@ -33,11 +32,10 @@ const Demo = () => (
 
 ### 禁用选择器
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
-const styl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
 const Demo = () => (
-  <Row style={styl}>
+  <Row>
     <Col fixed>
       <Select disabled defaultValue="3">
         <Select.Option value="w">Choose an item...</Select.Option>
@@ -57,12 +55,11 @@ const Demo = () => (
 
 通过 `size` 属性设置选择器的尺寸，提供三个尺寸参数设置。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
-const styl = { backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' };
 const rowSty = { marginBottom: 10 };
 const Demo = () => (
-  <div style={styl}>
+  <div>
     <Row gutter={10}>
       <Col fixed>
         <Select size="small" disabled defaultValue="3" style={rowSty}>
@@ -118,7 +115,7 @@ const Demo = () => (
 import 'uiw/lib/esm/select/style/index.less';
 ```
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
   <Row style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }} gutter={10}>

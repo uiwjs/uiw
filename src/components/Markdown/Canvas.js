@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import CodeMirror from '@uiw/react-codemirror';
 import classNames from 'classnames';
 import { transform } from '@babel/standalone';
+import icon from './icon';
 import styles from './index.module.less';
 import 'codemirror/keymap/sublime';
 import './monokai.css';
@@ -14,10 +15,10 @@ export default class Canvas extends React.Component {
     super(props);
     this.state = {
       code: '',
-      height: 1,
+      height: '100%',
       width: 1,
-      maxHeight: 'auto',
       visible: false,
+      fullScreen: false,
     };
     this.playerId = `${parseInt(Math.random() * 1e9, 10).toString(36)}`;
   }
@@ -28,18 +29,42 @@ export default class Canvas extends React.Component {
     }
     this.initHeight = 3;
   }
-  onSwitchSource() {
-    if (this.demoDom) {
-      const demo = document.getElementById(this.playerId);
-      if (this.initHeight === 3) {
-        this.initHeight = demo.clientHeight;
+  setOutsideHeight(fullScreen) {
+    if (this.warpper) {
+      this.warpper.style.height = fullScreen ? '100%' : `${this.oldHeight}px`;
+    }
+  }
+  onFullScreen() {
+    const { fullScreen } = this.state;
+    this.initOldHeight();
+    this.setState({ fullScreen: !fullScreen }, () => {
+      this.setOutsideHeight(!fullScreen);
+      document.body.style.overflow = !fullScreen ? 'hidden' : 'inherit';
+      if (this.demoDom) {
+        // this.initHeight = !fullScreen ? this.demoDom.clientHeight : this.oldHeight;
+        this.setState({
+          // width: 1,
+          // height: this.initHeight,
+        });
       }
-
-      const height = this.initHeight > 300 ? this.initHeight : 300;
+    });
+  }
+  initOldHeight() {
+    const demo = document.getElementById(this.playerId);
+    this.oldHeight = demo.clientHeight;
+    this.initHeight = demo.clientHeight;
+    const width = demo.clientWidth / 2;
+    this.oldWidth = width < 300 ? demo.clientWidth : width;
+  }
+  onSwitchSource() {
+    const { fullScreen } = this.state;
+    if (this.demoDom) {
+      if (this.initHeight === 3) {
+        this.initOldHeight();
+      }
+      this.setOutsideHeight(fullScreen);
       this.setState({
-        width: this.state.width === 1 ? this.demoDom.clientWidth / 2 : 1,
-        height: this.state.width === 1 ? height : this.initHeight,
-        maxHeight: this.initHeight,
+        width: this.state.width === 1 ? this.oldWidth : 1,
         visible: true,
       });
     }
@@ -73,7 +98,12 @@ export default class Canvas extends React.Component {
   render() {
     const { parame: { noCode, noPreview, bgWhite } } = this.props;
     return (
-      <div className={styles.warpper} ref={node => this.warpperDom = node}>
+      <div
+        ref={node => this.warpper = node}
+        className={classNames(styles.warpper, {
+          [styles.fullScreen]: this.state.fullScreen,
+        })}
+      >
         <div className={styles.demo} ref={node => this.demoDom = node}>
           {!bgWhite && (
             <div className={styles.background}>
@@ -87,7 +117,7 @@ export default class Canvas extends React.Component {
             </div>
           )}
           {!noPreview && (
-            <div className={styles.scroll} style={{ maxHeight: this.state.maxHeight }}>
+            <div className={styles.scroll}>
               <div className={styles.source} id={this.playerId} />
             </div>
           )}
@@ -114,7 +144,12 @@ export default class Canvas extends React.Component {
           </div>
         )}
         {!noCode && (
-          <div className={styles.controlBtn} onClick={this.onSwitchSource.bind(this)}>{this.state.width === 1 ? '显示代码' : '隐藏代码'}</div>
+          <div className={styles.control}>
+            <div className={styles.btn} onClick={this.onSwitchSource.bind(this)}>{this.state.width === 1 ? '显示代码' : '隐藏代码'}</div>
+            <div className={styles.fullScreenBtn} onClick={this.onFullScreen.bind(this)}>
+              {icon.full}
+            </div>
+          </div>
         )}
       </div>
     );

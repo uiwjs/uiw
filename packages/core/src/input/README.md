@@ -9,10 +9,10 @@ import { Input } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Input placeholder="请输入内容" />
   </div>
 );
@@ -21,11 +21,11 @@ const Demo = () => (
 
 ### 插入图标
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const stylItem = { margin: 20 };
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Row gutter={10}>
       <Col fixed>
         <Input preIcon="delete" placeholder="请输入内容" />
@@ -49,10 +49,10 @@ const Demo = () => (
 
 向后面插入 [`Button`](#/components/button) 或者 [`Tag`](#/components/tag)
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Row gutter={10}>
       <Col fixed>
         <Input
@@ -93,10 +93,10 @@ const Demo = () => (
 
 ### 输入框尺寸
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Row gutter={10} style={{ marginBottom: 10 }}>
       <Col fixed>
         <Input
@@ -201,7 +201,7 @@ const Demo = () => (
 
 ### 密码输入框
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 class Demo extends Component {
   constructor() {
@@ -218,7 +218,7 @@ class Demo extends Component {
   }
   render() {
     return (
-      <Row gutter={10} style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <Row gutter={10}>
         <Col fixed>
           <Input
             preIcon="like-o"
@@ -236,11 +236,11 @@ class Demo extends Component {
 
 ### 输入框被禁用
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const stylItem = { margin: 20 };
 const Demo = () => (
-  <Row gutter={10} style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <Row gutter={10}>
     <Col fixed>
       <Input disabled preIcon="delete" placeholder="请输入内容" />
     </Col>

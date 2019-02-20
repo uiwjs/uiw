@@ -11,10 +11,10 @@ import { Radio, RadioGroup } from 'uiw';
 
 适用广泛的基础最简单的用法，展示各种状态下的样式。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Radio value="1">Radio</Radio>
     <Radio value="2" checked>选中</Radio>
     <Radio value="3" disabled>禁用</Radio>
@@ -28,7 +28,7 @@ const Demo = () => (
 
 适用广泛的基础最简单的用法。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 class Demo extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class Demo extends Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <RadioGroup name="sexs" value={this.state.value} onChange={this.onChange.bind(this)}>
           <Radio value="man">男</Radio>
           <Radio value="girl">女</Radio>
@@ -58,7 +58,7 @@ class Demo extends Component {
 
 设置单选初始值
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 class Demo extends Component {
   constructor(props) {
@@ -70,7 +70,7 @@ class Demo extends Component {
   }
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         <RadioGroup name="other" value={this.state.value} onChange={this.onChange.bind(this)}>
           <div>Group 1</div>
           <Radio value="男">男</Radio>

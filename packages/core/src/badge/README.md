@@ -9,7 +9,7 @@ import { Badge } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
   <Badge count={ 12 }>
@@ -23,7 +23,7 @@ const Demo = () => (
 
 不包裹任何元素即是独立使用，可自定样式展现。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const styl={ marginRight: 20, display: 'inline-block' }
 const Demo = () => (
@@ -55,7 +55,7 @@ const Demo = () => (
 
 不包裹任何元素即是独立使用，可自定样式展现。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
   <div>
@@ -71,7 +71,7 @@ const Demo = () => (
 
 以红点的形式标注需要关注的内容。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
   <div>
@@ -90,7 +90,7 @@ const Demo = () => (
 
 用于表示状态的小圆点。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
   <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>

@@ -11,10 +11,10 @@ import { Rate } from 'uiw';
 
 按钮样式的单选组合。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Rate value={3} />
     <Divider />
     <Rate color="#393E48" character="☆" value={4} />
@@ -31,10 +31,10 @@ const Demo = () => (
 
 按钮样式的单选组合。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Rate readOnly value={3} />
     <Divider />
     <Rate readOnly character="☆" value={4} />
@@ -51,10 +51,10 @@ const Demo = () => (
 
 按钮样式的单选组合。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Rate character="美" value={4} />
     <Divider />
     <Rate color="#d80000" character="好" value={3} />
@@ -67,10 +67,10 @@ const Demo = () => (
 
 ### 半选显示
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <Rate character={<Icon type="heart-on" />} value={3.3} />
     <Divider />
     <Rate color="#d80000" character={<Icon type="heart-on" />} value={4.3} />
@@ -81,13 +81,13 @@ const Demo = () => (
 
 ### 尺寸
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-    <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
-      <Rate style={{ fontSize: 34 }} character={<Icon type="heart-on" />} value={3} />
-    </div>
-  )
+  <div>
+    <Rate style={{ fontSize: 34 }} character={<Icon type="heart-on" />} value={3} />
+  </div>
+)
 ```
 <!--End-->
 

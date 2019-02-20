@@ -11,11 +11,11 @@ import { Divider } from 'uiw';
 
 基础实例包含虚线分割线、带文本的分割线、实线分割线。
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 
 const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+  <div>
     <div style={{ maxWidth: 530 }}>
       <div>周星驰： 香港演员、导演。祖籍浙江宁波，1962年6月22日生于香港，他是香港最为重要的喜剧片演员与编导之一。中学毕业以后考入香港无线电视台艺员训练班的夜间部。结业后成为无线艺人，最初曾在《香城浪子》《射雕英雄传》等剧集中担任临时演员。</div>
       <Divider />
@@ -33,12 +33,12 @@ const Demo = () => (
 
 ## 垂直分割线
 
-<!--DemoStart--> 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends Component {
   render() {
     return (
-      <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+      <div>
         首页
         <Divider type="vertical" />
         <a href="#">列表页面</a>
