@@ -65,11 +65,12 @@ export default class Split extends React.Component {
           const count = React.Children.count(child);
           const props = Object.assign({}, element.props, {
             className: classnames(`${prefixCls}-pane`),
-            style: { ...element.props.style, flexBasis: `${100 / count}%` },
+            style: { flexBasis: `${100 / count}%`, ...element.props.style },
           });
+          const visiableBar = visiable === true || (visiable && visiable.includes(idx + 1)) ? true : false;
           return (
             <React.Fragment>
-              {idx !== 0 && visiable && React.createElement('div', {
+              {idx !== 0 && visiableBar && React.createElement('div', {
                 className: `${prefixCls}-bar`,
                 onMouseDown: this.onMouseDown,
               })}
@@ -84,7 +85,7 @@ export default class Split extends React.Component {
 
 Split.propTypes = {
   prefixCls: PropTypes.string,
-  visiable: PropTypes.bool,
+  visiable: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   mode: PropTypes.oneOf(['horizontal', 'vertical']),
 };
 
