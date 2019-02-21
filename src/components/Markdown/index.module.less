@@ -11,12 +11,6 @@
   margin-bottom: 16px;
 }
 
-.demo {
-  position: relative;
-  min-height: 0;
-  min-width: 0;
-}
-
 .background {
   box-sizing: border-box;
   position: absolute;
@@ -38,9 +32,7 @@
 
 .code {
   background-color: #f0f0f0;
-  transition: all .3s;
   overflow: hidden;
-  z-index: 1;
 }
 
 .visible {
@@ -87,11 +79,7 @@
     transition: all .3s;
   }
   .demo {
-    flex: 1;
-    .scroll {
-      overflow: auto;
-      height: 100%;
-    }
+    overflow: auto;
   }
   &.fullScreen {
     position: fixed;
