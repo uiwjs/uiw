@@ -40,19 +40,26 @@ export default class Split extends React.Component {
     const prevTarget = this.target.previousElementSibling;
     const x = env.clientX - this.startX;
     const y = env.clientY - this.startY;
+    this.preSize = 0;
+    this.nextSize = 0;
     if (mode === 'horizontal') {
-      prevTarget.style.maxWidth = `${this.preWidth + x}px`;
-      nextTarget.style.maxWidth = `${this.nextWidth - x}px`;
-      onChange && onChange(this.preWidth + x, this.nextWidth - x, this.paneNumber);
+      this.preSize = this.preWidth + x;
+      this.nextSize = this.nextWidth - x;
+      prevTarget.style.maxWidth = `${this.preSize}px`;
+      nextTarget.style.maxWidth = `${this.nextSize}px`;
     }
     if (mode === 'vertical') {
-      prevTarget.style.maxHeight = `${this.preHeight + y}px`;
-      nextTarget.style.maxHeight = `${this.nextHeight - y}px`;
-      onChange && onChange(this.preWidth + x, this.nextWidth - x, this.paneNumber);
+      this.preSize = this.preHeight + x;
+      this.nextSize = this.nextHeight - x;
+      prevTarget.style.maxHeight = `${this.preSize}px`;
+      nextTarget.style.maxHeight = `${this.nextSize}px`;
     }
+    onChange && onChange(this.preSize, this.nextSize, this.paneNumber);
   }
   onDragEnd() {
+    const { onDragEnd } = this.props;
     this.move = false;
+    onDragEnd && onDragEnd(this.preSize, this.nextSize, this.paneNumber);
     this.removeEvent();
   }
   render() {
@@ -91,6 +98,7 @@ export default class Split extends React.Component {
 Split.propTypes = {
   prefixCls: PropTypes.string,
   onChange: PropTypes.func,
+  onDragEnd: PropTypes.func,
   disable: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   visiable: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   mode: PropTypes.oneOf(['horizontal', 'vertical']),
