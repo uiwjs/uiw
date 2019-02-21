@@ -6,14 +6,18 @@ import './style/index.less';
 export default class Split extends React.Component {
   constructor(props) {
     super(props);
-    this.onMouseDown = this.onMouseDown.bind(this);
     this.onDragEnd = this.onDragEnd.bind(this);
     this.onDragging = this.onDragging.bind(this);
   }
   componentWillUnmount() {
     this.removeEvent();
   }
-  onMouseDown(env) {
+  removeEvent() {
+    window.removeEventListener('mousemove', this.onDragging, false);
+    window.removeEventListener('mouseup', this.onDragEnd, false);
+  }
+  onMouseDown(paneNumber, env) {
+    this.paneNumber = paneNumber;
     this.startX = env.clientX;
     this.startY = env.clientY;
     this.move = true;
@@ -27,28 +31,24 @@ export default class Split extends React.Component {
     window.addEventListener('mousemove', this.onDragging, false);
     window.addEventListener('mouseup', this.onDragEnd, false);
   }
-  removeEvent() {
-    window.removeEventListener('mousemove', this.onDragging, false);
-    window.removeEventListener('mouseup', this.onDragEnd, false);
-  }
   onDragging(env) {
     if (!this.move) {
       return;
     }
-    const { mode } = this.props;
+    const { mode, onChange } = this.props;
     const nextTarget = this.target.nextElementSibling;
     const prevTarget = this.target.previousElementSibling;
-    const currentX = env.clientX;
-    const currentY = env.clientY;
-    const x = currentX - this.startX;
-    const y = currentY - this.startY;
+    const x = env.clientX - this.startX;
+    const y = env.clientY - this.startY;
     if (mode === 'horizontal') {
       prevTarget.style.maxWidth = `${this.preWidth + x}px`;
       nextTarget.style.maxWidth = `${this.nextWidth - x}px`;
+      onChange && onChange(this.preWidth + x, this.nextWidth - x, this.paneNumber);
     }
     if (mode === 'vertical') {
       prevTarget.style.maxHeight = `${this.preHeight + y}px`;
       nextTarget.style.maxHeight = `${this.nextHeight - y}px`;
+      onChange && onChange(this.preWidth + x, this.nextWidth - x, this.paneNumber);
     }
   }
   onDragEnd() {
@@ -70,7 +70,7 @@ export default class Split extends React.Component {
           const visiableBar = visiable === true || (visiable && visiable.includes(idx + 1)) ? true : false;
           const barProps = {
             className: `${prefixCls}-bar`,
-            onMouseDown: this.onMouseDown,
+            onMouseDown: this.onMouseDown.bind(this, idx + 1),
           };
           if (disable === true || (disable && disable.includes(idx + 1))) {
             barProps.className = classnames(`${prefixCls}-bar`, { disable });
@@ -90,6 +90,7 @@ export default class Split extends React.Component {
 
 Split.propTypes = {
   prefixCls: PropTypes.string,
+  onChange: PropTypes.func,
   disable: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   visiable: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   mode: PropTypes.oneOf(['horizontal', 'vertical']),
