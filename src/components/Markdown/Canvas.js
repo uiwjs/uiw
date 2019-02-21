@@ -45,6 +45,9 @@ export default class Canvas extends React.Component {
     this.setState({ fullScreen: !fullScreen }, () => {
       this.setOutsideHeight(!fullScreen);
       document.body.style.overflow = !fullScreen ? 'hidden' : 'inherit';
+      if (!fullScreen && this.demoBox) {
+        this.demoBox.style.maxWidth = 'inherit';
+      }
     });
   }
   initOldHeight() {
@@ -115,7 +118,7 @@ export default class Canvas extends React.Component {
         })}
       >
         <Split style={{ flex: 1 }} visiable={this.state.width !== 1}>
-          <div className={styles.demo} style={styl}>
+          <div className={styles.demo} style={styl} ref={node => this.demoBox = node}>
             {!bgWhite && (
               <div className={styles.background}>
                 <svg width="100%" height="100%" preserveAspectRatio="none" style={{ display: 'block' }}>
