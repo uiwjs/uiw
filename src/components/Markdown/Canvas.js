@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Split } from 'uiw';
 import CodeMirror from '@uiw/react-codemirror';
 import classNames from 'classnames';
 import { transform } from '@babel/standalone';
@@ -35,9 +36,7 @@ export default class Canvas extends React.Component {
       let height = this.oldHeight < 300 ? 300 : this.oldHeight;
       if ((width === 1 && fullScreen === false)) {
         height = this.oldHeight;
-        console.log('height:1:', height);
       }
-      console.log('height:2:', height);
       this.warpper.style.height = fullScreen ? '100%' : `${height}px`;
     }
   }
@@ -104,6 +103,10 @@ export default class Canvas extends React.Component {
   }
   render() {
     const { parame: { noCode, noPreview, bgWhite } } = this.props;
+    const styl = {};
+    if (this.state.width === 1) {
+      styl.maxWidth = 'initial';
+    }
     return (
       <div
         ref={node => this.warpper = node}
@@ -111,46 +114,47 @@ export default class Canvas extends React.Component {
           [styles.fullScreen]: this.state.fullScreen,
         })}
       >
-        <div className={styles.demo}>
-          {!bgWhite && (
-            <div className={styles.background}>
-              <svg width="100%" height="100%" preserveAspectRatio="none" style={{ display: 'block' }}>
-                <pattern id="pattern" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
-                  <rect fill="rgba(0, 0, 0, 0.06)" x="0" width="8" height="8" y="0" />
-                  <rect fill="rgba(0, 0, 0, 0.06)" x="8" width="8" height="8" y="8" />
-                </pattern>
-                <rect fill="url(#pattern)" x="0" y="0" width="100%" height="100%" />
-              </svg>
-            </div>
-          )}
-          {!noPreview && (
-            <div className={styles.scroll}>
-              <div className={styles.source} id={this.playerId} />
-            </div>
-          )}
-        </div>
-        {/* <div className={styles.split}>ss</div> */}
-        {!noCode && (
-          <div
-            style={{ width: this.state.width, height: this.state.height }}
-            className={classNames(styles.code)}
-          >
-            {this.state.visible && (
-              <CodeMirror
-                value={trim(this.props.children)}
-                ref={this.getInstance}
-                onChange={(editor) => {
-                  this.executeCode(editor.getValue());
-                }}
-                options={{
-                  theme: 'monokai',
-                  keyMap: 'sublime',
-                  mode: 'jsx',
-                }}
-              />
+        <Split style={{ flex: 1 }} visiable={this.state.width !== 1}>
+          <div className={styles.demo} style={styl}>
+            {!bgWhite && (
+              <div className={styles.background}>
+                <svg width="100%" height="100%" preserveAspectRatio="none" style={{ display: 'block' }}>
+                  <pattern id="pattern" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+                    <rect fill="rgba(0, 0, 0, 0.06)" x="0" width="8" height="8" y="0" />
+                    <rect fill="rgba(0, 0, 0, 0.06)" x="8" width="8" height="8" y="8" />
+                  </pattern>
+                  <rect fill="url(#pattern)" x="0" y="0" width="100%" height="100%" />
+                </svg>
+              </div>
+            )}
+            {!noPreview && (
+              <div className={styles.scroll}>
+                <div className={styles.source} id={this.playerId} />
+              </div>
             )}
           </div>
-        )}
+          {!noCode && (
+            <div
+              style={{ maxWidth: this.state.width, height: this.state.height }}
+              className={classNames(styles.code)}
+            >
+              {this.state.visible && (
+                <CodeMirror
+                  value={trim(this.props.children)}
+                  ref={this.getInstance}
+                  onChange={(editor) => {
+                    this.executeCode(editor.getValue());
+                  }}
+                  options={{
+                    theme: 'monokai',
+                    keyMap: 'sublime',
+                    mode: 'jsx',
+                  }}
+                />
+              )}
+            </div>
+          )}
+        </Split>
         {!noCode && (
           <div className={styles.control}>
             <div className={styles.btn} onClick={this.onSwitchSource.bind(this)}>{this.state.width === 1 ? '显示代码' : '隐藏编辑器'}</div>
