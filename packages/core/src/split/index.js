@@ -35,7 +35,7 @@ export default class Split extends React.Component {
     if (!this.move) {
       return;
     }
-    const { mode, onChange } = this.props;
+    const { mode, onDragging } = this.props;
     const nextTarget = this.target.nextElementSibling;
     const prevTarget = this.target.previousElementSibling;
     const x = env.clientX - this.startX;
@@ -54,7 +54,7 @@ export default class Split extends React.Component {
       prevTarget.style.maxHeight = `${this.preSize}px`;
       nextTarget.style.maxHeight = `${this.nextSize}px`;
     }
-    onChange && onChange(this.preSize, this.nextSize, this.paneNumber);
+    onDragging && onDragging(this.preSize, this.nextSize, this.paneNumber);
   }
   onDragEnd() {
     const { onDragEnd } = this.props;
@@ -97,7 +97,7 @@ export default class Split extends React.Component {
 
 Split.propTypes = {
   prefixCls: PropTypes.string,
-  onChange: PropTypes.func,
+  onDragging: PropTypes.func,
   onDragEnd: PropTypes.func,
   disable: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   visiable: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
