@@ -5,7 +5,7 @@
     text-align: center;
     padding: 0 0 3px 0;
     border-bottom: 1px solid #ececec;
-    &-year, &-month {
+    &-pane {
       transition: background-color .3s;
       display: inline-block;
       border-radius: 3px;
@@ -18,9 +18,35 @@
       &:active {
         background-color: #d2d2d2;
       }
+      &.year + &.month {
+        margin-left: 5px;
+      }
     }
-    &-year + &-month {
-      margin-left: 5px;
+    &-today {
+      cursor: pointer;
+      background: #676767;
+      border-radius: 3px;
+      display: inline-block;
+      height: 10px;
+      width: 10px;
+      overflow: hidden;
+      margin: 0 0 0 2px;
+      transition: background-color .3s;
+      &::before {
+        content: '';
+        display: block;
+        height: 4px;
+        width: 4px;
+        border-radius: 3px;
+        margin: 3px 0 0 3px;
+        background-color: #a0a0a0;
+      }
+      &:hover {
+        background-color: #2EA3F4;
+        &::before {
+          background-color: #fff;
+        }
+      }
     }
   }
 }

@@ -18,7 +18,7 @@ export default class DatePicker extends React.Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.date !== this.props.date) {
-      this.setState({ date: nextProps.date });
+      this.setState({ date: nextProps.date, panelDate: new Date(nextProps.date) });
     }
     if (nextProps.panelDate !== this.props.panelDate) {
       this.setState({ panelDate: nextProps.panelDate });
@@ -28,6 +28,11 @@ export default class DatePicker extends React.Component {
     this.props.onChange(date);
   }
   onSelected = (type) => {
+    const { today } = this.props;
+    if (type === 'today') {
+      this.setState({ panelDate: today, date: today }, () => this.onChange(today));
+      return;
+    }
     this.setState({ type });
   }
   onSelectedDate(type, month, paging) {
@@ -47,11 +52,12 @@ export default class DatePicker extends React.Component {
     });
   }
   render() {
-    const { prefixCls, className, weekday, weekTitle, monthLabel, date, today, panelDate, disabledDate, onChange, ...other } = this.props;
+    const { prefixCls, className, weekday, weekTitle, monthLabel, date, today, todayLabel, panelDate, disabledDate, onChange, ...other } = this.props;
     const { type } = this.state;
     return (
       <div className={classnames(prefixCls, className)} {...other}>
         <PickerDayCaption
+          todayLabel={todayLabel}
           panelDate={this.state.panelDate}
           monthLabel={monthLabel}
           onSelected={this.onSelected}
@@ -104,10 +110,12 @@ DatePicker.propTypes = {
   date: PropTypesDate,
   panelDate: PropTypesDate,
   today: PropTypesDate,
+  todayLabel: PropTypes.string,
 };
 
 DatePicker.defaultProps = {
   prefixCls: 'w-datepicker',
+  todayLabel: '今天',
   onChange() { },
   disabledDate() { },
   weekday: ['日', '一', '二', '三', '四', '五', '六'],
