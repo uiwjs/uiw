@@ -49,8 +49,8 @@ export default class Split extends React.Component {
       nextTarget.style.maxWidth = `${this.nextSize}px`;
     }
     if (mode === 'vertical') {
-      this.preSize = this.preHeight + x;
-      this.nextSize = this.nextHeight - x;
+      this.preSize = this.preHeight + y;
+      this.nextSize = this.nextHeight - y;
       prevTarget.style.maxHeight = `${this.preSize}px`;
       nextTarget.style.maxHeight = `${this.nextSize}px`;
     }
