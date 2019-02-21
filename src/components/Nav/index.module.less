@@ -16,7 +16,7 @@
     text-align: center;
     &:global {
       &:hover svg.gitee path {
-        fill: #C71D23;
+        fill: #C71D23 !important;
       }
     }
   }
@@ -49,6 +49,12 @@
     &.outerUrl {
       padding: 4px 6px;
       margin: 0 0;
+    }
+    &:hover:not(.selected) {
+      color: #1890ff;
+      svg path {
+        fill: #1890ff;
+      }
     }
   }
   .selected {
