@@ -56,7 +56,7 @@ export default class Split extends React.Component {
     this.removeEvent();
   }
   render() {
-    const { prefixCls, className, children, mode, ...other } = this.props;
+    const { prefixCls, className, children, mode, visiable, ...other } = this.props;
     const cls = classnames(prefixCls, className, `${prefixCls}-${mode}`);
     const child = React.Children.toArray(children);
     return (
@@ -69,7 +69,7 @@ export default class Split extends React.Component {
           });
           return (
             <React.Fragment>
-              {idx !== 0 && React.createElement('div', {
+              {idx !== 0 && visiable && React.createElement('div', {
                 className: `${prefixCls}-bar`,
                 onMouseDown: this.onMouseDown,
               })}
@@ -84,10 +84,12 @@ export default class Split extends React.Component {
 
 Split.propTypes = {
   prefixCls: PropTypes.string,
+  visiable: PropTypes.bool,
   mode: PropTypes.oneOf(['horizontal', 'vertical']),
 };
 
 Split.defaultProps = {
   prefixCls: 'w-split',
+  visiable: true,
   mode: 'horizontal',
 };

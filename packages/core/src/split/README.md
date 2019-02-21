@@ -93,8 +93,26 @@ const Demo = () => (
 ```
 <!--End-->
 
+### 拖拽工具不显示
+
+<!--DemoStart,bgWhite--> 
+```js
+const Demo = () => (
+  <Split visiable={false} style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3 }}>
+    <div style={{ minWidth: 30 }}>
+      Left Pane
+    </div>
+    <div style={{ minWidth: 30 }}>
+      Right Pane
+    </div>
+  </Split>
+);
+```
+<!--End-->
+
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
+| visiable | 设置拖拽的工具，是否可见 | Boolean | `true` |
 | mode | 类型，可选值为 `horizontal` 或 `vertical` | String | `horizontal` |
