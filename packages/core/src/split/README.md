@@ -9,13 +9,13 @@ import { Split } from 'uiw';
 
 ### 基础用法
 
-通过设置子节点的 `minWidth` 样式，即可设置拖拽最小宽度值。
+通过设置子节点的 `minWidth` 样式，即可设置拖拽最小宽度值。通过设置子节点样式 `flexBasis` 样式即可设置默认分割内容的占比宽度。
 
 <!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
   <Split style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3 }}>
-    <div style={{ minWidth: 30 }}>
+    <div style={{ minWidth: 30, flexBasis: '20%' }}>
       Left Pane
     </div>
     <div style={{ minWidth: 30 }}>
@@ -32,7 +32,7 @@ const Demo = () => (
 ```js
 const Demo = () => (
   <Split style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3 }}>
-    <div>
+    <div style={{ minWidth: 20, maxWidth: 30 }}>
       Left Pane
     </div>
     <div>
@@ -95,17 +95,38 @@ const Demo = () => (
 
 ### 拖拽工具不显示
 
+下面实例通过设置 `visiable` 的值来设置拖拽工具是否可见
+
 <!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <Split visiable={false} style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3 }}>
-    <div style={{ minWidth: 30 }}>
-      Left Pane
-    </div>
-    <div style={{ minWidth: 30 }}>
-      Right Pane
-    </div>
-  </Split>
+  <div>
+    <Split visiable={false} style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3 }}>
+      <div style={{ maxWidth: 100, backgroundColor: '#eaeaea' }}>
+        Left Pane
+      </div>
+      <div>
+        Right Pane
+      </div>
+    </Split>
+    <Split visiable={[4, 5]} style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3, marginTop: 10 }}>
+      <div style={{ maxWidth: 50, backgroundColor: '#eaeaea' }}>
+        Pane 1
+      </div>
+      <div style={{ maxWidth: 60 }}>
+        Pane 2
+      </div>
+      <div>
+        Pane 3
+      </div>
+      <div>
+        Pane 4
+      </div>
+      <div>
+        Pane 5
+      </div>
+    </Split>
+  </div>
 );
 ```
 <!--End-->
@@ -114,5 +135,5 @@ const Demo = () => (
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| visiable | 设置拖拽的工具，是否可见 | Boolean | `true` |
+| visiable | 设置拖拽的工具，是否可见 | Boolean/Array | `true` |
 | mode | 类型，可选值为 `horizontal` 或 `vertical` | String | `horizontal` |
