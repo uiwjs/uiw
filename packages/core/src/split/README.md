@@ -176,3 +176,4 @@ const Demo = () => (
 | visiable | 设置拖拽的工具，是否可见 | Boolean/Array | `true` |
 | disable | 设置拖拽的工具，禁用 | Boolean/Array | - |
 | mode | 类型，可选值为 `horizontal` 或 `vertical` | String | `horizontal` |
+| onChange | 拖拽宽度/高度变化回调函数，宽度或者高度根据 mode 参数来确定 | Function(prePaneWidth,<br />nextPanewidth,<br />nextPaneNumber) | - |
