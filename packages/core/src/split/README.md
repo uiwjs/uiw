@@ -131,9 +131,48 @@ const Demo = () => (
 ```
 <!--End-->
 
+### 拖拽工具不显示
+
+通过设置 `disable` 的值，禁用拖拽工具拖拽。
+
+<!--DemoStart,bgWhite--> 
+```js
+const Demo = () => (
+  <div>
+    <Split disable style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3 }}>
+      <div style={{ maxWidth: 100, backgroundColor: '#eaeaea' }}>
+        Left Pane
+      </div>
+      <div>
+        Right Pane
+      </div>
+    </Split>
+    <Split disable={[4, 5]} style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3, marginTop: 10 }}>
+      <div style={{ maxWidth: 50, backgroundColor: '#eaeaea' }}>
+        Pane 1
+      </div>
+      <div style={{ maxWidth: 60 }}>
+        Pane 2
+      </div>
+      <div>
+        Pane 3
+      </div>
+      <div>
+        Pane 4
+      </div>
+      <div>
+        Pane 5
+      </div>
+    </Split>
+  </div>
+);
+```
+<!--End-->
+
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | visiable | 设置拖拽的工具，是否可见 | Boolean/Array | `true` |
+| disable | 设置拖拽的工具，禁用 | Boolean/Array | - |
 | mode | 类型，可选值为 `horizontal` 或 `vertical` | String | `horizontal` |

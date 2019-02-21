@@ -56,7 +56,7 @@ export default class Split extends React.Component {
     this.removeEvent();
   }
   render() {
-    const { prefixCls, className, children, mode, visiable, ...other } = this.props;
+    const { prefixCls, className, children, mode, visiable, disable, ...other } = this.props;
     const cls = classnames(prefixCls, className, `${prefixCls}-${mode}`);
     const child = React.Children.toArray(children);
     return (
@@ -68,12 +68,17 @@ export default class Split extends React.Component {
             style: { flexBasis: `${100 / count}%`, ...element.props.style },
           });
           const visiableBar = visiable === true || (visiable && visiable.includes(idx + 1)) ? true : false;
+          const barProps = {
+            className: `${prefixCls}-bar`,
+            onMouseDown: this.onMouseDown,
+          };
+          if (disable === true || (disable && disable.includes(idx + 1))) {
+            barProps.className = classnames(`${prefixCls}-bar`, { disable });
+            delete barProps.onMouseDown;
+          }
           return (
             <React.Fragment>
-              {idx !== 0 && visiableBar && React.createElement('div', {
-                className: `${prefixCls}-bar`,
-                onMouseDown: this.onMouseDown,
-              })}
+              {idx !== 0 && visiableBar && React.createElement('div', { ...barProps })}
               {React.cloneElement(element, { ...props })}
             </React.Fragment>
           );
@@ -85,6 +90,7 @@ export default class Split extends React.Component {
 
 Split.propTypes = {
   prefixCls: PropTypes.string,
+  disable: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   visiable: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   mode: PropTypes.oneOf(['horizontal', 'vertical']),
 };
