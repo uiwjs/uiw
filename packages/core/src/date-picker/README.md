@@ -1,7 +1,7 @@
 DatePicker 日期选择器
 ===
 
-显示一个月的日历，并允许用户选择单个日期。
+显示一个月的日历，并允许用户选择单个日期，常见的应用场景在表单中应用，请查看基于 `DatePicker` 的 [`DateInput`](#/components/date-input) 组件。
 
 ```jsx
 import { DatePicker } from 'uiw';
