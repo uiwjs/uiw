@@ -6,6 +6,9 @@ import './style/index.less';
 export default class Split extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      dragging: false,
+    };
     this.onDragEnd = this.onDragEnd.bind(this);
     this.onDragging = this.onDragging.bind(this);
   }
@@ -30,10 +33,14 @@ export default class Split extends React.Component {
     this.nextHeight = nextTarget.clientHeight;
     window.addEventListener('mousemove', this.onDragging, false);
     window.addEventListener('mouseup', this.onDragEnd, false);
+    this.setState({ dragging: true });
   }
   onDragging(env) {
     if (!this.move) {
       return;
+    }
+    if (!this.state.dragging) {
+      this.setState({ dragging: true });
     }
     const { mode, onDragging } = this.props;
     const nextTarget = this.target.nextElementSibling;
@@ -61,20 +68,22 @@ export default class Split extends React.Component {
     this.move = false;
     onDragEnd && onDragEnd(this.preSize, this.nextSize, this.paneNumber);
     this.removeEvent();
+    this.setState({ dragging: false });
   }
   render() {
     const { prefixCls, className, children, mode, visiable, disable, ...other } = this.props;
-    const cls = classnames(prefixCls, className, `${prefixCls}-${mode}`);
+    const { dragging } = this.state;
+    const cls = classnames(prefixCls, className, `${prefixCls}-${mode}`, { dragging });
     const child = React.Children.toArray(children);
     return (
       <div className={cls} {...other} ref={node => this.warpper = node}>
         {React.Children.map(child, (element, idx) => {
           const count = React.Children.count(child);
           const props = Object.assign({}, element.props, {
-            className: classnames(`${prefixCls}-pane`),
+            className: classnames(`${prefixCls}-pane`, element.props.className),
             style: { flexBasis: `${100 / count}%`, ...element.props.style },
           });
-          const visiableBar = visiable === true || (visiable && visiable.includes(idx + 1)) ? true : false;
+          const visiableBar = (visiable === true || (visiable && visiable.includes(idx + 1))) || false;
           const barProps = {
             className: `${prefixCls}-bar`,
             onMouseDown: this.onMouseDown.bind(this, idx + 1),

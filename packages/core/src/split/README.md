@@ -131,7 +131,7 @@ const Demo = () => (
 ```
 <!--End-->
 
-### 拖拽工具不显示
+### 禁用拖拽
 
 通过设置 `disable` 的值，禁用拖拽工具拖拽。
 
@@ -143,6 +143,14 @@ const Demo = () => (
       <div style={{ maxWidth: 100, backgroundColor: '#eaeaea' }}>
         Left Pane
       </div>
+      <Split disable mode="vertical">
+        <div>
+          Top Pane
+        </div>
+        <div>
+          Bottom Pane
+        </div>
+      </Split>
       <div>
         Right Pane
       </div>
