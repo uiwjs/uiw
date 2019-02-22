@@ -71,6 +71,10 @@ ReactDOM.render(
 
 Visit the [uiwjs.github.io](https://uiwjs.github.io) website for more information.
 
+Or Open in VSCode Preview :
+
+[![Open in VSCode](https://jaywcjlove.github.io/sb/open/open-in-vscode.svg)](https://marketplace.visualstudio.com/items?itemName=uiw.uiw)
+
 ### Development
 
 Use Gitpod, a free online dev environment for GitHub.

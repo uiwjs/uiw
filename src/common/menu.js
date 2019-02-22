@@ -9,7 +9,7 @@ const menuData = [
       { name: '在 create-react-app 中使用', path: 'create-react-app' },
       { name: '在 kkt 中使用', path: 'kkt' },
       { divider: true, name: '其它' },
-      { name: '历史版本文档预览', path: 'docs' },
+      { name: '文档编辑预览', path: 'docs' },
       { name: '更新日志', path: 'changelog' },
       { name: '社区精选组件', path: 'recommendation' },
     ],
