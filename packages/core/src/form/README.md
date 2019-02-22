@@ -150,7 +150,27 @@ const Demo = () => (
   <div>
     <Form
       onSubmit={({initial, current}) => {
+        const errorObj = {};
+        if (!current.username) {
+          errorObj.username = '用户名不能为空！';
+        }
+        if (!current.password) {
+          errorObj.password = '密码不能为空！';
+        }
+        if(Object.keys(errorObj).length > 0) {
+          const err = new Error();
+          err.filed = errorObj;
+          Notify.error({ title: '提交失败！', description: '请确认提交表单是否正确！' });
+          throw err;
+        }
         console.log('-->>', initial, current);
+        Notify.success({ title: '提交成功！', description: '恭喜你登录成功！' });
+      }}
+      onSubmitError={(error) => {
+        if (error.filed) {
+          return { ...error.filed };
+        }
+        return null;
       }}
       fields={{
         username: {
