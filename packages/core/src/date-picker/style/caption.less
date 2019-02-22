@@ -24,7 +24,7 @@
     }
     &-today {
       cursor: pointer;
-      background: #676767;
+      background: #dedede;
       border-radius: 3px;
       display: inline-block;
       height: 10px;
@@ -43,6 +43,12 @@
       }
       &:hover {
         background-color: #2EA3F4;
+        &::before {
+          background-color: #fff;
+        }
+      }
+      &:active {
+        background-color: #007cd2;
         &::before {
           background-color: #fff;
         }
