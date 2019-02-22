@@ -10,12 +10,12 @@ export default class PickerCaption extends React.Component {
     return (monthLabel && monthLabel[month]) || month + 1;
   }
   render() {
-    const { prefixCls, className, panelDate, monthLabel, onSelected, todayLabel, ...other } = this.props;
+    const { prefixCls, className, panelDate, monthLabel, onSelected, todayButton, ...other } = this.props;
     return (
       <div className={classnames(`${prefixCls}-caption`, className)} {...other}>
         <div className={classnames(`${prefixCls}-caption-pane`, 'month')} onClick={onSelected.bind(this, 'month')}>{this.renderMonth()}</div>
         <div className={classnames(`${prefixCls}-caption-pane`, 'year')} onClick={onSelected.bind(this, 'year')}>{panelDate.getFullYear()}</div>
-        <div className={`${prefixCls}-caption-today`} onClick={onSelected.bind(this, 'today')} title={todayLabel} />
+        {todayButton && <div className={`${prefixCls}-caption-today`} onClick={onSelected.bind(this, 'today')} title={todayButton} />}
       </div>
     );
   }

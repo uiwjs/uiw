@@ -25,7 +25,11 @@ class Demo extends React.Component {
   render() {
     return (
       <div>
-        <DatePicker date={this.state.date} onChange={this.onChange.bind(this)} />
+        <DatePicker
+          date={this.state.date}
+          todayButton="今天"
+          onChange={this.onChange.bind(this)}
+        />
         <div>{this.state.date ? String(this.state.date) : 'no date'}</div>
       </div>
     )
@@ -137,8 +141,9 @@ class Demo extends React.Component {
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | date | 选中的日期 | Date | - |
-| today | 默认高亮当天日期 | Date | `new Date` |
 | panelDate | 日历面板默认展示哪一页 | Date | `new Date` |
+| today | 默认高亮当天日期 | Date | `new Date` |
+| todayButton | 展示回到今天按钮，和提示文本。 | String | - |
 | disabledDate | 不可选择的日期，函数返回 `true` 当前日期被禁用无法选择。 | Function(currentDate) | - |
 | onChange | 选择一天时调用。 | Function(selectedDate:Date) | - |
 | weekTitle | 星期显示文本提示 | Array | \[`星期天`, `星期一`, `星期二`, `星期三`, `星期四`, `星期五`, `星期六`\] |
