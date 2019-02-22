@@ -1,4 +1,4 @@
-历史版本文档预览
+文档编辑预览
 ===
 
 我们使用 [`npm`](https://www.npmjs.com/package/@uiw/doc) 来管理 `uiw` 文档站点的版本，使用 [unpkg.com](https://unpkg.com/@uiw/doc/web/index.html) 预览。文档版本管理，是根据 `unpkg` 工具支持静态服务和同步 `npm` 包的特点，来实现这一功能的。所以我们在发布 [`uiw`](https://www.npmjs.com/package/uiw) 包的同时会发布 [`@uiw/doc`](https://www.npmjs.com/package/@uiw/doc) 包，版本是同步的。
@@ -23,7 +23,7 @@ https://unpkg.com/uiw@1.16.14/dist/index.html
 
 ⚠️ 文档网站静态资源原本放在 uiw 包中，由于每次安装 uiw 体积较大，下载非常慢，从 [`uiw@2.0.0-beta.7+`](https://unpkg.com/@uiw/doc/web/index.html) 版本开始抽离到单独的 [`@uiw/doc`](https://www.npmjs.com/package/@uiw/doc) 包，进行同步发布，后面所有的版本均有文档可预览。
 
-**文档离线预览**
+### 文档离线预览
 
 根据上述特点，可将文档网站资源下载到本地，通过类似 [ssr](https://www.npmjs.com/package/ssr) 的工具，启静态服务进行预览。
 
@@ -39,7 +39,7 @@ cd node_modules/@uiw/doc/web
 ssr # 启动服务
 ```
 
-**文档编写**
+### 文档编写
 
 在 Markdown 文档中编写代 React 码实例，文档爬取代码实例进行预览。
 
@@ -73,3 +73,11 @@ const Demo = () => (
 - `bgWhite` 设置代码预览背景白色，否则为格子背景。
 - `noCode` 不显示代码编辑器。 
 - `noPreview` 不显示代码预览效果。
+
+### 编辑器插件
+
+可以在 VSCode中安装 [uiw document](https://github.com/uiwjs/vscode-uiw) 插件，方便快速查看文档。
+
+[![Open in VSCode](https://jaywcjlove.github.io/sb/open/open-in-vscode.svg)](https://marketplace.visualstudio.com/items?itemName=uiw.uiw)
+
+![](https://raw.githubusercontent.com/uiwjs/vscode-uiw/ea1b9090c5ef9c0ba17574b7959b0d6130e2be39/images/uiw.gif)
