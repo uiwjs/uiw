@@ -9,6 +9,7 @@ function randomid() {
 }
 
 const notifys = {};
+const notifysDom = {};
 
 export default function NotificationCreate(props = {}, type = 'open') {
   if (!props.placement) {
@@ -29,6 +30,7 @@ export default function NotificationCreate(props = {}, type = 'open') {
     const div = document.createElement('div');
     document.body.appendChild(div);
     div.className = classnames('w-notify-warpper', props.placement);
+    notifysDom[props.placement] = div;
     notifys[props.placement] = ReactDOM.render(<Container />, div);
   }
 
@@ -46,9 +48,10 @@ export default function NotificationCreate(props = {}, type = 'open') {
         nprops.onClose && nprops.onClose();
         const keys = Object.keys(notifysChild[props.placement]);
         if (keys.length === 0 && notifys[props.placement]) {
-          const parentNode = findDOMNode(notifys[props.placement]).parentNode;
           delete notifys[props.placement];
-          document.body.removeChild(parentNode);
+          if (notifysDom[props.placement]) {
+            document.body.removeChild(notifysDom[props.placement]);
+          }
         }
       },
     });

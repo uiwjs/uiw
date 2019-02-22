@@ -107,7 +107,7 @@ const Demo = () => (
       {({ fields, state, canSubmit }) => {
         console.log('fields:-->', state);
         return (
-          <div>
+          <div style={{ maxWidth: 500 }}>
             <Row gutter={10}>
               <Col>{fields.userName}</Col>
               <Col>{fields.age}</Col>
