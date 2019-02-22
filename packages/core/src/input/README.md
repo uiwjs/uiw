@@ -13,7 +13,7 @@ import { Input } from 'uiw';
 ```js
 const Demo = () => (
   <div>
-    <Input placeholder="请输入内容" />
+    <Input placeholder="请输入内容" style={{ maxWidth: 200 }} />
   </div>
 );
 ```
