@@ -16,14 +16,19 @@ export default function NotificationCreate(props = {}, type = 'open') {
     props.placement = 'topRight';
   }
   props.type = type;
-  if (!props.icon) {
+  if (!props.icon && props.icon !== null) {
     switch (props.type) {
       case 'success': props.icon = 'circle-check'; break;
       case 'warning': props.icon = 'warning'; break;
-      case 'info': props.type = 'primary'; props.icon = 'information'; break;
-      case 'error': props.type = 'danger'; props.icon = 'circle-close'; break;
+      case 'info': props.icon = 'information'; break;
+      case 'error': props.icon = 'circle-close'; break;
       default: break;
     }
+  }
+  switch (props.type) {
+    case 'info': props.type = 'primary'; break;
+    case 'error': props.type = 'danger'; break;
+    default: break;
   }
 
   if (props.placement && !notifys[props.placement]) {

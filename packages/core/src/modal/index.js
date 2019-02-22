@@ -51,7 +51,7 @@ export default class Modal extends React.PureComponent {
               <div className={`${prefixCls}-header`}>
                 {icon && <Icon type={icon} />}
                 {title && <h4>{title}</h4>}
-                {title && isCloseButtonShown && <Button basic onClick={this.handleCancel} icon="close" type="light" />}
+                {isCloseButtonShown && <Button basic onClick={this.handleCancel} icon="close" type="light" />}
               </div>
             )}
             <div className={`${prefixCls}-body`}>
