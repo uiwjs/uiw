@@ -392,8 +392,8 @@ class Demo extends React.Component {
 | onConfirm | 点击确定按钮回调 | Function(e) | - |
 | cancelText | 取消按钮文字， | String | - |
 | confirmText | 确认按钮文字 | String | `确认` |
-| icon | 设置对话框右上角图标，，设置 `type` 将图标设置不同的颜色。当前属性为 [`<Icon>`]](#/components/icon) 组件的 `type` 属性，所以可以参考该组件自定义图标。 | String/ReactNode | `确认` |
 | type | 按钮类型跟 `<Button>` 组件的 `type` 参数一致，同时会影响按钮颜色。 | String | `light` |
+| icon[`<Modal>`](#/components/modal) | 设置对话框右上角图标，，设置 `type` 将图标设置不同的颜色。当前属性为 [`<Icon>`](#/components/icon) 组件的 `type` 属性，所以可以参考该组件自定义图标。 | String/ReactNode | - |
 | title[`<Modal>`](#/components/modal)  | 设置标题 | Function(e) | - |
 | useButton[`<Modal>`](#/components/modal) | 是否使用默认按钮，如果设置 `false` 需要自定义按钮关闭 | Boolean | `true` |
 | isOpen[`<Modal>`](#/components/modal) | 对话框是否可见 | Boolean | `false` |
