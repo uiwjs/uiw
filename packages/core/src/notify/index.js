@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM, { findDOMNode } from 'react-dom';
+import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import Container from './Container';
 import './style/index.less';
