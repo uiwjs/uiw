@@ -19,7 +19,7 @@ class Demo extends React.Component {
     return (
       <Row gutter={10} style={{ maxWidth: 360 }}>
         <Col fixed>
-          <DateInput onChange={this.onChange.bind(this)} />
+          <DateInput datePickerProps={{ todayButton: '今天' }} onChange={this.onChange.bind(this)} />
         </Col>
         <Col>
           <DateInput disabled onChange={this.onChange.bind(this)} />
@@ -57,7 +57,7 @@ const Demo = () => (
           initialValue: '2019/02/17',
           labelClassName: 'fieldLabel',
           labelFor: 'date-inline',
-          children: <DateInput id="date-inline" />
+          children: <DateInput datePickerProps={{ todayButton: '今天' }} id="date-inline" />
         },
       }}
     >
@@ -83,12 +83,12 @@ const Demo = () => (
 ```js
 class Demo extends React.Component {
   onChange(selectedDate) {
-    console.log('selectedDate:', selectedDate)
+    console.log('selectedDate:', selectedDate);
   }
   render() {
     return (
       <div style={{ maxWidth: 200 }}>
-        <DateInput format="YYYY # MM # DD" onChange={this.onChange.bind(this)} />
+        <DateInput format="YYYY # MM # DD" datePickerProps={{ todayButton: '今天' }} onChange={this.onChange.bind(this)} />
       </div>
     )
   }
