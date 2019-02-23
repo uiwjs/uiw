@@ -5,7 +5,6 @@ import PickerDay from './PickerDay';
 import PickerMonth from './PickerMonth';
 import PickerYear from './PickerYear';
 import PickerDayCaption from './PickerCaption';
-import time from '../timestamp';
 import './style/index.less';
 
 export default class DatePicker extends React.Component {
@@ -36,12 +35,12 @@ export default class DatePicker extends React.Component {
     } else {
       let currentDate = date || panelDate;
       let month = currentDate.getMonth();
-      const data = {}
+      const data = {};
       if (type === 'prev') {
-        month = month - 1;
+        month -= 1;
       }
       if (type === 'next') {
-        month = month + 1;
+        month += 1;
       }
       currentDate.setMonth(month);
       if (type === 'today') {
