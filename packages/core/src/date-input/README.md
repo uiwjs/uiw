@@ -17,10 +17,14 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div>
-        <DateInput onChange={this.onChange.bind(this)} style={{ marginRight: 10 }} />
-        <DateInput disabled onChange={this.onChange.bind(this)} />
-      </div>
+      <Row gutter={10} style={{ maxWidth: 360 }}>
+        <Col fixed>
+          <DateInput onChange={this.onChange.bind(this)} />
+        </Col>
+        <Col>
+          <DateInput disabled onChange={this.onChange.bind(this)} />
+        </Col>
+      </Row>
     )
   }
 }
@@ -83,8 +87,8 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div>
-        <DateInput format="YYYY # MM # DD" onChange={this.onChange.bind(this)} style={{ marginRight: 10 }} />
+      <div style={{ maxWidth: 200 }}>
+        <DateInput format="YYYY # MM # DD" onChange={this.onChange.bind(this)} />
       </div>
     )
   }

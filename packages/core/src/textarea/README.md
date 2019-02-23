@@ -12,7 +12,7 @@ import { Textarea } from 'uiw';
 <!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div>
+  <div style={{ maxWidth: 300 }}>
     <Textarea placeholder="请输入内容" />
   </div>
 )
@@ -25,7 +25,7 @@ const Demo = () => (
 <!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div>
+  <div style={{ maxWidth: 300 }}>
     <Textarea placeholder="请输入内容" disabled />
   </div>
 )
@@ -37,7 +37,7 @@ const Demo = () => (
 <!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <div>
+  <div style={{ maxWidth: 300 }}>
     <textarea className="w-textarea" placeholder="请输入内容" defaultValue="" />
   </div>
 )
