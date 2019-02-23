@@ -30,32 +30,33 @@ export default class PickerDay extends React.Component {
   renderDay(num, row) {
     const { date: selectedDate, disabledDate } = this.props;
     const today = initSameDate(this.props.today);
-    const date = initSameDate(this.state.panelDate || this.state.selected || today);
+    const date = initSameDate(this.state.panelDate);
     const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const firstDayOfWeek = getFirstDayOfWeek(year, month);
+    const month = date.getMonth();
+    const firstDayOfWeek = getFirstDayOfWeek(year, month + 1);
     let day = row * 7 + num - firstDayOfWeek + 1;
     const cls = { end: num === 0 || num === 6 };
-    const preYear = month === 1 ? year - 1 : year;
-    const preMonth = month === 1 ? 12 : month - 1;
-    const nextYear = month === 12 ? year + 1 : year;
-    const nextMonth = month === 12 ? 1 : month + 1;
-    const prevDays = solarMonthDays(preYear, preMonth);
-    const days = solarMonthDays(year, month);
+    // Prev Month
+    const preDate = new Date(new Date(date).setMonth(month - 1));
+    // Next Month
+    const nextDate = new Date(new Date(date).setMonth(month + 1));
+    const prevDays = solarMonthDays(preDate.getFullYear(), preDate.getMonth() + 1);
+    const days = solarMonthDays(year, month + 1);
     let cellDate = null;
     if (day <= 0) {
       // Prev Month
       day = prevDays + day;
       cls.prev = true;
-      cellDate = new Date(preYear, preMonth - 1, day);
+      cellDate = new Date(preDate).setDate(day);
     } else if (day > days) {
       // Next Month
       day -= days;
       cls.next = true;
-      cellDate = new Date(nextYear, nextMonth - 1, day);
+      cellDate = new Date(nextDate).setDate(day);
     } else {
-      cellDate = new Date(year, month - 1, day);
+      cellDate = new Date(this.state.panelDate).setDate(day);
     }
+    cellDate = initSameDate(new Date(cellDate));
     if (isSameDate(cellDate, today)) {
       cls.today = true;
     }
