@@ -5,13 +5,14 @@ import PickerDay from './PickerDay';
 import PickerMonth from './PickerMonth';
 import PickerYear from './PickerYear';
 import PickerDayCaption from './PickerCaption';
+import time from '../timestamp';
 import './style/index.less';
 
 export default class DatePicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      panelDate: props.panelDate || props.today,
+      panelDate: props.panelDate || new Date(),
       date: props.date,
       type: 'day',
     };
@@ -29,11 +30,29 @@ export default class DatePicker extends React.Component {
   }
   onSelected = (type) => {
     const { today } = this.props;
-    if (type === 'today') {
-      this.setState({ panelDate: today, date: today }, () => this.onChange(today));
-      return;
+    const { date, panelDate } = this.state;
+    if (/^(year|month)$/.test(type)) {
+      this.setState({ type });
+    } else {
+      let currentDate = date || panelDate;
+      let month = currentDate.getMonth();
+      const data = {}
+      if (type === 'prev') {
+        month = month - 1;
+      }
+      if (type === 'next') {
+        month = month + 1;
+      }
+      currentDate.setMonth(month);
+      if (type === 'today') {
+        currentDate = new Date(today);
+      }
+      data.panelDate = currentDate;
+      if (date) {
+        data.date = currentDate;
+      }
+      this.setState({ ...data });
     }
-    this.setState({ type });
   }
   onSelectedDate(type, month, paging) {
     const { panelDate, date } = this.state;

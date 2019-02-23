@@ -21,6 +21,35 @@
       &.year + &.month {
         margin-left: 5px;
       }
+      &.prev, &.next {
+        padding: 1px 8px 6px 8px;
+        &::after, &::before {
+          content: '';
+          display: block;
+          height: 8px;
+          width: 2px;
+          border-radius: 2px;
+          background-color: #333;
+        }
+        &::after {
+          margin-top: -4px;
+        }
+        &::before {
+          margin-top: 4px;
+        }
+      }
+      &.prev::after, &.next::before {
+        transform:rotate(-45deg);
+      }
+      &.prev::before, &.next::after {
+        transform:rotate(45deg);
+      }
+      &.prev {
+        float: left;
+      }
+      &.next {
+        float: right;
+      }
     }
     &-today {
       cursor: pointer;
