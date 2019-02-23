@@ -177,6 +177,53 @@ const Demo = () => (
 ```
 <!--End-->
 
+
+### 抽屉
+
+通过设置子节点的 `minWidth` 样式，即可设置拖拽最小宽度值。通过设置子节点样式 `flexBasis` 样式即可设置默认分割内容的占比宽度。
+
+<!--DemoStart,bgWhite--> 
+```js
+class Demo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      width: 210,
+    };
+  }
+  onClick() {
+    this.setState({
+      width: this.state.width === 0 ? 210 : 0,
+    });
+  }
+  render() {
+    return (
+      <>
+        <div style={{ marginBottom: 10 }}>
+          <Button type="primary" onClick={this.onClick.bind(this)}>{this.state.width === 0 ? '隐藏菜单' : '展示菜单'}</Button>
+        </div>
+        <Split visiable={this.state.width !== 0} style={{ border: '1px solid #d5d5d5', borderRadius: 3 }}>
+          <div style={{ maxWidth: this.state.width, overflow: 'hidden' }}>
+            <Menu>
+              <Menu.Item icon="heart-on" text="另存为" active />
+              <Menu.Item icon="appstore" text="应用商城" />
+              <Menu.Item icon="bar-chart" text="月统计报表导出" />
+              <Menu.Item icon="setting" text="偏好设置" />
+              <Menu.Divider />
+              <Menu.Item icon="map" text="谷歌地图" />
+            </Menu>
+          </div>
+          <div>
+            Right Pane
+          </div>
+        </Split>
+      </>
+    )
+  }
+}
+```
+<!--End-->
+
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
