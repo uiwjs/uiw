@@ -180,8 +180,6 @@ const Demo = () => (
 
 ### 抽屉
 
-通过设置子节点的 `minWidth` 样式，即可设置拖拽最小宽度值。通过设置子节点样式 `flexBasis` 样式即可设置默认分割内容的占比宽度。
-
 <!--DemoStart,bgWhite--> 
 ```js
 class Demo extends React.Component {
