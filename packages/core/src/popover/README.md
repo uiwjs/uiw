@@ -257,7 +257,7 @@ class Demo extends React.Component {
         <div style={{ position: 'relative' }}>
           <Popover
             trigger="click"
-            placement="top"
+            placement="right"
             usePortal={false}
             isOpen={this.state.isOpen}
             onVisibleChange={this.handleVisibleChange.bind(this)}
@@ -291,7 +291,7 @@ class Demo extends React.Component {
 |--------- |-------- |--------- |-------- |
 | content | 显示的内容 | String,React.ReactNode | - |
 | placement | 气泡框位置，可现实箭头在不通的方位 | Enum{`top`, `topLeft`, `topRight`,<br /> `left`, `leftTop`, `leftBottom`,<br /> `right`, `rightTop`, `rightBottom`,<br /> `bottom`, `bottomLeft`, `bottomRight`} | `top` |
-| visibleArrow | 是否显示 Tooltip 箭头 | Boolean | `true` |
+| visibleArrow | 是否显示箭头 | Boolean | `true` |
 | delay | 延迟进入和消失，`{ show: 2000, hide: 4000 }` 或者直接设置 `2000`，只对 `trigger=hover` 有效，继承 `<OverlayTrigger />` 组件属性 | Object/Number | - |
 | trigger| 悬停/点击弹出窗口，继承 `<OverlayTrigger />` 组件属性 | Enum{`hover`, `click`, `focus`} | `hover` |
 | disabled | 是否禁用弹出目标 | Boolean | `false` |

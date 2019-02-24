@@ -115,6 +115,9 @@ export const getRouterData = () => {
     '/components/tooltip': {
       component: dynamicWrapper([], () => import('../routes/components/tooltip')),
     },
+    '/components/time-picker': {
+      component: dynamicWrapper([], () => import('../routes/components/time-picker')),
+    },
     '/components/copy-to-clipboard': {
       component: dynamicWrapper([], () => import('../routes/components/copy-to-clipboard')),
     },
