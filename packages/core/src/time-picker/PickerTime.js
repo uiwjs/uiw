@@ -14,12 +14,12 @@ export default class TimePicker extends React.Component {
     onChange && onChange(dt);
   }
   render() {
-    const { prefixCls, className, ...other } = this.props;
+    const { prefixCls, className, precision, ...other } = this.props;
     return (
       <div className={classnames(`${prefixCls}`, className)}>
-        <TimePanel type="Hours" count={24} {...other} onChange={this.onChange.bind(this)} />
-        <TimePanel type="Minutes" count={60} {...other} onChange={this.onChange.bind(this)} />
-        <TimePanel type="Seconds" count={60} {...other} onChange={this.onChange.bind(this)} />
+        {/^(second|minute|hour)$/.test(precision) && <TimePanel type="Hours" count={24} {...other} onChange={this.onChange.bind(this)} />}
+        {/^(second|minute)$/.test(precision) && <TimePanel type="Minutes" count={60} {...other} onChange={this.onChange.bind(this)} />}
+        {/^(second)$/.test(precision) && <TimePanel type="Seconds" count={60} {...other} onChange={this.onChange.bind(this)} />}
       </div>
     );
   }
@@ -29,10 +29,12 @@ TimePicker.propTypes = {
   prefixCls: PropTypes.string,
   onChange: PropTypes.func,
   hideDisabled: PropTypes.bool,
+  precision: PropTypes.oneOf(['hour', 'minute', 'second']),
   date: PropTypesDate,
 };
 
 TimePicker.defaultProps = {
   prefixCls: 'w-timepicker',
   hideDisabled: false,
+  precision: 'second',
 };

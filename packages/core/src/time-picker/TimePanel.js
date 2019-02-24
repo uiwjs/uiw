@@ -76,7 +76,7 @@ export default class TimePanel extends React.Component {
             const disabled = this.getDisabledItem(idx);
             const props = {};
             if (!disabled) {
-              props.onClick = this.onClick.bind(this, idx)
+              props.onClick = this.onClick.bind(this, idx);
             }
             return (
               <li

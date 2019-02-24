@@ -12,11 +12,89 @@ import { TimePicker } from 'uiw';
 <!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
-  <Row gutter={10} style={{ maxWidth: 360 }}>
+  <Row gutter={10}>
     <Col fixed>
-      <TimePicker />
+      <TimePicker
+        onChange={(formatDate, date) => {
+          console.log('--->', formatDate, date);
+        }}
+      />
+    </Col>
+    <Col fixed>
+      <TimePicker format="HH:mm" precision="minute" />
+    </Col>
+    <Col fixed>
+      <TimePicker format="HH" precision="hour" />
     </Col>
   </Row>
+)
+```
+<!--End-->
+
+## 设置初始值
+
+<!--DemoStart,bgWhite--> 
+```js
+const Demo = () => {
+  const value = new Date(2018, 1, 24, 4,5,35);
+  return (
+    <Row gutter={10}>
+      <Col fixed>
+        <TimePicker value={value} />
+      </Col>
+      <Col fixed>
+        <TimePicker value={value} format="HH:mm" precision="minute" />
+      </Col>
+      <Col fixed>
+        <TimePicker value={value} format="HH" precision="hour" />
+      </Col>
+    </Row>
+  )
+}
+```
+<!--End-->
+
+## 表单中应用
+
+<!--DemoStart,bgWhite--> 
+```js
+const Demo = () => (
+  <div>
+    <Form
+      onSubmit={({initial, current}) => {
+        if(current.date) {
+          Notify.success({
+            title: '提交成功！',
+            description: `表单提交时间成功，时间为：${current.date.toString()}`,
+          });
+        } else {
+          Notify.error({
+            title: '提交失败！',
+            description: `表单提交时间成功，时间为：${current.date.toString()}，将自动填充初始化值！`,
+          });
+        }
+        console.log('-->>', initial, current);
+      }}
+      fields={{
+        date: {
+          labelClassName: 'fieldLabel',
+          labelFor: 'date-inline',
+          children: <TimePicker />
+        },
+      }}
+    >
+      {({ fields, state, canSubmit }) => {
+        return (
+          <Row gutter={10}>
+            <Col fixed>{fields.date}</Col>
+            <Col>
+              <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+            </Col>
+          </Row>
+        )
+      }}
+    </Form>
+  </div>
 )
 ```
 <!--End-->
@@ -104,12 +182,13 @@ const Demo = () => (
 | value | 初始时间值 | Date | - |
 | placeholder | 输入框提示文字 | String | - |
 | format | 禁止选择部分秒选项 | Function | `HH:mm:ss` |
+| precision | 选择时间精确度 | Enum{`hour`, `minute`, `second`} | `false` |
 | disabled | 禁用全部操作 | Boolean | `false` |
 | disabledHours | 禁止选择部分小时选项 | Function(hour, selectedDate) | - |
 | disabledMinutes | 禁止选择部分分钟选项 | Function(minute, selectedDate) | - |
 | disabledSeconds | 禁止选择部分秒选项 | Function(second, selectedDate) | - |
 | hideDisabled | 不可选择的项隐藏 | Boolean | `false` |
-| onChange | 时间发生变化的回调 | Function | - |
+| onChange | 时间发生变化的回调 | Function(formatDate, Date) | - |
 
 ## Props.inputProps
 
