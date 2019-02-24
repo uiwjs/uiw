@@ -19,15 +19,15 @@ export default class TimePicker extends React.Component {
     }
   }
   onChange(date) {
-    const { onChange } = this.props;
+    const { onChange, format } = this.props;
     this.setState({ date });
-    onChange && onChange(date);
+    onChange && onChange(timestamp(format, date), date);
   }
   render() {
     const { prefixCls, disabled, value, format, popoverProps, inputProps, ...timeProps } = this.props;
     const { date } = this.state;
     const inputValue = date && timestamp(format, date);
-    this.datePickerTime = date || new Date();
+    const datePickerTime = date || new Date();
     return (
       <Popover
         trigger="focus"
@@ -39,7 +39,7 @@ export default class TimePicker extends React.Component {
           <PickerTime
             className={`${prefixCls}-popover`}
             {...timeProps}
-            date={this.datePickerTime}
+            date={datePickerTime}
             onChange={this.onChange.bind(this)}
           />
         }

@@ -42,7 +42,7 @@ export default class DateInput extends React.Component {
         {...popoverProps}
         content={
           <DatePicker
-            date={value && new Date(value) || null}
+            date={(value && new Date(value)) || null}
             className={`${prefixCls}-popover`}
             {...datePickerProps}
             onChange={this.onChange.bind(this)}
