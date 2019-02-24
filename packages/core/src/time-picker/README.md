@@ -56,6 +56,8 @@ const Demo = () => {
 
 ## 表单中应用
 
+在表单返回的数据，并没有将 `format` 格式化后的数据返回给你，而是返回的一个 `Date`，你可以通过 [`<Timestamp>`](#/components/timestamp) 组件重新格式化。
+
 <!--DemoStart,bgWhite--> 
 ```js
 const Demo = () => (
@@ -65,12 +67,12 @@ const Demo = () => (
         if(current.date) {
           Notify.success({
             title: '提交成功！',
-            description: `表单提交时间成功，时间为：${current.date.toString()}`,
+            description: `表单提交时间成功，时间为：${Timestamp('HH:mm:ss', current.date)}`,
           });
         } else {
           Notify.error({
             title: '提交失败！',
-            description: `表单提交时间成功，时间为：${current.date.toString()}，将自动填充初始化值！`,
+            description: <span>表单提交时间成功，时间为：<b>空</b>，将自动填充初始化值！</span>,
           });
         }
         console.log('-->>', initial, current);
@@ -181,7 +183,7 @@ const Demo = () => (
 |--------- |-------- |--------- |-------- |
 | value | 初始时间值 | Date | - |
 | placeholder | 输入框提示文字 | String | - |
-| format | 禁止选择部分秒选项 | Function | `HH:mm:ss` |
+| format | 格式化时间，规则查看 [`<Timestamp>`](#/components/timestamp) 文档 | Function | `HH:mm:ss` |
 | precision | 选择时间精确度 | Enum{`hour`, `minute`, `second`} | `false` |
 | disabled | 禁用全部操作 | Boolean | `false` |
 | disabledHours | 禁止选择部分小时选项 | Function(hour, selectedDate) | - |
