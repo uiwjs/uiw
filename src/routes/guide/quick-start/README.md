@@ -51,7 +51,7 @@ yarn add uiwjs/uiw
 3. 抽离组件，需要单独安装，如 `HeatMap 日历热图`
 4. 支持服务端渲染，可以通过 [kkt-ssr](https://github.com/jaywcjlove/kkt-ssr) 工具建立实例。
 
-## 使用
+### 使用
 
 使用过程中不需要引入 `CSS`，但是需要 [`LESS`](http://lesscss.org/) 编译环境，如果对环境使用有障碍，可以通过 [`kkt`](#/guide/kkt) 工具初始化一个工程。
 
@@ -66,7 +66,7 @@ ReactDOM.render(
 );
 ```
 
-## 组件冲突
+### 组件冲突
 
 重新取一个名字
 
@@ -74,9 +74,15 @@ ReactDOM.render(
 import { Button as ButtonView } from 'uiw';
 ```
 
-## 开发
+### VSCode 中文档预览
 
-使用Gitpod，GitHub的免费在线开发环境，点击打开下面链接，自动初始化项目，将开发环境跑起来。
+组件文档可以在 [`VSCode`](https://marketplace.visualstudio.com/items?itemName=uiw.uiw) 中预览，打开下面链接进行安装 [`VSCode`](https://marketplace.visualstudio.com/items?itemName=uiw.uiw) 插件。
+
+[![Open in VSCode](https://jaywcjlove.github.io/sb/open/open-in-vscode.svg)](https://marketplace.visualstudio.com/items?itemName=uiw.uiw)
+
+### 开发
+
+使用 [`Gitpod`](https://gitpod.io)，`GitHub` 的免费在线开发环境，点击打开下面链接，自动初始化项目，将开发环境跑起来。
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/uiwjs/uiw)
 
