@@ -1,0 +1,52 @@
+@timepicker-prefix: ~"w-timepicker";
+
+.@{timepicker-prefix} {
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  &-spinner {
+    max-height: 189px;
+    float: left;
+    overflow: hidden;
+    font-size: 14px;
+    &:hover {
+      overflow: auto;
+    }
+    > ul {
+      list-style: none;
+      width: 56px;
+      > li {
+        cursor: pointer;
+        text-align: center;
+        padding: 5px 0;
+        transition: all .3s;
+        color: #393E48;
+        &:hover:not(.disabled) {
+          background-color: #f6f8fa;
+        }
+        &:active:not(.disabled) {
+          background-color: #e1e5e8;
+        }
+        &.selected {
+          background-color: #f1f1f1;
+          font-weight: bold;
+          color: #000;
+        }
+        &.disabled {
+          color: #d4d4d4;
+          cursor: not-allowed;
+          &.hide {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  &-spinner + &-spinner {
+    ul {
+      border-left: 1px solid #e9e9e9;
+    }
+  }
+}

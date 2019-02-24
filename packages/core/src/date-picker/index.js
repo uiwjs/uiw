@@ -5,6 +5,7 @@ import PickerDay from './PickerDay';
 import PickerMonth from './PickerMonth';
 import PickerYear from './PickerYear';
 import PickerDayCaption from './PickerCaption';
+import { PropTypesDate } from '../utils';
 import './style/index.less';
 
 export default class DatePicker extends React.Component {
@@ -70,7 +71,7 @@ export default class DatePicker extends React.Component {
     });
   }
   render() {
-    const { prefixCls, className, weekday, weekTitle, monthLabel, date, today, todayButton, panelDate, disabledDate, onChange, ...other } = this.props;
+    const { prefixCls, className, weekday, weekTitle, monthLabel, date, today, showTime, todayButton, panelDate, disabledDate, onChange, ...other } = this.props;
     const { type } = this.state;
     return (
       <div className={classnames(prefixCls, className)} {...other}>
@@ -111,12 +112,6 @@ export default class DatePicker extends React.Component {
     );
   }
 }
-
-const PropTypesDate = (props, propName, componentName) => {
-  if (props[propName] && !(props[propName] instanceof Date)) {
-    return new Error(`Invalid prop \`${propName}\` supplied to \`${componentName}\`. Validation failed.`);
-  }
-};
 
 DatePicker.propTypes = {
   prefixCls: PropTypes.string,
