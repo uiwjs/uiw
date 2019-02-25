@@ -11,14 +11,16 @@ import { MonthPicker } from 'uiw';
 
 <!--DemoStart,bgWhite--> 
 ```js
-function onChange(date, dateString) {
-  console.log(date, dateString);
+function onChange(date, formatDate) {
+  console.log(date, formatDate);
 }
 
 const Demo = () => (
-  <div>
-    <MonthPicker onChange={onChange} placeholder="Select month" />
-  </div>
+  <Row gutter={10}>
+    <Col fixed>
+      <MonthPicker onChange={onChange} placeholder="Select month" />
+    </Col>
+  </Row>
 )
 ```
 <!--End-->
@@ -76,7 +78,7 @@ const Demo = () => (
 | placeholder | 输入框提示文字 | String | - |
 | allowClear | 是否显示清除按钮 | Boolean | true |
 | format | 格式化时间，规则查看 [`<Timestamp>`](#/components/timestamp) 文档 | String | `YYYY/MM/DD` |
-| onChange | 选择一天时调用。 | Function(Date, dateString) | - |
+| onChange | 选择一天时调用。 | Function(Date, formatDate) | - |
 | popoverProps | 将参数传递给内部 [`<Popover>`](#/components/popover) 组件 | Object | - |
 | datePickerProps | 将参数传递给内部 [`<DatePicker>`](#/components/date-picker) 组件 | Object | - |
 | disabled | 组件 [`<Input>`](#/components/input) 的属性，禁用日历 | Boolean | - |

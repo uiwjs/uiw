@@ -1,7 +1,7 @@
 Timestamp 时间戳
 ===
 
-用于时间格式化，时间格式化的部分是组件基于 [time-stamp](https://github.com/jonschlinkert/time-stamp) 更改。
+用于时间格式化，时间格式化是组件基于 [time-stamp](https://github.com/jonschlinkert/time-stamp) 更改。
 
 ```jsx
 import { Timestamp } from 'uiw';

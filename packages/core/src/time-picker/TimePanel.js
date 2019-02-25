@@ -35,8 +35,8 @@ export default class TimePanel extends React.Component {
     window.requestAnimationFrame(frameFunc);
   }
   onClick(num, e) {
-    const { onChange, type } = this.props;
-    onChange && onChange(type, num);
+    const { onSelected, type } = this.props;
+    onSelected && onSelected(type, num);
     this.scrollTopNow(e.target);
   }
   getMaybeNumber() {
@@ -101,7 +101,7 @@ export default class TimePanel extends React.Component {
 
 TimePanel.propTypes = {
   prefixCls: PropTypes.string,
-  onChange: PropTypes.func,
+  onSelected: PropTypes.func,
   count: PropTypes.number,
   hideDisabled: PropTypes.bool,
   disabledHours: PropTypes.func,
