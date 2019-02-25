@@ -96,6 +96,25 @@ class Demo extends React.Component {
 ```
 <!--End-->
 
+## 日期时间设置
+
+<!--DemoStart,bgWhite--> 
+```js
+class Demo extends React.Component {
+  onChange(selectedDate) {
+    console.log('selectedDate:', selectedDate);
+  }
+  render() {
+    return (
+      <div style={{ maxWidth: 200 }}>
+        <DateInput format="YYYY/MM/DD HH:mm:ss" datePickerProps={{ showTime: true, todayButton: '今天' }} onChange={this.onChange.bind(this)} />
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
