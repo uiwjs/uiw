@@ -17,17 +17,19 @@ const easeInQuad = (t, b, c, d) => {
   return (c * (t /= d) * t) + b;
 };
 export default class TimePanel extends React.Component {
-  scrollTopNow(elm) {
+  scrollTopNow(elm, idx) {
     const currentDom = ReactDOM.findDOMNode(elm);
-    const offsetTop = currentDom.offsetTop;
     const rootTop = currentDom.parentNode.parentNode.scrollTop;
+    const offsetTop = idx === 0 ? currentDom.clientHeight : idx * currentDom.clientHeight;
     const startTime = Date.now();
     const frameFunc = () => {
       const scrollDom = currentDom.parentNode.parentNode;
       const timestamp = Date.now();
       const time = timestamp - startTime;
       const offsetTopMove = parseInt(easeInQuad(time, rootTop, offsetTop, offsetTop), 10);
-      if (scrollDom) scrollDom.scrollTop = offsetTopMove > offsetTop ? offsetTop : offsetTopMove;
+      if (scrollDom) {
+        scrollDom.scrollTop = offsetTopMove > offsetTop ? offsetTop : offsetTopMove;
+      }
       if (scrollDom && scrollDom.scrollTop < offsetTop) {
         window.requestAnimationFrame(frameFunc);
       }
@@ -38,7 +40,7 @@ export default class TimePanel extends React.Component {
     const { onSelected, type, date } = this.props;
     date[`set${type}`](num);
     onSelected && onSelected(type, num, this.disableds, date);
-    this.scrollTopNow(e.target);
+    this.scrollTopNow(e.target, num);
   }
   getMaybeNumber() {
     const { date, type } = this.props;
@@ -52,14 +54,13 @@ export default class TimePanel extends React.Component {
       return;
     }
     tag.style.paddingBottom = `${tag.parentNode.clientHeight - tag.firstChild.clientHeight}px`;
-    // console.log('tag.parentNode:', tag.setProperty, tag.parentNode, tag.parentNode.clientHeight, tag.firstChild.clientHeight);
-    // tag.setProperty('paddingBottom', `${tag.parentNode.clientHeight - tag.firstChild.clientHeight}px`, 'important');
   }
   getItemInstance = (idx, tag) => {
     if (tag && this.getMaybeNumber() === idx) {
       const currentDom = ReactDOM.findDOMNode(tag);
       if (currentDom.parentNode) {
-        currentDom.parentNode.parentNode.scrollTop = currentDom.offsetTop;
+        const offsetTop = idx * currentDom.clientHeight;
+        currentDom.parentNode.parentNode.scrollTop = offsetTop;
       }
     }
   }
