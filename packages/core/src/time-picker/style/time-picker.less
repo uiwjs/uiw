@@ -1,6 +1,7 @@
 @timepicker-prefix: ~"w-timepicker";
 
 .@{timepicker-prefix} {
+  display: flex;
   &::after {
     content: '';
     display: block;
@@ -8,9 +9,9 @@
   }
   &-spinner {
     max-height: 189px;
-    float: left;
     flex: 1;
-    overflow: hidden;
+    // overflow: hidden;
+    overflow: auto;
     font-size: 14px;
     &:hover {
       overflow: auto;
@@ -21,6 +22,9 @@
       margin: 0 !important;
       padding-left: 0 !important;
       padding-right: 0 !important;
+      > li + li {
+        margin-top: 0 !important;
+      }
       > li {
         cursor: pointer;
         text-align: center;
