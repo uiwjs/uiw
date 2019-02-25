@@ -37,7 +37,7 @@ export default class TimePanel extends React.Component {
   onClick(num, e) {
     const { onSelected, type, date } = this.props;
     date[`set${type}`](num);
-    onSelected && onSelected(type, num, date);
+    onSelected && onSelected(type, num, this.disableds, date);
     this.scrollTopNow(e.target);
   }
   getMaybeNumber() {
@@ -72,6 +72,7 @@ export default class TimePanel extends React.Component {
   }
   render() {
     const { prefixCls, className, count, date, disabledHours, disabledMinutes, disabledSeconds, hideDisabled, onSelected, ...other } = this.props;
+    this.disableds = [];
     return (
       <div className={classnames(`${prefixCls}-spinner`)} {...other}>
         <ul ref={this.getInstance}>
@@ -80,6 +81,8 @@ export default class TimePanel extends React.Component {
             const props = {};
             if (!disabled) {
               props.onClick = this.onClick.bind(this, idx);
+            } else {
+              this.disableds.push(idx);
             }
             return (
               <li

@@ -64,6 +64,7 @@ const Demo = () => (
   <div>
     <Form
       onSubmit={({initial, current}) => {
+        console.log('-->>', initial, current);
         if(current.date) {
           Notify.success({
             title: '提交成功！',
@@ -75,7 +76,6 @@ const Demo = () => (
             description: <span>表单提交时间成功，时间为：<b>空</b>，将自动填充初始化值！</span>,
           });
         }
-        console.log('-->>', initial, current);
       }}
       fields={{
         date: {
@@ -111,7 +111,8 @@ const Demo = () => (
   <Row gutter={10} style={{ maxWidth: 360 }}>
     <Col fixed>
       <TimePicker
-        disabledHours={(hour, date) => {
+        disabledHours={(hour, type, date) => {
+          // console.log('~~:', hour, type, date);
           if (hour < 3) {
             return true;
           }
@@ -190,7 +191,7 @@ const Demo = () => (
 | disabledMinutes | 禁止选择部分分钟选项 | Function(minute, <br/>type{`Hours`, `Minutes`, `Seconds`}, <br/>selectedDate) | - |
 | disabledSeconds | 禁止选择部分秒选项 | Function(second, <br/>type{`Hours`, `Minutes`, `Seconds`}, <br/>selectedDate) | - |
 | hideDisabled | 不可选择的项隐藏 | Boolean | `false` |
-| onSelected | 时间选择的回调函数 | Function(formatDate, Date, <br/>type{`Hours`, `Minutes`, `Seconds`}, <br/>num) | - |
+| onChange | 时间选择的回调函数 | Function(formatDate, Date, <br/>type{`Hours`, `Minutes`, `Seconds`}, <br/>, num, disableds) | - |
 
 ## Props.inputProps
 
