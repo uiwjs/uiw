@@ -15,7 +15,7 @@ const Demo = () => (
   <Row gutter={10}>
     <Col fixed>
       <TimePicker
-        onChange={(formatDate, date) => {
+        onSelected={(formatDate, date) => {
           console.log('--->', formatDate, date);
         }}
       />
@@ -190,7 +190,7 @@ const Demo = () => (
 | disabledMinutes | 禁止选择部分分钟选项 | Function(minute, selectedDate) | - |
 | disabledSeconds | 禁止选择部分秒选项 | Function(second, selectedDate) | - |
 | hideDisabled | 不可选择的项隐藏 | Boolean | `false` |
-| onChange | 时间发生变化的回调 | Function(formatDate, Date) | - |
+| onSelected | 时间选择的回调函数 | Function(formatDate, Date) | - |
 
 ## Props.inputProps
 
