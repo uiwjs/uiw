@@ -9,6 +9,7 @@
   &-spinner {
     max-height: 189px;
     float: left;
+    flex: 1;
     overflow: hidden;
     font-size: 14px;
     &:hover {
@@ -16,7 +17,10 @@
     }
     > ul {
       list-style: none;
-      width: 56px;
+      min-width: 56px;
+      margin: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
       > li {
         cursor: pointer;
         text-align: center;

@@ -18,10 +18,10 @@ export default class TimePicker extends React.Component {
       this.setState({ date: nextProps.value });
     }
   }
-  onChange(date) {
-    const { onChange, format } = this.props;
+  onSelected(type, num, date) {
+    const { onSelected, format } = this.props;
     this.setState({ date });
-    onChange && onChange(timestamp(format, date), date);
+    onSelected && onSelected(timestamp(format, date), date, type, num);
   }
   render() {
     const { prefixCls, disabled, value, format, popoverProps, inputProps, ...timeProps } = this.props;
@@ -40,7 +40,7 @@ export default class TimePicker extends React.Component {
             className={`${prefixCls}-popover`}
             {...timeProps}
             date={datePickerTime}
-            onChange={this.onChange.bind(this)}
+            onSelected={this.onSelected.bind(this)}
           />
         }
       >
@@ -59,7 +59,7 @@ export default class TimePicker extends React.Component {
 TimePicker.propTypes = {
   prefixCls: PropTypes.string,
   format: PropTypes.string,
-  onChange: PropTypes.func,
+  onSelected: PropTypes.func,
 };
 
 TimePicker.defaultProps = {

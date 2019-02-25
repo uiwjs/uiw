@@ -186,11 +186,11 @@ const Demo = () => (
 | format | 格式化时间，规则查看 [`<Timestamp>`](#/components/timestamp) 文档 | Function | `HH:mm:ss` |
 | precision | 选择时间精确度 | Enum{`hour`, `minute`, `second`} | `false` |
 | disabled | 禁用全部操作 | Boolean | `false` |
-| disabledHours | 禁止选择部分小时选项 | Function(hour, selectedDate) | - |
-| disabledMinutes | 禁止选择部分分钟选项 | Function(minute, selectedDate) | - |
-| disabledSeconds | 禁止选择部分秒选项 | Function(second, selectedDate) | - |
+| disabledHours | 禁止选择部分小时选项 | Function(hour, <br/>type{`Hours`, `Minutes`, `Seconds`}, <br/>selectedDate) | - |
+| disabledMinutes | 禁止选择部分分钟选项 | Function(minute, <br/>type{`Hours`, `Minutes`, `Seconds`}, <br/>selectedDate) | - |
+| disabledSeconds | 禁止选择部分秒选项 | Function(second, <br/>type{`Hours`, `Minutes`, `Seconds`}, <br/>selectedDate) | - |
 | hideDisabled | 不可选择的项隐藏 | Boolean | `false` |
-| onSelected | 时间选择的回调函数 | Function(formatDate, Date) | - |
+| onSelected | 时间选择的回调函数 | Function(formatDate, Date, <br/>type{`Hours`, `Minutes`, `Seconds`}, <br/>num) | - |
 
 ## Props.inputProps
 

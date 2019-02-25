@@ -35,8 +35,9 @@ export default class TimePanel extends React.Component {
     window.requestAnimationFrame(frameFunc);
   }
   onClick(num, e) {
-    const { onSelected, type } = this.props;
-    onSelected && onSelected(type, num);
+    const { onSelected, type, date } = this.props;
+    date[`set${type}`](num);
+    onSelected && onSelected(type, num, date);
     this.scrollTopNow(e.target);
   }
   getMaybeNumber() {
@@ -51,6 +52,8 @@ export default class TimePanel extends React.Component {
       return;
     }
     tag.style.paddingBottom = `${tag.parentNode.clientHeight - tag.firstChild.clientHeight}px`;
+    // console.log('tag.parentNode:', tag.setProperty, tag.parentNode, tag.parentNode.clientHeight, tag.firstChild.clientHeight);
+    // tag.setProperty('paddingBottom', `${tag.parentNode.clientHeight - tag.firstChild.clientHeight}px`, 'important');
   }
   getItemInstance = (idx, tag) => {
     if (tag && this.getMaybeNumber() === idx) {
@@ -63,12 +66,12 @@ export default class TimePanel extends React.Component {
   getDisabledItem(num) {
     const { type, date } = this.props;
     if (this.props[`disabled${type}`]) {
-      return this.props[`disabled${type}`](num, date);
+      return this.props[`disabled${type}`](num, type, date);
     }
     return false;
   }
   render() {
-    const { prefixCls, className, count, date, disabledHours, disabledMinutes, disabledSeconds, hideDisabled, ...other } = this.props;
+    const { prefixCls, className, count, date, disabledHours, disabledMinutes, disabledSeconds, hideDisabled, onSelected, ...other } = this.props;
     return (
       <div className={classnames(`${prefixCls}-spinner`)} {...other}>
         <ul ref={this.getInstance}>
