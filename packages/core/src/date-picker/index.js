@@ -4,8 +4,10 @@ import classnames from 'classnames';
 import PickerDay from './PickerDay';
 import PickerMonth from './PickerMonth';
 import PickerYear from './PickerYear';
+import PickerTime from '../time-picker/PickerTime';
 import PickerDayCaption from './PickerCaption';
 import { PropTypesDate } from '../utils';
+import Timestamp from '../timestamp';
 import './style/index.less';
 
 export default class DatePicker extends React.Component {
@@ -31,7 +33,10 @@ export default class DatePicker extends React.Component {
   onSelected = (type) => {
     const { today } = this.props;
     const { date, panelDate } = this.state;
-    if (/^(year|month)$/.test(type)) {
+    if (/^(year|month|time)$/.test(type)) {
+      if (this.state.type === 'time') {
+        type = 'day';
+      }
       this.setState({ type });
     } else {
       let currentDate = date || panelDate;
@@ -54,6 +59,17 @@ export default class DatePicker extends React.Component {
       this.setState({ ...data });
     }
   }
+  onSelectedTime(type, num) {
+    const { date, panelDate } = this.state;
+    const currentDate = date || panelDate;
+    currentDate[`set${type}`](num);
+    console.log('currentDate:', currentDate);
+    this.setState({
+      date: currentDate,
+    }, () => {
+      this.onChange(currentDate);
+    });
+  }
   onSelectedDate(type, month, paging) {
     const { panelDate, date } = this.state;
     panelDate[type](month);
@@ -71,7 +87,7 @@ export default class DatePicker extends React.Component {
     });
   }
   render() {
-    const { prefixCls, className, weekday, weekTitle, monthLabel, date, today, showTime, todayButton, panelDate, disabledDate, onChange, ...other } = this.props;
+    const { prefixCls, className, weekday, weekTitle, monthLabel, date, today, todayButton, panelDate, disabledDate, onChange, showTime, ...other } = this.props;
     const { type } = this.state;
     return (
       <div className={classnames(prefixCls, className)} {...other}>
@@ -108,6 +124,14 @@ export default class DatePicker extends React.Component {
             onSelected={this.onSelectedDate.bind(this, 'setFullYear')}
           />
         )}
+        {type === 'time' && (
+          <PickerTime
+            date={date || this.state.panelDate}
+            className={`${prefixCls}-timepicker`}
+            onSelected={this.onSelectedTime.bind(this)}
+          />
+        )}
+        {showTime && <div className={`${prefixCls}-time-btn`} onClick={this.onSelected.bind(this, 'time')}>{Timestamp(showTime.format ? showTime.format : 'HH:mm:ss', date || panelDate)}</div>}
       </div>
     );
   }
@@ -117,6 +141,7 @@ DatePicker.propTypes = {
   prefixCls: PropTypes.string,
   onChange: PropTypes.func,
   disabledDate: PropTypes.func,
+  showTime: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   weekday: PropTypes.arrayOf(PropTypes.string),
   weekTitle: PropTypes.arrayOf(PropTypes.string),
   monthLabel: PropTypes.arrayOf(PropTypes.string),

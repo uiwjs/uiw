@@ -7,20 +7,36 @@ function initSameDate(date) {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
 
+function setTimeDate(selDate, curDate) {
+  if (!selDate) {
+    return curDate;
+  }
+  return new Date(
+    curDate.getFullYear(),
+    curDate.getMonth(),
+    curDate.getDate(),
+    selDate.getHours(),
+    selDate.getMinutes(),
+    selDate.getSeconds()
+  );
+}
+
 export default class PickerDay extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { selected: null, panelDate: props.panelDate };
+    this.state = { selected: props.date, panelDate: props.panelDate };
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.panelDate !== this.props.panelDate) {
       this.setState({ panelDate: nextProps.panelDate });
     }
+    if (nextProps.date !== this.props.date) {
+      this.setState({ selected: nextProps.date });
+    }
   }
   handleClick(selectedDate) {
     const { date } = this.props;
-    selectedDate = initSameDate(selectedDate);
-    if (date && isSameDate(selectedDate, initSameDate(date))) {
+    if (date && isSameDate(initSameDate(selectedDate), initSameDate(date))) {
       this.setState({ selected: selectedDate });
       selectedDate = null;
     }
@@ -56,11 +72,11 @@ export default class PickerDay extends React.Component {
     } else {
       cellDate = new Date(this.state.panelDate).setDate(day);
     }
-    cellDate = initSameDate(new Date(cellDate));
-    if (isSameDate(cellDate, today)) {
+    cellDate = setTimeDate(selectedDate, new Date(cellDate));
+    if (isSameDate(initSameDate(new Date(cellDate)), today)) {
       cls.today = true;
     }
-    if (selectedDate && isSameDate(cellDate, initSameDate(selectedDate))) {
+    if (selectedDate && isSameDate(initSameDate(cellDate), initSameDate(selectedDate))) {
       cls.selected = true;
     }
     const props = {

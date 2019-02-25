@@ -15,7 +15,7 @@ class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: null,
+      date: new Date('2019-02-26 02:00:00'),
     };
   }
   onChange(selectedDate) {
@@ -26,6 +26,12 @@ class Demo extends React.Component {
     return (
       <div>
         <DatePicker
+          date={this.state.date}
+          todayButton="今天"
+          onChange={this.onChange.bind(this)}
+        />
+        <DatePicker
+          showTime
           date={this.state.date}
           todayButton="今天"
           onChange={this.onChange.bind(this)}
