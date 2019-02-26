@@ -41,5 +41,6 @@ export { default as Tooltip } from './tooltip';
 export { default as Timestamp } from './timestamp';
 export { default as TimePicker } from './time-picker';
 export { default as Textarea } from './textarea';
+export { default as FileInput } from './file-input';
 export { default as Form } from './form/Form';
 export { default as FormItem } from './form/FormItem';

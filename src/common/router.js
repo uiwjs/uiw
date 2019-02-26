@@ -97,6 +97,9 @@ export const getRouterData = () => {
     '/components/form': {
       component: dynamicWrapper([], () => import('../routes/components/form')),
     },
+    '/components/file-input': {
+      component: dynamicWrapper([], () => import('../routes/components/file-input')),
+    },
     '/components/breadcrumb': {
       component: dynamicWrapper([], () => import('../routes/components/breadcrumb')),
     },
