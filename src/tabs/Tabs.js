@@ -44,6 +44,9 @@ export default class Tabs extends Component {
       this.calcSlideStyle();
     }, 300);
   }
+  componentUnWillMount() {
+    this.updateFirstMount();
+  }
   calcSlideStyle() {
     if (!this.tabsBar.length) return;
     const { activeKey } = this.state;
