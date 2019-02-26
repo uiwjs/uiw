@@ -44,7 +44,7 @@ export default class PickerDay extends React.Component {
     this.props.onChange(selectedDate);
   }
   renderDay(num, row) {
-    const { date: selectedDate, disabledDate } = this.props;
+    const { date: selectedDate, disabledDate, renderDay } = this.props;
     const today = initSameDate(this.props.today);
     const date = initSameDate(this.state.panelDate);
     const year = date.getFullYear();
@@ -89,7 +89,7 @@ export default class PickerDay extends React.Component {
     }
     return (
       <div {...props} className={classnames(cls)}>
-        <div>{day}</div>
+        {renderDay ? renderDay(day, { ...props, ...cls }, cellDate) : <div>{day}</div>}
       </div>
     );
   }
@@ -102,7 +102,7 @@ export default class PickerDay extends React.Component {
     );
   }
   render() {
-    const { prefixCls, className, weekday, weekTitle, date, today, panelDate, disabledDate, ...other } = this.props;
+    const { prefixCls, className, weekday, weekTitle, date, today, panelDate, disabledDate, renderDay, ...other } = this.props;
     return (
       <div {...other} className={classnames(`${prefixCls}-body`, className)}>
         <div className={`${prefixCls}-weekday`}>

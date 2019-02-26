@@ -175,6 +175,47 @@ class Demo extends React.Component {
 ```
 <!--End-->
 
+## 定制日历单元格
+
+使用 `renderDay` 可以自定义日期单元格的内容和样式。
+
+<!--DemoStart,bgWhite--> 
+```js
+class Demo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      date: null,
+    };
+  }
+  onChange(selectedDate) {
+    this.setState({ date: selectedDate });
+  }
+  render() {
+    return (
+      <div>
+        <DatePicker
+          date={this.state.date}
+          renderDay={(day, props, cellDate) => {
+            const style = {}
+            const week = cellDate.getDay();
+            if (week === 0 && !props.prev && !props.next) {
+              style.border = '1px solid red';
+            }
+            return (
+              <div style={style}> {day} </div>
+            );
+          }}
+          onChange={this.onChange.bind(this)}
+        />
+        <div>{this.state.date ? String(this.state.date) : 'no date'}</div>
+      </div>
+    );
+  }
+}
+```
+<!--End-->
+
 ## DatePicker
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -183,7 +224,8 @@ class Demo extends React.Component {
 | panelDate | 日历面板默认展示哪一页 | Date | `new Date` |
 | today | 默认高亮当天日期 | Date | `new Date` |
 | todayButton | 展示回到今天按钮，和提示文本。 | String | - |
-| showTime | 增加时间选择功能。 | Function(currentDate) | - |
+| showTime | 增加时间选择功能，当 showTime 为一个对象时，其属性会传递给内建的 [`<TimePicker />`](#/components/time-picker)。 | Boolean/Object | - |
+| renderDay | 增加时间选择功能。 | Function(day, props, cellDate) | - |
 | disabledDate | 不可选择的日期，函数返回 `true` 当前日期被禁用无法选择。 | Function(currentDate) | - |
 | onChange | 选择一天时调用。 | Function(selectedDate:Date) | - |
 | weekTitle | 星期显示文本提示 | Array | \[`星期天`, `星期一`, `星期二`, `星期三`, `星期四`, `星期五`, `星期六`\] |

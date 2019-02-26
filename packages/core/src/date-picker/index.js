@@ -87,7 +87,7 @@ export default class DatePicker extends React.Component {
     });
   }
   render() {
-    const { prefixCls, className, weekday, weekTitle, monthLabel, date, today, todayButton, panelDate, disabledDate, onChange, showTime, ...other } = this.props;
+    const { prefixCls, className, weekday, weekTitle, monthLabel, date, today, todayButton, panelDate, disabledDate, renderDay, onChange, showTime, ...other } = this.props;
     const { type } = this.state;
     return (
       <div className={classnames(prefixCls, className)} {...other}>
@@ -102,6 +102,7 @@ export default class DatePicker extends React.Component {
             prefixCls={prefixCls}
             disabledDate={disabledDate}
             onChange={this.onChange}
+            renderDay={renderDay}
             date={this.state.date}
             today={today || new Date()}
             panelDate={this.state.panelDate}
@@ -140,6 +141,7 @@ export default class DatePicker extends React.Component {
 DatePicker.propTypes = {
   prefixCls: PropTypes.string,
   onChange: PropTypes.func,
+  renderDay: PropTypes.func,
   disabledDate: PropTypes.func,
   showTime: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   weekday: PropTypes.arrayOf(PropTypes.string),
