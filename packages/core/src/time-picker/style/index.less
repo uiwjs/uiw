@@ -3,16 +3,19 @@
 .@{timepicker-prefix} {
   overflow: hidden;
   border-radius: 4px;
-  &.disabled &-close-btn {
+  &-input.disabled &-close-btn {
     display: none;
   }
-  &-close-btn {
-    display: flex;
+  &-input &-close-btn {
+    display: none;
     margin: 0 3px;
     color: #A5A5A5;
     cursor: pointer;
     &:hover {
       color: #393E48;
     }
+  }
+  &-input:hover &-close-btn {
+    display: flex;
   }
 }

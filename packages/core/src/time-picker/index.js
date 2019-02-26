@@ -55,7 +55,7 @@ export default class TimePicker extends React.Component {
           readOnly
           disabled={disabled}
           {...props}
-          className={classnames(`${prefixCls}`, className)}
+          className={classnames(`${prefixCls}-input`, className)}
         />
       </Popover>
     );

@@ -111,6 +111,11 @@ const Demo = () => (
   <Row gutter={10} style={{ maxWidth: 360 }}>
     <Col fixed>
       <TimePicker
+        disabledMinutes={(minute, type) => {
+          if (minute % 15 !== 0) {
+            return true;
+          }
+        }}
         disabledHours={(hour, type, date) => {
           // console.log('~~:', hour, type, date);
           if (hour < 3) {
