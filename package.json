@@ -1,14 +1,14 @@
 {
   "name": "uiw",
-  "version": "1.16.15",
+  "version": "1.16.16",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
-  "homepage": "https://uiw-react.github.io",
+  "homepage": "https://uiwjs.github.io",
   "authors": [
     "Kenny Wang <wowohoo@qq.com>"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/uiw-react/uiw.git"
+    "url": "https://github.com/uiwjs/uiw.git"
   },
   "main": "lib/index.js",
   "scripts": {
@@ -27,7 +27,7 @@
   },
   "keywords": [
     "uiw",
-    "uiw-react",
+    "uiwjs",
     "react.js",
     "react",
     "component",
