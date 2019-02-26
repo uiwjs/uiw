@@ -120,7 +120,7 @@ const Demo = () => (
       />
     </Col>
     <Col>
-      <TimePicker disabled />
+      <TimePicker disabled value={new Date(2018, 1, 24, 4,5,35)} />
     </Col>
   </Row>
 )

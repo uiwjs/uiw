@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import Popover from '../popover';
 import PickerTime from './PickerTime';
 import Input from '../input';
+import Icon from '../icon';
 import timestamp from '../timestamp';
 import './style/index.less';
 
@@ -21,13 +23,17 @@ export default class TimePicker extends React.Component {
   onSelected(type, num, disableds, date) {
     const { onChange, format } = this.props;
     this.setState({ date });
-    onChange && onChange(timestamp(format, date), date, type, num, disableds);
+    onChange && onChange(date && timestamp(format, date), date, type, num, disableds);
   }
   render() {
-    const { prefixCls, disabled, value, format, popoverProps, inputProps, ...timeProps } = this.props;
+    const { prefixCls, className, disabled, value, format, popoverProps, inputProps, allowClear, ...timeProps } = this.props;
     const { date } = this.state;
     const inputValue = date && timestamp(format, date);
+    const props = { ...inputProps, value: inputValue };
     const datePickerTime = date || new Date();
+    if (allowClear && inputValue !== '' && !!inputValue) {
+      props.addonAfter = <Icon className={`${prefixCls}-close-btn`} onClick={this.onSelected.bind(this, null, null, null, '')} type="close" />;
+    }
     return (
       <Popover
         trigger="focus"
@@ -48,8 +54,8 @@ export default class TimePicker extends React.Component {
           placeholder="请选择时间"
           readOnly
           disabled={disabled}
-          {...inputProps}
-          value={inputValue}
+          {...props}
+          className={classnames(`${prefixCls}`, className)}
         />
       </Popover>
     );
@@ -59,10 +65,14 @@ export default class TimePicker extends React.Component {
 TimePicker.propTypes = {
   prefixCls: PropTypes.string,
   format: PropTypes.string,
+  inputProps: PropTypes.object,
+  allowClear: PropTypes.bool,
   onChange: PropTypes.func,
 };
 
 TimePicker.defaultProps = {
   prefixCls: 'w-timepicker',
   format: 'HH:mm:ss',
+  inputProps: {},
+  allowClear: true,
 };
