@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Option from './Option';
+import Group from './Group';
 import './style/index.less';
 
 export default class Select extends React.Component {
   static Option = Option;
+  static Group = Group;
   render() {
     const { prefixCls, className, size, ...resetProps } = this.props;
     const cls = classnames(prefixCls, className, { [`${prefixCls}-${size}`]: size });
