@@ -4,20 +4,15 @@ import classnames from 'classnames';
 import './style/index.less';
 
 export default class Slider extends React.Component {
-  constructor(props) {
-    super(props); 
-    this.state = {
-      style: {
-        left: '0%',
-        right: `${100 - props.value}%`,
-      }
-    };
-  }
   removeEvent() {
     window.removeEventListener('mousemove', this.onDragging, false);
     window.removeEventListener('mouseup', this.onDragEnd, false);
   }
   onHandleBtnDown() {
+    const { disabled } = this.props;
+    if (disabled) {
+      return;
+    }
     this.move = true;
     this.startX = event.clientX;
     this.target = event.target;
@@ -53,10 +48,9 @@ export default class Slider extends React.Component {
     }
   }
   render() {
-    const { prefixCls, className, value, ...other } = this.props;
-    console.log('value:', value);
+    const { prefixCls, className, value, disabled, ...other } = this.props;
     return (
-      <div className={classnames(prefixCls, className)}>
+      <div className={classnames(prefixCls, className, { disabled })} {...other}>
         <div
           className={classnames(`${prefixCls}-bar`)}
           style={{ left: '0%', right: `${100 - value}%` }}
@@ -75,10 +69,12 @@ export default class Slider extends React.Component {
 Slider.propTypes = {
   prefixCls: PropTypes.string,
   value: PropTypes.number,
+  disabled: PropTypes.bool,
   onChange: PropTypes.func,
 };
 
 Slider.defaultProps = {
   prefixCls: 'w-slider',
+  disabled: false,
   value: 0,
 };

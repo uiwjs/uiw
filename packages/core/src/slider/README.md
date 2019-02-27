@@ -71,6 +71,7 @@ const Demo = () => (
           <div>
             <Row gutter={10}>
               <Col style={{ maxWidth: 300 }}>{fields.age}</Col>
+              <Col>{state.current.age}</Col>
             </Row>
             <Row>
               <Col fixed>
@@ -86,10 +87,24 @@ const Demo = () => (
 ```
 <!--End-->
 
+### 禁用样式
+
+<!--DemoStart,bgWhite--> 
+```js
+class Demo extends Component {
+  render() {
+    return (
+      <Slider value={25} disabled />
+    )
+  }
+}
+```
+<!--End-->
 
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | value | 选择的数值，为数组时即可开启范围选择，并且指定范围 | Number | `0` |
+| disabled | 是否禁用 | Boolean | `false` |
 | onChange | 值改变时触发 | Function(value) | - |
