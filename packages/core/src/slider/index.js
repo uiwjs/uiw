@@ -36,7 +36,8 @@ export default class Slider extends React.Component {
     }
     this.target.style.left = `${percent}%`;
     this.bar.style.right = `${100 - percent}%`;
-    onChange && onChange(Math.floor(percent));
+    const { min, max } = this.props;
+    onChange && onChange(Math.floor(min + (percent * (max - min) / 100)));
   }
   onDragEnd = () => {
     this.move = false;
@@ -69,12 +70,16 @@ export default class Slider extends React.Component {
 Slider.propTypes = {
   prefixCls: PropTypes.string,
   value: PropTypes.number,
+  min: PropTypes.number,
+  max: PropTypes.number,
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
 };
 
 Slider.defaultProps = {
   prefixCls: 'w-slider',
-  disabled: false,
   value: 0,
+  min: 0,
+  max: 100,
+  disabled: false,
 };

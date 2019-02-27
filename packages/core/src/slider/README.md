@@ -14,18 +14,29 @@ class Demo extends Component {
     super(props);
     this.state = {
       value: 20,
+      value2: 10,
     };
   }
   render() {
     return (
       <div>
         <Slider
-          value={this.state.value} 
+          value={this.state.value}
           onChange={(value)=> {
             this.setState({ value });
           }}
         />
-        <div>{this.state.value}</div>
+        <div>当前值：{this.state.value}</div>
+        <Divider />
+        <Slider
+          min={10}
+          max={40}
+          onChange={(value2)=> {
+            // console.log('value2:', value2);
+            this.setState({ value2 });
+          }}
+        />
+        <div>可选10~40值范围：<b>{this.state.value2}</b></div>
       </div>
     )
   }
@@ -106,5 +117,7 @@ class Demo extends Component {
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | value | 选择的数值，为数组时即可开启范围选择，并且指定范围 | Number | `0` |
+| min | 最小值 | Number | `0` |
+| max | 最大值 | Number | `100` |
 | disabled | 是否禁用 | Boolean | `false` |
 | onChange | 值改变时触发 | Function(value) | - |
