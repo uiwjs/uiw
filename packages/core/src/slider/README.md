@@ -35,7 +35,7 @@ class Demo extends Component {
 
 ## 在表单中使用
 
-在 `<Form />` 表单中应用 `<Slider />` 组件，需要设置 `initialValue` 初始值。
+在 [`<Form />`](#/components/form) 表单中应用 [`<Slider />`](#/components/slider) 组件，需要设置 `initialValue` 初始值。
 
 <!--DemoStart,bgWhite--> 
 ```js
