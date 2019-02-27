@@ -34,6 +34,7 @@ const menuData = [
       { name: 'Switch 开关', path: 'switch' },
       { name: 'Select 选择器', path: 'select' },
       { name: 'Input 输入框', path: 'input' },
+      { name: 'Slider 滑块', path: 'slider' },
       { name: 'FileInput 上传输入框', path: 'file-input' },
       { name: 'Textarea 多行文本输入框', path: 'textarea' },
       { divider: true, name: '时间日历' },

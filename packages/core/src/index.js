@@ -33,6 +33,7 @@ export { default as Radio } from './radio/Radio';
 export { default as RadioGroup } from './radio/RadioGroup';
 export { default as Select } from './select/Select';
 export { default as Switch } from './switch';
+export { default as Slider } from './slider';
 export { default as Steps } from './steps/Steps';
 export { default as Split } from './split';
 export { default as Tag } from './tag';

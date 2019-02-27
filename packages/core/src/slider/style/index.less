@@ -1,0 +1,34 @@
+@slider-prefix: ~"w-slider";
+
+.@{slider-prefix} {
+  width: fill-available;
+  height: 4px;
+  margin: 13px 7px;
+  background-color: #e4e8f1;
+  border-radius: 3px;
+  position: relative;
+  font-size: 12px;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  &-bar {
+    height: 4px;
+    border-radius: 3px;
+    background-color: #008EF0;
+    position: absolute;
+  }
+  &-handle {
+    left: 0%;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    margin-top: -5px;
+    transform: translateX(-50%);
+    background-color: #008EF0;
+    border-radius: 50%;
+    transition: all .3;
+    &:active {
+      box-shadow: inset 0 1px 3px 1px rgba(0, 0, 0, 0.25);
+    }
+  }
+}

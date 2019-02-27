@@ -289,7 +289,7 @@ const Demo = () => (
           labelStyle: { width: 60 },
           // initialValue: '',
           validator: (currentValue) => {
-            return currentValue.length < 2 ? 'Password must be 8+ characters' : null;
+            return currentValue && currentValue.length < 2 ? 'Password must be 8+ characters' : null;
           },
           inline: true,
           label: 'Email',
