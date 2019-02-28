@@ -67,13 +67,13 @@ export default class Slider extends React.Component {
     }
   }
   render() {
-    const { prefixCls, className, value, disabled, max, min, tooltip, ...other } = this.props;
+    const { prefixCls, className, value, disabled, max, min, tooltip, progress, ...other } = this.props;
     const leftPostion = this.getValueToPercent(value);
     return (
       <div className={classnames(prefixCls, className, { disabled })} {...other}>
         <div
           className={classnames(`${prefixCls}-bar`)}
-          style={{ left: '0%', right: `${100 - leftPostion}%` }}
+          style={{ left: '0%', right: `${100 - leftPostion}%`, backgroundColor: progress ? '' : 'initial' }}
           ref={this.getInstance}
         />
         <div
@@ -94,6 +94,7 @@ Slider.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
   disabled: PropTypes.bool,
+  progress: PropTypes.bool,
   tooltip: PropTypes.bool,
   onChange: PropTypes.func,
 };
@@ -104,5 +105,6 @@ Slider.defaultProps = {
   min: 0,
   max: 100,
   disabled: false,
+  progress: true,
   tooltip: false,
 };

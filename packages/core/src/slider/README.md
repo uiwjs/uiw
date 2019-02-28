@@ -46,7 +46,7 @@ class Demo extends Component {
 ```
 <!--End-->
 
-## 在表单中使用
+### 在表单中使用
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<Slider />`](#/components/slider) 组件，需要设置 `initialValue` 初始值。
 
@@ -140,5 +140,6 @@ class Demo extends Component {
 | min | 最小值 | Number | `0` |
 | max | 最大值 | Number | `100` |
 | disabled | 是否禁用 | Boolean | `false` |
+| progress | 显示滑动的进度条，设为 `false` 不显示进度条 | Boolean | `true` |
 | tooltip | 是否显示提示，若设置为 `true` 提示始终显示，若设置为 `null` 将始终不显示提示。 | Boolean | `false` |
 | onChange | 值改变时触发 | Function(value) | - |

@@ -1,4 +1,4 @@
-DateInput 日期选择器输入框
+DateInput 日期输入框
 ===
 
 显示一个月的日历，并允许用户选择单个日期。
@@ -32,6 +32,8 @@ class Demo extends React.Component {
 <!--End-->
 
 ## 在表单中使用
+
+在 [`<Form />`](#/components/form) 表单中应用 [`<DateInput />`](#/components/date-input) 组件。
 
 <!--DemoStart,bgWhite--> 
 ```js
