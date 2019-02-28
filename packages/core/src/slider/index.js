@@ -27,7 +27,7 @@ export default class Slider extends React.Component {
     }
     const { onChange } = this.props;
     const point = env.clientX - this.startX + this.barWidth;
-    let percent = Math.floor(point / this.boxWidth * 1000000) / 10000;
+    let percent = point / this.boxWidth * 100;
     if (percent <= 0) {
       percent = 0;
     }
@@ -36,12 +36,23 @@ export default class Slider extends React.Component {
     }
     this.target.style.left = `${percent}%`;
     this.bar.style.right = `${100 - percent}%`;
-    const { min, max } = this.props;
-    onChange && onChange(Math.floor(min + (percent * (max - min) / 100)));
+    const value = Math.floor(this.getPercentToValue(percent));
+    if (value !== this.value) {
+      onChange && onChange(value);
+      this.value = value;
+    }
   }
   onDragEnd = () => {
     this.move = false;
     this.removeEvent();
+  }
+  getPercentToValue(percent) {
+    const { min, max } = this.props;
+    return min + (percent * (max - min) / 100);
+  }
+  getValueToPercent(value) {
+    const { min, max } = this.props;
+    return ((value - min) * 100) / (max - min);
   }
   getInstance = (node) => {
     if (node) {
@@ -49,18 +60,19 @@ export default class Slider extends React.Component {
     }
   }
   render() {
-    const { prefixCls, className, value, disabled, ...other } = this.props;
+    const { prefixCls, className, value, disabled, max, min, ...other } = this.props;
+    const leftPostion = this.getValueToPercent(value);
     return (
       <div className={classnames(prefixCls, className, { disabled })} {...other}>
         <div
           className={classnames(`${prefixCls}-bar`)}
-          style={{ left: '0%', right: `${100 - value}%` }}
+          style={{ left: '0%', right: `${100 - leftPostion}%` }}
           ref={this.getInstance}
         />
         <div
           className={classnames(`${prefixCls}-handle`)}
           onMouseDown={this.onHandleBtnDown.bind(this)}
-          style={{ left: `${this.props.value}%` }}
+          style={{ left: `${leftPostion}%` }}
         />
       </div>
     );

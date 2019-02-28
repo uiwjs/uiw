@@ -14,7 +14,7 @@ class Demo extends Component {
     super(props);
     this.state = {
       value: 20,
-      value2: 10,
+      value2: 1,
     };
   }
   render() {
@@ -22,6 +22,7 @@ class Demo extends Component {
       <div>
         <Slider
           value={this.state.value}
+          style={{ maxWidth: 260 }}
           onChange={(value)=> {
             this.setState({ value });
           }}
@@ -29,14 +30,15 @@ class Demo extends Component {
         <div>当前值：{this.state.value}</div>
         <Divider />
         <Slider
-          min={10}
-          max={40}
+          min={-10}
+          max={30}
+          value={this.state.value2}
+          style={{ maxWidth: 260 }}
           onChange={(value2)=> {
-            // console.log('value2:', value2);
             this.setState({ value2 });
           }}
         />
-        <div>可选10~40值范围：<b>{this.state.value2}</b></div>
+        <div>可选 -10~30值范围：<b>{this.state.value2}</b></div>
       </div>
     )
   }
