@@ -4,6 +4,12 @@ import classnames from 'classnames';
 import './style/index.less';
 
 export default class Slider extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: props.value,
+    };
+  }
   removeEvent() {
     window.removeEventListener('mousemove', this.onDragging, false);
     window.removeEventListener('mouseup', this.onDragEnd, false);
@@ -38,8 +44,9 @@ export default class Slider extends React.Component {
     this.bar.style.right = `${100 - percent}%`;
     const value = Math.floor(this.getPercentToValue(percent));
     if (value !== this.value) {
-      onChange && onChange(value);
       this.value = value;
+      onChange && onChange(value);
+      this.setState({ value });
     }
   }
   onDragEnd = () => {
@@ -60,7 +67,7 @@ export default class Slider extends React.Component {
     }
   }
   render() {
-    const { prefixCls, className, value, disabled, max, min, ...other } = this.props;
+    const { prefixCls, className, value, disabled, max, min, tooltip, ...other } = this.props;
     const leftPostion = this.getValueToPercent(value);
     return (
       <div className={classnames(prefixCls, className, { disabled })} {...other}>
@@ -73,7 +80,9 @@ export default class Slider extends React.Component {
           className={classnames(`${prefixCls}-handle`)}
           onMouseDown={this.onHandleBtnDown.bind(this)}
           style={{ left: `${leftPostion}%` }}
-        />
+        >
+          {(tooltip || tooltip === false) && <div className={classnames(`${prefixCls}-tooltip`, { open: tooltip })}>{this.state.value}</div>}
+        </div>
       </div>
     );
   }
@@ -85,6 +94,7 @@ Slider.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
   disabled: PropTypes.bool,
+  tooltip: PropTypes.bool,
   onChange: PropTypes.func,
 };
 
@@ -94,4 +104,5 @@ Slider.defaultProps = {
   min: 0,
   max: 100,
   disabled: false,
+  tooltip: false,
 };

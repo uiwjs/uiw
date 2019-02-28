@@ -32,7 +32,7 @@ class Demo extends Component {
         <Slider
           min={-10}
           max={30}
-          value={this.state.value2}
+          // value={this.state.value2}
           style={{ maxWidth: 260 }}
           onChange={(value2)=> {
             this.setState({ value2 });
@@ -100,6 +100,24 @@ const Demo = () => (
 ```
 <!--End-->
 
+### 控制提示显示
+
+<!--DemoStart,bgWhite--> 
+```js
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <Slider value={25} style={{ maxWidth: 260 }} tooltip />
+        <Divider />
+        <Slider value={25} style={{ maxWidth: 260 }} tooltip={null} />
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
 ### 禁用样式
 
 <!--DemoStart,bgWhite--> 
@@ -122,4 +140,5 @@ class Demo extends Component {
 | min | 最小值 | Number | `0` |
 | max | 最大值 | Number | `100` |
 | disabled | 是否禁用 | Boolean | `false` |
+| tooltip | 是否显示提示，若设置为 `true` 提示始终显示，若设置为 `null` 将始终不显示提示。 | Boolean | `false` |
 | onChange | 值改变时触发 | Function(value) | - |

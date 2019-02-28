@@ -40,9 +40,27 @@
     border-radius: 50%;
     transition: all .3;
   }
-  &:not(.disabled) &-handle {
-    &:active {
-      background-color: #d8e1e8;
-    }
+  &:not(.disabled) &-handle:active  {
+    background-color: #d8e1e8;
+  }
+  &:not(.disabled) &-handle:hover &-tooltip,
+  &:not(.disabled) &-handle:focus &-tooltip,
+  &:not(.disabled) &-handle:active &-tooltip {
+    display: inline-block;
+  }
+  &-tooltip {
+    display: none;
+    font-size: 12px;
+    position: absolute;
+    background-color: rgba(0,0,0,0.75);
+    color: #fff;
+    padding: 0px 4px;
+    margin-top: -3px;
+    border-radius: 3px;
+    transform: translate(-50%, -100%);
+    margin-left: 6px;
+  }
+  &-tooltip.open {
+    display: inline-block;
   }
 }
