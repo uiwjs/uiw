@@ -1,7 +1,7 @@
 Slider 滑块
 ===
 
-通过拖动滑块在一个固定区间内进行选择。
+通过拖动滑块在一个固定区间内进行选择，效果比 [`input`](https://www.w3.org/wiki/HTML/Elements/input/range) 类型为 [`range`](https://www.w3.org/wiki/HTML/Elements/input/range) 的功能丰富。
 
 ### 基本用法
 
@@ -14,7 +14,7 @@ class Demo extends Component {
     super(props);
     this.state = {
       value: 20,
-      value2: 1,
+      value2: 30,
     };
   }
   render() {
@@ -32,7 +32,7 @@ class Demo extends Component {
         <Slider
           min={-10}
           max={30}
-          // value={this.state.value2}
+          value={this.state.value2}
           style={{ maxWidth: 260 }}
           onChange={(value2)=> {
             this.setState({ value2 });
@@ -132,6 +132,39 @@ class Demo extends Component {
 ```
 <!--End-->
 
+### 设置递增量
+
+通过 `step` 设置或返回每次拖动滑块控件时的递增量。
+
+<!--DemoStart,bgWhite--> 
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 20,
+      value2: 30,
+    };
+  }
+  render() {
+    return (
+      <div>
+        <Slider
+          step={10}
+          value={this.state.value}
+          style={{ maxWidth: 260 }}
+          onChange={(value)=> {
+            this.setState({ value });
+          }}
+        />
+        <div>当前值：{this.state.value}</div>
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -139,6 +172,7 @@ class Demo extends Component {
 | value | 选择的数值，为数组时即可开启范围选择，并且指定范围 | Number | `0` |
 | min | 最小值 | Number | `0` |
 | max | 最大值 | Number | `100` |
+| step | 设置或返回每次拖动滑块控件时的递增量，规定合法数字间隔（如果 `step={3}`，则合法数字是 `0`,`3`,`6`，以此类推） | Number | `100` |
 | disabled | 是否禁用 | Boolean | `false` |
 | progress | 显示滑动的进度条，设为 `false` 不显示进度条 | Boolean | `true` |
 | tooltip | 是否显示提示，若设置为 `true` 提示始终显示，若设置为 `null` 将始终不显示提示。 | Boolean | `false` |

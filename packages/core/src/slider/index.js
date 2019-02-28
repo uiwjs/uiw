@@ -31,7 +31,7 @@ export default class Slider extends React.Component {
     if (!this.move) {
       return;
     }
-    const { onChange } = this.props;
+    const { onChange, step } = this.props;
     const point = env.clientX - this.startX + this.barWidth;
     let percent = point / this.boxWidth * 100;
     if (percent <= 0) {
@@ -45,8 +45,10 @@ export default class Slider extends React.Component {
     const value = Math.floor(this.getPercentToValue(percent));
     if (value !== this.value) {
       this.value = value;
-      onChange && onChange(value);
-      this.setState({ value });
+      if (value % step === 0) {
+        onChange && onChange(value);
+        this.setState({ value });
+      }
     }
   }
   onDragEnd = () => {
@@ -93,6 +95,7 @@ Slider.propTypes = {
   value: PropTypes.number,
   min: PropTypes.number,
   max: PropTypes.number,
+  step: PropTypes.number,
   disabled: PropTypes.bool,
   progress: PropTypes.bool,
   tooltip: PropTypes.bool,
@@ -104,6 +107,7 @@ Slider.defaultProps = {
   value: 0,
   min: 0,
   max: 100,
+  step: 1,
   disabled: false,
   progress: true,
   tooltip: false,
