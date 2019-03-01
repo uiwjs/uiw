@@ -315,15 +315,15 @@ const Demo = () => (
         console.log('fields:', state);
         return (
           <div>
-            <Row style={{ marginBottom: 10 }}>
+            <Row gutter={10} style={{ marginBottom: 10 }}>
               <Col>{fields.firstName}</Col>
               <Col>{fields.lastName}</Col>
             </Row>
-            <Row>
+            <Row gutter={10}>
               <Col>{fields.email}</Col>
               <Col>{fields.select}</Col>
             </Row>
-            <Row>
+            <Row gutter={10}>
               <Col />
               <Col fixed align="bottom"><Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button></Col>
             </Row>

@@ -118,21 +118,7 @@ class Demo extends Component {
 ```
 <!--End-->
 
-### 禁用样式
-
-<!--DemoStart,bgWhite--> 
-```js
-class Demo extends Component {
-  render() {
-    return (
-      <Slider value={25} disabled />
-    )
-  }
-}
-```
-<!--End-->
-
-### 设置递增量
+### 刻度
 
 通过 `step` 设置或返回每次拖动滑块控件时的递增量。
 
@@ -143,21 +129,67 @@ class Demo extends Component {
     super(props);
     this.state = {
       value: 20,
-      value2: 30,
+      value2: 1.5,
     };
   }
   render() {
     return (
       <div>
+        <div>刻度 step=10 当前值：{this.state.value}</div>
         <Slider
           step={10}
+          max={200}
+          dots
           value={this.state.value}
           style={{ maxWidth: 260 }}
           onChange={(value)=> {
             this.setState({ value });
           }}
         />
-        <div>当前值：{this.state.value}</div>
+        <Divider />
+        <div>刻度 step=0.5 当前值：{this.state.value2}</div>
+        <Slider
+          min={0}
+          max={2}
+          step={0.5}
+          dots
+          value={this.state.value2}
+          style={{ maxWidth: 260 }}
+          onChange={(value2)=> {
+            this.setState({ value2 });
+          }}
+        />
+        <Slider
+          value={26}
+          min={20}
+          max={40}
+          step={3}
+          dots
+          style={{ maxWidth: 260 }}
+        />
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
+### 禁用样式
+
+```js
+class Demo extends Component {
+  render() {
+    return (
+      <div>
+        <Slider value={25} disabled style={{ maxWidth: 260 }} />
+        <Divider />
+        <Slider
+          step={10}
+          disabled
+          dots
+          value={50}
+          style={{ maxWidth: 260 }}
+        />
       </div>
     )
   }
@@ -172,7 +204,8 @@ class Demo extends Component {
 | value | 选择的数值，为数组时即可开启范围选择，并且指定范围 | Number | `0` |
 | min | 最小值 | Number | `0` |
 | max | 最大值 | Number | `100` |
-| step | 设置或返回每次拖动滑块控件时的递增量，规定合法数字间隔（如果 `step={3}`，则合法数字是 `0`,`3`,`6`，以此类推） | Number | `100` |
+| dots | 显示 `step` 间断点，建议在 `step` 间隔不密集时使用 | Number | `false` |
+| step | 设置或返回每次拖动滑块控件时的递增量，规定合法数字间隔（如果 `step={3}`，则合法数字是 `0`,`3`,`6`，以此类推） | Number | `1` |
 | disabled | 是否禁用 | Boolean | `false` |
 | progress | 显示滑动的进度条，设为 `false` 不显示进度条 | Boolean | `true` |
 | tooltip | 是否显示提示，若设置为 `true` 提示始终显示，若设置为 `null` 将始终不显示提示。 | Boolean | `false` |
