@@ -56,14 +56,15 @@ export default class DatePicker extends React.Component {
       if (date) {
         data.date = currentDate;
       }
-      this.setState({ ...data });
+      this.setState({ ...data }, () => {
+        this.onChange(currentDate);
+      });
     }
   }
   onSelectedTime(type, num) {
     const { date, panelDate } = this.state;
     const currentDate = date || panelDate;
     currentDate[`set${type}`](num);
-    console.log('currentDate:', currentDate);
     this.setState({
       date: currentDate,
     }, () => {
