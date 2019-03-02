@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "1.16.16",
+  "version": "1.16.17",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiwjs.github.io",
   "authors": [
@@ -18,7 +18,7 @@
     "test": "babel-node script/test.js --updateSnapshot --config .jest.js",
     "test:watch": "babel-node script/test.js --config .jest.js --watch --updateSnapshot",
     "start": "babel-node script/start.js",
-    "build": "babel-node script/build.js",
+    "build": "npm run build:lib && babel-node script/build.js",
     "build:lib": "BABEL_ENV=production babel --ignore=src/**/__test__ src --out-dir lib --copy-files --verbose",
     "lib:watch": "BABEL_ENV=production babel -w --ignore=src/**/__test__ src --out-dir lib --copy-files --verbose",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
