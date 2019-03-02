@@ -6,17 +6,11 @@ import './style/index.less';
 export default class Tag extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      visible: true,
-    };
+    this.state = {};
   }
   close = (e) => {
     const { onClose, children } = this.props;
     if (onClose) onClose(e, children);
-    if (e.isDefaultPrevented()) return;
-    this.setState({
-      visible: false,
-    });
   }
 
   isColorValue(color) {
@@ -30,7 +24,6 @@ export default class Tag extends Component {
   }
   render() {
     const { prefixCls, color, onClose, className, checked, children, data, ...others } = this.props;
-    const { visible } = this.state;
     let colors = '';
     switch (color) {
       case 'default': colors = 'white'; break;
@@ -51,7 +44,7 @@ export default class Tag extends Component {
       styles.backgroundColor = colors;
     }
 
-    return visible ? (
+    return (
       <span {...others} style={styles} className={cls}>
         {children}
         {(onClose && checked !== true && checked !== false) &&
@@ -63,7 +56,7 @@ export default class Tag extends Component {
           />
         }
       </span>
-    ) : null;
+    );
   }
 }
 
