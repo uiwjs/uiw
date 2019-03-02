@@ -28,15 +28,16 @@ export default class Slider extends React.Component {
     window.removeEventListener('mousemove', this.onDragging, false);
     window.removeEventListener('mouseup', this.onDragEnd, false);
   }
-  onHandleBtnDown() {
+  onHandleBtnDown(ev) {
+    const oEvent = ev || event;
     const { disabled } = this.props;
     if (disabled) {
       return;
     }
     this.move = true;
-    this.startX = event.clientX;
-    this.target = event.target;
-    this.boxWidth = event.target.parentNode.clientWidth;
+    this.startX = oEvent.clientX;
+    this.target = oEvent.target;
+    this.boxWidth = oEvent.target.parentNode.clientWidth;
     this.barWidth = this.bar.clientWidth;
     window.addEventListener('mousemove', this.onDragging, true);
     window.addEventListener('mouseup', this.onDragEnd, true);
@@ -45,9 +46,23 @@ export default class Slider extends React.Component {
     if (!this.move) {
       return;
     }
-    const { onChange, step, max, min } = this.props;
-    const point = env.clientX - this.startX + this.barWidth;
-    let percent = point / this.boxWidth * 100;
+    const value = this.getWidthToValue(env.clientX - this.startX + this.barWidth);
+    if (value !== this.value) {
+      this.target.style.left = `${this.getValueToPercent(value)}%`;
+      this.bar.style.right = `${100 - this.getValueToPercent(value)}%`;
+      this.onChange(value);
+      this.value = value;
+    }
+  }
+  onDragEnd = () => {
+    this.move = undefined;
+    this.removeEvent();
+  }
+  getWidthToValue(width) {
+    const { step, max, min } = this.props;
+
+    const equal = (max - min) / step;
+    let percent = width / this.slider.clientWidth * 100;
 
     if (percent <= 0) {
       percent = 0;
@@ -56,22 +71,10 @@ export default class Slider extends React.Component {
       percent = 100;
     }
 
-    const pointCount = (max - min) / step;
-    // Value move to
-    const num = pointCount * (percent / 100) + 0.5;
+    const num = equal * (percent / 100) + 0.5;
     const numFloor = Math.floor(num);
     const value = numFloor * step + min;
-    if (value !== this.value) {
-      this.target.style.left = `${this.getValueToPercent(value)}%`;
-      this.bar.style.right = `${100 - this.getValueToPercent(value)}%`;
-      onChange && onChange(value);
-      this.setState({ value: this.getLabelValue(value) });
-      this.value = value;
-    }
-  }
-  onDragEnd = () => {
-    this.move = false;
-    this.removeEvent();
+    return value;
   }
   getValueToPercent(value) {
     const { min, max } = this.props;
@@ -88,12 +91,26 @@ export default class Slider extends React.Component {
     }
     return value;
   }
+  onChange(value) {
+    const { onChange } = this.props;
+    onChange && onChange(value);
+    this.setState({ value: this.getLabelValue(value) });
+  }
+  onClickMark(env) {
+    const oEvent = env || event;
+    if (this.move !== undefined) {
+      return;
+    }
+    const markOffset = this.slider.getBoundingClientRect();
+    const value = this.getWidthToValue(oEvent.clientX - markOffset.x);
+    this.onChange(value);
+  }
   stepArray() {
     const { min, max, step } = this.props;
-    const pointCount = (max - min) / step;
+    const equal = (max - min) / step;
     const stepWidth = (100 * step) / (max - min);
     const result = [0];
-    for (let i = 1; i < pointCount; i += 1) {
+    for (let i = 1; i < equal; i += 1) {
       result.push(i * stepWidth);
     }
     result.push(100);
@@ -105,10 +122,10 @@ export default class Slider extends React.Component {
     }
   }
   render() {
-    const { prefixCls, className, value, disabled, max, min, dots, step, marks, renderMarks, tooltip, progress, ...other } = this.props;
+    const { prefixCls, className, value, disabled, max, min, dots, step, marks, renderMarks, tooltip, progress, onChange, ...other } = this.props;
     const leftPostion = this.getValueToPercent(value);
     return (
-      <div className={classnames(prefixCls, className, { disabled, [`${prefixCls}-with-marks`]: marks })} {...other}>
+      <div ref={node => this.slider = node} className={classnames(prefixCls, className, { disabled, [`${prefixCls}-with-marks`]: marks })} {...other} onClick={this.onClickMark.bind(this)}>
         <div
           className={classnames(`${prefixCls}-bar`)}
           style={{ left: '0%', right: `${100 - leftPostion}%`, backgroundColor: progress ? progress : 'initial' }}
@@ -133,9 +150,9 @@ export default class Slider extends React.Component {
                     'no-marks': marks && marks !== true && !marks[stepValue],
                   })}
                 >
-                  {marks === true && <div> {this.getLabelValue(stepValue)} </div>}
+                  {marks === true && <div onClick={this.onChange.bind(this, stepValue)}> {this.getLabelValue(stepValue)} </div>}
                   {marks !== true && marks && marks[stepValue] && (
-                    <div style={marks[stepValue].style}>
+                    <div onClick={this.onChange.bind(this, stepValue)} style={marks[stepValue].style}>
                       {this.getLabelValue(stepValue)}
                     </div>
                   )}

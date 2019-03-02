@@ -24,14 +24,19 @@
     "watch": "npm run build:watch:esm && npm run build:watch:cjs"
   },
   "keywords": [
+    "design",
     "uiw",
     "uiw-react",
     "react.js",
     "react",
+    "react-component",
     "component",
     "components",
     "ui",
-    "framework"
+    "uikit",
+    "react-ui",
+    "framework",
+    "frontend"
   ],
   "peerDependencies": {
     "react": ">=16.3.0",

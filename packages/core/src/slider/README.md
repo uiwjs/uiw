@@ -121,15 +121,22 @@ const Demo = () => (
 
 ### 控制提示显示
 
+通过设置 `tooltip` 的值，来控制提示的显示。
+
 <!--DemoStart,bgWhite--> 
 ```js
 class Demo extends Component {
   render() {
     return (
       <div>
+        <div>设置 tooltip 值为 <b>true</b>，提示将始终显示。</div>
         <Slider value={25} style={{ maxWidth: 260 }} tooltip />
         <Divider />
+        <div>设置 tooltip 值为 <b>null</b>，提示将始终不显示。</div>
         <Slider value={25} style={{ maxWidth: 260 }} tooltip={null} />
+        <Divider />
+        <div>设置 tooltip 值为 <b>false</b>，鼠标经过显示提示。</div>
+        <Slider value={25} style={{ maxWidth: 260 }} tooltip={false} />
       </div>
     )
   }
@@ -155,7 +162,7 @@ class Demo extends Component {
   render() {
     return (
       <div>
-        <div>刻度 step=10 当前值：{this.state.value}</div>
+        <div>刻度 <b>step=10</b> 当前值：<b>{this.state.value}</b></div>
         <Slider
           step={10}
           max={200}
@@ -167,7 +174,7 @@ class Demo extends Component {
           }}
         />
         <Divider />
-        <div>刻度 step=0.5 当前值：{this.state.value2}</div>
+        <div>刻度 <b>step=0.5</b> 当前值：<b>{this.state.value2}</b></div>
         <Slider
           min={0}
           max={2}
@@ -180,7 +187,7 @@ class Demo extends Component {
           }}
         />
         <Divider />
-        <div>刻度 step=3，设置 `dots=false` 不显示刻度 当前值：{this.state.value3}</div>
+        <div>刻度 <b>step=3</b>，设置 <b>dots=false</b> 不显示刻度 当前值：<b>{this.state.value3}</b></div>
         <Slider
           value={26}
           min={20}
@@ -217,7 +224,7 @@ class Demo extends Component {
   render() {
     return (
       <div>
-        <div>刻度 step=2 当前值：{this.state.value}</div>
+        <div>刻度 <b>step=2</b> 当前值：<b>{this.state.value}</b></div>
         <Slider
           min={-10}
           max={30}
@@ -244,7 +251,7 @@ class Demo extends Component {
             this.setState({ value });
           }}
         />
-        <div>刻度 step=0.5 当前值：{this.state.value2}</div>
+        <div>刻度 <b>step=0.5</b> 当前值：<b>{this.state.value2}</b></div>
         <Slider
           min={0}
           max={2}
@@ -257,13 +264,14 @@ class Demo extends Component {
             this.setState({ value2 });
           }}
         />
-        <div>刻度 step=3 当前值：{this.state.value3}</div>
+        <div>刻度 <b>step=3</b> 当前值：<b>{this.state.value3}</b></div>
         <Slider
           value={26}
           min={20}
           max={44}
           step={2}
           dots
+          marks
           value={this.state.value3}
           style={{ maxWidth: 260 }}
           onChange={(value3)=> {
