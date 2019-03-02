@@ -31,7 +31,16 @@
   &.danger .w-modal-header > .w-icon {
     color: #dc3545;
   }
-
+  .w-modal-inner .w-modal-header {
+    > button {
+      min-width: 18px;
+      min-height: 18px;
+      padding: 5px 5px;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+  }
   .w-modal-shown-title.w-modal-inner {
     .w-modal-header {
       display: flex;
@@ -41,12 +50,6 @@
         font-size: 40px;
         position: absolute;
         top: 18px;
-      }
-      > button {
-        margin-top: -10px;
-        min-width: 18px;
-        min-height: 18px;
-        padding: 5px 5px;
       }
 
       > button > .w-icon {
