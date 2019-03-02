@@ -59,8 +59,8 @@ export default class Slider extends React.Component {
     const pointCount = (max - min) / step;
     // Value move to
     const num = pointCount * (percent / 100) + 0.5;
-    let numFloor = Math.floor(num);
-    let value = numFloor * step + min;
+    const numFloor = Math.floor(num);
+    const value = numFloor * step + min;
     if (value !== this.value) {
       this.target.style.left = `${this.getValueToPercent(value)}%`;
       this.bar.style.right = `${100 - this.getValueToPercent(value)}%`;
