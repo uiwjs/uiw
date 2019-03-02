@@ -18,9 +18,8 @@ export default class Slider extends React.Component {
   }
   componentWillReceiveProps(nextPros) {
     if (nextPros.value !== this.props.value) {
-      const { value } = this.props;
       this.setState({
-        value: this.getLabelValue(value),
+        value: this.getLabelValue(nextPros.value),
       });
     }
   }
@@ -128,7 +127,7 @@ export default class Slider extends React.Component {
       <div ref={node => this.slider = node} className={classnames(prefixCls, className, { disabled, [`${prefixCls}-with-marks`]: marks })} {...other} onClick={this.onClickMark.bind(this)}>
         <div
           className={classnames(`${prefixCls}-bar`)}
-          style={{ left: '0%', right: `${100 - leftPostion}%`, backgroundColor: progress ? progress : 'initial' }}
+          style={{ left: '0%', right: `${100 - leftPostion}%`, backgroundColor: progress || 'initial' }}
           ref={this.getInstance}
         />
         <div
