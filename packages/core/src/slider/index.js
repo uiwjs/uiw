@@ -10,6 +10,20 @@ export default class Slider extends React.Component {
       value: props.value,
     };
   }
+  componentDidMount() {
+    const { value } = this.props;
+    this.setState({
+      value: this.getLabelValue(value),
+    });
+  }
+  componentWillReceiveProps(nextPros) {
+    if (nextPros.value !== this.props.value) {
+      const { value } = this.props;
+      this.setState({
+        value: this.getLabelValue(value),
+      });
+    }
+  }
   removeEvent() {
     window.removeEventListener('mousemove', this.onDragging, false);
     window.removeEventListener('mouseup', this.onDragEnd, false);
@@ -41,14 +55,18 @@ export default class Slider extends React.Component {
     if (percent >= 100) {
       percent = 100;
     }
-    this.target.style.left = `${percent}%`;
-    this.bar.style.right = `${100 - percent}%`;
-    let value = Math.floor(percent / 100 * 100) * (max - min) / 100;
-    if (value !== this.value && value % step === 0) {
-      value += min
-      this.value = value;
+
+    const pointCount = (max - min) / step;
+    // Value move to
+    const num = pointCount * (percent / 100) + 0.5;
+    let numFloor = Math.floor(num);
+    let value = numFloor * step + min;
+    if (value !== this.value) {
+      this.target.style.left = `${this.getValueToPercent(value)}%`;
+      this.bar.style.right = `${100 - this.getValueToPercent(value)}%`;
       onChange && onChange(value);
-      this.setState({ value });
+      this.setState({ value: this.getLabelValue(value) });
+      this.value = value;
     }
   }
   onDragEnd = () => {
@@ -59,14 +77,26 @@ export default class Slider extends React.Component {
     const { min, max } = this.props;
     return ((value - min) * 100) / (max - min);
   }
+  getLabelValue(value) {
+    const { marks, renderMarks } = this.props;
+    if (marks && marks[value] && marks[value].label) {
+      return marks[value].label;
+    } else if (marks && marks[value] && typeof marks[value] === 'string') {
+      return marks[value];
+    } else if (renderMarks && typeof renderMarks === 'function' && renderMarks(value)) {
+      return renderMarks(value);
+    }
+    return value;
+  }
   stepArray() {
     const { min, max, step } = this.props;
     const pointCount = (max - min) / step;
     const stepWidth = (100 * step) / (max - min);
-    const result = [];
+    const result = [0];
     for (let i = 1; i < pointCount; i += 1) {
       result.push(i * stepWidth);
     }
+    result.push(100);
     return result;
   }
   getInstance = (node) => {
@@ -75,10 +105,10 @@ export default class Slider extends React.Component {
     }
   }
   render() {
-    const { prefixCls, className, value, disabled, max, min, dots, tooltip, progress, ...other } = this.props;
+    const { prefixCls, className, value, disabled, max, min, dots, step, marks, renderMarks, tooltip, progress, ...other } = this.props;
     const leftPostion = this.getValueToPercent(value);
     return (
-      <div className={classnames(prefixCls, className, { disabled })} {...other}>
+      <div className={classnames(prefixCls, className, { disabled, [`${prefixCls}-with-marks`]: marks })} {...other}>
         <div
           className={classnames(`${prefixCls}-bar`)}
           style={{ left: '0%', right: `${100 - leftPostion}%`, backgroundColor: progress ? '' : 'initial' }}
@@ -94,8 +124,22 @@ export default class Slider extends React.Component {
         {dots && (
           <div className={classnames(`${prefixCls}-dots`)}>
             {this.stepArray().map((val, idx) => {
+              const stepValue = idx * step + min;
               return (
-                <div key={idx} style={{ left: `${val}%` }}></div>
+                <div
+                  key={idx}
+                  style={{ left: `${val}%` }}
+                  className={classnames(`${prefixCls}-mark`, {
+                    'no-marks': marks && marks !== true && !marks[stepValue],
+                  })}
+                >
+                  {marks === true && <div> {this.getLabelValue(stepValue)} </div>}
+                  {marks !== true && marks && marks[stepValue] && (
+                    <div style={marks[stepValue].style}>
+                      {this.getLabelValue(stepValue)}
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>
@@ -110,6 +154,10 @@ Slider.propTypes = {
   value: PropTypes.number,
   min: PropTypes.number,
   max: PropTypes.number,
+  marks: PropTypes.oneOfType([
+    PropTypes.object, PropTypes.bool,
+  ]),
+  renderMarks: PropTypes.func,
   dots: PropTypes.bool,
   step: PropTypes.number,
   disabled: PropTypes.bool,

@@ -27,6 +27,14 @@ class Demo extends Component {
             this.setState({ value });
           }}
         />
+        <Slider
+          progress={false}
+          value={this.state.value}
+          style={{ maxWidth: 260, marginTop: 30 }}
+          onChange={(value)=> {
+            this.setState({ value });
+          }}
+        />
         <div>当前值：{this.state.value}</div>
         <Divider />
         <Slider
@@ -130,6 +138,7 @@ class Demo extends Component {
     this.state = {
       value: 20,
       value2: 1.5,
+      value3: 20,
     };
   }
   render() {
@@ -141,7 +150,7 @@ class Demo extends Component {
           max={200}
           dots
           value={this.state.value}
-          style={{ maxWidth: 260 }}
+          style={{ maxWidth: 460 }}
           onChange={(value)=> {
             this.setState({ value });
           }}
@@ -154,18 +163,102 @@ class Demo extends Component {
           step={0.5}
           dots
           value={this.state.value2}
-          style={{ maxWidth: 260 }}
+          style={{ maxWidth: 460 }}
           onChange={(value2)=> {
             this.setState({ value2 });
           }}
         />
+        <Divider />
+        <div>刻度 step=3，设置 `dots=false` 不显示刻度 当前值：{this.state.value3}</div>
         <Slider
           value={26}
           min={20}
           max={40}
-          step={3}
-          dots
+          step={2}
+          value={this.state.value3}
           style={{ maxWidth: 260 }}
+          onChange={(value3)=> {
+            console.log('value5:', value3);
+            this.setState({ value3 });
+          }}
+        />
+      </div>
+    )
+  }
+}
+```
+<!--End-->
+
+
+### 标记刻度
+
+<!--DemoStart,bgWhite--> 
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 20,
+      value2: 1.5,
+      value3: 20,
+    };
+  }
+  render() {
+    return (
+      <div>
+        <div>刻度 step=2 当前值：{this.state.value}</div>
+        <Slider
+          min={-10}
+          max={30}
+          step={2}
+          dots
+          value={this.state.value}
+          marks={{
+            [-10]: '-10°C',
+            [-2]: '-2°C',
+            0: {
+              style: {
+                color: '#af00ff',
+              },
+            },
+            30: {
+              style: {
+                color: '#ff7c00',
+              },
+              label: <strong>30°C</strong>,
+            }
+          }}
+          renderMarks={(mark) => `${mark}°C`}
+          onChange={(value)=> {
+            this.setState({ value });
+          }}
+        />
+        <div>刻度 step=0.5 当前值：{this.state.value2}</div>
+        <Slider
+          min={0}
+          max={2}
+          step={0.5}
+          dots
+          marks
+          value={this.state.value2}
+          style={{ maxWidth: 460 }}
+          onChange={(value2)=> {
+            this.setState({ value2 });
+          }}
+        />
+        <div>刻度 step=3 当前值：{this.state.value3}</div>
+        <Slider
+          value={26}
+          min={20}
+          max={44}
+          step={2}
+          dots
+          value={this.state.value3}
+          style={{ maxWidth: 260 }}
+          onChange={(value3)=> {
+            console.log('value5:', value3);
+            this.setState({ value3 });
+          }}
         />
       </div>
     )
@@ -176,6 +269,7 @@ class Demo extends Component {
 
 ### 禁用样式
 
+<!--DemoStart,bgWhite--> 
 ```js
 class Demo extends Component {
   render() {
@@ -205,6 +299,8 @@ class Demo extends Component {
 | min | 最小值 | Number | `0` |
 | max | 最大值 | Number | `100` |
 | dots | 显示 `step` 间断点，建议在 `step` 间隔不密集时使用 | Number | `false` |
+| marks | 刻度标记，`key` 的类型必须为 `number` 且取值在闭区间 `min`, `max` 内，每个标签可以单独设置样式，当值为 `Boolean` 值时表示是否显示刻度 | Object/Boolean | - |
+| renderMarks | 刻度标记渲染 | Function(mark) => String | - | 
 | step | 设置或返回每次拖动滑块控件时的递增量，规定合法数字间隔（如果 `step={3}`，则合法数字是 `0`,`3`,`6`，以此类推） | Number | `1` |
 | disabled | 是否禁用 | Boolean | `false` |
 | progress | 显示滑动的进度条，设为 `false` 不显示进度条 | Boolean | `true` |
