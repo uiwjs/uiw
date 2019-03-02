@@ -14,7 +14,7 @@ class Demo extends Component {
     super(props);
     this.state = {
       value: 20,
-      value2: 30,
+      value2: -5,
     };
   }
   render() {
@@ -22,20 +22,31 @@ class Demo extends Component {
       <div>
         <Slider
           value={this.state.value}
-          style={{ maxWidth: 260 }}
+          style={{ maxWidth: 360 }}
           onChange={(value)=> {
             this.setState({ value });
           }}
         />
+        <div>设置 progress 值为 <b>"false"</b> 不显示进度条</div>
         <Slider
           progress={false}
           value={this.state.value}
-          style={{ maxWidth: 260, marginTop: 30 }}
+          style={{ maxWidth: 360, marginTop: 30 }}
           onChange={(value)=> {
             this.setState({ value });
           }}
         />
-        <div>当前值：{this.state.value}</div>
+        <div>设置 progress 值为 <b>"#dc3545"</b> 这是一个颜色值，设置进度条颜色</div>
+        <Slider
+          progress={false}
+          progress="#dc3545"
+          value={this.state.value}
+          style={{ maxWidth: 360, marginTop: 30 }}
+          onChange={(value)=> {
+            this.setState({ value });
+          }}
+        />
+        <div>当前值：<b>{this.state.value}</b></div>
         <Divider />
         <Slider
           min={-10}
@@ -303,6 +314,6 @@ class Demo extends Component {
 | renderMarks | 刻度标记渲染 | Function(mark) => String | - | 
 | step | 设置或返回每次拖动滑块控件时的递增量，规定合法数字间隔（如果 `step={3}`，则合法数字是 `0`,`3`,`6`，以此类推） | Number | `1` |
 | disabled | 是否禁用 | Boolean | `false` |
-| progress | 显示滑动的进度条，设为 `false` 不显示进度条 | Boolean | `true` |
+| progress | 显示滑动的进度条，设为 `false` 不显示进度条，设为为颜色值，将进度条设为不同的颜色 | Boolean/String | `true` |
 | tooltip | 是否显示提示，若设置为 `true` 提示始终显示，若设置为 `null` 将始终不显示提示。 | Boolean | `false` |
 | onChange | 值改变时触发 | Function(value) | - |

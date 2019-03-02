@@ -111,7 +111,7 @@ export default class Slider extends React.Component {
       <div className={classnames(prefixCls, className, { disabled, [`${prefixCls}-with-marks`]: marks })} {...other}>
         <div
           className={classnames(`${prefixCls}-bar`)}
-          style={{ left: '0%', right: `${100 - leftPostion}%`, backgroundColor: progress ? '' : 'initial' }}
+          style={{ left: '0%', right: `${100 - leftPostion}%`, backgroundColor: progress ? progress : 'initial' }}
           ref={this.getInstance}
         />
         <div
@@ -161,7 +161,7 @@ Slider.propTypes = {
   dots: PropTypes.bool,
   step: PropTypes.number,
   disabled: PropTypes.bool,
-  progress: PropTypes.bool,
+  progress: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   tooltip: PropTypes.bool,
   onChange: PropTypes.func,
 };
