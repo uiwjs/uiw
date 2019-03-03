@@ -207,7 +207,6 @@ class Demo extends Component {
 ```
 <!--End-->
 
-
 ### 标记刻度
 
 <!--DemoStart,bgWhite--> 
@@ -235,14 +234,10 @@ class Demo extends Component {
             [-10]: '-10°C',
             [-2]: '-2°C',
             0: {
-              style: {
-                color: '#af00ff',
-              },
+              style: { color: '#af00ff' },
             },
             30: {
-              style: {
-                color: '#ff7c00',
-              },
+              style: { color: '#ff7c00' },
               label: <strong>30°C</strong>,
             }
           }}
@@ -303,8 +298,61 @@ class Demo extends Component {
           value={50}
           style={{ maxWidth: 260 }}
         />
+        <Divider />
+        <Slider disabled step={2} value={26} min={20} max={44} dots marks />
       </div>
     )
+  }
+}
+```
+<!--End-->
+
+### 垂直方向
+
+<!--DemoStart,bgWhite--> 
+```js
+class Demo extends Component {
+  render() {
+    return (
+      <Row>
+        <Col fixed style={{ width: 70 }}>
+          <Slider
+            vertical
+            min={-10}
+            max={30}
+            step={2}
+            dots
+            value={20}
+            marks={{
+              [-10]: '-10°C',
+              [-2]: '-2°C',
+              0: ' ',
+              2: {
+                style: { color: '#af00ff' },
+              },
+              30: {
+                style: { color: '#ff7c00' },
+                label: <strong>30°C</strong>,
+              }
+            }}
+            style={{ height: 260 }}
+            renderMarks={(mark) => `${mark}°C`}
+          />
+        </Col>
+        <Col fixed>
+          <Slider vertical value={25} style={{ height: 260 }} />
+        </Col>
+        <Col fixed>
+          <Slider vertical value={62} progress={false} tooltip style={{ height: 260 }} />
+        </Col>
+        <Col fixed>
+          <Slider vertical value={50} step={10} dots style={{ height: 260 }} />
+        </Col>
+        <Col fixed>
+          <Slider vertical step={2} value={26} min={20} max={44} dots marks style={{ height: 260 }} />
+        </Col>
+      </Row>
+    );
   }
 }
 ```
@@ -323,5 +371,6 @@ class Demo extends Component {
 | step | 设置或返回每次拖动滑块控件时的递增量，规定合法数字间隔（如果 `step={3}`，则合法数字是 `0`,`3`,`6`，以此类推） | Number | `1` |
 | disabled | 是否禁用 | Boolean | `false` |
 | progress | 显示滑动的进度条，设为 `false` 不显示进度条，设为为颜色值，将进度条设为不同的颜色 | Boolean/String | `true` |
+| vertical | 值为 `true` 时，`Slider` 为垂直方向。 | Boolean | `false` |
 | tooltip | 是否显示提示，若设置为 `true` 提示始终显示，若设置为 `null` 将始终不显示提示。 | Boolean | `false` |
 | onChange | 值改变时触发 | Function(value) | - |

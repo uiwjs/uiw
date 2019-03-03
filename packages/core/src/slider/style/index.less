@@ -1,7 +1,6 @@
 @slider-prefix: ~"w-slider";
 
 .@{slider-prefix} {
-  // width: fill-available;
   width: stretch;
   height: 4px;
   margin: 13px 7px;
@@ -18,7 +17,7 @@
     background-color: #008EF0;
     position: absolute;
   }
-  &.disabled {
+  &.disabled, &.disabled &-mark > div {
     cursor: not-allowed;
   }
   &.disabled &-bar {
@@ -44,12 +43,12 @@
   }
   &-dots > div {
     position: absolute;
-    width: 6px;
-    height: 6px;
+    width: 4px;
+    height: 4px;
     border-radius: 100%;
     background-color: #fff;
-    box-shadow: 0 0 0 1px rgba(16, 22, 26, .16);
-    top: -1px;
+    box-shadow: 0 0 0 1.6px rgba(16, 22, 26, .16);
+    top: 0px;
     transform: translateX(-50%);
   }
   &:not(.disabled) &-handle:active  {
@@ -96,5 +95,30 @@
       transform: translate(-50%, 50%);
       color: rgba(0, 0, 0, .43);
     }
+  }
+}
+
+.@{slider-prefix} {
+  &-vertical {
+    height: 100%;
+    height: stretch;
+    width: 4px;
+    margin: 7px 13px;
+  }
+  &-vertical &-dots > div {
+    left: 2px;
+  }
+  &-vertical &-bar {
+    width: 4px;
+    height: initial;
+  }
+  &-vertical &-handle {
+    margin-left: 2px;
+  }
+  &-vertical &-mark > div {
+    transform: translate(0, -50%);
+    padding: 0;
+    margin-left: 12px;
+    margin-top: 2px;
   }
 }
