@@ -1,4 +1,4 @@
-Slider 滑块
+Slider 滑块输入条
 ===
 
 通过拖动滑块在一个固定区间内进行选择，效果比 [`input`](https://www.w3.org/wiki/HTML/Elements/input/range) 类型为 [`range`](https://www.w3.org/wiki/HTML/Elements/input/range) 的功能丰富。

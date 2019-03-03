@@ -121,6 +121,9 @@ export const getRouterData = () => {
     '/components/tooltip': {
       component: dynamicWrapper([], () => import('../routes/components/tooltip')),
     },
+    '/components/table': {
+      component: dynamicWrapper([], () => import('../routes/components/table')),
+    },
     '/components/time-picker': {
       component: dynamicWrapper([], () => import('../routes/components/time-picker')),
     },

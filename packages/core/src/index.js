@@ -38,6 +38,7 @@ export { default as Steps } from './steps/Steps';
 export { default as Split } from './split';
 export { default as Tag } from './tag';
 export { default as Tabs } from './tabs';
+export { default as Table } from './table';
 export { default as Tooltip } from './tooltip';
 export { default as Timestamp } from './timestamp';
 export { default as TimePicker } from './time-picker';

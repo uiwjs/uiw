@@ -1,0 +1,18 @@
+@table-prefix: ~"w-table";
+
+table.@{table-prefix} {
+  tr > th, tr > td {
+    padding: 5px 8px;
+  }
+  tr {
+    background-color: transparent;
+  }
+  > thead {
+    > tr > th {
+      font-weight: normal;
+    }
+    > tr {
+      background-color: #f5f8fa;
+    }
+  }
+}

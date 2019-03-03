@@ -127,7 +127,8 @@ export default class Slider extends React.Component {
       <div
         ref={node => this.slider = node}
         className={classnames(prefixCls, className, {
-          disabled, [`${prefixCls}-with-marks`]: marks,
+          disabled,
+          [`${prefixCls}-with-marks`]: marks,
           [`${prefixCls}-vertical`]: vertical,
         })}
         {...other}
@@ -189,6 +190,7 @@ Slider.propTypes = {
   ]),
   renderMarks: PropTypes.func,
   dots: PropTypes.bool,
+  vertical: PropTypes.bool,
   step: PropTypes.number,
   disabled: PropTypes.bool,
   progress: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
