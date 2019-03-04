@@ -76,6 +76,9 @@ export const getRouterData = () => {
     '/components/avatar': {
       component: dynamicWrapper([], () => import('../routes/components/avatar')),
     },
+    '/components/affix': {
+      component: dynamicWrapper([], () => import('../routes/components/affix')),
+    },
     '/components/radio': {
       component: dynamicWrapper([], () => import('../routes/components/radio')),
     },

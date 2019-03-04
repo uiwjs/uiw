@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { getScrollPercent, getScrollTop, ScrollToAnimate } from './utils';
+import { getScrollPercent, ScrollToAnimate } from './utils';
+import { getScrollTop } from '../utils';
 import './style/index.less';
 
 export default class BackTop extends React.Component {

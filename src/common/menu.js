@@ -54,6 +54,7 @@ const menuData = [
       { name: 'Rate 评分', path: 'rate' },
       { name: 'List 列表', path: 'list' },
       { divider: true, name: '导航' },
+      { name: 'Affix 图钉', path: 'affix' },
       { name: 'Breadcrumb 面包屑', path: 'breadcrumb' },
       { name: 'Menu 菜单', path: 'menu' },
       { name: 'Steps 步骤条', path: 'steps' },
