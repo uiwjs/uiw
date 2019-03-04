@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
 import classNames from 'classnames';
 import styles from './styles/index.module.less';
+import Code from './Code';
 import InlineCode from './InlineCode';
 import ListItem from './ListItem';
 import Heading from './Heading';
@@ -16,7 +17,8 @@ export default class Markdown extends Component {
           source={source}
           escapeHtml={false}
           renderers={{
-            code: InlineCode,
+            code: Code,
+            inlineCode: InlineCode,
             heading: Heading,
             listItem: ListItem,
           }}
