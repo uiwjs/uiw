@@ -170,8 +170,13 @@ const Demo = () => (
           这里是标题，有边框，<b>bordered=true</b>
         </div>
       )}
+      footer={(
+        <div>
+          这里是页脚 Footer，有边框，<b>bordered=true</b>
+        </div>
+      )}
       bordered columns={columns} data={dataSource} />
-    <Table title="这里是标题" columns={columns} data={dataSource} />
+    <Table title="这里是标题，没有边框" footer="这里是页脚 Footer，没有边框" columns={columns} data={dataSource} />
   </div>
 );
 ```
@@ -186,7 +191,8 @@ const Demo = () => (
 |--------- |-------- |--------- |-------- |
 | columns | 表格列的配置描述，可以内嵌 `children`，以渲染分组表头。| ColumnProps[] | `[]` |
 | data | 数据数组。| Array[] | `[]` |
-| title | 表格标题 | String/ReactNode | `[]` |
+| title | 表格标题 | String/ReactNode | - |
+| footer | 表格尾部 | String/ReactNode | - |
 | bordered | 是否展示外边框和列边框 | Boolean | - |
 
 ### ColumnProps
