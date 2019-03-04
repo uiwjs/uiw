@@ -102,7 +102,10 @@ const columns = [
     key: 'edit',
     width: 150,
     render: (text, key, rowData, rowNumber, columnNumber) => (
-      <span>{text} {key} - {rowNumber} - {columnNumber}</span>
+      <div>
+        <Button size="small" type="danger">删除</Button>
+        <span>{text} {key} - {rowNumber} - {columnNumber}</span>
+      </div>
     ),
   },
 ];
@@ -114,7 +117,7 @@ const dataSource = [
 ];
 const Demo = () => (
   <div>
-    <Table columns={columns} data={dataSource} />
+    <Table bordered columns={columns} data={dataSource} />
   </div>
 );
 ```
@@ -128,6 +131,7 @@ const Demo = () => (
 |--------- |-------- |--------- |-------- |
 | columns | 表格列的配置描述，可以内嵌 `children`，以渲染分组表头。| ColumnProps[] | `[]` |
 | data | 数据数组。| Array[] | `[]` |
+| bordered | 是否展示外边框和列边框 | Boolean | - |
 
 ### ColumnProps
 

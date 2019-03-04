@@ -1,18 +1,40 @@
 @table-prefix: ~"w-table";
 
 table.@{table-prefix} {
+  display: table !important;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
   tr > th, tr > td {
+    border: 0;
     padding: 5px 8px;
+    border-bottom: 1px solid #e8e8e8;
   }
   tr {
     background-color: transparent;
   }
+  > tbody > tr {
+    transition: all .3s;
+    &:hover, &:hover:nth-child(2n) {
+      background-color: #efefef;
+    }
+    &:nth-child(2n) {
+      background-color: #f9f9f9;
+    }
+  }
   > thead {
     > tr > th {
       font-weight: normal;
+      padding: 8px;
     }
-    > tr {
-      background-color: #f5f8fa;
+    > tr, tr:nth-child(2n) {
+      background-color: #f6f9fb;
+      border: transparent;
+    }
+  }
+  &-bordered {
+    tr > th, tr > td {
+      border: 1px solid #dfe2e5;
     }
   }
 }
