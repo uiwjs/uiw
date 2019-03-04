@@ -5,7 +5,7 @@ import './style/index.less';
 
 export default class Thead extends React.Component {
   render() {
-    const { prefixCls, className, data, ...other } = this.props;
+    const { prefixCls, className, data, onCellHead, ...other } = this.props;
     return (
       <thead className={classnames(prefixCls, className)} {...other}>
         {data.map((tds, idx) => (
@@ -13,7 +13,7 @@ export default class Thead extends React.Component {
             {tds.map((item, _idx) => {
               const { title, key, render, children, ...thProps } = item;
               return (
-                <th key={_idx} {...thProps}>{title}</th>
+                <th onClick={onCellHead.bind(this, title, key, item, idx, _idx)} key={_idx} {...thProps}>{title}</th>
               );
             })}
           </tr>

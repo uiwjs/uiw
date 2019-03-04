@@ -7,7 +7,7 @@ import './style/index.less';
 
 export default class Table extends React.Component {
   render() {
-    const { prefixCls, className, columns, data, title, footer, bordered, onCell, ...other } = this.props;
+    const { prefixCls, className, columns, data, title, footer, bordered, onCell, onCellHead, ...other } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-bordered`]: bordered,
     });
@@ -16,7 +16,7 @@ export default class Table extends React.Component {
       <div className={cls} {...other}>
         <table>
           {title && <caption>{title}</caption>}
-          {columns && columns.length > 0 && <Thead data={header} />}
+          {columns && columns.length > 0 && <Thead onCellHead={onCellHead} data={header} />}
           {data && data.length > 0 && (
             <tbody>
               {data.map((trs, idx) => {
@@ -48,6 +48,7 @@ Table.propTypes = {
   footer: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   bordered: PropTypes.bool,
   onCell: PropTypes.func,
+  onCellHead: PropTypes.func,
 };
 
 Table.defaultProps = {
@@ -55,4 +56,5 @@ Table.defaultProps = {
   columns: [],
   data: [],
   onCell() { },
+  onCellHead() { },
 };

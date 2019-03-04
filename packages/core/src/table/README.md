@@ -219,12 +219,34 @@ const dataSource = [
 const Demo = () => (
   <div>
     <Table
+      title="表内容 tbody 单元格点击回调事件"
       onCell={(text, key, rowData, rowNumber, columnNumber) => {
         console.log('-->1', text);
         console.log('-->2', key);
         console.log('-->3', rowData);
         console.log('-->4', rowNumber);
         console.log('-->5', columnNumber);
+        Notify.info({ description: `你点击了"${text}"。` });
+      }}
+      columns={columns}
+      data={dataSource} />
+    <Table
+      title="表头单元格点击回调事件"
+      onCellHead={(text, key, rowData, rowNumber, columnNumber) => {
+        console.log('-->1', text);
+        console.log('-->2', key);
+        console.log('-->3', rowData);
+        console.log('-->4', rowNumber);
+        console.log('-->5', columnNumber);
+        Notify.info({ description: `你点击了"${text}"。` });
+      }}
+      onCell={(text, key, rowData, rowNumber, columnNumber) => {
+        console.log('-->1', text);
+        console.log('-->2', key);
+        console.log('-->3', rowData);
+        console.log('-->4', rowNumber);
+        console.log('-->5', columnNumber);
+        Notify.info({ description: `你点击了"${text}"。` });
       }}
       columns={columns}
       data={dataSource} />
@@ -328,6 +350,7 @@ const Demo = () => (
 | title | 表格标题 | String/ReactNode | - |
 | footer | 表格尾部 | String/ReactNode | - |
 | bordered | 是否展示外边框和列边框 | Boolean | - |
+| onCellHead | 表头单元格点击回调 | `Function(text, key, rowData, rowNumber, columnNumber)` | - |
 | onCell | 单元格点击回调 | `Function(text, key, rowData, rowNumber, columnNumber)` | - |
 
 ### ColumnProps
