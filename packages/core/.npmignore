@@ -1,8 +1,10 @@
 src
+__test__
 npm-debug.log
 package-lock.json
 yarn.lock
 
+.kktrc.js
 .DS_Store
 .vscode
 .cachetest
