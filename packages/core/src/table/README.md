@@ -182,6 +182,89 @@ const Demo = () => (
 ```
 <!--End-->
 
+### 原始HTML
+
+<!--DemoStart,bgWhite-->
+```js
+const Demo = () => (
+  <div>
+    <Table bordered>
+      <thead>
+        <tr>
+          <th>名称</th>
+          <th width="60">数量</th>
+          <th>详情</th>
+          <th width="100">价格</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>土豆</td>
+          <td>18</td>
+          <td>2009/01/12</td>
+          <td>￥86,000</td>
+        </tr>
+        <tr>
+          <td>萝卜</td>
+          <td>18</td>
+          <td>2009/01/12</td>
+          <td>￥86,000</td>
+        </tr>
+        <tr>
+          <td>香蕉</td>
+          <td>18</td>
+          <td>2009/01/12</td>
+          <td>￥86,000</td>
+        </tr>
+        <tr>
+          <td>芝麻</td>
+          <td>18</td>
+          <td>2009/01/12</td>
+          <td>￥86,000</td>
+        </tr>
+      </tbody>
+    </Table>
+    <Table>
+      <caption>没有边框</caption>
+      <thead>
+        <tr>
+          <th>名称</th>
+          <th width="60">数量</th>
+          <th>详情</th>
+          <th width="100">价格</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>土豆</td>
+          <td>18</td>
+          <td>2009/01/12</td>
+          <td>￥86,000</td>
+        </tr>
+        <tr>
+          <td>萝卜</td>
+          <td>18</td>
+          <td>2009/01/12</td>
+          <td>￥86,000</td>
+        </tr>
+        <tr>
+          <td>香蕉</td>
+          <td>18</td>
+          <td>2009/01/12</td>
+          <td>￥86,000</td>
+        </tr>
+        <tr>
+          <td>芝麻</td>
+          <td>18</td>
+          <td>2009/01/12</td>
+          <td>￥86,000</td>
+        </tr>
+      </tbody>
+    </Table>
+  </div>
+);
+```
+<!--End-->
 
 ## Props
 
