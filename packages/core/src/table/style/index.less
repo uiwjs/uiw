@@ -13,6 +13,10 @@ table.@{table-prefix} {
   tr {
     background-color: transparent;
   }
+  > caption {
+    text-align: left;
+    padding: 10px;
+  }
   > tbody > tr {
     transition: all .3s;
     &:hover, &:hover:nth-child(2n) {
@@ -35,6 +39,10 @@ table.@{table-prefix} {
   &-bordered {
     tr > th, tr > td {
       border: 1px solid #dfe2e5;
+    }
+    > caption {
+      border: 1px solid #dfe2e5;
+      border-bottom: 0;
     }
   }
 }
