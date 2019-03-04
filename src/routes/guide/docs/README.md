@@ -65,7 +65,7 @@ const Demo = () => (
 标识符在 `2.0.0+` 版本文档，可以传递参数，传递方法: 
 
 ```markdown
-<!--DemoStart,bgWhite,noCode,noPreview-->
+<!--DemoStart,bgWhite,noCode,noPreview,noScroll-->
 ```
 
 参数用英文逗号隔开
@@ -73,6 +73,7 @@ const Demo = () => (
 - `bgWhite` 设置代码预览背景白色，否则为格子背景。
 - `noCode` 不显示代码编辑器。 
 - `noPreview` 不显示代码预览效果。
+- `noScroll` 预览区域不显示滚动条。
 
 ### 编辑器插件
 

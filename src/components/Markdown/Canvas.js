@@ -105,7 +105,7 @@ export default class Canvas extends React.Component {
     }
   }
   render() {
-    const { parame: { noCode, noPreview, bgWhite } } = this.props;
+    const { parame: { noCode, noPreview, bgWhite, noScroll } } = this.props;
     const styl = {};
     if (this.state.width === 1) {
       styl.maxWidth = 'initial';
@@ -118,7 +118,13 @@ export default class Canvas extends React.Component {
         })}
       >
         <Split style={{ flex: 1 }} visiable={this.state.width !== 1}>
-          <div className={styles.demo} style={styl} ref={node => this.demoBox = node}>
+          <div
+            className={classNames(styles.demo, {
+              [`${styles.noScroll}`]: noScroll,
+            })}
+            style={styl}
+            ref={node => this.demoBox = node}
+          >
             {!bgWhite && (
               <div className={styles.background}>
                 <svg width="100%" height="100%" preserveAspectRatio="none" style={{ display: 'block' }}>
