@@ -7,7 +7,7 @@ import './style/index.less';
 
 export default class Table extends React.Component {
   render() {
-    const { prefixCls, className, columns, data, title, footer, bordered, ...other } = this.props;
+    const { prefixCls, className, columns, data, title, footer, bordered, onCell, ...other } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-bordered`]: bordered,
     });
@@ -24,7 +24,7 @@ export default class Table extends React.Component {
                   <tr key={idx}>
                     {Object.keys(trs).map((key, _idx) => {
                       return (
-                        <td key={_idx}>{render[key] ? render[key](trs[key], key, trs, idx, _idx) : trs[key]}</td>
+                        <td onClick={onCell.bind(this, trs[key], key, trs, idx, _idx)} key={_idx}>{render[key] ? render[key](trs[key], key, trs, idx, _idx) : trs[key]}</td>
                       );
                     })}
                   </tr>
@@ -47,10 +47,12 @@ Table.propTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   footer: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   bordered: PropTypes.bool,
+  onCell: PropTypes.func,
 };
 
 Table.defaultProps = {
   prefixCls: 'w-table',
   columns: [],
   data: [],
+  onCell() { },
 };
