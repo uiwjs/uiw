@@ -15,6 +15,7 @@ export default class Canvas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      errorMessage: '',
       code: '',
       height: '100%',
       width: 1,
@@ -90,12 +91,11 @@ export default class Canvas extends React.Component {
       args.push(code);
       // eslint-disable-next-line
       new Function(...args).apply(null, argv);
+      this.setState({ errorMessage: '' });
     } catch (err) {
-      if (process.env.NODE_ENV !== 'production') {
-        throw err;
+      if (err && err.message) {
+        this.setState({ errorMessage: err.message });
       }
-    } finally {
-      // console.log('@@@');
     }
   }
   getInstance = (instance) => {
@@ -138,6 +138,11 @@ export default class Canvas extends React.Component {
             )}
             {!noPreview && (
               <div className={styles.scroll}>
+                {this.state.errorMessage && (
+                  <pre className={styles.errorMessage}>
+                    <code>{this.state.errorMessage}</code>
+                  </pre>
+                )}
                 <div className={styles.source} id={this.playerId} />
               </div>
             )}

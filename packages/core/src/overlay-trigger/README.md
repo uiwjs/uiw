@@ -205,7 +205,7 @@ class Demo extends React.Component {
 
 设置 `usePortal={false}` 将模态对话框生成到根节点的里面。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,noScroll--> 
 ```js
 const card = (
   <Card active>
