@@ -86,7 +86,7 @@ export default class Split extends React.Component {
     this.setState({ dragging: false });
   }
   render() {
-    const { prefixCls, className, children, mode, visiable, disable, ...other } = this.props;
+    const { prefixCls, className, children, mode, visiable, lineBar, disable, ...other } = this.props;
     const { dragging } = this.state;
     const cls = classnames(prefixCls, className, `${prefixCls}-${mode}`, { dragging });
     const child = React.Children.toArray(children);
@@ -100,11 +100,13 @@ export default class Split extends React.Component {
           });
           const visiableBar = (visiable === true || (visiable && visiable.includes(idx + 1))) || false;
           const barProps = {
-            className: `${prefixCls}-bar`,
+            className: classnames(`${prefixCls}-bar`, {
+              [`${prefixCls}-line-bar`]: lineBar,
+            }),
             onMouseDown: this.onMouseDown.bind(this, idx + 1),
           };
           if (disable === true || (disable && disable.includes(idx + 1))) {
-            barProps.className = classnames(`${prefixCls}-bar`, { disable });
+            barProps.className = classnames(barProps.className, { disable });
             delete barProps.onMouseDown;
           }
           return (
@@ -123,6 +125,7 @@ Split.propTypes = {
   prefixCls: PropTypes.string,
   onDragging: PropTypes.func,
   onDragEnd: PropTypes.func,
+  lineBar: PropTypes.bool,
   disable: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   visiable: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   mode: PropTypes.oneOf(['horizontal', 'vertical']),

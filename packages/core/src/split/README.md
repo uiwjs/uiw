@@ -49,6 +49,45 @@ const Demo = () => (
 ```
 <!--End-->
 
+### 线条拖拽
+
+<!--DemoStart,bgWhite--> 
+```js
+const Demo = () => (
+  <div>
+    <Split lineBar style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3 }}>
+      <div>
+        Left Pane
+      </div>
+      <div>
+        Center Pane
+      </div>
+      <div>
+        Center Pane
+      </div>
+      <div>
+        Right Pane
+      </div>
+    </Split>
+    <Split mode="vertical" lineBar style={{ height: 280, border: '1px solid #d5d5d5', borderRadius: 3, marginTop: 10 }}>
+      <div>
+        Left Pane
+      </div>
+      <div>
+        Center Pane
+      </div>
+      <div>
+        Center Pane
+      </div>
+      <div>
+        Right Pane
+      </div>
+    </Split>
+  </div>
+);
+```
+<!--End-->
+
 ### 垂直分割
 
 <!--DemoStart,bgWhite--> 
@@ -226,8 +265,9 @@ class Demo extends React.Component {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| visiable | 设置拖拽的工具，是否可见 | Boolean/Array | `true` |
-| disable | 设置拖拽的工具，禁用 | Boolean/Array | - |
+| visiable | 设置拖拽的工具条，是否可见 | Boolean/Array | `true` |
+| disable | 设置拖拽的工具条，禁用 | Boolean/Array | - |
+| lineBar | 设置拖拽的工具条，为线条样式。 | Boolean | - |
 | mode | 类型，可选值为 `horizontal` 或 `vertical` | String | `horizontal` |
 | onDragging | 拖拽宽度/高度变化回调函数，宽度或者高度根据 mode 参数来确定 | Function(prePaneSize,<br />nextPaneSize,<br />nextPaneNumber) | - |
 | onDragEnd | 拖拽结束的回调函数 | Function(prePaneSize,<br />nextPaneSize,<br />nextPaneNumber) | - |
