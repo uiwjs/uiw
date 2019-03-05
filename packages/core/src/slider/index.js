@@ -123,6 +123,10 @@ export default class Slider extends React.Component {
   render() {
     const { prefixCls, className, value, disabled, max, min, dots, step, marks, renderMarks, tooltip, vertical, progress, onChange, ...other } = this.props;
     const leftPostion = this.getValueToPercent(this.state.value);
+    other.onClick = this.onClickMark.bind(this);
+    if (disabled) {
+      delete other.onClick;
+    }
     return (
       <div
         ref={node => this.slider = node}
@@ -132,7 +136,6 @@ export default class Slider extends React.Component {
           [`${prefixCls}-vertical`]: vertical,
         })}
         {...other}
-        onClick={this.onClickMark.bind(this)}
       >
         <div
           className={classnames(`${prefixCls}-bar`)}
@@ -164,9 +167,9 @@ export default class Slider extends React.Component {
                     'no-marks': marks && marks !== true && !marks[stepValue],
                   })}
                 >
-                  {marks === true && <div onClick={this.onChange.bind(this, stepValue)}> {this.getLabelValue(stepValue)} </div>}
+                  {marks === true && <div {...(disabled ? {} : { onClick: this.onChange.bind(this, stepValue) })}> {this.getLabelValue(stepValue)} </div>}
                   {marks !== true && marks && marks[stepValue] && (
-                    <div onClick={this.onChange.bind(this, stepValue)} style={marks[stepValue].style}>
+                    <div style={marks[stepValue].style} {...(disabled ? {} : { onClick: this.onChange.bind(this, stepValue) })}>
                       {this.getLabelValue(stepValue)}
                     </div>
                   )}
