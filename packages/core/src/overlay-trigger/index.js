@@ -298,7 +298,7 @@ export default class OverlayTrigger extends React.Component {
     return (
       <React.Fragment>
         <RefHolder ref={this.trigger}>
-          {cloneElement(child, Object.assign({}, child.props, { ...triggerProps }))}
+          {cloneElement(child, Object.assign({}, child.props, { ...triggerProps, className: classnames(child.props.className, { [`${prefixCls}-disabled`]: disabled }) }))}
         </RefHolder>
         <Overlay
           {...props}
