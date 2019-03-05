@@ -24,7 +24,7 @@ export default class Split extends React.Component {
     if (!node) {
       return;
     }
-    const key = mode === 'horizontal' ? 'Width' : 'Height'
+    const key = mode === 'horizontal' ? 'Width' : 'Height';
     // eslint-disable-next-line
     do {
       if (node && node.nodeType === 1) {

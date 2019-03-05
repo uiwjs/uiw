@@ -7,7 +7,7 @@ export default class Dropdown extends React.Component {
   render() {
     const { prefixCls, className, menu, children, disabled, ...other } = this.props;
     return (
-      <OverlayTrigger isOutside={true} disabled={disabled} {...other} overlay={menu}>
+      <OverlayTrigger isOutside disabled={disabled} {...other} overlay={menu}>
         {React.cloneElement(children, Object.assign({}, children.props, { disabled }))}
       </OverlayTrigger>
     );

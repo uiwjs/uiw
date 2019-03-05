@@ -14,7 +14,6 @@ import { Dropdown } from 'uiw';
 const menu = (
   <Menu bordered style={{ minWidth: 120 }}>
     <Menu.Item icon="reload" text="重新加载" />
-    <Menu.Divider />
     <Menu.Item icon="heart-on" text="另存为" active />
     <Menu.Item icon="appstore" text="应用商城" />
     <Menu.Item icon="bar-chart" text="月统计报表" />
