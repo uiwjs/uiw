@@ -106,6 +106,7 @@ export default class Canvas extends React.Component {
   }
   render() {
     const { parame: { noCode, noPreview, bgWhite, noScroll } } = this.props;
+    const { errorMessage } = this.state;
     const styl = {};
     if (this.state.width === 1) {
       styl.maxWidth = 'initial';
@@ -136,13 +137,13 @@ export default class Canvas extends React.Component {
                 </svg>
               </div>
             )}
+            {errorMessage && (
+              <pre className={styles.errorMessage}>
+                <code>{errorMessage}</code>
+              </pre>
+            )}
             {!noPreview && (
-              <div className={styles.scroll}>
-                {this.state.errorMessage && (
-                  <pre className={styles.errorMessage}>
-                    <code>{this.state.errorMessage}</code>
-                  </pre>
-                )}
+              <div className={classNames(styles.scroll, { [styles.hide]: !!errorMessage })}>
                 <div className={styles.source} id={this.playerId} />
               </div>
             )}
