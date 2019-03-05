@@ -19,7 +19,22 @@ export default class Split extends React.Component {
     window.removeEventListener('mousemove', this.onDragging, false);
     window.removeEventListener('mouseup', this.onDragEnd, false);
   }
+  initMaxWidthOrHeight(node, sibling) {
+    const { mode } = this.props;
+    if (!node) {
+      return;
+    }
+    const key = mode === 'horizontal' ? 'Width' : 'Height'
+    // eslint-disable-next-line
+    do {
+      if (node && node.nodeType === 1) {
+        node.style[`max${key}`] = `${node[`client${key}`]}px`;
+      }
+    } while (node && node[sibling] && (node = node[sibling]));
+  }
   onMouseDown(paneNumber, env) {
+    this.initMaxWidthOrHeight(env.target, 'previousElementSibling');
+    this.initMaxWidthOrHeight(env.target, 'nextElementSibling');
     this.paneNumber = paneNumber;
     this.startX = env.clientX;
     this.startY = env.clientY;
@@ -49,13 +64,13 @@ export default class Split extends React.Component {
     const y = env.clientY - this.startY;
     this.preSize = 0;
     this.nextSize = 0;
-    if (mode === 'horizontal') {
+    if (mode === 'horizontal' && this.preWidth + x > -1 && this.nextWidth - x > -1) {
       this.preSize = this.preWidth + x;
       this.nextSize = this.nextWidth - x;
       prevTarget.style.maxWidth = `${this.preSize}px`;
       nextTarget.style.maxWidth = `${this.nextSize}px`;
     }
-    if (mode === 'vertical') {
+    if (mode === 'vertical' && this.preHeight + y > -1 && this.nextHeight - y > -1) {
       this.preSize = this.preHeight + y;
       this.nextSize = this.nextHeight - y;
       prevTarget.style.maxHeight = `${this.preSize}px`;
