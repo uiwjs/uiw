@@ -59,11 +59,10 @@ export default class Modal extends React.PureComponent {
             </div>
             {useButton && (
               <div className={`${prefixCls}-footer`}>
-                <Button autoFocus={autoFocus} type={type} disabled={this.state.loading} onClick={this.handleConfirm}>
-                  {this.state.loading && <Icon type="loading" spin={this.state.loading} />}
+                <Button autoFocus={autoFocus} type={type} loading={this.state.loading} disabled={this.state.loading} onClick={this.handleConfirm}>
                   {confirmText}
                 </Button>
-                {cancelText && <Button onClick={this.handleCancel} >{cancelText}</Button>}
+                {cancelText && <Button onClick={this.handleCancel}>{cancelText}</Button>}
               </div>
             )}
           </div>
