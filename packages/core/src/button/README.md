@@ -132,6 +132,33 @@ const Demo = () => (
 ```
 <!--End-->
 
+### 按钮加载状态
+
+<!--DemoStart,bgWhite-->
+```js
+const Demo = () => (
+  <div>
+    <Button type="danger">
+      <Icon type="reload" spin={true} />
+      <span>错误<span>按钮</span></span>
+      <Icon type="weibo" />
+    </Button>
+    <Button loading type="primary">主要按钮</Button>
+    <Button loading type="success">成功按钮</Button>
+    <Button loading type="warning">警告按钮</Button>
+    <Button loading type="danger">错误按钮</Button>
+    <Button loading type="light">亮按钮</Button>
+    <Button loading type="dark">暗按钮</Button>
+    <Button loading type="danger">亮按钮</Button>
+    <Divider style={{ maxWidth: 220 }}>Size</Divider>
+    <Button loading size="small" type="primary">主要按钮</Button>
+    <Button loading size="default" type="success">成功按钮</Button>
+    <Button loading size="large" type="warning">警告按钮</Button>
+  </div>
+);
+```
+<!--End-->
+
 ### 禁用按钮组
 
 <!--DemoStart,bgWhite-->

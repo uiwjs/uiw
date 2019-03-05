@@ -162,4 +162,29 @@
   & .w-icon:not(:last-child) {
     margin-right: 5px;
   }
+  &-loading.w-btn-light::before {
+    border: 1.2px solid #666f81;
+  }
+  &-loading {
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      border-radius: 50%;
+      border: 1.2px solid #fff;
+      color: #fff;
+      margin: 0 3px 0 0;
+      clip-path: polygon(0% 0%, 100% 0, 100% 30%, 0% 30%);
+      animation: rotate .5s linear infinite;
+      @keyframes rotate {
+        from {
+          transform:  rotateZ(0deg);
+        }
+        to {
+          transform: rotateZ(360deg);
+        }
+      }
+    }
+  }
 }
