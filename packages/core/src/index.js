@@ -15,6 +15,7 @@ export { default as Collapse } from './collapse/Collapse';
 export { default as Drawer } from './drawer';
 export { default as DatePicker } from './date-picker';
 export { default as DateInput } from './date-input';
+export { default as Dropdown } from './dropdown';
 export { default as Overlay } from './overlay';
 export { default as OverlayTrigger } from './overlay-trigger';
 export { default as Icon } from './icon';

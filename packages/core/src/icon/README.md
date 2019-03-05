@@ -386,7 +386,8 @@ const iconList = [
   'tag', 'tag-o','tags','tags-o', 'setting','setting-o','map','table','qrcode','barcode','printer',
   'cloud-upload','cloud-upload-o', 'cloud-download','cloud-download-o', 'download','message','message-o',
   'user', 'usergroup-add', 'zoom-in', 'zoom-out','time', 'time-o',
-  "bell", 'camera-o', 'coffee', 'document', 'delete', 'date', 'edit',  'eye-o', 'environment-o', 'filter', 'global', 'inbox', 'home', 'laptop', 'link', 'copy'
+  "bell", 'camera-o', 'coffee', 'document', 'delete', 'date', 'edit',  'eye-o', 'environment-o', 'filter', 'global', 'inbox', 'home', 'laptop', 'link', 'copy', 'more',
+  "pay-circle-o", "pay", "picture"
 ]
 const itemStyl = {
   fontSize: 18, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',

@@ -309,7 +309,7 @@ export default class OverlayTrigger extends React.Component {
           hasBackdrop={false}
         >
           {cloneElement(overlay, Object.assign({ ref: this.popup }, overlay.props, {
-            className: classnames(overlay.props.className, placement),
+            className: classnames(overlay.props && overlay.props.className, placement),
           }))}
         </Overlay>
       </React.Fragment>

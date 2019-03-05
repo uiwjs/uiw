@@ -58,6 +58,9 @@ export const getRouterData = () => {
     '/components/date-input': {
       component: dynamicWrapper([], () => import('../routes/components/date-input')),
     },
+    '/components/dropdown': {
+      component: dynamicWrapper([], () => import('../routes/components/dropdown')),
+    },
     '/components/card': {
       component: dynamicWrapper([], () => import('../routes/components/card')),
     },

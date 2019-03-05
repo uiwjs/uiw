@@ -56,6 +56,7 @@ const menuData = [
       { divider: true, name: '导航' },
       { name: 'Affix 图钉', path: 'affix' },
       { name: 'Breadcrumb 面包屑', path: 'breadcrumb' },
+      { name: 'Dropdown 下拉菜单', path: 'dropdown' },
       { name: 'Menu 菜单', path: 'menu' },
       { name: 'Steps 步骤条', path: 'steps' },
       { name: 'Tabs 标签页', path: 'tabs' },
