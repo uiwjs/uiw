@@ -39,7 +39,7 @@ export default class Calendar extends React.Component {
     }
     this.setState({ panelDate });
   }
-  renderDay = (day, cellDate) => {
+  renderDay = (day, props, cellDate) => {
     const { prefixCls, data } = this.props;
     const dayData = data.filter((item) => {
       let arr = item.date && item.date.split('/');
@@ -60,9 +60,9 @@ export default class Calendar extends React.Component {
         <div className={`${prefixCls}-day`}>{day}</div>
         <div className={`${prefixCls}-panel`}>
           {dayData && dayData.length > 0 && dayData.map((item, idx) => {
-            const { date, label, ...props } = item;
+            const { date, label, ...other } = item;
             return (
-              <div key={idx} {...props}>{label}</div>
+              <div key={idx} {...other}>{label}</div>
             );
           })}
         </div>
