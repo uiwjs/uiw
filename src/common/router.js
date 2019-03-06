@@ -40,6 +40,30 @@ export const getRouterData = () => {
     '/components/colors': {
       component: dynamicWrapper([], () => import('../routes/components/colors')),
     },
+    '/components/alert': {
+      component: dynamicWrapper([], () => import('../routes/components/alert')),
+    },
+    '/components/avatar': {
+      component: dynamicWrapper([], () => import('../routes/components/avatar')),
+    },
+    '/components/affix': {
+      component: dynamicWrapper([], () => import('../routes/components/affix')),
+    },
+    '/components/calendar': {
+      component: dynamicWrapper([], () => import('../routes/components/calendar')),
+    },
+    '/components/checkbox': {
+      component: dynamicWrapper([], () => import('../routes/components/checkbox')),
+    },
+    '/components/copy-to-clipboard': {
+      component: dynamicWrapper([], () => import('../routes/components/copy-to-clipboard')),
+    },
+    '/components/collapse': {
+      component: dynamicWrapper([], () => import('../routes/components/collapse')),
+    },
+    '/components/card': {
+      component: dynamicWrapper([], () => import('../routes/components/card')),
+    },
     '/components/layout': {
       component: dynamicWrapper([], () => import('../routes/components/layout')),
     },
@@ -61,9 +85,6 @@ export const getRouterData = () => {
     '/components/dropdown': {
       component: dynamicWrapper([], () => import('../routes/components/dropdown')),
     },
-    '/components/card': {
-      component: dynamicWrapper([], () => import('../routes/components/card')),
-    },
     '/components/badge': {
       component: dynamicWrapper([], () => import('../routes/components/badge')),
     },
@@ -75,12 +96,6 @@ export const getRouterData = () => {
     },
     '/components/button': {
       component: dynamicWrapper([], () => import('../routes/components/button')),
-    },
-    '/components/avatar': {
-      component: dynamicWrapper([], () => import('../routes/components/avatar')),
-    },
-    '/components/affix': {
-      component: dynamicWrapper([], () => import('../routes/components/affix')),
     },
     '/components/radio': {
       component: dynamicWrapper([], () => import('../routes/components/radio')),
@@ -96,9 +111,6 @@ export const getRouterData = () => {
     },
     '/components/slider': {
       component: dynamicWrapper([], () => import('../routes/components/slider')),
-    },
-    '/components/checkbox': {
-      component: dynamicWrapper([], () => import('../routes/components/checkbox')),
     },
     '/components/grid': {
       component: dynamicWrapper([], () => import('../routes/components/grid')),
@@ -133,12 +145,6 @@ export const getRouterData = () => {
     '/components/time-picker': {
       component: dynamicWrapper([], () => import('../routes/components/time-picker')),
     },
-    '/components/copy-to-clipboard': {
-      component: dynamicWrapper([], () => import('../routes/components/copy-to-clipboard')),
-    },
-    '/components/collapse': {
-      component: dynamicWrapper([], () => import('../routes/components/collapse')),
-    },
     '/components/rate': {
       component: dynamicWrapper([], () => import('../routes/components/rate')),
     },
@@ -156,9 +162,6 @@ export const getRouterData = () => {
     },
     '/components/popover': {
       component: dynamicWrapper([], () => import('../routes/components/popover')),
-    },
-    '/components/alert': {
-      component: dynamicWrapper([], () => import('../routes/components/alert')),
     },
     '/components/message': {
       component: dynamicWrapper([], () => import('../routes/components/message')),

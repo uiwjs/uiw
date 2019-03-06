@@ -38,6 +38,7 @@ const menuData = [
       { name: 'FileInput 上传输入框', path: 'file-input' },
       { name: 'Textarea 多行文本输入框', path: 'textarea' },
       { divider: true, name: '时间日历' },
+      { name: 'Calendar 日历', path: 'calendar' },
       { name: 'DatePicker 日期选择器', path: 'date-picker' },
       { name: 'DateInput 日期输入框', path: 'date-input' },
       { name: 'TimePicker 时间输入框', path: 'time-picker' },

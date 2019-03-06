@@ -154,6 +154,7 @@ class Demo extends React.Component {
     super(props);
     this.state = {
       date: null,
+      // date: new Date(),
     };
   }
   onChange(selectedDate) {

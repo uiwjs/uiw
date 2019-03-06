@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { getFirstDayOfWeek, solarMonthDays, isSameDate } from '../utils';
+import './style/day.less';
 
 function initSameDate(date) {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -24,7 +25,10 @@ function setTimeDate(selDate, curDate) {
 export default class PickerDay extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { selected: props.date, panelDate: props.panelDate };
+    this.state = {
+      selected: props.date,
+      panelDate: props.panelDate,
+    };
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.panelDate !== this.props.panelDate) {
@@ -112,7 +116,7 @@ export default class PickerDay extends React.Component {
             );
           })}
         </div>
-        <div className={`${prefixCls}-body`}>
+        <div className={`${prefixCls}-day-body`}>
           {[...Array(6)].map((_, idx) => this.renderWeek(idx))}
         </div>
       </div>
@@ -123,8 +127,12 @@ export default class PickerDay extends React.Component {
 PickerDay.propTypes = {
   prefixCls: PropTypes.string,
   onChange: PropTypes.func,
+  weekday: PropTypes.arrayOf(PropTypes.string),
+  weekTitle: PropTypes.arrayOf(PropTypes.string),
 };
 
 PickerDay.defaultProps = {
   prefixCls: 'w-datepicker',
+  weekday: ['日', '一', '二', '三', '四', '五', '六'],
+  weekTitle: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
 };
