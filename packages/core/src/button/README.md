@@ -411,7 +411,9 @@ const Demo = () => (
 <!--End-->
 
 
-## Button
+## Props
+
+### Button
 
 | 参数 | 说明 | 类型 | 默认值 |
 | -------- | -------- | -------- | -------- |
@@ -424,7 +426,7 @@ const Demo = () => (
 | active | 激活状态，其表现为被按压下去（底色更深、边框夜色更深、向内投射阴影）。 |Boolean | false |
 | loading | 加载中状态 | Boolean | false |
 
-## Button.Group
+### Button.Group
 
 | 参数 | 说明 | 类型 | 默认值 |
 | -------- | -------- | -------- | -------- |
