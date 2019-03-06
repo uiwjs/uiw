@@ -5,31 +5,28 @@ import './style/index.less';
 
 export class Badge extends React.Component {
   render() {
-    const { prefixCls, style, max, dot, status, className, count, children, ...other } = this.props;
+    const { prefixCls, className, style, color, max, dot, processing, count, children, ...other } = this.props;
     const supProps = {
-      className: classnames({
-        [`${prefixCls}-count`]: !dot,
-        'w-dot': dot,
-      }),
+      className: classnames({ [`${prefixCls}-count`]: !dot, dot }),
     };
     const warpperProps = {
       ...other,
       className: classnames(className, `${prefixCls}`, {
         nowrap: !children,
-        [`${prefixCls}-status`]: status,
-        [`${prefixCls}-status-${status}`]: status,
+        [`${prefixCls}-status`]: !children,
+        [`${prefixCls}-processing`]: processing,
       }),
     };
-    if (dot || status) {
-      warpperProps.style = style;
+    if (count || count === 0) {
+      supProps.style = { backgroundColor: color, ...style };
     } else {
-      supProps.style = style;
+      warpperProps.style = style;
     }
     return (
       <span {...warpperProps}>
-        {status && (<span className={`${prefixCls}-dot`} />)}
+        {color && (<span className={`${prefixCls}-dot`} style={{ backgroundColor: color }} />)}
         {children}
-        {count !== 0 && !status &&
+        {count !== 0 && !color &&
           <sup {...supProps}>
             {!dot && count > max ? `${max}+` : count}
           </sup>
@@ -44,14 +41,12 @@ Badge.propTypes = {
   count: PropTypes.number,
   dot: PropTypes.bool,
   max: PropTypes.number,
-  status: PropTypes.oneOf([
-    'success', 'processing', 'default', 'error', 'warning',
-  ]),
+  processing: PropTypes.bool,
+  color: PropTypes.string,
 };
 
 Badge.defaultProps = {
   prefixCls: 'w-badge',
   dot: false,
   max: 99,
-  status: null,
 };

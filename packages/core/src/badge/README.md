@@ -12,9 +12,29 @@ import { Badge } from 'uiw';
 <!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
-  <Badge count={ 12 }>
-    评论
-  </Badge>
+  <div>
+    <Row gutter={20}>
+      <Col fixed>
+        <Badge count={9}>
+          <Avatar shape="square" size="large" />
+        </Badge>
+      </Col>
+      <Col fixed>
+        <Badge count={100}>
+          <Avatar shape="square" size="large" />
+        </Badge>
+      </Col>
+      <Col>
+        <Badge dot count={9}>
+          <Avatar shape="square" size="large" />
+        </Badge>
+      </Col>
+    </Row>
+    <Divider />
+    <Badge count={12}>
+      评论
+    </Badge>
+  </div>
 );
 ```
 <!--End-->
@@ -27,25 +47,33 @@ const Demo = () => (
 ```js
 const styl={ marginRight: 20, display: 'inline-block' }
 const Demo = () => (
-  <div>
-    <div style={styl}>
-      <Badge count={99}>评论</Badge>
-    </div>
-    <div style={styl}>
-      <Badge count={100} style={{ backgroundColor: '#87d068' }}>回复</Badge>
-    </div>
-    <div style={styl}>
-      <Badge count={99} max={10} style={styl}>点赞</Badge>
-    </div>
-    <div style={styl}>
-      <Badge count={100} max={999} style={styl}>打分</Badge>
-    </div>
-    <div style={styl}>
-      <Badge count={100} max={999} style={styl}>
-        <span style={{ padding: '0 10px' }}>打分</span>
+  <Row gutter={20}>
+    <Col fixed>
+      <Badge count={99}>
+        <Avatar shape="square" size="large" />
       </Badge>
-    </div>
-  </div>
+    </Col>
+    <Col fixed>
+      <Badge count={100} style={{ backgroundColor: '#87d068' }}>
+        <Avatar shape="square" size="large" />
+      </Badge>
+    </Col>
+    <Col fixed>
+      <Badge count={99} max={10} style={styl}>
+        <Avatar shape="square" size="large" />
+      </Badge>
+    </Col>
+    <Col fixed>
+      <Badge count={100} max={999} style={styl}>
+        <Avatar shape="square" size="large" />
+      </Badge>
+    </Col>
+    <Col fixed>
+      <Badge count={100} max={999} style={styl}>
+        <Avatar shape="square" size="large" />
+      </Badge>
+    </Col>
+  </Row>
 );
 ```
 <!--End-->
@@ -58,11 +86,17 @@ const Demo = () => (
 <!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
-  <div>
-    <Badge count={25} />
-    <Badge count={4} style={{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset' }} /> 
-    <Badge count={109} style={{ backgroundColor: '#87d068' }} /> 
-  </div>
+  <Row gutter={10}>
+    <Col fixed>
+      <Badge count={25} />
+    </Col>
+    <Col fixed>
+      <Badge count={4} style={{ backgroundColor: '#fff', color: '#f04134', boxShadow: 'rgb(217, 217, 217) 0px 0px 0px 1px inset' }} /> 
+    </Col>
+    <Col fixed>
+      <Badge count={109} style={{ backgroundColor: '#87d068' }} /> 
+    </Col>
+  </Row>
 );
 ```
 <!--End-->
@@ -88,27 +122,32 @@ const Demo = () => (
 
 ### 状态点
 
-用于表示状态的小圆点。
+用于表示状态的小圆点，可以设置 `processing={true}` 让状态点，显示动画效果。
 
 <!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
   <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
-    <Badge status="success" />
-    <Badge status="error" />
-    <Badge status="default" />
-    <Badge status="processing" />
-    <Badge status="warning" />
+    <Badge color="#28a745" />
+    <Badge color="#008EF0" />
+    <Badge color="#dc3545" />
+    <Badge color="#393E48" />
+    <Badge color="#ffc107" />
+    <Badge color="#f95c2b" />
+    <Badge color="#dc3545"/>
+    <Badge color="#c2c2c2"/>
+    <Badge color="#F95C2B" processing />
     <br />
-    <Badge status="success">Success</Badge>
+    <Badge color="#28a745">Success</Badge>
     <br />
-    <Badge status="error">Error</Badge>
+    <Badge color="#dc3545">Error</Badge>
     <br />
-    <Badge status="default">Default</Badge>
+    <Badge color="#c2c2c2">Default</Badge>
     <br />
-    <Badge status="processing">Processing</Badge>
+    <Badge color="#008EF0" processing>Processing</Badge>
     <br />
-    <Badge status="warning">Warning</Badge>
+    <Badge color="#ffc107">Warning</Badge>
+    <Badge color="#ffc107" processing>Warning</Badge>
   </div>
 );
 ```
@@ -118,8 +157,9 @@ const Demo = () => (
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| style | 默认设置计数圆点样式，设置`status`，`style`设置外层节点样式 | Object | - |
+| style | 默认设置计数圆点样式，设置 `color`，`style` 设置外层节点样式 | Object | - |
 | count | 展示的数字 | Number | - |
 | max | 最大值，超过最大值会显示 '{max}+' | Number | `99` |
 | dot | 不展示数字，只有一个小红点 | Boolean | `false` |
-| status | 设置 Badge 为状态点 | Enum{`success`, `processing`,`default`, `error`, `warning` } | - |
+| processing | 不展示数字，只有一个小红点 | Boolean | - |
+| color | 设置 Badge 为状态点的颜色 | String | - |
