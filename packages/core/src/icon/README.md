@@ -270,8 +270,8 @@ const Demo = () => (
 const iconList = [
   'caret-down', 'arrow-down', 'caret-up','arrow-up', 'caret-left',  'arrow-left', 'caret-right','arrow-right',
   'shrink','arrows-alt','d-arrow-left','d-arrow-right','enter',
-  'rollback', 'd-caret','backward','forward',  'logout', 'login',  'swap-right', 'swap',
-  'verticle-left', 'verticle-right','menu-fold', 'menu-unfold',
+  'rollback', 'd-caret','backward','forward',  'logout', 'login', 'swap-left', 'swap-right', 'swap',
+  'verticle-left', 'verticle-right', 'menu','menu-fold', 'menu-unfold',
 ]
 const itemStyl = {
   fontSize: 18, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
@@ -385,9 +385,9 @@ const iconList = [
   'dislike-o', 'like-o','loading', 'reload','appstore', 'appstore-o',
   'tag', 'tag-o','tags','tags-o', 'setting','setting-o','map','table','qrcode','barcode','printer',
   'cloud-upload','cloud-upload-o', 'cloud-download','cloud-download-o', 'download','message','message-o',
-  'user', 'usergroup-add', 'zoom-in', 'zoom-out','time', 'time-o',
-  "bell", 'camera-o', 'coffee', 'document', 'delete', 'date', 'edit',  'eye-o', 'environment-o', 'filter', 'global', 'inbox', 'home', 'laptop', 'link', 'copy', 'more',
-  "pay-circle-o", "pay", "picture"
+  'user', 'user-add', 'user-delete', 'usergroup-add', 'usergroup-delete', 'zoom-in', 'zoom-out','time', 'time-o',
+  'bell', 'camera-o', 'coffee', 'document', 'delete', 'date', 'edit',  'eye-o', 'environment-o', 'filter', 'global', 'inbox', 'home', 'laptop', 'link', 'copy', 'more', 'shopping-cart', 'search', 'save', 'safety', 'poweroff', 'picasa', 'notification',
+  'pay-circle-o', 'pay', 'picture', 'woman', 'man', 'verification', 'wifi', 'video-camera', 'mobile'
 ]
 const itemStyl = {
   fontSize: 18, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
