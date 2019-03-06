@@ -30,20 +30,20 @@ export default class Calendar extends React.Component {
       this.setState({ panelDate: today || new Date() });
       return;
     }
-    let date = panelDate;
-    const month = date.getMonth();
+    const month = panelDate.getMonth();
     if (type === 'prev') {
-      date.setMonth(month - 1);
+      panelDate.setMonth(month - 1);
     }
     if (type === 'next') {
-      date.setMonth(month + 1);
+      panelDate.setMonth(month + 1);
     }
-    this.setState({ panelDate: date });
+    this.setState({ panelDate });
   }
-  renderDay = (day, props, cellDate) => {
+  renderDay = (day, cellDate) => {
     const { prefixCls, data } = this.props;
     const dayData = data.filter((item) => {
-      const arr = (item.date && item.date.split('/') || []).map(num => Number(num));
+      let arr = item.date && item.date.split('/');
+      arr = (arr || []).map(num => Number(num));
       if (arr.length === 1) {
         return day === arr[0];
       }
@@ -72,7 +72,7 @@ export default class Calendar extends React.Component {
   render() {
     const { prefixCls, className, renderDay, disabledDate, today, todayLabel, panelDate, todayButton, weekday, weekTitle, titleFormat, monthLabel, ...other } = this.props;
     return (
-      <div className={classnames(prefixCls, className)}>
+      <div className={classnames(prefixCls, className)} {...other}>
         <div className={`${prefixCls}-caption`}>
           <div className={`${prefixCls}-title`}>{timestamp(titleFormat, this.state.panelDate)}</div>
           <div className={`${prefixCls}-btn-group`}>
