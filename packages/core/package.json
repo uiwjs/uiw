@@ -21,7 +21,7 @@
     "build": "npm run build-cjs && npm run build-esm",
     "bundle": "kkt build --bundle --no-emptyDir",
     "bundle:min": "kkt build --bundle=min --no-emptyDir",
-    "watch": "npm run build:watch:esm && npm run build:watch:cjs"
+    "watch": "npm run build:watch:esm & npm run build:watch:cjs"
   },
   "keywords": [
     "design",
