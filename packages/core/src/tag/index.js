@@ -5,27 +5,28 @@ import './style/index.less';
 
 export default class Tag extends React.Component {
   render() {
-    const { prefixCls, className, title, children, capsule, color, titleColor, disabled, ...other } = this.props;
-    const cls = classnames(`${prefixCls}`, className, {
-      'w-disabled': disabled,
-      [`${prefixCls}-capsule`]: title && children,
-    });
-    const conSty = { borderColor: color };
-    if (title && color) {
-      conSty.backgroundColor = color;
-      conSty.color = '#fff';
+    const { prefixCls, className, style, title, children, visible, color, disabled, closable, light, onClose, ...other } = this.props;
+    const cls = classnames(`${prefixCls}`, className, { [`${prefixCls}-light`]: light, disabled });
+    const styl = { };
+    if (!light) {
+      styl.color = '#fff';
+      styl.backgroundColor = color;
     } else {
-      conSty.color = color;
+      styl.color = color;
+      styl.borderColor = color;
+      styl.boxShadow = `inset 0 0 0 1px ${color}`;
     }
-    const titleSty = {};
-    if (titleColor) {
-      titleSty.backgroundColor = titleColor || color;
-      titleSty.borderColor = titleColor || color;
+    if (!visible) {
+      return null;
     }
     return (
-      <span className={cls} {...other}>
-        {title && <span style={titleSty} className={`${prefixCls}-title`}>{title}</span>}
-        {children && <span style={conSty} className={`${prefixCls}-content`}>{children}</span>}
+      <span className={cls} style={styl} {...other}>
+        {title || children}
+        {closable && (
+          <svg onClick={onClose} className={`${prefixCls}-close`} width="16" height="16" viewBox="0 0 16 16">
+            <path d="M9.41 8l2.29-2.29c.19-.18.3-.43.3-.71a1.003 1.003 0 0 0-1.71-.71L8 6.59l-2.29-2.3a1.003 1.003 0 0 0-1.42 1.42L6.59 8 4.3 10.29c-.19.18-.3.43-.3.71a1.003 1.003 0 0 0 1.71.71L8 9.41l2.29 2.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71L9.41 8z" />
+          </svg>
+        )}
       </span>
     );
   }
@@ -35,11 +36,18 @@ Tag.propTypes = {
   prefixCls: PropTypes.string,
   color: PropTypes.string,
   disabled: PropTypes.bool,
+  visible: PropTypes.bool,
+  light: PropTypes.bool,
+  closable: PropTypes.bool,
+  onClose: PropTypes.func,
   title: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
 };
 
 Tag.defaultProps = {
   prefixCls: 'w-tag',
   disabled: false,
+  visible: true,
+  color: '#6E6E6E',
+  light: false,
   title: '',
 };

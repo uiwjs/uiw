@@ -3,42 +3,29 @@
 .@{tag-prefix} {
   user-select: none;
   font-size: 12px;
-  background-color: #fff;
+  padding: 4px 6px;
+  border-radius: 3px;
+  position: relative;
+  white-space: nowrap;
   & + & {
     margin-left: 5px;
   }
-  &-title, &-content {
-    padding: 2px 4px;
-  }
-  &-title {
-    border-style: solid;
-    border-width: 1px;
-    color: #fff;
-    border-radius: 3px 0 0 3px;
-    border-right-width: 0;
-  }
-  &-content {
-    color: #6E6E6E;
-    border: #C2C2C2 solid 1px;
-    border-radius: 0 3px 3px 0;
-    border-left-width: 0;
-  }
-  &:not(.@{tag-prefix}-capsule) {
-    .@{tag-prefix}-title, .@{tag-prefix}-content {
-      border-radius: 3px;
-    }
-    .@{tag-prefix}-content{
-      border-left-width: 1px;
-    }
-  }
-  &.@{tag-prefix}-capsule {
-    .@{tag-prefix}-title {
-      background-color: #555;
-      border-color: #555;
-    }
-  }
-  &.w-disabled {
+  &.disabled {
     opacity: .75;
     cursor: not-allowed;
+  }
+  &-close {
+    vertical-align: middle;
+    margin: -3px -3px 0 2px;
+    border-radius: 2px;
+    fill: currentcolor;
+    transition: all .3s;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.12);
+    }
+    &:active {
+      background-color: rgba(0, 0, 0, 0.22);
+    }
   }
 }

@@ -7,87 +7,124 @@ Tag 标签
 import { Tag } from 'uiw';
 ```
 
-## 基础用法
+### 基础用法
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
   <div>
-    <Tag>限购一份</Tag>
-    <Tag color="red">限购一份</Tag>
-    <Tag color="#1C7CEB">限购一份</Tag>
-    <Tag color="#40ba16">passing</Tag>
-    <Tag color="#ea7538">6.0.1</Tag>
-    <Tag color="red">failure</Tag>
-    <Tag disabled color="red">unknown</Tag>
+    <Tag title="成功-绿色" color="#28a745" />
+    <Tag title="主要-蓝色" color="#008EF0" />
+    <Tag title="信息-青色" color="#1EABCD" />
+    <Tag title="导航-藏青" color="#393E48" />
     <Divider />
-    <Tag title="npm" color="#1C7CEB">6.0.1</Tag>
-    <Tag title="coverage" color="#e97437">35%</Tag>
-    <Tag title="npm" color="#4f4f4f">6.0.12</Tag>
-    <Tag title="npm" color="#4f4f4f" />
+    <Tag color="#ffc107">警告-黄色</Tag>
+    <Tag color="#F95C2B">提醒-橙色</Tag>
+    <Tag color="#dc3545">危险-红色</Tag>
+    <Tag>默认颜色</Tag>
     <Divider />
-    <Tag title="成功-绿色" titleColor="#28a745" />
-    <Tag title="主要-蓝色" titleColor="#008EF0" />
-    <Tag title="信息-青色" titleColor="#1EABCD" />
-    <Tag title="导航-藏青" titleColor="#393E48" />
-    <Tag title="警告-黄色" titleColor="#ffc107" />
-    <Tag title="提醒-橙色" titleColor="#F95C2B" />
-    <Tag title="危险-红色" titleColor="#dc3545" />
+    <Tag light color="#28a745">成功-绿色</Tag>
+    <Tag light color="#008EF0">主要-蓝色</Tag>
+    <Tag light color="#1EABCD">信息-青色</Tag>
+    <Tag light color="#393E48">导航-藏青</Tag>
+    <Divider />
+    <Tag light color="#ffc107">警告-黄色</Tag>
+    <Tag light color="#F95C2B">提醒-橙色</Tag>
+    <Tag light color="#dc3545">危险-红色</Tag>
+    <Tag light>默认颜色</Tag>
   </div>
 )
 ```
 <!--End-->
 
-## 胶囊盾牌
+### 标签禁用
 
-设置 `title="折扣"`。
-
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
   <div>
-    <Tag title="折扣" color="red">限购一份</Tag>
-    <Tag title="折扣" color="#1C7CEB">限购一份</Tag>
-    <Tag title="折扣" disabled color="#1C7CEB">限购一份</Tag>
+    <Tag disabled title="成功-绿色" color="#28a745" />
+    <Tag disabled title="主要-蓝色" color="#008EF0" />
+    <Tag disabled title="信息-青色" color="#1EABCD" />
+    <Tag disabled title="导航-藏青" color="#393E48" />
+    <Tag disabled color="#ffc107">警告-黄色</Tag>
+    <Tag disabled color="#F95C2B">提醒-橙色</Tag>
+    <Tag disabled color="#dc3545">危险-红色</Tag>
+    <Tag disabled>默认颜色</Tag>
     <Divider />
-    <Tag title="build" color="#40ba16">passing</Tag>
-    <Tag title="build" color="red">failure</Tag>
-    <Tag title="build" color="#ce4a32">failure</Tag>
-    <Tag title="build" disabled color="#b9b9b9">unknown</Tag>
-    <Divider />
-    <Tag title="胶" titleColor="red" color="#ffc107">囊</Tag>
-    <Tag title="build" titleColor="#1C7CEB" color="#40bf16">failure</Tag>
-    <Tag title="build" titleColor="#F95C2B" color="#dc3545">failure</Tag>
-    <Tag title="build" titleColor="#ea7538" color="#393E48">unknown</Tag>
-    <Divider />
-    <Tag title="npm">v6.0.1</Tag>
-    <Tag title="npm" color="#ea7538">6.0.1</Tag>
-    <Tag title="npm" color="#cfa720">6.0.1</Tag>
-    <Tag title="npm" color="#1C7CEB">6.0.1</Tag>
-    <Tag title="coverage" color="#e97437">35%</Tag>
-    <Tag title="download" color="#40bf16">10k</Tag>
+    <Tag light disabled color="#28a745">成功-绿色</Tag>
+    <Tag light disabled color="#008EF0">主要-蓝色</Tag>
+    <Tag light disabled color="#1EABCD">信息-青色</Tag>
+    <Tag light disabled color="#393E48">导航-藏青</Tag>
+    <Tag light disabled color="#ffc107">警告-黄色</Tag>
+    <Tag light disabled color="#F95C2B">提醒-橙色</Tag>
+    <Tag light disabled color="#dc3545">危险-红色</Tag>
+    <Tag light disabled>默认颜色</Tag>
   </div>
 )
 ```
 <!--End-->
 
+### 添加图标
 
-## 添加图标
-
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite-->
 ```js
 const Demo = () => (
   <div>
     <Tag title={(
       <>
-        <Icon type="heart-on" verticalAlign="baseline" />
-        成功-绿色
+        <Icon type="heart-on" verticalAlign="baseline" /> 成功-绿色
       </>
-    )} titleColor="#28a745" />·
-    <Tag title="折扣" color="#1C7CEB"><Icon type="heart-on" verticalAlign="baseline" /> 限购一份</Tag>
-    <Tag title="胶" titleColor="red" color="#ffc107"><Icon type="heart-on" verticalAlign="baseline" />囊</Tag>
+    )} color="#28a745" />·
+    <Tag color="#1C7CEB"><Icon type="heart-on" verticalAlign="baseline" /> 限购一份</Tag>
+    <Tag color="red"><Icon type="heart-on" verticalAlign="baseline" /> 胶囊</Tag>
+    <Divider />
+    <Tag light color="#28a745"><Icon type="heart-on" verticalAlign="baseline" /> 成功-绿色</Tag>
+    <Tag light color="#008EF0"><Icon type="heart-on" verticalAlign="baseline" /> 主要-蓝色</Tag>
+    <Tag light color="#dc3545"><Icon type="heart-on" verticalAlign="baseline" /> 信息-红色</Tag>
   </div>
 )
+```
+<!--End-->
+
+### 控制关闭标签
+
+<!--DemoStart,bgWhite-->
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: true,
+      visible1: true,
+    }
+  }
+  onClose(type) {
+    this.setState({
+      [type]: !this.state[type],
+    });
+  }
+  render() { 
+    return (
+      <div>
+        <Tag
+          closable
+          onClose={this.onClose.bind(this, 'visible')}
+          visible={this.state.visible}
+          color="#F95C2B">提醒-橙色</Tag>
+        <Tag
+          closable
+          light
+          visible={this.state.visible1}
+          color="#dc3545"
+          onClose={this.onClose.bind(this, 'visible1')}
+        >
+            <Icon type="heart-on" verticalAlign="baseline" /> 信息-红色
+        </Tag>
+      </div>
+    );
+  }
+}
 ```
 <!--End-->
 
@@ -96,6 +133,8 @@ const Demo = () => (
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | title | 胶囊标题，配合 `children` 是否存在，展示胶囊样式 | String/ReactNode | - |
-| titleColor | 胶囊标题颜色 | String/ReactNode | - |
 | color | 颜色 | String | `#1C7CEB` |
 | disabled | 禁用 | Boolean | `false` |
+| closable | 显示关闭按钮 | Boolean | `false` |
+| visible | 是否显示标签 | Boolean | `true` |
+| onClose | 关闭时的回调 | Function | - |
