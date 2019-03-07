@@ -226,8 +226,8 @@ class Demo extends React.Component {
 | today | 默认高亮当天日期 | Date | `new Date` |
 | todayButton | 展示回到今天按钮，和提示文本。 | String | - |
 | showTime | 增加时间选择功能，当 showTime 为一个对象时，其属性会传递给内建的 [`<TimePicker />`](#/components/time-picker)。 | Boolean/Object | - |
-| renderDay | 增加时间选择功能。 | Function(day, props, cellDate) | - |
-| disabledDate | 不可选择的日期，函数返回 `true` 当前日期被禁用无法选择。 | Function(currentDate) | - |
+| renderDay | 增加时间选择功能。 `end`: 周末，`prev`: 上个月，`next`：下个月 | Function(day, { end: bool, prev: bool, next: bool }, cellDate) | - |
+| disabledDate | 不可选择的日期，函数返回 `true` 当前日期被禁用无法选择。`end`: 周末，`prev`: 上个月，`next`：下个月 | Function(currentDate, { end: bool, prev: bool, next: bool }) | - |
 | onChange | 选择一天时调用。 | Function(selectedDate:Date) | - |
 | weekTitle | 星期显示文本提示 | Array | \[`星期天`, `星期一`, `星期二`, `星期三`, `星期四`, `星期五`, `星期六`\] |
 | weekday | 星期显示文本 | Array | \[`日`, `一`, `二`, `三`, `四`, `五`, `六`\] |
