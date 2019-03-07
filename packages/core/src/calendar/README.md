@@ -55,6 +55,8 @@ const Demo = () => (
 
 ### 禁用日历
 
+在日历面板上面添加通知事件，还可以通过设置 `disabledDate` 来禁止部分日期点击，如下实例每月12号不能点击。
+
 <!--DemoStart,bgWhite-->
 ```js
 const data = [
@@ -92,13 +94,24 @@ function filterData(dt) {
     return item;
   });
 }
-function disabledDate(currentDate) {
+function disabledDate(currentDate, props) {
+  const day = currentDate.getDay();
+  // 禁用周末，只能点击当月工作日
+  if (day === 6 || day === 0 || props.next || props.prev) {
+    return true;
+  }
   // 今天和今天之前不能选择
-  return currentDate && currentDate.valueOf() < Date.now();
+  // return currentDate && currentDate.valueOf() < Date.now();
 }
 const Demo = () => (
   <div>
-    <Calendar disabledDate={disabledDate} data={filterData(data)} />
+    <Calendar
+      onClick={(date) => {
+        console.log('date:', date);
+      }}
+      disabledDate={disabledDate}
+      data={filterData(data)}
+    />
   </div>
 );
 ```
@@ -109,9 +122,10 @@ const Demo = () => (
 | data | 在日历面板上面添加通知，数组中的对象可以设置 ElementProps，如：`style`, `onClick` 等属性。 | `Array[{ date: YYYY/MM/DD, label: String/RabeNode }]` | - |
 | titleFormat | 设置日历面板上面的日期标题。 | String | `YYYY年MM月` |
 | date[`<DatePicker>`](#/components/date-picker) | 选中的日期 | Date | - |
-| panelDate[`<DatePicker>`](#/components/date-picker) | 日历面板默认展示哪一页 | Date | `new Date` |
-| disabledDate[`<DatePicker>`](#/components/date-picker) | 不可选择的日期，函数返回 `true` 当前日期被禁用无法选择。 | Date | `new Date` |
 | today[`<DatePicker>`](#/components/date-picker) | 默认高亮当天日期 | Function(currentDate) | - |
+| todayLabel | “今天”按钮的文本设置 | String | - |
+| panelDate[`<DatePicker>`](#/components/date-picker) | 日历面板默认展示哪一页 | Date | `new Date` |
+| disabledDate[`<DatePicker>`](#/components/date-picker) | 不可选择的日期，函数返回 `true` 当前日期被禁用无法选择。`end`: 周末，`prev`: 上个月，`next`：下个月 | Function(currentDate, { end: bool, prev: bool, next: bool }) | - |
 | weekTitle[`<DatePicker>`](#/components/date-picker) | 星期显示文本提示 | Array | \[`星期天`, `星期一`, `星期二`, `星期三`, `星期四`, `星期五`, `星期六`\] |
 | weekday[`<DatePicker>`](#/components/date-picker) | 星期显示文本 | Array | \[`日`, `一`, `二`, `三`, `四`, `五`, `六`\] |
 | monthLabel[`<DatePicker>`](#/components/date-picker) | 月份显示文本 | Array | \[`一月`, `二月`, `三月`, `四月`, `五月`, `六月`, `七月`, `八月`, `九月`, `十月`, `十一月`, `十二月`\] |

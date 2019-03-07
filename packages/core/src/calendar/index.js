@@ -21,7 +21,9 @@ export default class Calendar extends React.Component {
     }
   }
   onChange = (date) => {
+    const { onClick } = this.props;
     this.setState({ panelDate: date });
+    onClick && onClick(date);
   }
   onPaging(type) {
     const { panelDate } = this.state;
@@ -70,7 +72,7 @@ export default class Calendar extends React.Component {
     );
   }
   render() {
-    const { prefixCls, className, renderDay, disabledDate, today, todayLabel, panelDate, todayButton, weekday, weekTitle, titleFormat, monthLabel, ...other } = this.props;
+    const { prefixCls, className, renderDay, disabledDate, today, todayLabel, panelDate, todayButton, weekday, weekTitle, titleFormat, monthLabel, onClick, ...other } = this.props;
     return (
       <div className={classnames(prefixCls, className)} {...other}>
         <div className={`${prefixCls}-caption`}>
@@ -101,6 +103,7 @@ Calendar.propTypes = {
   titleFormat: PropTypes.string,
   disabledDate: PropTypes.func,
   renderDay: PropTypes.func,
+  onClick: PropTypes.func,
   panelDate: PropTypesDate,
   today: PropTypesDate,
   data: PropTypes.array,
