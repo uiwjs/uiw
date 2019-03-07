@@ -43,7 +43,7 @@ const menuData = [
       { name: 'DateInput 日期输入框', path: 'date-input' },
       { name: 'TimePicker 时间输入框', path: 'time-picker' },
       { name: 'MonthPicker 月份选择器', path: 'month-picker' },
-      { name: 'Timestamp 时间戳', path: 'timestamp' },
+      { name: 'formatter 时间格式化', path: 'formatter' },
       { divider: true, name: '数据显示' },
       { name: 'Avatar 头像', path: 'avatar' },
       { name: 'Badge 标记', path: 'badge' },

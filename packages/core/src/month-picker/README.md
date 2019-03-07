@@ -77,7 +77,7 @@ const Demo = () => (
 | value | 初始时间值 | Date | - |
 | placeholder | 输入框提示文字 | String | - |
 | allowClear | 是否显示清除按钮 | Boolean | true |
-| format | 格式化时间，规则查看 [`<Timestamp>`](#/components/timestamp) 文档 | String | `YYYY/MM/DD` |
+| format | 格式化时间，规则查看 [`formatter`](#/components/formatter) 文档 | String | `YYYY/MM/DD` |
 | onChange | 选择一天时调用。 | Function(Date, formatDate) | - |
 | popoverProps | 将参数传递给内部 [`<Popover>`](#/components/popover) 组件 | Object | - |
 | datePickerProps | 将参数传递给内部 [`<DatePicker>`](#/components/date-picker) 组件 | Object | - |

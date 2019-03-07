@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import PickerDay from '../date-picker/PickerDay';
 import Icon from '../icon';
 import { PropTypesDate } from '../utils';
-import timestamp from '../timestamp';
+import formatter from '../formatter';
 import './style/index.less';
 
 export default class Calendar extends React.Component {
@@ -76,7 +76,7 @@ export default class Calendar extends React.Component {
     return (
       <div className={classnames(prefixCls, className)} {...other}>
         <div className={`${prefixCls}-caption`}>
-          <div className={`${prefixCls}-title`}>{timestamp(titleFormat, this.state.panelDate)}</div>
+          <div className={`${prefixCls}-title`}>{formatter(titleFormat, this.state.panelDate)}</div>
           <div className={`${prefixCls}-btn-group`}>
             <Icon type="arrow-down" onClick={this.onPaging.bind(this, 'prev')} />
             <span className={`${prefixCls}-btn`} onClick={this.onPaging.bind(this, 'today')} >{todayLabel}</span>

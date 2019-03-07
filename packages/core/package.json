@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@uiw/copy-to-clipboard": "^1.0.7",
+    "@uiw/formatter": "^1.2.0",
     "classnames": "^2.2.6",
     "react-transition-group": "^2.5.2",
     "uiw-iconfont": "^1.3.0"

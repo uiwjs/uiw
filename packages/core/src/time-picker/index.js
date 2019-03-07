@@ -5,7 +5,7 @@ import Popover from '../popover';
 import PickerTime from './PickerTime';
 import Input from '../input';
 import Icon from '../icon';
-import timestamp from '../timestamp';
+import formatter from '../formatter';
 import './style/index.less';
 
 export default class TimePicker extends React.Component {
@@ -23,12 +23,12 @@ export default class TimePicker extends React.Component {
   onSelected(type, num, disableds, date) {
     const { onChange, format } = this.props;
     this.setState({ date });
-    onChange && onChange(date && timestamp(format, date), date, type, num, disableds);
+    onChange && onChange(date && formatter(format, date), date, type, num, disableds);
   }
   render() {
     const { prefixCls, className, disabled, value, format, popoverProps, inputProps, allowClear, ...timeProps } = this.props;
     const { date } = this.state;
-    const inputValue = date && timestamp(format, date);
+    const inputValue = date && formatter(format, date);
     const props = { ...inputProps, value: inputValue };
     const datePickerTime = date || new Date();
     if (allowClear && inputValue !== '' && !!inputValue) {

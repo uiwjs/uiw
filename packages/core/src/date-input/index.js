@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import Input from '../input';
 import Popover from '../popover';
 import DatePicker from '../date-picker';
-import Timestamp from '../timestamp';
+import formatter from '../formatter';
 import Icon from '../icon';
 import './style/index.less';
 
@@ -23,14 +23,14 @@ export default class DateInput extends React.Component {
   onChange(date) {
     const { format } = this.props;
     this.setState({ date });
-    date = date ? Timestamp(format, new Date(date)) : date;
+    date = date ? formatter(format, new Date(date)) : date;
     this.props.onChange(date);
   }
   render() {
     const { prefixCls, className, popoverProps, datePickerProps, allowClear, format, ...inputProps } = this.props;
     const { date } = this.state;
     const value = date || '';
-    inputProps.value = typeof value === 'string' ? value : Timestamp(format, value);
+    inputProps.value = typeof value === 'string' ? value : formatter(format, value);
     if (allowClear && inputProps.value) {
       inputProps.addonAfter = <Icon className={`${prefixCls}-close-btn`} onClick={this.onChange.bind(this, null)} type="close" />;
     }

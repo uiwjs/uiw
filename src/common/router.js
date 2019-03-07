@@ -175,8 +175,8 @@ export const getRouterData = () => {
     '/components/modal': {
       component: dynamicWrapper([], () => import('../routes/components/modal')),
     },
-    '/components/timestamp': {
-      component: dynamicWrapper([], () => import('../routes/components/timestamp')),
+    '/components/formatter': {
+      component: dynamicWrapper([], () => import('../routes/components/formatter')),
     },
     '/components/steps': {
       component: dynamicWrapper([], () => import('../routes/components/steps')),

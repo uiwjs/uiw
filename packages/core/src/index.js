@@ -43,7 +43,7 @@ export { default as Tag } from './tag';
 export { default as Tabs } from './tabs';
 export { default as Table } from './table';
 export { default as Tooltip } from './tooltip';
-export { default as Timestamp } from './timestamp';
+export { default as formatter } from './formatter';
 export { default as TimePicker } from './time-picker';
 export { default as Textarea } from './textarea';
 export { default as FileInput } from './file-input';

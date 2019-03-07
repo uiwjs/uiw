@@ -7,7 +7,7 @@ import PickerYear from './PickerYear';
 import PickerTime from '../time-picker/PickerTime';
 import PickerDayCaption from './PickerCaption';
 import { PropTypesDate } from '../utils';
-import Timestamp from '../timestamp';
+import formatter from '../formatter';
 import './style/index.less';
 
 export default class DatePicker extends React.Component {
@@ -133,7 +133,7 @@ export default class DatePicker extends React.Component {
             onSelected={this.onSelectedTime.bind(this)}
           />
         )}
-        {showTime && <div className={`${prefixCls}-time-btn`} onClick={this.onSelected.bind(this, 'time')}>{Timestamp(showTime.format ? showTime.format : 'HH:mm:ss', date || panelDate)}</div>}
+        {showTime && <div className={`${prefixCls}-time-btn`} onClick={this.onSelected.bind(this, 'time')}>{formatter(showTime.format ? showTime.format : 'HH:mm:ss', date || panelDate)}</div>}
       </div>
     );
   }

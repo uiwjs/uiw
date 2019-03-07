@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Input from '../input';
 import Popover from '../popover';
-import Timestamp from '../timestamp';
+import formatter from '../formatter';
 import Icon from '../icon';
 import PickerMonth from '../date-picker/PickerMonth';
 import PickerYear from '../date-picker/PickerYear';
@@ -33,7 +33,7 @@ export default class MonthPicker extends React.Component {
     date = date[type](num);
     panelDate = new Date(date);
 
-    date = Timestamp(format, new Date(date));
+    date = formatter(format, new Date(date));
     const state = { panelDate, date, isOpen: false };
     if (type === 'setFullYear') {
       delete state.isOpen;
@@ -63,7 +63,7 @@ export default class MonthPicker extends React.Component {
     const { prefixCls, className, popoverProps, datePickerProps, allowClear, format, monthLabel, ...inputProps } = this.props;
     const { date, type } = this.state;
     const value = date || '';
-    inputProps.value = typeof value === 'string' ? value : Timestamp(format, value);
+    inputProps.value = typeof value === 'string' ? value : formatter(format, value);
     if (allowClear && inputProps.value) {
       inputProps.addonAfter = <Icon className={`${prefixCls}-close-btn`} onClick={this.onAllowClear.bind(this, null)} type="close" />;
     }
