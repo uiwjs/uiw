@@ -16,7 +16,8 @@ export default class Tabs extends Component {
     };
   }
   componentDidMount() {
-    this.updateFirstMount();
+    this.calcSlideStyle();
+    // this.updateFirstMount();
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.children !== this.props.children) {
@@ -39,13 +40,14 @@ export default class Tabs extends Component {
       });
     }
   }
-  updateFirstMount() {
-    setTimeout(() => {
-      this.calcSlideStyle();
-    }, 300);
-  }
+  // updateFirstMount() {
+  //   setTimeout(() => {
+  //     this.calcSlideStyle();
+  //   }, 300);
+  // }
   componentUnWillMount() {
-    this.updateFirstMount();
+    // this.updateFirstMount();
+    this.calcSlideStyle();
   }
   calcSlideStyle() {
     if (!this.tabsBar.length) return;
