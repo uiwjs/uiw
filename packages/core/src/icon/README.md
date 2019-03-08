@@ -3,6 +3,72 @@ Icon 图标
 
 语义化的矢量图形，内置的图标属于UI框架常用图形字体。icon字体以及样式，被抽离到一个新的仓库 [uiw icon](https://uiwjs.github.io/icons/) ，`uiw`去依赖 [uiw-iconfont](https://github.com/uiwjs/icons)，这个仓库主要是维护一套svg图片，并将svg图片转换为 `*.symbol.svg` `*.ttf` `*.woff` `*.woff2` `*.eot` `svgPaths.json` 等字体及相关文件并发布到 [npm](https://www.npmjs.com/package/uiw-iconfont) 上去。
 
+### 搜索图标
+
+<!--DemoStart,bgWhite,noCode-->
+```js
+const icons = ["adobe", "ali-pay", "aliwangwang", "android-o", "android", "apple", "appstore-o", "appstore", "area-chart", "arrow-down", "arrow-left", "arrow-right", "arrow-up", "arrows-alt", "asterisk", "backward", "baidu", "bar-chart", "barcode", "bell", "camera-o", "caret-down", "caret-left", "caret-right", "caret-up", "check-square-o", "check-square", "check", "chrome", "circle-check-o", "circle-check", "circle-close-o", "circle-close", "close-square-o", "close-square", "close", "cloud-download-o", "cloud-download", "cloud-upload-o", "cloud-upload", "coffee", "component", "copy", "copyright", "css3", "cut", "d-arrow-left", "d-arrow-right", "d-caret", "dashboard", "date", "delete", "dingding", "dislike-o", "document", "dot-chart", "down-circle-o", "down-circle", "down-square-o", "down-square", "download", "edit", "enter", "environment-o", "environment", "eye-o", "eye", "facebook", "file-add", "file-excel", "file-jpg", "file-pdf", "file-text", "file-unknown", "filter", "firefox", "folder-add", "folder-open", "folder", "forward", "foursquare", "frown-o", "frown", "github-o", "github", "global", "heart-off", "heart-on", "home", "html5", "ie", "inbox", "information-o", "information", "laptop", "left-circle-o", "left-circle", "left-square-o", "left-square", "like-o", "link", "linkedin", "linux", "loading", "lock", "login", "logout", "man", "map", "meh-o", "meh", "menu-fold", "menu-unfold", "menu", "message-o", "message", "minus-circle-o", "minus-circle", "minus-square-o", "minus-square", "minus", "mobile", "more", "notification", "opera", "paper-clip", "pause-circle-o", "pause-circle", "pause", "pay-circle-o", "pay", "picasa", "picture", "pie-chart", "pinterest", "play-circle-o", "play-circle", "plus-circle-o", "plus-circle", "plus-square-o", "plus-square", "plus", "poweroff", "printer", "qq", "qrcode", "question-circle-o", "question-circle", "reddit", "reload", "right-circle-o", "right-circle", "right-square-o", "right-square", "rollback", "safari", "safety", "save", "search", "setting-o", "setting", "share", "shopping-cart", "shrink", "smile-o", "smile", "star-off", "star-on", "swap-left", "swap-right", "swap", "table", "tag-o", "tag", "tags-o", "tags", "taobao", "time-o", "time", "twitter", "uiw", "unlock", "up-circle-o", "up-circle", "up-square-o", "up-square", "upload", "user-add", "user-delete", "user", "usergroup-add", "usergroup-delete", "verification", "verticle-left", "verticle-right", "video-camera", "warning-o", "warning", "weibo", "weixin", "wifi", "windows", "woman", "zoom-in", "zoom-out"];
+const itemStyl = {
+  fontSize: 26, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
+  display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', justifyContent: 'center', fill: '#525252',
+}
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      len: 0,
+      result: [],
+    }
+  }
+  onChange(env) {
+    const value = env.target.value;
+    const data = value ? icons.filter((item) => item.indexOf(value) > -1) : [];
+    const len = data.length;
+    const result = data.splice(0, 15);
+    this.setState({ len, result });
+  }
+  render() {
+    const { len, result } = this.state;
+    return (
+      <div>
+        <Input preIcon="search" placeholder="请输入图标名称" type="text" style={{ maxWidth: 200 }} onChange={this.onChange.bind(this)} />
+        <div style={{ padding: '10px 0' }}>
+          搜索到 {this.state.len} 个结果{len > 0 && <span>，下面展示 {len > 15 ? '15' : len} 个图标，可以点击复制图标代码: </span>}
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
+          {result.map((type, idx) => {
+            const iconTxt = `<Icon type="${type}" />`;
+            return (
+              <CopyToClipboard
+                key={idx}
+                style={itemStyl}
+                text={iconTxt}
+                onClick={() => {
+                  Notify.success({
+                    title: '你已复制内容！',
+                    description: (
+                      <span>
+                        已复制 <b style={{ color: 'red' }}>{iconTxt}</b> 可以去粘贴了！
+                      </span>
+                    ),
+                  });
+                }}
+              >
+                <div key={idx}>
+                  <Icon type={type} />
+                  <div style={{ color: '#525252', fontSize: 12, paddingTop: 8 }}>{type}</div>
+                </div>
+              </CopyToClipboard>
+            )
+          })}
+        </div>
+      </div>
+    );
+  }
+}
+```
+<!--End-->
+
 ## 如何使用
 
 使用`<Icon />`组件，指定图标对应的`type`属性，示例代码：
