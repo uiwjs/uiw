@@ -103,14 +103,14 @@ const Demo = () => (
           preIcon="like-o"
           size="large"
           placeholder="请输入密码"
-          addonAfter={<Button icon="lock" basic type="dark" />}
+          addonAfter={<Button icon="lock" basic type="light" />}
         />
       </Col>
       <Col fixed>
         <Input
           preIcon="search"
           placeholder="请输入内容"
-          addonAfter={<Button icon="arrow-right" basic size="small" type="dark" />}
+          addonAfter={<Button icon="arrow-right" basic size="small" type="light" />}
         />
       </Col>
       <Col fixed>
