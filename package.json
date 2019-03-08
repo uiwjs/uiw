@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "1.16.18",
+  "version": "1.16.19",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiwjs.github.io",
   "authors": [
@@ -11,6 +11,7 @@
     "url": "https://github.com/uiwjs/uiw.git"
   },
   "main": "lib/index.js",
+  "module": "esm/index.js",
   "scripts": {
     "release": "npm run build:lib && release-it --src.tagName='v%s'",
     "precommit": "lint-staged",
@@ -18,9 +19,11 @@
     "test": "babel-node script/test.js --updateSnapshot --config .jest.js",
     "test:watch": "babel-node script/test.js --config .jest.js --watch --updateSnapshot",
     "start": "babel-node script/start.js",
-    "build": "npm run build:lib && babel-node script/build.js",
-    "build:lib": "BABEL_ENV=production babel --ignore=src/**/__test__ src --out-dir lib --copy-files --verbose",
-    "lib:watch": "BABEL_ENV=production babel -w --ignore=src/**/__test__ src --out-dir lib --copy-files --verbose",
+    "build": "npm run build:cjs && npm run build:esm && babel-node script/build.js",
+    "build:watch:cjs": "BABEL_ENV=commonjs babel --ignore=src/**/__test__ src --out-dir lib --source-maps true --copy-files --verbose -w",
+    "build:watch:esm": "BABEL_ENV=esm babel --ignore=src/**/__test__ src --out-dir esm --source-maps true --copy-files --verbose -w",
+    "build:cjs": "BABEL_ENV=commonjs babel --ignore=src/**/__test__ src --out-dir lib --source-maps true --copy-files --verbose",
+    "build:esm": "BABEL_ENV=esm babel --ignore=src/**/__test__ src --out-dir esm --source-maps true --copy-files --verbose",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
     "lint-staged:js": "NODE_ENV=production eslint src",
     "deploy": "npm run build:lib && npm run build && node ./script/deploy.js"
