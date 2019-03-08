@@ -5,7 +5,7 @@
   display: inline-block;
   user-select: none;
   font-size: 12px;
-  padding: 3px 6px;
+  padding: 1px 5px;
   position: relative;
   white-space: nowrap;
   vertical-align: middle;
@@ -16,6 +16,17 @@
     opacity: .75;
     cursor: not-allowed;
   }
+  &-light &-close {
+    &:hover {
+      background-color: currentcolor;
+      path {
+        fill: #fff;
+      }
+    }
+    &:active {
+      background-color: rgba(0, 0, 0, 0.15);
+    }
+  }
   &-close {
     vertical-align: middle;
     margin: -3px -3px 0 2px;
@@ -24,10 +35,10 @@
     transition: all .3s;
     cursor: pointer;
     &:hover {
-      background-color: rgba(0, 0, 0, 0.12);
+      background-color: rgba(0, 0, 0, 0.22);
     }
     &:active {
-      background-color: rgba(0, 0, 0, 0.22);
+      background-color: rgba(0, 0, 0, 0.32);
     }
   }
 }

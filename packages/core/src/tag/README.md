@@ -172,7 +172,61 @@ class Demo extends Component {
             </Tag>
           )
         })}
-        <Button style={{ marginLeft: 5 }} size="small" onClick={this.addTag.bind(this)}>添加</Button>
+        <Button style={{ marginLeft: 5 }} size="small" onClick={this.addTag.bind(this)}> <Icon type="plus" /> </Button>
+      </div>
+    );
+  }
+}
+```
+<!--End-->
+
+### 热门标签
+
+选择你感兴趣的话题，下面实例类似 CheckBox 多选。
+
+<!--DemoStart,bgWhite-->
+```js
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataTags: [
+        { label: '橘子', value: 1, color: '#008EF0' },
+        { label: '苹果', value: 2, color: '#008EF0' },
+        { label: '橘子', value: 3, color: '#008EF0' },
+        { label: '川菜', value: 4, color: '#008EF0' },
+      ],
+      values: [1, 2, 3],
+    }
+  }
+  onTagChecked(data) {
+    let { values } = this.state;
+    const isChecked = values.indexOf(data.value) === -1;
+    if(isChecked) {
+      values.push(data.value);
+    } else {
+      values = values.filter(item => item !== data.value);
+    }
+    this.setState({ values });
+  }
+  render() { 
+    const { dataTags, values } = this.state;
+    return (
+      <div>
+        {dataTags.map((item, idx) => {
+          const isChecked = values.indexOf(item.value) === -1;
+          return (
+            <Tag
+              onClick={this.onTagChecked.bind(this, item)}
+              key={idx}
+              light={isChecked}
+              bordered={false}
+              color="#008EF0"
+            >
+              {item.label}
+            </Tag>
+          )
+        })}
       </div>
     );
   }
@@ -184,9 +238,11 @@ class Demo extends Component {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| title | 胶囊标题，配合 `children` 是否存在，展示胶囊样式 | String/ReactNode | - |
+| title | 标题，和 `children` 几乎是一样的 | String/ReactNode | - |
 | color | 颜色 | String | `#1C7CEB` |
 | disabled | 禁用 | Boolean | `false` |
+| light | 有边框的标签 | Boolean | `false` |
+| bordered | 当设置 `light={ture}` 时，起作用，设置为 `false` 不展示边框样式 | Boolean | `true` |
 | closable | 显示关闭按钮 | Boolean | `false` |
 | visible | 是否显示标签 | Boolean | `true` |
 | onClose | 关闭时的回调 | Function | - |

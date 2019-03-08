@@ -5,7 +5,7 @@ import './style/index.less';
 
 export default class Tag extends React.Component {
   render() {
-    const { prefixCls, className, style, title, children, visible, color, disabled, closable, light, onClose, ...other } = this.props;
+    const { prefixCls, className, style, title, children, visible, color, disabled, bordered, closable, light, onClose, ...other } = this.props;
     const cls = classnames(`${prefixCls}`, className, { [`${prefixCls}-light`]: light, disabled });
     const styl = { };
     if (!light) {
@@ -14,7 +14,9 @@ export default class Tag extends React.Component {
     } else {
       styl.color = color;
       styl.borderColor = color;
-      styl.boxShadow = `inset 0 0 0 1px ${color}`;
+      if (bordered && light) {
+        styl.boxShadow = `inset 0 0 0 1px ${color}`;
+      }
     }
     if (!visible) {
       return null;
@@ -37,6 +39,7 @@ Tag.propTypes = {
   color: PropTypes.string,
   disabled: PropTypes.bool,
   visible: PropTypes.bool,
+  bordered: PropTypes.bool,
   light: PropTypes.bool,
   closable: PropTypes.bool,
   onClose: PropTypes.func,
@@ -47,6 +50,7 @@ Tag.defaultProps = {
   prefixCls: 'w-tag',
   disabled: false,
   visible: true,
+  bordered: true,
   color: '#6E6E6E',
   light: false,
   title: '',
