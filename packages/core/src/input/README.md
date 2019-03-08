@@ -65,7 +65,7 @@ const Demo = () => (
         <Input
           preIcon="tag"
           placeholder="请输入内容"
-          addonAfter={<Tag title="1000" titleColor="#28a745" />}
+          addonAfter={<Tag title="1000" color="#28a745" />}
         />
       </Col>
       <Col fixed>
@@ -118,7 +118,7 @@ const Demo = () => (
           preIcon="tag"
           size="small"
           placeholder="请输入内容"
-          addonAfter={<Button icon="apple" size="small" type="primary">按钮</Button>}
+          addonAfter={<Button size="small" type="primary">按钮</Button>}
         />
       </Col>
     </Row>
@@ -128,14 +128,14 @@ const Demo = () => (
           preIcon="like-o"
           size="large"
           placeholder="请输入密码"
-          addonAfter={<Tag title="1000" titleColor="#28a745" />}
+          addonAfter={<Tag title="1000" color="#28a745" />}
         />
       </Col>
       <Col fixed>
         <Input
           preIcon="tag"
           placeholder="请输入内容"
-          addonAfter={<Tag title="药丸" titleColor="#1C7CEB" color="#40bf16">丸</Tag>}
+          addonAfter={<Tag title="药丸" color="#1C7CEB" color="#40bf16">丸</Tag>}
         />
       </Col>
       <Col fixed>
@@ -143,7 +143,7 @@ const Demo = () => (
           preIcon="tag"
           size="small"
           placeholder="请输入内容"
-          addonAfter={<Tag title="1000" titleColor="#28a745" />}
+          addonAfter={<Tag title="1000" color="#28a745" />}
         />
       </Col>
     </Row>
@@ -168,7 +168,7 @@ const Demo = () => (
           preIcon="tag"
           size="small"
           placeholder="请输入内容"
-          addonAfter={<Button icon="apple" size="small" type="primary">按钮</Button>}
+          addonAfter={<Button size="small" type="primary">按钮</Button>}
         />
       </Col>
     </Row>

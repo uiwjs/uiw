@@ -45,10 +45,6 @@
   & &-inner {
     width: 100%;
   }
-
-  > :last-child:not(input) {
-    right: 5px;
-  }
   > .w-icon {
     position: absolute;
     margin: 0 7px 0 7px;
@@ -57,23 +53,9 @@
   }
   &-addon-after {
     position: absolute;
-    transform: translateY(-50%);
-    top: 50%;
-    .w-tag, .w-btn {
-      display: table;
-      height: 100%;
-      line-height: 14px;
-      > span {
-        display: table-cell;
-        vertical-align: middle;
-      }
-    }
-    .w-tag {
-      background: transparent;
-    }
-    .w-btn:focus {
-      box-shadow: 0 0 0 0;
-    }
+    top: 3px;
+    right: 3px;
+    bottom: 0px;
   }
   &-large {
     font-size: 16px;
@@ -84,14 +66,14 @@
   }
   &-small {
     min-width: 20px;
-    padding: 0 3px;
     .@{w-input}-inner {
       line-height: 24px;
       height: 24px;
     }
     .@{w-input}-addon-after {
-      .w-tag, .w-btn {
-        line-height: 14px;
+      > * {
+        line-height: 16px;
+        min-height: 16px;
       }
     }
   }
