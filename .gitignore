@@ -2,6 +2,7 @@
 /build
 /dist
 /es5
+/esm
 /dll
 /lib
 /.vscode
