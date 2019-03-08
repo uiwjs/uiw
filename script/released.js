@@ -53,12 +53,12 @@ const docVersion = join(process.cwd(), 'src', 'version.json');
      * Run babel over the `./packages/core/src` directory and output
      * compiled common js files to `./packages/core/lib/cjs`.
      */
-    await execute(`cd ${libPath} && npm run build-cjs`);
+    await execute(`cd ${libPath} && npm run build:cjs`);
     /**
      * Run babel over the `./packages/core/src directory` and output
      * compiled es modules (but otherwise es5) to `./packages/core/lib/esm`
      */
-    await execute(`cd ${libPath} && npm run build-esm`);
+    await execute(`cd ${libPath} && npm run build:esm`);
     /**
      * Bundles a minified and unminified version of [uiw] including
      * all it's immediate dependencies (excluding React, ReactDOM, etc)
