@@ -1,14 +1,12 @@
 {
   "name": "uiw",
-  "version": "2.0.0-beta.53",
+  "version": "2.0.0-beta.55",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiwjs.github.io",
   "sideEffects": false,
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
-  "authors": [
-    "Kenny Wang <wowohoo@qq.com>"
-  ],
+  "author": "kenny wang <wowohoo@qq.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/uiwjs/uiw.git"
@@ -16,9 +14,9 @@
   "scripts": {
     "build:watch:cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose -w",
     "build:watch:esm": "BABEL_ENV=esm babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose -w",
-    "build-cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose",
-    "build-esm": "BABEL_ENV=esm babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose",
-    "build": "npm run build-cjs && npm run build-esm",
+    "build:cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose",
+    "build:esm": "BABEL_ENV=esm babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose",
+    "build": "npm run build:cjs && npm run build:esm",
     "bundle": "kkt build --bundle --no-emptyDir",
     "bundle:min": "kkt build --bundle=min --no-emptyDir",
     "watch": "npm run build:watch:esm & npm run build:watch:cjs"
@@ -63,6 +61,5 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },
-  "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT"
 }
