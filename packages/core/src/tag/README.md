@@ -1,7 +1,7 @@
 Tag 标签
 ===
 
-进行标记和分类的小标签，胶囊。
+进行标记和分类的小标签。
 
 ```jsx
 import { Tag } from 'uiw';
@@ -121,6 +121,58 @@ class Demo extends Component {
         >
             <Icon type="heart-on" verticalAlign="baseline" /> 信息-红色
         </Tag>
+      </div>
+    );
+  }
+}
+```
+<!--End-->
+
+### 标签组动态删除
+
+<!--DemoStart,bgWhite-->
+```js
+let num = 3;
+class Demo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataTags: [
+        { label: '橘子', value: 1, color: '#28a745' },
+        { label: '苹果', value: 2, color: '#F95C2B' },
+        { label: '橘子', value: 3, color: '#008EF0' },
+      ]
+    }
+  }
+  onClose(data) {
+    const dataTags = this.state.dataTags.filter(item => item.value !== data.value);
+    this.setState({ dataTags });
+  }
+  addTag() {
+    const { dataTags } = this.state;
+    num += 1;
+    dataTags.push({
+      label: `橘子${num}`, value: num, color: '#28a745'
+    });
+    this.setState({ dataTags });
+  }
+  render() { 
+    const { dataTags } = this.state;
+    return (
+      <div>
+        {dataTags.map((item, idx) => {
+          return (
+            <Tag
+              key={idx}
+              closable
+              onClose={this.onClose.bind(this, item)}
+              visible={this.state.visible}
+              color={item.color}>
+              {item.label}
+            </Tag>
+          )
+        })}
+        <Button style={{ marginLeft: 5 }} size="small" onClick={this.addTag.bind(this)}>添加</Button>
       </div>
     );
   }
