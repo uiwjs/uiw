@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router, withRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import '@uiw/reset.css';
 import { getRouterData } from './common/router';
 import RoutersController from './Router';
 import { store } from './store';

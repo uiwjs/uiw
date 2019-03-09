@@ -45,6 +45,7 @@
     "@babel/standalone": "^7.2.5",
     "@rematch/core": "^1.0.6",
     "@uiw/react-codemirror": "^1.0.19",
+    "@uiw/reset.css": "file:./packages/reset-css",
     "classnames": "^2.2.6",
     "history": "^4.7.2",
     "prismjs": "^1.15.0",
@@ -58,7 +59,7 @@
   },
   "devDependencies": {
     "@kkt/plugin-less": "^1.0.2",
-    "kkt": "^3.2.0",
+    "kkt": "^3.5.0",
     "raw-loader": "^1.0.0",
     "react-test-renderer": "^16.7.0"
   },
