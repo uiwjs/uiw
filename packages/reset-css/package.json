@@ -1,0 +1,27 @@
+{
+  "name": "@uiw/reset.css",
+  "version": "1.0.1",
+  "description": "A tiny modern CSS reset.",
+  "main": "reset.css",
+  "keywords": [
+    "css",
+    "less",
+    "reset",
+    "mini"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uiwjs/uiw.git"
+  },
+  "scripts": {
+    "start": "npm run compile && npm run compile:min",
+    "compile": "lessc reset.less | bannerjs -m > reset.css",
+    "compile:min": "lessc reset.less | bannerjs -o | csso > reset.min.css"
+  },
+  "devDependencies": {
+    "bannerjs": "1.0.6",
+    "csso-cli": "^2.0.2",
+    "less": "3.9.0"
+  },
+  "license": "MIT"
+}
