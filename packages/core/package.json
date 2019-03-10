@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "2.0.0-beta.55",
+  "version": "2.0.0-beta.56",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiwjs.github.io",
   "sideEffects": false,
@@ -14,8 +14,8 @@
   "scripts": {
     "build:watch:cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose -w",
     "build:watch:esm": "BABEL_ENV=esm babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose -w",
-    "build:cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose",
-    "build:esm": "BABEL_ENV=esm babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose",
+    "build:cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --delete-dir-on-start --verbose",
+    "build:esm": "BABEL_ENV=esm babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --delete-dir-on-start --copy-files --verbose",
     "build": "npm run build:cjs && npm run build:esm",
     "bundle": "kkt build --bundle --no-emptyDir",
     "bundle:min": "kkt build --bundle=min --no-emptyDir",
