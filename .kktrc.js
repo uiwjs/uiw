@@ -1,3 +1,5 @@
+const pkg = require('./packages/core/package.json');
+
 module.exports = {
   plugins: [
     require.resolve('@kkt/plugin-less'),
@@ -50,7 +52,10 @@ module.exports = {
         loader: require.resolve('raw-loader')
       },
       ...conf.module.rules,
-    ]
+    ];
+    conf.plugins.push(new webpack.DefinePlugin({
+      VERSION: JSON.stringify(pkg.version),
+    }));
     return conf;
   },
 };

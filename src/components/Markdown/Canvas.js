@@ -112,6 +112,8 @@ export default class Canvas extends React.Component {
     if (this.state.width === 1) {
       styl.maxWidth = 'initial';
     }
+    // eslint-disable-next-line
+    const version = VERSION || '2.0.0';
     return (
       <div
         ref={node => this.warpper = node}
@@ -128,7 +130,7 @@ export default class Canvas extends React.Component {
             ref={node => this.demoBox = node}
           >
             {codePenJSX && codePen && (
-              <CodePen jsxCode={codePenJSX} />
+              <CodePen jsxCode={codePenJSX} version={`@${version}`} />
             )}
             {!bgWhite && (
               <div className={styles.background}>

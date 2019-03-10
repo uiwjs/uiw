@@ -11,7 +11,7 @@ import { Button, ButtonGroup } from 'uiw';
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { Button } from 'uiw';
+import { Button, Divider, Icon } from 'uiw';
 
 ReactDOM.render(
   <div>
@@ -44,7 +44,7 @@ ReactDOM.render(
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { Button, ButtonGroup } from 'uiw';
+import { Button, Divider, ButtonGroup } from 'uiw';
 
 ReactDOM.render(
   <div>

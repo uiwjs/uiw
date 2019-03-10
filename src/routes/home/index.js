@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../components/icons/logo';
 import styles from './index.module.less';
-import pkg from '../../../packages/core/package.json';
 
 export default class Home extends PureComponent {
   constructor(props) {
@@ -10,12 +9,14 @@ export default class Home extends PureComponent {
     this.state = {};
   }
   render() {
+    // eslint-disable-next-line
+    const version = VERSION;
     return (
       <div className={styles.App}>
         <header className={styles.AppHeader}>
           <div className={styles.Logo}>{logo.dark}</div>
           <div className={styles.Title}>
-            uiw<sup>{pkg.version}</sup>
+            uiw<sup>{version}</sup>
           </div>
           <div className={styles.Des}>
             A Component Library for React 16+.

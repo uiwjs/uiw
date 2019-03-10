@@ -12,23 +12,19 @@ import styles from './index.module.less';
 // "js_pre_processor":"babel"
 // }
 
-const CodePenOption = {
-  title: 'uiw - demo',
-  editors: '0010',
-  js_pre_processor: 'babel',
-  html: '<div id="container" style="padding: 24px"></div>',
-  js: '',
-  css: '',
-  css_external: 'https://unpkg.com/uiw/dist/uiw.min.css',
-  js_external: 'https://unpkg.com/react@16.x/umd/react.development.js;https://unpkg.com/react-dom@16.x/umd/react-dom.development.js;https://unpkg.com/classnames@2.2.6/index.js;https://unpkg.com/uiw/dist/uiw.min.js;https://unpkg.com/@uiw/codepen-require-polyfill@1.0.0/index.js',
-};
-
 export default class CodePen extends React.Component {
   render() {
-    const { jsxCode, ...other } = this.props;
-    if (jsxCode) {
-      CodePenOption.js = jsxCode;
-    }
+    const { jsxCode, version = '', ...other } = this.props;
+    const CodePenOption = {
+      title: `uiw${version} - demo`,
+      editors: '0010',
+      js_pre_processor: 'babel',
+      html: '<div id="container" style="padding: 24px"></div>',
+      js: jsxCode || '',
+      css: '',
+      css_external: `https://unpkg.com/uiw${version}/dist/uiw.min.css`,
+      js_external: `https://unpkg.com/react@16.x/umd/react.development.js;https://unpkg.com/react-dom@16.x/umd/react-dom.development.js;https://unpkg.com/classnames@2.2.6/index.js;https://unpkg.com/uiw${version}/dist/uiw.min.js;https://unpkg.com/@uiw/codepen-require-polyfill@1.0.0/index.js`,
+    };
     return (
       <form action="https://codepen.io/pen/define" method="POST" target="_blank" {...other} className={styles.form}>
         <input type="hidden" name="data" value={JSON.stringify(CodePenOption)} />

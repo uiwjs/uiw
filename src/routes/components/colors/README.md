@@ -29,6 +29,7 @@ const Demo = () => (
     })}
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -65,6 +66,7 @@ const Demo = () => (
     })}
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -105,6 +107,7 @@ const Demo = () => (
     })}
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -146,5 +149,6 @@ const Demo = () => (
     })}
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->

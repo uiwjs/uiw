@@ -10,7 +10,7 @@ export async function BabelTransform(input) {
           name: 'transform-remove-all-import',
           visitor: {
             // https://babeljs.io/docs/en/babel-types#importspecifier
-            ImportSpecifier(local, imported) {
+            ImportSpecifier(local) {
               if (local.parent && local.parent.source && local.parent.source.extra.rawValue === 'uiw') {
                 if (local.parent.specifiers) {
                   local.parent.specifiers.forEach((item) => {
