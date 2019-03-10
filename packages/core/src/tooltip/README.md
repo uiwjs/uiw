@@ -11,8 +11,10 @@ import { Tooltip } from 'uiw';
 
 最简单的用法。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Tooltip, Button } from 'uiw';
+
 const Demo = () => (
   <div>
     <Tooltip placement="right" content="右边文字提示">
@@ -29,6 +31,7 @@ const Demo = () => (
     </Tooltip>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -36,8 +39,10 @@ const Demo = () => (
 
 位置有 `12` 个方向，根据 `placement` 参数来设置。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Tooltip, Button, Divider } from 'uiw';
+
 const btnStl = {position: 'relative', width: 70 }
 const Demo = () => (
   <div>
@@ -107,6 +112,7 @@ const Demo = () => (
 
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -114,8 +120,10 @@ const Demo = () => (
 
 文字提示组件 `<Tooltip />`，通过设置属性 `trigger` 可以文字提示操作方式。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Tooltip, Button } from 'uiw';
+
 const Demo = () => (
   <div>
 
@@ -128,6 +136,7 @@ const Demo = () => (
 
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -135,8 +144,10 @@ const Demo = () => (
 
 通过设置属性 `visibleArrow` 可以文字提示框不显示箭头。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Tooltip, Button } from 'uiw';
+
 const Demo = () => (
   <div>
 
@@ -149,13 +160,16 @@ const Demo = () => (
 
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 受控组件
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Tooltip, Switch, Divider } from 'uiw';
+
 class Demo extends React.Component {
   constructor() {
     super()
@@ -186,6 +200,7 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

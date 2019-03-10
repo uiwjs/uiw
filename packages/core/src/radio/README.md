@@ -11,8 +11,10 @@ import { Radio, RadioGroup } from 'uiw';
 
 适用广泛的基础最简单的用法，展示各种状态下的样式。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Radio } from 'uiw';
+
 const Demo = () => (
   <div>
     <Radio value="1">Radio</Radio>
@@ -21,6 +23,7 @@ const Demo = () => (
     <Radio value="4" checked disabled>选中并禁用</Radio>
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -28,9 +31,11 @@ const Demo = () => (
 
 适用广泛的基础最简单的用法。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Radio, RadioGroup } from 'uiw';
+
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = { value: '未知' };
@@ -51,6 +56,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -58,9 +64,11 @@ class Demo extends Component {
 
 设置单选初始值
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Radio, RadioGroup, Divider, Button } from 'uiw';
+
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = { value: '未知' };
@@ -96,6 +104,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

@@ -5,17 +5,16 @@ Affix 图钉
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,noScroll--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
-  render(){
-    return (
-      <Affix>
-        <Button type="primary">当按钮距离顶部距离为 0，按钮被钉在顶部</Button>
-      </Affix>
-    )
-  }
-}
+import { Affix, Button } from 'uiw';
+
+ReactDOM.render(
+  <Affix>
+    <Button type="primary">当按钮距离顶部距离为 0，按钮被钉在顶部</Button>
+  </Affix>,
+  _mount_
+);
 ```
 <!--End-->
 
@@ -24,19 +23,18 @@ class Demo extends Component {
 
 这个实例需要你缩小窗口高度，就可以测试看效果啦。
 
-<!--DemoStart,bgWhite,noScroll--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
-  render(){
-    return (
-      <Affix offsetBottom={10} onChange={(affixed) => {
-        console.log('affixed::', affixed);
-      }}>
-        <Button type="primary">当按钮距离底部距离为 0，按钮被钉在底部</Button>
-      </Affix>
-    )
-  }
-}
+import { Affix, Button } from 'uiw';
+
+ReactDOM.render(
+  <Affix offsetBottom={10} onChange={(affixed) => {
+    console.log('affixed::', affixed);
+  }}>
+    <Button type="primary">当按钮距离底部距离为 0，按钮被钉在底部</Button>
+  </Affix>,
+  _mount_
+);
 ```
 <!--End-->
 

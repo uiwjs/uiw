@@ -9,9 +9,11 @@ import { Badge } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Badge, Row, Col, Avatar, Divider } from 'uiw';
+
+ReactDOM.render(
   <div>
     <Row gutter={20}>
       <Col fixed>
@@ -34,7 +36,8 @@ const Demo = () => (
     <Badge count={12}>
       评论
     </Badge>
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
@@ -43,10 +46,13 @@ const Demo = () => (
 
 不包裹任何元素即是独立使用，可自定样式展现。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Badge, Row, Col, Avatar, Divider } from 'uiw';
+
 const styl={ marginRight: 20, display: 'inline-block' }
-const Demo = () => (
+
+ReactDOM.render(
   <Row gutter={20}>
     <Col fixed>
       <Badge count={99}>
@@ -73,19 +79,21 @@ const Demo = () => (
         <Avatar shape="square" size="large" />
       </Badge>
     </Col>
-  </Row>
+  </Row>,
+  _mount_
 );
 ```
 <!--End-->
-
 
 ### 独立使用
 
 不包裹任何元素即是独立使用，可自定样式展现。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Badge, Row, Col } from 'uiw';
+
+ReactDOM.render(
   <Row gutter={10}>
     <Col fixed>
       <Badge count={25} />
@@ -96,7 +104,8 @@ const Demo = () => (
     <Col fixed>
       <Badge count={109} style={{ backgroundColor: '#87d068' }} /> 
     </Col>
-  </Row>
+  </Row>,
+  _mount_
 );
 ```
 <!--End-->
@@ -105,9 +114,11 @@ const Demo = () => (
 
 以红点的形式标注需要关注的内容。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Badge } from 'uiw';
+
+ReactDOM.render(
   <div>
     <Badge dot style={{ marginRight: 10 }}>
       数据查询
@@ -115,7 +126,8 @@ const Demo = () => (
     <Badge dot count={4}>
       <Icon type='message-o' />
     </Badge>
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
@@ -124,10 +136,12 @@ const Demo = () => (
 
 用于表示状态的小圆点，可以设置 `processing={true}` 让状态点，显示动画效果。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+import { Badge } from 'uiw';
+
+ReactDOM.render(
+  <div>
     <Badge color="#28a745" />
     <Badge color="#008EF0" />
     <Badge color="#dc3545" />
@@ -148,7 +162,8 @@ const Demo = () => (
     <br />
     <Badge color="#ffc107">Warning</Badge>
     <Badge color="#ffc107" processing>Warning</Badge>
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->

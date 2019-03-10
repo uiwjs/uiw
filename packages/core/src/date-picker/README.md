@@ -9,8 +9,10 @@ import { DatePicker } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { DatePicker } from 'uiw';
+
 class Demo extends React.Component {
   constructor(props) {
     super(props);
@@ -41,13 +43,16 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 显示时间
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { DatePicker } from 'uiw';
+
 class Demo extends React.Component {
   constructor(props) {
     super(props);
@@ -73,13 +78,16 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 设置本地语言
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { DatePicker } from 'uiw';
+
 class Demo extends React.Component {
   constructor(props) {
     super(props);
@@ -107,13 +115,16 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 初始展示日期
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { DatePicker } from 'uiw';
+
 class Demo extends React.Component {
   constructor(props) {
     super(props);
@@ -136,6 +147,7 @@ class Demo extends React.Component {
     );
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -143,8 +155,10 @@ class Demo extends React.Component {
 
 通过 `disabledDate` 方法设置，今天和今天之前不能选择。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { DatePicker } from 'uiw';
+
 function disabledDate(currentDate) {
   // 今天和今天之前不能选择
   return currentDate && currentDate.valueOf() < Date.now();
@@ -173,6 +187,7 @@ class Demo extends React.Component {
     );
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -180,8 +195,10 @@ class Demo extends React.Component {
 
 使用 `renderDay` 可以自定义日期单元格的内容和样式。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { DatePicker } from 'uiw';
+
 class Demo extends React.Component {
   constructor(props) {
     super(props);
@@ -214,6 +231,7 @@ class Demo extends React.Component {
     );
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

@@ -11,8 +11,10 @@ import { Popover } from 'uiw';
 
 最简单的用法。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Popover, Card, Button } from 'uiw';
+
 class Demo extends React.Component {
   constructor() {
     super();
@@ -54,6 +56,7 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -61,8 +64,10 @@ class Demo extends React.Component {
 
 位置有 `12` 个方向，根据 `placement` 参数来设置。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Popover, Card, Button } from 'uiw';
+
 const btnStl = {position: 'relative', width: 70 }
 const content = (
   <Card bordered={false} style={{ width: 120 }}>
@@ -129,13 +134,16 @@ const Demo = () => (
     </div>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 鼠标经过弹出目标
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Popover, Card, Button } from 'uiw';
+
 const btnStl = {position: 'relative', width: 70 }
 const content = (
   <Card
@@ -156,6 +164,7 @@ const Demo = () => (
     </Popover>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -163,8 +172,10 @@ const Demo = () => (
 
 通过设置 `trigger="focus"` 让 `Input` 组件在获取焦点的时候展示 `Popover`
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Popover, Card, Button, Input } from 'uiw';
+
 const btnStl = {position: 'relative', width: 70 }
 class Demo extends React.Component {
   constructor() {
@@ -229,6 +240,7 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -236,8 +248,10 @@ class Demo extends React.Component {
 
 设置 `usePortal={false}` 将模态对话框生成到根节点的里面，这样为了计算位置准确，你需要将父层样式设为 `position: relative;` 。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Popover, Card, Button } from 'uiw';
+
 class Demo extends React.Component {
   constructor() {
     super();
@@ -282,6 +296,7 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

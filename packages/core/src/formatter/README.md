@@ -14,8 +14,10 @@ console.log(formatter.utc());
 
 ## 基础实例
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Tag, Divider, formatter } from 'uiw';
+
 const Demo = () => {
   return (
     <div>
@@ -27,6 +29,7 @@ const Demo = () => {
     </div>
   );
 };
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -108,8 +111,10 @@ console.log(formatter.utc('ms'));
 
 `TZC` 为时区转换，有个应用场景，服务器时间时区，将时区转换成跟客户端时区一致，例如西面是转换到东八区时间。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Divider, formatter } from 'uiw';
+
 function timeZoneConverter(date, timeZone) {
   const oldDate = new Date(date);
   const newDate = new Date();
@@ -129,6 +134,8 @@ const Demo = () => {
     </div>
   );
 };
+
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

@@ -11,17 +11,20 @@ import { Card } from 'uiw';
 
 包含标题、内容、操作区域。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
-  <div style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }}>
+import { Card } from 'uiw';
+
+ReactDOM.render(
+  <div>
     <Card title="Card标题" extra={<a href="#">更多</a>} style={{ width: 300 }}>
       卡片内容<br/>
       卡片内容<br/>
       卡片内容<br/>
     </Card>
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
@@ -29,15 +32,18 @@ const Demo = () => (
 
 在灰色背景上使用无边框的卡片。
 
-<!--DemoStart--> 
+<!--DemoStart,codePen--> 
 ```js
-const Demo = () => (
+import { Card } from 'uiw';
+
+ReactDOM.render(
   <Card title="Card标题" bordered={false} style={{ width: 300 }}>
     卡片内容<br/>
     卡片内容<br/>
     卡片内容<br/>
-  </Card>
-)
+  </Card>,
+  _mount_
+);
 ```
 <!--End-->
 
@@ -45,15 +51,18 @@ const Demo = () => (
 
 只包含内容区域。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Card } from 'uiw';
+
+ReactDOM.render(
   <Card style={{ width: 300 }}>
     卡片内容<br/>
     卡片内容<br/>
     卡片内容<br/>
-  </Card>
-)
+  </Card>,
+  _mount_
+);
 ```
 <!--End-->
 
@@ -61,10 +70,13 @@ const Demo = () => (
 
 可以调整默认边距，设定宽度。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Card } from 'uiw';
+
 let titleStyle = { padding: `10px 16px` };
-const Demo = () => (
+
+ReactDOM.render(
   <Card style={{ width: 240 }} bodyStyle={{ padding: 10 }}>
     <div>
       <img alt="example" width="100%" src="https://avatars1.githubusercontent.com/u/1680273?v=4" />
@@ -73,22 +85,26 @@ const Demo = () => (
       <h3 style={{margin:0}}>我爱漂亮妹妹</h3>
       <p style={{margin:0}}><a href="https://uiwjs.github.io">https://uiwjs.github.io</a></p>
     </div>
-  </Card>
-)
+  </Card>,
+  _mount_
+);
 ```
 <!--End-->
 
 ## 添加页脚
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Card, Icon } from 'uiw';
+
 const footer = (
   <a href="https://uiwjs.github.io">
     <Icon type='user' />&nbsp;
     16 Friends
   </a>
 )
-const Demo = () => (
+
+ReactDOM.render(
   <Card
     title="Card标题"
     footer={footer}
@@ -102,7 +118,8 @@ const Demo = () => (
       <h3 style={{margin:0}}>我爱漂亮妹妹</h3>
       <p style={{margin:0}}><a href="https://uiwjs.github.io">https://uiwjs.github.io</a></p>
     </div>
-  </Card>
+  </Card>,
+  _mount_
 );
 ```
 <!--End-->
@@ -111,15 +128,18 @@ const Demo = () => (
 
 设置属性 `active=true` 将激活卡片，默认展示鼠标经过的样式。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Card, Icon } from 'uiw';
+
 const footer = (
   <a href="https://uiwjs.github.io">
     <Icon type='user' />&nbsp;
     16 Friends
   </a>
 )
-const Demo = () => (
+
+ReactDOM.render(
   <Card
     active
     title="Card标题"
@@ -134,7 +154,8 @@ const Demo = () => (
       <h3 style={{margin:0}}>我爱漂亮妹妹</h3>
       <p style={{margin:0}}><a href="https://uiwjs.github.io">https://uiwjs.github.io</a></p>
     </div>
-  </Card>
+  </Card>,
+  _mount_
 );
 ```
 <!--End-->

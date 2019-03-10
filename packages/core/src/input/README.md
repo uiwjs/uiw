@@ -9,20 +9,25 @@ import { Input } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Input } from 'uiw';
+
 const Demo = () => (
   <div>
     <Input placeholder="请输入内容" style={{ maxWidth: 200 }} />
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 插入图标
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Input, Row, Col } from 'uiw';
+
 const stylItem = { margin: 20 };
 const Demo = () => (
   <div>
@@ -42,6 +47,7 @@ const Demo = () => (
     </Row>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -49,8 +55,10 @@ const Demo = () => (
 
 向后面插入 [`Button`](#/components/button) 或者 [`Tag`](#/components/tag)
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Input, Row, Col, Button, Tag } from 'uiw';
+
 const Demo = () => (
   <div>
     <Row gutter={10}>
@@ -83,18 +91,19 @@ const Demo = () => (
         />
       </Col>
     </Row>
-    <Row gutter={10}>
-    </Row>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 
 ### 输入框尺寸
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Input, Row, Col, Tag, Button } from 'uiw';
+
 const Demo = () => (
   <div>
     <Row gutter={10} style={{ marginBottom: 10 }}>
@@ -195,15 +204,18 @@ const Demo = () => (
     </Row>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 
 ### 密码输入框
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Input, Row, Col, Button } from 'uiw';
+
+class Demo extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -231,13 +243,16 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 输入框被禁用
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Input, Row, Col } from 'uiw';
+
 const stylItem = { margin: 20 };
 const Demo = () => (
   <Row gutter={10}>
@@ -255,6 +270,7 @@ const Demo = () => (
     </Col>
   </Row>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

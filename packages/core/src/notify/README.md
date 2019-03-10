@@ -9,8 +9,10 @@ import { Notify } from 'uiw';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Button, Notify } from 'uiw';
+
 const Demo = () => {
   return (
     <div>
@@ -59,14 +61,17 @@ const Demo = () => {
     </div>
   );
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 
 ### 弹出位置
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { MonthPicker, Button, Notify } from 'uiw';
+
 const Demo = () => {
   return (
     <div>
@@ -108,13 +113,16 @@ const Demo = () => {
     </div>
   );
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 弹出通知不消失
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Button, Notify } from 'uiw';
+
 const Demo = () => {
   return (
     <div>
@@ -133,13 +141,16 @@ const Demo = () => {
     </div>
   );
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 标题不展示
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Button, Notify } from 'uiw';
+
 const Demo = () => {
   return (
     <div>
@@ -171,13 +182,16 @@ const Demo = () => {
     </div>
   );
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 只展示标题
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Button, Notify } from 'uiw';
+
 const Demo = () => {
   return (
     <div>
@@ -195,13 +209,16 @@ const Demo = () => {
     </div>
   );
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 不展示图标
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Button, Notify } from 'uiw';
+
 const Demo = () => {
   return (
     <div>
@@ -228,6 +245,7 @@ const Demo = () => {
     </div>
   );
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

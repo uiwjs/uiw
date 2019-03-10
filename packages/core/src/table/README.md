@@ -9,8 +9,10 @@ import { Table } from 'uiw';
 
 ### 基本使用
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Table, Button } from 'uiw';
+
 const columns = [
   {
     title: '姓名',
@@ -48,6 +50,7 @@ const Demo = () => (
     <Table columns={columns} data={dataSource} />
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -55,8 +58,10 @@ const Demo = () => (
 
 表头分组通过 `columns` 数组中对象的 `children` 来实现，以渲染分组表头。。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Table, Button } from 'uiw';
+
 const columns = [
   {
     title: '姓名',
@@ -119,6 +124,7 @@ const Demo = () => (
     <Table bordered columns={columns} data={dataSource} />
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -126,8 +132,10 @@ const Demo = () => (
 
 添加表格边框线，页头和页脚的展现效果。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Table, Button } from 'uiw';
+
 const columns = [
   {
     title: '姓名',
@@ -177,13 +185,16 @@ const Demo = () => (
     <Table title="这里是标题，没有边框" footer="这里是页脚 Footer，没有边框" columns={columns} data={dataSource} />
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 点击单元格
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Table, Button, Notify } from 'uiw';
+
 const columns = [
   {
     title: '姓名',
@@ -252,13 +263,16 @@ const Demo = () => (
       data={dataSource} />
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 原始HTML
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Table, Button } from 'uiw';
+
 const Demo = () => (
   <div>
     <Table bordered>
@@ -336,6 +350,7 @@ const Demo = () => (
     </Table>
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

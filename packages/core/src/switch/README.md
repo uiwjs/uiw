@@ -9,8 +9,10 @@ import { Switch } from 'uiw';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Switch } from 'uiw';
+
 const Demo = () => (
   <div>
     <Switch checked style={{ marginRight: 10 }} />
@@ -18,13 +20,16 @@ const Demo = () => (
     <Switch data-checked="开" data-unchecked="关">电源</Switch>
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 设置文字
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Switch } from 'uiw';
+
 const Demo = () => (
   <div>
     <Switch
@@ -37,14 +42,17 @@ const Demo = () => (
     />
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 
 ### 禁用状态
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Switch } from 'uiw';
+
 const Demo = () => (
   <div>
     <Switch disabled checked style={{ marginRight: 10 }} />
@@ -52,13 +60,16 @@ const Demo = () => (
     <Switch disabled data-checked="开" data-unchecked="关">电源</Switch>
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 尺寸
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Switch } from 'uiw';
+
 const Demo = () => (
   <div>
     <Switch size="large" style={{ marginRight: 10 }} data-checked="开" data-unchecked="关" />
@@ -68,6 +79,7 @@ const Demo = () => (
     <Switch size="small" data-checked="开" data-unchecked="关">电源</Switch>
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -75,9 +87,11 @@ const Demo = () => (
 
 通过 `checked` 属性改变 `Switch` 组件状态。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Switch, Button } from 'uiw';
+
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -105,6 +119,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

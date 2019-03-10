@@ -9,9 +9,11 @@ import { CopyToClipboard } from 'uiw';
 
 ## 基础实例
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { CopyToClipboard } from 'uiw';
+
+class Demo extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -38,14 +40,17 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ## 复制输入框内容
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { CopyToClipboard, Input, Button } from 'uiw';
+
+class Demo extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -70,7 +75,7 @@ class Demo extends Component {
           />
         </div>
         <CopyToClipboard 
-          style={{marginTop:10,display:'inline-block'}} 
+          style={{ marginTop:10, display:'inline-block' }} 
           text={copyText}
           onClick={() => {
             // 复制提示
@@ -89,6 +94,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

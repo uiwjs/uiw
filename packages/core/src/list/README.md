@@ -9,8 +9,10 @@ import { List } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { List } from 'uiw';
+
 const data = [
   '"X战警新变种人"首曝海报特写诡异人脸',
   '六大变五大？传迪士尼600亿收购福斯',
@@ -46,6 +48,7 @@ const Demo = () => (
     />
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -54,8 +57,10 @@ const Demo = () => (
 
 通过`dataSource`和`renderItem`来创建列表，这两个属性是一起使用。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { List } from 'uiw';
+
 const data = [
   '"X战警新变种人"首曝海报特写诡异人脸',
   '六大变五大？传迪士尼600亿收购福斯',
@@ -71,13 +76,16 @@ const Demo = () => (
     }}
   />
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 禁用行
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { List } from 'uiw';
+
 const data = [
   {
     'content': '"X战警新变种人"首曝海报特写诡异人脸'
@@ -90,7 +98,7 @@ const data = [
     'content': '快跑!《侏罗纪世界2》正式预告要来了'
   },
 ];
-class Demo extends Component {
+class Demo extends React.Component {
   onClick(item,index,e){
     e.stopPropagation();
     console.log('item',item,e);
@@ -112,6 +120,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -120,8 +129,10 @@ class Demo extends Component {
 
 `List.Item` 设置 `active` 属性即可设置这张被激活的样式。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { List } from 'uiw';
+
 const Demo = () => (
   <List size="small" header={<div>列表头部</div>} footer={<div>列表尾部</div>}>
     <List.Item active>"X战警新变种人"首曝海报特写诡异人脸</List.Item>
@@ -129,13 +140,16 @@ const Demo = () => (
     <List.Item>快跑!《侏罗纪世界2》正式预告要来了</List.Item>
   </List>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 斑马线
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { List } from 'uiw';
+
 const data = [
   '人总是在接近幸福时倍感幸福，在幸福进行时却患得患失。',
   '因为爱过，所以慈悲；因为懂得，所以宽容。',
@@ -152,6 +166,7 @@ const Demo = () => (
     }}
   />
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -159,8 +174,10 @@ const Demo = () => (
 
 `List.Item` 设置了 `href`，`List.Item`就可以设置标签`<a>`的所有属性了。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { List } from 'uiw';
+
 const data = [
   {
     'href':'#/cn/list',
@@ -191,6 +208,7 @@ const Demo = () => (
     }}
   />
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

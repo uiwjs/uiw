@@ -40,12 +40,13 @@ export default class CreatePage extends React.Component {
         const noCode = parame.indexOf('noCode') > -1;
         const noPreview = parame.indexOf('noPreview') > -1;
         const noScroll = parame.indexOf('noScroll') > -1;
+        const codePen = parame.indexOf('codePen') > -1;
 
         const id = offset.toString(36);
         const codeStr = code.match(/```(.*)\n([^]+)```/);
         this.components.set(id, React.createElement(Canvas, Object.assign({
           dependencies: this.dependencies || {},
-          parame: { bgWhite, noCode, noPreview, noScroll },
+          parame: { bgWhite, noCode, noPreview, noScroll, codePen },
         }, this.props), codeStr[2]));
         return `<div id=${id}></div>`;
       });

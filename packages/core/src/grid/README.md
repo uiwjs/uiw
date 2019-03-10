@@ -9,8 +9,10 @@ import { Row, Col } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Row, Col } from 'uiw';
+
 const Box = ({ num, height, width, style, background }) => <div style={{ ...style, textAlign: 'center', paddingTop: 5, paddingBottom: 5, background, width, height}}>Col {num}</div>
 const Demo = () => (
   <Row>
@@ -19,6 +21,7 @@ const Demo = () => (
     <Col grow={1}> <Box num="3" background="#A5A5A5" /> </Col>
   </Row>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -26,10 +29,13 @@ const Demo = () => (
 
 栅格间隔，可以写成像素值
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Row, Col } from 'uiw';
+
 const Blank = ({ num, height, width, style, background }) => <div style={{ ...style, textAlign: 'center', paddingTop: 5,paddingBottom: 5, background, width, height}}>Col {num}</div>
-const Demo = () => (
+
+ReactDOM.render(
   <div>
     <Row gutter={10}>
       <Col> <Blank background="#A5A5A5" num={1}/> </Col>
@@ -41,16 +47,18 @@ const Demo = () => (
       <Col> <Blank background="#dedede" num={2}/> </Col>
       <Col> <Blank background="#A5A5A5" num={3}/> </Col>
     </Row>
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
 
-
 ### Flex 行设置列对齐
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Row, Col } from 'uiw';
+
 const colStyl = { backgroundColor: 'rgba(230, 230, 230, 0.67)', marginBottom: 10 }
 const Blank = ({ num, height, style, background = '#2EA3F4' }) => <div style={{ ...style, textAlign: 'center', color: '#fff', paddingTop: 5, paddingBottom: 5, background, height}}>Col {num}</div>
 const Demo = () => (
@@ -82,13 +90,16 @@ const Demo = () => (
     </Row>
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### Flex 列对齐
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Row, Col } from 'uiw';
+
 const Blank = ({ num, style, background = '#2EA3F4' }) => <div style={{ ...style, textAlign: 'center', color: '#fff', paddingTop: 5, paddingBottom: 5, background }}>Col {num}</div>
 const Demo = () => (
   <div>
@@ -99,13 +110,16 @@ const Demo = () => (
     </Row>
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 对齐内容
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Row, Col } from 'uiw';
+
 const rowStyl = { backgroundColor: 'rgba(230, 230, 230, 0.67)', marginBottom: 10 }
 const Blank = ({ num, height, width, style, background = '#2EA3F4' }) => <div style={{ ...style, textAlign: 'center', color: '#fff', paddingTop: 5, paddingBottom: 5, background, width, height}}>Col {num}</div>
 const Demo = () => (
@@ -136,6 +150,7 @@ const Demo = () => (
     </Row>
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -143,8 +158,10 @@ const Demo = () => (
 
 可以通过指定 `24` 列中每列的宽度来创建基本网格系统。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Row, Col } from 'uiw';
+
 const Blank = ({ num, height, width, style, background = '#2EA3F4' }) => <div style={{ ...style, textAlign: 'center', color: '#fff', paddingTop: 5, paddingBottom: 5, background, width, height}}>Col {num}</div>
 const Demo = () => (
   <div>
@@ -177,13 +194,16 @@ const Demo = () => (
     </Row>
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 动态列增长
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Row, Col } from 'uiw';
+
 const Blank = ({ num, style, background = '#2EA3F4' }) => <div style={{ ...style, textAlign: 'center', color: '#fff', paddingTop: 5, paddingBottom: 5, background }}>Col {num}</div>
 const Demo = () => (
   <div>
@@ -198,6 +218,7 @@ const Demo = () => (
     </Row>
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

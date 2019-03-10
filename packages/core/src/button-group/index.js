@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import './style/buttons-group.less';
+import './style/index.less';
 
 export default class ButtonGroup extends React.Component {
   render() {

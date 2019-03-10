@@ -11,18 +11,19 @@ import { Breadcrumb } from 'uiw';
 
 适用广泛的基础用法，在 `Breadcrumb` 中使用 `Breadcrumb.Item` 标签表示从首页开始的每一级。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
-  <div>
-    <Breadcrumb>
-      <Breadcrumb.Item>首页</Breadcrumb.Item>
-      <Breadcrumb.Item separator=">">活动管理</Breadcrumb.Item>
-      <Breadcrumb.Item>活动列表</Breadcrumb.Item>
-      <Breadcrumb.Item active>活动详情</Breadcrumb.Item>
-    </Breadcrumb>
-  </div>
-)
+import { Breadcrumb } from 'uiw';
+
+ReactDOM.render(
+  <Breadcrumb>
+    <Breadcrumb.Item>首页</Breadcrumb.Item>
+    <Breadcrumb.Item separator=">">活动管理</Breadcrumb.Item>
+    <Breadcrumb.Item>活动列表</Breadcrumb.Item>
+    <Breadcrumb.Item active>活动详情</Breadcrumb.Item>
+  </Breadcrumb>,
+  _mount_
+);
 ```
 <!--End-->
 
@@ -30,9 +31,11 @@ const Demo = () => (
 
 使用 `separator=">"` 可以自定义分隔符，分隔符也可以是图标。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Breadcrumb } from 'uiw';
+
+ReactDOM.render(
   <div>
     <Breadcrumb>
       <Breadcrumb.Item><a href="#">Home</a></Breadcrumb.Item>
@@ -47,8 +50,9 @@ const Demo = () => (
       <Breadcrumb.Item separator=">"><a href="#">Library</a></Breadcrumb.Item>
       <Breadcrumb.Item active>Data</Breadcrumb.Item>
     </Breadcrumb>
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
@@ -56,10 +60,13 @@ const Demo = () => (
 
 图标放在文字前面。注意文字要使用 `span` 包裹起来，图标 `<Icon />` 需要跟 `span` 同级。`Breadcrumb.Item` 定义 `href` 参数的话，`Item` 上的参数就全部是超链原始属性。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Breadcrumb } from 'uiw';
+
 const stylIcon = { marginRight: 3, top: 2, display: 'inline-flex' }
-const Demo = () => (
+
+ReactDOM.render(
   <div>
     <Breadcrumb>
       <Breadcrumb.Item>
@@ -76,8 +83,9 @@ const Demo = () => (
       </Breadcrumb.Item>
       <Breadcrumb.Item separator="" active>Data</Breadcrumb.Item>
     </Breadcrumb>
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 

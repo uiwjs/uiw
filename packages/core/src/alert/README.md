@@ -9,8 +9,10 @@ import { Alert } from 'uiw';
 
 ## 基本用法
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Alert, ButtonGroup, Button } from 'uiw';
+
 class Demo extends React.Component {
   constructor() {
     super();
@@ -45,7 +47,7 @@ class Demo extends React.Component {
         >
           这个对话框有两个按钮，单击 “<b>确定按钮</b>” 或 “<b>取消按钮</b>” 后，此对话框将关闭，触发 “<b>onConfirm</b>” 或 “<b>onCancel</b>” 事件。用作通知用户重要信息。
         </Alert>
-        <ButtonGroup style={{ marginTop: 5 }}>
+        <ButtonGroup>
           <Button onClick={this.onClick.bind(this, 'visible1')}>单个按钮确认对话框</Button>
           <Button onClick={this.onClick.bind(this, 'visible2')}>确认对话框</Button>
         </ButtonGroup>
@@ -53,6 +55,7 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -60,8 +63,10 @@ class Demo extends React.Component {
 
 这里是利用 `Promise` 等它执行完成再去关闭窗口
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Alert, Button } from 'uiw';
+
 class Demo extends React.Component {
   constructor() {
     super();
@@ -104,6 +109,7 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -111,8 +117,10 @@ class Demo extends React.Component {
 
 通过设置 `icon` 和 `type` 参数设置带状态的弹出对话框。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Alert, ButtonGroup, Button } from 'uiw';
+
 class Demo extends React.Component {
   constructor() {
     super();
@@ -183,7 +191,7 @@ class Demo extends React.Component {
         >
           这个对话框有两个按钮，单击 “<b>确定按钮</b>” 或 “<b>取消按钮</b>” 后，此对话框将关闭，触发 “<b>onConfirm</b>” 或 “<b>onCancel</b>” 事件。用作通知用户重要信息。
         </Alert>
-        <ButtonGroup style={{ marginTop: 5 }}>
+        <ButtonGroup>
           <Button onClick={this.onClick.bind(this, 'visible1')} type="primary">主要</Button>
           <Button onClick={this.onClick.bind(this, 'visible2')} type="success">成功</Button>
           <Button onClick={this.onClick.bind(this, 'visible3')} type="warning">警告</Button>
@@ -195,14 +203,17 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 
 ## 带标题的弹出框
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Alert, ButtonGroup, Button } from 'uiw';
+
 class Demo extends React.Component {
   constructor() {
     super();
@@ -278,7 +289,7 @@ class Demo extends React.Component {
         >
           这个对话框有两个按钮，单击 “<b>确定按钮</b>” 或 “<b>取消按钮</b>” 后，此对话框将关闭，触发 “<b>onConfirm</b>” 或 “<b>onCancel</b>” 事件。用作通知用户重要信息。
         </Alert>
-        <ButtonGroup style={{ marginTop: 5 }}>
+        <ButtonGroup>
           <Button onClick={this.onClick.bind(this, 'visible1')} type="primary">主要</Button>
           <Button onClick={this.onClick.bind(this, 'visible2')} type="success">成功</Button>
           <Button onClick={this.onClick.bind(this, 'visible3')} type="warning">警告</Button>
@@ -290,6 +301,7 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -297,8 +309,10 @@ class Demo extends React.Component {
 
 这个对话框有两个按钮，单击 **`确定按钮`** 或 **`取消按钮`** 后，此对话框将关闭，将不触发 ~~`onConfirm`~~ 或 ~~`onCancel`~~ 事件。因为这俩按钮是自定义按钮。你可以正对自定义按钮外面的对象定义 `className="w-alert-footer"` 将显示默认样式。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Alert, ButtonGroup, Button } from 'uiw';
+
 class Demo extends React.Component {
   constructor() {
     super();
@@ -331,20 +345,23 @@ class Demo extends React.Component {
             <Button onClick={this.onClosed.bind(this)} >取消按钮</Button>
           </div>
         </Alert>
-        <ButtonGroup style={{ marginTop: 5 }}>
+        <ButtonGroup>
           <Button onClick={this.onClick.bind(this)}>单个按钮确认对话框</Button>
         </ButtonGroup>
       </div>
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 不显示遮罩层
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Alert, ButtonGroup, Button } from 'uiw';
+
 class Demo extends React.Component {
   constructor() {
     super();
@@ -372,13 +389,14 @@ class Demo extends React.Component {
         >
           这个对话框有两个按钮，单击 “<b>确定按钮</b>” 或 “<b>取消按钮</b>” 后，此对话框将关闭，将不触发 “<del>onConfirm</del>” 或 “<del>onCancel</del>” 事件。因为这俩按钮是自定义按钮。
         </Alert>
-        <ButtonGroup style={{ marginTop: 5 }}>
+        <ButtonGroup>
           <Button onClick={this.onClick.bind(this)}>单个按钮确认对话框</Button>
         </ButtonGroup>
       </div>
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

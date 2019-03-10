@@ -9,23 +9,22 @@ import { BackTop } from 'uiw';
 
 ## 基本用法
 
-<!--DemoStart--> 
+<!--DemoStart,codePen--> 
 ```js
-class Demo extends Component {
-  render() { 
-    return (
-      <div>
-        <div>滚动滚动条，【快看右下角】，显示返回顶部按钮。</div>
-        <BackTop
-          style={{ backgroundColor: 'red', color: '#fff' }}
-          step={500}
-          speed={10}
-          content={<div>Top</div>}
-        />
-      </div>
-    );
-  }
-}
+import { BackTop } from 'uiw';
+
+ReactDOM.render(
+  <div>
+    <div>滚动滚动条，【快看右下角】，显示返回顶部按钮。</div>
+    <BackTop
+      style={{ backgroundColor: 'red', color: '#fff' }}
+      step={500}
+      speed={10}
+      content={<div>Top</div>}
+    />
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
@@ -33,43 +32,44 @@ class Demo extends Component {
 
 点击按钮滚动到顶部
 
-<!--DemoStart--> 
+<!--DemoStart,codePen--> 
 ```js
-class Demo extends Component {
-  render() { 
-    return (
-      <BackTop
-        fixed={false}
-        step={500}
-        clickable={false}
-        speed={10}
-      >
-        {({ percent, scrollToTop }) => (
-          <Button onClick={() => scrollToTop() } type="success">点击滚动到顶部{`${percent}%`}</Button>
-        )}
-      </BackTop>
-    );
-  }
-}
+import { BackTop, Button } from 'uiw';
+
+ReactDOM.render(
+  <BackTop
+    fixed={false}
+    step={500}
+    clickable={false}
+    speed={10}
+  >
+    {({ percent, scrollToTop }) => (
+      <Button onClick={() => scrollToTop() } type="success">点击滚动到顶部{`${percent}%`}</Button>
+    )}
+  </BackTop>,
+  _mount_
+);
 ```
 <!--End-->
-
 
 ## 组件子节点
 
 点击按钮滚动到顶部
 
-<!--DemoStart--> 
+<!--DemoStart,codePen--> 
 ```js
-const Demo = () => (
+import { BackTop, Button } from 'uiw';
+
+ReactDOM.render(
   <BackTop
     fixed={false}
     step={500}
     speed={10}
   >
     <Button type="success">点击滚动到顶部</Button>
-  </BackTop>
-)
+  </BackTop>,
+  _mount_
+);
 ```
 <!--End-->
 

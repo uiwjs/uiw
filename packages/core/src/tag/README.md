@@ -9,8 +9,10 @@ import { Tag } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Tag, Divider } from 'uiw';
+
 const Demo = () => (
   <div>
     <Tag title="成功-绿色" color="#28a745" />
@@ -34,13 +36,16 @@ const Demo = () => (
     <Tag light>默认颜色</Tag>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 标签禁用
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Tag, Divider } from 'uiw';
+
 const Demo = () => (
   <div>
     <Tag disabled title="成功-绿色" color="#28a745" />
@@ -62,13 +67,16 @@ const Demo = () => (
     <Tag light disabled>默认颜色</Tag>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 添加图标
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Tag, Divider } from 'uiw';
+
 const Demo = () => (
   <div>
     <Tag title={(
@@ -84,14 +92,17 @@ const Demo = () => (
     <Tag light color="#dc3545"><Icon type="heart-on" verticalAlign="baseline" /> 信息-红色</Tag>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 控制关闭标签
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Tag, Icon } from 'uiw';
+
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -125,15 +136,18 @@ class Demo extends Component {
     );
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 标签组动态删除
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Tag, Button, Icon } from 'uiw';
+
 let num = 3;
-class Demo extends Component {
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -177,6 +191,7 @@ class Demo extends Component {
     );
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -184,9 +199,11 @@ class Demo extends Component {
 
 选择你感兴趣的话题，下面实例类似 CheckBox 多选。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Tag } from 'uiw';
+
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -231,6 +248,7 @@ class Demo extends Component {
     );
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

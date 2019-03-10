@@ -9,143 +9,146 @@ import { Form, FormItem } from 'uiw';
 
 ## 自定义校验
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Form, Input, Checkbox, Switch, RadioGroup, Radio, Textarea, Row, Col, Button } from 'uiw';
+
 const Demo = () => (
-  <div>
-    <Form
-      onSubmit={({initial, current}) => {
-        const errorObj = {};
-        if (current.userName.startsWith('u')) {
-          errorObj.userName = `姓名 ${current.userName} 不能以 ‘u’ 开头`;
-        }
-        if (!current.checkboxOne) {
-          errorObj.checkboxOne = '一个多选条件 为必填';
-        }
-        if (!current.terms) {
-          errorObj.terms = '必须统一服务条款';
-        }
-        if(Object.keys(errorObj).length > 0) {
-          const err = new Error();
-          err.filed = errorObj;
-          throw err;
-        }
-      }}
-      onSubmitError={(error) => {
-        if (error.filed) {
-          return { ...error.filed };
-        }
-        return null;
-      }}
-      fields={{
-        userName: {
-          initialValue: 'uiw',
-          label: '姓名',
-          help: '以“u”开头的名字将在此处显示错误信息'
-        },
-        age: {
-          initialValue: '9',
-          label: '年龄',
-          children: <Input type="number" />
-        },
-        checkbox: {
-          initialValue: ['四川菜'],
-          label: '选择你想吃的菜',
-          children: (
-            <Checkbox.Group>
-              <div>菜系</div>
-              <Checkbox value="四川菜">四川菜</Checkbox>
-              <Checkbox value="湖北菜">湖北菜</Checkbox>
-              <Checkbox value="西北菜">西北菜</Checkbox>
-              <Checkbox value="新疆菜">新疆菜</Checkbox>
-              <Checkbox value="东北菜">东北菜</Checkbox>
-              <div style={{ marginTop: 10 }}>家常菜</div>
-              <Checkbox value="红烧武昌鱼">红烧武昌鱼</Checkbox>
-              <Checkbox value="麻婆豆腐">麻婆豆腐</Checkbox>
-              <Checkbox value="北京烤鸭">北京烤鸭</Checkbox>
-            </Checkbox.Group>
-          )
-        },
-        checkboxOne: {
-          inline: true,
-          label: '一个多选条件',
-          children: <Checkbox value="1">四川菜</Checkbox>
-        },
-        switch: {
-          inline: true,
-          initialValue: true,
-          label: '开启',
-          children: <Switch />
-        },
-        radioGroup: {
-          inline: true,
-          initialValue: '男',
-          label: '单选',
-          children: (
-            <RadioGroup name="other">
-              <Radio value="男">男</Radio>
-              <Radio value="女">女</Radio>
-              <Radio value="人妖" disabled>人妖</Radio>
-              <Radio value="未知">未知</Radio>
-            </RadioGroup>
-          )
-        },
-        textarea: {
-          initialValue: '',
-          label: '多行文本输入框',
-          children: <Textarea placeholder="请输入内容" />
-        },
-        terms: {
-          validator: (currentValue) => {
-            return !currentValue ? '必须统一服务条款' : null;
-          },
-          style: { marginBottom: 0 },
-          children: <Checkbox value="1">已阅读并同意<a href="#">服务条款</a></Checkbox>
-        }
-      }}
-    >
-      {({ fields, state, canSubmit }) => {
-        console.log('fields:-->', state);
-        return (
-          <div style={{ maxWidth: 500 }}>
-            <Row gutter={10}>
-              <Col>{fields.userName}</Col>
-              <Col>{fields.age}</Col>
-            </Row>
-            <Row gutter={10}>
-              <Col>{fields.checkbox}</Col>
-              <Col>{fields.checkboxOne}</Col>
-            </Row>
-            <Row gutter={10}>
-              <Col>{fields.radioGroup}</Col>
-            </Row>
-            <Row gutter={10}>
-              <Col>{fields.switch}</Col>
-            </Row>
-            <Row gutter={10}>
-              <Col>{fields.textarea}</Col>
-            </Row>
-            <Row gutter={10}>
-              <Col fixed>
-                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
-              </Col>
-              <Col fixed align="middle">
-                {fields.terms}
-              </Col>
-            </Row>
-          </div>
+  <Form
+    onSubmit={({initial, current}) => {
+      const errorObj = {};
+      if (current.userName.startsWith('u')) {
+        errorObj.userName = `姓名 ${current.userName} 不能以 ‘u’ 开头`;
+      }
+      if (!current.checkboxOne) {
+        errorObj.checkboxOne = '一个多选条件 为必填';
+      }
+      if (!current.terms) {
+        errorObj.terms = '必须统一服务条款';
+      }
+      if(Object.keys(errorObj).length > 0) {
+        const err = new Error();
+        err.filed = errorObj;
+        throw err;
+      }
+    }}
+    onSubmitError={(error) => {
+      if (error.filed) {
+        return { ...error.filed };
+      }
+      return null;
+    }}
+    fields={{
+      userName: {
+        initialValue: 'uiw',
+        label: '姓名',
+        help: '以“u”开头的名字将在此处显示错误信息'
+      },
+      age: {
+        initialValue: '9',
+        label: '年龄',
+        children: <Input type="number" />
+      },
+      checkbox: {
+        initialValue: ['四川菜'],
+        label: '选择你想吃的菜',
+        children: (
+          <Checkbox.Group>
+            <div>菜系</div>
+            <Checkbox value="四川菜">四川菜</Checkbox>
+            <Checkbox value="湖北菜">湖北菜</Checkbox>
+            <Checkbox value="西北菜">西北菜</Checkbox>
+            <Checkbox value="新疆菜">新疆菜</Checkbox>
+            <Checkbox value="东北菜">东北菜</Checkbox>
+            <div style={{ marginTop: 10 }}>家常菜</div>
+            <Checkbox value="红烧武昌鱼">红烧武昌鱼</Checkbox>
+            <Checkbox value="麻婆豆腐">麻婆豆腐</Checkbox>
+            <Checkbox value="北京烤鸭">北京烤鸭</Checkbox>
+          </Checkbox.Group>
         )
-      }}
-    </Form>
-  </div>
+      },
+      checkboxOne: {
+        inline: true,
+        label: '一个多选条件',
+        children: <Checkbox value="1">四川菜</Checkbox>
+      },
+      switch: {
+        inline: true,
+        initialValue: true,
+        label: '开启',
+        children: <Switch />
+      },
+      radioGroup: {
+        inline: true,
+        initialValue: '男',
+        label: '单选',
+        children: (
+          <RadioGroup name="other">
+            <Radio value="男">男</Radio>
+            <Radio value="女">女</Radio>
+            <Radio value="人妖" disabled>人妖</Radio>
+            <Radio value="未知">未知</Radio>
+          </RadioGroup>
+        )
+      },
+      textarea: {
+        initialValue: '',
+        label: '多行文本输入框',
+        children: <Textarea placeholder="请输入内容" />
+      },
+      terms: {
+        validator: (currentValue) => {
+          return !currentValue ? '必须统一服务条款' : null;
+        },
+        style: { marginBottom: 0 },
+        children: <Checkbox value="1">已阅读并同意<a href="#">服务条款</a></Checkbox>
+      }
+    }}
+  >
+    {({ fields, state, canSubmit }) => {
+      console.log('fields:-->', state);
+      return (
+        <div style={{ maxWidth: 500 }}>
+          <Row gutter={10}>
+            <Col>{fields.userName}</Col>
+            <Col>{fields.age}</Col>
+          </Row>
+          <Row gutter={10}>
+            <Col>{fields.checkbox}</Col>
+            <Col>{fields.checkboxOne}</Col>
+          </Row>
+          <Row gutter={10}>
+            <Col>{fields.radioGroup}</Col>
+          </Row>
+          <Row gutter={10}>
+            <Col>{fields.switch}</Col>
+          </Row>
+          <Row gutter={10}>
+            <Col>{fields.textarea}</Col>
+          </Row>
+          <Row gutter={10}>
+            <Col fixed>
+              <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+            </Col>
+            <Col fixed align="middle">
+              {fields.terms}
+            </Col>
+          </Row>
+        </div>
+      )
+    }}
+  </Form>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ## 水平登录栏
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Form, Input, Row, Col, Notify, Button } from 'uiw';
+
 const Demo = () => (
   <div>
     <Form
@@ -199,7 +202,8 @@ const Demo = () => (
       }}
     </Form>
   </div>
-)
+);
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

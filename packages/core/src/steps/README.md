@@ -11,9 +11,11 @@ import { Steps } from 'uiw';
 
 简单的步骤条。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Steps } from 'uiw';
+
+class Demo extends React.Component {
   render() {
     return (
       <Steps current={1} style={{padding:"20px 0"}}>
@@ -25,6 +27,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -32,9 +35,11 @@ class Demo extends Component {
 
 简单的步骤条。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Steps } from 'uiw';
+
+class Demo extends React.Component {
   render() {
     return (
       <Steps current={1} style={{padding:"20px 0"}}>
@@ -46,6 +51,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -53,9 +59,11 @@ class Demo extends Component {
 
 通过设置 `Steps.Step` 的 `icon` 属性，可以启用自定义图标。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Steps, Icon } from 'uiw';
+
+class Demo extends React.Component {
   render() {
     return (
       <Steps current={1} style={{padding:"20px 0"}}>
@@ -66,6 +74,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -73,9 +82,11 @@ class Demo extends Component {
 
 使用 `Steps` 的 `status` 属性来指定当前步骤的状态。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Steps } from 'uiw';
+
+class Demo extends React.Component {
   render() {
     return (
       <Steps current={2} status="error" style={{padding:"20px 0"}}>
@@ -87,6 +98,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -94,9 +106,11 @@ class Demo extends Component {
 
 包含步骤点的进度条。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Steps } from 'uiw';
+
+class Demo extends React.Component {
   render() {
     return (
       <Steps progressDot status="error" current={2} style={{padding:"20px 0"}}>
@@ -108,6 +122,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -115,9 +130,11 @@ class Demo extends Component {
 
 通常配合内容及按钮使用，表示一个流程的处理进度。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Steps, Button } from 'uiw';
+
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -174,6 +191,7 @@ class Demo extends Component {
     );
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -181,9 +199,11 @@ class Demo extends Component {
 
 简单的竖直方向的步骤条。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Steps } from 'uiw';
+
+class Demo extends React.Component {
   render() {
     return (
       <Row gutter={20}>
@@ -207,6 +227,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

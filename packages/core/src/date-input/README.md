@@ -9,8 +9,10 @@ import { DateInput } from 'uiw';
 
 ## 基本使用
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { DateInput, Row, Col } from 'uiw';
+
 class Demo extends React.Component {
   onChange(selectedDate) {
     console.log('selectedDate:', selectedDate)
@@ -28,6 +30,7 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -35,11 +38,12 @@ class Demo extends React.Component {
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<DateInput />`](#/components/date-input) 组件。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
-  <div>
-    <Form
+import { DateInput, Notify, Button, Form, Row, Col } from 'uiw';
+
+ReactDOM.render(
+  <Form
       onSubmit={({initial, current}) => {
         if(current.date) {
           Notify.success({
@@ -73,16 +77,18 @@ const Demo = () => (
           </Row>
         )
       }}
-    </Form>
-  </div>
-)
+    </Form>,
+  _mount_
+);
 ```
 <!--End-->
 
 ## 日期格式
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { DateInput } from 'uiw';
+
 class Demo extends React.Component {
   onChange(selectedDate) {
     console.log('selectedDate:', selectedDate);
@@ -90,18 +96,25 @@ class Demo extends React.Component {
   render() {
     return (
       <div style={{ maxWidth: 200 }}>
-        <DateInput format="YYYY # MM # DD" datePickerProps={{ todayButton: '今天' }} onChange={this.onChange.bind(this)} />
+        <DateInput
+          format="YYYY # MM # DD"
+          datePickerProps={{ todayButton: '今天' }}
+          onChange={this.onChange.bind(this)}
+        />
       </div>
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ## 日期时间设置
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { DateInput } from 'uiw';
+
 class Demo extends React.Component {
   onChange(selectedDate) {
     console.log('selectedDate:', selectedDate);
@@ -109,11 +122,16 @@ class Demo extends React.Component {
   render() {
     return (
       <div style={{ maxWidth: 200 }}>
-        <DateInput format="YYYY/MM/DD HH:mm:ss" datePickerProps={{ showTime: true, todayButton: '今天' }} onChange={this.onChange.bind(this)} />
+        <DateInput
+          format="YYYY/MM/DD HH:mm:ss"
+          datePickerProps={{ showTime: true, todayButton: '今天' }}
+          onChange={this.onChange.bind(this)}
+        />
       </div>
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

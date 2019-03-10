@@ -3,7 +3,7 @@ import { renderIntoDocument,
 } from 'react-dom/test-utils'; // ES6
 import { findDOMNode } from 'react-dom';
 import Button from '..';
-import ButtonGroup from '../ButtonGroup';
+import ButtonGroup from '../../button-group';
 import Icon from '../../icon';
 
 describe('<Button />', () => {

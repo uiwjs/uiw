@@ -11,16 +11,19 @@ import { Checkbox } from 'uiw';
 
 单独使用可以表示两种状态之间的切换，半选中只是样式上的表现。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Checkbox } from 'uiw';
+
+ReactDOM.render(
   <div>
     <Checkbox onChange={(e) =>{
       console.log(e.target.checked)
       console.log(e.target)
     }}>未选中</Checkbox>
     <Checkbox checked >选中</Checkbox>
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
@@ -29,24 +32,29 @@ const Demo = () => (
 
 通过设置 `disabled` 属性来禁用多选框。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Checkbox } from 'uiw';
+
+ReactDOM.render(
   <div>
     <Checkbox disabled checked>未选中禁用</Checkbox>
     <Checkbox disabled checked>选中禁用</Checkbox>
     <Checkbox disabled indeterminate>半选中禁用</Checkbox>
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
 
 ### 全选
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Checkbox, Divider } from 'uiw';
+
 const checkedList = [ '四川菜', '湖北菜', '西北菜', '新疆菜', '东北菜' ];
-class Demo extends Component {
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -73,7 +81,6 @@ class Demo extends Component {
   }
   render() {
     const { indeterminate, checkAll } = this.state;
-    console.log('indeterminate:',indeterminate );
     return (
       <div>
         <Checkbox checked={checkAll} indeterminate={indeterminate} onChange={this.onCheckAllChange.bind(this)}>全选</Checkbox>
@@ -89,6 +96,8 @@ class Demo extends Component {
     )
   }
 }
+
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -96,9 +105,11 @@ class Demo extends Component {
 
 方便的从数组生成 `Checkbox` 组。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Checkbox, Divider, Button } from 'uiw';
+
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -137,6 +148,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -144,9 +156,11 @@ class Demo extends Component {
 
 通过 `checked` 属性改变 `Checkbox` 组件状态。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Checkbox, Button } from 'uiw';
+
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -174,6 +188,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

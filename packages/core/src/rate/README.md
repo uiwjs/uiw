@@ -11,8 +11,10 @@ import { Rate } from 'uiw';
 
 按钮样式的单选组合。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Rate, Divider, Icon } from 'uiw';
+
 const Demo = () => (
   <div>
     <Rate value={3} />
@@ -24,6 +26,8 @@ const Demo = () => (
     <Rate color="#dc3545" character="✿" value={4} />
   </div>
 )
+
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -31,8 +35,10 @@ const Demo = () => (
 
 按钮样式的单选组合。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Rate, Divider, Icon } from 'uiw';
+
 const Demo = () => (
   <div>
     <Rate readOnly value={3} />
@@ -44,6 +50,8 @@ const Demo = () => (
     <Rate readOnly character="✿" value={4} />
   </div>
 )
+
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -51,8 +59,10 @@ const Demo = () => (
 
 按钮样式的单选组合。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Rate, Divider } from 'uiw';
+
 const Demo = () => (
   <div>
     <Rate character="美" value={4} />
@@ -62,13 +72,17 @@ const Demo = () => (
     <Rate character="传" value={4} />
   </div>
 )
+
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 半选显示
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Rate, Divider, Icon } from 'uiw';
+
 const Demo = () => (
   <div>
     <Rate character={<Icon type="heart-on" />} value={3.3} />
@@ -76,18 +90,24 @@ const Demo = () => (
     <Rate color="#d80000" character={<Icon type="heart-on" />} value={4.3} />
   </div>
 )
+
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 尺寸
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Rate, Divider, Icon } from 'uiw';
+
 const Demo = () => (
   <div>
     <Rate style={{ fontSize: 34 }} character={<Icon type="heart-on" />} value={3} />
   </div>
 )
+
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

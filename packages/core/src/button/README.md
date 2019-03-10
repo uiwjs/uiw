@@ -9,9 +9,11 @@ import { Button, ButtonGroup } from 'uiw';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Button } from 'uiw';
+
+ReactDOM.render(
   <div>
     <Button type="primary">主要按钮</Button>
     <Button type="success">成功按钮</Button>
@@ -32,16 +34,19 @@ const Demo = () => (
     <Button type="primary" active>Button</Button>
     <Button type="primary" size="small">more <Icon type="arrow-down" /></Button>
     <Button type="link"> (超连接样式)link </Button>
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
 
 ### 按钮组
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Button, ButtonGroup } from 'uiw';
+
+ReactDOM.render(
   <div>
     <ButtonGroup>
       <Button type="primary">主要按钮</Button>
@@ -96,20 +101,24 @@ const Demo = () => (
       <Button icon="linux" />
       <Button icon="apple" />
     </ButtonGroup>
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
 
 ### 图标按钮
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Button, Icon, Divider } from 'uiw';
+
 const chat = <svg width="20" height="20" viewBox="0 0 20 20"> <path d="M19 0H7c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h5.59l3.71 3.71c.17.18.42.29.7.29.55 0 1-.45 1-1v-3h1c.55 0 1-.45 1-1V1c0-.55-.45-1-1-1zM7 13c-1.1 0-2-.9-2-2V4H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h1v3a1.003 1.003 0 0 0 1.71.71L7.41 16H13c.55 0 1-.45 1-1v-.17L12.17 13H7z" fillRule="evenodd" /> </svg>;
 const open = <svg width="12" height="16" style={{ height: 16 }}> <path fillRule="evenodd" d="M11 11.28V5c-.03-.78-.34-1.47-.94-2.06C9.46 2.35 8.78 2.03 8 2H7V0L4 3l3 3V4h1c.27.02.48.11.69.31.21.2.3.42.31.69v6.28A1.993 1.993 0 0 0 10 15a1.993 1.993 0 0 0 1-3.72zm-1 2.92c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zM4 3c0-1.11-.89-2-2-2a1.993 1.993 0 0 0-1 3.72v6.56A1.993 1.993 0 0 0 2 15a1.993 1.993 0 0 0 1-3.72V4.72c.59-.34 1-.98 1-1.72zm-.8 10c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z" /> </svg>;
 const merged = <svg width="12" height="16" viewBox="0 0 12 16" style={{ height: 16 }}> <path fillRule="evenodd" d="M10 7c-.73 0-1.38.41-1.73 1.02V8C7.22 7.98 6 7.64 5.14 6.98c-.75-.58-1.5-1.61-1.89-2.44A1.993 1.993 0 0 0 2 .99C.89.99 0 1.89 0 3a2 2 0 0 0 1 1.72v6.56c-.59.35-1 .99-1 1.72 0 1.11.89 2 2 2a1.993 1.993 0 0 0 1-3.72V7.67c.67.7 1.44 1.27 2.3 1.69.86.42 2.03.63 2.97.64v-.02c.36.61 1 1.02 1.73 1.02 1.11 0 2-.89 2-2 0-1.11-.89-2-2-2zm-6.8 6c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm8 6c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z" /> </svg>;
 const closed = <svg viewBox="0 0 16 16" width="16" height="16"> <path fillRule="evenodd" d="M7 10h2v2H7v-2zm2-6H7v5h2V4zm1.5 1.5l-1 1L12 9l4-4.5-1-1L12 7l-1.5-1.5zM8 13.7A5.71 5.71 0 0 1 2.3 8c0-3.14 2.56-5.7 5.7-5.7 1.83 0 3.45.88 4.5 2.2l.92-.92A6.947 6.947 0 0 0 8 1C4.14 1 1 4.14 1 8s3.14 7 7 7 7-3.14 7-7l-1.52 1.52c-.66 2.41-2.86 4.19-5.48 4.19v-.01z" /> </svg>;
-const Demo = () => (
+
+ReactDOM.render(
   <div>
     <Button icon="weibo" type="primary">主要按钮</Button>
     <Button icon="chrome" type="success">成功按钮</Button>
@@ -127,16 +136,19 @@ const Demo = () => (
     <Button icon={open} type="success">Open</Button>
     <Button icon={merged} type="light" style={{ backgroundColor: '#6f42c1', color: '#fff' }}>Merged</Button>
     <Button icon={closed} type="danger">Closed</Button>
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
 
 ### 按钮加载状态
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Button, Icon, Divider } from 'uiw';
+
+ReactDOM.render(
   <div>
     <Button type="danger">
       <Icon type="reload" spin={true} />
@@ -154,16 +166,19 @@ const Demo = () => (
     <Button loading size="small" type="primary">主要按钮</Button>
     <Button loading size="default" type="success">成功按钮</Button>
     <Button loading size="large" type="warning">警告按钮</Button>
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
 
 ### 禁用按钮组
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Button, ButtonGroup, Divider } from 'uiw';
+
+ReactDOM.render(
   <div>
     <ButtonGroup>
       <Button disabled type="primary">主要按钮</Button>
@@ -217,16 +232,19 @@ const Demo = () => (
       <Button disabled icon="apple" basic type="danger" />
       <Button disabled icon="weibo" basic type="dark" />
     </div>
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
 
 ### 垂直按钮组
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Button, ButtonGroup, Row, Col } from 'uiw';
+
+ReactDOM.render(
   <Row gutter={10}>
     <Col style={{ maxWidth: 120 }}>
       <ButtonGroup vertical>
@@ -262,7 +280,8 @@ const Demo = () => (
         <Button type="dark">暗按钮</Button>
       </ButtonGroup>
     </Col>
-  </Row>
+  </Row>,
+  _mount_
 );
 ```
 <!--End-->
@@ -271,9 +290,11 @@ const Demo = () => (
 
 设置 `basic=true` 即可获得基本按钮，没有背景颜色的状态按钮。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Button, Divider } from 'uiw';
+
+ReactDOM.render(
   <div>
     <Button basic type="primary">主要按钮</Button>
     <Button basic type="success">成功按钮</Button>
@@ -295,7 +316,8 @@ const Demo = () => (
     <Button basic disabled type="danger">错误按钮</Button>
     <Button basic disabled type="light">亮按钮</Button>
     <Button basic disabled type="dark">暗按钮</Button>
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
@@ -304,14 +326,17 @@ const Demo = () => (
 
 设置 `basic=true` 即可获得基本按钮，没有背景颜色的状态按钮。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Button, Divider } from 'uiw';
+
 const chat = (
   <svg width="20" height="20" viewBox="0 0 20 20">
     <path d="M19 0H7c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h5.59l3.71 3.71c.17.18.42.29.7.29.55 0 1-.45 1-1v-3h1c.55 0 1-.45 1-1V1c0-.55-.45-1-1-1zM7 13c-1.1 0-2-.9-2-2V4H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h1v3a1.003 1.003 0 0 0 1.71.71L7.41 16H13c.55 0 1-.45 1-1v-.17L12.17 13H7z" fillRule="evenodd" />
   </svg>
 )
-const Demo = () => (
+
+ReactDOM.render(
   <div>
     <Button icon="weibo" basic type="primary">主要按钮</Button>
     <Button icon="chrome" basic type="success">成功按钮</Button>
@@ -325,16 +350,19 @@ const Demo = () => (
     <Button icon="apple" basic type="danger" />
     <Button icon="weibo" basic type="dark" />
     <Button icon="weibo" basic type="dark" />
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
 
 ### 激活按钮样式
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Button } from 'uiw';
+
+ReactDOM.render(
   <div>
     <Button active type="primary">主要按钮</Button>
     <Button active type="success">成功按钮</Button>
@@ -343,16 +371,19 @@ const Demo = () => (
     <Button active type="light">亮按钮</Button>
     <Button active type="dark">暗按钮</Button>
     <Button active type="link"> (超连接样式)link </Button>
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
 
 ### 禁用按钮样式
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Button } from 'uiw';
+
+ReactDOM.render(
   <div>
     <Button disabled type="primary">主要按钮</Button>
     <Button disabled type="success">成功按钮</Button>
@@ -361,7 +392,8 @@ const Demo = () => (
     <Button disabled type="light">亮按钮</Button>
     <Button disabled type="dark">暗按钮</Button>
     <Button disabled type="link"> (超连接样式)link </Button>
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
@@ -369,9 +401,11 @@ const Demo = () => (
 
 ### block
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Button, Row, Col } from 'uiw';
+
+ReactDOM.render(
   <Row gutter={10}>
     <Col style={{ maxWidth: 320 }}>
       <Button block type="primary">主要按钮</Button>
@@ -381,7 +415,8 @@ const Demo = () => (
       <Button block type="light">亮按钮</Button>
       <Button block type="dark">暗按钮</Button>
     </Col>
-  </Row>
+  </Row>,
+  _mount_
 );
 ```
 <!--End-->
@@ -390,9 +425,11 @@ const Demo = () => (
 
 `size` 在 `Button.Group`下面不支持。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Button, Divider } from 'uiw';
+
+ReactDOM.render(
   <div>
     <Button size="small" type="primary">主要按钮</Button>
     <Button size="default" type="success">成功按钮</Button>
@@ -405,11 +442,11 @@ const Demo = () => (
     <Button icon="chrome" size="small" type="success">谷歌浏览器</Button>
     <Button icon="chrome" type="success">谷歌浏览器</Button>
     <Button icon="apple" size="large" type="warning">淘宝</Button>
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
-
 
 ## Props
 

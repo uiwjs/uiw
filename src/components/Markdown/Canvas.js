@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import { Split } from 'uiw';
 import CodeMirror from '@uiw/react-codemirror';
 import classNames from 'classnames';
-import { transform } from '@babel/standalone';
+import { BabelTransform } from './transform';
 import icon from './icon';
+import CodePen from './CodePen';
 import styles from './index.module.less';
 import 'codemirror/keymap/sublime';
 import './monokai.css';
@@ -21,6 +22,7 @@ export default class Canvas extends React.Component {
       width: 1,
       visible: false,
       fullScreen: false,
+      codePenJSX: '',
     };
     this.playerId = `${parseInt(Math.random() * 1e9, 10).toString(36)}`;
   }
@@ -73,7 +75,7 @@ export default class Canvas extends React.Component {
       });
     }
   }
-  executeCode(codeStr) {
+  async executeCode(codeStr) {
     try {
       const args = ['context', 'React', 'ReactDOM', 'Component'];
       const argv = [this, React, ReactDOM, Component];
@@ -83,15 +85,14 @@ export default class Canvas extends React.Component {
         args.push(key);
         argv.push(Elm[key]);
       }
-      const input = `
-        ${codeStr}
-        ReactDOM.render(<Demo />, document.getElementById('${this.playerId}'));
-      `;
-      const code = transform(input, { presets: ['es2015', 'react'] }).code;
+      const codePenJSX = codeStr.replace('_mount_', 'document.getElementById("container")');
+      codeStr = codeStr.replace('_mount_', `document.getElementById('${this.playerId}')`);
+      const input = `${codeStr}`;
+      const { code } = await BabelTransform(input);
       args.push(code);
       // eslint-disable-next-line
       new Function(...args).apply(null, argv);
-      this.setState({ errorMessage: '' });
+      this.setState({ errorMessage: '', codePenJSX });
     } catch (err) {
       if (err && err.message) {
         this.setState({ errorMessage: err.message });
@@ -105,8 +106,8 @@ export default class Canvas extends React.Component {
     }
   }
   render() {
-    const { parame: { noCode, noPreview, bgWhite, noScroll } } = this.props;
-    const { errorMessage } = this.state;
+    const { parame: { noCode, noPreview, bgWhite, noScroll, codePen } } = this.props;
+    const { errorMessage, codePenJSX } = this.state;
     const styl = {};
     if (this.state.width === 1) {
       styl.maxWidth = 'initial';
@@ -126,6 +127,9 @@ export default class Canvas extends React.Component {
             style={styl}
             ref={node => this.demoBox = node}
           >
+            {codePenJSX && codePen && (
+              <CodePen jsxCode={codePenJSX} />
+            )}
             {!bgWhite && (
               <div className={styles.background}>
                 <svg width="100%" height="100%" preserveAspectRatio="none" style={{ display: 'block' }}>

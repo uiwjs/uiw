@@ -6,7 +6,7 @@ export { default as Alert } from './alert';
 export { default as Affix } from './affix';
 export { default as BackTop } from './back-top';
 export { default as Button } from './button';
-export { default as ButtonGroup } from './button/ButtonGroup';
+export { default as ButtonGroup } from './button-group';
 export { default as Breadcrumb } from './breadcrumb';
 export { default as Col } from './grid/Col';
 export { default as CopyToClipboard } from './copy-to-clipboard';

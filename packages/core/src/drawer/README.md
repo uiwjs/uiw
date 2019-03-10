@@ -9,8 +9,10 @@ import { Drawer } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Drawer, ButtonGroup, Button } from 'uiw';
+
 class Demo extends React.Component {
   constructor() {
     super();
@@ -53,13 +55,16 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 显示位置
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Drawer, ButtonGroup, Button } from 'uiw';
+
 class Demo extends React.Component {
   constructor() {
     super();
@@ -107,14 +112,17 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 
 ### 添加页脚
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Drawer, ButtonGroup, Button } from 'uiw';
+
 class Demo extends React.Component {
   constructor() {
     super();
@@ -163,6 +171,7 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

@@ -9,8 +9,10 @@ import { TimePicker } from 'uiw';
 
 ## 基础用法
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { TimePicker, Row, Col } from 'uiw';
+
 const Demo = () => (
   <Row gutter={10}>
     <Col fixed>
@@ -28,13 +30,16 @@ const Demo = () => (
     </Col>
   </Row>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ## 设置初始值
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { TimePicker, Row, Col } from 'uiw';
+
 const Demo = () => {
   const value = new Date(2018, 1, 24, 4,5,35);
   return (
@@ -51,6 +56,7 @@ const Demo = () => {
     </Row>
   )
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -58,8 +64,10 @@ const Demo = () => {
 
 在表单返回的数据，并没有将 `format` 格式化后的数据返回给你，而是返回的一个 `Date`，你可以通过 [`formatter`](#/components/formatter) 重新格式化。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { TimePicker, Row, Col, Form, Button } from 'uiw';
+
 const Demo = () => (
   <div>
     <Form
@@ -98,6 +106,7 @@ const Demo = () => (
     </Form>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -105,8 +114,10 @@ const Demo = () => (
 
 可以使用 `disabledHours` `disabledMinutes` `disabledSeconds` 禁用部分时间选择。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { TimePicker, Row, Col } from 'uiw';
+
 const Demo = () => (
   <Row gutter={10} style={{ maxWidth: 360 }}>
     <Col fixed>
@@ -129,6 +140,7 @@ const Demo = () => (
     </Col>
   </Row>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -136,8 +148,10 @@ const Demo = () => (
 
 可以使用 `hideDisabled` 将禁用的部分时间隐藏。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { TimePicker, Row, Col } from 'uiw';
+
 const Demo = () => (
   <Row gutter={10} style={{ maxWidth: 360 }}>
     <Col fixed>
@@ -152,6 +166,7 @@ const Demo = () => (
     </Col>
   </Row>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -159,8 +174,10 @@ const Demo = () => (
 
 可以使用 `hideDisabled` 将禁用的部分时间隐藏。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { TimePicker, Row, Col } from 'uiw';
+
 const Demo = () => (
   <Row gutter={10} style={{ maxWidth: 360 }}>
     <Col fixed>
@@ -180,6 +197,7 @@ const Demo = () => (
     </Col>
   </Row>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

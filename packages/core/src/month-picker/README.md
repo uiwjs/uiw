@@ -9,8 +9,10 @@ import { MonthPicker } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { MonthPicker, Row, Col } from 'uiw';
+
 function onChange(date, formatDate) {
   console.log(date, formatDate);
 }
@@ -22,13 +24,16 @@ const Demo = () => (
     </Col>
   </Row>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ## 在表单中使用
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Form, MonthPicker, Row, Col, Button } from 'uiw';
+
 const Demo = () => (
   <div>
     <Form
@@ -67,6 +72,7 @@ const Demo = () => (
     </Form>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

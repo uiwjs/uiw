@@ -11,8 +11,10 @@ import { Split } from 'uiw';
 
 通过设置子节点的 `minWidth` 样式，即可设置拖拽最小宽度值。通过设置子节点样式 `flexBasis` 样式即可设置默认分割内容的占比宽度。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Split } from 'uiw';
+
 const Demo = () => (
   <Split style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3 }}>
     <div style={{ minWidth: 30, flexBasis: '20%' }}>
@@ -23,13 +25,16 @@ const Demo = () => (
     </div>
   </Split>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 多栏分割
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Split } from 'uiw';
+
 const Demo = () => (
   <Split style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3 }}>
     <div style={{ minWidth: 20, maxWidth: 30 }}>
@@ -46,13 +51,16 @@ const Demo = () => (
     </div>
   </Split>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 线条拖拽
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Split } from 'uiw';
+
 const Demo = () => (
   <div>
     <Split lineBar style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3 }}>
@@ -85,13 +93,16 @@ const Demo = () => (
     </Split>
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 垂直分割
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Split } from 'uiw';
+
 const Demo = () => (
   <Split mode="vertical" style={{ height: 200, border: '1px solid #d5d5d5', borderRadius: 3 }}>
     <div>
@@ -102,13 +113,16 @@ const Demo = () => (
     </div>
   </Split>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 嵌套使用
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Split } from 'uiw';
+
 const Demo = () => (
   <Split style={{ height: 200, border: '1px solid #d5d5d5', borderRadius: 3 }}>
     <Split mode="vertical">
@@ -129,6 +143,7 @@ const Demo = () => (
     </div>
   </Split>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -136,8 +151,10 @@ const Demo = () => (
 
 下面实例通过设置 `visiable` 的值来设置拖拽工具是否可见
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Split } from 'uiw';
+
 const Demo = () => (
   <div>
     <Split visiable={false} style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3 }}>
@@ -167,6 +184,7 @@ const Demo = () => (
     </Split>
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -174,8 +192,10 @@ const Demo = () => (
 
 通过设置 `disable` 的值，禁用拖拽工具拖拽。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Split } from 'uiw';
+
 const Demo = () => (
   <div>
     <Split disable style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3 }}>
@@ -213,14 +233,17 @@ const Demo = () => (
     </Split>
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 
 ### 抽屉
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Split } from 'uiw';
+
 class Demo extends React.Component {
   constructor(props) {
     super(props);
@@ -258,6 +281,7 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

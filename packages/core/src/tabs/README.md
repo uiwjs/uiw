@@ -11,9 +11,11 @@ import { Tabs } from 'uiw';
 
 基础的、简洁的卡片式标签页。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Tabs } from 'uiw';
+
+class Demo extends React.Component {
   render() {
     return (
       <Tabs activeKey="1" onTabClick={(tab, key, e) => {
@@ -27,6 +29,7 @@ class Demo extends Component {
     );
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -34,9 +37,11 @@ class Demo extends Component {
 
 基础的、简洁的卡片式标签页。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Tabs } from 'uiw';
+
+class Demo extends React.Component {
   render() {
     return (
       <Tabs type="line" activeKey="1" onTabClick={(tab, key, e) => {
@@ -50,6 +55,7 @@ class Demo extends Component {
     );
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -57,9 +63,11 @@ class Demo extends Component {
 
 另一种样式的页签，不提供对应的垂直样式。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Tabs } from 'uiw';
+
+class Demo extends React.Component {
   render() {
     return (
       <Tabs type="card" activeKey="1" onTabClick={(tab, key, e) => {
@@ -73,6 +81,7 @@ class Demo extends Component {
     );
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -81,9 +90,11 @@ class Demo extends Component {
 
 另一种样式的页签，不提供对应的垂直样式。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Tabs, Divider } from 'uiw';
+
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -123,6 +134,7 @@ class Demo extends Component {
     );
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

@@ -9,38 +9,47 @@ import { Textarea } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Textarea } from 'uiw';
+
 const Demo = () => (
   <div style={{ maxWidth: 300 }}>
     <Textarea placeholder="请输入内容" />
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 
 ### 禁用
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Textarea } from 'uiw';
+
 const Demo = () => (
   <div style={{ maxWidth: 300 }}>
     <Textarea placeholder="请输入内容" disabled />
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### HTML Textarea
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Textarea } from 'uiw';
+
 const Demo = () => (
   <div style={{ maxWidth: 300 }}>
     <textarea className="w-textarea" placeholder="请输入内容" defaultValue="" />
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

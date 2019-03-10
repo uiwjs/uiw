@@ -9,12 +9,15 @@ import { FileInput } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { FileInput } from 'uiw';
+
+ReactDOM.render(
   <div>
     <FileInput multiple="multiple" style={{ maxWidth: 200 }} />
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->

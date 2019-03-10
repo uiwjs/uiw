@@ -11,9 +11,11 @@ import { Avatar } from 'uiw';
 
 头像有四种尺寸，两种形状可选。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Avatar, Icon } from 'uiw';
+
+ReactDOM.render(
   <div>
     <div style={{ paddingBottom: 20 }}>
       <Avatar size="large" icon={<Icon type="user"/>} />
@@ -27,7 +29,8 @@ const Demo = () => (
       <Avatar shape="square" size="small" icon="user" />
       <Avatar shape="square" size="mini" icon="user" />
     </div>
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
@@ -36,17 +39,20 @@ const Demo = () => (
 
 支持三种类型：Icon 以及字符，其中 Icon 和字符型可以自定义图标颜色及背景色。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Avatar, Icon } from 'uiw';
+
+ReactDOM.render(
   <div>
     <Avatar icon={<Icon type="user"/>} />
     <Avatar>U</Avatar>
     <Avatar src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" />
     <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
     <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
@@ -54,9 +60,11 @@ const Demo = () => (
 
 在组件上没有暴露`onError`事件，可以直接使用`<img/>`标签。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Avatar, Icon } from 'uiw';
+
+ReactDOM.render(
   <div>
     <Avatar src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" />
     <Avatar>
@@ -64,16 +72,19 @@ const Demo = () => (
         console.log("图片加载错误！")
       }}/>
     </Avatar>
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
 ## 带徽标的头像
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-const Demo = () => (
+import { Avatar, Badge } from 'uiw';
+
+ReactDOM.render(
   <div>
     <span style={{ marginRight: 24 }}>
       <Badge count={1}><Avatar shape="square" icon="user" /></Badge>
@@ -81,8 +92,9 @@ const Demo = () => (
     <span>
       <Badge dot><Avatar shape="square" icon="user" /></Badge>
     </span>
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 

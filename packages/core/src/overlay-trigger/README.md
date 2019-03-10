@@ -11,8 +11,10 @@ import { OverlayTrigger } from 'uiw';
 
 最简单的用法。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { OverlayTrigger } from 'uiw';
+
 const tooltip = (
   <div style={{ backgroundColor: '#fff', border: '1px solid #333', padding: 10, borderRadius: 3 }}>
     <strong>Hellow uiw!</strong> Check this info.<br />
@@ -24,6 +26,7 @@ const Demo = () => (
     <span>鼠标移动到此处，显示和消失触发事件</span>
   </OverlayTrigger>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -31,8 +34,10 @@ const Demo = () => (
 
 下面配合 [`<Card />`](#/components/card) 组件使用。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { OverlayTrigger, Card } from 'uiw';
+
 const card = (
   <Card active>
     <strong>Hellow uiw!</strong> Check this info.<br />
@@ -44,13 +49,16 @@ const Demo = () => (
     <span>鼠标移动到此处，显示和消失触发事件</span>
   </OverlayTrigger>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 点击事件
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { OverlayTrigger, Card, Divider } from 'uiw';
+
 const card = (
   <Card active>
     <strong>Hellow uiw!</strong> Check this info.<br />
@@ -84,6 +92,7 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -91,8 +100,10 @@ class Demo extends React.Component {
 
 默认离开**触发区域**隐藏弹出目标，设置 `isOutside` 值为 `true`，在**触发区域**或**弹出目标区域**内，不隐藏**弹出目标**。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { OverlayTrigger, Card, Divider } from 'uiw';
+
 const card = (
   <Card active>
     <strong>Hellow uiw!</strong> Check this info.<br />
@@ -127,6 +138,7 @@ class Demo extends React.Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -135,8 +147,10 @@ class Demo extends React.Component {
 
 延迟属性，只针对 `trigger=hover` 有效。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { OverlayTrigger, Card } from 'uiw';
+
 const card = (
   <Card active>
     <strong>Hellow uiw!</strong> Check this info.<br />
@@ -148,6 +162,7 @@ const Demo = () => (
     <span>鼠标移动到此处，显示和消失触发事件，延迟 `4s` 消失</span>
   </OverlayTrigger>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -155,8 +170,10 @@ const Demo = () => (
 
 通过设置属性 isOpen 可以文字提示手动控制状态的展示。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { OverlayTrigger, Card, Divider, Switch } from 'uiw';
+
 const card = (
   <Card active>
     <strong>Hellow uiw!</strong> Check this info.<br />
@@ -198,6 +215,7 @@ class Demo extends React.Component {
     );
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -205,8 +223,10 @@ class Demo extends React.Component {
 
 设置 `usePortal={false}` 将模态对话框生成到根节点的里面。
 
-<!--DemoStart,bgWhite,noScroll--> 
+<!--DemoStart,bgWhite,noScroll,codePen--> 
 ```js
+import { OverlayTrigger, Card, Divider } from 'uiw';
+
 const card = (
   <Card active>
     <strong>Hellow uiw!</strong> Check this info.<br />
@@ -246,6 +266,7 @@ class Demo extends React.Component {
     );
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

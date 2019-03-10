@@ -5,14 +5,16 @@ Icon 图标
 
 ### 搜索图标
 
-<!--DemoStart,bgWhite,noCode-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
+import { Input, CopyToClipboard, Icon, Notify } from 'uiw';
+
 const icons = ["adobe", "ali-pay", "aliwangwang", "android-o", "android", "apple", "appstore-o", "appstore", "area-chart", "arrow-down", "arrow-left", "arrow-right", "arrow-up", "arrows-alt", "asterisk", "backward", "baidu", "bar-chart", "barcode", "bell", "camera-o", "caret-down", "caret-left", "caret-right", "caret-up", "check-square-o", "check-square", "check", "chrome", "circle-check-o", "circle-check", "circle-close-o", "circle-close", "close-square-o", "close-square", "close", "cloud-download-o", "cloud-download", "cloud-upload-o", "cloud-upload", "coffee", "component", "copy", "copyright", "css3", "cut", "d-arrow-left", "d-arrow-right", "d-caret", "dashboard", "date", "delete", "dingding", "dislike-o", "document", "dot-chart", "down-circle-o", "down-circle", "down-square-o", "down-square", "download", "edit", "enter", "environment-o", "environment", "eye-o", "eye", "facebook", "file-add", "file-excel", "file-jpg", "file-pdf", "file-text", "file-unknown", "filter", "firefox", "folder-add", "folder-open", "folder", "forward", "foursquare", "frown-o", "frown", "github-o", "github", "global", "heart-off", "heart-on", "home", "html5", "ie", "inbox", "information-o", "information", "laptop", "left-circle-o", "left-circle", "left-square-o", "left-square", "like-o", "link", "linkedin", "linux", "loading", "lock", "login", "logout", "man", "map", "meh-o", "meh", "menu-fold", "menu-unfold", "menu", "message-o", "message", "minus-circle-o", "minus-circle", "minus-square-o", "minus-square", "minus", "mobile", "more", "notification", "opera", "paper-clip", "pause-circle-o", "pause-circle", "pause", "pay-circle-o", "pay", "picasa", "picture", "pie-chart", "pinterest", "play-circle-o", "play-circle", "plus-circle-o", "plus-circle", "plus-square-o", "plus-square", "plus", "poweroff", "printer", "qq", "qrcode", "question-circle-o", "question-circle", "reddit", "reload", "right-circle-o", "right-circle", "right-square-o", "right-square", "rollback", "safari", "safety", "save", "search", "setting-o", "setting", "share", "shopping-cart", "shrink", "smile-o", "smile", "star-off", "star-on", "swap-left", "swap-right", "swap", "table", "tag-o", "tag", "tags-o", "tags", "taobao", "time-o", "time", "twitter", "uiw", "unlock", "up-circle-o", "up-circle", "up-square-o", "up-square", "upload", "user-add", "user-delete", "user", "usergroup-add", "usergroup-delete", "verification", "verticle-left", "verticle-right", "video-camera", "warning-o", "warning", "weibo", "weixin", "wifi", "windows", "woman", "zoom-in", "zoom-out"];
 const itemStyl = {
   fontSize: 26, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
   display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', justifyContent: 'center', fill: '#525252',
 }
-class Demo extends Component {
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -66,6 +68,7 @@ class Demo extends Component {
     );
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -106,15 +109,18 @@ const Demo = () => (
 )
 ```
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
-const Demo = () => (
+import { Icon } from 'uiw';
+
+ReactDOM.render(
   <div style={{ fontSize: 18, lineHeight: '12px' }}>
     <Icon type="heart-on" />
     <Icon type="pie-chart" />
     <Icon type="tag" />
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
@@ -122,15 +128,18 @@ const Demo = () => (
 
 默认情况下，图标非常小，它们继承了父级的字体大小。 如果没有设置字体大小，可以通过 `size` 来设置尺寸。通常情况 `size` 会很累赘没有什么用。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
-const Demo = () => (
+import { Icon } from 'uiw';
+
+ReactDOM.render(
   <div style={{ fontSize: '28px' }}>
     <Icon type="heart-on" />
     <Icon type="pie-chart" />
     <Icon type="tag" />
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
@@ -140,29 +149,35 @@ const Demo = () => (
 
 > 一个有用的技巧是将 `fill` 设置为 `currentColor`，以便从图标容器的文本颜色继承填充颜色。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
-const Demo = () => (
+import { Icon } from 'uiw';
+
+ReactDOM.render(
   <div style={{ fontSize: '28px',color: 'green' }}>
     <Icon type="apple" color="red" />
     <Icon type="pie-chart" style={{fill: 'currentColor'}} />
     <Icon type="frown" style={{fill: 'blue'}} />
     <Icon type="uiw" style={{stroke: 'red',fill: '#ffef00'}} />
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
 ### 与文本对齐
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
-const Demo = () => (
+import { Icon } from 'uiw';
+
+ReactDOM.render(
   <div>
     <h3 style={{ margin: 0 }}>Exit <Icon verticalAlign="baseline" type="baidu" /></h3>
-    <span>uiw</span><Icon type="uiw" verticalAlign="baseline" style={{fill: '#009688', fontSize: 21}} />
-  </div>
-)
+    <span>uiw</span><Icon type="uiw" verticalAlign="baseline" style={{ fill: '#009688', fontSize: 21 }} />
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
@@ -176,19 +191,18 @@ const Demo = () => (
 > 默认：`w-icon-` 默认引用的字体文件作用域  
 > 自定定义：`w-icon-uiw-` 自定定义作用域  
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
-class Demo extends Component {
-  render() {
-    return (
-      <div>
-        <Icon type="circle-close" verticalAlign="baseline" />  图标名称：circle-close，[circle圈]-[关闭close]
-        <br/>
-        <Icon type="circle-close-o" verticalAlign="baseline" /> 图标名称：circle-close-o，[circle圈]-[关闭close]-[o描线]
-      </div>
-    )
-  }
-}
+import { Icon } from 'uiw';
+
+ReactDOM.render(
+  <div>
+    <Icon type="circle-close" verticalAlign="baseline" />  图标名称：circle-close，[circle圈]-[关闭close]
+    <br/>
+    <Icon type="circle-close-o" verticalAlign="baseline" /> 图标名称：circle-close-o，[circle圈]-[关闭close]-[o描线]
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
@@ -196,23 +210,28 @@ class Demo extends Component {
 
 通过设置参数 `spin={true}` 来设置图标旋转。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
-const Demo = () => (
+import { Icon } from 'uiw';
+
+ReactDOM.render(
   <div style={{ fontSize: 21, color: 'green' }}>
     <Icon type="loading" spin={true} color="red" />
     <Icon type="reload" spin={true} />
     <Icon type="picasa" spin={true} style={{fill: 'blue'}} />
     <Icon type="smile-o" spin={true} style={{fill: 'blue'}} />
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
 ### 自定义图标
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
+import { Icon } from 'uiw';
+
 const chat = (
   <svg width="20" height="20" viewBox="0 0 20 20">
     <path d="M19 0H7c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h5.59l3.71 3.71c.17.18.42.29.7.29.55 0 1-.45 1-1v-3h1c.55 0 1-.45 1-1V1c0-.55-.45-1-1-1zM7 13c-1.1 0-2-.9-2-2V4H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h1v3a1.003 1.003 0 0 0 1.71.71L7.41 16H13c.55 0 1-.45 1-1v-.17L12.17 13H7z" fillRule="evenodd" />
@@ -224,12 +243,14 @@ const contrast = (
   </svg>
 )
 const styl = { marginRight: 10 };
-const Demo = () => (
+
+ReactDOM.render(
   <div style={{ fontSize: 21, color: 'green' }}>
     <Icon style={styl} type={chat} color="red" />
     <Icon style={styl} type={contrast} spin={true} />
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
@@ -279,8 +300,10 @@ const Demo = () => (
 
 ### 方向性图标
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
+import { Icon } from 'uiw';
+
 const iconList = [
   'down-square-o','down-square','up-square-o', 'up-square','left-square-o','left-square', 'right-square-o', 'right-square',
 ]
@@ -288,7 +311,8 @@ const itemStyl = {
   fontSize: 18, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
-const Demo = () => (
+
+ReactDOM.render(
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -298,15 +322,18 @@ const Demo = () => (
         </div>
       )
     })}
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
 圆圈方向性图标
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
+import { Icon } from 'uiw';
+
 const iconList = [
   'down-circle-o', 'down-circle','up-circle-o','up-circle','left-circle-o', 'left-circle','right-circle-o', 'right-circle','play-circle-o',  'play-circle',
 ]
@@ -314,7 +341,7 @@ const itemStyl = {
   fontSize: 18, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
-const Demo = () => (
+ReactDOM.render(
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -324,15 +351,18 @@ const Demo = () => (
         </div>
       )
     })}
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
 其它方向性图标
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
+import { Icon } from 'uiw';
+
 const iconList = [
   'caret-down', 'arrow-down', 'caret-up','arrow-up', 'caret-left',  'arrow-left', 'caret-right','arrow-right',
   'shrink','arrows-alt','d-arrow-left','d-arrow-right','enter',
@@ -343,7 +373,8 @@ const itemStyl = {
   fontSize: 18, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
-const Demo = () => (
+
+ReactDOM.render(
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -353,15 +384,18 @@ const Demo = () => (
         </div>
       )
     })}
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
 ### 提示建议性图标
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
+import { Icon } from 'uiw';
+
 const iconList = [
   'smile-o', 'smile','frown-o', 'frown','meh', 'meh-o',
   'pause','pause-circle', 'pause-circle-o', 'information', "information-o", 'warning-o', 'warning',
@@ -370,7 +404,8 @@ const itemStyl = {
   fontSize: 18, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
-const Demo = () => (
+
+ReactDOM.render(
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -380,15 +415,18 @@ const Demo = () => (
         </div>
       )
     })}
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
 ## 符号
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
+import { Icon } from 'uiw';
+
 const iconList = [
   "plus", 'plus-circle-o','plus-circle', 'plus-square', 'plus-square-o', "question-circle-o",
   "minus", 'minus-circle-o', 'minus-circle', 'minus-square', 'minus-square-o',"question-circle",
@@ -399,7 +437,8 @@ const itemStyl = {
   fontSize: 18, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
-const Demo = () => (
+
+ReactDOM.render(
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -409,15 +448,18 @@ const Demo = () => (
         </div>
       )
     })}
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
 ### 文件
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
+import { Icon } from 'uiw';
+
 const iconList = [
   'file-text', 'file-jpg', 'file-unknown', 'file-add', 'file-excel', 'file-pdf',
   'folder-add', 'folder-open', 'paper-clip', 
@@ -426,7 +468,8 @@ const itemStyl = {
   fontSize: 18, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
-const Demo = () => (
+
+ReactDOM.render(
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -436,15 +479,18 @@ const Demo = () => (
         </div>
       )
     })}
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
 ### 其它
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
+import { Icon } from 'uiw';
+
 const iconList = [
   'heart-off', 'heart-on', 'star-on', 'star-off','lock', 'unlock','dashboard',
   'area-chart', 'bar-chart', 'dot-chart','pie-chart',
@@ -459,7 +505,8 @@ const itemStyl = {
   fontSize: 18, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
-const Demo = () => (
+
+ReactDOM.render(
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -469,22 +516,26 @@ const Demo = () => (
         </div>
       )
     })}
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
 ### 品牌标识
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
+import { Icon } from 'uiw';
+
 const iconList = ['uiw', 'windows', "linux", 'apple', 'facebook', 'twitter', 'adobe', "baidu", "ali-pay", 'android-o', 'android','reddit', 'github', 'github-o', "aliwangwang",   "dingding", "foursquare", "linkedin", "pinterest", "qq",  "weibo", "taobao", "weixin", 'css3', 'html5', ];
 
 const itemStyl = {
   fontSize: 18, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
-const Demo = () => (
+
+ReactDOM.render(
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -494,21 +545,25 @@ const Demo = () => (
         </div>
       )
     })}
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
 ### 浏览器图标
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
+import { Icon } from 'uiw';
+
 const iconList = [ "chrome", "safari", "firefox", "opera", "ie", ];
 const itemStyl = {
   fontSize: 18, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
-const Demo = () => (
+
+ReactDOM.render(
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -518,7 +573,8 @@ const Demo = () => (
         </div>
       )
     })}
-  </div>
-)
+  </div>,
+  _mount_
+);
 ```
 <!--End-->

@@ -10,7 +10,9 @@ import { Portal } from 'uiw';
 
 ### 基本使用
 
-```jsx
+```js
+import { Portal } from 'uiw';
+
 const Demo = () => {
   return (
     <Portal className="name">

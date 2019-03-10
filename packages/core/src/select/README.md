@@ -11,8 +11,10 @@ import { Select } from 'uiw';
 
 适用广泛的基础单选 `value` 的值为当前被选中的 `Option` 的 `value` 属性值。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Row, Col, Select } from 'uiw';
+
 const Demo = () => (
   <Row>
     <Col fixed>
@@ -26,14 +28,17 @@ const Demo = () => (
     </Col>
   </Row>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 
 ### 禁用选择器
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Row, Col, Select } from 'uiw';
+
 const Demo = () => (
   <Row>
     <Col fixed>
@@ -47,6 +52,7 @@ const Demo = () => (
     </Col>
   </Row>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -55,8 +61,10 @@ const Demo = () => (
 
 通过 `size` 属性设置选择器的尺寸，提供三个尺寸参数设置。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Row, Col, Select, Button } from 'uiw';
+
 const rowSty = { marginBottom: 10 };
 const Demo = () => (
   <div>
@@ -104,13 +112,16 @@ const Demo = () => (
     </Row>
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 选项组
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Row, Col, Select } from 'uiw';
+
 const Demo = () => (
   <Row>
     <Col fixed>
@@ -128,6 +139,7 @@ const Demo = () => (
     </Col>
   </Row>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -139,8 +151,10 @@ const Demo = () => (
 import 'uiw/lib/esm/select/style/index.less';
 ```
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Row, Col, Select } from 'uiw';
+
 const Demo = () => (
   <Row style={{ backgroundColor: '#fff', margin: -15, padding: 15, borderRadius: '5px 5px 0 0' }} gutter={10}>
     <Col fixed>
@@ -163,6 +177,7 @@ const Demo = () => (
     </Col>
   </Row>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

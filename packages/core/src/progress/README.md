@@ -10,8 +10,10 @@ const { Line, Circle } = Progress;
 
 ### 基本用法
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Progress } from 'uiw';
+
 const { Line } = Progress;
 const sty = {marginBottom:10}
 const Demo = () => (
@@ -23,6 +25,7 @@ const Demo = () => (
     <Line style={sty} percent={50} showText={false} />
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -30,8 +33,10 @@ const Demo = () => (
 
 设置参数`strokeWidth`即可
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Progress } from 'uiw';
+
 const { Line } = Progress;
 const sty = {marginBottom:10}
 const Demo = () => (
@@ -43,13 +48,16 @@ const Demo = () => (
     <Line style={sty} strokeWidth={14} percent={50} showText={false} />
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 圆圈进度条
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Progress } from 'uiw';
+
 const { Circle } = Progress;
 const sty = {marginBottom:10}
 const Demo = () => (
@@ -60,6 +68,7 @@ const Demo = () => (
     <Circle style={sty} percent={100} />
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -67,8 +76,10 @@ const Demo = () => (
 
 通过`strokeWidth`设置圆圈进度宽带，通过`width`（`type="circle"`有效）设置圆圈大小，
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Progress } from 'uiw';
+
 let sty = {marginRight:15}
 const Demo = () => (
   <div>
@@ -78,6 +89,7 @@ const Demo = () => (
     <Progress.Circle style={sty} width={100} strokeWidth={3} percent={75} />
   </div>
 );
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -85,9 +97,11 @@ const Demo = () => (
 
 进度条动态展示更直观。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Progress } from 'uiw';
+
+class Demo extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -122,6 +136,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -129,10 +144,12 @@ class Demo extends Component {
 
 `format` 属性指定格式。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Progress } from 'uiw';
+
 const sty = {marginRight:10}
-class Demo extends Component {
+class Demo extends React.Component {
   render() {
     return (
       <div>
@@ -154,6 +171,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

@@ -7,8 +7,10 @@ Calendar 日历
 
 下面是基础使用方法，可以设置日历通知事项，在日历渲染单元格时，会根据 data 内容来渲染单元格通知事项。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Calendar } from 'uiw';
+
 const data = [
   { type: 'default', date: '8', label: '中国电动车初创公司蔚来据称考虑明年赴美上市。' },
   { type: 'success', date: '8', label: '苹果收购一批新专利 或用于iPhone 3D摄像头' },
@@ -44,10 +46,12 @@ function filterData(dt) {
     return item;
   });
 }
-const Demo = () => (
+
+ReactDOM.render(
   <div>
     <Calendar data={filterData(data)} />
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->
@@ -57,8 +61,10 @@ const Demo = () => (
 
 在日历面板上面添加通知事件，还可以通过设置 `disabledDate` 来禁止部分日期点击，如下实例每月12号不能点击。
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Calendar } from 'uiw';
+
 const data = [
   { type: 'default', date: '8', label: '中国电动车初创公司蔚来据称考虑明年赴美上市。' },
   { type: 'success', date: '8', label: '苹果收购一批新专利 或用于iPhone 3D摄像头' },
@@ -103,7 +109,8 @@ function disabledDate(currentDate, props) {
   // 今天和今天之前不能选择
   // return currentDate && currentDate.valueOf() < Date.now();
 }
-const Demo = () => (
+
+ReactDOM.render(
   <div>
     <Calendar
       onClick={(date) => {
@@ -112,7 +119,8 @@ const Demo = () => (
       disabledDate={disabledDate}
       data={filterData(data)}
     />
-  </div>
+  </div>,
+  _mount_
 );
 ```
 <!--End-->

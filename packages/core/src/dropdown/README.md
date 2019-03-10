@@ -9,8 +9,10 @@ import { Dropdown } from 'uiw';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite--> 
-```jsx
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Dropdown, Menu, ButtonGroup, Button, Divider, Icon } from 'uiw';
+
 const menu = (
   <Menu bordered style={{ minWidth: 120 }}>
     <Menu.Item icon="reload" text="重新加载" />
@@ -21,7 +23,7 @@ const menu = (
   </Menu>
 );
 
-class Demo extends Component {
+class Demo extends React.Component {
   render() {
     return (
       <div>
@@ -49,13 +51,16 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 被禁用
 
-<!--DemoStart,bgWhite--> 
-```jsx
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Dropdown, Menu, ButtonGroup, Button } from 'uiw';
+
 const menu = (
   <Menu bordered style={{ maxWidth: 200 }}>
     <Menu.Item icon="reload" text="重新加载" />
@@ -67,48 +72,47 @@ const menu = (
   </Menu>
 );
 
-class Demo extends Component {
-  render() {
-    return (
-      <div>
-        <ButtonGroup style={{ marginRight: 5, display: 'inline-block' }}>
-          <Button disabled icon="copy">点击右边</Button>
-          <Dropdown disabled trigger="click" placement="bottomRight" menu={menu}>
-            <Button icon="more" />
-          </Dropdown>
-        </ButtonGroup>
-        <Dropdown disabled menu={menu}>
-          <Button basic type="link"> (超连接样式)link </Button>
-        </Dropdown>
-        <Dropdown disabled menu={menu}>
-          <Button type="primary">主要按钮</Button>
-        </Dropdown>
-        <Dropdown disabled menu={menu}>
-          <Button type="success">成功按钮</Button>
-        </Dropdown>
-        <Dropdown disabled menu={menu}>
-          <Button type="warning">警告按钮</Button>
-        </Dropdown>
-        <Dropdown disabled menu={menu}>
-          <Button type="danger">错误按钮</Button>
-        </Dropdown>
-        <Dropdown disabled menu={menu}>
-          <Button type="light">亮按钮</Button>
-        </Dropdown>
-        <Dropdown disabled menu={menu}>
-          <Button type="dark">暗按钮</Button>
-        </Dropdown>
-      </div>
-    )
-  }
-}
+ReactDOM.render(
+  <div>
+    <ButtonGroup style={{ marginRight: 5, display: 'inline-block' }}>
+      <Button disabled icon="copy">点击右边</Button>
+      <Dropdown disabled trigger="click" placement="bottomRight" menu={menu}>
+        <Button icon="more" />
+      </Dropdown>
+    </ButtonGroup>
+    <Dropdown disabled menu={menu}>
+      <Button basic type="link"> (超连接样式)link </Button>
+    </Dropdown>
+    <Dropdown disabled menu={menu}>
+      <Button type="primary">主要按钮</Button>
+    </Dropdown>
+    <Dropdown disabled menu={menu}>
+      <Button type="success">成功按钮</Button>
+    </Dropdown>
+    <Dropdown disabled menu={menu}>
+      <Button type="warning">警告按钮</Button>
+    </Dropdown>
+    <Dropdown disabled menu={menu}>
+      <Button type="danger">错误按钮</Button>
+    </Dropdown>
+    <Dropdown disabled menu={menu}>
+      <Button type="light">亮按钮</Button>
+    </Dropdown>
+    <Dropdown disabled menu={menu}>
+      <Button type="dark">暗按钮</Button>
+    </Dropdown>
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 
 ### 弹出位置
 
-<!--DemoStart,bgWhite--> 
-```jsx
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Dropdown, Menu, ButtonGroup, Button } from 'uiw';
+
 const menu = (
   <Menu bordered style={{ maxWidth: 200 }}>
     <Menu.Item icon="reload" text="重新加载" />
@@ -120,39 +124,36 @@ const menu = (
   </Menu>
 );
 
-class Demo extends Component {
-  render() {
-    return (
-      <div>
-        <ButtonGroup style={{ marginRight: 5, display: 'inline-block' }}>
-          <Button icon="copy">top</Button>
-          <Dropdown trigger="click" placement="top" menu={menu}>
-            <Button icon="more" />
-          </Dropdown>
-        </ButtonGroup>
-        <Dropdown menu={menu} trigger="click" placement="topLeft">
-          <Button type="primary">topLeft</Button>
-        </Dropdown>
-        <Dropdown menu={menu} trigger="click" placement="topRight">
-          <Button type="success">topRight</Button>
-        </Dropdown>
-        <Divider />
-        <Dropdown menu={menu} trigger="click" placement="bottomRight">
-          <Button type="light">bottomRight</Button>
-        </Dropdown>
-        <Dropdown menu={menu} trigger="click" placement="bottom">
-          <Button type="warning">bottom</Button>
-        </Dropdown>
-        <Dropdown menu={menu} trigger="click" placement="bottomLeft">
-          <Button type="danger">bottomLeft</Button>
-        </Dropdown>
-        <Dropdown menu={menu} trigger="click" placement="right">
-          <Button type="dark">right</Button>
-        </Dropdown>
-      </div>
-    )
-  }
-}
+ReactDOM.render(
+  <div>
+    <ButtonGroup style={{ marginRight: 5, display: 'inline-block' }}>
+      <Button icon="copy">top</Button>
+      <Dropdown trigger="click" placement="top" menu={menu}>
+        <Button icon="more" />
+      </Dropdown>
+    </ButtonGroup>
+    <Dropdown menu={menu} trigger="click" placement="topLeft">
+      <Button type="primary">topLeft</Button>
+    </Dropdown>
+    <Dropdown menu={menu} trigger="click" placement="topRight">
+      <Button type="success">topRight</Button>
+    </Dropdown>
+    <Divider />
+    <Dropdown menu={menu} trigger="click" placement="bottomRight">
+      <Button type="light">bottomRight</Button>
+    </Dropdown>
+    <Dropdown menu={menu} trigger="click" placement="bottom">
+      <Button type="warning">bottom</Button>
+    </Dropdown>
+    <Dropdown menu={menu} trigger="click" placement="bottomLeft">
+      <Button type="danger">bottomLeft</Button>
+    </Dropdown>
+    <Dropdown menu={menu} trigger="click" placement="right">
+      <Button type="dark">right</Button>
+    </Dropdown>
+  </div>,
+  _mount_
+);
 ```
 <!--End-->
 

@@ -7,9 +7,11 @@ Slider 滑块输入条
 
 按钮样式的单选组合。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Slider, Divider } from 'uiw';
+
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,6 +64,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -69,8 +72,10 @@ class Demo extends Component {
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<Slider />`](#/components/slider) 组件，需要设置 `initialValue` 初始值。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Form, Row, Col, Slider, Button, Notify } from 'uiw';
+
 const Demo = () => (
   <div>
     <Form
@@ -116,6 +121,7 @@ const Demo = () => (
     </Form>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -123,9 +129,11 @@ const Demo = () => (
 
 通过设置 `tooltip` 的值，来控制提示的显示。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Slider, Divider} from 'uiw';
+
+class Demo extends React.Component {
   render() {
     return (
       <div>
@@ -141,6 +149,7 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -148,9 +157,11 @@ class Demo extends Component {
 
 通过 `step` 设置或返回每次拖动滑块控件时的递增量。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Slider, Divider} from 'uiw';
+
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -204,14 +215,17 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 标记刻度
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Slider, Divider} from 'uiw';
+
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -278,14 +292,17 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 禁用样式
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Slider, Divider} from 'uiw';
+
+class Demo extends React.Component {
   render() {
     return (
       <div>
@@ -304,14 +321,17 @@ class Demo extends Component {
     )
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 垂直方向
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
-class Demo extends Component {
+import { Row, Col, Slider } from 'uiw';
+
+class Demo extends React.Component {
   render() {
     return (
       <Row>
@@ -355,6 +375,7 @@ class Demo extends Component {
     );
   }
 }
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 

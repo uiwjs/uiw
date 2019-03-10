@@ -9,8 +9,10 @@ import { Menu } from 'uiw';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Menu, Row, Col } from 'uiw';
+
 const Demo = () => (
   <Row justify="flex-start" gutter={10}>
     <Col fixed>
@@ -57,13 +59,16 @@ const Demo = () => (
     </Col>
   </Row>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
 ### 下拉菜单
 
-<!--DemoStart,bgWhite-->
+<!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Menu, Popover, Button, Row, Col } from 'uiw';
+
 const btnStl = {position: 'relative', width: 70 }
 const content = (
   <Menu>
@@ -138,6 +143,7 @@ const Demo = () => (
     </div>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
