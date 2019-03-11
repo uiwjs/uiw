@@ -132,7 +132,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { Steps, Button } from 'uiw';
+import { Steps, Button, Notify } from 'uiw';
 
 class Demo extends React.Component {
   constructor(props) {
@@ -169,23 +169,17 @@ class Demo extends React.Component {
         </Steps>
         <div style={conStyle}>{steps[this.state.current].content}</div>
         <div style={{marginTop: 20}}>
-          {
-            this.state.current < steps.length - 1
-            &&
+          {this.state.current < steps.length - 1 && (
             <Button type="primary" size="small" onClick={() => this.next()}>下一步</Button>
-          }
-          {
-            this.state.current === steps.length - 1
-            &&
-            <Button type="primary" size="small" onClick={() => Message.success('处理完成!')}>完成</Button>
-          }
-          {
-            this.state.current > 0
-            &&
+          )}
+          {this.state.current === steps.length - 1 && (
+            <Button type="primary" size="small" onClick={() => Notify.open({ description: '处理完成!' })}>完成</Button>
+          )}
+          {this.state.current > 0 && (
             <Button size="small" style={{ marginLeft: 8 }} onClick={() => this.prev()}>
               上一步
             </Button>
-          }
+          )}
         </div>
       </div>
     );
