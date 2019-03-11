@@ -261,6 +261,7 @@ const Demo = () => (
     </Form>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -337,6 +338,7 @@ const Demo = () => (
     </Form>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -365,6 +367,7 @@ const Demo = () => (
     </FormItem>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -397,6 +400,7 @@ const Demo = () => (
     </FormItem>
   </div>
 )
+ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
@@ -405,7 +409,7 @@ const Demo = () => (
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | fields | 设置字段 | object | - |
-| children | 回调 {`fields`, `state`} | node/function | - |
+| children | 回调 {`fields`, `state`, `canSubmit`} | node/function | - |
 | onSubmit | 提交回调 {`initial`, `current`}  | function | - |
 | onSubmitError | 调用 `onSubmit` 抛出的任何错误。从字段名称返回对象映射。  | function | - |
 | resetOnSubmit | 在 `onSubmit` 成功后将表单重置为其初始状态。| bool | `true` |
