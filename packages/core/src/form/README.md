@@ -209,7 +209,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ## 登录
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 const Demo = () => (
   <div>
@@ -267,7 +267,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ## 表单提交
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 const Demo = () => (
   <div>
@@ -346,7 +346,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 对组件 `FormItem` 竖排展示示例。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 const Demo = () => (
   <div>
@@ -376,7 +376,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 对组件 `FormItem` 横排展示示例。
 
-<!--DemoStart,bgWhite--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 const Demo = () => (
   <div>

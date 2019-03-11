@@ -40,6 +40,9 @@ export const getRouterData = () => {
     '/components/colors': {
       component: dynamicWrapper([], () => import('../routes/components/colors')),
     },
+    '/components/reset-css': {
+      component: dynamicWrapper([], () => import('../routes/components/reset-css')),
+    },
     '/components/alert': {
       component: dynamicWrapper([], () => import('../routes/components/alert')),
     },
