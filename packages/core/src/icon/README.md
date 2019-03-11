@@ -109,7 +109,7 @@ const Demo = () => (
 )
 ```
 
-<!--DemoStart,bgWhite,noCode,codePen--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Icon } from 'uiw';
 
@@ -128,7 +128,7 @@ ReactDOM.render(
 
 默认情况下，图标非常小，它们继承了父级的字体大小。 如果没有设置字体大小，可以通过 `size` 来设置尺寸。通常情况 `size` 会很累赘没有什么用。
 
-<!--DemoStart,bgWhite,noCode,codePen--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Icon } from 'uiw';
 
@@ -149,7 +149,7 @@ ReactDOM.render(
 
 > 一个有用的技巧是将 `fill` 设置为 `currentColor`，以便从图标容器的文本颜色继承填充颜色。
 
-<!--DemoStart,bgWhite,noCode,codePen--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Icon } from 'uiw';
 
@@ -167,7 +167,7 @@ ReactDOM.render(
 
 ### 与文本对齐
 
-<!--DemoStart,bgWhite,noCode,codePen--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Icon } from 'uiw';
 
@@ -191,7 +191,7 @@ ReactDOM.render(
 > 默认：`w-icon-` 默认引用的字体文件作用域  
 > 自定定义：`w-icon-uiw-` 自定定义作用域  
 
-<!--DemoStart,bgWhite,noCode,codePen--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Icon } from 'uiw';
 
@@ -210,7 +210,7 @@ ReactDOM.render(
 
 通过设置参数 `spin={true}` 来设置图标旋转。
 
-<!--DemoStart,bgWhite,noCode,codePen--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Icon } from 'uiw';
 
@@ -228,7 +228,7 @@ ReactDOM.render(
 
 ### 自定义图标
 
-<!--DemoStart,bgWhite,noCode,codePen--> 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Icon } from 'uiw';
 
