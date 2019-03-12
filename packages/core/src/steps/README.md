@@ -68,8 +68,8 @@ class Demo extends React.Component {
     return (
       <Steps current={1} style={{padding:"20px 0"}}>
         <Steps.Step icon={<Icon type="user"/>} title="注册" description="这里是步骤一的说明，可以很长很长哦。" />
-        <Steps.Step icon={<Icon type="picture"/>} title="上传头像" description="这里是步骤一的说明，可以很长很长哦。" />
-        <Steps.Step icon='message' title="验证邮箱" description="这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。" />
+        <Steps.Step icon={<Icon type="picasa" spin={true} color="red" />} title="上传头像" description="这里是步骤一的说明，可以很长很长哦。" />
+        <Steps.Step icon="message" title="验证邮箱" description="这里是步骤一的说明，可以很长很长哦。" />
       </Steps>
     )
   }

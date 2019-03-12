@@ -94,6 +94,9 @@ export const getRouterData = () => {
     '/components/progress': {
       component: dynamicWrapper([], () => import('../routes/components/progress')),
     },
+    '/components/pagination': {
+      component: dynamicWrapper([], () => import('../routes/components/pagination')),
+    },
     '/components/input': {
       component: dynamicWrapper([], () => import('../routes/components/input')),
     },

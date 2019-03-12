@@ -454,13 +454,13 @@ ReactDOM.render(
 
 | 参数 | 说明 | 类型 | 默认值 |
 | -------- | -------- | -------- | -------- |
-| size | `large`, `default`, `small` |String | `default` |
+| size | `large`, `default`, `small` | String | `default` |
 | type | `primary`, `success`, `warning`, `danger`, `light`, `dark`, `link` | String/ReactNode | - |
-| htmlType | 设置 `button` 原生的 `type` 值，可选值请参考 [HTML 标准](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) |String | `button` |
+| htmlType | 设置 `button` 原生的 `type` 值，可选值请参考 [HTML 标准](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) | String | `button` |
 | icon | 设置按钮的图标类型 | String/ReactNode | - |
-| block | 通过设置属性 `block` 可将按钮宽度设置为 100%，（块级元素），常用于弹窗内操作按钮。 |Boolean | false |
+| block | 通过设置属性 `block` 可将按钮宽度设置为 100%，（块级元素），常用于弹窗内操作按钮。 | Boolean | false |
 | disabled | 禁用状态 | Boolean | false |
-| active | 激活状态，其表现为被按压下去（底色更深、边框夜色更深、向内投射阴影）。 |Boolean | false |
+| active | 激活状态，其表现为被按压下去（底色更深、边框夜色更深、向内投射阴影）。 | Boolean | false |
 | loading | 加载中状态 | Boolean | false |
 
 ### Button.Group

@@ -29,6 +29,7 @@ export { default as MonthPicker } from './month-picker';
 export { default as Notify } from './notify';
 export { default as Popover } from './popover';
 export { default as Progress } from './progress';
+export { default as Pagination } from './pagination';
 export { default as Portal } from './portal';
 export { default as Row } from './grid/Row';
 export { default as Rate } from './rate';

@@ -178,7 +178,7 @@ export default class Canvas extends React.Component {
         </Split>
         {!noCode && (
           <div className={styles.control}>
-            <div className={styles.btn} onClick={this.onSwitchSource.bind(this)}>{this.state.width === 1 ? '显示代码' : '隐藏编辑器'}</div>
+            <div className={styles.btn} onClick={this.onSwitchSource.bind(this)}>{this.state.width === 1 ? '代码' : '隐藏编辑器'}</div>
             <div className={styles.fullScreenBtn} onClick={this.onFullScreen.bind(this)}>
               {icon.full}
             </div>
