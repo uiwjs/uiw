@@ -68,15 +68,15 @@ export default class Pagination extends React.Component {
       }
       let label = num + basic;
       if (count - current === 0) {
-        label = label - 2;
+        label -= 2;
       }
       if (count - current === 1) {
-        label = label - 1;
+        label -= 1;
       }
       if (label <= count) {
         data.push({ label, active: current === label });
       }
-    };
+    }
     if (current + 3 < count && count > 6) {
       data.push({ type: 'jumpNext', label: '•••', goto: 5 });
     }
@@ -101,7 +101,7 @@ export default class Pagination extends React.Component {
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-${alignment}`]: alignment,
       [size]: size,
-      divider
+      divider,
     });
     return (
       <ul className={cls} {...other}>
