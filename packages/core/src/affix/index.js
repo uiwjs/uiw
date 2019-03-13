@@ -45,6 +45,7 @@ export default class Affix extends React.Component {
     }
     const box = this.box.getBoundingClientRect();
     const boxLeft = this.box.offsetLeft + this.box.offsetParent.offsetLeft;
+    console.log('boxLeft:', boxLeft);
     const bottom = document.documentElement.clientHeight - box.y - box.height;
     if (offsetMode.top && box.y < 0) {
       this.setPlaceholderStyle({ ...elemSize });

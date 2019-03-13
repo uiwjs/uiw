@@ -5,7 +5,7 @@ Affix 图钉
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,noScroll,codePen--> 
 ```js
 import { Affix, Button } from 'uiw';
 
@@ -23,7 +23,7 @@ ReactDOM.render(
 
 这个实例需要你缩小窗口高度，就可以测试看效果啦。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,noScroll,codePen--> 
 ```js
 import { Affix, Button } from 'uiw';
 

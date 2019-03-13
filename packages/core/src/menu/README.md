@@ -9,7 +9,7 @@ import { Menu } from 'uiw';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,noScroll,codePen--> 
 ```js
 import { Menu, Row, Col } from 'uiw';
 
