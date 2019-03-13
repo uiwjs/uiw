@@ -8,7 +8,7 @@ Pagination 分页
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { Pagination } from 'uiw';
+import { Pagination, Divider } from 'uiw';
 
 ReactDOM.render(
   <div>
@@ -29,7 +29,7 @@ ReactDOM.render(
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { Pagination } from 'uiw';
+import { Pagination, Divider } from 'uiw';
 
 ReactDOM.render(
   <div>
@@ -48,7 +48,7 @@ ReactDOM.render(
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { Pagination } from 'uiw';
+import { Pagination, Divider } from 'uiw';
 
 ReactDOM.render(
   <div>

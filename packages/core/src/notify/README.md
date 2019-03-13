@@ -268,5 +268,6 @@ Notify.error(config);
 | description | 通知提醒内容，必选 | String/ReactNode | ReactNode |
 | duration | 默认 `4.5` 秒后自动关闭，配置为 `null` 则不自动关闭 | Number | `4.5` |
 | placement | 弹出位置，可选 | Enum{`topLeft`, `topRight`, `bottomLeft`, `bottomRight`} | `topRight` |
+| onClose | 当提醒关闭时的回调函数 | Function | none |
 
 更多属性文档请参考 [`<Alert>`](#/components/alert)。
