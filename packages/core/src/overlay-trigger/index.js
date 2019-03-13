@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import Overlay from '../overlay';
 import contains from './utils';
 import getBoundingClientRect from './util/getBoundingClientRect';
-import getScroll from './util/getScroll';
+import getScroll from '../utils/getScroll';
 import getOuterSizes from './util/getOuterSizes';
 import RefHolder from './RefHolder';
 import './style/index.less';
@@ -150,8 +150,8 @@ export default class OverlayTrigger extends React.Component {
     const winSizeWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
     sty.placement = placement;
-    const scrollTop = getScroll(trigger.ownerDocument.documentElement, 'top');
-    const scrollLeft = getScroll(trigger.ownerDocument.documentElement, 'left');
+    const scrollTop = getScroll(trigger.ownerDocument.documentElement, true);
+    const scrollLeft = getScroll(trigger.ownerDocument.documentElement);
     trigger = { ...getBoundingClientRect(trigger), ...getOuterSizes(trigger) };
     popup = { ...getBoundingClientRect(popup), ...getOuterSizes(popup) };
 

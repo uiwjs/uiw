@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import getScroll from '../utils/getScroll';
 
 const events = [
   'resize',
@@ -11,6 +12,34 @@ const events = [
   'pageshow',
   'load',
 ];
+
+function getTargetRect(target) {
+  return target !== window ? (target).getBoundingClientRect() : ({ top: 0, left: 0, bottom: 0 });
+}
+
+function getOffset(element, target) {
+  const elemRect = element.getBoundingClientRect();
+  const targetRect = getTargetRect(target);
+  const scrollTop = getScroll(target, true);
+  const scrollLeft = getScroll(target);
+
+  const docElem = window.document.body;
+  const clientTop = docElem.clientTop || 0;
+  const clientLeft = docElem.clientLeft || 0;
+
+  return {
+    top: elemRect.top - targetRect.top + scrollTop - clientTop,
+    left: elemRect.left - targetRect.left + scrollLeft - clientLeft,
+    width: elemRect.width,
+    height: elemRect.height,
+  };
+}
+
+function noop() { }
+
+function getDefaultTarget() {
+  return typeof window !== 'undefined' ? window : null;
+}
 
 export default class Affix extends React.Component {
   constructor(props) {
@@ -23,7 +52,16 @@ export default class Affix extends React.Component {
   }
   eventHandlers = {}
   componentDidMount() {
-    this.setTargetEventListeners();
+    const target = this.props.target || getDefaultTarget;
+    // Wait for parent component ref has its value
+    this.timeout = setTimeout(() => {
+      this.target = target();
+      this.setTargetEventListeners();
+    });
+  }
+  componentWillUnmount() {
+    this.clearEventListeners();
+    clearTimeout(this.timeout);
   }
   updatePosition() {
     let { offsetTop } = this.props;
@@ -43,25 +81,24 @@ export default class Affix extends React.Component {
       offsetMode.top = typeof offsetTop === 'number';
       offsetMode.bottom = typeof offsetBottom === 'number';
     }
+    const elemOffset = getOffset(this.box, this.target);
     const box = this.box.getBoundingClientRect();
-    const boxLeft = this.box.offsetLeft + this.box.offsetParent.offsetLeft;
-    console.log('boxLeft:', boxLeft);
-    const bottom = document.documentElement.clientHeight - box.y - box.height;
+    const bottom = document.documentElement.clientHeight - box.y - elemOffset.height;
     if (offsetMode.top && box.y < 0) {
       this.setPlaceholderStyle({ ...elemSize });
       this.setAffixStyle({
         position: 'fixed',
         top: offsetTop || 0,
-        left: boxLeft,
-        width: box.width,
+        left: elemOffset.left,
+        width: elemOffset.width,
       });
     } else if (bottom < 0) {
       this.setPlaceholderStyle({ ...elemSize });
       this.setAffixStyle({
         position: 'fixed',
         bottom: offsetBottom || 0,
-        left: boxLeft,
-        width: box.width,
+        left: elemOffset.left,
+        width: elemOffset.width,
       });
     } else {
       this.setPlaceholderStyle(null);
@@ -83,13 +120,13 @@ export default class Affix extends React.Component {
     this.clearEventListeners();
     events.forEach((eventName) => {
       this.eventHandlers[eventName] = this.updatePosition;
-      window.addEventListener(eventName, this.updatePosition, false);
+      this.target && this.target.addEventListener(eventName, this.updatePosition, false);
     });
   }
   clearEventListeners() {
     events.forEach((eventName) => {
       const handler = this.eventHandlers[eventName];
-      window.removeEventListener(eventName, handler, false);
+      this.target && this.target.removeEventListener(eventName, handler, false);
     });
   }
   getInstance = (node) => {
@@ -98,7 +135,7 @@ export default class Affix extends React.Component {
     }
   }
   render() {
-    const { prefixCls, className, children, offsetTop, offsetBottom, ...resetProps } = this.props;
+    const { prefixCls, className, children, offsetTop, offsetBottom, target, ...resetProps } = this.props;
     const cls = classnames(className, `${prefixCls}`);
     return (
       <div {...resetProps} ref={this.getInstance} style={{ ...this.state.placeholderStyle, ...this.props.style }}>
@@ -112,6 +149,7 @@ export default class Affix extends React.Component {
 
 Affix.propTypes = {
   prefixCls: PropTypes.string,
+  target: PropTypes.func,
   offsetTop: PropTypes.number,
   offsetBottom: PropTypes.number,
   onChange: PropTypes.func,
@@ -119,5 +157,5 @@ Affix.propTypes = {
 
 Affix.defaultProps = {
   prefixCls: 'w-affix',
-  onChange() { },
+  onChange: noop,
 };

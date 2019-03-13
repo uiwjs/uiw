@@ -1,7 +1,7 @@
 import getStyleComputedProperty from './getStyleComputedProperty';
 import getBordersSize from './getBordersSize';
 import getWindowSizes from './getWindowSizes';
-import getScroll from './getScroll';
+import getScroll from '../../utils/getScroll';
 import getClientRect from './getClientRect';
 import isIE from './isIE';
 
@@ -21,8 +21,8 @@ export default function getBoundingClientRect(element) {
   try {
     if (isIE(10)) {
       rect = element.getBoundingClientRect();
-      const scrollTop = getScroll(element, 'top');
-      const scrollLeft = getScroll(element, 'left');
+      const scrollTop = getScroll(element, true);
+      const scrollLeft = getScroll(element);
       rect.top += scrollTop;
       rect.left += scrollLeft;
       rect.bottom += scrollTop;
