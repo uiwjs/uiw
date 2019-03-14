@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "2.0.0-beta.67",
+  "version": "2.0.0-beta.68",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiwjs.github.io",
   "sideEffects": false,

@@ -105,7 +105,7 @@ const Demo = () => (
       }
     }}
   >
-    {({ fields, state, canSubmit, reset }) => {
+    {({ fields, state, canSubmit, resetForm }) => {
       console.log('fields:-->', state);
       return (
         <div style={{ maxWidth: 500 }}>
@@ -134,7 +134,7 @@ const Demo = () => (
           <Row gutter={10}>
             <Col fixed>
               <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
-              <Button type="light" onClick={reset}>重置表单</Button>
+              <Button type="light" onClick={resetForm}>重置表单</Button>
             </Col>
           </Row>
         </div>
@@ -191,7 +191,7 @@ const Demo = () => (
         },
       }}
     >
-      {({ fields, state, canSubmit, reset }) => {
+      {({ fields, state, canSubmit, resetForm }) => {
         console.log('fields:', state);
         return (
           <div>
@@ -202,7 +202,7 @@ const Demo = () => (
             <Row gutter={10}>
               <Col>
                 <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
-                <Button type="danger" onClick={reset}>重置表单</Button>
+                <Button type="danger" onClick={resetForm}>重置表单</Button>
               </Col>
             </Row>
           </div>
@@ -416,7 +416,7 @@ ReactDOM.render(<Demo />, _mount_);
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | fields | 设置字段 | object | - |
-| children | 回调 {`fields`, `state`, `canSubmit`, `reset`} | function | - |
+| children | 回调 {`fields`, `state`, `canSubmit`, `resetForm`} | function | - |
 | onSubmit | 提交回调 {`initial`, `current`}  | function | - |
 | onSubmitError | 调用 `onSubmit` 抛出的任何错误。从字段名称返回对象映射。  | function | - |
 | resetOnSubmit | 在 `onSubmit` 成功后将表单重置为其初始状态。| bool | `true` |

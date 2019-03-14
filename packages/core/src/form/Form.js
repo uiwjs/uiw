@@ -154,7 +154,7 @@ export default class Form extends React.PureComponent {
           {children({
             fields: formUnits,
             state: this.state,
-            reset: this.reset,
+            resetForm: this.reset,
             canSubmit: this.canSubmit,
           })}
         </fieldset>
