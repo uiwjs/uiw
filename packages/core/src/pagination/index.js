@@ -44,7 +44,7 @@ export default class Pagination extends React.Component {
       }
     }
     this.setState({ ...state }, () => {
-      onChange(this.state.current);
+      onChange(this.state.current, total, pageSize);
     });
   }
   initPageSoure() {

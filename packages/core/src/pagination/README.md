@@ -93,4 +93,4 @@ ReactDOM.render(
 | divider | 页码之间是否间隔 | Boolean | - |
 | size | 当为 `small` 时，是小尺寸分页 | Enum{`small`, `default`} | - |
 | alignment | 对齐 | Enum{`left`, `center`, `right`} | `left` |
-| onChange | 页码改变的回调，返回改变后的页码 | Function(activePage,total,pageSize) | - |
+| onChange | 页码改变的回调，返回改变后的页码 | Function(current, total, pageSize) | - |
