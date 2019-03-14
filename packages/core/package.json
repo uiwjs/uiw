@@ -37,8 +37,8 @@
     "frontend"
   ],
   "peerDependencies": {
-    "react": ">=16.3.0",
-    "react-dom": ">=16.3.0"
+    "react": ">=16.7.0",
+    "react-dom": ">=16.7.0"
   },
   "dependencies": {
     "@uiw/copy-to-clipboard": "^1.0.7",
