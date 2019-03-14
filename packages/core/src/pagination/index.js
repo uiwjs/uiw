@@ -52,7 +52,7 @@ export default class Pagination extends React.Component {
     const { current } = this.state;
     const data = [{ type: 'prev', disabled: current === 1 }];
     const count = Math.ceil(total / pageSize);
-    const itemCount = 5;
+    const itemCount = count <= 5 ? count : 5;
     let num = 0;
     let basic = 0;
     if (current > 3 && count > 5) {
@@ -63,14 +63,14 @@ export default class Pagination extends React.Component {
     }
     while (num < itemCount) {
       num += 1;
-      if (current > 3) {
+      if (current > 3 && count > 5) {
         basic = current - 3;
       }
       let label = num + basic;
-      if (count - current === 0) {
+      if (count - current === 0 && count > 5) {
         label -= 2;
       }
-      if (count - current === 1) {
+      if (count - current === 1 && count > 5) {
         label -= 1;
       }
       if (label <= count) {

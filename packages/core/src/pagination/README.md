@@ -3,7 +3,6 @@ Pagination 分页
 
 当数据量较多时，使用分页可以快速进行数据切换，每次只加载一个页面。
 
-
 ### 基本用法
 
 <!--DemoStart,bgWhite,codePen--> 
@@ -12,6 +11,10 @@ import { Pagination, Divider } from 'uiw';
 
 ReactDOM.render(
   <div>
+    <Pagination current={2} pageSize={10} total={30} divider />
+    <Divider />
+    <Pagination current={2} pageSize={10} total={38} divider />
+    <Divider />
     <Pagination current={1} pageSize={5} total={249} />
     <Divider />
     <Pagination current={1} pageSize={10} total={50} />
