@@ -105,7 +105,7 @@ const Demo = () => (
       }
     }}
   >
-    {({ fields, state, canSubmit }) => {
+    {({ fields, state, canSubmit, reset }) => {
       console.log('fields:-->', state);
       return (
         <div style={{ maxWidth: 500 }}>
@@ -127,11 +127,14 @@ const Demo = () => (
             <Col>{fields.textarea}</Col>
           </Row>
           <Row gutter={10}>
+            <Col style={{ padding: '5px 0 10px 0' }}>
+              {fields.terms}
+            </Col>
+          </Row>
+          <Row gutter={10}>
             <Col fixed>
               <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
-            </Col>
-            <Col fixed align="middle">
-              {fields.terms}
+              <Button type="light" onClick={reset}>重置表单</Button>
             </Col>
           </Row>
         </div>
@@ -188,16 +191,21 @@ const Demo = () => (
         },
       }}
     >
-      {({ fields, state, canSubmit }) => {
+      {({ fields, state, canSubmit, reset }) => {
         console.log('fields:', state);
         return (
-          <Row gutter={10}>
-            <Col fixed>{fields.username}</Col>
-            <Col fixed>{fields.password}</Col>
-            <Col>
-              <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
-            </Col>
-          </Row>
+          <div>
+            <Row gutter={10}>
+              <Col fixed>{fields.username}</Col>
+              <Col fixed>{fields.password}</Col>
+            </Row>
+            <Row gutter={10}>
+              <Col>
+                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+                <Button type="danger" onClick={reset}>重置表单</Button>
+              </Col>
+            </Row>
+          </div>
         )
       }}
     </Form>
@@ -371,7 +379,6 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
-
 ## FormItem 横排
 
 对组件 `FormItem` 横排展示示例。
@@ -409,7 +416,7 @@ ReactDOM.render(<Demo />, _mount_);
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | fields | 设置字段 | object | - |
-| children | 回调 {`fields`, `state`, `canSubmit`} | node/function | - |
+| children | 回调 {`fields`, `state`, `canSubmit`, `reset`} | function | - |
 | onSubmit | 提交回调 {`initial`, `current`}  | function | - |
 | onSubmitError | 调用 `onSubmit` 抛出的任何错误。从字段名称返回对象映射。  | function | - |
 | resetOnSubmit | 在 `onSubmit` 成功后将表单重置为其初始状态。| bool | `true` |
