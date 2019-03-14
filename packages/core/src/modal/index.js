@@ -30,7 +30,7 @@ export default class Modal extends React.PureComponent {
   }
   onClose = e => this.overlay.onClosed(e);
   render() {
-    const { prefixCls, className, useButton, autoFocus, title, content, cancelText, confirmText, type, icon, width, isCloseButtonShown, ...other } = this.props;
+    const { prefixCls, className, useButton, autoFocus, title, content, cancelText, confirmText, type, icon, maxWidth, width, isCloseButtonShown, ...other } = this.props;
     const cls = classnames(prefixCls, className, { [`${type}`]: type });
     return (
       <Overlay
@@ -45,7 +45,7 @@ export default class Modal extends React.PureComponent {
               [`${prefixCls}-shown-title`]: title,
               [`${prefixCls}-shown-icon`]: icon,
             })}
-            style={{ maxWidth: width }}
+            style={{ maxWidth, width }}
           >
             {(title || icon) && (
               <div className={`${prefixCls}-header`}>
@@ -83,6 +83,7 @@ Modal.propTypes = {
   autoFocus: PropTypes.bool,
   isCloseButtonShown: PropTypes.bool,
   isOpen: PropTypes.bool,
+  maxWidth: PropTypes.number,
   width: PropTypes.number,
   type: PropTypes.oneOf(['primary', 'success', 'warning', 'danger', 'light', 'dark']),
   onCancel: PropTypes.func,
@@ -97,7 +98,7 @@ Modal.defaultProps = {
   autoFocus: false,
   isCloseButtonShown: true,
   isOpen: false,
-  width: 500,
+  maxWidth: 500,
   type: 'light',
   onCancel: () => null,
   onConfirm: () => null,

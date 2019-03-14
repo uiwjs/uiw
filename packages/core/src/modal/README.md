@@ -126,6 +126,122 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
+
+### 表单应用
+
+这里是利用 `Promise` 等它执行完成再去关闭窗口
+
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Modal, ButtonGroup, Button } from 'uiw';
+
+class Demo extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      visible: false,
+      loading: false,
+    }
+  }
+  onClick() {
+    this.setState({ visible: !this.state.visible });
+  }
+  onClosed() {
+    this.setState({ visible: false });
+  }
+  onSubmit({ initial, current }) {
+    const errorObj = {};
+    if (current.userName.startsWith('u')) {
+      errorObj.userName = `姓名 ${current.userName} 不能以 ‘u’ 开头`;
+    }
+    if (!current.age || current.age < 18 || current.age > 30) {
+      errorObj.age = '年龄必须在18 ~ 30岁之间。';
+    }
+    if (!current.textarea) {
+      errorObj.textarea = '请输入描述内容';
+    }
+    if(Object.keys(errorObj).length > 0) {
+      const err = new Error();
+      err.filed = errorObj;
+      throw err;
+    }
+
+    this.setState({ loading: true });
+    setTimeout(() => {
+      this.setState({ loading: false, visible: false });
+      Notify.success({ title: '提交成功通知！', description: '提交内容，。' });
+    }, 2000);
+  }
+  render() {
+    return (
+      <div>
+        <Modal
+          title="模态对话框"
+          width={900}
+          isOpen={this.state.visible}
+          onClosed={this.onClosed.bind(this)}
+          type="danger"
+          useButton={false}
+        >
+          <Form
+            resetOnSubmit={false}
+            onSubmit={this.onSubmit.bind(this)}
+            onSubmitError={(error) => {
+              if (error.filed) {
+                return { ...error.filed };
+              }
+              return null;
+            }}
+            fields={{
+              userName: {
+                initialValue: 'uiw',
+                label: '姓名',
+                help: '以“u”开头的名字将在此处显示错误信息'
+              },
+              age: {
+                initialValue: 9,
+                label: '年龄',
+                children: <Input type="number" />
+              },
+              textarea: {
+                initialValue: '',
+                label: '描述说明',
+                children: <Textarea placeholder="请输入内容" />
+              },
+            }}
+          >
+            {({ fields, state, canSubmit }) => {
+              console.log('fields:-->', state);
+              return (
+                <div>
+                  <Row gutter={10}>
+                    <Col>{fields.userName}</Col>
+                    <Col>{fields.age}</Col>
+                  </Row>
+                  <Row gutter={10}>
+                    <Col>{fields.textarea}</Col>
+                  </Row>
+                  <Row gutter={10} justify="flex-end">
+                    <Col fixed>
+                      <Button loading={this.state.loading} disabled={!canSubmit()} type="primary" htmlType="submit">提交表单</Button>
+                    </Col>
+                  </Row>
+                </div>
+              )
+            }}
+          </Form>
+        </Modal>
+        <ButtonGroup>
+          <Button onClick={this.onClick.bind(this)}>表单中应用</Button>
+        </ButtonGroup>
+      </div>
+    )
+  }
+}
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
 ### 自定义页脚
 
 设置 `useButton={false}` 隐藏默认的按钮，再根据自己需求定义按钮。
@@ -195,8 +311,6 @@ ReactDOM.render(<Demo />, _mount_);
 
 ## Props
 
-此组件继承 [`<Overlay>`](#/components/overlay) 的属性，所以部分参数可以参考 `<Overlay>` 组件。
-
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | title | 设置标题 | Function(e) | - |
@@ -207,7 +321,10 @@ ReactDOM.render(<Demo />, _mount_);
 | icon | 设置对话框右上角图标，设置 `type` 将图标设置不同的颜色。当前属性为 [`<Icon>`](#/components/icon) 组件的 `type` 属性，所以可以参考该组件自定义图标。 | String/ReactNode | - |
 | useButton | 是否使用默认按钮，如果设置 `false` 需要自定义按钮关闭 | Boolean | `true` |
 | type | 按钮类型跟 `<Button>` 组件的 `type` 参数一致，同时会影响按钮颜色。 | String | `light` |
-| width | 宽度 | Number | `500` |
+| width | 设置弹出框宽度 | Number | - |
+| maxWidth | 默认弹出框最大宽度 `500` | Number | `500` |
 | isCloseButtonShown | 是否在对话框的标题中显示关闭按钮。 请注意，只有在提供标题时才会呈现标题。 | Boolean | `true` |
 | isOpen[`<Overlay>`](#/components/overlay) | 对话框是否可见 | Boolean | `false` |
 | maskClosable[`<Overlay>`](#/components/overlay) | 点击遮罩层是否允许关闭 | Boolean | `true` |
+
+更多属性文档请参考 [Overlay](#/components/overlay)。
