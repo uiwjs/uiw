@@ -16,14 +16,65 @@ import { Split } from 'uiw';
 import { Split } from 'uiw';
 
 const Demo = () => (
-  <Split style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3 }}>
-    <div style={{ minWidth: 30, flexBasis: '20%' }}>
-      Left Pane
-    </div>
-    <div style={{ minWidth: 30 }}>
-      Right Pane
-    </div>
-  </Split>
+  <div>
+    <Split style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3 }}>
+      <div style={{ minWidth: 60, flexBasis: '20%' }}>
+        Left Pane
+      </div>
+      <div style={{ minWidth: 30 }}>
+        Right Pane
+      </div>
+    </Split>
+  </div>
+);
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
+### 可用于布局
+
+设置 `visiable={false}` 禁用拖拽栏，可用于布局。
+
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Split } from 'uiw';
+
+const Demo = () => (
+  <div>
+    <Split mode="vertical" visiable={false}>
+      <div style={{ minHeight: 45, background: '#dcdcdc' }}>
+        Header
+      </div>
+      <Split visiable={false}>
+        <div style={{ minWidth: 200, maxWidth: 200, minHeight: 120, background: '#b5b5b5' }}>
+          Sider
+        </div>
+        <div style={{ background: '#ececec' }}>
+          Content
+        </div>
+      </Split>
+      <div style={{ minHeight: 45, background: '#dcdcdc' }}>
+        Footer
+      </div>
+    </Split>
+    <Divider />
+    <Split visiable={false}>
+      <div style={{ minWidth: 200, maxWidth: 200, minHeight: 85, background: '#a9a9a9' }}>
+        Sider
+      </div>
+      <Split mode="vertical" visiable={false}>
+        <div style={{ minHeight: 45, background: '#dcdcdc' }}>
+          Header
+        </div>
+        <div style={{ minHeight: 85, background: '#b5b5b5' }}>
+          Content
+        </div>
+        <div style={{ minHeight: 45, background: '#dcdcdc' }}>
+          Footer
+        </div>
+      </Split>
+    </Split>
+  </div>
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
@@ -77,12 +128,9 @@ const Demo = () => (
         Right Pane
       </div>
     </Split>
-    <Split mode="vertical" lineBar style={{ height: 280, border: '1px solid #d5d5d5', borderRadius: 3, marginTop: 10 }}>
+    <Split mode="vertical" lineBar style={{ height: 210, border: '1px solid #d5d5d5', borderRadius: 3, marginTop: 10 }}>
       <div>
         Left Pane
-      </div>
-      <div>
-        Center Pane
       </div>
       <div>
         Center Pane
@@ -240,6 +288,8 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 抽屉
 
+可拖拽左边栏宽度。
+
 <!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Split } from 'uiw';
@@ -262,7 +312,7 @@ class Demo extends React.Component {
         <div style={{ marginBottom: 10 }}>
           <Button type="primary" onClick={this.onClick.bind(this)}>{this.state.width === 0 ? '隐藏菜单' : '展示菜单'}</Button>
         </div>
-        <Split visiable={this.state.width !== 0} style={{ border: '1px solid #d5d5d5', borderRadius: 3 }}>
+        <Split lineBar visiable={this.state.width !== 0} style={{ border: '1px solid #d5d5d5', borderRadius: 3 }}>
           <div style={{ maxWidth: this.state.width, overflow: 'hidden' }}>
             <Menu>
               <Menu.Item icon="heart-on" text="另存为" active />
