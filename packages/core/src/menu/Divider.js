@@ -20,7 +20,7 @@ export default class Divider extends React.Component {
 
 Divider.propTypes = {
   prefixCls: PropTypes.string,
-  title: PropTypes.string,
+  title: PropTypes.node,
 };
 
 Divider.defaultProps = {
