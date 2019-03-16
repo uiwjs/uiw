@@ -252,6 +252,130 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
+### 选择器
+
+<!--DemoStart,bgWhite,codePen--> 
+```jsx
+import { Dropdown, Menu, Button, Icon, Checkbox, Tag, Row, Col } from 'uiw';
+
+class SelectTag extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: props.value,
+      isOpen: false,
+    };
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.value !== this.props.value) {
+      this.setState({ value: nextProps.value });
+    }
+  }
+  onVisibleChange(isOpen) {
+    this.setState({ isOpen });
+  }
+  onClick(item) {
+    this.modifyValue(item.value);
+  }
+  modifyValue(itemVal) {
+    const { onChange } = this.props;
+    const { value } = this.state;
+    const checked = value.includes(itemVal);
+    let values = [...value];
+    if(!checked) {
+      values.push(itemVal);
+    } else {
+      values = values.filter(v => itemVal !== v);
+    }
+    this.setState({ value: values, isOpen: false }, () => {
+      onChange && onChange(values);
+    });
+  }
+  onClose(item, e) {
+    e.stopPropagation();
+    this.modifyValue(item.value);
+  }
+  onChange(item, e) {
+    this.modifyValue(item.value);
+  }
+  render() {
+    const { option, placeholder = '请选择' } = this.props;
+    const { isOpen, value } = this.state;
+    const tags = value.map(val => option.find(item => val === item.value));
+    return (
+      <Dropdown
+        trigger="click"
+        onVisibleChange={this.onVisibleChange.bind(this)}
+        isOpen={isOpen}
+        menu={
+          <Menu bordered style={{ minWidth: 220, height: 210, overflow: 'auto' }}>
+            {option.map((item, idx) => {
+              const active = value.includes(item.value);
+              return (
+                <Menu.Item
+                  key={idx}
+                  text={
+                    <Row gutter={10} justify="space-between">
+                      <Col>
+                        <span style={{ verticalAlign: 'middle' }}>{item.label}</span>
+                      </Col>
+                      <Col fixed>
+                        {active && <Checkbox checked={active} onChange={this.onChange.bind(this, item)} />}
+                      </Col>
+                    </Row>
+                  }
+                  onClick={this.onClick.bind(this, item)}
+                />
+              );
+            })}
+          </Menu>
+        }
+      >
+        <div style={{ minWidth: 120, minHeight: 37, maxWidth: 320, padding: 5, border: '1px solid #c7c8ca', borderRadius: 3 }}>
+          {tags.length === 0 && (
+            <span style={{
+              lineHeight: '23px',
+              padding: '0 4px',
+            }}>{placeholder}</span>
+          )}
+          {tags.map((item, idx) => {
+            const { label, ...itemProps } = item;
+            const props = {
+              style: { margin: '0 2px' },
+              onClose: this.onClose.bind(this, item),
+              key: idx,
+              ...itemProps,
+            }
+            return (
+              <Tag light closable {...props}>{label}</Tag>
+            );
+          })}
+        </div>
+      </Dropdown>
+    )
+  }
+}
+
+const option = [
+  { label: '台北市, 中国台湾', value: 1 },
+  { label: '海参崴, 俄罗斯', value: 2 },
+  { label: '三亚市, 中国', value: 3, color: '#dc3545' },
+  { label: '成都市, 中国', value: 4, color: '#dc3545' },
+  { label: '布拉格, 捷克', value: 5 },
+  { label: '布拉迪斯拉发, 斯洛伐克', value: 6 },
+  { label: 'LAX 洛杉矶, 美国', value: 7 },
+  { label: '黄冈市, 中国', value: 8, color: '#dc3545' },
+];
+
+ReactDOM.render(
+  <div>
+    <SelectTag placeholder="选择城市" option={option} value={[2, 8]} onChange={(item) => { console.log('item', item); }} />
+  </div>,
+  _mount_
+);
+```
+<!--End-->
+
 ## Tag
 
 | 参数 | 说明 | 类型 | 默认值 |

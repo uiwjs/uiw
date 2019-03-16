@@ -7,7 +7,7 @@ export default class Tag extends React.Component {
   render() {
     const { prefixCls, className, style, title, children, visible, color, disabled, bordered, closable, light, onClose, ...other } = this.props;
     const cls = classnames(`${prefixCls}`, className, { [`${prefixCls}-light`]: light, disabled });
-    const styl = { };
+    const styl = { ...style };
     if (!light) {
       styl.color = '#fff';
       styl.backgroundColor = color;
