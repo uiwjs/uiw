@@ -331,7 +331,7 @@ class SelectTag extends React.Component {
           </Menu>
         }
       >
-        <div style={{ minWidth: 120, minHeight: 37, maxWidth: 320, padding: 5, border: '1px solid #c7c8ca', borderRadius: 3 }}>
+        <div style={{ minWidth: 120, fontSize: 12, maxWidth: 320, padding: 5, border: '1px solid #c7c8ca', borderRadius: 3 }}>
           {tags.length === 0 && (
             <span style={{
               lineHeight: '23px',

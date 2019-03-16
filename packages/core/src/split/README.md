@@ -37,7 +37,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { Split } from 'uiw';
+import { Split, Divider } from 'uiw';
 
 const Demo = () => (
   <div>
@@ -292,7 +292,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { Split } from 'uiw';
+import { Split, Menu, Button } from 'uiw';
 
 class Demo extends React.Component {
   constructor(props) {
