@@ -143,6 +143,75 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
+
+### 在表单中使用
+
+在 [`<Form />`](#/components/form) 表单中应用 [`<Textarea />`](#/components/textarea) 组件
+
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Form, Row, Col, Select, Button, Notify } from 'uiw';
+
+const Demo = () => (
+  <div>
+    <Form
+      onSubmitError={(error) => {
+        if (error.filed) {
+          return { ...error.filed };
+        }
+        return null;
+      }}
+      onSubmit={({initial, current}) => {
+        const errorObj = {};
+        if (!current.selectField) {
+          errorObj.selectField = '默认需要选择内容，选择入内容';
+        }
+        if(Object.keys(errorObj).length > 0) {
+          const err = new Error();
+          err.filed = errorObj;
+          Notify.error({ title: '提交失败！', description: '请确认提交表单是否正确！' });
+          throw err;
+        }
+        Notify.success({
+          title: '提交成功！',
+          description: `表单提交成功，选择值为：${current.selectField}，将自动填充初始化值！`,
+        });
+      }}
+      fields={{
+        selectField: {
+          children: (
+            <Select>
+              <Select.Option value="w">Choose an item...</Select.Option>
+              <Select.Option value="1">One</Select.Option>
+              <Select.Option value="2">Two</Select.Option>
+              <Select.Option value="3">Three</Select.Option>
+              <Select.Option value="4">Four</Select.Option>
+            </Select>
+          )
+        },
+      }}
+    >
+      {({ fields, state, canSubmit }) => {
+        return (
+          <div>
+            <Row>
+              <Col fixed>{fields.selectField}</Col>
+            </Row>
+            <Row>
+              <Col fixed>
+                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+              </Col>
+            </Row>
+          </div>
+        )
+      }}
+    </Form>
+  </div>
+)
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
 ### HTML select
 
 这个组件是最简单的基础样式组件，可以直接引用样式，使用 `w-select` 纯样式即可达到效果，下拉框右边箭头效果通过样式更改，通过 [`b64`](http://b64.io/) 工具，转换成 `base64` 格式。

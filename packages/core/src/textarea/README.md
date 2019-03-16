@@ -65,9 +65,6 @@ const Demo = () => (
         return (
           <div>
             <Row>
-              <Col style={{ maxWidth: 300 }}>{fields.name}</Col>
-            </Row>
-            <Row>
               <Col style={{ maxWidth: 300 }}>{fields.commit}</Col>
             </Row>
             <Row>
