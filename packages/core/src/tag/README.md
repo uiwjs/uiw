@@ -256,52 +256,68 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,codePen--> 
 ```jsx
-import { Dropdown, Menu, Button, Icon, Checkbox, Tag, Row, Col } from 'uiw';
+import { Dropdown, Menu, Button, Icon, Input, Checkbox, Tag, Row, Col } from 'uiw';
 
 class SelectTag extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       value: props.value,
+      option: props.option,
+      selectOption: [],
       isOpen: false,
     };
+  }
+  componentDidMount() {
+    const { value, option } = this.state;
+    const selectOption = value.map(val => option.find(item => val === item.value)).filter(item => !!item);
+    this.setState({ selectOption });
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
       this.setState({ value: nextProps.value });
+    }
+    if (nextProps.option !== this.props.option) {
+      this.setState({ option: nextProps.option });
     }
   }
   onVisibleChange(isOpen) {
     this.setState({ isOpen });
   }
   onClick(item) {
-    this.modifyValue(item.value);
+    this.modifyValue(item.value, item);
   }
-  modifyValue(itemVal) {
+  modifyValue(itemVal, item) {
     const { onChange } = this.props;
-    const { value } = this.state;
+    let { value, selectOption } = this.state;
     const checked = value.includes(itemVal);
-    let values = [...value];
+    // let values = [...value];
     if(!checked) {
-      values.push(itemVal);
+      value.push(itemVal);
+      selectOption.push(item);
     } else {
-      values = values.filter(v => itemVal !== v);
+      value = value.filter(v => itemVal !== v);
+      selectOption = selectOption.filter(v => item.value !== v.value);
     }
-    this.setState({ value: values, isOpen: false }, () => {
-      onChange && onChange(values);
+    this.setState({ value: value, selectOption, isOpen: false }, () => {
+      onChange && onChange(value);
     });
   }
   onClose(item, e) {
     e.stopPropagation();
-    this.modifyValue(item.value);
+    this.modifyValue(item.value, item);
   }
   onChange(item, e) {
     this.modifyValue(item.value);
   }
+  onSearch(e) {
+    let option = this.state.option;
+    const options = this.props.option.filter(item => item.label.indexOf(e.target.value) > -1);
+    this.setState({ option: options  });
+  }
   render() {
-    const { option, placeholder = '请选择' } = this.props;
-    const { isOpen, value } = this.state;
-    const tags = value.map(val => option.find(item => val === item.value));
+    const { placeholder = '请选择' } = this.props;
+    const { isOpen, value, option, selectOption } = this.state;
     return (
       <Dropdown
         trigger="click"
@@ -309,6 +325,11 @@ class SelectTag extends React.Component {
         isOpen={isOpen}
         menu={
           <Menu bordered style={{ minWidth: 220, height: 210, overflow: 'auto' }}>
+            <Menu.Divider
+              title={
+                <Input placeholder="请输入内容" onChange={this.onSearch.bind(this)} />
+              }
+            />
             {option.map((item, idx) => {
               const active = value.includes(item.value);
               return (
@@ -331,17 +352,17 @@ class SelectTag extends React.Component {
           </Menu>
         }
       >
-        <div style={{ minWidth: 120, fontSize: 12, maxWidth: 320, padding: 5, border: '1px solid #c7c8ca', borderRadius: 3 }}>
-          {tags.length === 0 && (
+        <div style={{ minWidth: 120, maxWidth: 320, padding: 5, border: '1px solid #c7c8ca', borderRadius: 3 }}>
+          {selectOption.length === 0 && (
             <span style={{
               lineHeight: '23px',
               padding: '0 4px',
             }}>{placeholder}</span>
           )}
-          {tags.map((item, idx) => {
+          {selectOption.map((item, idx) => {
             const { label, ...itemProps } = item;
             const props = {
-              style: { margin: '0 2px' },
+              style: { margin: 2 },
               onClose: this.onClose.bind(this, item),
               key: idx,
               ...itemProps,
