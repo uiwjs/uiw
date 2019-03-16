@@ -22,6 +22,69 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
+### 在表单中使用
+
+在 [`<Form />`](#/components/form) 表单中应用 [`<Textarea />`](#/components/textarea) 组件
+
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Form, Row, Col, Textarea, Button, Notify } from 'uiw';
+
+const Demo = () => (
+  <div>
+    <Form
+      onSubmitError={(error) => {
+        if (error.filed) {
+          return { ...error.filed };
+        }
+        return null;
+      }}
+      onSubmit={({initial, current}) => {
+        const errorObj = {};
+        if (!current.commit) {
+          errorObj.commit = '内容为空，请输入内容';
+        }
+        if(Object.keys(errorObj).length > 0) {
+          const err = new Error();
+          err.filed = errorObj;
+          Notify.error({ title: '提交失败！', description: '请确认提交表单是否正确！' });
+          throw err;
+        }
+        Notify.success({
+          title: '提交成功！',
+          description: `表单提交成功，内容为：${current.commit}，将自动填充初始化值！`,
+        });
+      }}
+      fields={{
+        commit: {
+          children: <Textarea placeholder="请输入说明内容" />
+        },
+      }}
+    >
+      {({ fields, state, canSubmit }) => {
+        return (
+          <div>
+            <Row>
+              <Col style={{ maxWidth: 300 }}>{fields.name}</Col>
+            </Row>
+            <Row>
+              <Col style={{ maxWidth: 300 }}>{fields.commit}</Col>
+            </Row>
+            <Row>
+              <Col fixed>
+                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+              </Col>
+            </Row>
+          </div>
+        )
+      }}
+    </Form>
+  </div>
+)
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
 
 ### 禁用
 
