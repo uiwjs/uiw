@@ -157,6 +157,84 @@ ReactDOM.render(
 ```
 <!--End-->
 
+### 选择器
+
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Dropdown, Menu, Button, Icon } from 'uiw';
+
+class Select extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: props.value,
+      isOpen: false,
+    };
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.value !== this.props.value) {
+      this.setState({ value: nextProps.value });
+    }
+  }
+  onVisibleChange(isOpen) {
+    this.setState({ isOpen });
+  }
+  onClick(item) {
+    const { onChange } = this.props;
+    this.setState({ value: item.value, isOpen: false }, () => {
+      onChange && onChange(item);
+    });
+  }
+  render() {
+    const { option } = this.props;
+    const { isOpen, value } = this.state;
+    const label = option.find(item => value === item.value);
+    return (
+      <Dropdown
+        trigger="click"
+        onVisibleChange={this.onVisibleChange.bind(this)}
+        isOpen={isOpen}
+        menu={
+          <Menu bordered style={{ minWidth: 120 }}>
+            {option.map((item, idx) => {
+              const active = value === item.value;
+              return (
+                <Menu.Item active={active} key={idx} text={item.label} onClick={this.onClick.bind(this, item)}/>
+              );
+            })}
+          </Menu>
+        }
+      >
+        <Button type="link">{label.label}<Icon type={isOpen ? 'arrow-up' : 'arrow-down'} /></Button>
+      </Dropdown>
+    )
+  }
+}
+
+const option = [
+  { label: '往返', value: 1 },
+  { label: '单程', value: 2 },
+  { label: '联程', value: 3 },
+  { label: 'Nomad', value: 4 },
+];
+
+const option2 = [
+  { label: '经济舱', value: 1 },
+  { label: '豪华经济舱', value: 2 },
+  { label: '商务舱', value: 3 },
+  { label: '头等舱', value: 4 },
+];
+
+ReactDOM.render(
+  <div>
+    <Select option={option} value={1} onChange={(item) => { console.log('item', item); }} />
+    <Select option={option2} value={2} onChange={(item) => { console.log('item', item); }} />
+  </div>,
+  _mount_
+);
+```
+<!--End-->
+
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 |

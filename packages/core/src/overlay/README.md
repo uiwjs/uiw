@@ -32,7 +32,11 @@ class Demo extends React.PureComponent {
       <div>
         <Button type="primary" onClick={this.toggleOverlay.bind(this, true)}>点击弹出内容</Button>
         <Button type="primary" onClick={this.toggleOverlay.bind(this, false)}>弹出内容没有遮罩层</Button>
-        <Overlay hasBackdrop={this.state.hasBackdrop} isOpen={this.state.isOpen} onClose={this.onClose.bind(this)}>
+        <Overlay
+          hasBackdrop={this.state.hasBackdrop}
+          isOpen={this.state.isOpen}
+          onClose={this.onClose.bind(this)}
+        >
           <Card active bordered={!this.state.hasBackdrop} style={{ width: 500 }}>
             <h3 style={{margin: 0}}>基础弹出层</h3>
             <div>
@@ -41,6 +45,61 @@ class Demo extends React.PureComponent {
             <br />
             <Button type="danger" onClick={this.toggleOverlay.bind(this, false)}>关闭</Button>
           </Card>
+        </Overlay>
+      </div>
+    )
+  }
+}
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
+
+### 完全定制弹出容器
+
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Overlay, Button } from 'uiw';
+
+class Demo extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false,
+      hasBackdrop: true,
+    }
+  }
+  toggleOverlay(hasBackdrop, e) {
+    this.setState({ isOpen: !this.state.isOpen, hasBackdrop });
+  }
+  onClose(hasBackdrop, e) {
+    this.setState({ isOpen: false });
+  }
+  render() {
+    return (
+      <div>
+        <Button type="primary" onClick={this.toggleOverlay.bind(this, true)}>点击弹出内容</Button>
+        <Overlay
+          backdropProps={{
+            style: { backgroundColor: 'rgba(0, 0, 0, .5)' }
+          }}
+          hasBackdrop={this.state.hasBackdrop}
+          isOpen={this.state.isOpen} onClose={this.onClose.bind(this)}
+        >
+          <div style={{ backgroundColor: '#fff', minWidth: 500 }} >
+            <Icon onClick={this.onClose.bind(this)} type="circle-close" style={{ position: 'absolute', right: 0, top: '-20px', color: '#fff', cursor: 'pointer' }}/>
+            <div style={{ backgroundColor: 'rgb(0, 204, 180)', color: 'rgb(255, 255, 255)', textAlign: 'center', padding: '34px 24px' }}>
+              <h1 style={{ fontSize: '28px', fontWeight: '700', color: 'rgb(255, 255, 255)', lineHeight: '1.2', margin: '0px' }}>
+                下次预订可享 5 ￥ 优惠
+              </h1>
+              <div style={{ padding: '5px 0' }}>(5 ￥ ~ ¥38)</div>
+              <div style={{ fontSize: '18px' }}>使用促销码： <b style={{ color: '#f8e71c', margin: '0px 4px' }}>KSGI5</b></div>
+            </div>
+            <div style={{ padding: '24px' }}>
+              <h1 style={{ fontSize: '28px', fontWeight: '700', color: 'rgb(23, 27, 30)', lineHeight: '1.2', margin: '0px 0px 4px' }}>订阅 uiw 组件新闻通讯</h1>
+              <div style={{ color: 'rgb(70, 81, 94)' }}>在收件箱中接收独家更新信息</div>
+            </div>
+          </div>
         </Overlay>
       </div>
     )
