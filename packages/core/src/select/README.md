@@ -9,7 +9,7 @@ import { Select } from 'uiw';
 
 ### 基础用法
 
-适用广泛的基础单选 `value` 的值为当前被选中的 `Option` 的 `value` 属性值。
+适用广泛的基础单选 `value` 的值为当前被选中的 `Option` 的 `value` 属性值。自定义 `Select` 请查看 [`<Dropdown />`](#/components/dropdown) 组件实例。
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
@@ -146,7 +146,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 在表单中使用
 
-在 [`<Form />`](#/components/form) 表单中应用 [`<Textarea />`](#/components/textarea) 组件
+在 [`<Form />`](#/components/form) 表单中应用 [`<Select />`](#/components/select) 组件
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js

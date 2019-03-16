@@ -7,7 +7,66 @@ Form 表单
 import { Form, FormItem } from 'uiw';
 ```
 
-## 自定义校验
+### 基本用法
+
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Form, Row, Col, Slider, Button, Notify } from 'uiw';
+
+const Demo = () => (
+  <div>
+    <Form
+      onSubmit={({initial, current}) => {
+        if(current.name === initial.name) {
+          Notify.error({
+            title: '提交失败！',
+            description: `表单提交年龄失败，年龄为：${current.name}，与初始化值是一样滴！`,
+          });
+        } else {
+          Notify.success({
+            title: '提交成功！',
+            description: `表单提交年龄成功，年龄为：${current.name}，将自动填充初始化值！`,
+          });
+        }
+      }}
+      fields={{
+        name: {
+          label: '姓名',
+          children: <Input placeholder="请输入姓名" />
+        },
+      }}
+    >
+      {({ fields, state, canSubmit }) => {
+        return (
+          <div>
+            <Row>
+              <Col style={{ maxWidth: 300 }}>{fields.name}</Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                {state.current.name && (
+                  <span>
+                    {state.current.name}
+                  </span>
+                )}
+              </Col>
+            </Row>
+          </div>
+        )
+      }}
+    </Form>
+  </div>
+)
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
+### 自定义校验
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
@@ -146,7 +205,7 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
-## 水平登录栏
+### 水平登录栏
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
@@ -273,7 +332,7 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
-## 表单提交
+### 表单提交
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
@@ -350,7 +409,140 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
-## FormItem 竖排
+
+### 自定义控件应用
+
+下面实例是在 [`<Form />`](#/components/form) 表单组件中，应用自定义 `<CustomSelect />` 控件组件。
+
+> ⚠️ 注意，自定义控件需要两个必要的 `props` 参数，`value` 和 `onChange`
+
+- `value` 用于值传递，
+- `onChange(value)` 用于值变更需要执行的回调函数，回调函数第一个参数必须是 `value`。
+
+<!--DemoStart,bgWhite,codePen--> 
+```jsx
+import { Form, Row, Col, Dropdown, Menu, Icon, Button, Notify } from 'uiw';
+
+// 自定义组件
+class CustomSelect extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: props.value,
+      isOpen: false,
+    };
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.value !== this.props.value) {
+      this.setState({ value: nextProps.value });
+    }
+  }
+  onVisibleChange(isOpen) {
+    this.setState({ isOpen });
+  }
+  onClick(item) {
+    const { onChange } = this.props;
+    this.setState({ value: item.value, isOpen: false }, () => {
+      onChange && onChange(item.value);
+    });
+  }
+  render() {
+    const { option } = this.props;
+    const { isOpen, value } = this.state;
+    const label = option.find(item => value === item.value);
+    return (
+      <Dropdown
+        trigger="click"
+        onVisibleChange={this.onVisibleChange.bind(this)}
+        isOpen={isOpen}
+        menu={
+          <Menu bordered style={{ minWidth: 120 }}>
+            {option.map((item, idx) => {
+              const active = value === item.value;
+              return (
+                <Menu.Item active={active} key={idx} text={item.label} onClick={this.onClick.bind(this, item)}/>
+              );
+            })}
+          </Menu>
+        }
+      >
+        <Button
+          style={{
+            boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 -1px 0 rgba(16, 22, 26, 0.1)'
+          }}
+          type="link"
+        >
+          {label.label}<Icon type={isOpen ? 'arrow-up' : 'arrow-down'} />
+        </Button>
+      </Dropdown>
+    )
+  }
+}
+
+// 自定义组件应用实例
+const Demo = () => (
+  <div>
+    <Form
+      onSubmitError={(error) => {
+        if (error.filed) {
+          return { ...error.filed };
+        }
+        return null;
+      }}
+      onSubmit={({initial, current}) => {
+        console.log('~~~', current);
+        const errorObj = {};
+        if (!current.select) {
+          errorObj.select = '内容为空，请输入内容';
+        }
+        if(Object.keys(errorObj).length > 0) {
+          const err = new Error();
+          err.filed = errorObj;
+          Notify.error({ title: '提交失败！', description: '请确认提交表单是否正确！' });
+          throw err;
+        }
+        Notify.success({
+          title: '提交成功！',
+          description: `表单提交成功，内容为：${current.select}，将自动填充初始化值！`,
+        });
+      }}
+      fields={{
+        select: {
+          initialValue: 0,
+          children: (
+            <CustomSelect option={[
+              { label: '请选择', value: 0 },
+              { label: '经济舱', value: 1 },
+              { label: '豪华经济舱', value: 2 },
+              { label: '商务舱', value: 3 },
+              { label: '头等舱', value: 4 },
+            ]} />
+          )
+        },
+      }}
+    >
+      {({ fields, state, canSubmit }) => {
+        return (
+          <div>
+            <Row>
+              <Col style={{ maxWidth: 300 }}>{fields.select}</Col>
+            </Row>
+            <Row>
+              <Col fixed>
+                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+              </Col>
+            </Row>
+          </div>
+        )
+      }}
+    </Form>
+  </div>
+)
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
+### FormItem 竖排
 
 对组件 `FormItem` 竖排展示示例。
 
@@ -379,7 +571,7 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
-## FormItem 横排
+### FormItem 横排
 
 对组件 `FormItem` 横排展示示例。
 
