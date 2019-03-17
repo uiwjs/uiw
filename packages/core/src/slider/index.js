@@ -40,11 +40,9 @@ export default class Slider extends React.Component {
     this.barOffsetLeft = this.bar[vertical ? 'offsetTop' : 'offsetLeft'];
     const val = this.state.value;
     if (range) {
-      if (this.indexBar === 1) {
-        this.barWidth = val[1] > val[0] ? this.barWidth + this.barOffsetLeft : this.barOffsetLeft;
-      } else {
-        this.barWidth = val[0] > val[1] ? this.barWidth + this.barOffsetLeft : this.barOffsetLeft;
-      }
+      this.barWidth = this.indexBar === 1 && val[1] > val[0] || this.indexBar !== 1 && val[0] > val[1]
+        ? this.barWidth + this.barOffsetLeft
+        : this.barOffsetLeft;
     }
     window.addEventListener('mousemove', this.onDragging, true);
     window.addEventListener('mouseup', this.onDragEnd, true);
@@ -126,22 +124,13 @@ export default class Slider extends React.Component {
     const { value } = this.state;
     const val1 = value[0];
     const val2 = value[1];
-    if (val1 < val2) {
-      if (val1 > val) {
-        value[0] = val;
-      }
-      if (val2 < val) {
-        value[1] = val;
-      }
+    if (val1 < val2 && val1 > val || val1 > val2 && val1 < val) {
+      value[0] = val;
     }
-    if (val1 > val2) {
-      if (val1 < val) {
-        value[0] = val;
-      }
-      if (val2 > val) {
-        value[1] = val;
-      }
+    if (val1 < val2 && val2 < val || val1 > val2 && val2 > val) {
+      value[1] = val;
     }
+
     if (val1 > val && val2 < val) {
       const half = val2 + (val1 - val2) / 2;
       if (half >= val) {
