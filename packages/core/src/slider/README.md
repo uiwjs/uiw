@@ -8,7 +8,7 @@ Slider 滑块输入条
 按钮样式的单选组合。
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Slider, Divider } from 'uiw';
 
 class Demo extends React.Component {
@@ -17,6 +17,7 @@ class Demo extends React.Component {
     this.state = {
       value: 20,
       value2: -5,
+      value3: [10, 50],
     };
   }
   render() {
@@ -60,6 +61,13 @@ class Demo extends React.Component {
           }}
         />
         <div>可选 -10~30值范围：<b>{this.state.value2}</b></div>
+        <Divider />
+        <Slider value={this.state.value3} range style={{ maxWidth: 260 }}
+          onChange={(value3)=> {
+            this.setState({ value3 });
+          }}
+        />
+        <div>取值范围：<b>{this.state.value3[0]} ~ {this.state.value3[1]}</b></div>
       </div>
     )
   }
@@ -73,7 +81,7 @@ ReactDOM.render(<Demo />, _mount_);
 在 [`<Form />`](#/components/form) 表单中应用 [`<Slider />`](#/components/slider) 组件，需要设置 `initialValue` 初始值。
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Form, Row, Col, Slider, Button, Notify } from 'uiw';
 
 const Demo = () => (
@@ -95,8 +103,6 @@ const Demo = () => (
       fields={{
         age: {
           initialValue: 0,
-          labelClassName: 'fieldLabel',
-          labelFor: 'age-inline',
           inline: true,
           label: '年龄',
           children: <Slider />
@@ -130,7 +136,7 @@ ReactDOM.render(<Demo />, _mount_);
 通过设置 `tooltip` 的值，来控制提示的显示。
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Slider, Divider} from 'uiw';
 
 class Demo extends React.Component {
@@ -157,8 +163,8 @@ ReactDOM.render(<Demo />, _mount_);
 
 通过 `step` 设置或返回每次拖动滑块控件时的递增量。
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen-->
+```jsx
 import { Slider, Divider} from 'uiw';
 
 class Demo extends React.Component {
@@ -168,6 +174,7 @@ class Demo extends React.Component {
       value: 20,
       value2: 1.5,
       value3: 20,
+      value4: [10, 40],
     };
   }
   render() {
@@ -207,8 +214,14 @@ class Demo extends React.Component {
           value={this.state.value3}
           style={{ maxWidth: 260 }}
           onChange={(value3)=> {
-            console.log('value5:', value3);
             this.setState({ value3 });
+          }}
+        />
+        <Divider />
+        <div>值 <b>value=[10, 40]</b> ，必须设置<b>range=true</b>，取值范围：<b>{this.state.value4[0]} ~ {this.state.value4[1]}</b></div>
+        <Slider value={this.state.value4} range style={{ maxWidth: 260 }}
+          onChange={(value4)=> {
+            this.setState({ value4 });
           }}
         />
       </div>
@@ -221,8 +234,8 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 标记刻度
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen-->
+```jsx
 import { Slider, Divider} from 'uiw';
 
 class Demo extends React.Component {
@@ -298,8 +311,8 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 禁用样式
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen-->
+```jsx
 import { Slider, Divider} from 'uiw';
 
 class Demo extends React.Component {
@@ -327,8 +340,8 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 垂直方向
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen-->
+```jsx
 import { Row, Col, Slider } from 'uiw';
 
 class Demo extends React.Component {
@@ -369,7 +382,7 @@ class Demo extends React.Component {
           <Slider vertical value={50} step={10} dots style={{ height: 260 }} />
         </Col>
         <Col fixed>
-          <Slider vertical step={2} value={26} min={20} max={44} dots marks style={{ height: 260 }} />
+          <Slider vertical step={2} range value={[26, 40]} min={20} max={44} dots marks style={{ height: 260 }} />
         </Col>
       </Row>
     );
@@ -390,6 +403,7 @@ ReactDOM.render(<Demo />, _mount_);
 | marks | 刻度标记，`key` 的类型必须为 `number` 且取值在闭区间 `min`, `max` 内，每个标签可以单独设置样式，当值为 `Boolean` 值时表示是否显示刻度 | Object/Boolean | - |
 | renderMarks | 刻度标记渲染 | Function(mark) => String | - | 
 | step | 设置或返回每次拖动滑块控件时的递增量，规定合法数字间隔（如果 `step={3}`，则合法数字是 `0`,`3`,`6`，以此类推） | Number | `1` |
+| range | 当 range 为 true 时，渲染为双滑块| Boolean | `false` |
 | disabled | 是否禁用 | Boolean | `false` |
 | progress | 显示滑动的进度条，设为 `false` 不显示进度条，设为为颜色值，将进度条设为不同的颜色 | Boolean/String | `true` |
 | vertical | 值为 `true` 时，`Slider` 为垂直方向。 | Boolean | `false` |

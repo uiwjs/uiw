@@ -20,12 +20,12 @@ const Demo = () => (
         if(current.name === initial.name) {
           Notify.error({
             title: '提交失败！',
-            description: `表单提交年龄失败，年龄为：${current.name}，与初始化值是一样滴！`,
+            description: `表单提交内容为空！`,
           });
         } else {
           Notify.success({
             title: '提交成功！',
-            description: `表单提交年龄成功，年龄为：${current.name}，将自动填充初始化值！`,
+            description: `姓名为：${current.name}，提交完成，将自动填充初始化值！`,
           });
         }
       }}
@@ -308,10 +308,10 @@ const Demo = () => (
         return (
           <div>
             <Row>
-              <Col>{fields.username}</Col>
+              <Col fixed>{fields.username}</Col>
             </Row>
             <Row>
-              <Col>{fields.password}</Col>
+              <Col fixed>{fields.password}</Col>
             </Row>
             <Row>
               <Col fixed align="middle">{fields.terms}</Col>
@@ -359,7 +359,6 @@ const Demo = () => (
         email: {
           labelClassName: 'fieldLabel',
           labelStyle: { width: 60 },
-          // initialValue: '',
           validator: (currentValue) => {
             return currentValue && currentValue.length < 2 ? 'Password must be 8+ characters' : null;
           },
@@ -622,6 +621,8 @@ ReactDOM.render(<Demo />, _mount_);
     label: '姓',
     labelClassName: 'fieldLabel',
     labelStyle: { width: 60 },
+    validator: (currentValue) => {},
+    help: '帮助提示信息！',
     children: <Input type="number" />
   },
 }
@@ -635,5 +636,5 @@ ReactDOM.render(<Demo />, _mount_);
 | labelClassName | 表单标题样式名称 | string | - |
 | labelStyle | 表单标题样式 | object | - |
 | labelFor | 列的宽度相对于同一网格中其他列的比率 | number | - |
-| help | 提示信息 | Enum{`top`, `middle`, `bottom`, `baseline`} | - |
+| help | 提示信息 | ReactNode | - |
 | hasError | 如果为true，则应用错误CSS。转动边框并帮助文字变红。 | number | - |
