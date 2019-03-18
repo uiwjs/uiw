@@ -17,6 +17,7 @@
     "build:cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --delete-dir-on-start --verbose",
     "build:esm": "BABEL_ENV=esm babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --delete-dir-on-start --copy-files --verbose",
     "build": "npm run build:cjs && npm run build:esm",
+    "prepare": "npm run build",
     "bundle": "kkt build --bundle --no-emptyDir",
     "bundle:min": "kkt build --bundle=min --no-emptyDir",
     "watch": "npm run build:watch:esm & npm run build:watch:cjs"
