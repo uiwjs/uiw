@@ -11,7 +11,7 @@ import { Form, FormItem } from 'uiw';
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { Form, Row, Col, Slider, Button, Notify } from 'uiw';
+import { Form, Input, Row, Col, Slider, Button, Notify } from 'uiw';
 
 const Demo = () => (
   <div>
@@ -49,11 +49,7 @@ const Demo = () => (
             </Row>
             <Row>
               <Col>
-                {state.current.name && (
-                  <span>
-                    {state.current.name}
-                  </span>
-                )}
+                {JSON.stringify(state.current)}
               </Col>
             </Row>
           </div>
@@ -194,6 +190,13 @@ const Demo = () => (
             <Col fixed>
               <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
               <Button type="light" onClick={resetForm}>重置表单</Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <pre style={{ padding: '10px 0 0 10px' }}>
+                {JSON.stringify(state.current, null, 2)}
+              </pre>
             </Col>
           </Row>
         </div>
