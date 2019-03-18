@@ -21,7 +21,7 @@ export default class DatePicker extends React.Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.date !== this.props.date) {
-      this.setState({ date: nextProps.date, panelDate: new Date(nextProps.date) });
+      this.setState({ date: nextProps.date, panelDate: nextProps.panelDate ? new Date(nextProps.date) : new Date() });
     }
     if (nextProps.panelDate !== this.props.panelDate) {
       this.setState({ panelDate: nextProps.panelDate });
