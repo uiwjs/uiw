@@ -223,7 +223,7 @@ const Demo = () => (
             defaultExpandAll
             data={data}
             renderTitle={(item, selected, noChild) => (
-              <span><Icon type={noChild ? 'smile-o' : 'apple'} />{item.label}</span>
+              <span><Icon style={{ display: '-webkit-inline-box' }} type={noChild ? 'smile-o' : 'apple'} />{item.label}</span>
             )}
             onExpand={(key, expanded, data, node) => {
               console.log(key, expanded, data, node);
@@ -416,7 +416,7 @@ ReactDOM.render(<Demo />, _mount_);
 | selectedKeys | 设置选中的树节点 | Array | `[]` |
 | autoExpandParent | 是否自动展开父节点 | Boolean | `true` |
 | defaultExpandAll | 默认展开所有树节点 | Boolean | `false` |
-| iconAnimation | 默认展开所有树节点 | Boolean | `true` |
+| iconAnimation | 展开收缩图标，参数设为 `false` 禁用动画 | Boolean | `true` |
 | showLine | 是否展示连接线 | Boolean | `false` |
 | checkStrictly | 子节点受父节点控制设置 `true`，需要配合 `multiple` 参数使用。 | Boolean | `false` |
 | multiple | 支持点选多个节点 | Boolean | `false` |
