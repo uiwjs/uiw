@@ -8,18 +8,18 @@ const noop = () => undefined;
 
 /**
  * a contains b
- * @param {Array} a 
+ * @param {Array} a
  * @param {Array} b
  */
 const isContained = (a, b) => {
   if (!(a instanceof Array) || !(b instanceof Array)) return false;
   if (a.length < b.length) return false;
   const aStr = a.toString();
-  for (let i = 0, len = b.length; i < len; i++) {
-    if (aStr.indexOf(b[i]) == -1) return false;
+  for (let i = 0, len = b.length; i < len; i += 1) {
+    if (aStr.indexOf(b[i]) === -1) return false;
   }
   return true;
-}
+};
 
 const getChildKeys = (childs = [], result = []) => {
   childs.forEach((item) => {
@@ -29,7 +29,7 @@ const getChildKeys = (childs = [], result = []) => {
     }
   });
   return result;
-}
+};
 
 const getParentKeys = (childs = {}, result = []) => {
   if (childs.key) {
@@ -39,7 +39,7 @@ const getParentKeys = (childs = {}, result = []) => {
     result = getParentKeys(childs.parent, result);
   }
   return result;
-}
+};
 
 const getParentSelectKeys = (childs = {}, selectedKeys = [], result = []) => {
   if (childs.key && childs.children && isContained(selectedKeys, getChildKeys(childs.children))) {
@@ -49,7 +49,7 @@ const getParentSelectKeys = (childs = {}, selectedKeys = [], result = []) => {
     result = getParentSelectKeys(childs.parent, selectedKeys, result);
   }
   return result;
-}
+};
 
 export default class Tree extends React.Component {
   constructor(props) {
@@ -57,9 +57,12 @@ export default class Tree extends React.Component {
     this.state = {
       openKeys: [],
       selectedKeys: [],
-    }
+    };
   }
   componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedKeys !== this.props.selectedKeys) {
+      this.setState({ selectedKeys: nextProps.selectedKeys });
+    }
     if (nextProps.selectedKeys !== this.props.selectedKeys) {
       this.setState({ selectedKeys: nextProps.selectedKeys });
     }
@@ -81,7 +84,7 @@ export default class Tree extends React.Component {
         selectedKeys = selectedKeys.concat(getParentSelectKeys(item, selectedKeys));
         selectedKeys = Array.from(new Set(selectedKeys)); // Remove duplicates.
       } else {
-        selectedKeys = selectedKeys.filter(val => getChildKeys(item.children).indexOf(val) === -1)
+        selectedKeys = selectedKeys.filter(val => getChildKeys(item.children).indexOf(val) === -1);
         selectedKeys = selectedKeys.filter(val => getParentKeys(item.parent).indexOf(val) === -1);
       }
     }
@@ -114,7 +117,7 @@ export default class Tree extends React.Component {
     const { prefixCls } = this.props;
     const { openKeys, selectedKeys } = this.state;
     let isOpen = false;
-    
+
     if (parent && level !== 1) {
       isOpen = openKeys.indexOf(parent.key) > -1;
     }

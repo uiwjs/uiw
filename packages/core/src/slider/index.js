@@ -40,7 +40,7 @@ export default class Slider extends React.Component {
     this.barOffsetLeft = this.bar[vertical ? 'offsetTop' : 'offsetLeft'];
     const val = this.state.value;
     if (range) {
-      this.barWidth = this.indexBar === 1 && val[1] > val[0] || this.indexBar !== 1 && val[0] > val[1]
+      this.barWidth = (this.indexBar === 1 && val[1] > val[0]) || (this.indexBar !== 1 && val[0] > val[1])
         ? this.barWidth + this.barOffsetLeft
         : this.barOffsetLeft;
     }
@@ -53,7 +53,7 @@ export default class Slider extends React.Component {
     }
     const { vertical } = this.props;
     const val = this.state.value;
-    let value = this.getWidthToValue(env[vertical ? 'clientY' : 'clientX'] - this.startX + this.barWidth);
+    const value = this.getWidthToValue(env[vertical ? 'clientY' : 'clientX'] - this.startX + this.barWidth);
     if (value !== this.value) {
       val[this.indexBar] = value;
       const barStyl = this.getStyle(val);
@@ -101,7 +101,7 @@ export default class Slider extends React.Component {
     return value;
   }
   onChange(value) {
-    const { onChange} = this.props;
+    const { onChange } = this.props;
     value = this.getRangeValue(value);
     onChange && onChange(value);
     this.setState({ value });
@@ -119,15 +119,15 @@ export default class Slider extends React.Component {
   }
   getRangeValue(val) {
     if (!this.props.range) {
-      return typeof (val) !== 'array' ? [val] : val;
+      return Array.isArray(val) ? val : [val];
     }
     const { value } = this.state;
     const val1 = value[0];
     const val2 = value[1];
-    if (val1 < val2 && val1 > val || val1 > val2 && val1 < val) {
+    if ((val1 < val2 && val1 > val) || (val1 > val2 && val1 < val)) {
       value[0] = val;
     }
-    if (val1 < val2 && val2 < val || val1 > val2 && val2 > val) {
+    if ((val1 < val2 && val2 < val) || (val1 > val2 && val2 > val)) {
       value[1] = val;
     }
 
@@ -252,7 +252,7 @@ export default class Slider extends React.Component {
 
 Slider.propTypes = {
   prefixCls: PropTypes.string,
-  value: PropTypes.oneOfType([ PropTypes.number, PropTypes.array ]),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
   min: PropTypes.number,
   max: PropTypes.number,
   marks: PropTypes.oneOfType([
