@@ -133,8 +133,7 @@ export default class Tree extends React.Component {
           const selected = selectedKeys.indexOf(item.key) > -1;
           const noChild = !item.children;
           const itemIsOpen = openKeys.indexOf(item.key) > -1;
-          let iconItem = icon && typeof icon === 'function' ? icon(item, itemIsOpen, noChild) : 'caret-right';
-          iconItem = icon && typeof icon === 'string' ? icon : 'caret-right';
+          const iconItem = icon && typeof icon === 'function' ? icon(item, itemIsOpen, noChild) : (icon && typeof icon === 'string' && icon) || 'caret-right';
           return (
             <li key={idx}>
               <div className={classnames(`${prefixCls}-label`)}>
