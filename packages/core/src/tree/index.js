@@ -60,8 +60,8 @@ export default class Tree extends React.Component {
     };
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedKeys !== this.props.selectedKeys) {
-      this.setState({ selectedKeys: nextProps.selectedKeys });
+    if (nextProps.openKeys !== this.props.openKeys) {
+      this.setState({ openKeys: nextProps.openKeys });
     }
     if (nextProps.selectedKeys !== this.props.selectedKeys) {
       this.setState({ selectedKeys: nextProps.selectedKeys });
@@ -168,6 +168,8 @@ export default class Tree extends React.Component {
 Tree.propTypes = {
   prefixCls: PropTypes.string,
   data: PropTypes.array,
+  openKeys: PropTypes.array,
+  selectedKeys: PropTypes.array,
   defaultExpandAll: PropTypes.bool,
   checkStrictly: PropTypes.bool,
   multiple: PropTypes.bool,
@@ -178,6 +180,8 @@ Tree.propTypes = {
 Tree.defaultProps = {
   prefixCls: 'w-tree',
   data: [],
+  openKeys: [],
+  selectedKeys: [],
   defaultExpandAll: false,
   checkStrictly: false,
   multiple: false,

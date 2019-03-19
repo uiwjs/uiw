@@ -143,9 +143,23 @@ ReactDOM.render(<Demo />, _mount_);
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
+| data | 展示数据 | Array | `[]` |
+| openKeys | 节点展开 `key` | Array | `[]` |
+| selectedKeys | 设置选中的树节点 | Array | `[]` |
 | autoExpandParent | 是否自动展开父节点 | Boolean | true |
 | defaultExpandAll | 默认展开所有树节点 | Boolean | false |
 | checkStrictly | 在 multiple 可选多个节点的情况下，设置 `checkStrictly=true`，所有子节点将被选中。 | Boolean | false |
 | multiple | 支持点选多个节点 | Boolean | false |
 | onSelected | 点击选择树节点触发 | Function(keys,data,e) | - |
 | onExpand | 展开/收起节点时触发 | Function(key,expanded:bool,data,node) | - |
+
+
+## data
+
+```json
+{
+  "label": "湖北省",
+  "key": "0-0-0",
+  "children":[]
+}
+```
