@@ -46,7 +46,7 @@ const getParentSelectKeys = (childs = {}, selectedKeys = [], result = []) => {
     result.push(childs.key);
     if (childs.parent && !childs.parent.parent) {
       if (isContained(selectedKeys, getChildKeys(childs.children))) {
-        selectedKeys = selectedKeys.concat(result)
+        selectedKeys = selectedKeys.concat(result);
       }
       if (isContained(selectedKeys, getChildKeys(childs.parent.children))) {
         result.push(childs.parent.key);
@@ -141,14 +141,14 @@ export default class Tree extends React.Component {
           const selected = selectedKeys.indexOf(item.key) > -1;
           const noChild = !item.children;
           const itemIsOpen = openKeys.indexOf(item.key) > -1;
-          const iconItem = icon && typeof icon === 'function' ? icon(item, itemIsOpen, noChild) : (icon && typeof icon === 'string' && icon) || 'caret-right';
+          const iconItem = typeof icon === 'function' ? icon(item, itemIsOpen, noChild) : icon;
           return (
             <li key={idx}>
               <div className={classnames(`${prefixCls}-label`)}>
                 <Icon
-                  type={iconItem}
+                  type={iconItem || 'caret-right'}
                   onClick={this.onItemClick.bind(this, item)}
-                  className={classnames({ 'no-child': noChild, 'custom-icon': !!icon })}
+                  className={classnames({ 'no-child': noChild, 'custom-icon': typeof icon === 'function' })}
                 />
                 <div
                   onClick={this.onItemSelected.bind(this, item)}
@@ -165,8 +165,8 @@ export default class Tree extends React.Component {
     );
   }
   render() {
-    const { prefixCls, className, icon, data, openKeys, selectedKeys, autoExpandParent, defaultExpandAll, checkStrictly, renderTitle, onExpand, onSelected, ...elementProps } = this.props;
-    const cls = classnames(className, `${prefixCls}`);
+    const { prefixCls, className, icon, data, openKeys, selectedKeys, autoExpandParent, defaultExpandAll, checkStrictly, showLine, renderTitle, onExpand, onSelected, ...elementProps } = this.props;
+    const cls = classnames(className, `${prefixCls}`, { [`${prefixCls}-line`]: showLine });
     return (
       <div className={cls} {...elementProps}>
         {this.renderTreeNode(data, 1)}
@@ -182,6 +182,7 @@ Tree.propTypes = {
   openKeys: PropTypes.array,
   selectedKeys: PropTypes.array,
   defaultExpandAll: PropTypes.bool,
+  showLine: PropTypes.bool,
   checkStrictly: PropTypes.bool,
   multiple: PropTypes.bool,
   renderTitle: PropTypes.func,
@@ -191,10 +192,12 @@ Tree.propTypes = {
 
 Tree.defaultProps = {
   prefixCls: 'w-tree',
+  icon: 'caret-right',
   data: [],
   openKeys: [],
   selectedKeys: [],
   defaultExpandAll: false,
+  showLine: false,
   checkStrictly: false,
   multiple: false,
   onExpand: noop,

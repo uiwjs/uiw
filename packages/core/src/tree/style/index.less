@@ -46,4 +46,33 @@
   &-title.selected {
     background-color: #d5e8fc;
   }
+  &-line li {
+    position: relative;
+    li {
+      &:before, &::after {
+        content: " ";
+        border-left: 1px solid #d9d9d9;
+        left: -12px;
+        position: absolute;
+      }
+      &::after {
+        height: 100%;
+        top: 5px;
+      }
+      &:last-child::after {
+        height: 16px;
+        top: -18px;
+      }
+      &:before {
+        content: " ";
+        width: 10px;
+        height: 16px;
+        border-bottom: 1px solid #d9d9d9;
+        top: -2px;
+      }
+      &:last-child::before {
+        border-radius: 0 0 0 3px;
+      }
+    }
+  }
 }
