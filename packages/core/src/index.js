@@ -40,6 +40,7 @@ export { default as Switch } from './switch';
 export { default as Slider } from './slider';
 export { default as Steps } from './steps/Steps';
 export { default as Split } from './split';
+export { default as Tree } from './tree';
 export { default as Tag } from './tag';
 export { default as Tabs } from './tabs';
 export { default as Table } from './table';

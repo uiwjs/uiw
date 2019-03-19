@@ -51,6 +51,7 @@
       { "name": "Card 卡片", "path": "card" },
       { "name": "Collapse 折叠面板", "path": "collapse" },
       { "name": "Tag 标签", "path": "tag" },
+      { "name": "Tree 树形控件", "path": "tree" },
       { "name": "Table 表格", "path": "table" },
       { "name": "Progress 进度条", "path": "progress" },
       { "name": "Rate 评分", "path": "rate" },

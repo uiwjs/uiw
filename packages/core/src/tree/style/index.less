@@ -1,0 +1,48 @@
+@tree-prefix: ~"w-tree";
+
+.@{tree-prefix} {
+  font-size: 14px;
+  ul {
+    padding: 0 !important;
+    transition: .3s all;
+    overflow: hidden;
+    ul {
+      padding-left: 18px !important;
+    }
+  }
+  li {
+    list-style: none !important;
+    &:first-child {
+      padding-top: 3px;
+    }
+  }
+  &-close {
+    height: 0;
+  }
+  &-label {
+    .w-icon {
+      transition: .3s all;
+      transform: scale(.79) rotate(0deg);
+      margin-right: 2px;
+      &.open {
+        transform: scale(.79) rotate(90deg) !important;
+      }
+    }
+    .w-icon:not(.no-child) {
+      cursor: pointer;
+    }
+    .no-child svg {
+      display: none;
+    }
+    & > * {
+      vertical-align: middle;
+    }
+  }
+  &-title {
+    padding: 3px 3px;
+    cursor: pointer;
+  }
+  &-title.selected {
+    background-color: #d5e8fc;
+  }
+}
