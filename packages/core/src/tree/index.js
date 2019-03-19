@@ -44,6 +44,14 @@ const getParentKeys = (childs = {}, result = []) => {
 const getParentSelectKeys = (childs = {}, selectedKeys = [], result = []) => {
   if (childs.key && childs.children && isContained(selectedKeys, getChildKeys(childs.children))) {
     result.push(childs.key);
+    if (childs.parent && !childs.parent.parent) {
+      if (isContained(selectedKeys, getChildKeys(childs.children))) {
+        selectedKeys = selectedKeys.concat(result)
+      }
+      if (isContained(selectedKeys, getChildKeys(childs.parent.children))) {
+        result.push(childs.parent.key);
+      }
+    }
   }
   if (childs.parent) {
     result = getParentSelectKeys(childs.parent, selectedKeys, result);
@@ -70,16 +78,16 @@ export default class Tree extends React.Component {
   onItemSelected(item, evn) {
     const { onSelected, multiple, checkStrictly } = this.props;
     let { selectedKeys } = this.state;
-    const key = selectedKeys.find(v => v === item.key);
+    const findKey = selectedKeys.find(v => v === item.key);
     let selected = false;
-    if (!key) {
+    if (!findKey) {
       selected = true;
       selectedKeys.push(item.key);
     } else {
       selectedKeys = selectedKeys.filter(v => v !== item.key);
     }
     if (checkStrictly) {
-      if (!key) {
+      if (!findKey) {
         selectedKeys = selectedKeys.concat(getChildKeys(item.children).filter(val => selectedKeys.indexOf(val) === -1));
         selectedKeys = selectedKeys.concat(getParentSelectKeys(item, selectedKeys));
         selectedKeys = Array.from(new Set(selectedKeys)); // Remove duplicates.
@@ -89,7 +97,7 @@ export default class Tree extends React.Component {
       }
     }
     if (!multiple) {
-      selectedKeys = !key ? [item.key] : [];
+      selectedKeys = !findKey ? [item.key] : [];
     }
     this.setState({ selectedKeys }, () => {
       onSelected(selectedKeys, item.key, selected, item, evn);
