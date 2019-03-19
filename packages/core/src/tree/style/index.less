@@ -24,14 +24,14 @@
       transition: .3s all;
       transform: scale(.79) rotate(0deg);
       margin-right: 2px;
-      &.open {
+      &.open:not(.custom-icon) {
         transform: scale(.79) rotate(90deg) !important;
       }
     }
     .w-icon:not(.no-child) {
       cursor: pointer;
     }
-    .no-child svg {
+    .no-child:not(.custom-icon) svg {
       display: none;
     }
     & > * {
@@ -39,7 +39,8 @@
     }
   }
   &-title {
-    padding: 3px 3px;
+    display: inline-block;
+    padding: 2px 5px;
     cursor: pointer;
   }
   &-title.selected {

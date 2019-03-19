@@ -114,7 +114,7 @@ export default class Tree extends React.Component {
     });
   }
   renderTreeNode(data, level, parent) {
-    const { prefixCls } = this.props;
+    const { prefixCls, renderTitle, icon } = this.props;
     const { openKeys, selectedKeys } = this.state;
     let isOpen = false;
 
@@ -130,22 +130,25 @@ export default class Tree extends React.Component {
       >
         {data.map((item, idx) => {
           item.parent = parent;
+          const selected = selectedKeys.indexOf(item.key) > -1;
+          const noChild = !item.children;
+          const itemIsOpen = openKeys.indexOf(item.key) > -1;
+          let iconItem = icon && typeof icon === 'function' ? icon(item, itemIsOpen, noChild) : 'caret-right';
+          iconItem = icon && typeof icon === 'string' ? icon : 'caret-right';
           return (
             <li key={idx}>
               <div className={classnames(`${prefixCls}-label`)}>
                 <Icon
-                  type="caret-right"
+                  type={iconItem}
                   onClick={this.onItemClick.bind(this, item)}
-                  className={classnames({ 'no-child': !item.children })}
+                  className={classnames({ 'no-child': noChild, 'custom-icon': !!icon })}
                 />
-                <span
+                <div
                   onClick={this.onItemSelected.bind(this, item)}
-                  className={classnames(`${prefixCls}-title`, {
-                    selected: selectedKeys.indexOf(item.key) > -1,
-                  })}
+                  className={classnames(`${prefixCls}-title`, { selected })}
                 >
-                  {item.label}
-                </span>
+                  {renderTitle ? renderTitle(item, selected, noChild) : <span>{item.label}</span>}
+                </div>
               </div>
               {item.children && this.renderTreeNode(item.children, level + 1, item)}
             </li>
@@ -155,7 +158,7 @@ export default class Tree extends React.Component {
     );
   }
   render() {
-    const { prefixCls, className, data, autoExpandParent, defaultExpandAll, checkStrictly, onExpand, onSelected, ...elementProps } = this.props;
+    const { prefixCls, className, icon, data, openKeys, selectedKeys, autoExpandParent, defaultExpandAll, checkStrictly, renderTitle, onExpand, onSelected, ...elementProps } = this.props;
     const cls = classnames(className, `${prefixCls}`);
     return (
       <div className={cls} {...elementProps}>
@@ -167,12 +170,14 @@ export default class Tree extends React.Component {
 
 Tree.propTypes = {
   prefixCls: PropTypes.string,
+  icon: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   data: PropTypes.array,
   openKeys: PropTypes.array,
   selectedKeys: PropTypes.array,
   defaultExpandAll: PropTypes.bool,
   checkStrictly: PropTypes.bool,
   multiple: PropTypes.bool,
+  renderTitle: PropTypes.func,
   onExpand: PropTypes.func,
   onSelected: PropTypes.func,
 };
