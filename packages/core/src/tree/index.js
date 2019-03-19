@@ -122,7 +122,7 @@ export default class Tree extends React.Component {
     });
   }
   renderTreeNode(data, level, parent) {
-    const { prefixCls, renderTitle, icon } = this.props;
+    const { prefixCls, renderTitle, icon, iconAnimation } = this.props;
     const { openKeys, selectedKeys } = this.state;
     let isOpen = false;
 
@@ -148,7 +148,7 @@ export default class Tree extends React.Component {
                 <Icon
                   type={iconItem || 'caret-right'}
                   onClick={this.onItemClick.bind(this, item)}
-                  className={classnames({ 'no-child': noChild, 'custom-icon': typeof icon === 'function' })}
+                  className={classnames({ 'no-child': noChild, 'no-animation': !iconAnimation })}
                 />
                 <div
                   onClick={this.onItemSelected.bind(this, item)}
@@ -165,7 +165,7 @@ export default class Tree extends React.Component {
     );
   }
   render() {
-    const { prefixCls, className, icon, data, openKeys, selectedKeys, autoExpandParent, defaultExpandAll, checkStrictly, showLine, renderTitle, onExpand, onSelected, ...elementProps } = this.props;
+    const { prefixCls, className, icon, data, openKeys, selectedKeys, autoExpandParent, defaultExpandAll, checkStrictly, showLine, iconAnimation, renderTitle, onExpand, onSelected, ...elementProps } = this.props;
     const cls = classnames(className, `${prefixCls}`, { [`${prefixCls}-line`]: showLine });
     return (
       <div className={cls} {...elementProps}>
@@ -183,6 +183,7 @@ Tree.propTypes = {
   selectedKeys: PropTypes.array,
   defaultExpandAll: PropTypes.bool,
   showLine: PropTypes.bool,
+  iconAnimation: PropTypes.bool,
   checkStrictly: PropTypes.bool,
   multiple: PropTypes.bool,
   renderTitle: PropTypes.func,
@@ -198,6 +199,7 @@ Tree.defaultProps = {
   selectedKeys: [],
   defaultExpandAll: false,
   showLine: false,
+  iconAnimation: true,
   checkStrictly: false,
   multiple: false,
   onExpand: noop,

@@ -12,6 +12,9 @@
   }
   li {
     list-style: none !important;
+    & + li {
+      margin-top: 2px !important;
+    }
     &:first-child {
       padding-top: 3px;
     }
@@ -24,7 +27,7 @@
       transition: .3s all;
       transform: scale(.79) rotate(0deg);
       margin-right: 2px;
-      &.open:not(.custom-icon) {
+      &.open:not(.no-animation) {
         transform: scale(.79) rotate(90deg) !important;
       }
     }

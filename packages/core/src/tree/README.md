@@ -11,7 +11,7 @@ import { Tree } from 'uiw';
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { Tree, Card } from 'uiw';
+import { Tree, Card, Row, Col } from 'uiw';
 
 const data = [
   {
@@ -142,7 +142,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { Tree, Card, Icon } from 'uiw';
+import { Tree, Card, Row, Col, Icon } from 'uiw';
 
 const data = [
   {
@@ -252,6 +252,7 @@ const Demo = () => (
         <Card title="自定义展开图标">
           <Tree
             data={data}
+            iconAnimation={false}
             icon={(data, isOpen, noChild) => {
               if(isOpen && !noChild) {
                 return 'folder-open';
@@ -282,7 +283,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { Tree, Card, Icon } from 'uiw';
+import { Tree, Card, Row, Col } from 'uiw';
 
 const data = [
   {
@@ -362,6 +363,7 @@ const Demo = () => (
           <Tree
             data={data}
             showLine
+            iconAnimation={false}
             icon={(data, isOpen, noChild) => {
               if(isOpen && !noChild) {
                 return 'folder-open';
@@ -412,11 +414,12 @@ ReactDOM.render(<Demo />, _mount_);
 | data | 展示数据 | Array | `[]` |
 | openKeys | 节点展开 `key` | Array | `[]` |
 | selectedKeys | 设置选中的树节点 | Array | `[]` |
-| autoExpandParent | 是否自动展开父节点 | Boolean | true |
-| defaultExpandAll | 默认展开所有树节点 | Boolean | false |
-| showLine | 是否展示连接线 | Boolean | false |
-| checkStrictly | 子节点受父节点控制设置 `true`，需要配合 `multiple` 参数使用。 | Boolean | false |
-| multiple | 支持点选多个节点 | Boolean | false |
+| autoExpandParent | 是否自动展开父节点 | Boolean | `true` |
+| defaultExpandAll | 默认展开所有树节点 | Boolean | `false` |
+| iconAnimation | 默认展开所有树节点 | Boolean | `true` |
+| showLine | 是否展示连接线 | Boolean | `false` |
+| checkStrictly | 子节点受父节点控制设置 `true`，需要配合 `multiple` 参数使用。 | Boolean | `false` |
+| multiple | 支持点选多个节点 | Boolean | `false` |
 | icon | 重新定义，展开收缩图标，当为函数时视为自定义图标，并展示非折叠项的图标。 | Function(data: object, noChild: bool)/String/Node | - |
 | renderTitle | 重新定义每个标题节点的显示 | Function(item, selected: bool, noChild: bool) | - |
 | onSelected | 点击选择树节点触发 | Function(selectedKeys: array, key, selected: bool, data, e) | - |
