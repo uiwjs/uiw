@@ -25,6 +25,7 @@ const Demo = () => (
         <Menu.Item icon="setting" text="偏好设置" />
         <Menu.Divider />
         <Menu.Item icon="map" text="谷歌地图" />
+        <Menu.Item icon="map" text="百度地图" href="https://map.baidu.com" target="_blank" />
       </Menu>
     </Col>
     <Col>
@@ -162,10 +163,12 @@ ReactDOM.render(<Demo />, _mount_);
 |--------- |-------- |--------- |-------- |
 | icon | 菜单图标 | String | - |
 | text | 菜单内容 | Boolean | `false` |
-| tagName | 设置子节点标签名 | String | `a` |
+| tagName | 设置子节点标签名，默认 `<a />` 标签 | String | `a` |
 | active | 激活选中状态 | Boolean | `false` |
 | disabled | 禁用状态 | Boolean | `false` |
 | overlayProps | 对象将传递到 `OverlayTrigger`，相关参数参考 [`OverlayTrigger`](#/components/overlay-trigger) | Object | - |
+
+其它参数可根据 `tagName` 来设置，默认 `<a />` 标签时，可设置 `href="https://wwww.google.com"` 或者 `target="_blank"` 等参数。
 
 ## Menu.Divider.Props
 
