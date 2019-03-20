@@ -60,6 +60,11 @@ const docVersion = join(process.cwd(), 'src', 'version.json');
      */
     await execute(`cd ${libPath} && npm run build:esm`);
     /**
+     * Run `less` over the `./packages/core/src directory` and output
+     * compiled css files to `./packages/core/lib/esm`
+     */
+    await execute(`cd ${libPath} && npm run build:css`);
+    /**
      * Bundles a minified and unminified version of [uiw] including
      * all it's immediate dependencies (excluding React, ReactDOM, etc)
      */
