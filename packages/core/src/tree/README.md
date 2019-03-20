@@ -89,7 +89,6 @@ const Demo = () => (
       <Col fixed>
         <Card title="单选">
           <Tree
-            defaultExpandAll
             data={data}
             onExpand={(key, expanded, data, node) => {
               console.log(key, expanded, data, node);
@@ -103,7 +102,6 @@ const Demo = () => (
       <Col fixed>
         <Card title="多选，子节点不受控">
           <Tree
-            defaultExpandAll
             data={data}
             multiple
             onExpand={(key, expanded, data, node) => {
@@ -118,7 +116,6 @@ const Demo = () => (
       <Col fixed>
         <Card title="多选，子节点受控">
           <Tree
-            defaultExpandAll
             data={data}
             multiple
             checkStrictly
@@ -220,7 +217,6 @@ const Demo = () => (
       <Col fixed>
         <Card title="标题中添加图标">
           <Tree
-            defaultExpandAll
             data={data}
             renderTitle={(item, selected, noChild) => (
               <span><Icon style={{ display: '-webkit-inline-box' }} type={noChild ? 'smile-o' : 'apple'} />{item.label}</span>
@@ -386,6 +382,127 @@ const Demo = () => (
           <Tree
             data={data}
             showLine
+            icon={(data, isOpen, noChild) => {
+              if(noChild) {
+                return 'file-text';
+              }
+            }}
+            onExpand={(key, expanded, data) => {
+              console.log(key, expanded, data);
+            }}
+            onSelected={(key, selected, item, evn) => {
+              console.log(key, selected, item, evn);
+            }}
+          />
+        </Card>
+      </Col>
+    </Row>
+  </div>
+)
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
+### 默认展开树
+
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Tree, Card, Row, Col } from 'uiw';
+
+const data = [
+  {
+    label: '湖北省',
+    key: '0-0-0',
+    children:[
+      {
+        label: '武汉市',
+        key: '0-1-0',
+        children:[
+          { label: '新洲区', key: '0-1-1' },
+          { label: '武昌区', key: '0-1-2' },
+          {
+            label: '汉南区',
+            key: '0-1-3',
+            children:[
+              { label: '汉南区1', key: '0-1-3-1' },
+              { label: '汉南区2', key: '0-1-3-2' },
+              { label: '汉南区3', key: '0-1-3-3' },
+            ]
+          },
+        ]
+      },
+      { label: '黄冈市', key: '0-2-0' },
+      {
+        label: '黄石市',
+        key: '0-3-0',
+        children:[
+          { label: '青山区', key: '0-3-1' },
+          { label: '黄陂区', key: '0-3-2' },
+          { label: '青山区', key: '0-3-3' },
+        ]
+      },
+    ]
+  },
+  {
+    label: '上海市',
+    key: '1-0-0',
+    children:[
+      { label: '黄浦区', key: '1-0-1' },
+      { label: '卢湾区', key: '1-0-2' },
+      {
+        label: '徐汇区',
+        key: '1-0-3',
+        children:[
+          { label: '半淞园路街道', key: '1-1-0' },
+          { label: '南京东路街道', key: '1-2-0' },
+          { label: '外滩街道', key: '1-3-0' },
+        ]
+      },
+    ]
+  },
+  {
+    label: '北京市',
+    key: '2-0-0',
+    children:[
+      { label: '东城区', key: '2-1-0' },
+      { label: '西城区', key: '2-2-0' },
+    ]
+  }
+];
+
+const Demo = () => (
+  <div>
+    <Row gutter={10}>
+      <Col fixed>
+        <Card title="默认展开部分">
+          <Tree
+            data={data}
+            showLine
+            openKeys={['0-0-0', '0-1-0']}
+            iconAnimation={false}
+            icon={(data, isOpen, noChild) => {
+              if(isOpen && !noChild) {
+                return 'folder-open';
+              } else if (!noChild) {
+                return 'folder';
+              }
+              return 'file-text';
+            }}
+            onExpand={(key, expanded, data) => {
+              console.log(key, expanded, data);
+            }}
+            onSelected={(key, selected, item, evn) => {
+              console.log(key, selected, item, evn);
+            }}
+          />
+        </Card>
+      </Col>
+      <Col fixed>
+        <Card title="展开所有">
+          <Tree
+            data={data}
+            showLine
+            defaultExpandAll
             icon={(data, isOpen, noChild) => {
               if(noChild) {
                 return 'file-text';

@@ -63,9 +63,16 @@ export default class Tree extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      openKeys: [],
-      selectedKeys: [],
+      openKeys: props.openKeys || [],
+      selectedKeys: props.selectedKeys || [],
     };
+  }
+  componentDidMount() {
+    const { defaultExpandAll, data } = this.props;
+    const openKeys = getChildKeys(data);
+    if (defaultExpandAll) {
+      this.setState({ openKeys });
+    }
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.openKeys !== this.props.openKeys) {
@@ -126,7 +133,7 @@ export default class Tree extends React.Component {
     const { openKeys, selectedKeys } = this.state;
     let isOpen = false;
 
-    if (parent && level !== 1) {
+    if (parent) {
       isOpen = openKeys.indexOf(parent.key) > -1;
     }
     return (
@@ -148,7 +155,7 @@ export default class Tree extends React.Component {
                 <Icon
                   type={iconItem || 'caret-right'}
                   onClick={this.onItemClick.bind(this, item)}
-                  className={classnames({ 'no-child': noChild, 'no-animation': !iconAnimation })}
+                  className={classnames({ 'no-child': noChild, 'no-animation': !iconAnimation, open: itemIsOpen })}
                 />
                 <div
                   onClick={this.onItemSelected.bind(this, item)}
