@@ -17,9 +17,7 @@ function getLessFiles(folder) {
     const lessPaths = [];
     dirTree(folder, {
       extensions: /\.(less)$/
-    }, (item, PATH, stats) => {
-      lessPaths.push(item.path);
-    });
+    }, (item, PATH, stats) => lessPaths.push(item.path));
     resolve(lessPaths);
   });
 }
@@ -49,7 +47,7 @@ function executeLess(lessPath) {
       const logPathIn = item.path.replace(process.cwd(), '');
       item.path = item.path.replace(rootDir, outputDir).replace(/.less$/, '.css');
       const logPathOut = item.path.replace(process.cwd(), '');
-      if (item.output && item.output.css) {
+      if (item.output) {
         await fs.outputFile(item.path, item.output.css);
         console.log('log:', logPathIn, '->', logPathOut);
       }
