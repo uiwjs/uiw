@@ -12,11 +12,12 @@
     "url": "https://github.com/uiwjs/uiw.git"
   },
   "scripts": {
-    "build:watch:cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose -w",
-    "build:watch:esm": "BABEL_ENV=esm babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --copy-files --verbose -w",
+    "build:watch:cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --delete-dir-on-start --verbose -w",
+    "build:watch:esm": "BABEL_ENV=esmdev babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --copy-files --delete-dir-on-start --verbose -w",
     "build:cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --delete-dir-on-start --verbose",
-    "build:esm": "BABEL_ENV=esm babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --delete-dir-on-start --copy-files --verbose",
-    "build": "npm run build:cjs && npm run build:esm",
+    "build:esm": "BABEL_ENV=esm babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --delete-dir-on-start --verbose",
+    "build:css": "node script/buildcss.js",
+    "build": "npm run build:cjs && npm run build:esm && npm run build:css",
     "prepare": "npm run build",
     "bundle": "kkt build --bundle --no-emptyDir",
     "bundle:min": "kkt build --bundle=min --no-emptyDir",
@@ -58,7 +59,11 @@
     "@babel/register": "^7.0.0",
     "@kkt/plugin-less": "^1.2.0",
     "babel-plugin-transform-remove-imports": "^1.0.8",
+    "babel-plugin-transform-rename-import": "^2.3.0",
+    "directory-tree": "^2.2.1",
     "kkt": "^3.5.0",
+    "less": "^3.9.0",
+    "less-plugin-autoprefix": "^2.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },

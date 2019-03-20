@@ -12,6 +12,8 @@
 npx kkt create my-app -e uiw
 ```
 
+注意 [**npx**](https://github.com/npm/npm/releases/tag/v5.2.0) 命令只在 npm 5.2+ 或更高版本中支持。
+
 你也可以使用 [kkt](https://github.com/jaywcjlove/kkt) 工具通过下面步骤，一步一步的创建一个 [kkt](https://github.com/jaywcjlove/kkt) 工程
 
 ```bash

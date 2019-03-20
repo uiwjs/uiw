@@ -1,4 +1,5 @@
 src
+script
 __test__
 npm-debug.log
 package-lock.json

@@ -8,31 +8,28 @@
     "@babel/plugin-proposal-class-properties"
   ],
   "env": {
-    "esm": {
+    "esmdev": {
       "presets": [
-        [
-          "@babel/preset-env",
-          {
-            "modules": false
-          }
-        ]
+        [ "@babel/preset-env", { "modules": false } ]
       ],
       "plugins": [
-        [
-          "@babel/plugin-transform-runtime",
-          {
-            "useESModules": true
-          }
-        ]
+        [ "@babel/plugin-transform-runtime", { "useESModules": true } ]
+      ]
+    },
+    "esm": {
+      "presets": [
+        [ "@babel/preset-env", { "modules": false } ]
+      ],
+      "plugins": [
+        [ "@babel/plugin-transform-runtime", { "useESModules": true } ],
+        [ "babel-plugin-transform-rename-import", { "original": "^(.+?)\\.less$", "replacement": "$1.css" } ]
       ]
     },
     "commonjs": {
       "plugins": [
         [
           "babel-plugin-transform-remove-imports",
-          {
-            "test": "(less|css)$"
-          }
+          { "test": "(less|css)$" }
         ]
       ]
     }
