@@ -19,7 +19,7 @@ export default class Canvas extends React.Component {
       errorMessage: '',
       code: '',
       height: '100%',
-      width: 1,
+      width: '0%',
       visible: false,
       fullScreen: false,
       codePenJSX: '',
@@ -59,7 +59,7 @@ export default class Canvas extends React.Component {
       this.oldHeight = demo.clientHeight;
       this.initHeight = demo.clientHeight;
       const width = demo.clientWidth / 2;
-      this.oldWidth = width < 300 ? demo.clientWidth : width;
+      this.oldWidth = `${width / demo.clientWidth * 100}%`;
     }
   }
   onSwitchSource() {
@@ -67,7 +67,7 @@ export default class Canvas extends React.Component {
     if (this.warpper) {
       this.initOldHeight();
       this.setState({
-        width: this.state.width === 1 ? this.oldWidth : 1,
+        width: this.state.width === '0%' ? this.oldWidth : '0%',
         visible: true,
       }, () => {
         this.editor.focus();
@@ -108,9 +108,9 @@ export default class Canvas extends React.Component {
   render() {
     const { parame: { noCode, noPreview, bgWhite, noScroll, codePen } } = this.props;
     const { errorMessage, codePenJSX } = this.state;
-    const styl = {};
-    if (this.state.width === 1) {
-      styl.maxWidth = 'initial';
+    const styl = { flex: 1 };
+    if (this.state.width === '0%') {
+      styl.width = '100%';
     }
     // eslint-disable-next-line
     const version = VERSION || '2.0.0';
@@ -121,7 +121,7 @@ export default class Canvas extends React.Component {
           [styles.fullScreen]: this.state.fullScreen,
         })}
       >
-        <Split style={{ flex: 1 }} visiable={this.state.width !== 1}>
+        <Split style={{ flex: 1, width: 'calc(100% - 29px)' }} visiable={this.state.width !== '0%'}>
           <div
             className={classNames(styles.demo, {
               [`${styles.noScroll}`]: noScroll,
@@ -156,7 +156,7 @@ export default class Canvas extends React.Component {
           </div>
           {!noCode && (
             <div
-              style={{ maxWidth: this.state.width, height: this.state.height }}
+              style={{ width: this.state.width, height: this.state.height }}
               className={classNames(styles.code)}
             >
               {this.state.visible && (

@@ -9,7 +9,11 @@ import { Split } from 'uiw';
 
 ### 基础用法
 
-通过设置子节点的 `minWidth` 样式，即可设置拖拽最小宽度值。通过设置子节点样式 `flexBasis` 样式即可设置默认分割内容的占比宽度。
+~~通过设置子节点的 `minWidth` 样式，即可设置拖拽最小宽度值。通过设置子节点样式 `flexBasis` 样式即可设置默认分割内容的占比宽度。~~
+
+- 固定初始宽度或者高度，可通过设置子节点，样式 `width: '80%'` 宽度百分百来计算。
+- 拖拽至最小宽度，可通过设置子节点样式 `minWidth: 30`，来达到效果
+- 默认情况下，不设置样式 `width`，需要将某个子节点样式设为 `flex: 1`，来自适应
 
 <!--DemoStart,bgWhite,codePen--> 
 ```jsx
@@ -18,7 +22,7 @@ import { Split } from 'uiw';
 const Demo = () => (
   <div>
     <Split style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3 }}>
-      <div style={{ minWidth: 60, flexBasis: '20%' }}>
+      <div style={{ width: '20%', minWidth: 30 }}>
         <iframe
           srcDoc="<div>test</div>"
           style={{ width: '100%', height: '100%' }}
@@ -26,7 +30,7 @@ const Demo = () => (
           sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts"
         />
       </div>
-      <div style={{ minWidth: 30 }}>
+      <div style={{ width: '80%' }}>
         Right Pane
       </div>
     </Split>
@@ -54,7 +58,7 @@ const Demo = () => (
         <div style={{ minWidth: 200, maxWidth: 200, minHeight: 120, background: '#b5b5b5' }}>
           Sider
         </div>
-        <div style={{ background: '#ececec' }}>
+        <div style={{ width: '100%', background: '#ececec' }}>
           Content
         </div>
       </Split>
@@ -67,7 +71,7 @@ const Demo = () => (
       <div style={{ minWidth: 200, maxWidth: 200, minHeight: 85, background: '#a9a9a9' }}>
         Sider
       </div>
-      <Split mode="vertical" visiable={false}>
+      <Split mode="vertical" visiable={false} style={{ width: '100%' }}>
         <div style={{ minHeight: 45, background: '#dcdcdc' }}>
           Header
         </div>
@@ -102,7 +106,7 @@ const Demo = () => (
     <div>
       Center Pane
     </div>
-    <div>
+    <div style={{ flex: 1 }}>
       Right Pane
     </div>
   </Split>
@@ -129,18 +133,18 @@ const Demo = () => (
       <div>
         Center Pane
       </div>
-      <div>
+      <div style={{ flex: 1 }}>
         Right Pane
       </div>
     </Split>
     <Split mode="vertical" lineBar style={{ height: 210, border: '1px solid #d5d5d5', borderRadius: 3, marginTop: 10 }}>
-      <div>
+      <div style={{ height: '33.3%' }}>
         Left Pane
       </div>
-      <div>
+      <div style={{ height: '33.3%' }}>
         Center Pane
       </div>
-      <div>
+      <div style={{ flex: 1 }}>
         Right Pane
       </div>
     </Split>
@@ -158,10 +162,10 @@ import { Split } from 'uiw';
 
 const Demo = () => (
   <Split mode="vertical" style={{ height: 200, border: '1px solid #d5d5d5', borderRadius: 3 }}>
-    <div>
+    <div style={{ height: '50%' }}>
       Top Pane
     </div>
-    <div>
+    <div style={{ height: '50%' }}>
       Bottom Pane
     </div>
   </Split>
@@ -179,10 +183,10 @@ import { Split } from 'uiw';
 const Demo = () => (
   <Split style={{ height: 200, border: '1px solid #d5d5d5', borderRadius: 3 }}>
     <Split mode="vertical">
-      <div>
+      <div style={{ height: '50%' }}>
         Top Pane
       </div>
-      <Split>
+      <Split style={{ height: '50%' }}>
         <div>
           Left Pane
         </div>
@@ -214,7 +218,7 @@ const Demo = () => (
       <div style={{ maxWidth: 100, backgroundColor: '#eaeaea' }}>
         Left Pane
       </div>
-      <div>
+      <div style={{ flex: 1 }}>
         Right Pane
       </div>
     </Split>
@@ -231,7 +235,7 @@ const Demo = () => (
       <div>
         Pane 4
       </div>
-      <div>
+      <div style={{ flex: 1 }}>
         Pane 5
       </div>
     </Split>
@@ -263,7 +267,7 @@ const Demo = () => (
           Bottom Pane
         </div>
       </Split>
-      <div>
+      <div style={{ flex: 1 }}>
         Right Pane
       </div>
     </Split>
@@ -280,7 +284,7 @@ const Demo = () => (
       <div>
         Pane 4
       </div>
-      <div>
+      <div style={{ flex: 1 }}>
         Pane 5
       </div>
     </Split>
@@ -311,13 +315,19 @@ class Demo extends React.Component {
     });
   }
   render() {
+    const styl = {};
+    if (this.state.width === 0) {
+      styl.width = `0%`;
+    } else {
+      styl.width = this.state.width;
+    }
     return (
       <>
         <div style={{ marginBottom: 10 }}>
           <Button type="primary" onClick={this.onClick.bind(this)}>{this.state.width === 0 ? '隐藏菜单' : '展示菜单'}</Button>
         </div>
         <Split lineBar visiable={this.state.width !== 0} style={{ border: '1px solid #d5d5d5', borderRadius: 3 }}>
-          <div style={{ maxWidth: this.state.width, overflow: 'hidden' }}>
+          <div style={{ ...styl, overflow: 'hidden' }}>
             <Menu>
               <Menu.Item icon="heart-on" text="另存为" active />
               <Menu.Item icon="appstore" text="应用商城" />
@@ -327,7 +337,7 @@ class Demo extends React.Component {
               <Menu.Item icon="map" text="谷歌地图" />
             </Menu>
           </div>
-          <div>
+          <div style={{ flex: 1, minWidth: 30 }}>
             Right Pane
           </div>
         </Split>

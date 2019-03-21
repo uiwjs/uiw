@@ -19,22 +19,7 @@ export default class Split extends React.Component {
     window.removeEventListener('mousemove', this.onDragging, false);
     window.removeEventListener('mouseup', this.onDragEnd, false);
   }
-  initMaxWidthOrHeight(node, sibling) {
-    const { mode } = this.props;
-    if (!node) {
-      return;
-    }
-    const key = mode === 'horizontal' ? 'Width' : 'Height';
-    // eslint-disable-next-line
-    do {
-      if (node && node.nodeType === 1) {
-        node.style[`max${key}`] = `${node[`client${key}`]}px`;
-      }
-    } while (node && node[sibling] && (node = node[sibling]));
-  }
   onMouseDown(paneNumber, env) {
-    this.initMaxWidthOrHeight(env.target, 'previousElementSibling');
-    this.initMaxWidthOrHeight(env.target, 'nextElementSibling');
     this.paneNumber = paneNumber;
     this.startX = env.clientX;
     this.startY = env.clientY;
@@ -42,6 +27,8 @@ export default class Split extends React.Component {
     this.target = env.target;
     const prevTarget = this.target.previousElementSibling;
     const nextTarget = this.target.nextElementSibling;
+    this.boxWidth = this.warpper.clientWidth;
+    this.boxHeight = this.warpper.clientHeight;
     this.preWidth = prevTarget.clientWidth;
     this.nextWidth = nextTarget.clientWidth;
     this.preHeight = prevTarget.clientHeight;
@@ -57,24 +44,35 @@ export default class Split extends React.Component {
     if (!this.state.dragging) {
       this.setState({ dragging: true });
     }
-    const { mode, onDragging } = this.props;
+    const { mode, onDragging, children } = this.props;
+    const count = React.Children.count(children);
     const nextTarget = this.target.nextElementSibling;
     const prevTarget = this.target.previousElementSibling;
     const x = env.clientX - this.startX;
     const y = env.clientY - this.startY;
     this.preSize = 0;
     this.nextSize = 0;
-    if (mode === 'horizontal' && this.preWidth + x > -1 && this.nextWidth - x > -1) {
-      this.preSize = this.preWidth + x;
-      this.nextSize = this.nextWidth - x;
-      prevTarget.style.maxWidth = `${this.preSize}px`;
-      nextTarget.style.maxWidth = `${this.nextSize}px`;
+    if (mode === 'horizontal') {
+      this.preSize = this.preWidth + x > -1 ? this.preWidth + x : 0;
+      this.nextSize = this.nextWidth - x > -1 ? this.nextWidth - x : 0;
+      if (this.preSize === 0 || this.nextSize === 0) {
+        return;
+      }
+      this.preSize = (this.preSize / this.boxWidth >= 1 ? 1 : this.preSize / this.boxWidth) * 100;
+      this.nextSize = (this.nextSize / this.boxWidth >= 1 ? 1 : this.nextSize / this.boxWidth) * 100;
+      prevTarget.style.width = `${this.preSize}%`;
+      nextTarget.style.width = `${this.nextSize}%`;
     }
     if (mode === 'vertical' && this.preHeight + y > -1 && this.nextHeight - y > -1) {
-      this.preSize = this.preHeight + y;
-      this.nextSize = this.nextHeight - y;
-      prevTarget.style.maxHeight = `${this.preSize}px`;
-      nextTarget.style.maxHeight = `${this.nextSize}px`;
+      this.preSize = this.preHeight + y > -1 ? this.preHeight + y : 0;
+      this.nextSize = this.nextHeight - y > -1 ? this.nextHeight - y : 0;
+      this.preSize = (this.preSize / this.boxHeight >= 1 ? 1 : this.preSize / this.boxHeight) * 100;
+      this.nextSize = (this.nextSize / this.boxHeight >= 1 ? 1 : this.nextSize / this.boxHeight) * 100;
+      if (this.preSize === 0 || this.nextSize === 0) {
+        return;
+      }
+      prevTarget.style.height = `${this.preSize}%`;
+      nextTarget.style.height = `${this.nextSize}%`;
     }
     onDragging && onDragging(this.preSize, this.nextSize, this.paneNumber);
   }
@@ -96,7 +94,7 @@ export default class Split extends React.Component {
           const count = React.Children.count(child);
           const props = Object.assign({}, element.props, {
             className: classnames(`${prefixCls}-pane`, element.props.className),
-            style: { flexBasis: `${100 / count}%`, ...element.props.style },
+            style: { ...element.props.style },
           });
           const visiableBar = (visiable === true || (visiable && visiable.includes(idx + 1))) || false;
           const barProps = {
