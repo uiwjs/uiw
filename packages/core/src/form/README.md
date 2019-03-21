@@ -16,6 +16,9 @@ import { Form, Input, Row, Col, Slider, Button, Notify } from 'uiw';
 const Demo = () => (
   <div>
     <Form
+      onChange={({ initial, current }) => {
+        console.log('onChange', initial, current);
+      }}
       onSubmit={({initial, current}) => {
         if(current.name === initial.name) {
           Notify.error({
@@ -612,6 +615,7 @@ ReactDOM.render(<Demo />, _mount_);
 | fields | 设置字段 | object | - |
 | children | 回调 {`fields`, `state`, `canSubmit`, `resetForm`} | function | - |
 | onSubmit | 提交回调 {`initial`, `current`}  | function | - |
+| onChange | 表单发生改变回调函数 {`initial`, `current`}  | function(initial, current) | - |
 | onSubmitError | 调用 `onSubmit` 抛出的任何错误。从字段名称返回对象映射。  | function | - |
 | resetOnSubmit | 在 `onSubmit` 成功后将表单重置为其初始状态。| bool | `true` |
 

@@ -107,6 +107,7 @@ export default class Form extends React.PureComponent {
 
     if (cb) this.setState(nextState, () => cb(val));
     else this.setState(nextState);
+    this.props.onChange({ ...this.state, ...nextState });
   };
   controlField = ({ children = <Input type="text" />, validator, name }) => {
     const element = typeof children !== 'function'
@@ -133,7 +134,7 @@ export default class Form extends React.PureComponent {
     return React.cloneElement(element, props);
   }
   render() {
-    const { prefixCls, className, fields, children, resetOnSubmit, onSubmitError, ...others } = this.props;
+    const { prefixCls, className, fields, children, resetOnSubmit, onSubmitError, onChange, ...others } = this.props;
     const { submitting } = this.state;
     const formUnits = {};
     // eslint-disable-next-line
@@ -167,6 +168,7 @@ Form.propTypes = {
   prefixCls: PropTypes.string,
   fields: PropTypes.object,
   onSubmit: PropTypes.func,
+  onChange: PropTypes.func,
   onSubmitError: PropTypes.func,
   resetOnSubmit: PropTypes.bool,
   children: PropTypes.func,
@@ -176,6 +178,7 @@ Form.defaultProps = {
   prefixCls: 'w-form',
   onSubmitError: () => ({}),
   onSubmit: noop,
+  onChange: noop,
   resetOnSubmit: true,
   children: noop,
 };
