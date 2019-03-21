@@ -12,14 +12,19 @@ import { Split } from 'uiw';
 通过设置子节点的 `minWidth` 样式，即可设置拖拽最小宽度值。通过设置子节点样式 `flexBasis` 样式即可设置默认分割内容的占比宽度。
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Split } from 'uiw';
 
 const Demo = () => (
   <div>
     <Split style={{ height: 100, border: '1px solid #d5d5d5', borderRadius: 3 }}>
       <div style={{ minWidth: 60, flexBasis: '20%' }}>
-        Left Pane
+        <iframe
+          srcDoc="<div>test</div>"
+          style={{ width: '100%', height: '100%' }}
+          title="Code Preview"
+          sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts"
+        />
       </div>
       <div style={{ minWidth: 30 }}>
         Right Pane
@@ -36,7 +41,7 @@ ReactDOM.render(<Demo />, _mount_);
 设置 `visiable={false}` 禁用拖拽栏，可用于布局。
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Split, Divider } from 'uiw';
 
 const Demo = () => (
@@ -83,7 +88,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 多栏分割
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Split } from 'uiw';
 
 const Demo = () => (
@@ -109,7 +114,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 线条拖拽
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Split } from 'uiw';
 
 const Demo = () => (
@@ -148,7 +153,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 垂直分割
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Split } from 'uiw';
 
 const Demo = () => (
@@ -168,7 +173,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 嵌套使用
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Split } from 'uiw';
 
 const Demo = () => (
@@ -200,7 +205,7 @@ ReactDOM.render(<Demo />, _mount_);
 下面实例通过设置 `visiable` 的值来设置拖拽工具是否可见
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Split } from 'uiw';
 
 const Demo = () => (
@@ -241,7 +246,7 @@ ReactDOM.render(<Demo />, _mount_);
 通过设置 `disable` 的值，禁用拖拽工具拖拽。
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Split } from 'uiw';
 
 const Demo = () => (
@@ -285,13 +290,12 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
-
 ### 抽屉
 
 可拖拽左边栏宽度。
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Split, Menu, Button } from 'uiw';
 
 class Demo extends React.Component {

@@ -21,6 +21,17 @@
       background: #ecf7ff;
     }
   }
+  &.dragging &-pane {
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      z-index: 1;
+    }
+  }
   & > &-pane {
     flex: 1;
     transform: none;
