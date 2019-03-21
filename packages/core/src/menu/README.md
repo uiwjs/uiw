@@ -168,7 +168,21 @@ ReactDOM.render(<Demo />, _mount_);
 | disabled | 禁用状态 | Boolean | `false` |
 | overlayProps | 对象将传递到 `OverlayTrigger`，相关参数参考 [`OverlayTrigger`](#/components/overlay-trigger) | Object | - |
 
-其它参数可根据 `tagName` 来设置，默认 `<a />` 标签时，可设置 `href="https://wwww.google.com"` 或者 `target="_blank"` 等参数。
+其它参数可根据 `tagName` 来设置，默认 `<a />` 标签时，可设置 `href="https://wwww.google.com"` 或者 `target="_blank"` 等参数，你可以设置 [react-router-dom](https://github.com/ReactTraining/react-router) 路由 `<Link>`，例如：
+
+```jsx
+import { Menu } from 'uiw';
+import { Link } from 'react-router-dom';
+
+const Demo = () => {
+  return (
+    <Menu style={{ maxWidth: 200 }}>
+      <Menu.Item tagName={Link} to="/home" icon="reload" text="跳转首页" />
+      <Menu.Item icon="map" text="百度地图" href="https://map.baidu.com" target="_blank" />
+    </Menu>
+  )
+}
+```
 
 ## Menu.Divider.Props
 

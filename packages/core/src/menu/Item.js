@@ -90,7 +90,7 @@ export default class MenuItem extends React.Component {
 
 MenuItem.propTypes = {
   prefixCls: PropTypes.string,
-  tagName: PropTypes.string,
+  tagName: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   text: PropTypes.node,
   /**
    * 允许多行文本换行

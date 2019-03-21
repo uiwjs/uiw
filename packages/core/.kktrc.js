@@ -17,7 +17,6 @@ module.exports = {
       conf.entry = './src/index.js';
       conf.output = {
         path: other.appBuildDist,
-        // path: path.join(__filename, '..', 'packages', 'core', 'dist'),
         filename: 'uiw.js',
         library: 'UIW',
         libraryTarget: 'umd',
