@@ -12,7 +12,7 @@ $ npm i uiw # 安装 v2.x.x 最新版本
 ```
 
 ```bash
-$ yarn add antd
+$ yarn add uiw
 ```
 
 ### 浏览器引入
