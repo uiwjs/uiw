@@ -6,7 +6,7 @@ import './style/index.less';
 export class Divider extends React.PureComponent {
   render() {
     const { prefixCls, className, children, dashed, type, align, ...restProps } = this.props;
-    const cls = classnames(className, prefixCls, `${prefixCls}-${type}`, align, {
+    const cls = classnames(className, prefixCls, `${prefixCls}-${type}`, `${prefixCls}-${align}`, {
       [`${prefixCls}-with-text`]: children,
       [`${prefixCls}-dashed`]: !!dashed,
     });
