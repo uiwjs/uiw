@@ -9,7 +9,7 @@
   padding: 0;
   list-style: none;
   background: #e8e8e8;
-  &, .@{w-divider}-vertical {
+  &, &-vertical {
     margin: 0 8px;
     display: inline-block;
     height: 0.9em;
@@ -22,7 +22,7 @@
     display: block;
     height: 1px;
     width: 100%;
-    margin: 18px 0;
+    margin: 16px 0;
   }
   &-horizontal&-with-text {
     display: table;
@@ -42,12 +42,33 @@
       border-top: 1px solid #e8e8e8;
       transform: translateY(50%);
     }
+    &.left {
+      &::before {
+        width: 5%;
+      }
+      &::after {
+        width: 95%;
+      }
+    }
+    &.right {
+      &::before {
+        width: 95%;
+      }
+      &::after {
+        width: 5%;
+      }
+    }
+  }
+  &-dashed&-with-text {
+    &::before, &::after {
+      border-top-style: dashed;
+    }
   }
   &-inner-text {
     display: inline-block;
-    padding: 0 24px;
+    padding: 0 10px;
   }
-  &-dashed {
+  &-dashed:not(&-with-text) {
     background: none;
     border-top: 1px dashed #e8e8e8;
   }
