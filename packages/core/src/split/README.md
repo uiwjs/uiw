@@ -195,7 +195,7 @@ const Demo = () => (
         </div>
       </Split>
     </Split>
-    <div>
+    <div style={{ flex: 1 }}>
       Right Pane
     </div>
   </Split>

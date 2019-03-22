@@ -44,8 +44,7 @@ export default class Split extends React.Component {
     if (!this.state.dragging) {
       this.setState({ dragging: true });
     }
-    const { mode, onDragging, children } = this.props;
-    const count = React.Children.count(children);
+    const { mode, onDragging } = this.props;
     const nextTarget = this.target.nextElementSibling;
     const prevTarget = this.target.previousElementSibling;
     const x = env.clientX - this.startX;
@@ -91,7 +90,6 @@ export default class Split extends React.Component {
     return (
       <div className={cls} {...other} ref={node => this.warpper = node}>
         {React.Children.map(child, (element, idx) => {
-          const count = React.Children.count(child);
           const props = Object.assign({}, element.props, {
             className: classnames(`${prefixCls}-pane`, element.props.className),
             style: { ...element.props.style },
