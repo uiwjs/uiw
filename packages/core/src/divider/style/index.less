@@ -1,9 +1,8 @@
 @w-divider:~"w-divider";
 
 .@{w-divider} {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
-  color: rgba(0, 0, 0, 0.65);
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -30,8 +29,7 @@
     text-align: center;
     background: transparent;
     font-weight: 500;
-    color: #52575c;
-    font-size: 16px;
+    color: #353535;
     margin: 16px 0;
     &:before, &:after {
       content: '';
@@ -43,21 +41,13 @@
       transform: translateY(50%);
     }
   }
-  &-left&-with-text {
-    &::before {
-      width: 5%;
-    }
-    &::after {
-      width: 95%;
-    }
+  &-left&-with-text::before,
+  &-right&-with-text::after {
+    width: 5%;
   }
-  &-right&-with-text {
-    &::before {
-      width: 95%;
-    }
-    &::after {
-      width: 5%;
-    }
+  &-left&-with-text::after,
+  &-right&-with-text::before {
+    width: 95%;
   }
   &-dashed&-with-text {
     &::before, &::after {
