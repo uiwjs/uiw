@@ -19,7 +19,7 @@ export default class Canvas extends React.Component {
       errorMessage: '',
       code: '',
       height: '100%',
-      width: '0%',
+      width: 1,
       visible: false,
       fullScreen: false,
       codePenJSX: '',
@@ -67,7 +67,7 @@ export default class Canvas extends React.Component {
     if (this.warpper) {
       this.initOldHeight();
       this.setState({
-        width: this.state.width === '0%' ? this.oldWidth : '0%',
+        width: this.state.width === 1 ? this.oldWidth : 1,
         visible: true,
       }, () => {
         this.editor.focus();
@@ -109,7 +109,7 @@ export default class Canvas extends React.Component {
     const { parame: { noCode, noPreview, bgWhite, noScroll, codePen } } = this.props;
     const { errorMessage, codePenJSX } = this.state;
     const styl = { flex: 1 };
-    if (this.state.width === '0%') {
+    if (this.state.width === 1) {
       styl.width = '100%';
     }
     // eslint-disable-next-line
@@ -121,7 +121,7 @@ export default class Canvas extends React.Component {
           [styles.fullScreen]: this.state.fullScreen,
         })}
       >
-        <Split style={{ flex: 1, width: 'calc(100% - 29px)' }} visiable={this.state.width !== '0%'}>
+        <Split style={{ flex: 1, width: 'calc(100% - 29px)' }} visiable={this.state.width !== 1}>
           <div
             className={classNames(styles.demo, {
               [`${styles.noScroll}`]: noScroll,
