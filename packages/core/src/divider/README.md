@@ -52,7 +52,7 @@ ReactDOM.render(
 ### 标题对齐位置
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Divider } from 'uiw';
 
 ReactDOM.render(
@@ -75,6 +75,6 @@ ReactDOM.render(
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| type |水平还是垂直类型 | enum{`horizontal`,`vertical`}	| `horizontal` |
-| dashed |是否虚线 |	Boolean	| `false` |
-| align | 分割线标题的对齐位置，可选值为 `left`、`right` 或 `center` |	String	| `center` |
+| type | 水平还是垂直类型 | enum{`horizontal`,`vertical`}	| `horizontal` |
+| dashed | 是否虚线 |	Boolean	| `false` |
+| align | 分割线标题的对齐位置 | Enum{`left`, `right`, `center`}	| `center` |

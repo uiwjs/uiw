@@ -70,6 +70,9 @@ export const getRouterData = () => {
     '/components/layout': {
       component: dynamicWrapper([], () => import('../routes/components/layout')),
     },
+    '/components/loader': {
+      component: dynamicWrapper([], () => import('../routes/components/loader')),
+    },
     '/components/icon': {
       component: dynamicWrapper([], () => import('../routes/components/icon')),
     },
