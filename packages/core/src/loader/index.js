@@ -5,7 +5,7 @@ import './style/index.less';
 
 export default class Loader extends React.Component {
   render() {
-    const { prefixCls, className, size, loading, tip, children, indicator, ...otherProps } = this.props;
+    const { prefixCls, className, size, loading, tip, vertical, children, indicator, ...otherProps } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-${size}`]: size,
     });
@@ -21,7 +21,7 @@ export default class Loader extends React.Component {
                   <circle cx="50" cy="50" r="20" fill="none" strokeWidth="5" strokeMiterlimit="10" />
                 </svg>
               )}
-              {tip && <div>{tip}</div>}
+              {tip && <div className={classnames(`${prefixCls}-text`, { [`${prefixCls}-vertical`]: vertical })}>{tip}</div>}
             </div>
           </div>
         )}
@@ -41,6 +41,7 @@ Loader.propTypes = {
   tip: PropTypes.string,
   indicator: PropTypes.node,
   loading: PropTypes.bool,
+  vertical: PropTypes.bool,
 };
 
 Loader.defaultProps = {

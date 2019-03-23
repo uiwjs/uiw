@@ -1,4 +1,4 @@
-Loader 加载中
+Loader 加载器
 ===
 
 用于页面和区块的加载中状态。
@@ -41,7 +41,7 @@ class Demo extends Component {
   render() {
     return (
       <div>
-        <Row>
+        <Row gutter={10}>
           <Col>
             <Button
               style={{ marginBottom: 10 }}
@@ -54,13 +54,13 @@ class Demo extends Component {
             >点击切换加载状态</Button>
           </Col>
         </Row>
-        <Row>
-          <Col>
+        <Row gutter={10}>
+          <Col fixed>
             <Loader loading={this.state.loading}>
               <Message type="success" title="成功提示标题" description="这里是成功提示详情描述。" />
             </Loader>
           </Col>
-          <Col>
+          <Col fixed>
             <Loader loading={this.state.loading}>
               <Message type="warning" title="成功提示标题" description="这里是成功提示详情描述。" />
             </Loader>
@@ -81,17 +81,30 @@ ReactDOM.render(<Demo />, _mount_);
 import { Loader, Card } from 'uiw';
 
 ReactDOM.render(
-  <div>
-    <Card title="Card标题" extra={<a href="#">更多</a>} style={{ width: 300 }}>
-      <Loader tip="加载中..." style={{ width: '100%' }}>
-        <div>
-          卡片内容<br/>
-          卡片内容<br/>
-          卡片内容<br/>
-        </div>
-      </Loader>
-    </Card>
-  </div>,
+  <Row gutter={10}>
+    <Col fixed>
+      <Card title="图标与文字一行显示" extra={<a href="#">更多</a>} style={{ width: 300 }}>
+        <Loader tip="加载中..." style={{ width: '100%' }}>
+          <div>
+            卡片内容<br/>
+            卡片内容<br/>
+            卡片内容<br/>
+          </div>
+        </Loader>
+      </Card>
+    </Col>
+    <Col>
+      <Card title="图标与文字垂直显示" extra={<a href="#">更多</a>} style={{ width: 300 }}>
+        <Loader tip="loading..." vertical style={{ width: '100%' }}>
+          <div>
+            卡片内容<br/>
+            卡片内容<br/>
+            卡片内容<br/>
+          </div>
+        </Loader>
+      </Card>
+    </Col>
+  </Row>,
   _mount_
 );
 ```
@@ -106,7 +119,11 @@ import { Loader, Card, Icon } from 'uiw';
 ReactDOM.render(
   <div>
     <Card title="Card标题" extra={<a href="#">更多</a>} style={{ width: 300 }}>
-      <Loader indicator={<Icon type="loading" spin={true} color="red" />} tip="加载中..." style={{ width: '100%' }}>
+      <Loader
+        tip="加载中..."
+        indicator={<Icon type="loading" spin={true} style={{ verticalAlign: 'text-top' }} />}
+        style={{ width: '100%', color: 'red' }}
+      >
         <div>
           卡片内容<br/>
           卡片内容<br/>
@@ -125,6 +142,7 @@ ReactDOM.render(
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | size | 尺寸 | Enum{`small`, `default`, `large`} | `default` |
-| loading | 是否旋转 | boolean | true |
+| loading | 是否旋转 | Boolean | `true` |
 | indicator | 加载指示符，可以加载一个 Icon 动画 | ReactNode | - |
-| tip | 当作为包裹元素时，可以自定义描述文案 | string | - |
+| tip | 当作为包裹元素时，可以自定义描述文案 | String | - |
+| vertical | 	图标与文字垂直显示 | Boolean | - |
