@@ -1,4 +1,4 @@
-import Markdown from '../../../components/Markdown';
+import Markdown from '@/components/Markdown';
 
 export default class Page extends Markdown {
   path = 'src/routes/guide/kkt/README.md';

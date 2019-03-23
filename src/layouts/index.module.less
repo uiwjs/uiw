@@ -39,10 +39,24 @@
 .btn {
   color: #fff;
   user-select: none;
-  > svg {
+  padding-bottom: 5px;
+  > div + div {
+    margin-top: 10px;
+  }
+  > div {
+    height: 19px;
+    text-align: center;
+    a {
+      display: inline-block;
+      font-size: 12px;
+    }
+    svg {
+      border-radius: 3px;
+    }
+  }
+  svg {
     display: block;
     margin: 0 auto;
-    margin-bottom: 10px;
     cursor: pointer;
     rect {
       transition: fill .3s;
@@ -62,6 +76,12 @@
   .btn {
     display: flex;
     align-items: center;
+    padding-bottom: 0;
+    padding-right: 5px;
+    > div + div {
+      margin-top: 0;
+      margin-left: 10px;
+    }
     > svg {
       margin-bottom: 0;
       margin-right: 8px;

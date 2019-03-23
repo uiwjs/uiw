@@ -1,5 +1,5 @@
 import { Overlay, Button, Icon, Card, Divider } from 'uiw';
-import Markdown from '../../../components/Markdown';
+import Markdown from '@/components/Markdown';
 import './index.less';
 
 export default class Page extends Markdown {

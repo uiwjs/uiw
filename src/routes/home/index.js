@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../components/icons/logo';
+import logo from '@/components/icons/logo';
 import styles from './index.module.less';
 
 export default class Home extends PureComponent {
@@ -22,7 +22,7 @@ export default class Home extends PureComponent {
             A Component Library for React 16+.
           </div>
           <div>
-            <Link className={styles.AppLink} to="/guide/quick-start"> Guide </Link>
+            <Link className={styles.AppLink} to="/guide/quick-start"> Getting Started </Link>
             <Link className={styles.AppLink} to="/components"> Components </Link>
             <a
               className={styles.AppLink}
