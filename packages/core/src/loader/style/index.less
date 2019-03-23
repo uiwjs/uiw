@@ -1,7 +1,6 @@
 @loader-prefix: ~"w-loader";
 
 .@{loader-prefix} {
-  color: #2d8cf0;
   position: relative;
   display: inline-block;
   svg {
@@ -43,6 +42,7 @@
     display: inline-block;
   }
   &-tips {
+    color: #2d8cf0;
     text-align: center;
     position: relative;
     height: 100%;
@@ -99,7 +99,7 @@
 
 @keyframes loaderColor {
   0%, to {
-    stroke: #5BB5F4;
+    stroke: currentColor;
   }
   // 40% {
   //   stroke: #0057e7
@@ -108,6 +108,6 @@
   //   stroke: #0057e7
   // }
   80%, 90% {
-    stroke: #008EF0;
+    stroke: currentColor;
   }
 }

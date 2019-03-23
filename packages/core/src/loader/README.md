@@ -84,7 +84,7 @@ ReactDOM.render(
   <Row gutter={10}>
     <Col fixed>
       <Card title="图标与文字一行显示" extra={<a href="#">更多</a>} style={{ width: 300 }}>
-        <Loader tip="加载中..." style={{ width: '100%' }}>
+        <Loader color="red" tip="加载中..." style={{ width: '100%' }}>
           <div>
             卡片内容<br/>
             卡片内容<br/>
@@ -121,8 +121,9 @@ ReactDOM.render(
     <Card title="Card标题" extra={<a href="#">更多</a>} style={{ width: 300 }}>
       <Loader
         tip="加载中..."
+        color="red"
         indicator={<Icon type="loading" spin={true} style={{ verticalAlign: 'text-top' }} />}
-        style={{ width: '100%', color: 'red' }}
+        style={{ width: '100%' }}
       >
         <div>
           卡片内容<br/>
@@ -145,4 +146,5 @@ ReactDOM.render(
 | loading | 是否旋转 | Boolean | `true` |
 | indicator | 加载指示符，可以加载一个 Icon 动画 | ReactNode | - |
 | tip | 当作为包裹元素时，可以自定义描述文案 | String | - |
+| color | 设置图标与文字的颜色 | String | - |
 | vertical | 	图标与文字垂直显示 | Boolean | - |

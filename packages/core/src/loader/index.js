@@ -5,7 +5,7 @@ import './style/index.less';
 
 export default class Loader extends React.Component {
   render() {
-    const { prefixCls, className, size, loading, tip, vertical, children, indicator, ...otherProps } = this.props;
+    const { prefixCls, className, size, loading, tip, vertical, color, children, indicator, ...otherProps } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-${size}`]: size,
     });
@@ -13,7 +13,7 @@ export default class Loader extends React.Component {
     return (
       <div className={cls} {...otherProps}>
         {loading && (
-          <div className={`${prefixCls}-tips`}>
+          <div className={`${prefixCls}-tips`} style={{ color }}>
             <div className={`${prefixCls}-tips-nested`}>
               {indicator}
               {!indicator && (
@@ -39,6 +39,7 @@ Loader.propTypes = {
   prefixCls: PropTypes.string,
   size: PropTypes.oneOf(['small', 'default', 'large']),
   tip: PropTypes.string,
+  color: PropTypes.string,
   indicator: PropTypes.node,
   loading: PropTypes.bool,
   vertical: PropTypes.bool,
