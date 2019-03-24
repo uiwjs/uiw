@@ -148,3 +148,4 @@ ReactDOM.render(
 | tip | 当作为包裹元素时，可以自定义描述文案 | String | - |
 | color | 设置图标与文字的颜色 | String | - |
 | vertical | 	图标与文字垂直显示 | Boolean | - |
+
