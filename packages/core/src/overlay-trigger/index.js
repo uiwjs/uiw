@@ -30,7 +30,9 @@ export default class OverlayTrigger extends React.Component {
     }
   }
   componentDidMount() {
-    document && document.addEventListener('mousedown', this.handleClickOutside, true);
+    if (this.props.isOutsideOther) {
+      document && document.addEventListener('mousedown', this.handleClickOutside, true);
+    }
     !!this.props.isOpen && this.setState({ overlayStyl: { ...this.styles() } });
   }
   componentWillUnmount() {
@@ -325,6 +327,7 @@ OverlayTrigger.propTypes = {
   isOpen: PropTypes.bool,
   disabled: PropTypes.bool,
   isOutside: PropTypes.bool,
+  isOutsideOther: PropTypes.bool,
   autoAdjustOverflow: PropTypes.bool,
   delay: PropTypes.oneOfType([
     PropTypes.number,
@@ -350,6 +353,7 @@ OverlayTrigger.defaultProps = {
   onEnter: () => null,
   usePortal: true,
   isOutside: false,
+  isOutsideOther: true,
   disabled: false,
   isOpen: false,
   trigger: 'hover',
