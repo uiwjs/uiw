@@ -30,7 +30,7 @@ export default class MenuItem extends React.Component {
         </div>
         {addonAfter}
       </TagName>
-    )
+    );
     if (isSubMenuItem) {
       return tagComp;
     }

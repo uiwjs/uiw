@@ -96,7 +96,6 @@ export default class SubMenu extends React.Component {
           <MenuItem
             {...other}
             disabled={disabled}
-            children={children}
             isSubMenuItem
             addonAfter={
               <Icon
