@@ -136,7 +136,8 @@ export default class OverlayTrigger extends React.Component {
     });
   }
   onEnter = (node, isAppearing) => {
-    this.setState({ overlayStyl: { ...this.styles() } }, this.props.onEnter.bind(this, node, isAppearing));
+    this.props.onEnter(node, isAppearing);
+    this.setState({ overlayStyl: { ...this.styles() } });
   }
   styles() {
     const { usePortal, autoAdjustOverflow } = this.props;
