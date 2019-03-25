@@ -281,7 +281,7 @@ ReactDOM.render(<Demo />, _mount_);
 | delay | 延迟进入和消失，`{ show: 2000, hide: 4000 }` 或者直接设置 `2000`，只对 `trigger=hover` 有效 | Object/Number | - |
 | isOpen | 默认是否显示弹窗 | Boolean | `false` |
 | isOutside | 默认离开**触发区域**隐藏弹出目标，设置值为 `true`，在触发区域和弹出目标区域内，不隐藏**弹出目标**。 | Boolean | `false` |
-| isOutsideOther | 点击目标区域以外的区域，是否隐藏。 | Boolean | `true` |
+| isClickOutside | 点击目标区域以外的区域，是否隐藏。 | Boolean | `true` |
 | autoAdjustOverflow | 弹出层被遮挡时自动调整位置 | Boolean | `false` |
 | onVisibleChange | 显示隐藏的回调 | Function(isVisible:bool) | - |
 
