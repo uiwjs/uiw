@@ -10,7 +10,44 @@ import { Menu } from 'uiw';
 ### 基本用法
 
 <!--DemoStart,bgWhite,noScroll,codePen--> 
-```js
+```jsx
+import { Menu, Row, Col } from 'uiw';
+
+const Demo = () => (
+  <Row justify="flex-start" gutter={10}>
+    <Col>
+      <Menu bordered style={{ maxWidth: 200 }}>
+        <Menu.Divider title="编辑" />
+        <Menu.Item icon="file-add" text="添加文件" />
+        <Menu.Item icon="folder-add" text="添加文件夹" />
+        <Menu.Item icon="copy" text="拷贝" />
+        <Menu.Item icon="delete" disabled text="删除" />
+        <Menu.Divider title="其它" />
+        <Menu.SubMenu icon="bar-chart" text="月统计报表导出" collapse>
+          <Menu.Item text="添加文件" />
+          <Menu.Item text="添加文件夹" />
+          <Menu.Divider title="类别" />
+          <Menu.Item icon="copy" text="拷贝" />
+          <Menu.SubMenu icon="folder-add" text="添加文件夹" collapse>
+            <Menu.Item icon="file-add" text="添加文件" />
+            <Menu.Item icon="folder-add" text="添加文件夹" />
+          </Menu.SubMenu>
+        </Menu.SubMenu>
+        <Menu.Item icon="bar-chart" text="月统计报表导出" />
+        <Menu.Item icon="setting" disabled text="偏好设置" />
+        <Menu.Item icon="map" text="谷歌地图" />
+      </Menu>
+    </Col>
+  </Row>
+)
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
+### 基本用法
+
+<!--DemoStart,bgWhite,noScroll,codePen--> 
+```jsx
 import { Menu, Row, Col } from 'uiw';
 
 const Demo = () => (
@@ -36,24 +73,24 @@ const Demo = () => (
         <Menu.Item icon="copy" text="拷贝" />
         <Menu.Item icon="delete" disabled text="删除" />
         <Menu.Divider title="其它" />
-        <Menu.Item icon="bar-chart" text="月统计报表导出">
+        <Menu.SubMenu icon="bar-chart" text="月统计报表导出">
           <Menu.Item icon="file-add" text="添加文件" />
           <Menu.Item icon="folder-add" text="添加文件夹" />
           <Menu.Divider title="类别" />
           <Menu.Item icon="copy" text="拷贝" />
-          <Menu.Item icon="bar-chart" text="报表">
+          <Menu.SubMenu icon="bar-chart" text="报表">
             <Menu.Item icon="file-add" text="添加文件" />
-            <Menu.Item icon="folder-add" text="添加文件夹">
+            <Menu.SubMenu icon="folder-add" text="添加文件夹">
               <Menu.Item icon="file-add" text="添加文件" />
               <Menu.Item icon="folder-add" text="添加文件夹" />
-            </Menu.Item>
-          </Menu.Item>
-        </Menu.Item>
+            </Menu.SubMenu>
+          </Menu.SubMenu>
+        </Menu.SubMenu>
         <Menu.Item icon="bar-chart" text="月统计报表导出" />
-        <Menu.Item icon="setting" disabled text="偏好设置">
+        <Menu.SubMenu icon="setting" disabled text="偏好设置">
           <Menu.Item icon="file-add" text="添加文件" />
           <Menu.Item icon="folder-add" text="添加文件夹" />
-        </Menu.Item>
+        </Menu.SubMenu>
         <Menu.Item icon="setting" disabled text="偏好设置" />
         <Menu.Item icon="map" text="谷歌地图" />
       </Menu>
@@ -66,8 +103,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 下拉菜单
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Menu, Popover, Button, Row, Col } from 'uiw';
 
 const btnStl = {position: 'relative', width: 70 }
@@ -162,11 +198,23 @@ ReactDOM.render(<Demo />, _mount_);
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | icon | 菜单图标 | String | - |
-| text | 菜单内容 | Boolean | `false` |
+| text | 菜单标题内容 | ReactNode | - |
+| addonAfter | 菜单标题后面插入内容 | ReactNode | - |
 | tagName | 设置子节点标签名，默认 `<a />` 标签 | String | `a` |
 | active | 激活选中状态 | Boolean | `false` |
 | disabled | 禁用状态 | Boolean | `false` |
-| overlayProps | 对象将传递到 `OverlayTrigger`，相关参数参考 [`OverlayTrigger`](#/components/overlay-trigger) | Object | - |
+
+## Menu.SubMenu.Props
+
+| 参数 | 说明 | 类型 | 默认值 |
+|--------- |-------- |--------- |-------- |
+| icon | 菜单图标 | String | - |
+| text | 菜单标题内容 | ReactNode | - |
+| tagName | 设置子节点标签名，默认 `<a />` 标签 | String | `a` |
+| active | 激活选中状态 | Boolean | `false` |
+| disabled | 禁用状态 | Boolean | `false` |
+| collapse | 默认子菜单是 OverlayTrigger 的弹出层，通过设置 `collapse={true}` 变为折叠菜单  | Boolean | `false` |
+| overlayProps | 对象将传递到 `OverlayTrigger` 组件，修改部分参数，相关参数参考 [`OverlayTrigger`](#/components/overlay-trigger) | Object | - |
 
 其它参数可根据 `tagName` 来设置，默认 `<a />` 标签时，可设置 `href="https://wwww.google.com"` 或者 `target="_blank"` 等参数，你可以设置 [react-router-dom](https://github.com/ReactTraining/react-router) 路由 `<Link>`，例如：
 

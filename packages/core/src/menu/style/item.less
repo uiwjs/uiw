@@ -1,0 +1,46 @@
+@w-menu:~"w-menu";
+
+.@{w-menu}-item {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  border-radius: 2px;
+  padding: 5px 7px;
+  text-decoration: none;
+  line-height: 20px;
+  color: inherit;
+  user-select: none;
+  transition: all .3s;
+  &:hover, &.active {
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  &:hover, &.active {
+    background-color: rgba(167,182,194,.3);
+  }
+  &:active {
+    background-color: rgba(115,134,148,.3);
+  }
+  &.disabled {
+    outline: none !important;
+    background-color: inherit !important;
+    cursor: not-allowed !important;
+  }
+  &.disabled &-icon, &.disabled {
+    color: rgba(92,112,128,.5) !important;
+  }
+  &-text {
+    flex-grow: 1;
+  }
+  & > * {
+    margin-right: 7px;
+  }
+  & > :last-child {
+    margin-right: 0;
+  }
+  &-icon {
+    color: #393E48;
+  }
+}

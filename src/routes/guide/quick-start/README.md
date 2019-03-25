@@ -82,7 +82,7 @@ import { Button as ButtonView } from 'uiw';
 
 ### 国内镜像站点
 
-[国内镜像站点](http://uiw.gitee.io/)
+国内用户，通过[国内镜像站点](http://uiw.gitee.io/)访问文档网站来提高访问速度。
 
 ### 开发
 
