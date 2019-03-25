@@ -75,6 +75,7 @@ export default class SubMenu extends React.Component {
       overlayTriggerProps.onEntered = this.onEntered;
       overlayTriggerProps.onEntering = this.onEntering;
     } else {
+      overlayTriggerProps.className = `${prefixCls}-popup`;
       menuProps.onClick = this.onClick;
     }
     return (

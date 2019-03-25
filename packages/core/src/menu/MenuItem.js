@@ -25,7 +25,7 @@ export default class MenuItem extends React.Component {
         className={anchorCls}
       >
         <Icon className={`${prefixCls}-icon`} type={icon} />
-        <div className={`${prefixCls}-text`}>
+        <div className={classNames(`${prefixCls}-text`, { [`${prefixCls}-multiline`]: !multiline })}>
           {text}
         </div>
         {addonAfter}

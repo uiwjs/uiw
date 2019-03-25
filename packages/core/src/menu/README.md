@@ -16,7 +16,7 @@ import { Menu, Row, Col } from 'uiw';
 const Demo = () => (
   <Row justify="flex-start" gutter={10}>
     <Col fixed>
-      <Menu bordered style={{ maxWidth: 200 }}>
+      <Menu bordered>
         <Menu.Item icon="reload" text="重新加载" />
         <Menu.Divider />
         <Menu.Item icon="heart-on" text="另存为" active />
@@ -28,8 +28,8 @@ const Demo = () => (
         <Menu.Item icon="map" text="百度地图" href="https://map.baidu.com" target="_blank" />
       </Menu>
     </Col>
-    <Col>
-      <Menu bordered style={{ maxWidth: 200 }}>
+    <Col fixed>
+      <Menu bordered>
         <Menu.Divider title="编辑" />
         <Menu.Item icon="file-add" text="添加文件" />
         <Menu.Item icon="folder-add" text="添加文件夹" />
@@ -58,7 +58,6 @@ const Demo = () => (
           <Menu.Item icon="file-add" text="添加文件" />
           <Menu.Item icon="folder-add" text="添加文件夹" />
         </Menu.SubMenu>
-        <Menu.Item icon="setting" disabled text="偏好设置" />
         <Menu.Item icon="map" text="谷歌地图" />
       </Menu>
     </Col>
@@ -160,12 +159,8 @@ import { Menu, Row, Col } from 'uiw';
 
 const Demo = () => (
   <Row justify="flex-start" gutter={10}>
-    <Col>
+    <Col fixed>
       <Menu bordered style={{ maxWidth: 200 }}>
-        <Menu.Divider title="编辑" />
-        <Menu.Item icon="file-add" text="添加文件" />
-        <Menu.Item icon="folder-add" text="添加文件夹" />
-        <Menu.Item icon="copy" text="拷贝" />
         <Menu.Item icon="delete" disabled text="删除" />
         <Menu.SubMenu icon="setting-o" text="选项" disabled collapse>
           <Menu.Item icon="dot-chart" text="显示边栏" />
@@ -173,7 +168,7 @@ const Demo = () => (
           <Menu.Item icon="tags-o" text="标签名称" />
         </Menu.SubMenu>
         <Menu.Divider title="其它" />
-        <Menu.SubMenu icon="bar-chart" text="月统计报表导出" collapse>
+        <Menu.SubMenu icon="bar-chart" text="每年2019年统计报表导出" collapse>
           <Menu.Item text="添加文件" />
           <Menu.Item text="添加文件夹" />
           <Menu.Divider title="类别" />
