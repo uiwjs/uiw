@@ -54,7 +54,6 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
-
 ### 完全定制弹出容器
 
 <!--DemoStart,bgWhite,codePen--> 
@@ -87,9 +86,34 @@ class Demo extends React.PureComponent {
           isOpen={this.state.isOpen} onClose={this.onClose.bind(this)}
         >
           <div style={{ backgroundColor: '#fff', minWidth: 500 }} >
-            <Icon onClick={this.onClose.bind(this)} type="circle-close" style={{ position: 'absolute', right: 0, top: '-20px', color: '#fff', cursor: 'pointer' }}/>
-            <div style={{ backgroundColor: 'rgb(0, 204, 180)', color: 'rgb(255, 255, 255)', textAlign: 'center', padding: '34px 24px' }}>
-              <h1 style={{ fontSize: '28px', fontWeight: '700', color: 'rgb(255, 255, 255)', lineHeight: '1.2', margin: '0px' }}>
+            <Icon
+              onClick={this.onClose.bind(this)}
+              type="circle-close"
+              style={{
+                position: 'absolute',
+                right: 0,
+                top: '-20px',
+                color: '#fff',
+                cursor: 'pointer',
+              }}
+            />
+            <div
+              style={{
+                backgroundColor: 'rgb(0, 204, 180)',
+                color: 'rgb(255, 255, 255)',
+                textAlign: 'center',
+                padding: '34px 24px',
+              }}
+            >
+              <h1
+                style={{
+                  fontSize: '28px',
+                  fontWeight: '700',
+                  color: 'rgb(255, 255, 255)',
+                  lineHeight: '1.2',
+                  margin: '0px',
+                }}
+              >
                 下次预订可享 5 ￥ 优惠
               </h1>
               <div style={{ padding: '5px 0' }}>(5 ￥ ~ ¥38)</div>
@@ -219,6 +243,12 @@ ReactDOM.render(<Demo />, _mount_);
   animation-duration: 1s;
   animation-fill-mode: both;
   animation-name: flipOutX
+}
+
+.@{animation-prefix}-enter,
+.@{animation-prefix}-enter-done,
+.@{animation-prefix}-exit {
+  display: inherit;
 }
 
 @keyframes flipOutX {

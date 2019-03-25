@@ -13,6 +13,7 @@
   text-align: center;
   height: 100%;
   width: 100%;
+  display: none;
   &.open {
     z-index: 9999;
   }
@@ -104,4 +105,10 @@
 .@{overlay-prefix}-exit-active .@{overlay-prefix}-content {
   transform: scale(.5);
   opacity: 0;
+}
+
+.@{overlay-prefix}-enter,
+.@{overlay-prefix}-enter-done,
+.@{overlay-prefix}-exit {
+  display: inherit;
 }
