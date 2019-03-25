@@ -4,11 +4,13 @@
   margin: 0 !important;
   padding: 5px !important;
   border-radius: 3px;
-  background: #fff;
   min-width: 100%;
   text-align: left;
   font-size: 14px;
-  color: #182026;
+  &:not(&-dark) {
+    color: #182026;
+    background: #fff;
+  }
   li {
     margin: 0 !important;
     list-style: none !important;
@@ -16,8 +18,11 @@
     &:first-of-type {
       border-top: none;
     }
+    a:not([href]) {
+      color: inherit;
+    }
   }
-  &.bordered {
+  &.w-bordered {
     box-shadow: 0 0 0 1px rgba(16,22,26,.1), 0 0 0 rgba(16,22,26,0), 0 1px 1px rgba(16,22,26,.2);
   }
   .@{w-menu}-divider {
@@ -33,5 +38,24 @@
     > strong {
       margin-top: 10px;
     }
+  }
+}
+
+.@{w-menu} {
+  &-dark, &-dark.w-bordered, &-dark & {
+    background: #343a40;
+    color: rgba(255,255,255,0.65);
+  }
+  &-dark.w-bordered {
+    box-shadow: initial;
+  }
+  &-dark .active {
+    color: #fff !important;
+  }
+  &-dark &-item.w-disabled, &-dark &-item.w-disabled &-item-icon {
+    color: rgba(142, 142, 142, 0.79) !important
+  }
+  &-dark &-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
   }
 }

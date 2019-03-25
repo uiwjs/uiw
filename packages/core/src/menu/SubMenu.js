@@ -97,6 +97,7 @@ export default class SubMenu extends React.Component {
             {...other}
             disabled={disabled}
             children={children}
+            isSubMenuItem
             addonAfter={
               <Icon
                 type="caret-right"

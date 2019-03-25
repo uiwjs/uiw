@@ -16,9 +16,9 @@ const disabledProps = {
 export default class MenuItem extends React.Component {
   static displayName = 'uiw.MenuItem';
   render() {
-    const { prefixCls, className, tagName: TagName, children, disabled, multiline, icon, text, active, overlayProps, addonAfter, ...htmlProps } = this.props;
-    const anchorCls = classNames(prefixCls, className, { active, disabled });
-    return (
+    const { prefixCls, className, tagName: TagName, children, disabled, multiline, icon, text, active, overlayProps, addonAfter, isSubMenuItem, ...htmlProps } = this.props;
+    const anchorCls = classNames(prefixCls, className, { active, 'w-disabled': disabled });
+    const tagComp = (
       <TagName
         {...htmlProps}
         {...(disabled ? disabledProps : {})}
@@ -30,7 +30,11 @@ export default class MenuItem extends React.Component {
         </div>
         {addonAfter}
       </TagName>
-    );
+    )
+    if (isSubMenuItem) {
+      return tagComp;
+    }
+    return <li> {tagComp} </li>;
   }
 }
 
@@ -40,6 +44,7 @@ MenuItem.propTypes = {
   text: PropTypes.node,
   addonAfter: PropTypes.node,
   multiline: PropTypes.bool,
+  isSubMenuItem: PropTypes.bool,
   disabled: PropTypes.bool,
   active: PropTypes.bool,
 };
