@@ -99,13 +99,13 @@ export default class SubMenu extends React.Component {
             addonAfter={
               <Icon
                 type="caret-right"
-                className={classnames({
-                  'w-open': this.state.isOpen,
-                  'w-close': !this.state.isOpen,
+                className={classnames(`${prefixCls}-collapse-icon`, {
+                  'w-open': collapse && this.state.isOpen,
+                  'w-close': collapse && !this.state.isOpen,
                 })}
               />
             }
-            className={classnames(className, `${prefixCls}-title`)}
+            className={classnames(className, `${prefixCls}-title`, { [`${prefixCls}-collapse-title`]: collapse })}
           />
         </OverlayTrigger>
       </li>
@@ -117,10 +117,13 @@ SubMenu.propTypes = {
   prefixCls: PropTypes.string,
   overlayProps: PropTypes.object,
   collapse: PropTypes.bool,
+  disabled: PropTypes.bool,
+  active: PropTypes.bool,
 };
 
 SubMenu.defaultProps = {
   prefixCls: 'w-menu-subitem',
   overlayProps: {},
   collapse: false,
+  active: false,
 };

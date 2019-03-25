@@ -314,3 +314,5 @@ ReactDOM.render(<Demo />, _mount_);
 | onOpened | 顺序 `3`，**`打开`**动画播放完成执行，在应用 `exiting` 状态之前启动回调。 | Function(node: HtmlElement, isAppearing: bool) | - |
 | onClosing | 顺序 `4`，**`关闭`**立即执行，应用 `exit-active` 后立即触发 [`<CSSTransition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。 | Function(node: HtmlElement) | - |
 | onClosed | 顺序 `5`，**`关闭`**动画播放完成立即执行，删除 `exit` 类后立即触发 [`<CSSTransition>`](http://reactcommunity.org/react-transition-group/transition/) 回调，并将 `exit-done` 类添加到 DOM 节点。 | Function(node: HtmlElement) | - |
+
+支持传递 [`<CSSTransition>`](http://reactcommunity.org/react-transition-group/transition/) 原事件覆盖当前事件，请查看 [`<CSSTransition>`](http://reactcommunity.org/react-transition-group/transition/) 文档。

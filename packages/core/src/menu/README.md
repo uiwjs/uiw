@@ -15,43 +15,6 @@ import { Menu, Row, Col } from 'uiw';
 
 const Demo = () => (
   <Row justify="flex-start" gutter={10}>
-    <Col>
-      <Menu bordered style={{ maxWidth: 200 }}>
-        <Menu.Divider title="编辑" />
-        <Menu.Item icon="file-add" text="添加文件" />
-        <Menu.Item icon="folder-add" text="添加文件夹" />
-        <Menu.Item icon="copy" text="拷贝" />
-        <Menu.Item icon="delete" disabled text="删除" />
-        <Menu.Divider title="其它" />
-        <Menu.SubMenu icon="bar-chart" text="月统计报表导出" collapse>
-          <Menu.Item text="添加文件" />
-          <Menu.Item text="添加文件夹" />
-          <Menu.Divider title="类别" />
-          <Menu.Item icon="copy" text="拷贝" />
-          <Menu.SubMenu icon="folder-add" text="添加文件夹" collapse>
-            <Menu.Item icon="file-add" text="添加文件" />
-            <Menu.Item icon="folder-add" text="添加文件夹" />
-          </Menu.SubMenu>
-        </Menu.SubMenu>
-        <Menu.Item icon="bar-chart" text="月统计报表导出" />
-        <Menu.Item icon="setting" disabled text="偏好设置" />
-        <Menu.Item icon="map" text="谷歌地图" />
-      </Menu>
-    </Col>
-  </Row>
-)
-ReactDOM.render(<Demo />, _mount_);
-```
-<!--End-->
-
-### 基本用法
-
-<!--DemoStart,bgWhite,noScroll,codePen--> 
-```jsx
-import { Menu, Row, Col } from 'uiw';
-
-const Demo = () => (
-  <Row justify="flex-start" gutter={10}>
     <Col fixed>
       <Menu bordered style={{ maxWidth: 200 }}>
         <Menu.Item icon="reload" text="重新加载" />
@@ -72,6 +35,11 @@ const Demo = () => (
         <Menu.Item icon="folder-add" text="添加文件夹" />
         <Menu.Item icon="copy" text="拷贝" />
         <Menu.Item icon="delete" disabled text="删除" />
+        <Menu.SubMenu icon="setting-o" text="选项" collapse>
+          <Menu.Item icon="dot-chart" text="显示边栏" />
+          <Menu.Item icon="date" text="添加日期" />
+          <Menu.Item icon="tags-o" text="标签名称" />
+        </Menu.SubMenu>
         <Menu.Divider title="其它" />
         <Menu.SubMenu icon="bar-chart" text="月统计报表导出">
           <Menu.Item icon="file-add" text="添加文件" />
@@ -86,7 +54,6 @@ const Demo = () => (
             </Menu.SubMenu>
           </Menu.SubMenu>
         </Menu.SubMenu>
-        <Menu.Item icon="bar-chart" text="月统计报表导出" />
         <Menu.SubMenu icon="setting" disabled text="偏好设置">
           <Menu.Item icon="file-add" text="添加文件" />
           <Menu.Item icon="folder-add" text="添加文件夹" />
@@ -103,6 +70,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 下拉菜单
 
+<!--DemoStart,bgWhite,noScroll,codePen-->
 ```jsx
 import { Menu, Popover, Button, Row, Col } from 'uiw';
 
@@ -183,6 +151,48 @@ const Demo = () => (
 ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
+
+### 内嵌菜单
+
+<!--DemoStart,bgWhite,noScroll,codePen--> 
+```jsx
+import { Menu, Row, Col } from 'uiw';
+
+const Demo = () => (
+  <Row justify="flex-start" gutter={10}>
+    <Col>
+      <Menu bordered style={{ maxWidth: 200 }}>
+        <Menu.Divider title="编辑" />
+        <Menu.Item icon="file-add" text="添加文件" />
+        <Menu.Item icon="folder-add" text="添加文件夹" />
+        <Menu.Item icon="copy" text="拷贝" />
+        <Menu.Item icon="delete" disabled text="删除" />
+        <Menu.SubMenu icon="setting-o" text="选项" disabled collapse>
+          <Menu.Item icon="dot-chart" text="显示边栏" />
+          <Menu.Item icon="date" text="添加日期" />
+          <Menu.Item icon="tags-o" text="标签名称" />
+        </Menu.SubMenu>
+        <Menu.Divider title="其它" />
+        <Menu.SubMenu icon="bar-chart" text="月统计报表导出" collapse>
+          <Menu.Item text="添加文件" />
+          <Menu.Item text="添加文件夹" />
+          <Menu.Divider title="类别" />
+          <Menu.Item icon="copy" text="拷贝" />
+          <Menu.SubMenu icon="folder-add" text="添加文件夹" collapse>
+            <Menu.Item icon="file-add" text="添加文件" />
+            <Menu.Item icon="folder-add" text="添加文件夹" />
+          </Menu.SubMenu>
+        </Menu.SubMenu>
+        <Menu.Item icon="setting" disabled text="偏好设置" />
+        <Menu.Item icon="map" text="谷歌地图" />
+      </Menu>
+    </Col>
+  </Row>
+)
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
 
 ## Menu.Props
 
