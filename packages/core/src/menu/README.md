@@ -271,7 +271,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| icon | 菜单图标 | String | - |
+| icon | 菜单图标 [`<Icon />`](#/components/icon) 的 `type` 属性 | ReactNode/String | - |
 | text | 菜单标题内容 | ReactNode | - |
 | addonAfter | 菜单标题后面插入内容 | ReactNode | - |
 | ~~isSubMenuItem~~ | 不可用，SubMenu 组件传递给 Item 组件的**标记**属性，这是一个内部参数。 | Boolean | - |
@@ -283,7 +283,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| icon | 菜单图标 | String | - |
+| icon | 菜单图标 [`<Icon />`](#/components/icon) 的 `type` 属性 | String | - |
 | text | 菜单标题内容 | ReactNode | - |
 | tagName | 设置子节点标签名，默认 `<a />` 标签 | String | `a` |
 | active | 激活选中状态 | Boolean | `false` |

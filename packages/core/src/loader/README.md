@@ -83,7 +83,7 @@ import { Loader, Card } from 'uiw';
 ReactDOM.render(
   <Row gutter={10}>
     <Col fixed>
-      <Card title="图标与文字一行显示" extra={<a href="#">更多</a>} style={{ width: 300 }}>
+      <Card title="图标与文字一行显示" extra={<a href="#">更多</a>} style={{ minWidth: 230 }}>
         <Loader color="red" tip="加载中..." style={{ width: '100%' }}>
           <div>
             卡片内容<br/>
@@ -93,9 +93,20 @@ ReactDOM.render(
         </Loader>
       </Card>
     </Col>
-    <Col>
-      <Card title="图标与文字垂直显示" extra={<a href="#">更多</a>} style={{ width: 300 }}>
+    <Col fixed>
+      <Card title="图标与文字垂直显示" extra={<a href="#">更多</a>} style={{ minWidth: 230 }}>
         <Loader tip="loading..." vertical style={{ width: '100%' }}>
+          <div>
+            卡片内容<br/>
+            卡片内容<br/>
+            卡片内容<br/>
+          </div>
+        </Loader>
+      </Card>
+    </Col>
+    <Col fixed>
+      <Card title="自定义背景颜色" extra={<a href="#">更多</a>} style={{ minWidth: 230 }}>
+        <Loader bgColor="rgba(0, 0, 0, 0.4)" color="#fff" tip="loading..." vertical style={{ width: '100%' }}>
           <div>
             卡片内容<br/>
             卡片内容<br/>
@@ -147,5 +158,6 @@ ReactDOM.render(
 | indicator | 加载指示符，可以加载一个 Icon 动画 | ReactNode | - |
 | tip | 当作为包裹元素时，可以自定义描述文案 | String | - |
 | color | 设置图标与文字的颜色 | String | - |
+| bgColor | 自定义背景颜色 | String | - |
 | vertical | 	图标与文字垂直显示 | Boolean | - |
 
