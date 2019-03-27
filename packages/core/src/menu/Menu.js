@@ -10,7 +10,7 @@ export default class Menu extends React.Component {
     const cls = classNames(prefixCls, className, { 'w-bordered': bordered, [`${prefixCls}-${theme}`]: theme });
     return (
       <ul {...htmlProps} className={cls} data-menu="menu">
-        {children.map((child, key) => React.cloneElement(child, { ...child.props, key }))}
+        {children}
       </ul>
     );
   }
