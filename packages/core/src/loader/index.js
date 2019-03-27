@@ -5,15 +5,20 @@ import './style/index.less';
 
 export default class Loader extends React.Component {
   render() {
-    const { prefixCls, className, size, loading, tip, vertical, color, bgColor, children, indicator, ...otherProps } = this.props;
+    const { prefixCls, className, size, loading, tip, vertical, color, bgColor, children, indicator, fullscreen, ...otherProps } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-${size}`]: size,
     });
 
     return (
       <div className={cls} {...otherProps}>
-        {loading && (
-          <div className={`${prefixCls}-tips`} style={{ color, backgroundColor: bgColor }}>
+        {(loading || fullscreen) && (
+          <div
+            className={classnames(`${prefixCls}-tips`, {
+              [`${prefixCls}-fullscreen`]: fullscreen,
+            })}
+            style={{ color, backgroundColor: bgColor }}
+          >
             <div className={`${prefixCls}-tips-nested`}>
               {indicator}
               {!indicator && (
@@ -43,6 +48,7 @@ Loader.propTypes = {
   bgColor: PropTypes.string,
   indicator: PropTypes.node,
   loading: PropTypes.bool,
+  fullscreen: PropTypes.bool,
   vertical: PropTypes.bool,
 };
 
@@ -50,4 +56,5 @@ Loader.defaultProps = {
   prefixCls: 'w-loader',
   size: 'default',
   loading: true,
+  fullscreen: false,
 };

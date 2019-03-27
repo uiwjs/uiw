@@ -10,7 +10,7 @@ import { Loader } from 'uiw';
 ### 基础实例
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Loader } from 'uiw';
 
 ReactDOM.render(
@@ -28,7 +28,7 @@ ReactDOM.render(
 ### 警告提示中加载
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Loader, Row, Col, Message } from 'uiw';
 
 class Demo extends Component {
@@ -77,7 +77,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 卡片加载中
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Loader, Card } from 'uiw';
 
 ReactDOM.render(
@@ -124,7 +124,7 @@ ReactDOM.render(
 ### 自定义加载图标动画
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Loader, Card, Icon } from 'uiw';
 
 ReactDOM.render(
@@ -149,6 +149,58 @@ ReactDOM.render(
 ```
 <!--End-->
 
+### 整页加载
+
+页面数据加载时显示。
+
+<!--DemoStart,bgWhite,codePen--> 
+```jsx
+import { Loader, Card, Icon, Button } from 'uiw';
+
+class Demo extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      fullscreen: false,
+    }
+  }
+  render() {
+    return (
+      <div>
+        <Button
+          style={{ marginBottom: 10 }}
+          type="primary"
+          onClick={()=>{
+            this.setState({
+              fullscreen: !this.state.fullscreen,
+            }, () => {
+              setTimeout(() => {
+                this.setState({
+                  fullscreen: !this.state.fullscreen,
+                })
+              }, 3000);
+            });
+          }}
+        >
+          显示整页加载，3 秒后消失
+        </Button>
+        {this.state.fullscreen && (
+          <Loader
+            tip="加载中..."
+            size="large"
+            bgColor="rgba(255, 255, 255, 0.9)"
+            fullscreen={this.state.fullscreen}
+          />
+        )}
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
 ### Props
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -159,5 +211,6 @@ ReactDOM.render(
 | tip | 当作为包裹元素时，可以自定义描述文案 | String | - |
 | color | 设置图标与文字的颜色 | String | - |
 | bgColor | 自定义背景颜色 | String | - |
-| vertical | 	图标与文字垂直显示 | Boolean | - |
+| vertical | 图标与文字垂直显示 | Boolean | - |
+| fullscreen | 是否全屏显示 | Boolean | `false` |
 
