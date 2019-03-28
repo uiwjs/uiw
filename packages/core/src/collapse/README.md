@@ -120,6 +120,47 @@ ReactDOM.render(
 ```
 <!--End-->
 
+## 自定义面板
+
+自定义各个面板的背景色、圆角、边距和图标。
+
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Collapse } from 'uiw';
+
+const customPanelStyle = {
+  background: '#f7f7f7',
+  borderRadius: 4,
+  marginBottom: 24,
+  border: 0,
+  overflow: 'hidden',
+};
+
+const Panel = Collapse.Panel;
+
+ReactDOM.render(
+  <div>
+    <Collapse accordion bordered={true} activeKey={[]} onChange={key=>console.log(key)}>
+      <Panel header="大话西游" style={customPanelStyle}>
+        <div>曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。 </div>
+        <div>如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。 </div>
+        <div>如果非要在这份爱上加上一个期限，我希望是…… </div>
+        <div>一万年</div>
+      </Panel>
+      <Panel header="西游·降魔篇" style={customPanelStyle}>
+        <div>曾经痛苦，才知道真正的痛苦；曾经执著，才能放下执著；</div>
+        <div>曾经牵挂，才能了无牵挂。</div>
+      </Panel>
+      <Panel header="国产零零漆" style={customPanelStyle}>
+        <div>古有关云长全神贯注下象棋刮骨疗毒，今有我零零漆聚精会神看A片挖骨取弹头。</div>
+      </Panel>
+    </Collapse>
+  </div>,
+  _mount_
+);
+```
+<!--End-->
+
 ## 自定义面板标题
 
 <!--DemoStart,bgWhite,codePen--> 
