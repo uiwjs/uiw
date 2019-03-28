@@ -115,7 +115,7 @@ export default class Tree extends React.Component {
     node.style.height = `${node.scrollHeight}px`;
   }
   onExiting = (node) => {
-    node.style.height = '0px';
+    node.style.height = `1px`;
   }
   onEnter = (node) => {
     node.style.height = '1px';
@@ -127,20 +127,24 @@ export default class Tree extends React.Component {
     node.style.height = 'initial';
   }
   onItemClick(item, evn) {
+    if (!item.children) {
+      return;
+    }
     const { onExpand } = this.props;
     let { openKeys } = this.state;
-    const key = openKeys.find(v => v === item.key);
+    let currentKeys = [...openKeys];
+    const key = currentKeys.find(v => v === item.key);
     const cls = evn.currentTarget.className.replace(/(\s)open/g, '');
     let expanded = false;
     if (!key) {
-      openKeys.push(item.key);
+      currentKeys.push(item.key);
       evn.currentTarget.className = classnames(cls, 'open');
       expanded = true;
     } else {
-      openKeys = openKeys.filter(v => v !== item.key);
+      currentKeys = currentKeys.filter(v => v !== item.key);
       evn.currentTarget.className = cls;
     }
-    this.setState({ openKeys }, () => {
+    this.setState({ openKeys: currentKeys }, () => {
       onExpand(item.key, expanded, item, evn);
     });
   }
@@ -173,16 +177,22 @@ export default class Tree extends React.Component {
             item.parent = parent;
             const selected = selectedKeys.indexOf(item.key) > -1;
             const noChild = !item.children;
-            const itemIsOpen = openKeys.indexOf(item.key) > -1;
+            const itemIsOpen = openKeys.indexOf(item.key) > -1 && item.children;
             const iconItem = typeof icon === 'function' ? icon(item, itemIsOpen, noChild) : icon;
             return (
               <li key={idx}>
                 <div className={classnames(`${prefixCls}-label`)}>
-                  <Icon
-                    type={iconItem || 'caret-right'}
-                    onClick={this.onItemClick.bind(this, item)}
-                    className={classnames({ 'no-child': noChild, 'no-animation': !iconAnimation, open: itemIsOpen })}
-                  />
+                  <span className={`${prefixCls}-switcher`} onClick={this.onItemClick.bind(this, item)}>
+                    <Icon
+                      type={iconItem || 'caret-right'}
+                      className={classnames({
+                        [`${prefixCls}-switcher-noop`]: typeof icon === 'function',
+                        'no-child': noChild,
+                        'no-animation': !iconAnimation,
+                        open: itemIsOpen,
+                      })}
+                    />
+                  </span>
                   <div
                     onClick={this.onItemSelected.bind(this, item)}
                     className={classnames(`${prefixCls}-title`, { selected })}

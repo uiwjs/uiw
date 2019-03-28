@@ -23,26 +23,32 @@
   &-close {
     height: 0;
   }
+  &-label .no-child:not(&-switcher-noop) svg {
+    display: none;
+  }
   &-label {
+    & > * {
+      vertical-align: middle;
+    }
+  }
+  &-switcher {
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    display: inline-block;
+    text-align: center;
+    &:hover {
+      color: #2EA3F4;
+    }
     .w-icon {
       transition: .3s all;
       transform: scale(.79) rotate(0deg);
-      margin-right: 2px;
       &.open:not(.no-animation) {
         transform: scale(.79) rotate(90deg) !important;
       }
-      &:hover {
-        color: #2EA3F4;
-      }
-    }
-    .w-icon:not(.no-child) {
-      cursor: pointer;
-    }
-    .no-child:not(.custom-icon) svg {
-      display: none;
-    }
-    & > * {
-      vertical-align: middle;
     }
   }
   &-title {
@@ -82,11 +88,4 @@
       }
     }
   }
-}
-
-
-.@{tree-prefix}-enter,
-.@{tree-prefix}-enter-done,
-.@{tree-prefix}-exit {
-  display: inherit;
 }
