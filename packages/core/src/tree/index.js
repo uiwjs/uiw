@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { CSSTransition } from 'react-transition-group';
 import Icon from '../icon';
 import './style/index.less';
 
@@ -110,6 +111,21 @@ export default class Tree extends React.Component {
       onSelected(selectedKeys, item.key, selected, item, evn);
     });
   }
+  onExit = (node) => {
+    node.style.height = `${node.scrollHeight}px`;
+  }
+  onExiting = (node) => {
+    node.style.height = '0px';
+  }
+  onEnter = (node) => {
+    node.style.height = '1px';
+  }
+  onEntering = (node) => {
+    node.style.height = `${node.scrollHeight}px`;
+  }
+  onEntered = (node) => {
+    node.style.height = 'initial';
+  }
   onItemClick(item, evn) {
     const { onExpand } = this.props;
     let { openKeys } = this.state;
@@ -137,38 +153,49 @@ export default class Tree extends React.Component {
       isOpen = openKeys.indexOf(parent.key) > -1;
     }
     return (
-      <ul
-        className={classnames({
-          [`${prefixCls}-open`]: level !== 1 && isOpen,
-          [`${prefixCls}-close`]: level !== 1 && !isOpen,
-        })}
+      <CSSTransition
+        classNames="w-tree"
+        in={isOpen}
+        timeout={200}
+        onExit={this.onExit}
+        onExiting={this.onExiting}
+        onEnter={this.onEnter}
+        onEntered={this.onEntered}
+        onEntering={this.onEntering}
       >
-        {data.map((item, idx) => {
-          item.parent = parent;
-          const selected = selectedKeys.indexOf(item.key) > -1;
-          const noChild = !item.children;
-          const itemIsOpen = openKeys.indexOf(item.key) > -1;
-          const iconItem = typeof icon === 'function' ? icon(item, itemIsOpen, noChild) : icon;
-          return (
-            <li key={idx}>
-              <div className={classnames(`${prefixCls}-label`)}>
-                <Icon
-                  type={iconItem || 'caret-right'}
-                  onClick={this.onItemClick.bind(this, item)}
-                  className={classnames({ 'no-child': noChild, 'no-animation': !iconAnimation, open: itemIsOpen })}
-                />
-                <div
-                  onClick={this.onItemSelected.bind(this, item)}
-                  className={classnames(`${prefixCls}-title`, { selected })}
-                >
-                  {renderTitle ? renderTitle(item, selected, noChild) : <span>{item.label}</span>}
+        <ul
+          className={classnames({
+            [`${prefixCls}-open`]: level !== 1 && isOpen,
+            [`${prefixCls}-close`]: level !== 1 && !isOpen,
+          })}
+        >
+          {data.map((item, idx) => {
+            item.parent = parent;
+            const selected = selectedKeys.indexOf(item.key) > -1;
+            const noChild = !item.children;
+            const itemIsOpen = openKeys.indexOf(item.key) > -1;
+            const iconItem = typeof icon === 'function' ? icon(item, itemIsOpen, noChild) : icon;
+            return (
+              <li key={idx}>
+                <div className={classnames(`${prefixCls}-label`)}>
+                  <Icon
+                    type={iconItem || 'caret-right'}
+                    onClick={this.onItemClick.bind(this, item)}
+                    className={classnames({ 'no-child': noChild, 'no-animation': !iconAnimation, open: itemIsOpen })}
+                  />
+                  <div
+                    onClick={this.onItemSelected.bind(this, item)}
+                    className={classnames(`${prefixCls}-title`, { selected })}
+                  >
+                    {renderTitle ? renderTitle(item, selected, noChild) : <span>{item.label}</span>}
+                  </div>
                 </div>
-              </div>
-              {item.children && this.renderTreeNode(item.children, level + 1, item)}
-            </li>
-          );
-        })}
-      </ul>
+                {item.children && this.renderTreeNode(item.children, level + 1, item)}
+              </li>
+            );
+          })}
+        </ul>
+      </CSSTransition>
     );
   }
   render() {
