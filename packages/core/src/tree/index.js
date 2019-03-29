@@ -115,7 +115,7 @@ export default class Tree extends React.Component {
     node.style.height = `${node.scrollHeight}px`;
   }
   onExiting = (node) => {
-    node.style.height = `1px`;
+    node.style.height = '1px';
   }
   onEnter = (node) => {
     node.style.height = '1px';
@@ -131,7 +131,7 @@ export default class Tree extends React.Component {
       return;
     }
     const { onExpand } = this.props;
-    let { openKeys } = this.state;
+    const { openKeys } = this.state;
     let currentKeys = [...openKeys];
     const key = currentKeys.find(v => v === item.key);
     const cls = evn.currentTarget.className.replace(/(\s)open/g, '');
