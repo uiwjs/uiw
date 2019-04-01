@@ -256,6 +256,114 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
+### 完整菜单展示
+
+包括点击选中效果，事件等操作，完整的实例展示。
+
+<!--DemoStart,bgWhite,noScroll,codePen--> 
+```jsx
+import { Menu, Row, Col, Switch } from 'uiw';
+
+class Demo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      theme: 'light',
+      menus: [
+        { key: '1', icon: 'delete', label: '删除' },
+        {
+          icon: 'setting-o',
+          label: '选项',
+          childrend: [
+            { key: '1-1', icon: 'dot-chart', label: '显示边栏' },
+            { key: '1-2', icon: 'date', disabled: true, label: '添加日期' },
+            { key: '1-3', icon: 'tags-o', label: '标签名称' },
+          ],
+        },
+        { divider: true },
+        { key: '2', icon: 'map', label: '谷歌地图' },
+        {
+          icon: 'bar-chart',
+          label: '每年2019年统计报表导出',
+          childrend: [
+            { key: '2-1', label: '统计添加文件' },
+            { key: '2-2', label: '统计添加文件夹' },
+            { key: '2-3', icon: 'tags-o', label: '类别', divider: true },
+            {
+              icon: 'folder-add',
+              label: '添加文件夹',
+              childrend: [
+                { key: '2-3-1', label: '添加文件夹' },
+                { key: '2-3-2', label: '添加文件' },
+                { key: '2-3-3', label: '添加文件夹' },
+              ],
+            },
+          ],
+        },
+      ],
+      active: '1',
+    }
+  }
+
+  onClickItem(key) {
+    this.setState({ active: key });
+  }
+
+  renderMenu(menus, k) {
+    const { active } = this.state;
+    const items = [];
+    menus.forEach((item, key) => {
+      if (item.childrend) {
+        items.push(
+          <Menu.SubMenu key={key} icon={item.icon} text={item.label} collapse>
+            {this.renderMenu(item.childrend, `${k}${key}`)}
+          </Menu.SubMenu>
+        );
+      } else if (item.divider) {
+        items.push(<Menu.Divider key={`${k}${key}`} title={item.label} />);
+      } else {
+        items.push(
+          <Menu.Item
+            onClick={this.onClickItem.bind(this, item.key)}
+            active={active === item.key} key={`${k}${key}`}
+            icon={item.icon}
+            text={item.label}
+          />
+        );
+      }
+    });
+    return items;
+  }
+
+  render() {
+    return (
+      <div>
+        <Row justify="flex-start" gutter={10}>
+          <Col style={{ paddingBottom: 5 }}>
+            <Switch
+              checked={this.state.theme === 'dark'}
+              style={{ marginRight: 10 }}
+              onChange={(e) => {
+                this.setState({ theme: e.target.checked ? 'dark' : 'light' });
+              }}
+            />
+          </Col>
+        </Row>
+        <Row justify="flex-start" gutter={10}>
+          <Col fixed>
+            <Menu inlineIndent={13} theme={this.state.theme} bordered style={{ maxWidth: 200 }}>
+              {this.renderMenu(this.state.menus, 'k')}
+            </Menu>
+          </Col>
+        </Row>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
 
 ## Menu.Props
 
@@ -263,6 +371,7 @@ ReactDOM.render(<Demo />, _mount_);
 |--------- |-------- |--------- |-------- |
 | className | 设置类的名称 | String | - |
 | style | 元素的行内样式 | Object | - |
+| inlineIndent | 菜单缩进宽度 | Number | `10` |
 | theme | 主题颜色 | Enum{`light`, `dark`} | - |
 | bordered | 是否有边框 | Boolean | `false` |
 

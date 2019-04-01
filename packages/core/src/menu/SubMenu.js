@@ -24,6 +24,7 @@ function checkedMenuItem(node) {
 }
 
 export default class SubMenu extends React.Component {
+  static displayName = 'uiw.SubMenu';
   constructor(props) {
     super(props);
     this.state = {
@@ -56,9 +57,9 @@ export default class SubMenu extends React.Component {
     node.style.height = 'initial';
   }
   render() {
-    const { prefixCls, className, disabled, overlayProps, children, collapse, ...other } = this.props;
+    const { prefixCls, className, disabled, overlayProps, children, collapse, inlineIndent, ...other } = this.props;
     const overlayTriggerProps = { ...overlayProps };
-    const menuProps = { bordered: true, children, className: classnames(`${prefixCls}-overlay`) };
+    const menuProps = { bordered: true, children, inlineIndent, className: classnames(`${prefixCls}-overlay`) };
     if (collapse) {
       delete menuProps.onClick;
       menuProps.bordered = false;
@@ -90,7 +91,7 @@ export default class SubMenu extends React.Component {
           isOutside
           {...overlayTriggerProps}
           overlay={
-            <Menu {...menuProps} />
+            <Menu {...menuProps} style={{ paddingLeft: inlineIndent }} />
           }
         >
           <MenuItem

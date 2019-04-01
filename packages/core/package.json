@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "2.0.0-beta.85",
+  "version": "2.0.0-beta.86",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiwjs.github.io",
   "sideEffects": false,
@@ -19,6 +19,7 @@
     "build:css": "node script/buildcss.js",
     "build": "npm run build:cjs && npm run build:esm && npm run build:css",
     "prepare": "npm run build",
+    "test": "eslint -c node_modules/kkt/.eslintrc.* src",
     "bundle": "kkt build --bundle --no-emptyDir",
     "bundle:min": "kkt build --bundle=min --no-emptyDir",
     "watch": "npm run build:watch:esm & npm run build:watch:cjs"

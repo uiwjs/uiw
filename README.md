@@ -43,7 +43,7 @@ A high quality UI Toolkit, A Component Library for React 16+. 💘
 ### Installation
 
 ```bash
-npm install uiw@2.0.0-beta.22 --save
+npm install uiw@2.0.0-beta.86 --save
 ```
 
 You can use [`kkt`](https://github.com/jaywcjlove/kkt) to quickly create a react + uiw project.
