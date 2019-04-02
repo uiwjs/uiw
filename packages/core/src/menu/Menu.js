@@ -13,7 +13,7 @@ export default class Menu extends React.Component {
         {React.Children.map(children, (child) => {
           const props = {};
           if (child.props.children) {
-            props.inlineIndent = inlineIndent
+            props.inlineIndent = inlineIndent;
           }
           return React.cloneElement(child, Object.assign({ ...props }, child.props, {}));
         })}
