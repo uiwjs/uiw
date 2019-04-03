@@ -2,7 +2,7 @@
   position: relative;
   display: inline-block;
 }
-.w-loader svg {
+.w-loader-tips-nested svg {
   height: 100%;
   width: 100%;
   -webkit-animation: loaderRotate 2s linear infinite;
@@ -12,25 +12,25 @@
   fill: currentcolor;
   vertical-align: middle;
 }
-.w-loader svg circle {
+.w-loader-tips-nested svg circle {
   stroke-dasharray: 1,200;
   stroke-dashoffset: 0;
   -webkit-animation: loaderDash 1.5s ease-in-out infinite, loaderColor 6s ease-in-out infinite;
           animation: loaderDash 1.5s ease-in-out infinite, loaderColor 6s ease-in-out infinite;
   stroke-linecap: round;
 }
-.w-loader-large svg {
+.w-loader-large .w-loader-tips-nested svg {
   width: 30px;
   height: 30px;
 }
-.w-loader-large svg circle {
+.w-loader-large .w-loader-tips-nested svg circle {
   stroke-width: 3px;
 }
-.w-loader-default svg {
+.w-loader-default .w-loader-tips-nested svg {
   width: 20px;
   height: 20px;
 }
-.w-loader-small svg {
+.w-loader-small .w-loader-tips-nested svg {
   width: 14px;
   height: 14px;
 }

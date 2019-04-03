@@ -38,6 +38,10 @@
 }
 
 .w-datepicker-caption {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   text-align: center;
   padding: 0 0 3px 0;
   border-bottom: 1px solid #ececec;
@@ -61,6 +65,8 @@
 }
 .w-datepicker-caption-pane.prev,
 .w-datepicker-caption-pane.next {
+  z-index: 30;
+  position: relative;
   padding: 1px 8px 6px 8px;
 }
 .w-datepicker-caption-pane.prev::after,
@@ -262,6 +268,7 @@
   margin: 0 !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
+  padding-bottom: 162px !important;
 }
 .w-timepicker-spinner > ul > li + li {
   margin-top: 0 !important;
