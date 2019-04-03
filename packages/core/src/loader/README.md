@@ -29,7 +29,7 @@ ReactDOM.render(
 
 <!--DemoStart,bgWhite,codePen--> 
 ```jsx
-import { Loader, Row, Col, Message } from 'uiw';
+import { Loader, Row, Col, Message, Icon } from 'uiw';
 
 class Demo extends Component {
   constructor(props) {
@@ -57,7 +57,15 @@ class Demo extends Component {
         <Row gutter={10}>
           <Col fixed>
             <Loader loading={this.state.loading}>
-              <Message type="success" title="成功提示标题" description="这里是成功提示详情描述。" />
+              <Message
+                type="success"
+                title="成功提示标题"
+                description={
+                  <span>
+                    <Icon type="uiw" verticalAlign="baseline" style={{ fill: '#009688' }} />
+                    这里是成功提示详情描述。
+                  </span>
+                } />
             </Loader>
           </Col>
           <Col fixed>
@@ -78,7 +86,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,codePen--> 
 ```jsx
-import { Loader, Card } from 'uiw';
+import { Loader, Card, Col, Row } from 'uiw';
 
 ReactDOM.render(
   <Row gutter={10}>
@@ -155,7 +163,7 @@ ReactDOM.render(
 
 <!--DemoStart,bgWhite,codePen--> 
 ```jsx
-import { Loader, Card, Icon, Button } from 'uiw';
+import { Loader, Icon, Button } from 'uiw';
 
 class Demo extends React.Component {
   constructor() {

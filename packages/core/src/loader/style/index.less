@@ -3,7 +3,7 @@
 .@{loader-prefix} {
   position: relative;
   display: inline-block;
-  svg {
+  &-tips-nested svg {
     height: 100%;
     width: 100%;
     animation: loaderRotate 2s linear infinite;
@@ -17,18 +17,18 @@
       stroke-linecap: round;
     }
   }
-  &-large svg {
+  &-large &-tips-nested svg {
     width: 30px;
     height: 30px;
     circle {
       stroke-width: 3px;
     }
   }
-  &-default svg {
+  &-default &-tips-nested svg {
     width: 20px;
     height: 20px;
   }
-  &-small svg {
+  &-small &-tips-nested svg {
     width: 14px;
     height: 14px;
   }
