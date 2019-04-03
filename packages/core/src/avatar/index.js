@@ -5,8 +5,11 @@ import Icon from '../icon';
 import './style/index.less';
 
 export default class Avatar extends React.Component {
-  state = {
-    isImgExist: true,
+  constructor(props) {
+    super(props);
+    this.state = {
+      isImgExist: true,
+    }
   }
   onImgLoadError() {
     this.setState({ isImgExist: false });
@@ -21,7 +24,7 @@ export default class Avatar extends React.Component {
     });
     if (this.state.isImgExist && src) {
       children = (
-        <img src={src} alt={alt} onError={this.onImgLoadError} />
+        <img src={src} alt={alt} onError={this.onImgLoadError.bind(this)} />
       );
     } else if (icon && typeof icon === 'string') {
       children = <Icon type={icon} />;
