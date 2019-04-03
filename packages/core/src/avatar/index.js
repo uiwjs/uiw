@@ -9,7 +9,7 @@ export default class Avatar extends React.Component {
     super(props);
     this.state = {
       isImgExist: true,
-    }
+    };
   }
   onImgLoadError() {
     this.setState({ isImgExist: false });
