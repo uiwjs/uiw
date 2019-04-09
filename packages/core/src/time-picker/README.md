@@ -66,7 +66,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { TimePicker, Row, Col, Form, Button } from 'uiw';
+import { TimePicker, Notify, Row, Col, Form, Button } from 'uiw';
 
 const Demo = () => (
   <div>

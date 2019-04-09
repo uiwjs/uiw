@@ -551,7 +551,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 对组件 `FormItem` 竖排展示示例。
 
-<!--DemoStart,bgWhite,codePen--> 
+> ⚠️ 注意：当前只展示效果，`FormItem` 组件只在 `Form` 组件中使用。
+
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
 const Demo = () => (
   <div>
@@ -580,7 +582,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 对组件 `FormItem` 横排展示示例。
 
-<!--DemoStart,bgWhite,codePen--> 
+> ⚠️ 注意：当前只展示效果，`FormItem` 组件只在 `Form` 组件中使用。
+
+<!--DemoStart,bgWhite,noCode,codePen--> 
 ```js
 const Demo = () => (
   <div>
