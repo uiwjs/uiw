@@ -1,2 +1,2 @@
-/*! @uiw/reset.css v1.0.0 |  (c) 2019  | https://github.com/uiwjs/uiw.git */
+/*! @uiw/reset.css v1.0.1 | MIT (c) 2019  | https://github.com/uiwjs/uiw.git */
 blockquote,body,dd,dl,dt,fieldset,figure,h1,h2,h3,h4,h5,h6,hr,html,iframe,legend,li,ol,p,pre,textarea,ul{padding:0;margin:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:400}ul{list-style:none}button,input,select{margin:0}html{box-sizing:border-box}*,:after,:before{box-sizing:inherit}embed,iframe,img,object,video{height:auto;max-width:100%}audio{max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
