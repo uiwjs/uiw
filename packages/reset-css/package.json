@@ -15,6 +15,7 @@
   },
   "scripts": {
     "start": "npm run compile && npm run compile:min",
+    "prepare": "npm run start",
     "compile": "lessc reset.less | bannerjs -m > reset.css",
     "compile:min": "lessc reset.less | bannerjs -o | csso > reset.min.css"
   },
