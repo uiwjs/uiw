@@ -212,6 +212,10 @@
   margin-top: 0;
   margin-bottom: 0;
 }
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
 .markdown-body li {
   word-wrap: break-all;
   list-style: disc outside none;
@@ -654,6 +658,11 @@
 }
 ._98b26b9b {
   display: flex;
+}
+._98b26b9b ul,
+._98b26b9b ol {
+  padding-left: 0;
+  padding-left: initial;
 }
 ._98b26b9b ._04926f4e {
   position: relative;
