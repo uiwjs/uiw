@@ -9,10 +9,7 @@
     "reset",
     "mini"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/uiwjs/uiw.git"
-  },
+  "repository": "https://github.com/uiwjs/uiw/tree/master/packages/reset-css",
   "scripts": {
     "start": "npm run compile && npm run compile:min",
     "prepare": "npm run start",
