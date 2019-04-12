@@ -1,6 +1,6 @@
 {
   "name": "@uiw/reset.css",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A tiny modern CSS reset.",
   "main": "reset.css",
   "keywords": [
