@@ -3,6 +3,11 @@
   "version": "1.0.2",
   "description": "A tiny modern CSS reset.",
   "main": "reset.css",
+  "files": [
+    "reset.css",
+    "reset.less",
+    "reset.min.css"
+  ],
   "keywords": [
     "css",
     "less",
