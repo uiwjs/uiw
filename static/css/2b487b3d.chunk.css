@@ -294,6 +294,10 @@
   max-height: 400px;
   overflow: auto;
 }
+.markdown-body pre pre {
+  overflow: visible;
+  overflow: initial;
+}
 .markdown-body pre code {
   display: inline;
   max-width: auto;
