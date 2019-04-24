@@ -2,16 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Thead from './Thead';
-import { getLevelItems } from './util';
+import { getLevelItems, getAllColumnsKeys } from './util';
 import './style/index.less';
 
 export default class Table extends React.Component {
   render() {
-    const { prefixCls, className, columns, data, title, footer, bordered, onCell, onCellHead, ...other } = this.props;
+    const {
+      prefixCls, className, columns, data, title, footer, bordered, onCell, onCellHead, ...other
+    } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-bordered`]: bordered,
     });
     const { header, render } = getLevelItems(columns);
+    const keys = getAllColumnsKeys(columns);
+
     return (
       <div className={cls} {...other}>
         <table>
@@ -22,7 +26,7 @@ export default class Table extends React.Component {
               {data.map((trs, idx) => {
                 return (
                   <tr key={idx}>
-                    {Object.keys(trs).map((key, _idx) => {
+                    {keys.map((key, _idx) => {
                       return (
                         <td onClick={onCell.bind(this, trs[key], key, trs, idx, _idx)} key={_idx}>{render[key] ? render[key](trs[key], key, trs, idx, _idx) : trs[key]}</td>
                       );

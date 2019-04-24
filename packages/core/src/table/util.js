@@ -87,3 +87,19 @@ export const getLevelItems = (data, result = { }) => {
   }
   return result;
 };
+
+
+/**
+ * Get all columns keys
+ * @param {Array} data
+ */
+export const getAllColumnsKeys = (data = [], keys = []) => {
+  for (let i = 0; i < data.length; i += 1) {
+    if (data[i].children) {
+      keys = keys.concat(getAllColumnsKeys(data[i].children));
+    } else {
+      keys.push(data[i].key);
+    }
+  }
+  return keys;
+};
