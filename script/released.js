@@ -82,6 +82,10 @@ const docVersion = join(process.cwd(), 'src', 'version.json');
      * Repo => `git@github.com:uiwjs/uiwjs.github.io.git`
      */
     await execute('npm run deploy');
+    /**
+     * Used for publishing documents on other platforms.
+     */
+    await execute(`cd ${process.cwd()} && ./node_modules/.bin/gh-pages -d dist -m 'released v${uiwPkgContent.version} ${new Date()}'`);
     await execute(`git tag -a v${uiwPkgContent.version} -m "released v${uiwPkgContent.version}"`);
     await execute('git push --tags');
     await execute(`cd ${libPath} && npm publish`);
