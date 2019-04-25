@@ -354,6 +354,121 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
+### 选择和操作
+
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Table, Button, Checkbox, Pagination, Loader } from 'uiw';
+
+class Demo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // 选中的 key
+      checked: [],
+      loading: false,
+      dataSource: [
+        { name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，中国香港创作型女歌手。' },
+        { name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人' },
+        { name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手' },
+        { name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。' },
+        { name: 'Angelababy', age: '54', info: '1989年2月28日出生于上海市，华语影视女演员、时尚模特。' },
+        { name: '唐嫣', age: '12', info: '1983年12月6日出生于上海市，毕业于中央戏剧学院表演系本科班' },
+        { name: '吴亦凡', age: '4', info: '1990年11月06日出生于广东省广州市，华语影视男演员、流行乐歌手。' },
+      ],
+      columns: [
+        {
+          title: (key, item, idx, _idx) => {
+            const indeterminate = this.state.dataSource.length !== this.state.checked.length && this.state.checked.length > 0;
+            const checked = this.state.dataSource.length === this.state.checked.length;
+            return (
+              <Checkbox
+                checked={checked}
+                indeterminate={indeterminate}
+                onClick={(evn) => {
+                  let checked = this.state.dataSource.map((item, idx) => idx);
+                  if(!evn.target.checked) {
+                    checked = [];
+                  }
+                  this.setState({ checked });
+                }}
+              />
+            );
+          },
+          key: 'checked',
+          render: (text, key, rowData, rowNumber, columnNumber) => {
+            return (
+              <Checkbox checked={rowData.checked} onClick={this.onClickCheckedItem.bind(this, rowNumber)} />
+            );
+          }
+        }, {
+          title: '名字',
+          key: 'name',
+        }, {
+          title: '年龄',
+          key: 'age',
+        }, {
+          title: '地址',
+          key: 'info',
+        },
+      ]
+    }
+  }
+  onClickCheckedItem(rowNumber, env) {
+    let { checked } = this.state;
+    const isChecked = env.target.checked;
+    if(isChecked) {
+      // 添加到选中数组中
+      checked.push(rowNumber)
+      checked = checked.sort((a, b) => a - b);
+    } else {
+      // 删除选中项
+      checked.splice(checked.indexOf(rowNumber), 1);
+    }
+    this.setState({ checked });
+  }
+  render() {
+    const { checked } = this.state;
+    const dataSource = this.state.dataSource.map((item, idx) => {
+      const isChecked = checked.indexOf(idx) > -1;
+      return { checked: isChecked, ...item };
+    });
+    return (
+      <div>
+        <Loader loading={this.state.loading} style={{ display: 'block' }}>
+          <Table
+            columns={this.state.columns}
+            data={dataSource}
+            footer={
+              <Pagination
+                current={2}
+                pageSize={10}
+                total={30}
+                divider
+                onChange={(current, total, pageSize) => {
+                  this.setState({ loading: true });
+                  const timer = setTimeout(() => {
+                    // 模拟变更数据
+                    const dataSource = this.state.dataSource.map(item => {
+                      item.age = Number(item.age) + current;
+                      return item;
+                    });
+                    // 翻页 API 获取数据
+                    this.setState({ checked: [], dataSource, loading: false });
+                  }, 2000);
+                }}
+              />
+            }
+          />
+        </Loader>
+      </div>
+    );
+  }
+}
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
 ## Props
 
 ### Table
