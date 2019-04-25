@@ -1,0 +1,82 @@
+.w-tag {
+  border-radius: 2px;
+  display: inline-block;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-size: 12px;
+  padding: 1px 5px;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.w-tag + .w-tag {
+  margin-left: 5px;
+}
+.w-tag.disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+.w-tag-light .w-tag-close:hover {
+  background-color: currentcolor;
+}
+.w-tag-light .w-tag-close:hover path {
+  fill: #fff;
+}
+.w-tag-light .w-tag-close:active {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.w-tag-close {
+  vertical-align: middle;
+  margin: -3px -3px 0 2px;
+  border-radius: 2px;
+  fill: currentcolor;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.w-tag-close:hover {
+  background-color: rgba(0, 0, 0, 0.22);
+}
+.w-tag-close:active {
+  background-color: rgba(0, 0, 0, 0.32);
+}
+
+.w-icon,
+.w-icon svg {
+  height: 1em;
+  width: 1em;
+}
+.w-icon {
+  display: inline-flex;
+  align-self: center;
+  position: relative;
+}
+.w-icon-baseline {
+  top: 0.125em;
+}
+.w-icon-spin svg {
+  -webkit-animation: loading-circle 1s infinite linear;
+          animation: loading-circle 1s infinite linear;
+}
+@-webkit-keyframes loading-circle {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes loading-circle {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
