@@ -80,6 +80,10 @@ import { Button as ButtonView } from 'uiw';
 
 [![Open in VSCode](https://jaywcjlove.github.io/sb/open/open-in-vscode.svg)](https://marketplace.visualstudio.com/items?itemName=uiw.uiw)
 
+### 国内镜像站点
+
+国内用户，通过[国内镜像站点](http://uiw.gitee.io/)访问文档网站来提高访问速度。
+
 ### 开发
 
 使用 [`Gitpod`](https://gitpod.io)，`GitHub` 的免费在线开发环境，点击打开下面链接，自动初始化项目，将开发环境跑起来。

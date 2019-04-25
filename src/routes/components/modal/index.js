@@ -2,7 +2,7 @@ import {
   Modal, ButtonGroup, Button, Notify,
   Form, Input, Checkbox, Switch, RadioGroup, Radio, Textarea, Row, Col,
 } from 'uiw';
-import Markdown from '../../../components/Markdown';
+import Markdown from '@/components/Markdown';
 
 
 export default class Page extends Markdown {

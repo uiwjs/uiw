@@ -67,6 +67,8 @@ export default class CreatePage extends React.Component {
           <a target="_blank" rel="noopener noreferrer" href="https://github.com/jaywcjlove/kkt">kkt</a>
           <Divider type="vertical" />
           <a target="_blank" rel="noopener noreferrer" href="https://github.com/jaywcjlove/kkt-ssr">@kkt/ssr</a>
+          <Divider type="vertical" />
+          <a target="_blank" rel="noopener noreferrer" href="http://uiw.gitee.io">国内镜像</a>
         </div>
       </div>
     );

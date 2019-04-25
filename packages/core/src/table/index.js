@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Thead from './Thead';
-import { getLevelItems, getAllColumnsKeys } from './util';
+import Thead from './Thead'; import { getLevelItems, getAllColumnsKeys } from './util';
 import './style/index.less';
 
 export default class Table extends React.Component {
@@ -15,7 +14,6 @@ export default class Table extends React.Component {
     });
     const { header, render } = getLevelItems(columns);
     const keys = getAllColumnsKeys(columns);
-
     return (
       <div className={cls} {...other}>
         <table>

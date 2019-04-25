@@ -58,6 +58,9 @@ export default class Tabs extends React.Component {
         <div className={`${prefixCls}-bar`}>
           <div className={`${prefixCls}-nav`}>
             {React.Children.map(children, (item, key) => {
+              if (!item) {
+                return null;
+              }
               const props = {
                 key,
                 className: classnames(`${prefixCls}-item`, {
@@ -66,10 +69,14 @@ export default class Tabs extends React.Component {
                 }),
                 children: item.props.label,
               };
-              if (item.props && !item.props.disabled) props.onClick = this.onTabClick.bind(this, item, item.key);
+              if (!item.props.disabled) props.onClick = this.onTabClick.bind(this, item, item.key);
               return (
                 <div
-                  ref={(node) => { if (item.key === this.state.activeKey) this.activeItem = node; }}
+                  ref={(node) => {
+                    if (item.key === this.state.activeKey) {
+                      this.activeItem = node;
+                    }
+                  }}
                   {...props}
                 />
               );
@@ -78,7 +85,7 @@ export default class Tabs extends React.Component {
           <div style={this.state.slideStyle} className={`${prefixCls}-slide`}/>
         </div>
         {React.Children.map(children, (item) => {
-          if (this.state.activeKey !== item.key) {
+          if (!item || this.state.activeKey !== item.key) {
             return null;
           }
           return React.cloneElement(item, Object.assign({}, item.props, {}));

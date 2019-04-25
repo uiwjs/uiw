@@ -13,7 +13,13 @@ export default class Thead extends React.Component {
             {tds.map((item, _idx) => {
               const { title, key, render, children, ...thProps } = item;
               return (
-                <th onClick={onCellHead.bind(this, title, key, item, idx, _idx)} key={_idx} {...thProps}>{title}</th>
+                <th
+                  onClick={onCellHead.bind(this, title, key, item, idx, _idx)}
+                  key={_idx}
+                  {...thProps}
+                >
+                  {typeof title === 'function' ? title(title, key, item, idx, _idx) : title}
+                </th>
               );
             })}
           </tr>

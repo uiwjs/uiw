@@ -33,7 +33,9 @@ export default class Overlay extends React.Component {
       this.overlayWillOpen();
     }
   }
-
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleDocumentClick, false);
+  }
   overlayWillClose() {
     const { prefixCls } = this.props;
     document.removeEventListener('mousedown', this.handleDocumentClick, false);
@@ -44,7 +46,7 @@ export default class Overlay extends React.Component {
     const { maskClosable, onClose } = this.props;
     const { isOpen } = this.state;
     const domNode = ReactDOM.findDOMNode(this);
-    if (isOpen && maskClosable && (domNode.nextSibling === e.target || domNode.nextElementSibling === e.target)) {
+    if (isOpen && maskClosable && domNode && (domNode.nextSibling === e.target || domNode.nextElementSibling === e.target)) {
       this.setState({ isMount: false }, onClose.bind(this));
     }
   }

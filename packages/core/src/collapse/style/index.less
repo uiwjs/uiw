@@ -71,10 +71,18 @@
     color: rgba(0, 0, 0, .25);
     background-color: #f7f7f7;
   }
-  &.no-border {
+  &.w-noborder &-header {
+    background-color: transparent;
+  }
+  &.w-noborder {
     border: 0;
   }
-  &.no-border &-item:last-child {
+  &.w-noborder &-item &-panel{
+    &:after, &:before {
+      border: 0;
+    }
+  }
+  &.w-noborder &-item:last-child {
     border: 0;
   }
 }

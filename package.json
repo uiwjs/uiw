@@ -17,6 +17,7 @@
     "build": "kkt build",
     "test": "kkt test --env=jsdom",
     "deploy": "gh-pages -d dist -b master -r git@github.com:uiwjs/uiwjs.github.io.git",
+    "deploy:pages": "gh-pages -d dist -b gh-pages",
     "released": "node script/released.js",
     "test:coverage": "kkt test --env=jsdom --coverage"
   },

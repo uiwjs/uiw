@@ -1,5 +1,5 @@
 import { TimePicker, formatter, Notify, Button, Form, Row, Col } from 'uiw';
-import Markdown from '../../../components/Markdown';
+import Markdown from '@/components/Markdown';
 
 export default class Page extends Markdown {
   path = 'packages/core/src/time-picker/README.md';

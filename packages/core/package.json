@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "2.0.0",
+  "version": "2.0.0-beta.93",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiwjs.github.io",
   "sideEffects": false,
@@ -16,9 +16,10 @@
     "build:watch:esm": "BABEL_ENV=esmdev babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --copy-files --delete-dir-on-start --verbose -w",
     "build:cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --delete-dir-on-start --verbose",
     "build:esm": "BABEL_ENV=esm babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --delete-dir-on-start --verbose",
-    "build:css": "node script/buildcss.js",
+    "build:css": "compile-less -d src -o lib/esm",
     "build": "npm run build:cjs && npm run build:esm && npm run build:css",
     "prepare": "npm run build",
+    "test": "eslint -c node_modules/kkt/.eslintrc.* src",
     "bundle": "kkt build --bundle --no-emptyDir",
     "bundle:min": "kkt build --bundle=min --no-emptyDir",
     "watch": "npm run build:watch:esm & npm run build:watch:cjs"
@@ -60,10 +61,8 @@
     "@kkt/plugin-less": "^1.2.0",
     "babel-plugin-transform-remove-imports": "^1.0.8",
     "babel-plugin-transform-rename-import": "^2.3.0",
-    "directory-tree": "^2.2.1",
+    "compile-less-cli": "^1.0.0",
     "kkt": "^3.5.0",
-    "less": "^3.9.0",
-    "less-plugin-autoprefix": "^2.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },

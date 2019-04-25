@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import MenuItem from './Item';
-import Divider from './Divider';
 import './style/menu.less';
 
 export default class Menu extends React.Component {
   static displayName = 'uiw.Menu';
-  static Item = MenuItem;
-  static Divider = Divider;
   render() {
-    const { prefixCls, className, children, bordered, ...htmlProps } = this.props;
-    const cls = classNames(prefixCls, className, { bordered });
+    const { prefixCls, className, children, bordered, theme, inlineIndent, ...htmlProps } = this.props;
+    const cls = classNames(prefixCls, className, { 'w-bordered': bordered, [`${prefixCls}-${theme}`]: theme });
     return (
       <ul {...htmlProps} className={cls} data-menu="menu">
-        {children}
+        {React.Children.map(children, (child) => {
+          const props = {};
+          if (child.props.children) {
+            props.inlineIndent = inlineIndent;
+          }
+          return React.cloneElement(child, Object.assign({ ...props }, child.props, {}));
+        })}
       </ul>
     );
   }
@@ -22,10 +24,14 @@ export default class Menu extends React.Component {
 
 Menu.propTypes = {
   prefixCls: PropTypes.string,
+  theme: PropTypes.oneOf(['light', 'dark']),
   bordered: PropTypes.bool,
+  inlineIndent: PropTypes.number,
 };
 
 Menu.defaultProps = {
   prefixCls: 'w-menu',
+  theme: 'light',
+  inlineIndent: 10,
   bordered: false,
 };

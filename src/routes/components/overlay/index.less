@@ -28,6 +28,12 @@
   animation-name: flipOutX;
 }
 
+.@{animation-prefix}-enter,
+.@{animation-prefix}-enter-done,
+.@{animation-prefix}-exit {
+  display: inherit;
+}
+
 @keyframes flipOutX {
   0% {
       transform: perspective(400px);

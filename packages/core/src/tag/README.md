@@ -83,7 +83,7 @@ const Demo = () => (
       <>
         <Icon type="heart-on" verticalAlign="baseline" /> 成功-绿色
       </>
-    )} color="#28a745" />·
+    )} color="#28a745" />
     <Tag color="#1C7CEB"><Icon type="heart-on" verticalAlign="baseline" /> 限购一份</Tag>
     <Tag color="red"><Icon type="heart-on" verticalAlign="baseline" /> 胶囊</Tag>
     <Divider />

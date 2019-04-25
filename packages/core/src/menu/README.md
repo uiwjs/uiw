@@ -10,13 +10,13 @@ import { Menu } from 'uiw';
 ### 基本用法
 
 <!--DemoStart,bgWhite,noScroll,codePen--> 
-```js
+```jsx
 import { Menu, Row, Col } from 'uiw';
 
 const Demo = () => (
   <Row justify="flex-start" gutter={10}>
     <Col fixed>
-      <Menu bordered style={{ maxWidth: 200 }}>
+      <Menu bordered>
         <Menu.Item icon="reload" text="重新加载" />
         <Menu.Divider />
         <Menu.Item icon="heart-on" text="另存为" active />
@@ -28,33 +28,36 @@ const Demo = () => (
         <Menu.Item icon="map" text="百度地图" href="https://map.baidu.com" target="_blank" />
       </Menu>
     </Col>
-    <Col>
-      <Menu bordered style={{ maxWidth: 200 }}>
+    <Col fixed>
+      <Menu bordered>
         <Menu.Divider title="编辑" />
         <Menu.Item icon="file-add" text="添加文件" />
         <Menu.Item icon="folder-add" text="添加文件夹" />
         <Menu.Item icon="copy" text="拷贝" />
         <Menu.Item icon="delete" disabled text="删除" />
+        <Menu.SubMenu icon="setting-o" text="选项" collapse>
+          <Menu.Item icon="dot-chart" text="显示边栏" />
+          <Menu.Item icon="date" text="添加日期" />
+          <Menu.Item icon="tags-o" text="标签名称" />
+        </Menu.SubMenu>
         <Menu.Divider title="其它" />
-        <Menu.Item icon="bar-chart" text="月统计报表导出">
+        <Menu.SubMenu icon="bar-chart" text="月统计报表导出">
           <Menu.Item icon="file-add" text="添加文件" />
           <Menu.Item icon="folder-add" text="添加文件夹" />
           <Menu.Divider title="类别" />
           <Menu.Item icon="copy" text="拷贝" />
-          <Menu.Item icon="bar-chart" text="报表">
+          <Menu.SubMenu icon="bar-chart" text="报表">
             <Menu.Item icon="file-add" text="添加文件" />
-            <Menu.Item icon="folder-add" text="添加文件夹">
+            <Menu.SubMenu icon="folder-add" text="添加文件夹">
               <Menu.Item icon="file-add" text="添加文件" />
               <Menu.Item icon="folder-add" text="添加文件夹" />
-            </Menu.Item>
-          </Menu.Item>
-        </Menu.Item>
-        <Menu.Item icon="bar-chart" text="月统计报表导出" />
-        <Menu.Item icon="setting" disabled text="偏好设置">
+            </Menu.SubMenu>
+          </Menu.SubMenu>
+        </Menu.SubMenu>
+        <Menu.SubMenu icon="setting" disabled text="偏好设置">
           <Menu.Item icon="file-add" text="添加文件" />
           <Menu.Item icon="folder-add" text="添加文件夹" />
-        </Menu.Item>
-        <Menu.Item icon="setting" disabled text="偏好设置" />
+        </Menu.SubMenu>
         <Menu.Item icon="map" text="谷歌地图" />
       </Menu>
     </Col>
@@ -66,8 +69,8 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 下拉菜单
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,noScroll,codePen-->
+```jsx
 import { Menu, Popover, Button, Row, Col } from 'uiw';
 
 const btnStl = {position: 'relative', width: 70 }
@@ -148,12 +151,228 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
+### 内嵌菜单
+
+<!--DemoStart,bgWhite,noScroll,codePen--> 
+```jsx
+import { Menu, Row, Col } from 'uiw';
+
+const Demo = () => (
+  <Row justify="flex-start" gutter={10}>
+    <Col fixed>
+      <Menu bordered style={{ maxWidth: 200 }}>
+        <Menu.Item icon="delete" disabled text="删除" />
+        <Menu.SubMenu icon="setting-o" text="选项" disabled collapse>
+          <Menu.Item icon="dot-chart" text="显示边栏" />
+          <Menu.Item icon="date" text="添加日期" />
+          <Menu.Item icon="tags-o" text="标签名称" />
+        </Menu.SubMenu>
+        <Menu.Divider title="其它" />
+        <Menu.SubMenu icon="bar-chart" text="每年2019年统计报表导出" collapse>
+          <Menu.Item text="添加文件" />
+          <Menu.Item text="添加文件夹" />
+          <Menu.Divider title="类别" />
+          <Menu.Item icon="copy" text="拷贝" />
+          <Menu.SubMenu icon="folder-add" text="添加文件夹" collapse>
+            <Menu.Item icon="file-add" text="添加文件" />
+            <Menu.Item icon="folder-add" text="添加文件夹" />
+          </Menu.SubMenu>
+        </Menu.SubMenu>
+        <Menu.Item icon="setting" disabled text="偏好设置" />
+        <Menu.Item icon="map" text="谷歌地图" />
+      </Menu>
+    </Col>
+  </Row>
+)
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
+### 主题
+
+内建了两套主题 `light`、`dark`，默认 `light`。
+
+<!--DemoStart,bgWhite,noScroll,codePen--> 
+```jsx
+import { Menu, Row, Col, Switch } from 'uiw';
+
+class Demo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      theme: 'dark',
+    }
+  }
+  render() {
+    return (
+      <div>
+        <Row justify="flex-start" gutter={10}>
+          <Col style={{ paddingBottom: 5 }}>
+            <Switch
+              checked
+              style={{ marginRight: 10 }}
+              onChange={(e) => {
+                this.setState({ theme: e.target.checked ? 'dark' : 'light' });
+              }}
+            />
+          </Col>
+        </Row>
+        <Row justify="flex-start" gutter={10}>
+          <Col fixed>
+            <Menu theme={this.state.theme} bordered style={{ maxWidth: 200 }}>
+              <Menu.Item icon="delete" disabled text="删除" />
+              <Menu.SubMenu icon="setting-o" text="选项" disabled collapse>
+                <Menu.Item icon="dot-chart" text="显示边栏" />
+                <Menu.Item icon="date" text="添加日期" />
+                <Menu.Item icon="tags-o" text="标签名称" />
+              </Menu.SubMenu>
+              <Menu.Divider title="其它" />
+              <Menu.Item active icon="map" text="谷歌地图" />
+              <Menu.SubMenu icon="bar-chart" text="每年2019年统计报表导出">
+                <Menu.Item text="添加文件" />
+                <Menu.Item text="添加文件夹" />
+                <Menu.Divider title="类别" />
+                <Menu.SubMenu icon="folder-add" text="添加文件夹" collapse>
+                  <Menu.Item icon="file-add" text="添加文件" />
+                  <Menu.Item icon="folder-add" text="添加文件夹" />
+                </Menu.SubMenu>
+                <Menu.Item icon="copy" text="拷贝" />
+              </Menu.SubMenu>
+              <Menu.Item icon="setting" disabled text="偏好设置" />
+              <Menu.SubMenu icon="setting-o" text="选项" collapse>
+                <Menu.Item icon="dot-chart" text="显示边栏" />
+                <Menu.Item icon="date" text="添加日期" />
+                <Menu.Item icon="tags-o" text="标签名称" />
+              </Menu.SubMenu>
+            </Menu>
+          </Col>
+        </Row>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
+### 完整菜单展示
+
+包括点击选中效果，事件等操作，完整的实例展示。
+
+<!--DemoStart,bgWhite,noScroll,codePen--> 
+```jsx
+import { Menu, Row, Col, Switch } from 'uiw';
+
+class Demo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      theme: 'light',
+      menus: [
+        { key: '1', icon: 'delete', label: '删除' },
+        {
+          icon: 'setting-o',
+          label: '选项',
+          childrend: [
+            { key: '1-1', icon: 'dot-chart', label: '显示边栏' },
+            { key: '1-2', icon: 'date', disabled: true, label: '添加日期' },
+            { key: '1-3', icon: 'tags-o', label: '标签名称' },
+          ],
+        },
+        { divider: true },
+        { key: '2', icon: 'map', label: '谷歌地图' },
+        {
+          icon: 'bar-chart',
+          label: '每年2019年统计报表导出',
+          childrend: [
+            { key: '2-1', label: '统计添加文件' },
+            { key: '2-2', label: '统计添加文件夹' },
+            { key: '2-3', icon: 'tags-o', label: '类别', divider: true },
+            {
+              icon: 'folder-add',
+              label: '添加文件夹',
+              childrend: [
+                { key: '2-3-1', label: '添加文件夹' },
+                { key: '2-3-2', label: '添加文件' },
+                { key: '2-3-3', label: '添加文件夹' },
+              ],
+            },
+          ],
+        },
+      ],
+      active: '1',
+    }
+  }
+
+  onClickItem(key) {
+    this.setState({ active: key });
+  }
+
+  renderMenu(menus, k) {
+    const { active } = this.state;
+    const items = [];
+    menus.forEach((item, key) => {
+      if (item.childrend) {
+        items.push(
+          <Menu.SubMenu key={key} icon={item.icon} text={item.label} collapse>
+            {this.renderMenu(item.childrend, `${k}${key}`)}
+          </Menu.SubMenu>
+        );
+      } else if (item.divider) {
+        items.push(<Menu.Divider key={`${k}${key}`} title={item.label} />);
+      } else {
+        items.push(
+          <Menu.Item
+            onClick={this.onClickItem.bind(this, item.key)}
+            active={active === item.key} key={`${k}${key}`}
+            icon={item.icon}
+            text={item.label}
+          />
+        );
+      }
+    });
+    return items;
+  }
+
+  render() {
+    return (
+      <div>
+        <Row justify="flex-start" gutter={10}>
+          <Col style={{ paddingBottom: 5 }}>
+            <Switch
+              checked={this.state.theme === 'dark'}
+              style={{ marginRight: 10 }}
+              onChange={(e) => {
+                this.setState({ theme: e.target.checked ? 'dark' : 'light' });
+              }}
+            />
+          </Col>
+        </Row>
+        <Row justify="flex-start" gutter={10}>
+          <Col fixed>
+            <Menu inlineIndent={13} theme={this.state.theme} bordered style={{ maxWidth: 200 }}>
+              {this.renderMenu(this.state.menus, 'k')}
+            </Menu>
+          </Col>
+        </Row>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
 ## Menu.Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | className | 设置类的名称 | String | - |
 | style | 元素的行内样式 | Object | - |
+| inlineIndent | 菜单缩进宽度 | Number | `10` |
+| theme | 主题颜色 | Enum{`light`, `dark`} | - |
 | bordered | 是否有边框 | Boolean | `false` |
 
 
@@ -161,12 +380,25 @@ ReactDOM.render(<Demo />, _mount_);
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| icon | 菜单图标 | String | - |
-| text | 菜单内容 | Boolean | `false` |
+| icon | 菜单图标 [`<Icon />`](#/components/icon) 的 `type` 属性 | ReactNode/String | - |
+| text | 菜单标题内容 | ReactNode | - |
+| addonAfter | 菜单标题后面插入内容 | ReactNode | - |
+| ~~isSubMenuItem~~ | 不可用，SubMenu 组件传递给 Item 组件的**标记**属性，这是一个内部参数。 | Boolean | - |
 | tagName | 设置子节点标签名，默认 `<a />` 标签 | String | `a` |
 | active | 激活选中状态 | Boolean | `false` |
 | disabled | 禁用状态 | Boolean | `false` |
-| overlayProps | 对象将传递到 `OverlayTrigger`，相关参数参考 [`OverlayTrigger`](#/components/overlay-trigger) | Object | - |
+
+## Menu.SubMenu.Props
+
+| 参数 | 说明 | 类型 | 默认值 |
+|--------- |-------- |--------- |-------- |
+| icon | 菜单图标 [`<Icon />`](#/components/icon) 的 `type` 属性 | String | - |
+| text | 菜单标题内容 | ReactNode | - |
+| tagName | 设置子节点标签名，默认 `<a />` 标签 | String | `a` |
+| active | 激活选中状态 | Boolean | `false` |
+| disabled | 禁用状态 | Boolean | `false` |
+| collapse | 默认子菜单是 OverlayTrigger 的弹出层，通过设置 `collapse={true}` 变为折叠菜单  | Boolean | `false` |
+| overlayProps | 对象将传递到 `OverlayTrigger` 组件，修改部分参数，相关参数参考 [`OverlayTrigger`](#/components/overlay-trigger) | Object | - |
 
 其它参数可根据 `tagName` 来设置，默认 `<a />` 标签时，可设置 `href="https://wwww.google.com"` 或者 `target="_blank"` 等参数，你可以设置 [react-router-dom](https://github.com/ReactTraining/react-router) 路由 `<Link>`，例如：
 

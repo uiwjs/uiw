@@ -49,7 +49,15 @@ export default class MonthPicker extends React.Component {
     });
   }
   onSelected = (type) => {
-    this.setState({ type });
+    if (/^(month|year)$/.test(type)) {
+      this.setState({ type });
+    } else {
+      const year = this.state.panelDate.getFullYear();
+      const panelDate = this.state.panelDate.setFullYear(type === 'next' ? year + 1 : year - 1);
+      this.setState({
+        panelDate: new Date(panelDate),
+      });
+    }
   }
   handleVisibleChange(isOpen) {
     this.setState({ isOpen });

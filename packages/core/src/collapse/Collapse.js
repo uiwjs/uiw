@@ -47,7 +47,7 @@ export default class Collapse extends React.Component {
   render() {
     const { prefixCls, className, children, accordion, bordered, showArrow, activeKey, ...resetProps } = this.props;
     const cls = classnames(prefixCls, className, {
-      'no-border': bordered,
+      'w-noborder': bordered,
     });
     return (
       <div className={cls} {...resetProps}>

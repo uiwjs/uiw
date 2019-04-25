@@ -1,12 +1,13 @@
 import React, { PureComponent } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
+import { Tooltip } from 'uiw';
 import classnames from 'classnames';
-import Nav from '../components/Nav';
-import SiderMenu from '../components/SiderMenu';
-import VersionSelect from '../components/VersionSelect';
+import Nav from '@/components/Nav';
+import SiderMenu from '@/components/SiderMenu';
+import VersionSelect from '@/components/VersionSelect';
+import logo from '@/components/icons/logo';
+import menu from '@/components/icons/menu';
 import { getMenuData, getMenuCurrentData } from '../common/menu';
-import logo from '../components/icons/logo';
-import menu from '../components/icons/menu';
 import styles from './index.module.less';
 import version from '../version.json';
 
@@ -60,7 +61,16 @@ export default class UserLayout extends PureComponent {
             </Link>
           </div>
           <Nav topmenu={topmenu} className="nav-menu" menuData={menuData} routerData={routerData} />
-          <div className={styles.btn} onClick={this.onSettingTopMenu}>{topmenu ? menu.menu : menu.menutop}</div>
+          <div className={styles.btn}>
+            <div>
+              <Tooltip placement={topmenu ? 'bottomRight' : 'right'} content="国内镜像站点">
+                <a href="http://uiw.gitee.io" rel="noopener noreferrer" target="_blank">{menu.china}</a>
+              </Tooltip>
+            </div>
+            <div onClick={this.onSettingTopMenu}>
+              {topmenu ? menu.menu : menu.menutop}
+            </div>
+          </div>
         </div>
         <div className={styles.sidebar} style={{ top: topmenu ? 57 : 0, left: topmenu ? 0 : 64 }}>
           <SiderMenu topmenu={topmenu} menuData={menuData} {...this.props} />

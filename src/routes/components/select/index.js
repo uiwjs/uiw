@@ -1,5 +1,5 @@
 import { Select, Form, Notify, Row, Col, Button } from 'uiw';
-import Markdown from '../../../components/Markdown';
+import Markdown from '@/components/Markdown';
 
 
 export default class Page extends Markdown {

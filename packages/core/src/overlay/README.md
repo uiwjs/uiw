@@ -54,7 +54,6 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
-
 ### 完全定制弹出容器
 
 <!--DemoStart,bgWhite,codePen--> 
@@ -87,9 +86,34 @@ class Demo extends React.PureComponent {
           isOpen={this.state.isOpen} onClose={this.onClose.bind(this)}
         >
           <div style={{ backgroundColor: '#fff', minWidth: 500 }} >
-            <Icon onClick={this.onClose.bind(this)} type="circle-close" style={{ position: 'absolute', right: 0, top: '-20px', color: '#fff', cursor: 'pointer' }}/>
-            <div style={{ backgroundColor: 'rgb(0, 204, 180)', color: 'rgb(255, 255, 255)', textAlign: 'center', padding: '34px 24px' }}>
-              <h1 style={{ fontSize: '28px', fontWeight: '700', color: 'rgb(255, 255, 255)', lineHeight: '1.2', margin: '0px' }}>
+            <Icon
+              onClick={this.onClose.bind(this)}
+              type="circle-close"
+              style={{
+                position: 'absolute',
+                right: 0,
+                top: '-20px',
+                color: '#fff',
+                cursor: 'pointer',
+              }}
+            />
+            <div
+              style={{
+                backgroundColor: 'rgb(0, 204, 180)',
+                color: 'rgb(255, 255, 255)',
+                textAlign: 'center',
+                padding: '34px 24px',
+              }}
+            >
+              <h1
+                style={{
+                  fontSize: '28px',
+                  fontWeight: '700',
+                  color: 'rgb(255, 255, 255)',
+                  lineHeight: '1.2',
+                  margin: '0px',
+                }}
+              >
                 下次预订可享 5 ￥ 优惠
               </h1>
               <div style={{ padding: '5px 0' }}>(5 ￥ ~ ¥38)</div>
@@ -221,6 +245,12 @@ ReactDOM.render(<Demo />, _mount_);
   animation-name: flipOutX
 }
 
+.@{animation-prefix}-enter,
+.@{animation-prefix}-enter-done,
+.@{animation-prefix}-exit {
+  display: inherit;
+}
+
 @keyframes flipOutX {
   0% {
       transform: perspective(400px)
@@ -279,8 +309,10 @@ ReactDOM.render(<Demo />, _mount_);
 | transitionName | 内部 [`CSSTransitionsss`](http://reactcommunity.org/react-transition-group/css-transition/) 的转换名称。在此提供您自己的名称将需要定义新的 CSS 过渡属性。 | string | `w-overlay` |
 | transitionDuration | 持续时间 | number | `300` |
 | onClose | 点击遮罩层回调函数，通过这个函数设置 `isOpen=false` 关闭。**`onClosed`** 是弹出框关闭动画执行完成后的回调函数，有明显区别容易混淆。 | Function | - |
-| onEnter | 顺序 `1`，应用 `enter` 或 `appear` 后立即触发 [`<Transition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。。 | Function(node: HtmlElement, isAppearing: bool) | - |
-| onOpening | 顺序 `2`，**`打开`**立即执行，在应用 `enter-active` 或 `appear-active` 类后立即触发 [`<Transition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。 | Function(node: HtmlElement, isAppearing: bool) | - |
+| onEnter | 顺序 `1`，应用 `enter` 或 `appear` 后立即触发 [`<CSSTransition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。。 | Function(node: HtmlElement, isAppearing: bool) | - |
+| onOpening | 顺序 `2`，**`打开`**立即执行，在应用 `enter-active` 或 `appear-active` 类后立即触发 [`<CSSTransition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。 | Function(node: HtmlElement, isAppearing: bool) | - |
 | onOpened | 顺序 `3`，**`打开`**动画播放完成执行，在应用 `exiting` 状态之前启动回调。 | Function(node: HtmlElement, isAppearing: bool) | - |
-| onClosing | 顺序 `4`，**`关闭`**立即执行，应用 `exit-active` 后立即触发 [`<Transition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。 | Function(node: HtmlElement) | - |
-| onClosed | 顺序 `5`，**`关闭`**动画播放完成立即执行，删除 `exit` 类后立即触发 [`<Transition>`](http://reactcommunity.org/react-transition-group/transition/) 回调，并将 `exit-done` 类添加到 DOM 节点。 | Function(node: HtmlElement) | - |
+| onClosing | 顺序 `4`，**`关闭`**立即执行，应用 `exit-active` 后立即触发 [`<CSSTransition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。 | Function(node: HtmlElement) | - |
+| onClosed | 顺序 `5`，**`关闭`**动画播放完成立即执行，删除 `exit` 类后立即触发 [`<CSSTransition>`](http://reactcommunity.org/react-transition-group/transition/) 回调，并将 `exit-done` 类添加到 DOM 节点。 | Function(node: HtmlElement) | - |
+
+支持传递 [`<CSSTransition>`](http://reactcommunity.org/react-transition-group/transition/) 原事件覆盖当前事件，请查看 [`<CSSTransition>`](http://reactcommunity.org/react-transition-group/transition/) 文档。

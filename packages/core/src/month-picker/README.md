@@ -32,7 +32,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { Form, MonthPicker, Row, Col, Button } from 'uiw';
+import { Form, MonthPicker, Notify, Row, Col, Button } from 'uiw';
 
 const Demo = () => (
   <div>

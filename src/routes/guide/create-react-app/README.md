@@ -4,7 +4,6 @@
 要开始使用 [uiw](https://github.com/uiwjs/uiw) 和 [Create React App](https://github.com/facebook/create-react-app) (CRA)，请按照下列步骤操作：
 
 1. 安装最新版本的 Node LTS。 [请参阅此处获取说明](https://docs.npmjs.com/getting-started/installing-node)
-
 2. 使用以下命令创建新的 `CRA` 项目：
 
 ```bash

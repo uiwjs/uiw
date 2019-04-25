@@ -1,5 +1,5 @@
 import { Icon, Divider, Button, ButtonGroup, Row, Col } from 'uiw';
-import Markdown from '../../../components/Markdown';
+import Markdown from '@/components/Markdown';
 
 
 export default class Page extends Markdown {

@@ -1,6 +1,6 @@
 export const global = {
   state: {
-    test: '测试全局State',
+    test: 'test',
   },
   reducers: {
     updateState: (state, payload) => ({ ...state, ...payload }),

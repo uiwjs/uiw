@@ -5,7 +5,8 @@ module.exports = {
     require.resolve('@kkt/plugin-less'),
   ],
   // Modify the webpack config
-  config: (conf, { dev, env }, webpack) => {
+  config: (conf, { dev, env, appSrc }, webpack) => {
+    conf.resolve.alias = { '@': appSrc };
     if (dev) {
       conf = {
         ...conf,

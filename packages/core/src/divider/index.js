@@ -5,8 +5,8 @@ import './style/index.less';
 
 export class Divider extends React.PureComponent {
   render() {
-    const { prefixCls, className, children, dashed, type, ...restProps } = this.props;
-    const cls = classnames(className, prefixCls, `${prefixCls}-${type}`, {
+    const { prefixCls, className, children, dashed, type, align, ...restProps } = this.props;
+    const cls = classnames(className, prefixCls, `${prefixCls}-${type}`, `${prefixCls}-${align}`, {
       [`${prefixCls}-with-text`]: children,
       [`${prefixCls}-dashed`]: !!dashed,
     });
@@ -21,11 +21,13 @@ export class Divider extends React.PureComponent {
 Divider.propTypes = {
   prefixCls: PropTypes.string,
   type: PropTypes.string,
+  align: PropTypes.oneOf(['left', 'right', 'center']),
   dashed: PropTypes.bool,
 };
 
 Divider.defaultProps = {
   prefixCls: 'w-divider',
   type: 'horizontal',
+  align: 'center',
   dashed: false,
 };

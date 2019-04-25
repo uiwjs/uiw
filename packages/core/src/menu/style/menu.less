@@ -2,13 +2,17 @@
 
 .@{w-menu} {
   margin: 0 !important;
-  padding: 5px !important;
+  padding: 5px;
+  padding-left: 5px !important;
+  box-sizing: border-box;
   border-radius: 3px;
-  background: #fff;
-  min-width: 180px;
+  min-width: 100%;
   text-align: left;
   font-size: 14px;
-  color: #182026;
+  &:not(&-dark) {
+    color: #182026;
+    background: #fff;
+  }
   li {
     margin: 0 !important;
     list-style: none !important;
@@ -16,8 +20,11 @@
     &:first-of-type {
       border-top: none;
     }
+    a:not([href]) {
+      color: inherit;
+    }
   }
-  &.bordered {
+  &.w-bordered {
     box-shadow: 0 0 0 1px rgba(16,22,26,.1), 0 0 0 rgba(16,22,26,0), 0 1px 1px rgba(16,22,26,.2);
   }
   .@{w-menu}-divider {
@@ -36,47 +43,21 @@
   }
 }
 
-.@{w-menu}-item {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  border-radius: 2px;
-  padding: 5px 7px;
-  text-decoration: none;
-  line-height: 20px;
-  color: inherit;
-  user-select: none;
-  transition: all .3s;
-  &:hover, &.active {
-    color: inherit;
-    cursor: pointer;
-    text-decoration: none;
+.@{w-menu} {
+  &-dark, &-dark.w-bordered, &-dark & {
+    background: #343a40;
+    color: rgba(255,255,255,0.65);
   }
-  &:hover, &.active {
-    background-color: rgba(167,182,194,.3);
+  &-dark.w-bordered {
+    box-shadow: initial;
   }
-  &:active {
-    background-color: rgba(115,134,148,.3);
+  &-dark .active {
+    color: #fff !important;
   }
-  &.disabled {
-    outline: none !important;
-    background-color: inherit !important;
-    cursor: not-allowed !important;
+  &-dark &-item.w-disabled, &-dark &-item.w-disabled &-item-icon {
+    color: rgba(142, 142, 142, 0.79) !important
   }
-  &.disabled &-icon, &.disabled {
-    color: rgba(92,112,128,.5) !important;
-  }
-  &-text {
-    flex-grow: 1;
-  }
-  & > * {
-    margin-right: 7px;
-  }
-  & > :last-child {
-    margin-right: 0;
-  }
-  &-icon {
-    color: #393E48;
+  &-dark &-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
   }
 }

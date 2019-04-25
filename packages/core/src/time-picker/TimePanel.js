@@ -49,12 +49,6 @@ export default class TimePanel extends React.Component {
     }
     return 0;
   }
-  getInstance = (tag) => {
-    if (!tag) {
-      return;
-    }
-    tag.style.paddingBottom = `${tag.parentNode.clientHeight - tag.firstChild.clientHeight}px`;
-  }
   getItemInstance = (idx, tag) => {
     if (tag && this.getMaybeNumber() === idx) {
       const currentDom = ReactDOM.findDOMNode(tag);
@@ -76,7 +70,7 @@ export default class TimePanel extends React.Component {
     this.disableds = [];
     return (
       <div className={classnames(`${prefixCls}-spinner`)} {...other}>
-        <ul ref={this.getInstance}>
+        <ul>
           {[...Array(count)].map((_, idx) => {
             const disabled = this.getDisabledItem(idx);
             const props = {};

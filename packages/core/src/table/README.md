@@ -435,7 +435,7 @@ class Demo extends React.Component {
     });
     return (
       <div>
-        <Loader loading={this.state.loading} style={{ display: 'block' }}>
+        <Loader loading={this.state.loading}>
           <Table
             columns={this.state.columns}
             data={dataSource}
@@ -477,7 +477,7 @@ ReactDOM.render(<Demo />, _mount_);
 |--------- |-------- |--------- |-------- |
 | columns | 表格列的配置描述，可以内嵌 `children`，以渲染分组表头。| ColumnProps[] | `[]` |
 | data | 数据数组。| Array[] | `[]` |
-| title | 表格标题 | String/ReactNode | - |
+| title | 表格标题 | String/ReactNode/Function(text, key, rowData, rowNumber, columnNumber) | - |
 | footer | 表格尾部 | String/ReactNode | - |
 | bordered | 是否展示外边框和列边框 | Boolean | - |
 | onCellHead | 表头单元格点击回调 | `Function(text, key, rowData, rowNumber, columnNumber)` | - |

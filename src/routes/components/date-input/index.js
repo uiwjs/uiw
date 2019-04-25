@@ -1,5 +1,5 @@
 import { DateInput, Notify, Form, Row, Col, Button } from 'uiw';
-import Markdown from '../../../components/Markdown';
+import Markdown from '@/components/Markdown';
 
 export default class Page extends Markdown {
   path = 'packages/core/src/date-input/README.md';

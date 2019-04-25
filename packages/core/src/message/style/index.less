@@ -3,7 +3,10 @@
 .@{message-prefix} {
   padding: 10px 15px;
   position: relative;
-  margin-bottom: 10px;
+  font-size: 14px;
+  & + & {
+    margin-top: 10px;
+  }
   &-title, &-description {
     display: block;
   }

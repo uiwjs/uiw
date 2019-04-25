@@ -2,6 +2,7 @@
 
 .@{datepicker-prefix} {
   &-caption {
+    user-select: none;
     text-align: center;
     padding: 0 0 3px 0;
     border-bottom: 1px solid #ececec;
@@ -22,6 +23,8 @@
         margin-left: 5px;
       }
       &.prev, &.next {
+        z-index: 30;
+        position: relative;
         padding: 1px 8px 6px 8px;
         &::after, &::before {
           content: '';

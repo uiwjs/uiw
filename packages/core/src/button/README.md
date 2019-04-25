@@ -454,8 +454,8 @@ ReactDOM.render(
 
 | 参数 | 说明 | 类型 | 默认值 |
 | -------- | -------- | -------- | -------- |
-| size | `large`, `default`, `small` | String | `default` |
-| type | `primary`, `success`, `warning`, `danger`, `light`, `dark`, `link` | String/ReactNode | - |
+| size | 按钮尺寸 | Enum{`large`, `default`, `small`} | `default` |
+| type | 按钮状态类型附带颜色 | Enum{`primary`, `success`, `warning`, `danger`, `light`, `dark`, `link`} | `light` |
 | htmlType | 设置 `button` 原生的 `type` 值，可选值请参考 [HTML 标准](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type) | String | `button` |
 | icon | 设置按钮的图标类型 | String/ReactNode | - |
 | block | 通过设置属性 `block` 可将按钮宽度设置为 100%，（块级元素），常用于弹窗内操作按钮。 | Boolean | false |

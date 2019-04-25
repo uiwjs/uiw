@@ -88,7 +88,6 @@ export const getLevelItems = (data, result = { }) => {
   return result;
 };
 
-
 /**
  * Get all columns keys
  * @param {Array} data
