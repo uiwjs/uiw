@@ -435,7 +435,7 @@ class Demo extends React.Component {
     });
     return (
       <div>
-        <Loader loading={this.state.loading}>
+        <Loader loading={this.state.loading} style={{ display: 'block' }}>
           <Table
             columns={this.state.columns}
             data={dataSource}
