@@ -3,6 +3,7 @@
   font-family: inherit !important;
   font-size: inherit !important;
   margin-bottom: 0;
+  overflow: hidden;
 }
 
 /* .cm-s-monokai.CodeMirror { background: #eff1f3; color: #3f51b5; } */
