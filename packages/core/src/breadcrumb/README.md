@@ -103,4 +103,5 @@ ReactDOM.render(
 |--------- |-------- |--------- |-------- |
 | className | 样式名称 | String | `w-breadcrumb-itme` |
 | separator | 分隔符自定义，子组件可以单独定义不同的分隔符。 | String | - |
+| active | 激活。 | String | - |
 

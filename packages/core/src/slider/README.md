@@ -41,7 +41,7 @@ class Demo extends React.Component {
         />
         <div>设置 progress 值为 <b>"#dc3545"</b> 这是一个颜色值，设置进度条颜色</div>
         <Slider
-          progress={false}
+          // progress={false}
           progress="#dc3545"
           value={this.state.value}
           style={{ maxWidth: 360, marginTop: 30 }}
@@ -62,7 +62,7 @@ class Demo extends React.Component {
         />
         <div>可选 -10~30值范围：<b>{this.state.value2}</b></div>
         <Divider />
-        <Slider value={this.state.value3} range style={{ maxWidth: 260 }}
+        <Slider value={this.state.value3} style={{ maxWidth: 260 }}
           onChange={(value3)=> {
             this.setState({ value3 });
           }}
@@ -219,7 +219,7 @@ class Demo extends React.Component {
         />
         <Divider />
         <div>值 <b>value=[10, 40]</b> ，必须设置<b>range=true</b>，取值范围：<b>{this.state.value4[0]} ~ {this.state.value4[1]}</b></div>
-        <Slider value={this.state.value4} range style={{ maxWidth: 260 }}
+        <Slider value={this.state.value4} style={{ maxWidth: 260 }}
           onChange={(value4)=> {
             this.setState({ value4 });
           }}
@@ -382,7 +382,7 @@ class Demo extends React.Component {
           <Slider vertical value={50} step={10} dots style={{ height: 260 }} />
         </Col>
         <Col fixed>
-          <Slider vertical step={2} range value={[26, 40]} min={20} max={44} dots marks style={{ height: 260 }} />
+          <Slider vertical step={2} value={[26, 40]} min={20} max={44} dots marks style={{ height: 260 }} />
         </Col>
       </Row>
     );
@@ -396,14 +396,14 @@ ReactDOM.render(<Demo />, _mount_);
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| value | 选择的数值，为数组时即可开启范围选择，并且指定范围 | Number | `0` |
+| value | 选择的数值，为数组时即可开启范围选择，并且指定范围，`@3.0.0+` 通过判断是否为数组，展示双滑块 | Number/Number[] | `0` |
 | min | 最小值 | Number | `0` |
 | max | 最大值 | Number | `100` |
 | dots | 显示 `step` 间断点，建议在 `step` 间隔不密集时使用 | Number | `false` |
 | marks | 刻度标记，`key` 的类型必须为 `number` 且取值在闭区间 `min`, `max` 内，每个标签可以单独设置样式，当值为 `Boolean` 值时表示是否显示刻度 | Object/Boolean | - |
 | renderMarks | 刻度标记渲染 | Function(mark) => String | - | 
 | step | 设置或返回每次拖动滑块控件时的递增量，规定合法数字间隔（如果 `step={3}`，则合法数字是 `0`,`3`,`6`，以此类推） | Number | `1` |
-| range | 当 range 为 true 时，渲染为双滑块| Boolean | `false` |
+| ~~range~~ | ⚠️(`@3.0.0+` 移除了此属性)当 range 为 true 时，渲染为双滑块, `2.0.1` 之前版本支持，新版本通过判断 `value` 是否为数组来支持双滑块 | Boolean | `false` |
 | disabled | 是否禁用 | Boolean | `false` |
 | progress | 显示滑动的进度条，设为 `false` 不显示进度条，设为为颜色值，将进度条设为不同的颜色 | Boolean/String | `true` |
 | vertical | 值为 `true` 时，`Slider` 为垂直方向。 | Boolean | `false` |

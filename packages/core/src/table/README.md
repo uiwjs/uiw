@@ -15,11 +15,16 @@ import { Table, Button } from 'uiw';
 
 const columns = [
   {
-    title: '姓名',
-    style: { color: 'red' },
+    // title: '姓名',
+    title: ({ key }) => {
+      return (
+        <span>字段: {key}</span>
+      )
+    },
     key: 'name', 
   }, {
     title: '年龄',
+    style: { color: 'red' },
     key: 'age',
   }, {
     title: '地址',
@@ -231,33 +236,27 @@ const Demo = () => (
   <div>
     <Table
       title="表内容 tbody 单元格点击回调事件"
-      onCell={(text, key, rowData, rowNumber, columnNumber) => {
-        console.log('-->1', text);
-        console.log('-->2', key);
+      onCell={(rowData, rowNumber, columnNumber) => {
         console.log('-->3', rowData);
         console.log('-->4', rowNumber);
         console.log('-->5', columnNumber);
-        Notify.info({ description: `你点击了"${text}"。` });
+        Notify.info({ description: `你点击了"${rowData.name}"。` });
       }}
       columns={columns}
       data={dataSource} />
     <Table
       title="表头单元格点击回调事件"
-      onCellHead={(text, key, rowData, rowNumber, columnNumber) => {
-        console.log('-->1', text);
-        console.log('-->2', key);
+      onCellHead={(rowData, rowNumber, columnNumber) => {
         console.log('-->3', rowData);
         console.log('-->4', rowNumber);
         console.log('-->5', columnNumber);
-        Notify.info({ description: `你点击了"${text}"。` });
+        Notify.info({ description: `你点击了"${rowData.title}"。` });
       }}
-      onCell={(text, key, rowData, rowNumber, columnNumber) => {
-        console.log('-->1', text);
-        console.log('-->2', key);
+      onCell={(rowData, rowNumber, columnNumber) => {
         console.log('-->3', rowData);
         console.log('-->4', rowNumber);
         console.log('-->5', columnNumber);
-        Notify.info({ description: `你点击了"${text}"。` });
+        Notify.info({ description: `你点击了"${rowData.name}"。` });
       }}
       columns={columns}
       data={dataSource} />
@@ -356,7 +355,6 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 选择和操作
 
-<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Table, Button, Checkbox, Pagination, Loader } from 'uiw';
 
@@ -477,11 +475,11 @@ ReactDOM.render(<Demo />, _mount_);
 |--------- |-------- |--------- |-------- |
 | columns | 表格列的配置描述，可以内嵌 `children`，以渲染分组表头。| ColumnProps[] | `[]` |
 | data | 数据数组。| Array[] | `[]` |
-| title | 表格标题 | String/ReactNode/Function(text, key, rowData, rowNumber, columnNumber) | - |
+| title | 表格标题 | String/ReactNode/~~Function(text, key, rowData, rowNumber, columnNumber)~~/Function(data: IColumns, rowNum: number, colNum: number)`@3.0.0+` | - |
 | footer | 表格尾部 | String/ReactNode | - |
 | bordered | 是否展示外边框和列边框 | Boolean | - |
-| onCellHead | 表头单元格点击回调 | `Function(text, key, rowData, rowNumber, columnNumber)` | - |
-| onCell | 单元格点击回调 | `Function(text, key, rowData, rowNumber, columnNumber)` | - |
+| onCellHead | 表头单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ <br/> Function(data: IColumns, rowNum: number, colNum: number, evn: React.MouseEvent<HTMLTableCellElement>) `@3.0.0+` | - |
+| onCell | 单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ Function(data: IColumns, rowNum: number, colNum: number, evn: React.MouseEvent<HTMLTableCellElement>) `@3.0.0+` | - |
 
 ### ColumnProps
 

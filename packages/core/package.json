@@ -1,29 +1,35 @@
 {
   "name": "uiw",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiwjs.github.io",
   "sideEffects": false,
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
+  "typings": "typings/index.d.ts",
   "author": "kenny wang <wowohoo@qq.com>",
+  "scripts": {
+    "prepare": "npm run build",
+    "watch": "npm run watch:types & npm run watch:ts",
+    "build": "npm run build:ts & npm run build:types",
+    "watch:types": "npm run build:types -- --watch",
+    "build:types": "tsbb types --outDir typings --target ESNEXT",
+    "watch:ts": "tsbb watch --target react",
+    "build:ts": "tsbb build --target react",
+    "test": "tsbb test",
+    "coverage": "tsbb test --coverage"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/uiwjs/uiw.git"
   },
-  "scripts": {
-    "build:watch:cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --delete-dir-on-start --verbose -w",
-    "build:watch:esm": "BABEL_ENV=esmdev babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --copy-files --delete-dir-on-start --verbose -w",
-    "build:cjs": "BABEL_ENV=commonjs babel src --out-dir lib/cjs --ignore '**/__test__','**/test' --source-maps true --delete-dir-on-start --verbose",
-    "build:esm": "BABEL_ENV=esm babel src --out-dir lib/esm --ignore '**/__test__','**/test' --source-maps true --delete-dir-on-start --verbose",
-    "build:css": "compile-less -d src -o lib/esm",
-    "build": "npm run build:cjs && npm run build:esm && npm run build:css",
-    "prepare": "npm run build",
-    "test": "eslint -c node_modules/kkt/.eslintrc.* src",
-    "bundle": "kkt build --bundle --no-emptyDir",
-    "bundle:min": "kkt build --bundle=min --no-emptyDir",
-    "watch": "npm run build:watch:esm & npm run build:watch:cjs"
-  },
+  "files": [
+    "typings",
+    "lib",
+    "src",
+    "dist"
+  ],
+  "jest": {},
   "keywords": [
     "design",
     "uiw",
@@ -44,27 +50,25 @@
     "react-dom": ">=16.7.0"
   },
   "dependencies": {
-    "@uiw/copy-to-clipboard": "1.0.7",
-    "@uiw/formatter": "1.2.0",
-    "classnames": "2.2.6",
-    "react-transition-group": "2.6.1",
-    "uiw-iconfont": "1.4.1"
+    "@uiw/copy-to-clipboard": "^1.0.10",
+    "@uiw/formatter": "^1.2.0",
+    "classnames": "^2.2.6",
+    "react-transition-group": "^4.0.1",
+    "uiw-iconfont": "^1.4.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
-    "@babel/plugin-proposal-class-properties": "^7.2.3",
-    "@babel/plugin-transform-runtime": "^7.2.0",
-    "@babel/preset-env": "^7.2.3",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/register": "^7.0.0",
-    "@kkt/plugin-less": "^1.2.0",
-    "babel-plugin-transform-remove-imports": "^1.0.8",
-    "babel-plugin-transform-rename-import": "^2.3.0",
-    "compile-less-cli": "^1.0.0",
-    "kkt": "^3.5.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "@types/classnames": "^2.2.7",
+    "@types/jest": "^24.0.13",
+    "@types/react": "^16.8.17",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-test-renderer": "^16.8.1",
+    "@types/react-transition-group": "^2.9.1",
+    "enzyme": "^3.9.0",
+    "less": "^3.9.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-test-renderer": "^16.8.6",
+    "tsbb": "^1.0.7"
   },
   "license": "MIT"
 }

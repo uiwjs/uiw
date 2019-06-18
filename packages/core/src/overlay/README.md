@@ -24,7 +24,7 @@ class Demo extends React.PureComponent {
   toggleOverlay(hasBackdrop, e) {
     this.setState({ isOpen: !this.state.isOpen, hasBackdrop });
   }
-  onClose(hasBackdrop, e) {
+  onClose(e) {
     this.setState({ isOpen: false });
   }
   render() {
@@ -71,7 +71,7 @@ class Demo extends React.PureComponent {
   toggleOverlay(hasBackdrop, e) {
     this.setState({ isOpen: !this.state.isOpen, hasBackdrop });
   }
-  onClose(hasBackdrop, e) {
+  onClose(e) {
     this.setState({ isOpen: false });
   }
   render() {
@@ -307,7 +307,7 @@ ReactDOM.render(<Demo />, _mount_);
 | unmountOnExit | 默认 `true` 退出动画卸载组件 | boolean | `true` |
 | hasBackdrop | 是否有背景，是否向 `<body>` 添加样式 `.w-overlay-open` 防止滚动条出现 | boolean | `true` |
 | transitionName | 内部 [`CSSTransitionsss`](http://reactcommunity.org/react-transition-group/css-transition/) 的转换名称。在此提供您自己的名称将需要定义新的 CSS 过渡属性。 | string | `w-overlay` |
-| transitionDuration | 持续时间 | number | `300` |
+| ~~transitionDuration~~ => `timeout` | 持续时间 | number | `300` |
 | onClose | 点击遮罩层回调函数，通过这个函数设置 `isOpen=false` 关闭。**`onClosed`** 是弹出框关闭动画执行完成后的回调函数，有明显区别容易混淆。 | Function | - |
 | onEnter | 顺序 `1`，应用 `enter` 或 `appear` 后立即触发 [`<CSSTransition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。。 | Function(node: HtmlElement, isAppearing: bool) | - |
 | onOpening | 顺序 `2`，**`打开`**立即执行，在应用 `enter-active` 或 `appear-active` 类后立即触发 [`<CSSTransition>`](http://reactcommunity.org/react-transition-group/transition/) 回调。 | Function(node: HtmlElement, isAppearing: bool) | - |

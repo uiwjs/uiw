@@ -47,7 +47,7 @@
     "@babel/standalone": "^7.3.4",
     "@rematch/core": "^1.0.6",
     "@uiw/react-codemirror": "^1.0.19",
-    "@uiw/reset.css": "file:./packages/reset-css",
+    "@uiw/reset.css": "^1.0.3",
     "classnames": "^2.2.6",
     "history": "^4.7.2",
     "prismjs": "^1.15.0",

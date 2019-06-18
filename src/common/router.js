@@ -52,9 +52,9 @@ export const getRouterData = () => {
     '/components/affix': {
       component: dynamicWrapper([], () => import('../routes/components/affix')),
     },
-    '/components/calendar': {
-      component: dynamicWrapper([], () => import('../routes/components/calendar')),
-    },
+    // '/components/calendar': {
+    //   component: dynamicWrapper([], () => import('../routes/components/calendar')),
+    // },
     '/components/checkbox': {
       component: dynamicWrapper([], () => import('../routes/components/checkbox')),
     },
@@ -66,9 +66,6 @@ export const getRouterData = () => {
     },
     '/components/card': {
       component: dynamicWrapper([], () => import('../routes/components/card')),
-    },
-    '/components/layout': {
-      component: dynamicWrapper([], () => import('../routes/components/layout')),
     },
     '/components/loader': {
       component: dynamicWrapper([], () => import('../routes/components/loader')),
@@ -82,12 +79,12 @@ export const getRouterData = () => {
     '/components/drawer': {
       component: dynamicWrapper([], () => import('../routes/components/drawer')),
     },
-    '/components/date-picker': {
-      component: dynamicWrapper([], () => import('../routes/components/date-picker')),
-    },
-    '/components/date-input': {
-      component: dynamicWrapper([], () => import('../routes/components/date-input')),
-    },
+    // '/components/date-picker': {
+    //   component: dynamicWrapper([], () => import('../routes/components/date-picker')),
+    // },
+    // '/components/date-input': {
+    //   component: dynamicWrapper([], () => import('../routes/components/date-input')),
+    // },
     '/components/dropdown': {
       component: dynamicWrapper([], () => import('../routes/components/dropdown')),
     },
@@ -118,9 +115,9 @@ export const getRouterData = () => {
     '/components/switch': {
       component: dynamicWrapper([], () => import('../routes/components/switch')),
     },
-    '/components/slider': {
-      component: dynamicWrapper([], () => import('../routes/components/slider')),
-    },
+    // '/components/slider': {
+    //   component: dynamicWrapper([], () => import('../routes/components/slider')),
+    // },
     '/components/grid': {
       component: dynamicWrapper([], () => import('../routes/components/grid')),
     },
@@ -139,9 +136,9 @@ export const getRouterData = () => {
     '/components/notify': {
       component: dynamicWrapper([], () => import('../routes/components/notify')),
     },
-    '/components/tree': {
-      component: dynamicWrapper([], () => import('../routes/components/tree')),
-    },
+    // '/components/tree': {
+    //   component: dynamicWrapper([], () => import('../routes/components/tree')),
+    // },
     '/components/tag': {
       component: dynamicWrapper([], () => import('../routes/components/tag')),
     },
@@ -154,9 +151,9 @@ export const getRouterData = () => {
     '/components/table': {
       component: dynamicWrapper([], () => import('../routes/components/table')),
     },
-    '/components/time-picker': {
-      component: dynamicWrapper([], () => import('../routes/components/time-picker')),
-    },
+    // '/components/time-picker': {
+    //   component: dynamicWrapper([], () => import('../routes/components/time-picker')),
+    // },
     '/components/rate': {
       component: dynamicWrapper([], () => import('../routes/components/rate')),
     },
@@ -178,9 +175,9 @@ export const getRouterData = () => {
     '/components/message': {
       component: dynamicWrapper([], () => import('../routes/components/message')),
     },
-    '/components/month-picker': {
-      component: dynamicWrapper([], () => import('../routes/components/month-picker')),
-    },
+    // '/components/month-picker': {
+    //   component: dynamicWrapper([], () => import('../routes/components/month-picker')),
+    // },
     '/components/textarea': {
       component: dynamicWrapper([], () => import('../routes/components/textarea')),
     },

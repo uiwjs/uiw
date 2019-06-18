@@ -77,7 +77,7 @@ ReactDOM.render(
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| content | 滚动到顶部按钮内容 | Number | `0` |
+| content | 滚动到顶部按钮内容 | ReactNode/String | `0` |
 | offsetTop | 是否始终显示组件 | Number | `0` |
 | showBelow | 滚动距离多少时显示组件 | Number | `1` |
 | clickable | 是否可以点击 | Bool | `true` |
