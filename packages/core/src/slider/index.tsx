@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import { IProps } from '../utils/props';
 import './style/index.less';
@@ -6,13 +6,13 @@ import './style/index.less';
 export interface ISliderProps extends IProps {
   value?: number | number[];
   min?: number;
+  max?: number;
   marks?: boolean | {
-    [key: string]: {
+    [key: number]: {
       style?: React.CSSProperties;
-      label?: ReactNode;
+      label?: React.ReactNode;
     };
   };
-  max?: number;
   dots?: boolean;
   range?: boolean;
   vertical?: boolean;
@@ -26,7 +26,7 @@ export interface ISliderProps extends IProps {
 }
 
 export interface ISliderState {
-  value?: number | number[];
+  value: number[];
 }
 
 export default class Slider extends React.Component<ISliderProps, ISliderState> {
@@ -36,19 +36,16 @@ export default class Slider extends React.Component<ISliderProps, ISliderState> 
     min: 0,
     max: 100,
     dots: false,
-    /**
-     * `2.0.2+` not support
-     */
-    range: false,
     step: 1,
     disabled: false,
     progress: true,
     tooltip: false,
   }
+  public state: ISliderState;
   constructor(props: ISliderProps) {
     super(props);
     this.state = {
-      value: props.value,
+      value: (Array.isArray(this.props.value) ? props.value : [props.value]) as ISliderState['value'],
     };
   }
   private indexBar!: number;
@@ -57,17 +54,16 @@ export default class Slider extends React.Component<ISliderProps, ISliderState> 
   private startX!: number;
   private value!: number | number[];
   private barWidth!: number;
-  // private boxWidth!: number;
   private barOffsetLeft!: number;
   private move?: boolean;
   componentDidMount() {
     const { value } = this.props;
-    this.setState({ value });
+    this.setState({ value: (Array.isArray(value) ? value : [value]) as ISliderState['value'] });
   }
   componentWillReceiveProps(nextPros: ISliderProps) {
     if (nextPros.value !== this.props.value) {
       this.setState({
-        value: nextPros.value,
+        value: (Array.isArray(nextPros.value) ? nextPros.value : [nextPros.value]) as ISliderState['value'],
       });
     }
   }
@@ -84,31 +80,34 @@ export default class Slider extends React.Component<ISliderProps, ISliderState> 
     this.indexBar = idx;
     this.move = true;
     this.startX = oEvent[vertical ? 'clientY' : 'clientX'];
-    // this.boxWidth = this.slider.current![vertical ? 'clientHeight' : 'clientWidth'];
-    this.barWidth = this.bar.current![vertical ? 'clientHeight' : 'clientWidth'];
-    this.barOffsetLeft = this.bar.current![vertical ? 'offsetTop' : 'offsetLeft'];
+    if (this.bar.current) {
+      this.barWidth = this.bar.current[vertical ? 'clientHeight' : 'clientWidth'];
+      this.barOffsetLeft = this.bar.current[vertical ? 'offsetTop' : 'offsetLeft'];
+    }
     const val = this.state.value;
-    if (Array.isArray(val)) {
-      this.barWidth = (this.indexBar === 1 && (val[1] as number) > val[0]) || (this.indexBar !== 1 && val[0] > val[1])
+    if (Array.isArray(this.props.value)) {
+      this.barWidth = (this.indexBar === 1 && val[1] > val[0]) || (this.indexBar !== 1 && val[0] > val[1])
         ? this.barWidth + this.barOffsetLeft
         : this.barOffsetLeft;
     }
     window.addEventListener('mousemove', this.onDragging, true);
     window.addEventListener('mouseup', this.onDragEnd, true);
   }
-  onDragging = (e: Event) => {
+  onDragging = (env: MouseEvent | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (!this.move) {
       return;
     }
     const { vertical } = this.props;
     const val = this.state.value;
-    const value = this.getWidthToValue((e as MouseEvent)[vertical ? 'clientY' : 'clientX'] - this.startX + this.barWidth);
+    const value = this.getWidthToValue(env[vertical ? 'clientY' : 'clientX'] - this.startX + this.barWidth);
     if (value !== this.value) {
       val[this.indexBar] = value;
       const barStyl = this.getStyle(val);
-      this.bar.current!.style[vertical ? 'top' : 'left'] = barStyl.left;
-      this.bar.current!.style[vertical ? 'bottom' : 'right'] = barStyl.right;
-      this.onChange(val);
+      if (this.bar.current) {
+        this.bar.current.style[vertical ? 'top' : 'left'] = barStyl.left;
+        this.bar.current.style[vertical ? 'bottom' : 'right'] = barStyl.right;
+      }
+      this.onChange(val)
       this.value = value;
     }
   }
@@ -120,7 +119,10 @@ export default class Slider extends React.Component<ISliderProps, ISliderState> 
     const { step, max, min, vertical } = this.props;
 
     const equal = ((max as number) - (min as number)) / (step as number);
-    let percent = width / this.slider.current![vertical ? 'clientHeight' : 'clientWidth'] * 100;
+    let percent = 0;
+    if (this.slider.current) {
+      percent = width / this.slider.current[vertical ? 'clientHeight' : 'clientWidth'] * 100;
+    }
 
     if (percent <= 0) {
       percent = 0;
@@ -140,20 +142,23 @@ export default class Slider extends React.Component<ISliderProps, ISliderState> 
   }
   getLabelValue(value: number) {
     const { marks, renderMarks } = this.props;
-    if (marks && marks[value] && marks[value].label) {
+    if (marks && marks !== true && marks[value] && marks[value].label) {
       return marks[value].label;
-    } else if (marks && marks[value] && typeof marks[value] === 'string') {
+    } else if (marks && marks !== true && marks[value] && typeof marks[value] === 'string') {
       return marks[value];
     } else if (renderMarks && typeof renderMarks === 'function' && renderMarks(value)) {
       return renderMarks(value);
     }
     return value;
   }
-  onChange(value: number | number[]) {
-    const { onChange } = this.props;
+  onChange(value: number[]) {
     value = this.getRangeValue(value);
-    onChange && onChange(value);
-    this.setState({ value });
+    this.setState({ value }, this.handleChange.bind(this));
+  }
+  handleChange() {
+    const { onChange } = this.props;
+    const { value } = this.state;
+    onChange && onChange(value.length === 1 ? value[0] : value);
   }
   onClickMark(evn: React.MouseEvent<HTMLElement>) {
     const { vertical } = this.props;
@@ -166,35 +171,35 @@ export default class Slider extends React.Component<ISliderProps, ISliderState> 
     this.onChange(this.getRangeValue(value));
   }
   getRangeValue(val: number | number[]) {
-    if (!this.props.range) {
+    if (!Array.isArray(this.props.value)) {
       return Array.isArray(val) ? val : [val];
     }
     const { value } = this.state;
     const val1 = value[0];
     const val2 = value[1];
     if ((val1 < val2 && val1 > val) || (val1 > val2 && val1 < val)) {
-      value[0] = val;
+      value[0] = val as number;
     }
     if ((val1 < val2 && val2 < val) || (val1 > val2 && val2 > val)) {
-      value[1] = val;
+      value[1] = val as number;
     }
 
     if (val1 > val && val2 < val) {
       const half = val2 + (val1 - val2) / 2;
       if (half >= val) {
-        value[1] = val;
+        value[1] = val as number;
       }
       if (half < val) {
-        value[0] = val;
+        value[0] = val as number;
       }
     }
     if (val2 > val && val1 < val) {
       const half = val1 + (val2 - val1) / 2;
       if (half >= val) {
-        value[0] = val;
+        value[0] = val as number;
       }
       if (half < val) {
-        value[1] = val;
+        value[1] = val as number;
       }
     }
     return value;
@@ -210,21 +215,21 @@ export default class Slider extends React.Component<ISliderProps, ISliderState> 
     result.push(100);
     return result;
   }
-  getStyle(value?: number | number[]) {
-    value = (value || this.state.value) as number | number[];
+  getStyle(value?: number[]) {
+    value = value || this.state.value;
     const barStyl = { left: '0%', right: '100%' };
-    if (Array.isArray(value)) {
+    if (!Array.isArray(this.props.value)) {
+      barStyl.right = `${100 - this.getValueToPercent(value[0])}%`;
+    } else {
       const leftValue = value[0] > value[1] ? value[1] : value[0];
       const rightValue = value[0] > value[1] ? value[0] : value[1];
       barStyl.left = `${this.getValueToPercent(leftValue)}%`;
       barStyl.right = `${100 - this.getValueToPercent(rightValue)}%`;
-    } else {
-      barStyl.right = `${100 - this.getValueToPercent(value as number)}%`;
     }
     return barStyl;
   }
-  render() {
-    const { prefixCls, className, value, disabled, max, min, dots, step, range, marks, renderMarks, tooltip, vertical, progress, onChange, ...other } = this.props;
+  render(): JSX.Element {
+    const { prefixCls, className, value, disabled, max, min, dots, step, marks, renderMarks, tooltip, vertical, progress, onChange, ...other } = this.props;
     const barStyl = this.getStyle();
     other.onClick = this.onClickMark.bind(this);
     if (disabled) {
@@ -245,11 +250,11 @@ export default class Slider extends React.Component<ISliderProps, ISliderState> 
           style={{
             [vertical ? 'top' : 'left']: barStyl.left,
             [vertical ? 'bottom' : 'right']: barStyl.right,
-            backgroundColor: progress && typeof progress === 'string' ? progress : 'initial',
+            ...(progress !== true ? ({ backgroundColor: progress || 'initial' }) : {}),
           }}
           ref={this.bar}
         />
-        {this.state.value && (Array.isArray(this.state.value) ? this.state.value : [this.state.value]).map((item: number, idx) => {
+        {this.state.value.map((item, idx) => {
           const lleftPostion = this.getValueToPercent(item);
           return (
             <div
@@ -258,7 +263,7 @@ export default class Slider extends React.Component<ISliderProps, ISliderState> 
               onMouseDown={this.onHandleBtnDown.bind(this, idx)}
               style={{ [vertical ? 'top' : 'left']: `${lleftPostion}%` }}
             >
-              {(tooltip || tooltip === false) && <div className={classnames(`${prefixCls}-tooltip`, { open: tooltip })}>{this.getLabelValue(item)}</div>}
+              {(tooltip || tooltip === false) && <div className={classnames(`${prefixCls}-tooltip`, { open: tooltip })}>{this.getLabelValue(item) as number}</div>}
             </div>
           );
         })}
@@ -276,10 +281,10 @@ export default class Slider extends React.Component<ISliderProps, ISliderState> 
                     'no-marks': marks && marks !== true && !marks[stepValue],
                   })}
                 >
-                  {marks === true && <div {...(disabled ? {} : { onClick: this.onChange.bind(this, stepValue) })}> {this.getLabelValue(stepValue)} </div>}
+                  {marks === true && <div> {this.getLabelValue(stepValue)} </div>}
                   {marks !== true && marks && marks[stepValue] && (
-                    <div style={marks[stepValue].style} {...(disabled ? {} : { onClick: this.onChange.bind(this, stepValue) })}>
-                      {this.getLabelValue(stepValue)}
+                    <div style={marks[stepValue].style}>
+                      {this.getLabelValue(stepValue) as number}
                     </div>
                   )}
                 </div>

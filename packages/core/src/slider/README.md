@@ -403,7 +403,7 @@ ReactDOM.render(<Demo />, _mount_);
 | marks | 刻度标记，`key` 的类型必须为 `number` 且取值在闭区间 `min`, `max` 内，每个标签可以单独设置样式，当值为 `Boolean` 值时表示是否显示刻度 | Object/Boolean | - |
 | renderMarks | 刻度标记渲染 | Function(mark) => String | - | 
 | step | 设置或返回每次拖动滑块控件时的递增量，规定合法数字间隔（如果 `step={3}`，则合法数字是 `0`,`3`,`6`，以此类推） | Number | `1` |
-| ~~range~~ | ⚠️(`@3.0.0+` 移除了此属性)当 range 为 true 时，渲染为双滑块, `2.0.1` 之前版本支持，新版本通过判断 `value` 是否为数组来支持双滑块 | Boolean | `false` |
+| ~~range~~ | ⚠️(`@3.0.0+` 移除了此属性) 当 range 为 true 时，渲染为双滑块, `2.x` 版本支持，新版本通过判断 `value` 是否为数组来支持双滑块 | Boolean | `false` |
 | disabled | 是否禁用 | Boolean | `false` |
 | progress | 显示滑动的进度条，设为 `false` 不显示进度条，设为为颜色值，将进度条设为不同的颜色 | Boolean/String | `true` |
 | vertical | 值为 `true` 时，`Slider` 为垂直方向。 | Boolean | `false` |

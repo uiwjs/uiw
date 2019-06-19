@@ -115,9 +115,9 @@ export const getRouterData = () => {
     '/components/switch': {
       component: dynamicWrapper([], () => import('../routes/components/switch')),
     },
-    // '/components/slider': {
-    //   component: dynamicWrapper([], () => import('../routes/components/slider')),
-    // },
+    '/components/slider': {
+      component: dynamicWrapper([], () => import('../routes/components/slider')),
+    },
     '/components/grid': {
       component: dynamicWrapper([], () => import('../routes/components/grid')),
     },

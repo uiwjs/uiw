@@ -36,6 +36,7 @@ export { default as Row } from './grid/Row';
 export { default as Steps } from './steps/Steps';
 export { default as Split } from './split';
 export { default as Switch } from './switch';
+export { default as Slider } from './slider';
 export { default as Select } from './select';
 export { default as Textarea } from './textarea';
 export { default as Tooltip } from './tooltip';
