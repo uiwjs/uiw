@@ -15,6 +15,6 @@ describe('<Radio />', () => {
     }
     expect(component.root.props.value).toBe('1');
     expect(component.root.props.children).toBe('Radio');
-    expect(component.root.props.checked).toBeUndefined();
+    expect(component.root.props.checked).toBeFalsy();
   });
 });
