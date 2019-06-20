@@ -22,9 +22,12 @@ describe('<Collapse />', () => {
     if (tree) {
       expect(tree.type).toBe('div');
       expect(tree.props.className).toBe('w-collapse');
-      expect(tree.children[0].props.className).toBe('w-collapse-item w-collapse-active');
-      expect(tree.children[1].props.className).toBe('w-collapse-item');
     }
-    expect(component.root.props.activeKey.length).toBe(1);
+    expect(component.root.props.activeKey).toEqual(['1']);
+    expect(component.root.props.children.length).toBe(3);
+    expect(component.root.props.children[0].props.header).toBe('大话西游');
+    expect(component.root.props.children[0].props.icon).toBe('arrow-down');
+    expect(component.root.props.children[0].props.prefixCls).toBe('w-collapse');
+    expect(component.root.props.children[0].props.disabled).toBeFalsy();
   });
 });

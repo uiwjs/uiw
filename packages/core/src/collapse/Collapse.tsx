@@ -4,12 +4,12 @@ import Panel from './Panel';
 import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface ICollapseProps extends IProps, HTMLDivProps {
+export interface ICollapseProps extends IProps {
   accordion?: boolean;
   activeKey?: string | string[];
   bordered?: boolean;
   showArrow?: boolean;
-  onChange?: (activeKey: string[] | React.FormEvent<HTMLDivElement>) => void;
+  onChange?: (activeKey: string[] | React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export interface ICollapseState {
@@ -24,14 +24,14 @@ function toArray(activeKey: ICollapseProps['activeKey']) {
   return currentActiveKey;
 }
 
-export default class Collapse extends React.Component<ICollapseProps, ICollapseState> {
+export default class Collapse extends React.Component<ICollapseProps & HTMLDivProps, ICollapseState> {
   public static defaultProps: ICollapseProps = {
     prefixCls: 'w-collapse',
     accordion: false,
     showArrow: true,
   }
   static Panel = Panel;
-  constructor(props: ICollapseProps) {
+  constructor(props: ICollapseProps & HTMLDivProps) {
     super(props);
     this.state = {
       activeKey: toArray(props.activeKey),
@@ -62,7 +62,7 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
     });
   }
   render() {
-    const { prefixCls, className, children, accordion, bordered, showArrow, activeKey, ...resetProps } = this.props;
+    const { prefixCls, className, children, accordion, bordered, showArrow, activeKey, onChange, ...resetProps } = this.props;
     const cls = classnames(prefixCls, className, {
       'w-noborder': bordered,
     });
