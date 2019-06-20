@@ -9,7 +9,6 @@ import { Form, FormItem } from 'uiw';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Form, Input, Row, Col, Slider, Button, Notify } from 'uiw';
 
@@ -213,7 +212,6 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 水平登录栏
 
-<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Form, Input, Row, Col, Notify, Button } from 'uiw';
 
@@ -282,7 +280,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ## 登录
 
-<!--DemoStart,bgWhite,codePen--> 
+
 ```js
 const Demo = () => (
   <div>
@@ -340,7 +338,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 表单提交
 
-<!--DemoStart,bgWhite,codePen--> 
+
 ```js
 const Demo = () => (
   <div>
@@ -424,7 +422,7 @@ ReactDOM.render(<Demo />, _mount_);
 - `value` 用于值传递，
 - `onChange(value)` 用于值变更需要执行的回调函数，回调函数第一个参数必须是 `value`。
 
-<!--DemoStart,bgWhite,codePen--> 
+
 ```jsx
 import { Form, Row, Col, Dropdown, Menu, Icon, Button, Notify } from 'uiw';
 
@@ -553,8 +551,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 > ⚠️ 注意：当前只展示效果，`FormItem` 组件只在 `Form` 组件中使用。
 
-<!--DemoStart,bgWhite,noCode,codePen--> 
+
 ```js
+import { Form, FormItem } from 'uiw';
+
 const Demo = () => (
   <div>
     <FormItem
@@ -584,15 +584,20 @@ ReactDOM.render(<Demo />, _mount_);
 
 > ⚠️ 注意：当前只展示效果，`FormItem` 组件只在 `Form` 组件中使用。
 
-<!--DemoStart,bgWhite,noCode,codePen--> 
+
 ```js
+import { Form, FormItem } from 'uiw';
+
 const Demo = () => (
-  <div>
+  <Form>
     <FormItem
       inline={true}
       label="可选字段"
       labelFor="basic-input-inline"
       help={<span>在上面的字段中输入一个值</span>}
+      onChange={() => {
+        console.log('TEST::');
+      }}
     >
       <Input id="basic-input-inline" type="text"/>
     </FormItem>
@@ -606,7 +611,7 @@ const Demo = () => (
     >
       <Input id="username-input-inline" type="text"/>
     </FormItem>
-  </div>
+  </Form>
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
@@ -618,7 +623,8 @@ ReactDOM.render(<Demo />, _mount_);
 |--------- |-------- |--------- |-------- |
 | fields | 设置字段 | object | - |
 | children | 回调 {`fields`, `state`, `canSubmit`, `resetForm`} | function | - |
-| onSubmit | 提交回调 {`initial`, `current`}  | function({ initial, current }) | - |
+| onSubmit | 在 `onSubmit` 之后执行  | function({ initial, current }) | - |
+| afterSubmit `@3.0.0+` | 提交回调 {`initial`, `current`}  | function({ initial, current }) | - |
 | onChange | 表单发生改变回调函数 {`initial`, `current`}  | function({ initial, current }) | - |
 | onSubmitError | 调用 `onSubmit` 抛出的任何错误。从字段名称返回对象映射。  | function | - |
 | resetOnSubmit | 在 `onSubmit` 成功后将表单重置为其初始状态。| bool | `true` |
