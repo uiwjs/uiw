@@ -9,6 +9,7 @@ import { Form, FormItem } from 'uiw';
 
 ### 基本用法
 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Form, Input, Row, Col, Slider, Button, Notify } from 'uiw';
 
@@ -212,6 +213,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 水平登录栏
 
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Form, Input, Row, Col, Notify, Button } from 'uiw';
 
@@ -280,7 +282,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ## 登录
 
-
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 const Demo = () => (
   <div>
@@ -338,7 +340,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 表单提交
 
-
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 const Demo = () => (
   <div>
@@ -422,7 +424,7 @@ ReactDOM.render(<Demo />, _mount_);
 - `value` 用于值传递，
 - `onChange(value)` 用于值变更需要执行的回调函数，回调函数第一个参数必须是 `value`。
 
-
+<!--DemoStart,bgWhite,codePen--> 
 ```jsx
 import { Form, Row, Col, Dropdown, Menu, Icon, Button, Notify } from 'uiw';
 
@@ -551,12 +553,12 @@ ReactDOM.render(<Demo />, _mount_);
 
 > ⚠️ 注意：当前只展示效果，`FormItem` 组件只在 `Form` 组件中使用。
 
-
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Form, FormItem } from 'uiw';
 
 const Demo = () => (
-  <div>
+  <Form>
     <FormItem
       label="可选字段"
       labelFor="basic-input"
@@ -572,7 +574,7 @@ const Demo = () => (
     >
       <Input id="username-input" type="text"/>
     </FormItem>
-  </div>
+  </Form>
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
@@ -584,7 +586,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 > ⚠️ 注意：当前只展示效果，`FormItem` 组件只在 `Form` 组件中使用。
 
-
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Form, FormItem } from 'uiw';
 
