@@ -20,7 +20,7 @@ export interface IIconProps {
   verticalAlign: 'middle' | 'baseline';
 }
 
-export default class Icon extends React.PureComponent<IIconProps> {
+export default class Icon extends React.PureComponent<IIconProps & React.HTMLAttributes<HTMLElement>> {
   public static defaultProps: IIconProps = {
     prefixCls: 'w-icon',
     verticalAlign: 'middle',

@@ -79,9 +79,9 @@ export const getRouterData = () => {
     '/components/drawer': {
       component: dynamicWrapper([], () => import('../routes/components/drawer')),
     },
-    // '/components/date-picker': {
-    //   component: dynamicWrapper([], () => import('../routes/components/date-picker')),
-    // },
+    '/components/date-picker': {
+      component: dynamicWrapper([], () => import('../routes/components/date-picker')),
+    },
     // '/components/date-input': {
     //   component: dynamicWrapper([], () => import('../routes/components/date-input')),
     // },
@@ -151,9 +151,9 @@ export const getRouterData = () => {
     '/components/table': {
       component: dynamicWrapper([], () => import('../routes/components/table')),
     },
-    // '/components/time-picker': {
-    //   component: dynamicWrapper([], () => import('../routes/components/time-picker')),
-    // },
+    '/components/time-picker': {
+      component: dynamicWrapper([], () => import('../routes/components/time-picker')),
+    },
     '/components/rate': {
       component: dynamicWrapper([], () => import('../routes/components/rate')),
     },

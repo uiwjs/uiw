@@ -9,6 +9,13 @@ export interface IPopoverProps extends IOverlayTriggerProps {
 }
 
 export default class Popover extends React.Component<IPopoverProps> {
+  public static defaultProps: IPopoverProps = {
+    prefixCls: 'w-popover',
+    placement: 'top',
+    usePortal: true,
+    isOpen: false,
+    visibleArrow: true,
+  }
   renderArrow = () => {
     const { prefixCls } = this.props;
     return (
