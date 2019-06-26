@@ -43,7 +43,6 @@
     "react-dom": ">=16.0.0"
   },
   "dependencies": {
-    "@babel/preset-react": "^7.0.0",
     "@babel/standalone": "^7.3.4",
     "@rematch/core": "^1.0.6",
     "@uiw/react-codemirror": "^1.0.19",
@@ -57,12 +56,11 @@
     "react-markdown": "^4.0.4",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
-    "tsbb": "^1.0.8",
     "uiw": "file:./packages/core"
   },
   "devDependencies": {
     "@kkt/plugin-less": "^1.0.2",
-    "kkt": "^4.1.6",
+    "kkt": "^4.1.7",
     "raw-loader": "^1.0.0",
     "react-test-renderer": "^16.7.0"
   },
