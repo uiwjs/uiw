@@ -15,6 +15,7 @@ export { default as Divider } from './divider';
 export { default as Drawer } from './drawer';
 export { default as Dropdown } from './dropdown';
 export { default as DatePicker } from './date-picker';
+export { default as DateInput } from './date-input';
 export { default as formatter } from '@uiw/formatter';
 export { default as Icon } from './icon';
 export { default as Input } from './input';

@@ -5,10 +5,12 @@ import { store } from '../store';
 // wrapper of dynamic
 const dynamicWrapper = (models, component) => dynamic({
   models: () => models.map((m) => {
-    return import(`../models/${m}.js`).then((md) => {
-      const modelData = md.default || md;
-      store.model({ name: m, ...modelData });
-    });
+    return null;
+    // if (!m) return;
+    // return import(`../models/${m}.js`).then((md) => {
+    //   const modelData = md.default || md;
+    //   store.model({ name: m, ...modelData });
+    // });
   }),
   component,
   LoadingComponent: () => <span>loading....</span>,
@@ -82,9 +84,9 @@ export const getRouterData = () => {
     '/components/date-picker': {
       component: dynamicWrapper([], () => import('../routes/components/date-picker')),
     },
-    // '/components/date-input': {
-    //   component: dynamicWrapper([], () => import('../routes/components/date-input')),
-    // },
+    '/components/date-input': {
+      component: dynamicWrapper([], () => import('../routes/components/date-input')),
+    },
     '/components/dropdown': {
       component: dynamicWrapper([], () => import('../routes/components/dropdown')),
     },
