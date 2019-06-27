@@ -23,6 +23,7 @@ export { default as List } from './list';
 export { default as Loader } from './loader';
 export { default as Menu } from './menu';
 export { default as Message } from './message';
+export { default as MonthPicker } from './month-picker';
 export { default as Notify } from './notify';
 export { default as Modal } from './modal';
 export { default as Overlay } from './overlay';
