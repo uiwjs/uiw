@@ -54,9 +54,9 @@ export const getRouterData = () => {
     '/components/affix': {
       component: dynamicWrapper([], () => import('../routes/components/affix')),
     },
-    // '/components/calendar': {
-    //   component: dynamicWrapper([], () => import('../routes/components/calendar')),
-    // },
+    '/components/calendar': {
+      component: dynamicWrapper([], () => import('../routes/components/calendar')),
+    },
     '/components/checkbox': {
       component: dynamicWrapper([], () => import('../routes/components/checkbox')),
     },

@@ -10,6 +10,7 @@ export { default as Card } from './card';
 export { default as CopyToClipboard } from './copy-to-clipboard';
 export { default as Checkbox } from './checkbox';
 export { default as Collapse } from './collapse/Collapse';
+export { default as Calendar } from './calendar';
 export { default as Col } from './grid/Col';
 export { default as Divider } from './divider';
 export { default as Drawer } from './drawer';

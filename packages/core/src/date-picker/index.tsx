@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import PickerDay, { IPickerDayProps} from './PickerDay';
+import PickerDay, { IPickerDayProps, IDateSource } from './PickerDay';
 import PickerMonth from './PickerMonth';
 import PickerYear from './PickerYear';
 import PickerTime, { ITimePickerPanelProps } from '../time-picker/PickerTime';
@@ -13,8 +13,7 @@ export interface IDatePickerShowTimeProps extends ITimePickerPanelProps {
   format?: string;
 }
 export interface IDatePickerProps extends IProps {
-  prefixCls?: string,
-  onChange?: (selectedDate?: Date) => void;
+  onChange?: (selectedDate?: Date, dateSource?: IDateSource) => void;
   renderDay?: IPickerDayProps['renderDay'];
   disabledDate?: IPickerDayProps['disabledDate'];
   showTime?: IDatePickerShowTimeProps | boolean;
@@ -56,8 +55,8 @@ export default class DatePicker extends React.Component<IDatePickerProps & HTMLD
       this.setState({ panelDate: nextProps.panelDate });
     }
   }
-  onChange = (date?: Date) => {
-    this.props.onChange!(date);
+  onChange = (date?: Date, dateSource?: IDateSource) => {
+    this.props.onChange!(date, dateSource);
   }
   onSelected = (type: IDatePickerState['type']) => {
     const { today } = this.props;
@@ -101,7 +100,6 @@ export default class DatePicker extends React.Component<IDatePickerProps & HTMLD
     });
   }
   onSelectedDate(type: 'setMonth' | 'setFullYear', month: number, paging?: boolean) {
-    console.log('type:', type, month, paging);
     const { panelDate, date } = this.state;
     (panelDate as Date)[type](month);
     if (date) {

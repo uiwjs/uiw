@@ -4,6 +4,12 @@ import { getFirstDayOfWeek, solarMonthDays, isSameDate } from '../utils';
 import { IProps, HTMLDivProps } from '../utils/props';
 import './style/day.less';
 
+export interface IDateSource {
+  day?: number,
+  month?: number,
+  year?: number
+}
+
 export interface IPickerDayProps extends IProps {
   weekday?: string[];
   weekTitle?: string[];
@@ -11,8 +17,8 @@ export interface IPickerDayProps extends IProps {
   date?: Date;
   today?: Date;
   prefixCls?: string;
-  onSelectDay?: (selectedDate?: Date) => void;
-  renderDay?: (day: number, props: IPickerDayRenderDay, cellDate: Date) => React.ReactNode;
+  onSelectDay?: (selectedDate?: Date, dateSource?: IDateSource) => void;
+  renderDay?: (day: number, props: IPickerDayRenderDay) => React.ReactNode;
   disabledDate?: (cellDate: Date, props: IPickerDayRenderDay) => boolean;
 }
 
@@ -29,6 +35,7 @@ export interface IPickerDayRenderDay {
   next: boolean;
   disabled: boolean;
   key?: number;
+  date?: Date;
   onClick?: (cellDate: Date, event: React.MouseEvent<HTMLDivProps>) => void;
 }
 
@@ -73,14 +80,14 @@ export default class PickerDay extends React.Component<IPickerDayProps & HTMLDiv
       this.setState({ selected: nextProps.date });
     }
   }
-  handleClick(selectedDate?: Date) {
+  handleClick(selectedDate?: Date, dateSource?: IDateSource) {
     const { date } = this.props;
     if (date && isSameDate(initSameDate(selectedDate as Date), initSameDate(date))) {
       this.setState({ selected: selectedDate });
       selectedDate = undefined;
     }
     this.setState({ panelDate: selectedDate });
-    this.props.onSelectDay!(selectedDate);
+    this.props.onSelectDay!(selectedDate, dateSource);
   }
   renderDay(num: number, row: number) {
     const { date: selectedDate, disabledDate, renderDay } = this.props;
@@ -122,7 +129,7 @@ export default class PickerDay extends React.Component<IPickerDayProps & HTMLDiv
     }
     const props = {
       key: num,
-      onClick: this.handleClick.bind(this, cellDate),
+      onClick: this.handleClick.bind(this, cellDate, { day, month, year }),
     };
     if (disabledDate && disabledDate(cellDate, { ...props, ...cls })) {
       cls.disabled = true;
@@ -130,7 +137,7 @@ export default class PickerDay extends React.Component<IPickerDayProps & HTMLDiv
     }
     return (
       <div {...props} className={classnames(cls)}>
-        {renderDay ? renderDay(day, { ...props, ...cls }, cellDate) : <div>{day}</div>}
+        {renderDay ? renderDay(day, { ...props, ...cls, date: cellDate }) : <div>{day}</div>}
       </div>
     );
   }
