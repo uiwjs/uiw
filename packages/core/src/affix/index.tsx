@@ -1,7 +1,28 @@
 import React from 'react';
 import classnames from 'classnames';
 import getScroll from '../utils/getScroll';
-import { IProps } from '../utils/props';
+import { IProps, HTMLDivProps } from '../utils/props';
+
+export interface IAffixProps extends IProps {
+  /**
+   * 距离窗口顶部达到指定偏移量后触发
+   */
+  offsetTop?: number;
+  /**
+   * 距离窗口底部达到指定偏移量后触发
+   */
+  offsetBottom?: number;
+  target?: () => Window | HTMLElement | null;
+  /**
+   * 固定状态改变时触发的回调函数
+   */
+  onChange: (affixed?: boolean) => void;
+}
+
+export interface IAffixState {
+  affixStyle?: React.CSSProperties;
+  placeholderStyle?: React.CSSProperties;
+}
 
 function getTargetRect(target: HTMLElement | Window | null): ClientRect {
   return target !== window ? (target as HTMLElement).getBoundingClientRect() : ({ top: 0, left: 0, bottom: 0 }) as ClientRect;
@@ -31,19 +52,7 @@ function getDefaultTarget() {
   return typeof window !== 'undefined' ? window : null;
 }
 
-export interface IAffixProps extends IProps {
-  target?: () => Window | HTMLElement | null;
-  offsetTop?: number;
-  offsetBottom?: number;
-  onChange: (affixed?: boolean) => void;
-}
-
-export interface IAffixState {
-  affixStyle?: React.CSSProperties;
-  placeholderStyle?: React.CSSProperties;
-}
-
-export default class Affix extends React.Component<IAffixProps, IAffixState> {
+export default class Affix extends React.Component<IAffixProps & HTMLDivProps, IAffixState> {
   public static defaultProps: IAffixProps = {
     prefixCls: 'w-affix',
     onChange: noop,
@@ -65,15 +74,17 @@ export default class Affix extends React.Component<IAffixProps, IAffixState> {
   ];
   private eventHandlers: Record<string, any> = {};
   private timeout?: number;
-  constructor(props: IAffixProps) {
+  constructor(props: IAffixProps & HTMLDivProps) {
     super(props);
     this.updatePosition = this.updatePosition.bind(this);
   }
   componentDidMount() {
     const target = this.props.target || getDefaultTarget;
+    console.log('target:', target)
     // Wait for parent component ref has its value
     this.timeout = setTimeout(() => {
       this.target = target();
+      console.log('target:', this.target)
       this.setTargetEventListeners();
     });
   }

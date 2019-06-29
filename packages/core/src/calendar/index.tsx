@@ -63,7 +63,6 @@ export default class Calendar extends React.Component<ICalendarProps, ICalendarS
   }
   constructor(props: ICalendarProps) {
     super(props);
-    console.log('props:', props)
     this.state = {
       panelDate: props.panelDate || new Date(),
       date: props.date,
