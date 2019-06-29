@@ -7,4 +7,4 @@ cache:
 install: 
   - cd $PWD/packages/core && npm install
 script:
-  - cd $PWD/packages/core && npm run coverage
+  - npm run coverage
