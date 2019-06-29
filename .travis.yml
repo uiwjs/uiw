@@ -4,5 +4,7 @@ node_js:
 cache:
   directories:
     - node_modules
+install: 
+  - cd $PWD/packages/core && npm install
 script:
   - cd $PWD/packages/core && npm run coverage
