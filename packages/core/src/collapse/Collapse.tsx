@@ -9,7 +9,8 @@ export interface ICollapseProps extends IProps {
   activeKey?: string | string[];
   bordered?: boolean;
   showArrow?: boolean;
-  onChange?: (activeKey: string[] | React.MouseEvent<HTMLDivElement>) => void;
+  // onChange?: (event: React.FormEvent<HTMLDivElement>) => void;
+  onChange?: (activeKey: string[]) => void;
 }
 
 export interface ICollapseState {
@@ -24,14 +25,14 @@ function toArray(activeKey: ICollapseProps['activeKey']) {
   return currentActiveKey;
 }
 
-export default class Collapse extends React.Component<ICollapseProps & HTMLDivProps, ICollapseState> {
+export default class Collapse extends React.Component<ICollapseProps, ICollapseState> {
   public static defaultProps: ICollapseProps = {
     prefixCls: 'w-collapse',
     accordion: false,
     showArrow: true,
   }
   static Panel = Panel;
-  constructor(props: ICollapseProps & HTMLDivProps) {
+  constructor(props: ICollapseProps) {
     super(props);
     this.state = {
       activeKey: toArray(props.activeKey),
@@ -67,7 +68,7 @@ export default class Collapse extends React.Component<ICollapseProps & HTMLDivPr
       'w-noborder': bordered,
     });
     return (
-      <div className={cls} {...resetProps}>
+      <div className={cls} {...(resetProps as HTMLDivProps)}>
         {React.Children.map(children, (child: any, index) => {
           // 如果没有密钥提供，请使用面板顺序作为默认密钥
           const key = child.key || String(index);

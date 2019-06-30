@@ -8,10 +8,9 @@ describe('<Radio />', () => {
       <Radio value="1">Radio</Radio>
     );
     let json = component.toJSON();
-    expect(json).toMatchSnapshot();
     if (json) {
       expect(json.type).toBe('label');
-      expect(json.children.length).toBe(2);
+      expect(json.children!.length).toBe(2);
     }
     expect(component.root.props.value).toBe('1');
     expect(component.root.props.children).toBe('Radio');

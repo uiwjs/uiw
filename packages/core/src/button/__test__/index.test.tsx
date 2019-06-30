@@ -8,7 +8,6 @@ describe('<Button />', () => {
       <Button>按钮</Button>
     );
     let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
     if(tree) {
       expect(tree.type).toBe('button');
       expect(tree.props.type).toBe('button');

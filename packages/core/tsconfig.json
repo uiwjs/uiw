@@ -1,3 +1,4 @@
+
 {
   "compilerOptions": {
     "module": "commonjs",
@@ -7,8 +8,6 @@
     "declaration": true,
     "jsx": "react",
     "target": "esnext",
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
     "noImplicitAny": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
@@ -24,12 +23,11 @@
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "test"
   ],
   "exclude": [
     "node_modules",
-    "**/*.spec.ts",
-    "**/*.test.ts",
-    "**/*.test.tsx"
+    "**/*.spec.ts"
   ]
 }

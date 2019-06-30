@@ -8,14 +8,23 @@ describe('<Avatar />', () => {
       <Avatar icon="user" />
     );
     let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
     if (tree) {
       expect(tree.type).toBe('span');
       expect(tree.props.className).toBe('w-avatar w-avatar-default w-avatar-circle');
       expect(tree.children).toHaveLength(1);
-      expect(tree.children[0].type).toBe('span');
-      expect(tree.children[0].props.className).toBe('w-icon w-icon-middle');
-      expect(tree.children[0].props.style).toEqual({ fill: 'currentColor' });
+      if (tree.children && tree.children[0]) {
+        expect((tree.children[0] as any).type).toBe('span');
+        expect((tree.children[0] as any).props.className).toBe('w-icon w-icon-middle');
+        expect((tree.children[0] as any).props.style).toEqual({ fill: 'currentColor' });
+      }
     }
+
+    expect(component.root.props).toEqual({
+      icon: 'user',
+      prefixCls: 'w-avatar',
+      shape: 'circle',
+      size: 'default',
+    });
+    expect(component.root.children).toHaveLength(1);
   });
 });

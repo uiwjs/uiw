@@ -12,13 +12,14 @@ describe('<Button />', () => {
       </Breadcrumb>
     );
     let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
     if (tree) {
       expect(tree.type).toBe('div');
       expect(tree.props.className).toBe('w-breadcrumb');
-      expect(tree.children.length).toBe(3);
-      expect(tree.children[0].props.className).toBe('w-breadcrumb-item no-separator');
-      expect(tree.children[0].type).toBe('span');
+      if (tree.children) {
+        expect(tree.children.length).toBe(3);
+        expect((tree.children[0] as any).props.className).toBe('w-breadcrumb-item no-separator');
+        expect((tree.children[0] as any).type).toBe('span');
+      }
     }
   });
 });

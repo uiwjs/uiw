@@ -11,11 +11,12 @@ describe('<RadioGroup />', () => {
       </RadioGroup>
     );
     let json = component.toJSON();
-    expect(json).toMatchSnapshot();
     if (json) {
       expect(json.type).toBe('div');
       expect(json.props.className).toBe('w-radio-group');
-      expect(json.children.length).toBe(2);
+      if (json.children) {
+        expect(json.children.length).toBe(2);
+      }
     }
     expect(component.root.props.value).toBe('人妖');
   });

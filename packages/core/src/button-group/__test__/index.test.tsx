@@ -15,7 +15,6 @@ describe('<Button />', () => {
       </ButtonGroup>
     );
     let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
     if (tree) {
       expect(tree.type).toBe('div');
       expect(tree.props.className).toBe('w-btn-group');
