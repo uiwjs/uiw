@@ -6,7 +6,7 @@ import PickerYear from './PickerYear';
 import PickerTime, { ITimePickerPanelProps } from '../time-picker/PickerTime';
 import PickerDayCaption, { CaptionType } from './PickerCaption';
 import { formatter } from '../';
-import { IProps, HTMLDivProps } from '../utils/props';
+import { IProps } from '../utils/props';
 import './style/index.less';
 
 export interface IDatePickerShowTimeProps extends ITimePickerPanelProps {

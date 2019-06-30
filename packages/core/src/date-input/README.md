@@ -21,10 +21,18 @@ class Demo extends React.Component {
     return (
       <Row gutter={10} style={{ maxWidth: 360 }}>
         <Col fixed>
-          <DateInput datePickerProps={{ todayButton: '今天' }} onChange={this.onChange.bind(this)} />
+          <DateInput
+            value={new Date()}
+            datePickerProps={{ todayButton: '今天' }}
+            onChange={this.onChange.bind(this)}
+          />
         </Col>
         <Col>
-          <DateInput disabled onChange={this.onChange.bind(this)} />
+          <DateInput
+            value={new Date()}
+            disabled
+            onChange={this.onChange.bind(this)}
+          />
         </Col>
       </Row>
     )

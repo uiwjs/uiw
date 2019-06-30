@@ -1,6 +1,6 @@
 import React from 'react';
 import TestRenderer from 'react-test-renderer';
-import DatePicker from '../';
+import { DatePicker } from '../../';
 import { IDateSource } from '../PickerDay';
 
 describe('<DatePicker />', () => {
