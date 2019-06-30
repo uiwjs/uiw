@@ -12,9 +12,18 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "strict": true, /* Enable all strict type-checking options. */
+    "strict": true,
     "outDir": "lib",
     "baseUrl": ".",
+    "types": [
+      "node",
+      "jest"
+    ],
+    "typeRoots": [
+      "node_modules/@types",
+      "test",
+      "types"
+    ],
     "paths": {
       "*": [
         "node_modules/*",
