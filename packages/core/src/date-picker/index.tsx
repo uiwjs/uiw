@@ -31,7 +31,7 @@ export interface IDatePickerState {
   type?: 'day' | 'time' | CaptionType;
 }
 
-export default class DatePicker extends React.Component<IDatePickerProps & HTMLDivProps, IDatePickerState> {
+export default class DatePicker extends React.Component<IDatePickerProps, IDatePickerState> {
   public static defaultProps: IDatePickerProps = {
     prefixCls: 'w-datepicker',
     onChange() { },
@@ -39,7 +39,7 @@ export default class DatePicker extends React.Component<IDatePickerProps & HTMLD
     today: new Date(),
   }
   public state: IDatePickerState;
-  constructor(props: IDatePickerProps & HTMLDivProps) {
+  constructor(props: IDatePickerProps) {
     super(props);
     this.state = {
       panelDate: props.panelDate || new Date(),
@@ -47,7 +47,7 @@ export default class DatePicker extends React.Component<IDatePickerProps & HTMLD
       type: 'day',
     } as IDatePickerState;
   }
-  componentWillReceiveProps(nextProps: IDatePickerProps & HTMLDivProps) {
+  componentWillReceiveProps(nextProps: IDatePickerProps) {
     if (nextProps.date !== this.props.date) {
       this.setState({ date: nextProps.date, panelDate: nextProps.date ? new Date(nextProps.date) : new Date() });
     }
