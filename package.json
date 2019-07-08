@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "private": true,
   "sideEffects": true,
@@ -17,14 +17,7 @@
     "build": "kkt build",
     "deploy": "gh-pages -d dist -b master -r git@github.com:uiwjs/uiwjs.github.io.git",
     "deploy:pages": "gh-pages -d dist -b gh-pages",
-    "released": "node script/released.js",
-    "coverage": "tsbb test --coverage"
-  },
-  "jest": {
-    "testMatch": [
-      "<rootDir>/packages/core/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
-      "<rootDir>/packages/core/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
-    ]
+    "released": "node script/released.js"
   },
   "keywords": [
     "uiw",

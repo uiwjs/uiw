@@ -13,7 +13,7 @@
     "bundle": "kkt build --bundle --no-emptyDir",
     "bundle:min": "kkt build --bundle=min --no-emptyDir",
     "watch": "npm run watch:types & npm run watch:ts",
-    "build": "npm run build:ts & npm run build:types",
+    "build": "npm run build:ts & npm run build:types & npm run bundle & npm run bundle:min",
     "watch:types": "npm run build:types -- --watch",
     "build:types": "tsbb types --outDir typings --target ESNEXT",
     "watch:ts": "tsbb watch --target react",
