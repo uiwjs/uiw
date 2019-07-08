@@ -6,7 +6,9 @@ import { NotificationCreateProps } from './index';
 
 export type Placement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
-export interface IContainerProps extends IProps {}
+export interface IContainerProps extends IProps {
+  placement?: Placement;
+}
 export interface IContainerState {
   placement?: Placement;
   notifys: ContainerNotifys
@@ -22,6 +24,10 @@ const notifys: ContainerNotifys = {};
 const timer: { [key: string]: any } = {};
 
 export default class Container extends React.Component<IContainerProps, IContainerState> {
+  public static defaultProps: IContainerProps = {
+    prefixCls: 'w-notify',
+    placement: 'topRight',
+  }
   public state: IContainerState = {
     notifys: {},
   }
