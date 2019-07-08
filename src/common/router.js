@@ -5,12 +5,10 @@ import { store } from '../store';
 // wrapper of dynamic
 const dynamicWrapper = (models, component) => dynamic({
   models: () => models.map((m) => {
-    return null;
-    // if (!m) return;
-    // return import(`../models/${m}.js`).then((md) => {
-    //   const modelData = md.default || md;
-    //   store.model({ name: m, ...modelData });
-    // });
+    return import(`../models/${m}.js`).then((md) => {
+      const modelData = md.default || md;
+      store.model({ name: m, ...modelData });
+    });
   }),
   component,
   LoadingComponent: () => <span>loading....</span>,
@@ -138,9 +136,9 @@ export const getRouterData = () => {
     '/components/notify': {
       component: dynamicWrapper([], () => import('../routes/components/notify')),
     },
-    // '/components/tree': {
-    //   component: dynamicWrapper([], () => import('../routes/components/tree')),
-    // },
+    '/components/tree': {
+      component: dynamicWrapper([], () => import('../routes/components/tree')),
+    },
     '/components/tag': {
       component: dynamicWrapper([], () => import('../routes/components/tag')),
     },

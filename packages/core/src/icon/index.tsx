@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import svgPaths from 'uiw-iconfont/fonts/w-icon.json';
 import './style/index.less';
 
-export type Type = JSX.Element | string | false | null;
+export type Type = React.ReactElement | string | false | null;
 
 export interface IIconProps {
   style?: React.CSSProperties;
