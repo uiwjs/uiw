@@ -16,6 +16,9 @@ export default class Abstract extends React.Component<IAbstractProps> {
   public static defaulProps: IAbstractProps = {
     prefixCls: 'w-radio',
     type: 'radio',
+    disabled: false,
+    checked: false,
+    value: '',
   }
   public state:IAbstractState = {}
   constructor(props: IAbstractProps) {
