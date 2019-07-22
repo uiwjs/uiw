@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://uiwjs.github.io">
-    <img width="150" src="https://raw.githubusercontent.com/uiwjs/uiw/master/src/assets/logo-README.svg?sanitize=true">
+    <img width="150" src="https://raw.githubusercontent.com/uiwjs/uiw/92f189f53312f1177466f48991736f95f86da0a6/src/assets/logo-README.svg?sanitize=true">
   </a>
 </p>
 <p align="center">
@@ -32,7 +32,7 @@
 </p>
 
 <p align="center">
-  <a href="https://uiwjs.github.io"><img src="https://raw.githubusercontent.com/uiwjs/uiw/master/src/assets/uiw-doc.png" /></a>
+  <a href="https://uiwjs.github.io"><img src="https://raw.githubusercontent.com/uiwjs/uiw/92f189f53312f1177466f48991736f95f86da0a6/src/assets/uiw-doc.png" /></a>
 </p>
 
 uiw
