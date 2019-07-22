@@ -43,7 +43,7 @@ A high quality UI Toolkit, A Component Library for React 16+. 💘
 ### Installation
 
 ```bash
-npm install uiw@2.0.1 --save
+npm install uiw --save
 ```
 
 You can use [`kkt`](https://github.com/jaywcjlove/kkt) to quickly create a react + uiw project.
@@ -87,26 +87,14 @@ Or clone locally:
 $ git clone https://github.com/uiwjs/uiw.git
 $ cd uiw
 $ npm install # or  yarn install
-$ cd uiw/packages/core && npm install
 ```
 
 To develop, run the self-reloading build:
 
 ```bash
-$ cd ./packages/core
-npm run watch
-# Run the app
-# Restart the app automatically every time code changes. 
-# Useful during development.
-$ npm start
-```
-
-Open your browser and visit http://localhost:19870
-
-Update the document
-
-```bash
-npm run deploy
+$ npm run watch
+$ npm run build
+$ npm run test
 ```
 
 Folders
@@ -114,24 +102,14 @@ Folders
 ```bash
 ├── LICENSE
 ├── README.md
+├── dist
+├── lib
+├── package-lock.json
 ├── package.json
-├── packages        # Component library source code
-│   ├── core
-│   |   └── src
-│   └── doc
-├── public          # Document the static file.
-└── src             # Document website source code.
-    ├── Router.js
-    ├── assets
-    ├── common      # Menu and routing configuration.
-    ├── components
-    ├── index.js
-    ├── layouts
-    ├── models
-    ├── routes
-    ├── store
-    ├── styles
-    └── utils
+├── src    # Component library source code
+├── test
+├── tsconfig.json
+└── typings
 ```
 
 ### License
