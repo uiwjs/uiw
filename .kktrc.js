@@ -1,62 +1,63 @@
-const pkg = require('./packages/core/package.json');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path');
 
+/**
+ * Bundles a minified and unminified version of UIW including
+ * all it's immediate dependencies (excluding React, ReactDOM, etc)
+ */
 module.exports = {
   plugins: [
     require.resolve('@kkt/plugin-less'),
   ],
   // Modify the webpack config
-  config: (conf, { dev, env, appSrc }, webpack) => {
-    conf.resolve.alias = { '@': appSrc };
-    if (dev) {
-      conf = {
-        ...conf,
-        devServer: {
-          ...conf.devServer,
-          // fix 'Invalid Host header'
-          disableHostCheck: true,
-        }
+  config: (conf, { env, raw, ...other }, webpack) => {
+    if (env === 'prod' && raw.BUNDLE) {
+      conf.entry = './src/index.ts';
+      conf.output = {
+        path: other.appBuildDist,
+        filename: 'uiw.js',
+        library: 'UIW',
+        libraryTarget: 'umd',
+      }
+      conf.externals = {
+        react: {
+          root: 'React',
+          commonjs2: 'react',
+          commonjs: 'react',
+          amd: 'react',
+        },
+        'react-dom': {
+          root: 'ReactDOM',
+          commonjs2: 'react-dom',
+          commonjs: 'react-dom',
+          amd: 'react-dom',
+        },
+      }
+      if (raw.BUNDLE !== 'min') conf.optimization.minimize = false;
+      if (raw.BUNDLE === 'min') {
+        conf.output.filename = 'uiw.min.js';
+        conf.plugins = [
+          ...conf.plugins,
+          new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: 'uiw.min.css',
+            // allChunks: true because we want all css to be included in the main
+            // css bundle when doing code splitting to avoid FOUC:
+            // https://github.com/facebook/create-react-app/issues/2415
+            allChunks: true,
+          })
+        ];
+      } else {
+        conf.plugins = [
+          ...conf.plugins,
+          new MiniCssExtractPlugin({
+            filename: 'uiw.css',
+            allChunks: true,
+          })
+        ];
       }
     }
-    if (env === 'prod') {
-      conf.output.publicPath = './';
-      conf = {
-        ...conf,
-        optimization: {
-          ...conf.optimization,
-          // https://webpack.js.org/plugins/split-chunks-plugin/
-          splitChunks: {
-            chunks: 'async',
-            minSize: 30000,
-            minChunks: 2,
-            maxAsyncRequests: 5,
-            maxInitialRequests: 3,
-            automaticNameDelimiter: '~',
-            name: true,
-            cacheGroups: {
-              vendors: {
-                test: /[\\/]node_modules[\\/]/,
-                priority: -10
-              },
-              default: {
-                minChunks: 2,
-                priority: -20,
-                reuseExistingChunk: true
-              }
-            }
-          }
-        }
-      };
-    }
-    conf.module.rules = [
-      {
-        test: /\.md$/,
-        loader: require.resolve('raw-loader')
-      },
-      ...conf.module.rules,
-    ];
-    conf.plugins.push(new webpack.DefinePlugin({
-      VERSION: JSON.stringify(pkg.version),
-    }));
     return conf;
   },
 };

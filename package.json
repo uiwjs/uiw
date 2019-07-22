@@ -1,61 +1,86 @@
 {
   "name": "uiw",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
-  "private": true,
-  "sideEffects": true,
   "homepage": "https://uiwjs.github.io",
-  "authors": [
-    "Kenny Wang <wowohoo@qq.com>"
-  ],
+  "sideEffects": false,
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "typings": "typings/index.d.ts",
+  "author": "kenny wang <wowohoo@qq.com>",
+  "scripts": {
+    "prepare": "npm run build",
+    "bundle": "kkt build --bundle --no-emptyDir",
+    "bundle:min": "kkt build --bundle=min --no-emptyDir",
+    "watch": "npm run watch:types & npm run watch:ts",
+    "build": "npm run build:ts && npm run build:types && npm run bundle && npm run build:css && npm run bundle:min",
+    "build:css": "compile-less -d src -o lib/esm",
+    "watch:types": "npm run build:types -- --watch",
+    "build:types": "tsbb types --outDir typings --target ESNEXT",
+    "watch:ts": "tsbb watch --target react",
+    "build:ts": "tsbb build --target react",
+    "test": "tsbb test",
+    "coverage": "tsbb test --coverage"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/uiwjs/uiw.git"
   },
-  "scripts": {
-    "start": "kkt start",
-    "build": "kkt build",
-    "deploy": "gh-pages -d dist -b master -r git@github.com:uiwjs/uiwjs.github.io.git",
-    "deploy:pages": "gh-pages -d dist -b gh-pages",
-    "released": "node script/released.js"
+  "files": [
+    "typings",
+    "lib",
+    "src",
+    "dist"
+  ],
+  "jest": {
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
+    ]
   },
   "keywords": [
+    "design",
     "uiw",
-    "uiwjs",
     "uiw-react",
     "react.js",
     "react",
+    "react-component",
     "component",
     "components",
     "ui",
-    "framework"
+    "uikit",
+    "react-ui",
+    "framework",
+    "frontend"
   ],
   "peerDependencies": {
-    "react": ">=16.0.0",
-    "react-dom": ">=16.0.0"
+    "react": ">=16.7.0",
+    "react-dom": ">=16.7.0"
   },
   "dependencies": {
-    "@babel/standalone": "^7.3.4",
-    "@rematch/core": "^1.0.6",
-    "@uiw/react-codemirror": "^1.0.19",
-    "@uiw/reset.css": "^1.0.3",
+    "@uiw/copy-to-clipboard": "^1.0.10",
+    "@uiw/formatter": "^1.2.3",
     "classnames": "^2.2.6",
-    "history": "^4.7.2",
-    "prismjs": "^1.15.0",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-dynamic-loadable": "^1.1.2",
-    "react-markdown": "^4.0.4",
-    "react-redux": "^6.0.0",
-    "react-router-dom": "^4.3.1",
-    "uiw": "file:./packages/core"
+    "react-transition-group": "^4.0.1",
+    "uiw-iconfont": "^1.4.1"
   },
   "devDependencies": {
-    "@kkt/plugin-less": "^1.0.2",
+    "@types/classnames": "^2.2.7",
+    "@types/jest": "^24.0.15",
+    "@types/react": "^16.8.17",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-test-renderer": "^16.8.1",
+    "@types/react-transition-group": "^2.9.1",
+    "babel-plugin-transform-remove-imports": "^1.0.8",
+    "babel-plugin-transform-rename-import": "^2.3.0",
+    "compile-less-cli": "^1.1.5",
+    "enzyme": "^3.9.0",
     "kkt": "^4.1.7",
-    "raw-loader": "^1.0.0",
-    "react-test-renderer": "^16.7.0"
+    "less": "^3.9.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-test-renderer": "^16.8.6",
+    "tsbb": "^1.0.7"
   },
-  "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT"
 }
