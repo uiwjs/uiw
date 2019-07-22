@@ -1,5 +1,4 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const path = require('path');
 
 /**
  * Bundles a minified and unminified version of UIW including
