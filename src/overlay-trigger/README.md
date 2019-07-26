@@ -70,11 +70,11 @@ class Demo extends React.Component {
   constructor() {
     super()
     this.state = {
-      isVisbale: false,
+      visiable: false,
     }
   }
-  onClick(e, isVisbale) {
-    this.setState({ isVisbale })
+  onClick(e, visiable) {
+    this.setState({ visiable })
   }
   render() {
     return (
@@ -83,11 +83,14 @@ class Demo extends React.Component {
           placement="top"
           trigger="click"
           overlay={card}
+          onVisibleChange={(visiable) => {
+    				this.setState({ visiable })
+          }}
         >
           <span onClick={this.onClick.bind(this)}>鼠标<b>点击</b>此处，显示和消失触发子组件事件</span>
         </OverlayTrigger>
         <Divider />
-        <div>状态：{this.state.isVisbale ? '' : '不'}可见</div>
+        <div>状态：{this.state.visiable ? '' : '不'}可见</div>
       </div>
     )
   }
@@ -283,6 +286,6 @@ ReactDOM.render(<Demo />, _mount_);
 | isOutside | 默认离开**触发区域**隐藏弹出目标，设置值为 `true`，在触发区域和弹出目标区域内，不隐藏**弹出目标**。 | Boolean | `false` |
 | isClickOutside | 点击目标区域以外的区域，是否隐藏。 | Boolean | `true` |
 | autoAdjustOverflow | 弹出层被遮挡时自动调整位置 | Boolean | `false` |
-| onVisibleChange | 显示隐藏的回调 | Function(isVisible:bool) | - |
+| onVisibleChange | 显示隐藏的回调 | Function(isVisiable:bool) | - |
 
 更多属性文档请参考 [Overlay](#/components/overlay)。
