@@ -38,7 +38,7 @@ export interface IOverlayProps extends IProps {
   onOpened?: (node: HTMLElement, isAppearing: boolean) => void;
   onClosing?: (node: HTMLElement) => void;
   onClosed?: (node: HTMLElement | React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  onClose?: (evn: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClose?: (evn: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   children?: any;
 }
 
@@ -116,17 +116,15 @@ export default class Overlay extends React.Component<IOverlayProps, IOverlayStat
       this.overlayWillOpen();
     }
   }
-  handleBackdropMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  handleBackdropMouseDown = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const { backdropProps, maskClosable, hasBackdrop, usePortal, onClose } = this.props;
     if (e.target !== this.container && usePortal) {
       return;
     }
     if (maskClosable && hasBackdrop) {
-      this.setState({ isMount: false }, () => {
-        onClose && onClose.bind(e)
-      });
+      this.setState({ isMount: false }, onClose!.bind(this, e));
     }
-    backdropProps && backdropProps.onMouseDown && backdropProps.onMouseDown(e);
+    backdropProps && backdropProps.onMouseDown && backdropProps.onMouseDown(e as React.MouseEvent<HTMLDivElement, MouseEvent>);
   }
   public onClosed = (node: HTMLElement | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const { onClosed } = this.props;
