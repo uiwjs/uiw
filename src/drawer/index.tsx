@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import Overlay, { IOverlayProps } from '../overlay';
 import Icon from '../icon';
 import Button from '../button';
-// import { IProps } from '../utils/props';
 import './style/index.less';
 
 export interface IDrawerProps extends IOverlayProps {
@@ -13,7 +12,7 @@ export interface IDrawerProps extends IOverlayProps {
   placement: 'top' | 'right' | 'bottom' | 'left';
   size: number;
   isCloseButtonShown: boolean;
-  onClose?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClose?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 
 export default class Drawer extends React.PureComponent<IDrawerProps> {
