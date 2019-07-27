@@ -27,8 +27,14 @@ export interface ITableProps extends IProps {
   title?: React.ReactNode;
   footer?: React.ReactNode;
   bordered?: boolean;
-  onCell?: (data: { [key: string]: any; }, rowNum: number, colNum: number, evn: React.MouseEvent<HTMLTableCellElement>) => void;
+  onCell?: (data: { [key: string]: any; }, options: ICellOptions, evn: React.MouseEvent<HTMLTableCellElement>) => void;
   onCellHead?: (data: IColumns, rowNum: number, colNum: number, evn: React.MouseEvent<HTMLTableCellElement>) => void;
+}
+
+export interface ICellOptions {
+  rowNum: number;
+  colNum: number;
+  keyName: string;
 }
 
 export default class Table extends React.Component<ITableProps> {
@@ -52,17 +58,20 @@ export default class Table extends React.Component<ITableProps> {
       <div className={cls} {...other}>
         <table>
           {title && <caption>{title}</caption>}
-          {columns && columns.length > 0 && <Thead
-            onCellHead={onCellHead}
-            data={header} />}
+          {columns && columns.length > 0 && (
+            <Thead onCellHead={onCellHead} data={header} />
+          )}
           {data && data.length > 0 && (
             <tbody>
-              {data.map((trs, idx) => {
+              {data.map((trData, rowNum) => {
                 return (
-                  <tr key={idx}>
-                    {keys.map((key, _idx) => (
-                      <td onClick={onCell!.bind(this, trs, idx, _idx)} key={_idx}>{render[key] ? render[key](trs[key], key, trs, idx, _idx) : trs[key]}</td>
-                    ))}
+                  <tr key={rowNum}>
+                    {keys.map((keyName, colNum) => {
+                      const child = render[keyName] ? render[keyName](trData[keyName], keyName, trData, rowNum, colNum) : trData[keyName];
+                      return (
+                        <td onClick={onCell!.bind(this, trData, { rowNum, colNum, keyName })} key={colNum}>{child}</td>
+                      );
+                    })}
                   </tr>
                 );
               })}

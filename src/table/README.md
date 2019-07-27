@@ -9,7 +9,7 @@ import { Table } from 'uiw';
 
 ### 基本使用
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
 ```js
 import { Table, Button } from 'uiw';
 
@@ -63,7 +63,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 表头分组通过 `columns` 数组中对象的 `children` 来实现，以渲染分组表头。。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
 ```js
 import { Table, Button } from 'uiw';
 
@@ -137,7 +137,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 添加表格边框线，页头和页脚的展现效果。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
 ```js
 import { Table, Button } from 'uiw';
 
@@ -196,7 +196,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 点击单元格
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
 ```js
 import { Table, Button, Notify } from 'uiw';
 
@@ -236,7 +236,7 @@ const Demo = () => (
   <div>
     <Table
       title="表内容 tbody 单元格点击回调事件"
-      onCell={(rowData, rowNumber, columnNumber) => {
+      onCell={(rowData, { rowNumber, columnNumber }) => {
         console.log('-->3', rowData);
         console.log('-->4', rowNumber);
         console.log('-->5', columnNumber);
@@ -252,7 +252,7 @@ const Demo = () => (
         console.log('-->5', columnNumber);
         Notify.info({ description: `你点击了"${rowData.title}"。` });
       }}
-      onCell={(rowData, rowNumber, columnNumber) => {
+      onCell={(rowData, { rowNumber, columnNumber }) => {
         console.log('-->3', rowData);
         console.log('-->4', rowNumber);
         console.log('-->5', columnNumber);
@@ -268,7 +268,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 原始HTML
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
 ```js
 import { Table, Button } from 'uiw';
 
@@ -355,6 +355,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 选择和操作
 
+<!--DemoStart,bgWhite,codePen-->
 ```js
 import { Table, Button, Checkbox, Pagination, Loader } from 'uiw';
 
@@ -478,8 +479,8 @@ ReactDOM.render(<Demo />, _mount_);
 | title | 表格标题 | String/ReactNode/~~Function(text, key, rowData, rowNumber, columnNumber)~~/Function(data: IColumns, rowNum: number, colNum: number)`@3.0.0+` | - |
 | footer | 表格尾部 | String/ReactNode | - |
 | bordered | 是否展示外边框和列边框 | Boolean | - |
-| onCellHead | 表头单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ <br/> Function(data: IColumns, rowNum: number, colNum: number, evn: React.MouseEvent<HTMLTableCellElement>) `@3.0.0+` | - |
-| onCell | 单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ Function(data: IColumns, rowNum: number, colNum: number, evn: React.MouseEvent<HTMLTableCellElement>) `@3.0.0+` | - |
+| onCellHead | 表头单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ <br/> Function(data: IColumns, colNum: number, rowNum: number, evn: React.MouseEvent<HTMLTableCellElement>) `@3.0.0+` | - |
+| onCell | 单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ Function(data: IColumns, options:{ colNum: number, rowNum: number, keyName: string }, evn: React.MouseEvent<HTMLTableCellElement>) `@3.0.0+` | - |
 
 ### ColumnProps
 

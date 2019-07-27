@@ -21,15 +21,15 @@ export default class Thead extends React.Component<ITheadProps & React.HTMLAttri
     const { prefixCls, className, data, onCellHead, ...other } = this.props;
     return (
       <thead className={classnames(prefixCls, className)} {...other}>
-        {data && data.map((tds, idx: number) => (
-          <tr key={idx}>
-            {tds.map((item: IColumns, _idx: number) => {
+        {data && data.map((tds, rowNum: number) => (
+          <tr key={rowNum}>
+            {tds.map((item: IColumns, colNum: number) => {
               const { title, key, render, children, ...thProps } = item;
-              const titleNode = typeof title === 'function' ? title(item, idx, _idx) : title;
+              const titleNode = typeof title === 'function' ? title(item, colNum, rowNum) : title;
               return (
                 <th
-                  key={_idx}
-                  onClick={onCellHead!.bind(this, item, idx, _idx)}
+                  key={colNum}
+                  onClick={onCellHead!.bind(this, item, colNum, rowNum)}
                   {...thProps}
                 >
                   {titleNode}
