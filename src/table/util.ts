@@ -82,6 +82,7 @@ export const getLevelItems = (data: IColumns[], result?: ILevelItems): ILevelIte
   if (result.header.length === 0) {
     const num = getColspanNum(levelTop);
     result.header.push(levelTop.map((item) => {
+      if (num === 1) return item;
       if (!item.children || (item.children && item.children.length === 0)) {
         item.rowSpan = num;
       }
@@ -91,6 +92,7 @@ export const getLevelItems = (data: IColumns[], result?: ILevelItems): ILevelIte
   if (child && child.length > 0) {
     const num = getColspanNum(child);
     result.header.push(child.map((item: IColumns) => {
+      if (num === 1) return item;
       if (!item.children || (item.children && item.children.length === 0)) {
         item.rowSpan = num;
       }

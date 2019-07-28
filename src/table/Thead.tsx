@@ -25,7 +25,10 @@ export default class Thead extends React.Component<ITheadProps & React.HTMLAttri
           <tr key={rowNum}>
             {tds.map((item: IColumns, colNum: number) => {
               const { title, key, render, children, ...thProps } = item;
-              const titleNode = typeof title === 'function' ? title(item, colNum, rowNum) : title;
+              const titleNode = (typeof title === 'function' ? title(item, colNum, rowNum) : title) as IColumns['title'];
+              if (thProps.colSpan === 0) {
+                return null;
+              }
               return (
                 <th
                   key={colNum}

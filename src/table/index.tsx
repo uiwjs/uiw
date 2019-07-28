@@ -8,12 +8,12 @@ import './style/index.less';
 function noop() { };
 
 export interface IColumns {
-  title?: React.ReactNode;
+  title?: (data: IColumns, rowNum: number, colNum: number) => JSX.Element |  React.ReactNode;
   key?: string;
   width?: number;
   colSpan?: number;
   children?: IColumns[];
-  render?: React.ReactNode;
+  render?: (text: string, keyName: string, rowData: { [key: string]: any; }, rowNumber: number, columnNumber: number) => void;
   style?: React.CSSProperties;
   [key: string]: any;
 }
@@ -27,7 +27,7 @@ export interface ITableProps extends IProps {
   title?: React.ReactNode;
   footer?: React.ReactNode;
   bordered?: boolean;
-  onCell?: (data: { [key: string]: any; }, options: ICellOptions, evn: React.MouseEvent<HTMLTableCellElement>) => void;
+  onCell?: (data: { [key: string]: any; }, options: ICellOptions, evn: React.MouseEvent<HTMLTableCellElement>) => void | React.ReactNode;
   onCellHead?: (data: IColumns, rowNum: number, colNum: number, evn: React.MouseEvent<HTMLTableCellElement>) => void;
 }
 
@@ -63,18 +63,30 @@ export default class Table extends React.Component<ITableProps> {
           )}
           {data && data.length > 0 && (
             <tbody>
-              {data.map((trData, rowNum) => {
-                return (
-                  <tr key={rowNum}>
-                    {keys.map((keyName, colNum) => {
-                      const child = render[keyName] ? render[keyName](trData[keyName], keyName, trData, rowNum, colNum) : trData[keyName];
-                      return (
-                        <td onClick={onCell!.bind(this, trData, { rowNum, colNum, keyName })} key={colNum}>{child}</td>
-                      );
-                    })}
-                  </tr>
-                );
-              })}
+              {data.map((trData, rowNum) => (
+                <tr key={rowNum}>
+                  {keys.map((keyName, colNum) => {
+                    const objs = { children: trData[keyName], props: {} };
+                    if (render[keyName]) {
+                      const child = render[keyName](trData[keyName], keyName, trData, rowNum, colNum);
+                      if (React.isValidElement(child)) {
+                        objs.children = child;
+                      } else {
+                        if (child.props) {
+                          objs.props = { ...child.props };
+                          if (child.props.rowSpan === 0 || child.props.colSpan === 0) return null;
+                        }
+                        if (child.children) {
+                          objs.children = child.children;
+                        }
+                      }
+                    }
+                    return (
+                      <td {...objs.props} onClick={onCell!.bind(this, trData, { rowNum, colNum, keyName })} key={colNum}>{objs.children}</td>
+                    );
+                  })}
+                </tr>
+              ))}
             </tbody>
           )}
           {this.props.children}

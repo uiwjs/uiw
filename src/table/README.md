@@ -133,6 +133,68 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
+### 表格行/列合并
+
+表头只支持列合并，使用 `columns` 里的 `colSpan` 进行设置。表格支持行/列合并，使用 `render` 里的单元格属性 `colSpan` 或者 `rowSpan` 设值为 0 时，设置的表格不会渲染。
+
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Table, Button } from 'uiw';
+
+const columns = [
+  {
+    title: '姓名',
+    key: 'name', 
+  }, {
+    title: '年龄',
+    style: { color: 'red' },
+    key: 'age',
+    colSpan: 2,
+    render: (text, key, rowData, rowNum, colNum) => {
+      const obj = {
+        children: text,
+        props: {}
+      }
+      if (rowNum === 0) {
+        obj.props.rowSpan = 2;
+      }
+      if (rowNum === 1) {
+        obj.props.rowSpan = 0;
+      }
+      return obj;
+    }
+  }, {
+    title: '地址',
+    key: 'info',
+    colSpan: 0,
+  }, {
+    title: '操作',
+    key: 'edit',
+    width: 98,
+    render: (text, key, rowData, rowNumber, columnNumber) => (
+      <div>
+        <Button size="small" type="danger">删除</Button>
+        <Button size="small" type="success">修改</Button>
+      </div>
+    ),
+  },
+];
+const dataSource = [
+  { name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，中国香港创作型女歌手。', edit: '' },
+  { name: '李易峰', age: '12', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人', edit: '' },
+  { name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手', edit: '' },
+  { name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。', edit: '' },
+];
+const Demo = () => (
+  <div>
+    <Table bordered columns={columns} data={dataSource} />
+  </div>
+);
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
+
 ### 标题页脚
 
 添加表格边框线，页头和页脚的展现效果。
@@ -377,7 +439,7 @@ class Demo extends React.Component {
       ],
       columns: [
         {
-          title: (key, item, idx, _idx) => {
+          title: (data, rowNum, colNum) => {
             const indeterminate = this.state.dataSource.length !== this.state.checked.length && this.state.checked.length > 0;
             const checked = this.state.dataSource.length === this.state.checked.length;
             return (
@@ -480,7 +542,7 @@ ReactDOM.render(<Demo />, _mount_);
 | footer | 表格尾部 | String/ReactNode | - |
 | bordered | 是否展示外边框和列边框 | Boolean | - |
 | onCellHead | 表头单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ <br/> Function(data: IColumns, colNum: number, rowNum: number, evn: React.MouseEvent<HTMLTableCellElement>) `@3.0.0+` | - |
-| onCell | 单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ Function(data: IColumns, options:{ colNum: number, rowNum: number, keyName: string }, evn: React.MouseEvent<HTMLTableCellElement>) `@3.0.0+` | - |
+| onCell | 单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ Function(data: IColumns, options:{ colNum: number, rowNum: number, keyName: string }, evn: React.MouseEvent<HTMLTableCellElement>) `@3.1.0+` | - |
 
 ### ColumnProps
 
