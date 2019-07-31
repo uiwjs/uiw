@@ -342,6 +342,8 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
+import { Form, Select, Row, Col, Button } from 'uiw';
+
 const Demo = () => (
   <div>
     <Form
