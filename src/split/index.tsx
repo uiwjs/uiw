@@ -7,8 +7,8 @@ export interface ISplitProps extends IProps {
   onDragging?: (preSize: number, nextSize: number, paneNumber: number) => void;
   onDragEnd?: (preSize: number, nextSize: number, paneNumber: number) => void;
   lineBar?: boolean;
-  visiable: boolean | [];
-  disable?: boolean | [];
+  visiable: boolean | number[];
+  disable?: boolean | number[];
   mode: 'horizontal' | 'vertical';
 }
 export interface ISplitState extends HTMLDivProps {
