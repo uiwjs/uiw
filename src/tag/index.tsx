@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { IProps, HTMLSpanProps } from '../utils/props';
 import './style/index.less';
 
-export interface ITagProps extends IProps {
+export interface ITagProps extends IProps, Omit<HTMLSpanProps, 'title'> {
   color?: string;
   disabled?: boolean;
   visible?: boolean;
@@ -14,7 +14,7 @@ export interface ITagProps extends IProps {
   onClose?: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
 }
 
-export default class Tag extends React.Component<ITagProps & HTMLSpanProps> {
+export default class Tag extends React.Component<ITagProps> {
   public static defaultProps: ITagProps = {
     prefixCls: 'w-tag',
     disabled: false,

@@ -1,9 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
-import { IProps } from '../utils/props';
+import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface ILoaderProps extends IProps {
+export interface ILoaderProps extends IProps, HTMLDivProps {
   size: 'small' | 'default' | 'large';
   loading: boolean;
   fullscreen: boolean;

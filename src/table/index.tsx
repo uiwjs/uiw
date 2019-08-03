@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import Thead from './Thead';
 import { getLevelItems, getAllColumnsKeys } from './util';
-import { IProps } from '../utils/props';
+import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
 function noop() { };
@@ -18,7 +18,7 @@ export interface IColumns {
   [key: string]: any;
 }
 
-export interface ITableProps extends IProps {
+export interface ITableProps extends IProps, Omit<HTMLDivProps, 'title'> {
   prefixCls?: string;
   columns?: IColumns[];
   data?: {

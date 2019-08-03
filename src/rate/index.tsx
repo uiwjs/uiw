@@ -1,9 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
-import { IProps } from '../utils/props';
+import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface IRateProps extends IProps {
+export interface IRateProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   value: number;
   readOnly: boolean;
   count: number;

@@ -8,7 +8,7 @@ import Icon from '../icon';
 import { IProps } from '../utils/props';
 import './style/index.less';
 
-export interface IDateInputProps extends IProps {
+export interface IDateInputProps extends IProps, Omit<IInputProps, 'onChange' | 'value'> {
   popoverProps?: IPopoverProps;
   datePickerProps?: IDatePickerProps;
   value?: Date | string;
@@ -21,7 +21,7 @@ export interface IDateInputState {
   date?: Date | string;
 }
 
-export default class DateInput extends React.Component<IDateInputProps & IInputProps, IDateInputState> {
+export default class DateInput extends React.Component<IDateInputProps, IDateInputState> {
   public static defaultProps: IDateInputProps = {
     prefixCls: 'w-dateinput',
     format: 'YYYY/MM/DD',

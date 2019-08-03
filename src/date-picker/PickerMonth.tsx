@@ -1,9 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
-import { IProps } from '../utils/props';
+import { IProps, HTMLDivProps } from '../utils/props';
 import './style/year-month.less';
 
-export interface IPickerMonthProps extends IProps {
+export interface IPickerMonthProps extends IProps, HTMLDivProps {
   panelDate?: Date;
   onSelected?: (month: number, paging?: boolean) => void;
   monthLabel?: React.ReactNode[];

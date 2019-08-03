@@ -1,9 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
-import { IProps } from '../utils/props';
+import { IProps, HTMLDivProps } from '../utils/props';
 import './style/col.less';
 
-export interface IColProps extends IProps {
+export interface IColProps extends IProps, HTMLDivProps {
   fixed?: boolean;
   span?: number;
   grow?: number;

@@ -4,9 +4,9 @@ import { CSSTransition } from 'react-transition-group';
 import Icon from '../icon';
 import Button from '../button';
 import './style/index.less';
-import { IProps } from '../utils/props';
+import { IProps, HTMLDivProps } from '../utils/props';
 
-export interface IMessageProps extends IProps {
+export interface IMessageProps extends IProps, Omit<HTMLDivProps, 'title'> {
   title?: React.ReactNode;
   icon?: JSX.Element | string | false | null;
   type?: 'success' | 'warning' | 'info' | 'error';

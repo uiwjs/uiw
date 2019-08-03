@@ -1,9 +1,10 @@
 import React from 'react';
 import classnames from 'classnames';
+import { HTMLDivProps } from '../utils/props';
 import BreadcrumbItem from './Item';
 import './style/index.less';
 
-export interface IBreadcrumbProps {
+export interface IBreadcrumbProps extends HTMLDivProps {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;

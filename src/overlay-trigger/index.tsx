@@ -10,6 +10,26 @@ import RefHolder from './RefHolder';
 import { IProps } from '../utils/props';
 import './style/index.less';
 
+export interface IOverlayTriggerProps extends IProps, IOverlayProps {
+  onVisibleChange?: (isVisbale: boolean) => void;
+  onEnter?: (node: HTMLElement, isAppearing: boolean) => void;
+  overlay?: React.ReactNode | any;
+  trigger?: 'click' | 'hover' | 'focus';
+  usePortal?: boolean;
+  isOpen?: boolean;
+  disabled?: boolean;
+  isOutside?: boolean;
+  isClickOutside?: boolean;
+  autoAdjustOverflow?: boolean;
+  placement?: Placement;
+  delay?: Delay;
+}
+
+export interface IOverlayTriggerState {
+  show: boolean;
+  overlayStyl: OverlayStyl;
+}
+
 export type Delay = number | {
   show?: number;
   hide?: number;
@@ -36,31 +56,11 @@ interface ITriggerProps {
   onMouseOut?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 
-export interface IOverlayTriggerProps extends IProps {
-  onVisibleChange?: (isVisbale: boolean) => void;
-  onEnter?: (node: HTMLElement, isAppearing: boolean) => void;
-  overlay?: React.ReactNode | any;
-  trigger?: 'click' | 'hover' | 'focus';
-  usePortal?: boolean;
-  isOpen?: boolean;
-  disabled?: boolean;
-  isOutside?: boolean;
-  isClickOutside?: boolean;
-  autoAdjustOverflow?: boolean;
-  placement?: Placement;
-  delay?: Delay;
-}
-
-export interface IOverlayTriggerState {
-  show: boolean;
-  overlayStyl: OverlayStyl;
-}
-
 const normalizeDelay = (delay?: Delay) => ((delay && typeof delay === 'object') ? delay : { show: delay, hide: delay });
 let zIndex = 999;
 
 
-export default class OverlayTrigger extends React.Component<IOverlayTriggerProps & IOverlayProps> {
+export default class OverlayTrigger extends React.Component<IOverlayTriggerProps> {
   public static defaultProps: IOverlayTriggerProps = {
     prefixCls: 'w-overlay-trigger',
     // onEnter: () => null,

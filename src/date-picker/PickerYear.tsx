@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '../utils/props';
 import './style/year-month.less';
 
-export interface IPickerYearProps extends IProps {
+export interface IPickerYearProps extends IProps, HTMLDivProps {
   panelDate?: Date;
   panelNum?: number[];
   onSelected?: (year: number, paging?: boolean) => void;
@@ -13,7 +13,7 @@ export interface IPickerYearState {
   activeYear: Date;
 }
 
-export default class PickerYear extends React.Component<IPickerYearProps & HTMLDivProps, IPickerYearState> {
+export default class PickerYear extends React.Component<IPickerYearProps, IPickerYearState> {
   public static defaultProps: IPickerYearProps = {
     prefixCls: 'w-datepicker',
     panelNum: [-7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],

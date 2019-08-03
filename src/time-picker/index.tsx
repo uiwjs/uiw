@@ -8,7 +8,7 @@ import { formatter } from '../';
 import { IProps, HTMLInputProps } from '../utils/props';
 import './style/index.less';
 
-export interface ITimePickerProps extends IProps, ITimePickerPanelProps {
+export interface ITimePickerProps extends IProps, Omit<ITimePickerPanelProps, 'onChange'> {
   value?: Date;
   format?: string;
   popoverProps?: IPopoverProps;
@@ -52,7 +52,7 @@ export default class TimePicker extends React.Component<ITimePickerProps, ITimeP
     onChange && onChange(dataStr, date, type, num, disableds);
   }
   render() {
-    const { prefixCls, className, disabled, value, format, popoverProps, inputProps, allowClear, ...timeProps } = this.props;
+    const { prefixCls, className, disabled, value, format, popoverProps, inputProps, allowClear, onChange, ...timeProps } = this.props;
     const { date } = this.state;
     const inputValue = date ? formatter(format as string, date) : '';
     const props: IInputProps & HTMLInputProps = { ...inputProps, value: inputValue };

@@ -1,11 +1,11 @@
 import React from 'react';
 import classnames from 'classnames';
-import { IProps } from '../utils/props';
+import { IProps, HTMLDivProps } from '../utils/props';
 import './style/caption.less';
 
 export type CaptionType = 'prev' | 'month' | 'year' | 'today' | 'next';
 
-export interface IPickerCationProps extends IProps {
+export interface IPickerCationProps extends IProps, HTMLDivProps {
   panelDate?: Date;
   monthLabel?: React.ReactNode[];
   todayButton?: string;

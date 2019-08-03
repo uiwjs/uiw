@@ -4,14 +4,14 @@ import Icon, { Type } from '../icon';
 import { IProps, HTMLInputProps } from '../utils/props';
 import './style/input.less';
 
-export interface IInputProps extends IProps {
+export interface IInputProps extends IProps, Omit<HTMLInputProps, 'size'> {
   preIcon?: Type;
   type?: string;
   addonAfter?: React.ReactNode;
   size?: 'large' | 'default' | 'small';
 }
 
-export default class Input extends React.Component<IInputProps & HTMLInputProps> {
+export default class Input extends React.Component<IInputProps> {
   public static defaultProps: IInputProps = {
     prefixCls: 'w-input',
     preIcon: null,

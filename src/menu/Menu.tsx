@@ -1,12 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
-import { IProps } from '../utils/props';
+import { IProps, HTMLUlProps } from '../utils/props';
 import MenuItem from './MenuItem';
 import Divider from './Divider';
 import SubMenu from './SubMenu';
 import './style/menu.less';
 
-export interface IMenuProps extends IProps, React.HTMLAttributes<HTMLUListElement> {
+export interface IMenuProps extends IProps, HTMLUlProps {
   theme?: 'light' | 'dark';
   inlineIndent?: number;
   bordered?: boolean;

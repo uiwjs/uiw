@@ -10,7 +10,7 @@ import PickerCaption, { CaptionType } from '../date-picker/PickerCaption';
 import './style/index.less';
 import { IProps } from '../utils/props';
 
-export interface IMonthPickerProps extends IProps {
+export interface IMonthPickerProps extends IProps, Omit<IInputProps, 'value' | 'onChange'> {
   popoverProps?: IPopoverProps;
   value?: Date | string;
   format?: string,
@@ -27,7 +27,7 @@ export interface IMonthPickerState {
   isOpen?: boolean;
 }
 
-export default class MonthPicker extends React.Component<IMonthPickerProps & IInputProps, IMonthPickerState> {
+export default class MonthPicker extends React.Component<IMonthPickerProps, IMonthPickerState> {
   public state: IMonthPickerState;
   public static defaultProps: IMonthPickerProps = {
     prefixCls: 'w-monthpicker',

@@ -1,8 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
+import { HTMLSpanProps } from '../utils/props';
 import './style/item.less';
 
-export interface IBreadcrumbItemProps {
+export interface IBreadcrumbItemProps extends HTMLSpanProps {
   style?: React.CSSProperties;
   className?: string;
   prefixCls: string;

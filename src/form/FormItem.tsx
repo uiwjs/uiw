@@ -20,14 +20,14 @@ export default class FormItem extends React.PureComponent<IFormItemProps> {
     prefixCls: 'w-form-item',
   }
   render() {
-    const { prefixCls, className, style, label, labelFor, labelClassName, labelStyle, help, inline, hasError } = this.props;
+    const { prefixCls, className, style, label, labelFor, labelClassName, labelStyle, help, inline, hasError, ...otherProps } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-error`]: hasError,
     });
     const labelCls = classnames('w-form-label', labelClassName);
     if (inline) {
       return (
-        <div className={cls} style={style}>
+        <div className={cls} style={style} {...otherProps}>
           <Row>
             <Col fixed className={labelCls}><label style={labelStyle} htmlFor={labelFor}>{label}</label></Col>
             <Col className="w-form-row"> {this.props.children} </Col>
@@ -41,7 +41,7 @@ export default class FormItem extends React.PureComponent<IFormItemProps> {
       );
     }
     return (
-      <div className={cls} style={style}>
+      <div className={cls} style={style} {...otherProps}>
         {label && <label className={labelCls} style={labelStyle} htmlFor={labelFor}>{label}</label>}
         <Col className="w-form-row">{this.props.children}</Col>
         {help && <div className="w-form-help">{help}</div>}

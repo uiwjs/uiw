@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { IProps, HTMLDivProps, HTMLLiProps } from '../utils/props';
 import './style/time-picker.less';
 
-export interface ITimePanelProps extends IProps {
+export interface ITimePanelProps extends IProps, HTMLDivProps {
   onSelected?: (type: ITimePanelProps['type'], num: number, disableds: number[], date: ITimePanelProps['date']) => void;
   count?: number;
   hideDisabled?: boolean;
@@ -27,7 +27,7 @@ const easeInQuad = (t: number, b: number, c: number, d: number): number => {
   // parseInt()
   return (c * (t /= d) * t) + b;
 };
-export default class TimePanel extends React.Component<ITimePanelProps & HTMLDivProps> {
+export default class TimePanel extends React.Component<ITimePanelProps> {
   private disableds: number[] = [];
   public static defaultProps: ITimePanelProps = {
     prefixCls: 'w-timepicker',

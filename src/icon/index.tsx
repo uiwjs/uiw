@@ -5,7 +5,7 @@ import './style/index.less';
 
 export type Type = React.ReactElement | string | false | null;
 
-export interface IIconProps {
+export interface IIconProps extends React.HTMLAttributes<HTMLElement> {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;
@@ -20,7 +20,7 @@ export interface IIconProps {
   verticalAlign: 'middle' | 'baseline';
 }
 
-export default class Icon extends React.PureComponent<IIconProps & React.HTMLAttributes<HTMLElement>> {
+export default class Icon extends React.PureComponent<IIconProps> {
   public static defaultProps: IIconProps = {
     prefixCls: 'w-icon',
     verticalAlign: 'middle',

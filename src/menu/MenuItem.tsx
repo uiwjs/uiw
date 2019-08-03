@@ -13,7 +13,7 @@ const disabledProps = {
   tabIndex: -1,
 };
 
-export interface IMenuItemProps extends IProps {
+export interface IMenuItemProps extends IProps, React.HTMLAttributes<HTMLElement> {
   text?: React.ReactNode;
   addonAfter?: React.ReactNode;
   tagName?: keyof JSX.IntrinsicElements | any;
@@ -24,7 +24,7 @@ export interface IMenuItemProps extends IProps {
   icon?: JSX.Element | string | false | null;
 }
 
-export default class MenuItem extends React.Component<IMenuItemProps & React.AnchorHTMLAttributes<HTMLAnchorElement>> {
+export default class MenuItem extends React.Component<IMenuItemProps> {
   static displayName = 'uiw.MenuItem';
   public static defaultProps: IMenuItemProps = {
     prefixCls: 'w-menu-item',

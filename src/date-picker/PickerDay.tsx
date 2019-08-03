@@ -10,7 +10,7 @@ export interface IDateSource {
   year?: number
 }
 
-export interface IPickerDayProps extends IProps {
+export interface IPickerDayProps extends IProps, HTMLDivProps {
   weekday?: string[];
   weekTitle?: string[];
   panelDate?: Date;
@@ -57,7 +57,7 @@ function setTimeDate(selDate: Date, curDate: Date) {
   );
 }
 
-export default class PickerDay extends React.Component<IPickerDayProps & HTMLDivProps, IPickerDayState> {
+export default class PickerDay extends React.Component<IPickerDayProps, IPickerDayState> {
   public state: IPickerDayState;
   public static defaultProps: IPickerDayProps = {
     prefixCls: 'w-datepicker',

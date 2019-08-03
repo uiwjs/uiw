@@ -5,17 +5,17 @@ import Input from '../input';
 import { IProps } from '../utils/props';
 import './style/form.less';
 
-export interface IFormFieldsProps {
-  name?: string;
-  labelFor?: string;
-  initialValue?: string | number;
-  label?: React.ReactNode;
-  labelClassName?: string;
-  labelStyle?: React.CSSProperties;
-  inline?: boolean;
-  validator?: (currentValue: any) => void;
-  help?: React.ReactNode;
-  children?: React.ReactNode;
+export interface IFormProps extends IProps, Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onChange' | 'onSubmit'> {
+  prefixCls?: string;
+  fields?: {
+    [key: string]: IFormFieldsProps;
+  };
+  onSubmit?: (state: IFormSubmitProps) => any;
+  afterSubmit?: (result: IFormAfterSubmitProps) => any;
+  onChange?: (state: IFormState) => void;
+  onSubmitError?: (evn: React.FormEvent) => void;
+  resetOnSubmit?: boolean;
+  children?: (handle: IFormChildrenProps) => JSX.Element | JSX.Element | undefined;
 }
 
 export interface IFormState {
@@ -27,6 +27,19 @@ export interface IFormState {
   errors: {
     [key: string]: any;
   },
+}
+
+export interface IFormFieldsProps {
+  name?: string;
+  labelFor?: string;
+  initialValue?: string | number;
+  label?: React.ReactNode;
+  labelClassName?: string;
+  labelStyle?: React.CSSProperties;
+  inline?: boolean;
+  validator?: (currentValue: any) => void;
+  help?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export interface IFormSubmitProps {
@@ -47,19 +60,6 @@ export interface IFormChildrenProps {
   resetForm: () => void;
   canSubmit: () => boolean;
   state: IFormState;
-}
-
-export interface IFormProps extends IProps {
-  prefixCls?: string;
-  fields?: {
-    [key: string]: IFormFieldsProps;
-  };
-  onSubmit?: (state: IFormSubmitProps) => any;
-  afterSubmit?: (result: IFormAfterSubmitProps) => any;
-  onChange?: (state: IFormState) => void;
-  onSubmitError?: (evn: React.FormEvent) => void;
-  resetOnSubmit?: boolean;
-  children?: (handle: IFormChildrenProps) => JSX.Element | JSX.Element | undefined;
 }
 
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import classnames from 'classnames';
 import Pane from './Pane';
-import { IProps } from '../utils/props';
+import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface ITabsProps extends IProps {
+export interface ITabsProps extends IProps, HTMLDivProps {
   prefixCls?: string;
   activeKey?: string;
   type?: 'default' | 'line' | 'card';

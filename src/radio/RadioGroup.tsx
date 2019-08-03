@@ -4,13 +4,13 @@ import { IProps, HTMLDivProps } from '../utils/props';
 import { IRadioProps } from './Radio';
 import './style/group.less';
 
-export interface IRadioGroupProps extends IProps {
+export interface IRadioGroupProps extends IProps, HTMLDivProps {
   name?: IRadioProps['name'];
   value?: IRadioProps['value'];
   onChange?: IRadioProps['onChange'];
 }
 
-export default class RadioGroup extends React.Component<IRadioGroupProps & HTMLDivProps> {
+export default class RadioGroup extends React.Component<IRadioGroupProps> {
   public static defaultProps: IRadioGroupProps & HTMLDivProps = {
     prefixCls: 'w-radio-group',
   }

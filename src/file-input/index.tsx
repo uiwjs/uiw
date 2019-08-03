@@ -1,10 +1,11 @@
 import React from 'react';
 import classnames from 'classnames';
 import Input, { IInputProps } from '../input';
-import { HTMLInputProps } from '../utils/props';
 import './style/index.less';
 
-export default function ({ ...props }: IInputProps & HTMLInputProps) {
+export interface IFileInputProps extends IInputProps {}
+
+export default function ({ ...props }: IFileInputProps) {
   props.className = classnames(props.className, 'w-fileinput');
   return (
     <Input {...props} type="file" />

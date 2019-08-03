@@ -6,7 +6,7 @@ export interface IDropdownProps extends IProps, IOverlayTriggerProps {
   menu?: React.ReactNode;
 }
 
-export default class Dropdown extends React.PureComponent<IDropdownProps & IOverlayTriggerProps> {
+export default class Dropdown extends React.PureComponent<IDropdownProps> {
   public static defaultProps: IDropdownProps = {
     prefixCls: 'w-dropdown',
     placement: 'bottomLeft',

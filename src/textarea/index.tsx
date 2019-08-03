@@ -3,9 +3,9 @@ import classnames from 'classnames';
 import { IProps, HTMLTextProps } from '../utils/props';
 import './style/index.less';
 
-export interface ITextareaProps extends IProps {}
+export interface ITextareaProps extends IProps, HTMLTextProps {}
 
-export default class Textarea extends React.PureComponent<ITextareaProps & HTMLTextProps> {
+export default class Textarea extends React.PureComponent<ITextareaProps> {
   public static defaultProps: ITextareaProps = {
     prefixCls: 'w-textarea',
   }

@@ -1,9 +1,9 @@
 import React from 'react';
 import copy from '@uiw/copy-to-clipboard';
-import { IProps } from '../utils/props'
+import { IProps, HTMLAnchorProps } from '../utils/props'
 import './style/index.less';
 
-export interface ICopyToClipboard extends IProps {
+export interface ICopyToClipboard extends IProps, Omit<HTMLAnchorProps, 'onClick'> {
   text: string;
   onClick: (text: string, isCopy: boolean, event: React.MouseEvent<HTMLElement>) => void;
 }

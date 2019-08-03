@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import './style/index.less';
 import { IProps, HTMLDivProps } from '../utils/props';
 
-export interface ISplitProps extends IProps {
+export interface ISplitProps extends IProps, Omit<HTMLDivProps, 'onDragEnd'> {
   onDragging?: (preSize: number, nextSize: number, paneNumber: number) => void;
   onDragEnd?: (preSize: number, nextSize: number, paneNumber: number) => void;
   lineBar?: boolean;
@@ -11,11 +11,11 @@ export interface ISplitProps extends IProps {
   disable?: boolean | number[];
   mode: 'horizontal' | 'vertical';
 }
-export interface ISplitState extends HTMLDivProps {
+export interface ISplitState {
   dragging: boolean;
 }
 
-export default class Split extends React.Component<ISplitProps> {
+export default class Split extends React.Component<ISplitProps, ISplitState> {
   public static defaultProps: ISplitProps = {
     prefixCls: 'w-split',
     visiable: true,

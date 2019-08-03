@@ -4,12 +4,11 @@ import Panel from './Panel';
 import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface ICollapseProps extends IProps {
+export interface ICollapseProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   accordion?: boolean;
   activeKey?: string | string[];
   bordered?: boolean;
   showArrow?: boolean;
-  // onChange?: (event: React.FormEvent<HTMLDivElement>) => void;
   onChange?: (activeKey: string[]) => void;
 }
 
@@ -68,7 +67,7 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
       'w-noborder': bordered,
     });
     return (
-      <div className={cls} {...(resetProps as HTMLDivProps)}>
+      <div className={cls} {...resetProps}>
         {React.Children.map(children, (child: any, index) => {
           // 如果没有密钥提供，请使用面板顺序作为默认密钥
           const key = child.key || String(index);

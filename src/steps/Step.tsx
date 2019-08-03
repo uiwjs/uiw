@@ -4,7 +4,7 @@ import Icon, { Type } from '../icon';
 import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface IStepProps extends IProps {
+export interface IStepProps extends IProps, Omit<HTMLDivProps, 'title'> {
   title?: React.ReactNode;
   description?: React.ReactNode;
   status?: 'wait' | 'process' | 'finish' | 'error' | 'success';
@@ -15,7 +15,7 @@ export interface IStepProps extends IProps {
   icon?: Type;
 }
 
-export default class Step extends React.Component<IStepProps & HTMLDivProps> {
+export default class Step extends React.Component<IStepProps> {
   render() {
     const { prefixCls, className, style, status, itemWidth, icon, adjustMarginRight, stepNumber, title, description, progressDot, ...restProps } = this.props;
     const classString = classnames(

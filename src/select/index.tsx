@@ -5,7 +5,7 @@ import Group from './Group';
 import { IProps } from '../utils/props';
 import './style/index.less';
 
-export interface ISelectProps extends IProps {
+export interface ISelectProps extends IProps, Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size'> {
   size?: 'large' | 'default' | 'small'; 
 }
 

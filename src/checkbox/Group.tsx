@@ -5,13 +5,13 @@ import Checkbox from './Checkbox';
 import './style/group.less';
 
 export type Value = string[] & number[];
-export interface ICheckboxGroupPorps extends IProps {
+export interface ICheckboxGroupPorps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   value?: Value;
   name?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>, values: Value) => void;
 }
 
-export default class CheckboxGroup extends React.Component<ICheckboxGroupPorps & HTMLDivProps> {
+export default class CheckboxGroup extends React.Component<ICheckboxGroupPorps> {
   public static defaultProps: ICheckboxGroupPorps = {
     prefixCls: 'w-checkbox-group',
   }

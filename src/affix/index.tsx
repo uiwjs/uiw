@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import getScroll from '../utils/getScroll';
 import { IProps, HTMLDivProps } from '../utils/props';
 
-export interface IAffixProps extends IProps {
+export interface IAffixProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   /**
    * 距离窗口顶部达到指定偏移量后触发
    */
@@ -52,7 +52,7 @@ function getDefaultTarget() {
   return typeof window !== 'undefined' ? window : null;
 }
 
-export default class Affix extends React.Component<IAffixProps & HTMLDivProps, IAffixState> {
+export default class Affix extends React.Component<IAffixProps, IAffixState> {
   public static defaultProps: IAffixProps = {
     prefixCls: 'w-affix',
     onChange: noop,

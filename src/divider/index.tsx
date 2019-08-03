@@ -1,9 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
-import { IProps } from '../utils/props'
+import { IProps, HTMLDivProps } from '../utils/props'
 import './style/index.less';
 
-export interface IDividerProps extends IProps {
+export interface IDividerProps extends IProps, HTMLDivProps {
   dashed: boolean;
   type: 'horizontal' | 'vertical';
   align: 'left' | 'right' | 'center';

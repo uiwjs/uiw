@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import MenuItem from './MenuItem';
+import MenuItem, { IMenuItemProps } from './MenuItem';
 import Menu, { IMenuProps } from './Menu';
 import { CSSTransition } from 'react-transition-group';
 import OverlayTrigger, { IOverlayTriggerProps } from '../overlay-trigger';
@@ -8,7 +8,7 @@ import Icon from '../icon';
 import { IProps } from '../utils/props';
 import './style/submenu.less';
 
-export interface ISubMenuProps extends IProps {
+export interface ISubMenuProps extends IProps, IMenuItemProps {
   overlayProps?: IOverlayTriggerProps;
   collapse?: boolean;
   disabled?: boolean;

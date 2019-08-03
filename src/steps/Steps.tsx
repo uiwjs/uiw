@@ -2,9 +2,9 @@ import React from 'react';
 import classnames from 'classnames';
 import { findDOMNode } from 'react-dom';
 import Step, { IStepProps } from './Step';
-import { IProps } from '../utils/props';
+import { IProps, HTMLDivProps } from '../utils/props';
 
-export interface IStepsProps extends IProps {
+export interface IStepsProps extends IProps, HTMLDivProps {
   status?: IStepProps['status'];
   progressDot?: IStepProps['progressDot'];
   direction?: 'horizontal' | 'vertical';

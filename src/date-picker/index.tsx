@@ -6,13 +6,13 @@ import PickerYear from './PickerYear';
 import PickerTime, { ITimePickerPanelProps } from '../time-picker/PickerTime';
 import PickerDayCaption, { CaptionType } from './PickerCaption';
 import { formatter } from '../';
-import { IProps } from '../utils/props';
+import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
 export interface IDatePickerShowTimeProps extends ITimePickerPanelProps {
   format?: string;
 }
-export interface IDatePickerProps extends IProps {
+export interface IDatePickerProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   onChange?: (selectedDate?: Date, dateSource?: IDateSource) => void;
   renderDay?: IPickerDayProps['renderDay'];
   disabledDate?: IPickerDayProps['disabledDate'];

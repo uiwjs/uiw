@@ -1,8 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
+import { HTMLSpanProps } from '../utils/props';
 import './style/index.less';
 
-export interface IBadgeProps {
+export interface IBadgeProps extends HTMLSpanProps {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;

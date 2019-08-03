@@ -1,9 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
-import { IProps } from '../utils/props';
+import { IProps, HTMLUlProps } from '../utils/props';
 import './style/index.less';
 
-export interface IPaginationProps extends IProps {
+export interface IPaginationProps extends IProps, Omit<HTMLUlProps, 'onChange'> {
   prefixCls?: string;
   alignment?: 'left' | 'center' | 'right';
   size?: 'default' | 'small';

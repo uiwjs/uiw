@@ -1,9 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
-import { IProps } from '../utils/props';
+import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface ICardProps extends IProps {
+export interface ICardProps extends IProps, Omit<HTMLDivProps, 'title'> {
   active: boolean;
   bordered: boolean;
   bodyStyle?: React.CSSProperties;

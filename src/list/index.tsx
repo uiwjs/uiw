@@ -1,10 +1,10 @@
 import React from 'react';
 import classnames from 'classnames';
 import Item from './Item';
-import { IProps } from '../utils/props';
+import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface IListProps extends IProps {
+export interface IListProps extends IProps, HTMLDivProps {
   bordered: boolean;
   striped: boolean;
   header?: React.ReactNode;

@@ -2,18 +2,10 @@ import React from 'react';
 import classnames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import Icon, { Type } from '../icon';
-import { IProps } from '../utils/props'
+import { IProps, HTMLDivProps } from '../utils/props'
 import './style/index.less';
 
-
-export interface ITreeData {
-  label?: React.ReactNode;
-  children?: ITreeData[];
-  key?: string | number;
-  [keyName: string]: any;
-}
-
-export interface ITreeProps extends IProps {
+export interface ITreeProps extends IProps, HTMLDivProps {
   icon?: Type | ITreeProps['renderTitle'];
   data?: ITreeData[];
   openKeys?: ITreeData['key'][];
@@ -36,6 +28,13 @@ export interface ITreeProps extends IProps {
   renderTitle?: (item: ITreeData, selected: boolean, noChild: boolean) => React.ReactElement,
   onExpand?: (key: ITreeData['key'], expanded: boolean, item: ITreeData, evn: React.MouseEvent<HTMLElement>) => void,
   onSelected?: (keys: ITreeData['key'][], key: ITreeData['key'], selected: boolean, item: ITreeData, evn: React.MouseEvent<HTMLElement>) => void,
+}
+
+export interface ITreeData {
+  label?: React.ReactNode;
+  children?: ITreeData[];
+  key?: string | number;
+  [keyName: string]: any;
 }
 
 export interface ITreeState {

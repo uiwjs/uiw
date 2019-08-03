@@ -7,7 +7,7 @@ import './style/index.less';
 import './style/circle.less';
 
 export type Status = 'success' | 'active' | 'exception';
-export interface IProgressCircleProps extends IProps {
+export interface IProgressCircleProps extends IProps, HTMLDivProps {
   type?: Type;
   status?: Status
   showText?: boolean; // 是否显示进度条文字内容
@@ -17,7 +17,7 @@ export interface IProgressCircleProps extends IProps {
   format?: (percent: number) => React.ReactNode;
 }
 
-export default class Circle extends React.Component<IProgressCircleProps & HTMLDivProps> {
+export default class Circle extends React.Component<IProgressCircleProps> {
   public static defaultProps: IProgressCircleProps = {
     prefixCls: 'w-progress',
     showText: true,

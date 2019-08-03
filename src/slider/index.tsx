@@ -1,9 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
-import { IProps } from '../utils/props';
+import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface ISliderProps extends IProps {
+export interface ISliderProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   value?: number | number[];
   min?: number;
   max?: number;
