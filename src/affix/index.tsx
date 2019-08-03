@@ -80,11 +80,9 @@ export default class Affix extends React.Component<IAffixProps & HTMLDivProps, I
   }
   componentDidMount() {
     const target = this.props.target || getDefaultTarget;
-    console.log('target:', target)
     // Wait for parent component ref has its value
     this.timeout = setTimeout(() => {
       this.target = target();
-      console.log('target:', this.target)
       this.setTargetEventListeners();
     });
   }
