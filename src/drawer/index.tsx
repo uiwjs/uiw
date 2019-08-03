@@ -21,7 +21,7 @@ export default class Drawer extends React.PureComponent<IDrawerProps> {
     placement: 'right',
     isCloseButtonShown: true,
     size: 260,
-    transitionDuration: 300,
+    timeout: 300,
     isOpen: false,
     maskClosable: true,
   }

@@ -13,6 +13,7 @@
 import React, { cloneElement } from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
+import { TransitionProps } from 'react-transition-group/Transition';
 import classnames from 'classnames';
 import Portal, { IPortalProps } from '../portal';
 import { IProps } from '../utils/props';
@@ -22,7 +23,8 @@ import './style/index.less';
 const noop = () => undefined;
 type TransitionDuration = number | { enter?: number, exit?: number };
 
-export interface IOverlayProps extends IProps {
+export interface IOverlayProps extends IProps, Omit<TransitionProps, 'timeout'> {
+  timeout?: TransitionProps['timeout'];
   isOpen?: boolean;
   usePortal?: boolean;
   maskClosable?: boolean;
@@ -31,7 +33,6 @@ export interface IOverlayProps extends IProps {
   portalProps?: IPortalProps;
   hasBackdrop?: boolean;
   unmountOnExit?: boolean;
-  transitionDuration?: TransitionDuration;
   transitionName?: string;
   onEnter?: (node: HTMLElement, isAppearing: boolean) => void;
   onOpening?: (node: HTMLElement, isAppearing: boolean) => void;
@@ -57,7 +58,7 @@ export default class Overlay extends React.Component<IOverlayProps, IOverlayStat
     portalProps: {},
     hasBackdrop: true,
     unmountOnExit: true, // 设置 true 销毁根节点
-    transitionDuration: 300,
+    timeout: 300,
     transitionName: 'w-overlay',
     onEnter: noop,
     onOpening: noop,
@@ -139,7 +140,7 @@ export default class Overlay extends React.Component<IOverlayProps, IOverlayStat
   }
   public render() {
     const { prefixCls, className, style, isOpen, maskClosable, usePortal, children, unmountOnExit,
-    transitionDuration, transitionName, hasBackdrop, portalProps, backdropProps = {}, dialogProps, onClose, ...otherProps } = this.props;
+      timeout, transitionName, hasBackdrop, portalProps, backdropProps = {}, dialogProps, onClose, ...otherProps } = this.props;
     const { onOpening, onOpened, onClosing } = this.props;
     const decoratedChild =
       typeof children === 'object' ? (
@@ -158,7 +159,7 @@ export default class Overlay extends React.Component<IOverlayProps, IOverlayStat
         onEntered={onOpened}
         onExiting={onClosing}
         onExited={this.onClosed}
-        timeout={transitionDuration as TransitionDuration}
+        timeout={timeout!}
         {...otherProps}
         classNames={transitionName}
       >
