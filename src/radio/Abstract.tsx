@@ -2,7 +2,12 @@ import React from 'react';
 import classnames from 'classnames';
 import { IProps, HTMLInputProps } from '../utils/props';
 
-export interface IAbstractProps extends IProps, HTMLInputProps {
+/**
+ * Constructs a type by picking all properties from `HTMLInputProps` and then removing `size`.
+ * Omit: https://www.typescriptlang.org/docs/handbook/utility-types.html#omittk
+ */
+export interface IAbstractProps extends IProps, Omit<HTMLInputProps, 'size'> {
+  size?: 'large' | 'default' | 'small';
   checked?: boolean;
   disabled?: boolean;
   onChange?: (even: React.ChangeEvent<HTMLInputElement>) => void;
