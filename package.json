@@ -27,7 +27,6 @@
     "url": "https://github.com/uiwjs/uiw.git"
   },
   "files": [
-    "typings",
     "lib",
     "src",
     "dist"
