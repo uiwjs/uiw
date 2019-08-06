@@ -2,13 +2,13 @@ import React from 'react';
 import classnames from 'classnames';
 import { IProps, HTMLDivProps, HTMLAnchorProps } from '../utils/props';
 
-export interface IListItem extends IProps {
-  disabled: boolean;
-  active: boolean;
+export interface IListItem extends IProps, HTMLDivProps {
+  disabled?: boolean;
+  active?: boolean;
   href?: string;
 }
 
-export default class Item extends React.Component<IListItem & HTMLDivProps & HTMLAnchorProps> {
+export default class Item extends React.Component<IListItem & HTMLAnchorProps> {
   public static defaultProps: IListItem = {
     prefixCls: 'w-list-item',
     disabled: false,

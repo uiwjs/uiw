@@ -9,7 +9,7 @@ export interface ISplitProps extends IProps, Omit<HTMLDivProps, 'onDragEnd'> {
   lineBar?: boolean;
   visiable: boolean | number[];
   disable?: boolean | number[];
-  mode: 'horizontal' | 'vertical';
+  mode?: 'horizontal' | 'vertical';
 }
 export interface ISplitState {
   dragging: boolean;

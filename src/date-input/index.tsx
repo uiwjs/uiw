@@ -14,7 +14,7 @@ export interface IDateInputProps extends IProps, Omit<IInputProps, 'onChange' | 
   value?: Date | string;
   format?: string;
   allowClear?: boolean;
-  onChange: (selectedDate?: Date) => void;
+  onChange?: (selectedDate?: Date) => void;
 }
 
 export interface IDateInputState {
@@ -26,7 +26,6 @@ export default class DateInput extends React.Component<IDateInputProps, IDateInp
     prefixCls: 'w-dateinput',
     format: 'YYYY/MM/DD',
     allowClear: true,
-    onChange() { },
   }
   constructor(props: IDateInputProps) {
     super(props);
@@ -40,13 +39,13 @@ export default class DateInput extends React.Component<IDateInputProps, IDateInp
     }
   }
   onChange(date?: Date) {
-    const { format } = this.props;
+    const { format, onChange } = this.props;
     this.setState({ date });
     if (date) {
       (date as any) = formatter(format as string, new Date(date));
 
     }
-    this.props.onChange(date);
+    onChange && onChange(date);
   }
   render() {
     const { prefixCls, className, popoverProps, datePickerProps, allowClear, format, onChange, ...inputProps } = this.props;

@@ -4,9 +4,9 @@ import { IProps, HTMLDivProps } from '../utils/props'
 import './style/index.less';
 
 export interface IDividerProps extends IProps, HTMLDivProps {
-  dashed: boolean;
-  type: 'horizontal' | 'vertical';
-  align: 'left' | 'right' | 'center';
+  dashed?: boolean;
+  type?: 'horizontal' | 'vertical';
+  align?: 'left' | 'right' | 'center';
 }
 
 export default class Divider extends React.PureComponent<IDividerProps> {

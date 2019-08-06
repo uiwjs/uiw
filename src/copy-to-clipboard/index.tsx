@@ -4,8 +4,8 @@ import { IProps, HTMLAnchorProps } from '../utils/props'
 import './style/index.less';
 
 export interface ICopyToClipboard extends IProps, Omit<HTMLAnchorProps, 'onClick'> {
-  text: string;
-  onClick: (text: string, isCopy: boolean, event: React.MouseEvent<HTMLElement>) => void;
+  text?: string;
+  onClick?: (text: string, isCopy: boolean, event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export default class CopyToClipboard extends React.Component<ICopyToClipboard> {
@@ -17,10 +17,10 @@ export default class CopyToClipboard extends React.Component<ICopyToClipboard> {
   onClick(e: React.MouseEvent<HTMLElement>) {
     const { onClick, text } = this.props;
     if (!text) {
-      return onClick(text, false, e);
+      return onClick!('', false, e);
     }
     copy(text, (isCopy: boolean) => {
-      onClick(text, isCopy, e);
+      onClick!(text, isCopy, e);
     });
   }
   public render() {

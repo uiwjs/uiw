@@ -5,13 +5,13 @@ import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
 export interface IListProps extends IProps, HTMLDivProps {
-  bordered: boolean;
-  striped: boolean;
+  bordered?: boolean;
+  striped?: boolean;
   header?: React.ReactNode;
   footer?: React.ReactNode;
-  size: 'small' | 'default' | 'large';
-  renderItem: (item: any, idx: number) => React.ReactNode;
-  dataSource: {[key: string]: any}[];
+  size?: 'small' | 'default' | 'large';
+  renderItem?: (item: any, idx: number) => React.ReactNode;
+  dataSource?: {[key: string]: any}[];
 }
 
 export default class List extends React.Component<IListProps> {
@@ -28,7 +28,7 @@ export default class List extends React.Component<IListProps> {
     const { prefixCls, className, children, bordered, striped, header, footer, size, dataSource, renderItem, ...resetProps } = this.props;
     let items: React.ReactNode;
     if (dataSource && dataSource.length > 0) {
-      items = dataSource.map((item: any, index: number) => renderItem(item, index));
+      items = dataSource.map((item: any, index: number) => renderItem!(item, index));
     } else {
       items = children;
     }

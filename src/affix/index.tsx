@@ -16,7 +16,7 @@ export interface IAffixProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   /**
    * 固定状态改变时触发的回调函数
    */
-  onChange: (affixed?: boolean) => void;
+  onChange?: (affixed?: boolean) => void;
 }
 
 export interface IAffixState {
@@ -136,7 +136,7 @@ export default class Affix extends React.Component<IAffixProps, IAffixState> {
     const { onChange } = this.props;
     const affixed = !!this.state.affixStyle;
     this.setState({ affixStyle }, () => {
-      onChange(affixed);
+      onChange && onChange(affixed);
     });
   }
   setPlaceholderStyle(placeholderStyle?: React.CSSProperties) {

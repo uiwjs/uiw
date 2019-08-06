@@ -10,8 +10,8 @@ export interface IAvatarProps {
   icon?: JSX.Element | string | false | null;
   alt?: string;
   src?: string;
-  size: 'large' | 'default' | 'small' | 'mini';
-  shape: 'square' | 'circle';
+  size?: 'large' | 'default' | 'small' | 'mini';
+  shape?: 'square' | 'circle';
 }
 
 export interface IAvatarState {

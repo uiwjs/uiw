@@ -5,13 +5,13 @@ import './style/index.less';
 
 export interface IRateProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   value: number;
-  readOnly: boolean;
-  count: number;
+  readOnly?: boolean;
+  count?: number;
   color?: string;
   disabled?: boolean;
-  character: React.ReactNode;
-  onChange: (event: React.MouseEvent<HTMLElement>, key: number) => void;
-  onHoverChange: (event: React.MouseEvent<HTMLElement>, key: number) => void;
+  character?: React.ReactNode;
+  onChange?: (event: React.MouseEvent<HTMLElement>, key: number) => void;
+  onHoverChange?: (event: React.MouseEvent<HTMLElement>, key: number) => void;
 }
 
 export interface IRateState {
@@ -35,8 +35,6 @@ export default class Rate extends React.Component<IRateProps, IRateState> {
     count: 5,
     character: '★',
     readOnly: false,
-    onHoverChange: () => null,
-    onChange: () => null,
   }
   constructor(props: IRateProps) {
     super(props);
@@ -49,7 +47,7 @@ export default class Rate extends React.Component<IRateProps, IRateState> {
     const { readOnly, onChange } = this.props;
     if (readOnly) return;
     this.setState({ value: key + 1 }, () => {
-      onChange(e, key);
+      onChange && onChange(e, key);
     });
   }
   onMouseLeave() {
@@ -60,7 +58,7 @@ export default class Rate extends React.Component<IRateProps, IRateState> {
     const { hoverCount } = this.state;
     if (hoverCount !== key) {
       this.setState({ hoverCount: key }, () => {
-        onHoverChange(e, key);
+        onHoverChange && onHoverChange(e, key);
       });
     }
   }

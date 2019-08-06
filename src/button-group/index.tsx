@@ -7,7 +7,7 @@ export interface IButtonGroupProps extends HTMLDivProps {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;
-  vertical: boolean;
+  vertical?: boolean;
 }
 
 export default class ButtonGroup extends React.Component<IButtonGroupProps> {

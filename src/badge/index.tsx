@@ -8,9 +8,9 @@ export interface IBadgeProps extends HTMLSpanProps {
   className?: string;
   prefixCls?: string;
   color?: string;
-  dot: boolean;
-  processing: boolean;
-  max: number;
+  dot?: boolean;
+  processing?: boolean;
+  max?: number;
   count?: number;
 }
 
@@ -47,7 +47,7 @@ export default class Badge extends React.Component<IBadgeProps> {
         {children}
         {count !== 0 && !color &&
           <sup {...supProps}>
-          {!dot && count && count > max ? `${max}+` : count}
+          {!dot && count && max && count > max ? `${max}+` : count}
           </sup>
         }
       </span>

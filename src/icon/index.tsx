@@ -17,7 +17,7 @@ export interface IIconProps extends React.HTMLAttributes<HTMLElement> {
   type?: Type;
   spin: boolean;
   color?: string;
-  verticalAlign: 'middle' | 'baseline';
+  verticalAlign?: 'middle' | 'baseline';
 }
 
 export default class Icon extends React.PureComponent<IIconProps> {

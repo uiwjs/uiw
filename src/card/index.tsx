@@ -4,12 +4,12 @@ import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
 export interface ICardProps extends IProps, Omit<HTMLDivProps, 'title'> {
-  active: boolean;
-  bordered: boolean;
+  active?: boolean;
+  bordered?: boolean;
   bodyStyle?: React.CSSProperties;
   bodyClassName?: string;
   title?: React.ReactNode;
-  noHover: boolean;
+  noHover?: boolean;
   extra?: React.ReactNode;
   footer?: React.ReactNode;
 }

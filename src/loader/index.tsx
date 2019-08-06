@@ -4,9 +4,9 @@ import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
 export interface ILoaderProps extends IProps, HTMLDivProps {
-  size: 'small' | 'default' | 'large';
-  loading: boolean;
-  fullscreen: boolean;
+  size?: 'small' | 'default' | 'large';
+  loading?: boolean;
+  fullscreen?: boolean;
   color?: string;
   bgColor?: string;
   vertical?: boolean;

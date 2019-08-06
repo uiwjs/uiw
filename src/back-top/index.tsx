@@ -5,12 +5,15 @@ import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
 export interface IBackTopProps extends IProps, HTMLDivProps {
-  offsetTop: number;
-  clickable: boolean;
+  offsetTop?: number;
+  clickable?: boolean;
   content?: JSX.Element | string;
-  fixed: boolean;
-  showBelow: number;
-  speed: number;
+  fixed?: boolean;
+  /**
+   * 滚动距离多少时显示组件
+   */
+  showBelow?: number;
+  speed?: number;
 }
 
 export interface IBackTopState {
@@ -45,7 +48,7 @@ export default class BackTop extends React.Component<IBackTopProps, IBackTopStat
   }
   public render() {
     const { prefixCls, className, content, children, offsetTop, fixed, speed, showBelow, clickable, ...other } = this.props;
-    const topShowBelow = !fixed ? 0 : showBelow;
+    const topShowBelow = !fixed ? 0 : (showBelow || 0);
     const visible = this.state.percent >= topShowBelow;
     const cls = classnames(prefixCls, className, {
       'no-fixed': !fixed,
