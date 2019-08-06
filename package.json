@@ -6,17 +6,17 @@
   "sideEffects": false,
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
-  "typings": "typings/index.d.ts",
+  "typings": "lib/cjs/index.d.ts",
   "author": "kenny wang <wowohoo@qq.com>",
   "scripts": {
     "prepare": "npm run build",
     "bundle": "kkt build --bundle --no-emptyDir",
     "bundle:min": "kkt build --bundle=min --no-emptyDir",
     "watch": "npm run watch:types & npm run watch:ts",
-    "build": "npm run build:ts && npm run build:types && npm run bundle && npm run build:css && npm run bundle:min",
+    "build": "npm run build:ts && npm run build:types && npm run build:types -- --outDir lib/cjs && npm run bundle && npm run build:css && npm run bundle:min",
     "build:css": "compile-less -d src -o lib/esm",
     "watch:types": "npm run build:types -- --watch",
-    "build:types": "tsbb types --outDir typings --target ESNEXT",
+    "build:types": "tsbb types --outDir lib/esm --target ESNEXT",
     "watch:ts": "tsbb watch --target react",
     "build:ts": "tsbb build --target react",
     "test": "tsbb test",
@@ -53,6 +53,13 @@
     "framework",
     "frontend"
   ],
+  "typesVersions": {
+    ">=3.5": {
+      "*": [
+        "ts3.5/*"
+      ]
+    }
+  },
   "peerDependencies": {
     "react": ">=16.7.0",
     "react-dom": ">=16.7.0"
@@ -82,7 +89,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-test-renderer": "^16.8.6",
-    "tsbb": "^1.0.7"
+    "tsbb": "^1.1.2"
   },
   "license": "MIT"
 }
