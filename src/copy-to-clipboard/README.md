@@ -1,7 +1,7 @@
 CopyToClipboard 复制
 ===
 
-将文本到剪切板，复制到剪贴板功能可以应用于各种元素。
+将文本到剪切板，复制到剪贴板功能可以应用于各种元素，基于 [@uiwjs/copy-to-clipboard](https://github.com/uiwjs/copy-to-clipboard) 封装。
 
 ```jsx
 import { CopyToClipboard } from 'uiw';
