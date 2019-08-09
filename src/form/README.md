@@ -134,7 +134,7 @@ const Demo = () => (
         inline: true,
         initialValue: true,
         label: '开启',
-        children: <Switch />
+        children: <Switch size="small" />
       },
       radioGroup: {
         inline: true,

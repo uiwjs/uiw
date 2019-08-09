@@ -219,16 +219,17 @@ export default class Form extends React.PureComponent<IFormProps, IFormState> {
     const { prefixCls, className, fields, children, resetOnSubmit, onSubmitError, onChange, onSubmit, afterSubmit, ...others } = this.props;
     const { submitting } = this.state;
     const formUnits: IFormChildrenProps['fields'] = {};
-    // eslint-disable-next-line
     for (const name in fields) {
-      const props = fields[name]; // eslint-disable-line
-      if (!props) continue; // eslint-disable-line
+      const props = fields[name];
+      if (!props) continue;
       const error = this.state.errors[name];
       const childrenField: IFormFieldsProps = this.controlField({ ...props, name });
       const help = error || props.help;
       const labelFor = props.labelFor;
+      delete props.initialValue;
+      delete props.validator;
       formUnits[name] = (
-        <FormItem {...{ ...props, key: name, children: childrenField, help, labelFor, state: this.state, name, hasError: !!error }}/>
+        <FormItem {...{ ...props, key: name, children: childrenField, help, labelFor, state: this.state, name, hasError: !!error }} />
       );
     }
     return (
