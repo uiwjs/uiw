@@ -12,7 +12,7 @@
     "prepare": "npm run build",
     "bundle": "kkt build --bundle --no-emptyDir",
     "bundle:min": "kkt build --bundle=min --no-emptyDir",
-    "watch": "npm run watch:types & npm run watch:ts",
+    "watch": "npm run watch:types & npm run watch:ts -- --env-name esm:dev --env-name cjs",
     "build": "npm run build:ts && npm run build:types && npm run build:types -- --outDir lib/cjs && npm run bundle && npm run build:css && npm run bundle:min",
     "build:css": "compile-less -d src -o lib/esm",
     "watch:types": "npm run build:types -- --watch",

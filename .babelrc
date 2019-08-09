@@ -4,7 +4,9 @@
       "plugins": [
         [
           "babel-plugin-transform-remove-imports",
-          { "test": "(less|css)$" }
+          {
+            "test": "(less|css)$"
+          }
         ]
       ]
     },
@@ -15,6 +17,25 @@
           {
             "original": "^(.+?)\\.less$",
             "replacement": "$1.css"
+          }
+        ]
+      ]
+    },
+    "esm:dev": {
+      "presets": [
+        "@babel/preset-react",
+        [
+          "@tsbb/babel-preset-tsbb",
+          {
+            "modules": false,
+            "targets": {
+              "browsers": [
+                "last 2 versions"
+              ]
+            },
+            "transformRuntime": {
+              "useESModules": true
+            }
           }
         ]
       ]
