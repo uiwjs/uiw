@@ -28,6 +28,80 @@ ReactDOM.render(
 ```
 <!--End-->
 
+### 表单中使用
+
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Form, Checkbox, Row, Col, Button, Notify } from 'uiw';
+
+const Demo = () => (
+  <div>
+    <Form
+      onChange={({ initial, current }) => {
+        console.log('onChange', initial, current);
+      }}
+      onSubmit={({initial, current}) => {
+        if(current.name === initial.name) {
+          Notify.error({
+            title: '提交失败！',
+            description: `表单提交内容为空！`,
+          });
+        } else {
+          Notify.success({
+            title: '提交成功！',
+            description: `姓名为：${current.name}，提交完成，将自动填充初始化值！`,
+          });
+        }
+      }}
+      fields={{
+        checkbox: {
+          initialValue: ['四川菜'],
+          label: '选择你想吃的菜',
+          children: (
+            <Checkbox.Group>
+              <div>菜系</div>
+              <Checkbox value="四川菜">四川菜</Checkbox>
+              <Checkbox value="湖北菜">湖北菜</Checkbox>
+              <Checkbox value="西北菜">西北菜</Checkbox>
+              <Checkbox disabled value="新疆菜">新疆菜</Checkbox>
+              <Checkbox value="东北菜">东北菜</Checkbox>
+              <div style={{ marginTop: 10 }}>家常菜</div>
+              <Checkbox value="红烧武昌鱼">红烧武昌鱼</Checkbox>
+              <Checkbox value="麻婆豆腐">麻婆豆腐</Checkbox>
+              <Checkbox value="北京烤鸭">北京烤鸭</Checkbox>
+            </Checkbox.Group>
+          ),
+        },
+      }}
+    >
+      {({ fields, state, canSubmit }) => {
+        return (
+          <div>
+            <Row>
+              <Col>{fields.checkbox}</Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <pre>
+                  {JSON.stringify(state.current, null, 2)}
+                </pre>
+              </Col>
+            </Row>
+          </div>
+        )
+      }}
+    </Form>
+  </div>
+)
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
 ### 禁用样式
 
 通过设置 `disabled` 属性来禁用多选框。
