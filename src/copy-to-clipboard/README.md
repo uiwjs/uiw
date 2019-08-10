@@ -55,7 +55,8 @@ class Demo extends React.Component {
     super(props);
     this.state = {
       copyText: "生亦何欢，死亦何苦"
-    }
+    };
+    this.input = React.createRef();
   }
   onChange(e){
     this.setState({
@@ -69,7 +70,7 @@ class Demo extends React.Component {
         <div>
           <Input
             type="text"
-            ref={(input) => this.input = input}
+            ref={this.input}
             value={copyText}
             onChange={this.onChange.bind(this)}
           />
@@ -84,7 +85,7 @@ class Demo extends React.Component {
                 this.setState({ message: '' });
               }, 2000);
             });
-            ReactDOM.findDOMNode(this.input).querySelector('input').select();
+            this.input.current.inputRef.current.select();
           }}
         >
           <Button type="primary">点击复制</Button>
