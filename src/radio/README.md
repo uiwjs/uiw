@@ -32,7 +32,7 @@ ReactDOM.render(<Demo />, _mount_);
 适用广泛的基础最简单的用法。
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Radio, RadioGroup } from 'uiw';
 
 class Demo extends React.Component {
@@ -65,7 +65,7 @@ ReactDOM.render(<Demo />, _mount_);
 设置单选初始值
 
 <!--DemoStart,bgWhite,codePen--> 
-```js
+```jsx
 import { Radio, RadioGroup, Divider, Button } from 'uiw';
 
 class Demo extends React.Component {

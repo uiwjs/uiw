@@ -29,7 +29,7 @@ export default class Abstract extends React.Component<IAbstractProps> {
   constructor(props: IAbstractProps) {
     super(props);
     this.state = {
-      checked: props.checked,
+      checked: props.checked || false,
     };
   }
   componentWillReceiveProps(nextPrrops: IAbstractProps) {
