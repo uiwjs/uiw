@@ -8,8 +8,6 @@ export default class Switch extends React.Component<ISwitchProps> {
   public static defaultProps: ISwitchProps = {
     prefixCls: 'w-switch',
     type: 'switch',
-    disabled: false,
-    checked: undefined,
   }
   render() {
     const props = this.props;
