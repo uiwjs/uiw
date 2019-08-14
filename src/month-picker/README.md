@@ -20,7 +20,10 @@ function onChange(date, formatDate) {
 const Demo = () => (
   <Row gutter={10}>
     <Col fixed>
-      <MonthPicker onChange={onChange} placeholder="Select month" />
+      <MonthPicker size="large" onChange={onChange} placeholder="Select month" />
+    </Col>
+    <Col fixed>
+      <MonthPicker disabled value="2019/04" placeholder="Select month" />
     </Col>
   </Row>
 )

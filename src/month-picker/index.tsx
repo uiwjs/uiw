@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import Input, { IInputProps } from '../input';
 import Popover, { IPopoverProps } from '../popover';
 import { formatter } from '../';
-import Icon from '../icon';
+import Button from '../button';
 import PickerMonth from '../date-picker/PickerMonth';
 import PickerYear from '../date-picker/PickerYear';
 import PickerCaption, { CaptionType } from '../date-picker/PickerCaption';
@@ -98,7 +98,8 @@ export default class MonthPicker extends React.Component<IMonthPickerProps, IMon
     const value = date || '';
     inputProps.value = typeof value === 'string' ? value : formatter(format as string, value);
     if (allowClear && inputProps.value) {
-      inputProps.addonAfter = <Icon className={`${prefixCls}-close-btn`} onClick={this.onAllowClear.bind(this)} type="close" />;
+      inputProps.addonAfter = <Button className={`${prefixCls}-close-btn`} icon="close" onClick={this.onAllowClear.bind(this)} size={inputProps.size} basic type="light" />;
+      // inputProps.addonAfter = <Icon className={`${prefixCls}-close-btn`} onClick={this.onAllowClear.bind(this)} type="close" />;
     }
     return (
       <Popover
