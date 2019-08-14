@@ -251,24 +251,33 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { Input, Row, Col } from 'uiw';
+import { Icon, Input, Row, Col} from 'uiw';
 
 const stylItem = { margin: 20 };
 const Demo = () => (
-  <Row gutter={10}>
-    <Col fixed>
-      <Input disabled preIcon="delete" placeholder="请输入内容" />
-    </Col>
-    <Col fixed>
-      <Input disabled preIcon="tag" placeholder="请输入内容" />
-    </Col>
-    <Col fixed>
-      <Input disabled preIcon="picasa" placeholder="请输入内容" />
-    </Col>
-    <Col fixed>
-      <Input disabled preIcon="like-o" placeholder="请输入内容" />
-    </Col>
-  </Row>
+  <>
+    <Row gutter={10}>
+      <Col fixed>
+        <Input disabled preIcon="delete" placeholder="请输入内容" />
+      </Col>
+      <Col fixed>
+        <Input disabled preIcon="tag" placeholder="请输入内容" />
+      </Col>
+      <Col fixed>
+        <Input
+          disabled
+          preIcon="picasa"
+          placeholder="请输入内容"
+          addonAfter={
+            <Button icon="close" disabled size="small" basic type="light" />
+          }
+        />
+      </Col>
+      <Col fixed>
+        <Input disabled preIcon="like-o" placeholder="请输入内容" />
+      </Col>
+    </Row>
+  </>
 );
 ReactDOM.render(<Demo />, _mount_);
 ```

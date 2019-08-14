@@ -9,7 +9,7 @@ Calendar 日历
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { Calendar } from 'uiw';
+import { Calendar, Badge } from 'uiw';
 
 const data = [
   { type: 'default', date: '8', label: '中国电动车初创公司蔚来据称考虑明年赴美上市。' },
@@ -68,7 +68,7 @@ ReactDOM.render(
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import { Calendar } from 'uiw';
+import { Calendar, Badge } from 'uiw';
 
 const data = [
   { type: 'default', date: '8', label: '中国电动车初创公司蔚来据称考虑明年赴美上市。' },
