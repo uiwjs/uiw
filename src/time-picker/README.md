@@ -60,6 +60,32 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
+## 设置按钮大小
+
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { TimePicker, Row, Col } from 'uiw';
+
+const Demo = () => {
+  const value = new Date(2018, 1, 24, 4,5,35);
+  return (
+    <Row gutter={10}>
+      <Col fixed>
+        <TimePicker size="small" value={value} />
+      </Col>
+      <Col fixed>
+        <TimePicker size="large" value={value} format="HH:mm" precision="minute" />
+      </Col>
+      <Col fixed>
+        <TimePicker value={value} format="HH" precision="hour" />
+      </Col>
+    </Row>
+  )
+}
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
 ## 表单中应用
 
 在表单返回的数据，并没有将 `format` 格式化后的数据返回给你，而是返回的一个 `Date`，你可以通过 [`formatter`](#/components/formatter) 重新格式化。
@@ -216,11 +242,15 @@ ReactDOM.render(<Demo />, _mount_);
 | hideDisabled | 不可选择的项隐藏 | Boolean | `false` |
 | onChange | 时间选择的回调函数 | Function(formatDate, Date, <br/>type{`Hours`, `Minutes`, `Seconds`}, <br/>, num, disableds) | - |
 
-## Props.inputProps
+`uiw@3.3.0+` 组件集成部分 Input，不再通过 inputProps 属性传值，更多属性请参考 [Input](#/components/input)
+
+## ~~Props.inputProps~~
+
+`uiw@3.3.0+` 将不支持此属性
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| inputProps | 将参数传递给 [`<Input>`](#/components/input) 组件 | `Object` | - |
+| ~~inputProps~~ | ~~将参数传递给 [`<Input>`](#/components/input) 组件~~ | `Object` | - |
 
 ## Props.popoverProps
 

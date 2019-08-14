@@ -3,16 +3,20 @@ import classnames from 'classnames';
 import Popover, { IPopoverProps } from '../popover';
 import PickerTime, { ITimePickerPanelProps } from './PickerTime';
 import Input, { IInputProps } from '../input';
-import Icon from '../icon';
+import Button from '../button';
 import { formatter } from '../';
-import { IProps, HTMLInputProps } from '../utils/props';
+import { IProps } from '../utils/props';
 import './style/index.less';
 
-export interface ITimePickerProps extends IProps, Omit<ITimePickerPanelProps, 'onChange'> {
+export interface ITimePickerProps extends IProps, Omit<IInputProps, 'onChange' | 'value'> {
   value?: Date;
   format?: string;
   popoverProps?: IPopoverProps;
-  inputProps?: IInputProps & HTMLInputProps;
+  disabledHours?: ITimePickerPanelProps['disabledHours'];
+  precision?: ITimePickerPanelProps['precision'];
+  disabledMinutes?: ITimePickerPanelProps['disabledMinutes'];
+  disabledSeconds?: ITimePickerPanelProps['disabledSeconds'];
+  hideDisabled?: ITimePickerPanelProps['hideDisabled'];
   allowClear?: boolean;
   disabled?: boolean;
   onChange?: (dataStr?: string, date?: Date | '', type?: ITimePickerPanelProps['type'], num?: number, disableds?: number[]) => void;
@@ -27,7 +31,6 @@ export default class TimePicker extends React.Component<ITimePickerProps, ITimeP
   public static defaultProps: ITimePickerProps = {
     prefixCls: 'w-timepicker',
     format: 'HH:mm:ss',
-    inputProps: {},
     allowClear: true,
   }
   constructor(props: ITimePickerProps) {
@@ -52,13 +55,18 @@ export default class TimePicker extends React.Component<ITimePickerProps, ITimeP
     onChange && onChange(dataStr, date, type, num, disableds);
   }
   render() {
-    const { prefixCls, className, disabled, value, format, popoverProps, inputProps, allowClear, onChange, ...timeProps } = this.props;
+    const {
+      prefixCls, className, disabled, value, format, popoverProps, allowClear, onChange,
+      disabledHours, disabledMinutes, disabledSeconds, hideDisabled, precision,
+      ...inputProps
+    } = this.props;
     const { date } = this.state;
+    const timeProps = { disabledHours, disabledMinutes, disabledSeconds, hideDisabled, precision };
     const inputValue = date ? formatter(format as string, date) : '';
-    const props: IInputProps & HTMLInputProps = { ...inputProps, value: inputValue };
+    const props: IInputProps = { ...inputProps, value: inputValue };
     const datePickerTime = date || new Date();
     if (allowClear && inputValue !== '' && !!inputValue) {
-      props.addonAfter = <Icon className={`${prefixCls}-close-btn`} onClick={this.onClear} type="close" />;
+      props.addonAfter = <Button className={`${prefixCls}-close-btn`} icon="close" disabled={props.disabled} onClick={this.onClear} size={props.size} basic type="light" />;
     }
     return (
       <Popover
