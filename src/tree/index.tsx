@@ -5,8 +5,10 @@ import Icon, { Type } from '../icon';
 import { IProps, HTMLDivProps } from '../utils/props'
 import './style/index.less';
 
+export type IconFun = (item: ITreeData, node?: { isOpen?: boolean, noChild?: boolean, openKeys?: ITreeProps['openKeys'], selectedKeys?: ITreeProps['selectedKeys'] }) => React.ReactElement;
+
 export interface ITreeProps extends IProps, HTMLDivProps {
-  icon?: Type | ITreeProps['renderTitle'];
+  icon?: Type | IconFun;
   data?: ITreeData[];
   openKeys?: ITreeData['key'][];
   selectedKeys?: ITreeData['key'][];
@@ -15,8 +17,12 @@ export interface ITreeProps extends IProps, HTMLDivProps {
    * 是否自动展开父节点
    */
   autoExpandParent?: boolean;
+  /**
+   * 是否展示连接线
+   */
   showLine?: boolean;
   iconAnimation?: boolean;
+  isSelected?: boolean;
   /**
    * 子节点受父节点控制设置 `true`，需要配合 `multiple` 参数使用。
    */
@@ -25,9 +31,9 @@ export interface ITreeProps extends IProps, HTMLDivProps {
    * 支持点选多个节点
    */
   multiple?: boolean;
-  renderTitle?: (item: ITreeData, selected: boolean, noChild: boolean) => React.ReactElement,
-  onExpand?: (key: ITreeData['key'], expanded: boolean, item: ITreeData, evn: React.MouseEvent<HTMLElement>) => void,
-  onSelected?: (keys: ITreeData['key'][], key: ITreeData['key'], selected: boolean, item: ITreeData, evn: React.MouseEvent<HTMLElement>) => void,
+  renderTitle?: (item: ITreeData, node?: { selected?: boolean, noChild?: boolean, isHalfChecked?: boolean, openKeys?: ITreeProps['openKeys'], selectedKeys?: ITreeProps['selectedKeys'] }) => React.ReactElement;
+  onExpand?: (key: ITreeData['key'], expanded: boolean, item: ITreeData, evn: React.MouseEvent<HTMLElement>) => void;
+  onSelected?: (keys: ITreeData['key'][], key: ITreeData['key'], selected: boolean, item: ITreeData, evn: React.MouseEvent<HTMLElement>) => void;
 }
 
 export interface ITreeData {
@@ -40,6 +46,7 @@ export interface ITreeData {
 export interface ITreeState {
   openKeys?: ITreeData['key'][];
   selectedKeys?: ITreeData['key'][];
+  halfCheckedKeys?: ITreeData['key'][];
 }
 
 const noop = () => undefined;
@@ -107,6 +114,7 @@ export default class Tree extends React.Component<ITreeProps, ITreeState> {
     defaultExpandAll: false,
     showLine: false,
     iconAnimation: true,
+    isSelected: true,
     checkStrictly: false,
     multiple: false,
     onExpand: noop,
@@ -117,16 +125,17 @@ export default class Tree extends React.Component<ITreeProps, ITreeState> {
     this.state = {
       openKeys: props.openKeys || [],
       selectedKeys: props.selectedKeys || [],
+      halfCheckedKeys: props.selectedKeys || [],
     };
   }
   componentDidMount() {
-    const { defaultExpandAll, data } = this.props;
-    const openKeys = getChildKeys(data as ITreeData[]);
+    const { defaultExpandAll, selectedKeys, data } = this.props;
+    const openKeys = getChildKeys(data);
     if (defaultExpandAll) {
       this.setState({ openKeys });
     }
   }
-  componentWillReceiveProps(nextProps: ITreeProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: ITreeProps) {
     if (nextProps.openKeys !== this.props.openKeys) {
       this.setState({ openKeys: nextProps.openKeys });
     }
@@ -201,7 +210,7 @@ export default class Tree extends React.Component<ITreeProps, ITreeState> {
     });
   }
   renderTreeNode(data: ITreeData[], level: number, parent?: ITreeData) {
-    const { prefixCls, renderTitle, icon, iconAnimation } = this.props;
+    const { prefixCls, renderTitle, icon, iconAnimation, isSelected } = this.props;
     const { openKeys, selectedKeys } = this.state;
     let isOpen = false;
 
@@ -210,7 +219,7 @@ export default class Tree extends React.Component<ITreeProps, ITreeState> {
     }
     return (
       <CSSTransition
-        classNames="w-tree"
+        classNames={prefixCls}
         in={isOpen}
         timeout={200}
         onExit={this.onExit}
@@ -230,7 +239,10 @@ export default class Tree extends React.Component<ITreeProps, ITreeState> {
             const selected = !!(selectedKeys && selectedKeys.indexOf(item.key) > -1);
             const noChild = !item.children;
             const itemIsOpen = openKeys && openKeys.indexOf(item.key) > -1 && !!item.children;
-            const iconItem = typeof icon === 'function' ? icon(item, !!itemIsOpen, noChild) : icon;
+            const iconItem = typeof icon === 'function' ? icon(item, { isOpen: !!itemIsOpen, noChild, openKeys, selectedKeys }) : icon;
+            const childKeys = noChild ? [] : getChildKeys(item.children);
+            const checkedKeys = selectedKeys ? selectedKeys.filter(key => childKeys.indexOf(key) > -1) : [];
+            const isHalfChecked = checkedKeys.length > 0 && childKeys.length !== checkedKeys.length;
             return (
               <li key={idx}>
                 <div className={classnames(`${prefixCls}-label`)}>
@@ -247,9 +259,12 @@ export default class Tree extends React.Component<ITreeProps, ITreeState> {
                   </span>
                   <div
                     onClick={this.onItemSelected.bind(this, item)}
-                    className={classnames(`${prefixCls}-title`, { selected })}
+                    className={classnames(`${prefixCls}-title`, {
+                      selected: selected && isSelected,
+                      disabled: item.disabled,
+                    })}
                   >
-                    {renderTitle ? renderTitle(item, selected, noChild) : <span>{item.label}</span>}
+                    {renderTitle ? renderTitle(item, { selected, noChild, openKeys, isHalfChecked, selectedKeys }) : <span>{item.label}</span>}
                   </div>
                 </div>
                 {item.children && this.renderTreeNode(item.children, level + 1, item)}
@@ -261,7 +276,7 @@ export default class Tree extends React.Component<ITreeProps, ITreeState> {
     );
   }
   render() {
-    const { prefixCls, className, icon, data, openKeys, selectedKeys, autoExpandParent, defaultExpandAll, checkStrictly, showLine, iconAnimation, renderTitle, onExpand, onSelected, ...elementProps } = this.props;
+    const { prefixCls, className, icon, data, openKeys, selectedKeys, isSelected, autoExpandParent, defaultExpandAll, checkStrictly, showLine, iconAnimation, renderTitle, onExpand, onSelected, ...elementProps } = this.props;
     const cls = classnames(className, prefixCls, { [`${prefixCls}-line`]: showLine });
     return (
       <div className={cls} {...elementProps}>

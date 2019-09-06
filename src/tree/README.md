@@ -9,7 +9,7 @@ import { Tree } from 'uiw';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
 ```js
 import { Tree, Card, Row, Col } from 'uiw';
 
@@ -137,7 +137,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 自定义图标
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
 ```js
 import { Tree, Card, Row, Col, Icon } from 'uiw';
 
@@ -218,8 +218,11 @@ const Demo = () => (
         <Card title="标题中添加图标">
           <Tree
             data={data}
-            renderTitle={(item, selected, noChild) => (
-              <span><Icon style={{ display: '-webkit-inline-box' }} type={noChild ? 'smile-o' : 'apple'} />{item.label}</span>
+            renderTitle={(item, { selected, noChild }) => (
+              <>
+                <Icon style={{ display: '-webkit-inline-box' }} type={noChild ? 'smile-o' : 'apple'} />
+                <span>{item.label}</span>
+              </>
             )}
             onExpand={(key, expanded, data, node) => {
               console.log(key, expanded, data, node);
@@ -249,7 +252,7 @@ const Demo = () => (
           <Tree
             data={data}
             iconAnimation={false}
-            icon={(data, isOpen, noChild) => {
+            icon={(data, { isOpen, noChild }) => {
               if(isOpen && !noChild) {
                 return 'folder-open';
               } else if (!noChild) {
@@ -273,11 +276,127 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
+### 自定义选中效果
+
+通过设置 `checkStrictly` 来设置，子节点受父节点控制，通过设置 `multiple` 为多选，通过设置 `isSelected` 取消选中效果。
+
+<!--DemoStart,bgWhite,codePen--> 
+```jsx
+import { Tree, Card, Row, Col } from 'uiw';
+
+const data = [
+  {
+    label: '湖北省',
+    key: '0-0-0',
+    children:[
+      {
+        label: '武汉市',
+        key: '0-1-0',
+        children:[
+          { label: '新洲区', key: '0-1-1', disabled: true },
+          { label: '武昌区', key: '0-1-2' },
+          {
+            label: '汉南区',
+            key: '0-1-3',
+            children:[
+              { label: '汉南区1', key: '0-1-3-1' },
+              { label: '汉南区2', key: '0-1-3-2' },
+              { label: '汉南区3', key: '0-1-3-3' },
+            ]
+          },
+        ]
+      },
+      { label: '黄冈市', key: '0-2-0' },
+      {
+        label: '黄石市',
+        key: '0-3-0',
+        children:[
+          { label: '青山区', key: '0-3-1' },
+          { label: '黄陂区', key: '0-3-2' },
+          { label: '青山区', key: '0-3-3' },
+        ]
+      },
+    ]
+  },
+  {
+    label: '上海市',
+    key: '1-0-0',
+    children:[
+      { label: '黄浦区', key: '1-0-1' },
+      { label: '卢湾区', key: '1-0-2' },
+      {
+        label: '徐汇区',
+        key: '1-0-3',
+        children:[
+          { label: '半淞园路街道', key: '1-1-0' },
+          { label: '南京东路街道', key: '1-2-0' },
+          { label: '外滩街道', key: '1-3-0' },
+        ]
+      },
+    ]
+  },
+  {
+    label: '北京市',
+    key: '2-0-0',
+    children:[
+      { label: '东城区', key: '2-1-0' },
+      { label: '西城区', key: '2-2-0' },
+      {
+        label: '崇文区',
+        key: '2-3-0',
+        children:[
+          { label: '东花市街道', key: '2-3-1' },
+          { label: '体育馆路街道', key: '2-3-2' },
+          { label: '前门街道', key: '2-3-3' },
+        ]
+      },
+    ]
+  },
+  { label: '澳门', key: '3' },
+];
+
+const Demo = () => (
+  <div>
+    <Tree
+      data={data}
+      selectedKeys={['0-1-1']}
+      multiple
+      isSelected={false}
+      checkStrictly
+      renderTitle={(item, { selected, isHalfChecked }) => {
+        if(isHalfChecked) {
+          return (
+            <><Icon type="minus-square-o" style={{ color: 'green' }} /> <span>{item.label}</span></>
+          );
+        }
+        if (selected) {
+          return (
+            <><Icon type="check-square-o" style={{ color: 'green' }} /> <span>{item.label}</span></>
+          );
+        }
+        return (
+          <><Icon type="close-square-o" style={{ color: '#b6b6b6' }} /> <span>{item.label}</span></>
+        );
+      }}
+      onExpand={(key, expanded, data, node) => {
+        console.log(key, expanded, data, node);
+      }}
+      onSelected={(key, selected, item, evn) => {
+        console.log(key, selected, item, evn);
+      }}
+    />
+  </div>
+)
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
+
 ### 连接线
 
 带连接线的树，通过设置 `showLine`。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
 ```js
 import { Tree, Card, Row, Col } from 'uiw';
 
@@ -360,7 +479,7 @@ const Demo = () => (
             data={data}
             showLine
             iconAnimation={false}
-            icon={(data, isOpen, noChild) => {
+            icon={(data, {isOpen, noChild}) => {
               if(isOpen && !noChild) {
                 return 'folder-open';
               } else if (!noChild) {
@@ -382,7 +501,7 @@ const Demo = () => (
           <Tree
             data={data}
             showLine
-            icon={(data, isOpen, noChild) => {
+            icon={(data, {isOpen, noChild}) => {
               if(noChild) {
                 return 'file-text';
               }
@@ -405,7 +524,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 默认展开树
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
 ```js
 import { Tree, Card, Row, Col } from 'uiw';
 
@@ -480,7 +599,7 @@ const Demo = () => (
             showLine
             openKeys={['0-0-0', '0-1-0']}
             iconAnimation={false}
-            icon={(data, isOpen, noChild) => {
+            icon={(data, {isOpen, noChild}) => {
               if(isOpen && !noChild) {
                 return 'folder-open';
               } else if (!noChild) {
@@ -503,7 +622,7 @@ const Demo = () => (
             data={data}
             showLine
             defaultExpandAll
-            icon={(data, isOpen, noChild) => {
+            icon={(data, {isOpen, noChild}) => {
               if(noChild) {
                 return 'file-text';
               }
@@ -528,17 +647,18 @@ ReactDOM.render(<Demo />, _mount_);
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| data | 展示数据 | Array | `[]` |
+| data | 展示数据 | Array | `ITreeData[]` |
 | openKeys | 节点展开 `key` | Array | `[]` |
 | selectedKeys | 设置选中的树节点 | Array | `[]` |
 | autoExpandParent | 是否自动展开父节点 | Boolean | `true` |
 | defaultExpandAll | 默认展开所有树节点 | Boolean | `false` |
 | iconAnimation | 展开收缩图标，参数设为 `false` 禁用动画 | Boolean | `true` |
+| isSelected | 是否选中当前节点 | Boolean | `true` |
 | showLine | 是否展示连接线 | Boolean | `false` |
 | checkStrictly | 子节点受父节点控制设置 `true`，需要配合 `multiple` 参数使用。 | Boolean | `false` |
 | multiple | 支持点选多个节点 | Boolean | `false` |
-| icon | 重新定义，展开收缩图标，当为函数时视为自定义图标，并展示非折叠项的图标。 | Function(data: object, noChild: bool)/String/Node | - |
-| renderTitle | 重新定义每个标题节点的显示 | Function(item, selected: bool, noChild: bool) | - |
+| icon | 重新定义，展开收缩图标，当为函数时视为自定义图标，并展示非折叠项的图标。 | ~~Function(data: object, noChild: bool)/String/Node~~ `@3.4.0+` Function(data: object, { selected: bool, noChild: bool })/String/Node| - |
+| renderTitle | 重新定义每个标题节点的显示 | ~~Function(item, selected: bool, noChild: bool)~~ `@3.4.0+` Function(item: ITreeData, node?: { selected?: boolean, noChild?: boolean, isHalfChecked?: boolean, openKeys?: ITreeProps['openKeys'], selectedKeys?: ITreeProps['selectedKeys'] }) => React.ReactElement; | - |
 | onSelected | 点击选择树节点触发 | Function(selectedKeys: array, key, selected: bool, data, e) | - |
 | onExpand | 展开/收起节点时触发 | Function(key, expanded: bool, data, evn) | - |
 
@@ -549,6 +669,7 @@ ReactDOM.render(<Demo />, _mount_);
   {
     "label": "湖北省",
     "key": "0-0-0",
+    "disabled": false,
     "children":[]
   }
   ...

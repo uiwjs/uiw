@@ -1,7 +1,7 @@
 Form 表单
 ===
 
-由输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据
+由输入框、选择器、单选框、多选框等控件组成，用以收集、校验、提交数据。
 
 ```jsx
 import { Form, FormItem } from 'uiw';
@@ -66,6 +66,8 @@ ReactDOM.render(<Demo />, _mount_);
 <!--End-->
 
 ### 自定义校验
+
+一般校验可不需引入外部包解决，如果遇到大型工程表单比较多的地方推荐使用 [jquense/yup](https://github.com/jquense/yup)
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
