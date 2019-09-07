@@ -278,7 +278,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 自定义选中效果
 
-通过设置 `checkStrictly` 来设置，子节点受父节点控制，通过设置 `multiple` 为多选，通过设置 `isSelected` 取消选中效果。
+通过设置 `checkStrictly` 父节点受子节点控制，设置 `multiple` 为多选，设置 `isSelected` 取消选中效果。
 
 <!--DemoStart,bgWhite,codePen--> 
 ```jsx
