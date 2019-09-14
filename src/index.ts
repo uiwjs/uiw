@@ -13,6 +13,7 @@ export { default as Collapse } from './collapse/Collapse';
 export { default as Calendar } from './calendar';
 export { default as Col } from './grid/Col';
 export { default as Divider } from './divider';
+export { default as Descriptions } from './descriptions';
 export { default as Drawer } from './drawer';
 export { default as Dropdown } from './dropdown';
 export { default as DatePicker } from './date-picker';
