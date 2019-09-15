@@ -184,9 +184,9 @@ export default class OverlayTrigger extends React.Component<IOverlayTriggerProps
   // React's built version is broken: https://github.com/facebook/react/issues/4251
   // for cases when the trigger is disabled and mouseOut/Over can cause flicker
   // moving from one child element to another.
-  handleMouseOverOut(handler: Function, e: React.BaseSyntheticEvent, relatedNative: 'fromElement' | 'toElement') {
-    const target = e.currentTarget;
-    const related = ((e as React.MouseEvent).relatedTarget || (e.nativeEvent as MouseEvent)[relatedNative]) as HTMLElement;
+  handleMouseOverOut(handler: Function, e: React.MouseEvent, relatedNative: 'fromElement' | 'toElement') {
+    const target = e.currentTarget as HTMLElement;
+    const related = (e.relatedTarget || (e.nativeEvent as any)[relatedNative]) as HTMLElement;
     const popupTarget = this.getPopupTarget();
     const currentTarget = this.getTarget();
     let isOutside = true;
