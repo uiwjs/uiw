@@ -165,7 +165,6 @@ export default class Form extends React.Component<IFormProps, IFormState> {
     for (const name in fields) {
       if (Object.prototype.hasOwnProperty.call(fields, name)) {
         const props: IFormFieldsProps = fields[name];
-        // eslint-disable-next-line
         if (!props) continue;
         if (props.validator && props.validator(current[name])) {
           passesValidators = false;
@@ -240,8 +239,6 @@ export default class Form extends React.Component<IFormProps, IFormState> {
       const childrenField: IFormFieldsProps = this.controlField({ ...props, name });
       const help = error || props.help;
       const labelFor = props.labelFor;
-      delete props.initialValue;
-      delete props.validator;
       formUnits[name] = (
         <FormItem {...{ ...props, key: name, children: childrenField, help, labelFor, state: this.state, name, hasError: !!error }} />
       );

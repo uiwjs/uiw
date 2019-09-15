@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import Row from '../grid/Row';
 import Col from '../grid/Col';
 import { IProps, HTMLDivProps } from '../utils/props';
+import { IFormFieldsProps } from './Form';
 import './style/form-item.less';
 
 export interface IFormItemProps extends IProps, HTMLDivProps {
@@ -13,6 +14,8 @@ export interface IFormItemProps extends IProps, HTMLDivProps {
   labelClassName?: string;
   help?: React.ReactNode;
   labelStyle?: CSSProperties;
+  initialValue?: IFormFieldsProps['initialValue'];
+  validator?: IFormFieldsProps['validator'];
 }
 
 export default class FormItem extends React.PureComponent<IFormItemProps> {
@@ -20,7 +23,7 @@ export default class FormItem extends React.PureComponent<IFormItemProps> {
     prefixCls: 'w-form-item',
   }
   render() {
-    const { prefixCls, className, style, label, labelFor, labelClassName, labelStyle, help, inline, hasError, ...otherProps } = this.props;
+    const { prefixCls, className, style, label, labelFor, labelClassName, labelStyle, help, inline, initialValue, validator, hasError, ...otherProps } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-error`]: hasError,
     });
@@ -30,7 +33,7 @@ export default class FormItem extends React.PureComponent<IFormItemProps> {
         <div className={cls} style={style} {...otherProps}>
           <Row>
             <Col fixed className={labelCls}><label style={labelStyle} htmlFor={labelFor}>{label}</label></Col>
-            <Col className="w-form-row"> {this.props.children} </Col>
+            <Col className="w-form-row">{this.props.children}</Col>
           </Row>
           {help && (
             <Row>
