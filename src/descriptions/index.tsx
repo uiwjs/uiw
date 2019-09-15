@@ -31,9 +31,9 @@ const generateChildrenRows = (children: JSX.Element[], column: number): Array<Re
 
     // Always set last span to align the end of Descriptions
     const lastItem = index === itemNodes.length - 1;
-    let lastSpanSame = true;
+    // let lastSpanSame = true;
     if (lastItem) {
-      lastSpanSame = !itemNode.props.span || itemNode.props.span === leftSpans;
+      // lastSpanSame = !itemNode.props.span || itemNode.props.span === leftSpans;
       itemNode = React.cloneElement(itemNode, {
         span: leftSpans,
       });
@@ -46,11 +46,6 @@ const generateChildrenRows = (children: JSX.Element[], column: number): Array<Re
 
     if (leftSpans <= 0) {
       columns = null;
-      console.warn(
-        leftSpans === 0 && lastSpanSame,
-        'Descriptions',
-        'Sum of column `span` in a line exceeds `column` of Descriptions.',
-      );
     }
   });
 
