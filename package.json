@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "3.4.3",
+  "version": "3.4.5",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiwjs.github.io",
   "sideEffects": false,
@@ -18,7 +18,7 @@
     "watch:types": "npm run build:types -- --watch",
     "build:types": "tsbb types --outDir lib/esm --target ESNEXT",
     "watch:ts": "tsbb watch --target react --env-name esm:dev --env-name cjs",
-    "build:ts": "tsbb build --target react",
+    "build:ts": "tsbb build --target react --env-name esm --env-name cjs",
     "test": "tsbb test",
     "coverage": "tsbb test --coverage"
   },
