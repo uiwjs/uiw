@@ -44,7 +44,7 @@ export interface IFormFieldsProps {
 
 export interface IFormSubmitProps {
   initial: IFormState['initial'];
-  current: IFormState['initial'];
+  current: IFormState['current'];
 }
 
 export interface IFormAfterSubmitProps {
@@ -72,10 +72,21 @@ export type IFormElementProps = {
 };
 
 const isPromise = (promise: Promise<any>) => promise && typeof promise.then === 'function';
-const initialValue = (value: IFormFieldsProps['initialValue']) => ((value === null || value === undefined) ? '' : value);
+const newInitialValue = (value: IFormFieldsProps['initialValue']) => ((value === null || value === undefined) ? '' : value);
 const noop = () => undefined;
+const newFormState = (fields: IFormProps['fields'], cb: (porps: IFormFieldsProps) => { initialValue: IFormFieldsProps['initialValue'], currentValue: IFormFieldsProps['initialValue']}) => {
+  const state: IFormState = { initial: {}, current: {}, submitting: false, errors: {} };
+  for (const name in fields) {
+    const props = fields[name];
+    if (!props) continue;
+    const { initialValue, currentValue } = cb({ ...props, name });
+    state.initial[name] = initialValue;
+    state.current[name] = currentValue;
+  }
+  return state;
+};
 
-export default class Form extends React.PureComponent<IFormProps, IFormState> {
+export default class Form extends React.Component<IFormProps, IFormState> {
   public static defaultProps: IFormProps = {
     prefixCls: 'w-form',
     onSubmitError: () => ({}),
@@ -88,23 +99,26 @@ export default class Form extends React.PureComponent<IFormProps, IFormState> {
   public state: IFormState;
   constructor(props: IFormProps) {
     super(props);
-    const { fields } = props;
-    this.state = {
-      submitting: false,
-      errors: {},
-      initial: {},
-      current: {},
-    };
-    // eslint-disable-next-line
-    for (const name in fields) {
-      if (Object.prototype.hasOwnProperty.call(fields, name)) {
-        const propsField = fields[name];
-        // eslint-disable-next-line
-        if (!propsField) continue;
-        this.state.initial[name] = initialValue(fields[name].initialValue);
-        this.state.current[name] = initialValue(fields[name].initialValue);
-      }
-    }
+    this.state = newFormState(props.fields, ({ initialValue }) => {
+      initialValue = newInitialValue(initialValue);
+      return { initialValue, currentValue: initialValue };
+    });
+  }
+  shouldComponentUpdate(nextProps: IFormProps, nextState: IFormState): boolean {
+    const isStateChange = nextState !== this.state;
+    const { current, initial } = nextState;
+    const { initial: newInitial, current: newCurrent } = newFormState(nextProps.fields, ({ name, initialValue }) => {
+      initialValue = newInitialValue(initialValue);
+      return {
+        initialValue: initialValue,
+        currentValue: current.hasOwnProperty(name!)
+          ? (current[name!] === this.state.initial[name!] ? initialValue : current[name!])
+          : initialValue
+      };
+    });
+    nextState.initial = isStateChange ? initial : newInitial;
+    nextState.current = newCurrent;
+    return true;
   }
   onSubmit = (e: React.FormEvent) => {
     e && e.preventDefault();
