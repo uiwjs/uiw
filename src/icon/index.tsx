@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import svgPaths from 'uiw-iconfont/fonts/w-icon.json';
+import svgPaths from '@uiw/icons/fonts/w-icon.json';
 import './style/index.less';
 
 export type Type = React.ReactElement | string | false | null;

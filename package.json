@@ -59,9 +59,9 @@
   "dependencies": {
     "@uiw/copy-to-clipboard": "^1.0.10",
     "@uiw/formatter": "^1.2.3",
+    "@uiw/icons": "^2.0.0",
     "classnames": "^2.2.6",
-    "react-transition-group": "^4.0.1",
-    "uiw-iconfont": "^1.4.1"
+    "react-transition-group": "^4.0.1"
   },
   "devDependencies": {
     "@kkt/plugin-less": "^1.2.0",
