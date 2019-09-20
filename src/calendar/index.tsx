@@ -130,9 +130,9 @@ export default class Calendar extends React.Component<ICalendarProps, ICalendarS
         <div className={`${prefixCls}-caption`}>
           <div className={`${prefixCls}-title`}>{formatter(titleFormat as string, (this.state.panelDate as Date))}</div>
           <div className={`${prefixCls}-btn-group`}>
-            <Icon type="arrow-down" onClick={this.onPaging.bind(this, 'prev')} />
+            <Icon type="down" onClick={this.onPaging.bind(this, 'prev')} />
             <span className={`${prefixCls}-btn`} onClick={this.onPaging.bind(this, 'today')} >{todayLabel}</span>
-            <Icon type="arrow-down" onClick={this.onPaging.bind(this, 'next')} />
+            <Icon type="down" onClick={this.onPaging.bind(this, 'next')} />
           </div>
         </div>
         <PickerDay

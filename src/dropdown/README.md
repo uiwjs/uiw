@@ -28,13 +28,13 @@ class Demo extends React.Component {
     return (
       <div>
         <Dropdown menu={menu}>
-          <a href="javascript:;">
-            鼠标经过出现菜单 <Icon type="arrow-down" />
+          <a href="javascript:void(0)">
+            鼠标经过出现菜单 <Icon type="down" />
           </a>
         </Dropdown>
         <Dropdown trigger="click" menu={menu}>
-          <a href="javascript:;">
-            点击我出现下拉菜单 <Icon type="arrow-down" />
+          <a href="javascript:void(0)">
+            点击我出现下拉菜单 <Icon type="down" />
           </a>
         </Dropdown>
         <Divider />
@@ -205,7 +205,7 @@ class Select extends React.Component {
           </Menu>
         }
       >
-        <Button type="link">{label.label}<Icon type={isOpen ? 'arrow-up' : 'arrow-down'} /></Button>
+        <Button type="link">{label.label}<Icon type={isOpen ? 'up' : 'down'} /></Button>
       </Dropdown>
     )
   }

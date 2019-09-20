@@ -17,7 +17,7 @@ export interface IPanelProps extends IProps, HTMLDivProps {
 export default class Panel extends React.Component<IPanelProps> {
   public static defaultProps: IPanelProps = {
     disabled: false,
-    icon: 'arrow-down',
+    icon: 'down',
     prefixCls: 'w-collapse',
   }
   getInstance = (status: TransitionStatus, instance: any) => {

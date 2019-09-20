@@ -32,7 +32,7 @@ ReactDOM.render(
     <Button>Normal</Button>
     <Button disabled>Disabled</Button>
     <Button type="primary" active>Button</Button>
-    <Button type="primary" size="small">more <Icon type="arrow-down" /></Button>
+    <Button type="primary" size="small">more <Icon type="down" /></Button>
     <Button type="link"> (超连接样式)link </Button>
   </div>,
   _mount_

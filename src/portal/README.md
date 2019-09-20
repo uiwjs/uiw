@@ -10,7 +10,7 @@ import { Portal } from 'uiw';
 
 ### 基本使用
 
-```js
+```jsx
 import { Portal } from 'uiw';
 
 const Demo = () => {
