@@ -55,7 +55,7 @@ export default class SubMenu extends React.Component<ISubMenuProps, ISubMenuStat
   public popup!: OverlayTrigger;
   onClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>) => {
     const target = e.currentTarget;
-    const related = (e.relatedTarget || e.nativeEvent.toElement) as HTMLElement;
+    const related = (e.relatedTarget || e.nativeEvent.target) as HTMLElement;
     if (!this.popup || target.children.length < 1) return;
     if (checkedMenuItem(related)) {
       this.popup.hide();
