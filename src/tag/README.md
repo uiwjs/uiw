@@ -273,7 +273,7 @@ class SelectTag extends React.Component {
     const selectOption = value.map(val => option.find(item => val === item.value)).filter(item => !!item);
     this.setState({ selectOption });
   }
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
       this.setState({ value: nextProps.value });
     }

@@ -68,7 +68,7 @@ export default class Calendar extends React.Component<ICalendarProps, ICalendarS
       date: props.date,
     };
   }
-  componentWillReceiveProps(nextProps: ICalendarProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: ICalendarProps) {
     if (nextProps.panelDate !== this.props.panelDate) {
       this.setState({ panelDate: nextProps.panelDate });
     }

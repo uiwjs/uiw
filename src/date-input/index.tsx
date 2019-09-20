@@ -33,7 +33,7 @@ export default class DateInput extends React.Component<IDateInputProps, IDateInp
       date: props.value,
     };
   }
-  componentWillReceiveProps(nextProps: IDateInputProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: IDateInputProps) {
     if (nextProps.value !== this.props.value) {
       this.setState({ date: nextProps.value });
     }

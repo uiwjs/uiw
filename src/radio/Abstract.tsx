@@ -32,7 +32,7 @@ export default class Abstract extends React.Component<IAbstractProps> {
       checked: props.checked || false,
     };
   }
-  componentWillReceiveProps(nextPrrops: IAbstractProps) {
+  UNSAFE_componentWillReceiveProps(nextPrrops: IAbstractProps) {
     if (nextPrrops.checked !== this.props.checked) {
       this.setState({ checked: nextPrrops.checked });
     }

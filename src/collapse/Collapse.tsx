@@ -37,7 +37,7 @@ export default class Collapse extends React.Component<ICollapseProps, ICollapseS
       activeKey: toArray(props.activeKey),
     };
   }
-  componentWillReceiveProps(nextProps: ICollapseProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: ICollapseProps) {
     if (nextProps.activeKey !== this.props.activeKey) {
       this.setState({ activeKey: toArray(nextProps.activeKey) });
     }

@@ -34,7 +34,7 @@ export default class Tabs extends React.Component<ITabsProps, ITabsState> {
       slideStyle: { width: 0, left: 0 },
     };
   }
-  componentWillReceiveProps(nextProps: ITabsProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: ITabsProps) {
     if (nextProps.children !== this.props.children) {
       this.calcSlideStyle();
     }

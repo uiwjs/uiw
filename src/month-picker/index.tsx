@@ -45,7 +45,7 @@ export default class MonthPicker extends React.Component<IMonthPickerProps, IMon
       isOpen: false,
     };
   }
-  componentWillReceiveProps(nextProps: IMonthPickerProps & IInputProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: IMonthPickerProps & IInputProps) {
     if (nextProps.value !== this.props.value) {
       this.setState({ date: nextProps.value });
     }

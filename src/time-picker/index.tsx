@@ -39,7 +39,7 @@ export default class TimePicker extends React.Component<ITimePickerProps, ITimeP
       date: (props.value || '') as Date,
     };
   }
-  componentWillReceiveProps(nextProps: ITimePickerProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: ITimePickerProps) {
     if (nextProps.value !== this.props.value) {
       this.setState({ date: (nextProps.value) as Date });
     }

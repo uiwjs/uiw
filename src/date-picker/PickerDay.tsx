@@ -72,7 +72,7 @@ export default class PickerDay extends React.Component<IPickerDayProps, IPickerD
       panelDate: props.panelDate,
     };
   }
-  componentWillReceiveProps(nextProps: IPickerDayProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: IPickerDayProps) {
     if (nextProps.panelDate !== this.props.panelDate) {
       this.setState({ panelDate: nextProps.panelDate });
     }

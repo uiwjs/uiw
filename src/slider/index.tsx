@@ -60,7 +60,7 @@ export default class Slider extends React.Component<ISliderProps, ISliderState> 
     const { value } = this.props;
     this.setState({ value: (Array.isArray(value) ? value : [value]) as ISliderState['value'] });
   }
-  componentWillReceiveProps(nextPros: ISliderProps) {
+  UNSAFE_componentWillReceiveProps(nextPros: ISliderProps) {
     if (nextPros.value !== this.props.value) {
       this.setState({
         value: (Array.isArray(nextPros.value) ? nextPros.value : [nextPros.value]) as ISliderState['value'],

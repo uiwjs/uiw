@@ -42,7 +42,7 @@ export default class Pagination extends React.Component<IPaginationProps, IPagin
       current: props.current as number,
     };
   }
-  componentWillReceiveProps(nextProps: IPaginationProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: IPaginationProps) {
     if (nextProps.current !== this.props.current) {
       this.setState({
         current: nextProps.current as number,

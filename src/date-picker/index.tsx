@@ -47,7 +47,7 @@ export default class DatePicker extends React.Component<IDatePickerProps, IDateP
       type: 'day',
     } as IDatePickerState;
   }
-  componentWillReceiveProps(nextProps: IDatePickerProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: IDatePickerProps) {
     if (nextProps.date !== this.props.date) {
       this.setState({ date: nextProps.date, panelDate: nextProps.date ? new Date(nextProps.date) : new Date() });
     }
