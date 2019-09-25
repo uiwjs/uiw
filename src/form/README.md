@@ -481,7 +481,7 @@ class CustomSelect extends React.Component {
           }}
           type="link"
         >
-          {label.label}<Icon type={isOpen ? 'arrow-up' : 'arrow-down'} />
+          {label.label}<Icon type={isOpen ? 'up' : 'down'} />
         </Button>
       </Dropdown>
     )
