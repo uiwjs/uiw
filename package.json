@@ -57,11 +57,12 @@
     "react-dom": ">=16.7.0"
   },
   "dependencies": {
+    "@types/react-transition-group": "^4.2.2",
     "@uiw/copy-to-clipboard": "^1.0.10",
     "@uiw/formatter": "^1.2.3",
     "@uiw/icons": "^2.0.0",
     "classnames": "^2.2.6",
-    "react-transition-group": "^4.0.1"
+    "react-transition-group": "^4.3.0"
   },
   "devDependencies": {
     "@kkt/plugin-less": "^1.2.0",
@@ -70,7 +71,6 @@
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
     "@types/react-test-renderer": "^16.8.1",
-    "@types/react-transition-group": "^2.9.1",
     "babel-plugin-transform-remove-imports": "^1.0.8",
     "babel-plugin-transform-rename-import": "^2.3.0",
     "compile-less-cli": "^1.1.5",

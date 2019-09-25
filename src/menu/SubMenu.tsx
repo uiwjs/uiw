@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import MenuItem, { IMenuItemProps } from './MenuItem';
 import Menu, { IMenuProps } from './Menu';
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 import OverlayTrigger, { IOverlayTriggerProps } from '../overlay-trigger';
 import Icon from '../icon';
 import { IProps } from '../utils/props';
@@ -80,7 +80,7 @@ export default class SubMenu extends React.Component<ISubMenuProps, ISubMenuStat
   }
   render() {
     const { prefixCls, className, disabled, overlayProps, children, collapse, inlineIndent, ...other } = this.props;
-    const overlayTriggerProps = { ...overlayProps } as IOverlayTriggerProps & CSSTransition.CSSTransitionProps;
+    const overlayTriggerProps = { ...overlayProps } as IOverlayTriggerProps & CSSTransitionProps;
     const menuProps: IMenuProps = { bordered: true, children, inlineIndent, className: classnames(`${prefixCls}-overlay`) };
     if (collapse) {
       delete menuProps.onClick;
