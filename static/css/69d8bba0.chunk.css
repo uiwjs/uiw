@@ -8,6 +8,10 @@
   justify-content: center;
   display: flex;
   background: #f8f8f9;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .w-split-bar::before,
 .w-split-bar::after {
