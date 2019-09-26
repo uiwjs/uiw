@@ -58,21 +58,41 @@ ReactDOM.render(
 
 ## 图片支持
 
-在组件上没有暴露`onError`事件，可以直接使用`<img/>`标签。
+在组件上使用`onError`事件，处理显示错误的图片。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
 ```js
 import { Avatar, Icon } from 'uiw';
 
+const App = () => {
+  const [src, setSrc] = React.useState('https://avatars2.githubusercontentt.com/u/1680273?s=40&v=4')
+  return (
+    <div>
+      <Avatar
+        src='https://avatars2.githubusercontentt.com/u/1680273?s=40&v=4'
+        onError={(e) => {
+          if (e) {
+            e.target.src = 'https://avatars2.githubusercontent.com/u/1680275?s=40&v=4'
+          }
+        // 返回false 执行img标签默认的error事件
+          return false;
+        }}
+      />
+      <Avatar
+        src={src}
+        onError={(e) => {
+          if (e) {
+            setSrc('https://avatars2.githubusercontent.com/u/1680275?s=40&v=4');
+          }
+        }}
+      />
+    </div>
+  )
+}
+
 ReactDOM.render(
-  <div>
-    <Avatar src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" />
-    <Avatar>
-      <img src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" onError={()=>{
-        console.log("图片加载错误！")
-      }}/>
-    </Avatar>
-  </div>,
+  <App />
+  ,
   _mount_
 );
 ```
@@ -107,3 +127,4 @@ ReactDOM.render(
 | size | 设置头像的大小 | Enum{ '`large`', '`small`','`mini`', '`default`' } | `default` |
 | src | 图片类头像的资源地址 | String | - |
 | alt | 规定图像的替代文本 | String | - |
+| onError | 图片加载失败的事件，返回 false 会关闭组件默认的 fallback 行为 | () => boolean | - |
