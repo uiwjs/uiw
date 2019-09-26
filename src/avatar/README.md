@@ -65,16 +65,15 @@ ReactDOM.render(
 import { Avatar, Icon } from 'uiw';
 
 const App = () => {
-  const [src, setSrc] = React.useState('https://avatars2.githubusercontentt.com/u/1680273?s=40&v=4')
+  const [src, setSrc] = React.useState('https://avatars2.githubusercontent.com/ua/1680273?s=40&v=4')
   return (
     <div>
       <Avatar
-        src='https://avatars2.githubusercontentt.com/u/1680273?s=40&v=4'
+        src='https://avatars2.githubusercontent.com/ua/1680273?s=40&v=4'
         onError={(e) => {
           if (e) {
             e.target.src = 'https://avatars2.githubusercontent.com/u/1680275?s=40&v=4'
           }
-        // 返回false 执行img标签默认的error事件
           return false;
         }}
       />

@@ -12,7 +12,7 @@ export interface IAvatarProps {
   src?: string;
   size?: 'large' | 'default' | 'small' | 'mini';
   shape?: 'square' | 'circle';
-  onError?: () => boolean;
+  onError?: (event: React.SyntheticEvent<HTMLImageElement, Event>) => boolean;
 
 }
 
@@ -29,16 +29,16 @@ export default class Avatar extends React.Component<IAvatarProps, IAvatarState> 
   public state: IAvatarState = {
     isImgExist: true,
   }
-  
+
   componentDidUpdate(prevProps: IAvatarProps) {
     if (prevProps.src !== this.props.src) {
       this.setState({ isImgExist: true });
     }
   }
 
-  onImgLoadError() {
+  onImgLoadError(event: React.SyntheticEvent<HTMLImageElement, Event>) {
     const { onError } = this.props;
-    const errorFlag = onError ? onError() : undefined;
+    const errorFlag = onError ? onError(event) : undefined;
     if (errorFlag !== false) {
       this.setState({ isImgExist: false });
     }
