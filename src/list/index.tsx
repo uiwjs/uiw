@@ -32,11 +32,14 @@ export default class List extends React.Component<IListProps> {
     } else {
       items = children;
     }
-    const childrenList = React.Children.map(items, (child: React.ReactNode, index) => (
+    let childrenList = React.Children.map(items, (child: React.ReactNode, index) => (
       React.isValidElement(child) && React.cloneElement((child as React.ReactElement), {
         key: index,
       })
-    )).filter(Boolean);
+    ));
+    if (dataSource && dataSource.length > 0) {
+      childrenList = childrenList.filter(Boolean);
+    }
     const classString = classnames(`${prefixCls}`, className, {
       [`${prefixCls}-striped`]: striped,
       [`${prefixCls}-bordered`]: bordered,
