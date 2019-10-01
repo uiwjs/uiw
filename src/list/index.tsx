@@ -4,18 +4,18 @@ import Item from './Item';
 import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface IListProps extends IProps, HTMLDivProps {
+export interface IListProps<T> extends IProps, HTMLDivProps {
   bordered?: boolean;
   striped?: boolean;
   header?: React.ReactNode;
   footer?: React.ReactNode;
   size?: 'small' | 'default' | 'large';
   renderItem?: (item: any, idx: number) => React.ReactNode;
-  dataSource?: {[key: string]: any}[];
+  dataSource?: T[];
 }
 
-export default class List extends React.Component<IListProps> {
-  public static defaultProps: IListProps = {
+export default class List<T> extends React.Component<IListProps<T>> {
+  public static defaultProps = {
     prefixCls: 'w-list',
     bordered: true,
     striped: false,
@@ -37,9 +37,6 @@ export default class List extends React.Component<IListProps> {
         key: index,
       })
     ));
-    if (dataSource && dataSource.length > 0) {
-      childrenList = childrenList.filter(Boolean);
-    }
     const classString = classnames(`${prefixCls}`, className, {
       [`${prefixCls}-striped`]: striped,
       [`${prefixCls}-bordered`]: bordered,
