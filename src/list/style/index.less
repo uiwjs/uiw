@@ -19,8 +19,11 @@
       border-bottom: 0;
       border-radius: 0 0 4px 4px;
     }
+  }
+  &-item {
     &.w-disabled {
       cursor: not-allowed;
+      text-decoration: none;
       // pointer-events: none;
       color: #a3a6a9;
     }
@@ -32,7 +35,7 @@
   a&-item {
     display: block;
     color: #52575c;
-    &:hover {
+    &:hover:not(.w-disabled) {
       background: #f8f8f9;
     }
   }
