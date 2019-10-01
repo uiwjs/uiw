@@ -186,7 +186,7 @@ class Demo extends React.Component {
             </Tag>
           )
         })}
-        <Button style={{ marginLeft: 5 }} size="small" onClick={this.addTag.bind(this)}> <Icon type="plus" /> </Button>
+        <Button style={{ marginLeft: 5, minHeight: 20, padding: 0 }} size="small" onClick={this.addTag.bind(this)}> <Icon type="plus" /> </Button>
       </div>
     );
   }
