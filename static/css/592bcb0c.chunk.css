@@ -17,19 +17,20 @@
   border-bottom: 0;
   border-radius: 0 0 4px 4px;
 }
-.w-list-bordered .w-list-item.w-disabled {
+.w-list-item.w-disabled {
   cursor: not-allowed;
+  text-decoration: none;
   color: #a3a6a9;
 }
-.w-list-bordered .w-list-item.w-active {
+.w-list-item.w-active {
   background: #f8f8f9;
   color: #007bff;
 }
-.w-list-bordered a.w-list-item {
+a.w-list-item {
   display: block;
   color: #52575c;
 }
-.w-list-bordered a.w-list-item:hover {
+a.w-list-item:hover:not(.w-disabled) {
   background: #f8f8f9;
 }
 .w-list-striped .w-list-item:nth-of-type(2n) {
