@@ -26,13 +26,12 @@ export type NotifysDom = { [key: string]: HTMLDivElement; }
 const notifys: Notifys  = {};
 const notifysDom: NotifysDom = {};
 
-
 export interface NotificationProps {
   (props: NotificationCreateProps, type: NotificationCreateProps['type']): void;
   [key: string]: () => void;
 }
 
-export default function NotificationCreate(props: NotificationCreateProps, type: NotificationCreateProps['type'] = 'open') {
+function NotificationCreate(props: NotificationCreateProps, type: NotificationCreateProps['type'] = 'open') {
   if (!props.placement) {
     props.placement = 'topRight';
   }
@@ -89,3 +88,13 @@ export default function NotificationCreate(props: NotificationCreateProps, type:
     return NotificationCreate(options, type as NotificationCreateProps['type']);
   };
 });
+
+export interface NotificationApi {
+  open(option: NotificationCreateProps): void;
+  success(option: NotificationCreateProps): void;
+  warning(option: NotificationCreateProps): void;
+  info(option: NotificationCreateProps): void;
+  error(option: NotificationCreateProps): void;
+}
+
+export default NotificationCreate as unknown as NotificationApi;
