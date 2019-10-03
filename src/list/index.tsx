@@ -7,6 +7,7 @@ import './style/index.less';
 export interface IListProps<T> extends IProps, HTMLDivProps {
   bordered?: boolean;
   striped?: boolean;
+  noHover?: boolean;
   header?: React.ReactNode;
   footer?: React.ReactNode;
   size?: 'small' | 'default' | 'large';
@@ -19,13 +20,14 @@ export default class List<T> extends React.Component<IListProps<T>> {
     prefixCls: 'w-list',
     bordered: true,
     striped: false,
+    noHover: false,
     size: 'default',
     renderItem: () => null,
     dataSource: [],
   }
   static Item = Item;
   render() {
-    const { prefixCls, className, children, bordered, striped, header, footer, size, dataSource, renderItem, ...resetProps } = this.props;
+    const { prefixCls, className, children, bordered, noHover, striped, header, footer, size, dataSource, renderItem, ...resetProps } = this.props;
     let items: React.ReactNode;
     if (dataSource && dataSource.length > 0) {
       items = dataSource.map((item: any, index: number) => renderItem!(item, index));
@@ -39,6 +41,7 @@ export default class List<T> extends React.Component<IListProps<T>> {
     ));
     const classString = classnames(`${prefixCls}`, className, {
       [`${prefixCls}-striped`]: striped,
+      [`${prefixCls}-no-hover`]: noHover,
       [`${prefixCls}-bordered`]: bordered,
       [`${prefixCls}-size-${size}`]: size && size !== 'default',
     });

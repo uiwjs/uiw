@@ -28,6 +28,7 @@ const Demo = () => (
     <h4 style={{ margin: '16px 10px' }}>默认尺寸，没有头部和尾部</h4>
     <List
       dataSource={data}
+      noHover
       renderItem={item => (<List.Item>{item}</List.Item>)}
     />
     <h4 style={{ margin: '16px 10px' }}>小尺寸</h4>
@@ -218,6 +219,7 @@ ReactDOM.render(<Demo />, _mount_);
 |--------- |-------- |--------- |-------- |
 | size | 设置行尺寸，分别大、中、小三种尺寸 | Enum{`small`,`default`,`large`} | `default` |
 | bordered | 是否展示边框 | Boolean | `true` |
+| noHover | 取消鼠标移过时边框阴影 | Boolean | `false` |
 | striped | 斑马线效果 | Boolean | `false` |
 | footer | 列表底部 | String/ReactNode | - |
 | header | 列表头部 | String/ReactNode | - |
