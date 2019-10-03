@@ -8,14 +8,24 @@
   list-style: none;
   position: relative;
   background-color: #fff;
+  transition: all 0.3s;
+}
+.w-list:not(.w-list-no-hover):hover,
+.w-list-active {
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  border-color: rgba(0, 0, 0, 0.2);
 }
 .w-list-bordered {
-  border: 1px solid #d9d9d9;
+  border: 1px solid #e9e9e9;
   border-radius: 4px;
 }
 .w-list-bordered .w-list-item:last-child {
   border-bottom: 0;
   border-radius: 0 0 4px 4px;
+}
+.w-list-item {
+  display: flex;
+  align-items: center;
 }
 .w-list-item.w-disabled {
   cursor: not-allowed;
@@ -25,6 +35,13 @@
 .w-list-item.w-active {
   background: #f8f8f9;
   color: #007bff;
+}
+.w-list-item-main {
+  display: block;
+  flex: 1 1;
+}
+.w-list-item-extra {
+  margin-left: 40px;
 }
 a.w-list-item {
   display: block;
