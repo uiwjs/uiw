@@ -213,6 +213,49 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
+
+### 展示额外内容
+
+`List.Item` 设置了 `extra`，`List.Item` 就可以设置右侧内容。
+
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { List } from 'uiw';
+
+const data = [
+  {
+    'extra': '内容',
+    'content': '"X战警新变种人"首曝海报特写诡异人脸'
+  },
+  {
+    'extra': '内容',
+    'content': '从uiw组件库中抽离出来的，图标字体 uiw-iconfont 发布'
+  },
+  {
+    'href':'#/cn/list',
+    'disabled': true,
+    'extra': '内容',
+    'content': '快跑!《侏罗纪世界2》正式预告要来了'
+  },
+];
+const Demo = () => (
+  <List
+    header={<div>列表头部</div>}
+    footer={<div>列表尾部</div>}
+    dataSource={data}
+    renderItem={(item, index) => {
+      return (
+        <List.Item {...item}>
+          {item.content}
+        </List.Item>
+      );
+    }}
+  />
+)
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
 ## List
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -232,6 +275,7 @@ ReactDOM.render(<Demo />, _mount_);
 | 参数 | 说明 | 类型 | 默认值 |
 | --------- | -------- | --------- | -------- |
 | active | 激活 | Boolean | `false` |
+| extra | 额外内容，展示右侧内容 | React.ReactNode | `false` |
 | disabled | 禁用 | Boolean | `false` |
 | href | 规定链接的目标，`true` 的时候是个超链接，值为`String`的时候，在超链接上加 `href` 的值就是你传进来的 `href`值，此时将可以设置标签`<a>`的所有属性。  | Boolean/String | `false` |
 

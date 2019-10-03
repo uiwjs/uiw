@@ -26,6 +26,8 @@
     }
   }
   &-item {
+    display: flex;
+    align-items: center;
     &.w-disabled {
       cursor: not-allowed;
       text-decoration: none;
@@ -35,6 +37,13 @@
     &.w-active {
       background: #f8f8f9;
       color: #007bff;
+    }
+    &-main {
+      display: block;
+      flex: 1;
+    }
+    &-extra {
+      margin-left: 40px;
     }
   }
   a&-item {
