@@ -8,6 +8,7 @@ export interface IListProps<T> extends IProps, HTMLDivProps {
   bordered?: boolean;
   striped?: boolean;
   noHover?: boolean;
+  active?: boolean;
   header?: React.ReactNode;
   footer?: React.ReactNode;
   size?: 'small' | 'default' | 'large';
@@ -21,13 +22,14 @@ export default class List<T> extends React.Component<IListProps<T>> {
     bordered: true,
     striped: false,
     noHover: false,
+    active: false,
     size: 'default',
     renderItem: () => null,
     dataSource: [],
   }
   static Item = Item;
   render() {
-    const { prefixCls, className, children, bordered, noHover, striped, header, footer, size, dataSource, renderItem, ...resetProps } = this.props;
+    const { prefixCls, className, children, bordered, noHover, active, striped, header, footer, size, dataSource, renderItem, ...resetProps } = this.props;
     let items: React.ReactNode;
     if (dataSource && dataSource.length > 0) {
       items = dataSource.map((item: any, index: number) => renderItem!(item, index));
@@ -42,6 +44,7 @@ export default class List<T> extends React.Component<IListProps<T>> {
     const classString = classnames(`${prefixCls}`, className, {
       [`${prefixCls}-striped`]: striped,
       [`${prefixCls}-no-hover`]: noHover,
+      [`${prefixCls}-active`]: active,
       [`${prefixCls}-bordered`]: bordered,
       [`${prefixCls}-size-${size}`]: size && size !== 'default',
     });

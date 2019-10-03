@@ -220,6 +220,7 @@ ReactDOM.render(<Demo />, _mount_);
 | size | 设置行尺寸，分别大、中、小三种尺寸 | Enum{`small`,`default`,`large`} | `default` |
 | bordered | 是否展示边框 | Boolean | `true` |
 | noHover | 取消鼠标移过时边框阴影 | Boolean | `false` |
+| active | 激活列表，鼠标经过边框阴影效果 | Boolean | `false` |
 | striped | 斑马线效果 | Boolean | `false` |
 | footer | 列表底部 | String/ReactNode | - |
 | header | 列表头部 | String/ReactNode | - |
