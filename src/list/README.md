@@ -275,7 +275,7 @@ ReactDOM.render(<Demo />, _mount_);
 | 参数 | 说明 | 类型 | 默认值 |
 | --------- | -------- | --------- | -------- |
 | active | 激活 | Boolean | `false` |
-| extra | 额外内容，展示右侧内容 | React.ReactNode | `false` |
+| extra | 额外内容，展示右侧内容 | React.ReactNode | - |
 | disabled | 禁用 | Boolean | `false` |
 | href | 规定链接的目标，`true` 的时候是个超链接，值为`String`的时候，在超链接上加 `href` 的值就是你传进来的 `href`值，此时将可以设置标签`<a>`的所有属性。  | Boolean/String | `false` |
 
