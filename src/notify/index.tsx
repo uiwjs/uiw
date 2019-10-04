@@ -3,20 +3,19 @@ import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import { ButtonType } from '../button';
 import Container, { Placement, ContainerNotifys } from './Container';
+import { IAlertProps } from '../alert';
 import './style/index.less';
 
 function randomid() {
   return parseInt(String(Math.random() * 1e15), 10).toString(36);
 }
 
-export interface NotificationCreateProps {
+export interface NotificationCreateProps extends Omit<IAlertProps, 'type'> {
   placement?: Placement;
   description?: React.ReactNode;
   type?: ButtonType | 'info' | 'error' | 'open';
-  icon?: JSX.Element | string | false | null;
   duration?: number;
   key?: string;
-  isOpen?: boolean;
   willUnmount?: (props: NotificationCreateProps, notifys: ContainerNotifys) => void;
 }
 
