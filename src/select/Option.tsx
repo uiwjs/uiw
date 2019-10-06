@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Option = ({ children, ...other }: React.InputHTMLAttributes<HTMLOptionElement>) => <option {...other}>{children}</option>;
+const Option = (props: React.InputHTMLAttributes<HTMLOptionElement>) => <option {...props} />;
 
 export default Option;

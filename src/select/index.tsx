@@ -20,11 +20,7 @@ export default class Select extends React.Component<ISelectProps> {
     const { prefixCls, className, size, ...resetProps } = this.props;
     const cls = classnames(prefixCls, className, { [`${prefixCls}-${size}`]: size });
     return (
-      <select {...resetProps} className={cls}>
-        {React.Children.map(this.props.children, (element: any) => {
-          return React.cloneElement(element, Object.assign({}, element.props, {}));
-        })}
-      </select>
+      <select {...resetProps} className={cls} />
     );
   }
 }
