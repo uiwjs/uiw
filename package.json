@@ -60,7 +60,7 @@
     "@types/react-transition-group": "^4.2.2",
     "@uiw/copy-to-clipboard": "^1.0.10",
     "@uiw/formatter": "^1.2.3",
-    "@uiw/icons": "^2.1.0",
+    "@uiw/icons": "^2.2.1",
     "classnames": "^2.2.6",
     "react-transition-group": "^4.3.0"
   },
