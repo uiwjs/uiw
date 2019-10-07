@@ -83,7 +83,7 @@ export default class Modal extends React.PureComponent<IModalProps> {
               [`${prefixCls}-shown-title`]: title,
               [`${prefixCls}-shown-icon`]: icon,
             })}
-            style={{ maxWidth, width }}
+            style={{ maxWidth, minWidth, width }}
           >
             {(title || icon) && (
               <div className={`${prefixCls}-header`}>
