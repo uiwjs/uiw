@@ -5,10 +5,10 @@ import Input from '../input';
 import { IProps } from '../utils/props';
 import './style/form.less';
 
-export interface IFormProps extends IProps, Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onChange' | 'onSubmit'> {
+export interface IFormProps<T> extends IProps, Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onChange' | 'onSubmit'> {
   prefixCls?: string;
   fields?: {
-    [key: string]: IFormFieldsProps;
+    [key: string]: IFormFieldsProps<T>;
   };
   onSubmit?: (state: IFormSubmitProps) => any;
   afterSubmit?: (result: IFormAfterSubmitProps) => any;
@@ -29,10 +29,10 @@ export interface IFormState {
   },
 }
 
-export interface IFormFieldsProps {
+export interface IFormFieldsProps<T> {
   name?: string;
   labelFor?: string;
-  initialValue?: string | number;
+  initialValue?: string | number | T;
   label?: React.ReactNode;
   labelClassName?: string;
   labelStyle?: React.CSSProperties;
@@ -72,9 +72,11 @@ export type IFormElementProps = {
 };
 
 const isPromise = (promise: Promise<any>) => promise && typeof promise.then === 'function';
-const newInitialValue = (value: IFormFieldsProps['initialValue']) => ((value === null || value === undefined) ? '' : value);
+function newInitialValue<T>(value: IFormFieldsProps<T>['initialValue']) {
+  return ((value === null || value === undefined) ? '' : value);
+}
 const noop = () => undefined;
-const newFormState = (fields: IFormProps['fields'], cb: (porps: IFormFieldsProps) => { initialValue: IFormFieldsProps['initialValue'], currentValue: IFormFieldsProps['initialValue']}) => {
+function newFormState<T>(fields: IFormProps<T>['fields'], cb: (porps: IFormFieldsProps<T>) => { initialValue: IFormFieldsProps<T>['initialValue'], currentValue: IFormFieldsProps<T>['initialValue'] }): IFormState {
   const state: IFormState = { initial: {}, current: {}, submitting: false, errors: {} };
   for (const name in fields) {
     const props = fields[name];
@@ -84,10 +86,10 @@ const newFormState = (fields: IFormProps['fields'], cb: (porps: IFormFieldsProps
     state.current[name] = currentValue;
   }
   return state;
-};
+}
 
-export default class Form extends React.Component<IFormProps, IFormState> {
-  public static defaultProps: IFormProps = {
+export default class Form<T> extends React.Component<IFormProps<T>, IFormState> {
+  public static defaultProps = {
     prefixCls: 'w-form',
     onSubmitError: () => ({}),
     onSubmit: noop,
@@ -97,14 +99,14 @@ export default class Form extends React.Component<IFormProps, IFormState> {
     children: noop,
   }
   public state: IFormState;
-  constructor(props: IFormProps) {
+  constructor(props: IFormProps<T>) {
     super(props);
     this.state = newFormState(props.fields, ({ initialValue }) => {
       initialValue = newInitialValue(initialValue);
       return { initialValue, currentValue: initialValue };
     });
   }
-  shouldComponentUpdate(nextProps: IFormProps, nextState: IFormState): boolean {
+  shouldComponentUpdate(nextProps: IFormProps<T>, nextState: IFormState): boolean {
     const isStateChange = nextState !== this.state;
     const { current, initial } = nextState;
     const { initial: newInitial, current: newCurrent } = newFormState(nextProps.fields, ({ name, initialValue }) => {
@@ -164,7 +166,7 @@ export default class Form extends React.Component<IFormProps, IFormState> {
     let passesValidators = true;
     for (const name in fields) {
       if (Object.prototype.hasOwnProperty.call(fields, name)) {
-        const props: IFormFieldsProps = fields[name];
+        const props: IFormFieldsProps<T> = fields[name];
         if (!props) continue;
         if (props.validator && props.validator(current[name])) {
           passesValidators = false;
@@ -176,7 +178,7 @@ export default class Form extends React.Component<IFormProps, IFormState> {
   }
   onChange = (
     name: string,
-    validator: IFormFieldsProps['validator'],
+    validator: IFormFieldsProps<T>['validator'],
     element?: React.ReactElement,
     cb?: (env: React.BaseSyntheticEvent<HTMLInputElement>) => void
   ) => (env: React.BaseSyntheticEvent<HTMLInputElement>, list?: string[]) => {
@@ -204,7 +206,7 @@ export default class Form extends React.Component<IFormProps, IFormState> {
     else this.setState(nextState);
     onChange && onChange({ ...this.state, ...nextState });
   };
-  controlField = ({ children = <Input type="text" />, validator, name }: IFormFieldsProps) => {
+  controlField = ({ children = <Input type="text" />, validator, name }: IFormFieldsProps<T>) => {
     const element = typeof children !== 'function'
       ? children
       : children({
@@ -236,7 +238,7 @@ export default class Form extends React.Component<IFormProps, IFormState> {
       const props = fields[name];
       if (!props) continue;
       const error = this.state.errors[name];
-      const childrenField: IFormFieldsProps = this.controlField({ ...props, name });
+      const childrenField: IFormFieldsProps<T> = this.controlField({ ...props, name });
       const help = error || props.help;
       const labelFor = props.labelFor;
       formUnits[name] = (
