@@ -3,20 +3,19 @@ import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import { ButtonType } from '../button';
 import Container, { Placement, ContainerNotifys } from './Container';
+import { IAlertProps } from '../alert';
 import './style/index.less';
 
 function randomid() {
   return parseInt(String(Math.random() * 1e15), 10).toString(36);
 }
 
-export interface NotificationCreateProps {
+export interface NotificationCreateProps extends Omit<IAlertProps, 'type'> {
   placement?: Placement;
   description?: React.ReactNode;
   type?: ButtonType | 'info' | 'error' | 'open';
-  icon?: JSX.Element | string | false | null;
   duration?: number;
   key?: string;
-  isOpen?: boolean;
   willUnmount?: (props: NotificationCreateProps, notifys: ContainerNotifys) => void;
 }
 
@@ -26,13 +25,12 @@ export type NotifysDom = { [key: string]: HTMLDivElement; }
 const notifys: Notifys  = {};
 const notifysDom: NotifysDom = {};
 
-
 export interface NotificationProps {
   (props: NotificationCreateProps, type: NotificationCreateProps['type']): void;
   [key: string]: () => void;
 }
 
-export default function NotificationCreate(props: NotificationCreateProps, type: NotificationCreateProps['type'] = 'open') {
+function NotificationCreate(props: NotificationCreateProps, type: NotificationCreateProps['type'] = 'open') {
   if (!props.placement) {
     props.placement = 'topRight';
   }
@@ -89,3 +87,13 @@ export default function NotificationCreate(props: NotificationCreateProps, type:
     return NotificationCreate(options, type as NotificationCreateProps['type']);
   };
 });
+
+export interface NotificationApi {
+  open(option: NotificationCreateProps): void;
+  success(option: NotificationCreateProps): void;
+  warning(option: NotificationCreateProps): void;
+  info(option: NotificationCreateProps): void;
+  error(option: NotificationCreateProps): void;
+}
+
+export default NotificationCreate as unknown as NotificationApi;

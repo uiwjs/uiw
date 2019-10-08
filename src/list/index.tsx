@@ -4,41 +4,47 @@ import Item from './Item';
 import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface IListProps extends IProps, HTMLDivProps {
+export interface IListProps<T> extends IProps, HTMLDivProps {
   bordered?: boolean;
   striped?: boolean;
+  noHover?: boolean;
+  active?: boolean;
   header?: React.ReactNode;
   footer?: React.ReactNode;
   size?: 'small' | 'default' | 'large';
   renderItem?: (item: any, idx: number) => React.ReactNode;
-  dataSource?: {[key: string]: any}[];
+  dataSource?: T[];
 }
 
-export default class List extends React.Component<IListProps> {
-  public static defaultProps: IListProps = {
+export default class List<T> extends React.Component<IListProps<T>> {
+  public static defaultProps = {
     prefixCls: 'w-list',
     bordered: true,
     striped: false,
+    noHover: false,
+    active: false,
     size: 'default',
     renderItem: () => null,
     dataSource: [],
   }
   static Item = Item;
   render() {
-    const { prefixCls, className, children, bordered, striped, header, footer, size, dataSource, renderItem, ...resetProps } = this.props;
+    const { prefixCls, className, children, bordered, noHover, active, striped, header, footer, size, dataSource, renderItem, ...resetProps } = this.props;
     let items: React.ReactNode;
     if (dataSource && dataSource.length > 0) {
       items = dataSource.map((item: any, index: number) => renderItem!(item, index));
     } else {
       items = children;
     }
-    const childrenList = React.Children.map(items, (child: React.ReactNode, index) => (
+    let childrenList = React.Children.map(items, (child: React.ReactNode, index) => (
       React.isValidElement(child) && React.cloneElement((child as React.ReactElement), {
         key: index,
       })
-    )).filter(Boolean);
+    ));
     const classString = classnames(`${prefixCls}`, className, {
       [`${prefixCls}-striped`]: striped,
+      [`${prefixCls}-no-hover`]: noHover,
+      [`${prefixCls}-active`]: active,
       [`${prefixCls}-bordered`]: bordered,
       [`${prefixCls}-size-${size}`]: size && size !== 'default',
     });

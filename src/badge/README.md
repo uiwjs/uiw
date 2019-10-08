@@ -124,7 +124,7 @@ ReactDOM.render(
       数据查询
     </Badge>
     <Badge dot count={4}>
-      <Icon type='message-o' />
+      <Icon type='mail-o' />
     </Badge>
   </div>,
   _mount_

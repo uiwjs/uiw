@@ -2,20 +2,22 @@ import React from 'react';
 import classnames from 'classnames';
 import { IProps, HTMLDivProps, HTMLAnchorProps } from '../utils/props';
 
-export interface IListItem extends IProps, HTMLDivProps {
+type AnchorProps = 'download' | 'href' | 'hrefLang' | 'media' | 'ping' | 'rel' | 'target' | 'type' | 'referrerPolicy';
+export interface IListItem extends IProps, HTMLDivProps, Pick<HTMLAnchorProps, AnchorProps> {
   disabled?: boolean;
   active?: boolean;
+  extra?: React.ReactNode;
   href?: string;
 }
 
-export default class Item extends React.Component<IListItem & HTMLAnchorProps> {
-  public static defaultProps: IListItem = {
+export default class Item extends React.Component<IListItem> {
+  public static defaultProps = {
     prefixCls: 'w-list-item',
     disabled: false,
     active: false,
   }
   render() {
-    const { prefixCls, className, children, active, ...resetProps } = this.props;
+    const { prefixCls, className, children, extra, active, ...resetProps } = this.props;
     const cls = classnames(`${prefixCls}`, className, {
       'w-disabled': this.props.disabled,
       'w-active': active,
@@ -25,6 +27,11 @@ export default class Item extends React.Component<IListItem & HTMLAnchorProps> {
     return React.createElement(tagName, {
       className: cls,
       ...resetProps,
-    }, children);
+    }, !extra || resetProps.href ? children :(
+      <>
+        <div className={`${prefixCls}-main`}>{children}</div>
+        <div className={`${prefixCls}-extra`}>{extra}</div>
+      </>
+    ));
   }
 }

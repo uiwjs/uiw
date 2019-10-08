@@ -181,7 +181,7 @@ const Demo = () => (
         />
       </Col>
     </Row>
-    <Row gutter={10}>
+    <Row gutter={10} style={{ marginBottom: 10 }}>
       <Col fixed>
         <Input
           preIcon="like-o"
@@ -197,6 +197,22 @@ const Demo = () => (
       </Col>
       <Col fixed>
         <Input
+          placeholder="请输入内容"
+          addonAfter={<Button size="small" type="warning">按钮</Button>}
+        />
+      </Col>
+    </Row>
+    <Row gutter={10}>
+      <Col fixed>
+        <Input size="small" preIcon="like-o" placeholder="请输入密码" />
+      </Col>
+      <Col fixed>
+        <Input size="small" placeholder="请输入内容" />
+      </Col>
+      <Col fixed>
+        <Input
+          size="small"
+          preIcon="like-o"
           placeholder="请输入内容"
           addonAfter={<Button size="small" type="warning">按钮</Button>}
         />

@@ -21,6 +21,7 @@ export interface IModalProps extends IProps, IOverlayProps {
   isCloseButtonShown?: boolean;
   isOpen?: boolean;
   maxWidth?: number;
+  minWidth?: number;
   width?: number;
   onCancel?: (evn: React.MouseEvent<HTMLButtonElement> & MouseEvent) => void;
   onConfirm?: (evn: React.MouseEvent<HTMLButtonElement> & MouseEvent) => void;
@@ -36,6 +37,7 @@ export default class Modal extends React.PureComponent<IModalProps> {
     isCloseButtonShown: true,
     isOpen: false,
     maxWidth: 500,
+    minWidth: 320,
     type: 'light',
     onCancel: noop,
     onConfirm: noop,
@@ -66,7 +68,7 @@ export default class Modal extends React.PureComponent<IModalProps> {
   }
   onClose = (e: any) => this.overlay.onClosed(e);
   render() {
-    const { prefixCls, className, useButton, autoFocus, title, cancelText, content, confirmText, type, icon, maxWidth, width, isCloseButtonShown, ...other } = this.props;
+    const { prefixCls, className, useButton, autoFocus, title, cancelText, content, confirmText, type, icon, maxWidth, minWidth, width, isCloseButtonShown, ...other } = this.props;
     const cls = classnames(prefixCls, className, { [`${type}`]: type });
     return (
       <Overlay
@@ -81,7 +83,7 @@ export default class Modal extends React.PureComponent<IModalProps> {
               [`${prefixCls}-shown-title`]: title,
               [`${prefixCls}-shown-icon`]: icon,
             })}
-            style={{ maxWidth, width }}
+            style={{ maxWidth, minWidth, width }}
           >
             {(title || icon) && (
               <div className={`${prefixCls}-header`}>

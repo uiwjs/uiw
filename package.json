@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "3.5.3",
+  "version": "3.7.1",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiwjs.github.io",
   "sideEffects": false,
@@ -60,7 +60,7 @@
     "@types/react-transition-group": "^4.2.2",
     "@uiw/copy-to-clipboard": "^1.0.10",
     "@uiw/formatter": "^1.2.3",
-    "@uiw/icons": "^2.0.0",
+    "@uiw/icons": "^2.2.1",
     "classnames": "^2.2.6",
     "react-transition-group": "^4.3.0"
   },
