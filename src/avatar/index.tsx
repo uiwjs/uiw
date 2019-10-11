@@ -2,8 +2,9 @@ import React from 'react';
 import classnames from 'classnames';
 import Icon from '../icon';
 import './style/index.less';
+import { HTMLSpanProps } from '../utils/props';
 
-export interface IAvatarProps {
+export interface IAvatarProps extends HTMLSpanProps {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;
