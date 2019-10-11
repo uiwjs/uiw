@@ -140,12 +140,13 @@ export default class Overlay extends React.Component<IOverlayProps, IOverlayStat
   }
   public render() {
     const { prefixCls, className, style, isOpen, maskClosable, usePortal, children, unmountOnExit,
-      timeout, transitionName, hasBackdrop, portalProps, backdropProps = {}, dialogProps, onClose, ...otherProps } = this.props;
+      timeout, transitionName, hasBackdrop, portalProps, backdropProps = {}, dialogProps = {}, onClose, ...otherProps } = this.props;
     const { onOpening, onOpened, onClosing } = this.props;
     const decoratedChild =
       typeof children === 'object' ? (
         cloneElement(children, {
           ...dialogProps,
+          style: { ...children.props.style, ...dialogProps.style},
           className: classnames(children.props.className, `${prefixCls}-content`),
           tabIndex: 0,
         })
