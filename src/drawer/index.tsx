@@ -4,11 +4,13 @@ import Overlay, { IOverlayProps } from '../overlay';
 import Icon from '../icon';
 import Button from '../button';
 import './style/index.less';
+import { HTMLDivProps } from '../utils/props';
 
 export interface IDrawerProps extends IOverlayProps {
   footer?: React.ReactNode;
   icon?: JSX.Element | string | false | null;
   title?: React.ReactNode;
+  bodyProps?: HTMLDivProps;
   placement?: 'top' | 'right' | 'bottom' | 'left';
   size?: number;
   isCloseButtonShown?: boolean;
@@ -26,7 +28,7 @@ export default class Drawer extends React.PureComponent<IDrawerProps> {
     maskClosable: true,
   }
   render() {
-    const { prefixCls, className, style, placement, size, title, footer, icon, isCloseButtonShown, ...overlayProps } = this.props;
+    const { prefixCls, className, style, placement, size, title, footer, icon, isCloseButtonShown, bodyProps, ...overlayProps } = this.props;
     const cls = classnames(className, prefixCls, `${placement}`);
     const styl = { ...style, [/^(top|bottom)$/.test(placement!) ? 'height' : 'width']: size };
     return (
@@ -40,7 +42,7 @@ export default class Drawer extends React.PureComponent<IDrawerProps> {
             </div>
           )}
           <div className={`${prefixCls}-body`}>
-            <div className={`${prefixCls}-body-inner`}>
+            <div className={`${prefixCls}-body-inner`} {...bodyProps}>
               {this.props.children}
             </div>
           </div>
