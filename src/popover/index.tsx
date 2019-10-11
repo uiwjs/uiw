@@ -28,16 +28,10 @@ export default class Popover extends React.Component<IPopoverProps> {
     );
   }
   render() {
-    const { prefixCls, className, placement, content, isOpen, trigger, delay, usePortal, visibleArrow, onVisibleChange, ...other } = this.props;
+    const { prefixCls, className, content, visibleArrow, ...other } = this.props;
     const cls = classnames(prefixCls, className, { 'no-arrow': !visibleArrow });
     return (
       <OverlayTrigger
-        usePortal={usePortal}
-        isOpen={isOpen}
-        trigger={trigger}
-        delay={delay}
-        onVisibleChange={onVisibleChange}
-        placement={placement}
         {...other}
         overlay={
           <div className={cls}>
