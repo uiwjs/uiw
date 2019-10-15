@@ -28,9 +28,10 @@ export default class Row extends React.Component<IRowProps> {
     const gutterStyl = !gutter ? {} : { paddingLeft: gutter / 2, paddingRight: gutter / 2 };
     return (
       <div {...props} className={cls}>
-        {React.Children.map(this.props.children, (element: any) => {
-          return React.cloneElement(element, Object.assign({}, element.props, {
-            style: { ...element.props.style, ...gutterStyl },
+        {React.Children.toArray(this.props.children).map((child) => {
+          if (!React.isValidElement(child)) return child;
+          return React.cloneElement(child, Object.assign({}, child.props, {
+            style: { ...child.props.style, ...gutterStyl },
           }));
         })}
       </div>
