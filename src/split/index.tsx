@@ -52,7 +52,7 @@ export default class Split extends React.Component<ISplitProps, ISplitState> {
     window.removeEventListener('mousemove', this.onDragging, false);
     window.removeEventListener('mouseup', this.onDragEnd, false);
   }
-  onMouseDown(paneNumber: number, env: React.MouseEvent<HTMLDivElement>) {
+  onMouseDown(paneNumber: number, env: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     if (!env.target || !this.warpper) {
       return;
     }
@@ -60,7 +60,7 @@ export default class Split extends React.Component<ISplitProps, ISplitState> {
     this.startX = env.clientX;
     this.startY = env.clientY;
     this.move = true;
-    this.target = env.target as HTMLDivElement;
+    this.target = (env.target as HTMLDivElement).parentNode as HTMLDivElement;
     const prevTarget = this.target.previousElementSibling;
     const nextTarget = this.target.nextElementSibling;
     this.boxWidth = this.warpper.clientWidth;
@@ -143,15 +143,13 @@ export default class Split extends React.Component<ISplitProps, ISplitState> {
             className: classnames(`${prefixCls}-bar`, {
               [`${prefixCls}-line-bar`]: lineBar,
             }),
-            onMouseDown: this.onMouseDown.bind(this, idx + 1),
           };
           if (disable === true || (disable && disable.includes((idx + 1) as never))) {
             barProps.className = classnames(barProps.className, { disable });
-            delete barProps.onMouseDown;
           }
           return (
             <React.Fragment>
-              {idx !== 0 && visiableBar && React.createElement('div', { ...barProps })}
+              {idx !== 0 && visiableBar && React.createElement('div', { ...barProps }, <div onMouseDown={this.onMouseDown.bind(this, idx + 1)} />)}
               {React.cloneElement(element, { ...props })}
             </React.Fragment>
           );
