@@ -115,9 +115,9 @@
 .w-split-vertical > .w-split-line-bar div:hover,
 .w-split-vertical > .w-split-line-bar div:active,
 .w-split-vertical > .w-split-line-bar div:focus {
-  margin-top: -16px;
-  margin-bottom: -16px;
-  height: 16px;
+  margin-top: -6px;
+  margin-bottom: -6px;
+  height: 6px;
 }
 .w-split-vertical > .w-split-line-bar div:hover::after,
 .w-split-vertical > .w-split-line-bar div:active::after,
@@ -141,9 +141,9 @@
 .w-split-horizontal > .w-split-line-bar div:hover,
 .w-split-horizontal > .w-split-line-bar div:active,
 .w-split-horizontal > .w-split-line-bar div:focus {
-  margin-left: -16px;
-  margin-right: -16px;
-  width: 16px;
+  margin-left: -6px;
+  margin-right: -6px;
+  width: 6px;
 }
 .w-split-horizontal > .w-split-line-bar div:hover::after,
 .w-split-horizontal > .w-split-line-bar div:active::after,
