@@ -21,6 +21,14 @@ export default class Input extends React.Component<IInputProps> {
   private addonRef = React.createRef<HTMLDivElement>();
   private inputRef = React.createRef<HTMLInputElement>();
   componentDidMount() {
+    this.computedInputPadding();
+  }
+  UNSAFE_componentWillReceiveProps(nextProps: IInputProps) {
+    if (nextProps !== this.props) {
+      this.computedInputPadding();
+    }
+  }
+  computedInputPadding() {
     if (this.addonRef.current && this.inputRef.current) {
       const input = window.getComputedStyle(this.addonRef.current, null);
       this.inputRef.current.style.paddingRight = `${this.addonRef.current.clientWidth + parseInt((input.right as string), 10) * 2}px`;
