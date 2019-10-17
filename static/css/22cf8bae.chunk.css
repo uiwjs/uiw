@@ -5,6 +5,7 @@
 }
 .w-split-bar {
   z-index: 1;
+  position: relative;
   justify-content: center;
   display: flex;
   background: #f8f8f9;
@@ -90,6 +91,13 @@
 .w-split-vertical > .w-split-bar::after {
   margin-left: 3px;
 }
+.w-split-large-bar div {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
 .w-split-vertical > .w-split-line-bar:hover::before,
 .w-split-horizontal > .w-split-line-bar:hover::before {
   border-color: #008EF0;
@@ -111,15 +119,9 @@
   margin-bottom: -16px;
   height: 16px;
 }
-.w-split-vertical > .w-split-line-bar div:hover:hover::after,
-.w-split-vertical > .w-split-line-bar div:active:hover::after,
-.w-split-vertical > .w-split-line-bar div:focus:hover::after,
-.w-split-vertical > .w-split-line-bar div:hover:active::after,
-.w-split-vertical > .w-split-line-bar div:active:active::after,
-.w-split-vertical > .w-split-line-bar div:focus:active::after,
-.w-split-vertical > .w-split-line-bar div:hover:focus::after,
-.w-split-vertical > .w-split-line-bar div:active:focus::after,
-.w-split-vertical > .w-split-line-bar div:focus:focus::after {
+.w-split-vertical > .w-split-line-bar div:hover::after,
+.w-split-vertical > .w-split-line-bar div:active::after,
+.w-split-vertical > .w-split-line-bar div:focus::after {
   background-color: #008EF0;
 }
 .w-split-vertical > .w-split-line-bar div::after {
@@ -143,15 +145,9 @@
   margin-right: -16px;
   width: 16px;
 }
-.w-split-horizontal > .w-split-line-bar div:hover:hover::after,
-.w-split-horizontal > .w-split-line-bar div:active:hover::after,
-.w-split-horizontal > .w-split-line-bar div:focus:hover::after,
-.w-split-horizontal > .w-split-line-bar div:hover:active::after,
-.w-split-horizontal > .w-split-line-bar div:active:active::after,
-.w-split-horizontal > .w-split-line-bar div:focus:active::after,
-.w-split-horizontal > .w-split-line-bar div:hover:focus::after,
-.w-split-horizontal > .w-split-line-bar div:active:focus::after,
-.w-split-horizontal > .w-split-line-bar div:focus:focus::after {
+.w-split-horizontal > .w-split-line-bar div:hover::after,
+.w-split-horizontal > .w-split-line-bar div:active::after,
+.w-split-horizontal > .w-split-line-bar div:focus::after {
   background-color: #008EF0;
 }
 .w-split-horizontal > .w-split-line-bar div::after {
