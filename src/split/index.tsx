@@ -142,6 +142,7 @@ export default class Split extends React.Component<ISplitProps, ISplitState> {
           const barProps = {
             className: classnames(`${prefixCls}-bar`, {
               [`${prefixCls}-line-bar`]: lineBar,
+              [`${prefixCls}-large-bar`]: !lineBar,
             }),
           };
           if (disable === true || (disable && disable.includes((idx + 1) as never))) {

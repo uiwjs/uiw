@@ -6,6 +6,7 @@
   flex-direction: row;
   &-bar {
     z-index: 1;
+    position: relative;
     justify-content: center;
     display: flex;
     background: rgb(248, 248, 249);
@@ -85,6 +86,15 @@
       margin-left: 3px;
     }
   }
+  &-large-bar {
+    div {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+    }
+  }
   &-vertical > &-line-bar:hover,
   &-horizontal > &-line-bar:hover {
     &::before {
@@ -103,7 +113,7 @@
         margin-top: -16px;
         margin-bottom: -16px;
         height: 16px;
-        &:hover::after, &:active::after, &:focus::after {
+        &::after {
           background-color: #008EF0;
         }
       }
@@ -125,7 +135,7 @@
         margin-left: -16px;
         margin-right: -16px;
         width: 16px;
-        &:hover::after, &:active::after, &:focus::after {
+        &::after {
           background-color: #008EF0;
         }
       }
