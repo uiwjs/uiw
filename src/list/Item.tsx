@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { IProps, HTMLDivProps, HTMLAnchorProps } from '../utils/props';
 
 type AnchorProps = 'download' | 'href' | 'hrefLang' | 'media' | 'ping' | 'rel' | 'target' | 'type' | 'referrerPolicy';
+
 export interface IListItem extends IProps, HTMLDivProps, Pick<HTMLAnchorProps, AnchorProps> {
   disabled?: boolean;
   active?: boolean;
@@ -11,12 +12,12 @@ export interface IListItem extends IProps, HTMLDivProps, Pick<HTMLAnchorProps, A
 }
 
 export default class Item extends React.Component<IListItem> {
-  public static defaultProps = {
+  public static defaultProps: IListItem = {
     prefixCls: 'w-list-item',
     disabled: false,
     active: false,
   }
-  render() {
+  render(): JSX.Element {
     const { prefixCls, className, children, extra, active, ...resetProps } = this.props;
     const cls = classnames(`${prefixCls}`, className, {
       'w-disabled': this.props.disabled,
