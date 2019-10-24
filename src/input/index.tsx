@@ -1,18 +1,18 @@
 import React from 'react';
 import classnames from 'classnames';
-import Icon, { Type } from '../icon';
+import Icon, { IIconProps } from '../icon';
 import { IProps, HTMLInputProps } from '../utils/props';
 import './style/input.less';
 
-export interface IInputProps extends IProps, Omit<HTMLInputProps, 'size'> {
-  preIcon?: Type;
+export interface IInputProps<T> extends IProps, Omit<HTMLInputProps, 'size'> {
+  preIcon?: IIconProps<T>['type'];
   type?: string;
   addonAfter?: React.ReactNode;
   size?: 'large' | 'default' | 'small';
 }
 
-export default class Input extends React.Component<IInputProps> {
-  public static defaultProps: IInputProps = {
+export default class Input<T> extends React.Component<IInputProps<T>> {
+  public static defaultProps: IInputProps<{}> = {
     prefixCls: 'w-input',
     preIcon: null,
     type: 'text',
@@ -23,7 +23,7 @@ export default class Input extends React.Component<IInputProps> {
   componentDidMount() {
     this.computedInputPadding();
   }
-  UNSAFE_componentWillReceiveProps(nextProps: IInputProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: IInputProps<T>) {
     if (nextProps !== this.props) {
       this.computedInputPadding();
     }

@@ -1,4 +1,9 @@
 import React from 'react';
-import Icon, { Type } from '../icon';
+import Icon, { IIconProps } from '../icon';
 
-export const IconProgress = (props: { type: Type }) => <Icon type={props.type} />;
+// export const IconProgress<T> = (props: { type: IIconProps<T>['type'] }) => <Icon type={props.type} />;
+
+
+export function IconProgress<T>(props: {type: IIconProps<T>['type'] }): JSX.Element {
+  return <Icon type={props.type} /> 
+}

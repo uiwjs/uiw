@@ -8,7 +8,7 @@ import { formatter } from '../';
 import { IProps } from '../utils/props';
 import './style/index.less';
 
-export interface ITimePickerProps extends IProps, Omit<IInputProps, 'onChange' | 'value'> {
+export interface ITimePickerProps<T> extends IProps, Omit<IInputProps<T>, 'onChange' | 'value'> {
   value?: Date;
   format?: string;
   popoverProps?: IPopoverProps;
@@ -26,20 +26,20 @@ export interface ITimePickerState {
   date: Date | '';
 }
 
-export default class TimePicker extends React.Component<ITimePickerProps, ITimePickerState> {
+export default class TimePicker<T> extends React.Component<ITimePickerProps<T>, ITimePickerState> {
   public state: ITimePickerState;
-  public static defaultProps: ITimePickerProps = {
+  public static defaultProps: ITimePickerProps<{}> = {
     prefixCls: 'w-timepicker',
     format: 'HH:mm:ss',
     allowClear: true,
   }
-  constructor(props: ITimePickerProps) {
+  constructor(props: ITimePickerProps<T>) {
     super(props);
     this.state = {
       date: (props.value || '') as Date,
     };
   }
-  UNSAFE_componentWillReceiveProps(nextProps: ITimePickerProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: ITimePickerProps<T>) {
     if (nextProps.value !== this.props.value) {
       this.setState({ date: (nextProps.value) as Date });
     }
@@ -63,7 +63,7 @@ export default class TimePicker extends React.Component<ITimePickerProps, ITimeP
     const { date } = this.state;
     const timeProps = { disabledHours, disabledMinutes, disabledSeconds, hideDisabled, precision };
     const inputValue = date ? formatter(format as string, date) : '';
-    const props: IInputProps = { ...inputProps, value: inputValue };
+    const props: IInputProps<T> = { ...inputProps, value: inputValue };
     const datePickerTime = date || new Date();
     if (allowClear && inputValue !== '' && !!inputValue) {
       props.addonAfter = <Button className={`${prefixCls}-close-btn`} icon="close" disabled={props.disabled} onClick={this.onClear} size={props.size} basic type="light" />;

@@ -1,13 +1,14 @@
 import React from 'react';
 import classnames from 'classnames';
 import { IconProgress } from './utils';
-import { IProgressCircleProps } from './Circle';
+import { ProgressCircleProps } from './Circle';
 import './style/index.less';
 import './style/line.less';
 
-export interface IProgressLineProps extends IProgressCircleProps {}
-export default class Line extends React.Component<IProgressLineProps> {
-  public static defaultProps: IProgressLineProps = {
+export interface ProgressLineProp<T> extends ProgressCircleProps<T> {}
+
+export default class Line<T> extends React.Component<ProgressLineProp<T>> {
+  public static defaultProps: ProgressLineProp<{}> = {
     prefixCls: 'w-progress',
     showText: true, // 是否显示进度条文字内容
     percent: 0, // 百分比（必填）

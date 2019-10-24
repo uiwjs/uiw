@@ -3,19 +3,19 @@ import classnames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import { TransitionStatus } from 'react-transition-group/Transition';
 import { IProps, HTMLDivProps } from '../utils/props';
-import Icon, { Type } from '../icon';
+import Icon, { IIconProps } from '../icon';
 
-export interface IPanelProps extends IProps, HTMLDivProps {
+export interface IPanelProps<T> extends IProps, HTMLDivProps {
   disabled?: boolean;
   showArrow?: boolean;
   isActive?: boolean;
   header?: React.ReactNode;
-  icon?: Type;
+  icon?: IIconProps<T>['type'];
   onItemClick?: (evn: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-export default class Panel extends React.Component<IPanelProps> {
-  public static defaultProps: IPanelProps = {
+export default class Panel<T> extends React.Component<IPanelProps<T>> {
+  public static defaultProps: IPanelProps<{}> = {
     disabled: false,
     icon: 'down',
     prefixCls: 'w-collapse',

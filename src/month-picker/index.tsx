@@ -10,7 +10,7 @@ import PickerCaption, { CaptionType } from '../date-picker/PickerCaption';
 import './style/index.less';
 import { IProps } from '../utils/props';
 
-export interface IMonthPickerProps extends IProps, Omit<IInputProps, 'value' | 'onChange'> {
+export interface IMonthPickerProps<T> extends IProps, Omit<IInputProps<T>, 'value' | 'onChange'> {
   popoverProps?: IPopoverProps;
   value?: Date | string;
   format?: string,
@@ -27,16 +27,16 @@ export interface IMonthPickerState {
   isOpen?: boolean;
 }
 
-export default class MonthPicker extends React.Component<IMonthPickerProps, IMonthPickerState> {
+export default class MonthPicker<T> extends React.Component<IMonthPickerProps<T>, IMonthPickerState> {
   public state: IMonthPickerState;
-  public static defaultProps: IMonthPickerProps = {
+  public static defaultProps: IMonthPickerProps<{}> = {
     prefixCls: 'w-monthpicker',
     format: 'YYYY/MM',
     monthLabel: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
     allowClear: true,
     onChange() { },
   }
-  constructor(props: IMonthPickerProps) {
+  constructor(props: IMonthPickerProps<T>) {
     super(props);
     this.state = {
       date: props.value,
@@ -45,7 +45,7 @@ export default class MonthPicker extends React.Component<IMonthPickerProps, IMon
       isOpen: false,
     };
   }
-  UNSAFE_componentWillReceiveProps(nextProps: IMonthPickerProps & IInputProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: IMonthPickerProps<T>) {
     if (nextProps.value !== this.props.value) {
       this.setState({ date: nextProps.value });
     }

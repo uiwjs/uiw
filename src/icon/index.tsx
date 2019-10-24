@@ -3,9 +3,9 @@ import classnames from 'classnames';
 import svgPaths from '@uiw/icons/fonts/w-icon.json';
 import './style/index.less';
 
-export type Type = React.ReactElement | string | false | null;
+export type IconsName = keyof typeof svgPaths;
 
-export interface IIconProps extends React.HTMLAttributes<HTMLElement> {
+export interface IIconProps<T> extends React.HTMLAttributes<HTMLElement> {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;
@@ -14,21 +14,21 @@ export interface IIconProps extends React.HTMLAttributes<HTMLElement> {
    * @default "span"
    */
   tagName?: keyof JSX.IntrinsicElements | any;
-  type?: Type;
+  type?: IconsName | null | T;
   spin: boolean;
   color?: string;
   verticalAlign?: 'middle' | 'baseline';
 }
 
-export default class Icon extends React.PureComponent<IIconProps> {
-  public static defaultProps: IIconProps = {
+export default class Icon<T> extends React.PureComponent<IIconProps<T>> {
+  public static defaultProps: IIconProps<{}> = {
     prefixCls: 'w-icon',
     verticalAlign: 'middle',
     tagName: 'span',
     spin: false,
   }
-  renderSvgPaths = (type: string) => {
-    const svgPathsData = svgPaths as {[key: string]: any}
+  renderSvgPaths = (type: IconsName) => {
+    const svgPathsData = svgPaths;
     const pathStrings: string[] = svgPathsData[type];
     if (pathStrings == null) {
       return null;
@@ -39,14 +39,14 @@ export default class Icon extends React.PureComponent<IIconProps> {
   public render() {
     const { prefixCls, className, color, type, spin, verticalAlign, tagName: TagName, ...others } = this.props;
     let svg = null;
-    if (type == null || typeof type === 'boolean') {
-      return null;
-    } else if (typeof type !== 'string') {
-      svg = React.cloneElement(type, {
+    if (typeof type === 'string') {
+      svg = <svg fill={color} viewBox="0 0 20 20">{this.renderSvgPaths(type as IconsName)}</svg>;
+    } else if (React.isValidElement(type)) {
+      svg = React.cloneElement(type as unknown as React.ReactElement, {
         fill: color,
       });
     } else {
-      svg = (<svg fill={color} viewBox="0 0 20 20">{this.renderSvgPaths(type)}</svg>);
+      return null;
     }
     others.style = { fill: 'currentColor', ...others.style };
     const propps = { ...others,
