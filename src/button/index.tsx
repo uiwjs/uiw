@@ -7,7 +7,7 @@ import { IProps, HTMLButtonProps } from '../utils/props';
 export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'light' | 'dark' | 'link';
 export type ButtonSize = 'large' | 'default' | 'small';
 
-export interface IButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
+export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
   basic?: boolean;
   disabled?: boolean;
   active?: boolean;
@@ -20,8 +20,8 @@ export interface IButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
   onClick?: (e: React.MouseEvent<HTMLButtonElement> & MouseEvent) => void;
 }
 
-export default class Button extends React.Component<IButtonProps> {
-  public static defaultProps: IButtonProps = {
+export default class Button extends React.Component<ButtonProps> {
+  public static defaultProps: ButtonProps = {
     prefixCls: 'w-btn',
     disabled: false,
     active: false,

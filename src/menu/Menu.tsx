@@ -6,17 +6,17 @@ import Divider from './Divider';
 import SubMenu from './SubMenu';
 import './style/menu.less';
 
-export interface IMenuProps extends IProps, HTMLUlProps {
+export interface MenuProps extends IProps, HTMLUlProps {
   theme?: 'light' | 'dark';
   inlineIndent?: number;
   bordered?: boolean;
 }
 
-export default class Menu extends React.Component<IMenuProps> {
+export default class Menu extends React.Component<MenuProps> {
   static Item = MenuItem;
   static SubMenu = SubMenu;
   static Divider = Divider;
-  public static defaultProps: IMenuProps = {
+  public static defaultProps: MenuProps = {
     prefixCls: 'w-menu',
     theme: 'light',
     inlineIndent: 10,

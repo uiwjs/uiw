@@ -1,11 +1,11 @@
 import React from 'react';
-import Abstract, { IAbstractProps } from '../radio/Abstract';
+import Abstract, { AbstractProps } from '../radio/Abstract';
 import './style/index.less';
 
-export interface ISwitchProps extends IAbstractProps {}
+export interface SwitchProps extends AbstractProps {}
 
-export default class Switch extends React.Component<ISwitchProps> {
-  public static defaultProps: ISwitchProps = {
+export default class Switch extends React.Component<SwitchProps> {
+  public static defaultProps: SwitchProps = {
     prefixCls: 'w-switch',
     type: 'switch',
   }

@@ -6,7 +6,7 @@ import Button from '../button';
 import './style/index.less';
 import { IProps, HTMLDivProps } from '../utils/props';
 
-export interface IMessageProps extends IProps, Omit<HTMLDivProps, 'title'> {
+export interface MessageProps extends IProps, Omit<HTMLDivProps, 'title'> {
   title?: React.ReactNode;
   icon?: JSX.Element | string | false | null;
   type?: 'success' | 'warning' | 'info' | 'error';
@@ -21,13 +21,13 @@ export interface IMessageState {
   isOpen: boolean;
 }
 
-export default class Message extends React.Component<IMessageProps, IMessageState> {
-  public static defaultProps: IMessageProps = {
+export default class Message extends React.Component<MessageProps, IMessageState> {
+  public static defaultProps: MessageProps = {
     prefixCls: 'w-message',
     rounded: true,
     isCloseButtonShown: false,
   }
-  constructor(props: IMessageProps) {
+  constructor(props: MessageProps) {
     super(props);
     this.state = {
       isOpen: true,

@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { IProps } from '../utils/props';
 import './style/row.less';
 
-export interface IRowProps extends IProps {
+export interface RowProps extends IProps {
   fixed?: boolean;
   span?: number;
   grow?: number;
@@ -13,7 +13,7 @@ export interface IRowProps extends IProps {
 }
 
 
-export default class Row extends React.Component<IRowProps> {
+export default class Row extends React.Component<RowProps> {
   static defaultProps = {
     prefixCls: 'w-row',
     gutter: 0,

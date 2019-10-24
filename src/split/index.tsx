@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import './style/index.less';
 import { IProps, HTMLDivProps } from '../utils/props';
 
-export interface ISplitProps extends IProps, Omit<HTMLDivProps, 'onDragEnd'> {
+export interface SplitProps extends IProps, Omit<HTMLDivProps, 'onDragEnd'> {
   onDragging?: (preSize: number, nextSize: number, paneNumber: number) => void;
   onDragEnd?: (preSize: number, nextSize: number, paneNumber: number) => void;
   lineBar?: boolean;
@@ -11,17 +11,17 @@ export interface ISplitProps extends IProps, Omit<HTMLDivProps, 'onDragEnd'> {
   disable?: boolean | number[];
   mode?: 'horizontal' | 'vertical';
 }
-export interface ISplitState {
+export interface SplitState {
   dragging: boolean;
 }
 
-export default class Split extends React.Component<ISplitProps, ISplitState> {
-  public static defaultProps: ISplitProps = {
+export default class Split extends React.Component<SplitProps, SplitState> {
+  public static defaultProps: SplitProps = {
     prefixCls: 'w-split',
     visiable: true,
     mode: 'horizontal',
   }
-  public state: ISplitState = {
+  public state: SplitState = {
     dragging: false,
   }
   public warpper!: HTMLDivElement | null;
@@ -40,7 +40,7 @@ export default class Split extends React.Component<ISplitProps, ISplitState> {
 
   public preSize!: number;
   public nextSize!: number;
-  constructor(props: ISplitProps) {
+  constructor(props: SplitProps) {
     super(props);
     this.onDragEnd = this.onDragEnd.bind(this);
     this.onDragging = this.onDragging.bind(this);

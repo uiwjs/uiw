@@ -1,11 +1,11 @@
 import React from 'react';
 import classnames from 'classnames';
-import Input, { IInputProps } from '../input';
+import Input, { InputProps } from '../input';
 import './style/index.less';
 
-export interface IFileInputProps<T> extends IInputProps<T> {}
+export interface FileInputProps<T> extends InputProps<T> {}
 
-export default function FileInput<T>({ ...props }: IFileInputProps<T>): JSX.Element {
+export default function FileInput<T>({ ...props }: FileInputProps<T>): JSX.Element {
   props.className = classnames(props.className, 'w-fileinput');
   return (
     <Input {...props} type="file" />

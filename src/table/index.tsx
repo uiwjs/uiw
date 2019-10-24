@@ -18,7 +18,7 @@ export interface IColumns {
   [key: string]: any;
 }
 
-export interface ITableProps extends IProps, Omit<HTMLDivProps, 'title'> {
+export interface TableProps extends IProps, Omit<HTMLDivProps, 'title'> {
   prefixCls?: string;
   columns?: IColumns[];
   data?: {
@@ -37,8 +37,8 @@ export interface ICellOptions {
   keyName: string;
 }
 
-export default class Table extends React.Component<ITableProps> {
-  public static defaultProps: ITableProps = {
+export default class Table extends React.Component<TableProps> {
+  public static defaultProps: TableProps = {
     prefixCls: 'w-table',
     columns: [],
     data: [],

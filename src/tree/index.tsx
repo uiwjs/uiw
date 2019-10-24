@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
-import Icon, { IIconProps } from '../icon';
+import Icon, { IconProps } from '../icon';
 import { IProps, HTMLDivProps } from '../utils/props'
 import './style/index.less';
 
@@ -10,13 +10,13 @@ export type IconFun<T> = (
   node?: {
     isOpen?: boolean,
     noChild?: boolean,
-    openKeys?: ITreeProps<T>['openKeys'],
-    selectedKeys?: ITreeProps<T>['selectedKeys']
+    openKeys?: TreeProps<T>['openKeys'],
+    selectedKeys?: TreeProps<T>['selectedKeys']
   }
 ) => React.ReactElement;
 
-export interface ITreeProps<T> extends IProps, HTMLDivProps {
-  icon?: IIconProps<T>['type'];
+export interface TreeProps<T> extends IProps, HTMLDivProps {
+  icon?: IconProps<T>['type'];
   data?: ITreeData[];
   openKeys?: ITreeData['key'][];
   selectedKeys?: ITreeData['key'][];
@@ -39,7 +39,7 @@ export interface ITreeProps<T> extends IProps, HTMLDivProps {
    * 支持点选多个节点
    */
   multiple?: boolean;
-  renderTitle?: (item: ITreeData, node?: { selected?: boolean, noChild?: boolean, isHalfChecked?: boolean, openKeys?: ITreeProps<T>['openKeys'], selectedKeys?: ITreeProps<T>['selectedKeys'] }) => React.ReactElement;
+  renderTitle?: (item: ITreeData, node?: { selected?: boolean, noChild?: boolean, isHalfChecked?: boolean, openKeys?: TreeProps<T>['openKeys'], selectedKeys?: TreeProps<T>['selectedKeys'] }) => React.ReactElement;
   onExpand?: (key: ITreeData['key'], expanded: boolean, item: ITreeData, evn: React.MouseEvent<HTMLElement>) => void;
   onSelected?: (keys: ITreeData['key'][], key: ITreeData['key'], selected: boolean, item: ITreeData, evn: React.MouseEvent<HTMLElement>) => void;
 }
@@ -112,8 +112,8 @@ const getParentSelectKeys = (childs: ITreeData = {}, selectedKeys: ITreeData['ke
   return result;
 };
 
-export default class Tree<T> extends React.Component<ITreeProps<T>, ITreeState> {
-  public static defaultProps: ITreeProps<{}> = {
+export default class Tree<T> extends React.Component<TreeProps<T>, ITreeState> {
+  public static defaultProps: TreeProps<{}> = {
     prefixCls: 'w-tree',
     icon: 'caret-right',
     data: [],
@@ -128,7 +128,7 @@ export default class Tree<T> extends React.Component<ITreeProps<T>, ITreeState> 
     onExpand: noop,
     onSelected: noop,
   }
-  constructor(props: ITreeProps<T>) {
+  constructor(props: TreeProps<T>) {
     super(props);
     this.state = {
       openKeys: props.openKeys || [],
@@ -143,7 +143,7 @@ export default class Tree<T> extends React.Component<ITreeProps<T>, ITreeState> 
       this.setState({ openKeys });
     }
   }
-  UNSAFE_componentWillReceiveProps(nextProps: ITreeProps<T>) {
+  UNSAFE_componentWillReceiveProps(nextProps: TreeProps<T>) {
     if (nextProps.openKeys !== this.props.openKeys) {
       this.setState({ openKeys: nextProps.openKeys });
     }

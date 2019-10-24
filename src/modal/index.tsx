@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import Overlay, { IOverlayProps } from '../overlay';
+import Overlay, { OverlayProps } from '../overlay';
 import Button, { ButtonType } from '../button';
 import Icon from '../icon';
 import { IProps } from "../utils/props";
@@ -8,7 +8,7 @@ import './style/index.less';
 
 function noop() { }
 
-export interface IModalProps extends IProps, IOverlayProps {
+export interface ModalProps extends IProps, OverlayProps {
   type?: ButtonType;
   cancelText?: string;
   content?: React.ReactNode;
@@ -27,8 +27,8 @@ export interface IModalProps extends IProps, IOverlayProps {
   onConfirm?: (evn: React.MouseEvent<HTMLButtonElement> & MouseEvent) => void;
 }
 
-export default class Modal extends React.PureComponent<IModalProps> {
-  public static defaultProps: IModalProps = {
+export default class Modal extends React.PureComponent<ModalProps> {
+  public static defaultProps: ModalProps = {
     prefixCls: 'w-modal',
     confirmText: '确认',
     useButton: true,

@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { IProps, HTMLUlProps } from '../utils/props';
 import './style/index.less';
 
-export interface IPaginationProps extends IProps, Omit<HTMLUlProps, 'onChange'> {
+export interface PaginationProps extends IProps, Omit<HTMLUlProps, 'onChange'> {
   prefixCls?: string;
   alignment?: 'left' | 'center' | 'right';
   size?: 'default' | 'small';
@@ -14,7 +14,7 @@ export interface IPaginationProps extends IProps, Omit<HTMLUlProps, 'onChange'> 
   onChange?: (current: number, total: number, pageSize: number) => void;
 }
 
-export interface IPaginationState {
+export interface PaginationState {
   current: number;
 }
 
@@ -26,8 +26,8 @@ export interface PaginationItemSourceData {
   goto?: number;
 }
 
-export default class Pagination extends React.Component<IPaginationProps, IPaginationState> {
-  public static defaultProps: IPaginationProps = {
+export default class Pagination extends React.Component<PaginationProps, PaginationState> {
+  public static defaultProps: PaginationProps = {
     prefixCls: 'w-pagination',
     alignment: 'left',
     size: 'default',
@@ -36,13 +36,13 @@ export default class Pagination extends React.Component<IPaginationProps, IPagin
     current: 1,
     onChange: () => null,
   }
-  constructor(props: IPaginationProps) {
+  constructor(props: PaginationProps) {
     super(props);
     this.state = {
       current: props.current as number,
     };
   }
-  UNSAFE_componentWillReceiveProps(nextProps: IPaginationProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: PaginationProps) {
     if (nextProps.current !== this.props.current) {
       this.setState({
         current: nextProps.current as number,
@@ -56,7 +56,7 @@ export default class Pagination extends React.Component<IPaginationProps, IPagin
     const { total, pageSize, onChange } = this.props;
     const { current } = this.state;
     const count = Math.ceil((total as number) / (pageSize as number));
-    const state = {} as IPaginationState;
+    const state = {} as PaginationState;
     if (item.label) {
       state.current = item.label as number;
     }

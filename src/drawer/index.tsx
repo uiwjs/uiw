@@ -1,12 +1,12 @@
 import React from 'react';
 import classnames from 'classnames';
-import Overlay, { IOverlayProps } from '../overlay';
+import Overlay, { OverlayProps } from '../overlay';
 import Icon from '../icon';
 import Button from '../button';
 import './style/index.less';
 import { HTMLDivProps } from '../utils/props';
 
-export interface IDrawerProps extends IOverlayProps {
+export interface DrawerProps extends OverlayProps {
   footer?: React.ReactNode;
   icon?: JSX.Element | string | false | null;
   title?: React.ReactNode;
@@ -17,8 +17,8 @@ export interface IDrawerProps extends IOverlayProps {
   onClose?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 
-export default class Drawer extends React.PureComponent<IDrawerProps> {
-  public static defaultProps: IDrawerProps = {
+export default class Drawer extends React.PureComponent<DrawerProps> {
+  public static defaultProps: DrawerProps = {
     prefixCls: 'w-drawer',
     placement: 'right',
     isCloseButtonShown: true,

@@ -4,7 +4,7 @@ import Item from './Item';
 import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface IListProps<T> extends IProps, HTMLDivProps {
+export interface ListProps<T> extends IProps, HTMLDivProps {
   bordered?: boolean;
   striped?: boolean;
   noHover?: boolean;
@@ -16,7 +16,7 @@ export interface IListProps<T> extends IProps, HTMLDivProps {
   dataSource?: T[];
 }
 
-export default class List<T> extends React.Component<IListProps<T>> {
+export default class List<T> extends React.Component<ListProps<T>> {
   public static defaultProps = {
     prefixCls: 'w-list',
     bordered: true,

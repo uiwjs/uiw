@@ -4,15 +4,15 @@ import { IProps, HTMLDivProps, HTMLAnchorProps } from '../utils/props';
 
 type AnchorProps = 'download' | 'href' | 'hrefLang' | 'media' | 'ping' | 'rel' | 'target' | 'type' | 'referrerPolicy';
 
-export interface IListItem extends IProps, HTMLDivProps, Pick<HTMLAnchorProps, AnchorProps> {
+export interface ListItemProps extends IProps, HTMLDivProps, Pick<HTMLAnchorProps, AnchorProps> {
   disabled?: boolean;
   active?: boolean;
   extra?: React.ReactNode;
   href?: string;
 }
 
-export default class Item extends React.Component<IListItem> {
-  public static defaultProps: IListItem = {
+export default class Item extends React.Component<ListItemProps> {
+  public static defaultProps: ListItemProps = {
     prefixCls: 'w-list-item',
     disabled: false,
     active: false,

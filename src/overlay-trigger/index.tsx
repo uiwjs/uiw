@@ -1,7 +1,7 @@
 import React, { cloneElement } from 'react';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
-import Overlay, { IOverlayProps } from '../overlay';
+import Overlay, { OverlayProps } from '../overlay';
 import contains from './utils';
 import getBoundingClientRect, { IBoundingClientRect } from './util/getBoundingClientRect';
 import getScroll from '../utils/getScroll';
@@ -10,7 +10,7 @@ import RefHolder from './RefHolder';
 import { IProps } from '../utils/props';
 import './style/index.less';
 
-export interface IOverlayTriggerProps extends IProps, IOverlayProps {
+export interface OverlayTriggerProps extends IProps, OverlayProps {
   onVisibleChange?: (isVisbale: boolean) => void;
   onEnter?: (node: HTMLElement, isAppearing: boolean) => void;
   overlay?: React.ReactNode | any;
@@ -25,7 +25,7 @@ export interface IOverlayTriggerProps extends IProps, IOverlayProps {
   delay?: Delay;
 }
 
-export interface IOverlayTriggerState {
+export interface OverlayTriggerState {
   show: boolean;
   overlayStyl: OverlayStyl;
 }
@@ -60,8 +60,8 @@ const normalizeDelay = (delay?: Delay) => ((delay && typeof delay === 'object') 
 let zIndex = 999;
 
 
-export default class OverlayTrigger extends React.Component<IOverlayTriggerProps> {
-  public static defaultProps: IOverlayTriggerProps = {
+export default class OverlayTrigger extends React.Component<OverlayTriggerProps> {
+  public static defaultProps: OverlayTriggerProps = {
     prefixCls: 'w-overlay-trigger',
     // onEnter: () => null,
     usePortal: true,
@@ -72,7 +72,7 @@ export default class OverlayTrigger extends React.Component<IOverlayTriggerProps
     trigger: 'hover',
     placement: 'top',
   }
-  public state: IOverlayTriggerState;
+  public state: OverlayTriggerState;
   // React Refs with TypeScript
   // https://medium.com/@martin_hotell/react-refs-with-typescript-a32d56c4d315
   private trigger = React.createRef<RefHolder>();
@@ -80,7 +80,7 @@ export default class OverlayTrigger extends React.Component<IOverlayTriggerProps
   private popup = React.createRef<HTMLDivElement>();
   private _hoverState!: 'show' | 'hide' | null;
   private _timeout: number[] = [];
-  constructor(props: IOverlayTriggerProps & IOverlayProps) {
+  constructor(props: OverlayTriggerProps & OverlayProps) {
     super(props);
     // this.trigger = React.createRef();
     // this.popup = React.createRef();
@@ -91,7 +91,7 @@ export default class OverlayTrigger extends React.Component<IOverlayTriggerProps
       } as OverlayStyl,
     };
   }
-  componentDidUpdate(prevProps: IOverlayTriggerProps) {
+  componentDidUpdate(prevProps: OverlayTriggerProps) {
     if (prevProps.isOpen !== this.props.isOpen) {
       const isOpen = !!this.props.isOpen;
       isOpen ? this.show() : this.hide();
@@ -367,7 +367,7 @@ export default class OverlayTrigger extends React.Component<IOverlayTriggerProps
     const { prefixCls, className, children, overlay, trigger, disabled, usePortal, ...other } = this.props;
     const { placement, ...overlayStyl } = this.state.overlayStyl;
     const child: any = React.Children.only(children);
-    const props: IOverlayProps = { ...other, dialogProps: {} };
+    const props: OverlayProps = { ...other, dialogProps: {} };
     const triggerProps: ITriggerProps = {};
     if (trigger === 'click' && !disabled) {
       triggerProps.onClick = this.handleClick;

@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface IRateProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
+export interface RateProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   value: number;
   readOnly?: boolean;
   count?: number;
@@ -27,16 +27,16 @@ interface IRateChildProps {
   onMouseMove?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-export default class Rate extends React.Component<IRateProps, IRateState> {
+export default class Rate extends React.Component<RateProps, IRateState> {
   public state: IRateState;
-  public static defaultProps: IRateProps = {
+  public static defaultProps: RateProps = {
     prefixCls: 'w-rate',
     value: 0,
     count: 5,
     character: '★',
     readOnly: false,
   }
-  constructor(props: IRateProps) {
+  constructor(props: RateProps) {
     super(props);
     this.state = {
       value: props.value,

@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface ILoaderProps extends IProps, HTMLDivProps {
+export interface LoaderProps extends IProps, HTMLDivProps {
   size?: 'small' | 'default' | 'large';
   loading?: boolean;
   fullscreen?: boolean;
@@ -15,8 +15,8 @@ export interface ILoaderProps extends IProps, HTMLDivProps {
   children?: any | React.ReactNode;
 }
 
-export default class Loader extends React.Component<ILoaderProps> {
-  public static defaultProps: ILoaderProps = {
+export default class Loader extends React.Component<LoaderProps> {
+  public static defaultProps: LoaderProps = {
     prefixCls: 'w-loader',
     size: 'default',
     loading: true,

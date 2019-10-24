@@ -1,10 +1,10 @@
 import React from 'react';
 import classnames from 'classnames';
-import Abstract, { IAbstractProps } from '../radio/Abstract';
+import Abstract, { AbstractProps } from '../radio/Abstract';
 import Group from './Group';
 import './style/index.less';
 
-export interface ICheckboxProps extends IAbstractProps {
+export interface ICheckboxProps extends AbstractProps {
   indeterminate?: boolean;
 }
 

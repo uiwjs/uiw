@@ -1,21 +1,21 @@
 import React from 'react';
 import classnames from 'classnames';
-import PickerDay, { IPickerDayProps, IDateSource } from './PickerDay';
+import PickerDay, { PickerDayProps, IDateSource } from './PickerDay';
 import PickerMonth from './PickerMonth';
 import PickerYear from './PickerYear';
-import PickerTime, { ITimePickerPanelProps } from '../time-picker/PickerTime';
+import PickerTime, { TimePickerPanelProps } from '../time-picker/PickerTime';
 import PickerDayCaption, { CaptionType } from './PickerCaption';
 import { formatter } from '../';
 import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface IDatePickerShowTimeProps extends ITimePickerPanelProps {
+export interface IDatePickerShowTimeProps extends TimePickerPanelProps {
   format?: string;
 }
 export interface IDatePickerProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   onChange?: (selectedDate?: Date, dateSource?: IDateSource) => void;
-  renderDay?: IPickerDayProps['renderDay'];
-  disabledDate?: IPickerDayProps['disabledDate'];
+  renderDay?: PickerDayProps['renderDay'];
+  disabledDate?: PickerDayProps['disabledDate'];
   showTime?: IDatePickerShowTimeProps | boolean;
   monthLabel?: React.ReactNode[];
   weekday?: string[];
@@ -89,7 +89,7 @@ export default class DatePicker extends React.Component<IDatePickerProps, IDateP
       });
     }
   }
-  onSelectedTime(type: ITimePickerPanelProps['type'], num: number) {
+  onSelectedTime(type: TimePickerPanelProps['type'], num: number) {
     const { date, panelDate } = this.state;
     const currentDate = (date || panelDate) as Date;
     currentDate[(`set${type}`) as 'setMonth'](num);

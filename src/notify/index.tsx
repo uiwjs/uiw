@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import { ButtonType } from '../button';
 import Container, { Placement, ContainerNotifys } from './Container';
-import { IAlertProps } from '../alert';
+import { AlertProps } from '../alert';
 import './style/index.less';
 
 function randomid() {
   return parseInt(String(Math.random() * 1e15), 10).toString(36);
 }
 
-export interface NotificationCreateProps extends Omit<IAlertProps, 'type'> {
+export interface NotificationCreateProps extends Omit<AlertProps, 'type'> {
   placement?: Placement;
   description?: React.ReactNode;
   type?: ButtonType | 'info' | 'error' | 'open';

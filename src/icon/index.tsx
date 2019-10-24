@@ -5,7 +5,7 @@ import './style/index.less';
 
 export type IconsName = keyof typeof svgPaths;
 
-export interface IIconProps<T> extends React.HTMLAttributes<HTMLElement> {
+export interface IconProps<T> extends React.HTMLAttributes<HTMLElement> {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;
@@ -20,8 +20,8 @@ export interface IIconProps<T> extends React.HTMLAttributes<HTMLElement> {
   verticalAlign?: 'middle' | 'baseline';
 }
 
-export default class Icon<T> extends React.PureComponent<IIconProps<T>> {
-  public static defaultProps: IIconProps<{}> = {
+export default class Icon<T> extends React.PureComponent<IconProps<T>> {
+  public static defaultProps: IconProps<{}> = {
     prefixCls: 'w-icon',
     verticalAlign: 'middle',
     tagName: 'span',

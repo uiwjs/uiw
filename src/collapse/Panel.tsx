@@ -3,14 +3,14 @@ import classnames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import { TransitionStatus } from 'react-transition-group/Transition';
 import { IProps, HTMLDivProps } from '../utils/props';
-import Icon, { IIconProps } from '../icon';
+import Icon, { IconProps } from '../icon';
 
 export interface IPanelProps<T> extends IProps, HTMLDivProps {
   disabled?: boolean;
   showArrow?: boolean;
   isActive?: boolean;
   header?: React.ReactNode;
-  icon?: IIconProps<T>['type'];
+  icon?: IconProps<T>['type'];
   onItemClick?: (evn: React.MouseEvent<HTMLDivElement>) => void;
 }
 

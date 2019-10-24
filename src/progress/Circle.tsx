@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { IIconProps } from '../icon';
+import { IconProps } from '../icon';
 import { IProps, HTMLDivProps } from '../utils/props';
 import { IconProgress } from './utils';
 import './style/index.less';
@@ -8,7 +8,7 @@ import './style/circle.less';
 
 export type Status = 'success' | 'active' | 'exception';
 export interface ProgressCircleProps<T> extends IProps, HTMLDivProps {
-  type?: IIconProps<T>['type'];
+  type?: IconProps<T>['type'];
   status?: Status
   showText?: boolean; // 是否显示进度条文字内容
   percent?: number, // 百分比（必填）

@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
-import Input, { IInputProps } from '../input';
-import Popover, { IPopoverProps } from '../popover';
+import Input, { InputProps } from '../input';
+import Popover, { PopoverProps } from '../popover';
 import { formatter } from '../';
 import Button from '../button';
 import PickerMonth from '../date-picker/PickerMonth';
@@ -10,8 +10,8 @@ import PickerCaption, { CaptionType } from '../date-picker/PickerCaption';
 import './style/index.less';
 import { IProps } from '../utils/props';
 
-export interface IMonthPickerProps<T> extends IProps, Omit<IInputProps<T>, 'value' | 'onChange'> {
-  popoverProps?: IPopoverProps;
+export interface MonthPickerProps<T> extends IProps, Omit<InputProps<T>, 'value' | 'onChange'> {
+  popoverProps?: PopoverProps;
   value?: Date | string;
   format?: string,
   monthLabel?: string[],
@@ -20,23 +20,23 @@ export interface IMonthPickerProps<T> extends IProps, Omit<IInputProps<T>, 'valu
 }
 
 
-export interface IMonthPickerState {
+export interface MonthPickerState {
   date?: Date | string;
   panelDate?: Date;
   type?: 'setMonth' | 'setFullYear' | CaptionType;
   isOpen?: boolean;
 }
 
-export default class MonthPicker<T> extends React.Component<IMonthPickerProps<T>, IMonthPickerState> {
-  public state: IMonthPickerState;
-  public static defaultProps: IMonthPickerProps<{}> = {
+export default class MonthPicker<T> extends React.Component<MonthPickerProps<T>, MonthPickerState> {
+  public state: MonthPickerState;
+  public static defaultProps: MonthPickerProps<{}> = {
     prefixCls: 'w-monthpicker',
     format: 'YYYY/MM',
     monthLabel: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
     allowClear: true,
     onChange() { },
   }
-  constructor(props: IMonthPickerProps<T>) {
+  constructor(props: MonthPickerProps<T>) {
     super(props);
     this.state = {
       date: props.value,
@@ -45,7 +45,7 @@ export default class MonthPicker<T> extends React.Component<IMonthPickerProps<T>
       isOpen: false,
     };
   }
-  UNSAFE_componentWillReceiveProps(nextProps: IMonthPickerProps<T>) {
+  UNSAFE_componentWillReceiveProps(nextProps: MonthPickerProps<T>) {
     if (nextProps.value !== this.props.value) {
       this.setState({ date: nextProps.value });
     }
@@ -58,7 +58,7 @@ export default class MonthPicker<T> extends React.Component<IMonthPickerProps<T>
     panelDate = new Date((date as Date)[type](num));
 
     date = formatter(format as string, new Date(date as Date));
-    const state: IMonthPickerState = { panelDate, date, isOpen: false };
+    const state: MonthPickerState = { panelDate, date, isOpen: false };
     if (type === 'setFullYear') {
       delete state.isOpen;
       state.type = 'month';
@@ -72,7 +72,7 @@ export default class MonthPicker<T> extends React.Component<IMonthPickerProps<T>
       }
     });
   }
-  onSelected = (type: IMonthPickerState['type']) => {
+  onSelected = (type: MonthPickerState['type']) => {
     if (/^(month|year)$/.test(type as string)) {
       this.setState({ type });
     } else {

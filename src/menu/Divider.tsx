@@ -2,13 +2,13 @@ import React from 'react';
 import classNames from 'classnames';
 import { IProps, HTMLLiProps } from '../utils/props';
 
-export interface IDividerProps extends IProps, Omit<HTMLLiProps, 'title'> {
+export interface DividerProps extends IProps, Omit<HTMLLiProps, 'title'> {
   title?: React.ReactNode;
 }
 
-export default class Divider extends React.Component<IDividerProps> {
+export default class Divider extends React.Component<DividerProps> {
   static displayName = 'uiw.MenuDivider';
-  public static defaultProps: IDividerProps = {
+  public static defaultProps: DividerProps = {
     prefixCls: 'w-menu-divider',
   }
   public render() {

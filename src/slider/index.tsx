@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface ISliderProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
+export interface SliderProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   value?: number | number[];
   min?: number;
   max?: number;
@@ -25,12 +25,12 @@ export interface ISliderProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-export interface ISliderState {
+export interface SliderState {
   value: number[];
 }
 
-export default class Slider extends React.Component<ISliderProps, ISliderState> {
-  public static defaultProps: ISliderProps = {
+export default class Slider extends React.Component<SliderProps, SliderState> {
+  public static defaultProps: SliderProps = {
     prefixCls: 'w-slider',
     value: 0,
     min: 0,
@@ -41,11 +41,11 @@ export default class Slider extends React.Component<ISliderProps, ISliderState> 
     progress: true,
     tooltip: false,
   }
-  public state: ISliderState;
-  constructor(props: ISliderProps) {
+  public state: SliderState;
+  constructor(props: SliderProps) {
     super(props);
     this.state = {
-      value: (Array.isArray(this.props.value) ? props.value : [props.value]) as ISliderState['value'],
+      value: (Array.isArray(this.props.value) ? props.value : [props.value]) as SliderState['value'],
     };
   }
   private indexBar!: number;
@@ -58,12 +58,12 @@ export default class Slider extends React.Component<ISliderProps, ISliderState> 
   private move?: boolean;
   componentDidMount() {
     const { value } = this.props;
-    this.setState({ value: (Array.isArray(value) ? value : [value]) as ISliderState['value'] });
+    this.setState({ value: (Array.isArray(value) ? value : [value]) as SliderState['value'] });
   }
-  UNSAFE_componentWillReceiveProps(nextPros: ISliderProps) {
+  UNSAFE_componentWillReceiveProps(nextPros: SliderProps) {
     if (nextPros.value !== this.props.value) {
       this.setState({
-        value: (Array.isArray(nextPros.value) ? nextPros.value : [nextPros.value]) as ISliderState['value'],
+        value: (Array.isArray(nextPros.value) ? nextPros.value : [nextPros.value]) as SliderState['value'],
       });
     }
   }

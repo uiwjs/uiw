@@ -1,15 +1,15 @@
 import React from 'react';
 import classnames from 'classnames';
-import Input, { IInputProps } from '../input';
-import Popover, { IPopoverProps } from '../popover';
+import Input, { InputProps } from '../input';
+import Popover, { PopoverProps } from '../popover';
 import DatePicker, { IDatePickerProps } from '../date-picker';
 import { formatter } from '../';
 import Icon from '../icon';
 import { IProps } from '../utils/props';
 import './style/index.less';
 
-export interface IDateInputProps<T> extends IProps, Omit<IInputProps<T>, 'onChange' | 'value'> {
-  popoverProps?: IPopoverProps;
+export interface IDateInputProps<T> extends IProps, Omit<InputProps<T>, 'onChange' | 'value'> {
+  popoverProps?: PopoverProps;
   datePickerProps?: IDatePickerProps;
   value?: Date | string;
   format?: string;

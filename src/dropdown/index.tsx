@@ -1,13 +1,13 @@
 import React from 'react';
-import OverlayTrigger, { IOverlayTriggerProps } from '../overlay-trigger';
+import OverlayTrigger, { OverlayTriggerProps } from '../overlay-trigger';
 import { IProps } from '../utils/props';
 
-export interface IDropdownProps extends IProps, IOverlayTriggerProps {
+export interface DropdownProps extends IProps, OverlayTriggerProps {
   menu?: React.ReactNode;
 }
 
-export default class Dropdown extends React.PureComponent<IDropdownProps> {
-  public static defaultProps: IDropdownProps = {
+export default class Dropdown extends React.PureComponent<DropdownProps> {
+  public static defaultProps: DropdownProps = {
     prefixCls: 'w-dropdown',
     placement: 'bottomLeft',
   }

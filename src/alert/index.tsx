@@ -1,15 +1,15 @@
 import React from 'react';
 import classnames from 'classnames';
-import Modal, { IModalProps } from '../modal';
+import Modal, { ModalProps } from '../modal';
 import { IProps } from "../utils/props";
 import './style/index.less';
 
-export interface IAlertProps extends IProps, IModalProps {
+export interface AlertProps extends IProps, ModalProps {
   width?: number;
 }
 
-export default class Alert extends React.Component<IAlertProps> {
-  public static defaultProps: IAlertProps = {
+export default class Alert extends React.Component<AlertProps> {
+  public static defaultProps: AlertProps = {
     prefixCls: 'w-alert',
     width: 400,
   }

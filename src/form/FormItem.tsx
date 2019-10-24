@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import Row from '../grid/Row';
 import Col from '../grid/Col';
 import { IProps, HTMLDivProps } from '../utils/props';
-import { IFormFieldsProps } from './Form';
+import { FormFieldsProps } from './Form';
 import './style/form-item.less';
 
 export interface IFormItemProps<T> extends IProps, HTMLDivProps {
@@ -14,8 +14,8 @@ export interface IFormItemProps<T> extends IProps, HTMLDivProps {
   labelClassName?: string;
   help?: React.ReactNode;
   labelStyle?: CSSProperties;
-  initialValue?: IFormFieldsProps<T>['initialValue'];
-  validator?: IFormFieldsProps<T>['validator'];
+  initialValue?: FormFieldsProps<T>['initialValue'];
+  validator?: FormFieldsProps<T>['validator'];
 }
 
 export default class FormItem<T> extends React.PureComponent<IFormItemProps<T>> {
