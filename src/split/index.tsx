@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import './style/index.less';
 import { IProps, HTMLDivProps } from '../utils/props';
 
-export interface ISplitProps extends IProps, Omit<HTMLDivProps, 'onDragEnd'> {
+export interface SplitProps extends IProps, Omit<HTMLDivProps, 'onDragEnd'> {
   onDragging?: (preSize: number, nextSize: number, paneNumber: number) => void;
   onDragEnd?: (preSize: number, nextSize: number, paneNumber: number) => void;
   lineBar?: boolean;
@@ -11,17 +11,17 @@ export interface ISplitProps extends IProps, Omit<HTMLDivProps, 'onDragEnd'> {
   disable?: boolean | number[];
   mode?: 'horizontal' | 'vertical';
 }
-export interface ISplitState {
+export interface SplitState {
   dragging: boolean;
 }
 
-export default class Split extends React.Component<ISplitProps, ISplitState> {
-  public static defaultProps: ISplitProps = {
+export default class Split extends React.Component<SplitProps, SplitState> {
+  public static defaultProps: SplitProps = {
     prefixCls: 'w-split',
     visiable: true,
     mode: 'horizontal',
   }
-  public state: ISplitState = {
+  public state: SplitState = {
     dragging: false,
   }
   public warpper!: HTMLDivElement | null;
@@ -40,7 +40,7 @@ export default class Split extends React.Component<ISplitProps, ISplitState> {
 
   public preSize!: number;
   public nextSize!: number;
-  constructor(props: ISplitProps) {
+  constructor(props: SplitProps) {
     super(props);
     this.onDragEnd = this.onDragEnd.bind(this);
     this.onDragging = this.onDragging.bind(this);
@@ -52,7 +52,7 @@ export default class Split extends React.Component<ISplitProps, ISplitState> {
     window.removeEventListener('mousemove', this.onDragging, false);
     window.removeEventListener('mouseup', this.onDragEnd, false);
   }
-  onMouseDown(paneNumber: number, env: React.MouseEvent<HTMLDivElement>) {
+  onMouseDown(paneNumber: number, env: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     if (!env.target || !this.warpper) {
       return;
     }
@@ -60,7 +60,7 @@ export default class Split extends React.Component<ISplitProps, ISplitState> {
     this.startX = env.clientX;
     this.startY = env.clientY;
     this.move = true;
-    this.target = env.target as HTMLDivElement;
+    this.target = (env.target as HTMLDivElement).parentNode as HTMLDivElement;
     const prevTarget = this.target.previousElementSibling;
     const nextTarget = this.target.nextElementSibling;
     this.boxWidth = this.warpper.clientWidth;
@@ -142,16 +142,15 @@ export default class Split extends React.Component<ISplitProps, ISplitState> {
           const barProps = {
             className: classnames(`${prefixCls}-bar`, {
               [`${prefixCls}-line-bar`]: lineBar,
+              [`${prefixCls}-large-bar`]: !lineBar,
             }),
-            onMouseDown: this.onMouseDown.bind(this, idx + 1),
           };
           if (disable === true || (disable && disable.includes((idx + 1) as never))) {
             barProps.className = classnames(barProps.className, { disable });
-            delete barProps.onMouseDown;
           }
           return (
             <React.Fragment>
-              {idx !== 0 && visiableBar && React.createElement('div', { ...barProps })}
+              {idx !== 0 && visiableBar && React.createElement('div', { ...barProps }, <div onMouseDown={this.onMouseDown.bind(this, idx + 1)} />)}
               {React.cloneElement(element, { ...props })}
             </React.Fragment>
           );

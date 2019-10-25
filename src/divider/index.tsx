@@ -3,13 +3,13 @@ import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '../utils/props'
 import './style/index.less';
 
-export interface IDividerProps extends IProps, HTMLDivProps {
+export interface DividerProps extends IProps, HTMLDivProps {
   dashed?: boolean;
   type?: 'horizontal' | 'vertical';
   align?: 'left' | 'right' | 'center';
 }
 
-export default class Divider extends React.PureComponent<IDividerProps> {
+export default class Divider extends React.PureComponent<DividerProps> {
   public static defaultProps = {
     prefixCls: 'w-divider',
     type: 'horizontal',

@@ -1,15 +1,15 @@
 import React from 'react';
 import classnames from 'classnames';
-import MenuItem, { IMenuItemProps } from './MenuItem';
-import Menu, { IMenuProps } from './Menu';
+import MenuItem, { MenuItemProps } from './MenuItem';
+import Menu, { MenuProps } from './Menu';
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
-import OverlayTrigger, { IOverlayTriggerProps } from '../overlay-trigger';
+import OverlayTrigger, { OverlayTriggerProps } from '../overlay-trigger';
 import Icon from '../icon';
 import { IProps } from '../utils/props';
 import './style/submenu.less';
 
-export interface ISubMenuProps extends IProps, IMenuItemProps {
-  overlayProps?: IOverlayTriggerProps;
+export interface SubMenuProps extends IProps, MenuItemProps {
+  overlayProps?: OverlayTriggerProps;
   collapse?: boolean;
   disabled?: boolean;
   active?: boolean;
@@ -37,8 +37,8 @@ function checkedMenuItem(node?: HTMLElement) {
 }
 
 
-export default class SubMenu extends React.Component<ISubMenuProps, ISubMenuState> {
-  public static defaultProps: ISubMenuProps = {
+export default class SubMenu extends React.Component<SubMenuProps, ISubMenuState> {
+  public static defaultProps: SubMenuProps = {
     prefixCls: 'w-menu-subitem',
     overlayProps: {},
     collapse: false,
@@ -46,7 +46,7 @@ export default class SubMenu extends React.Component<ISubMenuProps, ISubMenuStat
   }
   static state: ISubMenuState;
   static displayName: string = 'uiw.SubMenu';
-  constructor(props: ISubMenuProps) {
+  constructor(props: SubMenuProps) {
     super(props);
     this.state = {
       isOpen: false,
@@ -80,8 +80,8 @@ export default class SubMenu extends React.Component<ISubMenuProps, ISubMenuStat
   }
   render() {
     const { prefixCls, className, disabled, overlayProps, children, collapse, inlineIndent, ...other } = this.props;
-    const overlayTriggerProps = { ...overlayProps } as IOverlayTriggerProps & CSSTransitionProps;
-    const menuProps: IMenuProps = { bordered: true, children, inlineIndent, className: classnames(`${prefixCls}-overlay`) };
+    const overlayTriggerProps = { ...overlayProps } as OverlayTriggerProps & CSSTransitionProps;
+    const menuProps: MenuProps = { bordered: true, children, inlineIndent, className: classnames(`${prefixCls}-overlay`) };
     if (collapse) {
       delete menuProps.onClick;
       menuProps.bordered = false;

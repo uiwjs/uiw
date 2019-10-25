@@ -1,13 +1,13 @@
 import React from 'react';
 import classnames from 'classnames';
-import PickerDay, { IPickerDayProps, IPickerDayRenderDay, IDateSource } from '../date-picker/PickerDay';
+import PickerDay, { PickerDayProps, IPickerDayRenderDay, IDateSource } from '../date-picker/PickerDay';
 import Icon from '../icon';
 import { formatter } from '../';
 import './style/index.less';
 import { IProps } from '../utils/props';
 
 
-export interface ICalendarProps extends IProps, IPickerDayProps {
+export interface CalendarProps extends IProps, PickerDayProps {
   /**
    * 设置日历面板上面的日期标题。
    */
@@ -53,22 +53,22 @@ export interface ICalendarData {
   [key: string]: any;
 }
 
-export default class Calendar extends React.Component<ICalendarProps, ICalendarState> {
+export default class Calendar extends React.Component<CalendarProps, ICalendarState> {
   static state: ICalendarState;
-  public static defaultProps: ICalendarProps = {
+  public static defaultProps: CalendarProps = {
     prefixCls: 'w-calendar',
     titleFormat: 'YYYY/MM',
     todayLabel: '今天',
     monthLabel: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
   }
-  constructor(props: ICalendarProps) {
+  constructor(props: CalendarProps) {
     super(props);
     this.state = {
       panelDate: props.panelDate || new Date(),
       date: props.date,
     };
   }
-  UNSAFE_componentWillReceiveProps(nextProps: ICalendarProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: CalendarProps) {
     if (nextProps.panelDate !== this.props.panelDate) {
       this.setState({ panelDate: nextProps.panelDate });
     }

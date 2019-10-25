@@ -1,14 +1,14 @@
 import React from 'react';
 import classnames from 'classnames';
-import { Type } from '../icon';
+import { IconProps } from '../icon';
 import { IProps, HTMLDivProps } from '../utils/props';
 import { IconProgress } from './utils';
 import './style/index.less';
 import './style/circle.less';
 
 export type Status = 'success' | 'active' | 'exception';
-export interface IProgressCircleProps extends IProps, HTMLDivProps {
-  type?: Type;
+export interface ProgressCircleProps<T> extends IProps, HTMLDivProps {
+  type?: IconProps<T>['type'];
   status?: Status
   showText?: boolean; // 是否显示进度条文字内容
   percent?: number, // 百分比（必填）
@@ -17,8 +17,8 @@ export interface IProgressCircleProps extends IProps, HTMLDivProps {
   format?: (percent: number) => React.ReactNode;
 }
 
-export default class Circle extends React.Component<IProgressCircleProps> {
-  public static defaultProps: IProgressCircleProps = {
+export default class Circle<T> extends React.Component<ProgressCircleProps<T>> {
+  public static defaultProps: ProgressCircleProps<{}> = {
     prefixCls: 'w-progress',
     showText: true,
     percent: 0, // 百分比（必填）

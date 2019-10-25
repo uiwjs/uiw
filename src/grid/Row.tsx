@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { IProps } from '../utils/props';
 import './style/row.less';
 
-export interface IRowProps extends IProps {
+export interface RowProps extends IProps {
   fixed?: boolean;
   span?: number;
   grow?: number;
@@ -13,7 +13,7 @@ export interface IRowProps extends IProps {
 }
 
 
-export default class Row extends React.Component<IRowProps> {
+export default class Row extends React.Component<RowProps> {
   static defaultProps = {
     prefixCls: 'w-row',
     gutter: 0,
@@ -28,9 +28,10 @@ export default class Row extends React.Component<IRowProps> {
     const gutterStyl = !gutter ? {} : { paddingLeft: gutter / 2, paddingRight: gutter / 2 };
     return (
       <div {...props} className={cls}>
-        {React.Children.map(this.props.children, (element: any) => {
-          return React.cloneElement(element, Object.assign({}, element.props, {
-            style: { ...element.props.style, ...gutterStyl },
+        {React.Children.toArray(this.props.children).map((child) => {
+          if (!React.isValidElement(child)) return child;
+          return React.cloneElement(child, Object.assign({}, child.props, {
+            style: { ...child.props.style, ...gutterStyl },
           }));
         })}
       </div>

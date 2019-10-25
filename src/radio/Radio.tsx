@@ -1,11 +1,11 @@
 import React from 'react';
-import Abstract, { IAbstractProps } from './Abstract';
+import Abstract, { AbstractProps } from './Abstract';
 import './style/index.less';
 
-export interface IRadioProps extends IAbstractProps {}
+export interface RadioProps extends AbstractProps {}
 
-export default class Radio extends React.Component<IRadioProps> {
-  public static defaultProps: IAbstractProps = {
+export default class Radio extends React.Component<RadioProps> {
+  public static defaultProps: AbstractProps = {
     prefixCls: 'w-radio',
     type: 'radio',
     disabled: false,

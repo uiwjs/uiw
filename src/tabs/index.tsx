@@ -4,7 +4,7 @@ import Pane from './Pane';
 import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface ITabsProps extends IProps, HTMLDivProps {
+export interface TabsProps extends IProps, HTMLDivProps {
   prefixCls?: string;
   activeKey?: string;
   type?: 'default' | 'line' | 'card';
@@ -12,7 +12,7 @@ export interface ITabsProps extends IProps, HTMLDivProps {
   onTabClick?: (key: string, item: React.ReactElement, e: React.MouseEvent) => void;
 }
 
-export interface ITabsState {
+export interface TabsState {
   activeKey: string;
   slideStyle: {
     width: number;
@@ -20,21 +20,21 @@ export interface ITabsState {
   }
 }
 
-export default class Tabs extends React.Component<ITabsProps, ITabsState> {
-  public static defaultProps: ITabsProps = {
+export default class Tabs extends React.Component<TabsProps, TabsState> {
+  public static defaultProps: TabsProps = {
     prefixCls: 'w-tabs',
     type: 'default',
   }
   static Pane = Pane;
   private activeItem!: HTMLDivElement;
-  constructor(props: ITabsProps) {
+  constructor(props: TabsProps) {
     super(props);
     this.state = {
       activeKey: props.activeKey as string,
       slideStyle: { width: 0, left: 0 },
     };
   }
-  UNSAFE_componentWillReceiveProps(nextProps: ITabsProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: TabsProps) {
     if (nextProps.children !== this.props.children) {
       this.calcSlideStyle();
     }

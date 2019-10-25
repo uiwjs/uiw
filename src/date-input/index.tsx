@@ -1,15 +1,15 @@
 import React from 'react';
 import classnames from 'classnames';
-import Input, { IInputProps } from '../input';
-import Popover, { IPopoverProps } from '../popover';
+import Input, { InputProps } from '../input';
+import Popover, { PopoverProps } from '../popover';
 import DatePicker, { IDatePickerProps } from '../date-picker';
 import { formatter } from '../';
 import Icon from '../icon';
 import { IProps } from '../utils/props';
 import './style/index.less';
 
-export interface IDateInputProps extends IProps, Omit<IInputProps, 'onChange' | 'value'> {
-  popoverProps?: IPopoverProps;
+export interface IDateInputProps<T> extends IProps, Omit<InputProps<T>, 'onChange' | 'value'> {
+  popoverProps?: PopoverProps;
   datePickerProps?: IDatePickerProps;
   value?: Date | string;
   format?: string;
@@ -21,19 +21,19 @@ export interface IDateInputState {
   date?: Date | string;
 }
 
-export default class DateInput extends React.Component<IDateInputProps, IDateInputState> {
-  public static defaultProps: IDateInputProps = {
+export default class DateInput<T> extends React.Component<IDateInputProps<T>, IDateInputState> {
+  public static defaultProps: IDateInputProps<{}> = {
     prefixCls: 'w-dateinput',
     format: 'YYYY/MM/DD',
     allowClear: true,
   }
-  constructor(props: IDateInputProps) {
+  constructor(props: IDateInputProps<T>) {
     super(props);
     this.state = {
       date: props.value,
     };
   }
-  UNSAFE_componentWillReceiveProps(nextProps: IDateInputProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: IDateInputProps<T>) {
     if (nextProps.value !== this.props.value) {
       this.setState({ date: nextProps.value });
     }

@@ -5,12 +5,12 @@ import Group from './Group';
 import { IProps } from '../utils/props';
 import './style/index.less';
 
-export interface ISelectProps extends IProps, Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size'> {
+export interface SelectProps extends IProps, Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size'> {
   size?: 'large' | 'default' | 'small'; 
 }
 
-export default class Select extends React.Component<ISelectProps> {
-  public static defaultProps: ISelectProps = {
+export default class Select extends React.Component<SelectProps> {
+  public static defaultProps: SelectProps = {
     prefixCls: 'w-select',
     size: 'default',
   }

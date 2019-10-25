@@ -15,22 +15,21 @@ import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 import { TransitionProps } from 'react-transition-group/Transition';
 import classnames from 'classnames';
-import Portal, { IPortalProps } from '../portal';
+import Portal, { PortalProps } from '../portal';
 import { IProps } from '../utils/props';
 
 import './style/index.less';
 
 const noop = () => undefined;
-type TransitionDuration = number | { enter?: number, exit?: number };
 
-export interface IOverlayProps extends IProps, Omit<TransitionProps, 'timeout'> {
+export interface OverlayProps extends IProps, Omit<TransitionProps, 'timeout'> {
   timeout?: TransitionProps['timeout'];
   isOpen?: boolean;
   usePortal?: boolean;
   maskClosable?: boolean;
   dialogProps?: React.HTMLProps<HTMLElement>
   backdropProps?: React.HTMLProps<HTMLDivElement>;
-  portalProps?: IPortalProps;
+  portalProps?: PortalProps;
   hasBackdrop?: boolean;
   unmountOnExit?: boolean;
   transitionName?: string;
@@ -43,13 +42,13 @@ export interface IOverlayProps extends IProps, Omit<TransitionProps, 'timeout'> 
   children?: any;
 }
 
-export interface IOverlayState {
+export interface OverlayState {
   isMount: boolean;
   isOpen: boolean;
 }
 
-export default class Overlay extends React.Component<IOverlayProps, IOverlayState> {
-  public static defaultProps: IOverlayProps = {
+export default class Overlay extends React.Component<OverlayProps, OverlayState> {
+  public static defaultProps: OverlayProps = {
     isOpen: false,
     prefixCls: 'w-overlay',
     usePortal: true,
@@ -68,7 +67,7 @@ export default class Overlay extends React.Component<IOverlayProps, IOverlayStat
     onClose: noop,
   }
   public container!: HTMLDivElement | null;
-  constructor(props: IOverlayProps) {
+  constructor(props: OverlayProps) {
     super(props);
     this.state = {
       isMount: false,
@@ -110,7 +109,7 @@ export default class Overlay extends React.Component<IOverlayProps, IOverlayStat
       document.addEventListener('mousedown', this.handleDocumentClick, false);
     }
   }
-  componentDidUpdate(prevProps: IOverlayProps) {
+  componentDidUpdate(prevProps: OverlayProps) {
     if (prevProps.isOpen && !this.props.isOpen) {
       this.overlayWillClose();
     } else if (!prevProps.isOpen && this.props.isOpen) {
@@ -140,12 +139,13 @@ export default class Overlay extends React.Component<IOverlayProps, IOverlayStat
   }
   public render() {
     const { prefixCls, className, style, isOpen, maskClosable, usePortal, children, unmountOnExit,
-      timeout, transitionName, hasBackdrop, portalProps, backdropProps = {}, dialogProps, onClose, ...otherProps } = this.props;
+      timeout, transitionName, hasBackdrop, portalProps, backdropProps = {}, dialogProps = {}, onClose, ...otherProps } = this.props;
     const { onOpening, onOpened, onClosing } = this.props;
     const decoratedChild =
       typeof children === 'object' ? (
         cloneElement(children, {
           ...dialogProps,
+          style: { ...children.props.style, ...dialogProps.style},
           className: classnames(children.props.className, `${prefixCls}-content`),
           tabIndex: 0,
         })

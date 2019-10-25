@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-export interface IPortalProps {
+export interface PortalProps {
   /**
    * Callback invoked when the children of this `Portal` have been added to the DOM.
    */
@@ -13,18 +13,18 @@ export interface IPortalProps {
   container?: HTMLElement;
 }
 
-export interface IPortalState {
+export interface PortalState {
   hasMounted: boolean;
 }
 
 /** Detect if `React.createPortal()` API method does not exist. */
 const cannotCreatePortal = !(typeof ReactDOM.createPortal === 'function');
 
-export default class Portal extends React.Component<IPortalProps> {
-  public static defaultProps: IPortalProps = {
+export default class Portal extends React.Component<PortalProps> {
+  public static defaultProps: PortalProps = {
     container: typeof document !== "undefined" ? document.body : undefined,
   };
-  public state: IPortalState = {
+  public state: PortalState = {
     hasMounted: false,
   }
   private portalElement!: HTMLElement;

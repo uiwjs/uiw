@@ -4,15 +4,15 @@ import { HTMLDivProps } from '../utils/props';
 import BreadcrumbItem from './Item';
 import './style/index.less';
 
-export interface IBreadcrumbProps extends HTMLDivProps {
+export interface BreadcrumbProps extends HTMLDivProps {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;
   separator?: JSX.Element | string;
 }
 
-export default class Breadcrumb extends React.Component<IBreadcrumbProps> {
-  public static defaultProps: IBreadcrumbProps = {
+export default class Breadcrumb extends React.Component<BreadcrumbProps> {
+  public static defaultProps: BreadcrumbProps = {
     prefixCls: 'w-breadcrumb',
   }
   static Item: typeof BreadcrumbItem;

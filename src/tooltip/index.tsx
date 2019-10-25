@@ -1,16 +1,16 @@
 import React from 'react';
 import classnames from 'classnames';
-import OverlayTrigger, {IOverlayTriggerProps} from '../overlay-trigger';
+import OverlayTrigger, {OverlayTriggerProps} from '../overlay-trigger';
 import { IProps } from '../utils/props';
 import './style/index.less';
 
-export interface ITooltipProps extends IProps, IOverlayTriggerProps {
+export interface TooltipProps extends IProps, OverlayTriggerProps {
   visibleArrow?: boolean;
   content?: React.ReactNode;
 }
 
-export default class Tooltip extends React.Component<ITooltipProps> {
-  public static defaultProps: ITooltipProps = {
+export default class Tooltip extends React.Component<TooltipProps> {
+  public static defaultProps: TooltipProps = {
     prefixCls: 'w-tooltip',
     placement: 'top',
     usePortal: true,

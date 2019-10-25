@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { HTMLSpanProps } from '../utils/props';
 import './style/index.less';
 
-export interface IBadgeProps extends HTMLSpanProps {
+export interface BadgeProps extends HTMLSpanProps {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;
@@ -14,8 +14,8 @@ export interface IBadgeProps extends HTMLSpanProps {
   count?: number;
 }
 
-export default class Badge extends React.Component<IBadgeProps> {
-  public static defaultProps: IBadgeProps = {
+export default class Badge extends React.Component<BadgeProps> {
+  public static defaultProps: BadgeProps = {
     prefixCls: 'w-badge',
     dot: false,
     processing: false,

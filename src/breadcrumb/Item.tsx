@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { HTMLSpanProps } from '../utils/props';
 import './style/item.less';
 
-export interface IBreadcrumbItemProps extends HTMLSpanProps {
+export interface BreadcrumbItemProps extends HTMLSpanProps {
   style?: React.CSSProperties;
   className?: string;
   prefixCls: string;
@@ -12,7 +12,7 @@ export interface IBreadcrumbItemProps extends HTMLSpanProps {
   'data-separator'?: JSX.Element | string;
 }
 
-export default class BreadcrumbItem extends React.Component<IBreadcrumbItemProps> {
+export default class BreadcrumbItem extends React.Component<BreadcrumbItemProps> {
   public static defaultProps = {
     prefixCls: 'w-breadcrumb',
   }

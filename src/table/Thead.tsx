@@ -1,18 +1,18 @@
 import React from 'react';
 import classnames from 'classnames';
 import { IProps } from '../utils/props';
-import { ITableProps, IColumns } from './';
+import { TableProps, IColumns } from './';
 import './style/index.less';
 
 function noop() { }
 
-export interface ITheadProps extends IProps {
-  data?: ITableProps['data'];
-  onCellHead?: ITableProps['onCellHead'];
+export interface TheadProps extends IProps {
+  data?: TableProps['data'];
+  onCellHead?: TableProps['onCellHead'];
 }
 
-export default class Thead extends React.Component<ITheadProps & React.HTMLAttributes<HTMLTableSectionElement>> {
-  public static defaultProps: ITheadProps = {
+export default class Thead extends React.Component<TheadProps & React.HTMLAttributes<HTMLTableSectionElement>> {
+  public static defaultProps: TheadProps = {
     prefixCls: 'w-table-thead',
     onCellHead: noop,
     data: [],

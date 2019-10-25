@@ -1,15 +1,15 @@
 import React from 'react';
 import classnames from 'classnames';
-import OverlayTrigger, { IOverlayTriggerProps } from '../overlay-trigger';
+import OverlayTrigger, { OverlayTriggerProps } from '../overlay-trigger';
 import './style/index.less';
 
-export interface IPopoverProps extends IOverlayTriggerProps {
+export interface PopoverProps extends OverlayTriggerProps {
   content?: React.ReactNode;
   visibleArrow?: boolean;
 }
 
-export default class Popover extends React.Component<IPopoverProps> {
-  public static defaultProps: IPopoverProps = {
+export default class Popover extends React.Component<PopoverProps> {
+  public static defaultProps: PopoverProps = {
     prefixCls: 'w-popover',
     placement: 'top',
     usePortal: true,
@@ -28,16 +28,10 @@ export default class Popover extends React.Component<IPopoverProps> {
     );
   }
   render() {
-    const { prefixCls, className, placement, content, isOpen, trigger, delay, usePortal, visibleArrow, onVisibleChange, ...other } = this.props;
+    const { prefixCls, className, content, visibleArrow, ...other } = this.props;
     const cls = classnames(prefixCls, className, { 'no-arrow': !visibleArrow });
     return (
       <OverlayTrigger
-        usePortal={usePortal}
-        isOpen={isOpen}
-        trigger={trigger}
-        delay={delay}
-        onVisibleChange={onVisibleChange}
-        placement={placement}
         {...other}
         overlay={
           <div className={cls}>

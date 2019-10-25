@@ -1,15 +1,15 @@
 import React from 'react';
 import classnames from 'classnames';
-import Alert, { IAlertProps } from '../alert';
+import Alert, { AlertProps } from '../alert';
 import { IProps } from '../utils/props';
 import { NotificationCreateProps } from './index';
 
 export type Placement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
-export interface IContainerProps extends IProps {
+export interface ContainerProps extends IProps {
   placement?: Placement;
 }
-export interface IContainerState {
+export interface ContainerState {
   placement?: Placement;
   notifys: ContainerNotifys
 }
@@ -23,12 +23,12 @@ export type ContainerNotifys = {
 const notifys: ContainerNotifys = {};
 const timer: { [key: string]: any } = {};
 
-export default class Container extends React.Component<IContainerProps, IContainerState> {
-  public static defaultProps: IContainerProps = {
+export default class Container extends React.Component<ContainerProps, ContainerState> {
+  public static defaultProps: ContainerProps = {
     prefixCls: 'w-notify',
     placement: 'topRight',
   }
-  public state: IContainerState = {
+  public state: ContainerState = {
     notifys: {},
   }
   public create(props: NotificationCreateProps) {
@@ -82,7 +82,7 @@ export default class Container extends React.Component<IContainerProps, IContain
               key={key}
               useButton={false}
               width={320}
-              {...alertProps as IAlertProps}
+              {...alertProps as AlertProps}
               usePortal={false}
               hasBackdrop={false}
               isOpen={isOpen}

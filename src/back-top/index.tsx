@@ -4,7 +4,7 @@ import { getScrollPercent, getScrollTop, ScrollToAnimate } from './utils';
 import { IProps, HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface IBackTopProps extends IProps, HTMLDivProps {
+export interface BackTopProps extends IProps, HTMLDivProps {
   offsetTop?: number;
   clickable?: boolean;
   content?: JSX.Element | string;
@@ -21,8 +21,8 @@ export interface IBackTopState {
   current: number;
 }
 
-export default class BackTop extends React.Component<IBackTopProps, IBackTopState> {
-  public static defaultProps: IBackTopProps = {
+export default class BackTop extends React.Component<BackTopProps, IBackTopState> {
+  public static defaultProps: BackTopProps = {
     prefixCls: 'w-back-top',
     offsetTop: 0,
     clickable: true,

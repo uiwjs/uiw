@@ -10,7 +10,7 @@ export interface IDateSource {
   year?: number
 }
 
-export interface IPickerDayProps extends IProps, HTMLDivProps {
+export interface PickerDayProps extends IProps, HTMLDivProps {
   weekday?: string[];
   weekTitle?: string[];
   panelDate?: Date;
@@ -22,7 +22,7 @@ export interface IPickerDayProps extends IProps, HTMLDivProps {
   disabledDate?: (cellDate: Date, props: IPickerDayRenderDay) => boolean;
 }
 
-export interface IPickerDayState {
+export interface PickerDayState {
   selected?: Date;
   panelDate?: Date;
 }
@@ -57,22 +57,22 @@ function setTimeDate(selDate: Date, curDate: Date) {
   );
 }
 
-export default class PickerDay extends React.Component<IPickerDayProps, IPickerDayState> {
-  public state: IPickerDayState;
-  public static defaultProps: IPickerDayProps = {
+export default class PickerDay extends React.Component<PickerDayProps, PickerDayState> {
+  public state: PickerDayState;
+  public static defaultProps: PickerDayProps = {
     prefixCls: 'w-datepicker',
     weekday: ['日', '一', '二', '三', '四', '五', '六'],
     weekTitle: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
     onSelectDay(){}
   }
-  constructor(props: IPickerDayProps & HTMLDivProps) {
+  constructor(props: PickerDayProps & HTMLDivProps) {
     super(props);
     this.state = {
       selected: props.date,
       panelDate: props.panelDate,
     };
   }
-  UNSAFE_componentWillReceiveProps(nextProps: IPickerDayProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: PickerDayProps) {
     if (nextProps.panelDate !== this.props.panelDate) {
       this.setState({ panelDate: nextProps.panelDate });
     }

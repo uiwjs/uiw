@@ -3,14 +3,14 @@ import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '../utils/props';
 import './style/col.less';
 
-export interface IColProps extends IProps, HTMLDivProps {
+export interface ColProps extends IProps, HTMLDivProps {
   fixed?: boolean;
   span?: number;
   grow?: number;
   align?: 'top' | 'middle' | 'bottom' | 'baseline';
 }
 
-export default class Col extends React.Component<IColProps> {
+export default class Col extends React.Component<ColProps> {
   static defaultProps = {
     prefixCls: 'w-col',
   }

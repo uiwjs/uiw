@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import getScroll from '../utils/getScroll';
 import { IProps, HTMLDivProps } from '../utils/props';
 
-export interface IAffixProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
+export interface AffixProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   /**
    * 距离窗口顶部达到指定偏移量后触发
    */
@@ -52,8 +52,8 @@ function getDefaultTarget() {
   return typeof window !== 'undefined' ? window : null;
 }
 
-export default class Affix extends React.Component<IAffixProps, IAffixState> {
-  public static defaultProps: IAffixProps = {
+export default class Affix extends React.Component<AffixProps, IAffixState> {
+  public static defaultProps: AffixProps = {
     prefixCls: 'w-affix',
     onChange: noop,
   }
@@ -74,7 +74,7 @@ export default class Affix extends React.Component<IAffixProps, IAffixState> {
   ];
   private eventHandlers: Record<string, any> = {};
   private timeout?: number;
-  constructor(props: IAffixProps & HTMLDivProps) {
+  constructor(props: AffixProps & HTMLDivProps) {
     super(props);
     this.updatePosition = this.updatePosition.bind(this);
   }

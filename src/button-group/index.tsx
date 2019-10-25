@@ -3,15 +3,15 @@ import classnames from 'classnames';
 import { HTMLDivProps } from '../utils/props';
 import './style/index.less';
 
-export interface IButtonGroupProps extends HTMLDivProps {
+export interface ButtonGroupProps extends HTMLDivProps {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;
   vertical?: boolean;
 }
 
-export default class ButtonGroup extends React.Component<IButtonGroupProps> {
-  public static defaultProps: IButtonGroupProps = {
+export default class ButtonGroup extends React.Component<ButtonGroupProps> {
+  public static defaultProps: ButtonGroupProps = {
     prefixCls: 'w-btn-group',
     vertical: false,
   }

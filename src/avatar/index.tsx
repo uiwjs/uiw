@@ -2,8 +2,9 @@ import React from 'react';
 import classnames from 'classnames';
 import Icon from '../icon';
 import './style/index.less';
+import { HTMLSpanProps } from '../utils/props';
 
-export interface IAvatarProps {
+export interface AvatarProps extends HTMLSpanProps {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;
@@ -16,21 +17,21 @@ export interface IAvatarProps {
 
 }
 
-export interface IAvatarState {
+export interface AvatarState {
   isImgExist: boolean;
 }
 
-export default class Avatar extends React.Component<IAvatarProps, IAvatarState> {
-  public static defaultProps: IAvatarProps = {
+export default class Avatar extends React.Component<AvatarProps, AvatarState> {
+  public static defaultProps: AvatarProps = {
     prefixCls: 'w-avatar',
     shape: 'circle',
     size: 'default',
   }
-  public state: IAvatarState = {
+  public state: AvatarState = {
     isImgExist: true,
   }
 
-  componentDidUpdate(prevProps: IAvatarProps) {
+  componentDidUpdate(prevProps: AvatarProps) {
     if (prevProps.src !== this.props.src) {
       this.setState({ isImgExist: true });
     }

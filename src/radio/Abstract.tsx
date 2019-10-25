@@ -6,7 +6,7 @@ import { IProps, HTMLInputProps } from '../utils/props';
  * Constructs a type by picking all properties from `HTMLInputProps` and then removing `size`.
  * Omit: https://www.typescriptlang.org/docs/handbook/utility-types.html#omittk
  */
-export interface IAbstractProps extends IProps, Omit<HTMLInputProps, 'size'> {
+export interface AbstractProps extends IProps, Omit<HTMLInputProps, 'size'> {
   size?: 'large' | 'default' | 'small';
   checked?: boolean;
   disabled?: boolean;
@@ -17,8 +17,8 @@ export interface IAbstractState {
   checked?: boolean;
 }
 
-export default class Abstract extends React.Component<IAbstractProps> {
-  public static defaulProps: IAbstractProps = {
+export default class Abstract extends React.Component<AbstractProps> {
+  public static defaulProps: AbstractProps = {
     prefixCls: 'w-radio',
     type: 'radio',
     disabled: false,
@@ -26,13 +26,13 @@ export default class Abstract extends React.Component<IAbstractProps> {
     value: '',
   }
   public state:IAbstractState = {}
-  constructor(props: IAbstractProps) {
+  constructor(props: AbstractProps) {
     super(props);
     this.state = {
       checked: props.checked || false,
     };
   }
-  UNSAFE_componentWillReceiveProps(nextPrrops: IAbstractProps) {
+  UNSAFE_componentWillReceiveProps(nextPrrops: AbstractProps) {
     if (nextPrrops.checked !== this.props.checked) {
       this.setState({ checked: nextPrrops.checked });
     }

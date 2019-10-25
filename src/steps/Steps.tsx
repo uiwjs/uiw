@@ -1,12 +1,12 @@
 import React from 'react';
 import classnames from 'classnames';
 import { findDOMNode } from 'react-dom';
-import Step, { IStepProps } from './Step';
+import Step, { StepProps } from './Step';
 import { IProps, HTMLDivProps } from '../utils/props';
 
-export interface IStepsProps extends IProps, HTMLDivProps {
-  status?: IStepProps['status'];
-  progressDot?: IStepProps['progressDot'];
+export interface StepsProps<T> extends IProps, HTMLDivProps {
+  status?: StepProps<T>['status'];
+  progressDot?: StepProps<T>['progressDot'];
   direction?: 'horizontal' | 'vertical';
   /**
    * 指定当前步骤，从 `0` 开始记数。
@@ -14,20 +14,20 @@ export interface IStepsProps extends IProps, HTMLDivProps {
   current?: number;
 }
 
-export interface IStepsState {
+export interface StepsState {
   lastStepOffsetWidth: number;
 }
 
-export default class Steps extends React.Component<IStepsProps, IStepsState> {
+export default class Steps<T> extends React.Component<StepsProps<T>, StepsState> {
   static Step = Step;
-  public static defaultProps: IStepsProps = {
+  public static defaultProps: StepsProps<{}> = {
     prefixCls: 'w-steps',
     status: 'process',
     progressDot: false,
     direction: 'horizontal',
     current: 0,
   }
-  constructor(props: IStepsProps) {
+  constructor(props: StepsProps<T>) {
     super(props);
     this.state = {
       lastStepOffsetWidth: 0,
