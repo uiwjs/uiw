@@ -43,6 +43,7 @@ export { default as Split } from './split';
 export { default as Switch } from './switch';
 export { default as Slider } from './slider';
 export { default as Select } from './select';
+export { default as SearchSelect } from './search-select';
 export { default as Textarea } from './textarea';
 export { default as Tooltip } from './tooltip';
 export { default as Tag } from './tag';
