@@ -2,8 +2,7 @@ import React from 'react';
 import { Input, Menu, Icon, Dropdown, Loader } from '..';
 import { IProps } from '../utils/props';
 
-export interface SearchSelectProps extends IProps, Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 
-  'size' | 'onSelect' | 'onMouseEnter' | 'defaultValue' | 'value' | 'onChange'>{
+export interface SearchSelectProps extends IProps, Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size' | 'onSelect' | 'onMouseEnter' | 'defaultValue' | 'value' | 'onChange'> {
   size?: 'large' | 'default' | 'small';
   loading: boolean;
   isOpen?: boolean;
@@ -84,13 +83,11 @@ export default class SearchSelect extends React.Component<SearchSelectProps, Sea
     const { selectedValue } = this.state;
     let selectIconType;
     if (type === 'enter' && allowClear && selectedValue) {
-      selectIconType = 'close'
+      selectIconType = 'close';
     } else {
-      selectIconType = ''
+      selectIconType = '';
     }
-    this.setState({
-      selectIconType
-    })
+    this.setState({ selectIconType });
   }
 
   // handle change
@@ -129,15 +126,13 @@ export default class SearchSelect extends React.Component<SearchSelectProps, Sea
   // click
   // 清除选中的值
   resetSelectedValue = () => {
-   
     this.setState({
       selectedValue: '',
       selectedLabel: '',
       selectIconType: '',
       innerIsOpen: false,
-    })
-    this.handleSelectChange('')
-    
+    });
+    this.handleSelectChange('');
   }
 
   render() {
