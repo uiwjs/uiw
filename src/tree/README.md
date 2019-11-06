@@ -647,7 +647,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| data | 展示数据 | Array | `ITreeData[]` |
+| data | 展示数据 | Array | `TreeData[]` |
 | openKeys | 节点展开 `key` | Array | `[]` |
 | selectedKeys | 设置选中的树节点 | Array | `[]` |
 | autoExpandParent | 是否自动展开父节点 | Boolean | `true` |
@@ -658,7 +658,7 @@ ReactDOM.render(<Demo />, _mount_);
 | checkStrictly | 子节点受父节点控制设置 `true`，需要配合 `multiple` 参数使用。 | Boolean | `false` |
 | multiple | 支持点选多个节点 | Boolean | `false` |
 | icon | 重新定义，展开收缩图标，当为函数时视为自定义图标，并展示非折叠项的图标。 | ~~Function(data: object, noChild: bool)/String/Node~~ `@3.4.0+` Function(data: object, { selected: bool, noChild: bool })/String/Node| - |
-| renderTitle | 重新定义每个标题节点的显示 | ~~Function(item, selected: bool, noChild: bool)~~ `@3.4.0+` Function(item: ITreeData, node?: { selected?: boolean, noChild?: boolean, isHalfChecked?: boolean, openKeys?: TreeProps['openKeys'], selectedKeys?: TreeProps['selectedKeys'] }) => React.ReactElement; | - |
+| renderTitle | 重新定义每个标题节点的显示 | ~~Function(item, selected: bool, noChild: bool)~~ `@3.4.0+` Function(item: TreeData, node?: { selected?: boolean, noChild?: boolean, isHalfChecked?: boolean, openKeys?: TreeProps['openKeys'], selectedKeys?: TreeProps['selectedKeys'] }) => React.ReactElement; | - |
 | onSelected | 点击选择树节点触发 | Function(selectedKeys: array, key, selected: bool, data, e) | - |
 | onExpand | 展开/收起节点时触发 | Function(key, expanded: bool, data, evn) | - |
 

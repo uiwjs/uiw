@@ -5,21 +5,19 @@ import Icon, { IconProps } from '../icon';
 import { IProps, HTMLDivProps } from '../utils/props'
 import './style/index.less';
 
-export type IconFun<T> = (
-  item: ITreeData,
-  node?: {
-    isOpen?: boolean,
-    noChild?: boolean,
-    openKeys?: TreeProps<T>['openKeys'],
-    selectedKeys?: TreeProps<T>['selectedKeys']
-  }
-) => React.ReactElement;
+export type RenderTitleNode<T> = {
+  selected?: boolean;
+  noChild?: boolean;
+  isHalfChecked?: boolean;
+  openKeys?: TreeProps<T>['openKeys'];
+  selectedKeys?: TreeProps<T>['selectedKeys'];
+}
 
 export interface TreeProps<T> extends IProps, HTMLDivProps {
   icon?: IconProps<T>['type'];
-  data?: ITreeData[];
-  openKeys?: ITreeData['key'][];
-  selectedKeys?: ITreeData['key'][];
+  data?: TreeData[];
+  openKeys?: TreeData['key'][];
+  selectedKeys?: TreeData['key'][];
   defaultExpandAll?: boolean;
   /**
    * 是否自动展开父节点
@@ -39,22 +37,22 @@ export interface TreeProps<T> extends IProps, HTMLDivProps {
    * 支持点选多个节点
    */
   multiple?: boolean;
-  renderTitle?: (item: ITreeData, node?: { selected?: boolean, noChild?: boolean, isHalfChecked?: boolean, openKeys?: TreeProps<T>['openKeys'], selectedKeys?: TreeProps<T>['selectedKeys'] }) => React.ReactElement;
-  onExpand?: (key: ITreeData['key'], expanded: boolean, item: ITreeData, evn: React.MouseEvent<HTMLElement>) => void;
-  onSelected?: (keys: ITreeData['key'][], key: ITreeData['key'], selected: boolean, item: ITreeData, evn: React.MouseEvent<HTMLElement>) => void;
+  renderTitle?: (item: TreeData, node?: RenderTitleNode<T>) => React.ReactElement;
+  onExpand?: (key: TreeData['key'], expanded: boolean, item: TreeData, evn: React.MouseEvent<HTMLElement>) => void;
+  onSelected?: (keys: TreeData['key'][], key: TreeData['key'], selected: boolean, item: TreeData, evn: React.MouseEvent<HTMLElement>) => void;
 }
 
-export interface ITreeData {
+export interface TreeData {
   label?: React.ReactNode;
-  children?: ITreeData[];
+  children?: TreeData[];
   key?: string | number;
   [keyName: string]: any;
 }
 
 export interface ITreeState {
-  openKeys?: ITreeData['key'][];
-  selectedKeys?: ITreeData['key'][];
-  halfCheckedKeys?: ITreeData['key'][];
+  openKeys?: TreeData['key'][];
+  selectedKeys?: TreeData['key'][];
+  halfCheckedKeys?: TreeData['key'][];
 }
 
 const noop = () => undefined;
@@ -74,7 +72,7 @@ const isContained = (a: any[], b: any[]) => {
   return true;
 };
 
-const getChildKeys = (childs: ITreeData[] = [], result: ITreeData['key'][] = []): ITreeData['key'][] => {
+const getChildKeys = (childs: TreeData[] = [], result: TreeData['key'][] = []): TreeData['key'][] => {
   childs.forEach((item) => {
     result.push(item.key as string | number);
     if (item.children && item.children.length > 0) {
@@ -84,7 +82,7 @@ const getChildKeys = (childs: ITreeData[] = [], result: ITreeData['key'][] = [])
   return result;
 };
 
-const getParentKeys = (childs: ITreeData = {}, result: ITreeData['key'][] = []) => {
+const getParentKeys = (childs: TreeData = {}, result: TreeData['key'][] = []) => {
   if (childs.key) {
     result.push(childs.key);
   }
@@ -94,7 +92,7 @@ const getParentKeys = (childs: ITreeData = {}, result: ITreeData['key'][] = []) 
   return result;
 };
 
-const getParentSelectKeys = (childs: ITreeData = {}, selectedKeys: ITreeData['key'][] = [], result: ITreeData['key'][] = []) => {
+const getParentSelectKeys = (childs: TreeData = {}, selectedKeys: TreeData['key'][] = [], result: TreeData['key'][] = []) => {
   if (childs.key && childs.children && isContained(selectedKeys, getChildKeys(childs.children))) {
     result.push(childs.key);
     if (childs.parent && !childs.parent.parent) {
@@ -151,9 +149,9 @@ export default class Tree<T> extends React.Component<TreeProps<T>, ITreeState> {
       this.setState({ selectedKeys: nextProps.selectedKeys });
     }
   }
-  onItemSelected(item: ITreeData, evn: React.MouseEvent<HTMLElement>) {
+  onItemSelected(item: TreeData, evn: React.MouseEvent<HTMLElement>) {
     const { onSelected, multiple, checkStrictly } = this.props;
-    let selKeys = [...this.state.selectedKeys as ITreeData['key'][]];
+    let selKeys = [...this.state.selectedKeys as TreeData['key'][]];
 
     const findKey = selKeys.find(v => v === item.key);
     let selected = false;
@@ -195,13 +193,13 @@ export default class Tree<T> extends React.Component<TreeProps<T>, ITreeState> {
   onEntered = (node: HTMLElement, isAppearing: boolean) => {
     node.style.height = 'initial';
   }
-  onItemClick(item: ITreeData, evn: React.MouseEvent<HTMLElement>) {
+  onItemClick(item: TreeData, evn: React.MouseEvent<HTMLElement>) {
     if (!item.children) {
       return;
     }
     const { onExpand } = this.props;
     const { openKeys } = this.state;
-    let currentKeys = [...openKeys as ITreeData['key'][]];
+    let currentKeys = [...openKeys as TreeData['key'][]];
     const key = currentKeys.find(v => v === item.key);
     const cls = evn.currentTarget.className.replace(/(\s)open/g, '');
     let expanded = false;
@@ -217,7 +215,7 @@ export default class Tree<T> extends React.Component<TreeProps<T>, ITreeState> {
       onExpand && onExpand(item.key, expanded, item, evn);
     });
   }
-  renderTreeNode(data: ITreeData[], level: number, parent?: ITreeData) {
+  renderTreeNode(data: TreeData[], level: number, parent?: TreeData) {
     const { prefixCls, renderTitle, icon, iconAnimation, isSelected } = this.props;
     const { openKeys, selectedKeys } = this.state;
     let isOpen = false;
@@ -288,7 +286,7 @@ export default class Tree<T> extends React.Component<TreeProps<T>, ITreeState> {
     const cls = classnames(className, prefixCls, { [`${prefixCls}-line`]: showLine });
     return (
       <div className={cls} {...elementProps}>
-        {this.renderTreeNode(data as ITreeData[], 1)}
+        {this.renderTreeNode(data as TreeData[], 1)}
       </div>
     );
   }
