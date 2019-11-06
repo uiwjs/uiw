@@ -14,7 +14,7 @@
     "sourceMap": true,
     "strict": true,
     "outDir": "lib",
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "types": [
       "node",
       "jest"

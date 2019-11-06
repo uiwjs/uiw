@@ -10,15 +10,15 @@
   "author": "kenny wang <wowohoo@qq.com>",
   "scripts": {
     "prepare": "npm run build",
-    "bundle": "kkt build --bundle --no-emptyDir",
-    "bundle:min": "kkt build --bundle=min --no-emptyDir",
+    "bundle": "kkt build --bundle --no-checkRequiredFiles",
+    "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --no-checkRequiredFiles --mini --no-emptyDir",
     "watch": "npm run watch:types & npm run watch:ts",
+    "watch:ts": "tsbb watch --target react --env-name esm:dev --env-name cjs",
+    "watch:types": "npm run build:types -- --watch",
+    "build:ts": "tsbb build --target react --env-name esm --env-name cjs",
+    "build:types": "tsbb types --outDir lib/esm --target ESNEXT",
     "build": "npm run build:ts && npm run build:types && npm run build:types -- --outDir lib/cjs && npm run bundle && npm run build:css && npm run bundle:min",
     "build:css": "compile-less -d src -o lib/esm",
-    "watch:types": "npm run build:types -- --watch",
-    "build:types": "tsbb types --outDir lib/esm --target ESNEXT",
-    "watch:ts": "tsbb watch --target react --env-name esm:dev --env-name cjs",
-    "build:ts": "tsbb build --target react --env-name esm --env-name cjs",
     "test": "tsbb test",
     "coverage": "tsbb test --coverage"
   },
@@ -65,6 +65,7 @@
     "react-transition-group": "^4.3.0"
   },
   "devDependencies": {
+    "@kkt/loader-less": "^1.0.3",
     "@kkt/plugin-less": "^1.2.0",
     "@types/classnames": "^2.2.7",
     "@types/jest": "^24.0.15",
@@ -75,7 +76,7 @@
     "babel-plugin-transform-rename-import": "^2.3.0",
     "compile-less-cli": "^1.1.5",
     "enzyme": "^3.9.0",
-    "kkt": "^4.1.7",
+    "kkt": "^5.0.0-alpha.6",
     "less": "^3.9.0",
     "mini-css-extract-plugin": "^0.8.0",
     "react": "^16.8.6",
@@ -83,5 +84,17 @@
     "react-test-renderer": "^16.8.6",
     "tsbb": "^1.1.2"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
