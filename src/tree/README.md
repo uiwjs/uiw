@@ -278,7 +278,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 自定义选中效果
 
-通过设置 `checkStrictly` 父节点受子节点控制，设置 `multiple` 为多选，设置 `isSelected` 取消选中效果。
+通过设置 `checkStrictly` 父节点受子节点控制，设置 `multiple` 为多选，设置 `isSelected` 取消选中效果，也可以使用 [`TreeChecked`](#/components/tree-checked) 组件。
 
 <!--DemoStart,bgWhite,codePen--> 
 ```jsx
@@ -653,7 +653,7 @@ ReactDOM.render(<Demo />, _mount_);
 | autoExpandParent | 是否自动展开父节点 | Boolean | `true` |
 | defaultExpandAll | 默认展开所有树节点 | Boolean | `false` |
 | iconAnimation | 展开收缩图标，参数设为 `false` 禁用动画 | Boolean | `true` |
-| isSelected | 是否选中当前节点 | Boolean | `true` |
+| isSelected | 是否选中当前节点样式。 | Boolean | `true` |
 | showLine | 是否展示连接线 | Boolean | `false` |
 | checkStrictly | 子节点受父节点控制设置 `true`，需要配合 `multiple` 参数使用。 | Boolean | `false` |
 | multiple | 支持点选多个节点 | Boolean | `false` |

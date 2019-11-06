@@ -48,6 +48,7 @@ export { default as Textarea } from './textarea';
 export { default as Tooltip } from './tooltip';
 export { default as Tag } from './tag';
 export { default as Tree } from './tree';
+export { default as TreeChecked } from './tree-checked';
 export { default as Tabs } from './tabs';
 export { default as Table } from './table';
 export { default as TimePicker } from './time-picker';

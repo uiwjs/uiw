@@ -37,7 +37,7 @@ export interface TreeProps<T> extends IProps, HTMLDivProps {
    * 支持点选多个节点
    */
   multiple?: boolean;
-  renderTitle?: (item: TreeData, node?: RenderTitleNode<T>) => React.ReactElement;
+  renderTitle?: (item: TreeData, node: RenderTitleNode<T>) => React.ReactElement;
   onExpand?: (key: TreeData['key'], expanded: boolean, item: TreeData, evn: React.MouseEvent<HTMLElement>) => void;
   onSelected?: (keys: TreeData['key'][], key: TreeData['key'], selected: boolean, item: TreeData, evn: React.MouseEvent<HTMLElement>) => void;
 }

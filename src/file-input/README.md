@@ -24,6 +24,8 @@ ReactDOM.render(
 
 ## Props
 
+继承 [Input](#/components/input) 组件属性。
+
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | className | CSS类名称 | String | - |
