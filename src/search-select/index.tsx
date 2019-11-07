@@ -18,7 +18,7 @@ export interface SearchSelectProps extends IProps, Omit<React.SelectHTMLAttribut
   }[];
   onSelect?: (value: string | number) => void;
   onSearch?: (value: string) => void;
-  onChange?: (value: string, option: MenuItemData[]) => void;
+  onChange?: (value: string) => void;
 }
 
 export interface MenuItemData {
@@ -29,7 +29,7 @@ export interface MenuItemData {
 
 export interface SearchSelectState {
   innerIsOpen: boolean;
-  selectedValue: string | number;
+  selectedValue?: string | number;
   searchLoading: boolean;
   selectIconType: string;
   selectedLabel: string;
@@ -48,14 +48,14 @@ export default class SearchSelect extends React.Component<SearchSelectProps, Sea
 
   state: SearchSelectState = {
     innerIsOpen: false,
-    selectedValue: '',
+    selectedValue: this.props.value,
     searchLoading: false,
     selectIconType: '',
     selectedLabel: '',
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: SearchSelectProps) {
-    if (nextProps.value && nextProps.value !== this.props.value) {
+    if ( nextProps.value !== this.props.value) {
       this.setState({
         selectedValue: nextProps.value
       })
@@ -96,9 +96,9 @@ export default class SearchSelect extends React.Component<SearchSelectProps, Sea
     let innerIsOpen;
     const value = e.target.value;
     if (value) {
-      innerIsOpen = true
+      innerIsOpen = true;
     } else {
-      innerIsOpen = false
+      innerIsOpen = false;
     }
     this.setState({
       innerIsOpen,
@@ -106,12 +106,12 @@ export default class SearchSelect extends React.Component<SearchSelectProps, Sea
       selectIconType: showSearch && value ? 'loading' : '',
     })
     showSearch && onSearch && onSearch(value)
-    this.handleSelectChange(value)
+    this.handleSelectChange(value);
   }
 
   handleSelectChange(value: any) {
-    const { option, onChange  } = this.props;
-    onChange && onChange(value, option)
+    const { onChange  } = this.props;
+    onChange && onChange(value);
   }
 
   handleItemClick(item: MenuItemData) {
@@ -121,6 +121,8 @@ export default class SearchSelect extends React.Component<SearchSelectProps, Sea
       innerIsOpen: false,
     })
     this.props.onSelect && this.props.onSelect(item.value);
+    // 支持form组件
+    this.handleSelectChange(item.value);
   }
 
   // click
