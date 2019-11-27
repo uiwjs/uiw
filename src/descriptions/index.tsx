@@ -67,7 +67,6 @@ export default class Descriptions extends React.Component<DescriptionsProps> {
       [`${prefixCls}-bordered`]: bordered,
       [`${prefixCls}-${size}`]: size
     });
-    console.log('size~~~:', size);
     const cloneChildren: JSX.Element[] = React.Children.map(children as React.ReactElement<DescriptionsItemProps>[], (child: React.ReactElement<DescriptionsItemProps>) => {
       return child;
     });
