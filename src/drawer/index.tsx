@@ -30,6 +30,7 @@ export default class Drawer extends React.PureComponent<DrawerProps> {
   render() {
     const { prefixCls, className, style, placement, size, title, footer, icon, isCloseButtonShown, bodyProps, ...overlayProps } = this.props;
     const cls = classnames(className, prefixCls, `${placement}`);
+    const bodyCls = classnames(bodyProps && bodyProps.className, `${prefixCls}-body-inner`);
     const styl = { ...style, [/^(top|bottom)$/.test(placement!) ? 'height' : 'width']: size };
     return (
       <Overlay className={cls} {...overlayProps}>
@@ -42,7 +43,7 @@ export default class Drawer extends React.PureComponent<DrawerProps> {
             </div>
           )}
           <div className={`${prefixCls}-body`}>
-            <div className={`${prefixCls}-body-inner`} {...bodyProps}>
+            <div {...bodyProps} className={bodyCls}>
               {this.props.children}
             </div>
           </div>
