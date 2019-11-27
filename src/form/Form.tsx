@@ -76,7 +76,10 @@ function newInitialValue<T>(value: FormFieldsProps<T>['initialValue']) {
   return ((value === null || value === undefined) ? '' : value);
 }
 const noop = () => undefined;
-function newFormState<T>(fields: FormProps<T>['fields'], cb: (porps: FormFieldsProps<T>) => { initialValue: FormFieldsProps<T>['initialValue'], currentValue: FormFieldsProps<T>['initialValue'] }): IFormState {
+function newFormState<T>(
+  fields: FormProps<T>['fields'],
+  cb: (porps: FormFieldsProps<T>) => ({ initialValue: FormFieldsProps<T>['initialValue'], currentValue: FormFieldsProps<T>['initialValue'] }),
+): IFormState {
   const state: IFormState = { initial: {}, current: {}, submitting: false, errors: {} };
   for (const name in fields) {
     const props = fields[name];
@@ -106,41 +109,33 @@ export default class Form<T> extends React.Component<FormProps<T>, IFormState> {
       return { initialValue, currentValue: initialValue };
     });
   }
-  shouldComponentUpdate(nextProps: FormProps<T>, nextState: IFormState): boolean {
-    const isStateChange = nextState !== this.state;
-    const { current, initial } = nextState;
-    const { initial: newInitial, current: newCurrent } = newFormState(nextProps.fields, ({ name, initialValue }) => {
-      initialValue = newInitialValue(initialValue);
-      return {
-        initialValue: initialValue,
-        currentValue: current.hasOwnProperty(name!)
-          ? (current[name!] === this.state.initial[name!] ? initialValue : current[name!])
-          : initialValue
-      };
-    });
-    nextState.initial = isStateChange ? initial : newInitial;
-    nextState.current = newCurrent;
-    return true;
+
+  UNSAFE_componentWillReceiveProps(nextProps: FormProps<T>) {
+    if (nextProps.fields !== this.props.fields) {
+      const state = newFormState(nextProps.fields, ({ initialValue }) => {
+        initialValue = newInitialValue(initialValue);
+        return { initialValue, currentValue: initialValue };
+      });
+      this.setState({...state});
+    }
   }
+
   onSubmit = (e: React.FormEvent) => {
     e && e.preventDefault();
     const { onSubmit, resetOnSubmit, afterSubmit, onSubmitError } = this.props;
     const { initial, current } = this.state;
     this.setState({ submitting: true });
-    const nextState = { submitting: false };
+    const nextState = { submitting: false } as IFormState;
 
     const onError = (evn: React.FormEvent) => {
       this.setState({ ...nextState, errors: (onSubmitError && onSubmitError(evn)) || {} });
     };
     const onSuccess = (response: any) => {
-      this.setState({
-        ...nextState,
-        current: resetOnSubmit ? initial : current,
-        initial: resetOnSubmit ? initial : current,
-        errors: {},
-      });
-      const after = () => afterSubmit!({ state: this.state, response, reset: this.reset });
-      return after();
+      if (resetOnSubmit) {
+        nextState.current = initial;
+      }
+      this.setState({ ...nextState, errors: {} });
+      return () => afterSubmit!({state: this.state, response, reset: this.reset});
     };
     try {
       const afterSubmitPromise = onSubmit!({ initial, current });
@@ -155,12 +150,12 @@ export default class Form<T> extends React.Component<FormProps<T>, IFormState> {
     }
   }
 
-  reset = () => {
+  public reset = () => {
     const { initial } = this.state;
     this.setState({ current: initial, errors: {} });
   }
 
-  canSubmit = () => {
+  public canSubmit = () => {
     const { fields } = this.props;
     const { submitting, current } = this.state;
     let passesValidators = true;
