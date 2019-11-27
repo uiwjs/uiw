@@ -185,5 +185,7 @@ ReactDOM.render(<Demo />, _mount_);
 | closable | 是否显示右上角的关闭按钮 | Boollean | `true` |
 | placement | 抽屉的方向 | Enum{`top`, `right`, `bottom`, `left`} | `right` |
 | size | 高度/宽度，在 `placement` 为 `top` 或 `bottom` 时使用为设置高度，否则设置宽度 | Number | - |
+| bodyProps | 抽屉填充内容的参数样式对象，例如`className`,`style`等 | Object | - |
+
 
 更多属性文档请参考 [Overlay](#/components/overlay)。
