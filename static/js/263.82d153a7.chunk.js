@@ -1,0 +1,2 @@
+(window.webpackJsonpuiw=window.webpackJsonpuiw||[]).push([[263],{935:function(n,t){Prism.languages.ini={comment:/^[ \t]*[;#].*$/m,selector:/^[ \t]*\[.*?\]/m,constant:/^[ \t]*[^\s=]+?(?=[ \t]*=)/m,"attr-value":{pattern:/=.*/,inside:{punctuation:/^[=]/}}}}}]);
+//# sourceMappingURL=263.82d153a7.chunk.js.map

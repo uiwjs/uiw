@@ -1,0 +1,2 @@
+(window.webpackJsonpuiw=window.webpackJsonpuiw||[]).push([[235],{907:function(a,e){var n;(n=Prism).languages.ejs={delimiter:{pattern:/^<%[-_=]?|[-_]?%>$/,alias:"punctuation"},comment:/^#[\s\S]*/,"language-javascript":{pattern:/[\s\S]+/,inside:n.languages.javascript}},n.hooks.add("before-tokenize",(function(a){n.languages["markup-templating"].buildPlaceholders(a,"ejs",/<%(?!%)[\s\S]+?%>/g)})),n.hooks.add("after-tokenize",(function(a){n.languages["markup-templating"].tokenizePlaceholders(a,"ejs")}))}}]);
+//# sourceMappingURL=235.07194afd.chunk.js.map
