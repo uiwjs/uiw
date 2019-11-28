@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "3.10.0",
+  "version": "3.10.1",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiwjs.github.io",
   "sideEffects": false,
@@ -14,10 +14,15 @@
     "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --no-checkRequiredFiles --mini --no-emptyDir",
     "watch": "npm run watch:types & npm run watch:ts",
     "watch:ts": "tsbb watch --target react --env-name esm:dev --env-name cjs",
-    "watch:types": "npm run build:types -- --watch",
+
+    "watch:types": "npm run types:esm -- --watch & npm run types:cjs -- --watch",
+    "build:types": "npm run types:esm && npm run types:cjs",
+    "types:esm": "npm run types:build -- --outDir lib/esm",
+    "types:cjs": "npm run types:build -- --outDir lib/cjs",
+    "types:build": "tsbb types --target ESNEXT",
+
     "build:ts": "tsbb build --target react --env-name esm --env-name cjs",
-    "build:types": "tsbb types --outDir lib/esm --target ESNEXT",
-    "build": "npm run build:ts && npm run build:types && npm run build:types -- --outDir lib/cjs && npm run bundle && npm run build:css && npm run bundle:min",
+    "build": "npm run build:ts && npm run build:types && npm run build:types && npm run bundle && npm run build:css && npm run bundle:min",
     "build:css": "compile-less -d src -o lib/esm",
     "test": "tsbb test",
     "coverage": "tsbb test --coverage"
