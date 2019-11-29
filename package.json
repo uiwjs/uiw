@@ -1,6 +1,6 @@
 {
   "name": "uiw",
-  "version": "3.10.4",
+  "version": "3.10.5",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiwjs.github.io",
   "sideEffects": false,
@@ -78,7 +78,7 @@
     "babel-plugin-transform-rename-import": "^2.3.0",
     "compile-less-cli": "^1.3.0",
     "enzyme": "^3.9.0",
-    "kkt": "^5.0.0-alpha.12",
+    "kkt": "^5.0.4",
     "less": "^3.9.0",
     "mini-css-extract-plugin": "^0.8.0",
     "react": "^16.12.0",
