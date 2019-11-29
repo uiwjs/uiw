@@ -46,10 +46,14 @@ uiw
 npm install uiw --save
 ```
 
-你可以使用 [`kkt`](https://github.com/jaywcjlove/kkt) 快速创建一个 react + uiw 的项目。
+你可以使用 [`kkt`](https://github.com/kktjs/kkt-next) 快速创建一个 react + uiw 的项目。
 
 ```bash
-npx kkt create my-app -e uiw
+npx create-kkt my-app -e uiw
+# or npm
+$ npm create kkt my-app -e uiw
+# or yarn 
+$ yarn create kkt my-app -e uiw
 ```
 
 您可以使用 [uiw v1.x](https://github.com/uiwjs/uiw/tree/v1) 版本。 [请在此处查看文档](https://github.com/uiwjs/uiw/tree/v1)。([**`npx`**](https://github.com/npm/npm/releases/tag/v5.2.0) 需要 `npm 5.2+` 及更高版本。）
