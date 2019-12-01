@@ -132,7 +132,7 @@ const Demo = () => {
             placement: 'topRight',
             title: '警告通知',
             duration: null,
-            description: '最简单的用法，4.5 秒后自动关闭。'
+            description: '最简单的用法，弹出通知不消失。'
           });
         }}
       >
@@ -200,7 +200,7 @@ const Demo = () => {
           Notify.warning({
             placement: 'topRight',
             duration: null,
-            title: '警告通知，最简单的用法，4.5 秒后自动关闭。',
+            title: '警告通知，最简单的用法，只展示标题，点击按钮关闭。',
           });
         }}
       >
@@ -224,7 +224,7 @@ const Demo = () => {
     <div>
       <Button
         onClick={() => {
-          Notify.error({ placement: 'bottomRight', duration: null, icon: null, description: '最简单的用法，4.5 秒后自动关闭。最简单的用法，4.5 秒后自动关闭。最简单的用法，4.5 秒后自动关闭。最简单的用法，4.5 秒后自动关闭。' });
+          Notify.error({ placement: 'bottomRight', icon: null, description: '最简单的用法，4.5 秒后自动关闭。最简单的用法，4.5 秒后自动关闭。最简单的用法，4.5 秒后自动关闭。最简单的用法，4.5 秒后自动关闭。' });
         }}
       >
         ↘下右通知
