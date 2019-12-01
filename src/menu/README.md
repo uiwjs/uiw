@@ -153,6 +153,8 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 内嵌菜单
 
+通过设置 `overlayProps={ isOpen: true }`，让菜单默认展开。
+
 <!--DemoStart,bgWhite,noScroll,codePen--> 
 ```jsx
 import { Menu, Row, Col } from 'uiw';
@@ -168,7 +170,12 @@ const Demo = () => (
           <Menu.Item icon="tags-o" text="标签名称" />
         </Menu.SubMenu>
         <Menu.Divider title="其它" />
-        <Menu.SubMenu icon="bar-chart" text="每年2019年统计报表导出" collapse>
+        <Menu.SubMenu
+          icon="bar-chart" text="每年2019年统计报表导出" collapse
+          overlayProps={{
+            isOpen: true,
+          }}
+        >
           <Menu.Item text="添加文件" />
           <Menu.Item text="添加文件夹" />
           <Menu.Divider title="类别" />
