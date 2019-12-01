@@ -164,7 +164,13 @@ export default class Overlay extends React.Component<OverlayProps, OverlayState>
         classNames={transitionName}
       >
         {status => (
-          <div className={classnames(prefixCls, className, { [`${prefixCls}-inline`]: !usePortal })} style={style}>
+          <div
+            style={style}
+            className={classnames(prefixCls, className, {
+              [`${prefixCls}-inline`]: !usePortal,
+              [`${prefixCls}-enter-done`]: this.state.isOpen,
+            })}
+          >
             {hasBackdrop && cloneElement(<div />, {
               ...backdropProps,
               onMouseDown: this.handleBackdropMouseDown.bind(this),

@@ -1,7 +1,7 @@
 formatter 时间格式化
 ===
 
-用于时间格式化，时间格式化是组件无依赖可单独使用，Node.js 后端也可以使用 [uiwjs/date-formatter](https://github.com/uiwjs/date-formatter) 。
+用于时间格式化，时间格式化是组件无依赖可单独使用，Node.js 后端也可以使用 [uiwjs/date-formatter](https://github.com/uiwjs/date-formatter)，Node.js 使用需要单独安装。
 
 ```jsx
 import { formatter } from 'uiw';
