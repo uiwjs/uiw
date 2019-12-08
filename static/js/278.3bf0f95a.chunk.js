@@ -1,1 +1,0 @@
-(window.webpackJsonpuiw=window.webpackJsonpuiw||[]).push([[278],{950:function(n,s){Prism.languages.jsonp=Prism.languages.extend("json",{punctuation:/[{}[\]();,.]/}),Prism.languages.insertBefore("jsonp","punctuation",{function:/[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*\()/})}}]);
