@@ -1,0 +1,1 @@
+(this.webpackJsonpuiw=this.webpackJsonpuiw||[]).push([[364],{1034:function(s,i){var a=Prism.util.clone(Prism.languages.typescript);Prism.languages.tsx=Prism.languages.extend("jsx",a)}}]);
