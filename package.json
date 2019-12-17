@@ -50,9 +50,11 @@
     "component",
     "components",
     "ui",
+    "css",
     "uikit",
     "react-ui",
     "framework",
+    "front-end",
     "frontend"
   ],
   "peerDependencies": {
