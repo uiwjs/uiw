@@ -97,7 +97,7 @@ export default class Calendar extends React.Component<CalendarProps, ICalendarSt
   renderDay = (day: number, props: IPickerDayRenderDay) => {
     const { prefixCls, data } = this.props;
     const dayData = (data || []).filter((item) => {
-      let arr: number[] = (item.date && item.date.split('/') || []).map(num => Number(num));
+      let arr: number[] = ((item.date && item.date.split('/')) || []).map(num => Number(num));
       if (arr.length === 1) {
         return day === arr[0];
       }

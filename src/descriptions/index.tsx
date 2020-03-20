@@ -73,7 +73,7 @@ export default class Descriptions extends React.Component<DescriptionsProps> {
 
     const childrenArray: Array<React.ReactElement<DescriptionsItemProps>[]> = generateChildrenRows(cloneChildren, column!);
     return (
-      <table className={cls}>
+      <table className={cls} {...other}>
         {title && <caption className={`${prefixCls}-title`}>{title}</caption>}
         <tbody>
           {childrenArray.map((child, index) => (

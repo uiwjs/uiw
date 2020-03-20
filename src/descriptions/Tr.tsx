@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps } from '../utils/props';
 import { DescriptionsItemProps } from './DescriptionsItem';
 import Td from './Td';

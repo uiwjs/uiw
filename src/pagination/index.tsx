@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
 import classnames from 'classnames';
 import { IProps, HTMLUlProps } from '../utils/props';
@@ -138,8 +139,10 @@ export default class Pagination extends React.Component<PaginationProps, Paginat
     return (
       <ul className={cls} {...other}>
         {this.initPageSoure().map((item: PaginationItemSourceData, idx) => {
+          // eslint-disable-next-line jsx-a11y/anchor-is-valid
           let label = <a>{item.label}</a>;
           if (/^(prev|next)$/.test(item.type as string)) {
+            // eslint-disable-next-line jsx-a11y/anchor-is-valid
             label = <a className={`arrow ${item.type}`} />;
           }
           return (

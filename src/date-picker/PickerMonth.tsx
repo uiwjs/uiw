@@ -23,7 +23,7 @@ export default class PickerMonth extends React.Component<IPickerMonthProps> {
           const selectedMonth = panelDate!.getMonth();
           return (
             <div key={idx} className={classnames({ selected: selectedMonth === idx })}>
-              <span onClick={onSelected!.bind(this, idx, false)}>{monthLabel && monthLabel[idx] || idx}</span>
+              <span onClick={onSelected!.bind(this, idx, false)}>{(monthLabel && monthLabel[idx]) || idx}</span>
             </div>
           );
         })}

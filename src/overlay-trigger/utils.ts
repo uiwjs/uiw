@@ -5,10 +5,9 @@ const canUseDOM = !!(
 
 function fallback(context: HTMLElement, node: HTMLElement) {
   if (node) {
-    // eslint-disable-next-line
     do {
       if (node === context) return true;
-    } while (node = node.parentNode as HTMLElement);
+    } while ((node = node.parentNode as HTMLElement));
   }
 
   return false;

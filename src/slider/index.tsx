@@ -72,14 +72,13 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
     window.removeEventListener('mouseup', this.onDragEnd, false);
   }
   onHandleBtnDown(idx: number, env: React.MouseEvent<HTMLElement>) {
-    const oEvent = env || event;
     const { disabled, vertical } = this.props;
     if (disabled) {
       return;
     }
     this.indexBar = idx;
     this.move = true;
-    this.startX = oEvent[vertical ? 'clientY' : 'clientX'];
+    this.startX = env[vertical ? 'clientY' : 'clientX'];
     if (this.bar.current) {
       this.barWidth = this.bar.current[vertical ? 'clientHeight' : 'clientWidth'];
       this.barOffsetLeft = this.bar.current[vertical ? 'offsetTop' : 'offsetLeft'];
@@ -162,12 +161,11 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
   }
   onClickMark(evn: React.MouseEvent<HTMLElement>) {
     const { vertical } = this.props;
-    const oEvent = evn || event;
     if (this.move !== undefined) {
       return;
     }
     const markOffset = this.slider.current!.getBoundingClientRect() as DOMRect;
-    const value = this.getWidthToValue(oEvent[vertical ? 'clientY' : 'clientX'] - markOffset[vertical ? 'y' : 'x']);
+    const value = this.getWidthToValue(evn[vertical ? 'clientY' : 'clientX'] - markOffset[vertical ? 'y' : 'x']);
     this.onChange(this.getRangeValue(value));
   }
   getRangeValue(val: number | number[]) {

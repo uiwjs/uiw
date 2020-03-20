@@ -135,7 +135,7 @@ export default class Tree<T> extends React.Component<TreeProps<T>, ITreeState> {
     };
   }
   componentDidMount() {
-    const { defaultExpandAll, selectedKeys, data } = this.props;
+    const { defaultExpandAll, data } = this.props;
     const openKeys = getChildKeys(data);
     if (defaultExpandAll) {
       this.setState({ openKeys });
