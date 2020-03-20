@@ -1,6 +1,4 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
-
 
 export const loaderOneOf = [
   require.resolve('@kkt/loader-less'),
@@ -8,8 +6,9 @@ export const loaderOneOf = [
 
 export default (conf, options) => {
   if (options.yargsArgs && options.yargsArgs.bundle) {
+    const { MiniCssExtractPlugin } = options;
     conf.devtool = false;
-    const regexp = /(HtmlWebpackPlugin|InlineChunkHtmlPlugin|InterpolateHtmlPlugin|MiniCssExtractPlugin|ManifestPlugin|GenerateSW|ForkTsCheckerWebpackPlugin)/;
+    const regexp = /(HtmlWebpackPlugin|InlineChunkHtmlPlugin|InterpolateHtmlPlugin|ModuleNotFoundPlugin|DefinePlugin|ManifestPlugin|IgnorePlugin|GenerateSW|MiniCssExtractPlugin)/;
     conf.plugins = conf.plugins.map((item) => {
       if (item.constructor && item.constructor.name && regexp.test(item.constructor.name)) {
         return null;
@@ -37,6 +36,10 @@ export default (conf, options) => {
         amd: 'react-dom',
       },
     }
+    conf.optimization = {
+      minimize: options.isEnvProduction,
+      minimizer: [],
+    };
     if (options.yargsArgs && options.yargsArgs.mini) {
       conf.output.filename = 'uiw.min.js';
       conf.plugins = [
@@ -49,7 +52,7 @@ export default (conf, options) => {
           // css bundle when doing code splitting to avoid FOUC:
           // https://github.com/facebook/create-react-app/issues/2415
           allChunks: true,
-        })
+        } as any)
       ];
     } else {
       conf.optimization.minimize = false;
@@ -58,9 +61,10 @@ export default (conf, options) => {
         new MiniCssExtractPlugin({
           filename: 'uiw.css',
           allChunks: true,
-        })
+        } as any)
       ];
     }
   }
+
   return conf
 }
