@@ -14,7 +14,7 @@ export interface IFormItemProps<T> extends IProps, HTMLDivProps {
   labelClassName?: string;
   help?: React.ReactNode;
   labelStyle?: CSSProperties;
-  initialValue?: FormFieldsProps<T>['initialValue'];
+  initialValue?: string | number | T;
   validator?: FormFieldsProps<T>['validator'];
 }
 

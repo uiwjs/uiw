@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import FormItem from './FormItem';
+import FormItem, { IFormItemProps } from './FormItem';
 import Input from '../input';
 import { IProps } from '../utils/props';
 import './style/form.less';
@@ -29,17 +29,10 @@ export interface IFormState {
   },
 }
 
-export interface FormFieldsProps<T> {
+export interface FormFieldsProps<T> extends IFormItemProps<T>{
   name?: string;
-  labelFor?: string;
-  initialValue?: string | number | T;
-  label?: React.ReactNode;
-  labelClassName?: string;
-  labelStyle?: React.CSSProperties;
-  inline?: boolean;
-  validator?: (currentValue: any) => void;
-  help?: React.ReactNode;
   children?: React.ReactNode;
+  validator?: (currentValue: any) => void;
 }
 
 export interface FormSubmitProps {
