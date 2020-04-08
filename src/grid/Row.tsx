@@ -5,8 +5,6 @@ import './style/row.less';
 
 export interface RowProps extends IProps {
   fixed?: boolean;
-  span?: number;
-  grow?: number;
   gutter: number;
   justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   align?: 'top' | 'middle' | 'bottom' | 'baseline';
