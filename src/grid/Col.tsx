@@ -5,8 +5,8 @@ import './style/col.less';
 
 export interface ColProps extends IProps, HTMLDivProps {
   fixed?: boolean;
-  span?: number;
-  grow?: number;
+  span?: number | string;
+  grow?: number | string;
   align?: 'top' | 'middle' | 'bottom' | 'baseline';
 }
 
