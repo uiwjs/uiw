@@ -65,6 +65,7 @@
     "@uiw/copy-to-clipboard": "^1.0.10",
     "@uiw/formatter": "^1.2.4",
     "@uiw/icons": "^2.3.1",
+    "@uiw/react-split": "^5.6.5",
     "classnames": "^2.2.6",
     "react-transition-group": "^4.3.0"
   },

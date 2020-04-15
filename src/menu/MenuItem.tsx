@@ -35,7 +35,7 @@ export default class MenuItem extends React.Component<MenuItemProps> {
   }
   public render() {
     const { prefixCls, className, tagName: TagName, children, disabled, multiline, icon, text, active, addonAfter, isSubMenuItem, ...htmlProps } = this.props;
-    const anchorCls = classNames(prefixCls, className, { active, 'w-disabled': disabled });
+    const anchorCls = classNames(prefixCls, { active, 'w-disabled': disabled }, className);
     const tagComp = (
       <TagName
         {...htmlProps}

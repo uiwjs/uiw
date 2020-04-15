@@ -133,7 +133,7 @@ export default class SubMenu extends React.Component<SubMenuProps, ISubMenuState
                 })}
               />
             }
-            className={classnames(className, `${prefixCls}-title`, { [`${prefixCls}-collapse-title`]: collapse })}
+            className={classnames(`${prefixCls}-title`, { [`${prefixCls}-collapse-title`]: collapse }, className)}
           />
         </OverlayTrigger>
       </li>

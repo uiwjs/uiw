@@ -25,7 +25,7 @@ export default class Menu extends React.Component<MenuProps> {
   static displayName = 'uiw.Menu';
   public render() {
     const { prefixCls, className, children, bordered, theme, inlineIndent, ...htmlProps } = this.props;
-    const cls = classNames(prefixCls, className, { 'w-bordered': bordered, [`${prefixCls}-${theme}`]: theme });
+    const cls = classNames(prefixCls, { 'w-bordered': bordered, [`${prefixCls}-${theme}`]: theme }, className);
     return (
       <ul {...htmlProps} className={cls} data-menu="menu">
         {React.Children.map(children, (child: any) => {

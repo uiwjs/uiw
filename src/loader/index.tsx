@@ -24,9 +24,9 @@ export default class Loader extends React.Component<LoaderProps> {
   }
   render() {
     const { prefixCls, className, size, loading, tip, vertical, color, bgColor, children, indicator, fullscreen, ...otherProps } = this.props;
-    const cls = classnames(prefixCls, className, {
+    const cls = classnames(prefixCls, {
       [`${prefixCls}-${size}`]: size,
-    });
+    }, className);
 
     return (
       <div className={cls} {...otherProps}>
