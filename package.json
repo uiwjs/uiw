@@ -86,7 +86,7 @@
     "react": "16.13.0",
     "react-dom": "16.13.0",
     "react-test-renderer": "16.13.0",
-    "tsbb": "1.5.2"
+    "tsbb": "1.7.0"
   },
   "license": "MIT",
   "eslintConfig": {
