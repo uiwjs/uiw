@@ -1,20 +1,29 @@
 import path from 'path';
+import { OptionConf,  } from 'kkt';
+import webpack, { Configuration } from 'webpack';
+
+export interface KKTOpts extends OptionConf {
+  yargsArgs: OptionConf['yargsArgs'] & {
+    bundle: boolean;
+    mini: boolean;
+  }
+}
 
 export const loaderOneOf = [
   require.resolve('@kkt/loader-less'),
 ];
 
-export default (conf, options) => {
+export default (conf: Configuration, options: KKTOpts) => {
   if (options.yargsArgs && options.yargsArgs.bundle) {
     const { MiniCssExtractPlugin } = options;
     conf.devtool = false;
     const regexp = /(HtmlWebpackPlugin|InlineChunkHtmlPlugin|InterpolateHtmlPlugin|ModuleNotFoundPlugin|DefinePlugin|ManifestPlugin|IgnorePlugin|GenerateSW|MiniCssExtractPlugin)/;
-    conf.plugins = conf.plugins.map((item) => {
+    conf.plugins = (conf.plugins || []).map((item) => {
       if (item.constructor && item.constructor.name && regexp.test(item.constructor.name)) {
         return null;
       }
       return item;
-    }).filter(Boolean);
+    }).filter(Boolean) as webpack.Plugin[];
     conf.entry = './src/index.ts';
     conf.output = {
       path: path.join(process.cwd(), 'dist'),
@@ -43,7 +52,7 @@ export default (conf, options) => {
     if (options.yargsArgs && options.yargsArgs.mini) {
       conf.output.filename = 'uiw.min.js';
       conf.plugins = [
-        ...conf.plugins,
+        ...(conf.plugins || []),
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
           // both options are optional
