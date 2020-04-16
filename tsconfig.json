@@ -14,27 +14,14 @@
     "strict": true,
     "outDir": "lib",
     "baseUrl": "./src",
-    "types": [
-      "node",
-      "jest"
-    ],
     "typeRoots": [
-      "node_modules/@types",
-      "test",
-      "types"
-    ],
-    "paths": {
-      "*": [
-        "node_modules/*"
-      ]
-    }
+      "node_modules/@types"
+    ]
   },
   "include": [
-    "src/**/*",
-    "test/**/*"
+    "src/**/*"
   ],
   "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
+    "node_modules"
   ]
 }

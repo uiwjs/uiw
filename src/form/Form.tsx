@@ -13,7 +13,7 @@ export interface FormProps<T> extends IProps, Omit<React.FormHTMLAttributes<HTML
   onSubmit?: (state: FormSubmitProps) => any;
   afterSubmit?: (result: FormAfterSubmitProps) => any;
   onChange?: (state: IFormState) => void;
-  onSubmitError?: (evn: React.FormEvent) => void;
+  onSubmitError?: (evn: any) => any;
   resetOnSubmit?: boolean;
   children?: (handle: FormChildrenProps) => JSX.Element | JSX.Element | undefined;
 }
@@ -32,7 +32,7 @@ export interface IFormState {
 export interface FormFieldsProps<T> extends IFormItemProps<T>{
   name?: string;
   children?: React.ReactNode;
-  validator?: (currentValue: any) => void;
+  validator?: (currentValue: any) => any;
 }
 
 export interface FormSubmitProps {
@@ -68,7 +68,7 @@ const isPromise = (promise: Promise<any>) => promise && typeof promise.then === 
 function newInitialValue<T>(value: FormFieldsProps<T>['initialValue']) {
   return ((value === null || value === undefined) ? '' : value);
 }
-const noop = () => undefined;
+const noop = function () {};
 function newFormState<T>(
   fields: FormProps<T>['fields'],
   cb: (porps: FormFieldsProps<T>) => ({ initialValue: FormFieldsProps<T>['initialValue'], currentValue: FormFieldsProps<T>['initialValue'] }),

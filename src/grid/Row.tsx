@@ -10,12 +10,11 @@ export interface RowProps extends IProps {
   align?: 'top' | 'middle' | 'bottom' | 'baseline';
 }
 
-
 export default class Row extends React.Component<RowProps> {
   static defaultProps = {
     prefixCls: 'w-row',
     gutter: 0,
-    justify: null,
+    justify: '',
   }
   render() {
     const { prefixCls, className, gutter, justify, align, ...props } = this.props;
