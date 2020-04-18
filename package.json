@@ -81,7 +81,7 @@
     "babel-plugin-transform-rename-import": "2.3.0",
     "compile-less-cli": "1.4.0",
     "enzyme": "3.11.0",
-    "kkt": "5.7.1",
+    "kkt": "5.8.0",
     "less": "3.11.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
