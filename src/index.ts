@@ -39,7 +39,7 @@ export { default as RadioGroup } from './radio/RadioGroup';
 export { default as Rate } from './rate';
 export { default as Row } from './grid/Row';
 export { default as Steps } from './steps/Steps';
-export type { SplitProps, SplitState} from '@uiw/react-split';
+export * from '@uiw/react-split';
 export { default as Split } from '@uiw/react-split';
 export { default as Switch } from './switch';
 export { default as Slider } from './slider';
