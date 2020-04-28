@@ -38,7 +38,7 @@
 uiw
 ---
 
-A high quality UI Toolkit, A Component Library for React 16+. 💘
+The official documentation site for [`uiw`](https://github.com/uiwjs/uiw). A high quality UI Toolkit, A Component Library for React 16+. 💘
 
 ### Installation
 
@@ -46,14 +46,10 @@ A high quality UI Toolkit, A Component Library for React 16+. 💘
 npm install uiw --save
 ```
 
-You can use [`kkt`](https://github.com/kktjs/kkt-next) to quickly create a react + uiw project.
+You can use [`kkt`](https://github.com/kktjs/kkt) to quickly create a react + uiw project.
 
 ```bash
 npx create-kkt my-app -e uiw
-# or npm
-$ npm create kkt my-app -e uiw
-# or yarn 
-$ yarn create kkt my-app -e uiw
 ```
 
 You can use the [`uiw v1.x`](https://github.com/uiwjs/uiw/tree/v1) version. [Please see here for instructions](https://github.com/uiwjs/uiw/tree/v1). ([**npx**](https://github.com/npm/npm/releases/tag/v5.2.0) comes with npm 5.2+ and higher.)
@@ -83,22 +79,31 @@ Or Open in VSCode Preview :
 
 Use Gitpod, a free online dev environment for GitHub.
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/uiwjs/uiw)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/uiwjs/uiwjs.github.io)
 
 Or clone locally:
 
 ```bash
-$ git clone https://github.com/uiwjs/uiw.git
-$ cd uiw
-$ npm install # or  yarn install
+$ git clone https://github.com/uiwjs/uiwjs.github.io.git --recurse-submodules
+```
+
+Listening compiled component code.
+
+```bash
+$ npm install # Install dependencies
+$ lerna bootstrap # Install all package dependencies
+$ lerna bootstrap --scope @uiw/* # Set scope installation dependencies
 ```
 
 To develop, run the self-reloading build:
 
 ```bash
-$ npm run watch
-$ npm run build
-$ npm run test
+# Run the app
+# Restart the app automatically every time code changes. 
+# Useful during development.
+$ npm run watch:uiw
+$ npm run watch:pkg
+$ lerna run --scope uiw watch --stream
 ```
 
 Folders
@@ -106,14 +111,13 @@ Folders
 ```bash
 ├── LICENSE
 ├── README.md
-├── dist
-├── lib
-├── package-lock.json
 ├── package.json
-├── src    # Component library source code
-├── test
-├── tsconfig.json
-└── typings
+└── packages        
+    ├── uiw        # Component library source code
+    ├── react-alert
+    ├── react-tree
+    ├── ...
+    └── react-affix
 ```
 
 ### License

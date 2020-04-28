@@ -89,16 +89,17 @@ ReactDOM.render(
 
 ```bash
 $ git clone https://github.com/uiwjs/uiw.git
-$ cd uiw
-$ npm install # or  yarn install
+$ npm install # Install dependencies
+$ lerna bootstrap # Install all package dependencies
+$ lerna bootstrap --scope @uiw/* # Set scope installation dependencies
 ```
 
 要开发，运行自动加载编译命令：
 
 ```bash
-$ npm run watch
-$ npm run build
-$ npm run test
+$ npm run watch:uiw
+$ npm run watch:pkg
+$ lerna run --scope uiw watch --stream
 ```
 
 文件夹说明：
@@ -106,14 +107,13 @@ $ npm run test
 ```bash
 ├── LICENSE
 ├── README.md
-├── dist
-├── lib
-├── package-lock.json
 ├── package.json
-├── src    # Component library source code
-├── test
-├── tsconfig.json
-└── typings
+└── packages        
+    ├── uiw        # Component library source code
+    ├── react-alert
+    ├── react-tree
+    ├── ...
+    └── react-affix
 ```
 
 ### License

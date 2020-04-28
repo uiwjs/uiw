@@ -1,0 +1,45 @@
+{
+  "name": "@uiw/utils",
+  "version": "3.10.10",
+  "description": "> TODO: description",
+  "author": "Kenny Wong <wowohoo@qq.com>",
+  "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/utils#readme",
+  "license": "MIT",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:ts && npm run build:types",
+    "build:ts": "tsbb build --target react",
+
+    "watch": "npm run watch:ts & npm run watch:types",
+    "watch:ts": "tsbb watch --target react",
+    "watch:types": "npm run types:esm -- --watch & npm run types:cjs -- --watch",
+
+    "build:types": "npm run types:esm && npm run types:cjs",
+    "types:esm": "tsbb types --outDir lib/esm --target ESNEXT",
+    "types:cjs": "tsbb types --outDir lib/cjs --target ESNEXT",
+
+    "test": "tsbb test",
+    "coverage": "tsbb test --coverage",
+    "prepare": "npm run build"
+  },
+  "peerDependencies": {
+    "@babel/runtime": ">=7.0.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@babel/runtime": "7.9.2",
+    "@types/react": "16.9.26",
+    "@types/react-dom": "16.9.5",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  }
+}

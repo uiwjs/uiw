@@ -1,0 +1,27 @@
+{
+  "packages": [
+    "packages/*"
+  ],
+  "version": "independent",
+  "command": {
+    "create": {
+      "homepage": "https://github.com/uiwjs/uiw",
+      "license": "MIT",
+      "author": "kenny wang <wowohoo@qq.com>"
+    },
+    "version": {
+      "allowBranch": "master",
+      "conventionalCommits": true,
+      "exact": true,
+      "forcePublish": true,
+      "message": "chore(release): %s"
+    },
+    "bootstrap": {
+      "npmClientArgs": [
+        "--no-package-lock",
+        "--no-ci"
+      ],
+      "forceLocal": true
+    }
+  }
+}
