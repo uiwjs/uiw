@@ -28,8 +28,7 @@
     "types:cjs": "tsbb types --outDir lib/cjs --target ESNEXT",
     
     "test": "tsbb test",
-    "coverage": "tsbb test --coverage",
-    "prepare": "npm run build"
+    "coverage": "tsbb test --coverage"
   },
   "peerDependencies": {
     "@babel/runtime": ">=7.0.0",

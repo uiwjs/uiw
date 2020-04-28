@@ -6,7 +6,7 @@
   "version": "3.10.10",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "npm run build:pkg",
+    "build": "lerna exec npm run build",
     "build:pkg": "lerna exec npm run build --scope @uiw/*",
     "coverage": "lerna exec npm run coverage --scope @uiw/react-button",
     "watch:uiw": "lerna run --scope uiw watch --stream",
