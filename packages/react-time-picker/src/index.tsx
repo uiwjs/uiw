@@ -9,6 +9,8 @@ import PickerTime, { TimeProps } from './Time';
 import './style/index.less';
 
 export * from './Panel';
+export * from './Time';
+export { default as TimePickerTime} from './Time';
 
 export interface TimePickerProps<T> extends IProps, Omit<InputProps<T>, 'onChange' | 'value'> {
   value?: Date;

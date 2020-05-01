@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import formatter from '@uiw/formatter';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import TimePicker, { TimePickerPanelProps } from '@uiw/react-time-picker';
+import { TimePickerTime, TimePickerPanelProps } from '@uiw/react-time-picker';
 import { DatePickerDay, DatePickerDayProps, DatePickerDayDateSource } from './DatePickerDay';
 import { DatePickerMonth } from './DatePickerMonth';
 import { DatePickerYear } from './DatePickerYear';
@@ -161,7 +161,7 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
           />
         )}
         {type === 'time' && (
-          <TimePicker
+          <TimePickerTime
             date={date || this.state.panelDate}
             {...showTime}
             className={`${prefixCls}-timepicker`}
