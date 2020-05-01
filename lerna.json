@@ -4,6 +4,13 @@
   ],
   "version": "independent",
   "command": {
+    "publish": {
+      "ignoreChanges": [
+        "*.md",
+        "*.test.js",
+        "*.test.tsx"
+      ]
+    },
     "create": {
       "homepage": "https://github.com/uiwjs/uiw",
       "license": "MIT",
