@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import Input, { InputProps } from '@uiw/react-input';
 import Popover, { PopoverProps } from '@uiw/react-popover';
-import DatePicker, { IDatePickerProps } from '@uiw/react-date-picker';
+import DatePicker, { DatePickerProps } from '@uiw/react-date-picker';
 import Icon from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
@@ -10,7 +10,7 @@ import './style/index.less';
 
 export interface IDateInputProps<T> extends IProps, Omit<InputProps<T>, 'onChange' | 'value'> {
   popoverProps?: PopoverProps;
-  datePickerProps?: IDatePickerProps;
+  datePickerProps?: DatePickerProps;
   value?: Date | string;
   format?: string;
   allowClear?: boolean;
