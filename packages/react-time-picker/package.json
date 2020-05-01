@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-time-picker",
-  "version": "4.0.0-alpha.0",
+  "version": "4.0.0-alpha.1",
   "description": "> TODO: description",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-time-picker#readme",
@@ -53,10 +53,10 @@
   },
   "dependencies": {
     "@uiw/formatter": "1.2.4",
-    "@uiw/react-button": "4.0.0-alpha.0",
-    "@uiw/react-input": "4.0.0-alpha.0",
-    "@uiw/react-popover": "4.0.0-alpha.0",
-    "@uiw/utils": "4.0.0-alpha.0",
+    "@uiw/react-button": "4.0.0-alpha.1",
+    "@uiw/react-input": "4.0.0-alpha.1",
+    "@uiw/react-popover": "4.0.0-alpha.1",
+    "@uiw/utils": "4.0.0-alpha.1",
     "classnames": "2.2.6"
   },
   "devDependencies": {
