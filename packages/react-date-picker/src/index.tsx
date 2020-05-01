@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import formatter from '@uiw/formatter';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import PickerTime, { TimePickerPanelProps } from '@uiw/react-time-picker/lib/esm/PickerTime';
+import TimePicker, { TimePickerPanelProps } from '@uiw/react-time-picker';
 import { DatePickerDay, DatePickerDayProps, DatePickerDayDateSource } from './DatePickerDay';
 import { DatePickerMonth } from './DatePickerMonth';
 import { DatePickerYear } from './DatePickerYear';
@@ -14,14 +14,14 @@ export * from './DatePickerMonth';
 export * from './DatePickerYear';
 export * from './DatePickerCaption';
 
-export interface IDatePickerShowTimeProps extends TimePickerPanelProps {
+export interface DatePickerShowTimeProps extends TimePickerPanelProps {
   format?: string;
 }
-export interface IDatePickerProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
+export interface DatePickerProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   onChange?: (selectedDate?: Date, dateSource?: DatePickerDayDateSource) => void;
   renderDay?: DatePickerDayProps['renderDay'];
   disabledDate?: DatePickerDayProps['disabledDate'];
-  showTime?: IDatePickerShowTimeProps | boolean;
+  showTime?: DatePickerShowTimeProps | boolean;
   monthLabel?: React.ReactNode[];
   weekday?: string[];
   weekTitle?: string[];
@@ -30,29 +30,29 @@ export interface IDatePickerProps extends IProps, Omit<HTMLDivProps, 'onChange'>
   today?: Date;
   todayButton?: string;
 }
-export interface IDatePickerState {
+export interface DatePickerState {
   panelDate?: Date;
   date?: Date;
   type?: 'day' | 'time' | DatePickerCaptionType;
 }
 
-export default class DatePicker extends React.Component<IDatePickerProps, IDatePickerState> {
-  public static defaultProps: IDatePickerProps = {
+export default class DatePicker extends React.Component<DatePickerProps, DatePickerState> {
+  public static defaultProps: DatePickerProps = {
     prefixCls: 'w-datepicker',
     onChange() { },
     monthLabel: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
     today: new Date(),
   }
-  public state: IDatePickerState;
-  constructor(props: IDatePickerProps) {
+  public state: DatePickerState;
+  constructor(props: DatePickerProps) {
     super(props);
     this.state = {
       panelDate: props.panelDate || new Date(),
       date: props.date,
       type: 'day',
-    } as IDatePickerState;
+    } as DatePickerState;
   }
-  UNSAFE_componentWillReceiveProps(nextProps: IDatePickerProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: DatePickerProps) {
     if (nextProps.date !== this.props.date) {
       this.setState({ date: nextProps.date, panelDate: nextProps.date ? new Date(nextProps.date) : new Date() });
     }
@@ -63,7 +63,7 @@ export default class DatePicker extends React.Component<IDatePickerProps, IDateP
   onChange = (date?: Date, dateSource?: DatePickerDayDateSource) => {
     this.props.onChange!(date, dateSource);
   }
-  onSelected = (type: IDatePickerState['type']) => {
+  onSelected = (type: DatePickerState['type']) => {
     const { today } = this.props;
     const { date, panelDate } = this.state;
     if (/^(year|month|time)$/.test(type!)) {
@@ -74,7 +74,7 @@ export default class DatePicker extends React.Component<IDatePickerProps, IDateP
     } else {
       let currentDate = (date || panelDate) as Date;
       let month = currentDate.getMonth();
-      const data: IDatePickerState = {};
+      const data: DatePickerState = {};
       if (type === 'prev') {
         month -= 1;
       }
@@ -110,7 +110,7 @@ export default class DatePicker extends React.Component<IDatePickerProps, IDateP
     if (date) {
       date[type](month);
     }
-    const props = { type: 'day' as IDatePickerState['type'], panelDate, date };
+    const props = { type: 'day' as DatePickerState['type'], panelDate, date };
     if (paging) {
       delete props.type;
     }
@@ -123,7 +123,7 @@ export default class DatePicker extends React.Component<IDatePickerProps, IDateP
   render() {
     const { prefixCls, className, weekday, weekTitle, monthLabel, date, today, todayButton, panelDate, disabledDate, renderDay, onChange, showTime, ...other } = this.props;
     const { type } = this.state;
-    const format = showTime && (showTime as IDatePickerShowTimeProps).format ? (showTime as IDatePickerShowTimeProps).format : 'HH:mm:ss';
+    const format = showTime && (showTime as DatePickerShowTimeProps).format ? (showTime as DatePickerShowTimeProps).format : 'HH:mm:ss';
     return (
       <div className={classnames(prefixCls, className)} {...other}>
         <DatePickerCaption
@@ -161,7 +161,7 @@ export default class DatePicker extends React.Component<IDatePickerProps, IDateP
           />
         )}
         {type === 'time' && (
-          <PickerTime
+          <TimePicker
             date={date || this.state.panelDate}
             {...showTime}
             className={`${prefixCls}-timepicker`}

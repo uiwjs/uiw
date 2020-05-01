@@ -5,21 +5,23 @@ import Input, { InputProps } from '@uiw/react-input';
 import Button from '@uiw/react-button';
 import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
-import PickerTime, { TimePickerPanelProps } from './PickerTime';
+import PickerTime, { TimeProps } from './Time';
 import './style/index.less';
+
+export * from './Panel';
 
 export interface TimePickerProps<T> extends IProps, Omit<InputProps<T>, 'onChange' | 'value'> {
   value?: Date;
   format?: string;
   popoverProps?: PopoverProps;
-  disabledHours?: TimePickerPanelProps['disabledHours'];
-  precision?: TimePickerPanelProps['precision'];
-  disabledMinutes?: TimePickerPanelProps['disabledMinutes'];
-  disabledSeconds?: TimePickerPanelProps['disabledSeconds'];
-  hideDisabled?: TimePickerPanelProps['hideDisabled'];
+  disabledHours?: TimeProps['disabledHours'];
+  precision?: TimeProps['precision'];
+  disabledMinutes?: TimeProps['disabledMinutes'];
+  disabledSeconds?: TimeProps['disabledSeconds'];
+  hideDisabled?: TimeProps['hideDisabled'];
   allowClear?: boolean;
   disabled?: boolean;
-  onChange?: (dataStr?: string, date?: Date | '', type?: TimePickerPanelProps['type'], num?: number, disableds?: number[]) => void;
+  onChange?: (dataStr?: string, date?: Date | '', type?: TimeProps['type'], num?: number, disableds?: number[]) => void;
 }
 
 export interface TimePickerState {
@@ -48,7 +50,7 @@ export default class TimePicker<T> extends React.Component<TimePickerProps<T>, T
     const { onChange } = this.props;
     this.setState({ date: '' }, () => onChange && onChange());
   }
-  onSelected(type: TimePickerPanelProps['type'], num?: number, disableds?: number[], date?: TimePickerState['date']) {
+  onSelected(type: TimeProps['type'], num?: number, disableds?: number[], date?: TimePickerState['date']) {
     const { onChange, format } = this.props;
     this.setState({ date: date || '' });
     const dataStr = date ? formatter(format!, date) : '';

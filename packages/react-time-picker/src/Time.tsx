@@ -1,17 +1,17 @@
 import React from 'react';
 import classnames from 'classnames';
 import { IProps } from '@uiw/utils'
-import TimePanel, { TimePanelProps } from './TimePanel';
+import TimePanel, { TimePickerPanelProps } from './Panel';
 import './style/time-picker.less';
 
-export interface TimePickerPanelProps extends IProps, TimePanelProps {
+export interface TimeProps extends IProps, TimePickerPanelProps {
   precision?: Precision;
 }
 
 export type Precision = 'hour' | 'minute' | 'second';
 
-export default class TimePickerPanel extends React.Component<TimePickerPanelProps> {
-  public static defaultProps: TimePickerPanelProps = {
+export default class Picker extends React.Component<TimeProps> {
+  public static defaultProps: TimeProps = {
     prefixCls: 'w-timepicker',
     hideDisabled: false,
     precision: 'second',
