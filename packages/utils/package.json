@@ -1,6 +1,6 @@
 {
   "name": "@uiw/utils",
-  "version": "3.10.10",
+  "version": "4.0.0-alpha.0",
   "description": "> TODO: description",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/utils#readme",
@@ -17,15 +17,12 @@
   "scripts": {
     "build": "npm run build:ts && npm run build:types",
     "build:ts": "tsbb build --target react",
-
     "watch": "npm run watch:ts & npm run watch:types",
     "watch:ts": "tsbb watch --target react",
     "watch:types": "npm run types:esm -- --watch & npm run types:cjs -- --watch",
-
     "build:types": "npm run types:esm && npm run types:cjs",
     "types:esm": "tsbb types --outDir lib/esm --target ESNEXT",
     "types:cjs": "tsbb types --outDir lib/cjs --target ESNEXT",
-
     "test": "tsbb test",
     "coverage": "tsbb test --coverage"
   },

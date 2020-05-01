@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-avatar",
-  "version": "3.10.10",
+  "version": "4.0.0-alpha.0",
   "description": "> TODO: description",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-button#readme",
@@ -19,14 +19,11 @@
     "build:ts": "tsbb build --target react",
     "build:css": "compile-less -d src -o lib/esm",
     "build:types": "npm run types:esm && npm run types:cjs",
-
     "watch": "npm run watch:ts & npm run watch:types",
     "watch:ts": "tsbb watch --target react --env-name esm:dev --env-name cjs",
     "watch:types": "npm run types:esm -- --watch & npm run types:cjs -- --watch",
-    
     "types:esm": "tsbb types --outDir lib/esm --target ESNEXT",
     "types:cjs": "tsbb types --outDir lib/cjs --target ESNEXT",
-    
     "test": "tsbb test",
     "coverage": "tsbb test --coverage"
   },
@@ -36,8 +33,8 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-icon": "^3.10.10",
-    "@uiw/utils": "^3.10.10",
+    "@uiw/react-icon": "4.0.0-alpha.0",
+    "@uiw/utils": "4.0.0-alpha.0",
     "classnames": "^2.2.6"
   },
   "devDependencies": {
