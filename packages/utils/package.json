@@ -26,6 +26,25 @@
     "test": "tsbb test",
     "coverage": "tsbb test --coverage"
   },
+  "keywords": [
+    "utils",
+    "react-utils",
+    "design",
+    "uiw",
+    "uiw-react",
+    "react.js",
+    "react",
+    "react-component",
+    "component",
+    "components",
+    "ui",
+    "css",
+    "uikit",
+    "react-ui",
+    "framework",
+    "front-end",
+    "frontend"
+  ],
   "peerDependencies": {
     "@babel/runtime": ">=7.0.0",
     "react": ">=16.8.0",
