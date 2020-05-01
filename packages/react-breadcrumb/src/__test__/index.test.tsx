@@ -1,9 +1,10 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import TestRenderer from 'react-test-renderer';
 import Breadcrumb from '../';
 
-describe('<Button />', () => {
-  it('Should output a button', () => {
+describe('<Breadcrumb />', () => {
+  it('Should output a Breadcrumb', () => {
     const component = TestRenderer.create(
       <Breadcrumb>
         <Breadcrumb.Item><a href="#">Home</a></Breadcrumb.Item>

@@ -26,8 +26,8 @@
     
     "types:esm": "tsbb types --outDir lib/esm --target ESNEXT",
     "types:cjs": "tsbb types --outDir lib/cjs --target ESNEXT",
-    "test": "tsbb test",
 
+    "test": "tsbb test",
     "coverage": "tsbb test --coverage"
   },
   "peerDependencies": {
