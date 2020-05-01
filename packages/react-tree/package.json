@@ -58,7 +58,7 @@
     "react-transition-group": "^4.3.0"
   },
   "devDependencies": {
-    "@babel/runtime": "7.9.2",
+    "@babel/runtime": "7.9.6",
     "@types/classnames": "2.2.10",
     "@types/jest": "25.2.1",
     "@types/react": "16.9.26",
