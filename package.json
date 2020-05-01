@@ -1,5 +1,5 @@
 {
-  "name": "uiw",
+  "name": "uiw-project",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiwjs.github.io",
   "private": true,
@@ -7,22 +7,29 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna exec npm run build",
-    "build:pkg": "lerna exec npm run build --scope @uiw/*",
-    "coverage": "lerna exec npm run coverage --scope @uiw/react-button",
+    "build:pkg": "lerna exec npm run build",
+    "coverage": "lerna exec npm run coverage --scope @uiw/react-button --scope @uiw/react-date-picker",
     "watch:uiw": "lerna run --scope uiw watch --stream",
     "watch:pkg": "lerna run --scope @uiw/* watch --stream",
     "version": "lerna version --no-changelog",
     "publish": "lerna publish from-package",
     "clean": "lerna clean",
     "compile-less": "compile-less",
+    "test": "tsbb test --coverage",
     "kkt": "kkt",
     "tsbb": "tsbb",
     "lerna": "lerna"
   },
+  "jest": {
+    "testMatch": [
+      "<rootDir>/packages/**/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "<rootDir>/packages/**/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
+    ]
+  },
   "devDependencies": {
-    "compile-less-cli": "^1.4.0",
-    "kkt": "^5.8.0",
-    "lerna": "^3.20.2",
-    "tsbb": "^1.7.1"
+    "compile-less-cli": "1.4.0",
+    "kkt": "5.8.0",
+    "lerna": "3.20.2",
+    "tsbb": "1.7.2"
   }
 }
