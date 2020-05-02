@@ -3,5 +3,7 @@ node_js:
   - 10
 install: 
   - npm install
-script:
+  - npm run bootstrap
   - npm run build
+script:
+  - npm run test
