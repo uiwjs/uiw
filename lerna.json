@@ -25,7 +25,6 @@
     },
     "bootstrap": {
       "npmClientArgs": [
-        "--no-package-lock",
         "--no-ci"
       ],
       "forceLocal": true
