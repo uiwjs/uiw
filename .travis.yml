@@ -2,8 +2,8 @@ language: node_js
 node_js:
   - 10
 install: 
-  - npm install
-  - npm run bootstrap
-  - npm run build
+  - yarn install
+  - yarn run bootstrap
+  - yarn run build
 script:
-  - npm run test
+  - yarn run test
