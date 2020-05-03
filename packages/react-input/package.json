@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-input",
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-alpha.2",
   "description": "Input component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-input#readme",
@@ -52,8 +52,8 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-icon": "4.0.0-alpha.1",
-    "@uiw/utils": "4.0.0-alpha.1",
+    "@uiw/react-icon": "4.0.0-alpha.2",
+    "@uiw/utils": "4.0.0-alpha.2",
     "classnames": "^2.2.6"
   },
   "devDependencies": {
