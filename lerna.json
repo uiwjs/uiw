@@ -29,9 +29,9 @@
       "message": "chore(release): %s"
     },
     "bootstrap": {
-      "npmClientArgs": [
-        "--no-ci"
-      ],
+      "npmClient": "yarn",
+      "useWorkspaces": true,
+      "npmClientArgs": ["--production", "--no-optional"],
       "forceLocal": true
     }
   }
