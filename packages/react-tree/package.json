@@ -1,7 +1,7 @@
 {
   "name": "@uiw/react-tree",
   "version": "4.0.0-alpha.1",
-  "description": "> TODO: description",
+  "description": "Tree component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-tree#readme",
   "license": "MIT",

@@ -1,7 +1,7 @@
 {
   "name": "@uiw/react-file-input",
   "version": "4.0.0-alpha.1",
-  "description": "> TODO: description",
+  "description": "FileInput component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-file-input#readme",
   "license": "MIT",
