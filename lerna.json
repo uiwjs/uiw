@@ -13,7 +13,12 @@
     },
     "create": {
       "homepage": "https://github.com/uiwjs/uiw",
-      "license": "MIT",
+      
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uiwjs/uiw.git"
+  },
+  "license": "MIT",
       "author": "kenny wang <wowohoo@qq.com>"
     },
     "version": {

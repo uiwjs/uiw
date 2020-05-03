@@ -4,6 +4,10 @@
   "description": "DatePicker component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-date-picker#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uiwjs/uiw.git"
+  },
   "license": "MIT",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
