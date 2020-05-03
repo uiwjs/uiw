@@ -31,7 +31,7 @@
     "bootstrap": {
       "npmClient": "yarn",
       "useWorkspaces": true,
-      "npmClientArgs": ["--production", "--no-optional"],
+      "npmClientArgs": ["--no-optional"],
       "forceLocal": true
     }
   }
