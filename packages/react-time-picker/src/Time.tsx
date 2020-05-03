@@ -4,14 +4,14 @@ import { IProps } from '@uiw/utils'
 import TimePanel, { TimePickerPanelProps } from './Panel';
 import './style/time-picker.less';
 
-export interface TimeProps extends IProps, TimePickerPanelProps {
+export interface TimePickerTimeProps extends IProps, TimePickerPanelProps {
   precision?: Precision;
 }
 
 export type Precision = 'hour' | 'minute' | 'second';
 
-export default class Picker extends React.Component<TimeProps> {
-  public static defaultProps: TimeProps = {
+export class TimePickerTime extends React.Component<TimePickerTimeProps> {
+  public static defaultProps: TimePickerTimeProps = {
     prefixCls: 'w-timepicker',
     hideDisabled: false,
     precision: 'second',

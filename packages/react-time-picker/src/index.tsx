@@ -5,25 +5,24 @@ import Input, { InputProps } from '@uiw/react-input';
 import Button from '@uiw/react-button';
 import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
-import PickerTime, { TimeProps } from './Time';
+import { TimePickerTime, TimePickerTimeProps } from './Time';
 import './style/index.less';
 
 export * from './Panel';
 export * from './Time';
-export { default as TimePickerTime} from './Time';
 
 export interface TimePickerProps<T> extends IProps, Omit<InputProps<T>, 'onChange' | 'value'> {
   value?: Date;
   format?: string;
   popoverProps?: PopoverProps;
-  disabledHours?: TimeProps['disabledHours'];
-  precision?: TimeProps['precision'];
-  disabledMinutes?: TimeProps['disabledMinutes'];
-  disabledSeconds?: TimeProps['disabledSeconds'];
-  hideDisabled?: TimeProps['hideDisabled'];
+  disabledHours?: TimePickerTimeProps['disabledHours'];
+  precision?: TimePickerTimeProps['precision'];
+  disabledMinutes?: TimePickerTimeProps['disabledMinutes'];
+  disabledSeconds?: TimePickerTimeProps['disabledSeconds'];
+  hideDisabled?: TimePickerTimeProps['hideDisabled'];
   allowClear?: boolean;
   disabled?: boolean;
-  onChange?: (dataStr?: string, date?: Date | '', type?: TimeProps['type'], num?: number, disableds?: number[]) => void;
+  onChange?: (dataStr?: string, date?: Date | '', type?: TimePickerTimeProps['type'], num?: number, disableds?: number[]) => void;
 }
 
 export interface TimePickerState {
@@ -52,7 +51,7 @@ export default class TimePicker<T> extends React.Component<TimePickerProps<T>, T
     const { onChange } = this.props;
     this.setState({ date: '' }, () => onChange && onChange());
   }
-  onSelected(type: TimeProps['type'], num?: number, disableds?: number[], date?: TimePickerState['date']) {
+  onSelected(type: TimePickerTimeProps['type'], num?: number, disableds?: number[], date?: TimePickerState['date']) {
     const { onChange, format } = this.props;
     this.setState({ date: date || '' });
     const dataStr = date ? formatter(format!, date) : '';
@@ -80,7 +79,7 @@ export default class TimePicker<T> extends React.Component<TimePickerProps<T>, T
         visibleArrow={false}
         {...popoverProps}
         content={
-          <PickerTime
+          <TimePickerTime
             className={`${prefixCls}-popover`}
             {...timeProps}
             date={datePickerTime}
@@ -99,3 +98,4 @@ export default class TimePicker<T> extends React.Component<TimePickerProps<T>, T
     );
   }
 }
+
