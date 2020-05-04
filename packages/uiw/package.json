@@ -38,6 +38,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "scripts": {
     "bundle": "kkt build --bundle --no-checkRequiredFiles",
     "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --no-checkRequiredFiles --mini --no-emptyDir",
