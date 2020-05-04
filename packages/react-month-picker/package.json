@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-month-picker",
-  "version": "4.0.0-alpha.5",
+  "version": "4.0.0-alpha.6",
   "description": "MonthPicker component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-month-picker#readme",
@@ -57,11 +57,11 @@
   },
   "dependencies": {
     "@uiw/formatter": "1.2.4",
-    "@uiw/react-button": "4.0.0-alpha.5",
-    "@uiw/react-date-picker": "4.0.0-alpha.5",
-    "@uiw/react-input": "4.0.0-alpha.5",
-    "@uiw/react-popover": "4.0.0-alpha.5",
-    "@uiw/utils": "4.0.0-alpha.5",
+    "@uiw/react-button": "^4.0.0-alpha.6",
+    "@uiw/react-date-picker": "^4.0.0-alpha.6",
+    "@uiw/react-input": "^4.0.0-alpha.6",
+    "@uiw/react-popover": "^4.0.0-alpha.6",
+    "@uiw/utils": "^4.0.0-alpha.6",
     "classnames": "^2.2.6"
   },
   "devDependencies": {
