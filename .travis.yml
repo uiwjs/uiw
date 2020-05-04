@@ -4,6 +4,6 @@ node_js:
 install: 
   - yarn install
   - yarn run bootstrap
-  - yarn run build
 script:
+  - yarn run build
   - yarn run test
