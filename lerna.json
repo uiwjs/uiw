@@ -12,14 +12,12 @@
       ]
     },
     "create": {
-      "homepage": "https://github.com/uiwjs/uiw",
-      
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/uiwjs/uiw.git"
-  },
-  "license": "MIT",
-      "author": "kenny wang <wowohoo@qq.com>"
+      "license": "MIT",
+      "author": "kenny wang <wowohoo@qq.com>",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/uiwjs/uiw.git"
+      }
     },
     "version": {
       "allowBranch": "master",
