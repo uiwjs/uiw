@@ -11,7 +11,7 @@
     "coverage": "lerna exec npm run coverage --scope @uiw/react-button --scope @uiw/react-date-picker",
     "watch:uiw": "lerna run --scope uiw watch --stream",
     "watch:pkg": "lerna run --scope @uiw/* watch --stream",
-    "version": "lerna version --no-changelog",
+    "version": "lerna version --no-changelog --no-push --no-git-tag-version",
     "publish": "lerna publish from-package",
     "clean": "lerna clean",
     "compile-less": "compile-less",

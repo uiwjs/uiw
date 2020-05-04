@@ -19,13 +19,6 @@
         "url": "https://github.com/uiwjs/uiw.git"
       }
     },
-    "version": {
-      "allowBranch": "master",
-      "conventionalCommits": true,
-      "exact": true,
-      "forcePublish": true,
-      "message": "chore(release): %s"
-    },
     "bootstrap": {
       "npmClient": "yarn",
       "yarnClientArgs": [
