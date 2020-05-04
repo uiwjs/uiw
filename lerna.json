@@ -30,10 +30,9 @@
     },
     "bootstrap": {
       "npmClient": "yarn",
-      "useWorkspaces": true,
-      "npmClientArgs": ["--no-optional"],
       "yarnClientArgs": [
-        "--no-yarn-lock"
+        "--no-yarn-lock",
+        "--no-package-lock"
       ],
       "forceLocal": true
     }
