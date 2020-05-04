@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 
 export interface PortalProps {
@@ -58,7 +58,7 @@ export default class Portal extends React.Component<PortalProps> {
     // so they are immediately attached to the DOM tree.
     // See long comment on componentDidMount in https://reactjs.org/docs/portals.html#event-bubbling-through-portals
     if (cannotCreatePortal || typeof document === 'undefined' || !this.state.hasMounted) {
-      return null;
+      return <Fragment />;
     } else {
       return ReactDOM.createPortal(this.props.children, this.portalElement);
     }
