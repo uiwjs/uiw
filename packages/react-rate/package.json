@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-rate",
-  "version": "4.0.0-alpha.3",
+  "version": "4.0.0-alpha.4",
   "description": "Rate component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-rate#readme",
@@ -56,7 +56,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/utils": "4.0.0-alpha.3",
+    "@uiw/utils": "4.0.0-alpha.4",
     "classnames": "^2.2.6"
   },
   "devDependencies": {
