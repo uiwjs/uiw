@@ -5,9 +5,10 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-*.lerna_backup
-
+package-lock.json
 yarn.lock
+
+*.lerna_backup
 .DS_Store
 .cache
 .vscode
