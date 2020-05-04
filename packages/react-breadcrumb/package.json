@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-breadcrumb",
-  "version": "4.0.0-alpha.4",
+  "version": "4.0.0-alpha.5",
   "description": "Breadcrumb component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-breadcrumb#readme",
@@ -56,7 +56,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/utils": "4.0.0-alpha.4",
+    "@uiw/utils": "4.0.0-alpha.5",
     "classnames": "^2.2.6"
   },
   "devDependencies": {
