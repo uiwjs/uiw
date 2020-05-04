@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-alert",
-  "version": "4.0.0-alpha.2",
+  "version": "4.0.0-alpha.3",
   "description": "Alert component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-alert#readme",
@@ -56,8 +56,8 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-modal": "4.0.0-alpha.2",
-    "@uiw/utils": "4.0.0-alpha.2",
+    "@uiw/react-modal": "4.0.0-alpha.3",
+    "@uiw/utils": "4.0.0-alpha.3",
     "classnames": "^2.2.6"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-popover",
-  "version": "4.0.0-alpha.2",
+  "version": "4.0.0-alpha.3",
   "description": "Popover component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-popover#readme",
@@ -56,7 +56,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-overlay-trigger": "4.0.0-alpha.2",
+    "@uiw/react-overlay-trigger": "4.0.0-alpha.3",
     "classnames": "^2.2.6"
   },
   "devDependencies": {
