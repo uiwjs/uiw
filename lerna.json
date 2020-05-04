@@ -30,7 +30,6 @@
     },
     "bootstrap": {
       "npmClientArgs": [
-        "--no-package-lock",
         "--no-optional"
       ],
       "forceLocal": true
