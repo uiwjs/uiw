@@ -6,16 +6,22 @@
   "version": "3.10.10",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "lerna exec npm run build",
-    "build:pkg": "lerna exec npm run build",
-    "coverage": "lerna exec npm run coverage --scope @uiw/react-button --scope @uiw/react-date-picker",
-    "watch:uiw": "lerna run --scope uiw watch --stream",
-    "watch:pkg": "lerna run --scope @uiw/* watch --stream",
+    "w:t:uiw": "lerna exec --scope uiw -- tsbb types --outDir lib/esm --target ESNEXT --watch",
+    "w:ts:uiw": "lerna exec --scope uiw -- tsbb watch --target react --env-name esm:dev --env-name cjs",
+    "type": "npm run t:cjs && npm run t:esm",
+    "t:esm": "lerna exec --scope @uiw/* --scope uiw -- tsbb types --outDir lib/esm --target ESNEXT",
+    "t:cjs": "lerna exec --scope @uiw/* --scope uiw -- tsbb types --outDir lib/cjs --target ESNEXT",
+    "b": "lerna exec --scope @uiw/* --scope uiw -- tsbb build --target react",
+    "b:css": "lerna exec --scope @uiw/* -- compile-less -d src -o lib/esm",
+    "b:bundle": "lerna exec --scope uiw -- kkt build --bundle --no-checkRequiredFiles",
+    "b:bundle:min": "lerna exec --scope uiw -- GENERATE_SOURCEMAP=false kkt build --bundle --no-checkRequiredFiles --mini --no-emptyDir",
+    "build": "npm run b && npm run b:css && npm run type && npm run b:bundle && npm run b:bundle:min",
+    "test": "tsbb test",
+    "coverage": "tsbb test --coverage",
     "version": "lerna version --no-changelog --no-push --no-git-tag-version",
     "publish": "lerna publish from-package",
     "clean": "lerna clean",
     "compile-less": "compile-less",
-    "test": "tsbb test --coverage",
     "kkt": "kkt",
     "tsbb": "tsbb",
     "lerna": "lerna"
@@ -30,6 +36,6 @@
     "compile-less-cli": "1.4.0",
     "kkt": "5.8.0",
     "lerna": "3.20.2",
-    "tsbb": "1.7.2"
+    "tsbb": "1.7.4"
   }
 }

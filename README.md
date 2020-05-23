@@ -77,7 +77,7 @@ Or Open in VSCode Preview :
 
 ### Packages
 
-This git repository is a repo built using Lerna. It contains several packages:
+This git repository is a repo built using [Lerna](https://github.com/lerna/lerna). It contains several packages:
 
 Package | Version | Description
 ---- | ---- | ----
@@ -151,12 +151,13 @@ Or clone locally:
 $ git clone https://github.com/uiwjs/uiwjs.github.io.git --recurse-submodules
 ```
 
-Listening compiled component code.
+Compiled component code.
 
 ```bash
 $ npm install # Install dependencies
 $ lerna bootstrap # Install all package dependencies
 $ lerna bootstrap --scope @uiw/* # Set scope installation dependencies
+$ npm run build
 ```
 
 To develop, run the self-reloading build:
@@ -165,9 +166,11 @@ To develop, run the self-reloading build:
 # Run the app
 # Restart the app automatically every time code changes. 
 # Useful during development.
-$ npm run watch:uiw
-$ npm run watch:pkg
+$ npm run w:t:uiw
+$ npm run w:ts:uiw
 $ lerna run --scope uiw watch --stream
+$ lerna exec --scope @uiw/button -- tsbb types --outDir lib/esm --target ESNEXT --watch
+$ lerna exec --scope @uiw/button -- tsbb watch --target react --env-name esm:dev --env-name cjs
 ```
 
 Folders

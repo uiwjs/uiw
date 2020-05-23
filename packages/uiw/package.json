@@ -43,17 +43,7 @@
   },
   "scripts": {
     "bundle": "kkt build --bundle --no-checkRequiredFiles",
-    "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --no-checkRequiredFiles --mini --no-emptyDir",
-    "build": "npm run build:ts && npm run build:types && npm run bundle && npm run bundle:min",
-    "build:ts": "tsbb build --target react",
-    "build:types": "npm run types:esm && npm run types:cjs",
-    "watch": "npm run watch:ts & npm run watch:types",
-    "watch:ts": "tsbb watch --target react --env-name esm:dev --env-name cjs",
-    "watch:types": "npm run types:esm -- --watch & npm run types:cjs -- --watch",
-    "types:esm": "tsbb types --outDir lib/esm --target ESNEXT",
-    "types:cjs": "tsbb types --outDir lib/cjs --target ESNEXT",
-    "test": "tsbb test",
-    "coverage": "tsbb test --coverage"
+    "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --no-checkRequiredFiles --mini --no-emptyDir"
   },
   "peerDependencies": {
     "@babel/runtime": ">=7.0.0",
@@ -124,6 +114,9 @@
     "@types/react": "16.9.26",
     "@types/react-dom": "16.9.7",
     "@types/react-test-renderer": "16.9.2",
+    "optimize-css-assets-webpack-plugin": "5.0.3",
+    "cssnano": "4.1.10",
+    "terser-webpack-plugin": "4.1.10",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-test-renderer": "16.13.1"

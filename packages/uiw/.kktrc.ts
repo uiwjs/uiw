@@ -1,6 +1,8 @@
 import path from 'path';
 import { LoaderOneOf, OptionConf } from 'kkt';
 import webpack from 'webpack';
+import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
 
 export const loaderOneOf: LoaderOneOf = [
   require.resolve('@kkt/loader-less'),
@@ -46,11 +48,22 @@ export default (conf: webpack.Configuration, options: KKTOpts) => {
         amd: 'react-dom',
       },
     }
+    console.log('options.isEnvProduction:', options.isEnvProduction)
     conf.optimization = {
       minimize: options.isEnvProduction,
       minimizer: [],
     };
     if (options.yargsArgs && options.yargsArgs.mini) {
+      conf.optimization!.minimizer!.push(
+        new TerserPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: true, // Must be set to true if using source-maps in production
+          terserOptions: {
+            // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
+          }
+        }),
+      );
       conf.output.filename = 'uiw.min.js';
       conf.plugins = [
         ...(conf.plugins || []),
@@ -62,7 +75,15 @@ export default (conf: webpack.Configuration, options: KKTOpts) => {
           // css bundle when doing code splitting to avoid FOUC:
           // https://github.com/facebook/create-react-app/issues/2415
           allChunks: true,
-        } as any)
+        } as any),
+        new OptimizeCssAssetsPlugin({
+          assetNameRegExp: /\.min\.css$/g,
+          cssProcessor: require('cssnano'),
+          cssProcessorPluginOptions: {
+            preset: ['default', { discardComments: { removeAll: true } }],
+          },
+          canPrint: true
+        })
       ];
     } else {
       conf.optimization!.minimize = false;

@@ -18,19 +18,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "build": "npm run build:ts && npm run build:types && npm run build:css",
-    "build:ts": "tsbb build --target react",
-    "build:css": "compile-less -d src -o lib/esm",
-    "build:types": "npm run types:esm && npm run types:cjs",
-    "watch": "npm run watch:ts & npm run watch:types",
-    "watch:ts": "tsbb watch --target react --env-name esm:dev --env-name cjs",
-    "watch:types": "npm run types:esm -- --watch & npm run types:cjs -- --watch",
-    "types:esm": "tsbb types --outDir lib/esm --target ESNEXT",
-    "types:cjs": "tsbb types --outDir lib/cjs --target ESNEXT",
-    "test": "tsbb test",
-    "coverage": "tsbb test --coverage"
-  },
   "keywords": [
     "rate",
     "react-rate",
