@@ -75,10 +75,9 @@ Or Open in VSCode Preview :
 
 [![Open in VSCode](https://jaywcjlove.github.io/sb/open/open-in-vscode.svg)](https://marketplace.visualstudio.com/items?itemName=uiw.uiw)
 
-
 ### Packages
 
-This git repository is a repo built using Lerna. It contains several packages:
+This git repository is a repo built using [Lerna](https://github.com/lerna/lerna). It contains several packages:
 
 Package | Version | Description
 ---- | ---- | ----

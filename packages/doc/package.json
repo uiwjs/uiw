@@ -1,0 +1,32 @@
+{
+  "name": "@uiw/doc",
+  "version": "4.0.0-alpha.6",
+  "description": "UIW documentation website.",
+  "homepage": "https://uiwjs.github.io",
+  "files": [
+    "web"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uiwjs/uiw.git"
+  },
+  "keywords": [
+    "design",
+    "uiw",
+    "uiw-react",
+    "react.js",
+    "react",
+    "react-component",
+    "component",
+    "components",
+    "ui",
+    "css",
+    "uikit",
+    "react-ui",
+    "framework",
+    "front-end",
+    "frontend"
+  ],
+  "author": "Kenny Wong <wowohoo@qq.com>",
+  "license": "MIT"
+}
