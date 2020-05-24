@@ -39,7 +39,7 @@
   "devDependencies": {
     "compile-less-cli": "1.4.0",
     "kkt": "5.8.0",
-    "lerna": "3.21.0",
+    "lerna": "3.22.0",
     "tsbb": "1.7.4"
   }
 }
