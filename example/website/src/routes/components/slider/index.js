@@ -3,7 +3,7 @@ import Markdown from '@/components/Markdown';
 
 
 export default class Page extends Markdown {
-  path = 'src/slider/README.md';
+  path = 'https://github.com/uiwjs/uiw/tree/master/packages/react-slider/README.md';
   dependencies = { Slider, Divider, Button, Notify, Form, Row, Col };
   async renderPage() {
     const md = await import('uiw/node_modules/@uiw/react-slider/README.md');

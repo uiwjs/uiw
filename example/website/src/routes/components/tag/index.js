@@ -3,7 +3,7 @@ import Markdown from '@/components/Markdown';
 
 
 export default class Page extends Markdown {
-  path = 'src/tag/README.md';
+  path = 'https://github.com/uiwjs/uiw/tree/master/packages/react-tag/README.md';
   dependencies = { Tag, Divider, Dropdown, Checkbox, Menu, Button, Input, Icon, Row, Col };
   async renderPage() {
     const md = await import('uiw/node_modules/@uiw/react-tag/README.md');

@@ -3,7 +3,7 @@ import Markdown from '@/components/Markdown';
 
 
 export default class Page extends Markdown {
-  path = 'src/loader/README.md';
+  path = 'https://github.com/uiwjs/uiw/tree/master/packages/react-loader/README.md';
   dependencies = { Loader, Row, Col, Message, Card, Icon, Button };
   async renderPage() {
     const md = await import('uiw/node_modules/@uiw/react-loader/README.md');

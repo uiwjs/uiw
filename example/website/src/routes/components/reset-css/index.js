@@ -3,7 +3,7 @@ import Markdown from '@/components/Markdown';
 
 
 export default class Page extends Markdown {
-  path = 'src/rate/README.md';
+  path = 'https://github.com/uiwjs/uiw/tree/master/packages/react-rate/README.md';
   dependencies = { };
   async renderPage() {
     const md = await import('./README.md');
