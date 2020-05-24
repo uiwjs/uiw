@@ -1,0 +1,15 @@
+ports:
+- port: 19870
+  onOpen: open-preview
+
+tasks:
+- before: >
+    cd /workspace/uiw/
+  init: npm install
+  command: npm run watch
+
+- before: >
+    export DEV_HOST=$(gp url 19870)
+  init: npm install
+  openMode: split-right
+  command: npm start

@@ -1,0 +1,76 @@
+{
+  "name": "@example/uiw",
+  "version": "4.0.0-alpha.6",
+  "description": "A high quality UI Toolkit, A Component Library for React 16+.",
+  "private": true,
+  "sideEffects": true,
+  "homepage": "https://uiwjs.github.io",
+  "authors": [
+    "Kenny Wang <wowohoo@qq.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uiwjs/uiw.git"
+  },
+  "scripts": {
+    "start": "kkt start",
+    "build": "GENERATE_SOURCEMAP=false kkt build",
+    "deploy:tee": "gh-pages -d build -b gh-pages -r git@gitee.com:uiw/uiw.git",
+    "deploy:uiw": "gh-pages -d build -b gh-pages -r git@github.com:uiwjs/uiw.git",
+    "deploy:github": "gh-pages -d build -b master -r git@github.com:uiwjs/uiwjs.github.io.git",
+    "deploy": "npm run deploy:tee && gh-pages-clean && npm run deploy:github && gh-pages-clean && npm run deploy:uiw"
+  },
+  "keywords": [
+    "uiw",
+    "uiwjs",
+    "uiw-react",
+    "react.js",
+    "react",
+    "component",
+    "components",
+    "ui",
+    "framework"
+  ],
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
+  },
+  "dependencies": {
+    "@rematch/core": "1.3.0",
+    "@uiw/react-markdown-preview": "1.0.6",
+    "@uiw/react-code-preview": "1.11.4",
+    "@uiw/reset.css": "1.0.3",
+    "classnames": "2.2.6",
+    "gh-pages": "2.1.1",
+    "history": "4.10.1",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "react-dynamic-loadable": "2.0.1",
+    "react-redux": "7.1.3",
+    "react-router-dom": "5.1.2",
+    "uiw": "4.0.0-alpha.6"
+  },
+  "devDependencies": {
+    "@kkt/loader-less": "5.8.0",
+    "@kkt/loader-raw": "5.8.0",
+    "kkt": "5.8.0",
+    "react-test-renderer": "16.12.0"
+  },
+  "author": "kenny wang <wowohoo@qq.com>",
+  "license": "MIT",
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
