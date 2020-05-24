@@ -38,7 +38,7 @@ const docPkg = join(docRepoPath, 'package.json');
       "keywords": uiwPkgContent.keywords,
       "author": uiwPkgContent.author,
       "license": uiwPkgContent.license
-    }, null, 2));
+    }, null, 2) + '\n');
     await fs.emptyDir(join(docRepoPath, 'web'));
     await fs.copy(docsPath, join(docRepoPath, 'web'));
   } catch (error) {
