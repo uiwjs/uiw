@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-date-picker",
-  "version": "4.0.0-alpha.6",
+  "version": "4.0.0-alpha.7",
   "description": "DatePicker component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-date-picker#readme",
@@ -44,9 +44,9 @@
   },
   "dependencies": {
     "@uiw/formatter": "1.2.4",
-    "@uiw/react-icon": "^4.0.0-alpha.6",
-    "@uiw/react-time-picker": "^4.0.0-alpha.6",
-    "@uiw/utils": "^4.0.0-alpha.6",
+    "@uiw/react-icon": "^4.0.0-alpha.7",
+    "@uiw/react-time-picker": "^4.0.0-alpha.7",
+    "@uiw/utils": "^4.0.0-alpha.7",
     "classnames": "^2.2.6"
   },
   "devDependencies": {
