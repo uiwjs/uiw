@@ -41,7 +41,7 @@
     "@uiw/react-markdown-preview": "1.0.6",
     "@uiw/reset.css": "1.0.3",
     "classnames": "2.2.6",
-    "gh-pages": "2.1.1",
+    "gh-pages": "2.2.0",
     "history": "4.10.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",
