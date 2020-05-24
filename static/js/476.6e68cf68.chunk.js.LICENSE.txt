@@ -1,9 +1,0 @@
-/*!
- * @uiw/copy-to-clipboard v1.0.8
- * Copy to clipboard.
- * 
- * Copyright (c) 2019 Kenny Wang
- * https://github.com/uiw-react/copy-to-clipboard.git
- * 
- * Licensed under the MIT license.
- */
