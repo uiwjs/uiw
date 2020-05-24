@@ -11,6 +11,7 @@
 const fs = require('fs-extra');
 const { join } = require('path');
 
+const docsPath = join(process.cwd(), '..', '..', 'example', 'website', 'build');
 const libPath = join(process.cwd(), '..', 'uiw');
 const docRepoPath = join(process.cwd(), '..', 'doc');
 const uiwPkg = join(libPath, 'package.json');
@@ -38,7 +39,8 @@ const docPkg = join(docRepoPath, 'package.json');
       "author": uiwPkgContent.author,
       "license": uiwPkgContent.license
     }, null, 2));
-
+    await fs.emptyDir(join(docRepoPath, 'web'));
+    await fs.copy(docsPath, join(docRepoPath, 'web'));
   } catch (error) {
     console.log('error:', error);
   }
