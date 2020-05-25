@@ -9,9 +9,6 @@ tasks:
   command: npm run bootstrap &&
     npm run b:uiw &&
     npm run b:css &&
-    npm run type
+    npm run type &&
+    npm run website
 
-- before: >
-    export DEV_HOST=$(gp url 19870)
-  openMode: split-right
-  command: npm run website
