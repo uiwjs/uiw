@@ -19,9 +19,25 @@ jobs:
     - run: npm run build
     - run: npm run coverage
 
+    # - name: Deploy
+    #   uses: peaceiris/actions-gh-pages@v3
+    #   with:
+    #     deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY_WEBSITE }}
+    #     external_repository: uiwjs/uiwjs.github.io
+    #     publish_branch: master
+    #     publish_dir: ./website/uiw/build
+
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{ secrets.PERSONAL_TOKEN_UIW }}
+        BRANCH: master # The branch the action should deploy to.
+        FOLDER: website/uiw/build # The folder the action should deploy.
+        REPOSITORY_NAME: uiwjs/uiwjs.github.io
+
     - name: Build and Deploy
-      uses: peaceiris/actions-gh-pages@v2.5.0
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./website/uiw/build
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_branch: gh-pages
+        publish_dir: ./website/uiw/build
