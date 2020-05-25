@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-overlay-trigger",
-  "version": "4.0.0-alpha.8",
+  "version": "4.0.0",
   "description": "OverlayTrigger component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-overlay-trigger#readme",
@@ -43,8 +43,8 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-overlay": "^4.0.0-alpha.8",
-    "@uiw/utils": "^4.0.0-alpha.8",
+    "@uiw/react-overlay": "^4.0.0",
+    "@uiw/utils": "^4.0.0",
     "classnames": "^2.2.6"
   },
   "devDependencies": {

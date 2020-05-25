@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-dropdown",
-  "version": "4.0.0-alpha.8",
+  "version": "4.0.0",
   "description": "Dropdown component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-dropdown#readme",
@@ -43,8 +43,8 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-overlay-trigger": "^4.0.0-alpha.8",
-    "@uiw/utils": "^4.0.0-alpha.8"
+    "@uiw/react-overlay-trigger": "^4.0.0",
+    "@uiw/utils": "^4.0.0"
   },
   "devDependencies": {
     "@babel/runtime": "7.9.6",
