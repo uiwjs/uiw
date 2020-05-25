@@ -3,7 +3,7 @@
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiwjs.github.io",
   "private": true,
-  "version": "4.0.0-alpha.7",
+  "version": "4.0.0-alpha.8",
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "w:t:uiw": "lerna exec --scope uiw -- tsbb types --outDir lib/esm --target ESNEXT --watch",
@@ -23,7 +23,7 @@
     "test": "tsbb test",
     "coverage": "tsbb test --coverage",
     "version": "lerna version --no-changelog --no-push --no-git-tag-version",
-    "publish": "npm run b:doc && lerna publish from-package",
+    "publish": "npm run doc && lerna publish from-package",
     "clean": "lerna clean",
     "compile-less": "compile-less",
     "kkt": "kkt",
