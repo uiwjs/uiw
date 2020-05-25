@@ -1,1 +1,0 @@
-(this["webpackJsonp@example/uiw"]=this["webpackJsonp@example/uiw"]||[]).push([[389],{1191:function(s,e){var a=Prism.util.clone(Prism.languages.typescript);Prism.languages.tsx=Prism.languages.extend("jsx",a)}}]);
