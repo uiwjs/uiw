@@ -11,7 +11,7 @@
 const fs = require('fs-extra');
 const { join } = require('path');
 
-const docsPath = join(process.cwd(), '..', '..', 'example', 'website', 'build');
+const docsPath = join(process.cwd(), '..', '..', 'website', 'uiw', 'build');
 const libPath = join(process.cwd(), '..', 'uiw');
 const docRepoPath = join(process.cwd(), '..', 'doc');
 const uiwPkg = join(libPath, 'package.json');
