@@ -7,11 +7,11 @@ tasks:
     cd /workspace/uiw/
   init: npm install
   command: npm run bootstrap &&
-    npm run build &&
-    cd website/uiw && npm run start
+    npm run b:uiw &&
+    npm run b:css &&
+    npm run type
 
-# - before: >
-#     export DEV_HOST=$(gp url 19870)
-#   init: npm install
-#   openMode: split-right
-#   command: npm start
+- before: >
+    export DEV_HOST=$(gp url 19870)
+  openMode: split-right
+  command: npm run website

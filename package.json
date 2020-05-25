@@ -13,6 +13,7 @@
     "t:cjs": "lerna exec --scope @uiw/* --scope uiw --ignore @uiw/doc -- tsbb types --outDir lib/cjs --target ESNEXT",
     "b:uiw": "lerna exec --scope @uiw/* --scope uiw --ignore @uiw/doc -- tsbb build --target react",
     "b:website": "lerna exec --scope @example/uiw -- npm run build",
+    "website": "lerna exec --scope @example/uiw -- npm run start",
     "b:doc": "lerna exec --scope @uiw/doc -- node script/released.js",
     "b:css": "lerna exec --scope @uiw/* -- compile-less -d src -o lib/esm",
     "b:bundle": "lerna exec --scope uiw -- kkt build --bundle --no-checkRequiredFiles",
