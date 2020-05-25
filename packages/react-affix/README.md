@@ -3,6 +3,12 @@ Affix 图钉
 
 使用图钉，可以将内容固定在屏幕可视范围，并且不随页面的滚动而滚动，常用于菜单等。
 
+```jsx
+import { Affix } from 'uiw';
+// or
+import Affix from '@uiw/react-affix';
+```
+
 ### 基本用法
  
 <!--DemoStart,bgWhite,noScroll,codePen--> 
