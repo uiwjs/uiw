@@ -143,7 +143,7 @@ Package | Version | Description
 
 Use Gitpod, a free online dev environment for GitHub.
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/uiwjs/uiwjs.github.io)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/uiwjs/uiw)
 
 Or clone locally:
 
