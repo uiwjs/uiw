@@ -26,11 +26,15 @@ jobs:
     #     external_repository: uiwjs/uiwjs.github.io
     #     publish_branch: master
     #     publish_dir: ./website/uiw/build
+    - name: Install SSH Client 🔑
+      uses: webfactory/ssh-agent@v0.2.0
+      with:
+        ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY_WEBSITE }}
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        ACCESS_TOKEN: ${{ secrets.PERSONAL_TOKEN_UIW }}
+        SSH: true
         BRANCH: master # The branch the action should deploy to.
         FOLDER: website/uiw/build # The folder the action should deploy.
         REPOSITORY_NAME: uiwjs/uiwjs.github.io
