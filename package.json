@@ -23,7 +23,7 @@
     "deploy": "npm run doc && lerna exec --scope @example/uiw -- npm run deploy",
     "test": "tsbb test",
     "coverage": "tsbb test --coverage",
-    "version": "lerna version --no-changelog --no-push --no-git-tag-version",
+    "version": "lerna version --no-changelog --skip-git",
     "publish": "npm run doc && lerna publish from-package",
     "clean": "lerna clean",
     "compile-less": "compile-less",
