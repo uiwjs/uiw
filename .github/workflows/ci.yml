@@ -26,18 +26,26 @@ jobs:
     #     external_repository: uiwjs/uiwjs.github.io
     #     publish_branch: master
     #     publish_dir: ./website/uiw/build
-    - name: Install SSH Client 🔑
-      uses: webfactory/ssh-agent@v0.2.0
-      with:
-        ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY_WEBSITE }}
+    # - name: Install SSH Client 🔑
+    #   uses: webfactory/ssh-agent@v0.2.0
+    #   with:
+    #     ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY_WEBSITE }}
 
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+    # - name: Deploy 🚀
+    #   uses: JamesIves/github-pages-deploy-action@releases/v3
+    #   with:
+    #     SSH: true
+    #     BRANCH: master # The branch the action should deploy to.
+    #     FOLDER: website/uiw/build # The folder the action should deploy.
+    #     REPOSITORY_NAME: uiwjs/uiwjs.github.io
+
+    - name: Deploy to ooni.github.io
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        SSH: true
-        BRANCH: master # The branch the action should deploy to.
-        FOLDER: website/uiw/build # The folder the action should deploy.
-        REPOSITORY_NAME: uiwjs/uiwjs.github.io
+        personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
+        publish_dir: ./website/uiw/build
+        publish_branch: master
+        external_repository: uiwjs/uiwjs.github.io
 
     - name: Build and Deploy
       uses: peaceiris/actions-gh-pages@v3
