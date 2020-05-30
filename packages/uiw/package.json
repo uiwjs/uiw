@@ -105,7 +105,7 @@
     "@uiw/react-tree-checked": "^4.0.0"
   },
   "devDependencies": {
-    "@babel/runtime": "7.9.6",
+    "@babel/runtime": "7.10.2",
     "@kkt/loader-less": "5.8.0",
     "@types/classnames": "2.2.10",
     "@types/jest": "25.2.1",
