@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-list",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "List component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-list#readme",
@@ -43,7 +43,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.1.0",
+    "@uiw/utils": "^4.1.1",
     "classnames": "^2.2.6"
   },
   "devDependencies": {
