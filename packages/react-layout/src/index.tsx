@@ -10,4 +10,9 @@ Layout.Footer = Footer;
 Layout.Sider = Sider;
 Layout.Content = Content;
 
+export * from './Layout';
+export * from './Header';
+export * from './Footer';
+export * from './Sider';
+export * from './Content';
 export default Layout;
