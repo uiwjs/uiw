@@ -3,12 +3,14 @@
 .@{w-menu} {
   margin: 0 !important;
   padding: 5px;
-  padding-left: 5px !important;
   box-sizing: border-box;
   border-radius: 3px;
   min-width: 100%;
   text-align: left;
   font-size: 14px;
+  &&-dark, &&-light {
+    padding-left: 5px;
+  }
   &:not(&-dark) {
     color: #182026;
     background: #fff;
