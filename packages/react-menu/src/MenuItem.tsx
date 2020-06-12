@@ -13,7 +13,7 @@ const disabledProps = {
   tabIndex: -1,
 };
 
-export interface MenuItemProps extends IProps, React.HTMLAttributes<HTMLElement> {
+export interface MenuItemProps extends IProps, React.AllHTMLAttributes<HTMLElement> {
   text?: React.ReactNode;
   addonAfter?: React.ReactNode;
   tagName?: keyof JSX.IntrinsicElements | any;
