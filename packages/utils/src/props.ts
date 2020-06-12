@@ -45,6 +45,8 @@ export type HTMLUlProps = React.LiHTMLAttributes<HTMLUListElement>
 // export type HTMLUlProps = React.HTMLAttributes<HTMLUListElement>;
 
 
+export type AnchorProps = 'download' | 'href' | 'hrefLang' | 'media' | 'ping' | 'rel' | 'target' | 'type' | 'referrerPolicy';
+
 export interface IProps {
   style?: React.CSSProperties;
   className?: string;

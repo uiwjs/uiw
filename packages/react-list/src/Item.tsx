@@ -1,8 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
-import { IProps, HTMLDivProps, HTMLAnchorProps } from '@uiw/utils';
+import { IProps, HTMLDivProps, HTMLAnchorProps, AnchorProps } from '@uiw/utils';
 
-type AnchorProps = 'download' | 'href' | 'hrefLang' | 'media' | 'ping' | 'rel' | 'target' | 'type' | 'referrerPolicy';
 
 export interface ListItemProps extends IProps, HTMLDivProps, Pick<HTMLAnchorProps, AnchorProps> {
   disabled?: boolean;

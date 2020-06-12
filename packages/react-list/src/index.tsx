@@ -4,6 +4,8 @@ import { IProps, HTMLDivProps } from '@uiw/utils';
 import Item from './Item';
 import './style/index.less';
 
+export * from './Item';
+
 export interface ListProps<T> extends IProps, HTMLDivProps {
   bordered?: boolean;
   striped?: boolean;
