@@ -5,6 +5,8 @@ import DescriptionsItem, { DescriptionsItemProps } from './DescriptionsItem';
 import Tr, { TrProps } from './Tr';
 import './style/index.less';
 
+export * from './DescriptionsItem';
+
 export interface DescriptionsProps extends IProps {
   column?: number;
   title?: React.ReactNode;
