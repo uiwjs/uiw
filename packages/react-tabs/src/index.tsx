@@ -4,6 +4,8 @@ import { IProps, HTMLDivProps } from '@uiw/utils';
 import Pane from './Pane';
 import './style/index.less';
 
+export * from './Pane';
+
 export interface TabsProps extends IProps, HTMLDivProps {
   prefixCls?: string;
   activeKey?: string;
