@@ -1,0 +1,57 @@
+{
+  "name": "@uiw/react-layout",
+  "version": "4.0.1",
+  "description": "layout component",
+  "author": "Kenny Wong <wowohoo@qq.com>",
+  "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-layout#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uiwjs/uiw.git"
+  },
+  "license": "MIT",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "layout",
+    "react-layout",
+    "design",
+    "uiw",
+    "uiw-react",
+    "react.js",
+    "react",
+    "react-component",
+    "component",
+    "components",
+    "ui",
+    "css",
+    "uikit",
+    "react-ui",
+    "framework",
+    "front-end",
+    "frontend"
+  ],
+  "peerDependencies": {
+    "@babel/runtime": ">=7.0.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "dependencies": {
+    "@uiw/utils": "^4.0.0",
+    "classnames": "^2.2.6"
+  },
+  "devDependencies": {
+    "@babel/runtime": "7.10.2",
+    "@types/classnames": "2.2.10",
+    "@types/react": "16.9.35",
+    "@types/react-dom": "16.9.7",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  }
+}

@@ -75,6 +75,7 @@
     "@uiw/react-icon": "^4.0.0",
     "@uiw/react-input": "^4.0.0",
     "@uiw/react-list": "^4.0.0",
+    "@uiw/react-layout": "^4.0.1",
     "@uiw/react-loader": "^4.0.0",
     "@uiw/react-menu": "^4.0.0",
     "@uiw/react-message": "^4.0.0",

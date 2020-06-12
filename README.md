@@ -107,6 +107,7 @@ Package | Version | Description
 [`@uiw/react-grid`](/packages/react-grid) | [![npm](https://img.shields.io/npm/v/@uiw/react-grid.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-grid) | - |
 [`@uiw/react-icon`](/packages/react-icon) | [![npm](https://img.shields.io/npm/v/@uiw/react-icon.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-icon) | - |
 [`@uiw/react-input`](/packages/react-input) | [![npm](https://img.shields.io/npm/v/@uiw/react-input.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-input) | - |
+[`@uiw/react-layout`](/packages/react-layout) | [![npm](https://img.shields.io/npm/v/@uiw/react-layout.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-layout) | - |
 [`@uiw/react-list`](/packages/react-list) | [![npm](https://img.shields.io/npm/v/@uiw/react-list.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-list) | - |
 [`@uiw/react-loader`](/packages/react-loader) | [![npm](https://img.shields.io/npm/v/@uiw/react-loader.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-loader) | - |
 [`@uiw/react-menu`](/packages/react-menu) | [![npm](https://img.shields.io/npm/v/@uiw/react-menu.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-menu) | - |

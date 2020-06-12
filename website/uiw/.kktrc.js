@@ -6,7 +6,10 @@ export const loaderOneOf = [
 ];
 
 export default (conf, { paths }, webpack) => {
-  conf.resolve.alias = { '@': paths.appSrc };
+  conf.resolve.alias = {
+    '@': paths.appSrc,
+    react: path.resolve('./node_modules/react'),
+  };
   const pkg = require(path.resolve(process.cwd(), 'node_modules/uiw/package.json'));
 
   const regexp = /^(ModuleScopePlugin)/;

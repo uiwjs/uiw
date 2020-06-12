@@ -3,12 +3,9 @@ import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import { ButtonType } from '@uiw/react-button';
 import { AlertProps } from '@uiw/react-alert';
+import { randomid } from '@uiw/utils';
 import Container, { Placement, ContainerNotifys } from './Container';
 import './style/index.less';
-
-function randomid() {
-  return parseInt(String(Math.random() * 1e15), 10).toString(36);
-}
 
 export interface NotificationCreateProps extends Omit<AlertProps, 'type'> {
   placement?: Placement;
