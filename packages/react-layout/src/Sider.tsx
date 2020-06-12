@@ -4,7 +4,7 @@ import { IProps, randomid } from '@uiw/utils';
 import {LayoutContext, LayoutContextProps} from './Layout';
 
 export interface SiderProps extends IProps {
-  children?: React.ReactChild;
+  children?: React.ReactNode;
   width?: number | string;
   collapsedWidth?: number;
   collapsed?: boolean;

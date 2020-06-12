@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { IProps } from '@uiw/utils';
 
 export interface FooterProps extends IProps {
-  children?: React.ReactChild;
+  children?: React.ReactNode;
 }
 
 export default (props: FooterProps = {}) => {
