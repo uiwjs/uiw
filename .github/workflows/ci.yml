@@ -55,11 +55,13 @@ jobs:
         publish_dir: ./website/uiw/build
 
     - name: Sync to Gitee
-      uses: wearerequired/git-mirror-action@master
-      env:
-          SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
-      with:
-          # 注意替换为你的 GitHub 源仓库地址
-          source-repo: "git@github.com:uiwjs/uiw.git"
-          # 注意替换为你的 Gitee 目标仓库地址
-          destination-repo: "git@gitee.com:uiw/uiw.git"
+      run: |
+        mirror() {
+          git clone "https://github.com/$1/$2"
+          cd "$2"
+          git remote add gitee "https://jaywcjlove:${{ secrets.GITEE_TOKEN }}@gitee.com/uiw/$2.git"
+          git remote set-head origin -d
+          git push gitee --prune +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
+          cd ..
+        }
+        mirror uiwjs uiw
