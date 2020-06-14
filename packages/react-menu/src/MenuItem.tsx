@@ -24,7 +24,7 @@ export interface MenuItemProps extends IProps, React.AllHTMLAttributes<HTMLEleme
   icon?: JSX.Element | string | false | null;
 }
 
-export default class MenuItem extends React.Component<MenuItemProps> {
+export default class MenuItem<T> extends React.Component<MenuItemProps & T> {
   static displayName = 'uiw.MenuItem';
   public static defaultProps: MenuItemProps = {
     prefixCls: 'w-menu-item',
@@ -34,7 +34,7 @@ export default class MenuItem extends React.Component<MenuItemProps> {
     active: false,
   }
   public render() {
-    const { prefixCls, className, tagName: TagName, children, disabled, multiline, icon, text, active, addonAfter, isSubMenuItem, ...htmlProps } = this.props;
+    const { prefixCls, className, tagName: TagName = 'a', children, disabled, multiline, icon, text, active, addonAfter, isSubMenuItem, ...htmlProps } = this.props;
     const anchorCls = classNames(prefixCls, { active, 'w-disabled': disabled }, className);
     const tagComp = (
       <TagName
