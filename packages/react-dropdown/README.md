@@ -28,12 +28,12 @@ class Demo extends React.Component {
     return (
       <div>
         <Dropdown menu={menu}>
-          <a href="javascript:void(0)">
+          <a href='#' onClick={e => e.preventDefault()}>
             鼠标经过出现菜单 <Icon type="down" />
           </a>
         </Dropdown>
         <Dropdown trigger="click" menu={menu}>
-          <a href="javascript:void(0)">
+          <a href='#' onClick={e => e.preventDefault()}>
             点击我出现下拉菜单 <Icon type="down" />
           </a>
         </Dropdown>
