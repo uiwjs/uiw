@@ -9,23 +9,15 @@ export interface DividerProps extends IProps, HTMLDivProps {
   align?: 'left' | 'right' | 'center';
 }
 
-export default class Divider extends React.PureComponent<DividerProps> {
-  public static defaultProps = {
-    prefixCls: 'w-divider',
-    type: 'horizontal',
-    align: 'center',
-    dashed: false,
-  }
-  public render() {
-    const { prefixCls, className, children, dashed, type, align, ...restProps } = this.props;
-    const cls = classnames(className, prefixCls, `${prefixCls}-${type}`, `${prefixCls}-${align}`, {
-      [`${prefixCls}-with-text`]: children,
-      [`${prefixCls}-dashed`]: !!dashed,
-    });
-    return (
-      <div className={cls} {...restProps}>
-        {children && <span className={`${prefixCls}-inner-text`}>{children}</span>}
-      </div>
-    );
-  }
+export default (props: DividerProps = {}) => {
+  const { prefixCls = 'w-divider', className, children, dashed = false, type = 'horizontal', align = 'center', ...restProps } = props;
+  const cls = classnames(className, prefixCls, `${prefixCls}-${type}`, `${prefixCls}-${align}`, {
+    [`${prefixCls}-with-text`]: children,
+    [`${prefixCls}-dashed`]: !!dashed,
+  });
+  return (
+    <div className={cls} {...restProps}>
+      {children && <span className={`${prefixCls}-inner-text`}>{children}</span>}
+    </div>
+  );
 }

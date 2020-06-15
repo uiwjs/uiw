@@ -375,7 +375,7 @@ const Demo = () => (
           );
         }
         return (
-          <><Icon type="close-square-o" style={{ color: '#b6b6b6' }} /> <span>{item.label}</span></>
+          <><Icon type="square-o" style={{ color: '#b6b6b6' }} /> <span>{item.label}</span></>
         );
       }}
       onExpand={(key, expanded, data, node) => {
