@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import classnames from 'classnames';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import Icon from '@uiw/react-icon';
@@ -17,39 +17,33 @@ export interface DrawerProps extends OverlayProps {
   onClose?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 
-export default class Drawer extends React.PureComponent<DrawerProps> {
-  public static defaultProps: DrawerProps = {
-    prefixCls: 'w-drawer',
-    placement: 'right',
-    isCloseButtonShown: true,
-    size: 260,
-    timeout: 300,
-    isOpen: false,
-    maskClosable: true,
-  }
-  render() {
-    const { prefixCls, className, style, placement, size, title, footer, icon, isCloseButtonShown, bodyProps, ...overlayProps } = this.props;
-    const cls = classnames(className, prefixCls, `${placement}`);
-    const bodyCls = classnames(bodyProps && bodyProps.className, `${prefixCls}-body-inner`);
-    const styl = { ...style, [/^(top|bottom)$/.test(placement!) ? 'height' : 'width']: size };
-    return (
-      <Overlay className={cls} {...overlayProps}>
-        <div className={`${prefixCls}-wrapper`} style={styl}>
-          {(title || icon) && (
-            <div className={`${prefixCls}-header`}>
-              {icon && <Icon type={icon} />}
-              {title && <h4>{title}</h4>}
-              {title && isCloseButtonShown && <Button basic onClick={this.props.onClose} icon="close" type="light" />}
-            </div>
-          )}
-          <div className={`${prefixCls}-body`}>
-            <div {...bodyProps} className={bodyCls}>
-              {this.props.children}
-            </div>
+export default (props: DrawerProps = {}) => {
+  const {
+    prefixCls = 'w-drawer', className, style, placement = 'right',
+    size = 260, title, footer, icon, isCloseButtonShown = true, bodyProps, timeout = 300, isOpen = false, maskClosable = true, ...overlayProps } = props;
+  const cls = classnames(className, prefixCls, `${placement}`);
+  const bodyCls = classnames(bodyProps && bodyProps.className, `${prefixCls}-body-inner`);
+  const styl = { ...style, [/^(top|bottom)$/.test(placement!) ? 'height' : 'width']: size };
+  const footerView = useMemo(() => footer ? <div className={`${prefixCls}-footer`}>{footer}</div> : null, [footer]);
+  const iconView = useMemo(() => icon ? <Icon type={icon} /> : null, [icon]);
+  const titleView = useMemo(() => title ? <h4>{title}</h4> : null, [title]);
+  return (
+    <Overlay className={cls} timeout={timeout} isOpen={isOpen} maskClosable={maskClosable} {...overlayProps}>
+      <div className={`${prefixCls}-wrapper`} style={styl}>
+        {(title || icon) && (
+          <div className={`${prefixCls}-header`}>
+            {iconView}
+            {titleView}
+            {title && isCloseButtonShown && <Button basic onClick={props.onClose} icon="close" type="light" />}
           </div>
-          {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
+        )}
+        <div className={`${prefixCls}-body`}>
+          <div {...bodyProps} className={bodyCls}>
+            {props.children}
+          </div>
         </div>
-      </Overlay>
-    );
-  }
+        {footerView}
+      </div>
+    </Overlay>
+  );
 }
