@@ -17,6 +17,7 @@ jobs:
     - run: npm install
     - run: npm run bootstrap
     - run: npm run build
+    - run: npm run bundle
     - run: npm run coverage
 
     # - name: Deploy
