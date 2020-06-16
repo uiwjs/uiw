@@ -9,35 +9,26 @@ export interface TooltipProps extends IProps, OverlayTriggerProps {
   content?: React.ReactNode;
 }
 
-export default class Tooltip extends React.Component<TooltipProps> {
-  public static defaultProps: TooltipProps = {
-    prefixCls: 'w-tooltip',
-    placement: 'top',
-    usePortal: true,
-    isOpen: false,
-    visibleArrow: true,
-  }
-  render() {
-    const { prefixCls, className, placement, isOpen, trigger, delay, usePortal, visibleArrow, onVisibleChange, ...other } = this.props;
-    const cls = classnames(prefixCls, className, { 'no-arrow': !visibleArrow });
-    return (
-      <OverlayTrigger
-        usePortal={usePortal}
-        isOpen={isOpen}
-        trigger={trigger}
-        delay={delay}
-        onVisibleChange={onVisibleChange}
-        placement={placement}
-        {...other}
-        overlay={
-          <div className={cls}>
-            {visibleArrow && <div className={`${prefixCls}-arrow`} />}
-            <div className={`${prefixCls}-inner`}>{this.props.content}</div>
-          </div>
-        }
-      >
-        {typeof this.props.children === 'object' ? this.props.children : <span>{this.props.children}</span>}
-      </OverlayTrigger>
-    );
-  }
+export default (props: TooltipProps = {}) => {
+  const { prefixCls = 'w-tooltip', className, placement = 'top', isOpen = false, trigger, delay, usePortal = true, visibleArrow = true, onVisibleChange, ...other } = props;
+  const cls = classnames(prefixCls, className, { 'no-arrow': !visibleArrow });
+  return (
+    <OverlayTrigger
+      usePortal={usePortal}
+      isOpen={isOpen}
+      trigger={trigger}
+      delay={delay}
+      onVisibleChange={onVisibleChange}
+      placement={placement}
+      {...other}
+      overlay={
+        <div className={cls}>
+          {visibleArrow && <div className={`${prefixCls}-arrow`} />}
+          <div className={`${prefixCls}-inner`}>{props.content}</div>
+        </div>
+      }
+    >
+      {typeof props.children === 'object' ? props.children : <span>{props.children}</span>}
+    </OverlayTrigger>
+  );
 }
