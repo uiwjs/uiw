@@ -15,14 +15,5 @@ describe('<Button />', () => {
       expect(tree.props.className).toBe('w-btn w-btn-size-default w-btn-light');
     }
     expect(component.root.props.children).toBe('按钮');
-    expect(component.root.props.prefixCls).toBe('w-btn');
-    expect(component.root.props.disabled).toBe(false);
-    expect(component.root.props.active).toBe(false);
-    expect(component.root.props.loading).toBe(false);
-    expect(component.root.props.block).toBe(false);
-    expect(component.root.props.basic).toBe(false);
-    expect(component.root.props.htmlType).toBe('button');
-    expect(component.root.props.type).toBe('light');
-    expect(component.root.props.size).toBe('default');
   });
 });
