@@ -6,7 +6,7 @@ export default class Page extends Markdown {
   path = 'https://github.com/uiwjs/react-shields/README.md';
   dependencies = { Split, Divider, Button, Menu };
   async renderPage() {
-    const md = await import('uiw/node_modules/@uiw/react-split/README.md');
+    const md = await import('@uiw/react-split/README.md');
     return md.default || md;
   }
 }

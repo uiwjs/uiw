@@ -48,7 +48,6 @@ export default (conf: webpack.Configuration, options: KKTOpts) => {
         amd: 'react-dom',
       },
     }
-    console.log('options.isEnvProduction:', options.isEnvProduction)
     conf.optimization = {
       minimize: options.isEnvProduction,
       minimizer: [],
