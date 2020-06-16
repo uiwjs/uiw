@@ -21,7 +21,6 @@
       }
     },
     "bootstrap": {
-      "npmClient": "yarn",
       "yarnClientArgs": [
         "--no-yarn-lock",
         "--no-package-lock"
