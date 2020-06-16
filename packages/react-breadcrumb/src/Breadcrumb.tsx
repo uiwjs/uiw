@@ -14,6 +14,7 @@ export interface BreadcrumbProps extends HTMLDivProps {
 export default class Breadcrumb extends React.Component<BreadcrumbProps> {
   public static defaultProps: BreadcrumbProps = {
     prefixCls: 'w-breadcrumb',
+    separator: '/'
   }
   static Item: typeof BreadcrumbItem;
   public render() {

@@ -95,7 +95,25 @@ ReactDOM.render(
 |--------- |-------- |--------- |-------- |
 | style | 样式 | String | - |
 | className | 样式名称 | String | `w-breadcrumb` |
+| tagName | 设置子节点标签名，默认 `<a />` 标签，也可以指定路由 [`<Link />`](https://reacttraining.com/react-router/web/api/Link) | String | `a` |
 | separator | 分隔符自定义，定义所有子组件的分隔符。 | String | `/` |
+
+其它参数可根据 `tagName` 来设置，默认 `<a />` 标签时，可设置 `href="https://wwww.google.com"` 或者 `target="_blank"` 等参数，你可以设置 [react-router-dom](https://github.com/ReactTraining/react-router) 路由 [`<Link />`](https://reacttraining.com/react-router/web/api/Link)，例如：
+
+```jsx
+import { Breadcrumb } from 'uiw';
+import { Link } from 'react-router-dom';
+
+const Demo = () => {
+  return (
+    <Breadcrumb>
+      <Breadcrumb.Item tagName={Link} to="/home">
+        <Icon type="apple"/> Home
+      </Breadcrumb.Item>
+    </Breadcrumb>
+  )
+}
+```
 
 ## Breadcrumb.Item
 
