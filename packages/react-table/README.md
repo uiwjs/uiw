@@ -540,11 +540,11 @@ ReactDOM.render(<Demo />, _mount_);
 |--------- |-------- |--------- |-------- |
 | columns | 表格列的配置描述，可以内嵌 `children`，以渲染分组表头。| ColumnProps[] | `[]` |
 | data | 数据数组。| Array[] | `[]` |
-| title | 表格标题 | String/ReactNode/~~Function(text, key, rowData, rowNumber, columnNumber)~~/Function(data: IColumns, rowNum: number, colNum: number)`@3.0.0+` | - |
+| title | 表格标题 | ~~Function(text, key, rowData, rowNumber, columnNumber)~~ /<br/> Function(data: IColumns, rowNum: number, colNum: number)`@3.0.0+` /<br/> String / ReactNode | - |
 | footer | 表格尾部 | String/ReactNode | - |
 | bordered | 是否展示外边框和列边框 | Boolean | - |
-| onCellHead | 表头单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ <br/> Function(data: IColumns, colNum: number, rowNum: number, evn: React.MouseEvent<HTMLTableCellElement>) `@3.0.0+` | - |
-| onCell | 单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ Function(data: IColumns, options:{ colNum: number, rowNum: number, keyName: string }, evn: React.MouseEvent<HTMLTableCellElement>) `@3.1.0+` | - |
+| onCellHead | 表头单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ /<br/> Function(data: IColumns, colNum: number, rowNum: number, evn: React.MouseEvent<HTMLTableCellElement\>) `@3.0.0+` | - |
+| onCell | 单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ /<br/> Function(data: IColumns, options:{ colNum: number, rowNum: number, keyName: string }, evn: React.MouseEvent<HTMLTableCellElement\>) `@3.1.0+` | - |
 
 ### ColumnProps
 
