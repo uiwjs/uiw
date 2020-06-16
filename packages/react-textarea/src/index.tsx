@@ -5,15 +5,10 @@ import './style/index.less';
 
 export interface TextareaProps extends IProps, HTMLTextProps {}
 
-export default class Textarea extends React.PureComponent<TextareaProps> {
-  public static defaultProps: TextareaProps = {
-    prefixCls: 'w-textarea',
-  }
-  render() {
-    const { prefixCls, className, ...restProps } = this.props;
-    const cls = classnames(prefixCls, className);
-    return (
-      <textarea className={cls} {...restProps}>{this.props.children}</textarea>
-    );
-  }
+export default (props: TextareaProps = {}) => {
+  const { prefixCls = 'w-textarea', className, ...restProps } = props;
+  const cls = classnames(prefixCls, className);
+  return (
+    <textarea className={cls} {...restProps}>{props.children}</textarea>
+  );
 }
