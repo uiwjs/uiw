@@ -298,30 +298,32 @@ const Demo = () => (
   <div>
     <Table
       title="表内容 tbody 单元格点击回调事件"
-      onCell={(rowData, { rowNumber, columnNumber }) => {
+      onCell={(rowData, { rowNum, colNum }) => {
         console.log('-->3', rowData);
-        console.log('-->4', rowNumber);
-        console.log('-->5', columnNumber);
+        console.log('-->4', rowNum);
+        console.log('-->5', colNum);
         Notify.info({ description: `你点击了"${rowData.name}"。` });
       }}
       columns={columns}
-      data={dataSource} />
+      data={dataSource}
+    />
     <Table
       title="表头单元格点击回调事件"
-      onCellHead={(rowData, rowNumber, columnNumber) => {
+      onCellHead={(rowData, rowNum, columnNumber) => {
         console.log('-->3', rowData);
-        console.log('-->4', rowNumber);
+        console.log('-->4', rowNum);
         console.log('-->5', columnNumber);
         Notify.info({ description: `你点击了"${rowData.title}"。` });
       }}
-      onCell={(rowData, { rowNumber, columnNumber }) => {
+      onCell={(rowData, { rowNum, colNum }) => {
         console.log('-->3', rowData);
-        console.log('-->4', rowNumber);
-        console.log('-->5', columnNumber);
+        console.log('-->4', rowNum);
+        console.log('-->5', colNum);
         Notify.info({ description: `你点击了"${rowData.name}"。` });
       }}
       columns={columns}
-      data={dataSource} />
+      data={dataSource}
+    />
   </div>
 );
 ReactDOM.render(<Demo />, _mount_);
