@@ -8,17 +8,11 @@ export interface AlertProps extends IProps, ModalProps {
   width?: number;
 }
 
-export default class Alert extends React.Component<AlertProps> {
-  public static defaultProps: AlertProps = {
-    prefixCls: 'w-alert',
-    width: 400,
-  }
-  render() {
-    const { prefixCls, className, ...other } = this.props;
-    return (
-      <Modal {...other} className={classnames(prefixCls, className)}>
-        {this.props.children}
-      </Modal>
-    );
-  }
+export default (props: AlertProps = {}) => {
+  const { prefixCls = 'w-alert', className, ...other } = props;
+  return (
+    <Modal {...other} className={classnames(prefixCls, className)}>
+      {props.children}
+    </Modal>
+  );
 }
