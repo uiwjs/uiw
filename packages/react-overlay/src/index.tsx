@@ -110,10 +110,8 @@ export default class Overlay extends React.Component<OverlayProps, OverlayState>
     }
   }
   componentDidUpdate(prevProps: OverlayProps) {
-    if (prevProps.isOpen && !this.props.isOpen) {
-      this.overlayWillClose();
-    } else if (!prevProps.isOpen && this.props.isOpen) {
-      this.overlayWillOpen();
+    if (this.props.isOpen !== this.state.isOpen && prevProps.isOpen !== this.props.isOpen) {
+      this.props.isOpen ? this.overlayWillOpen() : this.overlayWillClose();
     }
   }
   handleBackdropMouseDown = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
