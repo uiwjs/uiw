@@ -91,9 +91,8 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
     };
   }
   componentDidUpdate(prevProps: OverlayTriggerProps) {
-    if (prevProps.isOpen !== this.props.isOpen) {
-      const isOpen = !!this.props.isOpen;
-      isOpen ? this.show() : this.hide();
+    if (this.props.isOpen !== this.state.show && prevProps.isOpen !== this.props.isOpen) {
+      this.props.isOpen ? this.show() : this.hide();
     }
   }
   componentDidMount() {
@@ -380,6 +379,7 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
       props.dialogProps!.onMouseOut = this.handleMouseOut;
     }
     props.style = { ...props.style, ...overlayStyl };
+    // console.log('this.state.show2', this.state.show, other.isOpen)
     return (
       <React.Fragment>
         <RefHolder ref={this.trigger}>
