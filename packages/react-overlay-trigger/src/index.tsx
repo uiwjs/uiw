@@ -106,7 +106,7 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
   static getDerivedStateFromProps(props: OverlayTriggerProps, state: OverlayTriggerState) {
     if (props.trigger !== state.trigger) {
       state.trigger = props.trigger;
-      state.show = props.show
+      state.show = !!props.isOpen;
       state.transitionName = '-';
     } else {
       state.transitionName = props.transitionName;
