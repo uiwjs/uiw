@@ -26,7 +26,9 @@ export interface OverlayTriggerProps extends IProps, OverlayProps {
 
 export interface OverlayTriggerState {
   show: boolean;
+  trigger: OverlayTriggerProps['trigger'];
   overlayStyl: OverlayStyl;
+  transitionName: OverlayProps['transitionName'];
 }
 
 export type Delay = number | {
@@ -81,10 +83,10 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
   private _timeout: number[] = [];
   constructor(props: OverlayTriggerProps & OverlayProps) {
     super(props);
-    // this.trigger = React.createRef();
-    // this.popup = React.createRef();
     this.state = {
       show: !!props.isOpen,
+      trigger: props.trigger,
+      transitionName: props.transitionName,
       overlayStyl: {
         placement: props.placement as Placement
       } as OverlayStyl,
@@ -94,6 +96,22 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
     if (this.props.isOpen !== this.state.show && prevProps.isOpen !== this.props.isOpen) {
       this.props.isOpen ? this.show() : this.hide();
     }
+    if (this.props.trigger !== prevProps.trigger) {
+      this.hide();
+    }
+  }
+  /**
+   * Trigger value change prohibits animation transition effect
+   */
+  static getDerivedStateFromProps(props: OverlayTriggerProps, state: OverlayTriggerState) {
+    if (props.trigger !== state.trigger) {
+      state.trigger = props.trigger;
+      state.show = props.show
+      state.transitionName = '-';
+    } else {
+      state.transitionName = props.transitionName;
+    }
+    return state
   }
   componentDidMount() {
     if (this.props.isClickOutside) {
@@ -379,7 +397,6 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
       props.dialogProps!.onMouseOut = this.handleMouseOut;
     }
     props.style = { ...props.style, ...overlayStyl };
-    // console.log('this.state.show2', this.state.show, other.isOpen)
     return (
       <React.Fragment>
         <RefHolder ref={this.trigger}>
@@ -390,6 +407,7 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
           onEnter={this.onEnter}
           className={classnames(prefixCls, className, { [placement]: placement })}
           usePortal={usePortal}
+          transitionName={this.state.transitionName}
           isOpen={this.state.show}
           hasBackdrop={false}
         >
