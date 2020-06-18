@@ -6,6 +6,7 @@
   box-sizing: border-box;
   border-radius: 3px;
   min-width: 100%;
+  width: 100%;
   text-align: left;
   font-size: 14px;
   &&-dark, &&-light {
@@ -45,6 +46,36 @@
   }
 }
 
+.@{w-menu} {
+  &&-light&-inline-collapsed > li > .@{w-menu}-item:hover {
+    color: #008EF0;
+  }
+  &-inline-collapsed {
+    width: 80px;
+    min-width: 80px;
+    > li > .@{w-menu}-item {
+      justify-content: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 18px;
+      &:hover {
+        background-color: transparent;
+        color: #fff;
+      }
+      > * {
+        margin-right: 0;
+      }
+    }
+    > li > .@{w-menu}-item .@{w-menu}-item-text {
+      width: 0;
+      flex-grow: 0;
+    }
+    > li > .@{w-menu}-item .@{w-menu}-subitem-collapse-icon {
+      display: none;
+    }
+  }
+
+}
 .@{w-menu} {
   &-dark, &-dark.w-bordered, &-dark & {
     background: #343a40;

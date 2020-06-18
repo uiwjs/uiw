@@ -24,34 +24,24 @@ export interface MenuItemProps extends IProps, React.AllHTMLAttributes<HTMLEleme
   icon?: JSX.Element | string | false | null;
 }
 
-export default class MenuItem<T> extends React.Component<MenuItemProps & T> {
-  static displayName = 'uiw.MenuItem';
-  public static defaultProps: MenuItemProps = {
-    prefixCls: 'w-menu-item',
-    tagName: 'a',
-    multiline: false,
-    disabled: false,
-    active: false,
+export default function MenuItem<T>(props = {} as  MenuItemProps & T) {
+  const { prefixCls = 'w-menu-item', className, tagName: TagName = 'a', children, disabled = false, multiline = false, icon, text, active = false, addonAfter, isSubMenuItem, ...htmlProps } = props;
+  const anchorCls = classNames(prefixCls, { active, 'w-disabled': disabled }, className);
+  const tagComp = (
+    <TagName
+      {...htmlProps}
+      {...(disabled ? disabledProps : {})}
+      className={anchorCls}
+    >
+      <Icon className={`${prefixCls}-icon`} type={icon} />
+      <div className={classNames(`${prefixCls}-text`, { [`${prefixCls}-multiline`]: !multiline })}>
+        {text}
+      </div>
+      {addonAfter}
+    </TagName>
+  );
+  if (isSubMenuItem) {
+    return tagComp;
   }
-  public render() {
-    const { prefixCls, className, tagName: TagName = 'a', children, disabled, multiline, icon, text, active, addonAfter, isSubMenuItem, ...htmlProps } = this.props;
-    const anchorCls = classNames(prefixCls, { active, 'w-disabled': disabled }, className);
-    const tagComp = (
-      <TagName
-        {...htmlProps}
-        {...(disabled ? disabledProps : {})}
-        className={anchorCls}
-      >
-        <Icon className={`${prefixCls}-icon`} type={icon} />
-        <div className={classNames(`${prefixCls}-text`, { [`${prefixCls}-multiline`]: !multiline })}>
-          {text}
-        </div>
-        {addonAfter}
-      </TagName>
-    );
-    if (isSubMenuItem) {
-      return tagComp;
-    }
-    return <li> {tagComp} </li>;
-  }
+  return <li> {tagComp} </li>;
 }

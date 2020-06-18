@@ -7,6 +7,8 @@ Menu.Item = MenuItem;
 Menu.SubMenu = SubMenu;
 Menu.Divider = Divider;
 
+Menu.displayName = 'uiw.Menu';
+
 export * from './Menu';
 export * from './MenuItem';
 export * from './SubMenu';

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState, useImperativeHandle, MutableRefObject } from 'react';
 import classnames from 'classnames';
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 import OverlayTrigger, { OverlayTriggerProps } from '@uiw/react-overlay-trigger';
@@ -12,12 +12,13 @@ export interface SubMenuProps extends IProps, MenuItemProps {
   overlayProps?: OverlayTriggerProps;
   collapse?: boolean;
   disabled?: boolean;
-  active?: boolean;
+  inlineCollapsed?: boolean;
   inlineIndent?: number;
 }
 
 export interface ISubMenuState {
   isOpen: boolean;
+  overlayClassName: string;
 }
 
 function checkedMenuItem(node?: HTMLElement) {
@@ -36,107 +37,103 @@ function checkedMenuItem(node?: HTMLElement) {
   return isCheck;
 }
 
+function IconView({ prefixCls, collapse, isOpen }: {prefixCls?: string; collapse?: boolean; isOpen: boolean}) {
+  return useMemo(() => 
+    <Icon
+      type="caret-right"
+      className={classnames(`${prefixCls}-collapse-icon`, {
+        'w-open': !collapse && isOpen,
+        'w-close': !collapse && !isOpen,
+      })}
+    />,
+    [prefixCls, collapse, isOpen]
+  );
+}
 
-export default class SubMenu extends React.Component<SubMenuProps, ISubMenuState> {
-  public static defaultProps: SubMenuProps = {
-    prefixCls: 'w-menu-subitem',
-    overlayProps: {},
-    collapse: false,
-    active: false,
-  }
-  static state: ISubMenuState;
-  static displayName: string = 'uiw.SubMenu';
-  constructor(props: SubMenuProps) {
-    super(props);
-    this.state = {
-      isOpen: false,
-    };
-  }
-  public popup!: OverlayTrigger;
-  onClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>) => {
+function SubMenu(props: SubMenuProps = {}, ref?: ((instance: unknown) => void) | MutableRefObject<unknown> | null) {
+  const { prefixCls = 'w-menu-subitem', className, disabled, overlayProps = {}, children, collapse = false, inlineIndent, inlineCollapsed, ...other } = props;
+  const overlayTriggerProps = {} as OverlayTriggerProps & CSSTransitionProps;
+  const menuProps: MenuProps = { bordered: true, children, inlineIndent, className: classnames(`${prefixCls}-overlay`) };
+  const popupRef = React.createRef<OverlayTrigger>();
+  const [isOpen, setIsOpen] = useState(false);
+  useImperativeHandle(ref, () => popupRef.current);
+  useMemo(() => {
+    setIsOpen(false);
+  }, [collapse])
+  function onClick(e: React.MouseEvent<HTMLUListElement, MouseEvent>) {
     const target = e.currentTarget;
     const related = (e.relatedTarget || e.nativeEvent.target) as HTMLElement;
-    if (!this.popup || target.children.length < 1) return;
+    if (!popupRef.current || target.children.length < 1) return;
     if (checkedMenuItem(related)) {
-      this.popup.hide();
+      popupRef.current.hide();
     }
   }
-  onExit = (node: HTMLElement) => {
-    this.setState({ isOpen: false });
+  function onExit(node: HTMLElement) {
     node.style.height = `${node.scrollHeight}px`;
+    setIsOpen(false);
   }
-  onExiting = (node: HTMLElement) => {
+  function onExiting(node: HTMLElement) {
     node.style.height = '0px';
   }
-  onEnter = (node: HTMLElement) => {
+  function onEnter(node: HTMLElement) {
     node.style.height = '1px';
-    this.setState({ isOpen: true });
+    setIsOpen(true);
   }
-  onEntering = (node: HTMLElement) => {
+  function onEntering(node: HTMLElement) {
     node.style.height = `${node.scrollHeight}px`;
   }
-  onEntered = (node: HTMLElement) => {
+  function onEntered(node: HTMLElement) {
     node.style.height = 'initial';
   }
-  render() {
-    const { prefixCls, className, disabled, overlayProps, children, collapse, inlineIndent, ...other } = this.props;
-    const overlayTriggerProps = { ...overlayProps } as OverlayTriggerProps & CSSTransitionProps;
-    const menuProps: MenuProps = { bordered: true, children, inlineIndent, className: classnames(`${prefixCls}-overlay`) };
-    if (collapse) {
-      delete menuProps.onClick;
-      menuProps.bordered = false;
-      overlayTriggerProps.className = `${prefixCls}-collapse`;
-      overlayTriggerProps.appear = true;
-      overlayTriggerProps.isOutside = true;
-      overlayTriggerProps.isClickOutside = false;
-      overlayTriggerProps.unmountOnExit = false;
-      overlayTriggerProps.trigger = 'click';
-      overlayTriggerProps.transitionName = `${prefixCls}`;
-      overlayTriggerProps.onExit = this.onExit;
-      overlayTriggerProps.onExiting = this.onExiting;
-      overlayTriggerProps.onEnter = this.onEnter;
-      overlayTriggerProps.onEntered = this.onEntered;
-      overlayTriggerProps.onEntering = this.onEntering;
-    } else {
-      overlayTriggerProps.className = `${prefixCls}-popup`;
-      menuProps.onClick = this.onClick;
-    }
-    return (
-      <li data-menu="subitem">
-        <OverlayTrigger
-          placement="rightTop"
-          trigger="hover"
-          autoAdjustOverflow
-          disabled={disabled}
-          ref={node => {
-            if (node) {
-              this.popup = node;
-            }
-          }}
-          usePortal={false}
-          isOutside
-          {...overlayTriggerProps}
-          overlay={
-            <Menu {...menuProps} style={{ paddingLeft: inlineIndent }} />
-          }
-        >
-          <MenuItem
-            {...other}
-            disabled={disabled}
-            isSubMenuItem
-            addonAfter={
-              <Icon
-                type="caret-right"
-                className={classnames(`${prefixCls}-collapse-icon`, {
-                  'w-open': collapse && this.state.isOpen,
-                  'w-close': collapse && !this.state.isOpen,
-                })}
-              />
-            }
-            className={classnames(`${prefixCls}-title`, { [`${prefixCls}-collapse-title`]: collapse }, className)}
-          />
-        </OverlayTrigger>
-      </li>
-    );
+
+  if (!collapse) {
+    delete menuProps.onClick;
+    menuProps.bordered = false;
+    overlayTriggerProps.className = `${prefixCls}-collapse`;
+    overlayTriggerProps.appear = false;
+    overlayTriggerProps.isOutside = true;
+    overlayTriggerProps.isClickOutside = false;
+    overlayTriggerProps.unmountOnExit = false;
+    overlayTriggerProps.trigger = 'click';
+    overlayTriggerProps.transitionName = `${prefixCls}`;
+    overlayTriggerProps.onExit = onExit;
+    overlayTriggerProps.onExiting = onExiting;
+    overlayTriggerProps.onEnter = onEnter;
+    overlayTriggerProps.onEntered = onEntered;
+    overlayTriggerProps.onEntering = onEntering;
+  } else {
+    overlayTriggerProps.className = `${prefixCls}-popup`;
+    overlayTriggerProps.trigger = 'hover';
+    // overlayTriggerProps.usePortal = true;
+    menuProps.onClick = onClick;
   }
+  return (
+    <li data-menu="subitem">
+      <OverlayTrigger
+        placement="rightTop"
+        autoAdjustOverflow
+        disabled={disabled}
+        ref={popupRef}
+        usePortal={false}
+        isOutside
+        {...overlayTriggerProps}
+        {...overlayProps}
+        overlay={
+          <Menu {...menuProps} style={!collapse ? { paddingLeft: inlineIndent } : {}} />
+        }
+      >
+        <MenuItem
+          {...other}
+          disabled={disabled}
+          isSubMenuItem
+          addonAfter={
+            <IconView collapse={collapse} prefixCls={prefixCls} isOpen={isOpen} />
+          }
+          className={classnames(`${prefixCls}-title`, { [`${prefixCls}-collapse-title`]: !collapse }, className)}
+        />
+      </OverlayTrigger>
+    </li>
+  )
 }
+
+export default React.forwardRef<unknown, SubMenuProps>(SubMenu);
