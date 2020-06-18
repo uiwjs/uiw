@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-button-group",
-  "version": "4.1.2",
+  "version": "4.2.0",
   "description": "ButtonGroup component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-button-group#readme",
@@ -43,7 +43,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-button": "^4.1.2",
+    "@uiw/react-button": "^4.2.0",
     "@uiw/utils": "^4.1.2",
     "classnames": "^2.2.6"
   },
