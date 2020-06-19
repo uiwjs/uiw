@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/index.less';
 
-export interface ICardProps extends IProps, Omit<HTMLDivProps, 'title'> {
+export interface CardProps extends IProps, Omit<HTMLDivProps, 'title'> {
   active?: boolean;
   bordered?: boolean;
   bodyStyle?: React.CSSProperties;
@@ -14,32 +14,24 @@ export interface ICardProps extends IProps, Omit<HTMLDivProps, 'title'> {
   footer?: React.ReactNode;
 }
 
-export default class Card extends React.Component<ICardProps, {}> {
-  public static defaultProps: ICardProps = {
-    prefixCls: 'w-card',
-    bordered: true,
-    noHover: false,
-    active: false,
-  }
-  public render() {
-    const { prefixCls, className, title, extra, footer, bordered, noHover, active, bodyStyle, bodyClassName, children, ...resetProps } = this.props;
-    const cls = classnames(prefixCls, className, {
-      [`${prefixCls}-bordered`]: bordered,
-      [`${prefixCls}-no-hover`]: noHover,
-      active,
-    });
+export default (props: CardProps = {}) => {
+  const { prefixCls = 'w-card', className, title, extra, footer, bordered = true, noHover = false, active = false, bodyStyle, bodyClassName, children, ...resetProps } = props;
+  const cls = useMemo(() => classnames(prefixCls, className, {
+    [`${prefixCls}-bordered`]: bordered,
+    [`${prefixCls}-no-hover`]: noHover,
+    active,
+  }), [prefixCls, className, bordered, noHover]);
 
-    return (
-      <div {...resetProps} className={cls}>
-        {(title || extra) && (
-          <div className={`${prefixCls}-head`}>
-            {title && <div className={`${prefixCls}-head-title`}>{title}</div>}
-            {extra && <div className={`${prefixCls}-extra`}>{extra}</div>}
-          </div>
-        )}
-        {children && <div className={classnames(`${prefixCls}-body`, bodyClassName)} style={bodyStyle}>{children}</div>}
-        {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
-      </div>
-    );
-  }
+  return (
+    <div {...resetProps} className={cls}>
+      {(title || extra) && (
+        <div className={`${prefixCls}-head`}>
+          {title && <div className={`${prefixCls}-head-title`}>{title}</div>}
+          {extra && <div className={`${prefixCls}-extra`}>{extra}</div>}
+        </div>
+      )}
+      {children && <div className={classnames(`${prefixCls}-body`, bodyClassName)} style={bodyStyle}>{children}</div>}
+      {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
+    </div>
+  );
 }

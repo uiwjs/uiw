@@ -30,7 +30,7 @@ ReactDOM.render(
 
 ### 表单中使用
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,noScroll,bgWhite,codePen--> 
 ```js
 import { Form, Checkbox, Row, Col, Button, Notify } from 'uiw';
 
