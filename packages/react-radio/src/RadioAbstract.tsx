@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useImperativeHandle, useMemo } from 'react';
 import classnames from 'classnames';
 import { IProps, HTMLInputProps } from '@uiw/utils';
 
@@ -13,48 +13,32 @@ export interface RadioAbstractProps extends IProps, Omit<HTMLInputProps, 'size'>
   onChange?: (even: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface RadioAbstractState {
-  checked?: boolean;
+function Abstract(props: RadioAbstractProps = {}, ref: ((instance: HTMLInputElement) => void) | React.RefObject<unknown> | null | undefined) {
+  const { prefixCls = 'w-radio', type = 'radio', disabled = false, value = '', className, style, children, size, onChange, ...other } = props;
+  const inputRef = React.createRef<HTMLInputElement>();
+  useImperativeHandle(ref, () => inputRef.current);
+  const [checked, setChecked] = useState(other.checked || false);
+  const cls = classnames(prefixCls, className, {
+    disabled: disabled, [`${prefixCls}-${size}`]: size,
+  });
+  other.checked = checked;
+  useMemo(() => {
+    if (checked !== props.checked) {
+      setChecked(!!props.checked);
+    }
+  }, [props.checked]);
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    e.persist();
+    setChecked(e.target.checked);
+    onChange && onChange(e);
+  };
+  const label = children || value;
+  return (
+    <label {...{ className: cls, style }}>
+      <input {...{...other, type, disabled, value}} onChange={handleChange} ref={inputRef} />
+      {label && <div className={`${prefixCls}-text`}>{label}</div>}
+    </label>
+  );
 }
 
-export class RadioAbstract extends React.Component<RadioAbstractProps> {
-  public static defaulProps: RadioAbstractProps = {
-    prefixCls: 'w-radio',
-    type: 'radio',
-    disabled: false,
-    checked: false,
-    value: '',
-  }
-  public state:RadioAbstractState = {}
-  constructor(props: RadioAbstractProps) {
-    super(props);
-    this.state = {
-      checked: props.checked || false,
-    };
-  }
-  UNSAFE_componentWillReceiveProps(nextPrrops: RadioAbstractProps) {
-    if (nextPrrops.checked !== this.props.checked) {
-      this.setState({ checked: nextPrrops.checked });
-    }
-  }
-  onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.persist();
-    const { onChange } = this.props;
-    this.setState({ checked: e.target.checked }, onChange && onChange.bind(this, e));
-  }
-  render() {
-    const { prefixCls, className, style, children, size, ...other } = this.props;
-    const cls = classnames(prefixCls, className, {
-      disabled: other.disabled, [`${prefixCls}-${size}`]: size,
-    });
-    other.checked = this.state.checked as boolean;
-    other.onChange = this.onChange;
-    const label = children || other.value;
-    return (
-      <label {...{ className: cls, style }}>
-        <input {...other} />
-        {label && <div className={`${prefixCls}-text`}>{label}</div>}
-      </label>
-    );
-  }
-}
+export const RadioAbstract = React.forwardRef<unknown, RadioAbstractProps>(Abstract);

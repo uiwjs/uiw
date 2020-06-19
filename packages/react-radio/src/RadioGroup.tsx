@@ -10,23 +10,22 @@ export interface RadioGroupProps extends IProps, HTMLDivProps {
   onChange?: RadioProps['onChange'];
 }
 
-export default class RadioGroup extends React.Component<RadioGroupProps> {
-  public static defaultProps: RadioGroupProps & HTMLDivProps = {
-    prefixCls: 'w-radio-group',
-  }
-  render() {
-    const { prefixCls, className, name, value, onChange, ...other } = this.props;
-    return (
-      <div {...other} className={classnames(prefixCls, className)}>
-        {React.Children.map(this.props.children, (element: any) => {
-          return React.cloneElement(element, Object.assign({}, element.props, {
-            checked: element.props.value === value,
+export default (props: RadioGroupProps = {}) => {
+  const { prefixCls = 'w-radio-group', className, name, value, onChange, children, ...other } = props;
+  return (
+    <div {...other} className={classnames(prefixCls, className)}>
+      {React.Children.toArray(children).map((child) => {
+        if (!child) return;
+        if (!React.isValidElement(child)) return child;
+        return React.cloneElement(child, {
+          ...(child.props || {}),
+          ...{
+            checked: child.props.value === value,
             name,
             onChange,
-          }));
-        })}
-      </div>
-    );
-  }
+          }
+        });
+      })}
+    </div>
+  );
 }
-

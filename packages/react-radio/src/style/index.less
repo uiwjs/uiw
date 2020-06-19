@@ -37,6 +37,9 @@
     cursor: not-allowed;
     input[type=radio] {
       cursor: not-allowed;
+      &:checked {
+        border: 5px solid #cecece;
+      }
     }
   }
   &.disabled:not(.checked) {
