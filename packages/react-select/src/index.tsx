@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useImperativeHandle} from 'react';
 import classnames from 'classnames';
 import { IProps } from '@uiw/utils';
 import Option from './Option';
@@ -9,18 +9,27 @@ export interface SelectProps extends IProps, Omit<React.SelectHTMLAttributes<HTM
   size?: 'large' | 'default' | 'small'; 
 }
 
-export default class Select extends React.Component<SelectProps> {
-  public static defaultProps: SelectProps = {
-    prefixCls: 'w-select',
-    size: 'default',
-  }
-  static Option = Option;
-  static Group = Group;
-  render() {
-    const { prefixCls, className, size, ...resetProps } = this.props;
-    const cls = classnames(prefixCls, className, { [`${prefixCls}-${size}`]: size });
-    return (
-      <select {...resetProps} className={cls} />
-    );
-  }
+function InternalSelect(props: SelectProps = {}, ref: ((instance: HTMLSelectElement) => void) | React.RefObject<unknown> | null | undefined) {
+  const { prefixCls = 'w-select', className, size = 'default', ...other } = props;
+  const selectRef = React.createRef<HTMLSelectElement>();
+  useImperativeHandle(ref, () => selectRef.current);
+  return (
+    <select
+      {...other}
+      ref={selectRef}
+      className={classnames(prefixCls, className, { [`${prefixCls}-${size}`]: size })}
+    />
+  );
 }
+
+interface CompoundedComponent extends React.ForwardRefExoticComponent<SelectProps & React.RefAttributes<HTMLUListElement>>  {
+  Option: typeof Option;
+  Group: typeof Group;
+}
+
+const Select = React.forwardRef<unknown, SelectProps>(InternalSelect) as CompoundedComponent;
+
+Select.Option = Option
+Select.Group = Group
+
+export default Select
