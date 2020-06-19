@@ -47,6 +47,13 @@ yarn add uiwjs/uiw
 
 >  **通过 GitHub 仓库安装**的 `win` 用户请在 `Git Bash` 下执行，因为需要用到 `git`。
 
+## 升级 v4
+
+1. 从 @4.x 开始每个组件都可以独立使用。
+2. 代码优化部分组件 Class 组件转换成 函数组件，编译之后体积大幅缩小。
+3. 跟进 React 16 废弃生命周期 API。
+4. 重构通过 useMemo 进行性能优化。
+
 ## 升级 v3
 
 1. 基于 TypeScript 重构。
