@@ -45,7 +45,7 @@
   "dependencies": {
     "@uiw/react-radio": "^4.1.2",
     "@uiw/utils": "^4.1.2",
-    "classnames": "^2.2.6"
+    "classnames": "2.2.6"
   },
   "devDependencies": {
     "@babel/runtime": "7.10.2",

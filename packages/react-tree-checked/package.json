@@ -46,7 +46,7 @@
     "@uiw/react-checkbox": "^4.1.2",
     "@uiw/react-tree": "^4.2.0",
     "@uiw/utils": "^4.1.2",
-    "classnames": "^2.2.6"
+    "classnames": "2.2.6"
   },
   "devDependencies": {
     "@babel/runtime": "7.10.2",
