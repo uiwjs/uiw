@@ -14,7 +14,9 @@
     "lib:cjs:watch": "npm run cjs -- --watch",
     "lib:build": "npm run lib && npm run cjs && npm run esm && npm run lib:css",
     "//-----------": "//-----------",
-    "bootstrap": "lerna bootstrap --hoist",
+    "actions:bootstrap": "lerna bootstrap --hoist",
+    "//----actions-------": "//-----------",
+    "bootstrap": "lerna bootstrap",
     "type": "npm run t:cjs && npm run t:esm",
     "t:esm": "lerna exec --scope @uiw/* --scope uiw --ignore @uiw/doc -- tsbb types --outDir lib/esm --target ESNEXT",
     "t:cjs": "lerna exec --scope @uiw/* --scope uiw --ignore @uiw/doc -- tsbb types --outDir lib/cjs --target ESNEXT",
@@ -36,7 +38,9 @@
     "compile-less": "compile-less",
     "kkt": "kkt",
     "tsbb": "tsbb",
-    "lerna": "lerna"
+    "lerna": "lerna",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "jest": {
     "testMatch": [
@@ -44,8 +48,21 @@
       "<rootDir>/packages/**/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ]
+  },
   "devDependencies": {
     "compile-less-cli": "1.4.0",
+    "husky": "4.2.5",
+    "lint-staged": "10.2.11",
+    "prettier": "2.0.5",
     "kkt": "5.8.0",
     "lerna": "3.22.1",
     "tsbb": "1.7.4"
