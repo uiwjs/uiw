@@ -49,7 +49,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/formatter": "^1.2.4",
+    "@uiw/formatter": "1.2.4",
     "@uiw/react-affix": "^4.1.2",
     "@uiw/react-alert": "^4.2.0",
     "@uiw/react-avatar": "^4.2.0",

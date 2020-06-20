@@ -15,7 +15,7 @@ jobs:
         node-version: '10.x'
 
     - run: npm install
-    - run: npm run actions:bootstrap
+    - run: npm run bootstrap
 
     # - run: npm run build
     - run: npm run b:uiw
