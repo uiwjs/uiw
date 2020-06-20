@@ -1,17 +1,17 @@
-Loader 加载器
-===
+# Loader 加载器
 
 用于页面和区块的加载中状态。
 
 ```jsx
-import { Loader } from 'uiw';
+import { Loader } from "uiw";
 ```
 
 ### 基础实例
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
+
 ```jsx
-import { Loader } from 'uiw';
+import { Loader } from "uiw";
 
 ReactDOM.render(
   <div>
@@ -22,21 +22,22 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
+<!--End-->
 
 ### 警告提示中加载
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
+
 ```jsx
-import { Loader, Row, Col, Message, Icon } from 'uiw';
+import { Loader, Row, Col, Message, Icon } from "uiw";
 
 class Demo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading:true
-    }
+      loading: true,
+    };
   }
   render() {
     return (
@@ -46,12 +47,14 @@ class Demo extends Component {
             <Button
               style={{ marginBottom: 10 }}
               size="small"
-              onClick={()=>{
+              onClick={() => {
                 this.setState({
                   loading: !this.state.loading,
                 });
               }}
-            >点击切换加载状态</Button>
+            >
+              点击切换加载状态
+            </Button>
           </Col>
         </Row>
         <Row gutter={10}>
@@ -62,63 +65,101 @@ class Demo extends Component {
                 title="成功提示标题"
                 description={
                   <span>
-                    <Icon type="uiw" verticalAlign="baseline" style={{ fill: '#009688' }} />
+                    <Icon
+                      type="uiw"
+                      verticalAlign="baseline"
+                      style={{ fill: "#009688" }}
+                    />
                     这里是成功提示详情描述。
                   </span>
-                } />
+                }
+              />
             </Loader>
           </Col>
           <Col fixed>
             <Loader loading={this.state.loading}>
-              <Message type="warning" title="成功提示标题" description="这里是成功提示详情描述。" />
+              <Message
+                type="warning"
+                title="成功提示标题"
+                description="这里是成功提示详情描述。"
+              />
             </Loader>
           </Col>
         </Row>
       </div>
-    )
+    );
   }
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
+
 <!--End-->
 
 ### 卡片加载中
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
+
 ```jsx
-import { Loader, Card, Col, Row } from 'uiw';
+import { Loader, Card, Col, Row } from "uiw";
 
 ReactDOM.render(
   <Row gutter={10}>
     <Col fixed>
-      <Card title="图标与文字一行显示" extra={<a href="#">更多</a>} style={{ minWidth: 230 }}>
-        <Loader color="red" tip="加载中..." style={{ width: '100%' }}>
+      <Card
+        title="图标与文字一行显示"
+        extra={<a href="#">更多</a>}
+        style={{ minWidth: 230 }}
+      >
+        <Loader color="red" tip="加载中..." style={{ width: "100%" }}>
           <div>
-            卡片内容<br/>
-            卡片内容<br/>
-            卡片内容<br/>
+            卡片内容
+            <br />
+            卡片内容
+            <br />
+            卡片内容
+            <br />
           </div>
         </Loader>
       </Card>
     </Col>
     <Col fixed>
-      <Card title="图标与文字垂直显示" extra={<a href="#">更多</a>} style={{ minWidth: 230 }}>
-        <Loader tip="loading..." vertical style={{ width: '100%' }}>
+      <Card
+        title="图标与文字垂直显示"
+        extra={<a href="#">更多</a>}
+        style={{ minWidth: 230 }}
+      >
+        <Loader tip="loading..." vertical style={{ width: "100%" }}>
           <div>
-            卡片内容<br/>
-            卡片内容<br/>
-            卡片内容<br/>
+            卡片内容
+            <br />
+            卡片内容
+            <br />
+            卡片内容
+            <br />
           </div>
         </Loader>
       </Card>
     </Col>
     <Col fixed>
-      <Card title="自定义背景颜色" extra={<a href="#">更多</a>} style={{ minWidth: 230 }}>
-        <Loader bgColor="rgba(0, 0, 0, 0.4)" color="#fff" tip="loading..." vertical style={{ width: '100%' }}>
+      <Card
+        title="自定义背景颜色"
+        extra={<a href="#">更多</a>}
+        style={{ minWidth: 230 }}
+      >
+        <Loader
+          bgColor="rgba(0, 0, 0, 0.4)"
+          color="#fff"
+          tip="loading..."
+          vertical
+          style={{ width: "100%" }}
+        >
           <div>
-            卡片内容<br/>
-            卡片内容<br/>
-            卡片内容<br/>
+            卡片内容
+            <br />
+            卡片内容
+            <br />
+            卡片内容
+            <br />
           </div>
         </Loader>
       </Card>
@@ -127,13 +168,15 @@ ReactDOM.render(
   _mount_
 );
 ```
+
 <!--End-->
 
 ### 自定义加载图标动画
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
+
 ```jsx
-import { Loader, Card, Icon } from 'uiw';
+import { Loader, Card, Icon } from "uiw";
 
 ReactDOM.render(
   <div>
@@ -141,13 +184,22 @@ ReactDOM.render(
       <Loader
         tip="加载中..."
         color="red"
-        indicator={<Icon type="loading" spin={true} style={{ verticalAlign: 'text-top' }} />}
-        style={{ width: '100%' }}
+        indicator={
+          <Icon
+            type="loading"
+            spin={true}
+            style={{ verticalAlign: "text-top" }}
+          />
+        }
+        style={{ width: "100%" }}
       >
         <div>
-          卡片内容<br/>
-          卡片内容<br/>
-          卡片内容<br/>
+          卡片内容
+          <br />
+          卡片内容
+          <br />
+          卡片内容
+          <br />
         </div>
       </Loader>
     </Card>
@@ -155,22 +207,24 @@ ReactDOM.render(
   _mount_
 );
 ```
+
 <!--End-->
 
 ### 整页加载
 
 页面数据加载时显示。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
+
 ```jsx
-import { Loader, Icon, Button } from 'uiw';
+import { Loader, Icon, Button } from "uiw";
 
 class Demo extends React.Component {
   constructor() {
     super();
     this.state = {
       fullscreen: false,
-    }
+    };
   }
   render() {
     return (
@@ -178,16 +232,19 @@ class Demo extends React.Component {
         <Button
           style={{ marginBottom: 10 }}
           type="primary"
-          onClick={()=>{
-            this.setState({
-              fullscreen: !this.state.fullscreen,
-            }, () => {
-              setTimeout(() => {
-                this.setState({
-                  fullscreen: !this.state.fullscreen,
-                })
-              }, 3000);
-            });
+          onClick={() => {
+            this.setState(
+              {
+                fullscreen: !this.state.fullscreen,
+              },
+              () => {
+                setTimeout(() => {
+                  this.setState({
+                    fullscreen: !this.state.fullscreen,
+                  });
+                }, 3000);
+              }
+            );
           }}
         >
           显示整页加载，3 秒后消失
@@ -207,18 +264,18 @@ class Demo extends React.Component {
 
 ReactDOM.render(<Demo />, _mount_);
 ```
+
 <!--End-->
 
 ### Props
 
-| 参数 | 说明 | 类型 | 默认值 |
-|--------- |-------- |--------- |-------- |
-| size | 尺寸 | Enum{`small`, `default`, `large`} | `default` |
-| loading | 是否旋转 | Boolean | `true` |
-| indicator | 加载指示符，可以加载一个 Icon 动画 | ReactNode | - |
-| tip | 当作为包裹元素时，可以自定义描述文案 | String | - |
-| color | 设置图标与文字的颜色 | String | - |
-| bgColor | 自定义背景颜色 | String | - |
-| vertical | 图标与文字垂直显示 | Boolean | - |
-| fullscreen | 是否全屏显示 | Boolean | `false` |
-
+| 参数       | 说明                                 | 类型                              | 默认值    |
+| ---------- | ------------------------------------ | --------------------------------- | --------- |
+| size       | 尺寸                                 | Enum{`small`, `default`, `large`} | `default` |
+| loading    | 是否旋转                             | Boolean                           | `true`    |
+| indicator  | 加载指示符，可以加载一个 Icon 动画   | ReactNode                         | -         |
+| tip        | 当作为包裹元素时，可以自定义描述文案 | String                            | -         |
+| color      | 设置图标与文字的颜色                 | String                            | -         |
+| vertical   | 图标与文字垂直显示                   | Boolean                           | -         |
+| bgColor    | 自定义背景颜色                       | String                            | -         |
+| fullscreen | 是否全屏显示                         | Boolean                           | `false`   |

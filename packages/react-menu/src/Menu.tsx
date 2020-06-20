@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, MutableRefObject } from 'react';
+import React, { useImperativeHandle, MutableRefObject, useMemo } from 'react';
 import classNames from 'classnames';
 import { IProps, HTMLUlProps } from '@uiw/utils';
 import MenuItem from './MenuItem';
@@ -7,12 +7,16 @@ import SubMenu from './SubMenu';
 import './style/menu.less';
 
 export interface MenuProps extends IProps, HTMLUlProps {
+  /** 主题颜色 */
   theme?: 'light' | 'dark';
   /**
    * 垂直是否收起菜单
    * Default: `false`
    */
   inlineCollapsed?: boolean;
+  /**
+   * 菜单缩进宽度 Default: `10`
+   */
   inlineIndent?: number;
   bordered?: boolean;
 }
@@ -21,11 +25,12 @@ function InternalMenu(props = {} as MenuProps, ref?: ((instance: unknown) => voi
   const { prefixCls = 'w-menu', className, children, bordered, theme = 'light', inlineIndent = 10, inlineCollapsed, ...htmlProps } = props;
   const menuRef = React.createRef<HTMLUListElement>();
   useImperativeHandle(ref, () => menuRef.current);
-  const cls = classNames(prefixCls, {
+  const cls = useMemo(() => classNames(prefixCls, {
     'w-bordered': bordered,
     [`${prefixCls}-inline-collapsed`]: inlineCollapsed,
     [`${prefixCls}-${theme}`]: theme
-  }, className);
+  }, className), [prefixCls, bordered, inlineCollapsed, theme, className]);
+
   return (
     <ul ref={menuRef} {...htmlProps} className={cls} data-menu="menu">
       {React.Children.map(children, (child: React.ReactNode) => {
