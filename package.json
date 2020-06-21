@@ -15,6 +15,7 @@
     "lib:build": "npm run lib && npm run cjs && npm run esm && npm run lib:css",
     "//-----------": "//-----------",
     "bootstrap": "lerna bootstrap --hoist",
+    "bootstrap:webiste": "lerna bootstrap --scope @example/uiw",
     "type": "npm run t:cjs && npm run t:esm",
     "t:esm": "lerna exec --scope @uiw/* --scope uiw --ignore @uiw/doc -- tsbb types --outDir lib/esm --target ESNEXT",
     "t:cjs": "lerna exec --scope @uiw/* --scope uiw --ignore @uiw/doc -- tsbb types --outDir lib/cjs --target ESNEXT",
