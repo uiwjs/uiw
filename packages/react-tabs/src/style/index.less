@@ -1,5 +1,4 @@
-
-@w-tabs:~"w-tabs";
+@w-tabs:~ "w-tabs";
 
 .@{w-tabs} {
   &-bar {
@@ -12,25 +11,27 @@
     padding: 7px 10px;
     display: inline-block;
     height: 100%;
+    font-size: 14px;
     box-sizing: border-box;
     position: relative;
     cursor: pointer;
     text-decoration: none;
-    transition: all .3s;
+    transition: all 0.3s;
     &.active {
-      color: #008EF0;
+      color: #008ef0;
     }
     &.disabled {
       cursor: not-allowed;
       user-select: none;
-      color: rgba(0, 0, 0, .25);
+      color: rgba(0, 0, 0, 0.25);
     }
   }
 }
 
 .@{w-tabs} {
-  &-card &-nav::after, &-line &-nav::after {
-    content: '';
+  &-card &-nav::after,
+  &-line &-nav::after {
+    content: "";
     position: relative;
     display: block;
     border-bottom: 1px solid #d9d9d9;
@@ -47,13 +48,13 @@
     left: 0;
     width: 20px;
     z-index: 1;
-    transition: all .3s;
+    transition: all 0.3s;
   }
 }
 
 .@{w-tabs} {
   &-card &-nav::after {
-    content: '';
+    content: "";
     position: relative;
     display: block;
     border-bottom: 1px solid #d9d9d9;
