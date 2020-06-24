@@ -1,5 +1,4 @@
-快速上手
-===
+# 快速上手
 
 [![](https://api.travis-ci.org/uiwjs/uiw.svg?branch=master)](https://travis-ci.org/uiwjs/uiw/builds) [![](https://img.shields.io/github/issues/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/issues) [![](https://img.shields.io/github/forks/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/network) [![](https://img.shields.io/github/stars/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/stargazers) [![](https://img.shields.io/github/release/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/releases) [![Packagist](https://img.shields.io/dub/l/vibe-d.svg)](https://github.com/uiwjs/uiw) [![Packagist](https://img.shields.io/npm/v/uiw.svg)](https://www.npmjs.com/package/uiw) [![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
 
@@ -30,7 +29,7 @@ $ npx create-kkt my-app -e uiw
 
 ### 安装 [**v1.x**](https://unpkg.com/uiw@1.16.19/dist/index.html#/cn/quick-start) 旧版本
 
-> ⚠️ `v1.x` 不可以升级到 `v2.x`，`v2`是对 v1 的重构和简化  
+> ⚠️ `v1.x` 不可以升级到 `v2.x`，`v2`是对 v1 的重构和简化
 
 安装 [**`v1.x`**](https://unpkg.com/uiw/dist/index.html#/cn/quick-start) 版本
 
@@ -45,41 +44,41 @@ npm i -S uiwjs/uiw#v1.16.19
 yarn add uiwjs/uiw
 ```
 
->  **通过 GitHub 仓库安装**的 `win` 用户请在 `Git Bash` 下执行，因为需要用到 `git`。
+> **通过 GitHub 仓库安装**的 `win` 用户请在 `Git Bash` 下执行，因为需要用到 `git`。
 
-## 升级 v4
+### 升级 v4
 
 1. 从 @4.x 开始每个组件都可以独立使用。
 2. 代码优化部分组件 Class 组件转换成 函数组件，编译之后体积大幅缩小。
 3. 跟进 React 16 废弃生命周期 API。
 4. 重构通过 useMemo 进行性能优化。
 
-## 升级 v3
+### 升级 v3
 
 1. 基于 TypeScript 重构。
 2. v2 基本无压力升级到 v3。
 3. 一些组件优化。
 
-## 升级 v2.x
+### 升级 v2.x
 
 1. 优化大部分组件，让组件变得更小更简单。
 2. 删除大部分组件冗余功能，直接使用样式就可以展现组件效果。
-2. 删除冗余组件，例如组件 `Capsule 胶囊` 与 `Tag 标签` 组件合并。
-3. 抽离组件，需要单独安装，如 `HeatMap 日历热图`
-4. 支持服务端渲染，可以通过 [kkt-ssr](https://github.com/kktjs/kkt-next-ssr) 工具建立实例。
+3. 删除冗余组件，例如组件 `Capsule 胶囊` 与 `Tag 标签` 组件合并。
+4. 抽离组件，需要单独安装，如 `HeatMap 日历热图`
+5. 支持服务端渲染，可以通过 [kkt-ssr](https://github.com/kktjs/kkt-next-ssr) 工具建立实例。
 
 ### 使用
 
 使用过程中不需要引入 `CSS`，打包工具需要支持加载 [ES Module](https://github.com/rollup/rollup/wiki/pkg.module)，如果不支持需要手工引入 `css` 或者 `less` 样式，如果对环境使用有障碍，可以通过 [`kkt`](#/guide/kkt) 工具初始化一个工程。
 
 ```js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Button } from 'uiw';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Button } from "uiw";
 
 ReactDOM.render(
-  <Button type="primary">Hello</Button>, 
-  document.getElementById('app')
+  <Button type="primary">Hello</Button>,
+  document.getElementById("app")
 );
 ```
 
@@ -88,7 +87,7 @@ ReactDOM.render(
 重新取一个名字
 
 ```js
-import { Button as ButtonView } from 'uiw';
+import { Button as ButtonView } from "uiw";
 ```
 
 ### VSCode 中文档预览
@@ -133,7 +132,7 @@ $ lerna exec --scope @uiw/button -- tsbb watch --target react --env-name esm:dev
 
 ```bash
 # Run the app
-# Restart the app automatically every time code changes. 
+# Restart the app automatically every time code changes.
 # Useful during development.
 $ npm start
 ```
@@ -146,10 +145,13 @@ $ npm start
 ├── LICENSE
 ├── README.md
 ├── package.json
-├── packages        # 组件源码
-│   └── core
-├── public          # Document the static file.
-└── src             # D文档网站源码
+├── website
+│   ├── uiw        # Documentation website source code
+└── packages
+    ├── uiw        # Component library source code
+    ├── react-alert
+    ├── ...
+    └── react-affix
 ```
 
 ## License
