@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { HTMLDivProps } from '@uiw/utils';
-import BreadcrumbItem from './Item';
+import Item from './Item';
 import './style/index.less';
 
 export interface BreadcrumbProps extends HTMLDivProps {
@@ -11,21 +11,23 @@ export interface BreadcrumbProps extends HTMLDivProps {
   separator?: JSX.Element | string;
 }
 
-export default class Breadcrumb extends React.Component<BreadcrumbProps> {
-  public static defaultProps: BreadcrumbProps = {
-    prefixCls: 'w-breadcrumb',
-    separator: '/'
-  }
-  static Item: typeof BreadcrumbItem;
-  public render() {
-    const { prefixCls, className, separator, ...other } = this.props;
-    const cls = classnames(prefixCls, className);
-    return (
-      <div {...{ className: cls, ...other }}>
-        {React.Children.map(this.props.children, (element: any) => {
-          return React.cloneElement(element, Object.assign({ separator }, element.props, {}));
-        })}
-      </div>
-    );
-  }
+function InternalBreadcrumb(props: BreadcrumbProps = {}) {
+  const { prefixCls = 'w-breadcrumb', className, separator = '/', ...other } = props;
+  const cls = classnames(prefixCls, className);
+  return (
+    <div {...{ className: cls, ...other }}>
+      {React.Children.map(props.children, (element: any) => {
+        return React.cloneElement(element, Object.assign({ separator }, element.props, {}));
+      })}
+    </div>
+  );
 }
+
+interface CompoundedComponent extends React.ForwardRefExoticComponent<BreadcrumbProps>  {
+  Item: typeof Item;
+}
+
+const Breadcrumb = React.forwardRef<unknown, BreadcrumbProps>(InternalBreadcrumb) as CompoundedComponent;
+Breadcrumb.Item = Item
+
+export default Breadcrumb;
