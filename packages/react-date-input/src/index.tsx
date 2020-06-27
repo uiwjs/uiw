@@ -8,7 +8,9 @@ import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
 import './style/index.less';
 
-export interface IDateInputProps<T> extends IProps, Omit<InputProps<T>, 'onChange' | 'value'> {
+export interface IDateInputProps<T>
+  extends IProps,
+    Omit<InputProps<T>, 'onChange' | 'value'> {
   popoverProps?: PopoverProps;
   datePickerProps?: DatePickerProps;
   value?: Date | string;
@@ -21,12 +23,15 @@ export interface IDateInputState {
   date?: Date | string;
 }
 
-export default class DateInput<T> extends React.Component<IDateInputProps<T>, IDateInputState> {
+export default class DateInput<T> extends React.Component<
+  IDateInputProps<T>,
+  IDateInputState
+> {
   public static defaultProps: IDateInputProps<{}> = {
     prefixCls: 'w-dateinput',
     format: 'YYYY/MM/DD',
     allowClear: true,
-  }
+  };
   constructor(props: IDateInputProps<T>) {
     super(props);
     this.state = {
@@ -43,17 +48,32 @@ export default class DateInput<T> extends React.Component<IDateInputProps<T>, ID
     this.setState({ date });
     if (date) {
       (date as any) = formatter(format as string, new Date(date));
-
     }
     onChange && onChange(date);
   }
   render() {
-    const { prefixCls, className, popoverProps, datePickerProps, allowClear, format, onChange, ...inputProps } = this.props;
+    const {
+      prefixCls,
+      className,
+      popoverProps,
+      datePickerProps,
+      allowClear,
+      format,
+      onChange,
+      ...inputProps
+    } = this.props;
     const { date } = this.state;
     const value = date || '';
-    inputProps.value = typeof value === 'string' ? value : formatter(format as string, value);
+    inputProps.value =
+      typeof value === 'string' ? value : formatter(format as string, value);
     if (allowClear && inputProps.value) {
-      inputProps.addonAfter = <Icon className={`${prefixCls}-close-btn`} onClick={this.onChange.bind(this, undefined)} type="close" />;
+      inputProps.addonAfter = (
+        <Icon
+          className={`${prefixCls}-close-btn`}
+          onClick={this.onChange.bind(this, undefined)}
+          type="close"
+        />
+      );
     }
     return (
       <Popover

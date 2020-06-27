@@ -18,13 +18,20 @@ export default class Home extends PureComponent {
           <div className={styles.Title}>
             uiw<sup>{version}</sup>
           </div>
-          <div className={styles.Des}>
-            A Component Library for React 16+.
-          </div>
+          <div className={styles.Des}>A Component Library for React 16+.</div>
           <div>
-            <Link className={styles.AppLink} to="/guide/quick-start"> Getting Started </Link>
-            <Link className={styles.AppLink} to="/components"> Components </Link>
-            <Link className={styles.AppLink} to="/extensions"> Extensions </Link>
+            <Link className={styles.AppLink} to="/guide/quick-start">
+              {' '}
+              Getting Started{' '}
+            </Link>
+            <Link className={styles.AppLink} to="/components">
+              {' '}
+              Components{' '}
+            </Link>
+            <Link className={styles.AppLink} to="/extensions">
+              {' '}
+              Extensions{' '}
+            </Link>
             <a
               className={styles.AppLink}
               href="https://github.com/uiwjs/uiw"

@@ -7,8 +7,15 @@ export interface FooterProps extends IProps {
 }
 
 export default (props: FooterProps = {}) => {
-  const { prefixCls = 'w-layout-footer', className, children, ...other } = props;
+  const {
+    prefixCls = 'w-layout-footer',
+    className,
+    children,
+    ...other
+  } = props;
   return (
-    <footer className={classnames(prefixCls, className)} {...other}>{children}</footer>
+    <footer className={classnames(prefixCls, className)} {...other}>
+      {children}
+    </footer>
   );
-}
+};

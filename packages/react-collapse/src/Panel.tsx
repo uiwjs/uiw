@@ -14,12 +14,14 @@ export interface CollapsePanelProps<T> extends IProps, HTMLDivProps {
   onItemClick?: (evn: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-export default class CollapsePanel<T> extends React.Component<CollapsePanelProps<T>> {
+export default class CollapsePanel<T> extends React.Component<
+  CollapsePanelProps<T>
+> {
   public static defaultProps: CollapsePanelProps<{}> = {
     disabled: false,
     icon: 'down',
     prefixCls: 'w-collapse',
-  }
+  };
   getInstance = (status: TransitionStatus, instance: any) => {
     if (!instance) {
       return;
@@ -30,14 +32,25 @@ export default class CollapsePanel<T> extends React.Component<CollapsePanelProps
     if (status === 'entered' || status === 'entering') {
       instance.style.height = `${instance.scrollHeight}px`;
     }
-  }
+  };
   render() {
-    const { prefixCls, className, icon, children, isActive, onItemClick, disabled, showArrow, header, ...resetProps } = this.props;
+    const {
+      prefixCls,
+      className,
+      icon,
+      children,
+      isActive,
+      onItemClick,
+      disabled,
+      showArrow,
+      header,
+      ...resetProps
+    } = this.props;
     const cls = classnames([`${prefixCls}-item`], className, {
       [`${prefixCls}-active`]: isActive,
       [`${prefixCls}-disabled`]: disabled,
     });
-    const iconRender = typeof (icon) === 'string' ? <Icon type={icon} /> : icon;
+    const iconRender = typeof icon === 'string' ? <Icon type={icon} /> : icon;
 
     const childStyle = (child: React.ReactElement) => {
       return Object.assign({}, child && child.props ? child.props.style : {}, {
@@ -59,11 +72,13 @@ export default class CollapsePanel<T> extends React.Component<CollapsePanelProps
           timeout={300}
           classNames={`${prefixCls}-panel`}
         >
-          {(status: TransitionStatus) => React.cloneElement(<div>{children}</div>, {
-            className: `${prefixCls}-panel`,
-            style: childStyle(children as React.ReactElement),
-            ref: this.getInstance.bind(this, status),
-          })}
+          {(status: TransitionStatus) =>
+            React.cloneElement(<div>{children}</div>, {
+              className: `${prefixCls}-panel`,
+              style: childStyle(children as React.ReactElement),
+              ref: this.getInstance.bind(this, status),
+            })
+          }
         </CSSTransition>
       </div>
     );

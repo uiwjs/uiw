@@ -7,8 +7,15 @@ export interface ContentProps extends IProps {
 }
 
 export default (props: ContentProps = {}) => {
-  const { prefixCls = 'w-layout-content', className, children, ...other } = props;
+  const {
+    prefixCls = 'w-layout-content',
+    className,
+    children,
+    ...other
+  } = props;
   return (
-    <main className={classnames(prefixCls, className)} {...other}>{children}</main>
+    <main className={classnames(prefixCls, className)} {...other}>
+      {children}
+    </main>
   );
-}
+};

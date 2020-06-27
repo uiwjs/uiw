@@ -1,5 +1,5 @@
-@tooltip: ~"w-tooltip";
-@tooltip-bg: rgba(0,0,0,.75);
+@tooltip: ~'w-tooltip';
+@tooltip-bg: rgba(0, 0, 0, 0.75);
 
 .@{tooltip} {
   position: relative;
@@ -21,7 +21,7 @@
     text-decoration: none;
     background-color: @tooltip-bg;
     border-radius: 4px;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
   }
 
   &.right &-arrow,
@@ -82,16 +82,24 @@
     left: auto;
   }
 
-  &.bottom, &.bottomLeft, &.bottomRight {
+  &.bottom,
+  &.bottomLeft,
+  &.bottomRight {
     padding-top: 5px;
   }
-  &.top, &.topLeft, &.topRight {
+  &.top,
+  &.topLeft,
+  &.topRight {
     padding-bottom: 5px;
   }
-  &.right, &.rightTop, &.rightBottom {
+  &.right,
+  &.rightTop,
+  &.rightBottom {
     padding-left: 5px;
   }
-  &.left, &.leftTop, &.leftBottom {
+  &.left,
+  &.leftTop,
+  &.leftBottom {
     padding-right: 5px;
   }
 

@@ -13,7 +13,11 @@ export default class index extends Component {
   render() {
     const { className, topmenu, routerData } = this.props;
     return (
-      <div className={classnames(styles.nav, className, { [`${styles.topmenu}`]: topmenu })}>
+      <div
+        className={classnames(styles.nav, className, {
+          [`${styles.topmenu}`]: topmenu,
+        })}
+      >
         {this.props.menuData.map((item, idx) => {
           let icon = item.icon;
           if (Object.keys(nav).includes(icon)) {
@@ -22,7 +26,12 @@ export default class index extends Component {
           if (/^https?:(?:\/\/)?/.test(item.path)) {
             if (topmenu) {
               return (
-                <a key={idx} target="__blank" href={item.path} className={styles.outerUrl}>
+                <a
+                  key={idx}
+                  target="__blank"
+                  href={item.path}
+                  className={styles.outerUrl}
+                >
                   {icon}
                 </a>
               );
@@ -36,19 +45,33 @@ export default class index extends Component {
             );
           }
           let noPath = null;
-          if (!routerData[item.path] && item.children && item.children.length > 0) {
+          if (
+            !routerData[item.path] &&
+            item.children &&
+            item.children.length > 0
+          ) {
             noPath = item.children[0].path;
           }
           if (topmenu) {
             return (
-              <NavLink key={idx} activeClassName={styles.selected} to={noPath || item.path} replace>
-                {icon}<span>{item.name}</span>
+              <NavLink
+                key={idx}
+                activeClassName={styles.selected}
+                to={noPath || item.path}
+                replace
+              >
+                {icon}
+                <span>{item.name}</span>
               </NavLink>
             );
           }
           return (
             <Tooltip key={idx} placement="right" content={item.name}>
-              <NavLink activeClassName={styles.selected} to={noPath || item.path} replace>
+              <NavLink
+                activeClassName={styles.selected}
+                to={noPath || item.path}
+                replace
+              >
                 {icon}
               </NavLink>
             </Tooltip>

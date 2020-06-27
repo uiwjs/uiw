@@ -15,4 +15,4 @@ export default (props: AlertProps = {}) => {
       {props.children}
     </Modal>
   );
-}
+};

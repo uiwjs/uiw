@@ -1,9 +1,11 @@
-@w-btn:~"w-btn";
+@w-btn:~ "w-btn";
 
 .@{w-btn} {
   &-group > & {
     border-radius: 0;
-    box-shadow: inset 1px 0 0 0 rgba(0, 0, 0, 0.17), inset -1px 0 0 0 rgba(0, 0, 0, 0.17), inset -1px 0px 0 0 rgba(0, 0, 0, 0.17);
+    box-shadow: inset 1px 0 0 0 rgba(0, 0, 0, 0.17),
+      inset -1px 0 0 0 rgba(0, 0, 0, 0.17),
+      inset -1px 0px 0 0 rgba(0, 0, 0, 0.17);
   }
   &-group > &:last-child {
     border-radius: 0 3px 3px 0;
@@ -25,18 +27,23 @@
       box-shadow: inset -1px 0px 0 0 rgba(0, 0, 0, 0.17) !important;
     }
     .@{w-btn}:not(.@{w-btn}-light):last-child {
-      box-shadow: inset 1px 0 0 0 rgba(0, 0, 0, 0.17), inset 0px 0 0 0 rgba(0, 0, 0, 0.17);
+      box-shadow: inset 1px 0 0 0 rgba(0, 0, 0, 0.17),
+        inset 0px 0 0 0 rgba(0, 0, 0, 0.17);
     }
     .@{w-btn}-light {
-      box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, 0.17), inset 1px -1px 0 0 rgba(0, 0, 0, 0.17), inset -1px 0px 0 0 rgba(0, 0, 0, 0.17) !important;
+      box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, 0.17),
+        inset 1px -1px 0 0 rgba(0, 0, 0, 0.17),
+        inset -1px 0px 0 0 rgba(0, 0, 0, 0.17) !important;
     }
   }
   &-group-vertical {
     .@{w-btn}:not(.@{w-btn}-light) {
-      box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.17), inset 0 1px 0 0 rgba(0, 0, 0, 0.17) !important;
+      box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.17),
+        inset 0 1px 0 0 rgba(0, 0, 0, 0.17) !important;
     }
     .@{w-btn}:not(.@{w-btn}-light):first-child {
-      box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.17), inset 0 0 0 0 rgba(0, 0, 0, 0.17) !important;
+      box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.17),
+        inset 0 0 0 0 rgba(0, 0, 0, 0.17) !important;
     }
   }
   &-group-vertical .@{w-btn} {
@@ -46,7 +53,7 @@
       margin-top: -1px !important;
     }
     &:last-child {
-      border-radius: 0 0 3px 3px ;
+      border-radius: 0 0 3px 3px;
     }
     &:first-child {
       border-radius: 3px 3px 0 0;

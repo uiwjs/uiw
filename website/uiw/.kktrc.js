@@ -1,18 +1,18 @@
-import path from "path";
+import path from 'path';
 
 export const loaderOneOf = [
-  require.resolve("@kkt/loader-less"),
-  require.resolve("@kkt/loader-raw"),
+  require.resolve('@kkt/loader-less'),
+  require.resolve('@kkt/loader-raw'),
 ];
 
 export default (conf, { paths }, webpack) => {
   conf.resolve.alias = {
-    "@": paths.appSrc,
+    '@': paths.appSrc,
     // react: path.resolve("./node_modules/react"),
   };
   const pkg = require(path.resolve(
     process.cwd(),
-    "node_modules/uiw/package.json"
+    'node_modules/uiw/package.json',
   ));
 
   const regexp = /^(ModuleScopePlugin)/;
@@ -33,8 +33,8 @@ export default (conf, { paths }, webpack) => {
   conf.plugins.push(
     new webpack.DefinePlugin({
       VERSION: JSON.stringify(pkg.version),
-    })
+    }),
   );
-  conf.output = { ...conf.output, publicPath: "./" };
+  conf.output = { ...conf.output, publicPath: './' };
   return conf;
 };

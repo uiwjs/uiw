@@ -17,9 +17,20 @@ export default class Badge extends React.Component<BadgeProps> {
     dot: false,
     processing: false,
     max: 99,
-  }
+  };
   render() {
-    const { prefixCls, className, style, color, max, dot, processing, count, children, ...other } = this.props;
+    const {
+      prefixCls,
+      className,
+      style,
+      color,
+      max,
+      dot,
+      processing,
+      count,
+      children,
+      ...other
+    } = this.props;
     const supProps = {
       className: classnames({ [`${prefixCls}-count`]: !dot, dot }),
       style: {},
@@ -40,13 +51,18 @@ export default class Badge extends React.Component<BadgeProps> {
     }
     return (
       <span {...warpperProps}>
-        {color && (<span className={`${prefixCls}-dot`} style={{ backgroundColor: color }} />)}
+        {color && (
+          <span
+            className={`${prefixCls}-dot`}
+            style={{ backgroundColor: color }}
+          />
+        )}
         {children}
-        {count !== 0 && !color &&
+        {count !== 0 && !color && (
           <sup {...supProps}>
-          {!dot && count && max && count > max ? `${max}+` : count}
+            {!dot && count && max && count > max ? `${max}+` : count}
           </sup>
-        }
+        )}
       </span>
     );
   }

@@ -4,9 +4,10 @@ import styles from './index.module.less';
 // VERSION
 
 function Options(props = {}) {
-  return useMemo(() => (
-    <Select.Option value={props.version}>{props.version}</Select.Option>
-  ), [props.version]);
+  return useMemo(
+    () => <Select.Option value={props.version}>{props.version}</Select.Option>,
+    [props.version],
+  );
 }
 
 export default (props = {}) => {
@@ -26,13 +27,16 @@ export default (props = {}) => {
   if (firstVersion !== currentVersion) {
     versionList.unshift(currentVersion);
   }
-  return useMemo(() => (
-    <div className={styles.nav}>
-      <Select defaultValue={versionList[0]} onChange={onChange}>
-        {versionList.map((version, idx) => {
-          return <Options key={idx} version={version} />;
-        })}
-      </Select>
-    </div>
-  ), [versionList]);
-}
+  return useMemo(
+    () => (
+      <div className={styles.nav}>
+        <Select defaultValue={versionList[0]} onChange={onChange}>
+          {versionList.map((version, idx) => {
+            return <Options key={idx} version={version} />;
+          })}
+        </Select>
+      </div>
+    ),
+    [versionList],
+  );
+};

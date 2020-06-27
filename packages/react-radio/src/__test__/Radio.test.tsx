@@ -4,9 +4,7 @@ import Radio from '../Radio';
 
 describe('<Radio />', () => {
   it('Should output a radio', () => {
-    const component = TestRenderer.create(
-      <Radio value="1">Radio</Radio>
-    );
+    const component = TestRenderer.create(<Radio value="1">Radio</Radio>);
     let json = component.toJSON();
     if (json) {
       expect(json.type).toBe('label');

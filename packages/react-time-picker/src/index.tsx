@@ -11,7 +11,9 @@ import './style/index.less';
 export * from './Panel';
 export * from './Time';
 
-export interface TimePickerProps<T> extends IProps, Omit<InputProps<T>, 'onChange' | 'value'> {
+export interface TimePickerProps<T>
+  extends IProps,
+    Omit<InputProps<T>, 'onChange' | 'value'> {
   value?: Date;
   format?: string;
   popoverProps?: PopoverProps;
@@ -22,20 +24,29 @@ export interface TimePickerProps<T> extends IProps, Omit<InputProps<T>, 'onChang
   hideDisabled?: TimePickerTimeProps['hideDisabled'];
   allowClear?: boolean;
   disabled?: boolean;
-  onChange?: (dataStr?: string, date?: Date | '', type?: TimePickerTimeProps['type'], num?: number, disableds?: number[]) => void;
+  onChange?: (
+    dataStr?: string,
+    date?: Date | '',
+    type?: TimePickerTimeProps['type'],
+    num?: number,
+    disableds?: number[],
+  ) => void;
 }
 
 export interface TimePickerState {
   date: Date | '';
 }
 
-export default class TimePicker<T> extends React.Component<TimePickerProps<T>, TimePickerState> {
+export default class TimePicker<T> extends React.Component<
+  TimePickerProps<T>,
+  TimePickerState
+> {
   public state: TimePickerState;
   public static defaultProps: TimePickerProps<{}> = {
     prefixCls: 'w-timepicker',
     format: 'HH:mm:ss',
     allowClear: true,
-  }
+  };
   constructor(props: TimePickerProps<T>) {
     super(props);
     this.state = {
@@ -44,14 +55,19 @@ export default class TimePicker<T> extends React.Component<TimePickerProps<T>, T
   }
   UNSAFE_componentWillReceiveProps(nextProps: TimePickerProps<T>) {
     if (nextProps.value !== this.props.value) {
-      this.setState({ date: (nextProps.value) as Date });
+      this.setState({ date: nextProps.value as Date });
     }
   }
   onClear = () => {
     const { onChange } = this.props;
     this.setState({ date: '' }, () => onChange && onChange());
-  }
-  onSelected(type: TimePickerTimeProps['type'], num?: number, disableds?: number[], date?: TimePickerState['date']) {
+  };
+  onSelected(
+    type: TimePickerTimeProps['type'],
+    num?: number,
+    disableds?: number[],
+    date?: TimePickerState['date'],
+  ) {
     const { onChange, format } = this.props;
     this.setState({ date: date || '' });
     const dataStr = date ? formatter(format!, date) : '';
@@ -59,17 +75,44 @@ export default class TimePicker<T> extends React.Component<TimePickerProps<T>, T
   }
   render() {
     const {
-      prefixCls, className, disabled, value, format, popoverProps, allowClear, onChange,
-      disabledHours, disabledMinutes, disabledSeconds, hideDisabled, precision,
+      prefixCls,
+      className,
+      disabled,
+      value,
+      format,
+      popoverProps,
+      allowClear,
+      onChange,
+      disabledHours,
+      disabledMinutes,
+      disabledSeconds,
+      hideDisabled,
+      precision,
       ...inputProps
     } = this.props;
     const { date } = this.state;
-    const timeProps = { disabledHours, disabledMinutes, disabledSeconds, hideDisabled, precision };
+    const timeProps = {
+      disabledHours,
+      disabledMinutes,
+      disabledSeconds,
+      hideDisabled,
+      precision,
+    };
     const inputValue = date ? formatter(format as string, date) : '';
     const props: InputProps<T> = { ...inputProps, value: inputValue };
     const datePickerTime = date || new Date();
     if (allowClear && inputValue !== '' && !!inputValue) {
-      props.addonAfter = <Button className={`${prefixCls}-close-btn`} icon="close" disabled={props.disabled} onClick={this.onClear} size={props.size} basic type="light" />;
+      props.addonAfter = (
+        <Button
+          className={`${prefixCls}-close-btn`}
+          icon="close"
+          disabled={props.disabled}
+          onClick={this.onClear}
+          size={props.size}
+          basic
+          type="light"
+        />
+      );
     }
     return (
       <Popover
@@ -98,4 +141,3 @@ export default class TimePicker<T> extends React.Component<TimePickerProps<T>, T
     );
   }
 }
-

@@ -5,15 +5,25 @@ import Thead from './Thead';
 import { getLevelItems, getAllColumnsKeys } from './util';
 import './style/index.less';
 
-function noop() { };
+function noop() {}
 
 export interface IColumns {
-  title?: (data: IColumns, rowNum: number, colNum: number) => JSX.Element |  React.ReactNode;
+  title?: (
+    data: IColumns,
+    rowNum: number,
+    colNum: number,
+  ) => JSX.Element | React.ReactNode;
   key?: string;
   width?: number;
   colSpan?: number;
   children?: IColumns[];
-  render?: (text: string, keyName: string, rowData: { [key: string]: any; }, rowNumber: number, columnNumber: number) => void;
+  render?: (
+    text: string,
+    keyName: string,
+    rowData: { [key: string]: any },
+    rowNumber: number,
+    columnNumber: number,
+  ) => void;
   style?: React.CSSProperties;
   [key: string]: any;
 }
@@ -27,8 +37,17 @@ export interface TableProps extends IProps, Omit<HTMLDivProps, 'title'> {
   title?: React.ReactNode;
   footer?: React.ReactNode;
   bordered?: boolean;
-  onCell?: (data: { [key: string]: any; }, options: ICellOptions, evn: React.MouseEvent<HTMLTableCellElement>) => void | React.ReactNode;
-  onCellHead?: (data: IColumns, rowNum: number, colNum: number, evn: React.MouseEvent<HTMLTableCellElement>) => void;
+  onCell?: (
+    data: { [key: string]: any },
+    options: ICellOptions,
+    evn: React.MouseEvent<HTMLTableCellElement>,
+  ) => void | React.ReactNode;
+  onCellHead?: (
+    data: IColumns,
+    rowNum: number,
+    colNum: number,
+    evn: React.MouseEvent<HTMLTableCellElement>,
+  ) => void;
 }
 
 export interface ICellOptions {
@@ -39,9 +58,20 @@ export interface ICellOptions {
 
 export default (props: TableProps = {}) => {
   const {
-    prefixCls = 'w-table', className, columns = [], data = [], title, footer, bordered, onCell = noop, onCellHead = noop, ...other
+    prefixCls = 'w-table',
+    className,
+    columns = [],
+    data = [],
+    title,
+    footer,
+    bordered,
+    onCell = noop,
+    onCellHead = noop,
+    ...other
   } = props;
-  const cls = classnames(prefixCls, className, { [`${prefixCls}-bordered`]: bordered });
+  const cls = classnames(prefixCls, className, {
+    [`${prefixCls}-bordered`]: bordered,
+  });
   const { header, render } = getLevelItems(columns as IColumns[]);
   const keys = getAllColumnsKeys(columns as IColumns[]);
   return (
@@ -58,13 +88,23 @@ export default (props: TableProps = {}) => {
                 {keys.map((keyName, colNum) => {
                   const objs = { children: trData[keyName], props: {} };
                   if (render[keyName]) {
-                    const child = render[keyName](trData[keyName], keyName, trData, rowNum, colNum);
+                    const child = render[keyName](
+                      trData[keyName],
+                      keyName,
+                      trData,
+                      rowNum,
+                      colNum,
+                    );
                     if (React.isValidElement(child)) {
                       objs.children = child;
                     } else {
                       if (child.props) {
                         objs.props = { ...child.props };
-                        if (child.props.rowSpan === 0 || child.props.colSpan === 0) return null;
+                        if (
+                          child.props.rowSpan === 0 ||
+                          child.props.colSpan === 0
+                        )
+                          return null;
                       }
                       if (child.children) {
                         objs.children = child.children;
@@ -72,7 +112,13 @@ export default (props: TableProps = {}) => {
                     }
                   }
                   return (
-                    <td {...objs.props} onClick={(evn) => onCell(trData, { rowNum, colNum, keyName }, evn)} key={colNum}>
+                    <td
+                      {...objs.props}
+                      onClick={(evn) =>
+                        onCell(trData, { rowNum, colNum, keyName }, evn)
+                      }
+                      key={colNum}
+                    >
                       {objs.children}
                     </td>
                   );
@@ -86,4 +132,4 @@ export default (props: TableProps = {}) => {
       {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
     </div>
   );
-}
+};

@@ -39,7 +39,7 @@ export * from '@uiw/react-progress';
 export * from '@uiw/react-radio';
 export * from '@uiw/react-rate';
 export * from '@uiw/react-search-select';
-export * from '@uiw/react-select'
+export * from '@uiw/react-select';
 export * from '@uiw/react-split';
 export * from '@uiw/react-steps';
 export * from '@uiw/react-slider';

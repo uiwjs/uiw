@@ -1,11 +1,13 @@
-@datepicker-prefix: ~"w-datepicker";
+@datepicker-prefix: ~'w-datepicker';
 
 .@{datepicker-prefix} {
-  &-weekday, &-week {
+  &-weekday,
+  &-week {
     display: flex;
     width: 100%;
   }
-  &-weekday > div, &-week > div {
+  &-weekday > div,
+  &-week > div {
     display: table-cell;
     flex: 1;
     min-width: 26px;
@@ -16,38 +18,42 @@
   &-weekday > div {
     font-weight: bold;
   }
-  &-weekday > div.end, &-week > div.end {
+  &-weekday > div.end,
+  &-week > div.end {
     color: #6f6f6f;
   }
   &-week > div {
     border-radius: 3px;
     cursor: pointer;
-    &.prev, &.next {
+    &.prev,
+    &.next {
       color: #d3d3d3;
     }
     > div {
-      transition: background-color .3s, color .3s;
+      transition: background-color 0.3s, color 0.3s;
       margin: 0 2px;
       border-radius: 3px;
       line-height: 22px;
     }
     &.today > div {
-      background-color: #EAEAEA;
+      background-color: #eaeaea;
     }
-    &.selected, &.selected:hover {
+    &.selected,
+    &.selected:hover {
       > div {
         color: #fff;
-        background-color: #2EA3F4;
+        background-color: #2ea3f4;
       }
     }
     &:hover > div {
-      background-color: #EAEAEA;
-      color: #393E48;
+      background-color: #eaeaea;
+      color: #393e48;
     }
     &:active > div {
       background-color: #d2d2d2;
     }
-    &.disabled, &.disabled:hover {
+    &.disabled,
+    &.disabled:hover {
       > div {
         color: #d3d3d3;
         cursor: not-allowed;

@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, { useMemo } from 'react';
 import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/index.less';
@@ -15,12 +15,29 @@ export interface CardProps extends IProps, Omit<HTMLDivProps, 'title'> {
 }
 
 export default (props: CardProps = {}) => {
-  const { prefixCls = 'w-card', className, title, extra, footer, bordered = true, noHover = false, active = false, bodyStyle, bodyClassName, children, ...resetProps } = props;
-  const cls = useMemo(() => classnames(prefixCls, className, {
-    [`${prefixCls}-bordered`]: bordered,
-    [`${prefixCls}-no-hover`]: noHover,
-    active,
-  }), [prefixCls, className, bordered, noHover]);
+  const {
+    prefixCls = 'w-card',
+    className,
+    title,
+    extra,
+    footer,
+    bordered = true,
+    noHover = false,
+    active = false,
+    bodyStyle,
+    bodyClassName,
+    children,
+    ...resetProps
+  } = props;
+  const cls = useMemo(
+    () =>
+      classnames(prefixCls, className, {
+        [`${prefixCls}-bordered`]: bordered,
+        [`${prefixCls}-no-hover`]: noHover,
+        active,
+      }),
+    [prefixCls, className, bordered, noHover],
+  );
 
   return (
     <div {...resetProps} className={cls}>
@@ -30,8 +47,15 @@ export default (props: CardProps = {}) => {
           {extra && <div className={`${prefixCls}-extra`}>{extra}</div>}
         </div>
       )}
-      {children && <div className={classnames(`${prefixCls}-body`, bodyClassName)} style={bodyStyle}>{children}</div>}
+      {children && (
+        <div
+          className={classnames(`${prefixCls}-body`, bodyClassName)}
+          style={bodyStyle}
+        >
+          {children}
+        </div>
+      )}
       {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
     </div>
   );
-}
+};

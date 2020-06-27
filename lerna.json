@@ -1,16 +1,9 @@
 {
-  "packages": [
-    "packages/*",
-    "website/*"
-  ],
+  "packages": ["packages/*", "website/*"],
   "version": "independent",
   "command": {
     "publish": {
-      "ignoreChanges": [
-        "*.md",
-        "*.test.js",
-        "*.test.tsx"
-      ]
+      "ignoreChanges": ["*.md", "*.test.js", "*.test.tsx"]
     },
     "create": {
       "license": "MIT",
@@ -21,10 +14,7 @@
       }
     },
     "bootstrap": {
-      "yarnClientArgs": [
-        "--no-yarn-lock",
-        "--no-package-lock"
-      ],
+      "yarnClientArgs": ["--no-yarn-lock", "--no-package-lock"],
       "forceLocal": true
     }
   }

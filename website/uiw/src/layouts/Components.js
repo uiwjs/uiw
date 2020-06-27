@@ -27,7 +27,7 @@ export default class UserLayout extends PureComponent {
   onSettingTopMenu = () => {
     localStorage.setItem('_menu', !this.state.topmenu);
     this.setState({ topmenu: !this.state.topmenu });
-  }
+  };
   render() {
     const { routerData } = this.props;
     const { topmenu } = this.state;
@@ -42,9 +42,14 @@ export default class UserLayout extends PureComponent {
             path={path}
             render={(props) => {
               const Com = routerData[path].component;
-              return <Com {...props} pageData={getMenuCurrentData(props.location.pathname)} />;
+              return (
+                <Com
+                  {...props}
+                  pageData={getMenuCurrentData(props.location.pathname)}
+                />
+              );
             }}
-          />
+          />,
         );
       }
     });
@@ -57,11 +62,25 @@ export default class UserLayout extends PureComponent {
               {topmenu && <span className={styles.title}>uiw</span>}
             </Link>
           </div>
-          <Nav topmenu={topmenu} className="nav-menu" menuData={menuData} routerData={routerData} />
+          <Nav
+            topmenu={topmenu}
+            className="nav-menu"
+            menuData={menuData}
+            routerData={routerData}
+          />
           <div className={styles.btn}>
             <div>
-              <Tooltip placement={topmenu ? 'bottomRight' : 'right'} content="国内镜像站点">
-                <a href="http://uiw.gitee.io" rel="noopener noreferrer" target="_blank">{menu.china}</a>
+              <Tooltip
+                placement={topmenu ? 'bottomRight' : 'right'}
+                content="国内镜像站点"
+              >
+                <a
+                  href="http://uiw.gitee.io"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {menu.china}
+                </a>
               </Tooltip>
             </div>
             <div onClick={this.onSettingTopMenu}>
@@ -69,7 +88,10 @@ export default class UserLayout extends PureComponent {
             </div>
           </div>
         </div>
-        <div className={styles.sidebar} style={{ top: topmenu ? 57 : 0, left: topmenu ? 0 : 64 }}>
+        <div
+          className={styles.sidebar}
+          style={{ top: topmenu ? 57 : 0, left: topmenu ? 0 : 64 }}
+        >
           <SiderMenu topmenu={topmenu} menuData={menuData} {...this.props} />
         </div>
         <div
@@ -82,9 +104,7 @@ export default class UserLayout extends PureComponent {
           <div className={styles.toolbar}>
             <VersionSelect data={version} />
           </div>
-          <Switch>
-            {RouteComponents}
-          </Switch>
+          <Switch>{RouteComponents}</Switch>
         </div>
       </div>
     );

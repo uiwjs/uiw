@@ -13,13 +13,16 @@ export interface NotificationCreateProps extends Omit<AlertProps, 'type'> {
   type?: ButtonType | 'info' | 'error' | 'open';
   duration?: number;
   key?: string;
-  willUnmount?: (props: NotificationCreateProps, notifys: ContainerNotifys) => void;
+  willUnmount?: (
+    props: NotificationCreateProps,
+    notifys: ContainerNotifys,
+  ) => void;
 }
 
-export type Notifys = { [key: string]: any }
-export type NotifysDom = { [key: string]: HTMLDivElement; }
+export type Notifys = { [key: string]: any };
+export type NotifysDom = { [key: string]: HTMLDivElement };
 
-const notifys: Notifys  = {};
+const notifys: Notifys = {};
 const notifysDom: NotifysDom = {};
 
 export interface NotificationProps {
@@ -27,24 +30,41 @@ export interface NotificationProps {
   [key: string]: () => void;
 }
 
-function NotificationCreate(props: NotificationCreateProps, type: NotificationCreateProps['type'] = 'open') {
+function NotificationCreate(
+  props: NotificationCreateProps,
+  type: NotificationCreateProps['type'] = 'open',
+) {
   if (!props.placement) {
     props.placement = 'topRight';
   }
-  props.type = (type) as NotificationCreateProps['type'];
+  props.type = type as NotificationCreateProps['type'];
   if (!props.icon && props.icon !== null) {
     switch (props.type) {
-      case 'success': props.icon = 'circle-check'; break;
-      case 'warning': props.icon = 'warning'; break;
-      case 'info': props.icon = 'information'; break;
-      case 'error': props.icon = 'circle-close'; break;
-      default: break;
+      case 'success':
+        props.icon = 'circle-check';
+        break;
+      case 'warning':
+        props.icon = 'warning';
+        break;
+      case 'info':
+        props.icon = 'information';
+        break;
+      case 'error':
+        props.icon = 'circle-close';
+        break;
+      default:
+        break;
     }
   }
   switch (props.type) {
-    case 'info': props.type = 'primary'; break;
-    case 'error': props.type = 'danger'; break;
-    default: break;
+    case 'info':
+      props.type = 'primary';
+      break;
+    case 'error':
+      props.type = 'danger';
+      break;
+    default:
+      break;
   }
 
   if (props.placement && !notifys[props.placement]) {
@@ -80,7 +100,9 @@ function NotificationCreate(props: NotificationCreateProps, type: NotificationCr
 }
 
 ['open', 'success', 'warning', 'info', 'error'].forEach((type) => {
-  (NotificationCreate as NotificationProps)[type] = (options: NotificationCreateProps = {}) => {
+  (NotificationCreate as NotificationProps)[type] = (
+    options: NotificationCreateProps = {},
+  ) => {
     return NotificationCreate(options, type as NotificationCreateProps['type']);
   };
 });
@@ -93,4 +115,4 @@ export interface NotificationApi {
   error(option: NotificationCreateProps): void;
 }
 
-export default NotificationCreate as unknown as NotificationApi;
+export default (NotificationCreate as unknown) as NotificationApi;

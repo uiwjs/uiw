@@ -1,4 +1,4 @@
-@calendar-prefix: ~"w-calendar";
+@calendar-prefix: ~'w-calendar';
 
 .@{calendar-prefix} {
   &-inner {
@@ -25,7 +25,8 @@
     width: 100%;
     display: inline-block;
   }
-  &-title, &-btn-group {
+  &-title,
+  &-btn-group {
     display: inline-block;
     user-select: none;
   }
@@ -34,14 +35,15 @@
   }
   &-btn-group > &-btn {
     font-size: 16px;
-    padding:  2px 3px;
+    padding: 2px 3px;
     position: relative;
     top: -3px;
   }
-  &-btn-group > .w-icon, &-btn-group > &-btn {
+  &-btn-group > .w-icon,
+  &-btn-group > &-btn {
     cursor: pointer;
     border-radius: 3px;
-    transition: all .3s;
+    transition: all 0.3s;
     &:hover {
       background-color: #ececec;
     }
@@ -49,7 +51,8 @@
       background-color: #dedddd;
     }
   }
-  &-btn-group > .w-icon, &-btn-group > &-btn {
+  &-btn-group > .w-icon,
+  &-btn-group > &-btn {
     vertical-align: middle;
     margin-top: -6px;
     > svg {

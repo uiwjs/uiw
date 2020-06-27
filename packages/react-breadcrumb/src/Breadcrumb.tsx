@@ -12,22 +12,33 @@ export interface BreadcrumbProps extends HTMLDivProps {
 }
 
 function InternalBreadcrumb(props: BreadcrumbProps = {}) {
-  const { prefixCls = 'w-breadcrumb', className, separator = '/', ...other } = props;
+  const {
+    prefixCls = 'w-breadcrumb',
+    className,
+    separator = '/',
+    ...other
+  } = props;
   const cls = classnames(prefixCls, className);
   return (
     <div {...{ className: cls, ...other }}>
       {React.Children.map(props.children, (element: any) => {
-        return React.cloneElement(element, Object.assign({ separator }, element.props, {}));
+        return React.cloneElement(
+          element,
+          Object.assign({ separator }, element.props, {}),
+        );
       })}
     </div>
   );
 }
 
-interface CompoundedComponent extends React.ForwardRefExoticComponent<BreadcrumbProps>  {
+interface CompoundedComponent
+  extends React.ForwardRefExoticComponent<BreadcrumbProps> {
   Item: typeof Item;
 }
 
-const Breadcrumb = React.forwardRef<unknown, BreadcrumbProps>(InternalBreadcrumb) as CompoundedComponent;
-Breadcrumb.Item = Item
+const Breadcrumb = React.forwardRef<unknown, BreadcrumbProps>(
+  InternalBreadcrumb,
+) as CompoundedComponent;
+Breadcrumb.Item = Item;
 
 export default Breadcrumb;

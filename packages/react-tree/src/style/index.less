@@ -1,10 +1,10 @@
-@tree-prefix: ~"w-tree";
+@tree-prefix: ~'w-tree';
 
 .@{tree-prefix} {
   font-size: 14px;
   ul {
     padding: 0 !important;
-    transition: .3s all;
+    transition: 0.3s all;
     overflow: hidden;
     margin: 0;
     ul {
@@ -43,13 +43,13 @@
     display: inline-block;
     text-align: center;
     &:hover {
-      color: #2EA3F4;
+      color: #2ea3f4;
     }
     .w-icon {
-      transition: .3s all;
-      transform: scale(.79) rotate(0deg);
+      transition: 0.3s all;
+      transform: scale(0.79) rotate(0deg);
       &.open:not(.no-animation) {
-        transform: scale(.79) rotate(90deg) !important;
+        transform: scale(0.79) rotate(90deg) !important;
       }
     }
   }
@@ -67,8 +67,9 @@
   &-line li {
     position: relative;
     li {
-      &:before, &::after {
-        content: " ";
+      &:before,
+      &::after {
+        content: ' ';
         border-left: 1px solid #d9d9d9;
         left: -12px;
         position: absolute;
@@ -82,7 +83,7 @@
         top: -18px;
       }
       &:before {
-        content: " ";
+        content: ' ';
         width: 10px;
         height: 16px;
         border-bottom: 1px solid #d9d9d9;

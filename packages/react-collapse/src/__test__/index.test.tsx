@@ -17,10 +17,12 @@ describe('<Collapse />', () => {
         <Collapse.Panel header="西游·降魔篇" key="2">
           <div>曾经牵挂，才能了无牵挂。</div>
         </Collapse.Panel>
-        <Collapse.Panel header="国产零零漆" key="3" disabled >
-          <div>古有关云长全神贯注下象棋刮骨疗毒，今有我零零漆聚精会神看A片挖骨取弹头。</div>
+        <Collapse.Panel header="国产零零漆" key="3" disabled>
+          <div>
+            古有关云长全神贯注下象棋刮骨疗毒，今有我零零漆聚精会神看A片挖骨取弹头。
+          </div>
         </Collapse.Panel>
-      </Collapse>
+      </Collapse>,
     );
     let tree = component.toJSON();
     if (tree) {

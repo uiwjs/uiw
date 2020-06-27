@@ -5,5 +5,7 @@
 package.json
 dist
 build
+packages/doc/web
+website/uiw/build
 lib
 node_modules

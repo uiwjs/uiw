@@ -5,12 +5,29 @@ import { IProps, HTMLDivProps, HTMLLiProps } from '@uiw/utils';
 import './style/time-picker.less';
 
 export interface TimePickerPanelProps extends IProps, HTMLDivProps {
-  onSelected?: (type: TimePickerPanelProps['type'], num: number, disableds: number[], date: TimePickerPanelProps['date']) => void;
+  onSelected?: (
+    type: TimePickerPanelProps['type'],
+    num: number,
+    disableds: number[],
+    date: TimePickerPanelProps['date'],
+  ) => void;
   count?: number;
   hideDisabled?: boolean;
-  disabledHours?: (num: number, type: TimePickerPanelProps['type'], date: TimePickerPanelProps['date']) => void;
-  disabledMinutes?: (num: number, type: TimePickerPanelProps['type'], date: TimePickerPanelProps['date']) => void;
-  disabledSeconds?: (num: number, type: TimePickerPanelProps['type'], date: TimePickerPanelProps['date']) => void;
+  disabledHours?: (
+    num: number,
+    type: TimePickerPanelProps['type'],
+    date: TimePickerPanelProps['date'],
+  ) => void;
+  disabledMinutes?: (
+    num: number,
+    type: TimePickerPanelProps['type'],
+    date: TimePickerPanelProps['date'],
+  ) => void;
+  disabledSeconds?: (
+    num: number,
+    type: TimePickerPanelProps['type'],
+    date: TimePickerPanelProps['date'],
+  ) => void;
   type?: 'Hours' | 'Minutes' | 'Seconds';
   date?: Date;
 }
@@ -25,28 +42,37 @@ export interface TimePickerPanelProps extends IProps, HTMLDivProps {
 // 假设 当前进入到第五秒 easeInQuad(5,0,100,10)
 const easeInQuad = (t: number, b: number, c: number, d: number): number => {
   // parseInt()
-  return (c * (t /= d) * t) + b;
+  return c * (t /= d) * t + b;
 };
-export default class TimePickerPanel extends React.Component<TimePickerPanelProps> {
+export default class TimePickerPanel extends React.Component<
+  TimePickerPanelProps
+> {
   private disableds: number[] = [];
   public static defaultProps: TimePickerPanelProps = {
     prefixCls: 'w-timepicker',
     count: 24,
     type: 'Hours',
-  }
+  };
   scrollTopNow(elm: HTMLLIElement, idx: number) {
     const currentDom = ReactDOM.findDOMNode(elm) as HTMLLIElement;
-    if (currentDom && currentDom.parentNode && currentDom.parentNode.parentNode) {
-      const rootTop = (currentDom.parentNode.parentNode as HTMLDivElement).scrollTop;
-      const offsetTop = idx === 0 ? currentDom.clientHeight : idx * currentDom.clientHeight;
+    if (
+      currentDom &&
+      currentDom.parentNode &&
+      currentDom.parentNode.parentNode
+    ) {
+      const rootTop = (currentDom.parentNode.parentNode as HTMLDivElement)
+        .scrollTop;
+      const offsetTop =
+        idx === 0 ? currentDom.clientHeight : idx * currentDom.clientHeight;
       const startTime = Date.now();
       const frameFunc = () => {
-        const scrollDom = (currentDom!.parentNode!.parentNode) as HTMLDivElement;
+        const scrollDom = currentDom!.parentNode!.parentNode as HTMLDivElement;
         const timestamp = Date.now();
         const time = timestamp - startTime;
         const offsetTopMove = easeInQuad(time, rootTop, offsetTop, offsetTop);
         if (scrollDom) {
-          scrollDom.scrollTop = offsetTopMove > offsetTop ? offsetTop : offsetTopMove;
+          scrollDom.scrollTop =
+            offsetTopMove > offsetTop ? offsetTop : offsetTopMove;
         }
         if (scrollDom && scrollDom.scrollTop < offsetTop) {
           window.requestAnimationFrame(frameFunc);
@@ -57,14 +83,16 @@ export default class TimePickerPanel extends React.Component<TimePickerPanelProp
   }
   onClick(num: number, e: React.MouseEvent<HTMLLIElement>) {
     const { onSelected, type, date } = this.props;
-    (date as Date)[(`set${type}`) as 'setHours' | 'setMinutes' | 'setSeconds'](num);
+    (date as Date)[`set${type}` as 'setHours' | 'setMinutes' | 'setSeconds'](
+      num,
+    );
     onSelected && onSelected(type, num, this.disableds, date);
     this.scrollTopNow(e.target as HTMLLIElement, num);
   }
   getMaybeNumber() {
     const { date, type } = this.props;
     if (date && type) {
-      return date[(`get${type}`) as 'getHours' | 'getMinutes' | 'getSeconds']();
+      return date[`get${type}` as 'getHours' | 'getMinutes' | 'getSeconds']();
     }
     return 0;
   }
@@ -74,21 +102,38 @@ export default class TimePickerPanel extends React.Component<TimePickerPanelProp
       if (currentDom && currentDom.parentNode) {
         const offsetTop = idx * (currentDom as HTMLLIElement).clientHeight;
         if (currentDom.parentNode.parentNode) {
-          (currentDom.parentNode.parentNode as HTMLDivElement).scrollTop = offsetTop;
+          (currentDom.parentNode
+            .parentNode as HTMLDivElement).scrollTop = offsetTop;
         }
       }
     }
-  }
+  };
   getDisabledItem(num: number) {
     const { type, date } = this.props;
-    const disabled = this.props[(`disabled${type}`) as 'disabledHours' | 'disabledMinutes' | 'disabledSeconds'];
+    const disabled = this.props[
+      `disabled${type}` as
+        | 'disabledHours'
+        | 'disabledMinutes'
+        | 'disabledSeconds'
+    ];
     if (disabled) {
       return disabled(num, type, date);
     }
     return false;
   }
   render() {
-    const { prefixCls, className, count, date, disabledHours, disabledMinutes, disabledSeconds, hideDisabled, onSelected, ...other } = this.props;
+    const {
+      prefixCls,
+      className,
+      count,
+      date,
+      disabledHours,
+      disabledMinutes,
+      disabledSeconds,
+      hideDisabled,
+      onSelected,
+      ...other
+    } = this.props;
     this.disableds = [];
     return (
       <div className={classnames(`${prefixCls}-spinner`)} {...other}>

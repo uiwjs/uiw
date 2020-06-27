@@ -1,4 +1,4 @@
-@popover: ~"w-popover";
+@popover: ~'w-popover';
 @popover-bg: #fff;
 
 .@{popover} {
@@ -20,7 +20,8 @@
     background-color: @popover-bg;
     border-radius: 4px;
     min-height: 23px;
-    box-shadow: rgba(16, 22, 26, 0.1) 0px 0px 0px 1px, rgba(16, 22, 26, 0.2) 0px 2px 4px, rgba(16, 22, 26, 0.2) 0px 8px 24px;
+    box-shadow: rgba(16, 22, 26, 0.1) 0px 0px 0px 1px,
+      rgba(16, 22, 26, 0.2) 0px 2px 4px, rgba(16, 22, 26, 0.2) 0px 8px 24px;
   }
 
   &.right &-arrow,
@@ -76,17 +77,24 @@
     left: auto;
   }
 
-
-  &.top, &.topLeft, &.topRight {
+  &.top,
+  &.topLeft,
+  &.topRight {
     padding-bottom: 13px;
   }
-  &.bottom, &.bottomLeft, &.bottomRight {
+  &.bottom,
+  &.bottomLeft,
+  &.bottomRight {
     padding-top: 13px;
   }
-  &.right, &.rightTop, &.rightBottom {
+  &.right,
+  &.rightTop,
+  &.rightBottom {
     padding-left: 13px;
   }
-  &.left, &.leftTop, &.leftBottom {
+  &.left,
+  &.leftTop,
+  &.leftBottom {
     padding-right: 13px;
   }
 

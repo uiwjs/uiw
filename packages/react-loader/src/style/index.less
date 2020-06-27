@@ -1,4 +1,4 @@
-@loader-prefix: ~"w-loader";
+@loader-prefix: ~'w-loader';
 
 .@{loader-prefix} {
   position: relative;
@@ -11,9 +11,10 @@
     fill: currentcolor;
     vertical-align: middle;
     circle {
-      stroke-dasharray: 1,200;
+      stroke-dasharray: 1, 200;
       stroke-dashoffset: 0;
-      animation: loaderDash 1.5s ease-in-out infinite, loaderColor 6s ease-in-out infinite;
+      animation: loaderDash 1.5s ease-in-out infinite,
+        loaderColor 6s ease-in-out infinite;
       stroke-linecap: round;
     }
   }
@@ -33,12 +34,12 @@
     height: 14px;
   }
   &-blur {
-    opacity: .5;
-    filter: blur(.5px);
+    opacity: 0.5;
+    filter: blur(0.5px);
     overflow: hidden;
   }
   &-warp {
-    transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
   &-tips-nested {
     vertical-align: middle;
@@ -53,7 +54,7 @@
     z-index: 4;
     font-weight: 400;
     &:before {
-      content: " ";
+      content: ' ';
       display: inline-block;
       height: 100%;
       width: 0.1px;
@@ -91,23 +92,24 @@
 
 @keyframes loaderDash {
   0% {
-    stroke-dasharray: 1,200;
+    stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
   }
 
   50% {
-    stroke-dasharray: 89,200;
+    stroke-dasharray: 89, 200;
     stroke-dashoffset: -35;
   }
 
   to {
-    stroke-dasharray: 89,200;
+    stroke-dasharray: 89, 200;
     stroke-dashoffset: -124;
   }
 }
 
 @keyframes loaderColor {
-  0%, to {
+  0%,
+  to {
     stroke: currentColor;
   }
   // 40% {
@@ -116,7 +118,8 @@
   // 66% {
   //   stroke: #0057e7
   // }
-  80%, 90% {
+  80%,
+  90% {
     stroke: currentColor;
   }
 }

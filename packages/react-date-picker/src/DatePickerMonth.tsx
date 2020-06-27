@@ -13,17 +13,29 @@ export class DatePickerMonth extends React.Component<DatePickerMonthProps> {
   public static defaultProps: DatePickerMonthProps = {
     prefixCls: 'w-datepicker',
     panelDate: new Date(),
-    onSelected() { },
-  }
+    onSelected() {},
+  };
   render() {
-    const { prefixCls, className, panelDate, monthLabel, onSelected, ...other } = this.props;
+    const {
+      prefixCls,
+      className,
+      panelDate,
+      monthLabel,
+      onSelected,
+      ...other
+    } = this.props;
     return (
       <div className={classnames(`${prefixCls}-month`, className)} {...other}>
         {[...Array(12)].map((_, idx) => {
           const selectedMonth = panelDate!.getMonth();
           return (
-            <div key={idx} className={classnames({ selected: selectedMonth === idx })}>
-              <span onClick={onSelected!.bind(this, idx, false)}>{(monthLabel && monthLabel[idx]) || idx}</span>
+            <div
+              key={idx}
+              className={classnames({ selected: selectedMonth === idx })}
+            >
+              <span onClick={onSelected!.bind(this, idx, false)}>
+                {(monthLabel && monthLabel[idx]) || idx}
+              </span>
             </div>
           );
         })}

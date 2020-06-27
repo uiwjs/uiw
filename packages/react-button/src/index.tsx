@@ -4,7 +4,14 @@ import Icon from '@uiw/react-icon';
 import { IProps, HTMLButtonProps } from '@uiw/utils';
 import './style/index.less';
 
-export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'light' | 'dark' | 'link';
+export type ButtonType =
+  | 'primary'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'light'
+  | 'dark'
+  | 'link';
 export type ButtonSize = 'large' | 'default' | 'small';
 
 export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
@@ -46,13 +53,19 @@ export default (props: ButtonProps = {}) => {
     block, // 块级元素Block level
   });
   return (
-    <button {...others} type={htmlType} disabled={disabled || loading} className={cls}>
+    <button
+      {...others}
+      type={htmlType}
+      disabled={disabled || loading}
+      className={cls}
+    >
       {icon && <Icon type={icon} />}
-      {children && React.Children.map(children, (child: React.ReactNode) => {
-        if (!child) return child;
-        if (React.isValidElement(child)) return child;
-        return <span>{child}</span>;
-      })}
+      {children &&
+        React.Children.map(children, (child: React.ReactNode) => {
+          if (!child) return child;
+          if (React.isValidElement(child)) return child;
+          return <span>{child}</span>;
+        })}
     </button>
   );
-}
+};

@@ -15,7 +15,9 @@ export function getScroll(target: HTMLElement | Window | null, top?: boolean) {
   const method = top ? 'scrollTop' : 'scrollLeft';
   const isWindow: boolean = target === window;
 
-  let ret = isWindow ? (target as Window)[prop] : (target as HTMLElement)[method];
+  let ret = isWindow
+    ? (target as Window)[prop]
+    : (target as HTMLElement)[method];
   if (isWindow && typeof ret !== 'number') {
     ret = document.documentElement[method];
   }

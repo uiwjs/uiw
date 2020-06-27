@@ -1,6 +1,7 @@
-
 const canUseDOM = !!(
-  typeof window !== 'undefined' && window.document && window.document.createElement
+  typeof window !== 'undefined' &&
+  window.document &&
+  window.document.createElement
 );
 
 function fallback(context: HTMLElement, node: HTMLElement) {
@@ -18,12 +19,15 @@ export default (() => {
   // so we need to check on context instead of a document root element.
   return canUseDOM
     ? function (context: HTMLElement, node: HTMLElement) {
-      if (context.contains) {
-        return context.contains(node);
-      } if (context.compareDocumentPosition) {
-        return context === node || !!(context.compareDocumentPosition(node) && 16);
+        if (context.contains) {
+          return context.contains(node);
+        }
+        if (context.compareDocumentPosition) {
+          return (
+            context === node || !!(context.compareDocumentPosition(node) && 16)
+          );
+        }
+        return fallback(context, node);
       }
-      return fallback(context, node);
-    }
     : fallback;
 })();

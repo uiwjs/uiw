@@ -10,12 +10,15 @@ function formatter(data, parentPath = '/') {
     }
     const result = { ...data[item], path };
     if (data[item].children) {
-      result.children = formatter(data[item].children, `${parentPath}${data[item].path}/`, data[item].authority);
+      result.children = formatter(
+        data[item].children,
+        `${parentPath}${data[item].path}/`,
+        data[item].authority,
+      );
     }
     return result;
   });
 }
-
 
 function formatterCurrent(data, pathname, parentPath = '/', result) {
   for (let i = 0; i < data.length; i += 1) {
@@ -36,11 +39,7 @@ function formatterCurrent(data, pathname, parentPath = '/', result) {
   return result;
 }
 
-
 const getMenuData = () => formatter(menuData);
-const getMenuCurrentData = path => formatterCurrent(menuData, path);
+const getMenuCurrentData = (path) => formatterCurrent(menuData, path);
 
-export {
-  getMenuData,
-  getMenuCurrentData,
-};
+export { getMenuData, getMenuCurrentData };

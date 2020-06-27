@@ -1,11 +1,12 @@
-@w-progress-prefix: ~"w-progress";
+@w-progress-prefix: ~'w-progress';
 
 .@{w-progress-prefix} {
   &-line {
     width: 100%;
     font-size: 12px;
   }
-  &-bar, &-text {
+  &-bar,
+  &-text {
     box-sizing: border-box;
   }
   &-bar {
@@ -14,11 +15,20 @@
     vertical-align: middle;
   }
   &-status-active &-bg {
-    background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.15) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0.15) 75%,
+      transparent 75%,
+      transparent
+    );
     background-size: 12px 12px;
     animation: progress-bar-stripes 1s linear infinite;
     &:before {
-      content: " ";
+      content: ' ';
       opacity: 0;
       position: absolute;
       top: 0;
@@ -60,14 +70,18 @@
     height: 100%;
     border-radius: 100px;
     background-color: #108ee9;
-    transition: all .4s cubic-bezier(.08, .82, .17, 1) 0s;
+    transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
     position: relative;
   }
 }
 
 @keyframes progress-bar-stripes {
-  from { background-position: 0 0; }
-  to { background-position: 24px 0; }
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 24px 0;
+  }
 }
 
 @keyframes w-progress-active {

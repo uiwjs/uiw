@@ -1,4 +1,4 @@
-@pagination-prefix: ~"w-pagination";
+@pagination-prefix: ~'w-pagination';
 
 .@{pagination-prefix} {
   padding: 0 !important;
@@ -22,42 +22,46 @@
     text-align: center;
     position: relative;
     cursor: pointer;
-    transition: background-color .2s ease-in, box-shadow .2s ease-in;
+    transition: background-color 0.2s ease-in, box-shadow 0.2s ease-in;
     margin: 0 !important;
     display: inline-flex;
     align-items: center;
     > a {
       text-decoration: none;
-      color: rgba(0,0,0,.5);
+      color: rgba(0, 0, 0, 0.5);
       transition: none;
       margin: 0 10px;
       display: block;
       &.arrow {
         padding: 0 3px;
       }
-      &.arrow::after, &.arrow::before {
+      &.arrow::after,
+      &.arrow::before {
         content: '';
         display: block;
         height: 8px;
         width: 2px;
         border-radius: 2px;
         background-color: #565656;
-        transition: all .3s;
+        transition: all 0.3s;
       }
       &.arrow::after {
         margin-top: -4px;
       }
-      &.arrow.prev::after, &.arrow.next::before {
-        transform:rotate(-45deg);
+      &.arrow.prev::after,
+      &.arrow.next::before {
+        transform: rotate(-45deg);
       }
-      &.arrow.prev::before, &.arrow.next::after {
-        transform:rotate(45deg);
+      &.arrow.prev::before,
+      &.arrow.next::after {
+        transform: rotate(45deg);
       }
     }
     &.disabled {
       cursor: not-allowed;
       > a {
-        &.arrow::after, &.arrow::before {
+        &.arrow::after,
+        &.arrow::before {
           background: #d4d4d4;
         }
       }
@@ -70,7 +74,8 @@
     > a {
       margin: 0 3px;
       min-width: 15px;
-      &.arrow::after, &.arrow::before {
+      &.arrow::after,
+      &.arrow::before {
         margin-left: 6px;
       }
     }
@@ -78,7 +83,7 @@
       background-color: #ececec;
     }
     &:not(.active):hover a {
-      color: #2EA3F4;
+      color: #2ea3f4;
     }
   }
   &.default > li {

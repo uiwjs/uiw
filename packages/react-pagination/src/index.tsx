@@ -27,7 +27,10 @@ export interface PaginationItemSourceData {
   goto?: number;
 }
 
-export default class Pagination extends React.Component<PaginationProps, PaginationState> {
+export default class Pagination extends React.Component<
+  PaginationProps,
+  PaginationState
+> {
   public static defaultProps: PaginationProps = {
     prefixCls: 'w-pagination',
     alignment: 'left',
@@ -36,7 +39,7 @@ export default class Pagination extends React.Component<PaginationProps, Paginat
     pageSize: 10, // The number of pages displayed.
     current: 1,
     onChange: () => null,
-  }
+  };
   constructor(props: PaginationProps) {
     super(props);
     this.state = {
@@ -68,7 +71,8 @@ export default class Pagination extends React.Component<PaginationProps, Paginat
       state.current = current + 1 <= count ? current + 1 : count;
     }
     if (/^(jumpPrev|jumpNext)/.test(item.type as string) && item.goto) {
-      state.current = item.type === 'jumpPrev' ? current - item.goto : current + item.goto;
+      state.current =
+        item.type === 'jumpPrev' ? current - item.goto : current + item.goto;
       if (state.current > count) {
         state.current = count;
       }
@@ -77,13 +81,16 @@ export default class Pagination extends React.Component<PaginationProps, Paginat
       }
     }
     this.setState({ ...state }, () => {
-      onChange && onChange(this.state.current, total as number, pageSize as number);
+      onChange &&
+        onChange(this.state.current, total as number, pageSize as number);
     });
   }
   initPageSoure(): PaginationItemSourceData[] {
     const { total, pageSize } = this.props;
     const { current } = this.state;
-    const data: PaginationItemSourceData[] = [{ type: 'prev', disabled: current === 1 }];
+    const data: PaginationItemSourceData[] = [
+      { type: 'prev', disabled: current === 1 },
+    ];
     const count = Math.ceil((total as number) / (pageSize as number));
     const itemCount = count <= 5 ? count : 5;
     let num = 0;
@@ -130,7 +137,18 @@ export default class Pagination extends React.Component<PaginationProps, Paginat
     // ];
   }
   render() {
-    const { prefixCls, className, total, current, pageSize, size, alignment, divider, onChange, ...other } = this.props;
+    const {
+      prefixCls,
+      className,
+      total,
+      current,
+      pageSize,
+      size,
+      alignment,
+      divider,
+      onChange,
+      ...other
+    } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-${alignment}`]: alignment,
       [size as string]: size,

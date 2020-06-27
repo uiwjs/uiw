@@ -16,37 +16,82 @@ export interface LoaderProps extends IProps, HTMLDivProps {
 }
 
 export default (props: LoaderProps = {}) => {
-  const { prefixCls = 'w-loader', className, size = 'default', loading = true, tip, vertical, color, bgColor, children, indicator, fullscreen = false, ...otherProps } = props;
-  const cls = classnames(prefixCls, {
-    [`${prefixCls}-${size}`]: size,
-  }, className);
+  const {
+    prefixCls = 'w-loader',
+    className,
+    size = 'default',
+    loading = true,
+    tip,
+    vertical,
+    color,
+    bgColor,
+    children,
+    indicator,
+    fullscreen = false,
+    ...otherProps
+  } = props;
+  const cls = classnames(
+    prefixCls,
+    {
+      [`${prefixCls}-${size}`]: size,
+    },
+    className,
+  );
 
-  const indicatorView = useMemo(() => indicator || (
-    <svg viewBox="25 25 50 50">
-      <circle cx="50" cy="50" r="20" fill="none" strokeWidth="5" strokeMiterlimit="10" />
-    </svg>
-  ),[]);
+  const indicatorView = useMemo(
+    () =>
+      indicator || (
+        <svg viewBox="25 25 50 50">
+          <circle
+            cx="50"
+            cy="50"
+            r="20"
+            fill="none"
+            strokeWidth="5"
+            strokeMiterlimit="10"
+          />
+        </svg>
+      ),
+    [],
+  );
 
-  const tipsView = useMemo(() => (
-    <div
-      className={classnames(`${prefixCls}-tips`, {
-        [`${prefixCls}-fullscreen`]: fullscreen,
-      })}
-      style={{ color, backgroundColor: bgColor }}
-    >
-      <div className={`${prefixCls}-tips-nested`}>
-        {indicatorView}
-        {tip && <div className={classnames(`${prefixCls}-text`, { [`${prefixCls}-vertical`]: vertical })}>{tip}</div>}
+  const tipsView = useMemo(
+    () => (
+      <div
+        className={classnames(`${prefixCls}-tips`, {
+          [`${prefixCls}-fullscreen`]: fullscreen,
+        })}
+        style={{ color, backgroundColor: bgColor }}
+      >
+        <div className={`${prefixCls}-tips-nested`}>
+          {indicatorView}
+          {tip && (
+            <div
+              className={classnames(`${prefixCls}-text`, {
+                [`${prefixCls}-vertical`]: vertical,
+              })}
+            >
+              {tip}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-  ),[fullscreen,bgColor,prefixCls,vertical,tip])
+    ),
+    [fullscreen, bgColor, prefixCls, vertical, tip],
+  );
 
   return (
     <div className={cls} {...otherProps}>
       {(loading || fullscreen) && tipsView}
-      {children && React.cloneElement(children, Object.assign({}, children.props, {
-        className: classnames(`${prefixCls}-warp`, { [`${prefixCls}-blur`]: loading }),
-      }))}
+      {children &&
+        React.cloneElement(
+          children,
+          Object.assign({}, children.props, {
+            className: classnames(`${prefixCls}-warp`, {
+              [`${prefixCls}-blur`]: loading,
+            }),
+          }),
+        )}
     </div>
   );
-}
+};

@@ -13,10 +13,23 @@ export interface BreadcrumbItemProps extends HTMLSpanProps {
   'data-separator'?: JSX.Element | string;
 }
 
-export default function BreadcrumbItem<T>(props = {} as BreadcrumbItemProps & T) {
-  const { prefixCls = 'w-breadcrumb', className, tagName: TagName = 'span', active, separator, ...other } = props;
+export default function BreadcrumbItem<T>(
+  props = {} as BreadcrumbItemProps & T,
+) {
+  const {
+    prefixCls = 'w-breadcrumb',
+    className,
+    tagName: TagName = 'span',
+    active,
+    separator,
+    ...other
+  } = props;
   const isElm = React.isValidElement(separator);
-  const cls = classnames(`${prefixCls}-item`, className, { active, 'no-separator': !separator, 'no-before': isElm });
+  const cls = classnames(`${prefixCls}-item`, className, {
+    active,
+    'no-separator': !separator,
+    'no-before': isElm,
+  });
   const otherProps = { className: cls, ...other } as BreadcrumbItemProps & T;
   if (!isElm) {
     otherProps['data-separator'] = separator;

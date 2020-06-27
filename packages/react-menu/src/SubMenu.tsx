@@ -1,7 +1,14 @@
-import React, { useMemo, useState, useImperativeHandle, MutableRefObject } from 'react';
+import React, {
+  useMemo,
+  useState,
+  useImperativeHandle,
+  MutableRefObject,
+} from 'react';
 import classnames from 'classnames';
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
-import OverlayTrigger, { OverlayTriggerProps } from '@uiw/react-overlay-trigger';
+import OverlayTrigger, {
+  OverlayTriggerProps,
+} from '@uiw/react-overlay-trigger';
 import Icon from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
 import MenuItem, { MenuItemProps } from './MenuItem';
@@ -37,29 +44,57 @@ function checkedMenuItem(node?: HTMLElement) {
   return isCheck;
 }
 
-function IconView({ prefixCls, collapse, isOpen }: {prefixCls?: string; collapse?: boolean; isOpen: boolean}) {
-  return useMemo(() => 
-    <Icon
-      type="caret-right"
-      className={classnames(`${prefixCls}-collapse-icon`, {
-        'w-open': !collapse && isOpen,
-        'w-close': !collapse && !isOpen,
-      })}
-    />,
-    [prefixCls, collapse, isOpen]
+function IconView({
+  prefixCls,
+  collapse,
+  isOpen,
+}: {
+  prefixCls?: string;
+  collapse?: boolean;
+  isOpen: boolean;
+}) {
+  return useMemo(
+    () => (
+      <Icon
+        type="caret-right"
+        className={classnames(`${prefixCls}-collapse-icon`, {
+          'w-open': !collapse && isOpen,
+          'w-close': !collapse && !isOpen,
+        })}
+      />
+    ),
+    [prefixCls, collapse, isOpen],
   );
 }
 
-function SubMenu(props: SubMenuProps = {}, ref?: ((instance: unknown) => void) | MutableRefObject<unknown> | null) {
-  const { prefixCls = 'w-menu-subitem', className, disabled, overlayProps = {}, children, collapse = false, inlineIndent, inlineCollapsed, ...other } = props;
+function SubMenu(
+  props: SubMenuProps = {},
+  ref?: ((instance: unknown) => void) | MutableRefObject<unknown> | null,
+) {
+  const {
+    prefixCls = 'w-menu-subitem',
+    className,
+    disabled,
+    overlayProps = {},
+    children,
+    collapse = false,
+    inlineIndent,
+    inlineCollapsed,
+    ...other
+  } = props;
   const overlayTriggerProps = {} as OverlayTriggerProps & CSSTransitionProps;
-  const menuProps: MenuProps = { bordered: true, children, inlineIndent, className: classnames(`${prefixCls}-overlay`) };
+  const menuProps: MenuProps = {
+    bordered: true,
+    children,
+    inlineIndent,
+    className: classnames(`${prefixCls}-overlay`),
+  };
   const popupRef = React.createRef<OverlayTrigger>();
   const [isOpen, setIsOpen] = useState(false);
   useImperativeHandle(ref, () => popupRef.current);
   useMemo(() => {
     setIsOpen(false);
-  }, [collapse])
+  }, [collapse]);
   function onClick(e: React.MouseEvent<HTMLUListElement, MouseEvent>) {
     const target = e.currentTarget;
     const related = (e.relatedTarget || e.nativeEvent.target) as HTMLElement;
@@ -119,7 +154,10 @@ function SubMenu(props: SubMenuProps = {}, ref?: ((instance: unknown) => void) |
         {...overlayTriggerProps}
         {...overlayProps}
         overlay={
-          <Menu {...menuProps} style={!collapse ? { paddingLeft: inlineIndent } : {}} />
+          <Menu
+            {...menuProps}
+            style={!collapse ? { paddingLeft: inlineIndent } : {}}
+          />
         }
       >
         <MenuItem
@@ -127,13 +165,21 @@ function SubMenu(props: SubMenuProps = {}, ref?: ((instance: unknown) => void) |
           disabled={disabled}
           isSubMenuItem
           addonAfter={
-            <IconView collapse={collapse} prefixCls={prefixCls} isOpen={isOpen} />
+            <IconView
+              collapse={collapse}
+              prefixCls={prefixCls}
+              isOpen={isOpen}
+            />
           }
-          className={classnames(`${prefixCls}-title`, { [`${prefixCls}-collapse-title`]: !collapse }, className)}
+          className={classnames(
+            `${prefixCls}-title`,
+            { [`${prefixCls}-collapse-title`]: !collapse },
+            className,
+          )}
         />
       </OverlayTrigger>
     </li>
-  )
+  );
 }
 
 export default React.forwardRef<unknown, SubMenuProps>(SubMenu);

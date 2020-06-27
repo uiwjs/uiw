@@ -1,4 +1,4 @@
-@w-divider:~"w-divider";
+@w-divider:~ "w-divider";
 
 .@{w-divider} {
   font-size: 16px;
@@ -8,7 +8,8 @@
   padding: 0;
   list-style: none;
   background: #e8e8e8;
-  &, &-vertical {
+  &,
+  &-vertical {
     margin: 0 8px;
     display: inline-block;
     height: 0.9em;
@@ -31,7 +32,8 @@
     font-weight: 500;
     color: #353535;
     margin: 16px 0;
-    &:before, &:after {
+    &:before,
+    &:after {
       content: '';
       display: table-cell;
       position: relative;
@@ -50,7 +52,8 @@
     width: 95%;
   }
   &-dashed&-with-text {
-    &::before, &::after {
+    &::before,
+    &::after {
       border-top-style: dashed;
     }
   }
@@ -63,4 +66,3 @@
     border-top: 1px dashed #e8e8e8;
   }
 }
-

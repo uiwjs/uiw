@@ -38,13 +38,13 @@ export default class Layout extends React.Component<LayoutProps, LayoutState> {
   getSiderHook() {
     return {
       addSider: (id: string) => {
-        this.setState(state => ({
+        this.setState((state) => ({
           siders: [...state.siders, id],
         }));
       },
       removeSider: (id: string) => {
-        this.setState(state => ({
-          siders: state.siders.filter(currentId => currentId !== id),
+        this.setState((state) => ({
+          siders: state.siders.filter((currentId) => currentId !== id),
         }));
       },
     };
@@ -52,10 +52,18 @@ export default class Layout extends React.Component<LayoutProps, LayoutState> {
   render() {
     const { prefixCls, className, hasSider, children, ...other } = this.props;
     return (
-      <LayoutContext.Provider value={{ siderHook: this.getSiderHook()}}>
-        <section className={classnames(prefixCls, className, {
-          [`${prefixCls}-has-sider`]: typeof hasSider === 'boolean' ? hasSider : this.state.siders.length > 0,
-        })} {...other}>{children}</section>
+      <LayoutContext.Provider value={{ siderHook: this.getSiderHook() }}>
+        <section
+          className={classnames(prefixCls, className, {
+            [`${prefixCls}-has-sider`]:
+              typeof hasSider === 'boolean'
+                ? hasSider
+                : this.state.siders.length > 0,
+          })}
+          {...other}
+        >
+          {children}
+        </section>
       </LayoutContext.Provider>
     );
   }

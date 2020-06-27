@@ -1,12 +1,18 @@
 import React from 'react';
 import classnames from 'classnames';
-import { IProps, HTMLDivProps, getFirstDayOfWeek, solarMonthDays, isSameDate } from '@uiw/utils';
+import {
+  IProps,
+  HTMLDivProps,
+  getFirstDayOfWeek,
+  solarMonthDays,
+  isSameDate,
+} from '@uiw/utils';
 import './style/day.less';
 
 export interface DatePickerDayDateSource {
-  day?: number,
-  month?: number,
-  year?: number
+  day?: number;
+  month?: number;
+  year?: number;
 }
 
 export interface DatePickerDayProps extends IProps, HTMLDivProps {
@@ -16,7 +22,10 @@ export interface DatePickerDayProps extends IProps, HTMLDivProps {
   date?: Date;
   today?: Date;
   prefixCls?: string;
-  onSelectDay?: (selectedDate?: Date, dateSource?: DatePickerDayDateSource) => void;
+  onSelectDay?: (
+    selectedDate?: Date,
+    dateSource?: DatePickerDayDateSource,
+  ) => void;
   renderDay?: (day: number, props: DatePickerDayRenderDay) => React.ReactNode;
   disabledDate?: (cellDate: Date, props: DatePickerDayRenderDay) => boolean;
 }
@@ -52,18 +61,29 @@ function setTimeDate(selDate: Date, curDate: Date) {
     curDate.getDate(),
     selDate.getHours(),
     selDate.getMinutes(),
-    selDate.getSeconds()
+    selDate.getSeconds(),
   );
 }
 
-export class DatePickerDay extends React.Component<DatePickerDayProps, PickerDayState> {
+export class DatePickerDay extends React.Component<
+  DatePickerDayProps,
+  PickerDayState
+> {
   public state: PickerDayState;
   public static defaultProps: DatePickerDayProps = {
     prefixCls: 'w-datepicker',
     weekday: ['日', '一', '二', '三', '四', '五', '六'],
-    weekTitle: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
-    onSelectDay(){}
-  }
+    weekTitle: [
+      '星期天',
+      '星期一',
+      '星期二',
+      '星期三',
+      '星期四',
+      '星期五',
+      '星期六',
+    ],
+    onSelectDay() {},
+  };
   constructor(props: DatePickerDayProps & HTMLDivProps) {
     super(props);
     this.state = {
@@ -81,7 +101,10 @@ export class DatePickerDay extends React.Component<DatePickerDayProps, PickerDay
   }
   handleClick(selectedDate?: Date, dateSource?: DatePickerDayDateSource) {
     const { date } = this.props;
-    if (date && isSameDate(initSameDate(selectedDate as Date), initSameDate(date))) {
+    if (
+      date &&
+      isSameDate(initSameDate(selectedDate as Date), initSameDate(date))
+    ) {
       this.setState({ selected: selectedDate });
       selectedDate = undefined;
     }
@@ -97,13 +120,21 @@ export class DatePickerDay extends React.Component<DatePickerDayProps, PickerDay
     const firstDayOfWeek = getFirstDayOfWeek(year, month + 1);
     let day = row * 7 + num - firstDayOfWeek + 1;
     const cls: DatePickerDayRenderDay = {
-      end: num === 0 || num === 6, prev: false, today: false, selected: false, next: false, disabled: false
+      end: num === 0 || num === 6,
+      prev: false,
+      today: false,
+      selected: false,
+      next: false,
+      disabled: false,
     };
     // Prev Month
     const preDate = new Date(new Date(date).setMonth(month - 1));
     // Next Month
     const nextDate = new Date(new Date(date).setMonth(month + 1));
-    const prevDays = solarMonthDays(preDate.getFullYear(), preDate.getMonth() + 1);
+    const prevDays = solarMonthDays(
+      preDate.getFullYear(),
+      preDate.getMonth() + 1,
+    );
     const days = solarMonthDays(year, month + 1);
     let cellDate = null;
     if (day <= 0) {
@@ -123,7 +154,10 @@ export class DatePickerDay extends React.Component<DatePickerDayProps, PickerDay
     if (isSameDate(initSameDate(new Date(cellDate)), today)) {
       cls.today = true;
     }
-    if (selectedDate && isSameDate(initSameDate(cellDate), initSameDate(selectedDate))) {
+    if (
+      selectedDate &&
+      isSameDate(initSameDate(cellDate), initSameDate(selectedDate))
+    ) {
       cls.selected = true;
     }
     const props = {
@@ -136,7 +170,11 @@ export class DatePickerDay extends React.Component<DatePickerDayProps, PickerDay
     }
     return (
       <div {...props} className={classnames(cls)}>
-        {renderDay ? renderDay(day, { ...props, ...cls, date: cellDate }) : <div>{day}</div>}
+        {renderDay ? (
+          renderDay(day, { ...props, ...cls, date: cellDate })
+        ) : (
+          <div>{day}</div>
+        )}
       </div>
     );
   }
@@ -149,15 +187,34 @@ export class DatePickerDay extends React.Component<DatePickerDayProps, PickerDay
     );
   }
   render() {
-    const { prefixCls, className, weekday, weekTitle, date, today, panelDate, disabledDate, renderDay, onSelectDay, ...other } = this.props;
+    const {
+      prefixCls,
+      className,
+      weekday,
+      weekTitle,
+      date,
+      today,
+      panelDate,
+      disabledDate,
+      renderDay,
+      onSelectDay,
+      ...other
+    } = this.props;
     return (
       <div {...other} className={classnames(`${prefixCls}-body`, className)}>
         <div className={`${prefixCls}-weekday`}>
-          {weekday && weekday.map((week, idx) => {
-            return (
-              <div key={idx} className={classnames({ end: idx === 0 || idx === 6 })} title={weekTitle && weekTitle[idx]}>{week}</div>
-            );
-          })}
+          {weekday &&
+            weekday.map((week, idx) => {
+              return (
+                <div
+                  key={idx}
+                  className={classnames({ end: idx === 0 || idx === 6 })}
+                  title={weekTitle && weekTitle[idx]}
+                >
+                  {week}
+                </div>
+              );
+            })}
         </div>
         <div className={`${prefixCls}-day-body`}>
           {[...Array(6)].map((_, idx) => this.renderWeek(idx))}
@@ -166,4 +223,3 @@ export class DatePickerDay extends React.Component<DatePickerDayProps, PickerDay
     );
   }
 }
-

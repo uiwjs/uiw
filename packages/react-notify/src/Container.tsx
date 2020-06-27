@@ -11,26 +11,29 @@ export interface ContainerProps extends IProps {
 }
 export interface ContainerState {
   placement?: Placement;
-  notifys: ContainerNotifys
+  notifys: ContainerNotifys;
 }
 
 export type ContainerNotifys = {
   [placement: string]: {
-    [key: string]: NotificationCreateProps,
-  }
-}
+    [key: string]: NotificationCreateProps;
+  };
+};
 
 const notifys: ContainerNotifys = {};
 const timer: { [key: string]: any } = {};
 
-export default class Container extends React.Component<ContainerProps, ContainerState> {
+export default class Container extends React.Component<
+  ContainerProps,
+  ContainerState
+> {
   public static defaultProps: ContainerProps = {
     prefixCls: 'w-notify',
     placement: 'topRight',
-  }
+  };
   public state: ContainerState = {
     notifys: {},
-  }
+  };
   public create(props: NotificationCreateProps) {
     const { placement, key } = props;
     if (!notifys[placement as Placement]) {
@@ -43,13 +46,16 @@ export default class Container extends React.Component<ContainerProps, Container
         this.closed(key as string, placement);
       }, props.duration);
     }
-    this.setState({
-      notifys,
-      placement,
-    }, () => {
-      notifys[placement as Placement][key as string].isOpen = true;
-      this.setState({ notifys });
-    });
+    this.setState(
+      {
+        notifys,
+        placement,
+      },
+      () => {
+        notifys[placement as Placement][key as string].isOpen = true;
+        this.setState({ notifys });
+      },
+    );
   }
   public closed(key: string, placement?: Placement) {
     if (!key || !placement || !notifys[placement][key]) {
@@ -71,25 +77,28 @@ export default class Container extends React.Component<ContainerProps, Container
     const { placement } = this.state;
     return (
       <React.Fragment>
-        {placement && Object.keys(this.state.notifys[placement]).map((key) => {
-          const { description, isOpen, ...alertProps } = this.state.notifys[placement][key];
-          if (alertProps.type === 'open') {
-            delete alertProps.type;
-          }
-          return (
-            <Alert
-              className={classnames(prefixCls)}
-              key={key}
-              useButton={false}
-              width={320}
-              {...alertProps as AlertProps}
-              usePortal={false}
-              hasBackdrop={false}
-              isOpen={isOpen}
-              content={description}
-            />
-          );
-        })}
+        {placement &&
+          Object.keys(this.state.notifys[placement]).map((key) => {
+            const { description, isOpen, ...alertProps } = this.state.notifys[
+              placement
+            ][key];
+            if (alertProps.type === 'open') {
+              delete alertProps.type;
+            }
+            return (
+              <Alert
+                className={classnames(prefixCls)}
+                key={key}
+                useButton={false}
+                width={320}
+                {...(alertProps as AlertProps)}
+                usePortal={false}
+                hasBackdrop={false}
+                isOpen={isOpen}
+                content={description}
+              />
+            );
+          })}
       </React.Fragment>
     );
   }

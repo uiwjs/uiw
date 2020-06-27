@@ -1,8 +1,9 @@
-@drawer-prefix: ~"w-drawer";
+@drawer-prefix: ~'w-drawer';
 
 .@{drawer-prefix} {
   &-wrapper {
-    box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1),  0 0 46px 6px rgba(16, 22, 26, 0.2);
+    box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1),
+      0 0 46px 6px rgba(16, 22, 26, 0.2);
     background-color: #fff;
     position: fixed;
     margin: 0 !important;
@@ -17,11 +18,11 @@
     padding-right: 5px;
     background-color: #fff;
     border-radius: 5px 5px 0 0;
-    box-shadow: 0 1px 0 rgba(16, 22, 26, .15);
+    box-shadow: 0 1px 0 rgba(16, 22, 26, 0.15);
     font-size: 16px;
     > .w-icon {
       margin-right: 10px;
-      color: #393E48;
+      color: #393e48;
     }
     h4 {
       margin: 0;
@@ -35,7 +36,7 @@
     line-height: 18px;
   }
   &-footer {
-    box-shadow: 0 -1px 0 rgba(16, 22, 26, .15);
+    box-shadow: 0 -1px 0 rgba(16, 22, 26, 0.15);
     min-height: 40px;
     padding-left: 13px;
     padding-right: 5px;
@@ -45,21 +46,23 @@
   &-body-inner {
     padding: 15px;
   }
-  &.top &-wrapper, &.bottom &-wrapper {
+  &.top &-wrapper,
+  &.bottom &-wrapper {
     left: 0;
     right: 0;
   }
-  &.top &-wrapper{
+  &.top &-wrapper {
     top: 0;
   }
   &.bottom &-wrapper {
     bottom: 0;
   }
-  &.right &-wrapper, &.left &-wrapper {
+  &.right &-wrapper,
+  &.left &-wrapper {
     bottom: 0;
     top: 0;
   }
-  &.right &-wrapper{
+  &.right &-wrapper {
     right: 0;
   }
   &.left &-wrapper {
@@ -67,53 +70,56 @@
   }
 }
 
-@overlay-prefix: ~"w-overlay";
+@overlay-prefix: ~'w-overlay';
 
 .@{drawer-prefix}.@{overlay-prefix}-enter .@{overlay-prefix}-content {
   opacity: 1;
 }
 .@{drawer-prefix}.@{overlay-prefix}-enter-active .@{overlay-prefix}-content {
-  transition: all .2s cubic-bezier(.4, 1, .75, .9);
+  transition: all 0.2s cubic-bezier(0.4, 1, 0.75, 0.9);
 }
 .@{drawer-prefix}.@{overlay-prefix}-exit .@{overlay-prefix}-content {
   opacity: 1;
 }
 .@{drawer-prefix}.@{overlay-prefix}-exit-active .@{overlay-prefix}-content {
-  transition: all .2s cubic-bezier(.4, 1, .75, .9);
+  transition: all 0.2s cubic-bezier(0.4, 1, 0.75, 0.9);
 }
-
 
 .@{drawer-prefix}.right.@{overlay-prefix}-enter .@{overlay-prefix}-content {
   transform: translateX(100%);
 }
-.@{drawer-prefix}.right.@{overlay-prefix}-enter-active .@{overlay-prefix}-content {
+.@{drawer-prefix}.right.@{overlay-prefix}-enter-active
+  .@{overlay-prefix}-content {
   transform: translateX(0);
 }
 .@{drawer-prefix}.right.@{overlay-prefix}-exit .@{overlay-prefix}-content {
   transform: translateX(0);
 }
-.@{drawer-prefix}.right.@{overlay-prefix}-exit-active .@{overlay-prefix}-content {
+.@{drawer-prefix}.right.@{overlay-prefix}-exit-active
+  .@{overlay-prefix}-content {
   transform: translateX(100%);
 }
 
 .@{drawer-prefix}.left.@{overlay-prefix}-enter .@{overlay-prefix}-content {
   transform: translateX(-100%);
 }
-.@{drawer-prefix}.left.@{overlay-prefix}-enter-active .@{overlay-prefix}-content {
+.@{drawer-prefix}.left.@{overlay-prefix}-enter-active
+  .@{overlay-prefix}-content {
   transform: translateX(0);
 }
 .@{drawer-prefix}.left.@{overlay-prefix}-exit .@{overlay-prefix}-content {
   transform: translateX(0);
 }
-.@{drawer-prefix}.left.@{overlay-prefix}-exit-active .@{overlay-prefix}-content {
+.@{drawer-prefix}.left.@{overlay-prefix}-exit-active
+  .@{overlay-prefix}-content {
   transform: translateX(-100%);
 }
-
 
 .@{drawer-prefix}.top.@{overlay-prefix}-enter .@{overlay-prefix}-content {
   transform: translateY(-100%);
 }
-.@{drawer-prefix}.top.@{overlay-prefix}-enter-active .@{overlay-prefix}-content {
+.@{drawer-prefix}.top.@{overlay-prefix}-enter-active
+  .@{overlay-prefix}-content {
   transform: translateY(0);
 }
 .@{drawer-prefix}.top.@{overlay-prefix}-exit .@{overlay-prefix}-content {
@@ -126,13 +132,14 @@
 .@{drawer-prefix}.bottom.@{overlay-prefix}-enter .@{overlay-prefix}-content {
   transform: translateY(100%);
 }
-.@{drawer-prefix}.bottom.@{overlay-prefix}-enter-active .@{overlay-prefix}-content {
+.@{drawer-prefix}.bottom.@{overlay-prefix}-enter-active
+  .@{overlay-prefix}-content {
   transform: translateY(0);
 }
 .@{drawer-prefix}.bottom.@{overlay-prefix}-exit .@{overlay-prefix}-content {
   transform: translateY(0);
 }
-.@{drawer-prefix}.bottom.@{overlay-prefix}-exit-active .@{overlay-prefix}-content {
+.@{drawer-prefix}.bottom.@{overlay-prefix}-exit-active
+  .@{overlay-prefix}-content {
   transform: translateY(100%);
 }
-

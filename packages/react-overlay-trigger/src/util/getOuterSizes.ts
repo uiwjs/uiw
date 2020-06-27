@@ -1,8 +1,7 @@
-
 export type Sizes = {
   width: number;
   height: number;
-}
+};
 
 /**
  * Get the outer sizes of the given element (offset size + margins)

@@ -18,7 +18,10 @@ export interface StepsState {
   lastStepOffsetWidth: number;
 }
 
-export default class Steps<T> extends React.Component<StepsProps<T>, StepsState> {
+export default class Steps<T> extends React.Component<
+  StepsProps<T>,
+  StepsState
+> {
   static Step = Step;
   public static defaultProps: StepsProps<{}> = {
     prefixCls: 'w-steps',
@@ -26,7 +29,7 @@ export default class Steps<T> extends React.Component<StepsProps<T>, StepsState>
     progressDot: false,
     direction: 'horizontal',
     current: 0,
-  }
+  };
   constructor(props: StepsProps<T>) {
     super(props);
     this.state = {
@@ -43,19 +46,34 @@ export default class Steps<T> extends React.Component<StepsProps<T>, StepsState>
   calcStepOffsetWidth() {
     const domNode = findDOMNode(this);
     if (domNode && domNode.lastChild) {
-      const lastStepOffsetWidth = ((domNode.lastChild as HTMLElement).offsetWidth || 0) + 1;
-      if (this.state.lastStepOffsetWidth === lastStepOffsetWidth ||
-        Math.abs(this.state.lastStepOffsetWidth - lastStepOffsetWidth) <= 3) {
+      const lastStepOffsetWidth =
+        ((domNode.lastChild as HTMLElement).offsetWidth || 0) + 1;
+      if (
+        this.state.lastStepOffsetWidth === lastStepOffsetWidth ||
+        Math.abs(this.state.lastStepOffsetWidth - lastStepOffsetWidth) <= 3
+      ) {
         return;
       }
       this.setState({ lastStepOffsetWidth });
     }
   }
   render() {
-    const { prefixCls, style = {}, className, children, current, status, progressDot, direction, ...resetProps } = this.props;
+    const {
+      prefixCls,
+      style = {},
+      className,
+      children,
+      current,
+      status,
+      progressDot,
+      direction,
+      ...resetProps
+    } = this.props;
     const { lastStepOffsetWidth } = this.state;
-    const filteredChildren = React.Children.toArray(children).filter(c => !!c);
-    const lastIndex = filteredChildren.length - 1;// 最后一个节点的索引数字
+    const filteredChildren = React.Children.toArray(children).filter(
+      (c) => !!c,
+    );
+    const lastIndex = filteredChildren.length - 1; // 最后一个节点的索引数字
     const classString = classnames(prefixCls, `${prefixCls}-${direction}`, {
       [`${prefixCls}-dot`]: !!progressDot,
     });
@@ -70,7 +88,9 @@ export default class Steps<T> extends React.Component<StepsProps<T>, StepsState>
           };
           if (index !== lastIndex && direction !== 'vertical') {
             childProps.itemWidth = `${100 / lastIndex}%`;
-            childProps.adjustMarginRight = -Math.round((lastStepOffsetWidth / lastIndex) + 1);
+            childProps.adjustMarginRight = -Math.round(
+              lastStepOffsetWidth / lastIndex + 1,
+            );
           }
 
           if (progressDot && direction !== 'vertical') {

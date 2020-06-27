@@ -17,7 +17,7 @@ export default class Input<T> extends React.Component<InputProps<T>> {
     preIcon: null,
     type: 'text',
     size: 'default',
-  }
+  };
   private addonRef = React.createRef<HTMLDivElement>();
   private inputRef = React.createRef<HTMLInputElement>();
   componentDidMount() {
@@ -31,11 +31,23 @@ export default class Input<T> extends React.Component<InputProps<T>> {
   computedInputPadding() {
     if (this.addonRef.current && this.inputRef.current) {
       const input = window.getComputedStyle(this.addonRef.current, null);
-      this.inputRef.current.style.paddingRight = `${this.addonRef.current.clientWidth + parseInt((input.right as string), 10) * 2}px`;
+      this.inputRef.current.style.paddingRight = `${
+        this.addonRef.current.clientWidth +
+        parseInt(input.right as string, 10) * 2
+      }px`;
     }
   }
   render() {
-    const { prefixCls, className, style, size, type, preIcon, addonAfter, ...props } = this.props;
+    const {
+      prefixCls,
+      className,
+      style,
+      size,
+      type,
+      preIcon,
+      addonAfter,
+      ...props
+    } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-${size}`]: size,
       [`${prefixCls}-addon`]: addonAfter,
@@ -51,7 +63,9 @@ export default class Input<T> extends React.Component<InputProps<T>> {
           className={classnames(`${prefixCls}-inner`)}
         />
         {addonAfter && (
-          <span className={`${prefixCls}-addon-after`} ref={this.addonRef}>{addonAfter}</span>
+          <span className={`${prefixCls}-addon-after`} ref={this.addonRef}>
+            {addonAfter}
+          </span>
         )}
       </div>
     );

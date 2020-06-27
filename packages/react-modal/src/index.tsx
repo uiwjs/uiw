@@ -6,7 +6,7 @@ import Icon from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
 import './style/index.less';
 
-function noop() { }
+function noop() {}
 
 export interface ModalProps extends IProps, OverlayProps {
   type?: ButtonType;
@@ -41,10 +41,10 @@ export default class Modal extends React.PureComponent<ModalProps> {
     type: 'light',
     onCancel: noop,
     onConfirm: noop,
-  }
+  };
   public state = {
     loading: false,
-  }
+  };
   public overlay!: Overlay;
   handleConfirm = async (e: any) => {
     const { onConfirm } = this.props;
@@ -53,28 +53,46 @@ export default class Modal extends React.PureComponent<ModalProps> {
       onConfirm && (await onConfirm(e));
       this.overlay.onClosed(e);
       // eslint-disable-next-line
-    } catch (e) { }
+    } catch (e) {}
     this.setState({ loading: false });
-  }
-  handleCancel = async (e: React.MouseEvent<HTMLButtonElement> & MouseEvent) => {
+  };
+  handleCancel = async (
+    e: React.MouseEvent<HTMLButtonElement> & MouseEvent,
+  ) => {
     const { onCancel } = this.props;
     this.setState({ loading: true });
     try {
       onCancel && (await onCancel(e));
       this.overlay.onClosed(e);
       // eslint-disable-next-line
-    } catch (e) { }
+    } catch (e) {}
     this.setState({ loading: false });
-  }
+  };
   onClose = (e: any) => this.overlay.onClosed(e);
   render() {
-    const { prefixCls, className, useButton, autoFocus, title, cancelText, content, confirmText, type, icon, maxWidth, minWidth, width, isCloseButtonShown, ...other } = this.props;
+    const {
+      prefixCls,
+      className,
+      useButton,
+      autoFocus,
+      title,
+      cancelText,
+      content,
+      confirmText,
+      type,
+      icon,
+      maxWidth,
+      minWidth,
+      width,
+      isCloseButtonShown,
+      ...other
+    } = this.props;
     const cls = classnames(prefixCls, className, { [`${type}`]: type });
     return (
       <Overlay
         {...other}
         onClose={this.onClose}
-        ref={(node: Overlay) => this.overlay = node}
+        ref={(node: Overlay) => (this.overlay = node)}
         className={cls}
       >
         <div className={`${prefixCls}-container`}>
@@ -89,7 +107,14 @@ export default class Modal extends React.PureComponent<ModalProps> {
               <div className={`${prefixCls}-header`}>
                 {icon && <Icon type={icon} />}
                 {title && <h4>{title}</h4>}
-                {isCloseButtonShown && <Button basic onClick={this.handleCancel} icon="close" type="light" />}
+                {isCloseButtonShown && (
+                  <Button
+                    basic
+                    onClick={this.handleCancel}
+                    icon="close"
+                    type="light"
+                  />
+                )}
               </div>
             )}
             <div className={`${prefixCls}-body`}>
@@ -97,10 +122,18 @@ export default class Modal extends React.PureComponent<ModalProps> {
             </div>
             {useButton && (
               <div className={`${prefixCls}-footer`}>
-                <Button autoFocus={autoFocus} type={type} loading={this.state.loading} disabled={this.state.loading} onClick={this.handleConfirm}>
+                <Button
+                  autoFocus={autoFocus}
+                  type={type}
+                  loading={this.state.loading}
+                  disabled={this.state.loading}
+                  onClick={this.handleConfirm}
+                >
                   {confirmText}
                 </Button>
-                {cancelText && <Button onClick={this.handleCancel}>{cancelText}</Button>}
+                {cancelText && (
+                  <Button onClick={this.handleCancel}>{cancelText}</Button>
+                )}
               </div>
             )}
           </div>

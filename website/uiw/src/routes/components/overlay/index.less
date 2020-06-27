@@ -1,4 +1,4 @@
-@animation-prefix:~"animation-flipX";
+@animation-prefix:~ "animation-flipX";
 // 遮罩层动画
 // Background animation
 .@{animation-prefix}-enter .w-overlay-backdrop {
@@ -36,17 +36,17 @@
 
 @keyframes flipOutX {
   0% {
-      transform: perspective(400px);
+    transform: perspective(400px);
   }
 
   30% {
-      transform: perspective(400px) rotateX(-20deg);
-      opacity: 1;
+    transform: perspective(400px) rotateX(-20deg);
+    opacity: 1;
   }
 
   to {
-      transform: perspective(400px) rotateX(90deg);
-      opacity: 0;
+    transform: perspective(400px) rotateX(90deg);
+    opacity: 0;
   }
 }
 
@@ -59,16 +59,16 @@
 
   40% {
     transform: perspective(400px) rotateX(-20deg);
-    animation-timing-function: ease-in
+    animation-timing-function: ease-in;
   }
 
   60% {
     transform: perspective(400px) rotateX(10deg);
-    opacity: 1;;
+    opacity: 1;
   }
 
   80% {
-    transform: perspective(400px) rotateX(-5deg)
+    transform: perspective(400px) rotateX(-5deg);
   }
 
   to {

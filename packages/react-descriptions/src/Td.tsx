@@ -42,7 +42,10 @@ const Td: React.SFC<TdProps> = (props: TdProps) => {
   if (layout === 'vertical') {
     if (type === 'content') {
       return (
-        <td colSpan={span} className={classnames(`${prefixCls}-item`, className)}>
+        <td
+          colSpan={span}
+          className={classnames(`${prefixCls}-item`, className)}
+        >
           <span className={`${prefixCls}-item-content`} key="content">
             {children}
           </span>
@@ -52,7 +55,9 @@ const Td: React.SFC<TdProps> = (props: TdProps) => {
     return (
       <td colSpan={span} className={classnames(`${prefixCls}-item`, className)}>
         <span
-          className={classnames(`${prefixCls}-item-label`, { [`${prefixCls}-item-colon`]: colon })}
+          className={classnames(`${prefixCls}-item-label`, {
+            [`${prefixCls}-item-colon`]: colon,
+          })}
           key="label"
         >
           {label}
@@ -68,6 +73,6 @@ const Td: React.SFC<TdProps> = (props: TdProps) => {
       </span>
     </td>
   );
-}
+};
 
 export default Td;

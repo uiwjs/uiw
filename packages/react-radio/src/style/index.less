@@ -1,33 +1,34 @@
-
-@w-radio:~"w-radio";
+@w-radio:~ "w-radio";
 
 .@{w-radio} {
   vertical-align: middle;
   display: inline-block;
   font-size: 12px;
-  input[type=radio] {
+  input[type='radio'] {
     outline: none;
     position: relative;
     width: 16px;
     height: 16px;
     background-clip: border-box;
     appearance: none;
-    margin: -.15px .6px 0 0;
+    margin: -0.15px 0.6px 0 0;
     border-radius: 50%;
     background-color: #fff;
     border: 1px solid #d7d7d7;
-    transition: border .25s,box-shadow .25s;
+    transition: border 0.25s, box-shadow 0.25s;
     &:not(:checked):not(:disabled):not(.disabled) {
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         box-shadow: 0 0 0 2px rgba(0, 142, 240, 0.25);
       }
     }
   }
-  input[type=radio], &-text {
+  input[type='radio'],
+  &-text {
     vertical-align: middle;
   }
-  input[type=radio]:checked {
-    border: 5px solid #008EF0;
+  input[type='radio']:checked {
+    border: 5px solid #008ef0;
     &:focus {
       box-shadow: 0 0 0 2px rgba(0, 142, 240, 0.25);
     }
@@ -35,7 +36,7 @@
   &.disabled {
     color: #c7c7c7;
     cursor: not-allowed;
-    input[type=radio] {
+    input[type='radio'] {
       cursor: not-allowed;
       &:checked {
         border: 5px solid #cecece;
@@ -43,7 +44,7 @@
     }
   }
   &.disabled:not(.checked) {
-    input[type=radio] {
+    input[type='radio'] {
       background-color: #efefef;
     }
   }

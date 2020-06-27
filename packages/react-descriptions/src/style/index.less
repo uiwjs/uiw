@@ -1,4 +1,4 @@
-@descriptions-prefix: ~"w-descriptions";
+@descriptions-prefix: ~'w-descriptions';
 
 .@{descriptions-prefix} {
   display: table !important;
@@ -12,7 +12,7 @@
     font-weight: bold;
     text-align: left;
     margin-bottom: 8px;
-    color: rgba(0,0,0,0.85);
+    color: rgba(0, 0, 0, 0.85);
     font-size: 16px;
     line-height: 1.5;
   }
@@ -44,10 +44,10 @@
       content: ':';
     }
     &-colon {
-      color: rgba(0,0,0,0.95);
+      color: rgba(0, 0, 0, 0.95);
     }
     &-content {
-      color: rgba(0,0,0,0.65);
+      color: rgba(0, 0, 0, 0.65);
     }
   }
   &-bordered {
@@ -65,10 +65,12 @@
       padding-bottom: 6px;
     }
   }
-  &-small&-bordered tbody tr th, &-small&-bordered tbody &-row td {
+  &-small&-bordered tbody tr th,
+  &-small&-bordered tbody &-row td {
     padding: 4px 8px;
   }
-  &-large&-bordered tbody tr th, &-large&-bordered tbody &-row td {
+  &-large&-bordered tbody tr th,
+  &-large&-bordered tbody &-row td {
     padding: 14px 16px;
   }
 }

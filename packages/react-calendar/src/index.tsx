@@ -1,6 +1,11 @@
 import React from 'react';
 import classnames from 'classnames';
-import { DatePickerDay, DatePickerDayProps, DatePickerDayRenderDay, DatePickerDayDateSource } from '@uiw/react-date-picker';
+import {
+  DatePickerDay,
+  DatePickerDayProps,
+  DatePickerDayRenderDay,
+  DatePickerDayDateSource,
+} from '@uiw/react-date-picker';
 import Icon from '@uiw/react-icon';
 import formatter from '@uiw/formatter';
 import { IProps } from '@uiw/utils';
@@ -14,7 +19,10 @@ export interface CalendarProps extends IProps, DatePickerDayProps {
   /**
    * 点击选择日期回调
    */
-  onSelectDay?: (selectDay?: Date, dateSource?: DatePickerDayDateSource) => void;
+  onSelectDay?: (
+    selectDay?: Date,
+    dateSource?: DatePickerDayDateSource,
+  ) => void;
   /**
    * 日历面板默认展示哪一页
    */
@@ -52,14 +60,30 @@ export interface ICalendarData {
   [key: string]: any;
 }
 
-export default class Calendar extends React.Component<CalendarProps, ICalendarState> {
+export default class Calendar extends React.Component<
+  CalendarProps,
+  ICalendarState
+> {
   static state: ICalendarState;
   public static defaultProps: CalendarProps = {
     prefixCls: 'w-calendar',
     titleFormat: 'YYYY/MM',
     todayLabel: '今天',
-    monthLabel: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-  }
+    monthLabel: [
+      '一月',
+      '二月',
+      '三月',
+      '四月',
+      '五月',
+      '六月',
+      '七月',
+      '八月',
+      '九月',
+      '十月',
+      '十一月',
+      '十二月',
+    ],
+  };
   constructor(props: CalendarProps) {
     super(props);
     this.state = {
@@ -76,7 +100,7 @@ export default class Calendar extends React.Component<CalendarProps, ICalendarSt
     const { onSelectDay } = this.props;
     this.setState({ panelDate: date });
     onSelectDay && onSelectDay(date, dateSource);
-  }
+  };
   onPaging(type: 'prev' | 'next' | 'today') {
     const { panelDate } = this.state;
     const { today } = this.props;
@@ -96,7 +120,10 @@ export default class Calendar extends React.Component<CalendarProps, ICalendarSt
   renderDay = (day: number, props: DatePickerDayRenderDay) => {
     const { prefixCls, data } = this.props;
     const dayData = (data || []).filter((item) => {
-      let arr: number[] = ((item.date && item.date.split('/')) || []).map(num => Number(num));
+      let arr: number[] = (
+        (item.date && item.date.split('/')) ||
+        []
+      ).map((num) => Number(num));
       if (arr.length === 1) {
         return day === arr[0];
       }
@@ -104,7 +131,11 @@ export default class Calendar extends React.Component<CalendarProps, ICalendarSt
         return props.date.getMonth() + 1 === arr[0] && day === arr[1];
       }
       if (props.date && arr.length === 3) {
-        return props.date.getFullYear() === arr[0] && props.date.getMonth() + 1 === arr[1] && day === arr[2];
+        return (
+          props.date.getFullYear() === arr[0] &&
+          props.date.getMonth() + 1 === arr[1] &&
+          day === arr[2]
+        );
       }
       return false;
     });
@@ -112,25 +143,47 @@ export default class Calendar extends React.Component<CalendarProps, ICalendarSt
       <div className={`${prefixCls}-inner`}>
         <div className={`${prefixCls}-day`}>{day}</div>
         <div className={`${prefixCls}-panel`}>
-          {dayData && dayData.length > 0 && dayData.map((item, idx) => {
-            const { date, label, ...other } = item;
-            return (
-              <div key={idx} {...other}>{label}</div>
-            );
-          })}
+          {dayData &&
+            dayData.length > 0 &&
+            dayData.map((item, idx) => {
+              const { date, label, ...other } = item;
+              return (
+                <div key={idx} {...other}>
+                  {label}
+                </div>
+              );
+            })}
         </div>
       </div>
     );
-  }
+  };
   render() {
-    const { prefixCls, className, style, today, todayLabel, panelDate, titleFormat, monthLabel, onSelectDay, ...otherProps } = this.props;
+    const {
+      prefixCls,
+      className,
+      style,
+      today,
+      todayLabel,
+      panelDate,
+      titleFormat,
+      monthLabel,
+      onSelectDay,
+      ...otherProps
+    } = this.props;
     return (
       <div className={classnames(prefixCls, className)} style={style}>
         <div className={`${prefixCls}-caption`}>
-          <div className={`${prefixCls}-title`}>{formatter(titleFormat as string, (this.state.panelDate as Date))}</div>
+          <div className={`${prefixCls}-title`}>
+            {formatter(titleFormat as string, this.state.panelDate as Date)}
+          </div>
           <div className={`${prefixCls}-btn-group`}>
             <Icon type="down" onClick={this.onPaging.bind(this, 'prev')} />
-            <span className={`${prefixCls}-btn`} onClick={this.onPaging.bind(this, 'today')} >{todayLabel}</span>
+            <span
+              className={`${prefixCls}-btn`}
+              onClick={this.onPaging.bind(this, 'today')}
+            >
+              {todayLabel}
+            </span>
             <Icon type="down" onClick={this.onPaging.bind(this, 'next')} />
           </div>
         </div>

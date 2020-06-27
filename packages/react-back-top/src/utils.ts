@@ -1,4 +1,3 @@
-
 /**
  * 获取当前滚动条所在位置
  */
@@ -18,10 +17,14 @@ export function getScrollTop() {
  * @param {*} step 步长
  * @param {*} current 滚动条当前位置
  */
-export function ScrollToAnimate(position: number = 0, step: number = 100, current: number = 0) {
+export function ScrollToAnimate(
+  position: number = 0,
+  step: number = 100,
+  current: number = 0,
+) {
   let start = 0;
   const timer = setInterval(() => {
-    if ((current - start) >= position) {
+    if (current - start >= position) {
       start += step;
       if (current - start >= position) {
         window.scrollTo(0, current - start);
@@ -39,7 +42,11 @@ export function ScrollToAnimate(position: number = 0, step: number = 100, curren
 export function getScrollPercent(offsetTop: number = 0) {
   let percent = 0;
   if (offsetTop < getScrollTop()) {
-    percent = Math.round((getScrollTop() - offsetTop) / (document.body.scrollHeight - offsetTop - window.innerHeight) * 100);
+    percent = Math.round(
+      ((getScrollTop() - offsetTop) /
+        (document.body.scrollHeight - offsetTop - window.innerHeight)) *
+        100,
+    );
   }
   return percent > 100 ? 100 : percent;
 }

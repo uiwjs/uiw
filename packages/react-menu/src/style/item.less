@@ -1,4 +1,4 @@
-@w-menu:~"w-menu";
+@w-menu:~ "w-menu";
 
 .@{w-menu}-item {
   position: relative;
@@ -12,23 +12,25 @@
   color: inherit;
   user-select: none;
   transition: initial;
-  transition: background-color .3s;
-  &:hover, &.active {
+  transition: background-color 0.3s;
+  &:hover,
+  &.active {
     color: inherit;
     cursor: pointer;
     text-decoration: none;
-    background-color: rgba(167,182,194,.3);
+    background-color: rgba(167, 182, 194, 0.3);
   }
   &:active {
-    background-color: rgba(115,134,148,.3);
+    background-color: rgba(115, 134, 148, 0.3);
   }
   &.w-disabled {
     outline: none !important;
     background-color: inherit !important;
     cursor: not-allowed !important;
   }
-  &.w-disabled &-icon, &.w-disabled {
-    color: rgba(92,112,128,.5) !important;
+  &.w-disabled &-icon,
+  &.w-disabled {
+    color: rgba(92, 112, 128, 0.5) !important;
   }
   &-text {
     flex-grow: 1;

@@ -24,12 +24,15 @@ function toArray(activeKey: CollapseProps['activeKey']) {
   return currentActiveKey;
 }
 
-export default class Collapse extends React.Component<CollapseProps, CollapseState> {
+export default class Collapse extends React.Component<
+  CollapseProps,
+  CollapseState
+> {
   public static defaultProps: CollapseProps = {
     prefixCls: 'w-collapse',
     accordion: false,
     showArrow: true,
-  }
+  };
   static Panel = Panel;
   constructor(props: CollapseProps) {
     super(props);
@@ -62,7 +65,17 @@ export default class Collapse extends React.Component<CollapseProps, CollapseSta
     });
   }
   render() {
-    const { prefixCls, className, children, accordion, bordered, showArrow, activeKey, onChange, ...resetProps } = this.props;
+    const {
+      prefixCls,
+      className,
+      children,
+      accordion,
+      bordered,
+      showArrow,
+      activeKey,
+      onChange,
+      ...resetProps
+    } = this.props;
     const cls = classnames(prefixCls, className, {
       'w-noborder': bordered,
     });
@@ -73,7 +86,8 @@ export default class Collapse extends React.Component<CollapseProps, CollapseSta
           const key = child.key || String(index);
           const { disabled } = child.props;
           let isActive = false;
-          if (accordion) { // 手风琴模式下默认选择第一个
+          if (accordion) {
+            // 手风琴模式下默认选择第一个
             isActive = this.state.activeKey[0] === key;
           } else {
             isActive = this.state.activeKey.indexOf(key) > -1;
@@ -83,7 +97,7 @@ export default class Collapse extends React.Component<CollapseProps, CollapseSta
             isActive,
             disabled,
             showArrow,
-            onItemClick: disabled ? () => { } : () => this.onItemClick(key),
+            onItemClick: disabled ? () => {} : () => this.onItemClick(key),
             ...child.props,
           };
           return React.cloneElement(child, childProps);

@@ -24,7 +24,9 @@ export interface IAffixState {
 }
 
 function getTargetRect(target: HTMLElement | Window | null): ClientRect {
-  return target !== window ? (target as HTMLElement).getBoundingClientRect() : ({ top: 0, left: 0, bottom: 0 }) as ClientRect;
+  return target !== window
+    ? (target as HTMLElement).getBoundingClientRect()
+    : ({ top: 0, left: 0, bottom: 0 } as ClientRect);
 }
 
 function getOffset(element: HTMLElement, target: HTMLElement | Window | null) {
@@ -45,7 +47,7 @@ function getOffset(element: HTMLElement, target: HTMLElement | Window | null) {
   };
 }
 
-function noop() { }
+function noop() {}
 
 function getDefaultTarget() {
   return typeof window !== 'undefined' ? window : null;
@@ -55,11 +57,11 @@ export default class Affix extends React.Component<AffixProps, IAffixState> {
   public static defaultProps: AffixProps = {
     prefixCls: 'w-affix',
     onChange: noop,
-  }
+  };
   public state: IAffixState = {
     placeholderStyle: undefined,
     affixStyle: undefined,
-  }
+  };
   private box: any;
   private target!: Window | HTMLElement | null;
   private readonly events = [
@@ -109,7 +111,8 @@ export default class Affix extends React.Component<AffixProps, IAffixState> {
     }
     const elemOffset = getOffset(this.box, this.target);
     const box = this.box.getBoundingClientRect();
-    const bottom = document.documentElement.clientHeight - box.y - elemOffset.height;
+    const bottom =
+      document.documentElement.clientHeight - box.y - elemOffset.height;
     if (offsetMode.top && box.y < 0) {
       this.setPlaceholderStyle({ ...elemSize });
       this.setAffixStyle({
@@ -146,7 +149,8 @@ export default class Affix extends React.Component<AffixProps, IAffixState> {
     this.clearEventListeners();
     this.events.forEach((eventName) => {
       this.eventHandlers[eventName] = this.updatePosition;
-      this.target && this.target.addEventListener(eventName, this.updatePosition, false);
+      this.target &&
+        this.target.addEventListener(eventName, this.updatePosition, false);
     });
   }
   clearEventListeners() {
@@ -159,12 +163,25 @@ export default class Affix extends React.Component<AffixProps, IAffixState> {
     if (node) {
       this.box = node;
     }
-  }
+  };
   public render() {
-    const { prefixCls, className, children, offsetTop, offsetBottom, target, onChange, ...resetProps } = this.props;
+    const {
+      prefixCls,
+      className,
+      children,
+      offsetTop,
+      offsetBottom,
+      target,
+      onChange,
+      ...resetProps
+    } = this.props;
     const cls = classnames(className, `${prefixCls}`);
     return (
-      <div {...resetProps} ref={this.getInstance} style={{ ...this.state.placeholderStyle, ...this.props.style }}>
+      <div
+        {...resetProps}
+        ref={this.getInstance}
+        style={{ ...this.state.placeholderStyle, ...this.props.style }}
+      >
         <div className={cls} style={this.state.affixStyle}>
           {children}
         </div>

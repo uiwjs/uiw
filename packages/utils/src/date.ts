@@ -1,4 +1,3 @@
-
 /**
  * Determine whether it is a leap year
  * @param {Number} year
@@ -35,4 +34,5 @@ export const getFirstDayOfWeek = (year: number, month: number) => {
  * @param {Date} dateA
  * @param {Date} dateB
  */
-export const isSameDate = (a: Date, b: Date) => a.toISOString() === b.toISOString();
+export const isSameDate = (a: Date, b: Date) =>
+  a.toISOString() === b.toISOString();

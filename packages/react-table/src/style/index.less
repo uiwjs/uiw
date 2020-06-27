@@ -1,4 +1,4 @@
-@table-prefix: ~"w-table";
+@table-prefix: ~'w-table';
 
 .@{table-prefix} {
   > table {
@@ -7,7 +7,8 @@
     width: 100%;
     border-spacing: 0;
     border-collapse: collapse;
-    tr > th, tr > td {
+    tr > th,
+    tr > td {
       border: 0;
       padding: 5px 8px;
       border-bottom: 1px solid #e8e8e8;
@@ -20,8 +21,9 @@
       padding: 10px 8px;
     }
     > tbody > tr {
-      transition: all .3s;
-      &:hover, &:hover:nth-child(2n) {
+      transition: all 0.3s;
+      &:hover,
+      &:hover:nth-child(2n) {
         background-color: #efefef;
       }
       &:nth-child(2n) {
@@ -33,7 +35,8 @@
         font-weight: normal;
         padding: 8px;
       }
-      > tr, tr:nth-child(2n) {
+      > tr,
+      tr:nth-child(2n) {
         background-color: #f6f9fb;
         border: transparent;
       }
@@ -41,7 +44,9 @@
   }
   &-bordered {
     > table {
-      tr > th, tr > td, > caption {
+      tr > th,
+      tr > td,
+      > caption {
         border: 1px solid #dfe2e5;
       }
       > caption {

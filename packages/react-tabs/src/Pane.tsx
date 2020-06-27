@@ -9,4 +9,4 @@ export default (props: TabsPaneProps = {}) => {
   return (
     <div className={classnames(`${prefixCls}`, className)} {...resetProps} />
   );
-}
+};

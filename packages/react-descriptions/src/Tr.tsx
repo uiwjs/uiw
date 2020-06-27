@@ -14,7 +14,11 @@ export interface TrProps extends IProps {
 export default class Tr extends React.Component<TrProps> {
   render() {
     const { prefixCls, layout, bordered, colon, index, children } = this.props;
-    const renderCol = (colItem: React.ReactElement<DescriptionsItemProps>, type: 'label' | 'content', idx: number ) => {
+    const renderCol = (
+      colItem: React.ReactElement<DescriptionsItemProps>,
+      type: 'label' | 'content',
+      idx: number,
+    ) => {
       return (
         <Td
           prefixCls={prefixCls}
@@ -29,14 +33,17 @@ export default class Tr extends React.Component<TrProps> {
     };
     const cloneChildren: JSX.Element[] = [];
     const cloneContentChildren: JSX.Element[] = [];
-    React.Children.map(children as React.ReactElement < DescriptionsItemProps > [], (childrenItem: React.ReactElement<DescriptionsItemProps>, idx) => {
-      cloneChildren.push(renderCol(childrenItem, 'label', idx));
-      if (layout === 'vertical') {
-        cloneContentChildren.push(renderCol(childrenItem, 'content', idx));
-      } else if (bordered) {
-        cloneChildren.push(renderCol(childrenItem, 'content', idx));
-      }
-    });
+    React.Children.map(
+      children as React.ReactElement<DescriptionsItemProps>[],
+      (childrenItem: React.ReactElement<DescriptionsItemProps>, idx) => {
+        cloneChildren.push(renderCol(childrenItem, 'label', idx));
+        if (layout === 'vertical') {
+          cloneContentChildren.push(renderCol(childrenItem, 'content', idx));
+        } else if (bordered) {
+          cloneChildren.push(renderCol(childrenItem, 'content', idx));
+        }
+      },
+    );
 
     if (layout === 'vertical') {
       return [
@@ -55,4 +62,4 @@ export default class Tr extends React.Component<TrProps> {
       </tr>
     );
   }
-};
+}

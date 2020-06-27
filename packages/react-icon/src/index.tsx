@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, { useMemo } from 'react';
 import classnames from 'classnames';
 import svgPaths from '@uiw/icons/fonts/w-icon.json';
 import './style/index.less';
@@ -34,7 +34,7 @@ export default function Icon<T>(props: IconProps<T> = {}) {
 
   const renderSVGPaths = useMemo(() => {
     if (!type) {
-      return null
+      return null;
     }
     const svgPathsData = svgPaths;
     const pathStrings: string[] = svgPathsData[type as IconsName] || [];
@@ -43,19 +43,27 @@ export default function Icon<T>(props: IconProps<T> = {}) {
 
   let svg = null;
   if (typeof type === 'string') {
-    svg = <svg fill={color} viewBox="0 0 20 20">{renderSVGPaths}</svg>;
+    svg = (
+      <svg fill={color} viewBox="0 0 20 20">
+        {renderSVGPaths}
+      </svg>
+    );
   } else if (React.isValidElement(type)) {
-    svg = React.cloneElement(type as unknown as React.ReactElement, {
+    svg = React.cloneElement((type as unknown) as React.ReactElement, {
       fill: color,
     });
   } else {
     return null;
   }
   others.style = { fill: 'currentColor', ...others.style };
-  const propps = { ...others,
-    className: classnames(prefixCls, className, `${prefixCls}-${verticalAlign}`, { [`${prefixCls}-spin`]: spin }),
+  const propps = {
+    ...others,
+    className: classnames(
+      prefixCls,
+      className,
+      `${prefixCls}-${verticalAlign}`,
+      { [`${prefixCls}-spin`]: spin },
+    ),
   };
-  return (
-    <TagName {...propps}>{svg}</TagName>
-  );
+  return <TagName {...propps}>{svg}</TagName>;
 }

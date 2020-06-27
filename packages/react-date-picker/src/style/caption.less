@@ -1,4 +1,4 @@
-@datepicker-prefix: ~"w-datepicker";
+@datepicker-prefix: ~'w-datepicker';
 
 .@{datepicker-prefix} {
   &-caption {
@@ -7,14 +7,14 @@
     padding: 0 0 3px 0;
     border-bottom: 1px solid #ececec;
     &-pane {
-      transition: background-color .3s;
+      transition: background-color 0.3s;
       display: inline-block;
       border-radius: 3px;
       padding: 1px 5px;
       font-weight: bold;
       cursor: pointer;
       &:hover {
-        background-color: #EAEAEA;
+        background-color: #eaeaea;
       }
       &:active {
         background-color: #d2d2d2;
@@ -22,11 +22,13 @@
       &.year + &.month {
         margin-left: 5px;
       }
-      &.prev, &.next {
+      &.prev,
+      &.next {
         z-index: 30;
         position: relative;
         padding: 1px 8px 6px 8px;
-        &::after, &::before {
+        &::after,
+        &::before {
           content: '';
           display: block;
           height: 8px;
@@ -41,11 +43,13 @@
           margin-top: 4px;
         }
       }
-      &.prev::after, &.next::before {
-        transform:rotate(-45deg);
+      &.prev::after,
+      &.next::before {
+        transform: rotate(-45deg);
       }
-      &.prev::before, &.next::after {
-        transform:rotate(45deg);
+      &.prev::before,
+      &.next::after {
+        transform: rotate(45deg);
       }
       &.prev {
         float: left;
@@ -63,7 +67,7 @@
       width: 10px;
       overflow: hidden;
       margin: 0 0 0 2px;
-      transition: background-color .3s;
+      transition: background-color 0.3s;
       &::before {
         content: '';
         display: block;
@@ -74,7 +78,7 @@
         background-color: #a0a0a0;
       }
       &:hover {
-        background-color: #2EA3F4;
+        background-color: #2ea3f4;
         &::before {
           background-color: #fff;
         }

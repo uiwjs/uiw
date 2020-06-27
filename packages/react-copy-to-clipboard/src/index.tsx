@@ -3,9 +3,15 @@ import copy from '@uiw/copy-to-clipboard';
 import { IProps, HTMLAnchorProps } from '@uiw/utils';
 import './style/index.less';
 
-export interface ICopyToClipboard extends IProps, Omit<HTMLAnchorProps, 'onClick'> {
+export interface ICopyToClipboard
+  extends IProps,
+    Omit<HTMLAnchorProps, 'onClick'> {
   text?: string;
-  onClick?: (text: string, isCopy: boolean, event: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (
+    text: string,
+    isCopy: boolean,
+    event: React.MouseEvent<HTMLElement>,
+  ) => void;
 }
 
 export default class CopyToClipboard extends React.Component<ICopyToClipboard> {
@@ -13,7 +19,7 @@ export default class CopyToClipboard extends React.Component<ICopyToClipboard> {
     text: '',
     prefixCls: 'w-copy-to-clipboard',
     onClick: () => null,
-  }
+  };
   onClick(e: React.MouseEvent<HTMLElement>) {
     const { onClick, text } = this.props;
     if (!text) {

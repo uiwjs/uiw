@@ -5,6 +5,8 @@ import './style/index.less';
 export interface SwitchProps extends RadioAbstractProps {}
 
 export default (props: SwitchProps = {}) => {
-  const { prefixCls = 'w-switch', ...other} = props;
-  return <RadioAbstract prefixCls={prefixCls} {...{ ...other, type: 'checkbox' }} />;
-}
+  const { prefixCls = 'w-switch', ...other } = props;
+  return (
+    <RadioAbstract prefixCls={prefixCls} {...{ ...other, type: 'checkbox' }} />
+  );
+};

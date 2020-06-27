@@ -10,10 +10,22 @@ class RoutersController extends React.PureComponent {
     const { resetProps } = this.props;
     return (
       <Switch>
-        <Route path="/components" render={props => <Components {...props} {...resetProps} />} />
-        <Route path="/extensions" render={props => <Extensions {...props} {...resetProps} />} />
-        <Route path="/guide" render={props => <Components {...props} {...resetProps} />} />
-        <Route path="/" render={props => <Home {...props} {...resetProps} />} />
+        <Route
+          path="/components"
+          render={(props) => <Components {...props} {...resetProps} />}
+        />
+        <Route
+          path="/extensions"
+          render={(props) => <Extensions {...props} {...resetProps} />}
+        />
+        <Route
+          path="/guide"
+          render={(props) => <Components {...props} {...resetProps} />}
+        />
+        <Route
+          path="/"
+          render={(props) => <Home {...props} {...resetProps} />}
+        />
       </Switch>
     );
   }

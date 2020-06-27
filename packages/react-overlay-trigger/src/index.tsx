@@ -4,7 +4,9 @@ import classnames from 'classnames';
 import { getScroll, IProps } from '@uiw/utils';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import contains from './utils';
-import getBoundingClientRect, { IBoundingClientRect } from './util/getBoundingClientRect';
+import getBoundingClientRect, {
+  IBoundingClientRect,
+} from './util/getBoundingClientRect';
 import getOuterSizes from './util/getOuterSizes';
 import RefHolder from './RefHolder';
 import './style/index.less';
@@ -31,15 +33,26 @@ export interface OverlayTriggerState {
   transitionName: OverlayProps['transitionName'];
 }
 
-export type Delay = number | {
-  show?: number;
-  hide?: number;
-};
+export type Delay =
+  | number
+  | {
+      show?: number;
+      hide?: number;
+    };
 
-export type Placement = 'top' | 'topLeft' | 'topRight' |
-  'left' | 'leftTop' | 'leftBottom' |
-  'right' | 'rightTop' | 'rightBottom' |
-  'bottom' | 'bottomLeft' | 'bottomRight';
+export type Placement =
+  | 'top'
+  | 'topLeft'
+  | 'topRight'
+  | 'left'
+  | 'leftTop'
+  | 'leftBottom'
+  | 'right'
+  | 'rightTop'
+  | 'rightBottom'
+  | 'bottom'
+  | 'bottomLeft'
+  | 'bottomRight';
 
 export type OverlayStyl = {
   placement: Placement;
@@ -48,7 +61,7 @@ export type OverlayStyl = {
   left: number;
   right: number;
   zIndex: number;
-}
+};
 
 interface ITriggerProps {
   onClick?: (e: MouseEvent) => void;
@@ -57,11 +70,13 @@ interface ITriggerProps {
   onMouseOut?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 
-const normalizeDelay = (delay?: Delay) => ((delay && typeof delay === 'object') ? delay : { show: delay, hide: delay });
+const normalizeDelay = (delay?: Delay) =>
+  delay && typeof delay === 'object' ? delay : { show: delay, hide: delay };
 let zIndex = 999;
 
-
-export default class OverlayTrigger extends React.Component<OverlayTriggerProps> {
+export default class OverlayTrigger extends React.Component<
+  OverlayTriggerProps
+> {
   public static defaultProps: OverlayTriggerProps = {
     prefixCls: 'w-overlay-trigger',
     // onEnter: () => null,
@@ -72,7 +87,7 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
     isOpen: false,
     trigger: 'hover',
     placement: 'top',
-  }
+  };
   public state: OverlayTriggerState;
   // React Refs with TypeScript
   // https://medium.com/@martin_hotell/react-refs-with-typescript-a32d56c4d315
@@ -88,12 +103,15 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
       trigger: props.trigger,
       transitionName: props.transitionName,
       overlayStyl: {
-        placement: props.placement as Placement
+        placement: props.placement as Placement,
       } as OverlayStyl,
     };
   }
   componentDidUpdate(prevProps: OverlayTriggerProps) {
-    if (this.props.isOpen !== this.state.show && prevProps.isOpen !== this.props.isOpen) {
+    if (
+      this.props.isOpen !== this.state.show &&
+      prevProps.isOpen !== this.props.isOpen
+    ) {
       this.props.isOpen ? this.show() : this.hide();
     }
     if (this.props.trigger !== prevProps.trigger) {
@@ -103,7 +121,10 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
   /**
    * Trigger value change prohibits animation transition effect
    */
-  static getDerivedStateFromProps(props: OverlayTriggerProps, state: OverlayTriggerState) {
+  static getDerivedStateFromProps(
+    props: OverlayTriggerProps,
+    state: OverlayTriggerState,
+  ) {
     if (props.trigger !== state.trigger) {
       state.trigger = props.trigger;
       state.show = !!props.isOpen;
@@ -111,39 +132,49 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
     } else {
       state.transitionName = props.transitionName;
     }
-    return state
+    return state;
   }
   componentDidMount() {
     if (this.props.isClickOutside) {
-      document && document.addEventListener('mousedown', this.handleClickOutside, true);
+      document &&
+        document.addEventListener('mousedown', this.handleClickOutside, true);
     }
     !!this.props.isOpen && this.setState({ overlayStyl: { ...this.styles() } });
   }
   componentWillUnmount() {
-    document && document.removeEventListener('mousedown', this.handleClickOutside, true);
+    document &&
+      document.removeEventListener('mousedown', this.handleClickOutside, true);
   }
   getTarget = () => ReactDOM.findDOMNode(this.trigger.current) as HTMLElement;
-  getPopupTarget = () => ReactDOM.findDOMNode(this.popup.current) as HTMLElement;
+  getPopupTarget = () =>
+    ReactDOM.findDOMNode(this.popup.current) as HTMLElement;
   getChildProps() {
-    return (React.Children.only(this.props.children) as React.ReactElement<any>).props;
+    return (React.Children.only(this.props.children) as React.ReactElement<any>)
+      .props;
   }
   handleClickOutside = (e: MouseEvent) => {
     const popNode = this.getPopupTarget();
     const child = this.getTarget();
-    if (popNode && e.target && !popNode.contains(e.target as HTMLElement) && child && !child.contains(e.target as HTMLElement)) {
+    if (
+      popNode &&
+      e.target &&
+      !popNode.contains(e.target as HTMLElement) &&
+      child &&
+      !child.contains(e.target as HTMLElement)
+    ) {
       this.hide();
     }
-  }
+  };
   handleClick = (e: MouseEvent) => {
     const { onClick } = this.getChildProps();
 
     if (this.state.show) this.hide();
     else this.show();
     if (onClick) onClick(e, !this.state.show);
-  }
+  };
   handleoFocus = () => {
     this.handleShow();
-  }
+  };
   public clearTimeouts = () => {
     if (this._timeout.length > 0) {
       for (const timeoutId of this._timeout) {
@@ -194,19 +225,27 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
 
   handleMouseOut = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     this.handleMouseOverOut(this.handleHide, e, 'toElement');
-  }
+  };
 
   // Simple implementation of mouseEnter and mouseLeave.
   // React's built version is broken: https://github.com/facebook/react/issues/4251
   // for cases when the trigger is disabled and mouseOut/Over can cause flicker
   // moving from one child element to another.
-  handleMouseOverOut(handler: Function, e: React.MouseEvent, relatedNative: 'fromElement' | 'toElement') {
+  handleMouseOverOut(
+    handler: Function,
+    e: React.MouseEvent,
+    relatedNative: 'fromElement' | 'toElement',
+  ) {
     const target = e.currentTarget as HTMLElement;
-    const related = (e.relatedTarget || (e.nativeEvent as any)[relatedNative]) as HTMLElement;
+    const related = (e.relatedTarget ||
+      (e.nativeEvent as any)[relatedNative]) as HTMLElement;
     const popupTarget = this.getPopupTarget();
     const currentTarget = this.getTarget();
     let isOutside = true;
-    if ((popupTarget && contains(popupTarget, related)) || (currentTarget && contains(currentTarget, related))) {
+    if (
+      (popupTarget && contains(popupTarget, related)) ||
+      (currentTarget && contains(currentTarget, related))
+    ) {
       isOutside = false;
     }
     if ((!related || related !== target) && !contains(target, related)) {
@@ -218,18 +257,24 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
     if (!this.state.show) return;
     const { onVisibleChange } = this.props;
     zIndex -= 1;
-    this.setState({ show: false }, () => onVisibleChange && onVisibleChange(false));
+    this.setState(
+      { show: false },
+      () => onVisibleChange && onVisibleChange(false),
+    );
   }
 
   show() {
     if (this.state.show) return;
     const { onVisibleChange } = this.props;
     zIndex += 1;
-    this.setState({
-      show: true,
-    }, () => {
-      onVisibleChange && onVisibleChange(true);
-    });
+    this.setState(
+      {
+        show: true,
+      },
+      () => {
+        onVisibleChange && onVisibleChange(true);
+      },
+    );
   }
   onEnter = (node: HTMLElement, isAppearing: boolean) => {
     const { onEnter } = this.props;
@@ -237,7 +282,7 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
       onEnter(node, isAppearing);
     }
     this.setState({ overlayStyl: { ...this.styles() } });
-  }
+  };
   styles() {
     const { usePortal, autoAdjustOverflow } = this.props;
     const { placement } = this.props;
@@ -248,14 +293,31 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
       return sty;
     }
 
-    const winSizeHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    const winSizeWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    const winSizeHeight = Math.max(
+      document.documentElement.clientHeight,
+      window.innerHeight || 0,
+    );
+    const winSizeWidth = Math.max(
+      document.documentElement.clientWidth,
+      window.innerWidth || 0,
+    );
 
     sty.placement = placement as Placement;
-    const scrollTop = getScroll((trigger as HTMLElement).ownerDocument!.documentElement, true);
-    const scrollLeft = getScroll((trigger as HTMLElement).ownerDocument!.documentElement);
-    trigger = { ...getBoundingClientRect(trigger as HTMLElement), ...getOuterSizes(trigger as HTMLElement) };
-    popup = { ...getBoundingClientRect((popup as HTMLElement)), ...getOuterSizes((popup as HTMLElement)) };
+    const scrollTop = getScroll(
+      (trigger as HTMLElement).ownerDocument!.documentElement,
+      true,
+    );
+    const scrollLeft = getScroll(
+      (trigger as HTMLElement).ownerDocument!.documentElement,
+    );
+    trigger = {
+      ...getBoundingClientRect(trigger as HTMLElement),
+      ...getOuterSizes(trigger as HTMLElement),
+    };
+    popup = {
+      ...getBoundingClientRect(popup as HTMLElement),
+      ...getOuterSizes(popup as HTMLElement),
+    };
 
     const bottom = winSizeHeight - trigger.bottom;
     const right = winSizeWidth - trigger.left - trigger.width;
@@ -282,27 +344,48 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
     }
     switch (sty.placement) {
       case 'bottomLeft':
-      case 'topLeft': break;
+      case 'topLeft':
+        break;
       case 'bottom':
       // eslint-disable-next-line
-      case 'top': sty.left = sty.left - (popup.width - trigger.width) / 2; break;
+      case 'top':
+        sty.left = sty.left - (popup.width - trigger.width) / 2;
+        break;
       case 'bottomRight':
-      case 'topRight': sty.left = sty.left + scrollLeft + trigger.width - popup.width; break;
+      case 'topRight':
+        sty.left = sty.left + scrollLeft + trigger.width - popup.width;
+        break;
       case 'rightTop':
-      case 'leftTop': break;
+      case 'leftTop':
+        break;
       case 'right':
       // eslint-disable-next-line
-      case 'left': sty.top = sty.top - (popup.height - trigger.height) / 2; break;
+      case 'left':
+        sty.top = sty.top - (popup.height - trigger.height) / 2;
+        break;
       case 'rightBottom':
-      case 'leftBottom': sty.top = sty.top - popup.height + trigger.height; break;
-      default: break;
+      case 'leftBottom':
+        sty.top = sty.top - popup.height + trigger.height;
+        break;
+      default:
+        break;
     }
     if (autoAdjustOverflow) {
-      if (placement && /^(top)/.test(placement) && trigger.top < popup.height && bottom > popup.height) {
+      if (
+        placement &&
+        /^(top)/.test(placement) &&
+        trigger.top < popup.height &&
+        bottom > popup.height
+      ) {
         sty.placement = placement.replace(/^top/, 'bottom') as Placement;
         sty.top = sty.top + popup.height + trigger.height;
       }
-      if (placement && /^(bottom)/.test(placement) && bottom < popup.height && trigger.top > popup.height) {
+      if (
+        placement &&
+        /^(bottom)/.test(placement) &&
+        bottom < popup.height &&
+        trigger.top > popup.height
+      ) {
         sty.placement = placement.replace(/^bottom/, 'top') as Placement;
         sty.top = sty.top - popup.height - trigger.height;
       }
@@ -310,18 +393,23 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
         sty.placement = placement.replace(/^right/, 'left') as Placement;
         sty.left = sty.left - trigger.width - popup.width;
       }
-      if (placement && /^(left)/.test(placement) && trigger.left < popup.width) {
+      if (
+        placement &&
+        /^(left)/.test(placement) &&
+        trigger.left < popup.width
+      ) {
         sty.placement = placement.replace(/^left/, 'right') as Placement;
         sty.left = sty.left + trigger.width + popup.width;
       }
-
 
       if (placement && /^(left|right)/.test(placement) && usePortal) {
         // Top
         if (
           (/(Top)$/.test(placement) && trigger.top < 0) ||
-          (/(right|left)$/.test(placement) && (trigger.top + trigger.height / 2) < popup.height / 2) ||
-          (/(Bottom)$/.test(placement) && (trigger.top + trigger.height) < popup.height)
+          (/(right|left)$/.test(placement) &&
+            trigger.top + trigger.height / 2 < popup.height / 2) ||
+          (/(Bottom)$/.test(placement) &&
+            trigger.top + trigger.height < popup.height)
         ) {
           sty.top = scrollTop;
         }
@@ -330,20 +418,35 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
         if (placement && /(Top)$/.test(placement) && trigger.top < 0) {
           sty.top -= trigger.top;
         }
-        if (placement && /(Bottom)$/.test(placement) && trigger.bottom < popup.height) {
+        if (
+          placement &&
+          /(Bottom)$/.test(placement) &&
+          trigger.bottom < popup.height
+        ) {
           // eslint-disable-next-line
           sty.top = sty.top + (popup.height - trigger.bottom);
         }
-        if (placement && /(right|left)$/.test(placement) && trigger.bottom - trigger.height / 2 < popup.height / 2) {
-          sty.top = sty.top + popup.height / 2 - (trigger.bottom - trigger.height / 2);
+        if (
+          placement &&
+          /(right|left)$/.test(placement) &&
+          trigger.bottom - trigger.height / 2 < popup.height / 2
+        ) {
+          sty.top =
+            sty.top + popup.height / 2 - (trigger.bottom - trigger.height / 2);
         }
       }
       // Bottom Public Part
       if (placement && /^(left|right)/.test(placement)) {
-        if (/(Top)$/.test(placement) && bottom + trigger.height < popup.height) {
+        if (
+          /(Top)$/.test(placement) &&
+          bottom + trigger.height < popup.height
+        ) {
           sty.top = sty.top - (popup.height - bottom - trigger.height); // eslint-disable-line
         }
-        if (/(right|left)$/.test(placement) && bottom + trigger.height / 2 < popup.height / 2) {
+        if (
+          /(right|left)$/.test(placement) &&
+          bottom + trigger.height / 2 < popup.height / 2
+        ) {
           sty.top = sty.top - (popup.height / 2 - bottom - trigger.height / 2); // eslint-disable-line
         }
         if (/(Bottom)$/.test(placement) && bottom < 0) {
@@ -355,16 +458,25 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
         // left
         if (
           (/(Left)$/.test(placement) && trigger.left < 0) ||
-          (/(top|bottom)$/.test(placement) && trigger.left + trigger.width / 2 < popup.width / 2) ||
-          (/(Right)$/.test(placement) && trigger.left + trigger.width < popup.width)
+          (/(top|bottom)$/.test(placement) &&
+            trigger.left + trigger.width / 2 < popup.width / 2) ||
+          (/(Right)$/.test(placement) &&
+            trigger.left + trigger.width < popup.width)
         ) {
           sty.left = scrollLeft;
         }
         // right
-        if (/(top|bottom)$/.test(placement) && right + trigger.width / 2 < popup.width / 2) {
+        if (
+          /(top|bottom)$/.test(placement) &&
+          right + trigger.width / 2 < popup.width / 2
+        ) {
           sty.left = trigger.left + trigger.width + right - popup.width;
         }
-      } else if (placement && /(top|bottom)$/.test(placement) && right + trigger.width / 2 < popup.width / 2) {
+      } else if (
+        placement &&
+        /(top|bottom)$/.test(placement) &&
+        right + trigger.width / 2 < popup.width / 2
+      ) {
         sty.left = sty.left + (right + trigger.width / 2 - popup.width / 2); // eslint-disable-line
       }
       if (placement && /^(top|bottom)/.test(placement)) {
@@ -380,7 +492,16 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
     return sty;
   }
   render() {
-    const { prefixCls, className, children, overlay, trigger, disabled, usePortal, ...other } = this.props;
+    const {
+      prefixCls,
+      className,
+      children,
+      overlay,
+      trigger,
+      disabled,
+      usePortal,
+      ...other
+    } = this.props;
     const { placement, ...overlayStyl } = this.state.overlayStyl;
     const child: any = React.Children.only(children);
     const props: OverlayProps = { ...other, dialogProps: {} };
@@ -400,20 +521,36 @@ export default class OverlayTrigger extends React.Component<OverlayTriggerProps>
     return (
       <React.Fragment>
         <RefHolder ref={this.trigger}>
-          {cloneElement(child, Object.assign({}, child.props, { ...triggerProps, className: classnames(child.props.className, { [`${prefixCls}-disabled`]: disabled }) }))}
+          {cloneElement(
+            child,
+            Object.assign({}, child.props, {
+              ...triggerProps,
+              className: classnames(child.props.className, {
+                [`${prefixCls}-disabled`]: disabled,
+              }),
+            }),
+          )}
         </RefHolder>
         <Overlay
           {...props}
           onEnter={this.onEnter}
-          className={classnames(prefixCls, className, { [placement]: placement })}
+          className={classnames(prefixCls, className, {
+            [placement]: placement,
+          })}
           usePortal={usePortal}
           transitionName={this.state.transitionName}
           isOpen={this.state.show}
           hasBackdrop={false}
         >
-          {cloneElement(overlay, Object.assign({ ref: this.popup }, overlay.props, {
-            className: classnames(overlay.props && overlay.props.className, placement),
-          }))}
+          {cloneElement(
+            overlay,
+            Object.assign({ ref: this.popup }, overlay.props, {
+              className: classnames(
+                overlay.props && overlay.props.className,
+                placement,
+              ),
+            }),
+          )}
         </Overlay>
       </React.Fragment>
     );

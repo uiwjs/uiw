@@ -1,4 +1,4 @@
-@message-prefix: ~"w-message";
+@message-prefix: ~'w-message';
 
 .@{message-prefix} {
   padding: 10px 15px;
@@ -7,7 +7,8 @@
   & + & {
     margin-top: 10px;
   }
-  &-title, &-description {
+  &-title,
+  &-description {
     display: block;
   }
   &-rounded {
@@ -58,8 +59,8 @@
     color: #ffc107;
   }
   &-info {
-    background: lighten(#008EF0, 40%);
-    color: #008EF0;
+    background: lighten(#008ef0, 40%);
+    color: #008ef0;
   }
   &-error {
     background: lighten(#dc3545, 40%);
@@ -89,5 +90,3 @@
     opacity: 0;
   }
 }
-
-

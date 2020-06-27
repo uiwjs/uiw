@@ -5,18 +5,24 @@ import Popover, { PopoverProps } from '@uiw/react-popover';
 import { IProps } from '@uiw/utils';
 import Button from '@uiw/react-button';
 import formatter from '@uiw/formatter';
-import { DatePickerMonth, DatePickerYear, DatePickerCaption, DatePickerCaptionType } from '@uiw/react-date-picker';
+import {
+  DatePickerMonth,
+  DatePickerYear,
+  DatePickerCaption,
+  DatePickerCaptionType,
+} from '@uiw/react-date-picker';
 import './style/index.less';
 
-export interface MonthPickerProps<T> extends IProps, Omit<InputProps<T>, 'value' | 'onChange'> {
+export interface MonthPickerProps<T>
+  extends IProps,
+    Omit<InputProps<T>, 'value' | 'onChange'> {
   popoverProps?: PopoverProps;
   value?: Date | string;
-  format?: string,
-  monthLabel?: string[],
-  allowClear?: boolean,
-  onChange?: (date?: Date, formatDate?: string) => void,
+  format?: string;
+  monthLabel?: string[];
+  allowClear?: boolean;
+  onChange?: (date?: Date, formatDate?: string) => void;
 }
-
 
 export interface MonthPickerState {
   date?: Date | string;
@@ -25,15 +31,31 @@ export interface MonthPickerState {
   isOpen?: boolean;
 }
 
-export default class MonthPicker<T> extends React.Component<MonthPickerProps<T>, MonthPickerState> {
+export default class MonthPicker<T> extends React.Component<
+  MonthPickerProps<T>,
+  MonthPickerState
+> {
   public state: MonthPickerState;
   public static defaultProps: MonthPickerProps<{}> = {
     prefixCls: 'w-monthpicker',
     format: 'YYYY/MM',
-    monthLabel: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+    monthLabel: [
+      '一月',
+      '二月',
+      '三月',
+      '四月',
+      '五月',
+      '六月',
+      '七月',
+      '八月',
+      '九月',
+      '十月',
+      '十一月',
+      '十二月',
+    ],
     allowClear: true,
-    onChange() { },
-  }
+    onChange() {},
+  };
   constructor(props: MonthPickerProps<T>) {
     super(props);
     this.state = {
@@ -48,7 +70,11 @@ export default class MonthPicker<T> extends React.Component<MonthPickerProps<T>,
       this.setState({ date: nextProps.value });
     }
   }
-  onSelectedDate(type: 'setMonth' | 'setFullYear', num: number, paging?: boolean) {
+  onSelectedDate(
+    type: 'setMonth' | 'setFullYear',
+    num: number,
+    paging?: boolean,
+  ) {
     const { format, onChange } = this.props;
     let { panelDate, date } = this.state;
 
@@ -75,12 +101,14 @@ export default class MonthPicker<T> extends React.Component<MonthPickerProps<T>,
       this.setState({ type });
     } else {
       const year = (this.state.panelDate as Date).getFullYear();
-      const panelDate = (this.state.panelDate as Date).setFullYear(type === 'next' ? year + 1 : year - 1);
+      const panelDate = (this.state.panelDate as Date).setFullYear(
+        type === 'next' ? year + 1 : year - 1,
+      );
       this.setState({
         panelDate: new Date(panelDate),
       });
     }
-  }
+  };
   handleVisibleChange(isOpen: boolean) {
     this.setState({ isOpen });
   }
@@ -91,12 +119,30 @@ export default class MonthPicker<T> extends React.Component<MonthPickerProps<T>,
     });
   }
   render() {
-    const { prefixCls, className, popoverProps, allowClear, format, monthLabel, ...inputProps } = this.props;
+    const {
+      prefixCls,
+      className,
+      popoverProps,
+      allowClear,
+      format,
+      monthLabel,
+      ...inputProps
+    } = this.props;
     const { date, type } = this.state;
     const value = date || '';
-    inputProps.value = typeof value === 'string' ? value : formatter(format as string, value);
+    inputProps.value =
+      typeof value === 'string' ? value : formatter(format as string, value);
     if (allowClear && inputProps.value) {
-      inputProps.addonAfter = <Button className={`${prefixCls}-close-btn`} icon="close" onClick={this.onAllowClear.bind(this)} size={inputProps.size} basic type="light" />;
+      inputProps.addonAfter = (
+        <Button
+          className={`${prefixCls}-close-btn`}
+          icon="close"
+          onClick={this.onAllowClear.bind(this)}
+          size={inputProps.size}
+          basic
+          type="light"
+        />
+      );
       // inputProps.addonAfter = <Icon className={`${prefixCls}-close-btn`} onClick={this.onAllowClear.bind(this)} type="close" />;
     }
     return (

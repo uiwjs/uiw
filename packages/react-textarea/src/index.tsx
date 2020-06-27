@@ -9,6 +9,8 @@ export default (props: TextareaProps = {}) => {
   const { prefixCls = 'w-textarea', className, ...restProps } = props;
   const cls = classnames(prefixCls, className);
   return (
-    <textarea className={cls} {...restProps}>{props.children}</textarea>
+    <textarea className={cls} {...restProps}>
+      {props.children}
+    </textarea>
   );
-}
+};

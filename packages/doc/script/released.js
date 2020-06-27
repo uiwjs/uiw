@@ -17,9 +17,8 @@ const docRepoPath = join(process.cwd(), '..', 'doc');
 const uiwPkg = join(libPath, 'package.json');
 const docPkg = join(docRepoPath, 'package.json');
 
-;(async () => {
+(async () => {
   try {
-
     // Modify document version data.
     const uiwPkgContent = await fs.readJson(uiwPkg);
     console.log(`> Publish ${uiwPkgContent.version} v${uiwPkgContent.version}`);
@@ -27,18 +26,25 @@ const docPkg = join(docRepoPath, 'package.json');
      * Create a document website for `package.json`
      * path => `packages/doc/package.json`
      */
-    await fs.writeFile(docPkg, JSON.stringify({
-      "name": "@uiw/doc",
-      "version": uiwPkgContent.version,
-      "description": "UIW documentation website.",
-      "homepage": uiwPkgContent.homepage,
-      "authors": uiwPkgContent.authors,
-      "files": [ "web" ],
-      "repository": uiwPkgContent.repository,
-      "keywords": uiwPkgContent.keywords,
-      "author": uiwPkgContent.author,
-      "license": uiwPkgContent.license
-    }, null, 2) + '\n');
+    await fs.writeFile(
+      docPkg,
+      JSON.stringify(
+        {
+          name: '@uiw/doc',
+          version: uiwPkgContent.version,
+          description: 'UIW documentation website.',
+          homepage: uiwPkgContent.homepage,
+          authors: uiwPkgContent.authors,
+          files: ['web'],
+          repository: uiwPkgContent.repository,
+          keywords: uiwPkgContent.keywords,
+          author: uiwPkgContent.author,
+          license: uiwPkgContent.license,
+        },
+        null,
+        2,
+      ) + '\n',
+    );
     await fs.emptyDir(join(docRepoPath, 'web'));
     await fs.copy(docsPath, join(docRepoPath, 'web'));
   } catch (error) {

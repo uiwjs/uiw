@@ -1,4 +1,4 @@
-@modal: ~"w-modal";
+@modal: ~'w-modal';
 
 .@{modal} {
   &-inner {
@@ -6,7 +6,8 @@
     background: #f9f9f9;
     min-width: 320px;
     border-radius: 5px;
-    box-shadow: 0 0 0 1px rgba(16,22,26,.1), 0 4px 8px rgba(16,22,26,.2), 0 18px 46px 6px rgba(16,22,26,.2);
+    box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 4px 8px rgba(16, 22, 26, 0.2),
+      0 18px 46px 6px rgba(16, 22, 26, 0.2);
   }
   &-header {
     display: flex;
@@ -16,11 +17,11 @@
     padding-right: 5px;
     background-color: #fff;
     border-radius: 5px 5px 0 0;
-    box-shadow: 0 1px 0 rgba(16,22,26,.15);
+    box-shadow: 0 1px 0 rgba(16, 22, 26, 0.15);
     font-size: 16px;
     > .w-icon {
       margin-right: 10px;
-      color: #393E48;
+      color: #393e48;
     }
     h4 {
       margin: 0;
@@ -30,7 +31,8 @@
       min-height: 22px;
     }
   }
-  &-body, &-footer {
+  &-body,
+  &-footer {
     margin: 0 20px;
   }
   &-body {

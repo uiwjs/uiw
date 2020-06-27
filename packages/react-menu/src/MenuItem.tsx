@@ -13,7 +13,9 @@ const disabledProps = {
   tabIndex: -1,
 };
 
-export interface MenuItemProps extends IProps, React.AllHTMLAttributes<HTMLElement> {
+export interface MenuItemProps
+  extends IProps,
+    React.AllHTMLAttributes<HTMLElement> {
   text?: React.ReactNode;
   addonAfter?: React.ReactNode;
   tagName?: keyof JSX.IntrinsicElements | any;
@@ -24,9 +26,26 @@ export interface MenuItemProps extends IProps, React.AllHTMLAttributes<HTMLEleme
   icon?: JSX.Element | string | false | null;
 }
 
-export default function MenuItem<T>(props = {} as  MenuItemProps & T) {
-  const { prefixCls = 'w-menu-item', className, tagName: TagName = 'a', children, disabled = false, multiline = false, icon, text, active = false, addonAfter, isSubMenuItem, ...htmlProps } = props;
-  const anchorCls = classNames(prefixCls, { active, 'w-disabled': disabled }, className);
+export default function MenuItem<T>(props = {} as MenuItemProps & T) {
+  const {
+    prefixCls = 'w-menu-item',
+    className,
+    tagName: TagName = 'a',
+    children,
+    disabled = false,
+    multiline = false,
+    icon,
+    text,
+    active = false,
+    addonAfter,
+    isSubMenuItem,
+    ...htmlProps
+  } = props;
+  const anchorCls = classNames(
+    prefixCls,
+    { active, 'w-disabled': disabled },
+    className,
+  );
   const tagComp = (
     <TagName
       {...htmlProps}
@@ -34,7 +53,11 @@ export default function MenuItem<T>(props = {} as  MenuItemProps & T) {
       className={anchorCls}
     >
       <Icon className={`${prefixCls}-icon`} type={icon} />
-      <div className={classNames(`${prefixCls}-text`, { [`${prefixCls}-multiline`]: !multiline })}>
+      <div
+        className={classNames(`${prefixCls}-text`, {
+          [`${prefixCls}-multiline`]: !multiline,
+        })}
+      >
         {text}
       </div>
       {addonAfter}

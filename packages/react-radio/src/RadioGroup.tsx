@@ -11,7 +11,15 @@ export interface RadioGroupProps extends IProps, HTMLDivProps {
 }
 
 export default (props: RadioGroupProps = {}) => {
-  const { prefixCls = 'w-radio-group', className, name, value, onChange, children, ...other } = props;
+  const {
+    prefixCls = 'w-radio-group',
+    className,
+    name,
+    value,
+    onChange,
+    children,
+    ...other
+  } = props;
   return (
     <div {...other} className={classnames(prefixCls, className)}>
       {React.Children.toArray(children).map((child) => {
@@ -23,9 +31,9 @@ export default (props: RadioGroupProps = {}) => {
             checked: child.props.value === value,
             name,
             onChange,
-          }
+          },
         });
       })}
     </div>
   );
-}
+};

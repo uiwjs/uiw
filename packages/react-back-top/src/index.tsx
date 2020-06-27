@@ -22,8 +22,19 @@ export interface IBackTopState {
 }
 
 export default (props: BackTopProps = {}) => {
-  const { prefixCls = 'w-back-top', className, content, children, offsetTop = 0, fixed = true, speed = 100, showBelow = 1, clickable = true, ...other } = props;
-  const topShowBelow = !fixed ? 0 : (showBelow || 0);
+  const {
+    prefixCls = 'w-back-top',
+    className,
+    content,
+    children,
+    offsetTop = 0,
+    fixed = true,
+    speed = 100,
+    showBelow = 1,
+    clickable = true,
+    ...other
+  } = props;
+  const topShowBelow = !fixed ? 0 : showBelow || 0;
   const [percent, setPercent] = useState(0);
   const [current, setCurrent] = useState(0);
   const visible = percent >= topShowBelow;
@@ -34,9 +45,9 @@ export default (props: BackTopProps = {}) => {
   });
   useEffect(() => {
     window && window.addEventListener('scroll', onScroll);
-    return function() {
+    return function () {
       window && window.removeEventListener('scroll', onScroll);
-    }
+    };
   });
   function onScroll() {
     setPercent(getScrollPercent(offsetTop));
@@ -48,7 +59,9 @@ export default (props: BackTopProps = {}) => {
   return (
     <div onClick={() => clickable && scrollToTop()} className={cls} {...other}>
       {content}
-      {typeof children !== 'function' ? children : children({ percent, current, scrollToTop: scrollToTop })}
+      {typeof children !== 'function'
+        ? children
+        : children({ percent, current, scrollToTop: scrollToTop })}
     </div>
   );
-}
+};

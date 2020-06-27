@@ -17,11 +17,10 @@ export default class Checkbox extends React.Component<CheckboxProps> {
     disabled: false,
     checked: undefined,
     value: '',
-  }
+  };
   render() {
     const { className, indeterminate, ...other } = this.props;
     const cls = classnames(className, { indeterminate });
     return <RadioAbstract {...other} className={cls} />;
   }
 }
-

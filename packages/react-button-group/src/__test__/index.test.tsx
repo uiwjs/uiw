@@ -13,7 +13,7 @@ describe('<Button />', () => {
         <Button type="danger">错误按钮</Button>
         <Button type="light">亮按钮</Button>
         <Button type="dark">暗按钮</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     );
     let tree = component.toJSON();
     if (tree) {

@@ -18,7 +18,9 @@ export default class Home extends PureComponent {
             return <h2 key={idx}>{item.name}</h2>;
           }
           return (
-            <Link key={idx} to={`/components/${item.path}`}><Button type="light">{item.name}</Button></Link>
+            <Link key={idx} to={`/components/${item.path}`}>
+              <Button type="light">{item.name}</Button>
+            </Link>
           );
         })}
       </div>

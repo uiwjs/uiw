@@ -7,9 +7,11 @@ describe('<RadioGroup />', () => {
   it('Should output a RadioGroup', () => {
     const component = TestRenderer.create(
       <RadioGroup name="other" value="人妖">
-        <Radio value="人妖" disabled>人妖</Radio>
+        <Radio value="人妖" disabled>
+          人妖
+        </Radio>
         <Radio value="未知">未知</Radio>
-      </RadioGroup>
+      </RadioGroup>,
     );
     let json = component.toJSON();
     if (json) {

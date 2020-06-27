@@ -1,4 +1,4 @@
-@overlay-prefix:~"w-overlay";
+@overlay-prefix:~ "w-overlay";
 
 .@{overlay-prefix} {
   position: fixed;
@@ -48,7 +48,7 @@
     right: 0;
     bottom: 0;
     &:before {
-      content: " ";
+      content: ' ';
       display: inline-block;
       height: 100%;
       width: 1px;
@@ -63,7 +63,7 @@
     left: 0;
     opacity: 1;
     z-index: 20;
-    background-color: rgba(16,22,26,.7);
+    background-color: rgba(16, 22, 26, 0.7);
     overflow: auto;
     user-select: none;
   }
@@ -87,9 +87,8 @@
   transition: opacity 300ms ease-in;
 }
 
-
 .@{overlay-prefix}-enter .@{overlay-prefix}-content {
-  transform: scale(.5);
+  transform: scale(0.5);
   opacity: 0;
 }
 .@{overlay-prefix}-enter-active .@{overlay-prefix}-content {
@@ -103,7 +102,7 @@
   transition: transform 300ms ease, opacity 300ms ease;
 }
 .@{overlay-prefix}-exit-active .@{overlay-prefix}-content {
-  transform: scale(.5);
+  transform: scale(0.5);
   opacity: 0;
 }
 

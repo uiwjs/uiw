@@ -17,12 +17,28 @@ export interface IFormItemProps<T> extends IProps, HTMLDivProps {
   validator?: FormFieldsProps<T>['validator'];
 }
 
-export default class FormItem<T> extends React.PureComponent<IFormItemProps<T>> {
+export default class FormItem<T> extends React.PureComponent<
+  IFormItemProps<T>
+> {
   public static defaultProps = {
     prefixCls: 'w-form-item',
-  }
+  };
   render() {
-    const { prefixCls, className, style, label, labelFor, labelClassName, labelStyle, help, inline, initialValue, validator, hasError, ...otherProps } = this.props;
+    const {
+      prefixCls,
+      className,
+      style,
+      label,
+      labelFor,
+      labelClassName,
+      labelStyle,
+      help,
+      inline,
+      initialValue,
+      validator,
+      hasError,
+      ...otherProps
+    } = this.props;
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-error`]: hasError,
     });
@@ -31,7 +47,11 @@ export default class FormItem<T> extends React.PureComponent<IFormItemProps<T>> 
       return (
         <div className={cls} style={style} {...otherProps}>
           <Row>
-            <Col fixed className={labelCls}><label style={labelStyle} htmlFor={labelFor}>{label}</label></Col>
+            <Col fixed className={labelCls}>
+              <label style={labelStyle} htmlFor={labelFor}>
+                {label}
+              </label>
+            </Col>
             <Col className="w-form-row">{this.props.children}</Col>
           </Row>
           {help && (
@@ -44,11 +64,14 @@ export default class FormItem<T> extends React.PureComponent<IFormItemProps<T>> 
     }
     return (
       <div className={cls} style={style} {...otherProps}>
-        {label && <label className={labelCls} style={labelStyle} htmlFor={labelFor}>{label}</label>}
+        {label && (
+          <label className={labelCls} style={labelStyle} htmlFor={labelFor}>
+            {label}
+          </label>
+        )}
         <Col className="w-form-row">{this.props.children}</Col>
         {help && <div className="w-form-help">{help}</div>}
       </div>
     );
   }
 }
-

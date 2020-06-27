@@ -14,9 +14,15 @@ export default class ButtonGroup extends React.Component<ButtonGroupProps> {
   public static defaultProps: ButtonGroupProps = {
     prefixCls: 'w-btn-group',
     vertical: false,
-  }
+  };
   public render() {
-    const { prefixCls, vertical, children, className, ...resetProps } = this.props;
+    const {
+      prefixCls,
+      vertical,
+      children,
+      className,
+      ...resetProps
+    } = this.props;
     const cls: string = classnames(prefixCls, className, {
       [`${prefixCls}-vertical`]: vertical,
     });

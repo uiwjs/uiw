@@ -6,7 +6,17 @@ import Menu from '@uiw/react-menu';
 import Input from '@uiw/react-input';
 import { IProps } from '@uiw/utils';
 
-export interface SearchSelectProps extends IProps, Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size' | 'onSelect' | 'onMouseEnter' | 'defaultValue' | 'value' | 'onChange'> {
+export interface SearchSelectProps
+  extends IProps,
+    Omit<
+      React.SelectHTMLAttributes<HTMLSelectElement>,
+      | 'size'
+      | 'onSelect'
+      | 'onMouseEnter'
+      | 'defaultValue'
+      | 'value'
+      | 'onChange'
+    > {
   size?: 'large' | 'default' | 'small';
   loading: boolean;
   isOpen?: boolean;
@@ -39,14 +49,17 @@ export interface SearchSelectState {
   selectedLabel: string;
 }
 
-export default class SearchSelect extends React.Component<SearchSelectProps, SearchSelectState> {
+export default class SearchSelect extends React.Component<
+  SearchSelectProps,
+  SearchSelectState
+> {
   public static defaultProps: SearchSelectProps = {
     allowClear: false,
     disabled: false,
     size: 'default',
     option: [],
     loading: false,
-  }
+  };
 
   private divRef = React.createRef<HTMLDivElement>();
 
@@ -56,24 +69,26 @@ export default class SearchSelect extends React.Component<SearchSelectProps, Sea
     searchLoading: false,
     selectIconType: '',
     selectedLabel: '',
-  }
+  };
 
   UNSAFE_componentWillReceiveProps(nextProps: SearchSelectProps) {
-    if ( nextProps.value !== this.props.value) {
+    if (nextProps.value !== this.props.value) {
       this.setState({
-        selectedValue: nextProps.value
-      })
+        selectedValue: nextProps.value,
+      });
     }
   }
 
   componentDidMount() {
     const { defaultValue, option } = this.props;
     if (defaultValue) {
-      const defaultMenuItem = option.find((menuItem: MenuItemData) => defaultValue === menuItem.value);
+      const defaultMenuItem = option.find(
+        (menuItem: MenuItemData) => defaultValue === menuItem.value,
+      );
       this.setState({
         selectedValue: defaultValue,
         selectedLabel: defaultMenuItem ? defaultMenuItem.label : '',
-      })
+      });
     }
   }
 
@@ -92,11 +107,11 @@ export default class SearchSelect extends React.Component<SearchSelectProps, Sea
       selectIconType = '';
     }
     this.setState({ selectIconType });
-  }
+  };
 
   // handle change
   handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { onSearch, showSearch} = this.props;
+    const { onSearch, showSearch } = this.props;
     let innerIsOpen;
     const value = e.target.value;
     if (value) {
@@ -108,13 +123,13 @@ export default class SearchSelect extends React.Component<SearchSelectProps, Sea
       innerIsOpen,
       selectedLabel: value,
       selectIconType: showSearch && value ? 'loading' : '',
-    })
-    showSearch && onSearch && onSearch(value)
+    });
+    showSearch && onSearch && onSearch(value);
     this.handleSelectChange(value);
-  }
+  };
 
   handleSelectChange(value: any) {
-    const { onChange  } = this.props;
+    const { onChange } = this.props;
     onChange && onChange(value);
   }
 
@@ -123,7 +138,7 @@ export default class SearchSelect extends React.Component<SearchSelectProps, Sea
       selectedValue: item.value,
       selectedLabel: item.label,
       innerIsOpen: false,
-    })
+    });
     this.props.onSelect && this.props.onSelect(item.value);
     // 支持form组件
     this.handleSelectChange(item.value);
@@ -139,12 +154,29 @@ export default class SearchSelect extends React.Component<SearchSelectProps, Sea
       innerIsOpen: false,
     });
     this.handleSelectChange('');
-  }
+  };
 
   render() {
-    const { prefixCls, className, size, style,isOpen, option, value, showSearch, loading,
-      placeholder, disabled, ...others } = this.props;
-    const { innerIsOpen, selectedValue, selectIconType, selectedLabel } = this.state;
+    const {
+      prefixCls,
+      className,
+      size,
+      style,
+      isOpen,
+      option,
+      value,
+      showSearch,
+      loading,
+      placeholder,
+      disabled,
+      ...others
+    } = this.props;
+    const {
+      innerIsOpen,
+      selectedValue,
+      selectIconType,
+      selectedLabel,
+    } = this.state;
     return (
       <Dropdown
         trigger="focus"
@@ -153,22 +185,33 @@ export default class SearchSelect extends React.Component<SearchSelectProps, Sea
         disabled={option && option.length > 0 ? false : true}
         menu={
           <Loader loading={loading}>
-            <Menu bordered style={{ minHeight: 25, maxHeight: 280, overflowY: 'scroll' ,width: this.divRef.current ? this.divRef.current.offsetWidth : 'auto' }}>
-              {option && option.map((item, idx) => {
-                const active = selectedValue === item.value;
-                return (
-                  <Menu.Item
-                    active={active}
-                    key={idx}
-                    text={item.label}
-                    onClick={this.handleItemClick.bind(this, item)}
-                  />
-                );
-              })}
+            <Menu
+              bordered
+              style={{
+                minHeight: 25,
+                maxHeight: 280,
+                overflowY: 'scroll',
+                width: this.divRef.current
+                  ? this.divRef.current.offsetWidth
+                  : 'auto',
+              }}
+            >
+              {option &&
+                option.map((item, idx) => {
+                  const active = selectedValue === item.value;
+                  return (
+                    <Menu.Item
+                      active={active}
+                      key={idx}
+                      text={item.label}
+                      onClick={this.handleItemClick.bind(this, item)}
+                    />
+                  );
+                })}
             </Menu>
           </Loader>
         }
-        style={{marginTop: 5}}
+        style={{ marginTop: 5 }}
         {...others}
       >
         <div
@@ -185,15 +228,18 @@ export default class SearchSelect extends React.Component<SearchSelectProps, Sea
             value={selectedLabel}
             placeholder={placeholder}
             addonAfter={
-              (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && <Icon
-                type={selectIconType}
-                spin={loading && selectIconType === 'loading'}
-                onClick={this.resetSelectedValue}
-              />
+              (selectIconType === 'close' ||
+                (selectIconType === 'loading' && loading)) && (
+                <Icon
+                  type={selectIconType}
+                  spin={loading && selectIconType === 'loading'}
+                  onClick={this.resetSelectedValue}
+                />
+              )
             }
           />
         </div>
       </Dropdown>
-    )
+    );
   }
 }

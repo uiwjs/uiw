@@ -1,4 +1,4 @@
-@w-menu:~"w-menu";
+@w-menu:~ "w-menu";
 
 .@{w-menu} {
   margin: 0 !important;
@@ -9,8 +9,10 @@
   width: 100%;
   text-align: left;
   font-size: 14px;
-  transition: width .2s, min-width .2s, max-width .2s, height 0.2s, min-height .2s, max-height .2s;
-  &&-dark, &&-light {
+  transition: width 0.2s, min-width 0.2s, max-width 0.2s, height 0.2s,
+    min-height 0.2s, max-height 0.2s;
+  &&-dark,
+  &&-light {
     padding-left: 5px;
   }
   &:not(&-dark) {
@@ -29,12 +31,13 @@
     }
   }
   &.w-bordered {
-    box-shadow: 0 0 0 1px rgba(16,22,26,.1), 0 0 0 rgba(16,22,26,0), 0 1px 1px rgba(16,22,26,.2);
+    box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 0 0 rgba(16, 22, 26, 0),
+      0 1px 1px rgba(16, 22, 26, 0.2);
   }
   .@{w-menu}-divider {
     display: block;
     margin: 5px !important;
-    border-top: 1px solid rgba(16,22,26,.15);
+    border-top: 1px solid rgba(16, 22, 26, 0.15);
     > strong {
       display: block;
       line-height: 17px;
@@ -49,7 +52,7 @@
 
 .@{w-menu} {
   &&-light&-inline-collapsed > li > .@{w-menu}-item:hover {
-    color: #008EF0;
+    color: #008ef0;
   }
   &-inline-collapsed {
     width: 80px;
@@ -75,12 +78,13 @@
       display: none;
     }
   }
-
 }
 .@{w-menu} {
-  &-dark, &-dark.w-bordered, &-dark & {
+  &-dark,
+  &-dark.w-bordered,
+  &-dark & {
     background: #343a40;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255, 255, 255, 0.65);
   }
   &-dark.w-bordered {
     box-shadow: initial;
@@ -88,8 +92,9 @@
   &-dark .active {
     color: #fff !important;
   }
-  &-dark &-item.w-disabled, &-dark &-item.w-disabled &-item-icon {
-    color: rgba(142, 142, 142, 0.79) !important
+  &-dark &-item.w-disabled,
+  &-dark &-item.w-disabled &-item-icon {
+    color: rgba(142, 142, 142, 0.79) !important;
   }
   &-dark &-divider {
     border-top: 1px solid rgba(255, 255, 255, 0.2);

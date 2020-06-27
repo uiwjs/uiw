@@ -35,7 +35,7 @@ export default class Rate extends React.Component<RateProps, IRateState> {
     count: 5,
     character: '★',
     readOnly: false,
-  }
+  };
   constructor(props: RateProps) {
     super(props);
     this.state = {
@@ -63,7 +63,19 @@ export default class Rate extends React.Component<RateProps, IRateState> {
     }
   }
   render() {
-    const { prefixCls, count, value, className, character, readOnly, disabled, onChange, onHoverChange, color, ...other } = this.props;
+    const {
+      prefixCls,
+      count,
+      value,
+      className,
+      character,
+      readOnly,
+      disabled,
+      onChange,
+      onHoverChange,
+      color,
+      ...other
+    } = this.props;
     const cls = classnames(prefixCls, className, { disabled });
     return (
       <div
@@ -71,31 +83,42 @@ export default class Rate extends React.Component<RateProps, IRateState> {
         className={cls}
         onMouseLeave={this.onMouseLeave.bind(this)}
       >
-        {Array(count).fill(null).map((_, idx) => {
-          const props: IRateChildProps = {
-            key: idx,
-            className: classnames({
-              'star-on': idx < this.state.value && this.state.hoverCount === -1,
-              'hover-on': idx <= this.state.hoverCount,
-              'half-on': parseInt(this.state.value.toString(), 10) === idx && Math.ceil(this.state.value) - 1 === idx,
-            }),
-          };
-          if (!readOnly) {
-            props.onClick = e => this.onClick(e, idx);
-            props.onMouseMove = e => this.onMouseMove(e, idx);
-          }
+        {Array(count)
+          .fill(null)
+          .map((_, idx) => {
+            const props: IRateChildProps = {
+              key: idx,
+              className: classnames({
+                'star-on':
+                  idx < this.state.value && this.state.hoverCount === -1,
+                'hover-on': idx <= this.state.hoverCount,
+                'half-on':
+                  parseInt(this.state.value.toString(), 10) === idx &&
+                  Math.ceil(this.state.value) - 1 === idx,
+              }),
+            };
+            if (!readOnly) {
+              props.onClick = (e) => this.onClick(e, idx);
+              props.onMouseMove = (e) => this.onMouseMove(e, idx);
+            }
 
-          if (color && (idx <= this.state.hoverCount || (idx < this.state.value && this.state.hoverCount === -1))) {
-            props.style = { ...props.style, color };
-          }
+            if (
+              color &&
+              (idx <= this.state.hoverCount ||
+                (idx < this.state.value && this.state.hoverCount === -1))
+            ) {
+              props.style = { ...props.style, color };
+            }
 
-          return (
-            <span {...props}>
-              <span className={classnames(`${prefixCls}-hight`)}>{character}</span>
-              <span className={`${prefixCls}-bg`}>{character}</span>
-            </span>
-          );
-        })}
+            return (
+              <span {...props}>
+                <span className={classnames(`${prefixCls}-hight`)}>
+                  {character}
+                </span>
+                <span className={`${prefixCls}-bg`}>{character}</span>
+              </span>
+            );
+          })}
       </div>
     );
   }

@@ -10,7 +10,7 @@ export default class Divider extends React.Component<MenuDividerProps> {
   static displayName = 'uiw.MenuDivider';
   public static defaultProps: MenuDividerProps = {
     prefixCls: 'w-menu-divider',
-  }
+  };
   public render() {
     const { prefixCls, className, title, ...htmlProps } = this.props;
     const cls = classNames(prefixCls, className);

@@ -7,10 +7,14 @@ describe('<Breadcrumb />', () => {
   it('Should output a Breadcrumb', () => {
     const component = TestRenderer.create(
       <Breadcrumb>
-        <Breadcrumb.Item><a href="#">Home</a></Breadcrumb.Item>
-        <Breadcrumb.Item separator=">"><a href="#">Library</a></Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href="#">Home</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item separator=">">
+          <a href="#">Library</a>
+        </Breadcrumb.Item>
         <Breadcrumb.Item active>Data</Breadcrumb.Item>
-      </Breadcrumb>
+      </Breadcrumb>,
     );
     let tree = component.toJSON();
     if (tree) {
@@ -18,10 +22,11 @@ describe('<Breadcrumb />', () => {
       expect(tree.props.className).toBe('w-breadcrumb');
       if (tree.children) {
         expect(tree.children.length).toBe(3);
-        expect((tree.children[0] as any).props.className).toBe('w-breadcrumb-item');
+        expect((tree.children[0] as any).props.className).toBe(
+          'w-breadcrumb-item',
+        );
         expect((tree.children[0] as any).type).toBe('span');
       }
     }
   });
 });
-

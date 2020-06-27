@@ -14,7 +14,6 @@ export interface AvatarProps extends HTMLSpanProps {
   size?: 'large' | 'default' | 'small' | 'mini';
   shape?: 'square' | 'circle';
   onError?: (event: React.SyntheticEvent<HTMLImageElement, Event>) => boolean;
-
 }
 
 export interface AvatarState {
@@ -26,10 +25,10 @@ export default class Avatar extends React.Component<AvatarProps, AvatarState> {
     prefixCls: 'w-avatar',
     shape: 'circle',
     size: 'default',
-  }
+  };
   public state: AvatarState = {
     isImgExist: true,
-  }
+  };
 
   componentDidUpdate(prevProps: AvatarProps) {
     if (prevProps.src !== this.props.src) {
@@ -45,7 +44,16 @@ export default class Avatar extends React.Component<AvatarProps, AvatarState> {
     }
   }
   render() {
-    const { prefixCls, className, size, shape, src, alt, icon, ...resetProps } = this.props;
+    const {
+      prefixCls,
+      className,
+      size,
+      shape,
+      src,
+      alt,
+      icon,
+      ...resetProps
+    } = this.props;
     let children = this.props.children;
     const cls = classnames(prefixCls, className, {
       [`${prefixCls}-${size}`]: size,

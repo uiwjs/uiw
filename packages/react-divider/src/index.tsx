@@ -10,14 +10,30 @@ export interface DividerProps extends IProps, HTMLDivProps {
 }
 
 export default (props: DividerProps = {}) => {
-  const { prefixCls = 'w-divider', className, children, dashed = false, type = 'horizontal', align = 'center', ...restProps } = props;
-  const cls = classnames(className, prefixCls, `${prefixCls}-${type}`, `${prefixCls}-${align}`, {
-    [`${prefixCls}-with-text`]: children,
-    [`${prefixCls}-dashed`]: !!dashed,
-  });
+  const {
+    prefixCls = 'w-divider',
+    className,
+    children,
+    dashed = false,
+    type = 'horizontal',
+    align = 'center',
+    ...restProps
+  } = props;
+  const cls = classnames(
+    className,
+    prefixCls,
+    `${prefixCls}-${type}`,
+    `${prefixCls}-${align}`,
+    {
+      [`${prefixCls}-with-text`]: children,
+      [`${prefixCls}-dashed`]: !!dashed,
+    },
+  );
   return (
     <div className={cls} {...restProps}>
-      {children && <span className={`${prefixCls}-inner-text`}>{children}</span>}
+      {children && (
+        <span className={`${prefixCls}-inner-text`}>{children}</span>
+      )}
     </div>
   );
-}
+};

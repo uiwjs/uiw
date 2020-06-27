@@ -1,8 +1,9 @@
-@datepicker-prefix: ~"w-datepicker";
+@datepicker-prefix: ~'w-datepicker';
 
 // Picker Month and Year
 .@{datepicker-prefix} {
-  &-month, &-year {
+  &-month,
+  &-year {
     text-align: center;
     max-width: 100%;
     padding: 7px 0 5px 0;
@@ -19,14 +20,14 @@
       }
       &.selected > span {
         color: #fff;
-        background-color: #2EA3F4;
+        background-color: #2ea3f4;
       }
       > span:hover {
-        background-color: lighten(#2EA3F4, 36%);
-        color: #2EA3F4;
+        background-color: lighten(#2ea3f4, 36%);
+        color: #2ea3f4;
       }
       &.paging {
-        color: rgba(0,0,0,0.25);
+        color: rgba(0, 0, 0, 0.25);
       }
     }
   }

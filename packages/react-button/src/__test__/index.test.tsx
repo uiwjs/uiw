@@ -4,11 +4,9 @@ import Button from '../';
 
 describe('<Button />', () => {
   it('Should output a button', () => {
-    const component = TestRenderer.create(
-      <Button>按钮</Button>
-    );
+    const component = TestRenderer.create(<Button>按钮</Button>);
     let tree = component.toJSON();
-    if(tree) {
+    if (tree) {
       expect(tree.type).toBe('button');
       expect(tree.props.type).toBe('button');
       expect(tree.props.disabled).toBeFalsy();

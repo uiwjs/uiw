@@ -13,12 +13,15 @@ export interface DatePickerYearState {
   activeYear: Date;
 }
 
-export class DatePickerYear extends React.Component<DatePickerYearProps, DatePickerYearState> {
+export class DatePickerYear extends React.Component<
+  DatePickerYearProps,
+  DatePickerYearState
+> {
   public static defaultProps: DatePickerYearProps = {
     prefixCls: 'w-datepicker',
     panelNum: [-7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    onSelected() { },
-  }
+    onSelected() {},
+  };
   constructor(props: DatePickerYearProps) {
     super(props);
     this.state = {
@@ -37,24 +40,34 @@ export class DatePickerYear extends React.Component<DatePickerYearProps, DatePic
     }
   }
   render() {
-    const { prefixCls, className, panelDate, onSelected, panelNum, ...other } = this.props;
+    const {
+      prefixCls,
+      className,
+      panelDate,
+      onSelected,
+      panelNum,
+      ...other
+    } = this.props;
     return (
       <div className={classnames(`${prefixCls}-year`, className)} {...other}>
-        {panelNum && panelNum.map((_, idx) => {
-          const selectedYear = this.state.activeYear.getFullYear();
-          const year = selectedYear + panelNum[idx];
-          return (
-            <div
-              key={idx}
-              className={classnames({
-                selected: selectedYear === year,
-                paging: idx === 0 || idx === panelNum.length - 1,
-              })}
-            >
-              <span onClick={this.onSelected.bind(this, year, idx)}>{year}</span>
-            </div>
-          );
-        })}
+        {panelNum &&
+          panelNum.map((_, idx) => {
+            const selectedYear = this.state.activeYear.getFullYear();
+            const year = selectedYear + panelNum[idx];
+            return (
+              <div
+                key={idx}
+                className={classnames({
+                  selected: selectedYear === year,
+                  paging: idx === 0 || idx === panelNum.length - 1,
+                })}
+              >
+                <span onClick={this.onSelected.bind(this, year, idx)}>
+                  {year}
+                </span>
+              </div>
+            );
+          })}
       </div>
     );
   }

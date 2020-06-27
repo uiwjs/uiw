@@ -22,11 +22,11 @@ const cannotCreatePortal = !(typeof ReactDOM.createPortal === 'function');
 
 export default class Portal extends React.Component<PortalProps> {
   public static defaultProps: PortalProps = {
-    container: typeof document !== "undefined" ? document.body : undefined,
+    container: typeof document !== 'undefined' ? document.body : undefined,
   };
   public state: PortalState = {
     hasMounted: false,
-  }
+  };
   private portalElement!: HTMLElement;
   public componentDidMount() {
     if (!this.props.container) {
@@ -57,21 +57,25 @@ export default class Portal extends React.Component<PortalProps> {
     // Only render `children` once this component has mounted in a browser environment,
     // so they are immediately attached to the DOM tree.
     // See long comment on componentDidMount in https://reactjs.org/docs/portals.html#event-bubbling-through-portals
-    if (cannotCreatePortal || typeof document === 'undefined' || !this.state.hasMounted) {
+    if (
+      cannotCreatePortal ||
+      typeof document === 'undefined' ||
+      !this.state.hasMounted
+    ) {
       return <Fragment />;
     } else {
       return ReactDOM.createPortal(this.props.children, this.portalElement);
     }
   }
   private createContainerElement() {
-    const container = document.createElement("div");
+    const container = document.createElement('div');
     return container;
   }
   unstableRenderNoPortal() {
-    ReactDOM.unstable_renderSubtreeIntoContainer(/* parentComponent */ this,
+    ReactDOM.unstable_renderSubtreeIntoContainer(
+      /* parentComponent */ this,
       <div>{this.props.children}</div>,
       this.portalElement,
     );
   }
 }
-

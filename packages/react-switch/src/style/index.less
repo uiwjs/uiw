@@ -1,11 +1,10 @@
-
-@w-switch:~"w-switch";
+@w-switch:~ "w-switch";
 
 .@{w-switch} {
   vertical-align: middle;
   font-size: 12px;
   cursor: pointer;
-  input[type=checkbox] {
+  input[type='checkbox'] {
     cursor: pointer;
     white-space: nowrap;
     position: relative;
@@ -18,21 +17,22 @@
     outline: 0;
     font-size: 12px;
     border-radius: 16px;
-    transition: all .3s;
+    transition: all 0.3s;
     box-shadow: inset 0 1px 2px rgba(16, 22, 26, 0.2);
-    &:before, &:after {
+    &:before,
+    &:after {
       display: inline-block;
       vertical-align: middle;
     }
     &:before {
       content: attr(data-checked);
-      transition: all .3s;
+      transition: all 0.3s;
       padding: 0 21px 0 6px;
       color: #fff;
       line-height: 20px;
     }
     &:checked {
-      background-color: #008EF0;
+      background-color: #008ef0;
       &:after {
         right: 2px;
         margin-right: 0;
@@ -43,7 +43,7 @@
     }
     &:not(:checked):before {
       padding: 0 6px 0 21px;
-      color: #393E48;
+      color: #393e48;
     }
     &:after {
       content: ' ';
@@ -55,23 +55,24 @@
       height: 16px;
       width: 16px;
       border-radius: 50%;
-      transition: all .2s;
+      transition: all 0.2s;
       background-color: #fff;
-      box-shadow: 0 1px 2px 0 rgba(0,35,11,0.2);
+      box-shadow: 0 1px 2px 0 rgba(0, 35, 11, 0.2);
     }
     &:disabled {
       cursor: not-allowed;
-      opacity: .45;
+      opacity: 0.45;
     }
     &:focus {
-      box-shadow: 0 0 0 2px rgba(0, 142, 240, 0.25), inset 0 1px 2px rgba(16, 22, 26, 0.2);
+      box-shadow: 0 0 0 2px rgba(0, 142, 240, 0.25),
+        inset 0 1px 2px rgba(16, 22, 26, 0.2);
     }
   }
   &.disabled {
     cursor: not-allowed;
   }
   &-large {
-    input[type=checkbox] {
+    input[type='checkbox'] {
       min-width: 38px;
       height: 24px;
       &::after {
@@ -92,7 +93,7 @@
   }
   &-small {
     font-size: 12px;
-    input[type=checkbox] {
+    input[type='checkbox'] {
       min-width: 15px;
       height: 16px;
       &::after {
@@ -109,7 +110,8 @@
       }
     }
   }
-  &-text, input[type=checkbox] {
+  &-text,
+  input[type='checkbox'] {
     vertical-align: middle;
   }
   &-text {

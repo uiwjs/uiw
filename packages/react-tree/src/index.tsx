@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import Icon, { IconProps } from '@uiw/react-icon';
-import { IProps, HTMLDivProps } from '@uiw/utils'
+import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/index.less';
 
 export type TreeRenderTitleNode<T> = {
@@ -11,7 +11,7 @@ export type TreeRenderTitleNode<T> = {
   isHalfChecked?: boolean;
   openKeys?: TreeProps<T>['openKeys'];
   selectedKeys?: TreeProps<T>['selectedKeys'];
-}
+};
 
 export interface TreeProps<T> extends IProps, HTMLDivProps {
   icon?: IconProps<T>['type'];
@@ -37,9 +37,23 @@ export interface TreeProps<T> extends IProps, HTMLDivProps {
    * 支持点选多个节点
    */
   multiple?: boolean;
-  renderTitle?: (item: TreeData, node: TreeRenderTitleNode<T>) => React.ReactElement;
-  onExpand?: (key: TreeData['key'], expanded: boolean, item: TreeData, evn: React.MouseEvent<HTMLElement>) => void;
-  onSelected?: (keys: TreeData['key'][], key: TreeData['key'], selected: boolean, item: TreeData, evn: React.MouseEvent<HTMLElement>) => void;
+  renderTitle?: (
+    item: TreeData,
+    node: TreeRenderTitleNode<T>,
+  ) => React.ReactElement;
+  onExpand?: (
+    key: TreeData['key'],
+    expanded: boolean,
+    item: TreeData,
+    evn: React.MouseEvent<HTMLElement>,
+  ) => void;
+  onSelected?: (
+    keys: TreeData['key'][],
+    key: TreeData['key'],
+    selected: boolean,
+    item: TreeData,
+    evn: React.MouseEvent<HTMLElement>,
+  ) => void;
 }
 
 export interface TreeData {
@@ -72,7 +86,10 @@ const isContained = (a: any[], b: any[]) => {
   return true;
 };
 
-const getChildKeys = (childs: TreeData[] = [], result: TreeData['key'][] = []): TreeData['key'][] => {
+const getChildKeys = (
+  childs: TreeData[] = [],
+  result: TreeData['key'][] = [],
+): TreeData['key'][] => {
   childs.forEach((item) => {
     result.push(item.key as string | number);
     if (item.children && item.children.length > 0) {
@@ -82,7 +99,10 @@ const getChildKeys = (childs: TreeData[] = [], result: TreeData['key'][] = []): 
   return result;
 };
 
-const getParentKeys = (childs: TreeData = {}, result: TreeData['key'][] = []) => {
+const getParentKeys = (
+  childs: TreeData = {},
+  result: TreeData['key'][] = [],
+) => {
   if (childs.key) {
     result.push(childs.key);
   }
@@ -92,8 +112,16 @@ const getParentKeys = (childs: TreeData = {}, result: TreeData['key'][] = []) =>
   return result;
 };
 
-const getParentSelectKeys = (childs: TreeData = {}, selectedKeys: TreeData['key'][] = [], result: TreeData['key'][] = []) => {
-  if (childs.key && childs.children && isContained(selectedKeys, getChildKeys(childs.children))) {
+const getParentSelectKeys = (
+  childs: TreeData = {},
+  selectedKeys: TreeData['key'][] = [],
+  result: TreeData['key'][] = [],
+) => {
+  if (
+    childs.key &&
+    childs.children &&
+    isContained(selectedKeys, getChildKeys(childs.children))
+  ) {
     result.push(childs.key);
     if (childs.parent && !childs.parent.parent) {
       if (isContained(selectedKeys, getChildKeys(childs.children))) {
@@ -125,7 +153,7 @@ export default class Tree<T> extends React.Component<TreeProps<T>, TreeState> {
     multiple: false,
     onExpand: noop,
     onSelected: noop,
-  }
+  };
   constructor(props: TreeProps<T>) {
     super(props);
     this.state = {
@@ -151,24 +179,32 @@ export default class Tree<T> extends React.Component<TreeProps<T>, TreeState> {
   }
   onItemSelected(item: TreeData, evn: React.MouseEvent<HTMLElement>) {
     const { onSelected, multiple, checkStrictly } = this.props;
-    let selKeys = [...this.state.selectedKeys as TreeData['key'][]];
+    let selKeys = [...(this.state.selectedKeys as TreeData['key'][])];
 
-    const findKey = selKeys.find(v => v === item.key);
+    const findKey = selKeys.find((v) => v === item.key);
     let selected = false;
     if (!findKey) {
       selected = true;
       selKeys.push(item.key);
     } else {
-      selKeys = selKeys.filter(v => v !== item.key);
+      selKeys = selKeys.filter((v) => v !== item.key);
     }
     if (checkStrictly) {
       if (!findKey) {
-        selKeys = selKeys.concat(getChildKeys(item.children).filter(val => selKeys.indexOf(val) === -1));
+        selKeys = selKeys.concat(
+          getChildKeys(item.children).filter(
+            (val) => selKeys.indexOf(val) === -1,
+          ),
+        );
         selKeys = selKeys.concat(getParentSelectKeys(item, selKeys));
         selKeys = Array.from(new Set(selKeys)); // Remove duplicates.
       } else {
-        selKeys = selKeys.filter(val => getChildKeys(item.children).indexOf(val) === -1);
-        selKeys = selKeys.filter(val => getParentKeys(item.parent).indexOf(val) === -1);
+        selKeys = selKeys.filter(
+          (val) => getChildKeys(item.children).indexOf(val) === -1,
+        );
+        selKeys = selKeys.filter(
+          (val) => getParentKeys(item.parent).indexOf(val) === -1,
+        );
       }
     }
     if (!multiple) {
@@ -180,27 +216,27 @@ export default class Tree<T> extends React.Component<TreeProps<T>, TreeState> {
   }
   onExit = (node: HTMLElement) => {
     node.style.height = `${node.scrollHeight}px`;
-  }
+  };
   onExiting = (node: HTMLElement) => {
     node.style.height = '1px';
-  }
+  };
   onEnter = (node: HTMLElement, isAppearing: boolean) => {
     node.style.height = '1px';
-  }
+  };
   onEntering = (node: HTMLElement, isAppearing: boolean) => {
     node.style.height = `${node.scrollHeight}px`;
-  }
+  };
   onEntered = (node: HTMLElement, isAppearing: boolean) => {
     node.style.height = 'initial';
-  }
+  };
   onItemClick(item: TreeData, evn: React.MouseEvent<HTMLElement>) {
     if (!item.children) {
       return;
     }
     const { onExpand } = this.props;
     const { openKeys } = this.state;
-    let currentKeys = [...openKeys as TreeData['key'][]];
-    const key = currentKeys.find(v => v === item.key);
+    let currentKeys = [...(openKeys as TreeData['key'][])];
+    const key = currentKeys.find((v) => v === item.key);
     const cls = evn.currentTarget.className.replace(/(\s)open/g, '');
     let expanded = false;
     if (!key && item.key) {
@@ -208,7 +244,7 @@ export default class Tree<T> extends React.Component<TreeProps<T>, TreeState> {
       evn.currentTarget.className = classnames(cls, 'open');
       expanded = true;
     } else {
-      currentKeys = currentKeys.filter(v => v !== item.key);
+      currentKeys = currentKeys.filter((v) => v !== item.key);
       evn.currentTarget.className = cls;
     }
     this.setState({ openKeys: currentKeys }, () => {
@@ -216,7 +252,13 @@ export default class Tree<T> extends React.Component<TreeProps<T>, TreeState> {
     });
   }
   renderTreeNode(data: TreeData[], level: number, parent?: TreeData) {
-    const { prefixCls, renderTitle, icon, iconAnimation, isSelected } = this.props;
+    const {
+      prefixCls,
+      renderTitle,
+      icon,
+      iconAnimation,
+      isSelected,
+    } = this.props;
     const { openKeys, selectedKeys } = this.state;
     let isOpen = false;
 
@@ -242,21 +284,39 @@ export default class Tree<T> extends React.Component<TreeProps<T>, TreeState> {
         >
           {data.map((item, idx: number) => {
             item.parent = parent;
-            const selected = !!(selectedKeys && selectedKeys.indexOf(item.key) > -1);
+            const selected = !!(
+              selectedKeys && selectedKeys.indexOf(item.key) > -1
+            );
             const noChild = !item.children;
-            const itemIsOpen = openKeys && openKeys.indexOf(item.key) > -1 && !!item.children;
-            const iconItem = typeof icon === 'function' ? icon(item, { isOpen: !!itemIsOpen, noChild, openKeys, selectedKeys }) : icon;
+            const itemIsOpen =
+              openKeys && openKeys.indexOf(item.key) > -1 && !!item.children;
+            const iconItem =
+              typeof icon === 'function'
+                ? icon(item, {
+                    isOpen: !!itemIsOpen,
+                    noChild,
+                    openKeys,
+                    selectedKeys,
+                  })
+                : icon;
             const childKeys = noChild ? [] : getChildKeys(item.children);
-            const checkedKeys = selectedKeys ? selectedKeys.filter(key => childKeys.indexOf(key) > -1) : [];
-            const isHalfChecked = checkedKeys.length > 0 && childKeys.length !== checkedKeys.length;
+            const checkedKeys = selectedKeys
+              ? selectedKeys.filter((key) => childKeys.indexOf(key) > -1)
+              : [];
+            const isHalfChecked =
+              checkedKeys.length > 0 && childKeys.length !== checkedKeys.length;
             return (
               <li key={idx}>
                 <div className={classnames(`${prefixCls}-label`)}>
-                  <span className={`${prefixCls}-switcher`} onClick={this.onItemClick.bind(this, item)}>
+                  <span
+                    className={`${prefixCls}-switcher`}
+                    onClick={this.onItemClick.bind(this, item)}
+                  >
                     <Icon
                       type={iconItem || 'caret-right'}
                       className={classnames({
-                        [`${prefixCls}-switcher-noop`]: typeof icon === 'function',
+                        [`${prefixCls}-switcher-noop`]:
+                          typeof icon === 'function',
                         'no-child': noChild,
                         'no-animation': !iconAnimation,
                         open: itemIsOpen,
@@ -270,10 +330,21 @@ export default class Tree<T> extends React.Component<TreeProps<T>, TreeState> {
                       disabled: item.disabled,
                     })}
                   >
-                    {renderTitle ? renderTitle(item, { selected, noChild, openKeys, isHalfChecked, selectedKeys }) : <span>{item.label}</span>}
+                    {renderTitle ? (
+                      renderTitle(item, {
+                        selected,
+                        noChild,
+                        openKeys,
+                        isHalfChecked,
+                        selectedKeys,
+                      })
+                    ) : (
+                      <span>{item.label}</span>
+                    )}
                   </div>
                 </div>
-                {item.children && this.renderTreeNode(item.children, level + 1, item)}
+                {item.children &&
+                  this.renderTreeNode(item.children, level + 1, item)}
               </li>
             );
           })}
@@ -282,8 +353,27 @@ export default class Tree<T> extends React.Component<TreeProps<T>, TreeState> {
     );
   }
   render() {
-    const { prefixCls, className, icon, data, openKeys, selectedKeys, isSelected, autoExpandParent, defaultExpandAll, checkStrictly, showLine, iconAnimation, renderTitle, onExpand, onSelected, ...elementProps } = this.props;
-    const cls = classnames(className, prefixCls, { [`${prefixCls}-line`]: showLine });
+    const {
+      prefixCls,
+      className,
+      icon,
+      data,
+      openKeys,
+      selectedKeys,
+      isSelected,
+      autoExpandParent,
+      defaultExpandAll,
+      checkStrictly,
+      showLine,
+      iconAnimation,
+      renderTitle,
+      onExpand,
+      onSelected,
+      ...elementProps
+    } = this.props;
+    const cls = classnames(className, prefixCls, {
+      [`${prefixCls}-line`]: showLine,
+    });
     return (
       <div className={cls} {...elementProps}>
         {this.renderTreeNode(data as TreeData[], 1)}

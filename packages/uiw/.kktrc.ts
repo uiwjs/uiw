@@ -4,15 +4,13 @@ import webpack from 'webpack';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 
-export const loaderOneOf: LoaderOneOf = [
-  require.resolve('@kkt/loader-less'),
-];
+export const loaderOneOf: LoaderOneOf = [require.resolve('@kkt/loader-less')];
 
 export interface KKTOpts extends OptionConf {
   yargsArgs: OptionConf['yargsArgs'] & {
     bundle: boolean;
     mini: boolean;
-  }
+  };
 }
 
 export default (conf: webpack.Configuration, options: KKTOpts) => {
@@ -20,12 +18,18 @@ export default (conf: webpack.Configuration, options: KKTOpts) => {
     const { MiniCssExtractPlugin } = options;
     conf.devtool = false;
     const regexp = /(HtmlWebpackPlugin|InlineChunkHtmlPlugin|InterpolateHtmlPlugin|ModuleNotFoundPlugin|DefinePlugin|ManifestPlugin|IgnorePlugin|GenerateSW|MiniCssExtractPlugin)/;
-    conf.plugins = conf.plugins!.map((item) => {
-      if (item.constructor && item.constructor.name && regexp.test(item.constructor.name)) {
-        return null;
-      }
-      return item;
-    }).filter(Boolean) as webpack.Plugin[];
+    conf.plugins = conf
+      .plugins!.map((item) => {
+        if (
+          item.constructor &&
+          item.constructor.name &&
+          regexp.test(item.constructor.name)
+        ) {
+          return null;
+        }
+        return item;
+      })
+      .filter(Boolean) as webpack.Plugin[];
     conf.entry = path.join(process.cwd(), 'src/index.ts');
     conf.output = {
       path: path.join(process.cwd(), 'dist'),
@@ -33,7 +37,7 @@ export default (conf: webpack.Configuration, options: KKTOpts) => {
       filename: 'uiw.js',
       library: 'UIW',
       libraryTarget: 'umd',
-    }
+    };
     conf.externals = {
       react: {
         root: 'React',
@@ -47,7 +51,7 @@ export default (conf: webpack.Configuration, options: KKTOpts) => {
         commonjs: 'react-dom',
         amd: 'react-dom',
       },
-    }
+    };
     conf.optimization = {
       minimize: options.isEnvProduction,
       minimizer: [],
@@ -60,7 +64,7 @@ export default (conf: webpack.Configuration, options: KKTOpts) => {
           sourceMap: true, // Must be set to true if using source-maps in production
           terserOptions: {
             // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
-          }
+          },
         }),
       );
       conf.output.filename = 'uiw.min.js';
@@ -81,8 +85,8 @@ export default (conf: webpack.Configuration, options: KKTOpts) => {
           cssProcessorPluginOptions: {
             preset: ['default', { discardComments: { removeAll: true } }],
           },
-          canPrint: true
-        })
+          canPrint: true,
+        }),
       ];
     } else {
       conf.optimization!.minimize = false;
@@ -91,9 +95,9 @@ export default (conf: webpack.Configuration, options: KKTOpts) => {
         new MiniCssExtractPlugin({
           filename: 'uiw.css',
           allChunks: true,
-        } as any)
+        } as any),
       ];
     }
   }
-  return conf
-}
+  return conf;
+};

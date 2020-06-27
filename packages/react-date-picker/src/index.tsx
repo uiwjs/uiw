@@ -3,7 +3,11 @@ import classnames from 'classnames';
 import formatter from '@uiw/formatter';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import { TimePickerTime, TimePickerPanelProps } from '@uiw/react-time-picker';
-import { DatePickerDay, DatePickerDayProps, DatePickerDayDateSource } from './DatePickerDay';
+import {
+  DatePickerDay,
+  DatePickerDayProps,
+  DatePickerDayDateSource,
+} from './DatePickerDay';
 import { DatePickerMonth } from './DatePickerMonth';
 import { DatePickerYear } from './DatePickerYear';
 import { DatePickerCaption, DatePickerCaptionType } from './DatePickerCaption';
@@ -17,8 +21,13 @@ export * from './DatePickerCaption';
 export interface DatePickerShowTimeProps extends TimePickerPanelProps {
   format?: string;
 }
-export interface DatePickerProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
-  onChange?: (selectedDate?: Date, dateSource?: DatePickerDayDateSource) => void;
+export interface DatePickerProps
+  extends IProps,
+    Omit<HTMLDivProps, 'onChange'> {
+  onChange?: (
+    selectedDate?: Date,
+    dateSource?: DatePickerDayDateSource,
+  ) => void;
   renderDay?: DatePickerDayProps['renderDay'];
   disabledDate?: DatePickerDayProps['disabledDate'];
   showTime?: DatePickerShowTimeProps | boolean;
@@ -36,13 +45,29 @@ export interface DatePickerState {
   type?: 'day' | 'time' | DatePickerCaptionType;
 }
 
-export default class DatePicker extends React.Component<DatePickerProps, DatePickerState> {
+export default class DatePicker extends React.Component<
+  DatePickerProps,
+  DatePickerState
+> {
   public static defaultProps: DatePickerProps = {
     prefixCls: 'w-datepicker',
-    onChange() { },
-    monthLabel: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+    onChange() {},
+    monthLabel: [
+      '一月',
+      '二月',
+      '三月',
+      '四月',
+      '五月',
+      '六月',
+      '七月',
+      '八月',
+      '九月',
+      '十月',
+      '十一月',
+      '十二月',
+    ],
     today: new Date(),
-  }
+  };
   public state: DatePickerState;
   constructor(props: DatePickerProps) {
     super(props);
@@ -54,7 +79,10 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
   }
   UNSAFE_componentWillReceiveProps(nextProps: DatePickerProps) {
     if (nextProps.date !== this.props.date) {
-      this.setState({ date: nextProps.date, panelDate: nextProps.date ? new Date(nextProps.date) : new Date() });
+      this.setState({
+        date: nextProps.date,
+        panelDate: nextProps.date ? new Date(nextProps.date) : new Date(),
+      });
     }
     if (nextProps.panelDate !== this.props.panelDate) {
       this.setState({ panelDate: nextProps.panelDate });
@@ -62,7 +90,7 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
   }
   onChange = (date?: Date, dateSource?: DatePickerDayDateSource) => {
     this.props.onChange!(date, dateSource);
-  }
+  };
   onSelected = (type: DatePickerState['type']) => {
     const { today } = this.props;
     const { date, panelDate } = this.state;
@@ -93,18 +121,25 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
         this.onChange(currentDate);
       });
     }
-  }
+  };
   onSelectedTime(type: TimePickerPanelProps['type'], num: number) {
     const { date, panelDate } = this.state;
     const currentDate = (date || panelDate) as Date;
-    currentDate[(`set${type}`) as 'setMonth'](num);
-    this.setState({
-      date: currentDate,
-    }, () => {
-      this.onChange(currentDate);
-    });
+    currentDate[`set${type}` as 'setMonth'](num);
+    this.setState(
+      {
+        date: currentDate,
+      },
+      () => {
+        this.onChange(currentDate);
+      },
+    );
   }
-  onSelectedDate(type: 'setMonth' | 'setFullYear', month: number, paging?: boolean) {
+  onSelectedDate(
+    type: 'setMonth' | 'setFullYear',
+    month: number,
+    paging?: boolean,
+  ) {
     const { panelDate, date } = this.state;
     (panelDate as Date)[type](month);
     if (date) {
@@ -121,9 +156,27 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
     });
   }
   render() {
-    const { prefixCls, className, weekday, weekTitle, monthLabel, date, today, todayButton, panelDate, disabledDate, renderDay, onChange, showTime, ...other } = this.props;
+    const {
+      prefixCls,
+      className,
+      weekday,
+      weekTitle,
+      monthLabel,
+      date,
+      today,
+      todayButton,
+      panelDate,
+      disabledDate,
+      renderDay,
+      onChange,
+      showTime,
+      ...other
+    } = this.props;
     const { type } = this.state;
-    const format = showTime && (showTime as DatePickerShowTimeProps).format ? (showTime as DatePickerShowTimeProps).format : 'HH:mm:ss';
+    const format =
+      showTime && (showTime as DatePickerShowTimeProps).format
+        ? (showTime as DatePickerShowTimeProps).format
+        : 'HH:mm:ss';
     return (
       <div className={classnames(prefixCls, className)} {...other}>
         <DatePickerCaption
@@ -168,7 +221,14 @@ export default class DatePicker extends React.Component<DatePickerProps, DatePic
             onSelected={this.onSelectedTime.bind(this)}
           />
         )}
-        {showTime && <div className={`${prefixCls}-time-btn`} onClick={this.onSelected.bind(this, 'time')}>{formatter(format as string, (date || panelDate) as Date)}</div>}
+        {showTime && (
+          <div
+            className={`${prefixCls}-time-btn`}
+            onClick={this.onSelected.bind(this, 'time')}
+          >
+            {formatter(format as string, (date || panelDate) as Date)}
+          </div>
+        )}
       </div>
     );
   }

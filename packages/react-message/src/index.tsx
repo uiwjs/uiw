@@ -21,12 +21,15 @@ export interface IMessageState {
   isOpen: boolean;
 }
 
-export default class Message extends React.Component<MessageProps, IMessageState> {
+export default class Message extends React.Component<
+  MessageProps,
+  IMessageState
+> {
   public static defaultProps: MessageProps = {
     prefixCls: 'w-message',
     rounded: true,
     isCloseButtonShown: false,
-  }
+  };
   constructor(props: MessageProps) {
     super(props);
     this.state = {
@@ -34,38 +37,64 @@ export default class Message extends React.Component<MessageProps, IMessageState
     };
   }
   handleClosed = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const {onClose } = this.props;
+    const { onClose } = this.props;
     this.setState({ isOpen: false });
     onClose && onClose(e);
-  }
+  };
   renderIcon = () => {
     const { type, showIcon } = this.props;
     let icon = this.props.icon;
     if (!icon && showIcon) {
       switch (type) {
-        case 'success': icon = 'circle-check'; break;
-        case 'warning': icon = 'warning'; break;
-        case 'info': icon = 'information'; break;
-        case 'error': icon = 'circle-close'; break;
-        default: break;
+        case 'success':
+          icon = 'circle-check';
+          break;
+        case 'warning':
+          icon = 'warning';
+          break;
+        case 'info':
+          icon = 'information';
+          break;
+        case 'error':
+          icon = 'circle-close';
+          break;
+        default:
+          break;
       }
     }
     return icon;
-  }
+  };
   render() {
-    const { prefixCls, className, type, title, description, showIcon, icon, rounded, isCloseButtonShown, ...elementProps } = this.props;
+    const {
+      prefixCls,
+      className,
+      type,
+      title,
+      description,
+      showIcon,
+      icon,
+      rounded,
+      isCloseButtonShown,
+      ...elementProps
+    } = this.props;
     const children = description || this.props.children;
     const cls = classnames(prefixCls, className, `${prefixCls}-${type}`, {
       [`${prefixCls}-rounded`]: rounded,
       [`${prefixCls}-icon`]: showIcon,
-      [`${prefixCls}${title ? '-title' : ''}${children ? '-description' : ''}`]: showIcon,
+      [`${prefixCls}${title ? '-title' : ''}${
+        children ? '-description' : ''
+      }`]: showIcon,
     });
     const Child = (
       <div className={cls} {...elementProps}>
-        {isCloseButtonShown && <Button basic onClick={this.handleClosed} icon="close" type="light" />}
+        {isCloseButtonShown && (
+          <Button basic onClick={this.handleClosed} icon="close" type="light" />
+        )}
         {showIcon && <Icon type={this.renderIcon()} />}
         <span className={classnames(`${prefixCls}-title`)}>{title}</span>
-        <span className={classnames(`${prefixCls}-description`)}>{children}</span>
+        <span className={classnames(`${prefixCls}-description`)}>
+          {children}
+        </span>
       </div>
     );
     if (!isCloseButtonShown) {
