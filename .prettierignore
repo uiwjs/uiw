@@ -1,0 +1,9 @@
+**/*.md
+**/*.svg
+**/*.ejs
+**/*.html
+package.json
+dist
+build
+lib
+node_modules
