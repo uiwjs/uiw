@@ -53,9 +53,14 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
     - run: npm whoami
-    - run: node node_modules/.bin/lerna publish from-package --yes
+    # - run: node node_modules/.bin/lerna publish from-package --yes
+    #   env:
+    #     NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+    - name: Publish to NPM
+      run: npm run u:publish
       env:
-        NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Deploy to uiwjs.github.io
       uses: peaceiris/actions-gh-pages@v3
