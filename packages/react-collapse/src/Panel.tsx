@@ -14,38 +14,19 @@ export interface CollapsePanelProps<T> extends IProps, HTMLDivProps {
   onItemClick?: (evn: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-export default class CollapsePanel<T> extends React.Component<
-  CollapsePanelProps<T>
-> {
-  public static defaultProps: CollapsePanelProps<{}> = {
-    disabled: false,
-    icon: 'down',
-    prefixCls: 'w-collapse',
-  };
-  getInstance = (status: TransitionStatus, instance: any) => {
-    if (!instance) {
-      return;
-    }
-    if (status === 'exited' || status === 'exiting') {
-      instance.style.height = '1px';
-    }
-    if (status === 'entered' || status === 'entering') {
-      instance.style.height = `${instance.scrollHeight}px`;
-    }
-  };
-  render() {
+export default function<T>(props: CollapsePanelProps<T> = {}) {
     const {
-      prefixCls,
+      prefixCls = 'w-collapse',
       className,
-      icon,
+      icon = 'down',
       children,
       isActive,
       onItemClick,
-      disabled,
+      disabled = false,
       showArrow,
       header,
       ...resetProps
-    } = this.props;
+    } = props;
     const cls = classnames([`${prefixCls}-item`], className, {
       [`${prefixCls}-active`]: isActive,
       [`${prefixCls}-disabled`]: disabled,
@@ -57,11 +38,22 @@ export default class CollapsePanel<T> extends React.Component<
         transitionDuration: '300ms',
       });
     };
+    function getInstance(status: TransitionStatus, instance: any) {
+      if (!instance) {
+        return;
+      }
+      if (status === 'exited' || status === 'exiting') {
+        instance.style.height = '1px';
+      }
+      if (status === 'entered' || status === 'entering') {
+        instance.style.height = `${instance.scrollHeight}px`;
+      }
+    }
     return (
       <div className={cls} {...resetProps}>
         <div
           className={`${prefixCls}-header`}
-          onClick={onItemClick!.bind(this)}
+          onClick={onItemClick}
         >
           {showArrow && iconRender}
           <span>{header}</span>
@@ -76,11 +68,10 @@ export default class CollapsePanel<T> extends React.Component<
             React.cloneElement(<div>{children}</div>, {
               className: `${prefixCls}-panel`,
               style: childStyle(children as React.ReactElement),
-              ref: this.getInstance.bind(this, status),
+              ref: (e: any) => getInstance(status, e),
             })
           }
         </CSSTransition>
       </div>
     );
-  }
 }
