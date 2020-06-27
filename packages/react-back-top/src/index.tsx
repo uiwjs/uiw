@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import { getScrollPercent, getScrollTop, ScrollToAnimate } from './utils';
@@ -21,45 +21,34 @@ export interface IBackTopState {
   current: number;
 }
 
-export default class BackTop extends React.Component<BackTopProps, IBackTopState> {
-  public static defaultProps: BackTopProps = {
-    prefixCls: 'w-back-top',
-    offsetTop: 0,
-    clickable: true,
-    fixed: true,
-    showBelow: 1,
-    speed: 100,
+export default (props: BackTopProps = {}) => {
+  const { prefixCls = 'w-back-top', className, content, children, offsetTop = 0, fixed = true, speed = 100, showBelow = 1, clickable = true, ...other } = props;
+  const topShowBelow = !fixed ? 0 : (showBelow || 0);
+  const [percent, setPercent] = useState(0);
+  const [current, setCurrent] = useState(0);
+  const visible = percent >= topShowBelow;
+  const cls = classnames(prefixCls, className, {
+    'no-fixed': !fixed,
+    [`${prefixCls}-show`]: visible,
+    [`${prefixCls}-hide`]: !visible,
+  });
+  useEffect(() => {
+    window && window.addEventListener('scroll', onScroll);
+    return function() {
+      window && window.removeEventListener('scroll', onScroll);
+    }
+  });
+  function onScroll() {
+    setPercent(getScrollPercent(offsetTop));
+    setCurrent(getScrollTop());
   }
-  public state = {
-    percent: 0,
-    current: 0,
+  function scrollToTop() {
+    ScrollToAnimate(offsetTop, speed, current);
   }
-  componentDidMount() {
-    window && window.addEventListener('scroll', this.onScroll);
-  }
-  componentWillUnmount() {
-    window && window.removeEventListener('scroll', this.onScroll);
-  }
-  onScroll = () => {
-    this.setState({ percent: getScrollPercent(this.props.offsetTop), current: getScrollTop() });
-  }
-  scrollToTop() {
-    ScrollToAnimate(this.props.offsetTop, this.props.speed, this.state.current);
-  }
-  public render() {
-    const { prefixCls, className, content, children, offsetTop, fixed, speed, showBelow, clickable, ...other } = this.props;
-    const topShowBelow = !fixed ? 0 : (showBelow || 0);
-    const visible = this.state.percent >= topShowBelow;
-    const cls = classnames(prefixCls, className, {
-      'no-fixed': !fixed,
-      [`${prefixCls}-show`]: visible,
-      [`${prefixCls}-hide`]: !visible,
-    });
-    return (
-      <div onClick={() => clickable && this.scrollToTop()} className={cls} {...other}>
-        {content}
-        {typeof children !== 'function' ? children : children({ ...this.state, scrollToTop: this.scrollToTop.bind(this) })}
-      </div>
-    );
-  }
+  return (
+    <div onClick={() => clickable && scrollToTop()} className={cls} {...other}>
+      {content}
+      {typeof children !== 'function' ? children : children({ percent, current, scrollToTop: scrollToTop })}
+    </div>
+  );
 }
