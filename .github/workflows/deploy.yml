@@ -27,6 +27,29 @@ jobs:
 
     - run: npm run bundle
     - run: npm run coverage
+    - run: |
+        git fetch
+        # Strip git ref prefix from version
+        VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+        COMMIT=released-${VERSION}
+
+        # Strip "v" prefix from tag name
+        [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+        echo "version: $VERSION"
+
+        lerna version $VERSION --no-changelog --skip-git --yes
+        npm run b:doc
+
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+
+        git commit -am $COMMIT
+
+    - name: git push master
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Deploy to uiwjs.github.io
       uses: peaceiris/actions-gh-pages@v3
