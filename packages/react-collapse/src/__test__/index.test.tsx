@@ -32,8 +32,6 @@ describe('<Collapse />', () => {
     expect(component.root.props.activeKey).toEqual(['1']);
     expect(component.root.props.children.length).toBe(3);
     expect(component.root.props.children[0].props.header).toBe('大话西游');
-    expect(component.root.props.children[0].props.icon).toBe('down');
-    expect(component.root.props.children[0].props.prefixCls).toBe('w-collapse');
     expect(component.root.props.children[0].props.disabled).toBeFalsy();
   });
 });
