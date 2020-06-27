@@ -37,7 +37,7 @@ jobs:
         [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
         echo "version: $VERSION"
 
-        lerna version $VERSION --no-changelog --skip-git --yes
+        node node_modules/.bin/lerna version $VERSION --no-changelog --skip-git --yes
         npm run b:doc
 
         git config --local user.email "action@github.com"
