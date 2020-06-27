@@ -3,7 +3,7 @@
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "homepage": "https://uiwjs.github.io",
   "private": true,
-  "version": "4.0.0",
+  "version": "4.0.1",
   "scripts": {
     "esm": "lerna exec --scope @uiw/react-layout -- tsbb types --outDir lib/esm --target ESNEXT",
     "cjs": "lerna exec --scope @uiw/react-layout -- tsbb types --outDir lib/cjs --target ESNEXT",
