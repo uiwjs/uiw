@@ -1,15 +1,15 @@
-@stepsprefixclass:~ "w-steps";
+@w-steps:~ "w-steps";
 
-.@{stepsPrefixClass} {
+.@{w-steps} {
   font-size: 0;
   width: 100%;
   line-height: 1.5;
-  .@{stepsPrefixClass}-item {
+  .@{w-steps}-item {
     position: relative;
     display: inline-block;
     vertical-align: top;
     &:last-child {
-      .@{stepsPrefixClass}-item-tail {
+      .@{w-steps}-item-tail {
         display: none;
         text-align: center;
       }
@@ -82,12 +82,12 @@
     }
     &-process,
     &-finish {
-      .@{stepsPrefixClass}-item-inner {
+      .@{w-steps}-item-inner {
         border-color: #2d8cf0;
         background-color: #2d8cf0;
         color: #fff;
         &.is-icon {
-          .@{stepsPrefixClass}-icon {
+          .@{w-steps}-icon {
             color: #108ee9;
           }
         }
@@ -100,14 +100,14 @@
       }
     }
     &-finish {
-      .@{stepsPrefixClass}-item-tail i:after {
+      .@{w-steps}-item-tail i:after {
         background-color: #2d8cf0;
         width: 100%;
       }
     }
     &-process {
-      .@{stepsPrefixClass}-item-title,
-      .@{stepsPrefixClass}-item-description {
+      .@{w-steps}-item-title,
+      .@{w-steps}-item-description {
         color: rgba(0, 0, 0, 0.65);
       }
     }
@@ -117,21 +117,21 @@
         border-color: #f04134;
         background-color: #fff;
       }
-      .@{stepsPrefixClass}-item-title,
-      .@{stepsPrefixClass}-item-description,
-      .@{stepsPrefixClass}-icon,
+      .@{w-steps}-item-title,
+      .@{w-steps}-item-description,
+      .@{w-steps}-icon,
       i[class^='w-icon-'] {
         color: #f04134;
       }
     }
   }
-  .@{stepsPrefixClass}-next-error .@{stepsPrefixClass}-item-tail i:after {
+  .@{w-steps}-next-error .@{w-steps}-item-tail i:after {
     background-color: #f04134;
     width: 100%;
     transition: all 0.6s;
   }
   &-custom {
-    .@{stepsPrefixClass}-item-inner.is-icon {
+    .@{w-steps}-item-inner.is-icon {
       background: none;
       border: 0;
       width: 26px;
@@ -140,31 +140,31 @@
     }
   }
   &-dot {
-    .@{stepsPrefixClass}-item-main {
+    .@{w-steps}-item-main {
       display: block;
       text-align: center;
     }
-    .@{stepsPrefixClass}-item-inner {
+    .@{w-steps}-item-inner {
       margin: 0 auto;
       width: 7px;
       height: 7px;
       line-height: 5px;
       border: 0;
     }
-    .@{stepsPrefixClass}-item-title {
+    .@{w-steps}-item-title {
       padding-top: 5px;
     }
-    .@{stepsPrefixClass}-item-description {
+    .@{w-steps}-item-description {
       max-width: initial;
     }
-    .@{stepsPrefixClass}-item-error {
+    .@{w-steps}-item-error {
       .w-steps-item-tail i:after {
         background-color: #2d8cf0;
       }
-      .@{stepsPrefixClass}-item-inner {
+      .@{w-steps}-item-inner {
         background: #f04134;
       }
-      .@{stepsPrefixClass}-item-tail {
+      .@{w-steps}-item-tail {
         padding-right: 50%;
         background: #e9e9e9;
         i:after {
@@ -173,22 +173,22 @@
         }
       }
     }
-    .@{stepsPrefixClass}-item-finish.@{stepsPrefixClass}-next-error {
-      .@{stepsPrefixClass}-item-tail {
+    .@{w-steps}-item-finish.@{w-steps}-next-error {
+      .@{w-steps}-item-tail {
         i:after {
           background-color: #2d8cf0;
         }
       }
     }
-    .@{stepsPrefixClass}-item-wait .@{stepsPrefixClass}-item-inner {
+    .@{w-steps}-item-wait .@{w-steps}-item-inner {
       border-color: rgba(0, 0, 0, 0.25);
       background-color: rgba(0, 0, 0, 0.25);
-      .@{stepsPrefixClass}-dot {
+      .@{w-steps}-dot {
         background: rgba(0, 0, 0, 0.25);
       }
     }
-    .@{stepsPrefixClass}-item-process {
-      .@{stepsPrefixClass}-item-tail {
+    .@{w-steps}-item-process {
+      .@{w-steps}-item-tail {
         padding-right: 50%;
         background: #e9e9e9;
         i:after {
@@ -197,59 +197,59 @@
         }
       }
     }
-    .@{stepsPrefixClass}-item-tail {
+    .@{w-steps}-item-tail {
       padding: 0;
       width: 100%;
       position: initial;
       height: 2px;
     }
     .w-steps-item:first-child {
-      .@{stepsPrefixClass}-item-tail {
+      .@{w-steps}-item-tail {
         padding-left: 50%;
       }
     }
     .w-steps-item:last-child {
-      .@{stepsPrefixClass}-item-tail {
+      .@{w-steps}-item-tail {
         display: block;
         padding-right: 50%;
       }
     }
-    .@{stepsPrefixClass}-item-head:not(:first-child) {
+    .@{w-steps}-item-head:not(:first-child) {
       margin-left: 0;
       padding-left: 0;
       text-align: center;
       display: block;
     }
-    .@{stepsPrefixClass}-item-head {
+    .@{w-steps}-item-head {
       background: transparent;
       margin-top: -4px;
     }
-    &.@{stepsPrefixClass}-vertical {
-      .@{stepsPrefixClass}-item {
-        &:last-child .@{stepsPrefixClass}-item-tail {
+    &.@{w-steps}-vertical {
+      .@{w-steps}-item {
+        &:last-child .@{w-steps}-item-tail {
           display: none;
         }
-        .@{stepsPrefixClass}-item-tail {
+        .@{w-steps}-item-tail {
           position: absolute;
           left: 3px;
           padding: 0 0 21px;
         }
       }
-      .@{stepsPrefixClass}-item-inner {
+      .@{w-steps}-item-inner {
         margin: 0;
       }
-      .@{stepsPrefixClass}-item-main {
+      .@{w-steps}-item-main {
         text-align: left;
         padding-left: 20px;
         padding-bottom: 24px;
         margin-top: -21px;
       }
-      .@{stepsPrefixClass}-next-error {
+      .@{w-steps}-next-error {
         .w-steps-item-tail i:after {
           background-color: #f04134;
         }
       }
-      .@{stepsPrefixClass}-item-error {
+      .@{w-steps}-item-error {
         .w-steps-item-tail {
           background-color: transparent;
         }
@@ -260,22 +260,20 @@
     }
   }
   &-vertical {
-    & > .@{stepsPrefixClass}-item {
+    & > .@{w-steps}-item {
       display: block;
-      & > .@{stepsPrefixClass}-item-tail {
+      & > .@{w-steps}-item-tail {
         height: 100%;
         width: 1px;
         padding: 18px 0;
         left: 13px;
       }
     }
-    .@{stepsPrefixClass}-item-main {
+    .@{w-steps}-item-main {
       padding-bottom: 12px;
       overflow: hidden;
     }
-    .@{stepsPrefixClass}-item
-      .@{stepsPrefixClass}-item-main
-      .@{stepsPrefixClass}-item-description {
+    .@{w-steps}-item .@{w-steps}-item-main .@{w-steps}-item-description {
       max-width: inherit;
     }
   }
