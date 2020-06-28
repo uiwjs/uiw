@@ -10,6 +10,7 @@
     "lib": "lerna exec --scope @uiw/react-layout -- tsbb build --target react",
     "lib:css": "lerna exec --scope @uiw/react-layout -- compile-less -d src -o lib/esm",
     "lib:watch": "lerna exec --scope @uiw/react-layout -- tsbb watch --target react",
+    "lib:bootstrap": "lerna bootstrap --hoist --scope @uiw/react-layout",
     "lib:esm:watch": "npm run esm -- --watch",
     "lib:cjs:watch": "npm run cjs -- --watch",
     "lib:build": "npm run lib && npm run cjs && npm run esm && npm run lib:css",
