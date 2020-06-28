@@ -33,7 +33,7 @@
     "test": "tsbb test --env=jsdom",
     "coverage": "tsbb test --coverage",
     "u:version": "lerna version 4.2.1 --no-changelog --skip-git --yes && npm run b:doc",
-    "u:publish": "lerna publish from-package --yes",
+    "u:publish": "lerna publish from-package --yes --no-verify-access",
     "clean": "lerna clean",
     "compile-less": "compile-less",
     "kkt": "kkt",
