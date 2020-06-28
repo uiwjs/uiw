@@ -1,12 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
-import { HTMLSpanProps } from '@uiw/utils';
+import { HTMLSpanProps, IProps } from '@uiw/utils';
 import './style/item.less';
 
-export interface BreadcrumbItemProps extends HTMLSpanProps {
-  style?: React.CSSProperties;
-  className?: string;
-  prefixCls?: string;
+export interface BreadcrumbItemProps extends IProps, HTMLSpanProps {
   tagName?: keyof JSX.IntrinsicElements | any;
   separator?: JSX.Element | string;
   active?: boolean;

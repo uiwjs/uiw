@@ -1,12 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
-import { HTMLDivProps } from '@uiw/utils';
+import { HTMLDivProps, IProps } from '@uiw/utils';
 import './style/index.less';
 
-export interface ButtonGroupProps extends HTMLDivProps {
-  style?: React.CSSProperties;
-  className?: string;
-  prefixCls?: string;
+export interface ButtonGroupProps extends IProps, HTMLDivProps {
   vertical?: boolean;
 }
 
@@ -27,4 +24,4 @@ export default (props: ButtonGroupProps = {}) => {
       {children}
     </div>
   );
-}
+};

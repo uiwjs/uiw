@@ -14,64 +14,61 @@ export interface CollapsePanelProps<T> extends IProps, HTMLDivProps {
   onItemClick?: (evn: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-export default function<T>(props: CollapsePanelProps<T> = {}) {
-    const {
-      prefixCls = 'w-collapse',
-      className,
-      icon = 'down',
-      children,
-      isActive,
-      onItemClick,
-      disabled = false,
-      showArrow,
-      header,
-      ...resetProps
-    } = props;
-    const cls = classnames([`${prefixCls}-item`], className, {
-      [`${prefixCls}-active`]: isActive,
-      [`${prefixCls}-disabled`]: disabled,
-    });
-    const iconRender = typeof icon === 'string' ? <Icon type={icon} /> : icon;
+export default function Panel<T>(props: CollapsePanelProps<T> = {}) {
+  const {
+    prefixCls = 'w-collapse',
+    className,
+    icon = 'down',
+    children,
+    isActive,
+    onItemClick,
+    disabled = false,
+    showArrow,
+    header,
+    ...resetProps
+  } = props;
+  const cls = classnames([`${prefixCls}-item`], className, {
+    [`${prefixCls}-active`]: isActive,
+    [`${prefixCls}-disabled`]: disabled,
+  });
+  const iconRender = typeof icon === 'string' ? <Icon type={icon} /> : icon;
 
-    const childStyle = (child: React.ReactElement) => {
-      return Object.assign({}, child && child.props ? child.props.style : {}, {
-        transitionDuration: '300ms',
-      });
-    };
-    function getInstance(status: TransitionStatus, instance: any) {
-      if (!instance) {
-        return;
-      }
-      if (status === 'exited' || status === 'exiting') {
-        instance.style.height = '1px';
-      }
-      if (status === 'entered' || status === 'entering') {
-        instance.style.height = `${instance.scrollHeight}px`;
-      }
+  const childStyle = (child: React.ReactElement) => {
+    return Object.assign({}, child && child.props ? child.props.style : {}, {
+      transitionDuration: '300ms',
+    });
+  };
+  function getInstance(status: TransitionStatus, instance: any) {
+    if (!instance) {
+      return;
     }
-    return (
-      <div className={cls} {...resetProps}>
-        <div
-          className={`${prefixCls}-header`}
-          onClick={onItemClick}
-        >
-          {showArrow && iconRender}
-          <span>{header}</span>
-        </div>
-        <CSSTransition
-          in={isActive}
-          unmountOnExit={false}
-          timeout={300}
-          classNames={`${prefixCls}-panel`}
-        >
-          {(status: TransitionStatus) =>
-            React.cloneElement(<div>{children}</div>, {
-              className: `${prefixCls}-panel`,
-              style: childStyle(children as React.ReactElement),
-              ref: (e: any) => getInstance(status, e),
-            })
-          }
-        </CSSTransition>
+    if (status === 'exited' || status === 'exiting') {
+      instance.style.height = '1px';
+    }
+    if (status === 'entered' || status === 'entering') {
+      instance.style.height = `${instance.scrollHeight}px`;
+    }
+  }
+  return (
+    <div className={cls} {...resetProps}>
+      <div className={`${prefixCls}-header`} onClick={onItemClick}>
+        {showArrow && iconRender}
+        <span>{header}</span>
       </div>
-    );
+      <CSSTransition
+        in={isActive}
+        unmountOnExit={false}
+        timeout={300}
+        classNames={`${prefixCls}-panel`}
+      >
+        {(status: TransitionStatus) =>
+          React.cloneElement(<div>{children}</div>, {
+            className: `${prefixCls}-panel`,
+            style: childStyle(children as React.ReactElement),
+            ref: (e: any) => getInstance(status, e),
+          })
+        }
+      </CSSTransition>
+    </div>
+  );
 }
