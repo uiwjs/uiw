@@ -57,7 +57,7 @@ jobs:
         # npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
         # https://docs.npmjs.com/files/npmrc
         # echo "_auth=\${NODE_AUTH_TOKEN}\nregistry = https://registry.npmjs.org/" > .npmrc
-        echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > .npmrc
+        echo "//registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}" > .npmrc
         cat .npmrc
         npm config ls -l
         # npm whoami
