@@ -11,6 +11,7 @@ export interface CollapsePanelProps<T> extends IProps, HTMLDivProps {
   isActive?: boolean;
   header?: React.ReactNode;
   icon?: IconProps<T>['type'];
+  extra?: React.ReactNode;
   onItemClick?: (evn: React.MouseEvent<HTMLDivElement>) => void;
 }
 
@@ -25,6 +26,7 @@ export default function Panel<T>(props: CollapsePanelProps<T> = {}) {
     disabled = false,
     showArrow,
     header,
+    extra,
     ...resetProps
   } = props;
   const cls = classnames([`${prefixCls}-item`], className, {
@@ -53,7 +55,8 @@ export default function Panel<T>(props: CollapsePanelProps<T> = {}) {
     <div className={cls} {...resetProps}>
       <div className={`${prefixCls}-header`} onClick={onItemClick}>
         {showArrow && iconRender}
-        <span>{header}</span>
+        <span className={`${prefixCls}-title`}>{header}</span>
+        {extra && <div className={`${prefixCls}-extra`}>{extra}</div>}
       </div>
       <CSSTransition
         in={isActive}

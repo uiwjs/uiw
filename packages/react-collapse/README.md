@@ -15,9 +15,45 @@ import { Collapse } from 'uiw';
 ```js
 import { Collapse } from 'uiw';
 
+const genExtra = () => (
+  <div
+    onClick={(event) => {
+      // If you don't want click extra trigger collapse, you can prevent this:
+      event.stopPropagation();
+    }}
+  >设置</div>
+);
+
 ReactDOM.render(
   <div>
-    <Collapse activeKey={['1']} onChange={key=>console.log(key)}>
+    <Collapse activeKey={['1']} onChange={key=>console.log('key::1:', key)}>
+      <Collapse.Panel header="大话西游" key="1" extra={genExtra()}>
+        <div>曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。 </div>
+        <div>如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。 </div>
+        <div>如果非要在这份爱上加上一个期限，我希望是…… </div>
+        <div>一万年</div>
+      </Collapse.Panel>
+      <Collapse.Panel header="西游·降魔篇" key="2" extra={genExtra()}>
+        <div>曾经痛苦，才知道真正的痛苦；曾经执著，才能放下执著；</div>
+        <div>曾经牵挂，才能了无牵挂。</div>
+      </Collapse.Panel>
+      <Collapse.Panel header="国产零零漆" key="3" extra={genExtra()}>
+        <div>古有关云长全神贯注下象棋刮骨疗毒，今有我零零漆聚精会神看A片挖骨取弹头。</div>
+      </Collapse.Panel>
+    </Collapse>
+  </div>,
+  _mount_
+);
+```
+<!--End-->
+
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Collapse } from 'uiw';
+
+ReactDOM.render(
+  <div>
+    <Collapse activeKey={['1']} onChange={key=>console.log('key::1:', key)}>
       <Collapse.Panel header="大话西游" key="1">
         <div>曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。 </div>
         <div>如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。 </div>
@@ -64,7 +100,7 @@ class Demo extends React.Component {
         >
           打开或关闭第三个
         </Button>
-        <Collapse accordion activeKey={[this.state.activeName]} onChange={key=>console.log(key)}>
+        <Collapse accordion activeKey={[this.state.activeName]} onChange={key=>console.log('key::2:', key)}>
           <Panel header="大话西游">
             <div>曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。 </div>
             <div>如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。 </div>
@@ -99,7 +135,7 @@ const Panel = Collapse.Panel;
 
 ReactDOM.render(
   <div>
-    <Collapse accordion bordered={true} activeKey={[]} onChange={key=>console.log(key)}>
+    <Collapse accordion bordered={true} activeKey={[]} onChange={key=>console.log('key::3:', key)}>
       <Panel header="大话西游">
         <div>曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。 </div>
         <div>如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。 </div>
@@ -140,7 +176,7 @@ const Panel = Collapse.Panel;
 
 ReactDOM.render(
   <div>
-    <Collapse accordion bordered={true} activeKey={[]} onChange={key=>console.log(key)}>
+    <Collapse accordion bordered={true} activeKey={[]} onChange={key=>console.log('key::4:', key)}>
       <Panel header="大话西游" style={customPanelStyle}>
         <div>曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。 </div>
         <div>如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。 </div>
@@ -171,7 +207,7 @@ const Panel = Collapse.Panel;
 
 ReactDOM.render(
   <div>
-    <Collapse showArrow={false} activeKey={['1']} onChange={key=>console.log(key)}>
+    <Collapse showArrow={false} activeKey={['1']} onChange={key=>console.log('key::5:', key)}>
       <Panel header={<span>大话西游 <Icon type="smile-o"/></span>} key="1">
         <div>曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。 </div>
         <div>如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。 </div>
@@ -202,7 +238,7 @@ const Panel = Collapse.Panel;
 
 ReactDOM.render(
   <div>
-    <Collapse activeKey={['1']} onChange={key=>console.log(key)}>
+    <Collapse activeKey={['1']} onChange={key=>console.log('key::6:', key)}>
       <Panel icon="caret-down" header={<span>大话西游 <Icon type="smile-o"/></span>} key="1">
         <div>曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。 </div>
         <div>如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。 </div>
@@ -233,6 +269,7 @@ ReactDOM.render(
 | activeKey | 当前激活 tab 面板的 key, accordion 模式下默认第一个元素 | String[]/String | false |
 | showArrow | 在这里使用，表示控制所有的面板图标是否展示 | Boolean | true |
 | bordered | 设置没有边框的简洁样式 | Boolean | false |
+| onChange | 切换面板的回调 | (activeKey: string[]) => void | - |
 
 ### Collapse.Panel
 
@@ -242,5 +279,6 @@ ReactDOM.render(
 | header | 面板头内容 | String/ReactNode | - |
 | icon | 指定图标 | String/ReactNode | - |
 | isActive | 是否展开 | Boolean | - |
+| extra | 自定义渲染每个面板右上角的内容 | ReactNode | - |
 | showArrow | 是否显示展开图标 | Boolean | true |
-| key | 面板头内容，非必填 | 对应 activeKey | - |
+| key | 对应 `activeKey`，非必填 |  | - |
