@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-time-picker",
-  "version": "4.2.12",
+  "version": "4.2.13",
   "description": "TimePicker component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-time-picker#readme",
@@ -44,10 +44,10 @@
   },
   "dependencies": {
     "@uiw/formatter": "1.2.4",
-    "@uiw/react-button": "^4.2.12",
-    "@uiw/react-input": "^4.2.12",
-    "@uiw/react-popover": "^4.2.12",
-    "@uiw/utils": "^4.2.12",
+    "@uiw/react-button": "^4.2.13",
+    "@uiw/react-input": "^4.2.13",
+    "@uiw/react-popover": "^4.2.13",
+    "@uiw/utils": "^4.2.13",
     "classnames": "2.2.6"
   },
   "devDependencies": {
