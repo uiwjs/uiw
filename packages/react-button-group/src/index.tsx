@@ -10,27 +10,21 @@ export interface ButtonGroupProps extends HTMLDivProps {
   vertical?: boolean;
 }
 
-export default class ButtonGroup extends React.Component<ButtonGroupProps> {
-  public static defaultProps: ButtonGroupProps = {
-    prefixCls: 'w-btn-group',
-    vertical: false,
-  };
-  public render() {
-    const {
-      prefixCls,
-      vertical,
-      children,
-      className,
-      ...resetProps
-    } = this.props;
-    const cls: string = classnames(prefixCls, className, {
-      [`${prefixCls}-vertical`]: vertical,
-    });
+export default (props: ButtonGroupProps = {}) => {
+  const {
+    prefixCls = 'w-btn-group',
+    vertical = false,
+    children,
+    className,
+    ...resetProps
+  } = props;
+  const cls = classnames(prefixCls, className, {
+    [`${prefixCls}-vertical`]: vertical,
+  });
 
-    return (
-      <div className={cls} {...resetProps}>
-        {children}
-      </div>
-    );
-  }
+  return (
+    <div className={cls} {...resetProps}>
+      {children}
+    </div>
+  );
 }
