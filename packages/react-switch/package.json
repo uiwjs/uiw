@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-switch",
-  "version": "4.2.11",
+  "version": "4.2.12",
   "description": "Switch component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-switch#readme",
@@ -43,7 +43,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-radio": "^4.2.11",
+    "@uiw/react-radio": "^4.2.12",
     "classnames": "2.2.6"
   },
   "devDependencies": {
