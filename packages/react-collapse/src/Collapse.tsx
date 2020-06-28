@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Panel from './Panel';
@@ -24,85 +24,84 @@ function toArray(activeKey: CollapseProps['activeKey']) {
   return currentActiveKey;
 }
 
-export default class Collapse extends React.Component<
-  CollapseProps,
-  CollapseState
-> {
-  public static defaultProps: CollapseProps = {
-    prefixCls: 'w-collapse',
-    accordion: false,
-    showArrow: true,
-  };
-  static Panel = Panel;
-  constructor(props: CollapseProps) {
-    super(props);
-    this.state = {
-      activeKey: toArray(props.activeKey),
-    };
-  }
-  UNSAFE_componentWillReceiveProps(nextProps: CollapseProps) {
-    if (nextProps.activeKey !== this.props.activeKey) {
-      this.setState({ activeKey: toArray(nextProps.activeKey) });
-    }
-  }
-  onItemClick(key: string) {
-    const { onChange } = this.props;
-    let activeKey: string[] = this.state.activeKey;
-    if (this.props.accordion) {
-      activeKey = activeKey[0] === key ? [] : [key];
+function InternalCollapse(props: CollapseProps = {}) {
+  const {
+    prefixCls = 'w-collapse',
+    className,
+    children,
+    accordion = false,
+    bordered,
+    showArrow = true,
+    activeKey: propsActiveKey,
+    onChange,
+    ...resetProps
+  } = props;
+  const [activeKey, setActiveKey] = useState(toArray(propsActiveKey))
+  const cls = classnames(prefixCls, className, {
+    'w-noborder': bordered,
+  });
+  function onItemClick(key: string) {
+    let keys = activeKey;
+    if (accordion) {
+      keys = keys[0] === key ? [] : [key];
     } else {
-      activeKey = [...activeKey];
-      const index = activeKey.indexOf(key);
+      keys = [...keys];
+      const index = keys.indexOf(key);
       const isActive = index > -1;
       if (isActive) {
-        activeKey.splice(index, 1);
+        keys.splice(index, 1);
       } else {
-        activeKey.push(key);
+        keys.push(key);
       }
     }
-    this.setState({ activeKey }, () => {
+    setActiveKey(keys);
+  }
+  useMemo(() => {
+    if (propsActiveKey !== activeKey) {
+      setActiveKey(toArray(propsActiveKey));
+    }
+  }, [propsActiveKey])
+  useMemo(() => {
+    if (propsActiveKey !== activeKey) {
       onChange && onChange(activeKey);
-    });
-  }
-  render() {
-    const {
-      prefixCls,
-      className,
-      children,
-      accordion,
-      bordered,
-      showArrow,
-      activeKey,
-      onChange,
-      ...resetProps
-    } = this.props;
-    const cls = classnames(prefixCls, className, {
-      'w-noborder': bordered,
-    });
-    return (
-      <div className={cls} {...resetProps}>
-        {React.Children.map(children, (child: any, index) => {
-          // 如果没有密钥提供，请使用面板顺序作为默认密钥
-          const key = child.key || String(index);
-          const { disabled } = child.props;
-          let isActive = false;
-          if (accordion) {
-            // 手风琴模式下默认选择第一个
-            isActive = this.state.activeKey[0] === key;
-          } else {
-            isActive = this.state.activeKey.indexOf(key) > -1;
-          }
-          const childProps = {
-            prefixCls,
-            isActive,
-            disabled,
-            showArrow,
-            onItemClick: disabled ? () => {} : () => this.onItemClick(key),
-            ...child.props,
-          };
-          return React.cloneElement(child, childProps);
-        })}
-      </div>
-    );
-  }
+    }
+  }, [activeKey, propsActiveKey]);
+  return (
+    <div className={cls} {...resetProps}>
+      {React.Children.map(children, (child: any, index) => {
+        // 如果没有密钥提供，请使用面板顺序作为默认密钥
+        const key = child.key || String(index);
+        const { disabled } = child.props;
+        let isActive = false;
+        if (accordion) {
+          // 手风琴模式下默认选择第一个
+          isActive = activeKey[0] === key;
+        } else {
+          isActive = activeKey.indexOf(key) > -1;
+        }
+        const childProps = {
+          prefixCls,
+          isActive,
+          disabled,
+          showArrow,
+          onItemClick: disabled ? () => {} : () => onItemClick(key),
+          ...child.props,
+        };
+        return React.cloneElement(child, childProps);
+      })}
+    </div>
+  );
 }
+
+interface CompoundedComponent
+  extends React.ForwardRefExoticComponent<CollapseProps> {
+  Panel: typeof Panel;
+}
+
+const Collapse = React.forwardRef<unknown, CollapseProps>(
+  InternalCollapse,
+) as CompoundedComponent;
+
+Collapse.Panel = Panel;
+
+export default Collapse;
