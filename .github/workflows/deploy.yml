@@ -52,10 +52,13 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-    - run: npm whoami
-    # - run: node node_modules/.bin/lerna publish from-package --yes
-    #   env:
-    #     NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+    - name: npm publish
+      run: |
+        npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+        npm whoami
+        node node_modules/.bin/lerna publish from-package --yes
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Publish to NPM
       run: npm run u:publish
