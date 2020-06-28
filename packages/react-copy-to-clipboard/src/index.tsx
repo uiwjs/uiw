@@ -1,12 +1,14 @@
 import React from 'react';
 import copy from '@uiw/copy-to-clipboard';
-import { IProps, HTMLAnchorProps } from '@uiw/utils';
+import classnames from 'classnames';
+import { IProps, HTMLSpanProps } from '@uiw/utils';
 import './style/index.less';
 
-export interface ICopyToClipboard
+export interface CopyToClipboardProps
   extends IProps,
-    Omit<HTMLAnchorProps, 'onClick'> {
+    Omit<HTMLSpanProps, 'onClick'> {
   text?: string;
+  tagName?: string;
   onClick?: (
     text: string,
     isCopy: boolean,
@@ -14,35 +16,25 @@ export interface ICopyToClipboard
   ) => void;
 }
 
-export default class CopyToClipboard extends React.Component<ICopyToClipboard> {
-  public static defaultProps: ICopyToClipboard = {
-    text: '',
-    prefixCls: 'w-copy-to-clipboard',
-    onClick: () => null,
-  };
-  onClick(e: React.MouseEvent<HTMLElement>) {
-    const { onClick, text } = this.props;
+export default function CopyToClipboard<T>(props = {} as CopyToClipboardProps & T) {
+  const { prefixCls = 'w-copy-to-clipboard', className, tagName: TagName = 'span',  text = '', children, onClick = () => null, ...resetProps } = props;
+  function handleClick(e: React.MouseEvent<HTMLElement>) {
     if (!text) {
-      return onClick!('', false, e);
+      return onClick('', false, e);
     }
     copy(text, (isCopy: boolean) => {
-      onClick!(text, isCopy, e);
+      onClick(text, isCopy, e);
     });
   }
-  public render() {
-    const { prefixCls, text, children, ...resetProps } = this.props;
-    const concatProps = {
-      ...resetProps,
-      ...{
-        onClick: this.onClick.bind(this),
-        className: prefixCls,
-      },
-    };
-    return (
-      <a {...concatProps}>
-        <span className={`${prefixCls}-select`}>{text}</span>
-        {children}
-      </a>
-    );
+  const otherProps = {
+    ...resetProps,
+    className: classnames(prefixCls, className),
+    onClick: handleClick,
   }
+  return (
+    <span {...otherProps}>
+      <span className={`${prefixCls}-select`}>{text}</span>
+      {children}
+    </span>
+  );
 }
