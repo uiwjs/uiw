@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useImperativeHandle} from 'react';
 import classnames from 'classnames';
 import { RadioAbstract, RadioAbstractProps } from '@uiw/react-radio';
 import { CheckboxGroup } from './Group';
@@ -8,19 +8,41 @@ export interface CheckboxProps extends RadioAbstractProps {
   indeterminate?: boolean;
 }
 
-export default class Checkbox extends React.Component<CheckboxProps> {
-  static Group = CheckboxGroup;
-  public static defaultProps: CheckboxProps = {
-    prefixCls: 'w-checkbox',
-    type: 'checkbox',
-    indeterminate: false,
-    disabled: false,
-    checked: undefined,
-    value: '',
-  };
-  render() {
-    const { className, indeterminate, ...other } = this.props;
-    const cls = classnames(className, { indeterminate });
-    return <RadioAbstract {...other} className={cls} />;
-  }
+function InternalCheckbox(props: CheckboxProps = {}, ref: any) {
+  const {
+    prefixCls = 'w-checkbox',
+    className,
+    type = 'checkbox',
+    indeterminate = false,
+    disabled = false,
+    value = '',
+    ...other
+  } = props;
+  const inputRef = React.createRef<HTMLUListElement>();
+  useImperativeHandle(ref, () => inputRef.current);
+  const cls = classnames(className, { indeterminate });
+  return (
+    <RadioAbstract
+      ref={inputRef}
+      {...other}
+      type={type}
+      prefixCls={prefixCls}
+      disabled={disabled}
+      value={value}
+      className={cls}
+    />
+  );
 }
+
+interface CompoundedComponent
+  extends React.ForwardRefExoticComponent<CheckboxProps> {
+  Group: typeof CheckboxGroup;
+}
+
+const Checkbox = React.forwardRef<unknown, CheckboxProps>(
+  InternalCheckbox,
+) as CompoundedComponent;
+
+Checkbox.Group = CheckboxGroup;
+
+export default Checkbox;

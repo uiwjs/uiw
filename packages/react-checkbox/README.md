@@ -41,7 +41,7 @@ const Demo = () => (
         console.log('onChange', initial, current);
       }}
       onSubmit={({initial, current}) => {
-        if(current.name === initial.name) {
+        if(current.checkbox.length === 0) {
           Notify.error({
             title: '提交失败！',
             description: `表单提交内容为空！`,
@@ -49,7 +49,7 @@ const Demo = () => (
         } else {
           Notify.success({
             title: '提交成功！',
-            description: `姓名为：${current.name}，提交完成，将自动填充初始化值！`,
+            description: `选项为：【${current.checkbox.toString()}】，提交完成，将自动填充初始化值！`,
           });
         }
       }}
