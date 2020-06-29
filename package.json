@@ -11,8 +11,7 @@
     "lib:css": "lerna exec --scope @uiw/react-layout -- compile-less -d src -o lib/esm",
     "lib:watch": "lerna exec --scope @uiw/react-layout -- tsbb watch --target react",
     "lib:bootstrap": "lerna bootstrap --hoist --scope @uiw/react-layout",
-    "lib:esm:watch": "npm run esm -- --watch",
-    "lib:cjs:watch": "npm run cjs -- --watch",
+    "lib:type:watch": "npm run esm -- --watch & npm run cjs -- --watch",
     "lib:build": "npm run lib && npm run cjs && npm run esm && npm run lib:css",
     "//-----------": "//-----------",
     "bootstrap": "lerna bootstrap",
@@ -55,7 +54,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,less,md,json}": [
+    "*.{js,jsx,tsx,ts,less,md,json}": [
       "prettier --write"
     ]
   },
