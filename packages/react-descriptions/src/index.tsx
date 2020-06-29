@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { IProps } from '@uiw/utils';
 import DescriptionsItem, { DescriptionsItemProps } from './DescriptionsItem';
-import Tr, { TrProps } from './Tr';
+import Row, { RowProps } from './Row';
 import './style/index.less';
 
 export * from './DescriptionsItem';
@@ -10,22 +10,22 @@ export * from './DescriptionsItem';
 export interface DescriptionsProps extends IProps {
   column?: number;
   title?: React.ReactNode;
+  children?: React.ReactNode;
   bordered?: boolean;
   colon?: boolean;
   size?: 'large' | 'small' | 'default';
-  layout?: TrProps['layout'];
+  layout?: RowProps['layout'];
 }
 
 const generateChildrenRows = (
-  children: JSX.Element[],
+  children: React.ReactElement<DescriptionsItemProps>[],
   column: number,
 ): Array<React.ReactElement<DescriptionsItemProps>[]> => {
   const rows: React.ReactElement<DescriptionsItemProps>[][] = [];
   let columns: React.ReactElement<DescriptionsItemProps>[] | null = null;
   let leftSpans: number;
 
-  const itemNodes = children;
-  itemNodes.forEach(
+  children.forEach(
     (node: React.ReactElement<DescriptionsItemProps>, index: number) => {
       let itemNode = node;
 
@@ -36,15 +36,12 @@ const generateChildrenRows = (
       }
 
       // Always set last span to align the end of Descriptions
-      const lastItem = index === itemNodes.length - 1;
-      // let lastSpanSame = true;
+      const lastItem = index === children.length - 1;
       if (lastItem) {
-        // lastSpanSame = !itemNode.props.span || itemNode.props.span === leftSpans;
         itemNode = React.cloneElement(itemNode, {
           span: leftSpans,
         });
       }
-
       // Calculate left fill span
       const { span = 1 } = itemNode.props;
       columns.push(itemNode);
@@ -59,60 +56,59 @@ const generateChildrenRows = (
   return rows;
 };
 
-export default class Descriptions extends React.Component<DescriptionsProps> {
-  static Item = DescriptionsItem;
-  public static defaultProps: DescriptionsProps = {
-    prefixCls: 'w-descriptions',
-    layout: 'horizontal',
-    size: 'default',
-    column: 3,
-    colon: true,
-  };
-  render() {
-    const {
-      prefixCls,
-      className,
-      title,
-      bordered,
-      column,
-      size,
-      colon,
-      children,
-      layout,
-      ...other
-    } = this.props;
-    const cls = classnames(prefixCls, className, {
-      [`${prefixCls}-bordered`]: bordered,
-      [`${prefixCls}-${size}`]: size,
-    });
-    const cloneChildren: JSX.Element[] = React.Children.map(
-      children as React.ReactElement<DescriptionsItemProps>[],
-      (child: React.ReactElement<DescriptionsItemProps>) => {
-        return child;
-      },
-    );
+function InternalDescriptions(props: DescriptionsProps = {}) {
+  const {
+    prefixCls = 'w-descriptions',
+    className,
+    title,
+    bordered,
+    column = 3,
+    size,
+    colon = true,
+    children,
+    layout = 'horizontal',
+    ...other
+  } = props;
+  const cls = classnames(prefixCls, className, `${prefixCls}-${layout}`, {
+    [`${prefixCls}-bordered`]: bordered,
+    [`${prefixCls}-${size}`]: size,
+  });
 
-    const childrenArray: Array<
-      React.ReactElement<DescriptionsItemProps>[]
-    > = generateChildrenRows(cloneChildren, column!);
-    return (
-      <table className={cls} {...other}>
+  const cloneChildren = React.Children.toArray(children) as JSX.Element[];
+  const childs: Array<React.ReactElement<DescriptionsItemProps>[]> = generateChildrenRows(cloneChildren, column!);
+
+  return (
+    <div className={cls}>
+      <table {...other}>
         {title && <caption className={`${prefixCls}-title`}>{title}</caption>}
         <tbody>
-          {childrenArray.map((child, index) => (
-            <Tr
+          {childs.map((child, index) => (
+            <Row
               key={index}
               prefixCls={prefixCls}
               bordered={bordered}
               colon={colon}
+              column={column}
               layout={layout}
-              index={index}
             >
               {child}
-            </Tr>
+            </Row>
           ))}
         </tbody>
       </table>
-    );
-  }
+    </div>
+  );
 }
+
+interface CompoundedComponent
+  extends React.ForwardRefExoticComponent<DescriptionsProps> {
+  Item: typeof DescriptionsItem;
+}
+
+const Descriptions = React.forwardRef<unknown, DescriptionsProps>(
+  InternalDescriptions,
+) as CompoundedComponent;
+
+Descriptions.Item = DescriptionsItem;
+
+export default Descriptions;

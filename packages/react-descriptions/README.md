@@ -3,16 +3,17 @@ Descriptions 描述列表
 
 成组展示多个只读字段。
 
-
 ```jsx
 import { Descriptions } from 'uiw';
+// or
+import Descriptions from '@uiw/react-descriptions';
 ```
 
 ## 基础用法
 
 简单的展示。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,noScroll,bgWhite,codePen-->
 ```js
 import { Descriptions } from 'uiw';
 
@@ -35,7 +36,7 @@ ReactDOM.render(
 
 带边框和背景颜色列表。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,noScroll,bgWhite,codePen-->
 ```js
 import { Descriptions, Badge } from 'uiw';
 
@@ -71,7 +72,7 @@ ReactDOM.render(
 
 自定义尺寸，适应在各种容器中展示。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,noScroll,bgWhite,codePen-->
 ```js
 import React from 'react';
 import { Descriptions, Divider, Radio, RadioGroup } from 'uiw';
@@ -141,21 +142,33 @@ ReactDOM.render(<Demo />, _mount_);
 
 垂直的列表。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,noScroll,bgWhite,codePen-->
 ```js
 import React from 'react';
-import { Descriptions } from 'uiw';
+import { Descriptions, Divider } from 'uiw';
 
 ReactDOM.render(
-  <Descriptions title="垂直的列表" layout="vertical">
-    <Descriptions.Item label="姓名">调调</Descriptions.Item>
-    <Descriptions.Item label="手机号码">1360000000</Descriptions.Item>
-    <Descriptions.Item label="居住地">上海市，青浦区</Descriptions.Item>
-    <Descriptions.Item label="备注">垂直列表设置 layout 值为 vertical。</Descriptions.Item>
-    <Descriptions.Item label="地址">
-      中国湖北省黄冈市罗田县666号
-    </Descriptions.Item>
-  </Descriptions>,
+  <>
+    <Descriptions title="垂直的列表" layout="vertical">
+      <Descriptions.Item label="姓名">调调</Descriptions.Item>
+      <Descriptions.Item label="手机号码">1360000000</Descriptions.Item>
+      <Descriptions.Item label="居住地">上海市，青浦区</Descriptions.Item>
+      <Descriptions.Item label="备注">垂直列表设置 layout 值为 vertical。</Descriptions.Item>
+      <Descriptions.Item label="地址">
+        中国湖北省黄冈市罗田县666号
+      </Descriptions.Item>
+    </Descriptions>
+    <Divider />
+    <Descriptions title="垂直的列表" layout="vertical" bordered>
+      <Descriptions.Item label="姓名">调调</Descriptions.Item>
+      <Descriptions.Item label="手机号码">1360000000</Descriptions.Item>
+      <Descriptions.Item label="居住地">上海市，青浦区</Descriptions.Item>
+      <Descriptions.Item label="备注">垂直列表设置 layout 值为 vertical。</Descriptions.Item>
+      <Descriptions.Item label="地址">
+        中国湖北省黄冈市罗田县666号
+      </Descriptions.Item>
+    </Descriptions>
+  </>,
   _mount_,
 );
 ```

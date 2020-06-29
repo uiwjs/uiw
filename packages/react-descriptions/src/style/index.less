@@ -1,6 +1,6 @@
 @descriptions-prefix: ~'w-descriptions';
 
-.@{descriptions-prefix} {
+.@{descriptions-prefix} table {
   display: table !important;
   margin-bottom: 0 !important;
   margin: 0;
@@ -8,6 +8,10 @@
   border-collapse: collapse;
   table-layout: fixed;
   width: 100%;
+}
+
+.@{descriptions-prefix} {
+  background: #fff;
   &-title {
     font-weight: bold;
     text-align: left;
@@ -16,23 +20,14 @@
     font-size: 16px;
     line-height: 1.5;
   }
-  & &-row {
-    border-width: 0;
-    td {
-      padding: 0 0;
-      padding-bottom: 8px;
-      border-width: 0;
-    }
-    &:nth-child(2n) {
-      background-color: transparent;
-    }
-    &:last-child td {
-      padding-bottom: 0;
-    }
+  & &-row:nth-child(2n) {
+    background-color: transparent;
   }
   &-item {
     &-label {
+      font-size: 14px;
       white-space: nowrap;
+      font-weight: normal;
       &::after {
         position: relative;
         top: -0.5px;
@@ -47,22 +42,8 @@
       color: rgba(0, 0, 0, 0.95);
     }
     &-content {
+      font-size: 14px;
       color: rgba(0, 0, 0, 0.65);
-    }
-  }
-  &-bordered {
-    tbody tr th {
-      padding: 8px 12px;
-      border: 1px solid #dfe2e5;
-      background-color: #fafafa;
-      font-weight: normal;
-    }
-  }
-  &-bordered &-row td {
-    border: 1px solid #dfe2e5;
-    padding: 8px 12px;
-    &:last-child {
-      padding-bottom: 6px;
     }
   }
   &-small&-bordered tbody tr th,
@@ -72,5 +53,45 @@
   &-large&-bordered tbody tr th,
   &-large&-bordered tbody &-row td {
     padding: 14px 16px;
+  }
+}
+
+.@{descriptions-prefix} {
+  &-bordered {
+    overflow: hidden;
+    border-radius: 3px;
+    border: 1px solid #dfe2e5;
+  }
+  &-bordered tbody {
+    tr th {
+      padding: 8px 12px;
+      background-color: #fafafa;
+      font-weight: normal;
+    }
+    tr th,
+    tr td {
+      border-top: 1px solid #dfe2e5;
+      border-right: 1px solid #dfe2e5;
+    }
+    &:first-child tr:first-child th,
+    &:first-child tr:first-child td {
+      border-top: 0;
+    }
+  }
+  &:not(&-bordered) &-row td {
+    padding-bottom: 8px;
+  }
+  &-bordered &-row td {
+    padding: 8px 12px;
+  }
+  &-bordered &-title {
+    margin-bottom: 0;
+    padding: 7px 12px;
+  }
+  &-bordered &-item {
+    &-label:last-child,
+    &-content:last-child {
+      border-right: none;
+    }
   }
 }
