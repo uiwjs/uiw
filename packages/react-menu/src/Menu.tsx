@@ -57,7 +57,7 @@ function InternalMenu(
         if (!React.isValidElement(child)) return child;
         const props: { inlineIndent?: number; inlineCollapsed?: boolean } = {};
         // Sub Menu
-        if (child.props.children) {
+        if (child.props.children && child.type === SubMenu) {
           props.inlineIndent = inlineIndent;
         }
         return React.cloneElement(
