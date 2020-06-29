@@ -10,43 +10,37 @@ export interface ListItemProps
   active?: boolean;
   extra?: React.ReactNode;
   href?: string;
+  tagName?: HTMLElement['tagName'];
 }
 
-export default class Item extends React.Component<ListItemProps> {
-  public static defaultProps: ListItemProps = {
-    prefixCls: 'w-list-item',
-    disabled: false,
-    active: false,
-  };
-  render(): JSX.Element {
-    const {
-      prefixCls,
-      className,
-      children,
-      extra,
-      active,
-      ...resetProps
-    } = this.props;
-    const cls = classnames(`${prefixCls}`, className, {
-      'w-disabled': this.props.disabled,
-      'w-active': active,
-    });
-
-    const tagName = this.props.href ? 'a' : 'div';
-    return React.createElement(
-      tagName,
-      {
-        className: cls,
-        ...resetProps,
-      },
-      !extra || resetProps.href ? (
-        children
-      ) : (
-        <>
-          <div className={`${prefixCls}-main`}>{children}</div>
-          <div className={`${prefixCls}-extra`}>{extra}</div>
-        </>
-      ),
-    );
-  }
+export default function Item<T>(props = {} as ListItemProps & T) {
+  const {
+    prefixCls = 'w-list-item',
+    className,
+    children,
+    extra,
+    tagName: TagName = 'div',
+    active = false,
+    ...resetProps
+  } = props;
+  const cls = classnames(`${prefixCls}`, className, {
+    'w-disabled': props.disabled,
+    'w-active': active,
+  });
+  const tagName = props.href && typeof TagName === 'string' ? 'a' : TagName;
+  return React.createElement(
+    tagName,
+    {
+      className: cls,
+      ...resetProps,
+    },
+    !extra || resetProps.href ? (
+      children
+    ) : (
+      <>
+        <div className={`${prefixCls}-main`}>{children}</div>
+        <div className={`${prefixCls}-extra`}>{extra}</div>
+      </>
+    ),
+  );
 }
