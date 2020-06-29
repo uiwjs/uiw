@@ -1,25 +1,24 @@
 import React from 'react';
 import classnames from 'classnames';
-import { IProps, HTMLDivProps, HTMLAnchorProps, AnchorProps } from '@uiw/utils';
+import { IProps } from '@uiw/utils';
 
 export interface ListItemProps
   extends IProps,
-    HTMLDivProps,
-    Pick<HTMLAnchorProps, AnchorProps> {
+    React.AllHTMLAttributes<HTMLElement> {
   disabled?: boolean;
   active?: boolean;
   extra?: React.ReactNode;
   href?: string;
-  tagName?: HTMLElement['tagName'];
+  tagName?: keyof JSX.IntrinsicElements | any;
 }
 
-export default function Item<T>(props = {} as ListItemProps & T) {
+export default function Item<T>(props: ListItemProps = {}) {
   const {
     prefixCls = 'w-list-item',
     className,
     children,
     extra,
-    tagName: TagName = 'div',
+    tagName = 'div',
     active = false,
     ...resetProps
   } = props;
@@ -27,20 +26,17 @@ export default function Item<T>(props = {} as ListItemProps & T) {
     'w-disabled': props.disabled,
     'w-active': active,
   });
-  const tagName = props.href && typeof TagName === 'string' ? 'a' : TagName;
-  return React.createElement(
-    tagName,
-    {
-      className: cls,
-      ...resetProps,
-    },
-    !extra || resetProps.href ? (
-      children
-    ) : (
-      <>
-        <div className={`${prefixCls}-main`}>{children}</div>
-        <div className={`${prefixCls}-extra`}>{extra}</div>
-      </>
-    ),
+  const TagName = props.href && typeof tagName === 'string' ? 'a' : tagName;
+  return (
+    <TagName className={cls} {...resetProps}>
+      {!extra || resetProps.href ? (
+        children
+      ) : (
+        <>
+          <div className={`${prefixCls}-main`}>{children}</div>
+          <div className={`${prefixCls}-extra`}>{extra}</div>
+        </>
+      )}
+    </TagName>
   );
 }
