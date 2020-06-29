@@ -36,7 +36,7 @@ function InternalCollapse(props: CollapseProps = {}) {
     onChange,
     ...resetProps
   } = props;
-  const [activeKey, setActiveKey] = useState(toArray(propsActiveKey))
+  const [activeKey, setActiveKey] = useState(toArray(propsActiveKey));
   const cls = classnames(prefixCls, className, {
     'w-noborder': bordered,
   });
@@ -60,7 +60,7 @@ function InternalCollapse(props: CollapseProps = {}) {
     if (propsActiveKey !== activeKey) {
       setActiveKey(toArray(propsActiveKey));
     }
-  }, [propsActiveKey])
+  }, [propsActiveKey]);
   useMemo(() => {
     if (propsActiveKey !== activeKey) {
       onChange && onChange(activeKey);

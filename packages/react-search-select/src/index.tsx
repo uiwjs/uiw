@@ -177,6 +177,7 @@ export default class SearchSelect extends React.Component<
       selectIconType,
       selectedLabel,
     } = this.state;
+
     return (
       <Dropdown
         trigger="focus"
@@ -184,32 +185,35 @@ export default class SearchSelect extends React.Component<
         isOpen={innerIsOpen}
         disabled={option && option.length > 0 ? false : true}
         menu={
-          <Loader loading={loading}>
-            <Menu
-              bordered
-              style={{
-                minHeight: 25,
-                maxHeight: 280,
-                overflowY: 'scroll',
-                width: this.divRef.current
-                  ? this.divRef.current.offsetWidth
-                  : 'auto',
-              }}
-            >
-              {option &&
-                option.map((item, idx) => {
-                  const active = selectedValue === item.value;
-                  return (
-                    <Menu.Item
-                      active={active}
-                      key={idx}
-                      text={item.label}
-                      onClick={this.handleItemClick.bind(this, item)}
-                    />
-                  );
-                })}
-            </Menu>
-          </Loader>
+          <Menu
+            bordered
+            style={{
+              minHeight: 25,
+              maxHeight: 280,
+              overflowY: 'scroll',
+              width: this.divRef.current
+                ? this.divRef.current.offsetWidth
+                : 'auto',
+            }}
+          >
+            {!option || option.length === 0 ? (
+              <div style={{ color: '#c7c7c7', fontSize: 12 }}>
+                {loading ? '正在加载数据...' : '没有数据'}
+              </div>
+            ) : (
+              option.map((item, idx) => {
+                const active = selectedValue === item.value;
+                return (
+                  <Menu.Item
+                    active={active}
+                    key={idx}
+                    text={item.label}
+                    onClick={this.handleItemClick.bind(this, item)}
+                  />
+                );
+              })
+            )}
+          </Menu>
         }
         style={{ marginTop: 5 }}
         {...others}

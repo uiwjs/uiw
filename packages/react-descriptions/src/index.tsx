@@ -75,7 +75,9 @@ function InternalDescriptions(props: DescriptionsProps = {}) {
   });
 
   const cloneChildren = React.Children.toArray(children) as JSX.Element[];
-  const childs: Array<React.ReactElement<DescriptionsItemProps>[]> = generateChildrenRows(cloneChildren, column!);
+  const childs: Array<
+    React.ReactElement<DescriptionsItemProps>[]
+  > = generateChildrenRows(cloneChildren, column!);
 
   return (
     <div className={cls}>

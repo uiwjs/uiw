@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import { IProps } from '@uiw/utils';
 import { DescriptionsItemProps } from './DescriptionsItem';
 import Cell from './Cell';
@@ -36,5 +36,5 @@ export default function Row(props: RowProps = {}) {
       {layout === 'vertical' && <tr className={cls}>{handleCell(true)}</tr>}
       <tr className={cls}>{handleCell()}</tr>
     </Fragment>
-  )
+  );
 }

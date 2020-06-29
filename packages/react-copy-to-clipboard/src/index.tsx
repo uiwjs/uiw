@@ -16,8 +16,18 @@ export interface CopyToClipboardProps
   ) => void;
 }
 
-export default function CopyToClipboard<T>(props = {} as CopyToClipboardProps & T) {
-  const { prefixCls = 'w-copy-to-clipboard', className, tagName: TagName = 'span',  text = '', children, onClick = () => null, ...resetProps } = props;
+export default function CopyToClipboard<T>(
+  props = {} as CopyToClipboardProps & T,
+) {
+  const {
+    prefixCls = 'w-copy-to-clipboard',
+    className,
+    tagName: TagName = 'span',
+    text = '',
+    children,
+    onClick = () => null,
+    ...resetProps
+  } = props;
   function handleClick(e: React.MouseEvent<HTMLElement>) {
     if (!text) {
       return onClick('', false, e);
@@ -30,7 +40,7 @@ export default function CopyToClipboard<T>(props = {} as CopyToClipboardProps & 
     ...resetProps,
     className: classnames(prefixCls, className),
     onClick: handleClick,
-  }
+  };
   return (
     <span {...otherProps}>
       <span className={`${prefixCls}-select`}>{text}</span>

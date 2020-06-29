@@ -39,19 +39,18 @@ export default (props: LoaderProps = {}) => {
   );
 
   const indicatorView = useMemo(
-    () =>
-      indicator || (
-        <svg viewBox="25 25 50 50">
-          <circle
-            cx="50"
-            cy="50"
-            r="20"
-            fill="none"
-            strokeWidth="5"
-            strokeMiterlimit="10"
-          />
-        </svg>
-      ),
+    () => (
+      <svg viewBox="25 25 50 50">
+        <circle
+          cx="50"
+          cy="50"
+          r="20"
+          fill="none"
+          strokeWidth="5"
+          strokeMiterlimit="10"
+        />
+      </svg>
+    ),
     [],
   );
 
@@ -64,7 +63,7 @@ export default (props: LoaderProps = {}) => {
         style={{ color, backgroundColor: bgColor }}
       >
         <div className={`${prefixCls}-tips-nested`}>
-          {indicatorView}
+          {indicator || indicatorView}
           {tip && (
             <div
               className={classnames(`${prefixCls}-text`, {

@@ -54,7 +54,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 在 [`<Form />`](#/components/form) 表单中应用 `<SearchSelect />` 组件。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,noScroll,bgWhite,codePen--> 
 ```js
 import { Form, Row, Col, SearchSelect, Button, Notify } from 'uiw';
 

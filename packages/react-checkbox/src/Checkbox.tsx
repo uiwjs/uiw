@@ -1,4 +1,4 @@
-import React, {useImperativeHandle} from 'react';
+import React, { useImperativeHandle } from 'react';
 import classnames from 'classnames';
 import { RadioAbstract, RadioAbstractProps } from '@uiw/react-radio';
 import { CheckboxGroup } from './Group';
