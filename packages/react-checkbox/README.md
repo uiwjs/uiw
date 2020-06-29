@@ -5,6 +5,8 @@ Checkbox 多选框
 
 ```jsx
 import { Checkbox } from 'uiw';
+// or
+import Checkbox from '@uiw/react-checkbox';
 ```
 
 ### 基础用法

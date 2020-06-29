@@ -5,6 +5,8 @@ Popover 气泡卡片
 
 ```jsx
 import { Popover } from 'uiw';
+// or
+import Popover from '@uiw/react-popover';
 ```
 
 ### 基础用法

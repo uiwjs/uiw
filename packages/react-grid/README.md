@@ -5,6 +5,8 @@ Grid 删格
 
 ```jsx
 import { Row, Col } from 'uiw';
+// or
+import { Row, Col } from '@uiw/react-grid';
 ```
 
 ### 基础用法

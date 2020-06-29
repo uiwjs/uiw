@@ -3,6 +3,12 @@ Calendar 日历
 
 按照日历形式展示数据的容器。
 
+```jsx
+import { Calendar } from 'uiw';
+// or
+import Calendar from '@uiw/react-calendar';
+```
+
 ### 基础用法
 
 下面是基础使用方法，可以设置日历通知事项，在日历渲染单元格时，会根据 data 内容来渲染单元格通知事项。

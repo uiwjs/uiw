@@ -5,6 +5,8 @@ Overlay 基础弹出层
 
 ```jsx
 import { Overlay } from 'uiw';
+// or
+import Overlay from '@uiw/react-overlay';
 ```
 
 ### 基本用法

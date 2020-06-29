@@ -5,6 +5,8 @@ Drawer 抽屉
 
 ```jsx
 import { Drawer } from 'uiw';
+// or
+import Drawer from '@uiw/react-drawer';
 ```
 
 ### 基础用法

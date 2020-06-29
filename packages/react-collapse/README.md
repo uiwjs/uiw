@@ -5,6 +5,8 @@ Collapse 折叠面板
 
 ```jsx
 import { Collapse } from 'uiw';
+// or
+import Collapse from '@uiw/react-collapse';
 ```
 
 ## 基本用法

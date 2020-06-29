@@ -5,6 +5,8 @@ Input 输入框
 
 ```jsx
 import { Input } from 'uiw';
+// or
+import Input from '@uiw/react-input';
 ```
 
 ### 基础用法

@@ -5,6 +5,8 @@ Form 表单
 
 ```jsx
 import { Form, FormItem } from 'uiw';
+// or
+import { Form, FormItem } from '@uiw/react-form';
 ```
 
 ### 基本用法

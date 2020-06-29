@@ -5,6 +5,8 @@ Radio 单选框
 
 ```jsx
 import { Radio, RadioGroup } from 'uiw';
+// or
+import { Radio, RadioGroup } from '@uiw/react-radio';
 ```
 
 ### 基础用法

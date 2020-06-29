@@ -5,6 +5,8 @@ CopyToClipboard 复制
 
 ```jsx
 import { CopyToClipboard } from 'uiw';
+// or
+import CopyToClipboard from '@uiw/react-copy-to-clipboard';
 ```
 
 ## 基础实例

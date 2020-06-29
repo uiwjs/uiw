@@ -5,6 +5,8 @@ Select 选择器
 
 ```jsx
 import { Select } from 'uiw';
+// or
+import Select from '@uiw/react-select';
 ```
 
 ### 基础用法

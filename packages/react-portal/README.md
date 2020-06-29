@@ -3,9 +3,10 @@ Portal 入口
 
 [`Portals`](https://reactjs.org/docs/portals.html#event-bubbling-through-portals) 是 react 16 提供的官方解决方案，使得组件可以脱离父组件层级挂载在 DOM 树的任何位置，我们利用这个方法，可将模态对话框生成到根节点的外面。 
 
-
 ```jsx
 import { Portal } from 'uiw';
+// or
+import Portal from '@uiw/react-portal';
 ```
 
 ### 基本使用

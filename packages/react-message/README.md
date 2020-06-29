@@ -5,6 +5,8 @@ Message 警告提示
 
 ```jsx
 import { Message } from 'uiw';
+// or
+import Message from '@uiw/react-message';
 ```
 
 ### 基础用法

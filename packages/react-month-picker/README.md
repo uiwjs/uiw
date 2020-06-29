@@ -5,6 +5,8 @@ MonthPicker 月份选择器
 
 ```jsx
 import { MonthPicker } from 'uiw';
+// or
+import MonthPicker from '@uiw/react-month-picker';
 ```
 
 ### 基础用法

@@ -3,11 +3,17 @@ TreeChecked 树形选择控件
 
 使用树选择控件可以完整展现其中的层级关系，并具有选中状态。
 
+```jsx
+import { TreeChecked } from 'uiw';
+// or
+import TreeChecked from '@uiw/react-tree-checked';
+```
+
 ### 基础实例
 
 <!--DemoStart,bgWhite,codePen--> 
 ```jsx
-import { Tree, Card, Row, Col } from 'uiw';
+import { TreeChecked, Card, Row, Col } from 'uiw';
 
 const data = [
   {

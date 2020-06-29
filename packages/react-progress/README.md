@@ -6,6 +6,8 @@ Progress 进度条
 ```jsx
 import { Progress } from 'uiw';
 const { Line, Circle } = Progress;
+// or
+import Progress from '@uiw/react-portal';
 ```
 
 ### 基本用法

@@ -5,6 +5,8 @@ Tooltip 文字提示
 
 ```jsx
 import { Tooltip } from 'uiw';
+// or
+import Tooltip from '@uiw/react-tooltip';
 ```
 
 ### 基础用法

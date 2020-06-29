@@ -5,6 +5,8 @@ DatePicker 日期选择器
 
 ```jsx
 import { DatePicker } from 'uiw';
+// or
+import DatePicker from '@uiw/react-date-picker';
 ```
 
 ### 基础用法

@@ -1,9 +1,12 @@
 SearchSelect 搜索选择器
 ===
 
+搜索选择器
 
 ```jsx
 import { SearchSelect } from 'uiw';
+// or
+import SearchSelect from '@uiw/react-search-select';
 ```
 
 ## 基础示例

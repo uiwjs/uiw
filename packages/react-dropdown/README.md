@@ -5,6 +5,8 @@ Dropdown 下拉菜单
 
 ```jsx
 import { Dropdown } from 'uiw';
+// or
+import Dropdown from '@uiw/react-dropdown';
 ```
 
 ### 基本用法

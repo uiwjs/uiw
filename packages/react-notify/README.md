@@ -5,6 +5,8 @@ Notify 消息通知
 
 ```jsx
 import { Notify } from 'uiw';
+// or
+import Notify from '@uiw/react-notify';
 ```
 
 ### 基本用法

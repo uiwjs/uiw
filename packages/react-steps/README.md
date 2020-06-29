@@ -5,6 +5,8 @@ Steps 步骤条
 
 ```jsx
 import { Steps } from 'uiw';
+// or
+import Steps from '@uiw/react-steps';
 ```
 
 ### 基本用法

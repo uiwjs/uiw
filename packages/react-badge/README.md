@@ -5,6 +5,8 @@ Badge 标记
 
 ```jsx
 import { Badge } from 'uiw';
+// or
+import Badge from '@uiw/react-badge';
 ```
 
 ### 基础用法

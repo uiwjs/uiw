@@ -5,6 +5,8 @@ FileInput 上传输入框
 
 ```jsx
 import { FileInput } from 'uiw';
+// or
+import FileInput from '@uiw/react-file-input';
 ```
 
 ### 基础用法

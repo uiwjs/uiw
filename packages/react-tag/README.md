@@ -5,6 +5,8 @@ Tag 标签
 
 ```jsx
 import { Tag } from 'uiw';
+// or
+import Tag from '@uiw/react-tag';
 ```
 
 ### 基础用法

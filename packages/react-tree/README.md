@@ -5,6 +5,8 @@ Tree 树形控件
 
 ```jsx
 import { Tree } from 'uiw';
+// or
+import Tree from '@uiw/react-tree';
 ```
 
 ### 基础用法

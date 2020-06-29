@@ -5,6 +5,8 @@ Card 卡片
 
 ```jsx
 import { Card } from 'uiw';
+// or
+import Card from '@uiw/react-card';
 ```
 
 ## 基础用法

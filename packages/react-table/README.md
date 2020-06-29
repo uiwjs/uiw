@@ -5,6 +5,8 @@ Table 表格
 
 ```jsx
 import { Table } from 'uiw';
+// or
+import Table from '@uiw/react-table';
 ```
 
 ### 基本使用

@@ -5,6 +5,8 @@ Textarea 多行文本输入框
 
 ```jsx
 import { Textarea } from 'uiw';
+// or
+import Textarea from '@uiw/react-textarea';
 ```
 
 ### 基础用法

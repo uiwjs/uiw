@@ -5,6 +5,8 @@ Avatar 头像
 
 ```jsx
 import { Avatar } from 'uiw';
+// or
+import Avatar from '@uiw/react-avatar';
 ```
 
 ## 基本用法

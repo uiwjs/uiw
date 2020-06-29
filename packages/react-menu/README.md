@@ -5,6 +5,8 @@ Menu 菜单
 
 ```jsx
 import { Menu } from 'uiw';
+// or
+import Menu from '@uiw/react-menu';
 ```
 
 ### 基本用法

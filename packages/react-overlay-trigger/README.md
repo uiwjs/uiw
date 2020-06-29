@@ -5,6 +5,8 @@ OverlayTrigger 基础触发弹出
 
 ```jsx
 import { OverlayTrigger } from 'uiw';
+// or
+import OverlayTrigger from '@uiw/react-overlay-trigger';
 ```
 
 ### 基础用法

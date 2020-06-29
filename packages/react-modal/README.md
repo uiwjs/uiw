@@ -3,9 +3,10 @@ Modal 模态对话框
 
 模态对话框。
 
-
 ```jsx
 import { Modal } from 'uiw';
+// or
+import Modal from '@uiw/react-modal';
 ```
 
 ### 基本用法

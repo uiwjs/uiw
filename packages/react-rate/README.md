@@ -5,6 +5,8 @@ Rate 评分
 
 ```jsx
 import { Rate } from 'uiw';
+// or
+import Rate from '@uiw/react-rate';
 ```
 
 ### 基本用法

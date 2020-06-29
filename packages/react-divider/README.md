@@ -5,6 +5,8 @@ Divider 分割线
 
 ```jsx
 import { Divider } from 'uiw';
+// or
+import Divider from '@uiw/react-divider';
 ```
 
 ### 基础实例

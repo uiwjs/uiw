@@ -5,6 +5,8 @@ Breadcrumb 面包屑
 
 ```jsx
 import { Breadcrumb } from 'uiw';
+// or
+import Breadcrumb from '@uiw/react-breadcrumb';
 ```
 
 ### 基础用法

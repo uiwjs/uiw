@@ -3,7 +3,9 @@
 用于页面和区块的加载中状态。
 
 ```jsx
-import { Loader } from "uiw";
+import { Loader } from 'uiw';
+// or
+import Loader from '@uiw/react-loader';
 ```
 
 ### 基础实例

@@ -5,6 +5,8 @@ BackTop 返回顶部
 
 ```jsx
 import { BackTop } from 'uiw';
+// or
+import BackTop from '@uiw/react-back-top';
 ```
 
 ## 基本用法

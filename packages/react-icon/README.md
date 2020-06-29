@@ -3,6 +3,12 @@ Icon 图标
 
 语义化的矢量图形，内置的图标属于UI框架常用图形字体。icon字体以及样式，被抽离到一个新的仓库 [uiw icon](https://uiwjs.github.io/icons/) ，`uiw`去依赖 [uiw-iconfont](https://github.com/uiwjs/icons)，这个仓库主要是维护一套svg图片，并将svg图片转换为 `*.symbol.svg` `*.ttf` `*.woff` `*.woff2` `*.eot` `svgPaths.json` 等字体及相关文件并发布到 [npm](https://www.npmjs.com/package/uiw-iconfont) 上去。
 
+```jsx
+import { Icon } from 'uiw';
+// or
+import Icon from '@uiw/react-icon';
+```
+
 ### 搜索图标
 
 <!--DemoStart,bgWhite,noCode,codePen--> 

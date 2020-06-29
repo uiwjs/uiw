@@ -5,6 +5,8 @@ DateInput 日期输入框
 
 ```jsx
 import { DateInput } from 'uiw';
+// or
+import DateInput from '@uiw/react-date-input';
 ```
 
 ## 基本使用

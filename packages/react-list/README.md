@@ -1,10 +1,12 @@
-List列表
+List 列表
 ===
 
 列表组件
 
 ```jsx
 import { List } from 'uiw';
+// or
+import List from '@uiw/react-list';
 ```
 
 ### 基础用法

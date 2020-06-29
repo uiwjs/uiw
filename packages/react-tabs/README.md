@@ -5,6 +5,8 @@ Tabs 标签页
 
 ```jsx
 import { Tabs } from 'uiw';
+// or
+import Tabs from '@uiw/react-tabs';
 ```
 
 ### 基本用法

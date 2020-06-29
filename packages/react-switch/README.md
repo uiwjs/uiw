@@ -5,6 +5,8 @@ Switch 开关
 
 ```jsx
 import { Switch } from 'uiw';
+// or
+import Switch from '@uiw/react-switch';
 ```
 
 ### 基本用法

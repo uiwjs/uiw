@@ -5,6 +5,8 @@ TimePicker 时间选择器
 
 ```jsx
 import { TimePicker } from 'uiw';
+// or
+import TimePicker from '@uiw/react-time-picker';
 ```
 
 ## 基础用法
