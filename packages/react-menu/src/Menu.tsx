@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, MutableRefObject, useMemo } from 'react';
+import React, { useImperativeHandle, useMemo } from 'react';
 import classNames from 'classnames';
 import { IProps, HTMLUlProps } from '@uiw/utils';
 import MenuItem from './MenuItem';
@@ -22,8 +22,11 @@ export interface MenuProps extends IProps, HTMLUlProps {
 }
 
 function InternalMenu(
-  props = {} as MenuProps,
-  ref?: ((instance: unknown) => void) | MutableRefObject<unknown> | null,
+  props: MenuProps = {},
+  ref?:
+    | ((instance: HTMLUListElement) => void)
+    | React.RefObject<HTMLUListElement | null>
+    | null,
 ) {
   const {
     prefixCls = 'w-menu',
@@ -78,6 +81,6 @@ interface CompoundedComponent
   Divider: typeof Divider;
 }
 
-export default React.forwardRef<unknown, MenuProps>(
+export default React.forwardRef<HTMLUListElement, MenuProps>(
   InternalMenu,
 ) as CompoundedComponent;
