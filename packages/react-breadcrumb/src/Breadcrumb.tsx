@@ -31,14 +31,13 @@ function InternalBreadcrumb(props: BreadcrumbProps = {}) {
   );
 }
 
-interface CompoundedComponent
-  extends React.ForwardRefExoticComponent<BreadcrumbProps> {
-  Item: typeof Item;
-}
-
 const Breadcrumb = React.forwardRef<unknown, BreadcrumbProps>(
   InternalBreadcrumb,
-) as CompoundedComponent;
-Breadcrumb.Item = Item;
+);
+type Breadcrumb = typeof Breadcrumb & {
+  Item: typeof Item;
+};
 
-export default Breadcrumb;
+(Breadcrumb as Breadcrumb).Item = Item;
+
+export default Breadcrumb as Breadcrumb;

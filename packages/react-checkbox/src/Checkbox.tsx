@@ -40,15 +40,13 @@ function InternalCheckbox(
   );
 }
 
-interface CompoundedComponent
-  extends React.ForwardRefExoticComponent<CheckboxProps> {
-  Group: typeof CheckboxGroup;
-}
-
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   InternalCheckbox,
-) as CompoundedComponent;
+);
+type Checkbox = typeof Checkbox & {
+  Group: typeof CheckboxGroup;
+};
 
-Checkbox.Group = CheckboxGroup;
+(Checkbox as Checkbox).Group = CheckboxGroup;
 
-export default Checkbox;
+export default Checkbox as Checkbox;
