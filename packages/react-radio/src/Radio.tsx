@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, useMemo } from 'react';
+import React, { useImperativeHandle } from 'react';
 import { RadioAbstract, RadioAbstractProps } from './RadioAbstract';
 import './style/index.less';
 

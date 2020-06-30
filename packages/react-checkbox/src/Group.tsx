@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import Checkbox, { CheckboxProps } from './Checkbox';
 import './style/group.less';
 
 export type Value = string[] & number[];

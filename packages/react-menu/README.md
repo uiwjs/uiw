@@ -11,7 +11,7 @@ import Menu from '@uiw/react-menu';
 
 ### 基本用法
 
-注意 `SubMenu` 父菜单为折叠菜单，当前 `SubMenu` 的子菜单弹出会因为 `overflow: hidde` 而无法显示。
+⚠️ 注意 `SubMenu` 父菜单为折叠菜单，当前 `SubMenu` 的子菜单弹出会因为 `overflow: hidde` 而无法显示。
 
 <!--DemoStart,bgWhite,noScroll,codePen-->
 ```jsx
