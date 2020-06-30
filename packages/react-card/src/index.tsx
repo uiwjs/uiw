@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useImperativeHandle } from 'react';
 import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/index.less';
@@ -14,7 +14,13 @@ export interface CardProps extends IProps, Omit<HTMLDivProps, 'title'> {
   footer?: React.ReactNode;
 }
 
-export default (props: CardProps = {}) => {
+function InternalCard(
+  props: CardProps = {},
+  ref?:
+    | ((instance: HTMLDivElement) => void)
+    | React.RefObject<HTMLDivElement | null>
+    | null,
+) {
   const {
     prefixCls = 'w-card',
     className,
@@ -29,6 +35,8 @@ export default (props: CardProps = {}) => {
     children,
     ...resetProps
   } = props;
+  const divRef = React.createRef<HTMLDivElement>();
+  useImperativeHandle(ref, () => divRef.current);
   const cls = useMemo(
     () =>
       classnames(prefixCls, className, {
@@ -40,7 +48,7 @@ export default (props: CardProps = {}) => {
   );
 
   return (
-    <div {...resetProps} className={cls}>
+    <div {...resetProps} className={cls} ref={divRef}>
       {(title || extra) && (
         <div className={`${prefixCls}-head`}>
           {title && <div className={`${prefixCls}-head-title`}>{title}</div>}
@@ -58,4 +66,8 @@ export default (props: CardProps = {}) => {
       {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
     </div>
   );
-};
+}
+
+const Card = React.forwardRef<HTMLDivElement, CardProps>(InternalCard);
+
+export default Card;
