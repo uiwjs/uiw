@@ -1,9 +1,4 @@
-import React, {
-  useMemo,
-  useState,
-  useImperativeHandle,
-  MutableRefObject,
-} from 'react';
+import React, { useMemo, useState, useImperativeHandle } from 'react';
 import classnames from 'classnames';
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 import OverlayTrigger, {
@@ -69,7 +64,10 @@ function IconView({
 
 function SubMenu(
   props: SubMenuProps = {},
-  ref?: ((instance: unknown) => void) | MutableRefObject<unknown> | null,
+  ref:
+    | ((instance: OverlayTrigger) => void)
+    | React.RefObject<OverlayTrigger | null>
+    | null,
 ) {
   const {
     prefixCls = 'w-menu-subitem',
@@ -182,4 +180,5 @@ function SubMenu(
   );
 }
 
-export default React.forwardRef<unknown, SubMenuProps>(SubMenu);
+SubMenu.displayName = 'uiw.SubMenu';
+export default React.forwardRef<OverlayTrigger, SubMenuProps>(SubMenu);

@@ -93,15 +93,11 @@ function InternalCollapse(props: CollapseProps = {}) {
   );
 }
 
-interface CompoundedComponent
-  extends React.ForwardRefExoticComponent<CollapseProps> {
+const Collapse = React.forwardRef<unknown, CollapseProps>(InternalCollapse);
+type Collapse = typeof Collapse & {
   Panel: typeof Panel;
-}
+};
 
-const Collapse = React.forwardRef<unknown, CollapseProps>(
-  InternalCollapse,
-) as CompoundedComponent;
+(Collapse as Collapse).Panel = Panel;
 
-Collapse.Panel = Panel;
-
-export default Collapse;
+export default Collapse as Collapse;

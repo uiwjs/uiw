@@ -26,7 +26,7 @@ export interface MenuItemProps
   icon?: JSX.Element | string | false | null;
 }
 
-export default function MenuItem<T>(props = {} as MenuItemProps & T) {
+function MenuItem<T>(props = {} as MenuItemProps & T) {
   const {
     prefixCls = 'w-menu-item',
     className,
@@ -68,3 +68,6 @@ export default function MenuItem<T>(props = {} as MenuItemProps & T) {
   }
   return <li> {tagComp} </li>;
 }
+
+MenuItem.displayName = 'uiw.MenuItem';
+export default MenuItem;

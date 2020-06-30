@@ -72,15 +72,17 @@ function InternalMenu(
   );
 }
 
-interface CompoundedComponent
-  extends React.ForwardRefExoticComponent<
-    MenuProps & React.RefAttributes<HTMLUListElement>
-  > {
+const Menu = React.forwardRef<HTMLUListElement, MenuProps>(InternalMenu);
+
+type Menu = typeof Menu & {
   Item: typeof MenuItem;
   SubMenu: typeof SubMenu;
   Divider: typeof Divider;
-}
+};
 
-export default React.forwardRef<HTMLUListElement, MenuProps>(
-  InternalMenu,
-) as CompoundedComponent;
+(Menu as Menu).Item = MenuItem;
+(Menu as Menu).SubMenu = SubMenu;
+(Menu as Menu).Divider = Divider;
+(Menu as Menu).displayName = 'uiw.Menu';
+
+export default Menu as Menu;
