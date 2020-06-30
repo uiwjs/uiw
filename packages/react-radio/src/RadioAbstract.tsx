@@ -17,11 +17,10 @@ export interface RadioAbstractProps
 
 function Abstract(
   props: RadioAbstractProps = {},
-  ref:
+  ref?:
     | ((instance: HTMLInputElement) => void)
     | React.RefObject<unknown>
-    | null
-    | undefined,
+    | null,
 ) {
   const {
     prefixCls = 'w-radio',
