@@ -241,7 +241,6 @@ class Demo extends React.Component {
     }
   }
   onClick() {
-    console.log('this.state.btnIcon:',this.state.btnIcon);
     this.setState({
       btnIcon: this.state.btnIcon === 'lock' ? 'unlock' : 'lock',
     })
@@ -251,6 +250,11 @@ class Demo extends React.Component {
       <Row gutter={10}>
         <Col fixed>
           <Input
+            ref={(instance) => {
+              if (instance) {
+                console.log('instance:', instance);
+              }
+            }}
             preIcon="like-o"
             type={this.state.btnIcon === 'lock' ? 'password' : 'text'}
             placeholder="请输入密码"
