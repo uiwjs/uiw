@@ -66,6 +66,7 @@ function Abstract(
   );
 }
 
-export const RadioAbstract = React.forwardRef<unknown, RadioAbstractProps>(
-  Abstract,
-);
+export const RadioAbstract = React.forwardRef<
+  HTMLInputElement,
+  RadioAbstractProps
+>(Abstract);

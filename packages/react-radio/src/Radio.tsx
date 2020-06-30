@@ -5,9 +5,9 @@ import './style/index.less';
 export interface RadioProps extends RadioAbstractProps {}
 
 function Radio(props: RadioProps = {}, ref: any) {
-  const menuRef = React.createRef<HTMLUListElement>();
-  useImperativeHandle(ref, () => menuRef.current);
-  return <RadioAbstract ref={menuRef} {...props} />;
+  const inputRef = React.createRef<HTMLInputElement>();
+  useImperativeHandle(ref, () => inputRef.current);
+  return <RadioAbstract ref={inputRef} {...props} />;
 }
 
 export default React.forwardRef<unknown, RadioProps>(Radio);
