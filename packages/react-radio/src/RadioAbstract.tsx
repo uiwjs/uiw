@@ -19,7 +19,7 @@ function Abstract(
   props: RadioAbstractProps = {},
   ref?:
     | ((instance: HTMLInputElement) => void)
-    | React.RefObject<unknown>
+    | React.RefObject<HTMLInputElement | null>
     | null,
 ) {
   const {

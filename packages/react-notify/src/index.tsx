@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
-import { ButtonType } from '@uiw/react-button';
 import { AlertProps } from '@uiw/react-alert';
 import { randomid } from '@uiw/utils';
 import Container, { Placement, ContainerNotifys } from './Container';
@@ -10,7 +9,14 @@ import './style/index.less';
 export interface NotificationCreateProps extends Omit<AlertProps, 'type'> {
   placement?: Placement;
   description?: React.ReactNode;
-  type?: ButtonType | 'info' | 'error' | 'open';
+  type?:
+    | 'primary'
+    | 'danger'
+    | 'open'
+    | 'success'
+    | 'warning'
+    | 'info'
+    | 'error';
   duration?: number;
   key?: string;
   willUnmount?: (
