@@ -13,11 +13,10 @@ export interface SelectProps
 
 function InternalSelect(
   props: SelectProps = {},
-  ref:
+  ref?:
     | ((instance: HTMLSelectElement) => void)
-    | React.RefObject<unknown>
-    | null
-    | undefined,
+    | React.RefObject<HTMLSelectElement | null>
+    | null,
 ) {
   const {
     prefixCls = 'w-select',
@@ -38,19 +37,13 @@ function InternalSelect(
   );
 }
 
-interface CompoundedComponent
-  extends React.ForwardRefExoticComponent<
-    SelectProps & React.RefAttributes<HTMLUListElement>
-  > {
+const Select = React.forwardRef<HTMLSelectElement, SelectProps>(InternalSelect);
+type Select = typeof Select & {
   Option: typeof Option;
   Group: typeof Group;
-}
+};
 
-const Select = React.forwardRef<unknown, SelectProps>(
-  InternalSelect,
-) as CompoundedComponent;
+(Select as Select).Option = Option;
+(Select as Select).Group = Group;
 
-Select.Option = Option;
-Select.Group = Group;
-
-export default Select;
+export default Select as Select;

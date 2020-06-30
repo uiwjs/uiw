@@ -124,19 +124,22 @@ ReactDOM.render(<Demo />, _mount_);
 ```js
 import { Row, Col, Select } from 'uiw';
 
+const Option = Select.Option;
+const Group = Select.Group;
+
 const Demo = () => (
   <Row>
     <Col fixed>
       <Select defaultValue="w">
-        <Select.Option value="w">Choose an item...</Select.Option>
-        <Select.Group label="Group 1">
-          <Select.Option value="1">One</Select.Option>
-          <Select.Option value="2">Two</Select.Option>
-        </Select.Group>
-        <Select.Group label="Group 2">
-          <Select.Option value="3">Three</Select.Option>
-          <Select.Option value="4">Four</Select.Option>
-        </Select.Group>
+        <Option value="w">Choose an item...</Option>
+        <Group label="Group 1">
+          <Option value="1">One</Option>
+          <Option value="2">Two</Option>
+        </Group>
+        <Group label="Group 2">
+          <Option value="3">Three</Option>
+          <Option value="4">Four</Option>
+        </Group>
       </Select>
     </Col>
   </Row>

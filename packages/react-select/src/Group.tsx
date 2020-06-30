@@ -1,7 +1,5 @@
 import React from 'react';
 
-const Group = (props: React.InputHTMLAttributes<HTMLOptGroupElement>) => (
+export default (props: React.InputHTMLAttributes<HTMLOptGroupElement>) => (
   <optgroup {...props} />
 );
-
-export default Group;
