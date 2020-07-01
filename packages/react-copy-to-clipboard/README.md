@@ -9,7 +9,7 @@ import { CopyToClipboard } from 'uiw';
 import CopyToClipboard from '@uiw/react-copy-to-clipboard';
 ```
 
-## 基础实例
+### 基础实例
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
@@ -61,9 +61,9 @@ class Demo extends React.Component {
     this.input = React.createRef();
   }
   onChange(e){
-    this.setState({
-      copyText: e.target.value
-    })
+    // this.setState({
+    //   copyText: e.target.value
+    // })
   }
   render() {
     const { copyText } = this.state;
@@ -87,7 +87,7 @@ class Demo extends React.Component {
                 this.setState({ message: '' });
               }, 2000);
             });
-            this.input.current.inputRef.current.select();
+            this.input.current.select();
           }}
         >
           <Button type="primary">点击复制</Button>
