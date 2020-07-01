@@ -12,7 +12,7 @@ export interface ListItemProps
   tagName?: keyof JSX.IntrinsicElements | any;
 }
 
-export default function Item<T>(props: ListItemProps = {}) {
+export default function Item<T>(props = {} as ListItemProps & T) {
   const {
     prefixCls = 'w-list-item',
     className,
