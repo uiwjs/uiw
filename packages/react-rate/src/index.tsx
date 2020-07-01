@@ -36,7 +36,7 @@ export default function Rate(props: RateProps = {}) {
   const [hoverCount, setHoverCount] = useState(-1);
   const cls = classnames(prefixCls, className, { disabled });
 
-  let [prevValue, setPrevValue] = useState<number>();
+  const [prevValue, setPrevValue] = useState<number>();
   if (defValue !== prevValue) {
     setPrevValue(defValue);
   }

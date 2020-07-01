@@ -9,11 +9,62 @@ import { Tooltip } from 'uiw';
 import Tooltip from '@uiw/react-tooltip';
 ```
 
+### 受控组件
+
+<!--DemoStart,bgWhite,codePen--> 
+```js
+import { Tooltip, Switch, Divider } from 'uiw';
+
+class Demo extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      checked: false,
+      isOpen: false,
+    }
+  }
+  onChange(e) {
+    console.log('e.target.checked',e.target.checked)
+    this.setState({ isOpen: e.target.checked });
+  }
+  onVisibleChange(isOpen) {
+    const props = {}
+    if (!isOpen) {
+      props.checked = false;
+      props.isOpen = false;
+    } else {
+      props.checked = true;
+    }
+    console.log('isOpen',props,isOpen)
+    this.setState({ ...props });
+  }
+  render() {
+    return (
+      <div>
+        <Tooltip
+          isOpen={this.state.isOpen}
+          onVisibleChange={this.onVisibleChange.bind(this)}
+          placement="top"
+          content="Hello uiw!"
+        >
+          <span>鼠标移动到此处，显示和消失触发事件，也可以通过 Switch 组件来控制</span>
+        </Tooltip>
+        <Divider />
+        <Switch checked={this.state.checked} onChange={this.onChange.bind(this)} />
+      </div>
+    )
+  }
+}
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
+
 ### 基础用法
 
 最简单的用法。
 
-<!--DemoStart,bgWhite,codePen--> 
+
 ```js
 import { Tooltip, Button } from 'uiw';
 
@@ -41,7 +92,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 位置有 `12` 个方向，根据 `placement` 参数来设置。
 
-<!--DemoStart,bgWhite,codePen--> 
+
 ```js
 import { Tooltip, Button, Divider } from 'uiw';
 
@@ -122,7 +173,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 文字提示组件 `<Tooltip />`，通过设置属性 `trigger` 可以文字提示操作方式。
 
-<!--DemoStart,bgWhite,codePen--> 
+
 ```js
 import { Tooltip, Button } from 'uiw';
 
@@ -146,7 +197,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 通过设置属性 `visibleArrow` 可以文字提示框不显示箭头。
 
-<!--DemoStart,bgWhite,codePen--> 
+
 ```js
 import { Tooltip, Button } from 'uiw';
 
@@ -189,7 +240,7 @@ class Demo extends React.Component {
     return (
       <div>
         <Tooltip
-          visible={this.state.isOpen}
+          isOpen={this.state.isOpen}
           onVisibleChange={this.onVisibleChange.bind(this)}
           placement="top"
           content="Hello uiw!"

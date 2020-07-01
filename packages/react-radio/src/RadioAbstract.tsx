@@ -1,4 +1,9 @@
-import React, { useState, useImperativeHandle, useMemo } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+} from 'react';
 import classnames from 'classnames';
 import { IProps, HTMLInputProps } from '@uiw/utils';
 
@@ -31,32 +36,46 @@ function Abstract(
     style,
     children,
     size,
+    checked: prChecked = false,
     onChange,
     ...other
   } = props;
   const inputRef = React.createRef<HTMLInputElement>();
   useImperativeHandle(ref, () => inputRef.current);
-  const [checked, setChecked] = useState(other.checked || false);
+
+  const [checked, setChecked] = useState(prChecked);
+  const [prevChecked, setPrevChecked] = useState<boolean>();
+  if (prChecked !== prevChecked) {
+    setPrevChecked(prChecked);
+  }
+  useMemo(() => {
+    if (prChecked !== prevChecked) {
+      setChecked(prChecked);
+    }
+  }, [prevChecked]);
+
   const cls = classnames(prefixCls, className, {
     disabled: disabled,
     [`${prefixCls}-${size}`]: size,
   });
-  other.checked = checked;
   useMemo(() => {
     if (checked !== props.checked) {
       setChecked(!!props.checked);
     }
   }, [props.checked]);
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     e.persist();
     setChecked(e.target.checked);
     onChange && onChange(e);
   }
+
   const label = children || value;
   return (
     <label {...{ className: cls, style }}>
       <input
         {...{ ...other, type, disabled, value }}
+        checked={checked}
         onChange={handleChange}
         ref={inputRef}
       />
