@@ -64,7 +64,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 最简单的用法。
 
-
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Tooltip, Button } from 'uiw';
 
@@ -92,7 +92,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 位置有 `12` 个方向，根据 `placement` 参数来设置。
 
-
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Tooltip, Button, Divider } from 'uiw';
 
@@ -173,7 +173,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 文字提示组件 `<Tooltip />`，通过设置属性 `trigger` 可以文字提示操作方式。
 
-
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Tooltip, Button } from 'uiw';
 
@@ -197,7 +197,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 通过设置属性 `visibleArrow` 可以文字提示框不显示箭头。
 
-
+<!--DemoStart,bgWhite,codePen--> 
 ```js
 import { Tooltip, Button } from 'uiw';
 

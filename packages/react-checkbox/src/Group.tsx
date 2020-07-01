@@ -22,6 +22,10 @@ export function CheckboxGroup(props: CheckboxGroupPorps = {}) {
     ...other
   } = props;
   const [values, setValues] = useState<Value>([]);
+  if (values !== value) {
+    setValues(value || []);
+  }
+
   return (
     <div {...other} className={classnames(prefixCls, className)}>
       {React.Children.map(props.children, (element: any) => {
@@ -45,8 +49,8 @@ export function CheckboxGroup(props: CheckboxGroupPorps = {}) {
                 val = values.filter(
                   (val) => val !== element.props.value,
                 ) as Value;
-                setValues(val);
               }
+              setValues(val);
               onChange && onChange(e, val);
             },
           }),
