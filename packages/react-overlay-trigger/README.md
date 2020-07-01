@@ -262,7 +262,7 @@ class Demo extends React.Component {
             onVisibleChange={this.onVisibleChange.bind(this)}
             overlay={card}
           >
-            <span>鼠标移动到此处，显示和消失触发事件</span>
+            <span>鼠标移动到此处，点击显示和消失触发事件</span>
           </OverlayTrigger>
         </div>
         <Divider />

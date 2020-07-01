@@ -1,81 +1,73 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 
 export interface PortalProps {
+  children?: React.ReactNode;
   /**
    * Callback invoked when the children of this `Portal` have been added to the DOM.
    */
-  onChildrenMount?: () => void;
+  onChildrenMount?: (portalElement: HTMLElement) => void;
   /**
    * The HTML element that children will be mounted to.
    * @default document.body
    */
   container?: HTMLElement;
+  visible?: boolean;
 }
 
 export interface PortalState {
   hasMounted: boolean;
 }
 
-/** Detect if `React.createPortal()` API method does not exist. */
-const cannotCreatePortal = !(typeof ReactDOM.createPortal === 'function');
-
-export default class Portal extends React.Component<PortalProps> {
-  public static defaultProps: PortalProps = {
-    container: typeof document !== 'undefined' ? document.body : undefined,
-  };
-  public state: PortalState = {
-    hasMounted: false,
-  };
-  private portalElement!: HTMLElement;
-  public componentDidMount() {
-    if (!this.props.container) {
-      return;
-    }
-    this.portalElement = this.createContainerElement();
-    this.props.container.appendChild(this.portalElement);
-    this.setState({ hasMounted: true }, this.props.onChildrenMount);
-    if (cannotCreatePortal) {
-      this.unstableRenderNoPortal();
-    }
-  }
-  public componentDidUpdate() {
-    if (cannotCreatePortal) {
-      this.unstableRenderNoPortal();
-    }
-  }
-
-  public componentWillUnmount() {
-    if (this.portalElement != null) {
-      if (cannotCreatePortal) {
-        ReactDOM.unmountComponentAtNode(this.portalElement);
+export default function Portal(props: PortalProps = {}) {
+  const {
+    children,
+    container: body = typeof document !== 'undefined'
+      ? document.body
+      : undefined,
+    visible,
+    onChildrenMount,
+  } = props;
+  const [hasMounted, setHasMounted] = useState(false);
+  const [portalElement, setPortalElement] = useState<HTMLDivElement>();
+  useEffect(() => {
+    // Component Will Unmount
+    return () => {
+      if (portalElement) {
+        portalElement.remove();
       }
-      this.portalElement.remove();
+    };
+  }, []);
+  useMemo(() => {
+    if (visible && body) {
+      if (!portalElement) {
+        let elm = document.createElement('div');
+        setPortalElement(elm);
+        body.appendChild(elm);
+      }
     }
-  }
-  render() {
-    // Only render `children` once this component has mounted in a browser environment,
-    // so they are immediately attached to the DOM tree.
-    // See long comment on componentDidMount in https://reactjs.org/docs/portals.html#event-bubbling-through-portals
-    if (
-      cannotCreatePortal ||
-      typeof document === 'undefined' ||
-      !this.state.hasMounted
-    ) {
-      return <Fragment />;
-    } else {
-      return ReactDOM.createPortal(this.props.children, this.portalElement);
+    if (!visible && portalElement) {
+      setHasMounted(false);
+      setPortalElement(undefined);
+      const timer = setTimeout(() => {
+        portalElement && portalElement.remove();
+        clearTimeout(timer);
+      });
     }
-  }
-  private createContainerElement() {
-    const container = document.createElement('div');
-    return container;
-  }
-  unstableRenderNoPortal() {
-    ReactDOM.unstable_renderSubtreeIntoContainer(
-      /* parentComponent */ this,
-      <div>{this.props.children}</div>,
-      this.portalElement,
-    );
+  }, [visible]);
+  useMemo(() => {
+    if (portalElement && !hasMounted) {
+      setHasMounted(true);
+      onChildrenMount && onChildrenMount(portalElement);
+    }
+  }, [portalElement, hasMounted]);
+
+  // Only render `children` once this component has mounted in a browser environment,
+  // so they are immediately attached to the DOM tree.
+  // See long comment on componentDidMount in https://reactjs.org/docs/portals.html#event-bubbling-through-portals
+  if (typeof document === 'undefined' || !hasMounted) {
+    return <Fragment />;
+  } else {
+    return ReactDOM.createPortal(children, portalElement!);
   }
 }

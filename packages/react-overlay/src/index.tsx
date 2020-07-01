@@ -72,11 +72,12 @@ export default class Overlay extends React.Component<
     onClose: noop,
   };
   public container!: HTMLDivElement | null;
+  private visible?: boolean;
   constructor(props: OverlayProps) {
     super(props);
     this.state = {
       isMount: false,
-      isOpen: props.isOpen as boolean,
+      isOpen: false,
     };
   }
   componentDidMount() {
@@ -131,7 +132,9 @@ export default class Overlay extends React.Component<
       this.props.isOpen ? this.overlayWillOpen() : this.overlayWillClose();
     }
   }
-  handleBackdropMouseDown = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  handleBackdropMouseDown = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
     const {
       backdropProps,
       maskClosable,
@@ -143,13 +146,9 @@ export default class Overlay extends React.Component<
       return;
     }
     if (maskClosable && hasBackdrop) {
-      this.setState({ isMount: false }, onClose!.bind(this, e));
+      this.setState({ isOpen: false }, onClose!.bind(this, e));
     }
-    backdropProps &&
-      backdropProps.onMouseDown &&
-      backdropProps.onMouseDown(
-        e as React.MouseEvent<HTMLDivElement, MouseEvent>,
-      );
+    backdropProps && backdropProps.onMouseDown && backdropProps.onMouseDown(e);
   };
   public onClosed = (
     node: HTMLElement | React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -177,7 +176,7 @@ export default class Overlay extends React.Component<
       timeout,
       transitionName,
       hasBackdrop,
-      portalProps,
+      portalProps = {},
       backdropProps = {},
       dialogProps = {},
       onClose,
@@ -247,7 +246,21 @@ export default class Overlay extends React.Component<
       </CSSTransition>
     );
     if (usePortal) {
-      return <Portal {...portalProps}> {TransitionGroupComp} </Portal>;
+      if (!this.visible) {
+        this.visible = this.props.isOpen;
+      } else if (
+        this.visible === true &&
+        this.state.isOpen === false &&
+        this.state.isMount === false
+      ) {
+        this.visible = false;
+      }
+      return (
+        <Portal {...{ ...portalProps, ...{ visible: this.visible } }}>
+          {' '}
+          {TransitionGroupComp}{' '}
+        </Portal>
+      );
     } else {
       return TransitionGroupComp;
     }

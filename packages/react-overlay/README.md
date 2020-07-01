@@ -23,8 +23,11 @@ class Demo extends React.PureComponent {
       hasBackdrop: true,
     }
   }
-  toggleOverlay(hasBackdrop, e) {
-    this.setState({ isOpen: !this.state.isOpen, hasBackdrop });
+  toggleOverlay() {
+    this.setState({ isOpen: !this.state.isOpen, hasBackdrop: true });
+  }
+  toggleOverlay2() {
+    this.setState({ isOpen: !this.state.isOpen, hasBackdrop: false });
   }
   onClose(e) {
     this.setState({ isOpen: false });
@@ -32,8 +35,8 @@ class Demo extends React.PureComponent {
   render() {
     return (
       <div>
-        <Button type="primary" onClick={this.toggleOverlay.bind(this, true)}>点击弹出内容</Button>
-        <Button type="primary" onClick={this.toggleOverlay.bind(this, false)}>弹出内容没有遮罩层</Button>
+        <Button type="primary" onClick={this.toggleOverlay.bind(this)}>点击弹出内容</Button>
+        <Button type="primary" onClick={this.toggleOverlay2.bind(this)}>弹出内容没有遮罩层</Button>
         <Overlay
           hasBackdrop={this.state.hasBackdrop}
           isOpen={this.state.isOpen}
@@ -45,7 +48,7 @@ class Demo extends React.PureComponent {
               这是一个基础的弹出层组件，其它弹出层组件基于它来扩展比如 Modal、Alert
             </div>
             <br />
-            <Button type="danger" onClick={this.toggleOverlay.bind(this, false)}>关闭</Button>
+            <Button type="danger" onClick={this.onClose.bind(this, false)}>关闭</Button>
           </Card>
         </Overlay>
       </div>
