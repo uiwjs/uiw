@@ -6,33 +6,37 @@
   font-family: auto;
   display: inline-block;
   vertical-align: middle;
-  color: #e9e9e9;
   > span + span {
     margin-left: 3px;
   }
+  &-bg {
+    color: #e9e9e9;
+  }
   > span,
   &-bg {
+    cursor: pointer;
     position: relative;
     display: inline-block;
   }
   &-hight {
+    z-index: 3;
     line-height: 12px;
     position: absolute;
     transition: color 0.3s, width 0.3s;
+    color: #e9e9e9;
+    display: none;
   }
   .hover-on {
     cursor: pointer;
   }
   .star-on,
-  .hover-on {
+  .hover-on,
+  .half-on {
+    display: inline-block;
     color: #f5a623;
   }
-  .half-on:not(.hover-on) &-hight {
-    width: 50%;
-    z-index: 3;
+  .half-on:not(.hover-on) {
     overflow: hidden;
-  }
-  .half-on:not(.hover-on) &-bg {
-    color: #e9e9e9;
+    width: 50%;
   }
 }

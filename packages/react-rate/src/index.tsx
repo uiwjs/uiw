@@ -1,125 +1,111 @@
-import React from 'react';
+import React, { useState, useMemo, Fragment } from 'react';
 import classnames from 'classnames';
-import { IProps, HTMLDivProps } from '@uiw/utils';
+import { IProps, HTMLDivProps, HTMLSpanProps } from '@uiw/utils';
 import './style/index.less';
 
 export interface RateProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
-  value: number;
+  value?: number;
   readOnly?: boolean;
+  allowHalf?: boolean;
   count?: number;
   color?: string;
   disabled?: boolean;
   character?: React.ReactNode;
-  onChange?: (event: React.MouseEvent<HTMLElement>, key: number) => void;
-  onHoverChange?: (event: React.MouseEvent<HTMLElement>, key: number) => void;
+  onChange?: (key: number) => void;
+  onHoverChange?: (key: number) => void;
 }
 
-export interface IRateState {
-  value: number;
-  hoverCount: number;
-}
+function noop() {}
 
-interface IRateChildProps {
-  key: number;
-  className: string;
-  style?: React.CSSProperties;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
-  onMouseMove?: (event: React.MouseEvent<HTMLElement>) => void;
-}
+export default function Rate(props: RateProps = {}) {
+  const {
+    prefixCls = 'w-rate',
+    count = 5,
+    value: defValue = 0,
+    className,
+    allowHalf,
+    character = '★',
+    readOnly = false,
+    disabled,
+    onChange = noop,
+    onHoverChange = noop,
+    color,
+    ...other
+  } = props;
+  const [value, setValue] = useState(defValue);
+  const [hoverCount, setHoverCount] = useState(-1);
+  const cls = classnames(prefixCls, className, { disabled });
 
-export default class Rate extends React.Component<RateProps, IRateState> {
-  public state: IRateState;
-  public static defaultProps: RateProps = {
-    prefixCls: 'w-rate',
-    value: 0,
-    count: 5,
-    character: '★',
-    readOnly: false,
-  };
-  constructor(props: RateProps) {
-    super(props);
-    this.state = {
-      value: props.value,
-      hoverCount: -1,
-    };
+  let [prevValue, setPrevValue] = useState<number>();
+  if (defValue !== prevValue) {
+    setPrevValue(defValue);
   }
-  onClick(e: React.MouseEvent<HTMLElement>, key: number) {
-    const { readOnly, onChange } = this.props;
-    if (readOnly) return;
-    this.setState({ value: key + 1 }, () => {
-      onChange && onChange(e, key);
-    });
+
+  useMemo(() => {
+    if (value !== prevValue) {
+      setValue(defValue);
+    }
+  }, [prevValue]);
+
+  function onMouseLeave() {
+    setHoverCount(-1);
   }
-  onMouseLeave() {
-    this.setState({ hoverCount: -1 });
+
+  function getValue(e: React.MouseEvent<HTMLElement>, key: number) {
+    e.persist();
+    let currentValue = key;
+    const isLeft =
+      e.clientX - e.currentTarget.getBoundingClientRect().left <=
+      e.currentTarget.getBoundingClientRect().width / 2;
+    if (allowHalf) {
+      e.persist();
+      currentValue = isLeft ? key + 0.5 : key + 1;
+    } else {
+      currentValue = key + 1;
+    }
+    return currentValue;
   }
-  onMouseMove(e: React.MouseEvent<HTMLElement>, key: number) {
-    const { onHoverChange } = this.props;
-    const { hoverCount } = this.state;
-    if (hoverCount !== key) {
-      this.setState({ hoverCount: key }, () => {
-        onHoverChange && onHoverChange(e, key);
-      });
+
+  function onMouseMove(e: React.MouseEvent<HTMLElement>, key: number) {
+    const currentValue = getValue(e, key);
+    if (hoverCount !== currentValue) {
+      setHoverCount(currentValue);
+      onHoverChange(currentValue);
     }
   }
-  render() {
-    const {
-      prefixCls,
-      count,
-      value,
-      className,
-      character,
-      readOnly,
-      disabled,
-      onChange,
-      onHoverChange,
-      color,
-      ...other
-    } = this.props;
-    const cls = classnames(prefixCls, className, { disabled });
-    return (
-      <div
-        {...other}
-        className={cls}
-        onMouseLeave={this.onMouseLeave.bind(this)}
-      >
-        {Array(count)
-          .fill(null)
-          .map((_, idx) => {
-            const props: IRateChildProps = {
-              key: idx,
-              className: classnames({
-                'star-on':
-                  idx < this.state.value && this.state.hoverCount === -1,
-                'hover-on': idx <= this.state.hoverCount,
-                'half-on':
-                  parseInt(this.state.value.toString(), 10) === idx &&
-                  Math.ceil(this.state.value) - 1 === idx,
-              }),
-            };
-            if (!readOnly) {
-              props.onClick = (e) => this.onClick(e, idx);
-              props.onMouseMove = (e) => this.onMouseMove(e, idx);
-            }
-
-            if (
-              color &&
-              (idx <= this.state.hoverCount ||
-                (idx < this.state.value && this.state.hoverCount === -1))
-            ) {
-              props.style = { ...props.style, color };
-            }
-
-            return (
-              <span {...props}>
-                <span className={classnames(`${prefixCls}-hight`)}>
-                  {character}
-                </span>
-                <span className={`${prefixCls}-bg`}>{character}</span>
-              </span>
-            );
-          })}
-      </div>
-    );
+  function onClick(e: React.MouseEvent<HTMLElement>, key: number) {
+    if (readOnly) return;
+    const currentValue = getValue(e, key);
+    setValue(currentValue);
+    onChange(currentValue);
   }
+  return (
+    <div {...other} className={cls} onMouseLeave={() => onMouseLeave()}>
+      {[...Array(count)].map((_, idx) => {
+        const halfon =
+          (value <= idx + 0.5 &&
+            Math.ceil(value) - 1 === idx &&
+            hoverCount === -1) ||
+          hoverCount === idx + 0.5;
+        const activeCls = classnames(`${prefixCls}-hight`, {
+          'star-on': idx + 1 <= value && hoverCount === -1,
+          'hover-on': idx + 1 <= hoverCount,
+          'half-on': halfon,
+        });
+        const props: HTMLSpanProps = {};
+        if (!readOnly) {
+          props.onClick = (e) => onClick(e, idx);
+          props.onMouseMove = (e) => onMouseMove(e, idx);
+        }
+        return (
+          <span key={idx} {...props}>
+            <span style={{ color }} className={activeCls}>
+              {character}
+            </span>
+            <span className={`${prefixCls}-bg`}>{character}</span>
+          </span>
+        );
+      })}
+    </div>
+  );
 }
