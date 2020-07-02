@@ -117,6 +117,7 @@ Package | Version | Description
 [`@uiw/react-overlay`](/packages/react-overlay) | [![npm](https://img.shields.io/npm/v/@uiw/react-overlay.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-overlay) | - |
 [`@uiw/react-overlay-trigger`](/packages/react-overlay-trigger) | [![npm](https://img.shields.io/npm/v/@uiw/react-overlay-trigger.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-overlay-trigger) | - |
 [`@uiw/react-pagination`](/packages/react-pagination) | [![npm](https://img.shields.io/npm/v/@uiw/react-pagination.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-pagination) | - |
+[`@uiw/react-pin-code`](/packages/react-pin-code) | [![npm](https://img.shields.io/npm/v/@uiw/react-pin-code.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-pin-code) | - |
 [`@uiw/react-popover`](/packages/react-popover) | [![npm](https://img.shields.io/npm/v/@uiw/react-popover.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-popover) | - |
 [`@uiw/react-portal`](/packages/react-portal) | [![npm](https://img.shields.io/npm/v/@uiw/react-portal.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-portal) | - |
 [`@uiw/react-progress`](/packages/react-progress) | [![npm](https://img.shields.io/npm/v/@uiw/react-progress.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-progress) | - |
