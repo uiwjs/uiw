@@ -123,7 +123,7 @@ export default class CreatePage extends React.Component {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/kktjs/kkt-next"
+            href="https://github.com/kktjs/kkt"
           >
             kkt
           </a>
@@ -131,7 +131,7 @@ export default class CreatePage extends React.Component {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/kktjs/kkt-next-ssr"
+            href="https://github.com/kktjs/kkt-ssr"
           >
             @kkt/ssr
           </a>

@@ -6,7 +6,6 @@ import './style/input.less';
 
 export interface InputProps<T> extends IProps, Omit<HTMLInputProps, 'size'> {
   preIcon?: IconProps<T>['type'];
-  type?: string;
   addonAfter?: React.ReactNode;
   size?: 'large' | 'default' | 'small';
 }

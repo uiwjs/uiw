@@ -89,7 +89,7 @@
 
 名称 | 版本 | 依赖 uiw | 预览 | 描述
 ---- | ---- | ---- | ---- | ----
-[kkt](https://github.com/kktjs/kkt-next) | [![](https://img.shields.io/npm/v/kkt.svg)](https://www.npmjs.com/package/kkt) | - | - | 创建没有构建配置的React应用程序，这是用于创建React应用程序的Cli工具。
+[kkt](https://github.com/kktjs/kkt) | [![](https://img.shields.io/npm/v/kkt.svg)](https://www.npmjs.com/package/kkt) | - | - | 创建没有构建配置的React应用程序，这是用于创建React应用程序的Cli工具。
 [tsbb](https://github.com/jaywcjlove/tsbb) | [![](https://img.shields.io/npm/v/tsbb.svg)](https://www.npmjs.com/package/tsbb) | - | - | 一个零配置CLI，可帮助您开发，测试和发布现代 TypeScript 项目。
 [sgo](https://github.com/jaywcjlove/sgo) | [![](https://img.shields.io/npm/v/sgo.svg)](https://www.npmjs.com/package/sgo) | - | - | 一个用于快速原型开发的开发服务器。 将目录设置为静态服务器，它提供404整洁的界面，用于列出目录的内容并切换到子文件夹。
 [mocker-api](https://github.com/jaywcjlove/mocker-api) | [![](https://img.shields.io/npm/v/mocker-api.svg)](https://www.npmjs.com/package/mocker-api) | - | - | 用于为 REST API 创建模拟。 当您尝试在没有实际 REST API 服务器的情况下测试应用程序时，这将很有帮助。

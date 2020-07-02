@@ -1,9 +1,9 @@
 在 KKT 中使用
 ===
 
-[`kkt@5x`](https://github.com/kktjs/kkt-next) 新的版本，是基于 [create-react-app@3x](https://github.com/facebook/create-react-app) 轻度维护基于 `TypeScript` 重写的版本，此工具可以在不 `eject` 也不创建额外 react-scripts 的情况下修改 [create-react-app@3x](https://github.com/facebook/create-react-app) 内置的 webpack 配置，然后你将拥有 [create-react-app](https://github.com/facebook/create-react-app) 的一切特性，且可以根据你的需要去配置 `webpack` 的 `plugins`, `loaders` 等，未来将在 `kkt` 中集成 [@kktjs/kkt-ssr](https://github.com/kktjs/kkt-ssr) 服务端渲染。
+[`kkt@5x`](https://github.com/kktjs/kkt) 新的版本，是基于 [create-react-app@3x](https://github.com/facebook/create-react-app) 轻度维护基于 `TypeScript` 重写的版本，此工具可以在不 `eject` 也不创建额外 react-scripts 的情况下修改 [create-react-app@3x](https://github.com/facebook/create-react-app) 内置的 webpack 配置，然后你将拥有 [create-react-app](https://github.com/facebook/create-react-app) 的一切特性，且可以根据你的需要去配置 `webpack` 的 `plugins`, `loaders` 等，未来将在 `kkt` 中集成 [@kktjs/kkt-ssr](https://github.com/kktjs/kkt-ssr) 服务端渲染。
 
-要开始使用 [uiw](https://github.com/uiwjs/uiw) 和 [kkt](https://github.com/kktjs/kkt-next)，请按照下列步骤操作：
+要开始使用 [uiw](https://github.com/uiwjs/uiw) 和 [kkt](https://github.com/kktjs/kkt)，请按照下列步骤操作：
 
 1. 安装最新版本的 Node LTS。 [请参阅此处获取说明](https://docs.npmjs.com/getting-started/installing-node)
 2. 使用以下命令创建新的 `kkt` 项目：
@@ -20,7 +20,7 @@ yarn create kkt my-app -e uiw
 
 注意 [**npx**](https://github.com/npm/npm/releases/tag/v5.2.0) 命令只在 npm 5.2+ 或更高版本中支持。
 
-你也可以使用 [kkt](https://github.com/kktjs/kkt-next) 工具通过下面步骤，一步一步的创建一个 [kkt](https://github.com/kktjs/kkt-next) 工程
+你也可以使用 [kkt](https://github.com/kktjs/kkt) 工具通过下面步骤，一步一步的创建一个 [kkt](https://github.com/kktjs/kkt) 工程
 
 ```bash
 npx create-kkt my-app
@@ -33,9 +33,9 @@ cd my-app
 npm start
 ```
 
-有关 `KKT` 的更多信息，[请参阅自述文件](https://github.com/kktjs/kkt-next)。
+有关 `KKT` 的更多信息，[请参阅自述文件](https://github.com/kktjs/kkt)。
 
-3. 安装 [uiw](https://github.com/uiwjs/uiw) 包：
+1. 安装 [uiw](https://github.com/uiwjs/uiw) 包：
 
 ```bash
 npm i uiw

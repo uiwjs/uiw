@@ -12,7 +12,7 @@ $ npm i uiw
 $ yarn add uiw
 ```
 
-您可以使用 [`kkt`](https://github.com/kktjs/kkt-next) 快速创建一个 react + uiw 项目。
+您可以使用 [`kkt`](https://github.com/kktjs/kkt) 快速创建一个 react + uiw 项目。
 
 ```bash
 $ npx create-kkt my-app -e uiw
@@ -65,7 +65,7 @@ yarn add uiwjs/uiw
 2. 删除大部分组件冗余功能，直接使用样式就可以展现组件效果。
 3. 删除冗余组件，例如组件 `Capsule 胶囊` 与 `Tag 标签` 组件合并。
 4. 抽离组件，需要单独安装，如 `HeatMap 日历热图`
-5. 支持服务端渲染，可以通过 [kkt-ssr](https://github.com/kktjs/kkt-next-ssr) 工具建立实例。
+5. 支持服务端渲染，可以通过 [kkt-ssr](https://github.com/kktjs/kkt-ssr) 工具建立实例。
 
 ### 使用
 

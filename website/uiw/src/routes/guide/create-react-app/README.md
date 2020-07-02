@@ -3,7 +3,7 @@
 
 要开始使用 [uiw](https://github.com/uiwjs/uiw) 和 [Create React App](https://github.com/facebook/create-react-app) (CRA)，此时我们需要对 [create-react-app](https://github.com/facebook/create-react-app) 的默认配置进行自定义，这里我们使用 [react-app-rewired](https://github.com/timarney/react-app-rewired) （一个对 [create-react-app](https://github.com/facebook/create-react-app) 进行自定义配置的社区解决方案）。
 
-> 也可以使用 [`kkt@5x`](https://github.com/kktjs/kkt-next) 新的版本，是基于 [create-react-app@3x](https://github.com/facebook/create-react-app) 轻度维护基于 `TypeScript` 重写的版本，此工具可以在不 `eject` 也不创建额外 react-scripts 的情况下修改 [create-react-app@3x](https://github.com/facebook/create-react-app) 内置的 webpack 配置，然后你将拥有 [create-react-app](https://github.com/facebook/create-react-app) 的一切特性，且可以根据你的需要去配置 `webpack` 的 `plugins`, `loaders` 等，这里是 [kkt 使用教程](#kkt)。
+> 也可以使用 [`kkt@5x`](https://github.com/kktjs/kkt) 新的版本，是基于 [create-react-app@3x](https://github.com/facebook/create-react-app) 轻度维护基于 `TypeScript` 重写的版本，此工具可以在不 `eject` 也不创建额外 react-scripts 的情况下修改 [create-react-app@3x](https://github.com/facebook/create-react-app) 内置的 webpack 配置，然后你将拥有 [create-react-app](https://github.com/facebook/create-react-app) 的一切特性，且可以根据你的需要去配置 `webpack` 的 `plugins`, `loaders` 等，这里是 [kkt 使用教程](#kkt)。
 
 请按照下列步骤操作：
 

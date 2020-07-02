@@ -85,6 +85,7 @@
     "@uiw/react-overlay": "^4.4.1",
     "@uiw/react-overlay-trigger": "^4.4.1",
     "@uiw/react-pagination": "^4.4.1",
+    "@uiw/react-pin-code": "^4.4.1",
     "@uiw/react-popover": "^4.4.1",
     "@uiw/react-portal": "^4.4.1",
     "@uiw/react-progress": "^4.4.1",

@@ -1,0 +1,24 @@
+@w-pin-code:~ "w-pin-code";
+
+.@{w-pin-code} {
+  display: flex;
+  &-inner + &-inner {
+    margin-left: 8px;
+  }
+  &-inner {
+    width: 30px;
+  }
+  &-inner > input {
+    text-align: center;
+    padding: 0 !important;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  &-large &-inner {
+    width: 36px;
+  }
+  &-small &-inner {
+    width: 24px;
+  }
+}

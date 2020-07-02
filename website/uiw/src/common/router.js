@@ -149,6 +149,11 @@ export const getRouterData = () => {
         import('../routes/components/pagination'),
       ),
     },
+    '/components/pin-code': {
+      component: dynamicWrapper([], () =>
+        import('../routes/components/pin-code'),
+      ),
+    },
     '/components/input': {
       component: dynamicWrapper([], () => import('../routes/components/input')),
     },
