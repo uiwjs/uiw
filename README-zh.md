@@ -45,7 +45,7 @@
 npm install uiw --save
 ```
 
-你可以使用 [`kkt`](https://github.com/kktjs/kkt-next) 快速创建一个 react + uiw 的项目。
+你可以使用 [`kkt`](https://github.com/kktjs/kkt) 快速创建一个 react + uiw 的项目。
 
 ```bash
 npx create-kkt my-app -e uiw
