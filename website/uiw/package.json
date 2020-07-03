@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@kkt/loader-less": "5.8.0",
-    "@kkt/loader-raw": "5.8.0",
+    "@kkt/loader-raw": "5.9.0",
     "kkt": "5.8.0",
     "react-test-renderer": "16.13.1"
   },
