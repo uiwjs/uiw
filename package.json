@@ -32,7 +32,7 @@
     "bundle": "npm run b:bundle && npm run b:bundle:min",
     "test": "tsbb test --env=jsdom",
     "coverage": "tsbb test --coverage",
-    "u:version": "lerna version 4.2.1 --no-changelog --skip-git --yes && npm run b:doc",
+    "u:version": "lerna version --no-changelog --no-push --no-git-tag-version --yes && npm run b:doc",
     "u:publish": "lerna publish from-package --yes --no-verify-access",
     "clean": "lerna clean",
     "compile-less": "compile-less",
