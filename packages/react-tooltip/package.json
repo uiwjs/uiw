@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-tooltip",
-  "version": "4.6.1",
+  "version": "4.6.2",
   "description": "Tooltip component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/tooltip",
@@ -43,8 +43,8 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-overlay-trigger": "^4.6.1",
-    "@uiw/utils": "^4.6.1",
+    "@uiw/react-overlay-trigger": "^4.6.2",
+    "@uiw/utils": "^4.6.2",
     "classnames": "2.2.6"
   },
   "devDependencies": {

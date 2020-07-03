@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-grid",
-  "version": "4.6.1",
+  "version": "4.6.2",
   "description": "Grid component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/grid",
@@ -43,7 +43,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.6.1",
+    "@uiw/utils": "^4.6.2",
     "classnames": "2.2.6"
   },
   "devDependencies": {
