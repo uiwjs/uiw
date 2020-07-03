@@ -41,6 +41,7 @@ function InternalPinCode(
   const [input] = useState<{
     [key: string]: HTMLInputElement;
   }>({});
+  const [placehold, setPlacehold] = useState(placeholder);
   const [values, setValues] = useState(value);
   const cls = classnames(prefixCls, className, {
     [`${prefixCls}-${size}`]: size,
@@ -79,6 +80,15 @@ function InternalPinCode(
     }
   }, [values]);
 
+  function handleBlur(event: React.FocusEvent<HTMLInputElement>) {
+    setPlacehold(placeholder);
+    onBlur(event);
+  }
+  function handleFocus(event: React.FocusEvent<HTMLInputElement>) {
+    setPlacehold('');
+    onFocus(event);
+  }
+
   return (
     <div className={cls} style={style} {...otherProps}>
       {[...values].map((val, key) => {
@@ -90,11 +100,11 @@ function InternalPinCode(
           value: val,
           onChange: (e) => handleChange(e, key),
           onKeyDown: (e) => handleKeyDown(e, key),
-          onBlur: onBlur,
-          onFocus: onFocus,
+          onBlur: (e) => handleBlur(e),
+          onFocus: (e) => handleFocus(e),
           className: `${prefixCls}-inner`,
+          placeholder: placehold,
           disabled,
-          placeholder,
           size,
         };
         if (autoFocus && key === 0) {

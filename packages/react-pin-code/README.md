@@ -141,9 +141,9 @@ const Demo = () => (
   <div>
     <PinCode size="large" value={['1', '9', '8', '7', '0']} />
     <Divider />
-    <PinCode disabled value={['', '', '', '', '']} />
+    <PinCode value={['', '', '', '', '']} />
     <Divider />
-    <PinCode size="small" disabled value={['', '', '', '', '']} />
+    <PinCode size="small" value={['', '', '', '', '']} />
   </div>
 );
 ReactDOM.render(<Demo />, _mount_);
