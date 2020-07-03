@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useImperativeHandle } from 'react';
 import classnames from 'classnames';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import Button, { ButtonType } from '@uiw/react-button';
@@ -27,118 +27,132 @@ export interface ModalProps extends IProps, OverlayProps {
   onConfirm?: (evn: React.MouseEvent<HTMLButtonElement> & MouseEvent) => void;
 }
 
-export default class Modal extends React.PureComponent<ModalProps> {
-  public static defaultProps: ModalProps = {
-    prefixCls: 'w-modal',
-    confirmText: '确认',
-    useButton: true,
-    usePortal: true,
-    autoFocus: false,
-    isCloseButtonShown: true,
-    isOpen: false,
-    maxWidth: 500,
-    minWidth: 320,
-    type: 'light',
-    onCancel: noop,
-    onConfirm: noop,
-  };
-  public state = {
-    loading: false,
-  };
-  public overlay!: Overlay;
-  handleConfirm = async (e: any) => {
-    const { onConfirm } = this.props;
-    this.setState({ loading: true });
-    try {
-      onConfirm && (await onConfirm(e));
-      this.overlay.onClosed(e);
-      // eslint-disable-next-line
-    } catch (e) {}
-    this.setState({ loading: false });
-  };
-  handleCancel = async (
-    e: React.MouseEvent<HTMLButtonElement> & MouseEvent,
-  ) => {
-    const { onCancel } = this.props;
-    this.setState({ loading: true });
+function InternalModal(
+  props: ModalProps = {},
+  ref?:
+    | ((instance: OverlayProps) => void)
+    | React.RefObject<OverlayProps | null>
+    | null,
+) {
+  const {
+    prefixCls = 'w-modal',
+    className,
+    children,
+    useButton = true,
+    usePortal = true,
+    autoFocus = false,
+    isOpen = false,
+    title,
+    cancelText,
+    content,
+    confirmText = '确认',
+    type = 'light',
+    icon,
+    maxWidth = 500,
+    minWidth = 320,
+    width,
+    isCloseButtonShown = true,
+    onCancel = noop,
+    onConfirm = noop,
+    ...other
+  } = props;
+  const overlayRef = React.createRef<Overlay>();
+  useImperativeHandle(ref, () => overlayRef.current);
+  const [loading, setLoading] = useState(false);
+  const cls = classnames(prefixCls, className, { [`${type}`]: type });
+  function onClose() {
+    overlayRef.current!.overlayWillClose();
+  }
+  async function handleCancel(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> & MouseEvent,
+    overlay: Overlay,
+  ) {
+    setLoading(true);
     try {
       onCancel && (await onCancel(e));
-      this.overlay.onClosed(e);
-      // eslint-disable-next-line
     } catch (e) {}
-    this.setState({ loading: false });
-  };
-  onClose = (e: any) => this.overlay.onClosed(e);
-  render() {
-    const {
-      prefixCls,
-      className,
-      useButton,
-      autoFocus,
-      title,
-      cancelText,
-      content,
-      confirmText,
-      type,
-      icon,
-      maxWidth,
-      minWidth,
-      width,
-      isCloseButtonShown,
-      ...other
-    } = this.props;
-    const cls = classnames(prefixCls, className, { [`${type}`]: type });
-    return (
-      <Overlay
-        {...other}
-        onClose={this.onClose}
-        ref={(node: Overlay) => (this.overlay = node)}
-        className={cls}
-      >
-        <div className={`${prefixCls}-container`}>
-          <div
-            className={classnames(`${prefixCls}-inner`, {
-              [`${prefixCls}-shown-title`]: title,
-              [`${prefixCls}-shown-icon`]: icon,
-            })}
-            style={{ maxWidth, minWidth, width }}
-          >
-            {(title || icon) && (
-              <div className={`${prefixCls}-header`}>
-                {icon && <Icon type={icon} />}
-                {title && <h4>{title}</h4>}
-                {isCloseButtonShown && (
-                  <Button
-                    basic
-                    onClick={this.handleCancel}
-                    icon="close"
-                    type="light"
-                  />
-                )}
-              </div>
-            )}
-            <div className={`${prefixCls}-body`}>
-              {this.props.children || content}
-            </div>
-            {useButton && (
-              <div className={`${prefixCls}-footer`}>
-                <Button
-                  autoFocus={autoFocus}
-                  type={type}
-                  loading={this.state.loading}
-                  disabled={this.state.loading}
-                  onClick={this.handleConfirm}
-                >
-                  {confirmText}
-                </Button>
-                {cancelText && (
-                  <Button onClick={this.handleCancel}>{cancelText}</Button>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      </Overlay>
-    );
+    overlay.overlayWillClose();
+    setLoading(false);
   }
+  async function handleConfirm(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> & MouseEvent,
+    overlay: Overlay,
+  ) {
+    setLoading(true);
+    try {
+      onConfirm && (await onConfirm(e));
+    } catch (e) {}
+    overlay.overlayWillClose();
+    setLoading(false);
+  }
+  return (
+    <Overlay
+      usePortal={usePortal}
+      isOpen={isOpen}
+      {...other}
+      onClose={onClose}
+      ref={overlayRef}
+      className={cls}
+    >
+      <div className={`${prefixCls}-container`}>
+        <div
+          className={classnames(`${prefixCls}-inner`, {
+            [`${prefixCls}-shown-title`]: title,
+            [`${prefixCls}-shown-icon`]: icon,
+          })}
+          style={{ maxWidth, minWidth, width }}
+        >
+          {(title || icon) && (
+            <div className={`${prefixCls}-header`}>
+              {icon && <Icon type={icon} />}
+              {title && <h4>{title}</h4>}
+              {isCloseButtonShown && (
+                <Button
+                  basic
+                  onClick={(e) => {
+                    if (overlayRef.current) {
+                      handleCancel(e, overlayRef.current);
+                    }
+                  }}
+                  icon="close"
+                  type="light"
+                />
+              )}
+            </div>
+          )}
+          <div className={`${prefixCls}-body`}>{children || content}</div>
+          {useButton && (
+            <div className={`${prefixCls}-footer`}>
+              <Button
+                autoFocus={autoFocus}
+                type={type}
+                loading={loading}
+                disabled={loading}
+                onClick={(e) => {
+                  if (overlayRef.current) {
+                    handleConfirm(e, overlayRef.current);
+                  }
+                }}
+              >
+                {confirmText}
+              </Button>
+              {cancelText && (
+                <Button
+                  onClick={(e) => {
+                    if (overlayRef.current) {
+                      handleCancel(e, overlayRef.current);
+                    }
+                  }}
+                >
+                  {cancelText}
+                </Button>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </Overlay>
+  );
 }
+
+export default React.forwardRef<OverlayProps, ModalProps>(InternalModal);
