@@ -3,7 +3,7 @@
   "version": "4.6.0",
   "description": "Checkbox component",
   "author": "Kenny Wong <wowohoo@qq.com>",
-  "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-checkbox#readme",
+  "homepage": "https://uiwjs.github.io/#/components/checkbox",
   "repository": {
     "type": "git",
     "url": "https://github.com/uiwjs/uiw.git"

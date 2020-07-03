@@ -3,7 +3,7 @@
   "version": "4.6.0",
   "description": "Tree component",
   "author": "Kenny Wong <wowohoo@qq.com>",
-  "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-tree#readme",
+  "homepage": "https://uiwjs.github.io/#/components/tree",
   "repository": {
     "type": "git",
     "url": "https://github.com/uiwjs/uiw.git"

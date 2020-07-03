@@ -3,7 +3,7 @@
   "version": "4.6.0",
   "description": "Dropdown component",
   "author": "Kenny Wong <wowohoo@qq.com>",
-  "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/react-dropdown#readme",
+  "homepage": "https://uiwjs.github.io/#/components/dropdown",
   "repository": {
     "type": "git",
     "url": "https://github.com/uiwjs/uiw.git"
