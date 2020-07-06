@@ -21,7 +21,6 @@ const docPkg = join(docRepoPath, 'package.json');
   try {
     // Modify document version data.
     const uiwPkgContent = await fs.readJson(uiwPkg);
-    console.log(`> Publish ${uiwPkgContent.version} v${uiwPkgContent.version}`);
     /**
      * Create a document website for `package.json`
      * path => `packages/doc/package.json`
@@ -47,6 +46,9 @@ const docPkg = join(docRepoPath, 'package.json');
     );
     await fs.emptyDir(join(docRepoPath, 'web'));
     await fs.copy(docsPath, join(docRepoPath, 'web'));
+
+    console.log(`> Copy From: ${docsPath}\n To: ${join(docRepoPath, 'web')}`);
+    console.log(`> Update to v${uiwPkgContent.version}`);
   } catch (error) {
     console.log('error:', error);
   }
