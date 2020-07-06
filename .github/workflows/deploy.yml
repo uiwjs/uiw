@@ -26,7 +26,8 @@ jobs:
     - run: npm run bundle
     - run: npm run coverage
     - run: |
-        git fetch
+        git fetch --all
+        git checkout master
         # Strip git ref prefix from version
         VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
         COMMIT=released-${VERSION}
