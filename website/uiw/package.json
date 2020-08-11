@@ -34,7 +34,7 @@
   "dependencies": {
     "@rematch/core": "1.4.0",
     "@uiw/react-code-preview": "1.11.5",
-    "@uiw/react-markdown-preview": "1.0.8",
+    "@uiw/react-markdown-preview": "1.0.9",
     "@uiw/reset.css": "1.0.4",
     "classnames": "2.2.6",
     "history": "4.10.1",
