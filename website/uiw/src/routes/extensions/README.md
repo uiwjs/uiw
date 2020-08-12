@@ -5,8 +5,6 @@
 
 名称 | 版本 | 依赖 | 预览 | 描述
 ---- | ---- | ---- | ---- | ----
-[@uiw/react-native](https://github.com/uiwjs/react-native-uiw) | [![](https://img.shields.io/npm/v/@uiw/react-native.svg)](https://www.npmjs.com/package/@uiw/react-native) | - | - | React Native 组件库。
-[@uiw/react-native-template](https://github.com/uiwjs/react-native-template) | [![](https://img.shields.io/npm/v/@uiw/react-split.svg)](https://www.npmjs.com/package/@uiw/react-native-template) | - | - | React Native 模板生成器，集成路由、Redux、Mock API等工具。
 [@uiw/reset.css](https://github.com/uiwjs/reset-css) | [![](https://img.shields.io/npm/v/@uiw/reset.css.svg)](https://www.npmjs.com/package/@uiw/reset.css) | - | - | 一个微小的现代 CSS 重置。
 [@uiw/copy-to-clipboard](https://github.com/uiwjs/copy-to-clipboard) | [![](https://img.shields.io/npm/v/@uiw/copy-to-clipboard.svg)](https://www.npmjs.com/package/@uiw/copy-to-clipboard) | - | - | 在现代浏览器中将文本复制到剪贴板。
 [@uiw/react-md-editor](https://github.com/uiwjs/react-md-editor) | [![](https://img.shields.io/npm/v/@uiw/react-md-editor.svg)](https://www.npmjs.com/package/@uiw/react-md-editor) | - | [demo](https://uiwjs.github.io/react-md-editor/) | 一个简单的带有预览的 Markdown 编辑器，使用 React 和 TypeScript 实现。
@@ -21,6 +19,16 @@
 [@uiw/react-markdown-editor](https://github.com/uiwjs/react-markdown-editor) | [![](https://img.shields.io/npm/v/@uiw/react-markdown-editor.svg)](https://www.npmjs.com/package/@uiw/react-markdown-editor) | - | [demo](https://uiwjs.github.io/react-markdown-editor/) | 一个带有预览的 Markdown 编辑器，由 React.js 和 TypeScript 基于 [**@CodeMirror**](https://github.com/codemirror) 实现。
 [react-hotkeys](https://github.com/jaywcjlove/react-hotkeys) | [![](https://img.shields.io/npm/v/react-hot-keys.svg)](https://www.npmjs.com/package/react-hot-keys) | - | [demo](https://jaywcjlove.github.io/react-hotkeys/) | 基于 [hotkeys](https://github.com/jaywcjlove/hotkeys) 封装的 React 组件，侦听 keydown 和 keyup 键盘事件，定义和调度键盘快捷键。
 [province-city-china](https://github.com/uiwjs/province-city-china) | [![](https://img.shields.io/npm/v/province-city-china.svg)](https://www.npmjs.com/package/province-city-china) | - | - | 最全最新🇨🇳中国【省、市、区县、乡镇街道】json,csv,sql数据。
+
+## React Native
+
+名称 | 版本 | 依赖 | 预览 | 描述
+---- | ---- | ---- | ---- | ----
+[@uiw/react-native](https://github.com/uiwjs/react-native-uiw) | [![](https://img.shields.io/npm/v/@uiw/react-native.svg)](https://www.npmjs.com/package/@uiw/react-native) | - | - | React Native 组件库。
+[@uiw/react-native-template](https://github.com/uiwjs/react-native-template) | [![](https://img.shields.io/npm/v/@uiw/react-native-template.svg)](https://www.npmjs.com/package/@uiw/react-native-template) | - | - | React Native 模板生成器，集成路由、Redux、Mock API等工具。
+[@uiw/react-native-alipay](https://github.com/uiwjs/react-native-alipay) | [![](https://img.shields.io/npm/v/@uiw/react-native-alipay.svg)](https://www.npmjs.com/package/@uiw/react-native-alipay) | - | - | 基于 React Native 的宝支付包，已更新到最新的支付宝 SDK 版本，支持Android/iOS。
+[@uiw/react-native-amap-geolocation](https://github.com/uiwjs/react-native-amap-geolocation) | [![](https://img.shields.io/npm/v/@uiw/react-native-amap-geolocation.svg)](https://www.npmjs.com/package/@uiw/react-native-amap-geolocation) | - | - | React Native 高德地图定位模块，支持 Android/iOS。
+[@uiw/react-native-wechat](https://github.com/uiwjs/react-native-wechat) | [![](https://img.shields.io/npm/v/@uiw/react-native-wechat.svg)](https://www.npmjs.com/package/@uiw/react-native-wechat) | - | - | React Native 包使用微信分享、登录、收藏、支付等功能，支持Android/iOS。
 
 ## 依赖包
 
