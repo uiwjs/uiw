@@ -27,9 +27,8 @@ jobs:
     - run: npm run coverage
     - run: |
         git fetch
-        git branch -av
         git checkout master
-        git branch -av
+        git branch -a
         # Strip git ref prefix from version
         VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
         COMMIT=released-${VERSION}
@@ -38,7 +37,7 @@ jobs:
         [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
         echo "version: $VERSION"
 
-        node node_modules/.bin/lerna version $VERSION --no-changelog --no-git-tag-version --no-push --yes
+        node node_modules/.bin/lerna version $VERSION --no-changelog --no-git-tag-version --no-push --yes --force-publish
         npm run b:website
         npm run b:doc
         git config --local user.email "action@github.com"
