@@ -9,9 +9,13 @@ export interface AlertProps extends IProps, ModalProps {
 }
 
 export default (props: AlertProps = {}) => {
-  const { prefixCls = 'w-alert', className, ...other } = props;
+  const { prefixCls = 'w-alert', className, width = 400, ...other } = props;
   return (
-    <Modal {...other} className={classnames(prefixCls, className)}>
+    <Modal
+      {...other}
+      width={width}
+      className={classnames(prefixCls, className)}
+    >
       {props.children}
     </Modal>
   );
