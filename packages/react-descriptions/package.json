@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-descriptions",
-  "version": "4.6.5",
+  "version": "4.6.6",
   "description": "Descriptions component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/descriptions",
@@ -43,7 +43,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.6.5",
+    "@uiw/utils": "^4.6.6",
     "classnames": "2.2.6"
   },
   "devDependencies": {
