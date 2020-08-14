@@ -16,7 +16,7 @@ const { Header, Footer, Sider, Content } = Layout;
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
-import {useState} from 'react';
+import React from 'react';
 import { Layout, Divider } from 'uiw';
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -25,7 +25,7 @@ const stylSider = { background: '#484a4e', color: '#fff', lineHeight: `120px`, t
 const stylConten = { textAlign: 'center', background: 'rgba(16, 142, 233, 1)', minHeight: 120, lineHeight: '120px', color: '#fff' }
 
 function Demo() {
-  const [collapsed, setCollapsed] = useState(false)
+  const [collapsed, setCollapsed] = React.useState(false)
   return (
     <div>
       <Layout>

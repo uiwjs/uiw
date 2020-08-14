@@ -115,19 +115,13 @@ $ git clone https://github.com/uiwjs/uiwjs.github.io.git --recurse-submodules
 要开发，运行自重新构建，这里将要跑两个任务：
 
 ```bash
-# Listening compiled component code.
-$ cd ./uiwjs.github.io
-$ npm install # 安装依赖
-
-$ lerna bootstrap # 安装所有包依赖
-$ lerna bootstrap --scope @uiw/* # 单独安装匹配到的包依赖
-$ npm run build # 生成编译 JS. TS
-
-$ npm run w:t:uiw
-$ npm run w:ts:uiw
-$ lerna run --scope uiw watch --stream
-$ lerna exec --scope @uiw/button -- tsbb types --outDir lib/esm --target ESNEXT --watch
-$ lerna exec --scope @uiw/button -- tsbb watch --target react --env-name esm:dev --env-name cjs
+$ npm install # Install dependencies
+$ lerna bootstrap # Install all package dependencies
+$ lerna bootstrap --scope @uiw/* # Set scope installation dependencies
+$ npm run bootstrap
+$ npm run bootstrap:webiste
+$ npm run hoist
+$ npm run build
 ```
 
 ```bash

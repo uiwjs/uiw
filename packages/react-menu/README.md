@@ -383,7 +383,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,noScroll,codePen-->
 ```jsx
-import { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Menu, Row, Col, Icon, Button } from 'uiw';
 
 const menusData = [
@@ -419,9 +419,9 @@ const menusData = [
 ];
 
 const Demo = () => {
-  const [theme, setTheme] = useState('dark');
-  const [collapse, setCollapse] = useState(false);
-  const menuRef = useRef();
+  const [theme, setTheme] = React.useState('dark');
+  const [collapse, setCollapse] = React.useState(false);
+  const menuRef = React.useRef();
   function onClickItem() {
     console.log(';;;;>>>')
   }
