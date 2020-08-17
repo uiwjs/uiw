@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-tabs",
-  "version": "4.6.8",
+  "version": "4.6.9",
   "description": "Tabs component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/tabs",
@@ -42,7 +42,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.6.8",
+    "@uiw/utils": "^4.6.9",
     "classnames": "2.2.6"
   },
   "devDependencies": {
