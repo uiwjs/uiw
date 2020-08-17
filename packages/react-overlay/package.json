@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-overlay",
-  "version": "4.6.6",
+  "version": "4.6.7",
   "description": "Overlay component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/overlay",
@@ -43,8 +43,8 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-portal": "^4.6.6",
-    "@uiw/utils": "^4.6.6",
+    "@uiw/react-portal": "^4.6.7",
+    "@uiw/utils": "^4.6.7",
     "classnames": "2.2.6",
     "react-transition-group": "^4.3.0"
   },
