@@ -44,7 +44,6 @@
     "bundle:min": "GENERATE_SOURCEMAP=false kkt build --bundle --no-checkRequiredFiles --mini --no-emptyDir"
   },
   "peerDependencies": {
-    "@babel/runtime": "^7.0.0",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
