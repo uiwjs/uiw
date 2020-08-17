@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-steps",
-  "version": "4.6.7",
+  "version": "4.6.8",
   "description": "Steps component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/steps",
@@ -43,8 +43,8 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-icon": "^4.6.7",
-    "@uiw/utils": "^4.6.7",
+    "@uiw/react-icon": "^4.6.8",
+    "@uiw/utils": "^4.6.8",
     "classnames": "2.2.6"
   },
   "devDependencies": {
