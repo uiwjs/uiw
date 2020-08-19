@@ -64,13 +64,13 @@ jobs:
         publish_branch: master
         external_repository: uiwjs/uiwjs.github.io
 
-    - run: echo 'uiw.js.cool' > website/uiw/build/CNAME
     - name: Build and Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         publish_branch: gh-pages
         publish_dir: ./website/uiw/build
+        cname: uiw.js.cool
 
     - name: Sync to Gitee
       run: |
