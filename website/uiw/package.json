@@ -46,7 +46,7 @@
     "uiw": "^4.6.10"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.9.0",
+    "@kkt/loader-less": "5.10.3",
     "@kkt/loader-raw": "5.9.0",
     "kkt": "5.9.0",
     "react-test-renderer": "16.13.1"
