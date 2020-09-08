@@ -55,6 +55,7 @@ export type DatePickerDayRenderDay = {
   selected: boolean;
   next: boolean;
   disabled: boolean;
+  date?: Date;
 };
 
 export type DatePickerDayRenderDayProps = {
@@ -135,7 +136,7 @@ export class DatePickerDay extends React.Component<
     const month = date.getMonth();
     const firstDayOfWeek = getFirstDayOfWeek(year, month + 1);
     let day = row * 7 + num - firstDayOfWeek + 1;
-    const cls: DatePickerDayRenderDay = {
+    const cls: Omit<DatePickerDayRenderDay, 'date'> = {
       end: num === 0 || num === 6,
       prev: false,
       today: false,
