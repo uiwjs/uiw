@@ -1,5 +1,4 @@
 import React, { CSSProperties } from 'react';
-import classnames from 'classnames';
 import { Col, Row } from '@uiw/react-grid';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import { FormFieldsProps } from './Form';
@@ -39,10 +38,14 @@ export default class FormItem<T> extends React.PureComponent<
       hasError,
       ...otherProps
     } = this.props;
-    const cls = classnames(prefixCls, className, {
-      [`${prefixCls}-error`]: hasError,
-    });
-    const labelCls = classnames('w-form-label', labelClassName);
+    const cls = [prefixCls, className, hasError ? `${prefixCls}-error` : null]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
+    const labelCls = ['w-form-label', labelClassName]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
     if (inline) {
       return (
         <div className={cls} style={style} {...otherProps}>

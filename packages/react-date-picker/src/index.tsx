@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import formatter from '@uiw/formatter';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import { TimePickerTime, TimePickerPanelProps } from '@uiw/react-time-picker';
@@ -178,7 +177,10 @@ export default class DatePicker extends React.Component<
         ? (showTime as DatePickerShowTimeProps).format
         : 'HH:mm:ss';
     return (
-      <div className={classnames(prefixCls, className)} {...other}>
+      <div
+        className={[prefixCls, className].filter(Boolean).join(' ').trim()}
+        {...other}
+      >
         <DatePickerCaption
           todayButton={todayButton}
           panelDate={this.state.panelDate}

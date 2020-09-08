@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import Popover, { PopoverProps } from '@uiw/react-popover';
 import Input, { InputProps } from '@uiw/react-input';
 import Button from '@uiw/react-button';
@@ -135,7 +134,10 @@ export default class TimePicker<T> extends React.Component<
           readOnly
           disabled={disabled}
           {...props}
-          className={classnames(`${prefixCls}-input`, className)}
+          className={[`${prefixCls}-input`, className]
+            .filter(Boolean)
+            .join(' ')
+            .trim()}
         />
       </Popover>
     );

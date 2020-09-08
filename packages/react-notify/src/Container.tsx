@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import Alert, { AlertProps } from '@uiw/react-alert';
 import { IProps } from '@uiw/utils';
 import { NotificationCreateProps } from './index';
@@ -87,7 +86,7 @@ export default class Container extends React.Component<
             }
             return (
               <Alert
-                className={classnames(prefixCls)}
+                className={prefixCls}
                 key={key}
                 useButton={false}
                 width={320}

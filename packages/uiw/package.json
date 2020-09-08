@@ -108,7 +108,6 @@
   "devDependencies": {
     "@babel/runtime": "7.10.4",
     "@kkt/loader-less": "5.8.0",
-    "@types/classnames": "2.2.10",
     "@types/jest": "25.2.1",
     "@types/react": "16.9.41",
     "@types/react-dom": "16.9.8",

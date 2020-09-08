@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import classnames from 'classnames';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import Icon from '@uiw/react-icon';
 import Button from '@uiw/react-button';
@@ -34,11 +33,17 @@ export default (props: DrawerProps = {}) => {
     maskClosable = true,
     ...overlayProps
   } = props;
-  const cls = classnames(className, prefixCls, `${placement}`);
-  const bodyCls = classnames(
-    bodyProps && bodyProps.className,
-    `${prefixCls}-body-inner`,
-  );
+  const cls = [className, prefixCls, placement]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
+  const bodyCls = [
+    bodyProps ? bodyProps.className : null,
+    prefixCls ? `${prefixCls}-body-inner` : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   const styl = {
     ...style,
     [/^(top|bottom)$/.test(placement!) ? 'height' : 'width']: size,

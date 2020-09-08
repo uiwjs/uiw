@@ -1,5 +1,4 @@
-import React, { useState, useMemo, Fragment } from 'react';
-import classnames from 'classnames';
+import React, { useState, useMemo } from 'react';
 import { IProps, HTMLDivProps, HTMLSpanProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -34,8 +33,10 @@ export default function Rate(props: RateProps = {}) {
   } = props;
   const [value, setValue] = useState(defValue);
   const [hoverCount, setHoverCount] = useState(-1);
-  const cls = classnames(prefixCls, className, { disabled });
-
+  const cls = [prefixCls, className, disabled ? 'disabled' : null]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   const [prevValue, setPrevValue] = useState<number>();
   if (defValue !== prevValue) {
     setPrevValue(defValue);
@@ -87,11 +88,15 @@ export default function Rate(props: RateProps = {}) {
             Math.ceil(value) - 1 === idx &&
             hoverCount === -1) ||
           hoverCount === idx + 0.5;
-        const activeCls = classnames(`${prefixCls}-hight`, {
-          'star-on': idx + 1 <= value && hoverCount === -1,
-          'hover-on': idx + 1 <= hoverCount,
-          'half-on': halfon,
-        });
+        const activeCls = [
+          `${prefixCls}-hight`,
+          idx + 1 <= value && hoverCount === -1 ? 'star-on' : null,
+          idx + 1 <= hoverCount ? 'hover-on' : null,
+          halfon ? 'half-on' : null,
+        ]
+          .filter(Boolean)
+          .join(' ')
+          .trim();
         const props: HTMLSpanProps = {};
         if (!readOnly) {
           props.onClick = (e) => onClick(e, idx);

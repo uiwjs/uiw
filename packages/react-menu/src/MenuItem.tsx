@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import Icon from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
 import './style/item.less';
@@ -41,11 +40,15 @@ function MenuItem<T>(props = {} as MenuItemProps & T) {
     isSubMenuItem,
     ...htmlProps
   } = props;
-  const anchorCls = classNames(
+  const anchorCls = [
     prefixCls,
-    { active, 'w-disabled': disabled },
+    active ? 'active' : null,
+    disabled ? 'w-disabled' : null,
     className,
-  );
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   const tagComp = (
     <TagName
       {...htmlProps}
@@ -54,9 +57,13 @@ function MenuItem<T>(props = {} as MenuItemProps & T) {
     >
       <Icon className={`${prefixCls}-icon`} type={icon} />
       <div
-        className={classNames(`${prefixCls}-text`, {
-          [`${prefixCls}-multiline`]: !multiline,
-        })}
+        className={[
+          prefixCls ? `${prefixCls}-text` : null,
+          !multiline ? `${prefixCls}-multiline` : null,
+        ]
+          .filter(Boolean)
+          .join(' ')
+          .trim()}
       >
         {text}
       </div>

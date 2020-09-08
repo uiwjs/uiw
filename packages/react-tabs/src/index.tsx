@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Pane from './Pane';
 import './style/index.less';
@@ -92,9 +91,10 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
       onTabClick,
       ...elementProps
     } = this.props;
-    const cls = classnames(prefixCls, className, {
-      [`${prefixCls}-${type}`]: type,
-    });
+    const cls = [prefixCls, className, type ? `${prefixCls}-${type}` : null]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
     return (
       <div className={cls} {...elementProps}>
         <div className={`${prefixCls}-bar`}>
@@ -107,10 +107,14 @@ export default class Tabs extends React.Component<TabsProps, TabsState> {
                 }
                 const props: any = {
                   key,
-                  className: classnames(`${prefixCls}-item`, {
-                    active: item.key === this.state.activeKey,
-                    disabled: item.props.disabled,
-                  }),
+                  className: [
+                    `${prefixCls}-item`,
+                    item.key === this.state.activeKey ? 'active' : null,
+                    item.props.disabled ? 'disabled' : null,
+                  ]
+                    .filter(Boolean)
+                    .join(' ')
+                    .trim(),
                   children: item.props.label,
                 };
                 if (!item.props.disabled) {

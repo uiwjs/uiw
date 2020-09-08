@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import Icon from '@uiw/react-icon';
 import { HTMLSpanProps } from '@uiw/utils';
 import './style/index.less';
@@ -55,11 +54,16 @@ export default class Avatar extends React.Component<AvatarProps, AvatarState> {
       ...resetProps
     } = this.props;
     let children = this.props.children;
-    const cls = classnames(prefixCls, className, {
-      [`${prefixCls}-${size}`]: size,
-      [`${prefixCls}-${shape}`]: shape,
-      [`${prefixCls}-image`]: src,
-    });
+    const cls = [
+      prefixCls,
+      className,
+      size ? `${prefixCls}-${size}` : null,
+      shape ? `${prefixCls}-${shape}` : null,
+      src ? `${prefixCls}-image` : null,
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
     if (this.state.isImgExist && src) {
       children = (
         <img src={src} alt={alt} onError={this.onImgLoadError.bind(this)} />

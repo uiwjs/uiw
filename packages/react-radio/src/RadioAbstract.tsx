@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-} from 'react';
-import classnames from 'classnames';
+import React, { useState, useImperativeHandle, useMemo } from 'react';
 import { IProps, HTMLInputProps } from '@uiw/utils';
 
 /**
@@ -54,10 +48,15 @@ function Abstract(
     }
   }, [prevChecked]);
 
-  const cls = classnames(prefixCls, className, {
-    disabled: disabled,
-    [`${prefixCls}-${size}`]: size,
-  });
+  const cls = [
+    prefixCls,
+    className,
+    disabled ? 'disabled' : null,
+    size ? `${prefixCls}-${size}` : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   useMemo(() => {
     if (checked !== props.checked) {
       setChecked(!!props.checked);

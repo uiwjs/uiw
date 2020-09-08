@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { HTMLDivProps, IProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -15,9 +14,11 @@ export default (props: ButtonGroupProps = {}) => {
     className,
     ...resetProps
   } = props;
-  const cls = classnames(prefixCls, className, {
-    [`${prefixCls}-vertical`]: vertical,
-  });
+
+  const cls = [prefixCls, className, vertical ? `${prefixCls}-vertical` : null]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
 
   return (
     <div className={cls} {...resetProps}>

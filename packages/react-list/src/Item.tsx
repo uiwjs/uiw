@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps } from '@uiw/utils';
 
 export interface ListItemProps
@@ -22,10 +21,15 @@ export default function Item<T>(props = {} as ListItemProps & T) {
     active = false,
     ...resetProps
   } = props;
-  const cls = classnames(`${prefixCls}`, className, {
-    'w-disabled': props.disabled,
-    'w-active': active,
-  });
+  const cls = [
+    prefixCls,
+    className,
+    props.disabled ? 'w-disabled' : null,
+    active ? 'w-active' : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   const TagName = props.href && typeof tagName === 'string' ? 'a' : tagName;
   return (
     <TagName className={cls} {...resetProps}>

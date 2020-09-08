@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import { Tooltip } from 'uiw';
-import classnames from 'classnames';
 import Nav from '@/components/Nav';
 import VersionSelect from '@/components/VersionSelect';
 import logo from '@/components/icons/logo';
@@ -53,7 +52,12 @@ export default class UserLayout extends PureComponent {
       }
     });
     return (
-      <div className={classnames({ [styles.topmenu]: topmenu })}>
+      <div
+        className={[topmenu ? styles.topmenu : null]
+          .filter(Boolean)
+          .join(' ')
+          .trim()}
+      >
         <div className={styles.nav}>
           <div className={styles.logo}>
             <Link to="/">

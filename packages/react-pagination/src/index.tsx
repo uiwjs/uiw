@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLUlProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -149,11 +148,10 @@ export default class Pagination extends React.Component<
       onChange,
       ...other
     } = this.props;
-    const cls = classnames(prefixCls, className, {
-      [`${prefixCls}-${alignment}`]: alignment,
-      [size as string]: size,
-      divider,
-    });
+    const cls = [prefixCls, className, divider ? 'divider' : null, size]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
     return (
       <ul className={cls} {...other}>
         {this.initPageSoure().map((item: PaginationItemSourceData, idx) => {
@@ -165,10 +163,13 @@ export default class Pagination extends React.Component<
           }
           return (
             <li
-              className={classnames({
-                active: item.active,
-                disabled: item.disabled,
-              })}
+              className={[
+                item.active ? 'active' : null,
+                item.disabled ? 'disabled' : null,
+              ]
+                .filter(Boolean)
+                .join(' ')
+                .trim()}
               onClick={this.onClick.bind(this, item)}
               key={idx}
             >

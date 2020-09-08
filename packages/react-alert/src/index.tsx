@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import Modal, { ModalProps } from '@uiw/react-modal';
 import { IProps } from '@uiw/utils';
 import './style/index.less';
@@ -10,12 +9,9 @@ export interface AlertProps extends IProps, ModalProps {
 
 export default (props: AlertProps = {}) => {
   const { prefixCls = 'w-alert', className, width = 400, ...other } = props;
+  const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   return (
-    <Modal
-      {...other}
-      width={width}
-      className={classnames(prefixCls, className)}
-    >
+    <Modal {...other} width={width} className={cls}>
       {props.children}
     </Modal>
   );

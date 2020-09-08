@@ -1,6 +1,5 @@
 import React from 'react';
 import copy from '@uiw/copy-to-clipboard';
-import classnames from 'classnames';
 import { IProps, HTMLSpanProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -38,7 +37,7 @@ export default function CopyToClipboard<T>(
   }
   const otherProps = {
     ...resetProps,
-    className: classnames(prefixCls, className),
+    className: [prefixCls, className].filter(Boolean).join(' ').trim(),
     onClick: handleClick,
   };
   return (

@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { HTMLSpanProps, IProps } from '@uiw/utils';
 import './style/item.less';
 
@@ -22,11 +21,16 @@ export default function BreadcrumbItem<T>(
     ...other
   } = props;
   const isElm = React.isValidElement(separator);
-  const cls = classnames(`${prefixCls}-item`, className, {
-    active,
-    'no-separator': !separator,
-    'no-before': isElm,
-  });
+  const cls = [
+    `${prefixCls}-item`,
+    className,
+    active ? 'active' : null,
+    !separator ? 'no-separator' : null,
+    isElm ? 'no-before' : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   const otherProps = { className: cls, ...other } as BreadcrumbItemProps & T;
   if (!isElm) {
     otherProps['data-separator'] = separator;

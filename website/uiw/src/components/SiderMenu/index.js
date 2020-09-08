@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import classnames from 'classnames';
 import styles from './index.module.less';
 import nav from '../icons/nav';
 
@@ -16,9 +15,10 @@ export default class SiderMenu extends Component {
     }
     return (
       <div
-        className={classnames(styles.wapper, {
-          [`${styles.topmenu}`]: topmenu,
-        })}
+        className={[styles.wapper, topmenu ? styles.topmenu : null]
+          .filter(Boolean)
+          .join(' ')
+          .trim()}
       >
         <h2 className={styles.title}>
           {nav[navData.icon]}

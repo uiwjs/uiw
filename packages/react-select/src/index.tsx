@@ -1,5 +1,4 @@
 import React, { useImperativeHandle } from 'react';
-import classnames from 'classnames';
 import { IProps } from '@uiw/utils';
 import Option from './Option';
 import Group from './Group';
@@ -30,9 +29,10 @@ function InternalSelect(
     <select
       {...other}
       ref={selectRef}
-      className={classnames(prefixCls, className, {
-        [`${prefixCls}-${size}`]: size,
-      })}
+      className={[prefixCls, className, size ? `${prefixCls}-${size}` : null]
+        .filter(Boolean)
+        .join(' ')
+        .trim()}
     />
   );
 }

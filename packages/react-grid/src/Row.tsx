@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/row.less';
 
@@ -25,10 +24,15 @@ export function Row(props: RowProps = {}) {
     align,
     ...other
   } = props;
-  const cls = classnames(prefixCls, className, {
-    [`${prefixCls}-align-${align}`]: align,
-    [`${prefixCls}-justify-${justify}`]: justify,
-  });
+  const cls = [
+    prefixCls,
+    className,
+    align ? `${prefixCls}-align-${align}` : null,
+    justify ? `${prefixCls}-justify-${justify}` : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   const gutterStyl = !gutter
     ? {}
     : { paddingLeft: gutter / 2, paddingRight: gutter / 2 };

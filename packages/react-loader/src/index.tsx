@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -30,13 +29,10 @@ export default (props: LoaderProps = {}) => {
     fullscreen = false,
     ...otherProps
   } = props;
-  const cls = classnames(
-    prefixCls,
-    {
-      [`${prefixCls}-${size}`]: size,
-    },
-    className,
-  );
+  const cls = [prefixCls, className, size ? `${prefixCls}-${size}` : null]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
 
   const indicatorView = useMemo(
     () => (
@@ -57,18 +53,26 @@ export default (props: LoaderProps = {}) => {
   const tipsView = useMemo(
     () => (
       <div
-        className={classnames(`${prefixCls}-tips`, {
-          [`${prefixCls}-fullscreen`]: fullscreen,
-        })}
+        className={[
+          `${prefixCls}-tips`,
+          fullscreen ? `${prefixCls}-fullscreen` : null,
+        ]
+          .filter(Boolean)
+          .join(' ')
+          .trim()}
         style={{ color, backgroundColor: bgColor }}
       >
         <div className={`${prefixCls}-tips-nested`}>
           {indicator || indicatorView}
           {tip && (
             <div
-              className={classnames(`${prefixCls}-text`, {
-                [`${prefixCls}-vertical`]: vertical,
-              })}
+              className={[
+                `${prefixCls}-text`,
+                vertical ? `${prefixCls}-vertical` : null,
+              ]
+                .filter(Boolean)
+                .join(' ')
+                .trim()}
             >
               {tip}
             </div>
@@ -86,9 +90,13 @@ export default (props: LoaderProps = {}) => {
         React.cloneElement(
           children,
           Object.assign({}, children.props, {
-            className: classnames(`${prefixCls}-warp`, {
-              [`${prefixCls}-blur`]: loading,
-            }),
+            className: [
+              `${prefixCls}-warp`,
+              loading ? `${prefixCls}-blur` : null,
+            ]
+              .filter(Boolean)
+              .join(' ')
+              .trim(),
           }),
         )}
     </div>

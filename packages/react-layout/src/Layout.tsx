@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps } from '@uiw/utils';
 import Header from './Header';
 import Footer from './Footer';
@@ -54,12 +53,20 @@ export default class Layout extends React.Component<LayoutProps, LayoutState> {
     return (
       <LayoutContext.Provider value={{ siderHook: this.getSiderHook() }}>
         <section
-          className={classnames(prefixCls, className, {
-            [`${prefixCls}-has-sider`]:
+          className={[
+            prefixCls,
+            className,
+            (
               typeof hasSider === 'boolean'
                 ? hasSider
-                : this.state.siders.length > 0,
-          })}
+                : this.state.siders.length > 0
+            )
+              ? `${prefixCls}-has-sider`
+              : null,
+          ]
+            .filter(Boolean)
+            .join(' ')
+            .trim()}
           {...other}
         >
           {children}

@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import Input from '@uiw/react-input';
 import { IProps } from '@uiw/utils';
 import FormItem, { IFormItemProps } from './FormItem';
@@ -302,7 +301,7 @@ export default class Form<T> extends React.Component<FormProps<T>, IFormState> {
       <form
         {...{
           ...others,
-          className: classnames(prefixCls, className),
+          className: [prefixCls, className].filter(Boolean).join(' ').trim(),
           onSubmit: this.onSubmit,
         }}
       >

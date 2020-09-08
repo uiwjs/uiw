@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps, getScroll } from '@uiw/utils';
 
 export interface AffixProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
@@ -175,7 +174,7 @@ export default class Affix extends React.Component<AffixProps, IAffixState> {
       onChange,
       ...resetProps
     } = this.props;
-    const cls = classnames(className, `${prefixCls}`);
+    const cls = [className, prefixCls].filter(Boolean).join(' ').trim();
     return (
       <div
         {...resetProps}

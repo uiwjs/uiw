@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import { getScrollPercent, getScrollTop, ScrollToAnimate } from './utils';
 import './style/index.less';
@@ -38,11 +37,16 @@ export default (props: BackTopProps = {}) => {
   const [percent, setPercent] = useState(0);
   const [current, setCurrent] = useState(0);
   const visible = percent >= topShowBelow;
-  const cls = classnames(prefixCls, className, {
-    'no-fixed': !fixed,
-    [`${prefixCls}-show`]: visible,
-    [`${prefixCls}-hide`]: !visible,
-  });
+  const cls = [
+    prefixCls,
+    className,
+    !fixed ? 'no-fixed' : null,
+    visible ? `${prefixCls}-show` : null,
+    !visible ? `${prefixCls}-hide` : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   useEffect(() => {
     window && window.addEventListener('scroll', onScroll);
     return function () {

@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import classnames from 'classnames';
 import Tree, {
   TreeProps,
   TreeRenderTitleNode,
@@ -14,7 +13,10 @@ export default function TreeChecked<T>({
   prefixCls = 'w-treechecked',
   ...props
 }: TreeCheckedProps<T>): JSX.Element {
-  props.className = classnames(prefixCls, props.className);
+  props.className = [prefixCls, props.className]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   props.checkStrictly = true;
   props.isSelected = false;
   props.multiple = true;

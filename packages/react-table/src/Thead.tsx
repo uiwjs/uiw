@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps } from '@uiw/utils';
 import { TableProps, IColumns } from './';
 import './style/index.less';
@@ -22,7 +21,10 @@ export default (
     ...other
   } = props;
   return (
-    <thead className={classnames(prefixCls, className)} {...other}>
+    <thead
+      className={[prefixCls, className].filter(Boolean).join(' ').trim()}
+      {...other}
+    >
       {data &&
         data.map((tds, rowNum: number) => (
           <tr key={rowNum}>

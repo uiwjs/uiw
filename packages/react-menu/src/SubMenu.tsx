@@ -1,5 +1,4 @@
 import React, { useMemo, useState, useImperativeHandle } from 'react';
-import classnames from 'classnames';
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 import OverlayTrigger, {
   OverlayTriggerProps,
@@ -52,10 +51,14 @@ function IconView({
     () => (
       <Icon
         type="caret-right"
-        className={classnames(`${prefixCls}-collapse-icon`, {
-          'w-open': !collapse && isOpen,
-          'w-close': !collapse && !isOpen,
-        })}
+        className={[
+          prefixCls ? `${prefixCls}-collapse-icon` : null,
+          !collapse && isOpen ? 'w-open' : null,
+          !collapse && !isOpen ? 'w-close' : null,
+        ]
+          .filter(Boolean)
+          .join(' ')
+          .trim()}
       />
     ),
     [prefixCls, collapse, isOpen],
@@ -85,7 +88,10 @@ function SubMenu(
     bordered: true,
     children,
     inlineIndent,
-    className: classnames(`${prefixCls}-overlay`),
+    className: [prefixCls ? `${prefixCls}-overlay` : null]
+      .filter(Boolean)
+      .join(' ')
+      .trim(),
   };
   const popupRef = React.createRef<OverlayTrigger>();
   const [isOpen, setIsOpen] = useState(false);
@@ -169,11 +175,14 @@ function SubMenu(
               isOpen={isOpen}
             />
           }
-          className={classnames(
-            `${prefixCls}-title`,
-            { [`${prefixCls}-collapse-title`]: !collapse },
+          className={[
+            prefixCls ? `${prefixCls}-title` : null,
+            !collapse ? `${prefixCls}-collapse-title` : null,
             className,
-          )}
+          ]
+            .filter(Boolean)
+            .join(' ')
+            .trim()}
         />
       </OverlayTrigger>
     </li>

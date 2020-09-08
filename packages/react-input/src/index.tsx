@@ -1,5 +1,4 @@
 import React, { useEffect, useImperativeHandle } from 'react';
-import classnames from 'classnames';
 import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLInputProps } from '@uiw/utils';
 import './style/input.less';
@@ -30,11 +29,16 @@ function InternalInput<T>(
   const inputRef = React.createRef<HTMLInputElement>();
   const addonRef = React.createRef<HTMLSpanElement>();
   useImperativeHandle(ref, () => inputRef.current);
-  const cls = classnames(prefixCls, className, {
-    [`${prefixCls}-${size}`]: size,
-    [`${prefixCls}-addon`]: addonAfter,
-    disabled: props.disabled,
-  });
+  const cls = [
+    prefixCls,
+    className,
+    size ? `${prefixCls}-${size}` : null,
+    addonAfter ? `${prefixCls}-addon` : null,
+    props.disabled ? 'disabled' : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
 
   useEffect(() => {
     computedInputPadding();
@@ -55,7 +59,7 @@ function InternalInput<T>(
         ref={inputRef}
         type={type}
         {...otherProps}
-        className={classnames(`${prefixCls}-inner`)}
+        className={`${prefixCls}-inner`}
       />
       {addonAfter && (
         <span className={`${prefixCls}-addon-after`} ref={addonRef}>

@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import { IProps, HTMLLiProps } from '@uiw/utils';
 
 export interface MenuDividerProps extends IProps, Omit<HTMLLiProps, 'title'> {
@@ -13,7 +12,7 @@ function Divider(props: MenuDividerProps = {}) {
     title,
     ...htmlProps
   } = props;
-  const cls = classNames(prefixCls, className);
+  const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   if (!title) {
     return <li {...htmlProps} className={cls} />;
   }

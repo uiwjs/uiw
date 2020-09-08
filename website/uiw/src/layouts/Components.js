@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import { Tooltip } from 'uiw';
-import classnames from 'classnames';
 import Nav from '@/components/Nav';
 import SiderMenu from '@/components/SiderMenu';
 import VersionSelect from '@/components/VersionSelect';
@@ -12,8 +11,8 @@ import styles from './index.module.less';
 import version from '../version.json';
 
 export default class UserLayout extends PureComponent {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     const topmenu = localStorage.getItem('_menu');
     this.state = {
       topmenu: topmenu === 'true',
@@ -54,7 +53,12 @@ export default class UserLayout extends PureComponent {
       }
     });
     return (
-      <div className={classnames({ [styles.topmenu]: topmenu })}>
+      <div
+        className={[topmenu ? styles.topmenu : null]
+          .filter(Boolean)
+          .join(' ')
+          .trim()}
+      >
         <div className={styles.nav}>
           <div className={styles.logo}>
             <Link to="/">

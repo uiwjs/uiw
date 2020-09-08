@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import classnames from 'classnames';
 import { AlertProps } from '@uiw/react-alert';
 import { randomid } from '@uiw/utils';
 import Container, { Placement, ContainerNotifys } from './Container';
@@ -76,7 +75,10 @@ function NotificationCreate(
   if (props.placement && !notifys[props.placement]) {
     const div = document.createElement('div');
     document.body.appendChild(div);
-    div.className = classnames('w-notify-warpper', props.placement);
+    div.className = ['w-notify-warpper', props.placement]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
     notifysDom[props.placement] = div;
     notifys[props.placement] = ReactDOM.render(<Container />, div);
   }

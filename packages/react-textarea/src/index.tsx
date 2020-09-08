@@ -1,5 +1,4 @@
 import React, { useImperativeHandle } from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLTextProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -15,9 +14,12 @@ function Textarea(
   const { prefixCls = 'w-textarea', className, ...restProps } = props;
   const textRef = React.createRef<HTMLTextAreaElement>();
   useImperativeHandle(ref, () => textRef.current);
-  const cls = classnames(prefixCls, className);
   return (
-    <textarea className={cls} {...restProps} ref={textRef}>
+    <textarea
+      className={[prefixCls, className].filter(Boolean).join(' ').trim()}
+      {...restProps}
+      ref={textRef}
+    >
       {props.children}
     </textarea>
   );

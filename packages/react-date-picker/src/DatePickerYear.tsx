@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/year-month.less';
 
@@ -49,7 +48,13 @@ export class DatePickerYear extends React.Component<
       ...other
     } = this.props;
     return (
-      <div className={classnames(`${prefixCls}-year`, className)} {...other}>
+      <div
+        className={[prefixCls ? `${prefixCls}-year` : null, className]
+          .filter(Boolean)
+          .join(' ')
+          .trim()}
+        {...other}
+      >
         {panelNum &&
           panelNum.map((_, idx) => {
             const selectedYear = this.state.activeYear.getFullYear();
@@ -57,10 +62,13 @@ export class DatePickerYear extends React.Component<
             return (
               <div
                 key={idx}
-                className={classnames({
-                  selected: selectedYear === year,
-                  paging: idx === 0 || idx === panelNum.length - 1,
-                })}
+                className={[
+                  selectedYear === year ? 'selected' : null,
+                  idx === 0 || idx === panelNum.length - 1 ? 'paging' : null,
+                ]
+                  .filter(Boolean)
+                  .join(' ')
+                  .trim()}
               >
                 <span onClick={this.onSelected.bind(this, year, idx)}>
                   {year}

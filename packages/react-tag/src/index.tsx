@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLSpanProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -30,10 +29,15 @@ export default (props: TagProps = {}) => {
     onClose,
     ...other
   } = props;
-  const cls = classnames(`${prefixCls}`, className, {
-    [`${prefixCls}-light`]: light,
-    disabled,
-  });
+  const cls = [
+    prefixCls,
+    className,
+    light ? `${prefixCls}-light` : null,
+    disabled ? 'disabled' : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   const styl: React.CSSProperties = { ...style };
   if (!light) {
     styl.color = '#fff';

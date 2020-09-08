@@ -1,6 +1,5 @@
 import React, { cloneElement } from 'react';
 import ReactDOM from 'react-dom';
-import classnames from 'classnames';
 import { getScroll, IProps } from '@uiw/utils';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import contains from './utils';
@@ -525,18 +524,23 @@ export default class OverlayTrigger extends React.Component<
             child,
             Object.assign({}, child.props, {
               ...triggerProps,
-              className: classnames(child.props.className, {
-                [`${prefixCls}-disabled`]: disabled,
-              }),
+              className: [
+                child.props.className,
+                disabled ? `${prefixCls}-disabled` : null,
+              ]
+                .filter(Boolean)
+                .join(' ')
+                .trim(),
             }),
           )}
         </RefHolder>
         <Overlay
           {...props}
           onEnter={this.onEnter}
-          className={classnames(prefixCls, className, {
-            [placement]: placement,
-          })}
+          className={[prefixCls, className, placement]
+            .filter(Boolean)
+            .join(' ')
+            .trim()}
           usePortal={usePortal}
           transitionName={this.state.transitionName}
           isOpen={this.state.show}
@@ -548,10 +552,13 @@ export default class OverlayTrigger extends React.Component<
               { ref: this.popup },
               {
                 ...overlay.props,
-                className: classnames(
-                  overlay.props && overlay.props.className,
+                className: [
+                  overlay.props ? overlay.props.className : null,
                   placement,
-                ),
+                ]
+                  .filter(Boolean)
+                  .join(' ')
+                  .trim(),
               },
             ),
           )}

@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/col.less';
 
@@ -20,12 +19,17 @@ export function Col(props: ColProps = {}) {
     align,
     ...other
   } = props;
-  const cls = classnames(prefixCls, className, {
-    [`${prefixCls}-${span}`]: span,
-    [`${prefixCls}-fixed`]: fixed,
-    [`${prefixCls}-align-${align}`]: align,
-    [`${prefixCls}-grow-${grow}`]: grow,
-  });
+  const cls = [
+    prefixCls,
+    className,
+    span ? `${prefixCls}-${span}` : null,
+    fixed ? `${prefixCls}-fixed` : null,
+    align ? `${prefixCls}-align-${align}` : null,
+    fixed ? `${prefixCls}-grow-${grow}` : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   return (
     <div className={cls} {...other}>
       {props.children}

@@ -1,5 +1,4 @@
 import React, { useImperativeHandle, useMemo } from 'react';
-import classNames from 'classnames';
 import { IProps, HTMLUlProps } from '@uiw/utils';
 import MenuItem from './MenuItem';
 import Divider from './Divider';
@@ -42,15 +41,16 @@ function InternalMenu(
   useImperativeHandle(ref, () => menuRef.current);
   const cls = useMemo(
     () =>
-      classNames(
+      [
         prefixCls,
-        {
-          'w-bordered': bordered,
-          [`${prefixCls}-inline-collapsed`]: inlineCollapsed,
-          [`${prefixCls}-${theme}`]: theme,
-        },
+        bordered ? 'w-bordered' : null,
+        inlineCollapsed ? `${prefixCls}-inline-collapsed` : null,
+        theme ? `${prefixCls}-${theme}` : null,
         className,
-      ),
+      ]
+        .filter(Boolean)
+        .join(' ')
+        .trim(),
     [prefixCls, bordered, inlineCollapsed, theme, className],
   );
 

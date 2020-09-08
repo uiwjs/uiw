@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLSpanProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -25,14 +24,22 @@ export default (props: BadgeProps = {}) => {
     ...other
   } = props;
   const supProps = {
-    className: classnames({ [`${prefixCls}-count`]: !dot, dot }),
+    className: [!dot ? `${prefixCls}-count` : null, dot ? 'dot' : null]
+      .filter(Boolean)
+      .join(' ')
+      .trim(),
     style: {},
   };
-  const cls = classnames(className, `${prefixCls}`, {
-    nowrap: !children,
-    [`${prefixCls}-status`]: !children,
-    [`${prefixCls}-processing`]: processing,
-  });
+  const cls = [
+    className,
+    prefixCls,
+    !children ? 'nowrap' : null,
+    !children ? `${prefixCls}-status` : null,
+    processing ? `${prefixCls}-processing` : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
 
   const warpperProps: HTMLSpanProps = {};
   if (count || count === 0) {

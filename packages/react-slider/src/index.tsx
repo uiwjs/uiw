@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -287,15 +286,20 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
     return (
       <div
         ref={this.slider}
-        className={classnames(prefixCls, className, {
-          disabled,
-          [`${prefixCls}-with-marks`]: marks,
-          [`${prefixCls}-vertical`]: vertical,
-        })}
+        className={[
+          prefixCls,
+          className,
+          disabled ? 'disabled' : null,
+          marks ? `${prefixCls}-with-marks` : null,
+          vertical ? `${prefixCls}-vertical` : null,
+        ]
+          .filter(Boolean)
+          .join(' ')
+          .trim()}
         {...other}
       >
         <div
-          className={classnames(`${prefixCls}-bar`)}
+          className={`${prefixCls}-bar`}
           style={{
             [vertical ? 'top' : 'left']: barStyl.left,
             [vertical ? 'bottom' : 'right']: barStyl.right,
@@ -310,15 +314,16 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
           return (
             <div
               key={idx}
-              className={classnames(`${prefixCls}-handle`)}
+              className={`${prefixCls}-handle`}
               onMouseDown={this.onHandleBtnDown.bind(this, idx)}
               style={{ [vertical ? 'top' : 'left']: `${lleftPostion}%` }}
             >
               {(tooltip || tooltip === false) && (
                 <div
-                  className={classnames(`${prefixCls}-tooltip`, {
-                    open: tooltip,
-                  })}
+                  className={[`${prefixCls}-tooltip`, tooltip ? 'open' : null]
+                    .filter(Boolean)
+                    .join(' ')
+                    .trim()}
                 >
                   {this.getLabelValue(item) as number}
                 </div>
@@ -327,7 +332,7 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
           );
         })}
         {dots && (
-          <div className={classnames(`${prefixCls}-dots`)}>
+          <div className={`${prefixCls}-dots`}>
             {this.stepArray().map((val, idx) => {
               const stepValue = idx * (step as number) + (min as number);
               return (
@@ -336,9 +341,15 @@ export default class Slider extends React.Component<SliderProps, SliderState> {
                   style={{
                     [vertical ? 'top' : 'left']: `${val}%`,
                   }}
-                  className={classnames(`${prefixCls}-mark`, {
-                    'no-marks': marks && marks !== true && !marks[stepValue],
-                  })}
+                  className={[
+                    `${prefixCls}-mark`,
+                    marks && marks !== true && !marks[stepValue]
+                      ? 'no-marks'
+                      : null,
+                  ]
+                    .filter(Boolean)
+                    .join(' ')
+                    .trim()}
                 >
                   {marks === true && (
                     <div> {this.getLabelValue(stepValue)} </div>

@@ -1,5 +1,4 @@
-import React, { useEffect, useImperativeHandle, useState } from 'react';
-import classnames from 'classnames';
+import React, { useEffect, useState } from 'react';
 import { IProps } from '@uiw/utils';
 import Input, { InputProps } from '@uiw/react-input';
 import './style/input.less';
@@ -43,10 +42,15 @@ function InternalPinCode(
   }>({});
   const [placehold, setPlacehold] = useState(placeholder);
   const [values, setValues] = useState(value);
-  const cls = classnames(prefixCls, className, {
-    [`${prefixCls}-${size}`]: size,
-    disabled,
-  });
+  const cls = [
+    prefixCls,
+    className,
+    size ? `${prefixCls}-${size}` : null,
+    disabled ? 'disabled' : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>, idx: number) {
     let val = e.target.value;

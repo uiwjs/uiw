@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps, HTMLLiProps } from '@uiw/utils';
 import './style/time-picker.less';
 
@@ -136,7 +135,7 @@ export default class TimePickerPanel extends React.Component<
     } = this.props;
     this.disableds = [];
     return (
-      <div className={classnames(`${prefixCls}-spinner`)} {...other}>
+      <div className={`${prefixCls}-spinner`} {...other}>
         <ul>
           {[...Array(count)].map((_, idx: number) => {
             const disabled = this.getDisabledItem(idx);
@@ -151,11 +150,14 @@ export default class TimePickerPanel extends React.Component<
                 key={idx}
                 ref={this.getItemInstance.bind(this, idx)}
                 {...props}
-                className={classnames({
-                  disabled,
-                  selected: this.getMaybeNumber() === idx,
-                  hide: hideDisabled && disabled,
-                })}
+                className={[
+                  disabled ? 'disabled' : null,
+                  this.getMaybeNumber() === idx ? 'selected' : null,
+                  hideDisabled && disabled ? 'hide' : null,
+                ]
+                  .filter(Boolean)
+                  .join(' ')
+                  .trim()}
               >
                 {idx < 10 ? `0${idx}` : idx}
               </li>

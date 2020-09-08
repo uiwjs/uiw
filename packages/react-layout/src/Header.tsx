@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps } from '@uiw/utils';
 
 export interface HeaderProps extends IProps {
@@ -14,7 +13,10 @@ export default (props: HeaderProps = {}) => {
     ...other
   } = props;
   return (
-    <header className={classnames(prefixCls, className)} {...other}>
+    <header
+      className={[prefixCls, className].filter(Boolean).join(' ').trim()}
+      {...other}
+    >
       {children}
     </header>
   );

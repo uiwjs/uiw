@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps } from '@uiw/utils';
 
 export interface ContentProps extends IProps {
@@ -14,7 +13,10 @@ export default (props: ContentProps = {}) => {
     ...other
   } = props;
   return (
-    <main className={classnames(prefixCls, className)} {...other}>
+    <main
+      className={[prefixCls, className].filter(Boolean).join(' ').trim()}
+      {...other}
+    >
       {children}
     </main>
   );

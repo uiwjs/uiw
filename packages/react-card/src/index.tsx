@@ -1,5 +1,4 @@
 import React, { useMemo, useImperativeHandle } from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -39,11 +38,16 @@ function InternalCard(
   useImperativeHandle(ref, () => divRef.current);
   const cls = useMemo(
     () =>
-      classnames(prefixCls, className, {
-        [`${prefixCls}-bordered`]: bordered,
-        [`${prefixCls}-no-hover`]: noHover,
-        active,
-      }),
+      [
+        prefixCls,
+        className,
+        bordered ? `${prefixCls}-bordered` : null,
+        noHover ? `${prefixCls}-no-hover` : null,
+        active ? 'active' : null,
+      ]
+        .filter(Boolean)
+        .join(' ')
+        .trim(),
     [prefixCls, className, bordered, noHover],
   );
 
@@ -57,7 +61,10 @@ function InternalCard(
       )}
       {children && (
         <div
-          className={classnames(`${prefixCls}-body`, bodyClassName)}
+          className={[`${prefixCls}-body`, bodyClassName]
+            .filter(Boolean)
+            .join(' ')
+            .trim()}
           style={bodyStyle}
         >
           {children}

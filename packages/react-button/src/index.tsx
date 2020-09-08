@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import Icon from '@uiw/react-icon';
 import { IProps, HTMLButtonProps } from '@uiw/utils';
 import './style/index.less';
@@ -43,15 +42,21 @@ export default (props: ButtonProps = {}) => {
     children,
     ...others
   } = props;
-  const cls: string = classnames(className, prefixCls, {
-    [`${prefixCls}-size-${size}`]: size,
-    [`${prefixCls}-${type}`]: type,
-    [`${prefixCls}-basic`]: basic,
-    [`${prefixCls}-loading`]: loading, // 加载
-    disabled: disabled || loading, // 禁用状态
-    active, // 激活状态
-    block, // 块级元素Block level
-  });
+  const cls = [
+    className,
+    prefixCls,
+    size ? `${prefixCls}-size-${size}` : null,
+    type ? `${prefixCls}-${type}` : null,
+    basic ? `${prefixCls}-basic` : null,
+    loading ? `${prefixCls}-loading` : null,
+    disabled || loading ? 'disabled' : null,
+    active ? 'active' : null,
+    block ? 'block' : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
+
   return (
     <button
       {...others}

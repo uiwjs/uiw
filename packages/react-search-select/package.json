@@ -47,8 +47,7 @@
     "@uiw/react-input": "^4.6.9",
     "@uiw/react-loader": "^4.6.9",
     "@uiw/react-menu": "^4.6.9",
-    "@uiw/utils": "^4.6.9",
-    "classnames": "2.2.6"
+    "@uiw/utils": "^4.6.9"
   },
   "devDependencies": {
     "@babel/runtime": "7.10.4",

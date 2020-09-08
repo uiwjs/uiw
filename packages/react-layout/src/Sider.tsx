@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import classnames from 'classnames';
 import { IProps, randomid } from '@uiw/utils';
 import { LayoutContext, LayoutContextProps } from './Layout';
 
@@ -46,7 +45,7 @@ function Sider(props = {} as SiderProps & LayoutContextProps) {
   };
   return (
     <div
-      className={classnames(prefixCls, className)}
+      className={[prefixCls, className].filter(Boolean).join(' ').trim()}
       style={divStyle}
       {...other}
     >

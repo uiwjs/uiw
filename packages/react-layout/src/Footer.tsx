@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps } from '@uiw/utils';
 
 export interface FooterProps extends IProps {
@@ -14,7 +13,10 @@ export default (props: FooterProps = {}) => {
     ...other
   } = props;
   return (
-    <footer className={classnames(prefixCls, className)} {...other}>
+    <footer
+      className={[prefixCls, className].filter(Boolean).join(' ').trim()}
+      {...other}
+    >
       {children}
     </footer>
   );

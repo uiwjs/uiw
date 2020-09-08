@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps } from '@uiw/utils';
 import TimePanel, { TimePickerPanelProps } from './Panel';
 import './style/time-picker.less';
@@ -19,7 +18,7 @@ export class TimePickerTime extends React.Component<TimePickerTimeProps> {
   render() {
     const { prefixCls, className, precision, ...other } = this.props;
     return (
-      <div className={classnames(prefixCls, className)}>
+      <div className={[prefixCls, className].filter(Boolean).join(' ').trim()}>
         {/^(second|minute|hour)$/.test(precision as Precision) && (
           <TimePanel type="Hours" count={24} {...other} />
         )}

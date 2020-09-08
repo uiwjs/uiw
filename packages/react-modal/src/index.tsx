@@ -1,5 +1,4 @@
 import React, { useState, useImperativeHandle } from 'react';
-import classnames from 'classnames';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import Button, { ButtonType } from '@uiw/react-button';
 import Icon from '@uiw/react-icon';
@@ -59,7 +58,10 @@ function InternalModal(
   const overlayRef = React.createRef<Overlay>();
   useImperativeHandle(ref, () => overlayRef.current);
   const [loading, setLoading] = useState(false);
-  const cls = classnames(prefixCls, className, { [`${type}`]: type });
+  const cls = [prefixCls, className, type ? `${type}` : null]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   function onClose() {
     overlayRef.current!.overlayWillClose();
   }
@@ -96,10 +98,14 @@ function InternalModal(
     >
       <div className={`${prefixCls}-container`}>
         <div
-          className={classnames(`${prefixCls}-inner`, {
-            [`${prefixCls}-shown-title`]: title,
-            [`${prefixCls}-shown-icon`]: icon,
-          })}
+          className={[
+            `${prefixCls}-inner`,
+            title ? `${prefixCls}-shown-title` : null,
+            icon ? `${prefixCls}-shown-icon` : null,
+          ]
+            .filter(Boolean)
+            .join(' ')
+            .trim()}
           style={{ maxWidth, minWidth, width }}
         >
           {(title || icon) && (

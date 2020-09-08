@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import Icon from '@uiw/react-icon';
 import Button from '@uiw/react-button';
@@ -78,23 +77,29 @@ export default class Message extends React.Component<
       ...elementProps
     } = this.props;
     const children = description || this.props.children;
-    const cls = classnames(prefixCls, className, `${prefixCls}-${type}`, {
-      [`${prefixCls}-rounded`]: rounded,
-      [`${prefixCls}-icon`]: showIcon,
-      [`${prefixCls}${title ? '-title' : ''}${
-        children ? '-description' : ''
-      }`]: showIcon,
-    });
+    const cls = [
+      prefixCls,
+      className,
+      `${prefixCls}-${type}`,
+      rounded ? `${prefixCls}-rounded` : null,
+      showIcon ? `${prefixCls}-icon` : null,
+      showIcon
+        ? `${prefixCls}${title ? '-title' : ''}${
+            children ? '-description' : ''
+          }`
+        : null,
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
     const Child = (
       <div className={cls} {...elementProps}>
         {isCloseButtonShown && (
           <Button basic onClick={this.handleClosed} icon="close" type="light" />
         )}
         {showIcon && <Icon type={this.renderIcon()} />}
-        <span className={classnames(`${prefixCls}-title`)}>{title}</span>
-        <span className={classnames(`${prefixCls}-description`)}>
-          {children}
-        </span>
+        <span className={`${prefixCls}-title`}>{title}</span>
+        <span className={`${prefixCls}-description`}>{children}</span>
       </div>
     );
     if (!isCloseButtonShown) {

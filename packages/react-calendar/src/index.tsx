@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import {
   DatePickerDay,
   DatePickerDayProps,
@@ -170,8 +169,9 @@ export default class Calendar extends React.Component<
       onSelectDay,
       ...otherProps
     } = this.props;
+    const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
     return (
-      <div className={classnames(prefixCls, className)} style={style}>
+      <div className={cls} style={style}>
         <div className={`${prefixCls}-caption`}>
           <div className={`${prefixCls}-title`}>
             {formatter(titleFormat as string, this.state.panelDate as Date)}

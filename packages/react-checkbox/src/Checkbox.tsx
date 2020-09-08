@@ -1,5 +1,4 @@
 import React, { useImperativeHandle } from 'react';
-import classnames from 'classnames';
 import { RadioAbstract, RadioAbstractProps } from '@uiw/react-radio';
 import { CheckboxGroup } from './Group';
 import './style/index.less';
@@ -26,7 +25,10 @@ function InternalCheckbox(
   } = props;
   const inputRef = React.createRef<HTMLInputElement>();
   useImperativeHandle(ref, () => inputRef.current);
-  const cls = classnames(className, { indeterminate });
+  const cls = [className, indeterminate ? 'indeterminate' : null]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   return (
     <RadioAbstract
       ref={inputRef}

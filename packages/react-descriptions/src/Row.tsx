@@ -30,7 +30,7 @@ export default function Row(props: RowProps = {}) {
       </Cell>
     ));
   }
-  const cls = `${prefixCls}-row`;
+  const cls = prefixCls ? `${prefixCls}-row` : '';
   return (
     <Fragment>
       {layout === 'vertical' && <tr className={cls}>{handleCell(true)}</tr>}

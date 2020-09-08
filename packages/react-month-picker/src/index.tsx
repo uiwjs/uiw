@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import Input, { InputProps } from '@uiw/react-input';
 import Popover, { PopoverProps } from '@uiw/react-popover';
 import { IProps } from '@uiw/utils';
@@ -154,7 +153,7 @@ export default class MonthPicker<T> extends React.Component<
         {...popoverProps}
         onVisibleChange={this.handleVisibleChange.bind(this)}
         content={
-          <div className={classnames(`${prefixCls}-popover`)}>
+          <div className={`${prefixCls}-popover`}>
             <DatePickerCaption
               panelDate={this.state.panelDate}
               monthLabel={monthLabel}
@@ -180,7 +179,7 @@ export default class MonthPicker<T> extends React.Component<
           placeholder="请输入日期"
           readOnly
           {...(inputProps as any)}
-          className={classnames(`${prefixCls}`, className)}
+          className={[prefixCls, className].filter(Boolean).join(' ').trim()}
         />
       </Popover>
     );

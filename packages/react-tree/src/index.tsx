@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLDivProps } from '@uiw/utils';
@@ -241,7 +240,10 @@ export default class Tree<T> extends React.Component<TreeProps<T>, TreeState> {
     let expanded = false;
     if (!key && item.key) {
       currentKeys.push(item.key);
-      evn.currentTarget.className = classnames(cls, 'open');
+      evn.currentTarget.className = [cls, 'open']
+        .filter(Boolean)
+        .join(' ')
+        .trim();
       expanded = true;
     } else {
       currentKeys = currentKeys.filter((v) => v !== item.key);
@@ -277,10 +279,13 @@ export default class Tree<T> extends React.Component<TreeProps<T>, TreeState> {
         onEntering={this.onEntering}
       >
         <ul
-          className={classnames({
-            [`${prefixCls}-open`]: level !== 1 && isOpen,
-            [`${prefixCls}-close`]: level !== 1 && !isOpen,
-          })}
+          className={[
+            level !== 1 && isOpen ? [`${prefixCls}-open`] : null,
+            level !== 1 && !isOpen ? [`${prefixCls}-close`] : null,
+          ]
+            .filter(Boolean)
+            .join(' ')
+            .trim()}
         >
           {data.map((item, idx: number) => {
             item.parent = parent;
@@ -307,28 +312,36 @@ export default class Tree<T> extends React.Component<TreeProps<T>, TreeState> {
               checkedKeys.length > 0 && childKeys.length !== checkedKeys.length;
             return (
               <li key={idx}>
-                <div className={classnames(`${prefixCls}-label`)}>
+                <div className={`${prefixCls}-label`}>
                   <span
                     className={`${prefixCls}-switcher`}
                     onClick={this.onItemClick.bind(this, item)}
                   >
                     <Icon
                       type={iconItem || 'caret-right'}
-                      className={classnames({
-                        [`${prefixCls}-switcher-noop`]:
-                          typeof icon === 'function',
-                        'no-child': noChild,
-                        'no-animation': !iconAnimation,
-                        open: itemIsOpen,
-                      })}
+                      className={[
+                        typeof icon === 'function'
+                          ? `${prefixCls}-switcher-noop`
+                          : null,
+                        noChild ? 'no-child' : null,
+                        !iconAnimation ? 'no-animation' : null,
+                        itemIsOpen ? 'open' : null,
+                      ]
+                        .filter(Boolean)
+                        .join(' ')
+                        .trim()}
                     />
                   </span>
                   <div
                     onClick={this.onItemSelected.bind(this, item)}
-                    className={classnames(`${prefixCls}-title`, {
-                      selected: selected && isSelected,
-                      disabled: item.disabled,
-                    })}
+                    className={[
+                      `${prefixCls}-title`,
+                      selected && isSelected ? 'selected' : null,
+                      item.disabled ? 'disabled' : null,
+                    ]
+                      .filter(Boolean)
+                      .join(' ')
+                      .trim()}
                   >
                     {renderTitle ? (
                       renderTitle(item, {
@@ -371,9 +384,10 @@ export default class Tree<T> extends React.Component<TreeProps<T>, TreeState> {
       onSelected,
       ...elementProps
     } = this.props;
-    const cls = classnames(className, prefixCls, {
-      [`${prefixCls}-line`]: showLine,
-    });
+    const cls = [className, prefixCls, showLine ? `${prefixCls}-line` : null]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
     return (
       <div className={cls} {...elementProps}>
         {this.renderTreeNode(data as TreeData[], 1)}

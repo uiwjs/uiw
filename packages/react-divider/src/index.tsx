@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -19,16 +18,17 @@ export default (props: DividerProps = {}) => {
     align = 'center',
     ...restProps
   } = props;
-  const cls = classnames(
+  const cls = [
     className,
     prefixCls,
-    `${prefixCls}-${type}`,
-    `${prefixCls}-${align}`,
-    {
-      [`${prefixCls}-with-text`]: children,
-      [`${prefixCls}-dashed`]: !!dashed,
-    },
-  );
+    prefixCls && type ? `${prefixCls}-${type}` : null,
+    prefixCls && align ? `${prefixCls}-${align}` : null,
+    children ? `${prefixCls}-with-text` : null,
+    !!dashed ? `${prefixCls}-dashed` : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   return (
     <div className={cls} {...restProps}>
       {children && (

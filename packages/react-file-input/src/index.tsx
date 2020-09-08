@@ -1,5 +1,4 @@
 import React, { useImperativeHandle } from 'react';
-import classnames from 'classnames';
 import Input, { InputProps } from '@uiw/react-input';
 import './style/index.less';
 
@@ -14,7 +13,10 @@ function FileInput<T>(
 ): JSX.Element {
   const inputRef = React.createRef<HTMLInputElement>();
   useImperativeHandle(ref, () => inputRef.current);
-  props.className = classnames(props.className, 'w-fileinput');
+  props.className = [props.className, 'w-fileinput']
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   return <Input ref={inputRef} {...props} type="file" />;
 }
 

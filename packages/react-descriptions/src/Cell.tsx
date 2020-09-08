@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import classnames from 'classnames';
 import { IProps } from '@uiw/utils';
 import { DescriptionsItemProps } from './DescriptionsItem';
 import { RowProps } from 'Row';
@@ -32,18 +31,25 @@ function Cell(props: CellProps = {}) {
     ...other
   } = props;
 
-  const labelProps: any = {
-    className: classnames(`${prefixCls}-item-label`, className, {
-      [`${prefixCls}-item-colon`]: colon,
-      [`${prefixCls}-item-no-label`]: !label,
-    }),
+  const labelProps: React.HTMLAttributes<HTMLSpanElement> = {
+    className: [
+      prefixCls ? `${prefixCls}-item-label` : null,
+      className,
+      colon ? `${prefixCls}-item-colon` : null,
+      !label ? `${prefixCls}-item-no-label` : null,
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .trim(),
   };
   if (layout === 'horizontal') {
     if (!bordered) {
       return (
         <TagName {...other} colSpan={span}>
           <span {...labelProps}>{label}</span>
-          <span className={`${prefixCls}-item-content`}>{children}</span>
+          <span className={prefixCls ? `${prefixCls}-item-content` : ''}>
+            {children}
+          </span>
         </TagName>
       );
     }
@@ -53,7 +59,7 @@ function Cell(props: CellProps = {}) {
         <TagName
           {...other}
           colSpan={isLastCell && span ? span * 2 - 1 : span}
-          className={`${prefixCls}-item-content`}
+          className={prefixCls ? `${prefixCls}-item-content` : ''}
         >
           {children}
         </TagName>

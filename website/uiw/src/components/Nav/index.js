@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import classnames from 'classnames';
 import { Tooltip } from 'uiw';
 import nav from '../icons/nav';
 import styles from './index.module.less';
@@ -14,9 +13,10 @@ export default class index extends Component {
     const { className, topmenu, routerData } = this.props;
     return (
       <div
-        className={classnames(styles.nav, className, {
-          [`${styles.topmenu}`]: topmenu,
-        })}
+        className={[styles.nav, className, topmenu ? styles.topmenu : null]
+          .filter(Boolean)
+          .join(' ')
+          .trim()}
       >
         {this.props.menuData.map((item, idx) => {
           let icon = item.icon;

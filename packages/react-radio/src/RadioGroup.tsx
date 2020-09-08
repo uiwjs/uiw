@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import { RadioProps } from './Radio';
 import './style/group.less';
@@ -21,7 +20,10 @@ export default (props: RadioGroupProps = {}) => {
     ...other
   } = props;
   return (
-    <div {...other} className={classnames(prefixCls, className)}>
+    <div
+      {...other}
+      className={[prefixCls, className].filter(Boolean).join(' ').trim()}
+    >
       {React.Children.toArray(children).map((child) => {
         if (!child) return;
         if (!React.isValidElement(child)) return child;

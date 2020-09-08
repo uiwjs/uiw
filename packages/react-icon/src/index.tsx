@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import classnames from 'classnames';
 import svgPaths from '@uiw/icons/fonts/w-icon.json';
 import './style/index.less';
 
@@ -58,12 +57,15 @@ export default function Icon<T>(props: IconProps<T> = {}) {
   others.style = { fill: 'currentColor', ...others.style };
   const propps = {
     ...others,
-    className: classnames(
+    className: [
       prefixCls,
       className,
-      `${prefixCls}-${verticalAlign}`,
-      { [`${prefixCls}-spin`]: spin },
-    ),
+      prefixCls && verticalAlign ? `${prefixCls}-${verticalAlign}` : null,
+      spin && prefixCls ? `${prefixCls}-spin` : null,
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .trim(),
   };
   return <TagName {...propps}>{svg}</TagName>;
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Step, { StepProps } from './Step';
 
@@ -74,9 +73,14 @@ export default class Steps<T> extends React.Component<
       (c) => !!c,
     );
     const lastIndex = filteredChildren.length - 1; // 最后一个节点的索引数字
-    const classString = classnames(prefixCls, `${prefixCls}-${direction}`, {
-      [`${prefixCls}-dot`]: !!progressDot,
-    });
+    const classString = [
+      prefixCls,
+      `${prefixCls}-${direction}`,
+      !!progressDot ? `${prefixCls}-dot` : null,
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
     return (
       <div className={classString} style={style} {...resetProps}>
         {React.Children.map(children, (child: any, index) => {

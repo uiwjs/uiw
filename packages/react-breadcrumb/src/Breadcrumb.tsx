@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { HTMLDivProps } from '@uiw/utils';
 import Item from './Item';
 import './style/index.less';
@@ -18,7 +17,7 @@ function InternalBreadcrumb(props: BreadcrumbProps = {}) {
     separator = '/',
     ...other
   } = props;
-  const cls = classnames(prefixCls, className);
+  const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   return (
     <div {...{ className: cls, ...other }}>
       {React.Children.map(props.children, (element: any) => {

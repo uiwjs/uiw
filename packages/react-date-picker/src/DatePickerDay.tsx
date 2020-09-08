@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import {
   IProps,
   HTMLDivProps,
@@ -15,6 +14,14 @@ export interface DatePickerDayDateSource {
   year?: number;
 }
 
+function classnames(obj: Record<string, boolean>) {
+  return Object.keys(obj || {})
+    .map((keyName) => (obj[keyName] ? keyName : null))
+    .filter(Boolean)
+    .join(' ')
+    .trim();
+}
+
 export interface DatePickerDayProps extends IProps, HTMLDivProps {
   weekday?: string[];
   weekTitle?: string[];
@@ -26,8 +33,14 @@ export interface DatePickerDayProps extends IProps, HTMLDivProps {
     selectedDate?: Date,
     dateSource?: DatePickerDayDateSource,
   ) => void;
-  renderDay?: (day: number, props: DatePickerDayRenderDay) => React.ReactNode;
-  disabledDate?: (cellDate: Date, props: DatePickerDayRenderDay) => boolean;
+  renderDay?: (
+    day: number,
+    props: DatePickerDayRenderDay & DatePickerDayRenderDayProps,
+  ) => React.ReactNode;
+  disabledDate?: (
+    cellDate: Date,
+    props: DatePickerDayRenderDay & DatePickerDayRenderDayProps,
+  ) => boolean;
 }
 
 export interface PickerDayState {
@@ -35,17 +48,20 @@ export interface PickerDayState {
   panelDate?: Date;
 }
 
-export interface DatePickerDayRenderDay {
+export type DatePickerDayRenderDay = {
   end: boolean;
   prev: boolean;
   today: boolean;
   selected: boolean;
   next: boolean;
   disabled: boolean;
+};
+
+export type DatePickerDayRenderDayProps = {
   key?: number;
   date?: Date;
   onClick?: (cellDate: Date, event: React.MouseEvent<HTMLDivProps>) => void;
-}
+};
 
 function initSameDate(date: Date) {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -160,7 +176,7 @@ export class DatePickerDay extends React.Component<
     ) {
       cls.selected = true;
     }
-    const props = {
+    const props: { key: number; onClick?: () => void } = {
       key: num,
       onClick: this.handleClick.bind(this, cellDate, { day, month, year }),
     };
@@ -201,7 +217,13 @@ export class DatePickerDay extends React.Component<
       ...other
     } = this.props;
     return (
-      <div {...other} className={classnames(`${prefixCls}-body`, className)}>
+      <div
+        {...other}
+        className={[prefixCls ? `${prefixCls}-body` : null, className]
+          .filter(Boolean)
+          .join(' ')
+          .trim()}
+      >
         <div className={`${prefixCls}-weekday`}>
           {weekday &&
             weekday.map((week, idx) => {
@@ -216,7 +238,12 @@ export class DatePickerDay extends React.Component<
               );
             })}
         </div>
-        <div className={`${prefixCls}-day-body`}>
+        <div
+          className={[prefixCls ? `${prefixCls}-day-body` : null]
+            .filter(Boolean)
+            .join(' ')
+            .trim()}
+        >
           {[...Array(6)].map((_, idx) => this.renderWeek(idx))}
         </div>
       </div>

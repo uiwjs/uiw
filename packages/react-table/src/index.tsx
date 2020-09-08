@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Thead from './Thead';
 import { getLevelItems, getAllColumnsKeys } from './util';
@@ -69,9 +68,10 @@ export default (props: TableProps = {}) => {
     onCellHead = noop,
     ...other
   } = props;
-  const cls = classnames(prefixCls, className, {
-    [`${prefixCls}-bordered`]: bordered,
-  });
+  const cls = [prefixCls, className, bordered ? `${prefixCls}-bordered` : null]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   const { header, render } = getLevelItems(columns as IColumns[]);
   const keys = getAllColumnsKeys(columns as IColumns[]);
   return (

@@ -1,7 +1,10 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/caption.less';
+
+function classnames(...arg: (string | null | undefined)[]) {
+  return [...arg].filter(Boolean).join(' ').trim();
+}
 
 export type DatePickerCaptionType =
   | 'prev'
@@ -38,33 +41,54 @@ export class DatePickerCaption extends React.Component<DatePickerCaptionProps> {
       todayButton,
       ...other
     } = this.props;
+
     return (
-      <div className={classnames(`${prefixCls}-caption`, className)} {...other}>
+      <div
+        className={classnames(
+          prefixCls ? `${prefixCls}-caption` : null,
+          className,
+        )}
+        {...other}
+      >
         <div
-          className={classnames(`${prefixCls}-caption-pane`, 'prev')}
+          className={classnames(
+            prefixCls ? `${prefixCls}-caption-pane` : null,
+            'prev',
+          )}
           onClick={onSelected!.bind(this, 'prev')}
         />
         <div
-          className={classnames(`${prefixCls}-caption-pane`, 'month')}
+          className={classnames(
+            prefixCls ? `${prefixCls}-caption-pane` : null,
+            'month',
+          )}
           onClick={onSelected!.bind(this, 'month')}
         >
           {this.renderMonth()}
         </div>
         <div
-          className={classnames(`${prefixCls}-caption-pane`, 'year')}
+          className={classnames(
+            prefixCls ? `${prefixCls}-caption-pane` : null,
+            'year',
+          )}
           onClick={onSelected!.bind(this, 'year')}
         >
           {panelDate!.getFullYear()}
         </div>
         {todayButton && (
           <div
-            className={`${prefixCls}-caption-today`}
+            className={classnames(
+              prefixCls ? `${prefixCls}-caption-today` : null,
+            )}
             onClick={onSelected!.bind(this, 'today')}
             title={todayButton}
           />
         )}
         <div
-          className={classnames(`${prefixCls}-caption-pane`, 'next')}
+          className={classnames(
+            prefixCls ? `${prefixCls}-caption-pane` : null,
+            'next',
+          )}
           onClick={onSelected!.bind(this, 'next')}
         />
       </div>

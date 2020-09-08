@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import { IconProgress } from './utils';
@@ -70,12 +69,19 @@ export default class Circle<T> extends React.Component<ProgressCircleProps<T>> {
       status,
       ...resetProps
     } = this.props;
-    const cls = classnames(prefixCls, className, `${prefixCls}-circle`, {
-      [`${prefixCls}-show-text`]: showText,
-      [`${prefixCls}-status-${status}`]: status,
-      [`${prefixCls}-status-success`]:
-        parseInt((percent as number).toString(), 10) >= 100,
-    });
+    const cls = [
+      prefixCls,
+      className,
+      `${prefixCls}-circle`,
+      showText ? `${prefixCls}-show-text` : null,
+      status ? `${prefixCls}-status-${status}` : null,
+      parseInt((percent as number).toString(), 10) >= 100
+        ? `${prefixCls}-status-success`
+        : null,
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
     let progressInfo;
     const progressStatus =
       parseInt((percent as number).toString(), 10) >= 100 &&

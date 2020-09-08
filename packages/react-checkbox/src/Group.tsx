@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/group.less';
 
@@ -26,8 +25,9 @@ export function CheckboxGroup(props: CheckboxGroupPorps = {}) {
     setValues(value || []);
   }
 
+  const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   return (
-    <div {...other} className={classnames(prefixCls, className)}>
+    <div {...other} className={cls}>
       {React.Children.map(props.children, (element: any) => {
         if (value && value.includes(element.props.value)) {
           if (!values.includes(element.props.value)) {

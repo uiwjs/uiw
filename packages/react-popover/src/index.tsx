@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import OverlayTrigger, {
   OverlayTriggerProps,
 } from '@uiw/react-overlay-trigger';
@@ -43,7 +42,10 @@ export default class Popover extends React.Component<PopoverProps> {
       visibleArrow,
       ...other
     } = this.props;
-    const cls = classnames(prefixCls, className, { 'no-arrow': !visibleArrow });
+    const cls = [prefixCls, className, !visibleArrow ? 'no-arrow' : null]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
     return (
       <OverlayTrigger
         {...other}

@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IconProgress } from './utils';
 import { ProgressCircleProps } from './Circle';
 import './style/index.less';
@@ -28,12 +27,19 @@ export default class Line<T> extends React.Component<ProgressLineProp<T>> {
       status,
       ...resetProps
     } = this.props;
-    const cls = classnames(prefixCls, className, `${prefixCls}-line`, {
-      [`${prefixCls}-show-text`]: showText,
-      [`${prefixCls}-status-${status}`]: status,
-      [`${prefixCls}-status-success`]:
-        parseInt((percent as number).toString(), 10) >= 100,
-    });
+    const cls = [
+      prefixCls,
+      className,
+      `${prefixCls}-line`,
+      showText ? `${prefixCls}-show-text` : null,
+      status ? `${prefixCls}-status-${status}` : null,
+      parseInt((percent as number).toString(), 10) >= 100
+        ? `${prefixCls}-status-success`
+        : null,
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
     let progressInfo;
     if (showText) {
       const progressStatus =

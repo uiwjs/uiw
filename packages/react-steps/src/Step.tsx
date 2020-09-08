@@ -1,5 +1,4 @@
 import React, { CSSProperties } from 'react';
-import classnames from 'classnames';
 import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/index.less';
@@ -31,14 +30,15 @@ export default class Step<T> extends React.Component<StepProps<T>> {
       progressDot,
       ...restProps
     } = this.props;
-    const classString = classnames(
+    const classString = [
       `${prefixCls}-item`,
       `${prefixCls}-item-${status}`,
       className,
-      {
-        [`${prefixCls}-custom`]: icon,
-      },
-    );
+      icon ? `${prefixCls}-custom` : null,
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
     const stepItemStyle: CSSProperties = { ...style };
     const stepItemDotStyle: CSSProperties = {};
     if (itemWidth) {
@@ -62,11 +62,14 @@ export default class Step<T> extends React.Component<StepProps<T>> {
     ) {
       iconNode = (
         <Icon
-          type={classnames({
-            [`${icon}`]: icon && typeof icon === 'string',
-            check: !icon && status === 'finish',
-            close: !icon && status === 'error',
-          })}
+          type={[
+            icon && typeof icon === 'string' ? `${icon}` : null,
+            !icon && status === 'finish' ? 'check' : null,
+            !icon && status === 'error' ? 'close' : null,
+          ]
+            .filter(Boolean)
+            .join(' ')
+            .trim()}
         />
       );
     } else {
@@ -79,9 +82,10 @@ export default class Step<T> extends React.Component<StepProps<T>> {
         </div>
         <div className={`${prefixCls}-item-head`}>
           <div
-            className={classnames(`${prefixCls}-item-inner`, {
-              'is-icon': icon,
-            })}
+            className={[`${prefixCls}-item-inner`, icon ? 'is-icon' : null]
+              .filter(Boolean)
+              .join(' ')
+              .trim()}
           >
             {iconNode}
           </div>

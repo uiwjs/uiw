@@ -1,5 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import classnames from 'classnames';
+import React, { useState, useMemo } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Panel from './Panel';
 import './style/index.less';
@@ -37,9 +36,10 @@ function InternalCollapse(props: CollapseProps = {}) {
     ...resetProps
   } = props;
   const [activeKey, setActiveKey] = useState(toArray(propsActiveKey));
-  const cls = classnames(prefixCls, className, {
-    'w-noborder': bordered,
-  });
+  const cls = [prefixCls, className, bordered ? 'w-noborder' : null]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   function onItemClick(key: string) {
     let keys = activeKey;
     if (accordion) {

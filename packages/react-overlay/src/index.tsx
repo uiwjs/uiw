@@ -14,7 +14,6 @@ import React, { cloneElement } from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 import { TransitionProps } from 'react-transition-group/Transition';
-import classnames from 'classnames';
 import Portal, { PortalProps } from '@uiw/react-portal';
 import { IProps } from '@uiw/utils';
 
@@ -188,10 +187,10 @@ export default class Overlay extends React.Component<
         cloneElement(children, {
           ...dialogProps,
           style: { ...children.props.style, ...dialogProps.style },
-          className: classnames(
-            children.props.className,
-            `${prefixCls}-content`,
-          ),
+          className: [children.props.className, `${prefixCls}-content`]
+            .filter(Boolean)
+            .join(' ')
+            .trim(),
           tabIndex: 0,
         })
       ) : (
@@ -215,26 +214,31 @@ export default class Overlay extends React.Component<
         {(status) => (
           <div
             style={style}
-            className={classnames(prefixCls, className, {
-              [`${prefixCls}-inline`]: !usePortal,
-              [`${prefixCls}-enter-done`]: this.state.isOpen,
-            })}
+            className={[
+              prefixCls,
+              className,
+              !usePortal ? `${prefixCls}-inline` : null,
+              this.state.isOpen ? `${prefixCls}-enter-done` : null,
+            ]
+              .filter(Boolean)
+              .join(' ')
+              .trim()}
           >
             {hasBackdrop &&
               cloneElement(<div />, {
                 ...backdropProps,
                 onMouseDown: this.handleBackdropMouseDown.bind(this),
-                className: classnames(
-                  `${prefixCls}-backdrop`,
-                  backdropProps.className,
-                ),
+                className: [`${prefixCls}-backdrop`, backdropProps.className]
+                  .filter(Boolean)
+                  .join(' ')
+                  .trim(),
                 tabIndex: this.props.maskClosable ? 0 : null,
               })}
             {usePortal ? (
               <div
                 ref={(node) => (this.container = node)}
                 onMouseDown={this.handleBackdropMouseDown.bind(this)}
-                className={classnames(`${prefixCls}-container`)}
+                className={`${prefixCls}-container`}
               >
                 {cloneElement(decoratedChild, { 'data-status': status })}
               </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import { TransitionStatus } from 'react-transition-group/Transition';
 import { IProps, HTMLDivProps } from '@uiw/utils';
@@ -29,10 +28,15 @@ export default function Panel<T>(props: CollapsePanelProps<T> = {}) {
     extra,
     ...resetProps
   } = props;
-  const cls = classnames([`${prefixCls}-item`], className, {
-    [`${prefixCls}-active`]: isActive,
-    [`${prefixCls}-disabled`]: disabled,
-  });
+  const cls = [
+    prefixCls ? `${prefixCls}-item` : null,
+    className,
+    isActive ? `${prefixCls}-active` : null,
+    disabled ? `${prefixCls}-disabled` : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   const iconRender = typeof icon === 'string' ? <Icon type={icon} /> : icon;
 
   const childStyle = (child: React.ReactElement) => {

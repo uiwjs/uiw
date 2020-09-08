@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import Input, { InputProps } from '@uiw/react-input';
 import Popover, { PopoverProps } from '@uiw/react-popover';
 import DatePicker, { DatePickerProps } from '@uiw/react-date-picker';
@@ -94,7 +93,7 @@ export default class DateInput<T> extends React.Component<
           placeholder="请选择日期"
           readOnly
           {...(inputProps as any)}
-          className={classnames(`${prefixCls}`, className)}
+          className={[prefixCls, className].filter(Boolean).join(' ').trim()}
         />
       </Popover>
     );

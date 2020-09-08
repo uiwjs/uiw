@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps } from '@uiw/utils';
 import DescriptionsItem, { DescriptionsItemProps } from './DescriptionsItem';
 import Row, { RowProps } from './Row';
@@ -69,10 +68,16 @@ function InternalDescriptions(props: DescriptionsProps = {}) {
     layout = 'horizontal',
     ...other
   } = props;
-  const cls = classnames(prefixCls, className, `${prefixCls}-${layout}`, {
-    [`${prefixCls}-bordered`]: bordered,
-    [`${prefixCls}-${size}`]: size,
-  });
+  const cls = [
+    prefixCls,
+    className,
+    prefixCls && layout ? `${prefixCls}-${layout}` : null,
+    bordered ? `${prefixCls}-bordered` : null,
+    size ? `${prefixCls}-${size}` : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
 
   const cloneChildren = React.Children.toArray(children) as JSX.Element[];
   const childs: Array<

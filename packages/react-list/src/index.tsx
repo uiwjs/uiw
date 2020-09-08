@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Item from './Item';
 import './style/index.less';
@@ -61,13 +60,18 @@ export default class List<T> extends React.Component<ListProps<T>> {
           key: index,
         }),
     );
-    const classString = classnames(`${prefixCls}`, className, {
-      [`${prefixCls}-striped`]: striped,
-      [`${prefixCls}-no-hover`]: noHover,
-      [`${prefixCls}-active`]: active,
-      [`${prefixCls}-bordered`]: bordered,
-      [`${prefixCls}-size-${size}`]: size && size !== 'default',
-    });
+    const classString = [
+      prefixCls,
+      className,
+      striped ? `${prefixCls}-striped` : null,
+      noHover ? `${prefixCls}-no-hover` : null,
+      active ? `${prefixCls}-active` : null,
+      bordered ? `${prefixCls}-bordered` : null,
+      size && size !== 'default' ? `${prefixCls}-size-${size}` : null,
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
     return (
       <div className={classString} {...resetProps}>
         {header && <div className={`${prefixCls}-header`}>{header}</div>}
