@@ -38,8 +38,8 @@
     "@uiw/reset.css": "1.0.4",
     "classnames": "2.2.6",
     "history": "4.10.1",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
     "react-dynamic-loadable": "2.0.1",
     "react-redux": "7.2.0",
     "react-router-dom": "5.2.0",
@@ -49,7 +49,7 @@
     "@kkt/loader-less": "5.9.0",
     "@kkt/loader-raw": "5.9.0",
     "kkt": "5.9.0",
-    "react-test-renderer": "16.13.1"
+    "react-test-renderer": "16.14.0"
   },
   "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT",
