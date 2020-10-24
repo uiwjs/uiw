@@ -1,6 +1,6 @@
 {
   "name": "@example/uiw",
-  "version": "4.6.11",
+  "version": "4.6.12",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "private": true,
   "sideEffects": true,
@@ -43,7 +43,7 @@
     "react-dynamic-loadable": "2.0.1",
     "react-redux": "7.2.0",
     "react-router-dom": "5.2.0",
-    "uiw": "^4.6.11"
+    "uiw": "^4.6.12"
   },
   "devDependencies": {
     "@kkt/loader-less": "5.10.3",
