@@ -9,7 +9,8 @@
     "cjs": "lerna exec --scope @uiw/react-layout -- tsbb types --outDir lib/cjs --target ESNEXT",
     "lib": "lerna exec --scope @uiw/react-layout -- tsbb build --target react",
     "lib:css": "lerna exec --scope @uiw/react-layout -- compile-less -d src -o lib/esm",
-    "lib:watch": "lerna exec --scope @uiw/react-layout -- tsbb watch --target react",
+    "lib:css:watch": "lerna exec --scope @uiw/react-layout -- compile-less -d src -o lib/esm --watch",
+    "lib:watch": "lerna exec --scope @uiw/react-layout -- tsbb watch --target react & npm run lib:css:watch",
     "lib:bootstrap": "lerna bootstrap --hoist --scope @uiw/react-layout",
     "lib:type:watch": "npm run esm -- --watch & npm run cjs -- --watch",
     "lib:build": "npm run lib && npm run cjs && npm run esm && npm run lib:css",
@@ -26,7 +27,7 @@
     "b:doc": "lerna exec --scope @uiw/doc -- node script/released.js",
     "b:css": "lerna exec --scope @uiw/* -- compile-less -d src -o lib/esm",
     "b:bundle": "lerna exec --scope uiw -- kkt build --bundle --no-checkRequiredFiles",
-    "b:bundle:min": "lerna exec --scope uiw -- GENERATE_SOURCEMAP=false kkt build --bundle --no-checkRequiredFiles --mini --no-emptyDir",
+    "b:bundle:min": "lerna exec --scope uiw -- kkt build --bundle --no-checkRequiredFiles --mini --no-emptyDir",
     "doc": "npm run b:website && npm run b:doc",
     "build": "npm run b:uiw && npm run b:css && npm run type && npm run doc",
     "bundle": "npm run b:bundle && npm run b:bundle:min",
@@ -62,12 +63,12 @@
     ]
   },
   "devDependencies": {
-    "compile-less-cli": "1.4.0",
+    "compile-less-cli": "1.5.1",
     "husky": "4.2.5",
+    "kkt": "^5.10.3",
+    "lerna": "3.22.1",
     "lint-staged": "10.2.11",
     "prettier": "2.0.5",
-    "kkt": "5.9.0",
-    "lerna": "3.22.1",
     "tsbb": "1.7.7"
   }
 }
