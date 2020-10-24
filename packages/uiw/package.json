@@ -115,7 +115,7 @@
     "@types/react-dom": "16.9.8",
     "@types/react-test-renderer": "16.9.2",
     "cssnano": "4.1.10",
-    "optimize-css-assets-webpack-plugin": "5.0.3",
+    "optimize-css-assets-webpack-plugin": "5.0.4",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-test-renderer": "16.14.0",
