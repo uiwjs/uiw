@@ -29,6 +29,85 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
+### Form 中使用 Radio
+
+<!--DemoStart,bgWhite,codePen--> 
+```jsx
+import { Form, Radio, RadioGroup, Row, Col, Button, Notify } from 'uiw';
+
+const Demo = () => (
+  <Form
+    onChange={({ initial, current }) => {}}
+    resetOnSubmit={false}
+    onSubmitError={(error) => error && error.filed ? { ...error.filed } : null}
+    onSubmit={({initial, current}) => {
+      const ErrObj = {};
+      if (current.radioGroup === 'unknown') {
+        ErrObj.radioGroup = '请选择性别！';
+      }
+
+      if(Object.keys(ErrObj).length > 0) {
+        const err = new Error();
+        err.filed = ErrObj;
+        throw err;
+      }
+
+      Notify.success({
+        title: '提交成功！', description: `填写：【填写成功】！`
+      });
+    }}
+    fields={{
+      radioGroup: {
+        value: 'girl',
+        label: '请输入内容',
+        help: '必须选择性别！',
+        children: (
+          <RadioGroup>
+            <Radio value="man">男</Radio>
+            <Radio value="girl">女</Radio>
+            <Radio value="shemale">中性</Radio>
+            <Radio value="unknown">未知</Radio>
+          </RadioGroup>
+        ),
+      },
+      radio: {
+        help: '请选择！该选项为必选！',
+        validator: (value) => !value ? '必填选项！' : null,
+        children: <Radio value="man">已阅读</Radio>,
+      },
+    }}
+  >
+    {({ fields, state, canSubmit }) => {
+      return (
+        <div>
+          <Row>
+            <Col>{fields.radioGroup}</Col>
+          </Row>
+          <Row>
+            <Col>{fields.radio}</Col>
+          </Row>
+          <Row>
+            <Col>
+              <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <pre style={{ padding: 10, marginTop: 10 }}>
+                {JSON.stringify(state.current, null, 2)}
+              </pre>
+            </Col>
+          </Row>
+        </div>
+      );
+    }}
+  </Form>
+);
+
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
 ### 单选
 
 适用广泛的基础最简单的用法。
@@ -51,7 +130,7 @@ class Demo extends React.Component {
         <RadioGroup name="sexs" value={this.state.value} onChange={this.onChange.bind(this)}>
           <Radio value="man">男</Radio>
           <Radio value="girl">女</Radio>
-          <Radio value="shemale" disabled>人妖</Radio>
+          <Radio value="shemale" disabled>中性</Radio>
           <Radio value="unknown" disabled>未知</Radio>
         </RadioGroup>
       </div>
@@ -86,7 +165,7 @@ class Demo extends React.Component {
           <Radio value="男">男</Radio>
           <Radio value="女">女</Radio>
           <div>Group 2</div>
-          <Radio value="人妖" disabled>人妖</Radio>
+          <Radio value="中性" disabled>中性</Radio>
           <Radio value="未知">未知</Radio>
           <div>Group 3</div>
           <Radio value="E" style={{ display: 'block' }}>Item E</Radio>
