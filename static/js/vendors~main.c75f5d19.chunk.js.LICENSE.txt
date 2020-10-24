@@ -1,0 +1,49 @@
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+/*!
+  Copyright (c) 2017 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+
+/*!
+ * @uiw/copy-to-clipboard v1.0.11
+ * Copy to clipboard.
+ * 
+ * Copyright (c) 2020 Kenny Wang
+ * https://github.com/uiw-react/copy-to-clipboard.git
+ * 
+ * Licensed under the MIT license.
+ */
+
+/*!
+ * @uiw/formatter v1.2.4
+ * Get a formatted date.
+ * 
+ * Copyright (c) 2019 Kenny Wang <wowohoo@qq.com>
+ * https://github.com/uiwjs/date-formatter.git
+ * 
+ * Licensed under the MIT license.
+ */
+
+/** @license React v0.19.1
+ * scheduler.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.13.1
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
