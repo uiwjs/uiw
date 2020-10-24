@@ -37,7 +37,7 @@
     "@uiw/react-markdown-preview": "1.0.9",
     "@uiw/reset.css": "1.0.4",
     "classnames": "2.2.6",
-    "history": "4.10.1",
+    "history": "5.0.0",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-dynamic-loadable": "2.0.1",
