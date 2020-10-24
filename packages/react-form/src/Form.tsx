@@ -1,19 +1,16 @@
-import React from 'react';
-import Input from '@uiw/react-input';
+import React, { useState } from 'react';
 import { IProps } from '@uiw/utils';
-import FormItem, { IFormItemProps } from './FormItem';
+import FormItem, { FormItemProps } from './FormItem';
 import './style/form.less';
 
 export interface FormProps<T>
   extends IProps,
     Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onChange' | 'onSubmit'> {
   prefixCls?: string;
-  fields?: {
-    [key: string]: FormFieldsProps<T>;
-  };
+  fields?: Record<string, FormFieldsProps<T>>;
   onSubmit?: (state: FormSubmitProps) => any;
   afterSubmit?: (result: FormAfterSubmitProps) => any;
-  onChange?: (state: IFormState) => void;
+  onChange?: (state: FormState) => void;
   onSubmitError?: (evn: any) => any;
   resetOnSubmit?: boolean;
   children?: (
@@ -21,41 +18,40 @@ export interface FormProps<T>
   ) => JSX.Element | JSX.Element | undefined;
 }
 
-export interface IFormState {
+export interface FormState {
   submitting: boolean;
-  initial: {
-    [key: string]: any;
-  };
-  current: IFormState['initial'];
-  errors: {
-    [key: string]: any;
-  };
+  initial: Record<string, any>;
+  current: FormState['initial'];
+  errors: Record<string, any>;
 }
 
-export interface FormFieldsProps<T> extends IFormItemProps<T> {
+export interface FormFieldsProps<T> extends FormItemProps<T> {
   name?: string;
   children?: React.ReactNode;
+  help?: React.ReactNode;
+  labelFor?: string;
+  inline?: boolean;
+  checked?: boolean;
+  initialValue?: string | number | T;
   validator?: (currentValue: any) => any;
 }
 
 export interface FormSubmitProps {
-  initial: IFormState['initial'];
-  current: IFormState['current'];
+  initial: FormState['initial'];
+  current: FormState['current'];
 }
 
 export interface FormAfterSubmitProps {
-  state: IFormState;
+  state: FormState;
   response: any;
   reset: () => void;
 }
 
 export interface FormChildrenProps {
-  fields: {
-    [key: string]: React.ReactElement;
-  };
+  fields: Record<string, React.ReactElement>;
   resetForm: () => void;
   canSubmit: () => boolean;
-  state: IFormState;
+  state: FormState;
 }
 
 export type FormElementProps = {
@@ -69,12 +65,6 @@ export type FormElementProps = {
   ) => void;
 };
 
-const isPromise = (promise: Promise<any>) =>
-  promise && typeof promise.then === 'function';
-function newInitialValue<T>(value: FormFieldsProps<T>['initialValue']) {
-  return value === null || value === undefined ? '' : value;
-}
-const noop = function () {};
 function newFormState<T>(
   fields: FormProps<T>['fields'],
   cb: (
@@ -83,8 +73,8 @@ function newFormState<T>(
     initialValue: FormFieldsProps<T>['initialValue'];
     currentValue: FormFieldsProps<T>['initialValue'];
   },
-): IFormState {
-  const state: IFormState = {
+): FormState {
+  const state: FormState = {
     initial: {},
     current: {},
     submitting: false,
@@ -100,55 +90,131 @@ function newFormState<T>(
   return state;
 }
 
-export default class Form<T> extends React.Component<FormProps<T>, IFormState> {
-  public static defaultProps = {
-    prefixCls: 'w-form',
-    onSubmitError: () => ({}),
-    onSubmit: noop,
-    afterSubmit: noop,
-    onChange: noop,
-    resetOnSubmit: true,
-    children: noop,
-  };
-  public state: IFormState;
-  constructor(props: FormProps<T>) {
-    super(props);
-    this.state = newFormState(props.fields, ({ initialValue }) => {
-      initialValue = newInitialValue(initialValue);
-      return { initialValue, currentValue: initialValue };
-    });
-  }
+function newInitialValue<T>(value: FormFieldsProps<T>['initialValue']) {
+  return value === null || value === undefined ? '' : value;
+}
 
-  UNSAFE_componentWillReceiveProps(nextProps: FormProps<T>) {
-    if (nextProps.fields !== this.props.fields) {
-      const state = newFormState(nextProps.fields, ({ initialValue }) => {
-        initialValue = newInitialValue(initialValue);
-        return { initialValue, currentValue: initialValue };
-      });
-      this.setState({ ...state });
+const isPromise = (promise: Promise<any>) =>
+  promise && typeof promise.then === 'function';
+
+function Form<T>(
+  {
+    prefixCls = 'w-form',
+    className,
+    fields,
+    children,
+    resetOnSubmit,
+    onSubmitError,
+    onChange,
+    onSubmit,
+    afterSubmit,
+    ...others
+  }: FormProps<T>,
+  ref:
+    | ((instance: HTMLInputElement) => void)
+    | React.RefObject<HTMLInputElement | null>
+    | null,
+) {
+  const initData = newFormState(fields, ({ initialValue }) => {
+    initialValue = newInitialValue(initialValue);
+    return { initialValue, currentValue: initialValue };
+  });
+
+  const [data, setData] = useState<FormState>(initData);
+
+  const formUnits: FormChildrenProps['fields'] = {};
+  for (const name in fields) {
+    const props = fields[name];
+    if (!props) continue;
+    const error = data.errors[name];
+    if (typeof props.initialValue === 'boolean') {
+      props.checked = props.initialValue;
     }
+    const childField: FormFieldsProps<T> = controlField({
+      ...props,
+      name,
+    });
+    const help = error || props.help;
+    const labelFor = props.labelFor;
+    formUnits[name] = (
+      <FormItem
+        {...{
+          ...props,
+          key: name,
+          children: childField,
+          help,
+          labelFor,
+          state: data,
+          name,
+          hasError: !!error,
+        }}
+      />
+    );
   }
 
-  onSubmit = (e: React.FormEvent) => {
-    e && e.preventDefault();
-    const { onSubmit, resetOnSubmit, afterSubmit, onSubmitError } = this.props;
-    const { initial, current } = this.state;
-    this.setState({ submitting: true });
-    const nextState = { submitting: false } as IFormState;
+  function handleChange(
+    name: string,
+    validator: FormFieldsProps<T>['validator'],
+    element?: React.ReactElement,
+    cb?: (env: React.BaseSyntheticEvent<HTMLInputElement>) => void,
+  ) {
+    return (
+      env: React.BaseSyntheticEvent<HTMLInputElement>,
+      list?: string[],
+    ) => {
+      let value =
+        env && env.target && 'value' in env.target ? env.target.value : env;
+      // 控件 Checkbox.Group 多选值的处理
+      value = list || value;
+      // 控件 Checkbox 值的处理
+      if (!list && element && env.target && /(radio)/.test(env.target.type)) {
+        // 控件 Switch/Radio/Checkbox 值的处理
+        value = env.target.value ? env.target.value : env.target.checked;
+      }
+      if (
+        !list &&
+        element &&
+        env.target &&
+        /(checkbox)/.test(env.target.type)
+      ) {
+        // 控件 Switch/Radio/Checkbox 值的处理
+        value = env.target.checked;
+      }
+      const nextState = {
+        current: { ...data.current, [name]: value },
+      } as FormState;
+      const error = validator && validator(value);
+      if (!error) {
+        nextState.errors = { ...data.errors };
+        delete nextState.errors[name];
+      }
+      if (env && env.persist && typeof env.persist === 'function')
+        env.persist();
+      setData({ ...data, ...nextState });
+      if (cb) {
+        cb(env);
+      }
+      onChange && onChange({ ...data, ...nextState });
+    };
+  }
 
-    const onError = (evn: React.FormEvent) => {
-      this.setState({
+  function handleSubmit(e: React.FormEvent) {
+    e && e.preventDefault();
+    const { initial, current } = data;
+    setData({ ...data, submitting: true });
+    const nextState = { submitting: false } as FormState;
+    const onError = (evn: React.FormEvent) =>
+      setData({
+        ...data,
         ...nextState,
         errors: (onSubmitError && onSubmitError(evn)) || {},
       });
-    };
     const onSuccess = (response: any) => {
       if (resetOnSubmit) {
         nextState.current = initial;
       }
-      this.setState({ ...nextState, errors: {} });
-      return () =>
-        afterSubmit!({ state: this.state, response, reset: this.reset });
+      setData({ ...data, ...nextState, errors: {} });
+      return () => afterSubmit!({ state: data, response, reset: handleReset });
     };
     try {
       const afterSubmitPromise = onSubmit!({ initial, current });
@@ -159,18 +225,11 @@ export default class Form<T> extends React.Component<FormProps<T>, IFormState> {
       }
     } catch (evn) {
       onError(evn);
-      // throw e;
     }
-  };
+  }
 
-  public reset = () => {
-    const { initial } = this.state;
-    this.setState({ current: initial, errors: {} });
-  };
-
-  public canSubmit = () => {
-    const { fields } = this.props;
-    const { submitting, current } = this.state;
+  function canSubmit() {
+    const { submitting, current = {} } = data;
     let passesValidators = true;
     for (const name in fields) {
       if (Object.prototype.hasOwnProperty.call(fields, name)) {
@@ -183,139 +242,80 @@ export default class Form<T> extends React.Component<FormProps<T>, IFormState> {
       }
     }
     return !submitting && passesValidators;
-  };
-  onChange = (
-    name: string,
-    validator: FormFieldsProps<T>['validator'],
-    element?: React.ReactElement,
-    cb?: (env: React.BaseSyntheticEvent<HTMLInputElement>) => void,
-  ) => (env: React.BaseSyntheticEvent<HTMLInputElement>, list?: string[]) => {
-    const { onChange } = this.props;
-    let value =
-      env && env.target && 'value' in env.target ? env.target.value : env;
-    // 控件 Checkbox.Group 多选值的处理
-    value = list || value;
-    // 控件 Checkbox 值的处理
-    if (element && element.props.type === 'checkbox') {
-      value = env.target.checked ? element.props.value : '';
-    }
-    // 控件 Switch 值的处理
-    if (element && element.props.type === 'switch') {
-      value = env.target.checked;
-    }
+  }
 
-    const nextState = {
-      current: { ...this.state.current, [name]: value },
-    } as IFormState;
-    const error = validator && validator(value);
-    if (!error) {
-      nextState.errors = { ...this.state.errors };
-      delete nextState.errors[name];
-    }
-    if (env && env.persist && typeof env.persist === 'function') env.persist();
-    if (cb) this.setState(nextState, () => cb(env));
-    else this.setState(nextState);
-    onChange && onChange({ ...this.state, ...nextState });
-  };
-  controlField = ({
-    children = <Input type="text" />,
+  function handleReset() {
+    const { initial } = data;
+    setData({ ...data, current: initial, errors: {} });
+  }
+
+  function controlField({
+    children,
     validator,
     name,
-  }: FormFieldsProps<T>) => {
+    help,
+    label,
+    inline,
+    initialValue,
+    ...other
+  }: FormFieldsProps<T>) {
     const element =
       typeof children !== 'function'
         ? children
         : children({
-            onChange: this.onChange(name!, validator),
-            onSubmit: this.onSubmit,
-            canSubmit: this.canSubmit,
+            onChange: handleChange(name!, validator),
+            onSubmit: handleSubmit,
+            canSubmit: canSubmit,
           });
     if (!element || React.Children.count(element) !== 1 || !name)
       return element;
-    const props: FormElementProps = { name: element.props.name || name };
+    const props = {
+      name: element.props.name || name,
+      ...other,
+    } as FormElementProps;
     const hasCurrentValue = Object.prototype.hasOwnProperty.call(
-      this.state.current,
+      data.current,
       name,
     );
     props.id = element.props.id;
     props.value = hasCurrentValue
-      ? this.state.current && this.state.current[name]
-      : element.props.value;
+      ? data.current && data.current[name]
+      : props.value;
+    // : element.props.value;
 
     const type = element.props.type;
     if (type === 'checkbox' || type === 'switch') {
-      props.checked = !!props.value;
-    }
-    if (type === 'switch') {
+      props.checked = !!props.checked;
       delete props.value;
     }
-    props.onChange = this.onChange(
+    props.onChange = handleChange(
       name,
       validator,
       element,
       element.props.onChange,
     ) as FormElementProps['onChange'];
     return React.cloneElement(element, props as FormElementProps);
-  };
-  public render(): JSX.Element {
-    const {
-      prefixCls,
-      className,
-      fields,
-      children,
-      resetOnSubmit,
-      onSubmitError,
-      onChange,
-      onSubmit,
-      afterSubmit,
-      ...others
-    } = this.props;
-    const { submitting } = this.state;
-    const formUnits: FormChildrenProps['fields'] = {};
-    for (const name in fields) {
-      const props = fields[name];
-      if (!props) continue;
-      const error = this.state.errors[name];
-      const childrenField: FormFieldsProps<T> = this.controlField({
-        ...props,
-        name,
-      });
-      const help = error || props.help;
-      const labelFor = props.labelFor;
-      formUnits[name] = (
-        <FormItem
-          {...{
-            ...props,
-            key: name,
-            children: childrenField,
-            help,
-            labelFor,
-            state: this.state,
-            name,
-            hasError: !!error,
-          }}
-        />
-      );
-    }
-    return (
-      <form
-        {...{
-          ...others,
-          className: [prefixCls, className].filter(Boolean).join(' ').trim(),
-          onSubmit: this.onSubmit,
-        }}
-      >
-        <fieldset {...{ disabled: submitting }}>
-          {typeof children === 'function'
-            ? children({
-                fields: formUnits,
-                state: this.state,
-                resetForm: this.reset,
-                canSubmit: this.canSubmit,
-              })
-            : children}
-        </fieldset>
-      </form>
-    );
   }
+  return (
+    <form
+      {...{
+        ...others,
+        className: [prefixCls, className].filter(Boolean).join(' ').trim(),
+        onSubmit: handleSubmit,
+      }}
+    >
+      <fieldset {...{ disabled: data.submitting }}>
+        {typeof children === 'function'
+          ? children({
+              fields: formUnits,
+              state: data,
+              resetForm: handleReset,
+              canSubmit: canSubmit,
+            })
+          : children}
+      </fieldset>
+    </form>
+  );
 }
+
+export default React.forwardRef<HTMLInputElement, FormProps<{}>>(Form);

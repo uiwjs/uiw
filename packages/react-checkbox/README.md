@@ -30,7 +30,7 @@ ReactDOM.render(
 ```
 <!--End-->
 
-### 表单中使用
+### Form 中使用 Checkbox
 
 <!--DemoStart,bgWhite,codePen--> 
 ```js
@@ -40,23 +40,26 @@ const Demo = () => (
   <div>
     <Form
       onChange={({ initial, current }) => {
-        console.log('onChange', initial, current);
+        console.log('onChange~~~:::', initial, current);
       }}
       onSubmit={({initial, current}) => {
-        if(current.checkbox.length === 0) {
-          Notify.error({
-            title: '提交失败！',
-            description: `表单提交内容为空！`,
-          });
-        } else {
-          Notify.success({
-            title: '提交成功！',
-            description: `选项为：【${current.checkbox.toString()}】，提交完成，将自动填充初始化值！`,
-          });
-        }
+        console.log('onSubmit~~~:::', initial, current)
+        Notify.success({
+          title: '提交成功！',
+          description: `选项为：【${current.checkbox}】，提交完成，将自动填充初始化值！`,
+        });
       }}
       fields={{
         checkbox: {
+          inline: true,
+          initialValue: true,
+          label: '单选条件',
+          children: <Checkbox>四川菜</Checkbox>,
+          validator: (value) => {
+            return !value ? '必须统一服务条款' : null;
+          },
+        },
+        checkboxGroup: {
           initialValue: ['四川菜'],
           label: '选择你想吃的菜',
           children: (
@@ -83,13 +86,18 @@ const Demo = () => (
               <Col>{fields.checkbox}</Col>
             </Row>
             <Row>
+              <Col>{fields.checkboxGroup}</Col>
+            </Row>
+            <Row>
               <Col>
-                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+                <Button disabled={!canSubmit()} type="primary" htmlType="submit">
+                  提交
+                </Button>
               </Col>
             </Row>
             <Row>
               <Col>
-                <pre>
+                <pre style={{ padding: 10, marginTop: 10 }}>
                   {JSON.stringify(state.current, null, 2)}
                 </pre>
               </Col>
@@ -108,7 +116,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 通过设置 `disabled` 属性来禁用多选框。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
 ```js
 import { Checkbox } from 'uiw';
 
@@ -125,7 +133,7 @@ ReactDOM.render(
 
 ### 全选
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
 ```js
 import { Checkbox, Divider } from 'uiw';
 
@@ -181,7 +189,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 方便的从数组生成 `Checkbox` 组。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
 ```js
 import { Checkbox, Divider, Button } from 'uiw';
 
@@ -232,7 +240,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 通过 `checked` 属性改变 `Checkbox` 组件状态。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen-->
 ```js
 import { Checkbox, Button } from 'uiw';
 

@@ -4,7 +4,7 @@ import { IProps, HTMLDivProps } from '@uiw/utils';
 import { FormFieldsProps } from './Form';
 import './style/form-item.less';
 
-export interface IFormItemProps<T> extends IProps, HTMLDivProps {
+export interface FormItemProps<T> extends IProps, HTMLDivProps {
   inline?: boolean;
   hasError?: boolean;
   label?: React.ReactNode;
@@ -16,9 +16,7 @@ export interface IFormItemProps<T> extends IProps, HTMLDivProps {
   validator?: FormFieldsProps<T>['validator'];
 }
 
-export default class FormItem<T> extends React.PureComponent<
-  IFormItemProps<T>
-> {
+export default class FormItem<T> extends React.PureComponent<FormItemProps<T>> {
   public static defaultProps = {
     prefixCls: 'w-form-item',
   };

@@ -646,6 +646,7 @@ ReactDOM.render(<Demo />, _mount_);
     label: '姓',
     labelClassName: 'fieldLabel',
     labelStyle: { width: 60 },
+    // 验证，通过 `canSubmit()` 方法获得，提交按钮是否被禁用
     validator: (currentValue) => {},
     help: '帮助提示信息！',
     children: <Input type="number" />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/group.less';
 
@@ -20,38 +20,33 @@ export function CheckboxGroup(props: CheckboxGroupPorps = {}) {
     onChange,
     ...other
   } = props;
-  const [values, setValues] = useState<Value>([]);
-  if (values !== value) {
-    setValues(value || []);
-  }
-
+  const valueRef = useRef<Value>([]);
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   return (
     <div {...other} className={cls}>
       {React.Children.map(props.children, (element: any) => {
-        if (value && value.includes(element.props.value)) {
-          if (!values.includes(element.props.value)) {
-            values.push(element.props.value);
+        if (Array.isArray(value) && value.includes(element.props.value)) {
+          if (!valueRef.current.includes(element.props.value)) {
+            valueRef.current.push(element.props.value);
           }
         }
         return React.cloneElement(
           element,
           Object.assign({}, element.props, {
             name,
-            checked: (value as Value).includes(element.props.value),
+            checked: valueRef.current.includes(element.props.value),
             onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+              if (e.target.type && e.target.type !== 'checkbox') return;
               const checked = e.target.checked;
-              const include = values.includes(element.props.value);
-              let val = [...values] as Value;
+              const include = valueRef.current.includes(element.props.value);
               if (!include && checked) {
-                val.push(element.props.value);
+                valueRef.current.push(element.props.value);
               } else if (include && !checked) {
-                val = values.filter(
+                valueRef.current = valueRef.current.filter(
                   (val) => val !== element.props.value,
                 ) as Value;
               }
-              setValues(val);
-              onChange && onChange(e, val);
+              onChange && onChange(e, valueRef.current);
             },
           }),
         );
