@@ -26,6 +26,66 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 <!--End-->
 
+
+### Form 中使用 Switch
+
+<!--DemoStart,bgWhite,codePen--> 
+```jsx
+import { Form, Switch, Row, Col, Button, Notify } from 'uiw';
+
+const Demo = () => (
+  <Form
+    onChange={({ initial, current }) => { }}
+    resetOnSubmit={false}
+    onSubmitError={(error) => error && error.filed ? { ...error.filed } : null}
+    onSubmit={({initial, current}) => {
+      console.log('switch::', initial, current)
+      const ErrObj = {};
+      if(Object.keys(ErrObj).length > 0) {
+        const err = new Error();
+        err.filed = ErrObj;
+        throw err;
+      }
+    }}
+    fields={{
+      switch: {
+        checked: true,
+        initialValue: true,
+        label: '请输入内容',
+        help: '必选选项！',
+        validator: value => !value ? '必填选项！' : null,
+        children: <Switch style={{ maxWidth: 200 }} />,
+      },
+    }}
+  >
+    {({ fields, state, canSubmit }) => {
+      return (
+        <div>
+          <Row>
+            <Col>{fields.switch}</Col>
+          </Row>
+          <Row>
+            <Col>
+              <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <pre style={{ padding: 10, marginTop: 10 }}>
+                {JSON.stringify(state.current, null, 2)}
+              </pre>
+            </Col>
+          </Row>
+        </div>
+      );
+    }}
+  </Form>
+);
+
+ReactDOM.render(<Demo />, _mount_);
+```
+<!--End-->
+
 ### 设置文字
 
 <!--DemoStart,bgWhite,codePen--> 
