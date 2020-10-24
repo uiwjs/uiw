@@ -158,8 +158,7 @@ Compiled component code.
 
 ```bash
 $ npm install # Install dependencies
-$ lerna bootstrap # Install all package dependencies
-$ lerna bootstrap --scope @uiw/* # Set scope installation dependencies
+
 $ npm run bootstrap
 $ npm run bootstrap:webiste
 $ npm run hoist

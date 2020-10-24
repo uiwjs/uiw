@@ -153,8 +153,10 @@ Package | Version | Description
 
 ```bash
 $ npm install # Install dependencies
-$ lerna bootstrap # Install all package dependencies
-$ lerna bootstrap --scope @uiw/* # Set scope installation dependencies
+
+$ npm run bootstrap
+$ npm run bootstrap:webiste
+$ npm run hoist
 $ npm run build
 ```
 
@@ -186,6 +188,10 @@ $ lerna exec --scope @uiw/button -- tsbb watch --target react --env-name esm:dev
     ├── ...
     └── react-affix
 ```
+
+### 发布版本
+
+当前工程目前通过 `git tag` 触发 [GitHub Workflow](https://github.com/uiwjs/uiw/blob/3e5ae42a7b4f6b8ea2f2c331be61048d7e5c3e9e/.github/workflows/deploy.yml#L54-L57) 自动发布到 [npm](https://www.npmjs.com/package/uiw) 包管理平台中
 
 ### License
 
