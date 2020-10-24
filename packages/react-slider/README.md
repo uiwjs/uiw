@@ -111,11 +111,14 @@ const Demo = () => (
           initialValue: 0,
           inline: true,
           label: '年龄',
+          help: '值必须大于 10',
+          validator: (value) => value < 10 ? '必填选项！' : null,
           children: <Slider />
         },
       }}
     >
       {({ fields, state, canSubmit }) => {
+        console.log('state:', state)
         return (
           <div>
             <Row gutter={10}>
@@ -125,6 +128,13 @@ const Demo = () => (
             <Row>
               <Col fixed>
                 <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <pre style={{ padding: 10, marginTop: 10 }}>
+                  {JSON.stringify(state.current, null, 2)}
+                </pre>
               </Col>
             </Row>
           </div>

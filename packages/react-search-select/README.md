@@ -125,6 +125,13 @@ const Demo = () => {
                   <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
                 </Col>
               </Row>
+              <Row>
+                <Col>
+                  <pre style={{ padding: 10, marginTop: 10 }}>
+                    {JSON.stringify(state.current, null, 2)}
+                  </pre>
+                </Col>
+              </Row>
             </div>
           )
         }}
