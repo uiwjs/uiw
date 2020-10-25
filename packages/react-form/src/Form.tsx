@@ -255,9 +255,9 @@ function Form<T>(
     name,
     help,
     label,
-    // labelFor,
-    // labelClassName,
-    // labelStyle,
+    labelFor,
+    labelClassName,
+    labelStyle,
     inline,
     initialValue,
     ...other
