@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-drawer",
-  "version": "4.6.12",
+  "version": "4.6.13",
   "description": "Drawer component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/drawer",
@@ -42,10 +42,10 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-button": "^4.6.12",
-    "@uiw/react-icon": "^4.6.12",
-    "@uiw/react-overlay": "^4.6.12",
-    "@uiw/utils": "^4.6.12"
+    "@uiw/react-button": "^4.6.13",
+    "@uiw/react-icon": "^4.6.13",
+    "@uiw/react-overlay": "^4.6.13",
+    "@uiw/utils": "^4.6.13"
   },
   "devDependencies": {
     "@babel/runtime": "7.10.4",
