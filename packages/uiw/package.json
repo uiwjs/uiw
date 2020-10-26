@@ -48,6 +48,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
+    "@babel/runtime": "7.12.1",
     "@uiw/formatter": "1.2.4",
     "@uiw/react-affix": "^4.6.13",
     "@uiw/react-alert": "^4.6.13",
