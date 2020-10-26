@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-checkbox",
-  "version": "4.6.13",
+  "version": "4.6.14",
   "description": "Checkbox component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/checkbox",
@@ -42,8 +42,8 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-radio": "^4.6.13",
-    "@uiw/utils": "^4.6.13"
+    "@uiw/react-radio": "^4.6.14",
+    "@uiw/utils": "^4.6.14"
   },
   "devDependencies": {
     "@babel/runtime": "7.10.4",
