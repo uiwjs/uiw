@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/group.less';
 
-export type Value = string[] & number[];
+export type Value = string[] | number[];
 export interface CheckboxGroupPorps
   extends IProps,
     Omit<HTMLDivProps, 'onChange'> {
