@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-affix",
-  "version": "4.6.16",
+  "version": "4.6.17",
   "description": "Affix component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/affix",
@@ -42,7 +42,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.6.16"
+    "@uiw/utils": "^4.6.17"
   },
   "devDependencies": {
     "@babel/runtime": "7.12.5",

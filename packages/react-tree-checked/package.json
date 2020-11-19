@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-tree-checked",
-  "version": "4.6.16",
+  "version": "4.6.17",
   "description": "TreeChecked component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/tree-checked",
@@ -42,9 +42,9 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-checkbox": "^4.6.16",
-    "@uiw/react-tree": "^4.6.16",
-    "@uiw/utils": "^4.6.16"
+    "@uiw/react-checkbox": "^4.6.17",
+    "@uiw/react-tree": "^4.6.17",
+    "@uiw/utils": "^4.6.17"
   },
   "devDependencies": {
     "@babel/runtime": "7.12.5",
