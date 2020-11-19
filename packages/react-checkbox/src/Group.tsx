@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/group.less';
 
@@ -23,6 +23,7 @@ export function CheckboxGroup(props: CheckboxGroupPorps = {}) {
   const valueRef = useRef<Value[]>([]);
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   const childs = React.Children.toArray(props.children);
+  useMemo(() => (valueRef.current = value || []), [value]);
   return (
     <div {...other} className={cls}>
       {React.Children.map(childs, (element: React.ReactNode) => {
