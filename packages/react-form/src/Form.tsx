@@ -167,13 +167,20 @@ function Form<T>(
       // 控件 Checkbox.Group 多选值的处理
       value = list || value;
       // 控件 Checkbox 值的处理
-      if (!list && element && env.target && /(radio)/.test(env.target.type)) {
+      if (
+        !list &&
+        element &&
+        env &&
+        env.target &&
+        /(radio)/.test(env.target.type)
+      ) {
         // 控件 Switch/Radio/Checkbox 值的处理
         value = env.target.value ? env.target.value : env.target.checked;
       }
       if (
         !list &&
         element &&
+        env &&
         env.target &&
         /(checkbox)/.test(env.target.type)
       ) {
