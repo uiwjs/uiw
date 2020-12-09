@@ -10,9 +10,6 @@
   <a href="https://github.com/uiwjs/uiw/actions">
     <img src="https://github.com/uiwjs/uiw/workflows/Build%20uiw/badge.svg">
   </a>
-  <a href="https://travis-ci.org/uiwjs/uiw">
-    <img src="https://github.com/uiwjs/uiw/workflows/Build%20uiw/badge.svg">
-  </a>
   <a href="https://github.com/uiwjs/uiw/issues">
     <img src="https://img.shields.io/github/issues/uiwjs/uiw.svg">
   </a>
