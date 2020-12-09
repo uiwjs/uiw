@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-avatar",
-  "version": "4.6.18",
+  "version": "4.6.19",
   "description": "Avatar component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/button",
@@ -42,8 +42,8 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-icon": "^4.6.18",
-    "@uiw/utils": "^4.6.18"
+    "@uiw/react-icon": "^4.6.19",
+    "@uiw/utils": "^4.6.19"
   },
   "devDependencies": {
     "@babel/runtime": "7.12.5",
