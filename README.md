@@ -7,6 +7,9 @@
   <a href="https://travis-ci.org/uiwjs/uiw">
     <img src="https://api.travis-ci.org/uiwjs/uiw.svg?branch=master">
   </a>
+  <a href="https://github.com/uiwjs/uiw/actions">
+    <img src="https://github.com/uiwjs/uiw/workflows/Build%20uiw/badge.svg">
+  </a>
   <a href="https://travis-ci.org/uiwjs/uiw">
     <img src="https://github.com/uiwjs/uiw/workflows/Build%20uiw/badge.svg">
   </a>
