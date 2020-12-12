@@ -65,6 +65,29 @@ const Demo = () => (
         <Menu.Item icon="map" text="谷歌地图" />
       </Menu>
     </Col>
+    <Col fixed>
+      <Menu bordered>
+        <Menu.Item icon="file-add" text="添加文件" />
+        <Menu.Item icon="folder-add" text="添加文件夹" />
+        <Menu.SubMenu icon="bar-chart" text="月统计报表导出"
+          overlayProps={{
+            isOpen: true
+          }}
+        >
+          <Menu.Item icon="file-add" text="添加文件" />
+          <Menu.Divider title="类别" />
+          <Menu.Item icon="copy" text="拷贝" />
+          <Menu.SubMenu icon="bar-chart" text="报表" collapse>
+            <Menu.Item icon="file-add" text="添加文件" />
+            <Menu.SubMenu icon="folder-add" text="添加文件夹">
+              <Menu.Item icon="file-add" text="添加文件" />
+              <Menu.Item icon="folder-add" text="添加文件夹" />
+            </Menu.SubMenu>
+          </Menu.SubMenu>
+        </Menu.SubMenu>
+        <Menu.Item icon="map" text="谷歌地图" />
+      </Menu>
+    </Col>
   </Row>
 )
 ReactDOM.render(<Demo />, _mount_);
