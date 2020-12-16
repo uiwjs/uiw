@@ -63,6 +63,7 @@
       { "name": "Table 表格", "path": "table" },
       { "name": "Progress 进度条", "path": "progress" },
       { "name": "List 列表", "path": "list" },
+      { "name": "AutoLink 文本超链接", "path": "auto-link" },
       { "divider": true, "name": "导航" },
       { "name": "Affix 图钉", "path": "affix" },
       { "name": "Breadcrumb 面包屑", "path": "breadcrumb" },

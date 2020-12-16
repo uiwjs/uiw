@@ -67,6 +67,11 @@ export const getRouterData = () => {
     '/components/alert': {
       component: dynamicWrapper([], () => import('../routes/components/alert')),
     },
+    '/components/auto-link': {
+      component: dynamicWrapper([], () =>
+        import('../routes/components/auto-link'),
+      ),
+    },
     '/components/avatar': {
       component: dynamicWrapper([], () =>
         import('../routes/components/avatar'),

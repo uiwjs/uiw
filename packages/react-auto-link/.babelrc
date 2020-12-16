@@ -1,0 +1,25 @@
+{
+  "env": {
+    "cjs": {
+      "plugins": [
+        [
+          "babel-plugin-transform-remove-imports",
+          {
+            "test": "(less|css)$"
+          }
+        ]
+      ]
+    },
+    "esm": {
+      "plugins": [
+        [
+          "babel-plugin-transform-rename-import",
+          {
+            "original": "^(.+?)\\.less$",
+            "replacement": "$1.css"
+          }
+        ]
+      ]
+    }
+  }
+}

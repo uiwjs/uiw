@@ -52,6 +52,7 @@
     "@uiw/formatter": "1.2.4",
     "@uiw/react-affix": "^4.6.19",
     "@uiw/react-alert": "^4.6.19",
+    "@uiw/react-auto-link": "^4.6.19",
     "@uiw/react-avatar": "^4.6.19",
     "@uiw/react-back-top": "^4.6.19",
     "@uiw/react-badge": "^4.6.19",

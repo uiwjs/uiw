@@ -1,5 +1,6 @@
 export * from '@uiw/react-affix';
 export * from '@uiw/react-alert';
+export * from '@uiw/react-auto-link';
 export * from '@uiw/react-avatar';
 export * from '@uiw/react-back-top';
 export * from '@uiw/react-badge';
@@ -56,6 +57,7 @@ export * from '@uiw/react-tree-checked';
 
 export { default as Affix } from '@uiw/react-affix';
 export { default as Alert } from '@uiw/react-alert';
+export { default as AutoLink } from '@uiw/react-auto-link';
 export { default as Avatar } from '@uiw/react-avatar';
 export { default as BackTop } from '@uiw/react-back-top';
 export { default as Badge } from '@uiw/react-badge';
