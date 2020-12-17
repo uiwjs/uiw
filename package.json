@@ -63,7 +63,7 @@
     ]
   },
   "devDependencies": {
-    "compile-less-cli": "1.5.1",
+    "compile-less-cli": "1.6.0",
     "husky": "4.2.5",
     "kkt": "5.10.3",
     "lerna": "3.22.1",
