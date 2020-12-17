@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-select",
-  "version": "4.7.0",
+  "version": "4.7.1",
   "description": "Select component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/select",
@@ -42,7 +42,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.7.0"
+    "@uiw/utils": "^4.7.1"
   },
   "devDependencies": {
     "@babel/runtime": "7.12.5",
