@@ -1,6 +1,6 @@
 # 快速上手
 
-![Build uiw](https://github.com/uiwjs/uiw/workflows/Build%20uiw/badge.svg) [![](https://api.travis-ci.org/uiwjs/uiw.svg?branch=master)](https://travis-ci.org/uiwjs/uiw/builds) [![](https://img.shields.io/github/issues/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/issues) [![](https://img.shields.io/github/forks/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/network) [![](https://img.shields.io/github/stars/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/stargazers) [![](https://img.shields.io/github/release/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/releases) [![Packagist](https://img.shields.io/dub/l/vibe-d.svg)](https://github.com/uiwjs/uiw) [![Packagist](https://img.shields.io/npm/v/uiw.svg)](https://www.npmjs.com/package/uiw) [![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
+![Build uiw](https://github.com/uiwjs/uiw/workflows/Build%20uiw/badge.svg) [![](https://img.shields.io/github/issues/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/issues) [![](https://img.shields.io/github/forks/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/network) [![](https://img.shields.io/github/stars/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/stargazers) [![](https://img.shields.io/github/release/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/releases) [![Packagist](https://img.shields.io/dub/l/vibe-d.svg)](https://github.com/uiwjs/uiw) [![Packagist](https://img.shields.io/npm/v/uiw.svg)](https://www.npmjs.com/package/uiw) [![jest](https://facebook.github.io/jest/img/jest-badge.svg)](https://github.com/facebook/jest)
 
 ## 安装
 
@@ -12,11 +12,25 @@ $ npm i uiw
 $ yarn add uiw
 ```
 
-您可以使用 [`kkt`](https://github.com/kktjs/kkt) 快速创建一个 react + uiw 项目。
+您可以使用 [`kkt`](https://github.com/kktjs/kkt) 本地快速创建一个 react + uiw 项目。
 
 ```bash
 $ npx create-kkt my-app -e uiw
 ```
+
+### 通过 CodeSandbox 快速体验
+
+这是一个最简单的 uiw 组件的在线 [CodeSandbox](https://codesandbox.io/s/uiw-reproduction-template-luqhe?file=/src/index.tsx) [演示](https://codesandbox.io/embed/uiw-reproduction-template-luqhe)。
+
+<iframe
+  src="https://codesandbox.io/embed/uiw-reproduction-template-luqhe?autoresize=1&fontsize=14&hidenavigation=1&theme=dark"
+  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+  title="antd reproduction template"
+  allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
+  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+/>
+
+访问 https://codesandbox.io/embed/uiw-reproduction-template-luqhe 创建一个 [CodeSandbox](https://codesandbox.io/s/uiw-reproduction-template-luqhe) 的在线示例，别忘了保存以创建一个新的实例。
 
 ### 浏览器引入
 
