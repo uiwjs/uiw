@@ -9,6 +9,7 @@
     "url": "https://github.com/uiwjs/uiw.git"
   },
   "license": "MIT",
+  "typings": "lib/cjs/index.d.ts",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
   "files": [
