@@ -4,5 +4,13 @@ node_js:
 install: 
   - yarn install && yarn run hoist
 script:
-  - yarn run build
-  - yarn run test
+  - npm run b:uiw
+  - npm run b:css
+  - npm run type
+
+  - npm run hoist
+  - npm run b:website
+  - npm run b:doc
+
+  - npm run bundle
+  - npm run coverage
