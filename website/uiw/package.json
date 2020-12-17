@@ -46,9 +46,9 @@
     "uiw": "^4.7.1"
   },
   "devDependencies": {
-    "@kkt/loader-less": "5.10.3",
-    "@kkt/loader-raw": "5.10.3",
-    "kkt": "5.10.3",
+    "@kkt/loader-less": "5.11.1",
+    "@kkt/loader-raw": "5.11.1",
+    "kkt": "5.11.1",
     "react-test-renderer": "16.14.0"
   },
   "author": "kenny wang <wowohoo@qq.com>",
