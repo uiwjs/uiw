@@ -1,6 +1,6 @@
 import React from 'react';
 import { Calendar, Badge } from 'uiw';
-import Markdown from '@/components/Markdown';
+import Markdown from '../../../components/Markdown';
 
 export default function Page() {
   return (

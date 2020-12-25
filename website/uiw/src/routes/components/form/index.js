@@ -18,7 +18,7 @@ import {
   Menu,
   Dropdown,
 } from 'uiw';
-import Markdown from '@/components/Markdown';
+import Markdown from '../../../components/Markdown';
 
 export default function Page() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Popover, Button, Input, Card } from 'uiw';
-import Markdown from '@/components/Markdown';
+import Markdown from '../../../components/Markdown';
 
 export default function Page() {
   return (

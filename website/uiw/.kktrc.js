@@ -1,35 +1,18 @@
+import webpack from 'webpack';
 import path from 'path';
+import lessModules from '@kkt/less-modules';
+import rawModules from '@kkt/raw-modules';
+import scopePluginOptions from '@kkt/scope-plugin-options';
+import pkg from './package.json';
 
-export const loaderOneOf = [
-  require.resolve('@kkt/loader-less'),
-  require.resolve('@kkt/loader-raw'),
-];
-
-export default (conf, { paths }, webpack) => {
-  conf.resolve.alias = {
-    '@': paths.appSrc,
-    // react: path.resolve("./node_modules/react"),
-  };
-  const pkg = require(path.resolve(
-    process.cwd(),
-    'node_modules/uiw/package.json',
-  ));
-
-  const regexp = /^(ModuleScopePlugin)/;
-  conf.resolve.plugins = conf.resolve.plugins
-    .map((item) => {
-      if (
-        item.constructor &&
-        item.constructor.name &&
-        regexp.test(item.constructor.name)
-      ) {
-        return null;
-      }
-      return item;
-    })
-    .filter(Boolean);
-
-  // 获取版本
+export default (conf, env, options) => {
+  conf = lessModules(conf, env, options);
+  conf = rawModules(conf, env, { ...options });
+  conf = scopePluginOptions(conf, env, {
+    ...options,
+    allowedFiles: [path.resolve(process.cwd(), 'README.md')],
+  });
+  // Get the project version.
   conf.plugins.push(
     new webpack.DefinePlugin({
       VERSION: JSON.stringify(pkg.version),
@@ -156,5 +139,6 @@ export default (conf, { paths }, webpack) => {
   };
 
   conf.output = { ...conf.output, publicPath: './' };
+
   return conf;
 };

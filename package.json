@@ -26,8 +26,8 @@
     "start": "lerna exec --scope @example/uiw -- npm run start",
     "b:doc": "lerna exec --scope @uiw/doc -- node script/released.js",
     "b:css": "lerna exec --scope @uiw/* -- compile-less -d src -o lib/esm",
-    "b:bundle": "lerna exec --scope uiw -- kkt build --bundle --no-checkRequiredFiles",
-    "b:bundle:min": "lerna exec --scope uiw -- kkt build --bundle --no-checkRequiredFiles --mini --no-emptyDir",
+    "b:bundle": "lerna exec --scope uiw -- kkt build --bundle",
+    "b:bundle:min": "lerna exec --scope uiw -- kkt build --bundle --mini",
     "doc": "npm run b:website && npm run b:doc",
     "build": "npm run b:uiw && npm run b:css && npm run type && npm run doc",
     "bundle": "npm run b:bundle && npm run b:bundle:min",
@@ -63,9 +63,11 @@
     ]
   },
   "devDependencies": {
+    "@kkt/less-modules": "6.0.11",
+    "@kkt/react-library": "6.0.11",
     "compile-less-cli": "1.6.0",
     "husky": "4.3.6",
-    "kkt": "5.10.3",
+    "kkt": "6.0.11",
     "lerna": "3.22.1",
     "lint-staged": "10.5.3",
     "prettier": "2.2.1",

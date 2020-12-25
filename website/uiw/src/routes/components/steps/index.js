@@ -1,6 +1,6 @@
 import React from 'react';
 import { Steps, Icon, Button, Notify, Row, Col } from 'uiw';
-import Markdown from '@/components/Markdown';
+import Markdown from '../../../components/Markdown';
 
 export default () => (
   <Markdown

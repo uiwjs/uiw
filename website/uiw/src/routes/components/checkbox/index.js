@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox, Button, Form, Row, Col, Divider, Notify } from 'uiw';
-import Markdown from '@/components/Markdown';
+import Markdown from '../../../components/Markdown';
 
 export default function Page() {
   return (

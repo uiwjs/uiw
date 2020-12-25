@@ -1,6 +1,6 @@
 import React from 'react';
 import { OverlayTrigger, Card, Button, Switch, Divider } from 'uiw';
-import Markdown from '@/components/Markdown';
+import Markdown from '../../../components/Markdown';
 
 export default function Page() {
   return (

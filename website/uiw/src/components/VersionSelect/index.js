@@ -10,7 +10,7 @@ function Options(props = {}) {
   );
 }
 
-export default (props = {}) => {
+const VersionSelect = (props = {}) => {
   function onChange(e) {
     const version = e.target.value;
     const isV1 = version.split('.')[0] === '1';
@@ -40,3 +40,5 @@ export default (props = {}) => {
     [versionList],
   );
 };
+
+export default VersionSelect;

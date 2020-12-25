@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tree, Row, Col, Card, Icon } from 'uiw';
-import Markdown from '@/components/Markdown';
+import Markdown from '../../../components/Markdown';
 
 export default () => (
   <Markdown

@@ -9,7 +9,7 @@ import {
   Col,
   Notify,
 } from 'uiw';
-import Markdown from '@/components/Markdown';
+import Markdown from '../../../components/Markdown';
 
 export default () => (
   <Markdown

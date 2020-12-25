@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import { Tooltip } from 'uiw';
-import Nav from '@/components/Nav';
-import VersionSelect from '@/components/VersionSelect';
-import logo from '@/components/icons/logo';
-import menu from '@/components/icons/menu';
+import Nav from '../components/Nav';
+import VersionSelect from '../components/VersionSelect';
+import logo from '../components/icons/logo';
+import menu from '../components/icons/menu';
 import { getMenuData, getMenuCurrentData } from '../common/menu';
 import styles from './index.module.less';
 import version from '../version.json';

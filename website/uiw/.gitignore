@@ -6,6 +6,7 @@
 /lib
 /.vscode
 .cache
+.eslintcache
 
 __snapshots__
 

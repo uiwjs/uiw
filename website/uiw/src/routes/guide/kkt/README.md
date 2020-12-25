@@ -62,21 +62,18 @@ export default class App extends Component {
   "version": "0.1.0",
   "private": true,
 +  "devDependencies": {
-+    "kkt": "5.0.4"
++    "kkt": "6.0.11"
 +  },
--  "dependencies": {
--    "@testing-library/jest-dom": "^4.2.4",
--    "@testing-library/react": "^9.3.2",
--    "@testing-library/user-event": "^7.1.2",
--    "react": "^16.12.0",
--    "react-dom": "^16.12.0",
--    "react-scripts": "3.3.0"
--  },
-+  "dependencies": {
-+    "react": "^16.12.0",
-+    "react-dom": "^16.12.0",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+-    "react-scripts": "4.0.1",
+    "web-vitals": "^0.2.4",
 +    "uiw": "^3.10.4"
-+  },
+  },
   "scripts": {
 -    "start": "react-scripts start",
 +    "start": "kkt start",
@@ -87,9 +84,12 @@ export default class App extends Component {
 +    "test:coverage": "kkt test --env=jsdom --coverage"
 -    "eject": "react-scripts eject"
   },
--  "eslintConfig": {
--    "extends": "react-app"
--  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",

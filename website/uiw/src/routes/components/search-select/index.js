@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Row, Col, Button, Notify, SearchSelect } from 'uiw';
-import Markdown from '@/components/Markdown';
+import Markdown from '../../../components/Markdown';
 
 export default () => (
   <Markdown

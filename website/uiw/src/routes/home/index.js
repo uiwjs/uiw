@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '@/components/icons/logo';
+import logo from '../../components/icons/logo';
 import styles from './index.module.less';
 
 export default class Home extends PureComponent {

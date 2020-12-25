@@ -1,6 +1,6 @@
 import React from 'react';
 import { Divider, PinCode, Form, Row, Col, Icon, Button, Notify } from 'uiw';
-import Markdown from '@/components/Markdown';
+import Markdown from '../../../components/Markdown';
 
 export default function Page() {
   return (
