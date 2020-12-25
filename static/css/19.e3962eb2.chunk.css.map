@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/Markdown/index.module.less"],"names":[],"mappings":"AAAA,sBACE,mBAAA,CACA,gBAAA,CACA,aACF","file":"19.e3962eb2.chunk.css","sourcesContent":[".docinfo {\n  padding: 30px 0 10px 0;\n  line-height: 24px;\n  color: #909090;\n}\n"]}
