@@ -40,7 +40,7 @@
     "history": "4.10.1",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-dynamic-loadable": "2.0.1",
+    "react-dynamic-loadable": "2.0.5",
     "react-redux": "7.2.0",
     "react-router-dom": "5.2.0",
     "uiw": "^4.7.2"
