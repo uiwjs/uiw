@@ -47,8 +47,9 @@ const docPkg = join(docRepoPath, 'package.json');
     await fs.emptyDir(join(docRepoPath, 'web'));
     await fs.copy(docsPath, join(docRepoPath, 'web'));
 
-    console.log(`> Copy From: ${docsPath}\n To: ${join(docRepoPath, 'web')}`);
-    console.log(`> Update to v${uiwPkgContent.version}`);
+    console.log(`> Copy From: \x1b[32;1m${docsPath}\x1b[0m`);
+    console.log(`> To: \x1b[32;1m${join(docRepoPath, 'web')}\x1b[0m`);
+    console.log(`> Update to v\x1b[32;1m${uiwPkgContent.version}\x1b[0m`);
   } catch (error) {
     console.log('error:', error);
   }

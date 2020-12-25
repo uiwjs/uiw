@@ -15,8 +15,7 @@
     "baseUrl": "./src",
     "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "noFallthroughCasesInSwitch": true,
-    "noEmit": true
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src/**/*"]
 }

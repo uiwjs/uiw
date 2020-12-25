@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "kkt start",
-    "build": "GENERATE_SOURCEMAP=false kkt build"
+    "build": "kkt build"
   },
   "keywords": [
     "uiw",
