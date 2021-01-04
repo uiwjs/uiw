@@ -72,7 +72,7 @@ export default class App extends Component {
     "react-dom": "^17.0.1",
 -    "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4",
-+    "uiw": "^3.10.4"
++    "uiw": "^4.7.2"
   },
   "scripts": {
 -    "start": "react-scripts start",
