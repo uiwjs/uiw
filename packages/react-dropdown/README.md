@@ -11,8 +11,10 @@ import Dropdown from '@uiw/react-dropdown';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Dropdown, Menu, ButtonGroup, Button, Divider, Icon } from 'uiw';
 
 const menu = (
@@ -59,8 +61,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 被禁用
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Dropdown, Menu, ButtonGroup, Button } from 'uiw';
 
 const menu = (
@@ -111,8 +114,9 @@ ReactDOM.render(
 
 ### 弹出位置
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Dropdown, Menu, ButtonGroup, Button } from 'uiw';
 
 const menu = (
@@ -161,8 +165,10 @@ ReactDOM.render(
 
 ### 选择器
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Dropdown, Menu, Button, Icon } from 'uiw';
 
 class Select extends React.Component {

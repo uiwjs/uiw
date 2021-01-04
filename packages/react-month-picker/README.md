@@ -11,8 +11,9 @@ import MonthPicker from '@uiw/react-month-picker';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { MonthPicker, Row, Col } from 'uiw';
 
 function onChange(date, formatDate) {
@@ -35,8 +36,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ## 在表单中使用
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Form, MonthPicker, Notify, Row, Col, Button } from 'uiw';
 
 const Demo = () => (

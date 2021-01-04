@@ -11,8 +11,9 @@ import Affix from '@uiw/react-affix';
 
 ### 基本用法
  
-<!--DemoStart,bgWhite,noScroll,codePen--> 
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Affix, Button } from 'uiw';
 
 ReactDOM.render(
@@ -29,8 +30,9 @@ ReactDOM.render(
 
 这个实例需要你缩小窗口高度，就可以测试看效果啦。
 
-<!--DemoStart,bgWhite,noScroll,codePen--> 
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Affix, Button } from 'uiw';
 
 ReactDOM.render(

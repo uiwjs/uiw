@@ -13,8 +13,9 @@ import { Radio, RadioGroup } from '@uiw/react-radio';
 
 适用广泛的基础最简单的用法，展示各种状态下的样式。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Radio } from 'uiw';
 
 const Demo = () => (
@@ -31,8 +32,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### Form 中使用 Radio
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import ReactDOM from 'react-dom';
 import { Form, Radio, RadioGroup, Row, Col, Button, Notify } from 'uiw';
 
 const Demo = () => (
@@ -112,8 +114,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 适用广泛的基础最简单的用法。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Radio, RadioGroup } from 'uiw';
 
 class Demo extends React.Component {
@@ -145,8 +149,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 设置单选初始值
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Radio, RadioGroup, Divider, Button } from 'uiw';
 
 class Demo extends React.Component {

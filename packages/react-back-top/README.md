@@ -11,8 +11,9 @@ import BackTop from '@uiw/react-back-top';
 
 ## 基本用法
 
-<!--DemoStart,codePen--> 
+<!--DemoStart,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { BackTop } from 'uiw';
 
 ReactDOM.render(
@@ -34,8 +35,9 @@ ReactDOM.render(
 
 点击按钮滚动到顶部
 
-<!--DemoStart,codePen--> 
+<!--DemoStart,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { BackTop, Button } from 'uiw';
 
 ReactDOM.render(
@@ -58,8 +60,9 @@ ReactDOM.render(
 
 点击按钮滚动到顶部
 
-<!--DemoStart,codePen--> 
+<!--DemoStart,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { BackTop, Button } from 'uiw';
 
 ReactDOM.render(

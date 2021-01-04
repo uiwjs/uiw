@@ -11,8 +11,9 @@ import { Form, FormItem } from '@uiw/react-form';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Form, Input, Row, Col, Slider, Button, Notify } from 'uiw';
 
 const Demo = () => (
@@ -71,8 +72,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 一般校验可不需引入外部包解决，如果遇到大型工程表单比较多的地方推荐使用 [jquense/yup](https://github.com/jquense/yup)
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Form, Input, Checkbox, Switch, RadioGroup, Radio, Textarea, Row, Col, Button } from 'uiw';
 
 const Demo = () => (
@@ -218,8 +220,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 水平登录栏
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Form, Input, Row, Col, Notify, Button } from 'uiw';
 
 const Demo = () => (
@@ -287,8 +290,11 @@ ReactDOM.render(<Demo />, _mount_);
 
 ## 登录
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
+import { Form, Input, Row, Col, Checkbox, Notify, Button } from 'uiw';
+
 const Demo = () => (
   <div>
     <Form
@@ -345,8 +351,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 表单提交
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Form, Input, Select, Row, Col, Button } from 'uiw';
 
 const Demo = () => (
@@ -434,8 +441,9 @@ ReactDOM.render(<Demo />, _mount_);
 - `value` 用于值传递，
 - `onChange(value)` 用于值变更需要执行的回调函数，回调函数第一个参数必须是 `value`。
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import ReactDOM from 'react-dom';
 import { Form, Row, Col, Dropdown, Menu, Icon, Button, Notify } from 'uiw';
 
 // 自定义组件
@@ -563,8 +571,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 > ⚠️ 注意：当前只展示效果，`FormItem` 组件只在 `Form` 组件中使用。
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Form, FormItem } from 'uiw';
 
 const Demo = () => (
@@ -596,8 +605,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 > ⚠️ 注意：当前只展示效果，`FormItem` 组件只在 `Form` 组件中使用。
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Form, FormItem } from 'uiw';
 
 const Demo = () => (

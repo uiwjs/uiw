@@ -11,8 +11,10 @@ import DateInput from '@uiw/react-date-input';
 
 ## 基本使用
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { DateInput, Row, Col } from 'uiw';
 
 class Demo extends React.Component {
@@ -48,8 +50,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<DateInput />`](#/components/date-input) 组件。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { DateInput, Notify, Button, Form, Row, Col } from 'uiw';
 
 ReactDOM.render(
@@ -95,8 +98,10 @@ ReactDOM.render(
 
 ## 日期格式
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { DateInput } from 'uiw';
 
 class Demo extends React.Component {
@@ -121,8 +126,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ## 日期时间设置
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { DateInput } from 'uiw';
 
 class Demo extends React.Component {

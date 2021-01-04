@@ -13,8 +13,9 @@ import Menu from '@uiw/react-menu';
 
 ⚠️ 注意 `SubMenu` 父菜单为折叠菜单，当前 `SubMenu` 的子菜单弹出会因为 `overflow: hidde` 而无法显示。
 
-<!--DemoStart,bgWhite,noScroll,codePen-->
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox-->
 ```jsx
+import ReactDOM from 'react-dom';
 import { Menu, Row, Col } from 'uiw';
 
 const Demo = () => (
@@ -96,8 +97,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 下拉菜单
 
-<!--DemoStart,bgWhite,noScroll,codePen-->
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox-->
 ```jsx
+import ReactDOM from 'react-dom';
 import { Menu, Popover, Button, Row, Col } from 'uiw';
 
 const btnStl = {position: 'relative', width: 70 }
@@ -182,8 +184,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 通过设置 `overlayProps={ isOpen: true }`，让菜单默认展开。
 
-<!--DemoStart,bgWhite,noScroll,codePen-->
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox-->
 ```jsx
+import ReactDOM from 'react-dom';
 import { Menu, Row, Col } from 'uiw';
 
 const Demo = () => (
@@ -224,8 +227,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 内建了两套主题 `light`、`dark`，默认 `light`。
 
-<!--DemoStart,bgWhite,noScroll,codePen-->
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox-->
 ```jsx
+import ReactDOM from 'react-dom';
 import { Menu, Row, Col, Switch } from 'uiw';
 
 class Demo extends React.Component {
@@ -292,8 +296,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 包括点击选中效果，事件等操作，完整的实例展示。
 
-<!--DemoStart,bgWhite,noScroll,codePen-->
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox-->
 ```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Menu, Row, Col, Switch } from 'uiw';
 
 class Demo extends React.Component {
@@ -404,9 +410,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 内嵌菜单可以被缩起/展开，需要 `SubMenu` 的参数 `collapse` 和 `inlineCollapsed` 配合使用。
 
-<!--DemoStart,bgWhite,noScroll,codePen-->
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox-->
 ```jsx
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Menu, Row, Col, Icon, Button } from 'uiw';
 
 const menusData = [

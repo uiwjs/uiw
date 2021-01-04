@@ -13,8 +13,9 @@ import OverlayTrigger from '@uiw/react-overlay-trigger';
 
 最简单的用法。
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
+```jsx
+import ReactDOM from 'react-dom';
 import { OverlayTrigger } from 'uiw';
 
 const tooltip = (
@@ -36,8 +37,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 下面配合 [`<Card />`](#/components/card) 组件使用。
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
+```jsx
+import ReactDOM from 'react-dom';
 import { OverlayTrigger, Card } from 'uiw';
 
 const card = (
@@ -57,8 +59,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 点击事件
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { OverlayTrigger, Card, Divider } from 'uiw';
 
 const card = (
@@ -105,8 +109,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 默认离开**触发区域**隐藏弹出目标，设置 `isOutside` 值为 `true`，在**触发区域**或**弹出目标区域**内，不隐藏**弹出目标**。
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { OverlayTrigger, Card, Divider } from 'uiw';
 
 const card = (
@@ -152,8 +158,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 延迟属性，只针对 `trigger=hover` 有效。
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
+```jsx
+import ReactDOM from 'react-dom';
 import { OverlayTrigger, Card } from 'uiw';
 
 const card = (
@@ -175,8 +182,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 通过设置属性 isOpen 可以文字提示手动控制状态的展示。
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { OverlayTrigger, Card, Divider, Switch } from 'uiw';
 
 const card = (
@@ -228,8 +237,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 设置 `usePortal={false}` 将模态对话框生成到根节点的里面。
 
-<!--DemoStart,bgWhite,noScroll,codePen--> 
-```js
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox-->
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { OverlayTrigger, Card, Divider } from 'uiw';
 
 const card = (

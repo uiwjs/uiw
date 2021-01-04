@@ -12,8 +12,9 @@ import ButtonGroup from '@uiw/react-button-group';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Button, Divider, Icon } from 'uiw';
 
 ReactDOM.render(
@@ -45,8 +46,9 @@ ReactDOM.render(
 
 ### 按钮组
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Button, Divider, ButtonGroup } from 'uiw';
 
 ReactDOM.render(
@@ -112,8 +114,9 @@ ReactDOM.render(
 
 ### 图标按钮
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Button, Icon, Divider } from 'uiw';
 
 const chat = <svg width="20" height="20" viewBox="0 0 20 20"> <path d="M19 0H7c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h5.59l3.71 3.71c.17.18.42.29.7.29.55 0 1-.45 1-1v-3h1c.55 0 1-.45 1-1V1c0-.55-.45-1-1-1zM7 13c-1.1 0-2-.9-2-2V4H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h1v3a1.003 1.003 0 0 0 1.71.71L7.41 16H13c.55 0 1-.45 1-1v-.17L12.17 13H7z" fillRule="evenodd" /> </svg>;
@@ -147,8 +150,9 @@ ReactDOM.render(
 
 ### 按钮加载状态
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Button, Icon, Divider } from 'uiw';
 
 ReactDOM.render(
@@ -177,8 +181,9 @@ ReactDOM.render(
 
 ### 禁用按钮组
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Button, ButtonGroup, Divider } from 'uiw';
 
 ReactDOM.render(
@@ -243,8 +248,9 @@ ReactDOM.render(
 
 ### 垂直按钮组
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Button, ButtonGroup, Row, Col } from 'uiw';
 
 ReactDOM.render(
@@ -293,8 +299,9 @@ ReactDOM.render(
 
 设置 `basic=true` 即可获得基本按钮，没有背景颜色的状态按钮。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Button, Divider } from 'uiw';
 
 ReactDOM.render(
@@ -329,8 +336,9 @@ ReactDOM.render(
 
 设置 `basic=true` 即可获得基本按钮，没有背景颜色的状态按钮。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Button, Divider } from 'uiw';
 
 const chat = (
@@ -361,8 +369,9 @@ ReactDOM.render(
 
 ### 激活按钮样式
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Button } from 'uiw';
 
 ReactDOM.render(
@@ -382,8 +391,9 @@ ReactDOM.render(
 
 ### 禁用按钮样式
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Button } from 'uiw';
 
 ReactDOM.render(
@@ -404,8 +414,9 @@ ReactDOM.render(
 
 ### block
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Button, Row, Col } from 'uiw';
 
 ReactDOM.render(
@@ -428,8 +439,9 @@ ReactDOM.render(
 
 `size` 在 `Button.Group`下面不支持。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Button, Divider } from 'uiw';
 
 ReactDOM.render(

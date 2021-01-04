@@ -11,8 +11,9 @@ import Textarea from '@uiw/react-textarea';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
+```jsx
+import ReactDOM from 'react-dom';
 import { Textarea } from 'uiw';
 
 const Demo = () => (
@@ -28,8 +29,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<Textarea />`](#/components/textarea) 组件
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Form, Row, Col, Textarea, Button, Notify } from 'uiw';
 
 const Demo = () => (
@@ -94,8 +97,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 禁用
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
+```jsx
+import ReactDOM from 'react-dom';
 import { Textarea } from 'uiw';
 
 const Demo = () => (
@@ -109,8 +113,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### HTML Textarea
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
+```jsx
+import ReactDOM from 'react-dom';
 import { Textarea } from 'uiw';
 
 const Demo = () => (

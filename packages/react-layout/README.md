@@ -14,9 +14,10 @@ const { Header, Footer, Sider, Content } = Layout;
 
 ## 基本用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Layout, Divider } from 'uiw';
 const { Header, Footer, Sider, Content } = Layout;
 

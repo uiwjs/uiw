@@ -33,8 +33,9 @@ ReactDOM.render(
 
 使用 `separator=">"` 可以自定义分隔符，分隔符也可以是图标。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Breadcrumb } from 'uiw';
 
 ReactDOM.render(
@@ -62,8 +63,9 @@ ReactDOM.render(
 
 图标放在文字前面。注意文字要使用 `span` 包裹起来，图标 `<Icon />` 需要跟 `span` 同级。`Breadcrumb.Item` 定义 `href` 参数的话，`Item` 上的参数就全部是超链原始属性。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Breadcrumb } from 'uiw';
 
 const stylIcon = { marginRight: 3, top: 2, display: 'inline-flex' }

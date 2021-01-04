@@ -13,8 +13,10 @@ import Tabs from '@uiw/react-tabs';
 
 基础的、简洁的卡片式标签页。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Tabs } from 'uiw';
 
 class Demo extends React.Component {
@@ -39,8 +41,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 基础的、简洁的卡片式标签页。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Tabs } from 'uiw';
 
 class Demo extends React.Component {
@@ -65,8 +69,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 另一种样式的页签，不提供对应的垂直样式。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Tabs } from 'uiw';
 
 class Demo extends React.Component {
@@ -92,8 +98,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 另一种样式的页签，不提供对应的垂直样式。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Tabs, Divider } from 'uiw';
 
 class Demo extends React.Component {

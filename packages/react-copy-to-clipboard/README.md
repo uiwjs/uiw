@@ -11,8 +11,10 @@ import CopyToClipboard from '@uiw/react-copy-to-clipboard';
 
 ### 基础实例
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { CopyToClipboard } from 'uiw';
 
 class Demo extends React.Component {
@@ -48,8 +50,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ## 复制输入框内容
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { CopyToClipboard, Input, Button } from 'uiw';
 
 class Demo extends React.Component {

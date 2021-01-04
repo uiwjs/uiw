@@ -11,8 +11,9 @@ import AutoLink from '@uiw/react-auto-link';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { AutoLink } from 'uiw';
 
 ReactDOM.render(

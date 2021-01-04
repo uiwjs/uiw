@@ -13,8 +13,10 @@ import Steps from '@uiw/react-steps';
 
 简单的步骤条。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Steps } from 'uiw';
 
 class Demo extends React.Component {
@@ -37,8 +39,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 简单的步骤条。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Steps } from 'uiw';
 
 class Demo extends React.Component {
@@ -61,8 +65,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 通过设置 `Steps.Step` 的 `icon` 属性，可以启用自定义图标。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Steps, Icon } from 'uiw';
 
 class Demo extends React.Component {
@@ -84,8 +90,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 使用 `Steps` 的 `status` 属性来指定当前步骤的状态。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Steps } from 'uiw';
 
 class Demo extends React.Component {
@@ -108,8 +116,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 包含步骤点的进度条。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Steps } from 'uiw';
 
 class Demo extends React.Component {
@@ -132,8 +142,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 通常配合内容及按钮使用，表示一个流程的处理进度。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Steps, Button, Notify } from 'uiw';
 
 class Demo extends React.Component {
@@ -195,8 +207,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 简单的竖直方向的步骤条。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Steps } from 'uiw';
 
 class Demo extends React.Component {

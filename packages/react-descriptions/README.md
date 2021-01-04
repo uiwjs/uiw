@@ -13,8 +13,9 @@ import Descriptions from '@uiw/react-descriptions';
 
 简单的展示。
 
-<!--DemoStart,noScroll,bgWhite,codePen-->
+<!--DemoStart,noScroll,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Descriptions } from 'uiw';
 
 ReactDOM.render(
@@ -36,8 +37,9 @@ ReactDOM.render(
 
 带边框和背景颜色列表。
 
-<!--DemoStart,noScroll,bgWhite,codePen-->
+<!--DemoStart,noScroll,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Descriptions, Badge } from 'uiw';
 
 ReactDOM.render(
@@ -72,9 +74,10 @@ ReactDOM.render(
 
 自定义尺寸，适应在各种容器中展示。
 
-<!--DemoStart,noScroll,bgWhite,codePen-->
+<!--DemoStart,noScroll,bgWhite,codePen,codeSandbox-->
 ```js
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Descriptions, Divider, Radio, RadioGroup } from 'uiw';
 
 class Demo extends React.Component {
@@ -142,9 +145,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 垂直的列表。
 
-<!--DemoStart,noScroll,bgWhite,codePen-->
+<!--DemoStart,noScroll,bgWhite,codePen,codeSandbox-->
 ```js
-import React from 'react';
+import ReactDOM from 'react-dom';
 import { Descriptions, Divider } from 'uiw';
 
 ReactDOM.render(

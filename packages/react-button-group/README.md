@@ -12,8 +12,9 @@ import ButtonGroup from '@uiw/react-button-group';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Button, Divider, ButtonGroup } from 'uiw';
 
 ReactDOM.render(

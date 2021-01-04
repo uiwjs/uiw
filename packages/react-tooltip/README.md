@@ -13,8 +13,9 @@ import Tooltip from '@uiw/react-tooltip';
 
 最简单的用法。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Tooltip, Button } from 'uiw';
 
 const Demo = () => (
@@ -41,8 +42,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 位置有 `12` 个方向，根据 `placement` 参数来设置。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Tooltip, Button, Divider } from 'uiw';
 
 const btnStl = {position: 'relative', width: 70 }
@@ -122,8 +124,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 文字提示组件 `<Tooltip />`，通过设置属性 `trigger` 可以文字提示操作方式。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Tooltip, Button } from 'uiw';
 
 const Demo = () => (
@@ -146,8 +149,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 通过设置属性 `visibleArrow` 可以文字提示框不显示箭头。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Tooltip, Button } from 'uiw';
 
 const Demo = () => (
@@ -168,8 +172,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 受控组件
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Tooltip, Switch, Divider } from 'uiw';
 
 class Demo extends React.Component {

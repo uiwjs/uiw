@@ -12,8 +12,9 @@ import Progress from '@uiw/react-portal';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Progress } from 'uiw';
 
 const { Line } = Progress;
@@ -35,8 +36,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 设置参数`strokeWidth`即可
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Progress } from 'uiw';
 
 const { Line } = Progress;
@@ -56,8 +58,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 圆圈进度条
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Progress } from 'uiw';
 
 const { Circle } = Progress;
@@ -78,8 +81,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 通过`strokeWidth`设置圆圈进度宽带，通过`width`（`type="circle"`有效）设置圆圈大小，
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Progress } from 'uiw';
 
 let sty = {marginRight:15}
@@ -99,8 +103,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 进度条动态展示更直观。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Progress } from 'uiw';
 
 class Demo extends React.Component {
@@ -146,8 +152,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 `format` 属性指定格式。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Progress } from 'uiw';
 
 const sty = {marginRight:10}

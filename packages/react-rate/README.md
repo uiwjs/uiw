@@ -13,8 +13,9 @@ import Rate from '@uiw/react-rate';
 
 按钮样式的单选组合。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon } from 'uiw';
 
 const Demo = () => (
@@ -39,8 +40,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<Rate />`](#/components/rate) 组件
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Form, Row, Col, Icon, Rate, Button, Notify } from 'uiw';
 
 const Demo = () => (
@@ -106,8 +108,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 受控
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon, RadioGroup, Radio } from 'uiw';
 
 const Demo = () => {
@@ -136,8 +139,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 按钮样式的单选组合。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon } from 'uiw';
 
 const Demo = () => (
@@ -162,6 +166,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,codePen-->
 ```js
+import ReactDOM from 'react-dom';
 import { Rate, Divider } from 'uiw';
 
 const Demo = () => (
@@ -180,8 +185,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 半选
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon } from 'uiw';
 
 const Demo = () => (
@@ -198,8 +204,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 尺寸
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon } from 'uiw';
 
 const Demo = () => (

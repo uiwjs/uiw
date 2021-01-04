@@ -11,8 +11,9 @@ import { Row, Col } from '@uiw/react-grid';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Row, Col } from 'uiw';
 
 const Box = ({ num, height, width, style, background }) => <div style={{ ...style, textAlign: 'center', paddingTop: 5, paddingBottom: 5, background, width, height}}>Col {num}</div>
@@ -31,8 +32,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 栅格间隔，可以写成像素值
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Row, Col } from 'uiw';
 
 const Blank = ({ num, height, width, style, background }) => <div style={{ ...style, textAlign: 'center', paddingTop: 5,paddingBottom: 5, background, width, height}}>Col {num}</div>
@@ -57,8 +59,9 @@ ReactDOM.render(
 
 ### Flex 行设置列对齐
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Row, Col } from 'uiw';
 
 const colStyl = { backgroundColor: 'rgba(230, 230, 230, 0.67)', marginBottom: 10 }
@@ -98,8 +101,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### Flex 列对齐
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Row, Col } from 'uiw';
 
 const Blank = ({ num, style, background = '#2EA3F4' }) => <div style={{ ...style, textAlign: 'center', color: '#fff', paddingTop: 5, paddingBottom: 5, background }}>Col {num}</div>
@@ -118,8 +122,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 对齐内容
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Row, Col } from 'uiw';
 
 const rowStyl = { backgroundColor: 'rgba(230, 230, 230, 0.67)', marginBottom: 10 }
@@ -160,8 +165,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 可以通过指定 `24` 列中每列的宽度来创建基本网格系统。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Row, Col } from 'uiw';
 
 const Blank = ({ num, height, width, style, background = '#2EA3F4' }) => <div style={{ ...style, textAlign: 'center', color: '#fff', paddingTop: 5, paddingBottom: 5, background, width, height}}>Col {num}</div>
@@ -202,8 +208,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 动态列增长
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Row, Col } from 'uiw';
 
 const Blank = ({ num, style, background = '#2EA3F4' }) => <div style={{ ...style, textAlign: 'center', color: '#fff', paddingTop: 5, paddingBottom: 5, background }}>Col {num}</div>

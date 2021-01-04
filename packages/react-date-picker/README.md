@@ -11,8 +11,10 @@ import DatePicker from '@uiw/react-date-picker';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
 
 class Demo extends React.Component {
@@ -51,8 +53,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 显示时间
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
 
 class Demo extends React.Component {
@@ -86,8 +90,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 设置本地语言
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
 
 class Demo extends React.Component {
@@ -123,8 +129,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 初始展示日期
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
 
 class Demo extends React.Component {
@@ -157,8 +165,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 通过 `disabledDate` 方法设置，今天和今天之前不能选择。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
 
 function disabledDate(currentDate) {
@@ -197,8 +207,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 使用 `renderDay` 可以自定义日期单元格的内容和样式。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
 
 class Demo extends React.Component {

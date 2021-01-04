@@ -11,8 +11,9 @@ import Switch from '@uiw/react-switch';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
+```jsx
+import ReactDOM from 'react-dom';
 import { Switch } from 'uiw';
 
 const Demo = () => (
@@ -29,8 +30,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### Form 中使用 Switch
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import ReactDOM from 'react-dom';
 import { Form, Switch, Row, Col, Button, Notify } from 'uiw';
 
 const Demo = () => (
@@ -88,8 +90,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 设置文字
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
+```jsx
+import ReactDOM from 'react-dom';
 import { Switch } from 'uiw';
 
 const Demo = () => (
@@ -111,8 +114,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 禁用状态
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
+```jsx
+import ReactDOM from 'react-dom';
 import { Switch } from 'uiw';
 
 const Demo = () => (
@@ -128,8 +132,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 尺寸
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
+```jsx
+import ReactDOM from 'react-dom';
 import { Switch } from 'uiw';
 
 const Demo = () => (
@@ -149,8 +154,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 通过 `checked` 属性改变 `Switch` 组件状态。
 
-<!--DemoStart,bgWhite,codePen--> 
-```js
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Switch, Button } from 'uiw';
 
 class Demo extends React.Component {

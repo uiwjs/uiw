@@ -10,9 +10,9 @@ import Loader from '@uiw/react-loader';
 
 ### 基础实例
 
-<!--DemoStart,bgWhite,codePen-->
-
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import ReactDOM from 'react-dom';
 import { Loader } from "uiw";
 
 ReactDOM.render(
@@ -29,9 +29,10 @@ ReactDOM.render(
 
 ### 警告提示中加载
 
-<!--DemoStart,bgWhite,codePen-->
-
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Loader, Row, Col, Message, Icon } from "uiw";
 
 class Demo extends Component {
@@ -99,9 +100,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 卡片加载中
 
-<!--DemoStart,bgWhite,codePen-->
-
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import ReactDOM from 'react-dom';
 import { Loader, Card, Col, Row } from "uiw";
 
 ReactDOM.render(
@@ -175,9 +176,9 @@ ReactDOM.render(
 
 ### 自定义加载图标动画
 
-<!--DemoStart,bgWhite,codePen-->
-
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import ReactDOM from 'react-dom';
 import { Loader, Card, Icon } from "uiw";
 
 ReactDOM.render(
@@ -216,9 +217,10 @@ ReactDOM.render(
 
 页面数据加载时显示。
 
-<!--DemoStart,bgWhite,codePen-->
-
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Loader, Icon, Button } from "uiw";
 
 class Demo extends React.Component {
@@ -271,13 +273,13 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### Props
 
-| 参数       | 说明                                 | 类型                              | 默认值    |
-| ---------- | ------------------------------------ | --------------------------------- | --------- |
-| size       | 尺寸                                 | Enum{`small`, `default`, `large`} | `default` |
-| loading    | 是否旋转                             | Boolean                           | `true`    |
-| indicator  | 加载指示符，可以加载一个 Icon 动画   | ReactNode                         | -         |
-| tip        | 当作为包裹元素时，可以自定义描述文案 | String                            | -         |
-| color      | 设置图标与文字的颜色                 | String                            | -         |
-| vertical   | 图标与文字垂直显示                   | Boolean                           | -         |
-| bgColor    | 自定义背景颜色                       | String                            | -         |
-| fullscreen | 是否全屏显示                         | Boolean                           | `false`   |
+| 参数       | 说明 | 类型 | 默认值 |
+| ---------- | ------- | ------- | --------- |
+| size       | 尺寸 | Enum{`small`, `default`, `large`} | `default` |
+| loading    | 是否旋转 | Boolean | `true` |
+| indicator  | 加载指示符，可以加载一个 Icon 动画   | ReactNode | - |
+| tip        | 当作为包裹元素时，可以自定义描述文案 | String  | - |
+| color      | 设置图标与文字的颜色 | String  | - |
+| vertical   | 图标与文字垂直显示 | Boolean | - |
+| bgColor    | 自定义背景颜色 | String  | - |
+| fullscreen | 是否全屏显示 | Boolean | `false` |

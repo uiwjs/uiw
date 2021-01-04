@@ -11,8 +11,9 @@ import Input from '@uiw/react-input';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import ReactDOM from 'react-dom';
 import { Input } from 'uiw';
 
 const Demo = () => (
@@ -26,8 +27,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### Form 中使用 Input
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import ReactDOM from 'react-dom';
 import { Form, Input, Row, Col, Button, Notify } from 'uiw';
 
 const Demo = () => (
@@ -96,8 +98,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 插入图标
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import ReactDOM from 'react-dom';
 import { Input, Row, Col } from 'uiw';
 
 const stylItem = { margin: 20 };
@@ -127,8 +130,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 向后面插入 [`Button`](#/components/button) 或者 [`Tag`](#/components/tag)
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import ReactDOM from 'react-dom';
 import { Input, Row, Col, Button, Tag } from 'uiw';
 
 const Demo = () => (
@@ -171,8 +175,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 输入框尺寸
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import ReactDOM from 'react-dom';
 import { Input, Row, Col, Tag, Button } from 'uiw';
 
 const Demo = () => (
@@ -297,8 +302,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 密码输入框
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Input, Row, Col, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -339,8 +346,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 输入框被禁用
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Icon, Input, Row, Col} from 'uiw';
 
 const stylItem = { margin: 20 };

@@ -11,8 +11,9 @@ import Table from '@uiw/react-table';
 
 ### 基本使用
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Table, Button } from 'uiw';
 
 const columns = [
@@ -65,8 +66,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 表头分组通过 `columns` 数组中对象的 `children` 来实现，以渲染分组表头。。
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Table, Button } from 'uiw';
 
 const columns = [
@@ -139,8 +141,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 表头只支持列合并，使用 `columns` 里的 `colSpan` 进行设置。表格支持行/列合并，使用 `render` 里的单元格属性 `colSpan` 或者 `rowSpan` 设值为 0 时，设置的表格不会渲染。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Table, Button } from 'uiw';
 
 const columns = [
@@ -201,8 +204,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 添加表格边框线，页头和页脚的展现效果。
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Table, Button } from 'uiw';
 
 const columns = [
@@ -260,8 +264,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 点击单元格
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Table, Button, Notify } from 'uiw';
 
 const columns = [
@@ -334,8 +339,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 原始HTML
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Table, Button } from 'uiw';
 
 const Demo = () => (
@@ -421,8 +427,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 选择和操作
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Table, Button, Checkbox, Pagination, Loader } from 'uiw';
 
 class Demo extends React.Component {

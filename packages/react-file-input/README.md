@@ -11,8 +11,9 @@ import FileInput from '@uiw/react-file-input';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { FileInput } from 'uiw';
 
 ReactDOM.render(

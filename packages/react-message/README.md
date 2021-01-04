@@ -11,8 +11,9 @@ import Message from '@uiw/react-message';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Message, Divider } from 'uiw';
 
 class Demo extends React.Component {
@@ -43,37 +44,36 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 显示图标
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Message, Divider } from 'uiw';
 
-class Demo extends React.Component {
-  render() {
-    return (
-      <div>
-        <Message showIcon type="success" title="成功提示标题" />
-        <Message showIcon type="warning" title="警告提示标题" />
-        <Message showIcon type="info" title="说明提示标题" />
-        <Message showIcon type="error" title="错误提示标题" />
-        <Divider />
-        <Message showIcon type="success" description="这里是成功提示详情描述。" />
-        <Message showIcon type="warning" description="这里是警告提示详情描述。这里并没有设置 title，只设置 description 同时设置显示图标。" />
-        <Message showIcon type="info" description="这里是说明提示详情描述。" />
-        <Message showIcon type="error" description="这里是错误提示详情描述。" />
-        <Divider />
-        <Message showIcon type="success" title="成功提示标题" description="这里是成功提示详情描述。" />
-        <Message
-          showIcon
-          type="warning"
-          title="警告提示标题"
-        >
-          这里是警告提示详情描述。
-        </Message>
-        <Message showIcon type="info" title="说明提示标题" description="这里是说明提示详情描述。" />
-        <Message showIcon type="error" title="错误提示标题" description="这里是错误提示详情描述。" />
-      </div>
-    )
-  }
+function Demo() {
+  return (
+    <div>
+      <Message showIcon type="success" title="成功提示标题" />
+      <Message showIcon type="warning" title="警告提示标题" />
+      <Message showIcon type="info" title="说明提示标题" />
+      <Message showIcon type="error" title="错误提示标题" />
+      <Divider />
+      <Message showIcon type="success" description="这里是成功提示详情描述。" />
+      <Message showIcon type="warning" description="这里是警告提示详情描述。这里并没有设置 title，只设置 description 同时设置显示图标。" />
+      <Message showIcon type="info" description="这里是说明提示详情描述。" />
+      <Message showIcon type="error" description="这里是错误提示详情描述。" />
+      <Divider />
+      <Message showIcon type="success" title="成功提示标题" description="这里是成功提示详情描述。" />
+      <Message
+        showIcon
+        type="warning"
+        title="警告提示标题"
+      >
+        这里是警告提示详情描述。
+      </Message>
+      <Message showIcon type="info" title="说明提示标题" description="这里是说明提示详情描述。" />
+      <Message showIcon type="error" title="错误提示标题" description="这里是错误提示详情描述。" />
+    </div>
+  )
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
@@ -81,8 +81,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 自定义图标
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Message, Divider } from 'uiw';
 
 const chat = ( <svg width="20" height="20" viewBox="0 0 20 20"> <path d="M19 0H7c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h5.59l3.71 3.71c.17.18.42.29.7.29.55 0 1-.45 1-1v-3h1c.55 0 1-.45 1-1V1c0-.55-.45-1-1-1zM7 13c-1.1 0-2-.9-2-2V4H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h1v3a1.003 1.003 0 0 0 1.71.71L7.41 16H13c.55 0 1-.45 1-1v-.17L12.17 13H7z" fillRule="evenodd" /> </svg> );
@@ -109,8 +111,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 关闭按钮
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Message, Divider } from 'uiw';
 
 class Demo extends React.Component {

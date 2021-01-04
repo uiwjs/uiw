@@ -11,8 +11,9 @@ import Tag from '@uiw/react-tag';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
 import { Tag, Divider } from 'uiw';
 
 const Demo = () => (
@@ -44,8 +45,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 标签禁用
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
 import { Tag, Divider } from 'uiw';
 
 const Demo = () => (
@@ -75,8 +77,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 添加图标
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
 import { Tag, Divider } from 'uiw';
 
 const Demo = () => (
@@ -100,8 +103,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 控制关闭标签
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Tag, Icon } from 'uiw';
 
 class Demo extends React.Component {
@@ -144,8 +149,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 标签组动态删除
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Tag, Button, Icon } from 'uiw';
 
 let num = 3;
@@ -201,8 +208,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 选择你感兴趣的话题，下面实例类似 CheckBox 多选。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Tag } from 'uiw';
 
 class Demo extends React.Component {
@@ -256,8 +265,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 选择器
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Dropdown, Menu, Button, Icon, Input, Checkbox, Tag, Row, Col } from 'uiw';
 
 class SelectTag extends React.Component {

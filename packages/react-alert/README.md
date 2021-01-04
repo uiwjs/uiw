@@ -11,8 +11,10 @@ import Alert from '@uiw/react-alert';
 
 ## 基本用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Alert, ButtonGroup, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -65,8 +67,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 这里是利用 `Promise` 等它执行完成再去关闭窗口
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Alert, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -119,8 +123,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 通过设置 `icon` 和 `type` 参数设置带状态的弹出对话框。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Alert, ButtonGroup, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -212,8 +218,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ## 带标题的弹出框
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Alert, ButtonGroup, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -311,8 +319,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 这个对话框有两个按钮，单击 **`确定按钮`** 或 **`取消按钮`** 后，此对话框将关闭，将不触发 ~~`onConfirm`~~ 或 ~~`onCancel`~~ 事件。因为这俩按钮是自定义按钮。你可以正对自定义按钮外面的对象定义 `className="w-alert-footer"` 将显示默认样式。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Alert, ButtonGroup, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -360,8 +370,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 不显示遮罩层
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Alert, ButtonGroup, Button } from 'uiw';
 
 class Demo extends React.Component {

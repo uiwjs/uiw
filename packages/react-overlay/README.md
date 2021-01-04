@@ -11,8 +11,10 @@ import Overlay from '@uiw/react-overlay';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Overlay, Button, Card } from 'uiw';
 
 class Demo extends React.PureComponent {
@@ -61,8 +63,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 完全定制弹出容器
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Overlay, Button } from 'uiw';
 
 class Demo extends React.PureComponent {
@@ -142,8 +146,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 [`Portals`](https://reactjs.org/docs/portals.html#event-bubbling-through-portals) 是 react 16 提供的官方解决方案，使得组件可以脱离父组件层级挂载在 DOM 树的任何位置，我们利用这个方法，可将模态对话框生成到根节点的外面，默认情况生成到跟节点的外面，通过将 `usePortal` 设置为 `false` 将对话框生成在父组件层级挂载的 DOM 树中。 
 
-<!--DemoStart,bgWhite,noScroll,codePen--> 
+<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Overlay, Button, Card } from 'uiw';
 
 class Demo extends React.PureComponent {
@@ -181,8 +187,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 > 注意：`@3.2.0` ~~`transitionDuration={1000}`~~ 更名为 `timeout`
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Overlay, Button, Card } from 'uiw';
 
 class Demo extends React.PureComponent {

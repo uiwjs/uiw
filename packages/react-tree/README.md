@@ -11,8 +11,9 @@ import Tree from '@uiw/react-tree';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Tree, Card, Row, Col } from 'uiw';
 
 const data = [
@@ -139,8 +140,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 自定义图标
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Tree, Card, Row, Col, Icon } from 'uiw';
 
 const data = [
@@ -282,8 +284,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 通过设置 `checkStrictly` 父节点受子节点控制，设置 `multiple` 为多选，设置 `isSelected` 取消选中效果，也可以使用 [`TreeChecked`](#/components/tree-checked) 组件。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```jsx
+import ReactDOM from 'react-dom';
 import { Tree, Card, Row, Col } from 'uiw';
 
 const data = [
@@ -398,8 +401,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 带连接线的树，通过设置 `showLine`。
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Tree, Card, Row, Col } from 'uiw';
 
 const data = [
@@ -526,8 +530,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 默认展开树
 
-<!--DemoStart,bgWhite,codePen-->
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import ReactDOM from 'react-dom';
 import { Tree, Card, Row, Col } from 'uiw';
 
 const data = [

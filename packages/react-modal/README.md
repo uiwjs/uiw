@@ -11,8 +11,10 @@ import Modal from '@uiw/react-modal';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Modal, ButtonGroup, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -73,8 +75,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 这里是利用 `Promise` 等它执行完成再去关闭窗口
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Modal, ButtonGroup, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -132,8 +136,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 这里是利用 `Promise` 等它执行完成再去关闭窗口
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Modal, ButtonGroup, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -247,8 +253,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 设置 `useButton={false}` 隐藏默认的按钮，再根据自己需求定义按钮。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Modal, ButtonGroup, Button } from 'uiw';
 
 class Demo extends React.Component {

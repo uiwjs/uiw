@@ -11,8 +11,10 @@ import Drawer from '@uiw/react-drawer';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Drawer, ButtonGroup, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -63,8 +65,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 显示位置
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Drawer, ButtonGroup, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -121,8 +125,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 添加页脚
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```js
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Drawer, ButtonGroup, Button } from 'uiw';
 
 class Demo extends React.Component {

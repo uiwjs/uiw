@@ -13,8 +13,9 @@ import Card from '@uiw/react-card';
 
 包含标题、内容、操作区域。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Card } from 'uiw';
 
 ReactDOM.render(
@@ -34,8 +35,9 @@ ReactDOM.render(
 
 在灰色背景上使用无边框的卡片。
 
-<!--DemoStart,codePen--> 
+<!--DemoStart,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Card } from 'uiw';
 
 ReactDOM.render(
@@ -53,8 +55,9 @@ ReactDOM.render(
 
 只包含内容区域。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Card } from 'uiw';
 
 ReactDOM.render(
@@ -72,8 +75,9 @@ ReactDOM.render(
 
 可以调整默认边距，设定宽度。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Card } from 'uiw';
 
 let titleStyle = { padding: `10px 16px` };
@@ -95,8 +99,9 @@ ReactDOM.render(
 
 ## 添加页脚
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Card, Icon } from 'uiw';
 
 const footer = (
@@ -130,8 +135,9 @@ ReactDOM.render(
 
 设置属性 `active=true` 将激活卡片，默认展示鼠标经过的样式。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
+import ReactDOM from 'react-dom';
 import { Card, Icon } from 'uiw';
 
 const footer = (

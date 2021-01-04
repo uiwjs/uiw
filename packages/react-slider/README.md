@@ -13,8 +13,10 @@ import Slider from '@uiw/react-slider';
 
 按钮样式的单选组合。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Slider, Divider } from 'uiw';
 
 class Demo extends React.Component {
@@ -86,8 +88,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<Slider />`](#/components/slider) 组件，需要设置 `initialValue` 初始值。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import ReactDOM from 'react-dom';
 import { Form, Row, Col, Slider, Button, Notify } from 'uiw';
 
 const Demo = () => (
@@ -151,8 +154,10 @@ ReactDOM.render(<Demo />, _mount_);
 
 通过设置 `tooltip` 的值，来控制提示的显示。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox-->
 ```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Slider, Divider} from 'uiw';
 
 class Demo extends React.Component {
@@ -181,6 +186,8 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,codePen-->
 ```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Slider, Divider} from 'uiw';
 
 class Demo extends React.Component {
@@ -252,6 +259,8 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,codePen-->
 ```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Slider, Divider} from 'uiw';
 
 class Demo extends React.Component {
@@ -329,6 +338,8 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,codePen-->
 ```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Slider, Divider} from 'uiw';
 
 class Demo extends React.Component {
@@ -358,6 +369,8 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--DemoStart,bgWhite,codePen-->
 ```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Row, Col, Slider } from 'uiw';
 
 class Demo extends React.Component {
