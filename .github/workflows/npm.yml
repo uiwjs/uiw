@@ -1,4 +1,4 @@
-name: Create Release
+name: Create Release & Push Package
 on:
   push:
     tags: 
@@ -25,10 +25,16 @@ jobs:
 
     - run: npm run bundle
     - run: npm run coverage
+
+    - name: Generate changelog
+      id: changelog
+      uses: jaywcjlove/changelog-generator@main
+      with:
+        myToken: ${{ secrets.GITHUB_TOKEN }}
+        filter-author: (jaywcjlove|小弟调调™|dependabot\[bot\]|Renovate Bot)
+        filter: (^[\s]+?[R|r]elease)|(^[R|r]elease)
+
     - run: |
-        git fetch
-        git checkout master
-        git branch -a
         # Strip git ref prefix from version
         VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
         COMMIT=released-${VERSION}
@@ -50,14 +56,6 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Generate changelog
-      id: changelog
-      uses: jaywcjlove/changelog-generator@main
-      with:
-        myToken: ${{ secrets.GITHUB_TOKEN }}
-        filter-author: (jaywcjlove|小弟调调™|dependabot\[bot\]|Renovate Bot)
-        filter: (^[\s]+?[R|r]elease)|(^[R|r]elease)
 
     - name: Create Release
       id: create_release
