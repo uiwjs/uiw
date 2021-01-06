@@ -46,7 +46,7 @@ export default function CreatePage(props = {}) {
               css_external: `https://unpkg.com/uiw@${version}/dist/uiw.min.css`,
               js_external: `https://unpkg.com/react@16.x/umd/react.development.js;https://unpkg.com/react-dom@16.x/umd/react-dom.development.js;https://unpkg.com/classnames@2.2.6/index.js;https://unpkg.com/uiw@${version}/dist/uiw.min.js;https://unpkg.com/@uiw/codepen-require-polyfill@1.0.2/index.js`,
             };
-        const codeSandboxOptions = !codeSandbox
+        const codeSandboxOption = !codeSandbox
           ? undefined
           : {
               files: {
@@ -113,7 +113,7 @@ export default function CreatePage(props = {}) {
               noCode,
               noScroll,
               codePenOption,
-              codeSandboxOptions,
+              codeSandboxOption,
             }),
             codeStr[2],
           ),
