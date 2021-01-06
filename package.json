@@ -44,7 +44,7 @@
   },
   "jest": {
     "testMatch": [
-      "<rootDir>/packages/**/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "<rootDir>/packages/**/src/**/__test__/*.{js,jsx,ts,tsx}",
       "<rootDir>/packages/**/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
     ]
   },
