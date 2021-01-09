@@ -13,7 +13,7 @@ import Calendar from '@uiw/react-calendar';
 
 下面是基础使用方法，可以设置日历通知事项，在日历渲染单元格时，会根据 data 内容来渲染单元格通知事项。
 
-<!--DemoStart,codePen,codePen,codeSandbox--> 
+<!--DemoStart,bgWhite,codePen,codePen,codeSandbox--> 
 ```js
 import ReactDOM from 'react-dom';
 import { Calendar, Badge } from 'uiw';
@@ -73,7 +73,7 @@ ReactDOM.render(
 
 在日历面板上面添加通知事件，还可以通过设置 `disabledDate` 来禁止部分日期点击，如下实例每月12号不能点击。
 
-<!--DemoStart,codePen,codePen,codeSandbox--> 
+<!--DemoStart,bgWhite,codePen,codePen,codeSandbox--> 
 ```js
 import ReactDOM from 'react-dom';
 import { Calendar, Badge } from 'uiw';
@@ -151,3 +151,4 @@ ReactDOM.render(
 | weekday[`<DatePicker>`](#/components/date-picker) | 星期显示文本 | Array | \[`日`, `一`, `二`, `三`, `四`, `五`, `六`\] |
 | onSelectDay `@3.0.0+` | 点击选择日期回调 | Function | function(date?: Date, dateSource: { day?: number, month?: number, year?: number }) |
 | monthLabel[`<DatePicker>`](#/components/date-picker) | 月份显示文本 | Array | \[`一月`, `二月`, `三月`, `四月`, `五月`, `六月`, `七月`, `八月`, `九月`, `十月`, `十一月`, `十二月`\] |
+| onPaging | 月份显示文本 | Function(type: 'prev' | 'next' | 'today', month: number) | - |

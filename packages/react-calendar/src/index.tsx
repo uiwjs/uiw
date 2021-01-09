@@ -46,6 +46,8 @@ export interface CalendarProps extends IProps, DatePickerDayProps {
    * 月份显示文本
    */
   monthLabel?: string[];
+  /** 翻页触发事件 */
+  onPaging?: (type: 'prev' | 'next' | 'today', month: number) => void;
 }
 
 export interface ICalendarState {
@@ -102,9 +104,11 @@ export default class Calendar extends React.Component<
   };
   onPaging(type: 'prev' | 'next' | 'today') {
     const { panelDate } = this.state;
-    const { today } = this.props;
+    const { today, onPaging } = this.props;
     if (type === 'today') {
-      this.setState({ panelDate: today || new Date() });
+      this.setState({ panelDate: today || new Date() }, () => {
+        onPaging && onPaging(type, (panelDate as Date).getMonth());
+      });
       return;
     }
     const month = (panelDate as Date).getMonth();
@@ -114,7 +118,9 @@ export default class Calendar extends React.Component<
     if (panelDate && type === 'next') {
       panelDate.setMonth(month + 1);
     }
-    this.setState({ panelDate });
+    this.setState({ panelDate }, () => {
+      onPaging && onPaging(type, month);
+    });
   }
   renderDay = (day: number, props: DatePickerDayRenderDay) => {
     const { prefixCls, data } = this.props;
