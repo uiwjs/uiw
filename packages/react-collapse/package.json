@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-collapse",
-  "version": "4.7.4",
+  "version": "4.7.5",
   "description": "Collapse component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/collapse",
@@ -42,8 +42,8 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-icon": "^4.7.4",
-    "@uiw/utils": "^4.7.4",
+    "@uiw/react-icon": "^4.7.5",
+    "@uiw/utils": "^4.7.5",
     "react-transition-group": "^4.3.0"
   },
   "devDependencies": {
