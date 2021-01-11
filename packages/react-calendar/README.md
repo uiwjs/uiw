@@ -73,7 +73,7 @@ ReactDOM.render(
 
 在日历面板上面添加通知事件，还可以通过设置 `disabledDate` 来禁止部分日期点击，如下实例每月12号不能点击。
 
-<!--DemoStart,bgWhite,codePen,codePen,codeSandbox--> 
+<!--DemoStart,bgWhite,noScroll,codePen,codePen,codeSandbox--> 
 ```js
 import ReactDOM from 'react-dom';
 import { Calendar, Badge } from 'uiw';
