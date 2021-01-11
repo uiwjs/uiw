@@ -108,6 +108,7 @@ function filterData(dt) {
       case 'warning': color = '#F95C2B'; break;
       case 'default': color = '#393E48'; break;
       case 'info': color = '#008EF0'; break;
+      default: color = '#008EF0'; break;
     }
     item.label = <Badge color={color}>{item.label}</Badge>;
     return item;
