@@ -13,7 +13,7 @@ import Calendar from '@uiw/react-calendar';
 
 下面是基础使用方法，可以设置日历通知事项，在日历渲染单元格时，会根据 data 内容来渲染单元格通知事项。
 
-<!--DemoStart,bgWhite,codePen,codePen,codeSandbox--> 
+<!--DemoStart,bgWhite,noScroll,codePen,codePen,codeSandbox--> 
 ```js
 import ReactDOM from 'react-dom';
 import { Calendar, Badge } from 'uiw';
