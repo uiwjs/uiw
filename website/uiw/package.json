@@ -49,7 +49,7 @@
     "@kkt/less-modules": "6.0.11",
     "@kkt/mocker-api": "6.0.11",
     "@kkt/raw-modules": "6.0.11",
-    "@kkt/scope-plugin-options": "6.0.11",
+    "@kkt/scope-plugin-options": "6.1.2",
     "kkt": "6.0.11",
     "react-test-renderer": "16.14.0"
   },
