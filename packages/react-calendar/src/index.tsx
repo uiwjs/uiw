@@ -120,7 +120,7 @@ export default class Calendar extends React.Component<
           onPaging &&
             onPaging(
               type,
-              (panelDate as Date).getMonth() + 1,
+              (this.state.panelDate as Date).getMonth() + 1,
               this.state.panelDate,
             );
         },
@@ -128,17 +128,14 @@ export default class Calendar extends React.Component<
       return;
     }
     const month = (panelDate as Date).getMonth();
-    let month1 = month;
     if (panelDate && type === 'prev') {
       panelDate.setMonth(month - 1);
-      month1 = month === 0 ? 12 : month;
     }
     if (panelDate && type === 'next') {
       panelDate.setMonth(month + 1);
-      month1 = month + 2 === 13 ? 1 : month + 2;
     }
     this.setState({ panelDate }, () => {
-      onPaging && onPaging(type, month1, panelDate);
+      onPaging && onPaging(type, panelDate!.getMonth() + 1, panelDate);
     });
   }
   renderDay = (day: number, props: DatePickerDayRenderDay) => {
