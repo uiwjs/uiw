@@ -46,7 +46,7 @@
     "uiw": "^4.7.7"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.0.11",
+    "@kkt/less-modules": "6.5.0",
     "@kkt/mocker-api": "6.0.11",
     "@kkt/raw-modules": "6.0.11",
     "@kkt/scope-plugin-options": "6.0.11",
