@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-notify",
-  "version": "4.7.5",
+  "version": "4.7.7",
   "description": "Notify component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/notify",
@@ -42,10 +42,10 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-alert": "^4.7.5",
-    "@uiw/react-button": "^4.7.5",
-    "@uiw/react-icon": "^4.7.5",
-    "@uiw/utils": "^4.7.5"
+    "@uiw/react-alert": "^4.7.7",
+    "@uiw/react-button": "^4.7.7",
+    "@uiw/react-icon": "^4.7.7",
+    "@uiw/utils": "^4.7.7"
   },
   "devDependencies": {
     "@babel/runtime": "7.12.5",

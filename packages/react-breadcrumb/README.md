@@ -13,7 +13,7 @@ import Breadcrumb from '@uiw/react-breadcrumb';
 
 适用广泛的基础用法，在 `Breadcrumb` 中使用 `Breadcrumb.Item` 标签表示从首页开始的每一级。
 
-<!--DemoStart,bgWhite,codePen--> 
+<!--DemoStart,bgWhite,codePen,codeSandbox--> 
 ```js
 import { Breadcrumb } from 'uiw';
 
@@ -36,7 +36,7 @@ ReactDOM.render(
 <!--DemoStart,codePen,codeSandbox--> 
 ```js
 import ReactDOM from 'react-dom';
-import { Breadcrumb } from 'uiw';
+import { Breadcrumb, Divider } from 'uiw';
 
 ReactDOM.render(
   <div>
