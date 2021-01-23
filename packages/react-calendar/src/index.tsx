@@ -47,7 +47,11 @@ export interface CalendarProps extends IProps, DatePickerDayProps {
    */
   monthLabel?: string[];
   /** 翻页触发事件 */
-  onPaging?: (type: 'prev' | 'next' | 'today', month: number) => void;
+  onPaging?: (
+    type: 'prev' | 'next' | 'today',
+    month: number,
+    panelDate?: Date,
+  ) => void;
 }
 
 export interface ICalendarState {
@@ -106,20 +110,39 @@ export default class Calendar extends React.Component<
     const { panelDate } = this.state;
     const { today, onPaging } = this.props;
     if (type === 'today') {
-      this.setState({ panelDate: today || new Date() }, () => {
-        onPaging && onPaging(type, (panelDate as Date).getMonth());
-      });
+      this.setState(
+        (state) => {
+          return {
+            panelDate: today || new Date(),
+          };
+        },
+        () => {
+          onPaging &&
+            onPaging(
+              type,
+              (panelDate as Date).getMonth() + 1,
+              this.state.panelDate,
+            );
+        },
+      );
       return;
     }
     const month = (panelDate as Date).getMonth();
+    panelDate && panelDate.setDate(1);
+    panelDate && panelDate.setHours(9);
+    panelDate && panelDate.setMinutes(0);
+    panelDate && panelDate.setSeconds(0);
+    let month1 = month;
     if (panelDate && type === 'prev') {
       panelDate.setMonth(month - 1);
+      month1 = month === 0 ? 12 : month;
     }
     if (panelDate && type === 'next') {
       panelDate.setMonth(month + 1);
+      month1 = month + 2 === 13 ? 1 : month + 2;
     }
     this.setState({ panelDate }, () => {
-      onPaging && onPaging(type, month);
+      onPaging && onPaging(type, month1, panelDate);
     });
   }
   renderDay = (day: number, props: DatePickerDayRenderDay) => {
