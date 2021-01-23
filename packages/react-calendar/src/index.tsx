@@ -128,10 +128,6 @@ export default class Calendar extends React.Component<
       return;
     }
     const month = (panelDate as Date).getMonth();
-    panelDate && panelDate.setDate(1);
-    panelDate && panelDate.setHours(9);
-    panelDate && panelDate.setMinutes(0);
-    panelDate && panelDate.setSeconds(0);
     let month1 = month;
     if (panelDate && type === 'prev') {
       panelDate.setMonth(month - 1);
