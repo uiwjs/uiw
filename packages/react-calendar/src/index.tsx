@@ -111,16 +111,14 @@ export default class Calendar extends React.Component<
     const { today, onPaging } = this.props;
     if (type === 'today') {
       this.setState(
-        (state) => {
-          return {
-            panelDate: today || new Date(),
-          };
+        {
+          panelDate: today || new Date(),
         },
         () => {
           onPaging &&
             onPaging(
               type,
-              (this.state.panelDate as Date).getMonth() + 1,
+              this.state.panelDate!.getMonth() + 1,
               this.state.panelDate,
             );
         },
