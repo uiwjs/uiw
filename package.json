@@ -62,11 +62,11 @@
     ]
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.0.11",
-    "@kkt/react-library": "6.0.11",
+    "@kkt/less-modules": "6.6.2",
+    "@kkt/react-library": "6.6.2",
     "compile-less-cli": "1.7.0",
     "husky": "4.3.6",
-    "kkt": "6.0.11",
+    "kkt": "6.6.2",
     "lerna": "3.22.1",
     "lint-staged": "10.5.3",
     "prettier": "2.2.1",
