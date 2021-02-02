@@ -41,8 +41,8 @@
     "extends": "react-app"
   },
   "scripts": {
-    "bundle": "kkt build --bundle --no-checkRequiredFiles",
-    "bundle:min": "kkt build --bundle --no-checkRequiredFiles --mini --no-emptyDir"
+    "bundle": "kkt build --bundle",
+    "bundle:min": "kkt build --bundle --mini --no-emptyDir"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
