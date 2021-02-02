@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-portal",
-  "version": "4.7.8",
+  "version": "4.7.9",
   "description": "Portal component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/portal",
