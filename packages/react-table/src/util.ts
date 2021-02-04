@@ -34,7 +34,7 @@ function getRowspanNum(data: IColumns[] = [], child = []) {
 }
 
 export interface ILevelItems {
-  header: IColumns[];
+  header: IColumns[][];
   render: {
     [key: string]: any;
   };
@@ -119,7 +119,10 @@ export const getLevelItems = (
  * Get all columns keys
  * @param {Array} data
  */
-export const getAllColumnsKeys = (data: IColumns[], keys: any[] = []) => {
+export const getAllColumnsKeys = (
+  data: IColumns[],
+  keys: any[] = [],
+): string[] => {
   for (let i = 0; i < data.length; i += 1) {
     if (data[i].children) {
       keys = keys.concat(getAllColumnsKeys(data[i].children || []));

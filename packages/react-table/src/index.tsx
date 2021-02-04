@@ -6,12 +6,13 @@ import './style/index.less';
 
 function noop() {}
 
-export interface IColumns {
-  title?: (
-    data: IColumns,
-    rowNum: number,
-    colNum: number,
-  ) => JSX.Element | React.ReactNode;
+type Title =
+  | string
+  | JSX.Element
+  | ((data: IColumns, rowNum: number, colNum: number) => JSX.Element);
+
+export type IColumns<T = Title> = {
+  title?: T;
   key?: string;
   width?: number;
   colSpan?: number;
@@ -25,14 +26,12 @@ export interface IColumns {
   ) => void;
   style?: React.CSSProperties;
   [key: string]: any;
-}
+};
 
 export interface TableProps extends IProps, Omit<HTMLDivProps, 'title'> {
   prefixCls?: string;
   columns?: IColumns[];
-  data?: {
-    [key: string]: any;
-  }[];
+  data?: Record<string, string | number | JSX.Element>[];
   title?: React.ReactNode;
   footer?: React.ReactNode;
   bordered?: boolean;

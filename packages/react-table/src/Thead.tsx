@@ -6,7 +6,7 @@ import './style/index.less';
 function noop() {}
 
 export interface TheadProps extends IProps {
-  data?: TableProps['data'];
+  data?: TableProps['data'][];
   onCellHead?: TableProps['onCellHead'];
 }
 
@@ -26,12 +26,13 @@ export default (
       {...other}
     >
       {data &&
-        data.map((tds, rowNum: number) => (
+        data.length > 0 &&
+        data.map((tds?: IColumns[], rowNum?: number) => (
           <tr key={rowNum}>
-            {tds.map((item: IColumns, colNum: number) => {
+            {(tds || []).map((item, colNum) => {
               const { title, key, render, children, ...thProps } = item;
               const titleNode = (typeof title === 'function'
-                ? title(item, colNum, rowNum)
+                ? title(item, colNum, rowNum!)
                 : title) as IColumns['title'];
               if (thProps.colSpan === 0) {
                 return null;
@@ -39,7 +40,7 @@ export default (
               return (
                 <th
                   key={colNum}
-                  onClick={(evn) => onCellHead(item, colNum, rowNum, evn)}
+                  onClick={(evn) => onCellHead(item, colNum, rowNum!, evn)}
                   {...thProps}
                 >
                   {titleNode}
