@@ -66,10 +66,10 @@ jobs:
         tag_name: ${{ github.ref }}
         release_name: ${{ github.ref }}
         body: |
-          [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/uiw@$VERSION/file/README.md)
+          [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/uiw@${{ steps.changelog.version }}/file/README.md)
 
           ```bash
-          npm i uiw@$VERSION
+          npm i uiw@${{ steps.changelog.version }}
           ```
 
           ${{ steps.changelog.outputs.compareurl }}
@@ -79,6 +79,7 @@ jobs:
         prerelease: false
 
     - run: npm run bundle
+    - run: git checkout -f packages/uiw/tsconfig.json
     - name: npm publish
       run: npm run u:publish
       env:
