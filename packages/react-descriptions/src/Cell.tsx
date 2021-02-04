@@ -28,6 +28,7 @@ function Cell(props: CellProps = {}) {
     colon,
     span,
     children,
+    column,
     ...other
   } = props;
 
@@ -58,7 +59,7 @@ function Cell(props: CellProps = {}) {
         <th {...labelProps}>{label}</th>
         <TagName
           {...other}
-          colSpan={isLastCell && span ? span * 2 - 1 : span}
+          colSpan={span ? span * 2 - 1 : span}
           className={prefixCls ? `${prefixCls}-item-content` : ''}
         >
           {children}
