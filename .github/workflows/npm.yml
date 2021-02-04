@@ -66,10 +66,10 @@ jobs:
         tag_name: ${{ github.ref }}
         release_name: ${{ github.ref }}
         body: |
-          [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/uiw@${{VERSION}}/file/README.md)
+          [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/uiw@${{$VERSION}}/file/README.md)
 
           ```bash
-          npm i uiw@${{VERSION}}
+          npm i uiw@${{$VERSION}}
           ```
 
           ${{ steps.changelog.outputs.compareurl }}
