@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-search-select",
-  "version": "4.7.9",
+  "version": "4.7.10",
   "description": "SearchSelect component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/search-select",
@@ -42,12 +42,12 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/react-dropdown": "^4.7.9",
-    "@uiw/react-icon": "^4.7.9",
-    "@uiw/react-input": "^4.7.9",
-    "@uiw/react-loader": "^4.7.9",
-    "@uiw/react-menu": "^4.7.9",
-    "@uiw/utils": "^4.7.9"
+    "@uiw/react-dropdown": "^4.7.10",
+    "@uiw/react-icon": "^4.7.10",
+    "@uiw/react-input": "^4.7.10",
+    "@uiw/react-loader": "^4.7.10",
+    "@uiw/react-menu": "^4.7.10",
+    "@uiw/utils": "^4.7.10"
   },
   "devDependencies": {
     "@babel/runtime": "7.12.13",
