@@ -203,7 +203,8 @@ class Demo extends React.Component {
               userName: {
                 initialValue: 'uiw',
                 label: '姓名',
-                help: '以“u”开头的名字将在此处显示错误信息'
+                help: '以“u”开头的名字将在此处显示错误信息',
+                children: <Input type="text" />
               },
               age: {
                 initialValue: 9,
