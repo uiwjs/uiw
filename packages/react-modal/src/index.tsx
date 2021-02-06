@@ -1,6 +1,6 @@
 import React, { useState, useImperativeHandle } from 'react';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
-import Button, { ButtonType } from '@uiw/react-button';
+import Button, { ButtonType, ButtonProps } from '@uiw/react-button';
 import Icon from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
 import './style/index.less';
@@ -10,6 +10,7 @@ function noop() {}
 export interface ModalProps extends IProps, OverlayProps {
   type?: ButtonType;
   cancelText?: string;
+  cancelButtonProps?: ButtonProps;
   content?: React.ReactNode;
   confirmText?: string;
   title?: string;
@@ -44,6 +45,7 @@ function InternalModal(
     isOpen = false,
     title,
     cancelText,
+    cancelButtonProps,
     content,
     confirmText = '确认',
     type = 'light',
@@ -148,6 +150,7 @@ function InternalModal(
               </Button>
               {cancelText && (
                 <Button
+                  {...cancelButtonProps}
                   onClick={(e) => {
                     if (overlayRef.current) {
                       handleCancel(e, overlayRef.current);
