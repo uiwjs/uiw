@@ -12,9 +12,6 @@ type SiderMenuProps = DefaultProps & {
 
 export default function SiderMenu(props: SiderMenuProps) {
   const { location, topmenu, menuData } = props;
-  console.log('topmenu:', topmenu);
-  console.log('menuData:', menuData);
-  console.log('props:', props);
   const path = location.pathname.split('/')[1];
   const navData = (menuData || []).filter(
     (item: MenuDataItem) => item.path === `/${path}`,

@@ -41,7 +41,6 @@ function formatterCurrent(
   parentPath = '/',
   result?: any,
 ): MenuDataItem {
-  console.log('data:', data);
   for (let i = 0; i < data.length; i += 1) {
     let path = data[i].path;
     if (/^https?:(?:\/\/)?/.test(path)) {
