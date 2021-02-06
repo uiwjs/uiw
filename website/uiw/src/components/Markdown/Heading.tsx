@@ -1,8 +1,8 @@
 import React from 'react';
 
-function getId(childs) {
+function getId(childs: React.ReactNode[]) {
   let idStr = '';
-  childs.forEach((item) => {
+  childs.forEach((item: any) => {
     if (item.props && item.props.value) {
       idStr += item.props.value;
     } else if (item.props.children) {
@@ -12,9 +12,14 @@ function getId(childs) {
   return idStr;
 }
 
-export default function Heading({ level, children }) {
+export type HeadingProps = {
+  level?: number;
+  children?: JSX.Element;
+};
+
+export default function Heading({ level, children }: HeadingProps) {
   let LevelElm = null;
-  const idStr = getId(children).replace(/\s/g, '-');
+  const idStr = getId(React.Children.toArray(children)).replace(/\s/g, '-');
   switch (level) {
     case 1:
       LevelElm = <h1 id={idStr}>{children}</h1>;

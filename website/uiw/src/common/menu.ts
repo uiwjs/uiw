@@ -1,6 +1,21 @@
 import menuData from './menu.json';
 
-function formatter(data, parentPath = '/') {
+export type MenuDataItemChild = {
+  name: string;
+  divider?: boolean;
+  path: string;
+};
+
+export type MenuDataItem = {
+  name: string;
+  path: string;
+  icon: string;
+  children?: MenuDataItemChild[];
+};
+
+export type MenuData = typeof menuData;
+
+function formatter(data: any, parentPath = '/'): MenuDataItem[] {
   return Object.keys(data).map((item) => {
     let { path } = data[item];
     if (/^https?:(?:\/\/)?/.test(path)) {
@@ -13,14 +28,20 @@ function formatter(data, parentPath = '/') {
       result.children = formatter(
         data[item].children,
         `${parentPath}${data[item].path}/`,
-        data[item].authority,
+        // data[item].authority,
       );
     }
     return result;
   });
 }
 
-function formatterCurrent(data, pathname, parentPath = '/', result) {
+function formatterCurrent(
+  data: any,
+  pathname: string,
+  parentPath = '/',
+  result?: any,
+): MenuDataItem {
+  console.log('data:', data);
   for (let i = 0; i < data.length; i += 1) {
     let path = data[i].path;
     if (/^https?:(?:\/\/)?/.test(path)) {
@@ -40,6 +61,6 @@ function formatterCurrent(data, pathname, parentPath = '/', result) {
 }
 
 const getMenuData = () => formatter(menuData);
-const getMenuCurrentData = (path) => formatterCurrent(menuData, path);
+const getMenuCurrentData = (path: string) => formatterCurrent(menuData, path);
 
 export { getMenuData, getMenuCurrentData };

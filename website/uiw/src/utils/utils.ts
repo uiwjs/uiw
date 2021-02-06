@@ -1,7 +1,7 @@
 // 拼接url参数
-function splitUrl(url, options) {
+function splitUrl(url: string, options: Record<string, string | number>) {
   let urlNew = url;
-  const paramsArray = [];
+  const paramsArray: string[] = [];
   // Object.keys(options).forEach(key => paramsArray.push(key + '=' + options[key]));
   Object.keys(options).forEach((key) =>
     paramsArray.push(`${key}=${options[key]}`),

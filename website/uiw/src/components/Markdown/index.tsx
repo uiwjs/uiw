@@ -6,15 +6,21 @@ import Heading from './Heading';
 import Footer from './Footer';
 import styles from './index.module.less';
 
+export type CreatePageProps<T> = {
+  dependencies?: T;
+  path: string;
+  renderPage?: () => Promise<string>;
+};
+
 const components = new Map();
-export default function CreatePage(props = {}) {
+export default function CreatePage<T>(props: CreatePageProps<T>) {
   const { renderPage, dependencies, path } = props;
   const [mdStr, setMdStr] = useState('');
   async function getMarkdown() {
     if (!renderPage || typeof renderPage !== 'function') return;
     components.clear();
-    const md = await props.renderPage();
-    const markdown = md.replace(
+    const md = await renderPage();
+    const markdown = (md || '').replace(
       /<!--\s?DemoStart\s?(.*)-->([^]+?)<!--\s?End\s?-->/g,
       (match, parame, code, offset) => {
         parame = parame.replace(/(^,*)|(,*$)/g, '');
@@ -30,6 +36,7 @@ export default function CreatePage(props = {}) {
         const id = offset.toString(36);
         const codeStr = code.match(/```(.*)\n([^]+)```/);
 
+        // @ts-ignore
         // eslint-disable-next-line
         const version = VERSION || '2.0.0';
         const codePenOption = !codePen

@@ -1,9 +1,13 @@
 import React, { Fragment } from 'react';
 import { Divider } from 'uiw';
 
-export default function (props = {}) {
+export type FooterProps = {
+  path?: string;
+};
+
+export default function (props: FooterProps = {}) {
   const { path } = props;
-  const url = /^http/.test(path)
+  const url = /^http/.test(path || '')
     ? path
     : `https://github.com/uiwjs/uiw/blob/master/${path}`;
   return (

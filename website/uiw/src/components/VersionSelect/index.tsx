@@ -3,15 +3,23 @@ import { Select } from 'uiw';
 import styles from './index.module.less';
 // VERSION
 
-function Options(props = {}) {
+type OptionsProps = {
+  version?: string;
+};
+
+function Options(props = {} as OptionsProps) {
   return useMemo(
     () => <Select.Option value={props.version}>{props.version}</Select.Option>,
     [props.version],
   );
 }
 
-const VersionSelect = (props = {}) => {
-  function onChange(e) {
+export type VersionSelectProps = {
+  data: string[];
+};
+
+const VersionSelect = (props = {} as VersionSelectProps) => {
+  function onChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const version = e.target.value;
     const isV1 = version.split('.')[0] === '1';
     if (isV1) {
@@ -20,6 +28,7 @@ const VersionSelect = (props = {}) => {
       window.location.href = `https://unpkg.com/@uiw/doc@${version}/web/index.html`;
     }
   }
+  // @ts-ignore
   // eslint-disable-next-line no-undef
   const currentVersion = VERSION;
   const versionList = props.data;
