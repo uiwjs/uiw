@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-textarea",
-  "version": "4.7.11",
+  "version": "4.7.12",
   "description": "Textarea component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/textarea",
@@ -42,7 +42,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.7.11"
+    "@uiw/utils": "^4.7.12"
   },
   "devDependencies": {
     "@babel/runtime": "7.12.13",
