@@ -19,6 +19,7 @@ export interface ModalProps extends IProps, OverlayProps {
   autoFocus?: boolean;
   isCloseButtonShown?: boolean;
   isOpen?: boolean;
+  bodyStyle?: React.CSSProperties;
   maxWidth?: number;
   minWidth?: number;
   width?: number;
@@ -53,6 +54,7 @@ function InternalModal(
     isCloseButtonShown = true,
     onCancel = noop,
     onConfirm = noop,
+    bodyStyle,
     ...other
   } = props;
   const overlayRef = React.createRef<Overlay>();
@@ -126,7 +128,9 @@ function InternalModal(
               )}
             </div>
           )}
-          <div className={`${prefixCls}-body`}>{children || content}</div>
+          <div className={`${prefixCls}-body`} style={bodyStyle}>
+            {children || content}
+          </div>
           {useButton && (
             <div className={`${prefixCls}-footer`}>
               <Button
