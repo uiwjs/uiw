@@ -333,6 +333,8 @@ ReactDOM.render(<Demo />, _mount_);
 | type | 按钮类型跟 `<Button>` 组件的 `type` 参数一致，同时会影响按钮颜色。 | String | `light` |
 | width | 设置弹出框宽度 | Number | - |
 | bodyStyle | Modal body 样式 | `CSSProperties` | - |
+| cancelButtonProps | cancel 按钮 props | `ButtonProps` | - |
+| confirmButtonProps | confirm 按钮 props | `ButtonProps` | - |
 | maxWidth | 默认弹出框最大宽度 `500` | Number | `500` |
 | minWidth | 默认弹出框最小宽度 `320` | Number | `320` |
 | isCloseButtonShown | 是否在对话框的标题中显示关闭按钮。 请注意，只有在提供标题时才会呈现标题。 | Boolean | `true` |

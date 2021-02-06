@@ -13,6 +13,7 @@ export interface ModalProps extends IProps, OverlayProps {
   cancelButtonProps?: ButtonProps;
   content?: React.ReactNode;
   confirmText?: string;
+  confirmButtonProps?: ButtonProps;
   title?: string;
   icon?: JSX.Element | string | false | null;
   useButton?: boolean;
@@ -46,6 +47,7 @@ function InternalModal(
     title,
     cancelText,
     cancelButtonProps,
+    confirmButtonProps,
     content,
     confirmText = '确认',
     type = 'light',
@@ -140,6 +142,7 @@ function InternalModal(
                 type={type}
                 loading={loading}
                 disabled={loading}
+                {...confirmButtonProps}
                 onClick={(e) => {
                   if (overlayRef.current) {
                     handleConfirm(e, overlayRef.current);
