@@ -63,7 +63,7 @@
   },
   "devDependencies": {
     "@kkt/less-modules": "6.6.2",
-    "@kkt/react-library": "6.6.2",
+    "@kkt/react-library": "6.8.0",
     "compile-less-cli": "1.7.0",
     "husky": "4.3.6",
     "kkt": "6.6.2",
