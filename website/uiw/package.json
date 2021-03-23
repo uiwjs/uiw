@@ -54,7 +54,7 @@
     "@types/react-redux": "7.1.15",
     "@types/react-router-dom": "5.1.7",
     "kkt": "6.8.1",
-    "react-test-renderer": "16.14.0"
+    "react-test-renderer": "17.0.2"
   },
   "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT",
