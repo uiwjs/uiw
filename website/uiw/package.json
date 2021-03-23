@@ -32,7 +32,7 @@
     "react-dom": ">=16.0.0"
   },
   "dependencies": {
-    "@rematch/core": "2.0.0",
+    "@rematch/core": "2.0.1",
     "@uiw/react-code-preview": "1.11.11",
     "@uiw/react-markdown-preview": "2.1.1",
     "@uiw/reset.css": "1.0.4",
