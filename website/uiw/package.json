@@ -28,8 +28,8 @@
     "framework"
   ],
   "peerDependencies": {
-    "react": ">=16.0.0",
-    "react-dom": ">=16.0.0"
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
   },
   "dependencies": {
     "@rematch/core": "2.0.0",
