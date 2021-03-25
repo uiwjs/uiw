@@ -19,7 +19,7 @@ describe('<DatePicker />', () => {
       />,
     );
     let tree = component.toJSON();
-    if (tree) {
+    if (tree && !Array.isArray(tree)) {
       expect(tree.type).toBe('div');
       expect(tree.props.className).toBe('w-datepicker');
       expect(tree.children).toHaveLength(2);
@@ -42,7 +42,7 @@ describe('<DatePicker />', () => {
       />,
     );
     let tree = component.toJSON();
-    if (tree) {
+    if (tree && !Array.isArray(tree)) {
       expect(tree.type).toBe('div');
       expect(tree.props.className).toBe('w-datepicker');
       expect(tree.children).toHaveLength(3);

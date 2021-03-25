@@ -6,7 +6,7 @@ describe('<Avatar />', () => {
   it('Should output a Avatar', () => {
     const component = TestRenderer.create(<Avatar icon="user" />);
     let tree = component.toJSON();
-    if (tree) {
+    if (tree && !Array.isArray(tree)) {
       expect(tree.type).toBe('span');
       expect(tree.props.className).toBe(
         'w-avatar w-avatar-default w-avatar-circle',

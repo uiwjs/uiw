@@ -16,12 +16,12 @@ describe('<Button />', () => {
       </ButtonGroup>,
     );
     let tree = component.toJSON();
-    if (tree) {
+    if (tree && !Array.isArray(tree)) {
       expect(tree.type).toBe('div');
       expect(tree.props.className).toBe('w-btn-group');
-    }
-    if (tree && tree.children) {
-      expect(tree.children.length).toBe(6);
+      if (tree.children) {
+        expect(tree.children.length).toBe(6);
+      }
     }
   });
 });
