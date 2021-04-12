@@ -62,7 +62,7 @@ export default class App extends Component {
   "version": "0.1.0",
   "private": true,
 +  "devDependencies": {
-+    "kkt": "6.0.11"
++    "kkt": "6.8.2"
 +  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -72,7 +72,7 @@ export default class App extends Component {
     "react-dom": "^17.0.1",
 -    "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4",
-+    "uiw": "^4.7.2"
++    "uiw": "^4.7.12"
   },
   "scripts": {
 -    "start": "react-scripts start",
