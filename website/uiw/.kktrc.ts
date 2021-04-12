@@ -44,7 +44,7 @@ export default (
         },
         prismjs: {
           name: 'vendors-prismjs',
-          chunks: 'all',
+          chunks: 'async',
           test: /[\\/]node_modules[\\/](prismjs)[\\/]/,
           priority: -2,
         },
