@@ -45,14 +45,14 @@
     "uiw": "^4.7.12"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.8.2",
-    "@kkt/raw-modules": "6.8.2",
-    "@kkt/scope-plugin-options": "6.8.2",
+    "@kkt/less-modules": "6.8.3",
+    "@kkt/raw-modules": "6.8.3",
+    "@kkt/scope-plugin-options": "6.8.3",
     "@types/react": "17.0.3",
     "@types/react-dom": "17.0.3",
     "@types/react-redux": "7.1.16",
     "@types/react-router-dom": "5.1.7",
-    "kkt": "6.8.2",
+    "kkt": "6.8.3",
     "react-test-renderer": "17.0.2"
   },
   "author": "kenny wang <wowohoo@qq.com>",
