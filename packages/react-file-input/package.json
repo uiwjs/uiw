@@ -45,7 +45,7 @@
     "@uiw/react-input": "^4.7.12"
   },
   "devDependencies": {
-    "@babel/runtime": "7.13.10",
+    "@babel/runtime": "7.13.17",
     "@types/jest": "26.0.22",
     "@types/react": "17.0.3",
     "@types/react-dom": "17.0.3",
