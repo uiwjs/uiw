@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-loader",
-  "version": "4.7.12",
+  "version": "4.7.13",
   "description": "Loader component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/loader",
@@ -42,7 +42,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.7.12"
+    "@uiw/utils": "^4.7.13"
   },
   "devDependencies": {
     "@babel/runtime": "7.14.0",
