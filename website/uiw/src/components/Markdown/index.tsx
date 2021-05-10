@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import CodePreview from '@uiw/react-code-preview';
 import MarkdownPreview from '@uiw/react-markdown-preview';
-import Heading from './Heading';
 import Footer from './Footer';
 import styles from './index.module.less';
 
@@ -152,7 +151,7 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
   }, []);
   return (
     <div>
-      <MarkdownPreview renderers={{ heading: Heading }} source={mdStr} />
+      <MarkdownPreview source={mdStr} />
       <div className={styles.docinfo}>
         <Footer path={path} />
       </div>
