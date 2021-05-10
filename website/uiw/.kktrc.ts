@@ -1,5 +1,5 @@
-import webpack from 'webpack';
-import { LoaderConfOptions, WebpackConfiguration } from 'kkt';
+import webpack, { Configuration } from 'webpack';
+import { LoaderConfOptions } from 'kkt';
 import path from 'path';
 import lessModules from '@kkt/less-modules';
 import rawModules from '@kkt/raw-modules';
@@ -7,7 +7,7 @@ import scopePluginOptions from '@kkt/scope-plugin-options';
 import pkg from './package.json';
 
 export default (
-  conf: WebpackConfiguration,
+  conf: Configuration,
   env: string,
   options: LoaderConfOptions,
 ) => {
