@@ -1,11 +1,11 @@
-import { IColumns } from './';
+import { TableColumns } from './';
 
 /**
  * Get colspan number
  * @param {Array} date
  */
-function getColspanNum(data: IColumns[] = [], num = 1) {
-  let childs: IColumns[] = [];
+function getColspanNum(data: TableColumns[] = [], num = 1) {
+  let childs: TableColumns[] = [];
   for (let i = 0; i < data.length; i += 1) {
     if (data[i].children) {
       childs = childs.concat(data[i].children || []);
@@ -21,8 +21,8 @@ function getColspanNum(data: IColumns[] = [], num = 1) {
  * Get rowspan number
  * @param {Array} date
  */
-function getRowspanNum(data: IColumns[] = [], child = []) {
-  let childs: IColumns[] = [];
+function getRowspanNum(data: TableColumns[] = [], child = []) {
+  let childs: TableColumns[] = [];
   for (let i = 0; i < data.length; i += 1) {
     if (!data[i].children) {
       childs.push(data[i]);
@@ -34,7 +34,7 @@ function getRowspanNum(data: IColumns[] = [], child = []) {
 }
 
 export interface ILevelItems {
-  header: IColumns[][];
+  header: TableColumns[][];
   render: {
     [key: string]: any;
   };
@@ -45,7 +45,7 @@ export interface ILevelItems {
  * @param {Array} date
  */
 export const getLevelItems = (
-  data: IColumns[],
+  data: TableColumns[],
   result?: ILevelItems,
 ): ILevelItems => {
   if (!result) {
@@ -57,8 +57,8 @@ export const getLevelItems = (
   if (result && !result.render) {
     result.render = {};
   }
-  let child: IColumns[] = [];
-  const levelTop: IColumns[] = [];
+  let child: TableColumns[] = [];
+  const levelTop: TableColumns[] = [];
   for (let i = 0; i < data.length; i += 1) {
     if (data[i].render && data[i].key) {
       result.render[data[i].key as string] = data[i].render;
@@ -70,13 +70,15 @@ export const getLevelItems = (
         data[i].children &&
         data[i].children!.length > 0
       ) {
-        data[i].colSpan = getRowspanNum(data[i].children as IColumns[]).length;
+        data[i].colSpan = getRowspanNum(
+          data[i].children as TableColumns[],
+        ).length;
       }
       levelTop.push(data[i]);
     }
     if (data[i] && data[i].children) {
       child = child.concat(
-        data[i].children!.map((item: IColumns) => {
+        data[i].children!.map((item: TableColumns) => {
           // Calculation rowspan
           if (item.children && item.children.length > 0) {
             item.colSpan = getRowspanNum(item.children).length;
@@ -102,7 +104,7 @@ export const getLevelItems = (
   if (child && child.length > 0) {
     const num = getColspanNum(child);
     result.header.push(
-      child.map((item: IColumns) => {
+      child.map((item: TableColumns) => {
         if (num === 1) return item;
         if (!item.children || (item.children && item.children.length === 0)) {
           item.rowSpan = num;
@@ -120,7 +122,7 @@ export const getLevelItems = (
  * @param {Array} data
  */
 export const getAllColumnsKeys = (
-  data: IColumns[],
+  data: TableColumns[],
   keys: any[] = [],
 ): string[] => {
   for (let i = 0; i < data.length; i += 1) {

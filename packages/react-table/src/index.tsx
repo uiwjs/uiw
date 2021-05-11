@@ -6,17 +6,17 @@ import './style/index.less';
 
 function noop() {}
 
-type Title =
+export type TableColumnTitle =
   | string
   | JSX.Element
-  | ((data: IColumns, rowNum: number, colNum: number) => JSX.Element);
+  | ((data: TableColumns, rowNum: number, colNum: number) => JSX.Element);
 
-export type IColumns<T = Title> = {
+export type TableColumns<T = TableColumnTitle> = {
   title?: T;
   key?: string;
   width?: number;
   colSpan?: number;
-  children?: IColumns[];
+  children?: TableColumns[];
   render?: (
     text: string,
     keyName: string,
@@ -30,7 +30,7 @@ export type IColumns<T = Title> = {
 
 export interface TableProps extends IProps, Omit<HTMLDivProps, 'title'> {
   prefixCls?: string;
-  columns?: IColumns[];
+  columns?: TableColumns[];
   data?: Record<string, string | number | JSX.Element>[];
   title?: React.ReactNode;
   footer?: React.ReactNode;
@@ -41,7 +41,7 @@ export interface TableProps extends IProps, Omit<HTMLDivProps, 'title'> {
     evn: React.MouseEvent<HTMLTableCellElement>,
   ) => void | React.ReactNode;
   onCellHead?: (
-    data: IColumns,
+    data: TableColumns,
     rowNum: number,
     colNum: number,
     evn: React.MouseEvent<HTMLTableCellElement>,
@@ -71,8 +71,8 @@ export default (props: TableProps = {}) => {
     .filter(Boolean)
     .join(' ')
     .trim();
-  const { header, render } = getLevelItems(columns as IColumns[]);
-  const keys = getAllColumnsKeys(columns as IColumns[]);
+  const { header, render } = getLevelItems(columns as TableColumns[]);
+  const keys = getAllColumnsKeys(columns as TableColumns[]);
   return (
     <div className={cls} {...other}>
       <table>

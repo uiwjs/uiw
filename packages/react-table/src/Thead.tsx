@@ -1,6 +1,6 @@
 import React from 'react';
 import { IProps } from '@uiw/utils';
-import { TableProps, IColumns } from './';
+import { TableProps, TableColumns } from './';
 import './style/index.less';
 
 function noop() {}
@@ -27,13 +27,15 @@ export default (
     >
       {data &&
         data.length > 0 &&
-        data.map((tds?: IColumns[], rowNum?: number) => (
+        data.map((tds?: TableColumns[], rowNum?: number) => (
           <tr key={rowNum}>
             {(tds || []).map((item, colNum) => {
               const { title, key, render, children, ...thProps } = item;
-              const titleNode = (typeof title === 'function'
-                ? title(item, colNum, rowNum!)
-                : title) as IColumns['title'];
+              const titleNode = (
+                typeof title === 'function'
+                  ? title(item, colNum, rowNum!)
+                  : title
+              ) as TableColumns['title'];
               if (thProps.colSpan === 0) {
                 return null;
               }
