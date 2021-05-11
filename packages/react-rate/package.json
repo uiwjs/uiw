@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-rate",
-  "version": "4.7.13",
+  "version": "4.7.14",
   "description": "Rate component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/rate",
@@ -42,7 +42,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.7.13"
+    "@uiw/utils": "^4.7.14"
   },
   "devDependencies": {
     "@babel/runtime": "7.14.0",
