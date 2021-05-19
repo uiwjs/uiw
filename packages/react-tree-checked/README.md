@@ -11,7 +11,7 @@ import TreeChecked from '@uiw/react-tree-checked';
 
 ### 基础实例
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { TreeChecked, Card, Row, Col } from 'uiw';
@@ -104,7 +104,6 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## Props
 

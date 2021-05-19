@@ -13,7 +13,7 @@ import Slider from '@uiw/react-slider';
 
 按钮样式的单选组合。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -82,13 +82,12 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 在表单中使用
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<Slider />`](#/components/slider) 组件，需要设置 `initialValue` 初始值。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { Form, Row, Col, Slider, Button, Notify } from 'uiw';
@@ -148,13 +147,12 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 控制提示显示
 
 通过设置 `tooltip` 的值，来控制提示的显示。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -178,13 +176,12 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 刻度
 
 通过 `step` 设置或返回每次拖动滑块控件时的递增量。
 
-<!--DemoStart,bgWhite,codePen-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -253,11 +250,10 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 标记刻度
 
-<!--DemoStart,bgWhite,codePen-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -332,11 +328,10 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 禁用样式
 
-<!--DemoStart,bgWhite,codePen-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -363,11 +358,10 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 垂直方向
 
-<!--DemoStart,bgWhite,codePen-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -419,7 +413,6 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## Props
 

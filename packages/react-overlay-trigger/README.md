@@ -13,7 +13,7 @@ import OverlayTrigger from '@uiw/react-overlay-trigger';
 
 最简单的用法。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { OverlayTrigger } from 'uiw';
@@ -31,13 +31,12 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 配合组件使用
 
 下面配合 [`<Card />`](#/components/card) 组件使用。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { OverlayTrigger, Card } from 'uiw';
@@ -55,11 +54,10 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 点击事件
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -103,13 +101,12 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 鼠标经过事件
 
 默认离开**触发区域**隐藏弹出目标，设置 `isOutside` 值为 `true`，在**触发区域**或**弹出目标区域**内，不隐藏**弹出目标**。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -151,14 +148,13 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 
 ### 延迟进入和消失
 
 延迟属性，只针对 `trigger=hover` 有效。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { OverlayTrigger, Card } from 'uiw';
@@ -176,13 +172,12 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 组件受控
 
 通过设置属性 isOpen 可以文字提示手动控制状态的展示。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -231,13 +226,12 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### usePortal
 
 设置 `usePortal={false}` 将模态对话框生成到根节点的里面。
 
-<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -284,7 +278,6 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## Props
 

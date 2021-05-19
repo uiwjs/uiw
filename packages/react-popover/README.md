@@ -13,7 +13,7 @@ import Popover from '@uiw/react-popover';
 
 最简单的用法。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -62,13 +62,12 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 位置
 
 位置有 `12` 个方向，根据 `placement` 参数来设置。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Popover, Card, Button } from 'uiw';
@@ -141,11 +140,10 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 鼠标经过弹出目标
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Popover, Card, Button } from 'uiw';
@@ -172,13 +170,12 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 焦点展示
 
 通过设置 `trigger="focus"` 让 `Input` 组件在获取焦点的时候展示 `Popover`
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -250,13 +247,12 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### usePortal
 
 设置 `usePortal={false}` 将模态对话框生成到根节点的里面，这样为了计算位置准确，你需要将父层样式设为 `position: relative;` 。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -308,7 +304,6 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## Props
 

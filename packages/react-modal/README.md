@@ -11,7 +11,7 @@ import Modal from '@uiw/react-modal';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -69,13 +69,12 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 延迟关闭对话框
 
 这里是利用 `Promise` 等它执行完成再去关闭窗口
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -129,14 +128,13 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 
 ### 表单应用
 
 这里是利用 `Promise` 等它执行完成再去关闭窗口
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -248,13 +246,12 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 自定义页脚
 
 设置 `useButton={false}` 隐藏默认的按钮，再根据自己需求定义按钮。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -317,7 +314,6 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## Props
 

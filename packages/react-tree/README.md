@@ -11,7 +11,7 @@ import Tree from '@uiw/react-tree';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Tree, Card, Row, Col } from 'uiw';
@@ -136,11 +136,10 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 自定义图标
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Tree, Card, Row, Col, Icon } from 'uiw';
@@ -278,13 +277,12 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 自定义选中效果
 
 通过设置 `checkStrictly` 父节点受子节点控制，设置 `multiple` 为多选，设置 `isSelected` 取消选中效果，也可以使用 [`TreeChecked`](#/components/tree-checked) 组件。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
 ```jsx
 import ReactDOM from 'react-dom';
 import { Tree, Card, Row, Col } from 'uiw';
@@ -394,14 +392,13 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 
 ### 连接线
 
 带连接线的树，通过设置 `showLine`。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Tree, Card, Row, Col } from 'uiw';
@@ -526,11 +523,10 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 默认展开树
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Tree, Card, Row, Col } from 'uiw';
@@ -648,7 +644,6 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## Props
 

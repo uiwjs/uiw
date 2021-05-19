@@ -13,7 +13,7 @@ import Tabs from '@uiw/react-tabs';
 
 基础的、简洁的卡片式标签页。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -35,13 +35,12 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 行样式
 
 基础的、简洁的卡片式标签页。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -63,13 +62,12 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 卡片样式
 
 另一种样式的页签，不提供对应的垂直样式。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -91,14 +89,13 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 
 ### 卡片样式
 
 另一种样式的页签，不提供对应的垂直样式。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -146,7 +143,6 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## Tabs.Porps 
 

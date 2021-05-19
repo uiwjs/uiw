@@ -13,7 +13,7 @@ import { Radio, RadioGroup } from '@uiw/react-radio';
 
 适用广泛的基础最简单的用法，展示各种状态下的样式。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Radio } from 'uiw';
@@ -28,11 +28,10 @@ const Demo = () => (
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### Form 中使用 Radio
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { Form, Radio, RadioGroup, Row, Col, Button, Notify } from 'uiw';
@@ -108,13 +107,12 @@ const Demo = () => (
 
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 单选
 
 适用广泛的基础最简单的用法。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -143,13 +141,12 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 单选组
 
 设置单选初始值
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -193,7 +190,6 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## Radio
 

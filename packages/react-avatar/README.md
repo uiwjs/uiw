@@ -13,7 +13,7 @@ import Avatar from '@uiw/react-avatar';
 
 头像有四种尺寸，两种形状可选。
 
-<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Avatar, Icon } from 'uiw';
@@ -36,13 +36,12 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## 其它类型
 
 支持三种类型：Icon 以及字符，其中 Icon 和字符型可以自定义图标颜色及背景色。
 
-<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Avatar, Icon } from 'uiw';
@@ -58,13 +57,12 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## 图片支持
 
 在组件上使用`onError`事件，处理显示错误的图片。
 
-<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Avatar, Icon } from 'uiw';
@@ -96,11 +94,10 @@ const App = () => {
 
 ReactDOM.render(<App />, _mount_);
 ```
-<!--End-->
 
 ## 带徽标的头像
 
-<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Avatar, Badge } from 'uiw';
@@ -117,7 +114,6 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## Props
 

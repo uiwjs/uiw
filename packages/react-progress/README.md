@@ -12,7 +12,7 @@ import Progress from '@uiw/react-progress';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Progress } from 'uiw';
@@ -30,13 +30,12 @@ const Demo = () => (
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 进度条大小设置
 
 设置参数`strokeWidth`即可
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Progress } from 'uiw';
@@ -54,11 +53,10 @@ const Demo = () => (
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 圆圈进度条
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Progress } from 'uiw';
@@ -75,13 +73,12 @@ const Demo = () => (
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 不同尺寸圆圈进度条
 
 通过`strokeWidth`设置圆圈进度宽带，通过`width`（`type="circle"`有效）设置圆圈大小，
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Progress } from 'uiw';
@@ -97,13 +94,12 @@ const Demo = () => (
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 动态展示
 
 进度条动态展示更直观。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -146,13 +142,12 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## 自定义文字格式
 
 `format` 属性指定格式。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -183,7 +178,6 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 
 ## API

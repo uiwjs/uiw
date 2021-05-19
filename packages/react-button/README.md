@@ -12,7 +12,7 @@ import ButtonGroup from '@uiw/react-button-group';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
 ```js
 import ReactDOM from 'react-dom';
 import { Button, Divider, Icon } from 'uiw';
@@ -42,11 +42,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 按钮组
 
-<!--DemoStart,bgWhite,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
 ```js
 import ReactDOM from 'react-dom';
 import { Button, Divider, ButtonGroup } from 'uiw';
@@ -110,11 +109,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 图标按钮
 
-<!--DemoStart,bgWhite,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
 ```js
 import ReactDOM from 'react-dom';
 import { Button, Icon, Divider } from 'uiw';
@@ -146,11 +144,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 按钮加载状态
 
-<!--DemoStart,bgWhite,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
 ```js
 import ReactDOM from 'react-dom';
 import { Button, Icon, Divider } from 'uiw';
@@ -177,11 +174,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 禁用按钮组
 
-<!--DemoStart,bgWhite,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
 ```js
 import ReactDOM from 'react-dom';
 import { Button, ButtonGroup, Divider } from 'uiw';
@@ -244,11 +240,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 垂直按钮组
 
-<!--DemoStart,bgWhite,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
 ```js
 import ReactDOM from 'react-dom';
 import { Button, ButtonGroup, Row, Col } from 'uiw';
@@ -293,13 +288,12 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 基本按钮
 
 设置 `basic=true` 即可获得基本按钮，没有背景颜色的状态按钮。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
 ```js
 import ReactDOM from 'react-dom';
 import { Button, Divider } from 'uiw';
@@ -330,13 +324,12 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 基础按钮添加图标
 
 设置 `basic=true` 即可获得基本按钮，没有背景颜色的状态按钮。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
 ```js
 import ReactDOM from 'react-dom';
 import { Button, Divider } from 'uiw';
@@ -365,11 +358,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 激活按钮样式
 
-<!--DemoStart,bgWhite,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
 ```js
 import ReactDOM from 'react-dom';
 import { Button } from 'uiw';
@@ -387,11 +379,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 禁用按钮样式
 
-<!--DemoStart,bgWhite,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
 ```js
 import ReactDOM from 'react-dom';
 import { Button } from 'uiw';
@@ -409,12 +400,11 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 
 ### block
 
-<!--DemoStart,bgWhite,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
 ```js
 import ReactDOM from 'react-dom';
 import { Button, Row, Col } from 'uiw';
@@ -433,13 +423,12 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### size大小
 
 `size` 在 `Button.Group`下面不支持。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
 ```js
 import ReactDOM from 'react-dom';
 import { Button, Divider } from 'uiw';
@@ -461,7 +450,6 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## Props
 

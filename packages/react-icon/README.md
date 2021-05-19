@@ -11,7 +11,7 @@ import Icon from '@uiw/react-icon';
 
 ### 搜索图标
 
-<!--DemoStart,bgWhite,noCode,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -78,7 +78,6 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## 如何使用
 
@@ -117,7 +116,7 @@ const Demo = () => (
 )
 ```
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
@@ -131,13 +130,12 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 图标尺寸
 
 默认情况下，图标非常小，它们继承了父级的字体大小。 如果没有设置字体大小，可以通过 `size` 来设置尺寸。通常情况 `size` 会很累赘没有什么用。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
@@ -151,7 +149,6 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 图标颜色
 
@@ -159,7 +156,7 @@ ReactDOM.render(
 
 > 一个有用的技巧是将 `fill` 设置为 `currentColor`，以便从图标容器的文本颜色继承填充颜色。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
@@ -174,11 +171,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 与文本对齐
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import { Icon } from 'uiw';
 
@@ -190,7 +186,6 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 图标的命名规范
 
@@ -202,7 +197,7 @@ ReactDOM.render(
 > 默认：`w-icon-` 默认引用的字体文件作用域  
 > 自定定义：`w-icon-uiw-` 自定定义作用域  
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
@@ -216,13 +211,12 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 图标旋转实例
 
 通过设置参数 `spin={true}` 来设置图标旋转。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
@@ -237,11 +231,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 自定义图标
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
@@ -266,7 +259,6 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## 字体图标
 
@@ -314,7 +306,7 @@ const Demo = () => (
 
 ### 方向性图标
 
-<!--DemoStart,bgWhite,noCode,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
@@ -341,11 +333,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 圆圈方向性图标
 
-<!--DemoStart,bgWhite,noCode,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
@@ -371,11 +362,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 其它方向性图标
 
-<!--DemoStart,bgWhite,noCode,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
@@ -405,11 +395,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 提示建议性图标
 
-<!--DemoStart,bgWhite,noCode,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
@@ -438,11 +427,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## 符号
 
-<!--DemoStart,bgWhite,noCode,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
@@ -472,11 +460,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 文件
 
-<!--DemoStart,bgWhite,noCode,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
@@ -504,11 +491,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 其它
 
-<!--DemoStart,bgWhite,noCode,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
@@ -542,11 +528,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 品牌标识
 
-<!--DemoStart,bgWhite,noCode,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
@@ -572,11 +557,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 浏览器图标
 
-<!--DemoStart,bgWhite,noCode,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
@@ -601,4 +585,3 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->

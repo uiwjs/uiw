@@ -63,7 +63,7 @@ const Demo = () => (
 标识符在 `2.0.0+` 版本文档，可以传递参数，传递方法: 
 
 ```markdown
-<!--DemoStart,bgWhite,noCode,noPreview,noScroll,codePen-->
+<!--rehype:bgWhite=true&noScroll=true&noCode=true&codeSandbox=true&codePen=true-->
 ```
 
 参数用英文逗号隔开
@@ -73,4 +73,5 @@ const Demo = () => (
 - `noPreview` 不显示代码预览效果。
 - `noScroll` 预览区域不显示滚动条。
 - `codePen` 显示 Codepen 按钮，要特别注意 `包导入的问题`，实例中的 `import` 主要用于 Codepen 使用。
+- `codeSandbox` 显示 codeSandbox 按钮，要特别注意 `包导入的问题`，实例中的 `import` 主要用于 Codepen 使用。
 

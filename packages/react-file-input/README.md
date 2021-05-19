@@ -11,7 +11,7 @@ import FileInput from '@uiw/react-file-input';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { FileInput } from 'uiw';
@@ -23,7 +23,6 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## Props
 

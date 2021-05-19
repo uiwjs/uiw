@@ -11,7 +11,7 @@ import Affix from '@uiw/react-affix';
 
 ### 基本用法
  
-<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Affix, Button } from 'uiw';
@@ -23,14 +23,12 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
-
 
 ### 钉在底部
 
 这个实例需要你缩小窗口高度，就可以测试看效果啦。
 
-<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Affix, Button } from 'uiw';
@@ -44,7 +42,6 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### Props
 

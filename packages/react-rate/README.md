@@ -13,7 +13,7 @@ import Rate from '@uiw/react-rate';
 
 按钮样式的单选组合。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon } from 'uiw';
@@ -34,13 +34,12 @@ const Demo = () => (
 
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 在表单中使用
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<Rate />`](#/components/rate) 组件
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Form, Row, Col, Icon, Rate, Button, Notify } from 'uiw';
@@ -104,11 +103,10 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 受控
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon, RadioGroup, Radio } from 'uiw';
@@ -133,13 +131,12 @@ const Demo = () => {
 
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 只读
 
 按钮样式的单选组合。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon } from 'uiw';
@@ -158,13 +155,12 @@ const Demo = () => (
 
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 文本
 
 按钮样式的单选组合。
 
-<!--DemoStart,bgWhite,codePen-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Rate, Divider } from 'uiw';
@@ -181,11 +177,10 @@ const Demo = () => (
 
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 半选
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon } from 'uiw';
@@ -200,11 +195,10 @@ const Demo = () => (
 
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 尺寸
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon } from 'uiw';
@@ -217,7 +211,6 @@ const Demo = () => (
 
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## Rate
 

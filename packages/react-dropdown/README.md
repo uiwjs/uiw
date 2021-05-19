@@ -11,7 +11,7 @@ import Dropdown from '@uiw/react-dropdown';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -57,11 +57,10 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 被禁用
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Dropdown, Menu, ButtonGroup, Button } from 'uiw';
@@ -110,11 +109,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 弹出位置
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import ReactDOM from 'react-dom';
 import { Dropdown, Menu, ButtonGroup, Button } from 'uiw';
@@ -161,11 +159,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 选择器
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -241,7 +238,6 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## Props
 

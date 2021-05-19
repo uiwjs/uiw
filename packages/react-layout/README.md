@@ -14,7 +14,7 @@ const { Header, Footer, Sider, Content } = Layout;
 
 ## 基本用法
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -75,7 +75,6 @@ function Demo() {
 
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## Layout
 

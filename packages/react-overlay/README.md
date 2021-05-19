@@ -11,7 +11,7 @@ import Overlay from '@uiw/react-overlay';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -59,11 +59,10 @@ class Demo extends React.PureComponent {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 完全定制弹出容器
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -140,13 +139,12 @@ class Demo extends React.PureComponent {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### usePortal
 
 [`Portals`](https://reactjs.org/docs/portals.html#event-bubbling-through-portals) 是 react 16 提供的官方解决方案，使得组件可以脱离父组件层级挂载在 DOM 树的任何位置，我们利用这个方法，可将模态对话框生成到根节点的外面，默认情况生成到跟节点的外面，通过将 `usePortal` 设置为 `false` 将对话框生成在父组件层级挂载的 DOM 树中。 
 
-<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -179,7 +177,6 @@ class Demo extends React.PureComponent {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 自定义动画
 
@@ -187,7 +184,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 > 注意：`@3.2.0` ~~`transitionDuration={1000}`~~ 更名为 `timeout`
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -225,7 +222,6 @@ class Demo extends React.PureComponent {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 你可以根据动画样式库 [**`animate.css`**](https://daneden.github.io/animate.css/) 添加不同的出入动画。默认通过的 [`Less`](http://lesscss.org/) 生成 CSS 动画的实例代码，定义 `transitionName` 动画样式名字为 `animation-bouce`，下面是上面实例的样式：
 
