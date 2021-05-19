@@ -1,0 +1,2 @@
+(this["webpackJsonp@example/uiw"]=this["webpackJsonp@example/uiw"]||[]).push([[7],{626:function(s,t,n){"use strict";s.exports=function(s){var t=this;this.Parser=function(n){return a(n,Object.assign({},t.data("settings"),s,{extensions:t.data("micromarkExtensions")||[],mdastExtensions:t.data("fromMarkdownExtensions")||[]}))}};var a=n(627)}}]);
+//# sourceMappingURL=vendors-remark.3ef6dff5.chunk.js.map
