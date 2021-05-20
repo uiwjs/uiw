@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-input",
-  "version": "4.7.14",
+  "version": "4.7.15",
   "description": "Input component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/input",
@@ -42,8 +42,8 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-icon": "^4.7.14",
-    "@uiw/utils": "^4.7.14"
+    "@uiw/react-icon": "^4.7.15",
+    "@uiw/utils": "^4.7.15"
   },
   "devDependencies": {
     "@babel/runtime": "7.14.0",
