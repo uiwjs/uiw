@@ -51,13 +51,9 @@ jobs:
         cname: uiw.js.cool
 
     - name: Sync to Gitee
-      run: |
-        mirror() {
-          git clone "https://github.com/$1/$2"
-          cd "$2"
-          git remote add gitee "https://jaywcjlove:${{ secrets.GITEE_TOKEN }}@gitee.com/uiw/$2.git"
-          git remote set-head origin -d
-          git push gitee --prune +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
-          cd ..
-        }
-        mirror uiwjs uiw
+      uses: x-dr/sync-repo-to-gitee@master
+      env:
+        SSH_KEY: ${{ secrets.GITEE_SSH_KEY }}
+      with:
+        github-repo: "git@github.com:uiwjs/uiw.git"
+        gitee-repo: "git@gitee.com:uiw/uiw.git"
