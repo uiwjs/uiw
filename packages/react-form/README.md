@@ -12,7 +12,7 @@ import { Form, FormItem } from '@uiw/react-form';
 ### 基本用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, Input, Row, Col, Slider, Button, Notify } from 'uiw';
 
@@ -72,7 +72,7 @@ ReactDOM.render(<Demo />, _mount_);
 一般校验可不需引入外部包解决，如果遇到大型工程表单比较多的地方推荐使用 [jquense/yup](https://github.com/jquense/yup)
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, Input, Checkbox, Switch, RadioGroup, Radio, Textarea, Row, Col, Button } from 'uiw';
 
@@ -219,7 +219,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 水平登录栏
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, Input, Row, Col, Notify, Button } from 'uiw';
 
@@ -288,7 +288,7 @@ ReactDOM.render(<Demo />, _mount_);
 ## 登录
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, Input, Row, Col, Checkbox, Notify, Button } from 'uiw';
 
@@ -348,7 +348,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 表单提交
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, Input, Select, Row, Col, Button } from 'uiw';
 
@@ -566,7 +566,7 @@ ReactDOM.render(<Demo />, _mount_);
 > ⚠️ 注意：当前只展示效果，`FormItem` 组件只在 `Form` 组件中使用。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, FormItem } from 'uiw';
 
@@ -599,7 +599,7 @@ ReactDOM.render(<Demo />, _mount_);
 > ⚠️ 注意：当前只展示效果，`FormItem` 组件只在 `Form` 组件中使用。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, FormItem } from 'uiw';
 

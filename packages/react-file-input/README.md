@@ -12,7 +12,7 @@ import FileInput from '@uiw/react-file-input';
 ### 基础用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { FileInput } from 'uiw';
 

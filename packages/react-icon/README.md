@@ -12,7 +12,7 @@ import Icon from '@uiw/react-icon';
 ### 搜索图标
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Input, CopyToClipboard, Icon, Notify } from 'uiw';
@@ -117,7 +117,7 @@ const Demo = () => (
 ```
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -136,7 +136,7 @@ ReactDOM.render(
 默认情况下，图标非常小，它们继承了父级的字体大小。 如果没有设置字体大小，可以通过 `size` 来设置尺寸。通常情况 `size` 会很累赘没有什么用。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -157,7 +157,7 @@ ReactDOM.render(
 > 一个有用的技巧是将 `fill` 设置为 `currentColor`，以便从图标容器的文本颜色继承填充颜色。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -175,7 +175,7 @@ ReactDOM.render(
 ### 与文本对齐
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import { Icon } from 'uiw';
 
 ReactDOM.render(
@@ -198,7 +198,7 @@ ReactDOM.render(
 > 自定定义：`w-icon-uiw-` 自定定义作用域  
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -217,7 +217,7 @@ ReactDOM.render(
 通过设置参数 `spin={true}` 来设置图标旋转。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -235,7 +235,7 @@ ReactDOM.render(
 ### 自定义图标
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 

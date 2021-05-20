@@ -12,7 +12,7 @@ import AutoLink from '@uiw/react-auto-link';
 ### 基础用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { AutoLink } from 'uiw';
 

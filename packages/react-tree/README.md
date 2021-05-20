@@ -12,7 +12,7 @@ import Tree from '@uiw/react-tree';
 ### 基础用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Tree, Card, Row, Col } from 'uiw';
 
@@ -140,7 +140,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 自定义图标
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Tree, Card, Row, Col, Icon } from 'uiw';
 
@@ -399,7 +399,7 @@ ReactDOM.render(<Demo />, _mount_);
 带连接线的树，通过设置 `showLine`。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Tree, Card, Row, Col } from 'uiw';
 
@@ -527,7 +527,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 默认展开树
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Tree, Card, Row, Col } from 'uiw';
 

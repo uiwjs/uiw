@@ -12,7 +12,7 @@ import Dropdown from '@uiw/react-dropdown';
 ### 基本用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Dropdown, Menu, ButtonGroup, Button, Divider, Icon } from 'uiw';
@@ -61,7 +61,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 被禁用
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Dropdown, Menu, ButtonGroup, Button } from 'uiw';
 
@@ -113,7 +113,7 @@ ReactDOM.render(
 ### 弹出位置
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Dropdown, Menu, ButtonGroup, Button } from 'uiw';
 
@@ -163,7 +163,7 @@ ReactDOM.render(
 ### 选择器
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Dropdown, Menu, Button, Icon } from 'uiw';

@@ -12,7 +12,7 @@ import Notify from '@uiw/react-notify';
 ### 基本用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, Notify } from 'uiw';
 
@@ -71,7 +71,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 弹出位置
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, Notify } from 'uiw';
 
@@ -122,7 +122,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 弹出通知不消失
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, Notify } from 'uiw';
 
@@ -150,7 +150,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 标题不展示
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, Notify } from 'uiw';
 
@@ -191,7 +191,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 只展示标题
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, Notify } from 'uiw';
 
@@ -218,7 +218,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 不展示图标
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, Notify } from 'uiw';
 

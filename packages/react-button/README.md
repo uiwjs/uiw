@@ -13,7 +13,7 @@ import ButtonGroup from '@uiw/react-button-group';
 ### 基本用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, Divider, Icon } from 'uiw';
 
@@ -46,7 +46,7 @@ ReactDOM.render(
 ### 按钮组
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, Divider, ButtonGroup } from 'uiw';
 
@@ -113,7 +113,7 @@ ReactDOM.render(
 ### 图标按钮
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, Icon, Divider } from 'uiw';
 
@@ -148,7 +148,7 @@ ReactDOM.render(
 ### 按钮加载状态
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, Icon, Divider } from 'uiw';
 
@@ -178,7 +178,7 @@ ReactDOM.render(
 ### 禁用按钮组
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, ButtonGroup, Divider } from 'uiw';
 
@@ -244,7 +244,7 @@ ReactDOM.render(
 ### 垂直按钮组
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, ButtonGroup, Row, Col } from 'uiw';
 
@@ -294,7 +294,7 @@ ReactDOM.render(
 设置 `basic=true` 即可获得基本按钮，没有背景颜色的状态按钮。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, Divider } from 'uiw';
 
@@ -330,7 +330,7 @@ ReactDOM.render(
 设置 `basic=true` 即可获得基本按钮，没有背景颜色的状态按钮。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, Divider } from 'uiw';
 
@@ -362,7 +362,7 @@ ReactDOM.render(
 ### 激活按钮样式
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button } from 'uiw';
 
@@ -383,7 +383,7 @@ ReactDOM.render(
 ### 禁用按钮样式
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button } from 'uiw';
 
@@ -405,7 +405,7 @@ ReactDOM.render(
 ### block
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, Row, Col } from 'uiw';
 
@@ -429,7 +429,7 @@ ReactDOM.render(
 `size` 在 `Button.Group`下面不支持。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, Divider } from 'uiw';
 

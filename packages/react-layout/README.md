@@ -15,7 +15,7 @@ const { Header, Footer, Sider, Content } = Layout;
 ## 基本用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Layout, Divider } from 'uiw';

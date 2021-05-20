@@ -13,7 +13,7 @@ import ButtonGroup from '@uiw/react-button-group';
 ### 基本用法
 
 <!--rehype:codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, Divider, ButtonGroup } from 'uiw';
 

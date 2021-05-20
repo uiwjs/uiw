@@ -14,7 +14,7 @@ import Tooltip from '@uiw/react-tooltip';
 最简单的用法。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Tooltip, Button } from 'uiw';
 
@@ -42,7 +42,7 @@ ReactDOM.render(<Demo />, _mount_);
 位置有 `12` 个方向，根据 `placement` 参数来设置。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Tooltip, Button, Divider } from 'uiw';
 
@@ -123,7 +123,7 @@ ReactDOM.render(<Demo />, _mount_);
 文字提示组件 `<Tooltip />`，通过设置属性 `trigger` 可以文字提示操作方式。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Tooltip, Button } from 'uiw';
 
@@ -147,7 +147,7 @@ ReactDOM.render(<Demo />, _mount_);
 通过设置属性 `visibleArrow` 可以文字提示框不显示箭头。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Tooltip, Button } from 'uiw';
 
@@ -169,7 +169,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 受控组件
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tooltip, Switch, Divider } from 'uiw';

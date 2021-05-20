@@ -14,7 +14,7 @@ import Card from '@uiw/react-card';
 包含标题、内容、操作区域。
 
 <!--rehype:codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Card } from 'uiw';
 
@@ -35,7 +35,7 @@ ReactDOM.render(
 在灰色背景上使用无边框的卡片。
 
 <!--rehype:codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Card } from 'uiw';
 
@@ -54,7 +54,7 @@ ReactDOM.render(
 只包含内容区域。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Card } from 'uiw';
 
@@ -73,7 +73,7 @@ ReactDOM.render(
 可以调整默认边距，设定宽度。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Card } from 'uiw';
 
@@ -96,7 +96,7 @@ ReactDOM.render(
 ## 添加页脚
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Card, Icon } from 'uiw';
 
@@ -131,7 +131,7 @@ ReactDOM.render(
 设置属性 `active=true` 将激活卡片，默认展示鼠标经过的样式。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Card, Icon } from 'uiw';
 

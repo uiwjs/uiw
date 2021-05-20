@@ -12,7 +12,7 @@ import MonthPicker from '@uiw/react-month-picker';
 ### 基础用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { MonthPicker, Row, Col } from 'uiw';
 
@@ -36,7 +36,7 @@ ReactDOM.render(<Demo />, _mount_);
 ## 在表单中使用
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, MonthPicker, Notify, Row, Col, Button } from 'uiw';
 

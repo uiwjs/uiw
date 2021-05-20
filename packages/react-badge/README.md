@@ -12,7 +12,7 @@ import Badge from '@uiw/react-badge';
 ### 基础用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Badge, Row, Col, Avatar, Divider } from 'uiw';
 
@@ -49,7 +49,7 @@ ReactDOM.render(
 不包裹任何元素即是独立使用，可自定样式展现。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Badge, Row, Col, Avatar, Divider } from 'uiw';
 
@@ -92,7 +92,7 @@ ReactDOM.render(
 不包裹任何元素即是独立使用，可自定样式展现。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Badge, Row, Col } from 'uiw';
 
@@ -117,7 +117,7 @@ ReactDOM.render(
 以红点的形式标注需要关注的内容。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Badge } from 'uiw';
 
@@ -139,7 +139,7 @@ ReactDOM.render(
 用于表示状态的小圆点，可以设置 `processing={true}` 让状态点，显示动画效果。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import { Badge } from 'uiw';
 
 ReactDOM.render(

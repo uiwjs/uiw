@@ -12,7 +12,7 @@ import Drawer from '@uiw/react-drawer';
 ### 基础用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Drawer, ButtonGroup, Button } from 'uiw';
@@ -65,7 +65,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 显示位置
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Drawer, ButtonGroup, Button } from 'uiw';
@@ -124,7 +124,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 添加页脚
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Drawer, ButtonGroup, Button } from 'uiw';

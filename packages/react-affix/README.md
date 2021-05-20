@@ -12,7 +12,7 @@ import Affix from '@uiw/react-affix';
 ### 基本用法
  
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Affix, Button } from 'uiw';
 
@@ -29,7 +29,7 @@ ReactDOM.render(
 这个实例需要你缩小窗口高度，就可以测试看效果啦。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Affix, Button } from 'uiw';
 

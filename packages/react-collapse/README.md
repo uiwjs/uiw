@@ -14,7 +14,7 @@ import Collapse from '@uiw/react-collapse';
 可以同时展开多个面板，这个例子默认展开了第一个。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Collapse } from 'uiw';
 
@@ -50,7 +50,7 @@ ReactDOM.render(
 ```
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Collapse } from 'uiw';
 
@@ -81,7 +81,7 @@ ReactDOM.render(
 手风琴，每次只打开一个tab。默认打开第一个。`Panel` 的 `key` 属性并非必须。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Collapse, Button } from 'uiw';
 
@@ -130,7 +130,7 @@ ReactDOM.render(<Demo />, _mount_);
 通过设置`bordered={true}`没有边框的简洁样式。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Collapse } from 'uiw';
 
@@ -163,7 +163,7 @@ ReactDOM.render(
 自定义各个面板的背景色、圆角、边距和图标。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Collapse } from 'uiw';
 
@@ -202,7 +202,7 @@ ReactDOM.render(
 ## 自定义面板标题
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Collapse, Icon } from 'uiw';
 
@@ -233,7 +233,7 @@ ReactDOM.render(
 ## 指定折叠图标
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Collapse, Icon } from 'uiw';
 

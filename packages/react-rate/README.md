@@ -14,7 +14,7 @@ import Rate from '@uiw/react-rate';
 按钮样式的单选组合。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon } from 'uiw';
 
@@ -40,7 +40,7 @@ ReactDOM.render(<Demo />, _mount_);
 在 [`<Form />`](#/components/form) 表单中应用 [`<Rate />`](#/components/rate) 组件
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, Row, Col, Icon, Rate, Button, Notify } from 'uiw';
 
@@ -107,7 +107,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 受控
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon, RadioGroup, Radio } from 'uiw';
 
@@ -137,7 +137,7 @@ ReactDOM.render(<Demo />, _mount_);
 按钮样式的单选组合。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon } from 'uiw';
 
@@ -161,7 +161,7 @@ ReactDOM.render(<Demo />, _mount_);
 按钮样式的单选组合。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Rate, Divider } from 'uiw';
 
@@ -181,7 +181,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 半选
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon } from 'uiw';
 
@@ -199,7 +199,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 尺寸
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon } from 'uiw';
 

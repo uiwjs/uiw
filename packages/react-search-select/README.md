@@ -12,7 +12,7 @@ import SearchSelect from '@uiw/react-search-select';
 ## 基础示例
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { SearchSelect } from 'uiw';
 
@@ -54,7 +54,7 @@ ReactDOM.render(<Demo />, _mount_);
 在 [`<Form />`](#/components/form) 表单中应用 `<SearchSelect />` 组件。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true&noScroll=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, Row, Col, SearchSelect, Button, Notify } from 'uiw';
 

@@ -12,7 +12,7 @@ import Tag from '@uiw/react-tag';
 ### 基础用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import { Tag, Divider } from 'uiw';
 
@@ -45,7 +45,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 标签禁用
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import { Tag, Divider } from 'uiw';
 
@@ -76,7 +76,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 添加图标
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import { Tag, Divider } from 'uiw';
 
@@ -101,7 +101,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 控制关闭标签
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tag, Icon } from 'uiw';
@@ -146,7 +146,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 标签组动态删除
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tag, Button, Icon } from 'uiw';
@@ -204,7 +204,7 @@ ReactDOM.render(<Demo />, _mount_);
 选择你感兴趣的话题，下面实例类似 CheckBox 多选。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tag } from 'uiw';

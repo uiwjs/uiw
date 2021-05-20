@@ -298,7 +298,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 密码输入框
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Input, Row, Col, Button } from 'uiw';
@@ -341,7 +341,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 输入框被禁用
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Icon, Input, Row, Col} from 'uiw';
 

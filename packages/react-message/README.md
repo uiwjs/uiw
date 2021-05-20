@@ -12,7 +12,7 @@ import Message from '@uiw/react-message';
 ### 基础用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Message, Divider } from 'uiw';
 
@@ -44,7 +44,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 显示图标
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Message, Divider } from 'uiw';
 
@@ -80,7 +80,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 自定义图标
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Message, Divider } from 'uiw';
@@ -109,7 +109,7 @@ ReactDOM.render(<Demo />, _mount_);
 ### 关闭按钮
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Message, Divider } from 'uiw';

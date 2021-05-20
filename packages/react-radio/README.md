@@ -14,7 +14,7 @@ import { Radio, RadioGroup } from '@uiw/react-radio';
 适用广泛的基础最简单的用法，展示各种状态下的样式。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Radio } from 'uiw';
 

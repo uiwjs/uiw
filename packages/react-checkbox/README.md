@@ -14,7 +14,7 @@ import Checkbox from '@uiw/react-checkbox';
 单独使用可以表示两种状态之间的切换，半选中只是样式上的表现。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Checkbox } from 'uiw';
 
@@ -33,7 +33,7 @@ ReactDOM.render(
 ### Form 中使用 Checkbox
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->  
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, Checkbox, Row, Col, Button, Notify } from 'uiw';
 
@@ -117,7 +117,7 @@ ReactDOM.render(<Demo />, _mount_);
 通过设置 `disabled` 属性来禁用多选框。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Checkbox } from 'uiw';
 
@@ -134,7 +134,7 @@ ReactDOM.render(
 ### 全选
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Checkbox, Divider } from 'uiw';
 
@@ -190,7 +190,7 @@ ReactDOM.render(<Demo />, _mount_);
 方便的从数组生成 `Checkbox` 组。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Checkbox, Divider, Button } from 'uiw';
 
@@ -241,7 +241,7 @@ ReactDOM.render(<Demo />, _mount_);
 通过 `checked` 属性改变 `Checkbox` 组件状态。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```js
+```jsx
 import ReactDOM from 'react-dom';
 import { Checkbox, Button } from 'uiw';
 
