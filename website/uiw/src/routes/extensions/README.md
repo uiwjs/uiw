@@ -16,6 +16,7 @@
 [@uiw/react-baidu-map](https://github.com/uiwjs/react-baidu-map) | [![](https://img.shields.io/npm/v/@uiw/react-baidu-map.svg)](https://www.npmjs.com/package/@uiw/react-baidu-map) | - | [demo](https://uiwjs.github.io/react-baidu-map/) | 一个基于 React 封装的百度地图组件，帮助你轻松的接入地图到 React 项目中。
 [@uiw/react-amap](https://github.com/uiwjs/react-amap) | [![](https://img.shields.io/npm/v/@uiw/react-amap.svg)](https://www.npmjs.com/package/@uiw/react-amap) | - | [demo](https://uiwjs.github.io/react-amap/) | 基于 React 封装的高德地图组件，帮助你轻松的接入地图到 React 项目中。
 [@uiw/react-clock](https://github.com/uiwjs/react-clock) | [![](https://img.shields.io/npm/v/@uiw/react-clock.svg)](https://www.npmjs.com/package/@uiw/react-clock) | - | [demo](https://uiwjs.github.io/react-clock/) | 基于 React 封装的始终组件。
+[@uiw/react-heat-map](https://github.com/uiwjs/react-heat-map) | [![](https://img.shields.io/npm/v/@uiw/react-heat-map.svg)](https://www.npmjs.com/package/@uiw/react-heat-map) | - | [demo](https://uiwjs.github.io/react-heat-map/) | HeatMap 日历热图。
 [@uiw/react-mac-keyboard](https://github.com/uiwjs/react-mac-keyboard) | [![](https://img.shields.io/npm/v/@uiw/react-mac-keyboard.svg)](https://www.npmjs.com/package/@uiw/react-mac-keyboard) | - | [demo](https://uiwjs.github.io/react-mac-keyboard/) | Macbook 键盘样式组件。
 [@uiw/icons](https://github.com/uiwjs/icons) | [![](https://img.shields.io/npm/v/@uiw/icons.svg)](https://www.npmjs.com/package/@uiw/icons) | - | [demo](https://uiwjs.github.io/icons/) | 组件库内部集成的高级图标字体。
 [@uiw/file-icons](https://github.com/uiwjs/file-icons) | [![](https://img.shields.io/npm/v/@uiw/file-icons.svg)](https://www.npmjs.com/package/@uiw/file-icons) | - | [demo](https://uiwjs.github.io/file-icons/) | 文件树中的文件图标字体。
@@ -115,4 +116,5 @@
 [svgtofont](https://github.com/jaywcjlove/svgtofont) | [![](https://img.shields.io/npm/v/svgtofont.svg)](https://www.npmjs.com/package/svgtofont) | - | - | 阅读一组SVG图标并输出 TTF/EOT/WOFF/WOFF2/SVG 字体。
 [bannerjs](https://github.com/jaywcjlove/bannerjs) | [![](https://img.shields.io/npm/v/bannerjs.svg)](https://www.npmjs.com/package/bannerjs) | - | - | 将注释添加到代码中。 获取基于package.json的单行/多行注释横幅。
 [compile-less](https://github.com/jaywcjlove/compile-less) | [![](https://img.shields.io/npm/v/compile-less-cli.svg)](https://www.npmjs.com/package/compile-less-cli) | - | - | 将所有 `.less` 文件编译为 `.css` 文件。。
-[npm-unpkg](https://github.com/uiwjs/npm-unpkg) | - | - | [home](uiwjs.github.io/npm-unpkg) | 基于unpkg的Web应用程序，用于查看npm软件包文件。
+[npm-unpkg](https://github.com/uiwjs/npm-unpkg) | - | - | [home](https://uiwjs.github.io/npm-unpkg) | 基于unpkg的Web应用程序，用于查看npm软件包文件。
+[ui-color](https://github.com/uiwjs/ui-color) | - | - | [home](https://uiwjs.github.io/ui-color/) | Converting HEX & RGB colors to UIColor/NSColor/Color for both Objective C & Swift.
