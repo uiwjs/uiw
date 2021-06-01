@@ -119,3 +119,11 @@
 [next-remove-imports](https://github.com/uiwjs/next-remove-imports) | [![](https://img.shields.io/npm/v/next-remove-imports.svg)](https://www.npmjs.com/package/next-remove-imports) | - | - | The default behavior is to remove all .less/.css/.scss/.sass/.styl imports from all packages in node_modules.
 [npm-unpkg](https://github.com/uiwjs/npm-unpkg) | - | - | [home](https://uiwjs.github.io/npm-unpkg) | 基于unpkg的Web应用程序，用于查看npm软件包文件。
 [ui-color](https://github.com/uiwjs/ui-color) | - | - | [home](https://uiwjs.github.io/ui-color/) | Converting HEX & RGB colors to UIColor/NSColor/Color for both Objective C & Swift.
+
+## 一些小工具
+
+名称 | 版本 | 预览 | 描述
+---- | ---- | ---- | ----
+[nginx-editor](https://github.com/jaywcjlove/nginx-editor) | - | [home](https://jaywcjlove.github.io/nginx-editor) | 基于 Monaco 的 nginx 编辑器，支持语法提示。
+[npm-unpkg](https://github.com/uiwjs/npm-unpkg) | - | [home](https://uiwjs.github.io/npm-unpkg) | 基于unpkg的Web应用程序，用于查看npm软件包文件。
+[ui-color](https://github.com/uiwjs/ui-color) | - | [home](https://uiwjs.github.io/ui-color/) | Converting HEX & RGB colors to UIColor/NSColor/Color for both Objective C & Swift.
