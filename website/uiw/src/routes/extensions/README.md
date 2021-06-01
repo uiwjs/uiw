@@ -10,7 +10,7 @@
 [@uiw/react-md-editor](https://github.com/uiwjs/react-md-editor) | [![](https://img.shields.io/npm/v/@uiw/react-md-editor.svg)](https://www.npmjs.com/package/@uiw/react-md-editor) | - | [demo](https://uiwjs.github.io/react-md-editor/) | 一个简单的带有预览的 Markdown 编辑器，使用 React 和 TypeScript 实现。
 [@uiw/react-prismjs](https://github.com/uiwjs/react-prismjs) | [![](https://img.shields.io/npm/v/@uiw/react-prismjs.svg)](https://www.npmjs.com/package/@uiw/react-prismjs) | - | [demo](https://uiwjs.github.io/react-prismjs/) | React Component for prismjs.
 [@uiw/react-code-preview](https://github.com/uiwjs/react-code-preview) | [![](https://img.shields.io/npm/v/@uiw/react-code-preview.svg)](https://www.npmjs.com/package/@uiw/react-code-preview) | [**@uiw/react-split**](https://github.com/uiwjs/react-split) | [demo](https://uiwjs.github.io/react-code-preview/) | React 的 Markdown 预览，集成代码高亮。
-[@uiw/react-markdown-preview](https://github.com/uiwjs/react-markdown-preview) | [![](https://img.shields.io/npm/v/@uiw/react-markdown-preview.svg)](https://www.npmjs.com/package/@uiw/react-code-preview) | - | [demo](https://uiwjs.github.io/react-markdown-preview/) | React 的代码编辑实时预览。
+[@uiw/react-markdown-preview](https://github.com/uiwjs/react-markdown-preview) | [![](https://img.shields.io/npm/v/@uiw/react-markdown-preview.svg)](https://www.npmjs.com/package/@uiw/react-markdown-preview) | - | [demo](https://uiwjs.github.io/react-markdown-preview/) | React 的代码编辑实时预览。
 [@uiw/react-codemirror](https://github.com/uiwjs/react-codemirror) | [![](https://img.shields.io/npm/v/@uiw/react-codemirror.svg)](https://www.npmjs.com/package/@uiw/react-codemirror) | - | [demo](https://uiwjs.github.io/react-codemirror/) | 基于 React 的 [**@CodeMirror**](https://github.com/codemirror) 组件。
 [@uiw/react-monacoeditor](https://github.com/jaywcjlove/react-monacoeditor) | [![](https://img.shields.io/npm/v/@uiw/react-monacoeditor.svg)](https://www.npmjs.com/package/@uiw/react-monacoeditor) | - | [demo](https://jaywcjlove.github.io/react-monacoeditor/) | 基于 React [**@monaco-editor**](https://github.com/Microsoft/monaco-editor) 代码编辑器组件。
 [@uiw/react-baidu-map](https://github.com/uiwjs/react-baidu-map) | [![](https://img.shields.io/npm/v/@uiw/react-baidu-map.svg)](https://www.npmjs.com/package/@uiw/react-baidu-map) | - | [demo](https://uiwjs.github.io/react-baidu-map/) | 一个基于 React 封装的百度地图组件，帮助你轻松的接入地图到 React 项目中。
@@ -117,8 +117,6 @@
 [bannerjs](https://github.com/jaywcjlove/bannerjs) | [![](https://img.shields.io/npm/v/bannerjs.svg)](https://www.npmjs.com/package/bannerjs) | - | - | 将注释添加到代码中。 获取基于package.json的单行/多行注释横幅。
 [compile-less](https://github.com/jaywcjlove/compile-less) | [![](https://img.shields.io/npm/v/compile-less-cli.svg)](https://www.npmjs.com/package/compile-less-cli) | - | - | 将所有 `.less` 文件编译为 `.css` 文件。。
 [next-remove-imports](https://github.com/uiwjs/next-remove-imports) | [![](https://img.shields.io/npm/v/next-remove-imports.svg)](https://www.npmjs.com/package/next-remove-imports) | - | - | The default behavior is to remove all .less/.css/.scss/.sass/.styl imports from all packages in node_modules.
-[npm-unpkg](https://github.com/uiwjs/npm-unpkg) | - | - | [home](https://uiwjs.github.io/npm-unpkg) | 基于unpkg的Web应用程序，用于查看npm软件包文件。
-[ui-color](https://github.com/uiwjs/ui-color) | - | - | [home](https://uiwjs.github.io/ui-color/) | Converting HEX & RGB colors to UIColor/NSColor/Color for both Objective C & Swift.
 
 ## 一些小工具
 
