@@ -45,7 +45,7 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
       <MarkdownPreview
         source={mdStr}
         className={styles.markdown}
-        rehypePlugins={[rehypeAttr]}
+        rehypePlugins={[[rehypeAttr, { properties: 'attr' }]]}
         components={{
           /**
            * bgWhite 设置代码预览背景白色，否则为格子背景。
@@ -54,30 +54,39 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
            * noScroll 预览区域不显示滚动条。
            * codePen 显示 Codepen 按钮，要特别注意 包导入的问题，实例中的 import 主要用于 Codepen 使用。
            */
-          code: ({ 'data-config': config, inline, node, ...props }) => {
-            if (config) {
-              const {
-                noPreview,
-                noScroll,
-                bgWhite,
-                codeSandbox,
-                noCode,
-                codePen,
-              } = config as CodeProps;
+          code: ({
+            inline,
+            node,
+            noPreview,
+            noScroll,
+            bgWhite,
+            noCode,
+            codePen,
+            codeSandbox,
+            ...props
+          }) => {
+            const conf = {
+              noPreview,
+              noScroll,
+              bgWhite,
+              noCode,
+              codePen,
+              codeSandbox,
+            } as CodeProps;
+            if (
+              noPreview ||
+              noScroll ||
+              bgWhite ||
+              noCode ||
+              codePen ||
+              codeSandbox
+            ) {
               return (
                 <Code
-                  version={version}
+                  {...conf}
                   code={getCodeStr(node.children)}
                   dependencies={dependencies}
                   language={(props.className || '').replace(/^language-/, '')}
-                  {...{
-                    noPreview,
-                    noScroll,
-                    bgWhite,
-                    noCode,
-                    codePen,
-                    codeSandbox,
-                  }}
                 />
               );
             }
