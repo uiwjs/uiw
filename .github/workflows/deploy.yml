@@ -49,11 +49,3 @@ jobs:
         publish_branch: gh-pages
         publish_dir: ./website/uiw/build
         cname: uiw.js.cool
-
-    - name: Sync to Gitee
-      uses: x-dr/sync-repo-to-gitee@master
-      env:
-        SSH_KEY: ${{ secrets.GITEE_SSH_KEY }}
-      with:
-        github-repo: "git@github.com:uiwjs/uiw.git"
-        gitee-repo: "git@gitee.com:uiw/uiw.git"
