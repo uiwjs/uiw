@@ -58,6 +58,7 @@ function InternalInput<T>(
       <input
         ref={inputRef}
         type={type}
+        autoComplete="off"
         {...otherProps}
         className={`${prefixCls}-inner`}
       />
