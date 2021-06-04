@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Pane from './Pane';
 import './style/index.less';
 
 export * from './Pane';
+
+Tabs.Pane = Pane;
 
 export interface TabsProps extends IProps, HTMLDivProps {
   prefixCls?: string;
@@ -17,135 +19,86 @@ export interface TabsProps extends IProps, HTMLDivProps {
   ) => void;
 }
 
-export interface TabsState {
-  activeKey: string;
-  slideStyle: {
-    width: number;
-    left: number;
-  };
-}
+export default function Tabs(props: TabsProps) {
+  const {
+    prefixCls = 'w-tabs',
+    className,
+    children,
+    type = 'default',
+    activeKey: _,
+    onTabClick,
+    ...elementProps
+  } = props;
+  const [activeKey, setActiveKey] = useState(props.activeKey);
+  const [slideStyle, setSlideStyle] = useState({ width: 0, left: 0 });
+  const activeItem = useRef<HTMLDivElement | undefined>();
+  const cls = [prefixCls, className, type ? `${prefixCls}-${type}` : null]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
 
-export default class Tabs extends React.Component<TabsProps, TabsState> {
-  public static defaultProps: TabsProps = {
-    prefixCls: 'w-tabs',
-    type: 'default',
-  };
-  static Pane = Pane;
-  private activeItem!: HTMLDivElement;
-  constructor(props: TabsProps) {
-    super(props);
-    this.state = {
-      activeKey: props.activeKey as string,
-      slideStyle: { width: 0, left: 0 },
-    };
-  }
-  UNSAFE_componentWillReceiveProps(nextProps: TabsProps) {
-    if (nextProps.children !== this.props.children) {
-      this.calcSlideStyle();
-    }
-    if (nextProps.activeKey !== this.props.activeKey) {
-      this.setState(
-        {
-          activeKey: nextProps.activeKey as string,
-        },
-        () => {
-          this.calcSlideStyle();
-        },
-      );
-    }
-  }
-  componentDidMount() {
-    this.calcSlideStyle();
-  }
-  calcSlideStyle() {
-    const { slideStyle } = this.state;
-    if (this.activeItem && this.props.type === 'line') {
-      const styl = {
-        width: this.activeItem.clientWidth,
-        left: this.activeItem.offsetLeft,
-      };
-      this.setState({
-        slideStyle: { ...slideStyle, ...styl },
+  useEffect(() => setActiveKey(props.activeKey), [props.activeKey]);
+  useEffect(() => calcSlideStyle(), [activeKey]);
+
+  function calcSlideStyle() {
+    if (activeItem.current && type === 'line') {
+      setSlideStyle({
+        width: activeItem.current.clientWidth,
+        left: activeItem.current.offsetLeft,
       });
     }
   }
-  onTabClick(item: React.ReactElement, key: string, e: React.MouseEvent) {
-    const { onTabClick } = this.props;
-    this.setState(
-      {
-        activeKey: key,
-      },
-      () => {
-        this.calcSlideStyle();
-        onTabClick && onTabClick(key, item, e);
-      },
-    );
-  }
-  render() {
-    const {
-      prefixCls,
-      className,
-      children,
-      type,
-      activeKey,
-      onTabClick,
-      ...elementProps
-    } = this.props;
-    const cls = [prefixCls, className, type ? `${prefixCls}-${type}` : null]
-      .filter(Boolean)
-      .join(' ')
-      .trim();
-    return (
-      <div className={cls} {...elementProps}>
-        <div className={`${prefixCls}-bar`}>
-          <div className={`${prefixCls}-nav`}>
-            {React.Children.map(
-              children as React.ReactElement[],
-              (item: React.ReactElement, key: number) => {
-                if (!item) {
-                  return null;
-                }
-                const props: any = {
-                  key,
-                  className: [
-                    `${prefixCls}-item`,
-                    item.key === this.state.activeKey ? 'active' : null,
-                    item.props.disabled ? 'disabled' : null,
-                  ]
-                    .filter(Boolean)
-                    .join(' ')
-                    .trim(),
-                  children: item.props.label,
+
+  return (
+    <div className={cls} {...elementProps}>
+      <div className={`${prefixCls}-bar`}>
+        <div className={`${prefixCls}-nav`}>
+          {React.Children.map(
+            children as React.ReactElement[],
+            (item: React.ReactElement, key: number) => {
+              if (!item) {
+                return null;
+              }
+              const divProps: HTMLDivProps = {
+                className: [
+                  `${prefixCls}-item`,
+                  item.key === activeKey ? 'active' : null,
+                  item.props.disabled ? 'disabled' : null,
+                ]
+                  .filter(Boolean)
+                  .join(' ')
+                  .trim(),
+                children: item.props.label,
+              };
+              if (!item.props.disabled) {
+                divProps.onClick = (e: React.MouseEvent) => {
+                  setActiveKey(item.key as string);
+                  onTabClick && onTabClick(item.key as string, item, e);
+                  calcSlideStyle();
                 };
-                if (!item.props.disabled) {
-                  props.onClick = this.onTabClick.bind(
-                    this,
-                    item,
-                    item.key as string,
-                  );
-                }
-                return (
-                  <div
-                    ref={(node) => {
-                      if (node && item.key === this.state.activeKey) {
-                        this.activeItem = node;
-                      }
-                    }}
-                    {...props}
-                  />
-                );
-              },
-            )}
-          </div>
-          <div style={this.state.slideStyle} className={`${prefixCls}-slide`} />
+              }
+              return (
+                <div
+                  key={key}
+                  ref={(node) => {
+                    if (node && item.key === activeKey) {
+                      activeItem.current = node;
+                    }
+                  }}
+                  {...divProps}
+                />
+              );
+            },
+          )}
         </div>
-        {React.Children.map(children, (item: any) => {
-          if (!item || this.state.activeKey !== item.key) {
-            return null;
-          }
-          return React.cloneElement(item, Object.assign({}, item.props, {}));
-        })}
+        <div style={slideStyle} className={`${prefixCls}-slide`} />
       </div>
-    );
-  }
+      {React.Children.map(children, (item: any) => {
+        if (!item || activeKey !== item.key) {
+          return null;
+        }
+        return React.cloneElement(item, Object.assign({}, item.props, {}));
+      })}
+    </div>
+  );
 }
