@@ -273,11 +273,20 @@ function SelectTag(props) {
   const [option, setOption] = React.useState([...props.option]);
 
   React.useEffect(() => {
-    const selectOptionVal = value.map(val => option.find(item => val === item.value)).filter(item => !!item);
+    const selectOptionVal = props.value.map(val => option.find(item => val === item.value)).filter(item => !!item);
     if (selectOptionVal !== selectOption) {
-      setSelectOption(selectOptionVal)
+      setSelectOption(selectOptionVal);
     }
-  }, [value]);
+    if (value !== props.value) {
+      setValue(props.value);
+    }
+  }, [props.value]);
+
+  React.useEffect(() => {
+    if (value !== props.option) {
+      setOption(props.option);
+    }
+  }, [props.option]);
 
   function modifyValue(itemVal, item) {
     let newValue = [...value];
