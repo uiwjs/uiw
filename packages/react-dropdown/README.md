@@ -168,52 +168,46 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Dropdown, Menu, Button, Icon } from 'uiw';
 
-class Select extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: props.value,
-      isOpen: false,
-    };
-  }
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.setState({ value: nextProps.value });
+function Select(props) {
+  const { option, onChange } = props;
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState(props.value);
+  const label = option.find(item => value === item.value);
+
+  React.useEffect(() => {
+    if (props.value !== value) {
+      setValue(props.value);
     }
-  }
-  onVisibleChange(isOpen) {
-    this.setState({ isOpen });
-  }
-  onClick(item) {
-    const { onChange } = this.props;
-    this.setState({ value: item.value, isOpen: false }, () => {
-      onChange && onChange(item);
-    });
-  }
-  render() {
-    const { option } = this.props;
-    const { isOpen, value } = this.state;
-    const label = option.find(item => value === item.value);
-    return (
-      <Dropdown
-        trigger="click"
-        onVisibleChange={this.onVisibleChange.bind(this)}
-        isOpen={isOpen}
-        menu={
-          <Menu bordered style={{ minWidth: 120 }}>
-            {option.map((item, idx) => {
-              const active = value === item.value;
-              return (
-                <Menu.Item active={active} key={idx} text={item.label} onClick={this.onClick.bind(this, item)}/>
-              );
-            })}
-          </Menu>
-        }
-      >
-        <Button type="link">{label.label}<Icon type={isOpen ? 'up' : 'down'} /></Button>
-      </Dropdown>
-    )
-  }
+  }, [props.value]);
+
+  return (
+    <Dropdown
+      trigger="click"
+      onVisibleChange={(isOpen) => setOpen(isOpen)}
+      isOpen={open}
+      menu={
+        <Menu bordered style={{ minWidth: 120 }}>
+          {option.map((item, idx) => {
+            const active = value === item.value;
+            return (
+              <Menu.Item
+                key={idx}
+                active={active}
+                text={item.label}
+                onClick={(e) => {
+                  setValue(item.value)
+                  setOpen(false)
+                  onChange && onChange(item.value, e)
+                }}
+              />
+            );
+          })}
+        </Menu>
+      }
+    >
+      <Button type="link">{label.label}<Icon type={open ? 'up' : 'down'} /></Button>
+    </Dropdown>
+  )
 }
 
 const option = [
