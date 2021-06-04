@@ -438,63 +438,51 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { Form, Row, Col, Dropdown, Menu, Icon, Button, Notify } from 'uiw';
 
 // 自定义组件
-class CustomSelect extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: props.value,
-      isOpen: false,
-    };
-  }
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.setState({ value: nextProps.value });
+function CustomSelect(props) {
+  const { option = [], onChange } = props;
+  const [value, setValue] = React.useState(props.value);
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    if (value !== props.value) {
+      setValue(props.value);
     }
-  }
-  onVisibleChange(isOpen) {
-    this.setState({ isOpen });
-  }
-  onClick(item) {
-    const { onChange } = this.props;
-    this.setState({ value: item.value, isOpen: false }, () => {
-      onChange && onChange(item.value);
-    });
-  }
-  render() {
-    const { option } = this.props;
-    const { isOpen, value } = this.state;
-    const label = option.find(item => value === item.value);
-    return (
-      <Dropdown
-        trigger="click"
-        onVisibleChange={this.onVisibleChange.bind(this)}
-        isOpen={isOpen}
-        menu={
-          <Menu bordered style={{ minWidth: 120 }}>
-            {option.map((item, idx) => {
-              const active = value === item.value;
-              return (
-                <Menu.Item active={active} key={idx} text={item.label} onClick={this.onClick.bind(this, item)}/>
-              );
-            })}
-          </Menu>
-        }
+  }, [props.value]);
+  const label = option.find(item => value === item.value);
+  return (
+    <Dropdown
+      trigger="click"
+      onVisibleChange={(open) => setIsOpen(open)}
+      isOpen={isOpen}
+      menu={
+        <Menu bordered style={{ minWidth: 120 }}>
+          {option.map((item, idx) => (
+            <Menu.Item active={value === item.value} key={idx} text={item.label}
+              onClick={() => {
+                setValue(item.value);
+                setIsOpen(false)
+                onChange && onChange(item.value);
+              }}
+            />
+          ))}
+        </Menu>
+      }
+    >
+      <Button
+        style={{
+          boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 -1px 0 rgba(16, 22, 26, 0.1)'
+        }}
+        type="link"
       >
-        <Button
-          style={{
-            boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 -1px 0 rgba(16, 22, 26, 0.1)'
-          }}
-          type="link"
-        >
-          {label.label}<Icon type={isOpen ? 'up' : 'down'} />
-        </Button>
-      </Dropdown>
-    )
-  }
+        {label.label}<Icon type={isOpen ? 'up' : 'down'} />
+      </Button>
+    </Dropdown>
+  );
 }
 
 // 自定义组件应用实例
