@@ -7,7 +7,7 @@ import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
 import './style/index.less';
 
-export interface IDateInputProps<T>
+export interface DateInputProps<T>
   extends IProps,
     Omit<InputProps<T>, 'onChange' | 'value'> {
   popoverProps?: PopoverProps;
@@ -18,7 +18,7 @@ export interface IDateInputProps<T>
   onChange?: (selectedDate?: Date) => void;
 }
 
-export default function DateInput<T>(props: IDateInputProps<T>) {
+export default function DateInput<T>(props: DateInputProps<T>) {
   const {
     prefixCls = 'w-dateinput',
     className,
