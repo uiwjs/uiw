@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   DatePickerDay,
   DatePickerDayProps,
-  DatePickerDayRenderDay,
   DatePickerDayDateSource,
 } from '@uiw/react-date-picker';
 import Icon from '@uiw/react-icon';
 import formatter from '@uiw/formatter';
 import { IProps } from '@uiw/utils';
+import RenderDay from './DayLabel';
 import './style/index.less';
 
 export interface CalendarProps extends IProps, DatePickerDayProps {
@@ -54,168 +54,120 @@ export interface CalendarProps extends IProps, DatePickerDayProps {
   ) => void;
 }
 
-export interface ICalendarState {
-  panelDate?: Date;
-  date?: Date;
-}
-
 export interface ICalendarData {
   label?: React.ReactNode;
   date?: string;
   [key: string]: any;
 }
 
-export default class Calendar extends React.Component<
-  CalendarProps,
-  ICalendarState
-> {
-  static state: ICalendarState;
-  public static defaultProps: CalendarProps = {
-    prefixCls: 'w-calendar',
-    titleFormat: 'YYYY/MM',
-    todayLabel: '今天',
-    monthLabel: [
-      '一月',
-      '二月',
-      '三月',
-      '四月',
-      '五月',
-      '六月',
-      '七月',
-      '八月',
-      '九月',
-      '十月',
-      '十一月',
-      '十二月',
-    ],
-  };
-  constructor(props: CalendarProps) {
-    super(props);
-    this.state = {
-      panelDate: props.panelDate || new Date(),
-      date: props.date,
-    };
-  }
-  UNSAFE_componentWillReceiveProps(nextProps: CalendarProps) {
-    if (nextProps.panelDate !== this.props.panelDate) {
-      this.setState({ panelDate: nextProps.panelDate });
+const MONTH_LABEL = [
+  '一月',
+  '二月',
+  '三月',
+  '四月',
+  '五月',
+  '六月',
+  '七月',
+  '八月',
+  '九月',
+  '十月',
+  '十一月',
+  '十二月',
+];
+
+export default function Calendar(props: CalendarProps) {
+  const {
+    prefixCls = 'w-calendar',
+    className,
+    style,
+    today = new Date(),
+    date,
+    monthLabel = MONTH_LABEL,
+    titleFormat = 'YYYY/MM',
+    todayLabel = '今天',
+    panelDate: _,
+    onPaging,
+    onSelectDay,
+    ...otherProps
+  } = props;
+  const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
+  const [panelDate, setPanelDate] = useState<Date>(
+    props.panelDate || new Date(),
+  );
+
+  useEffect(() => {
+    if (props.panelDate !== panelDate) {
+      setPanelDate(panelDate);
     }
-  }
-  onSelectDay = (date?: Date, dateSource?: DatePickerDayDateSource) => {
-    const { onSelectDay } = this.props;
-    this.setState({ panelDate: date });
-    onSelectDay && onSelectDay(date, dateSource);
-  };
-  onPaging(type: 'prev' | 'next' | 'today') {
-    const { panelDate } = this.state;
-    const { today, onPaging } = this.props;
+  }, [props.panelDate]);
+
+  function handlePaging(type: 'prev' | 'next' | 'today') {
+    let currentDate = new Date();
     if (type === 'today') {
-      this.setState(
-        {
-          panelDate: today || new Date(),
-        },
-        () => {
-          onPaging &&
-            onPaging(
-              type,
-              this.state.panelDate!.getMonth() + 1,
-              this.state.panelDate,
-            );
-        },
-      );
-      return;
+      currentDate = today || new Date();
+    } else {
+      const month = panelDate.getMonth();
+      if (panelDate && type === 'prev') {
+        panelDate.setMonth(month - 1);
+      }
+      if (panelDate && type === 'next') {
+        panelDate.setMonth(month + 1);
+      }
+      currentDate = panelDate;
     }
-    const month = (panelDate as Date).getMonth();
-    if (panelDate && type === 'prev') {
-      panelDate.setMonth(month - 1);
-    }
-    if (panelDate && type === 'next') {
-      panelDate.setMonth(month + 1);
-    }
-    this.setState({ panelDate }, () => {
-      onPaging && onPaging(type, panelDate!.getMonth() + 1, panelDate);
-    });
+    setPanelDate(new Date(currentDate));
+    onPaging && onPaging(type, currentDate!.getMonth() + 1, currentDate);
   }
-  renderDay = (day: number, props: DatePickerDayRenderDay) => {
-    const { prefixCls, data } = this.props;
-    const dayData = (data || []).filter((item) => {
-      let arr: number[] = (
-        (item.date && item.date.split('/')) ||
-        []
-      ).map((num) => Number(num));
-      if (arr.length === 1) {
-        return day === arr[0];
-      }
-      if (props.date && arr.length === 2) {
-        return props.date.getMonth() + 1 === arr[0] && day === arr[1];
-      }
-      if (props.date && arr.length === 3) {
-        return (
-          props.date.getFullYear() === arr[0] &&
-          props.date.getMonth() + 1 === arr[1] &&
-          day === arr[2]
-        );
-      }
-      return false;
-    });
-    return (
-      <div className={`${prefixCls}-inner`}>
-        <div className={`${prefixCls}-day`}>{day}</div>
-        <div className={`${prefixCls}-panel`}>
-          {dayData &&
-            dayData.length > 0 &&
-            dayData.map((item, idx) => {
-              const { date, label, ...other } = item;
-              return (
-                <div key={idx} {...other}>
-                  {label}
-                </div>
-              );
-            })}
-        </div>
+
+  const titleLable = useMemo(
+    () => (
+      <div className={`${prefixCls}-title`}>
+        {formatter(titleFormat, panelDate)}
       </div>
-    );
-  };
-  render() {
-    const {
-      prefixCls,
-      className,
-      style,
-      today,
-      todayLabel,
-      panelDate,
-      titleFormat,
-      monthLabel,
-      onSelectDay,
-      ...otherProps
-    } = this.props;
-    const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
-    return (
-      <div className={cls} style={style}>
-        <div className={`${prefixCls}-caption`}>
-          <div className={`${prefixCls}-title`}>
-            {formatter(titleFormat as string, this.state.panelDate as Date)}
-          </div>
-          <div className={`${prefixCls}-btn-group`}>
-            <Icon type="down" onClick={this.onPaging.bind(this, 'prev')} />
-            <span
-              className={`${prefixCls}-btn`}
-              onClick={this.onPaging.bind(this, 'today')}
-            >
-              {todayLabel}
-            </span>
-            <Icon type="down" onClick={this.onPaging.bind(this, 'next')} />
-          </div>
-        </div>
-        <DatePickerDay
-          onSelectDay={this.onSelectDay}
-          renderDay={this.renderDay}
-          date={this.state.date}
-          today={today || new Date()}
-          panelDate={this.state.panelDate || new Date()}
-          {...otherProps}
-        />
+    ),
+    [prefixCls, titleFormat, panelDate],
+  );
+
+  const btngroup = useMemo(
+    () => (
+      <div className={`${prefixCls}-btn-group`}>
+        <Icon type="down" onClick={() => handlePaging('prev')} />
+        <span
+          className={`${prefixCls}-btn`}
+          onClick={() => handlePaging('today')}
+        >
+          {todayLabel}
+        </span>
+        <Icon type="down" onClick={() => handlePaging('next')} />
       </div>
-    );
-  }
+    ),
+    [prefixCls, todayLabel],
+  );
+
+  return (
+    <div className={cls} style={style}>
+      <div className={`${prefixCls}-caption`}>
+        {titleLable}
+        {btngroup}
+      </div>
+      <DatePickerDay
+        onSelectDay={(currentDate, dateSource) => {
+          setPanelDate(currentDate!);
+          onSelectDay && onSelectDay(currentDate, dateSource);
+        }}
+        renderDay={(day, propsNext) => (
+          <RenderDay
+            prefixCls={prefixCls}
+            day={day}
+            data={props.data}
+            currentDate={propsNext.date}
+          />
+        )}
+        date={date}
+        today={today}
+        panelDate={panelDate || new Date()}
+        {...otherProps}
+      />
+    </div>
+  );
 }
