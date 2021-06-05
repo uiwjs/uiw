@@ -2,6 +2,48 @@
 
 .@{input-prefix} {
   input {
-    padding: 5px;
+    &::-webkit-file-upload-button {
+      background: transparent;
+      border: 0;
+      color: red;
+      position: absolute;
+      left: -300px;
+    }
+    &:hover:after {
+      background-clip: padding-box;
+      background-color: #ebf1f5;
+      box-shadow: inset 0 0 0 1px rgb(16 22 26 / 20%),
+        inset 0 -1px 0 rgb(16 22 26 / 10%);
+    }
+    &:after {
+      box-shadow: inset 0 0 0 1px rgb(16 22 26 / 8%);
+      background-color: #f5f8fa;
+      background-image: linear-gradient(
+        180deg,
+        hsla(0, 0%, 100%, 0.8),
+        hsla(0, 0%, 100%, 0)
+      );
+      color: #182026;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-wrap: normal;
+      border-radius: 3px;
+      content: 'Browse';
+      content: attr(data-label);
+      padding: 0 10px;
+      margin: 3px;
+      text-align: center;
+      right: 0;
+      display: flex;
+      align-items: center;
+    }
+    &::before,
+    &::after {
+      color: #757575;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+    }
   }
 }

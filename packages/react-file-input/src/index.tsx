@@ -17,7 +17,7 @@ function FileInput<T>(
     .filter(Boolean)
     .join(' ')
     .trim();
-  return <Input ref={inputRef} {...props} type="file" />;
+  return <Input ref={inputRef} data-label="Browse" {...props} type="file" />;
 }
 
 export default React.forwardRef<HTMLInputElement, InputProps<{}>>(FileInput);
