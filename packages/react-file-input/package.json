@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-file-input",
-  "version": "4.7.16",
+  "version": "4.8.0",
   "description": "FileInput component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/file-input",
@@ -42,7 +42,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-input": "^4.7.16"
+    "@uiw/react-input": "^4.8.0"
   },
   "devDependencies": {
     "@babel/runtime": "7.14.0",
