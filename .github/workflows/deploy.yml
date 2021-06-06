@@ -27,9 +27,9 @@ jobs:
     - run: npm run b:uiw
     - run: npm run b:css
     - run: npm run type
+    - run: npm install @jsdevtools/npm-publish
     - run: |
-      npm install -g @jsdevtools/npm-publish
-      npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-affix/package.json
+      ./node_modules/.bin/ --token="${{ secrets.NPM_TOKEN }}" ./packages/react-affix/package.json
 
     - run: npm run bundle
     - run: npm run coverage
