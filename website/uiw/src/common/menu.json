@@ -64,6 +64,10 @@
       { "name": "Progress 进度条", "path": "progress" },
       { "name": "List 列表", "path": "list" },
       { "name": "AutoLink 文本超链接", "path": "auto-link" },
+      {
+        "name": "HeatMap 日历热图",
+        "path": "https://uiwjs.github.io/react-heat-map"
+      },
       { "divider": true, "name": "导航" },
       { "name": "Affix 图钉", "path": "affix" },
       { "name": "Breadcrumb 面包屑", "path": "breadcrumb" },
@@ -83,6 +87,33 @@
       { "name": "Notify 消息通知", "path": "notify" },
       { "name": "Popover 气泡卡片", "path": "popover" },
       { "name": "Tooltip 文字提示", "path": "tooltip" },
+      { "divider": true, "name": "地图" },
+      { "name": "AMap 高德地图", "path": "https://uiwjs.github.io/react-amap" },
+      {
+        "name": "BaiduMap 百度地图",
+        "path": "https://uiwjs.github.io/react-baidu-map"
+      },
+      { "divider": true, "name": "编辑器" },
+      {
+        "name": "MDEditor 编辑器",
+        "path": "https://uiwjs.github.io/react-md-editor/"
+      },
+      {
+        "name": "Markdown Editor 编辑器",
+        "path": "https://uiwjs.github.io/react-markdown-editor/"
+      },
+      {
+        "name": "CodePreview JS编辑预览",
+        "path": "https://uiwjs.github.io/react-code-preview/"
+      },
+      {
+        "name": "Codemirror 代码编辑器",
+        "path": "https://uiwjs.github.io/react-codemirror/"
+      },
+      {
+        "name": "MonacoEditor 代码编辑器",
+        "path": "https://jaywcjlove.github.io/react-monacoeditor/"
+      },
       { "divider": true, "name": "其它" },
       { "name": "BackTop 返回顶部", "path": "back-top" },
       { "name": "CopyToClipboard 复制", "path": "copy-to-clipboard" },

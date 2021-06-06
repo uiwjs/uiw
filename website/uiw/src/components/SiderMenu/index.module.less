@@ -28,12 +28,19 @@
   right: 0;
   top: 57px;
   padding: 0 10px;
+  padding-bottom: 30px;
   a {
     padding: 5px 8px;
-    margin: 2px 0;
     display: block;
     color: #fff;
     border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    &:last-child,
+    > svg {
+      margin-bottom: 0;
+      fill: #888;
+    }
     &:hover,
     &.selected {
       color: #fff;
@@ -44,9 +51,6 @@
     padding: 10px;
     color: #aaa;
     font-weight: normal;
-  }
-  :last-child {
-    margin-bottom: 20px;
   }
   &::-webkit-scrollbar {
     border-radius: 5px;
