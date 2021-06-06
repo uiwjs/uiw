@@ -29,7 +29,7 @@ jobs:
     - run: npm run type
     - run: |
       npm install -g @jsdevtools/npm-publish
-      npm-publish --token=${{ secrets.NPM_TOKEN }} ./packages/react-affix/package.json
+      npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-affix/package.json
 
     - run: npm run bundle
     - run: npm run coverage
