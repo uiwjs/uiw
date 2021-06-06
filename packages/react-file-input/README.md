@@ -35,4 +35,4 @@ ReactDOM.render(
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | className | CSS类名称 | String | - |
-| data-label | 设置 button 文本 | String | - |
+| data-label | 设置 button 文本 | String | `Browse` |
