@@ -15,12 +15,10 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
-
-    - name: Setup Node
-      uses: actions/setup-node@v1
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
       with:
-        node-version: 12
+        node-version: 14
 
     - run: npm install
     - run: npm run hoist
@@ -33,7 +31,7 @@ jobs:
     - run: npm run bundle
     - run: npm run coverage
     - run: npm run b:website
-
+  
     - name: Deploy to uiwjs.github.io
       uses: peaceiris/actions-gh-pages@v3
       with:
