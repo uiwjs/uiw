@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/caption.less';
 
@@ -13,6 +13,8 @@ export type DatePickerCaptionType =
   | 'today'
   | 'next';
 
+function noop() {}
+
 export interface DatePickerCaptionProps extends IProps, HTMLDivProps {
   panelDate?: Date;
   monthLabel?: React.ReactNode[];
@@ -20,78 +22,70 @@ export interface DatePickerCaptionProps extends IProps, HTMLDivProps {
   onSelected?: (captionType: DatePickerCaptionType) => void;
 }
 
-export class DatePickerCaption extends React.Component<DatePickerCaptionProps> {
-  public static defaultProps: DatePickerCaptionProps = {
-    prefixCls: 'w-datepicker',
-    panelDate: new Date(),
-    onSelected() {},
-  };
-  renderMonth() {
-    const { panelDate, monthLabel } = this.props;
-    const month = (panelDate as Date).getMonth();
-    return (monthLabel && monthLabel[month]) || month + 1;
-  }
-  render() {
-    const {
-      prefixCls,
-      className,
-      panelDate,
-      monthLabel,
-      onSelected,
-      todayButton,
-      ...other
-    } = this.props;
+export function DatePickerCaption(props: DatePickerCaptionProps) {
+  const {
+    prefixCls = 'w-datepicker',
+    className,
+    panelDate = new Date(),
+    monthLabel,
+    onSelected = noop,
+    todayButton,
+    ...other
+  } = props;
 
-    return (
+  const renderMonth = useMemo(() => {
+    const month = panelDate.getMonth();
+    return (monthLabel && monthLabel[month]) || month + 1;
+  }, [panelDate.toDateString(), monthLabel]);
+  return (
+    <div
+      className={classnames(
+        prefixCls ? `${prefixCls}-caption` : null,
+        className,
+      )}
+      {...other}
+    >
       <div
         className={classnames(
-          prefixCls ? `${prefixCls}-caption` : null,
-          className,
+          prefixCls ? `${prefixCls}-caption-pane` : null,
+          'prev',
         )}
-        {...other}
+        onClick={() => onSelected('prev')}
+      />
+      <div
+        className={classnames(
+          prefixCls ? `${prefixCls}-caption-pane` : null,
+          'month',
+        )}
+        onClick={() => onSelected('month')}
       >
-        <div
-          className={classnames(
-            prefixCls ? `${prefixCls}-caption-pane` : null,
-            'prev',
-          )}
-          onClick={onSelected!.bind(this, 'prev')}
-        />
-        <div
-          className={classnames(
-            prefixCls ? `${prefixCls}-caption-pane` : null,
-            'month',
-          )}
-          onClick={onSelected!.bind(this, 'month')}
-        >
-          {this.renderMonth()}
-        </div>
-        <div
-          className={classnames(
-            prefixCls ? `${prefixCls}-caption-pane` : null,
-            'year',
-          )}
-          onClick={onSelected!.bind(this, 'year')}
-        >
-          {panelDate!.getFullYear()}
-        </div>
-        {todayButton && (
-          <div
-            className={classnames(
-              prefixCls ? `${prefixCls}-caption-today` : null,
-            )}
-            onClick={onSelected!.bind(this, 'today')}
-            title={todayButton}
-          />
-        )}
-        <div
-          className={classnames(
-            prefixCls ? `${prefixCls}-caption-pane` : null,
-            'next',
-          )}
-          onClick={onSelected!.bind(this, 'next')}
-        />
+        {renderMonth}
       </div>
-    );
-  }
+      <div
+        className={classnames(
+          prefixCls ? `${prefixCls}-caption-pane` : null,
+          'year',
+        )}
+        onClick={() => onSelected('year')}
+      >
+        {panelDate!.getFullYear()}
+      </div>
+      {todayButton && (
+        <div
+          className={classnames(
+            prefixCls ? `${prefixCls}-caption-today` : null,
+          )}
+          onClick={() => onSelected('today')}
+          title={todayButton}
+        />
+      )}
+      <div
+        className={classnames(
+          prefixCls ? `${prefixCls}-caption-pane` : null,
+          'next',
+        )}
+        onClick={() => onSelected('next')}
+      />
+    </div>
+  );
 }
