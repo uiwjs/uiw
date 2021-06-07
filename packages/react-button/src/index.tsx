@@ -26,7 +26,7 @@ export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
   onClick?: (e: React.MouseEvent<HTMLButtonElement> & MouseEvent) => void;
 }
 
-export default (props: ButtonProps = {}) => {
+export default function Button(props: ButtonProps = {}) {
   const {
     prefixCls = 'w-btn',
     disabled = false,
@@ -73,4 +73,4 @@ export default (props: ButtonProps = {}) => {
         })}
     </button>
   );
-};
+}
