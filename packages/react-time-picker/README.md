@@ -186,7 +186,13 @@ const Demo = () => (
     <Col fixed>
       <TimePicker
         hideDisabled
-        disabledHours={(hour, date) => {
+        disabledMinutes={(minute, type) => {
+          if (minute % 15 !== 0) {
+            return true;
+          }
+        }}
+        disabledHours={(hour, type, date) => {
+          // console.log('~~:', hour, type, date);
           if (hour < 3) {
             return true;
           }
