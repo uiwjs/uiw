@@ -82,6 +82,7 @@ export default function Calendar(props: CalendarProps) {
     style,
     today = new Date(),
     date,
+    data,
     monthLabel = MONTH_LABEL,
     titleFormat = 'YYYY/MM',
     todayLabel = '今天',
@@ -159,7 +160,7 @@ export default function Calendar(props: CalendarProps) {
           <RenderDay
             prefixCls={prefixCls}
             day={day}
-            data={props.data}
+            data={data}
             currentDate={propsNext.date}
           />
         )}
