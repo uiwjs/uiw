@@ -209,7 +209,7 @@ export function DatePickerDay(props: DatePickerDayProps) {
           .trim()}
       >
         {[...Array(6)].map((_, idx) => (
-          <div key={idx} className={`${props.prefixCls}-week`}>
+          <div key={idx} className={`${prefixCls}-week`}>
             {[...Array(7)].map((_, col) => (
               <DayRect
                 date={date}
