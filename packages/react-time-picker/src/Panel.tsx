@@ -57,7 +57,6 @@ export default function TimePickerPanel(props: TimePickerPanelProps) {
     if (!date) return;
     const currentDate = new Date(date);
     currentDate[`set${type}` as 'setHours' | 'setMinutes' | 'setSeconds'](num);
-    // scrollTopNow(e.target as HTMLLIElement, num);
     onSelected && onSelected(type, num, disableds.current, currentDate);
   }
   function getDisabledItem(num: number) {
