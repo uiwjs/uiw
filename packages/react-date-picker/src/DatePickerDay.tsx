@@ -124,20 +124,23 @@ export function DayRect(props: DayRectProps) {
   if (selectedDate && selectedDate.toDateString() === cellDate.toDateString()) {
     cls.selected = true;
   }
+  const divProps: React.HTMLAttributes<HTMLDivElement> = {
+    onClick: () => {
+      const cellMonth = cellDate.getMonth();
+      onSelectDay &&
+        onSelectDay!(cellDate, {
+          year: cellDate.getFullYear(),
+          month: cellMonth === 0 ? 12 : cellMonth + 1,
+          day: cellDate.getDate(),
+        });
+    },
+  };
   if (disabledDate && disabledDate(cellDate, { ...props, ...cls })) {
     cls.disabled = true;
-  }
-  function handleClick() {
-    const cellMonth = cellDate.getMonth();
-    onSelectDay &&
-      onSelectDay!(cellDate, {
-        year: cellDate.getFullYear(),
-        month: cellMonth === 0 ? 12 : cellMonth + 1,
-        day: cellDate.getDate(),
-      });
+    delete divProps.onClick;
   }
   return (
-    <div className={classnames(cls)} {...other} onClick={handleClick}>
+    <div className={classnames(cls)} {...other} {...divProps}>
       {renderDay ? (
         renderDay(cellDate.getDate(), { ...props, ...cls, date: cellDate })
       ) : (
@@ -173,8 +176,6 @@ export function DatePickerDay(props: DatePickerDayProps) {
     ...other
   } = props;
 
-  // const [selected, setSelected] = useState(date);
-  // useEffect(() => setSelected(date), [date]);
   const weekdayLabel = useMemo(
     () => (
       <div className={`${prefixCls}-weekday`}>
