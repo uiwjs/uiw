@@ -89,10 +89,10 @@ export default function TimePicker<T>(props: TimePickerProps<T>) {
           className={`${prefixCls}-popover`}
           {...timeProps}
           date={datePickerTime}
-          onSelected={(type, num, disableds, date) => {
-            setDate(date);
-            const dataStr = date ? formatter(format, date) : '';
-            onChange && onChange(dataStr, date, type, num, disableds);
+          onSelected={(type, num, disableds, currentDate) => {
+            setDate(new Date(currentDate!));
+            const dataStr = currentDate ? formatter(format, currentDate) : '';
+            onChange && onChange(dataStr, currentDate, type, num, disableds);
           }}
         />
       }
