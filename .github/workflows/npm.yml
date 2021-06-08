@@ -58,9 +58,13 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
+    - run: |
+        echo "tag: ${{ steps.changelog.outputs.tag }}"
+        echo "version: ${{ steps.changelog.outputs.version }}"
+        echo "ref: ${{ github.ref }}"
+
     - name: Create Release
       uses: ncipollo/release-action@v1
-      if: steps.create_tag.outputs.successful
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         name: ${{ github.ref }}
