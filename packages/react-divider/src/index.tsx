@@ -8,7 +8,7 @@ export interface DividerProps extends IProps, HTMLDivProps {
   align?: 'left' | 'right' | 'center';
 }
 
-export default (props: DividerProps = {}) => {
+export default function Divider(props: DividerProps = {}) {
   const {
     prefixCls = 'w-divider',
     className,
@@ -36,4 +36,4 @@ export default (props: DividerProps = {}) => {
       )}
     </div>
   );
-};
+}

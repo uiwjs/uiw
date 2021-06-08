@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Input, { InputProps } from '@uiw/react-input';
 import Popover, { PopoverProps } from '@uiw/react-popover';
 import { IProps } from '@uiw/utils';
@@ -8,7 +8,7 @@ import {
   DatePickerMonth,
   DatePickerYear,
   DatePickerCaption,
-  DatePickerCaptionType,
+  DatePickerCaptionProps,
 } from '@uiw/react-date-picker';
 import './style/index.less';
 
@@ -16,6 +16,7 @@ export interface MonthPickerProps<T>
   extends IProps,
     Omit<InputProps<T>, 'value' | 'onChange'> {
   popoverProps?: PopoverProps;
+  pickerCaptionProps?: DatePickerCaptionProps;
   value?: Date | string;
   format?: string;
   monthLabel?: string[];
@@ -23,165 +24,135 @@ export interface MonthPickerProps<T>
   onChange?: (date?: Date, formatDate?: string) => void;
 }
 
-export interface MonthPickerState {
-  date?: Date | string;
-  panelDate?: Date;
-  type?: 'setMonth' | 'setFullYear' | DatePickerCaptionType;
-  isOpen?: boolean;
-}
+const MONTH_LABEL = [
+  '一月',
+  '二月',
+  '三月',
+  '四月',
+  '五月',
+  '六月',
+  '七月',
+  '八月',
+  '九月',
+  '十月',
+  '十一月',
+  '十二月',
+];
 
-export default class MonthPicker<T> extends React.Component<
-  MonthPickerProps<T>,
-  MonthPickerState
-> {
-  public state: MonthPickerState;
-  public static defaultProps: MonthPickerProps<{}> = {
-    prefixCls: 'w-monthpicker',
-    format: 'YYYY/MM',
-    monthLabel: [
-      '一月',
-      '二月',
-      '三月',
-      '四月',
-      '五月',
-      '六月',
-      '七月',
-      '八月',
-      '九月',
-      '十月',
-      '十一月',
-      '十二月',
-    ],
-    allowClear: true,
-    onChange() {},
-  };
-  constructor(props: MonthPickerProps<T>) {
-    super(props);
-    this.state = {
-      date: props.value,
-      panelDate: new Date(),
-      type: 'month',
-      isOpen: false,
-    };
+export default function MonthPicker<T>(props: MonthPickerProps<T>) {
+  const {
+    prefixCls = 'w-monthpicker',
+    format = 'YYYY/MM',
+    onChange = () => {},
+    className,
+    popoverProps,
+    pickerCaptionProps = {},
+    allowClear = true,
+    monthLabel = MONTH_LABEL,
+    ...inputProps
+  } = props;
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [panelDate, setPanelDate] = useState(new Date());
+  const [type, setType] = useState('month');
+  const [date, setDate] = useState(props.value);
+
+  useEffect(() => setDate(props.value), [props.value]);
+
+  inputProps.value = useMemo(
+    () =>
+      typeof date === 'string' ? date : date ? formatter(format, date) : '',
+    [format, date],
+  );
+
+  if (allowClear && inputProps.value) {
+    inputProps.addonAfter = (
+      <Button
+        className={`${prefixCls}-close-btn`}
+        icon="close"
+        onClick={() => {
+          setDate('');
+          onChange && onChange();
+        }}
+        size={inputProps.size}
+        basic
+        type="light"
+      />
+    );
   }
-  UNSAFE_componentWillReceiveProps(nextProps: MonthPickerProps<T>) {
-    if (nextProps.value !== this.props.value) {
-      this.setState({ date: nextProps.value });
-    }
-  }
-  onSelectedDate(
+
+  function handleSelectedDate(
     type: 'setMonth' | 'setFullYear',
     num: number,
     paging?: boolean,
   ) {
-    const { format, onChange } = this.props;
-    let { panelDate, date } = this.state;
+    const curPanelDate = new Date(new Date(panelDate)[type](num));
+    if (!paging) {
+      setType('month');
+    }
+    const curDate = formatter(format, new Date(curPanelDate));
+    setDate(curDate);
+    setPanelDate(curPanelDate);
+    onChange && onChange(curPanelDate, curDate);
+    if (type === 'setMonth') {
+      setIsOpen(false);
+    }
+  }
 
-    date = panelDate;
-    panelDate = new Date((date as Date)[type](num));
-
-    date = formatter(format as string, new Date(date as Date));
-    const state: MonthPickerState = { panelDate, date, isOpen: false };
-    if (type === 'setFullYear') {
-      delete state.isOpen;
-      state.type = 'month';
-    }
-    if (paging) {
-      delete state.type;
-    }
-    this.setState({ ...state }, () => {
-      if (this.state.date && onChange) {
-        onChange(panelDate as Date, date as string);
-      }
-    });
-  }
-  onSelected = (type: MonthPickerState['type']) => {
-    if (/^(month|year)$/.test(type as string)) {
-      this.setState({ type });
-    } else {
-      const year = (this.state.panelDate as Date).getFullYear();
-      const panelDate = (this.state.panelDate as Date).setFullYear(
-        type === 'next' ? year + 1 : year - 1,
-      );
-      this.setState({
-        panelDate: new Date(panelDate),
-      });
-    }
-  };
-  handleVisibleChange(isOpen: boolean) {
-    this.setState({ isOpen });
-  }
-  onAllowClear() {
-    const { onChange } = this.props;
-    this.setState({ date: undefined }, () => {
-      onChange && onChange();
-    });
-  }
-  render() {
-    const {
-      prefixCls,
-      className,
-      popoverProps,
-      allowClear,
-      format,
-      monthLabel,
-      ...inputProps
-    } = this.props;
-    const { date, type } = this.state;
-    const value = date || '';
-    inputProps.value =
-      typeof value === 'string' ? value : formatter(format as string, value);
-    if (allowClear && inputProps.value) {
-      inputProps.addonAfter = (
-        <Button
-          className={`${prefixCls}-close-btn`}
-          icon="close"
-          onClick={this.onAllowClear.bind(this)}
-          size={inputProps.size}
-          basic
-          type="light"
-        />
-      );
-      // inputProps.addonAfter = <Icon className={`${prefixCls}-close-btn`} onClick={this.onAllowClear.bind(this)} type="close" />;
-    }
-    return (
-      <Popover
-        trigger="focus"
-        placement="bottomLeft"
-        autoAdjustOverflow
-        isOpen={this.state.isOpen}
-        {...popoverProps}
-        onVisibleChange={this.handleVisibleChange.bind(this)}
-        content={
-          <div className={`${prefixCls}-popover`}>
-            <DatePickerCaption
-              panelDate={this.state.panelDate}
+  return (
+    <Popover
+      trigger="focus"
+      placement="bottomLeft"
+      autoAdjustOverflow
+      isOpen={isOpen}
+      {...popoverProps}
+      onVisibleChange={(open) => setIsOpen(open)}
+      content={
+        <div className={`${prefixCls}-popover`}>
+          <DatePickerCaption
+            panelDate={panelDate}
+            monthLabel={monthLabel}
+            {...pickerCaptionProps}
+            onSelected={(captionType) => {
+              if (/^(month|year)$/.test(captionType as string)) {
+                setType(captionType);
+              } else {
+                const year = new Date(panelDate).getFullYear();
+                const curPanelDate = new Date(
+                  new Date(panelDate).setFullYear(
+                    type === 'next' ? year + 1 : year - 1,
+                  ),
+                );
+                setPanelDate(curPanelDate);
+              }
+            }}
+          />
+          {type === 'month' && (
+            <DatePickerMonth
+              panelDate={panelDate}
               monthLabel={monthLabel}
-              onSelected={this.onSelected}
+              onSelected={(month, paging) =>
+                handleSelectedDate('setMonth', month, paging)
+              }
             />
-            {type === 'month' && (
-              <DatePickerMonth
-                panelDate={this.state.panelDate}
-                monthLabel={monthLabel}
-                onSelected={this.onSelectedDate.bind(this, 'setMonth')}
-              />
-            )}
-            {type === 'year' && (
-              <DatePickerYear
-                panelDate={this.state.panelDate}
-                onSelected={this.onSelectedDate.bind(this, 'setFullYear')}
-              />
-            )}
-          </div>
-        }
-      >
-        <Input
-          placeholder="请输入日期"
-          readOnly
-          {...(inputProps as any)}
-          className={[prefixCls, className].filter(Boolean).join(' ').trim()}
-        />
-      </Popover>
-    );
-  }
+          )}
+          {type === 'year' && (
+            <DatePickerYear
+              panelDate={panelDate}
+              onSelected={(year, paging) =>
+                handleSelectedDate('setFullYear', year, paging)
+              }
+            />
+          )}
+        </div>
+      }
+    >
+      <Input
+        placeholder="请输入日期"
+        readOnly
+        {...(inputProps as any)}
+        className={[prefixCls, className].filter(Boolean).join(' ').trim()}
+      />
+    </Popover>
+  );
 }

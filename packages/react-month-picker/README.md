@@ -13,23 +13,26 @@ import MonthPicker from '@uiw/react-month-picker';
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { MonthPicker, Row, Col } from 'uiw';
 
-function onChange(date, formatDate) {
-  console.log(date, formatDate);
+const Demo = () => {
+  const [formatDate, setFormatDate] = React.useState('2019/04')
+  function onChange(date, formatDate) {
+    setFormatDate(formatDate)
+  }
+  return (
+    <Row gutter={10}>
+      <Col fixed>
+        <MonthPicker size="large" onChange={onChange} placeholder="Select month" />
+      </Col>
+      <Col fixed>
+        <MonthPicker disabled value={formatDate} placeholder="Select month" />
+      </Col>
+    </Row>
+  )
 }
-
-const Demo = () => (
-  <Row gutter={10}>
-    <Col fixed>
-      <MonthPicker size="large" onChange={onChange} placeholder="Select month" />
-    </Col>
-    <Col fixed>
-      <MonthPicker disabled value="2019/04" placeholder="Select month" />
-    </Col>
-  </Row>
-)
 ReactDOM.render(<Demo />, _mount_);
 ```
 
@@ -91,7 +94,7 @@ ReactDOM.render(<Demo />, _mount_);
 | format | 格式化时间，规则查看 [`formatter`](#/components/formatter) 文档 | String | `YYYY/MM/DD` |
 | onChange | 选择一天时调用。 | Function(Date, formatDate) | - |
 | popoverProps | 将参数传递给内部 [`<Popover>`](#/components/popover) 组件 | Object | - |
-| datePickerProps | 将参数传递给内部 [`<DatePicker>`](#/components/date-picker) 组件 | Object | - |
+| pickerCaptionProps | 将参数传递给内部 [`<DatePicker>`](#/components/date-picker) `PickerCaption` 组件 | Object | - |
 | disabled | 组件 [`<Input>`](#/components/input) 的属性，禁用日历 | Boolean | - |
 
 更多属性文档请参考 [`<Input>`](#/components/input)。

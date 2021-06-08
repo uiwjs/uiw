@@ -8,10 +8,6 @@ export interface DatePickerYearProps extends IProps, HTMLDivProps {
   onSelected?: (year: number, paging?: boolean) => void;
 }
 
-export interface DatePickerYearState {
-  activeYear: Date;
-}
-
 function noop() {}
 
 export function DatePickerYear(props: DatePickerYearProps) {
