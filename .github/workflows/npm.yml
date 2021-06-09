@@ -53,32 +53,6 @@ jobs:
 
         git commit -am $COMMIT
 
-    - name: git push master
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-
-    - run: |
-        echo "tag: ${{ steps.changelog.outputs.tag }}"
-        echo "version: ${{ steps.changelog.outputs.version }}"
-        echo "ref: ${{ github.ref }}"
-
-    - name: Create Release
-      uses: ncipollo/release-action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        name: ${{ steps.changelog.outputs.tag }}
-        tag: ${{ steps.changelog.outputs.tag }}
-        body: |
-          [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/uiw@${{steps.changelog.outputs.version}}/file/README.md) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/uiw)](https://bundlephobia.com/result?p=uiw@${{steps.changelog.outputs.version}}) [![npm version](https://img.shields.io/npm/v/uiw.svg)](https://www.npmjs.com/package/uiw)
-          
-          ```bash
-          npm i uiw@${{steps.changelog.outputs.version}}
-          ```
-
-          ${{ steps.changelog.outputs.compareurl }}
-          ${{ steps.changelog.outputs.changelog }}
-
     - run: npm run bundle
     - run: git checkout -f packages/uiw/tsconfig.json
 
@@ -143,6 +117,32 @@ jobs:
 
     - run: ./node_modules/.bin/npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/uiw/package.json
     - run: ./node_modules/.bin/npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/doc/package.json
+
+    - name: git push master
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    - run: |
+        echo "tag: ${{ steps.changelog.outputs.tag }}"
+        echo "version: ${{ steps.changelog.outputs.version }}"
+        echo "ref: ${{ github.ref }}"
+
+    - name: Create Release
+      uses: ncipollo/release-action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        name: ${{ steps.changelog.outputs.tag }}
+        tag: ${{ steps.changelog.outputs.tag }}
+        body: |
+          [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/uiw@${{steps.changelog.outputs.version}}/file/README.md) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/uiw)](https://bundlephobia.com/result?p=uiw@${{steps.changelog.outputs.version}}) [![npm version](https://img.shields.io/npm/v/uiw.svg)](https://www.npmjs.com/package/uiw)
+          
+          ```bash
+          npm i uiw@${{steps.changelog.outputs.version}}
+          ```
+
+          ${{ steps.changelog.outputs.compareurl }}
+          ${{ steps.changelog.outputs.changelog }}
 
     - name: Deploy to uiwjs.github.io
       uses: peaceiris/actions-gh-pages@v3
