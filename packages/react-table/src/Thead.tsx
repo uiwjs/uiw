@@ -1,9 +1,7 @@
 import React from 'react';
-import { IProps } from '@uiw/utils';
+import { IProps, noop } from '@uiw/utils';
 import { TableProps, TableColumns } from './';
 import './style/index.less';
-
-function noop() {}
 
 export interface TheadProps extends IProps {
   data?: TableProps['data'][];

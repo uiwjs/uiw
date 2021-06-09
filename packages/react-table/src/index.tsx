@@ -1,10 +1,8 @@
 import React from 'react';
-import { IProps, HTMLDivProps } from '@uiw/utils';
+import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import Thead from './Thead';
 import { getLevelItems, getAllColumnsKeys } from './util';
 import './style/index.less';
-
-function noop() {}
 
 export type TableColumnTitle =
   | string

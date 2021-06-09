@@ -1,5 +1,5 @@
 import React from 'react';
-import { IProps, HTMLDivProps } from '@uiw/utils';
+import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import './style/year-month.less';
 
 export interface DatePickerMonthProps extends IProps, HTMLDivProps {
@@ -7,8 +7,6 @@ export interface DatePickerMonthProps extends IProps, HTMLDivProps {
   onSelected?: (month: number, paging?: boolean) => void;
   monthLabel?: React.ReactNode[];
 }
-
-function noop() {}
 
 export function DatePickerMonth(props: DatePickerMonthProps) {
   const {

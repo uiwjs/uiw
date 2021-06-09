@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { IProps } from '@uiw/utils';
+import { IProps, noop } from '@uiw/utils';
 import Input, { InputProps } from '@uiw/react-input';
 import './style/input.less';
-
-function noop() {}
 
 export interface PinCodeProps extends IProps {
   value?: string[];

@@ -2,10 +2,8 @@ import React, { useState, useImperativeHandle } from 'react';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import Button, { ButtonType, ButtonProps } from '@uiw/react-button';
 import Icon from '@uiw/react-icon';
-import { IProps } from '@uiw/utils';
+import { IProps, noop } from '@uiw/utils';
 import './style/index.less';
-
-function noop() {}
 
 export interface ModalProps extends IProps, OverlayProps {
   type?: ButtonType;

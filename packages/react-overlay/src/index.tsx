@@ -15,11 +15,9 @@ import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 import { TransitionProps } from 'react-transition-group/Transition';
 import Portal, { PortalProps } from '@uiw/react-portal';
-import { IProps } from '@uiw/utils';
+import { IProps, noop } from '@uiw/utils';
 
 import './style/index.less';
-
-const noop = () => undefined;
 
 export interface OverlayProps extends IProps, Omit<TransitionProps, 'timeout'> {
   timeout?: TransitionProps['timeout'];
@@ -134,13 +132,8 @@ export default class Overlay extends React.Component<
   handleBackdropMouseDown = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
-    const {
-      backdropProps,
-      maskClosable,
-      hasBackdrop,
-      usePortal,
-      onClose,
-    } = this.props;
+    const { backdropProps, maskClosable, hasBackdrop, usePortal, onClose } =
+      this.props;
     if (e.target !== this.container && usePortal) {
       return;
     }

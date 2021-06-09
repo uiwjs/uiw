@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { IProps, HTMLDivProps } from '@uiw/utils';
+import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import './style/caption.less';
 
 function classnames(...arg: (string | null | undefined)[]) {
@@ -12,8 +12,6 @@ export type DatePickerCaptionType =
   | 'year'
   | 'today'
   | 'next';
-
-function noop() {}
 
 export interface DatePickerCaptionProps extends IProps, HTMLDivProps {
   panelDate?: Date;

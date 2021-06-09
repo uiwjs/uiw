@@ -1,5 +1,5 @@
 import React from 'react';
-import { IProps, HTMLDivProps, getScroll } from '@uiw/utils';
+import { IProps, HTMLDivProps, getScroll, noop } from '@uiw/utils';
 
 export interface AffixProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   /**
@@ -45,8 +45,6 @@ function getOffset(element: HTMLElement, target: HTMLElement | Window | null) {
     height: elemRect.height,
   };
 }
-
-function noop() {}
 
 function getDefaultTarget() {
   return typeof window !== 'undefined' ? window : null;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IProps, HTMLDivProps } from '@uiw/utils';
+import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import './style/year-month.less';
 
 export interface DatePickerYearProps extends IProps, HTMLDivProps {
@@ -7,8 +7,6 @@ export interface DatePickerYearProps extends IProps, HTMLDivProps {
   panelNum?: number[];
   onSelected?: (year: number, paging?: boolean) => void;
 }
-
-function noop() {}
 
 export function DatePickerYear(props: DatePickerYearProps) {
   const {

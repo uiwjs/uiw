@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import formatter from '@uiw/formatter';
-import { IProps, HTMLDivProps } from '@uiw/utils';
+import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import { TimePickerTime, TimePickerPanelProps } from '@uiw/react-time-picker';
 import {
   DatePickerDay,
@@ -31,7 +31,6 @@ const MONTH_LABEL = [
   '十一月',
   '十二月',
 ];
-function noop() {}
 
 export interface DatePickerShowTimeProps extends TimePickerPanelProps {
   format?: string;
