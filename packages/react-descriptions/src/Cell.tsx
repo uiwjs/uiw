@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { IProps } from '@uiw/utils';
 import { DescriptionsItemProps } from './DescriptionsItem';
-import { RowProps } from 'Row';
+import { RowProps } from './Row';
 
 export interface CellProps
   extends Omit<RowProps, 'children'>,
