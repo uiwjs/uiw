@@ -31,6 +31,7 @@ jobs:
     - run: npm run bundle
     - run: npm run coverage
     - run: npm run b:website
+    - run: npm run test
 
     - name: Deploy to uiwjs.github.io
       uses: peaceiris/actions-gh-pages@v3
