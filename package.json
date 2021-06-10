@@ -65,7 +65,7 @@
     "@kkt/less-modules": "6.9.0",
     "@kkt/react-library": "6.9.0",
     "compile-less-cli": "1.8.0",
-    "husky": "4.3.8",
+    "husky": "6.0.0",
     "jest-environment-jsdom": "27.0.3",
     "kkt": "6.9.0",
     "lerna": "4.0.0",
