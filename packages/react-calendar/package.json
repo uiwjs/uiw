@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-calendar",
-  "version": "4.8.5",
+  "version": "4.8.6",
   "description": "Calendar component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/calendar",
@@ -43,9 +43,9 @@
   },
   "dependencies": {
     "@uiw/formatter": "1.2.4",
-    "@uiw/react-date-picker": "^4.8.5",
-    "@uiw/react-icon": "^4.8.5",
-    "@uiw/utils": "^4.8.5"
+    "@uiw/react-date-picker": "^4.8.6",
+    "@uiw/react-icon": "^4.8.6",
+    "@uiw/utils": "^4.8.6"
   },
   "devDependencies": {
     "@babel/runtime": "7.14.0",
