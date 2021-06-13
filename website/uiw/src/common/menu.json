@@ -13,7 +13,15 @@
       { "divider": true, "name": "其它" },
       { "name": "文档编辑预览", "path": "docs" },
       { "name": "更新日志", "path": "https://github.com/uiwjs/uiw/releases" },
-      { "name": "社区精选组件", "path": "recommendation" }
+      { "name": "社区精选组件", "path": "recommendation" },
+      {
+        "name": "Awesome UIKit",
+        "path": "https://github.com/jaywcjlove/awesome-uikit"
+      },
+      {
+        "name": "Awesome React Components",
+        "path": "https://github.com/brillout/awesome-react-components"
+      }
     ]
   },
   {
