@@ -189,7 +189,7 @@ const data = [
   },
   {
     'target':'_blank',
-    'href':'https://uiw-react.github.io/icons/',
+    'href':'https://uiwjs.github.io/icons/',
     'content': '从uiw组件库中抽离出来的，图标字体 uiw-iconfont 发布'
   },
   {

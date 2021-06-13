@@ -1,25 +1,16 @@
 import React from 'react';
-import Loader from '@uiw/react-loader';
-import Dropdown from '@uiw/react-dropdown';
+import Dropdown, { DropdownProps } from '@uiw/react-dropdown';
 import Icon from '@uiw/react-icon';
 import Menu from '@uiw/react-menu';
 import Input from '@uiw/react-input';
 import { IProps } from '@uiw/utils';
+import { useState } from 'react';
+import { useRef } from 'react';
+import { useEffect } from 'react';
 
-export interface SearchSelectProps
-  extends IProps,
-    Omit<
-      React.SelectHTMLAttributes<HTMLSelectElement>,
-      | 'size'
-      | 'onSelect'
-      | 'onMouseEnter'
-      | 'defaultValue'
-      | 'value'
-      | 'onChange'
-    > {
+export interface SearchSelectProps extends IProps, DropdownProps {
   size?: 'large' | 'default' | 'small';
   loading: boolean;
-  isOpen?: boolean;
   showSearch?: boolean;
   allowClear: boolean;
   defaultValue?: string | number;
@@ -41,209 +32,152 @@ export interface MenuItemData {
   [keyName: string]: any;
 }
 
-export interface SearchSelectState {
-  innerIsOpen: boolean;
-  selectedValue?: string | number;
-  searchLoading: boolean;
-  selectIconType: string;
-  selectedLabel: string;
-}
+export default function SearchSelect(props: SearchSelectProps) {
+  const {
+    allowClear = false,
+    disabled = false,
+    size = 'default',
+    option = [],
+    loading = false,
+    prefixCls,
+    className,
+    style,
+    isOpen,
+    value,
+    defaultValue,
+    showSearch,
+    placeholder,
+    onSearch,
+    onChange,
+    onSelect,
+    ...others
+  } = props;
 
-export default class SearchSelect extends React.Component<
-  SearchSelectProps,
-  SearchSelectState
-> {
-  public static defaultProps: SearchSelectProps = {
-    allowClear: false,
-    disabled: false,
-    size: 'default',
-    option: [],
-    loading: false,
-  };
+  const [innerIsOpen, setInnerIsOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(value);
+  const [selectedLabel, setSelectedLabel] = useState('');
+  const [selectIconType, setSelectIconType] = useState('');
+  const divRef = useRef<HTMLDivElement>(null);
 
-  private divRef = React.createRef<HTMLDivElement>();
-
-  state: SearchSelectState = {
-    innerIsOpen: false,
-    selectedValue: this.props.value,
-    searchLoading: false,
-    selectIconType: '',
-    selectedLabel: '',
-  };
-
-  UNSAFE_componentWillReceiveProps(nextProps: SearchSelectProps) {
-    if (nextProps.value !== this.props.value) {
-      this.setState({
-        selectedValue: nextProps.value,
-      });
-    }
-  }
-
-  componentDidMount() {
-    const { defaultValue, option } = this.props;
+  useEffect(() => {
     if (defaultValue) {
       const defaultMenuItem = option.find(
         (menuItem: MenuItemData) => defaultValue === menuItem.value,
       );
-      this.setState({
-        selectedValue: defaultValue,
-        selectedLabel: defaultMenuItem ? defaultMenuItem.label : '',
-      });
+      setSelectedValue(defaultValue);
+      setSelectedLabel(defaultMenuItem ? defaultMenuItem.label : '');
     }
-  }
+  }, []);
 
-  onVisibleChange(isOpen: boolean) {
-    this.setState({ innerIsOpen: isOpen });
+  useEffect(() => {
+    if (value !== selectedValue) {
+      setSelectedValue(value);
+    }
+  }, [value]);
+
+  function handleItemClick(item: MenuItemData) {
+    setInnerIsOpen(false);
+    setSelectedValue(item.value);
+    setSelectedLabel(item.label);
+    onSelect && onSelect(item.value);
+    // 支持form组件
+    handleSelectChange(item.value);
   }
 
   // 渲染icon
-  renderSelectIcon = (type: string) => {
-    const { allowClear } = this.props;
-    const { selectedValue } = this.state;
+  function renderSelectIcon(type: string) {
     let selectIconType;
     if (type === 'enter' && allowClear && selectedValue) {
       selectIconType = 'close';
     } else {
       selectIconType = '';
     }
-    this.setState({ selectIconType });
-  };
-
+    setSelectIconType(selectIconType);
+  }
   // handle change
-  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { onSearch, showSearch } = this.props;
-    let innerIsOpen;
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
-    if (value) {
-      innerIsOpen = true;
-    } else {
-      innerIsOpen = false;
-    }
-    this.setState({
-      innerIsOpen,
-      selectedLabel: value,
-      selectIconType: showSearch && value ? 'loading' : '',
-    });
+    setInnerIsOpen(!!value);
+    setSelectedLabel(value);
+    setSelectIconType(showSearch && value ? 'loading' : '');
     showSearch && onSearch && onSearch(value);
-    this.handleSelectChange(value);
-  };
-
-  handleSelectChange(value: any) {
-    const { onChange } = this.props;
+    handleSelectChange(value);
+  }
+  // 清除选中的值
+  function resetSelectedValue() {
+    setInnerIsOpen(false);
+    setSelectedValue('');
+    setSelectedLabel('');
+    setSelectIconType('');
+    handleSelectChange('');
+  }
+  function handleSelectChange(value: any) {
     onChange && onChange(value);
   }
 
-  handleItemClick(item: MenuItemData) {
-    this.setState({
-      selectedValue: item.value,
-      selectedLabel: item.label,
-      innerIsOpen: false,
-    });
-    this.props.onSelect && this.props.onSelect(item.value);
-    // 支持form组件
-    this.handleSelectChange(item.value);
-  }
-
-  // click
-  // 清除选中的值
-  resetSelectedValue = () => {
-    this.setState({
-      selectedValue: '',
-      selectedLabel: '',
-      selectIconType: '',
-      innerIsOpen: false,
-    });
-    this.handleSelectChange('');
-  };
-
-  render() {
-    const {
-      prefixCls,
-      className,
-      size,
-      style,
-      isOpen,
-      option,
-      value,
-      showSearch,
-      loading,
-      placeholder,
-      disabled,
-      ...others
-    } = this.props;
-    const {
-      innerIsOpen,
-      selectedValue,
-      selectIconType,
-      selectedLabel,
-    } = this.state;
-
-    return (
-      <Dropdown
-        trigger="focus"
-        onVisibleChange={this.onVisibleChange.bind(this)}
-        isOpen={innerIsOpen}
-        disabled={option && option.length > 0 ? false : true}
-        menu={
-          <Menu
-            bordered
-            style={{
-              minHeight: 25,
-              maxHeight: 280,
-              overflowY: 'scroll',
-              width: this.divRef.current
-                ? this.divRef.current.offsetWidth
-                : 'auto',
-            }}
-          >
-            {!option || option.length === 0 ? (
-              <div style={{ color: '#c7c7c7', fontSize: 12 }}>
-                {loading ? '正在加载数据...' : '没有数据'}
-              </div>
-            ) : (
-              option.map((item, idx) => {
-                const active = selectedValue === item.value;
-                return (
-                  <Menu.Item
-                    active={active}
-                    key={idx}
-                    text={item.label}
-                    onClick={this.handleItemClick.bind(this, item)}
-                  />
-                );
-              })
-            )}
-          </Menu>
-        }
-        style={{ marginTop: 5 }}
-        {...others}
-      >
-        <div
-          ref={this.divRef}
-          onMouseOver={() => this.renderSelectIcon('enter')}
-          onMouseLeave={() => this.renderSelectIcon('leave')}
-          style={style}
+  return (
+    <Dropdown
+      trigger="focus"
+      style={{ marginTop: 5 }}
+      disabled={option && option.length > 0 ? false : true}
+      {...others}
+      onVisibleChange={(open) => setInnerIsOpen(open)}
+      isOpen={innerIsOpen}
+      menu={
+        <Menu
+          bordered
+          style={{
+            minHeight: 25,
+            maxHeight: 280,
+            overflowY: 'scroll',
+            width: divRef.current ? divRef.current.offsetWidth : 'auto',
+          }}
         >
-          <Input
-            readOnly={!showSearch}
-            size={size}
-            disabled={disabled}
-            onChange={this.handleInputChange}
-            value={selectedLabel}
-            placeholder={placeholder}
-            addonAfter={
-              (selectIconType === 'close' ||
-                (selectIconType === 'loading' && loading)) && (
-                <Icon
-                  type={selectIconType}
-                  spin={loading && selectIconType === 'loading'}
-                  onClick={this.resetSelectedValue}
+          {!option || option.length === 0 ? (
+            <div style={{ color: '#c7c7c7', fontSize: 12 }}>
+              {loading ? '正在加载数据...' : '没有数据'}
+            </div>
+          ) : (
+            option.map((item, idx) => {
+              const active = selectedValue === item.value;
+              return (
+                <Menu.Item
+                  active={active}
+                  key={idx}
+                  text={item.label}
+                  onClick={() => handleItemClick(item)}
                 />
-              )
-            }
-          />
-        </div>
-      </Dropdown>
-    );
-  }
+              );
+            })
+          )}
+        </Menu>
+      }
+    >
+      <div
+        ref={divRef}
+        onMouseOver={() => renderSelectIcon('enter')}
+        onMouseLeave={() => renderSelectIcon('leave')}
+        style={style}
+      >
+        <Input
+          readOnly={!showSearch}
+          size={size}
+          disabled={disabled}
+          onChange={handleInputChange}
+          value={selectedLabel}
+          placeholder={placeholder}
+          addonAfter={
+            (selectIconType === 'close' ||
+              (selectIconType === 'loading' && loading)) && (
+              <Icon
+                type={selectIconType}
+                spin={loading && selectIconType === 'loading'}
+                onClick={resetSelectedValue}
+              />
+            )
+          }
+        />
+      </div>
+    </Dropdown>
+  );
 }
