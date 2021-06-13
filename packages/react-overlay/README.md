@@ -248,12 +248,12 @@ ReactDOM.render(<Demo />, _mount_);
 .@{animation-prefix}-enter-active .w-overlay-content {
   animation-duration: 1s;
   animation-fill-mode: both;
-  animation-name: flipInX
+  animation-name: flipInX;
 }
 .@{animation-prefix}-exit-active .w-overlay-content {
   animation-duration: 1s;
   animation-fill-mode: both;
-  animation-name: flipOutX
+  animation-name: flipOutX;
 }
 
 .@{animation-prefix}-enter,
@@ -263,18 +263,14 @@ ReactDOM.render(<Demo />, _mount_);
 }
 
 @keyframes flipOutX {
-  0% {
-      transform: perspective(400px)
-  }
-
+  0% { transform: perspective(400px); }
   30% {
-      transform: perspective(400px) rotateX(-20deg);
-      opacity: 1
+    transform: perspective(400px) rotateX(-20deg);
+    opacity: 1;
   }
-
   to {
-      transform: perspective(400px) rotateX(90deg);
-      opacity: 0
+    transform: perspective(400px) rotateX(90deg);
+    opacity: 0;
   }
 }
 
@@ -282,26 +278,20 @@ ReactDOM.render(<Demo />, _mount_);
   0% {
     transform: perspective(400px) rotateX(90deg);
     animation-timing-function: ease-in;
-    opacity: 0
+    opacity: 0;
   }
-
   40% {
     transform: perspective(400px) rotateX(-20deg);
-    animation-timing-function: ease-in
+    animation-timing-function: ease-in;
   }
-
   60% {
     transform: perspective(400px) rotateX(10deg);
-    opacity: 1
+    opacity: 1;
   }
-
   80% {
-    transform: perspective(400px) rotateX(-5deg)
+    transform: perspective(400px) rotateX(-5deg);
   }
-
-  to {
-    transform: perspective(400px)
-  }
+  to { transform: perspective(400px); }
 }
 ```
 

@@ -44,7 +44,7 @@
   "dependencies": {
     "@uiw/react-portal": "^4.8.7",
     "@uiw/utils": "^4.8.7",
-    "react-transition-group": "^4.3.0"
+    "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
     "@babel/runtime": "7.14.0",

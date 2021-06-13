@@ -6,7 +6,6 @@ import styles from './index.module.less';
 
 export default function Overview(props: any) {
   const { pageData } = props;
-  console.log('pageData:', pageData);
   return (
     <div className={styles.App}>
       <h1>概览 组件</h1>

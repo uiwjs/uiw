@@ -1,6 +1,7 @@
 import React from 'react';
 import { Overlay, Button, Icon, Card, Divider } from 'uiw';
 import Markdown from '../../../components/Markdown';
+import './index.less';
 
 export default function Page() {
   return (
