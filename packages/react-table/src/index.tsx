@@ -4,13 +4,11 @@ import Thead from './Thead';
 import { getLevelItems, getAllColumnsKeys } from './util';
 import './style/index.less';
 
-export type TableColumnTitle =
-  | string
-  | JSX.Element
-  | ((data: TableColumns, rowNum: number, colNum: number) => JSX.Element);
-
-export type TableColumns<T = TableColumnTitle> = {
-  title?: T;
+export type TableColumns = {
+  title?:
+    | string
+    | ((data: TableColumns, rowNum: number, colNum: number) => JSX.Element)
+    | JSX.Element;
   key?: string;
   width?: number;
   colSpan?: number;
