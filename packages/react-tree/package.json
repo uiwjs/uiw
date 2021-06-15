@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-tree",
-  "version": "4.8.8",
+  "version": "4.8.9",
   "description": "Tree component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/tree",
@@ -42,8 +42,8 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-icon": "^4.8.8",
-    "@uiw/utils": "^4.8.8",
+    "@uiw/react-icon": "^4.8.9",
+    "@uiw/utils": "^4.8.9",
     "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
