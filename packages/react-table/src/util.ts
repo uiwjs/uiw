@@ -35,6 +35,7 @@ function getRowspanNum(data: TableColumns[] = [], child = []) {
 
 export interface ILevelItems {
   header: TableColumns[][];
+  ellipsis?: Record<string, boolean>;
   render: {
     [key: string]: any;
   };
@@ -62,6 +63,10 @@ export const getLevelItems = (
   for (let i = 0; i < data.length; i += 1) {
     if (data[i].render && data[i].key) {
       result.render[data[i].key as string] = data[i].render;
+    }
+    if (data[i].ellipsis && data[i].key) {
+      if (!result.ellipsis) result.ellipsis = {};
+      result.ellipsis[data[i].key!] = true;
     }
     if (result.header.length === 0) {
       // Calculation rowspan

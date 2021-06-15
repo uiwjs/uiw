@@ -12,7 +12,7 @@ export default (
   props: TheadProps & React.HTMLAttributes<HTMLTableSectionElement> = {},
 ) => {
   const {
-    prefixCls = 'w-table-thead',
+    prefixCls = 'w-table',
     className,
     data = [],
     onCellHead = noop,
@@ -28,14 +28,19 @@ export default (
         data.map((tds?: TableColumns[], rowNum?: number) => (
           <tr key={rowNum}>
             {(tds || []).map((item, colNum) => {
-              const { title, key, render, children, ...thProps } = item;
-              const titleNode = (
+              const { title, key, render, children, ellipsis, ...thProps } =
+                item;
+              const titleNode: TableColumns['title'] =
                 typeof title === 'function'
                   ? title(item, colNum, rowNum!)
-                  : title
-              ) as TableColumns['title'];
+                  : title;
               if (thProps.colSpan === 0) {
                 return null;
+              }
+              if (ellipsis) {
+                thProps.className = `${
+                  thProps.className || ''
+                } ${prefixCls}-ellipsis`;
               }
               return (
                 <th

@@ -13,6 +13,7 @@ export type TableColumns = {
   width?: number;
   colSpan?: number;
   children?: TableColumns[];
+  ellipsis?: boolean;
   render?: (
     text: string,
     keyName: string,
@@ -67,11 +68,11 @@ export default (props: TableProps = {}) => {
     .filter(Boolean)
     .join(' ')
     .trim();
-  const { header, render } = getLevelItems(columns as TableColumns[]);
-  const keys = getAllColumnsKeys(columns as TableColumns[]);
+  const { header, render, ellipsis } = getLevelItems(columns);
+  const keys = getAllColumnsKeys(columns);
   return (
     <div className={cls} {...other}>
-      <table>
+      <table style={ellipsis ? { tableLayout: 'fixed' } : {}}>
         {title && <caption>{title}</caption>}
         {columns && columns.length > 0 && (
           <Thead onCellHead={onCellHead} data={header} />
@@ -81,7 +82,9 @@ export default (props: TableProps = {}) => {
             {data.map((trData, rowNum) => (
               <tr key={rowNum}>
                 {keys.map((keyName, colNum) => {
-                  const objs = { children: trData[keyName], props: {} };
+                  let objs: React.TdHTMLAttributes<HTMLTableDataCellElement> = {
+                    children: trData[keyName],
+                  };
                   if (render[keyName]) {
                     const child = render[keyName](
                       trData[keyName],
@@ -94,7 +97,7 @@ export default (props: TableProps = {}) => {
                       objs.children = child;
                     } else {
                       if (child.props) {
-                        objs.props = { ...child.props };
+                        objs = { ...child.props, children: objs.children };
                         if (
                           child.props.rowSpan === 0 ||
                           child.props.colSpan === 0
@@ -106,16 +109,17 @@ export default (props: TableProps = {}) => {
                       }
                     }
                   }
+                  if (ellipsis && ellipsis[keyName]) {
+                    objs.className = `${prefixCls}-ellipsis`;
+                  }
                   return (
                     <td
-                      {...objs.props}
+                      {...objs}
+                      key={colNum}
                       onClick={(evn) =>
                         onCell(trData, { rowNum, colNum, keyName }, evn)
                       }
-                      key={colNum}
-                    >
-                      {objs.children}
-                    </td>
+                    />
                   );
                 })}
               </tr>

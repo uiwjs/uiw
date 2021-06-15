@@ -345,9 +345,9 @@ const Demo = () => (
       <thead>
         <tr>
           <th>名称</th>
-          <th width="60">数量</th>
+          <th>数量</th>
           <th>详情</th>
-          <th width="100">价格</th>
+          <th>价格</th>
         </tr>
       </thead>
       <tbody>
@@ -382,9 +382,9 @@ const Demo = () => (
       <thead>
         <tr>
           <th>名称</th>
-          <th width="60">数量</th>
+          <th>数量</th>
           <th>详情</th>
-          <th width="100">价格</th>
+          <th>价格</th>
         </tr>
       </thead>
       <tbody>
@@ -535,6 +535,91 @@ class Demo extends React.Component {
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+### 自定义单元格省略提示
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { Table, Button, Notify, Tooltip } from 'uiw';
+
+const columns = [
+  {
+    title: 'Name',
+    key: 'name',
+    render: text => <a>{text}</a>,
+    width: 150,
+  },
+  {
+    title: 'Age',
+    key: 'age',
+    width: 80,
+  },
+  {
+    title: 'Address',
+    key: 'address',
+    ellipsis: true,
+    render: address => (
+      <Tooltip placement="topLeft" content={address}>
+        {address}
+      </Tooltip>
+    ),
+  },
+  {
+    title: 'Long Column Long Column Long Column',
+    key: 'address',
+    ellipsis: true,
+    render: address => (
+      <Tooltip placement="topLeft" content={address}>
+        {address}
+      </Tooltip>
+    ),
+  },
+  {
+    title: 'Long Column Long Column',
+    key: 'address',
+    ellipsis: true,
+    render: address => (
+      <Tooltip placement="topLeft" content={address}>
+        {address}
+      </Tooltip>
+    ),
+  },
+  {
+    title: 'Long Column',
+    key: 'address',
+    ellipsis: true,
+    render: address => {
+      return (
+        <Tooltip placement="topLeft" content={address}>
+          {address}
+        </Tooltip>
+      )
+    },
+  },
+];
+
+const data = [
+  { name: '邓紫棋', age: '12', address: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，中国香港创作型女歌手。' },
+  { name: '李易峰', age: '32', address: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人' },
+  { name: '范冰冰', age: '23', address: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手' },
+  { name: '杨幂', age: '34', address: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。' },
+  { name: 'Angelababy', age: '54', address: '1989年2月28日出生于上海市，华语影视女演员、时尚模特。' },
+  { name: '唐嫣', age: '12', address: '1983年12月6日出生于上海市，毕业于中央戏剧学院表演系本科班' },
+  { name: '吴亦凡', age: '4', address: '1990年11月06日出生于广东省广州市，华语影视男演员、流行乐歌手。' },
+];
+
+const Demo = () => (
+  <div>
+    <Table
+      title="表内容 tbody 单元格点击回调事件"
+      columns={columns}
+      data={data}
+    />
+  </div>
+);
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ## Props
 
 ### Table
@@ -558,4 +643,6 @@ ReactDOM.render(<Demo />, _mount_);
 | title | 列头显示文字。| ReactNode | - |
 | key | 需要的 key，可以忽略这个属性，如果标题带有 `render` 函数，那么这个 `key` 为必须非常重要。| String | - |
 | width | 列宽度。| Number | - |
+| colSpan | 合并表头行。| Number | - |
+| ellipsis | 超过宽度将自动省略。`v4.8.7+`| Boolean | `false` |
 | render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前值的 `key`，行索引数据，当前行号，当前列号。| `Function(text, key, rowData, rowNumber, columnNumber)` | - |
