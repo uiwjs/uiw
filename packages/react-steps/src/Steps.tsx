@@ -1,5 +1,4 @@
-import React from 'react';
-import { findDOMNode } from 'react-dom';
+import React, { useEffect, useRef, useState } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Step, { StepProps } from './Step';
 
@@ -13,110 +12,88 @@ export interface StepsProps<T> extends IProps, HTMLDivProps {
   current?: number;
 }
 
-export interface StepsState {
-  lastStepOffsetWidth: number;
-}
+export default InternalSteps;
 
-export default class Steps<T> extends React.Component<
-  StepsProps<T>,
-  StepsState
-> {
-  static Step = Step;
-  public static defaultProps: StepsProps<{}> = {
-    prefixCls: 'w-steps',
-    status: 'process',
-    progressDot: false,
-    direction: 'horizontal',
-    current: 0,
-  };
-  constructor(props: StepsProps<T>) {
-    super(props);
-    this.state = {
-      lastStepOffsetWidth: 0,
-    };
-  }
-  componentDidMount() {
-    this.calcStepOffsetWidth();
-  }
-  componentDidUpdate() {
-    this.calcStepOffsetWidth();
-  }
+InternalSteps.Step = Step;
+
+function InternalSteps<T>(props: StepsProps<T>) {
+  const {
+    prefixCls = 'w-steps',
+    style = {},
+    className,
+    children,
+    current,
+    status = 'process',
+    progressDot = false,
+    direction = 'horizontal',
+    ...resetProps
+  } = props;
+
+  const warpRef = useRef<HTMLDivElement>(null);
+  const [lastStepOffsetWidth, setLastStepOffsetWidth] = useState(0);
+  const filteredChildren = React.Children.toArray(children).filter((c) => !!c);
+  const lastIndex = filteredChildren.length - 1; // 最后一个节点的索引数字
+  const classString = [
+    prefixCls,
+    `${prefixCls}-${direction}`,
+    !!progressDot ? `${prefixCls}-dot` : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
+
+  useEffect(() => calcStepOffsetWidth());
+
   // 计算每一步的宽度
-  calcStepOffsetWidth() {
-    const domNode = findDOMNode(this);
+  function calcStepOffsetWidth() {
+    const domNode = warpRef.current;
     if (domNode && domNode.lastChild) {
-      const lastStepOffsetWidth =
-        ((domNode.lastChild as HTMLElement).offsetWidth || 0) + 1;
+      const width = ((domNode.lastChild as HTMLElement).offsetWidth || 0) + 1;
       if (
-        this.state.lastStepOffsetWidth === lastStepOffsetWidth ||
-        Math.abs(this.state.lastStepOffsetWidth - lastStepOffsetWidth) <= 3
+        width === lastStepOffsetWidth ||
+        Math.abs(width - lastStepOffsetWidth) <= 3
       ) {
         return;
       }
-      this.setState({ lastStepOffsetWidth });
+      setLastStepOffsetWidth(width);
     }
   }
-  render() {
-    const {
-      prefixCls,
-      style = {},
-      className,
-      children,
-      current,
-      status,
-      progressDot,
-      direction,
-      ...resetProps
-    } = this.props;
-    const { lastStepOffsetWidth } = this.state;
-    const filteredChildren = React.Children.toArray(children).filter(
-      (c) => !!c,
-    );
-    const lastIndex = filteredChildren.length - 1; // 最后一个节点的索引数字
-    const classString = [
-      prefixCls,
-      `${prefixCls}-${direction}`,
-      !!progressDot ? `${prefixCls}-dot` : null,
-    ]
-      .filter(Boolean)
-      .join(' ')
-      .trim();
-    return (
-      <div className={classString} style={style} {...resetProps}>
-        {React.Children.map(children, (child: any, index) => {
-          const childProps = {
-            stepNumber: `${index + 1}`,
-            prefixCls,
-            progressDot,
-            ...child.props,
-          };
-          if (index !== lastIndex && direction !== 'vertical') {
-            childProps.itemWidth = `${100 / lastIndex}%`;
-            childProps.adjustMarginRight = -Math.round(
-              lastStepOffsetWidth / lastIndex + 1,
-            );
-          }
 
-          if (progressDot && direction !== 'vertical') {
-            childProps.itemWidth = `${100 / filteredChildren.length}%`;
-            childProps.adjustMarginRight = 0;
+  return (
+    <div className={classString} style={style} {...resetProps} ref={warpRef}>
+      {React.Children.map(children, (child: any, index) => {
+        const childProps = {
+          stepNumber: `${index + 1}`,
+          prefixCls,
+          progressDot,
+          ...child.props,
+        };
+        if (index !== lastIndex && direction !== 'vertical') {
+          childProps.itemWidth = `${100 / lastIndex}%`;
+          childProps.adjustMarginRight = -Math.round(
+            lastStepOffsetWidth / lastIndex + 1,
+          );
+        }
+
+        if (progressDot && direction !== 'vertical') {
+          childProps.itemWidth = `${100 / filteredChildren.length}%`;
+          childProps.adjustMarginRight = 0;
+        }
+        // 错误前面
+        if (status === 'error' && index === (current as number) - 1) {
+          childProps.className = `${prefixCls}-next-error`;
+        }
+        if (!child.props.status) {
+          if (index === current) {
+            childProps.status = status;
+          } else if (index < (current as number)) {
+            childProps.status = 'finish';
+          } else {
+            childProps.status = 'wait';
           }
-          // 错误前面
-          if (status === 'error' && index === (current as number) - 1) {
-            childProps.className = `${prefixCls}-next-error`;
-          }
-          if (!child.props.status) {
-            if (index === current) {
-              childProps.status = status;
-            } else if (index < (current as number)) {
-              childProps.status = 'finish';
-            } else {
-              childProps.status = 'wait';
-            }
-          }
-          return React.cloneElement(child, childProps);
-        })}
-      </div>
-    );
-  }
+        }
+        return React.cloneElement(child, childProps);
+      })}
+    </div>
+  );
 }

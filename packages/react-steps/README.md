@@ -19,18 +19,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Steps } from 'uiw';
 
-class Demo extends React.Component {
-  render() {
-    return (
-      <Steps current={1} style={{padding:"20px 0"}}>
-        <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。" />
-        <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
-        <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />
-        <Steps.Step title="步骤四" description="这里是步骤一的说明，可以很长很长哦。" />
-      </Steps>
-    )
-  }
+function Demo() {
+  return (
+    <Steps current={1} style={{ padding:"20px 0" }}>
+      <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。这里是步骤一的说明，可以很长很长哦。" />
+      <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
+      <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />
+      <Steps.Step title="步骤四" description="这里是步骤一的说明，可以很长很长哦。" />
+    </Steps>
+  )
 }
+
 ReactDOM.render(<Demo />, _mount_);
 ```
 
@@ -44,17 +43,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Steps } from 'uiw';
 
-class Demo extends React.Component {
-  render() {
-    return (
-      <Steps current={1} style={{padding:"20px 0"}}>
-        <Steps.Step title="步骤一" />
-        <Steps.Step title="步骤二" />
-        <Steps.Step title="步骤三" />
-        <Steps.Step title="步骤四" />
-      </Steps>
-    )
-  }
+function Demo() {
+  return (
+    <Steps current={1} style={{padding:"20px 0"}}>
+      <Steps.Step title="步骤一" />
+      <Steps.Step title="步骤二" />
+      <Steps.Step title="步骤三" />
+      <Steps.Step title="步骤四" />
+    </Steps>
+  )
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
@@ -69,17 +66,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Steps, Icon } from 'uiw';
 
-class Demo extends React.Component {
-  render() {
-    return (
-      <Steps current={1} style={{padding:"20px 0"}}>
-        <Steps.Step icon={<Icon type="user"/>} title="注册" description="这里是步骤一的说明，可以很长很长哦。" />
-        <Steps.Step icon={<Icon type="picasa" spin={true} color="red" />} title="上传头像" description="这里是步骤一的说明，可以很长很长哦。" />
-        <Steps.Step icon="message" title="验证邮箱" description="这里是步骤一的说明，可以很长很长哦。" />
-      </Steps>
-    )
-  }
+function Demo() {
+  return (
+    <Steps current={1} style={{padding:"20px 0"}}>
+      <Steps.Step icon={<Icon type="user"/>} title="注册" description="这里是步骤一的说明，可以很长很长哦。" />
+      <Steps.Step icon={<Icon type="picasa" spin={true} color="red" />} title="上传头像" description="这里是步骤一的说明，可以很长很长哦。" />
+      <Steps.Step icon="message" title="验证邮箱" description="这里是步骤一的说明，可以很长很长哦。" />
+    </Steps>
+  )
 }
+
 ReactDOM.render(<Demo />, _mount_);
 ```
 
@@ -93,18 +89,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Steps } from 'uiw';
 
-class Demo extends React.Component {
-  render() {
-    return (
-      <Steps current={2} status="error" style={{padding:"20px 0"}}>
-        <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。" />
-        <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
-        <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />
-        <Steps.Step title="步骤四" description="这里是步骤一的说明，可以很长很长哦。" />
-      </Steps>
-    )
-  }
+function Demo() {
+  return (
+    <Steps current={2} status="error" style={{padding:"20px 0"}}>
+      <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。" />
+      <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
+      <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />
+      <Steps.Step title="步骤四" description="这里是步骤一的说明，可以很长很长哦。" />
+    </Steps>
+  )
 }
+
 ReactDOM.render(<Demo />, _mount_);
 ```
 
@@ -118,18 +113,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Steps } from 'uiw';
 
-class Demo extends React.Component {
-  render() {
-    return (
-      <Steps progressDot status="error" current={2} style={{padding:"20px 0"}}>
-        <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。" />
-        <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
-        <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />
-        <Steps.Step title="步骤四" description="这里是步骤一的说明，可以很长很长哦。" />
-      </Steps>
-    )
-  }
+function Demo() {
+  return (
+    <Steps progressDot status="error" current={2} style={{padding:"20px 0"}}>
+      <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。" />
+      <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
+      <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />
+      <Steps.Step title="步骤四" description="这里是步骤一的说明，可以很长很长哦。" />
+    </Steps>
+  )
 }
+
 ReactDOM.render(<Demo />, _mount_);
 ```
 
@@ -143,57 +137,45 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Steps, Button, Notify } from 'uiw';
 
-class Demo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      current: 0,
-      steps:[{
-        title: '第一步',
-        content: '注册一个账号',
-      }, {
-        title: '第二步',
-        content: '填写个人信息。',
-      }, {
-        title: '第三步',
-        content: '验证邮箱',
-      }]
-    };
+const conStyle = { minHeight: 200, backgroundColor: '#fafafa',textAlign: 'center', borderRadius: 6, paddingTop: 80, marginTop: 15 }
+const steps = [
+  {
+    title: '第一步',
+    content: '注册一个账号',
+  }, {
+    title: '第二步',
+    content: '填写个人信息。',
+  }, {
+    title: '第三步',
+    content: '验证邮箱',
   }
-  next() {
-    const current = this.state.current + 1;
-    this.setState({ current });
-  }
-  prev() {
-    const current = this.state.current - 1;
-    this.setState({ current });
-  }
-  render() {
-    const { current ,steps} = this.state;
-    const conStyle = {minHeight:200,backgroundColor: '#fafafa',textAlign: 'center',borderRadius: 6,paddingTop: 80,marginTop: 15}
+]
+
+function Demo() {
+  const [current, setCurrent] = React.useState(0);
     return (
       <div>
         <Steps current={current}>
           {steps.map(item => <Steps.Step key={item.title} title={item.title} />)}
         </Steps>
-        <div style={conStyle}>{steps[this.state.current].content}</div>
+        <div style={conStyle}>{steps[current].content}</div>
         <div style={{marginTop: 20}}>
-          {this.state.current < steps.length - 1 && (
-            <Button type="primary" size="small" onClick={() => this.next()}>下一步</Button>
+          {current < steps.length - 1 && (
+            <Button type="primary" size="small" onClick={() => setCurrent(current + 1)}>下一步</Button>
           )}
-          {this.state.current === steps.length - 1 && (
+          {current === steps.length - 1 && (
             <Button type="primary" size="small" onClick={() => Notify.open({ description: '处理完成!' })}>完成</Button>
           )}
-          {this.state.current > 0 && (
-            <Button size="small" style={{ marginLeft: 8 }} onClick={() => this.prev()}>
+          {current > 0 && (
+            <Button size="small" style={{ marginLeft: 8 }} onClick={() => setCurrent(current - 1)}>
               上一步
             </Button>
           )}
         </div>
       </div>
     );
-  }
 }
+
 ReactDOM.render(<Demo />, _mount_);
 ```
 
@@ -207,33 +189,31 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Steps } from 'uiw';
 
-class Demo extends React.Component {
-  render() {
-    return (
-      <Row gutter={20}>
-        <Col>
-          <Steps current={1} direction="vertical" style={{ padding: '20px 0' }}>
-            <Steps.Step title="已完成" description="这里是该步骤的描述信息" />
-            <Steps.Step title="进行中" description="这里是该步骤的描述信息" />
-            <Steps.Step title="待进行" description="这里是该步骤的描述信息" />
-            <Steps.Step title="待进行" description="这里是该步骤的描述信息" />
-          </Steps>
-        </Col>
-        <Col>
-          <Steps direction="vertical" progressDot status="error" current={2} style={{ padding: '20px 0' }}>
-            <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。" />
-            <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
-            <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />
-            <Steps.Step title="步骤四" description="这里是步骤一的说明，可以很长很长哦。" />
-          </Steps>
-        </Col>
-      </Row>
-    )
-  }
+function Demo() {
+  return (
+    <Row gutter={20}>
+      <Col>
+        <Steps current={1} direction="vertical" style={{ padding: '20px 0' }}>
+          <Steps.Step title="已完成" description="这里是该步骤的描述信息" />
+          <Steps.Step title="进行中" description="这里是该步骤的描述信息" />
+          <Steps.Step status="error" title="待进行" description="这里是该步骤的描述信息" />
+          <Steps.Step title="待进行" description="这里是该步骤的描述信息" />
+        </Steps>
+      </Col>
+      <Col>
+        <Steps direction="vertical" progressDot status="error" current={2} style={{ padding: '20px 0' }}>
+          <Steps.Step title="步骤一" description="这里是步骤一的说明，可以很长很长哦。" />
+          <Steps.Step title="步骤二" description="这里是步骤一的说明，可以很长很长哦。" />
+          <Steps.Step title="步骤三" description="这里是步骤一的说明，可以很长很长哦。" />
+          <Steps.Step title="步骤四" description="这里是步骤一的说明，可以很长很长哦。" />
+        </Steps>
+      </Col>
+    </Row>
+  )
 }
+
 ReactDOM.render(<Demo />, _mount_);
 ```
-
 
 ## Props
 
