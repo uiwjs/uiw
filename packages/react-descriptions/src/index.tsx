@@ -55,7 +55,10 @@ const generateChildrenRows = (
   return rows;
 };
 
-function InternalDescriptions(props: DescriptionsProps = {}) {
+function InternalDescriptions(
+  props: DescriptionsProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
   const {
     prefixCls = 'w-descriptions',
     className,
@@ -80,12 +83,11 @@ function InternalDescriptions(props: DescriptionsProps = {}) {
     .trim();
 
   const cloneChildren = React.Children.toArray(children) as JSX.Element[];
-  const childs: Array<
-    React.ReactElement<DescriptionsItemProps>[]
-  > = generateChildrenRows(cloneChildren, column!);
+  const childs: Array<React.ReactElement<DescriptionsItemProps>[]> =
+    generateChildrenRows(cloneChildren, column!);
 
   return (
-    <div className={cls}>
+    <div className={cls} ref={ref}>
       <table {...other}>
         {title && <caption className={`${prefixCls}-title`}>{title}</caption>}
         <tbody>
@@ -107,15 +109,6 @@ function InternalDescriptions(props: DescriptionsProps = {}) {
   );
 }
 
-interface CompoundedComponent
-  extends React.ForwardRefExoticComponent<DescriptionsProps> {
-  Item: typeof DescriptionsItem;
-}
+InternalDescriptions.Item = DescriptionsItem;
 
-const Descriptions = React.forwardRef<unknown, DescriptionsProps>(
-  InternalDescriptions,
-) as CompoundedComponent;
-
-Descriptions.Item = DescriptionsItem;
-
-export default Descriptions;
+export default InternalDescriptions;
