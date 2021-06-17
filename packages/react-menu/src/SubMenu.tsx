@@ -1,7 +1,8 @@
-import React, { useMemo, useState, useImperativeHandle } from 'react';
+import React, { useMemo, useState } from 'react';
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 import OverlayTrigger, {
   OverlayTriggerProps,
+  OverlayTriggerRef,
 } from '@uiw/react-overlay-trigger';
 import Icon from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
@@ -65,11 +66,11 @@ function IconView({
   );
 }
 
-function SubMenu(
+export default function SubMenu(
   props: SubMenuProps = {},
   ref:
-    | ((instance: OverlayTrigger) => void)
-    | React.RefObject<OverlayTrigger | null>
+    | ((instance: typeof OverlayTrigger) => void)
+    | React.RefObject<typeof OverlayTrigger | null>
     | null,
 ) {
   const {
@@ -93,18 +94,19 @@ function SubMenu(
       .join(' ')
       .trim(),
   };
-  const popupRef = React.createRef<OverlayTrigger>();
+  const popupRef = React.useRef<OverlayTriggerRef>(null);
   const [isOpen, setIsOpen] = useState(false);
-  useImperativeHandle(ref, () => popupRef.current);
   useMemo(() => {
     setIsOpen(false);
   }, [collapse]);
   function onClick(e: React.MouseEvent<HTMLUListElement, MouseEvent>) {
     const target = e.currentTarget;
     const related = (e.relatedTarget || e.nativeEvent.target) as HTMLElement;
-    if (!popupRef.current || target.children.length < 1) return;
+    if (target.children.length < 1) return;
     if (checkedMenuItem(related)) {
-      popupRef.current.hide();
+      if (popupRef.current) {
+        popupRef.current!.hide();
+      }
     }
   }
   function onExit(node: HTMLElement) {
@@ -152,11 +154,12 @@ function SubMenu(
         placement="rightTop"
         autoAdjustOverflow
         disabled={disabled}
-        ref={popupRef}
+        isOpen={isOpen}
         usePortal={false}
         isOutside
         {...overlayTriggerProps}
         {...overlayProps}
+        ref={popupRef}
         overlay={
           <Menu
             {...menuProps}
@@ -190,4 +193,4 @@ function SubMenu(
 }
 
 SubMenu.displayName = 'uiw.SubMenu';
-export default React.forwardRef<OverlayTrigger, SubMenuProps>(SubMenu);
+// export default React.forwardRef<typeof OverlayTrigger, SubMenuProps>(SubMenu);
