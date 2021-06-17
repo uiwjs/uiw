@@ -15,9 +15,7 @@ export interface CopyToClipboardProps
   ) => void;
 }
 
-export default function CopyToClipboard<T>(
-  props = {} as CopyToClipboardProps & T,
-) {
+export default function CopyToClipboard<T>(props: CopyToClipboardProps & T) {
   const {
     prefixCls = 'w-copy-to-clipboard',
     className,

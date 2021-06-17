@@ -11,7 +11,10 @@ export interface CheckboxGroupPorps
   onChange?: (e: React.ChangeEvent<HTMLInputElement>, values: Value[]) => void;
 }
 
-export function CheckboxGroup(props: CheckboxGroupPorps = {}) {
+export const CheckboxGroup = React.forwardRef<
+  HTMLDivElement,
+  CheckboxGroupPorps
+>((props, ref) => {
   const {
     prefixCls = 'w-checkbox-group',
     className,
@@ -25,7 +28,7 @@ export function CheckboxGroup(props: CheckboxGroupPorps = {}) {
   const childs = React.Children.toArray(props.children);
   useMemo(() => (valueRef.current = value || []), [value]);
   return (
-    <div {...other} className={cls}>
+    <div {...other} className={cls} ref={ref}>
       {React.Children.map(childs, (element: React.ReactNode) => {
         if (!React.isValidElement(element)) return;
         if (
@@ -62,4 +65,4 @@ export function CheckboxGroup(props: CheckboxGroupPorps = {}) {
       })}
     </div>
   );
-}
+});

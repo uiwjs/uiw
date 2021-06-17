@@ -1,4 +1,4 @@
-import React, { useImperativeHandle } from 'react';
+import React from 'react';
 import { RadioAbstract, RadioAbstractProps } from '@uiw/react-radio';
 import { CheckboxGroup } from './Group';
 import './style/index.less';
@@ -8,30 +8,26 @@ export interface CheckboxProps extends RadioAbstractProps {
 }
 
 function InternalCheckbox(
-  props: CheckboxProps = {},
-  ref?:
-    | ((instance: HTMLInputElement) => void)
-    | React.RefObject<HTMLInputElement | null>
-    | null,
+  props: CheckboxProps,
+  ref: React.ForwardedRef<HTMLInputElement>,
 ) {
   const {
-    prefixCls = 'w-checkbox',
     className,
+    prefixCls = 'w-checkbox',
     type = 'checkbox',
     indeterminate = false,
     disabled = false,
     value = '',
     ...other
   } = props;
-  const inputRef = React.createRef<HTMLInputElement>();
-  useImperativeHandle(ref, () => inputRef.current);
-  const cls = [className, indeterminate ? 'indeterminate' : null]
+
+  const cls = [className, indeterminate && 'indeterminate']
     .filter(Boolean)
     .join(' ')
     .trim();
   return (
     <RadioAbstract
-      ref={inputRef}
+      ref={ref}
       {...other}
       type={type}
       prefixCls={prefixCls}
@@ -42,13 +38,6 @@ function InternalCheckbox(
   );
 }
 
-const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  InternalCheckbox,
-);
-type Checkbox = typeof Checkbox & {
-  Group: typeof CheckboxGroup;
-};
+InternalCheckbox.Group = CheckboxGroup;
 
-(Checkbox as Checkbox).Group = CheckboxGroup;
-
-export default Checkbox as Checkbox;
+export default InternalCheckbox;
