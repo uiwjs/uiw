@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Option = (props: React.InputHTMLAttributes<HTMLOptionElement>) => (
-  <option {...props} />
-);
-
-export default Option;
+export default React.forwardRef<
+  HTMLOptionElement,
+  React.InputHTMLAttributes<HTMLOptionElement>
+>((props, ref) => <option {...props} ref={ref} />);

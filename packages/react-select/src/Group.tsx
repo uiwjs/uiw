@@ -1,5 +1,6 @@
 import React from 'react';
 
-export default (props: React.InputHTMLAttributes<HTMLOptGroupElement>) => (
-  <optgroup {...props} />
-);
+export default React.forwardRef<
+  HTMLOptGroupElement,
+  React.InputHTMLAttributes<HTMLOptGroupElement>
+>((props, ref) => <optgroup {...props} ref={ref} />);
