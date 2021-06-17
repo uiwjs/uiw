@@ -3,12 +3,12 @@ import { IProps } from '@uiw/utils';
 
 export interface ListItemProps
   extends IProps,
-    React.AllHTMLAttributes<HTMLElement> {
+    React.HTMLAttributes<HTMLOrSVGElement> {
   disabled?: boolean;
   active?: boolean;
   extra?: React.ReactNode;
   href?: string;
-  tagName?: keyof JSX.IntrinsicElements | any;
+  tagName?: keyof JSX.IntrinsicElements;
 }
 
 export default function Item<T>(props = {} as ListItemProps & T) {
