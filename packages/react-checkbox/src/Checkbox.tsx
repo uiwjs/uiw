@@ -38,6 +38,13 @@ function InternalCheckbox(
   );
 }
 
-InternalCheckbox.Group = CheckboxGroup;
+const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
+  InternalCheckbox,
+);
+type Checkbox = typeof Checkbox & {
+  Group: typeof CheckboxGroup;
+};
 
-export default InternalCheckbox;
+(Checkbox as Checkbox).Group = CheckboxGroup;
+
+export default Checkbox as Checkbox;

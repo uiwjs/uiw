@@ -23,7 +23,10 @@ function toArray(activeKey: CollapseProps['activeKey']) {
   return currentActiveKey;
 }
 
-function InternalCollapse(props: CollapseProps = {}) {
+function InternalCollapse(
+  props: CollapseProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
   const {
     prefixCls = 'w-collapse',
     className,
@@ -67,7 +70,7 @@ function InternalCollapse(props: CollapseProps = {}) {
     }
   }, [activeKey, propsActiveKey]);
   return (
-    <div className={cls} {...resetProps}>
+    <div className={cls} {...resetProps} ref={ref}>
       {React.Children.map(children, (child: any, index) => {
         // 如果没有密钥提供，请使用面板顺序作为默认密钥
         const key = child.key || String(index);
@@ -93,7 +96,9 @@ function InternalCollapse(props: CollapseProps = {}) {
   );
 }
 
-const Collapse = React.forwardRef<unknown, CollapseProps>(InternalCollapse);
+const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
+  InternalCollapse,
+);
 type Collapse = typeof Collapse & {
   Panel: typeof Panel;
 };

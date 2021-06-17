@@ -109,6 +109,13 @@ function InternalDescriptions(
   );
 }
 
-InternalDescriptions.Item = DescriptionsItem;
+const Descriptions = React.forwardRef<HTMLDivElement, DescriptionsProps>(
+  InternalDescriptions,
+);
+type Descriptions = typeof Descriptions & {
+  Item: typeof DescriptionsItem;
+};
 
-export default InternalDescriptions;
+(Descriptions as Descriptions).Item = DescriptionsItem;
+
+export default Descriptions as Descriptions;

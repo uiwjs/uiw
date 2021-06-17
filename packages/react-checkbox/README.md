@@ -47,7 +47,7 @@ const Demo = () => (
         console.log('onSubmit~~~:::', initial, current)
         Notify.success({
           title: '提交成功！',
-          description: `选项为：【${current.checkbox}】，提交完成，将自动填充初始化值！`,
+          description: `选项为：【${current.checkbox}】【${JSON.stringify(current.checkboxGroup)}】，提交完成，将自动填充初始化值！`,
         });
       }}
       fields={{

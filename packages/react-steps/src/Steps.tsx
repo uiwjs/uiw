@@ -12,10 +12,6 @@ export interface StepsProps<T> extends IProps, HTMLDivProps {
   current?: number;
 }
 
-export default InternalSteps;
-
-InternalSteps.Step = Step;
-
 function InternalSteps<T>(props: StepsProps<T>) {
   const {
     prefixCls = 'w-steps',
@@ -97,3 +93,11 @@ function InternalSteps<T>(props: StepsProps<T>) {
     </div>
   );
 }
+
+type Steps = typeof InternalSteps & {
+  Step: typeof Step;
+};
+
+(InternalSteps as Steps).Step = Step;
+
+export default InternalSteps as Steps;
