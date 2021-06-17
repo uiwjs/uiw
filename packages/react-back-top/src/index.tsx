@@ -20,7 +20,7 @@ export interface IBackTopState {
   current: number;
 }
 
-export default (props: BackTopProps = {}) => {
+export default React.forwardRef<HTMLDivElement, BackTopProps>((props, ref) => {
   const {
     prefixCls = 'w-back-top',
     className,
@@ -61,11 +61,16 @@ export default (props: BackTopProps = {}) => {
     ScrollToAnimate(offsetTop, speed, current);
   }
   return (
-    <div onClick={() => clickable && scrollToTop()} className={cls} {...other}>
+    <div
+      onClick={() => clickable && scrollToTop()}
+      className={cls}
+      {...other}
+      ref={ref}
+    >
       {content}
       {typeof children !== 'function'
         ? children
         : children({ percent, current, scrollToTop: scrollToTop })}
     </div>
   );
-};
+});
