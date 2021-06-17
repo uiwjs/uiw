@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-menu",
-  "version": "4.8.9",
+  "version": "4.9.0",
   "description": "Menu component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/menu",
@@ -42,9 +42,9 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-icon": "^4.8.9",
-    "@uiw/react-overlay-trigger": "^4.8.9",
-    "@uiw/utils": "^4.8.9",
+    "@uiw/react-icon": "^4.9.0",
+    "@uiw/react-overlay-trigger": "^4.9.0",
+    "@uiw/utils": "^4.9.0",
     "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
