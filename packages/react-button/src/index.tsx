@@ -26,51 +26,54 @@ export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
   onClick?: (e: React.MouseEvent<HTMLButtonElement> & MouseEvent) => void;
 }
 
-export default function Button(props: ButtonProps = {}) {
-  const {
-    prefixCls = 'w-btn',
-    disabled = false,
-    active = false,
-    loading = false,
-    block = false,
-    basic = false,
-    htmlType = 'button',
-    type = 'light',
-    size = 'default',
-    icon,
-    className,
-    children,
-    ...others
-  } = props;
-  const cls = [
-    className,
-    prefixCls,
-    size ? `${prefixCls}-size-${size}` : null,
-    type ? `${prefixCls}-${type}` : null,
-    basic ? `${prefixCls}-basic` : null,
-    loading ? `${prefixCls}-loading` : null,
-    disabled || loading ? 'disabled' : null,
-    active ? 'active' : null,
-    block ? 'block' : null,
-  ]
-    .filter(Boolean)
-    .join(' ')
-    .trim();
+export default React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (props, ref) => {
+    const {
+      prefixCls = 'w-btn',
+      disabled = false,
+      active = false,
+      loading = false,
+      block = false,
+      basic = false,
+      htmlType = 'button',
+      type = 'light',
+      size = 'default',
+      icon,
+      className,
+      children,
+      ...others
+    } = props;
+    const cls = [
+      className,
+      prefixCls,
+      size ? `${prefixCls}-size-${size}` : null,
+      type ? `${prefixCls}-${type}` : null,
+      basic ? `${prefixCls}-basic` : null,
+      loading ? `${prefixCls}-loading` : null,
+      disabled || loading ? 'disabled' : null,
+      active ? 'active' : null,
+      block ? 'block' : null,
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
 
-  return (
-    <button
-      {...others}
-      type={htmlType}
-      disabled={disabled || loading}
-      className={cls}
-    >
-      {icon && <Icon type={icon} />}
-      {children &&
-        React.Children.map(children, (child: React.ReactNode) => {
-          if (!child) return child;
-          if (React.isValidElement(child)) return child;
-          return <span>{child}</span>;
-        })}
-    </button>
-  );
-}
+    return (
+      <button
+        {...others}
+        ref={ref}
+        type={htmlType}
+        disabled={disabled || loading}
+        className={cls}
+      >
+        {icon && <Icon type={icon} />}
+        {children &&
+          React.Children.map(children, (child: React.ReactNode) => {
+            if (!child) return child;
+            if (React.isValidElement(child)) return child;
+            return <span>{child}</span>;
+          })}
+      </button>
+    );
+  },
+);
