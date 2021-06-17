@@ -1,4 +1,4 @@
-import React, { useState, useImperativeHandle } from 'react';
+import React, { useState, useEffect } from 'react';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import Button, { ButtonType, ButtonProps } from '@uiw/react-button';
 import Icon from '@uiw/react-icon';
@@ -8,10 +8,10 @@ import './style/index.less';
 export interface ModalProps extends IProps, OverlayProps {
   type?: ButtonType;
   cancelText?: string;
-  cancelButtonProps?: ButtonProps;
+  confirmButtonProps?: Omit<ButtonProps, 'ref'>;
+  cancelButtonProps?: Omit<ButtonProps, 'ref'>;
   content?: React.ReactNode;
   confirmText?: string;
-  confirmButtonProps?: ButtonProps;
   title?: string;
   icon?: JSX.Element | string | false | null;
   useButton?: boolean;
@@ -27,13 +27,7 @@ export interface ModalProps extends IProps, OverlayProps {
   onConfirm?: (evn: React.MouseEvent<HTMLButtonElement> & MouseEvent) => void;
 }
 
-function InternalModal(
-  props: ModalProps = {},
-  ref?:
-    | ((instance: OverlayProps) => void)
-    | React.RefObject<OverlayProps | null>
-    | null,
-) {
+export default React.forwardRef<OverlayProps, ModalProps>((props, ref) => {
   const {
     prefixCls = 'w-modal',
     className,
@@ -41,7 +35,7 @@ function InternalModal(
     useButton = true,
     usePortal = true,
     autoFocus = false,
-    isOpen = false,
+    isOpen: _ = false,
     title,
     cancelText,
     cancelButtonProps,
@@ -59,36 +53,39 @@ function InternalModal(
     bodyStyle,
     ...other
   } = props;
-  const overlayRef = React.createRef<Overlay>();
-  useImperativeHandle(ref, () => overlayRef.current);
+  const [isOpen, setIsOpen] = useState(props.isOpen);
+  useEffect(() => {
+    if (props.isOpen !== isOpen) {
+      setIsOpen(props.isOpen);
+    }
+  }, [props.isOpen]);
+
   const [loading, setLoading] = useState(false);
   const cls = [prefixCls, className, type ? `${type}` : null]
     .filter(Boolean)
     .join(' ')
     .trim();
   function onClose() {
-    overlayRef.current!.overlayWillClose();
+    setIsOpen(false);
   }
   async function handleCancel(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent> & MouseEvent,
-    overlay: Overlay,
   ) {
     setLoading(true);
     try {
       onCancel && (await onCancel(e));
     } catch (e) {}
-    overlay.overlayWillClose();
+    setIsOpen(false);
     setLoading(false);
   }
   async function handleConfirm(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent> & MouseEvent,
-    overlay: Overlay,
   ) {
     setLoading(true);
     try {
       onConfirm && (await onConfirm(e));
     } catch (e) {}
-    overlay.overlayWillClose();
+    setIsOpen(false);
     setLoading(false);
   }
   return (
@@ -97,7 +94,6 @@ function InternalModal(
       isOpen={isOpen}
       {...other}
       onClose={onClose}
-      ref={overlayRef}
       className={cls}
     >
       <div className={`${prefixCls}-container`}>
@@ -119,11 +115,7 @@ function InternalModal(
               {isCloseButtonShown && (
                 <Button
                   basic
-                  onClick={(e) => {
-                    if (overlayRef.current) {
-                      handleCancel(e, overlayRef.current);
-                    }
-                  }}
+                  onClick={(e) => handleCancel(e)}
                   icon="close"
                   type="light"
                 />
@@ -141,23 +133,12 @@ function InternalModal(
                 loading={loading}
                 disabled={loading}
                 {...confirmButtonProps}
-                onClick={(e) => {
-                  if (overlayRef.current) {
-                    handleConfirm(e, overlayRef.current);
-                  }
-                }}
+                onClick={(e) => handleConfirm(e)}
               >
                 {confirmText}
               </Button>
               {cancelText && (
-                <Button
-                  {...cancelButtonProps}
-                  onClick={(e) => {
-                    if (overlayRef.current) {
-                      handleCancel(e, overlayRef.current);
-                    }
-                  }}
-                >
+                <Button {...cancelButtonProps} onClick={(e) => handleCancel(e)}>
                   {cancelText}
                 </Button>
               )}
@@ -167,6 +148,4 @@ function InternalModal(
       </div>
     </Overlay>
   );
-}
-
-export default React.forwardRef<OverlayProps, ModalProps>(InternalModal);
+});
