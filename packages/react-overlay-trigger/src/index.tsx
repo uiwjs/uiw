@@ -1,13 +1,16 @@
-import React, { cloneElement } from 'react';
-import ReactDOM from 'react-dom';
-import { getScroll, IProps } from '@uiw/utils';
+import React, {
+  cloneElement,
+  useEffect,
+  useRef,
+  useState,
+  useImperativeHandle,
+} from 'react';
+import { findDOMNode } from 'react-dom';
+import { IProps, noop } from '@uiw/utils';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import contains from './utils';
-import getBoundingClientRect, {
-  IBoundingClientRect,
-} from './util/getBoundingClientRect';
-import getOuterSizes from './util/getOuterSizes';
-import RefHolder from './RefHolder';
+import { IBoundingClientRect } from './util/getBoundingClientRect';
+import { getStyle } from './getStyle';
 import './style/index.less';
 
 export interface OverlayTriggerProps extends IProps, OverlayProps {
@@ -73,483 +76,263 @@ const normalizeDelay = (delay?: Delay) =>
   delay && typeof delay === 'object' ? delay : { show: delay, hide: delay };
 let zIndex = 999;
 
-export default class OverlayTrigger extends React.Component<
-  OverlayTriggerProps
-> {
-  public static defaultProps: OverlayTriggerProps = {
-    prefixCls: 'w-overlay-trigger',
-    // onEnter: () => null,
-    usePortal: true,
-    isOutside: false,
-    isClickOutside: true,
-    disabled: false,
-    isOpen: false,
-    trigger: 'hover',
-    placement: 'top',
-  };
-  public state: OverlayTriggerState;
-  // React Refs with TypeScript
-  // https://medium.com/@martin_hotell/react-refs-with-typescript-a32d56c4d315
-  private trigger = React.createRef<RefHolder>();
-  // private trigger = React.createRef<HTMLDivElement>();
-  private popup = React.createRef<HTMLDivElement>();
-  private _hoverState!: 'show' | 'hide' | null;
-  private _timeout: number[] = [];
-  constructor(props: OverlayTriggerProps & OverlayProps) {
-    super(props);
-    this.state = {
-      show: !!props.isOpen,
-      trigger: props.trigger,
-      transitionName: props.transitionName,
-      overlayStyl: {
-        placement: props.placement as Placement,
-      } as OverlayStyl,
-    };
-  }
-  componentDidUpdate(prevProps: OverlayTriggerProps) {
-    if (
-      this.props.isOpen !== this.state.show &&
-      prevProps.isOpen !== this.props.isOpen
-    ) {
-      this.props.isOpen ? this.show() : this.hide();
-    }
-    if (this.props.trigger !== prevProps.trigger) {
-      this.hide();
-    }
-  }
-  /**
-   * Trigger value change prohibits animation transition effect
-   */
-  static getDerivedStateFromProps(
-    props: OverlayTriggerProps,
-    state: OverlayTriggerState,
-  ) {
-    if (props.trigger !== state.trigger) {
-      state.trigger = props.trigger;
-      state.show = !!props.isOpen;
-      state.transitionName = '-';
-    } else {
-      state.transitionName = props.transitionName;
-    }
-    return state;
-  }
-  componentDidMount() {
-    if (this.props.isClickOutside) {
-      document &&
-        document.addEventListener('mousedown', this.handleClickOutside, true);
-    }
-    !!this.props.isOpen && this.setState({ overlayStyl: { ...this.styles() } });
-  }
-  componentWillUnmount() {
-    document &&
-      document.removeEventListener('mousedown', this.handleClickOutside, true);
-  }
-  getTarget = () => ReactDOM.findDOMNode(this.trigger.current) as HTMLElement;
-  getPopupTarget = () =>
-    ReactDOM.findDOMNode(this.popup.current) as HTMLElement;
-  getChildProps() {
-    return (React.Children.only(this.props.children) as React.ReactElement<any>)
-      .props;
-  }
-  handleClickOutside = (e: MouseEvent) => {
-    const popNode = this.getPopupTarget();
-    const child = this.getTarget();
-    if (
-      popNode &&
-      e.target &&
-      !popNode.contains(e.target as HTMLElement) &&
-      child &&
-      !child.contains(e.target as HTMLElement)
-    ) {
-      this.hide();
-    }
-  };
-  handleClick = (e: MouseEvent) => {
-    const { onClick } = this.getChildProps();
+export type OverlayTriggerRef = {
+  hide: () => void;
+  show: () => void;
+};
 
-    if (this.state.show) this.hide();
-    else this.show();
-    if (onClick) onClick(e, !this.state.show);
-  };
-  handleoFocus = () => {
-    this.handleShow();
-  };
-  public clearTimeouts = () => {
-    if (this._timeout.length > 0) {
-      for (const timeoutId of this._timeout) {
-        window.clearTimeout(timeoutId);
-      }
-      this._timeout = [];
-    }
-  };
-  handleShow = () => {
-    this.clearTimeouts();
-    this._hoverState = 'show';
-
-    const delay = normalizeDelay(this.props.delay);
-
-    if (!delay.show) {
-      this.show();
-      return;
-    }
-    const handle = window.setTimeout(() => {
-      if (this._hoverState === 'show') this.show();
-    }, delay.show);
-
-    this._timeout.push(handle);
-  };
-
-  handleHide = (isOutside: boolean) => {
-    this.clearTimeouts();
-    if (!isOutside && this.props.isOutside) return;
-    this._hoverState = 'hide';
-
-    const delay = normalizeDelay(this.props.delay);
-
-    if (!delay.hide) {
-      this.hide();
-      return;
-    }
-
-    const handle = window.setTimeout(() => {
-      if (this._hoverState === 'hide') this.hide();
-    }, delay.hide);
-
-    this._timeout.push(handle);
-  };
-
-  handleMouseOver = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    this.handleMouseOverOut(this.handleShow, e, 'fromElement');
-  };
-
-  handleMouseOut = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    this.handleMouseOverOut(this.handleHide, e, 'toElement');
-  };
-
-  // Simple implementation of mouseEnter and mouseLeave.
-  // React's built version is broken: https://github.com/facebook/react/issues/4251
-  // for cases when the trigger is disabled and mouseOut/Over can cause flicker
-  // moving from one child element to another.
-  handleMouseOverOut(
-    handler: Function,
-    e: React.MouseEvent,
-    relatedNative: 'fromElement' | 'toElement',
-  ) {
-    const target = e.currentTarget as HTMLElement;
-    const related = (e.relatedTarget ||
-      (e.nativeEvent as any)[relatedNative]) as HTMLElement;
-    const popupTarget = this.getPopupTarget();
-    const currentTarget = this.getTarget();
-    let isOutside = true;
-    if (
-      (popupTarget && contains(popupTarget, related)) ||
-      (currentTarget && contains(currentTarget, related))
-    ) {
-      isOutside = false;
-    }
-    if ((!related || related !== target) && !contains(target, related)) {
-      handler(isOutside, e);
-    }
-  }
-
-  hide() {
-    if (!this.state.show) return;
-    const { onVisibleChange } = this.props;
-    zIndex -= 1;
-    this.setState(
-      { show: false },
-      () => onVisibleChange && onVisibleChange(false),
-    );
-  }
-
-  show() {
-    if (this.state.show) return;
-    const { onVisibleChange } = this.props;
-    zIndex += 1;
-    this.setState(
-      {
-        show: true,
-      },
-      () => {
-        onVisibleChange && onVisibleChange(true);
-      },
-    );
-  }
-  onEnter = (node: HTMLElement, isAppearing: boolean) => {
-    const { onEnter } = this.props;
-    if (onEnter) {
-      onEnter(node, isAppearing);
-    }
-    this.setState({ overlayStyl: { ...this.styles() } });
-  };
-  styles() {
-    const { usePortal, autoAdjustOverflow } = this.props;
-    const { placement } = this.props;
-    const sty = {} as OverlayStyl;
-    let trigger = this.getTarget() as HTMLElement | IBoundingClientRect;
-    let popup = this.getPopupTarget() as HTMLElement | IBoundingClientRect;
-    if (!trigger || !popup || !document) {
-      return sty;
-    }
-
-    const winSizeHeight = Math.max(
-      document.documentElement.clientHeight,
-      window.innerHeight || 0,
-    );
-    const winSizeWidth = Math.max(
-      document.documentElement.clientWidth,
-      window.innerWidth || 0,
-    );
-
-    sty.placement = placement as Placement;
-    const scrollTop = getScroll(
-      (trigger as HTMLElement).ownerDocument!.documentElement,
-      true,
-    );
-    const scrollLeft = getScroll(
-      (trigger as HTMLElement).ownerDocument!.documentElement,
-    );
-    trigger = {
-      ...getBoundingClientRect(trigger as HTMLElement),
-      ...getOuterSizes(trigger as HTMLElement),
-    };
-    popup = {
-      ...getBoundingClientRect(popup as HTMLElement),
-      ...getOuterSizes(popup as HTMLElement),
-    };
-
-    const bottom = winSizeHeight - trigger.bottom;
-    const right = winSizeWidth - trigger.left - trigger.width;
-
-    sty.top = trigger.top + scrollTop;
-    sty.left = trigger.left;
-
-    if (!usePortal) {
-      sty.top = trigger.offsetTop as number;
-      sty.left = trigger.offsetLeft as number;
-    }
-
-    if (placement && /^(top)/.test(placement)) {
-      sty.top -= popup.height;
-    }
-    if (placement && /^(right)/.test(placement)) {
-      sty.left += trigger.width;
-    }
-    if (placement && /^(bottom)/.test(placement)) {
-      sty.top += trigger.height;
-    }
-    if (placement && /^(left)/.test(placement)) {
-      sty.left -= popup.width;
-    }
-    switch (sty.placement) {
-      case 'bottomLeft':
-      case 'topLeft':
-        break;
-      case 'bottom':
-      // eslint-disable-next-line
-      case 'top':
-        sty.left = sty.left - (popup.width - trigger.width) / 2;
-        break;
-      case 'bottomRight':
-      case 'topRight':
-        sty.left = sty.left + scrollLeft + trigger.width - popup.width;
-        break;
-      case 'rightTop':
-      case 'leftTop':
-        break;
-      case 'right':
-      // eslint-disable-next-line
-      case 'left':
-        sty.top = sty.top - (popup.height - trigger.height) / 2;
-        break;
-      case 'rightBottom':
-      case 'leftBottom':
-        sty.top = sty.top - popup.height + trigger.height;
-        break;
-      default:
-        break;
-    }
-    if (autoAdjustOverflow) {
-      if (
-        placement &&
-        /^(top)/.test(placement) &&
-        trigger.top < popup.height &&
-        bottom > popup.height
-      ) {
-        sty.placement = placement.replace(/^top/, 'bottom') as Placement;
-        sty.top = sty.top + popup.height + trigger.height;
-      }
-      if (
-        placement &&
-        /^(bottom)/.test(placement) &&
-        bottom < popup.height &&
-        trigger.top > popup.height
-      ) {
-        sty.placement = placement.replace(/^bottom/, 'top') as Placement;
-        sty.top = sty.top - popup.height - trigger.height;
-      }
-      if (placement && /^(right)/.test(placement) && right < popup.width) {
-        sty.placement = placement.replace(/^right/, 'left') as Placement;
-        sty.left = sty.left - trigger.width - popup.width;
-      }
-      if (
-        placement &&
-        /^(left)/.test(placement) &&
-        trigger.left < popup.width
-      ) {
-        sty.placement = placement.replace(/^left/, 'right') as Placement;
-        sty.left = sty.left + trigger.width + popup.width;
-      }
-
-      if (placement && /^(left|right)/.test(placement) && usePortal) {
-        // Top
-        if (
-          (/(Top)$/.test(placement) && trigger.top < 0) ||
-          (/(right|left)$/.test(placement) &&
-            trigger.top + trigger.height / 2 < popup.height / 2) ||
-          (/(Bottom)$/.test(placement) &&
-            trigger.top + trigger.height < popup.height)
-        ) {
-          sty.top = scrollTop;
-        }
-      } else {
-        // Top
-        if (placement && /(Top)$/.test(placement) && trigger.top < 0) {
-          sty.top -= trigger.top;
-        }
-        if (
-          placement &&
-          /(Bottom)$/.test(placement) &&
-          trigger.bottom < popup.height
-        ) {
-          // eslint-disable-next-line
-          sty.top = sty.top + (popup.height - trigger.bottom);
-        }
-        if (
-          placement &&
-          /(right|left)$/.test(placement) &&
-          trigger.bottom - trigger.height / 2 < popup.height / 2
-        ) {
-          sty.top =
-            sty.top + popup.height / 2 - (trigger.bottom - trigger.height / 2);
-        }
-      }
-      // Bottom Public Part
-      if (placement && /^(left|right)/.test(placement)) {
-        if (
-          /(Top)$/.test(placement) &&
-          bottom + trigger.height < popup.height
-        ) {
-          sty.top = sty.top - (popup.height - bottom - trigger.height); // eslint-disable-line
-        }
-        if (
-          /(right|left)$/.test(placement) &&
-          bottom + trigger.height / 2 < popup.height / 2
-        ) {
-          sty.top = sty.top - (popup.height / 2 - bottom - trigger.height / 2); // eslint-disable-line
-        }
-        if (/(Bottom)$/.test(placement) && bottom < 0) {
-          sty.top = sty.top + bottom; // eslint-disable-line
-        }
-      }
-
-      if (placement && /^(top|bottom)/.test(placement) && usePortal) {
-        // left
-        if (
-          (/(Left)$/.test(placement) && trigger.left < 0) ||
-          (/(top|bottom)$/.test(placement) &&
-            trigger.left + trigger.width / 2 < popup.width / 2) ||
-          (/(Right)$/.test(placement) &&
-            trigger.left + trigger.width < popup.width)
-        ) {
-          sty.left = scrollLeft;
-        }
-        // right
-        if (
-          /(top|bottom)$/.test(placement) &&
-          right + trigger.width / 2 < popup.width / 2
-        ) {
-          sty.left = trigger.left + trigger.width + right - popup.width;
-        }
-      } else if (
-        placement &&
-        /(top|bottom)$/.test(placement) &&
-        right + trigger.width / 2 < popup.width / 2
-      ) {
-        sty.left = sty.left + (right + trigger.width / 2 - popup.width / 2); // eslint-disable-line
-      }
-      if (placement && /^(top|bottom)/.test(placement)) {
-        if (/(Left)$/.test(placement) && trigger.width + right < popup.width) {
-          sty.left = sty.left - (popup.width - trigger.width - right); // eslint-disable-line
-        }
-        if (/(Right)$/.test(placement) && right < 0) {
-          sty.left = sty.left + right; // eslint-disable-line
-        }
-      }
-    }
-    sty.zIndex = zIndex;
-    return sty;
-  }
-  render() {
+export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>(
+  (props, ref) => {
     const {
-      prefixCls,
       className,
+
+      prefixCls = 'w-overlay-trigger',
+      usePortal = true,
+      isOutside = false,
+      isClickOutside = true,
+      disabled = false,
+      isOpen: _ = false,
+      trigger = 'hover',
+      placement = 'top',
+
+      autoAdjustOverflow,
+      transitionName,
+
       children,
       overlay,
-      trigger,
-      disabled,
-      usePortal,
+      onVisibleChange = noop,
+      onEnter = noop,
       ...other
-    } = this.props;
-    const { placement, ...overlayStyl } = this.state.overlayStyl;
+    } = props;
+
+    const triggerRef = useRef<HTMLElement>();
+    const popupRef = useRef<HTMLElement>();
+    const timeoutRef = useRef<number[]>([]);
+    const hoverStateRef = useRef<'show' | 'hide' | null>(null);
+    const [isOpen, setIsOpen] = useState(!!props.isOpen);
+    const [overlayStyl, setOverlayStyl] = useState<OverlayStyl>({
+      placement,
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      zIndex: 0,
+    });
+
+    useImperativeHandle(ref, () => ({
+      hide: () => hide(),
+      show: () => show(),
+    }));
+
     const child: any = React.Children.only(children);
-    const props: OverlayProps = { ...other, dialogProps: {} };
+    const overlayProps: OverlayProps = {
+      ...other,
+      placement,
+      isOpen,
+      dialogProps: {},
+    };
     const triggerProps: ITriggerProps = {};
+
+    function getChildProps() {
+      if (child && React.isValidElement(child)) {
+        return child.props;
+      }
+      return {};
+    }
+
+    const getTarget = () => findDOMNode(triggerRef.current) as HTMLElement;
+    const getPopupTarget = () => findDOMNode(popupRef.current) as HTMLElement;
+
+    useEffect(() => {
+      if (isClickOutside) {
+        document && document.addEventListener('mousedown', handleClickOutside);
+      }
+      const styls = getStyle({
+        placement: overlayStyl.placement,
+        trigger: getTarget() as HTMLElement | IBoundingClientRect,
+        popup: getPopupTarget() as HTMLElement | IBoundingClientRect,
+        usePortal,
+        autoAdjustOverflow,
+        zIndex,
+      });
+      !!props.isOpen && setOverlayStyl({ ...styls });
+      return () => {
+        document &&
+          document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, []);
+
+    useEffect(() => {
+      if (props.isOpen !== isOpen) {
+        setIsOpen(!!props.isOpen);
+      }
+    }, [props.isOpen]);
+
+    const handleClickOutside = (e: MouseEvent) => {
+      const popNode = getPopupTarget();
+      const childNode = getTarget();
+      if (
+        popNode &&
+        childNode &&
+        e.target &&
+        !popNode.contains(e.target as HTMLElement) &&
+        !childNode.contains(e.target as HTMLElement)
+      ) {
+        zIndex -= 1;
+        setIsOpen(false);
+        onVisibleChange && onVisibleChange(false);
+      }
+    };
+
     if (trigger === 'click' && !disabled) {
-      triggerProps.onClick = this.handleClick;
+      triggerProps.onClick = (e) => {
+        const { onClick } = getChildProps() as any;
+        isOpen ? hide() : show();
+        if (onClick) onClick(e, !isOpen);
+      };
     }
     if (trigger === 'focus' && !disabled) {
-      triggerProps.onFocus = this.handleoFocus;
+      triggerProps.onFocus = () => handleShow();
     }
+
     if (trigger === 'hover' && !disabled) {
-      triggerProps.onMouseOver = this.handleMouseOver;
-      triggerProps.onMouseOut = this.handleMouseOut;
-      props.dialogProps!.onMouseOut = this.handleMouseOut;
+      triggerProps.onMouseOver = (e) =>
+        handleMouseOverOut(handleShow, e, 'fromElement');
+      triggerProps.onMouseOut = (e) =>
+        handleMouseOverOut(handleHide, e, 'toElement');
+      overlayProps.dialogProps!.onMouseOut = (e) =>
+        handleMouseOverOut(handleHide, e, 'toElement');
     }
-    props.style = { ...props.style, ...overlayStyl };
+    overlayProps.style = { ...overlayProps.style, ...overlayStyl };
+    function clearTimeouts() {
+      if (timeoutRef.current.length > 0) {
+        for (const timeoutId of timeoutRef.current) {
+          window.clearTimeout(timeoutId);
+        }
+        timeoutRef.current = [];
+      }
+    }
+    function handleShow() {
+      clearTimeouts();
+      hoverStateRef.current = 'show';
+
+      const delay = normalizeDelay(props.delay);
+
+      if (!delay.show) {
+        show();
+        return;
+      }
+      const handle = window.setTimeout(() => {
+        if (hoverStateRef.current === 'show') show();
+      }, delay.show);
+      timeoutRef.current.push(handle);
+    }
+
+    function handleHide(isOutside: boolean) {
+      clearTimeouts();
+      if (!isOutside && props.isOutside) return;
+      hoverStateRef.current = 'hide';
+
+      const delay = normalizeDelay(props.delay);
+
+      if (!delay.hide) {
+        hide();
+        return;
+      }
+
+      const handle = window.setTimeout(() => {
+        if (hoverStateRef.current === 'hide') hide();
+      }, delay.hide);
+
+      timeoutRef.current.push(handle);
+    }
+
+    // Simple implementation of mouseEnter and mouseLeave.
+    // React's built version is broken: https://github.com/facebook/react/issues/4251
+    // for cases when the trigger is disabled and mouseOut/Over can cause flicker
+    // moving from one child element to another.
+    function handleMouseOverOut(
+      handler: Function,
+      e: React.MouseEvent,
+      relatedNative: 'fromElement' | 'toElement',
+    ) {
+      const target = e.currentTarget as HTMLElement;
+      const related = (e.relatedTarget ||
+        (e.nativeEvent as any)[relatedNative]) as HTMLElement;
+      const popupTarget = getPopupTarget();
+      const currentTarget = getTarget();
+      let isOutside = true;
+      if (
+        (popupTarget && contains(popupTarget, related)) ||
+        (currentTarget && contains(currentTarget, related))
+      ) {
+        isOutside = false;
+      }
+      if ((!related || related !== target) && !contains(target, related)) {
+        handler(isOutside, e);
+      }
+    }
+
+    function hide() {
+      if (!isOpen) return;
+      zIndex -= 1;
+      setIsOpen(false);
+      onVisibleChange && onVisibleChange(false);
+    }
+
+    function show() {
+      if (isOpen) return;
+      zIndex += 1;
+      setIsOpen(true);
+      onVisibleChange && onVisibleChange(true);
+    }
+
+    function handleEnter(node: HTMLElement, isAppearing: boolean) {
+      onEnter && onEnter(node, isAppearing);
+      const styls = getStyle({
+        placement: overlayStyl.placement,
+        trigger: getTarget() as HTMLElement | IBoundingClientRect,
+        popup: getPopupTarget() as HTMLElement | IBoundingClientRect,
+        usePortal,
+        autoAdjustOverflow,
+        zIndex,
+      });
+      console.log('>>>getTarget()>>>', triggerRef.current);
+      console.log('>>>popupRef()>>>', popupRef.current);
+      setOverlayStyl({ ...styls });
+    }
     return (
       <React.Fragment>
-        <RefHolder ref={this.trigger}>
-          {cloneElement(
-            child,
-            Object.assign({}, child.props, {
-              ...triggerProps,
-              className: [
-                child.props.className,
-                disabled ? `${prefixCls}-disabled` : null,
-              ]
-                .filter(Boolean)
-                .join(' ')
-                .trim(),
-            }),
-          )}
-        </RefHolder>
+        {cloneElement(
+          child,
+          Object.assign({}, child.props, {
+            ...triggerProps,
+            ref: triggerRef,
+            className: [
+              child.props.className,
+              disabled ? `${prefixCls}-disabled` : null,
+            ]
+              .filter(Boolean)
+              .join(' ')
+              .trim(),
+          }),
+        )}
         <Overlay
-          {...props}
-          onEnter={this.onEnter}
-          className={[prefixCls, className, placement]
+          {...overlayProps}
+          onEnter={handleEnter}
+          className={[prefixCls, className, overlayStyl.placement]
             .filter(Boolean)
             .join(' ')
             .trim()}
           usePortal={usePortal}
-          transitionName={this.state.transitionName}
-          isOpen={this.state.show}
+          transitionName={transitionName}
+          isOpen={isOpen}
           hasBackdrop={false}
         >
           {cloneElement(
             overlay,
             Object.assign(
-              { ref: this.popup },
+              { ref: popupRef },
               {
                 ...overlay.props,
                 className: [
@@ -565,5 +348,5 @@ export default class OverlayTrigger extends React.Component<
         </Overlay>
       </React.Fragment>
     );
-  }
-}
+  },
+);
