@@ -10,7 +10,7 @@ export interface BadgeProps extends IProps, HTMLSpanProps {
   count?: number;
 }
 
-export default (props: BadgeProps = {}) => {
+export default React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   const {
     prefixCls = 'w-badge',
     className,
@@ -48,7 +48,7 @@ export default (props: BadgeProps = {}) => {
     warpperProps.style = style || {};
   }
   return (
-    <span className={cls} {...other} {...warpperProps}>
+    <span className={cls} {...other} {...warpperProps} ref={ref}>
       {color && (
         <span
           className={`${prefixCls}-dot`}
@@ -63,4 +63,4 @@ export default (props: BadgeProps = {}) => {
       )}
     </span>
   );
-};
+});
