@@ -4,7 +4,7 @@ import './style/index.less';
 
 export type IconsName = keyof typeof svgPaths;
 
-export interface IconProps<T> extends React.HTMLAttributes<HTMLElement> {
+export interface IconProps<T> extends React.HTMLAttributes<HTMLOrSVGElement> {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;
@@ -12,7 +12,7 @@ export interface IconProps<T> extends React.HTMLAttributes<HTMLElement> {
    * HTML tag to use for the rendered element.
    * @default "span"
    */
-  tagName?: keyof JSX.IntrinsicElements | any;
+  tagName?: keyof JSX.IntrinsicElements;
   type?: IconsName | null | T;
   spin?: boolean;
   color?: string;
@@ -48,7 +48,7 @@ export default function Icon<T>(props: IconProps<T> = {}) {
       </svg>
     );
   } else if (React.isValidElement(type)) {
-    svg = React.cloneElement((type as unknown) as React.ReactElement, {
+    svg = React.cloneElement(type as unknown as React.ReactElement, {
       fill: color,
     });
   } else {
