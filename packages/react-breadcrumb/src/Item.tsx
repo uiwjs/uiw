@@ -1,17 +1,17 @@
 import React from 'react';
-import { HTMLSpanProps, IProps } from '@uiw/utils';
+import { IProps } from '@uiw/utils';
 import './style/item.less';
 
-export interface BreadcrumbItemProps extends IProps, HTMLSpanProps {
-  tagName?: keyof JSX.IntrinsicElements | any;
+export interface BreadcrumbItemProps
+  extends IProps,
+    React.HTMLAttributes<HTMLOrSVGElement> {
+  tagName?: keyof JSX.IntrinsicElements;
   separator?: JSX.Element | string;
   active?: boolean;
   'data-separator'?: JSX.Element | string;
 }
 
-export default function BreadcrumbItem<T>(
-  props = {} as BreadcrumbItemProps & T,
-) {
+export default function BreadcrumbItem<T>(props: BreadcrumbItemProps & T) {
   const {
     prefixCls = 'w-breadcrumb',
     className,
