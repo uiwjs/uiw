@@ -54,6 +54,10 @@ jobs:
 
         git commit -am $COMMIT
 
+    - run: rm -rf packages/doc/web
+    - run: mkdir -p packages/doc/web
+    - run: cp -rf website/uiw/build/* packages/doc/web
+
     - run: npm run bundle
     - run: git checkout -f packages/uiw/tsconfig.json
 

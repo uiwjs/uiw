@@ -33,6 +33,10 @@ jobs:
     - run: npm run b:website
     - run: npm run test
 
+    - run: rm -rf packages/doc/web
+    - run: mkdir -p packages/doc/web
+    - run: cp -rf website/uiw/build/* packages/doc/web
+
     - name: Deploy to uiwjs.github.io
       uses: peaceiris/actions-gh-pages@v3
       with:
