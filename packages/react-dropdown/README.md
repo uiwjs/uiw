@@ -18,13 +18,15 @@ import ReactDOM from 'react-dom';
 import { Dropdown, Menu, ButtonGroup, Button, Divider, Icon } from 'uiw';
 
 const menu = (
-  <Menu bordered style={{ minWidth: 120 }}>
-    <Menu.Item icon="reload" text="重新加载" />
-    <Menu.Item icon="heart-on" text="另存为" active />
-    <Menu.Item icon="appstore" text="应用商城" />
-    <Menu.Item icon="bar-chart" text="月统计报表" />
-    <Menu.Item icon="setting" text="偏好设置" />
-  </Menu>
+  <div>
+    <Menu bordered style={{ minWidth: 120 }}>
+      <Menu.Item icon="reload" text="重新加载" />
+      <Menu.Item icon="heart-on" text="另存为" active />
+      <Menu.Item icon="appstore" text="应用商城" />
+      <Menu.Item icon="bar-chart" text="月统计报表" />
+      <Menu.Item icon="setting" text="偏好设置" />
+    </Menu>
+  </div>
 );
 
 class Demo extends React.Component {
@@ -41,16 +43,6 @@ class Demo extends React.Component {
             点击我出现下拉菜单 <Icon type="down" />
           </a>
         </Dropdown>
-        <Divider />
-        <ButtonGroup style={{ marginRight: 5, display: 'inline-block' }}>
-          <Button icon="copy">点击右边</Button>
-          <Dropdown trigger="click" placement="bottomRight" menu={menu}>
-            <Button icon="more" />
-          </Dropdown>
-        </ButtonGroup>
-        <Dropdown trigger="click" menu={menu}>
-          <Button basic icon="file-text" type="dark">文件<Icon type="caret-down" /></Button>
-        </Dropdown>
       </div>
     )
   }
@@ -66,14 +58,16 @@ import ReactDOM from 'react-dom';
 import { Dropdown, Menu, ButtonGroup, Button } from 'uiw';
 
 const menu = (
-  <Menu bordered style={{ maxWidth: 200 }}>
-    <Menu.Item icon="reload" text="重新加载" />
-    <Menu.Divider />
-    <Menu.Item icon="heart-on" text="另存为" active />
-    <Menu.Item icon="appstore" text="应用商城" />
-    <Menu.Item icon="bar-chart" text="月统计报表导出" />
-    <Menu.Item icon="setting" text="偏好设置" />
-  </Menu>
+  <div>
+    <Menu bordered style={{ maxWidth: 200 }}>
+      <Menu.Item icon="reload" text="重新加载" />
+      <Menu.Divider />
+      <Menu.Item icon="heart-on" text="另存为" active />
+      <Menu.Item icon="appstore" text="应用商城" />
+      <Menu.Item icon="bar-chart" text="月统计报表导出" />
+      <Menu.Item icon="setting" text="偏好设置" />
+    </Menu>
+  </div>
 );
 
 ReactDOM.render(
@@ -118,14 +112,16 @@ import ReactDOM from 'react-dom';
 import { Dropdown, Menu, ButtonGroup, Button } from 'uiw';
 
 const menu = (
-  <Menu bordered style={{ maxWidth: 200 }}>
-    <Menu.Item icon="reload" text="重新加载" />
-    <Menu.Divider />
-    <Menu.Item icon="heart-on" text="另存为" active />
-    <Menu.Item icon="appstore" text="应用商城" />
-    <Menu.Item icon="bar-chart" text="月统计报表导出" />
-    <Menu.Item icon="setting" text="偏好设置" />
-  </Menu>
+  <div>
+    <Menu bordered style={{ maxWidth: 200 }}>
+      <Menu.Item icon="reload" text="重新加载" />
+      <Menu.Divider />
+      <Menu.Item icon="heart-on" text="另存为" active />
+      <Menu.Item icon="appstore" text="应用商城" />
+      <Menu.Item icon="bar-chart" text="月统计报表导出" />
+      <Menu.Item icon="setting" text="偏好设置" />
+    </Menu>
+  </div>
 );
 
 ReactDOM.render(
@@ -186,23 +182,25 @@ function Select(props) {
       onVisibleChange={(isOpen) => setOpen(isOpen)}
       isOpen={open}
       menu={
-        <Menu bordered style={{ minWidth: 120 }}>
-          {option.map((item, idx) => {
-            const active = value === item.value;
-            return (
-              <Menu.Item
-                key={idx}
-                active={active}
-                text={item.label}
-                onClick={(e) => {
-                  setValue(item.value)
-                  setOpen(false)
-                  onChange && onChange(item.value, e)
-                }}
-              />
-            );
-          })}
-        </Menu>
+        <div>
+          <Menu bordered style={{ minWidth: 120 }}>
+            {option.map((item, idx) => {
+              const active = value === item.value;
+              return (
+                <Menu.Item
+                  key={idx}
+                  active={active}
+                  text={item.label}
+                  onClick={(e) => {
+                    setValue(item.value)
+                    setOpen(false)
+                    onChange && onChange(item.value, e)
+                  }}
+                />
+              );
+            })}
+          </Menu>
+        </div>
       }
     >
       <Button type="link">{label.label}<Icon type={open ? 'up' : 'down'} /></Button>
