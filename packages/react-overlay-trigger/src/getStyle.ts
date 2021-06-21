@@ -43,12 +43,6 @@ export function getStyle(options: GetStyleOptions) {
   const scrollLeft = getScroll(
     (triggerDom as HTMLElement).ownerDocument!.documentElement,
   );
-  // console.log('trigger:1:', getBoundingClientRect(triggerDom as HTMLElement))
-  // console.log('trigger:2:', getOuterSizes(triggerDom as HTMLElement))
-  // console.log('trigger:3:', triggerDom)
-  // console.log('popup:1:', getBoundingClientRect(popupDom as HTMLElement))
-  // console.log('popup:2:', getOuterSizes(popupDom as HTMLElement))
-  // console.log('popup:3:', popupDom)
   const trigger = {
     ...getBoundingClientRect(triggerDom as HTMLElement),
     ...getOuterSizes(triggerDom as HTMLElement),

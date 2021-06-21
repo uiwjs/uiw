@@ -168,8 +168,8 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>(
         popNode &&
         childNode &&
         e.target &&
-        !popNode.contains(e.target as HTMLElement) &&
-        !childNode.contains(e.target as HTMLElement)
+        !contains(popNode, e.target as HTMLElement) &&
+        !contains(childNode, e.target as HTMLElement)
       ) {
         zIndex.current -= 1;
         setIsOpen(false);
@@ -234,18 +234,12 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>(
         (e.nativeEvent as any)[relatedNative]) as HTMLElement;
       let isOutside = true;
       if (
-        (popupRef.current && contains && contains(popupRef.current, related)) ||
-        (triggerRef.current &&
-          contains &&
-          contains(triggerRef.current, related))
+        (popupRef.current && contains(popupRef.current, related)) ||
+        (triggerRef.current && contains(triggerRef.current, related))
       ) {
         isOutside = false;
       }
-      if (
-        (!related || related !== target) &&
-        contains &&
-        !contains(target, related)
-      ) {
+      if ((!related || related !== target) && !contains(target, related)) {
         handler(isOutside, e);
       }
     }

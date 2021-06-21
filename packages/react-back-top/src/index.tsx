@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import { getScrollPercent, getScrollTop, ScrollToAnimate } from './utils';
+import { getScrollPercent, getScrollTop, scrollToAnimate } from './utils';
 import './style/index.less';
 
 export interface BackTopProps extends IProps, HTMLDivProps {
@@ -58,7 +58,13 @@ export default React.forwardRef<HTMLDivElement, BackTopProps>((props, ref) => {
     setCurrent(getScrollTop());
   }
   function scrollToTop() {
-    ScrollToAnimate(offsetTop, speed, current);
+    if (
+      typeof offsetTop === 'number' &&
+      typeof speed === 'number' &&
+      typeof current === 'number'
+    ) {
+      scrollToAnimate(offsetTop, speed, current);
+    }
   }
   return (
     <div

@@ -3,7 +3,11 @@
  */
 export function getScrollTop() {
   let scrollTop = 0;
-  if (document.documentElement && document.documentElement.scrollTop) {
+  if (
+    document &&
+    document.documentElement &&
+    document.documentElement.scrollTop
+  ) {
     scrollTop = document.documentElement.scrollTop;
   } else if (document.body) {
     scrollTop = document.body.scrollTop;
@@ -17,7 +21,7 @@ export function getScrollTop() {
  * @param {*} step 步长
  * @param {*} current 滚动条当前位置
  */
-export function ScrollToAnimate(
+export function scrollToAnimate(
   position: number = 0,
   step: number = 100,
   current: number = 0,
