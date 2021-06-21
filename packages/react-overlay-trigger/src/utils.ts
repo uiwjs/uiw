@@ -19,10 +19,10 @@ export default (() => {
   // so we need to check on context instead of a document root element.
   return canUseDOM
     ? function (context: HTMLElement, node: HTMLElement) {
-        if (context.contains) {
+        if (context && context.contains) {
           return context.contains(node);
         }
-        if (context.compareDocumentPosition) {
+        if (context && context.compareDocumentPosition) {
           return (
             context === node || !!(context.compareDocumentPosition(node) && 16)
           );

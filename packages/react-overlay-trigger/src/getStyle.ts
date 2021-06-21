@@ -10,15 +10,19 @@ type GetStyleOptions = {
   popup: HTMLElement | IBoundingClientRect;
   placement: OverlayStyl['placement'];
   usePortal: OverlayTriggerProps['usePortal'];
-  zIndex: OverlayStyl['zIndex'];
   autoAdjustOverflow: OverlayTriggerProps['autoAdjustOverflow'];
 };
 
 export function getStyle(options: GetStyleOptions) {
-  let { trigger, popup, placement, usePortal, autoAdjustOverflow, zIndex } =
-    options || {};
+  let {
+    trigger: triggerDom,
+    popup: popupDom,
+    placement,
+    usePortal,
+    autoAdjustOverflow,
+  } = options || {};
   const sty = {} as OverlayStyl;
-  if (!trigger || !popup || !document) {
+  if (!triggerDom || !popupDom || !document) {
     return sty;
   }
 
@@ -33,19 +37,25 @@ export function getStyle(options: GetStyleOptions) {
 
   sty.placement = placement;
   const scrollTop = getScroll(
-    (trigger as HTMLElement).ownerDocument!.documentElement,
+    (triggerDom as HTMLElement).ownerDocument!.documentElement,
     true,
   );
   const scrollLeft = getScroll(
-    (trigger as HTMLElement).ownerDocument!.documentElement,
+    (triggerDom as HTMLElement).ownerDocument!.documentElement,
   );
-  trigger = {
-    ...getBoundingClientRect(trigger as HTMLElement),
-    ...getOuterSizes(trigger as HTMLElement),
+  // console.log('trigger:1:', getBoundingClientRect(triggerDom as HTMLElement))
+  // console.log('trigger:2:', getOuterSizes(triggerDom as HTMLElement))
+  // console.log('trigger:3:', triggerDom)
+  // console.log('popup:1:', getBoundingClientRect(popupDom as HTMLElement))
+  // console.log('popup:2:', getOuterSizes(popupDom as HTMLElement))
+  // console.log('popup:3:', popupDom)
+  const trigger = {
+    ...getBoundingClientRect(triggerDom as HTMLElement),
+    ...getOuterSizes(triggerDom as HTMLElement),
   };
-  popup = {
-    ...getBoundingClientRect(popup as HTMLElement),
-    ...getOuterSizes(popup as HTMLElement),
+  const popup = {
+    ...getBoundingClientRect(popupDom as HTMLElement),
+    ...getOuterSizes(popupDom as HTMLElement),
   };
 
   const bottom = winSizeHeight - trigger.bottom;
@@ -203,13 +213,12 @@ export function getStyle(options: GetStyleOptions) {
     }
     if (placement && /^(top|bottom)/.test(placement)) {
       if (/(Left)$/.test(placement) && trigger.width + right < popup.width) {
-        sty.left = sty.left - (popup.width - trigger.width - right); // eslint-disable-line
+        sty.left = sty.left - (popup.width - trigger.width - right);
       }
       if (/(Right)$/.test(placement) && right < 0) {
         sty.left = sty.left + right; // eslint-disable-line
       }
     }
   }
-  sty.zIndex = zIndex;
   return sty;
 }

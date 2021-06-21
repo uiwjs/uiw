@@ -42,6 +42,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
+    "@popperjs/core": "2.9.2",
     "@uiw/react-overlay": "^4.9.0",
     "@uiw/utils": "^4.9.0"
   },

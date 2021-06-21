@@ -5,7 +5,6 @@ import React, {
   useState,
   useImperativeHandle,
 } from 'react';
-import { findDOMNode } from 'react-dom';
 import { IProps, noop } from '@uiw/utils';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import contains from './utils';
@@ -70,11 +69,12 @@ interface ITriggerProps {
   onFocus?: (e: MouseEvent) => void;
   onMouseOver?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onMouseOut?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onMouseEnter?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onMouseLeave?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 
 const normalizeDelay = (delay?: Delay) =>
   delay && typeof delay === 'object' ? delay : { show: delay, hide: delay };
-let zIndex = 999;
 
 export type OverlayTriggerRef = {
   hide: () => void;
@@ -105,6 +105,7 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>(
       ...other
     } = props;
 
+    const zIndex = useRef<number>(999);
     const triggerRef = useRef<HTMLElement>();
     const popupRef = useRef<HTMLElement>();
     const timeoutRef = useRef<number[]>([]);
@@ -116,9 +117,8 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>(
       bottom: 0,
       left: 0,
       right: 0,
-      zIndex: 0,
+      zIndex: zIndex.current,
     });
-
     useImperativeHandle(ref, () => ({
       hide: () => hide(),
       show: () => show(),
@@ -140,24 +140,13 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>(
       return {};
     }
 
-    const getTarget = () => findDOMNode(triggerRef.current) as HTMLElement;
-    const getPopupTarget = () => findDOMNode(popupRef.current) as HTMLElement;
-
     useEffect(() => {
       if (isClickOutside) {
         document && document.addEventListener('mousedown', handleClickOutside);
       }
-      const styls = getStyle({
-        placement: overlayStyl.placement,
-        trigger: getTarget() as HTMLElement | IBoundingClientRect,
-        popup: getPopupTarget() as HTMLElement | IBoundingClientRect,
-        usePortal,
-        autoAdjustOverflow,
-        zIndex,
-      });
-      !!props.isOpen && setOverlayStyl({ ...styls });
       return () => {
         document &&
+          isClickOutside &&
           document.removeEventListener('mousedown', handleClickOutside);
       };
     }, []);
@@ -168,9 +157,13 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>(
       }
     }, [props.isOpen]);
 
+    useEffect(() => {
+      onVisibleChange(isOpen);
+    }, [isOpen]);
+
     const handleClickOutside = (e: MouseEvent) => {
-      const popNode = getPopupTarget();
-      const childNode = getTarget();
+      const popNode = popupRef.current;
+      const childNode = triggerRef.current;
       if (
         popNode &&
         childNode &&
@@ -178,32 +171,12 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>(
         !popNode.contains(e.target as HTMLElement) &&
         !childNode.contains(e.target as HTMLElement)
       ) {
-        zIndex -= 1;
+        zIndex.current -= 1;
         setIsOpen(false);
         onVisibleChange && onVisibleChange(false);
       }
     };
 
-    if (trigger === 'click' && !disabled) {
-      triggerProps.onClick = (e) => {
-        const { onClick } = getChildProps() as any;
-        isOpen ? hide() : show();
-        if (onClick) onClick(e, !isOpen);
-      };
-    }
-    if (trigger === 'focus' && !disabled) {
-      triggerProps.onFocus = () => handleShow();
-    }
-
-    if (trigger === 'hover' && !disabled) {
-      triggerProps.onMouseOver = (e) =>
-        handleMouseOverOut(handleShow, e, 'fromElement');
-      triggerProps.onMouseOut = (e) =>
-        handleMouseOverOut(handleHide, e, 'toElement');
-      overlayProps.dialogProps!.onMouseOut = (e) =>
-        handleMouseOverOut(handleHide, e, 'toElement');
-    }
-    overlayProps.style = { ...overlayProps.style, ...overlayStyl };
     function clearTimeouts() {
       if (timeoutRef.current.length > 0) {
         for (const timeoutId of timeoutRef.current) {
@@ -259,48 +232,73 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>(
       const target = e.currentTarget as HTMLElement;
       const related = (e.relatedTarget ||
         (e.nativeEvent as any)[relatedNative]) as HTMLElement;
-      const popupTarget = getPopupTarget();
-      const currentTarget = getTarget();
       let isOutside = true;
       if (
-        (popupTarget && contains(popupTarget, related)) ||
-        (currentTarget && contains(currentTarget, related))
+        (popupRef.current && contains && contains(popupRef.current, related)) ||
+        (triggerRef.current &&
+          contains &&
+          contains(triggerRef.current, related))
       ) {
         isOutside = false;
       }
-      if ((!related || related !== target) && !contains(target, related)) {
+      if (
+        (!related || related !== target) &&
+        contains &&
+        !contains(target, related)
+      ) {
         handler(isOutside, e);
       }
     }
 
     function hide() {
       if (!isOpen) return;
-      zIndex -= 1;
+      zIndex.current -= 1;
       setIsOpen(false);
-      onVisibleChange && onVisibleChange(false);
     }
 
     function show() {
       if (isOpen) return;
-      zIndex += 1;
+      zIndex.current += 1;
       setIsOpen(true);
-      onVisibleChange && onVisibleChange(true);
     }
 
     function handleEnter(node: HTMLElement, isAppearing: boolean) {
       onEnter && onEnter(node, isAppearing);
       const styls = getStyle({
-        placement: overlayStyl.placement,
-        trigger: getTarget() as HTMLElement | IBoundingClientRect,
-        popup: getPopupTarget() as HTMLElement | IBoundingClientRect,
+        placement: overlayStyl.placement || placement,
+        trigger: triggerRef.current as HTMLElement | IBoundingClientRect,
+        popup: popupRef.current as HTMLElement | IBoundingClientRect,
         usePortal,
         autoAdjustOverflow,
-        zIndex,
       });
-      console.log('>>>getTarget()>>>', triggerRef.current);
-      console.log('>>>popupRef()>>>', popupRef.current);
-      setOverlayStyl({ ...styls });
+      setOverlayStyl({ ...styls, zIndex: zIndex.current });
     }
+
+    if (trigger === 'click' && !disabled) {
+      triggerProps.onClick = (e) => {
+        const { onClick } = getChildProps() as any;
+        isOpen ? hide() : show();
+        if (onClick) onClick(e, !isOpen);
+      };
+    }
+    if (trigger === 'focus' && !disabled) {
+      triggerProps.onFocus = () => handleShow();
+    }
+
+    if (trigger === 'hover' && !disabled) {
+      triggerProps.onMouseOver = triggerProps.onMouseEnter = (e) => {
+        handleMouseOverOut(handleShow, e, 'fromElement');
+      };
+      triggerProps.onMouseOut = triggerProps.onMouseLeave = (e) => {
+        handleMouseOverOut(handleHide, e, 'toElement');
+      };
+      if (overlayProps.dialogProps) {
+        overlayProps.dialogProps!.onMouseLeave = (e) => {
+          handleMouseOverOut(handleHide, e, 'toElement');
+        };
+      }
+    }
+    overlayProps.style = { ...overlayProps.style, ...overlayStyl };
     return (
       <React.Fragment>
         {cloneElement(
@@ -319,6 +317,7 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>(
         )}
         <Overlay
           {...overlayProps}
+          style={{ ...overlayProps.style, ...overlayStyl }}
           onEnter={handleEnter}
           className={[prefixCls, className, overlayStyl.placement]
             .filter(Boolean)
@@ -331,19 +330,14 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>(
         >
           {cloneElement(
             overlay,
-            Object.assign(
-              { ref: popupRef },
-              {
-                ...overlay.props,
-                className: [
-                  overlay.props ? overlay.props.className : null,
-                  placement,
-                ]
-                  .filter(Boolean)
-                  .join(' ')
-                  .trim(),
-              },
-            ),
+            Object.assign({
+              ...overlay.props,
+              ref: popupRef,
+              className: [overlay.props && overlay.props.className, placement]
+                .filter(Boolean)
+                .join(' ')
+                .trim(),
+            }),
           )}
         </Overlay>
       </React.Fragment>
