@@ -66,13 +66,7 @@ function IconView({
   );
 }
 
-export default function SubMenu(
-  props: SubMenuProps = {},
-  ref:
-    | ((instance: typeof OverlayTrigger) => void)
-    | React.RefObject<typeof OverlayTrigger | null>
-    | null,
-) {
+const SubMenu = React.forwardRef<HTMLLIElement, SubMenuProps>((props, ref) => {
   const {
     prefixCls = 'w-menu-subitem',
     className,
@@ -149,7 +143,7 @@ export default function SubMenu(
     menuProps.onClick = onClick;
   }
   return (
-    <li data-menu="subitem">
+    <li data-menu="subitem" ref={ref}>
       <OverlayTrigger
         placement="rightTop"
         autoAdjustOverflow
@@ -190,7 +184,8 @@ export default function SubMenu(
       </OverlayTrigger>
     </li>
   );
-}
+});
 
 SubMenu.displayName = 'uiw.SubMenu';
-// export default React.forwardRef<typeof OverlayTrigger, SubMenuProps>(SubMenu);
+
+export default SubMenu;

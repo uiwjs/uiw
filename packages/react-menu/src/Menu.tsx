@@ -47,7 +47,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
   );
 
   return (
-    <ul ref={ref} {...htmlProps} className={cls} data-menu="menu">
+    <ul {...htmlProps} ref={ref} className={cls} data-menu="menu">
       {React.Children.map(children, (child: React.ReactNode, key) => {
         if (!React.isValidElement(child)) return child;
         const props: { inlineIndent?: number; inlineCollapsed?: boolean } = {};
