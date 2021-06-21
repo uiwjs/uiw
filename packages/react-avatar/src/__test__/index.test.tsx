@@ -25,9 +25,6 @@ describe('<Avatar />', () => {
 
     expect(component.root.props).toEqual({
       icon: 'user',
-      prefixCls: 'w-avatar',
-      shape: 'circle',
-      size: 'default',
     });
     expect(component.root.children).toHaveLength(1);
   });
