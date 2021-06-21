@@ -62,32 +62,27 @@ export default function Overlay(props: OverlayProps) {
     dialogProps = {},
     ...otherProps
   } = props;
-  const [isOpen, setIsOpen] = useState(false);
+
+  const [isOpen, setIsOpen] = useState(props.isOpen || false);
   const [visible, setVisible] = useState(false);
   const container = useRef<HTMLDivElement>(null);
   const overlay = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    if (props.isOpen) {
+    if (isOpen !== props.isOpen && props.isOpen) {
       setVisible(true);
-    } else {
+    }
+    if (isOpen !== props.isOpen && !props.isOpen) {
+      overlayWillClose();
       setIsOpen(false);
     }
   }, [props.isOpen]);
 
   useEffect(() => {
     if (visible) {
+      overlayWillOpen();
       setIsOpen(true);
     }
   }, [visible]);
-
-  useEffect(() => {
-    if (!isOpen) {
-      overlayWillClose();
-    } else {
-      overlayWillOpen();
-    }
-  }, [isOpen]);
 
   const decoratedChild =
     typeof children === 'object' ? (
@@ -111,7 +106,6 @@ export default function Overlay(props: OverlayProps) {
   ) {
     setVisible(false);
     onClosed && onClosed(node);
-    overlayWillClose();
   }
 
   function handleBackdropMouseDown(
@@ -121,6 +115,7 @@ export default function Overlay(props: OverlayProps) {
       return;
     }
     if (maskClosable && hasBackdrop) {
+      overlayWillClose();
       setIsOpen(false);
       onClose && onClose(e);
     }
@@ -129,45 +124,30 @@ export default function Overlay(props: OverlayProps) {
 
   function overlayWillOpen() {
     if (hasBackdrop && usePortal) {
-      // add a class to the body to prevent scrolling of content below the overlay
       document.body.classList.add(`${prefixCls}-open`);
-    }
-    if (maskClosable && !hasBackdrop) {
-      document.addEventListener('mousedown', handleDocumentClick, false);
     }
   }
 
   function overlayWillClose() {
-    document.removeEventListener('mousedown', handleDocumentClick, false);
-    document.body.classList.remove(`${prefixCls}-open`);
-  }
-
-  function handleDocumentClick(
-    e: MouseEvent | React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) {
-    const domNode = overlay.current;
-    if (
-      isOpen &&
-      maskClosable &&
-      domNode &&
-      (domNode.nextSibling === e.target ||
-        domNode.nextElementSibling === e.target)
-    ) {
-      onClose && onClose(e as React.MouseEvent<HTMLButtonElement, MouseEvent>);
+    if (hasBackdrop && usePortal) {
+      document.body.classList.remove(`${prefixCls}-open`);
     }
+    // if (unmountOnExit) {
+    //   setVisible(false)
+    // }
   }
 
   const TransitionGroupComp = (
     <CSSTransition
-      in={isOpen}
+      classNames={transitionName}
       unmountOnExit={unmountOnExit}
+      timeout={timeout!}
+      {...otherProps}
+      in={isOpen}
       onEntering={onOpening}
       onEntered={onOpened}
       onExiting={onClosing}
       onExited={handleClosed}
-      timeout={timeout!}
-      {...otherProps}
-      classNames={transitionName}
     >
       {(status) => {
         return (
@@ -210,12 +190,8 @@ export default function Overlay(props: OverlayProps) {
       }}
     </CSSTransition>
   );
-  if (usePortal) {
-    return (
-      <Portal {...{ ...portalProps, ...{ visible } }}>
-        {TransitionGroupComp}
-      </Portal>
-    );
+  if (visible && usePortal) {
+    return <Portal {...{ ...portalProps }}>{TransitionGroupComp}</Portal>;
   } else {
     return TransitionGroupComp;
   }
