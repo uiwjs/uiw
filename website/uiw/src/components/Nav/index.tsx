@@ -41,7 +41,14 @@ export default function Nav(props: NavProps) {
             );
           }
           return (
-            <Tooltip key={idx} placement="right" content={item.name}>
+            <Tooltip
+              usePortal={false}
+              key={idx}
+              placement="right"
+              content={
+                <span style={{ whiteSpace: 'nowrap' }}>{item.name}</span>
+              }
+            >
               <a target="__blank" href={item.path}>
                 {icon}
               </a>
@@ -70,7 +77,12 @@ export default function Nav(props: NavProps) {
           );
         }
         return (
-          <Tooltip key={idx} placement="right" content={item.name}>
+          <Tooltip
+            usePortal={false}
+            key={idx}
+            placement="right"
+            content={<span style={{ whiteSpace: 'nowrap' }}>{item.name}</span>}
+          >
             <NavLink
               activeClassName={styles.selected}
               to={noPath || item.path}

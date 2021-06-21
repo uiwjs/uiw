@@ -76,6 +76,10 @@
         "name": "HeatMap 日历热图",
         "path": "https://uiwjs.github.io/react-heat-map"
       },
+      {
+        "name": "Markdown Preview",
+        "path": "https://uiwjs.github.io/react-markdown-preview/"
+      },
       { "divider": true, "name": "导航" },
       { "name": "Affix 图钉", "path": "affix" },
       { "name": "Breadcrumb 面包屑", "path": "breadcrumb" },
@@ -125,7 +129,15 @@
       { "divider": true, "name": "其它" },
       { "name": "BackTop 返回顶部", "path": "back-top" },
       { "name": "CopyToClipboard 复制", "path": "copy-to-clipboard" },
-      { "name": "Portal 入口", "path": "portal" }
+      { "name": "Portal 入口", "path": "portal" },
+      {
+        "name": "Github Corners",
+        "path": "https://uiwjs.github.io/react-github-corners/"
+      },
+      {
+        "name": "Only When",
+        "path": "https://uiwjs.github.io/react-only-when/"
+      }
     ]
   },
   {
