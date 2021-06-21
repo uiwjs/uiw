@@ -66,7 +66,7 @@
     "@kkt/react-library": "6.10.4",
     "@types/jest": "26.0.23",
     "@types/react": "17.0.9",
-    "@types/react-dom": "17.0.6",
+    "@types/react-dom": "17.0.8",
     "@types/react-test-renderer": "17.0.1",
     "compile-less-cli": "1.8.0",
     "husky": "4.3.8",
