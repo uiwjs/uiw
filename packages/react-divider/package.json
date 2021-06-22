@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-divider",
-  "version": "4.9.0",
+  "version": "4.9.1",
   "description": "Divider component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/divider",
@@ -42,7 +42,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.9.0"
+    "@uiw/utils": "^4.9.1"
   },
   "devDependencies": {
     "@babel/runtime": "7.14.6",
