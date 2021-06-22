@@ -61,6 +61,13 @@ jobs:
     - run: npm run bundle
     - run: git checkout -f packages/uiw/tsconfig.json
 
+    - run: git status
+
+    - name: git push master
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
     - run: npm install @jsdevtools/npm-publish -g
 
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-affix/package.json
@@ -122,12 +129,6 @@ jobs:
 
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/uiw/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/doc/package.json
-    - run: git status
-
-    - name: git push master
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
 
     - run: |
         echo "tag: ${{ steps.changelog.outputs.tag }}"
