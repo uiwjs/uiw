@@ -107,6 +107,10 @@
       },
       { "divider": true, "name": "编辑器" },
       {
+        "name": "Textarea CodeEditor",
+        "path": "https://uiwjs.github.io/react-textarea-code-editor/"
+      },
+      {
         "name": "MDEditor 编辑器",
         "path": "https://uiwjs.github.io/react-md-editor/"
       },
@@ -137,6 +141,10 @@
       {
         "name": "Only When",
         "path": "https://uiwjs.github.io/react-only-when/"
+      },
+      {
+        "name": "Run Web",
+        "path": "https://uiwjs.github.io/react-run-web/"
       }
     ]
   },
