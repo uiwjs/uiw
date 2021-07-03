@@ -52,6 +52,10 @@
       { "name": "SearchSelect 搜索选择器", "path": "search-select" },
       { "name": "Slider 滑块输入条", "path": "slider" },
       { "name": "Textarea 多行文本输入框", "path": "textarea" },
+      {
+        "name": "Color 颜色选择器",
+        "path": "https://uiwjs.github.io/react-color/"
+      },
       { "divider": true, "name": "时间日历" },
       { "name": "Calendar 日历", "path": "calendar" },
       { "name": "DatePicker 日期选择器", "path": "date-picker" },
