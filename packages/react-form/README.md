@@ -74,7 +74,7 @@ ReactDOM.render(<Demo />, _mount_);
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
-import { Form, Input, Checkbox, Switch, RadioGroup, Radio, Textarea, Row, Col, Button } from 'uiw';
+import { Form, Input, Notify, Checkbox, Switch, RadioGroup, Radio, Textarea, Row, Col, Button } from 'uiw';
 
 const Demo = () => (
   <Form
@@ -94,6 +94,10 @@ const Demo = () => (
         err.filed = errorObj;
         throw err;
       }
+      Notify.success({
+        title: '提交成功！',
+        description: `姓名为：${current.userName}，提交完成，将自动填充初始化值！`,
+      });
     }}
     onSubmitError={(error) => {
       if (error.filed) {
