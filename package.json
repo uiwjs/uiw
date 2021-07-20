@@ -62,7 +62,7 @@
     ]
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.10.4",
+    "@kkt/less-modules": "6.11.0",
     "@kkt/react-library": "6.10.4",
     "@types/jest": "26.0.23",
     "@types/react": "17.0.11",
