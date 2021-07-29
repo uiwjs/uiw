@@ -12,12 +12,14 @@ const disabledProps = {
   tabIndex: -1,
 };
 
-export interface MenuItemProps
-  extends IProps,
-    React.HTMLAttributes<HTMLOrSVGElement> {
+type AnchorElement = React.AnchorHTMLAttributes<HTMLAnchorElement>;
+
+type Anchor<T = any> = T extends HTMLElement ? React.HTMLProps<T> : T;
+
+export interface MenuItemProps<T> extends IProps, Anchor {
   text?: React.ReactNode;
   addonAfter?: React.ReactNode;
-  tagName?: keyof JSX.IntrinsicElements;
+  tagName?: T extends HTMLElement ? keyof JSX.IntrinsicElements : never;
   multiline?: boolean;
   isSubMenuItem?: boolean;
   disabled?: boolean;
@@ -25,7 +27,7 @@ export interface MenuItemProps
   icon?: JSX.Element | string | false | null;
 }
 
-const MenuItem = React.forwardRef<HTMLOrSVGElement, MenuItemProps>(
+const MenuItem = React.forwardRef<AnchorElement, MenuItemProps<any>>(
   (props, ref) => {
     const {
       prefixCls = 'w-menu-item',

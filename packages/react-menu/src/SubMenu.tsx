@@ -10,7 +10,9 @@ import MenuItem, { MenuItemProps } from './MenuItem';
 import Menu, { MenuProps } from './Menu';
 import './style/submenu.less';
 
-export interface SubMenuProps extends IProps, MenuItemProps {
+export interface SubMenuProps<T extends HTMLElement>
+  extends IProps,
+    MenuItemProps<T> {
   overlayProps?: OverlayTriggerProps;
   collapse?: boolean;
   disabled?: boolean;
@@ -66,125 +68,128 @@ function IconView({
   );
 }
 
-const SubMenu = React.forwardRef<HTMLLIElement, SubMenuProps>((props, ref) => {
-  const {
-    prefixCls = 'w-menu-subitem',
-    className,
-    disabled,
-    overlayProps = {},
-    children,
-    collapse = false,
-    inlineIndent,
-    inlineCollapsed,
-    ...other
-  } = props;
-  const overlayTriggerProps = {} as OverlayTriggerProps & CSSTransitionProps;
-  const menuProps: MenuProps = {
-    bordered: true,
-    children,
-    inlineIndent,
-    className: [prefixCls ? `${prefixCls}-overlay` : null]
-      .filter(Boolean)
-      .join(' ')
-      .trim(),
-  };
-  const popupRef = React.useRef<OverlayTriggerRef>(null);
-  const [isOpen, setIsOpen] = useState(false);
-  useMemo(() => {
-    setIsOpen(false);
-  }, [collapse]);
-  function onClick(e: React.MouseEvent<HTMLUListElement, MouseEvent>) {
-    const target = e.currentTarget;
-    const related = (e.relatedTarget || e.nativeEvent.target) as HTMLElement;
-    if (target.children.length < 1) return;
-    if (checkedMenuItem(related)) {
-      if (popupRef.current) {
-        popupRef.current!.hide();
+const SubMenu = React.forwardRef<HTMLLIElement, SubMenuProps<any>>(
+  (props, ref) => {
+    const {
+      prefixCls = 'w-menu-subitem',
+      className,
+      disabled,
+      overlayProps = {},
+      children,
+      collapse = false,
+      inlineIndent,
+      inlineCollapsed,
+      ...other
+    } = props;
+    const overlayTriggerProps = {} as OverlayTriggerProps & CSSTransitionProps;
+    const menuProps: MenuProps = {
+      bordered: true,
+      children,
+      inlineIndent,
+      className: [prefixCls ? `${prefixCls}-overlay` : null]
+        .filter(Boolean)
+        .join(' ')
+        .trim(),
+    };
+    const popupRef = React.useRef<OverlayTriggerRef>(null);
+    const [isOpen, setIsOpen] = useState(false);
+    useMemo(() => {
+      setIsOpen(false);
+    }, [collapse]);
+    function onClick(e: React.MouseEvent<HTMLUListElement, MouseEvent>) {
+      const target = e.currentTarget;
+      const related = (e.relatedTarget || e.nativeEvent.target) as HTMLElement;
+      if (target.children.length < 1) return;
+      if (checkedMenuItem(related)) {
+        if (popupRef.current) {
+          popupRef.current!.hide();
+        }
       }
     }
-  }
-  function onExit(node: HTMLElement) {
-    node.style.height = `${node.scrollHeight}px`;
-    setIsOpen(false);
-  }
-  function onExiting(node: HTMLElement) {
-    node.style.height = '0px';
-  }
-  function onEnter(node: HTMLElement) {
-    node.style.height = '1px';
-    setIsOpen(true);
-  }
-  function onEntering(node: HTMLElement) {
-    node.style.height = `${node.scrollHeight}px`;
-  }
-  function onEntered(node: HTMLElement) {
-    node.style.height = 'initial';
-  }
+    function onExit(node: HTMLElement) {
+      node.style.height = `${node.scrollHeight}px`;
+      setIsOpen(false);
+    }
+    function onExiting(node: HTMLElement) {
+      node.style.height = '0px';
+    }
+    function onEnter(node: HTMLElement) {
+      node.style.height = '1px';
+      setIsOpen(true);
+    }
+    function onEntering(node: HTMLElement) {
+      node.style.height = `${node.scrollHeight}px`;
+    }
+    function onEntered(node: HTMLElement) {
+      node.style.height = 'initial';
+    }
 
-  if (!collapse) {
-    delete menuProps.onClick;
-    menuProps.bordered = false;
-    overlayTriggerProps.className = `${prefixCls}-collapse`;
-    overlayTriggerProps.appear = false;
-    overlayTriggerProps.isOutside = true;
-    overlayTriggerProps.isClickOutside = false;
-    overlayTriggerProps.unmountOnExit = false;
-    overlayTriggerProps.trigger = 'click';
-    overlayTriggerProps.transitionName = `${prefixCls}`;
-    overlayTriggerProps.onExit = onExit;
-    overlayTriggerProps.onExiting = onExiting;
-    overlayTriggerProps.onEnter = onEnter;
-    overlayTriggerProps.onEntered = onEntered;
-    overlayTriggerProps.onEntering = onEntering;
-  } else {
-    overlayTriggerProps.className = `${prefixCls}-popup`;
-    overlayTriggerProps.trigger = 'hover';
-    // overlayTriggerProps.usePortal = true;
-    menuProps.onClick = onClick;
-  }
-  return (
-    <li data-menu="subitem" ref={ref}>
-      <OverlayTrigger
-        placement="rightTop"
-        autoAdjustOverflow
-        disabled={disabled}
-        isOpen={isOpen}
-        usePortal={false}
-        isOutside
-        {...overlayTriggerProps}
-        {...overlayProps}
-        ref={popupRef}
-        overlay={
-          <Menu
-            {...menuProps}
-            style={!collapse ? { paddingLeft: inlineIndent } : {}}
-          />
-        }
-      >
-        <MenuItem
-          {...other}
+    if (!collapse) {
+      delete menuProps.onClick;
+      menuProps.bordered = false;
+      overlayTriggerProps.className = `${prefixCls}-collapse`;
+      overlayTriggerProps.appear = false;
+      overlayTriggerProps.isOutside = true;
+      overlayTriggerProps.isClickOutside = false;
+      overlayTriggerProps.unmountOnExit = false;
+      overlayTriggerProps.trigger = 'click';
+      overlayTriggerProps.transitionName = `${prefixCls}`;
+      overlayTriggerProps.onExit = onExit;
+      overlayTriggerProps.onExiting = onExiting;
+      overlayTriggerProps.onEnter = onEnter;
+      overlayTriggerProps.onEntered = onEntered;
+      overlayTriggerProps.onEntering = onEntering;
+    } else {
+      overlayTriggerProps.className = `${prefixCls}-popup`;
+      overlayTriggerProps.trigger = 'hover';
+      // overlayTriggerProps.usePortal = true;
+      menuProps.onClick = onClick;
+    }
+    return (
+      <li data-menu="subitem" ref={ref}>
+        <OverlayTrigger
+          placement="rightTop"
+          autoAdjustOverflow
           disabled={disabled}
-          isSubMenuItem
-          addonAfter={
-            <IconView
-              collapse={collapse}
-              prefixCls={prefixCls}
-              isOpen={isOpen}
+          isOpen={isOpen}
+          usePortal={false}
+          isOutside
+          {...overlayTriggerProps}
+          {...overlayProps}
+          ref={popupRef}
+          overlay={
+            <Menu
+              {...menuProps}
+              style={!collapse ? { paddingLeft: inlineIndent } : {}}
             />
           }
-          className={[
-            prefixCls ? `${prefixCls}-title` : null,
-            !collapse ? `${prefixCls}-collapse-title` : null,
-            className,
-          ]
-            .filter(Boolean)
-            .join(' ')
-            .trim()}
-        />
-      </OverlayTrigger>
-    </li>
-  );
-});
+        >
+          <MenuItem
+            {...other}
+            ref={null}
+            disabled={disabled}
+            isSubMenuItem
+            addonAfter={
+              <IconView
+                collapse={collapse}
+                prefixCls={prefixCls}
+                isOpen={isOpen}
+              />
+            }
+            className={[
+              prefixCls ? `${prefixCls}-title` : null,
+              !collapse ? `${prefixCls}-collapse-title` : null,
+              className,
+            ]
+              .filter(Boolean)
+              .join(' ')
+              .trim()}
+          />
+        </OverlayTrigger>
+      </li>
+    );
+  },
+);
 
 SubMenu.displayName = 'uiw.SubMenu';
 
