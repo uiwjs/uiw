@@ -7,7 +7,6 @@ export interface CopyToClipboardProps
   extends IProps,
     Omit<HTMLSpanProps, 'onClick'> {
   text?: string;
-  tagName?: string;
   onClick?: (
     text: string,
     isCopy: boolean,
@@ -19,7 +18,6 @@ export default function CopyToClipboard<T>(props: CopyToClipboardProps & T) {
   const {
     prefixCls = 'w-copy-to-clipboard',
     className,
-    tagName: TagName = 'span',
     text = '',
     children,
     onClick = () => null,

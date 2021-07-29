@@ -2,9 +2,10 @@ import React, { useMemo } from 'react';
 import svgPaths from '@uiw/icons/fonts/w-icon.json';
 import './style/index.less';
 
-export type IconsName = keyof typeof svgPaths;
+type ElementTag<T = any> = T extends HTMLElement ? React.HTMLAttributes<T> : T;
 
-export interface IconProps<T> extends React.HTMLAttributes<HTMLOrSVGElement> {
+export type IconsName = keyof typeof svgPaths;
+export interface IconProps<T = HTMLSpanElement> extends ElementTag {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;
@@ -12,14 +13,14 @@ export interface IconProps<T> extends React.HTMLAttributes<HTMLOrSVGElement> {
    * HTML tag to use for the rendered element.
    * @default "span"
    */
-  tagName?: keyof JSX.IntrinsicElements;
+  tagName?: T extends HTMLElement ? keyof JSX.IntrinsicElements : T;
   type?: IconsName | null | T;
   spin?: boolean;
   color?: string;
   verticalAlign?: 'middle' | 'baseline';
 }
 
-export default function Icon<T>(props: IconProps<T> = {}) {
+const Icon = React.forwardRef<HTMLDivElement, IconProps>((props, ref) => {
   const {
     className,
     prefixCls = 'w-icon',
@@ -68,4 +69,6 @@ export default function Icon<T>(props: IconProps<T> = {}) {
       .trim(),
   };
   return <TagName {...propps}>{svg}</TagName>;
-}
+});
+
+export default Icon;

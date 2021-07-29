@@ -3,7 +3,7 @@ import { IProps } from '@uiw/utils';
 
 type ElementTag<T = any> = T extends HTMLElement ? React.HTMLProps<T> : T;
 
-export interface ListItemProps<T = any> extends IProps, ElementTag {
+export interface ListItemProps<T = HTMLDivElement> extends IProps, ElementTag {
   disabled?: boolean;
   active?: boolean;
   extra?: React.ReactNode;
