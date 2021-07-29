@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import MarkdownPreview from '@uiw/react-markdown-preview';
+// @ts-ignore
 import rehypeAttr from 'rehype-attr';
 import Code, { CodeProps } from './Code';
 import Footer from './Footer';
@@ -45,7 +46,7 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
       <MarkdownPreview
         source={mdStr}
         className={styles.markdown}
-        rehypePlugins={[[rehypeAttr, { properties: 'attr' }]]}
+        rehypePlugins={[[rehypeAttr as any, { properties: 'attr' }]]}
         components={{
           /**
            * bgWhite 设置代码预览背景白色，否则为格子背景。
