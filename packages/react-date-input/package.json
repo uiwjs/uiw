@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-date-input",
-  "version": "4.9.3",
+  "version": "4.9.4",
   "description": "DateInput component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/date-input",
@@ -43,11 +43,11 @@
   },
   "dependencies": {
     "@uiw/formatter": "1.2.4",
-    "@uiw/react-date-picker": "^4.9.3",
-    "@uiw/react-icon": "^4.9.3",
-    "@uiw/react-input": "^4.9.3",
-    "@uiw/react-popover": "^4.9.3",
-    "@uiw/utils": "^4.9.3"
+    "@uiw/react-date-picker": "^4.9.4",
+    "@uiw/react-icon": "^4.9.4",
+    "@uiw/react-input": "^4.9.4",
+    "@uiw/react-popover": "^4.9.4",
+    "@uiw/utils": "^4.9.4"
   },
   "devDependencies": {
     "@babel/runtime": "7.14.8",
