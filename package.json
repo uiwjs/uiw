@@ -77,7 +77,7 @@
     "@types/react-test-renderer": "17.0.1",
     "compile-less-cli": "1.8.0",
     "husky": "4.3.8",
-    "jest-environment-jsdom": "27.0.6",
+    "jest-environment-jsdom": "27.1.0",
     "kkt": "6.11.0",
     "lerna": "4.0.0",
     "lint-staged": "11.1.1",
