@@ -6,10 +6,16 @@ export interface FileInputProps<T> extends InputProps<T> {}
 
 export default React.forwardRef<HTMLInputElement, InputProps<{}>>(
   (props, ref) => {
-    props.className = [props.className, 'w-fileinput']
-      .filter(Boolean)
-      .join(' ')
-      .trim();
-    return <Input ref={ref} data-label="Browse" {...props} type="file" />;
+    const { className, prefixCls = 'w-fileinput', ...other } = props;
+    const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
+    return (
+      <Input
+        ref={ref}
+        data-label="Browse"
+        className={cls}
+        {...other}
+        type="file"
+      />
+    );
   },
 );

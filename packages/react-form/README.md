@@ -436,6 +436,7 @@ ReactDOM.render(<Demo />, _mount_);
 下面实例是在 [`<Form />`](#/components/form) 表单组件中，应用自定义 `<CustomSelect />` 控件组件。
 
 > ⚠️ 注意，自定义控件需要两个必要的 `props` 参数，`value` 和 `onChange`
+<!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
 - `value` 用于值传递，
 - `onChange(value)` 用于值变更需要执行的回调函数，回调函数第一个参数必须是 `value`。
@@ -556,6 +557,7 @@ ReactDOM.render(<Demo />, _mount_);
 对组件 `FormItem` 竖排展示示例。
 
 > ⚠️ 注意：当前只展示效果，`FormItem` 组件只在 `Form` 组件中使用。
+<!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
@@ -589,6 +591,7 @@ ReactDOM.render(<Demo />, _mount_);
 对组件 `FormItem` 横排展示示例。
 
 > ⚠️ 注意：当前只展示效果，`FormItem` 组件只在 `Form` 组件中使用。
+<!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx

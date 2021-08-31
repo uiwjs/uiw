@@ -4,7 +4,9 @@ Layout 布局
 协助进行页面级整体布局。
 
 > ⚠️ 注意：采用 flex 布局实现，请注意[浏览器兼容性](http://caniuse.com/#search=flex)问题。
+<!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
+<!--rehype-->
 ```jsx
 import { Layout } from 'uiw';
 // or
