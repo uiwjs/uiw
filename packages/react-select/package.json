@@ -47,7 +47,7 @@
     "@uiw/utils": "^4.9.5"
   },
   "devDependencies": {
-    "@babel/runtime": "7.14.8",
+    "@babel/runtime": "7.15.3",
     "@types/jest": "27.0.1",
     "@types/react": "17.0.19",
     "@types/react-dom": "17.0.9",
