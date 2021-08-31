@@ -23,14 +23,11 @@ jobs:
     - run: npm install
     - run: npm run hoist
 
-    # - run: npm run build
     - run: npm run build
-    - run: npm run build:css
-    - run: npm run type
-
     - run: npm run bundle
     - run: npm run coverage
     - run: npm run b:website
+    - run: npm run b:doc
     - run: npm run test
 
     - run: rm -rf packages/doc/web

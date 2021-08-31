@@ -27,12 +27,11 @@ jobs:
     - run: npm install
     - run: npm run hoist
 
-    # - run: npm run build
-    - run: npm run b:uiw
-    - run: npm run build:css
-    - run: npm run type
-
+    - run: npm run build
     - run: npm run coverage
+
+    - run: npm run b:website
+    - run: npm run b:doc
     - run: npm run test
 
     - run: |
@@ -149,6 +148,7 @@ jobs:
           ```
 
           ${{ steps.changelog.outputs.compareurl }}
+
           ${{ steps.changelog.outputs.changelog }}
 
     - name: Deploy to uiwjs.github.io
