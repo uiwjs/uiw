@@ -2,7 +2,8 @@
   "extends": "../../tsconfig",
   "include": ["src/**/*"],
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
+    "outDir": "./cjs",
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,

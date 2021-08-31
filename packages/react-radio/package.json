@@ -9,10 +9,12 @@
     "url": "https://github.com/uiwjs/uiw.git"
   },
   "license": "MIT",
-  "main": "lib/cjs/index.js",
-  "module": "lib/esm/index.js",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
   "files": [
-    "lib",
+    "dist.css",
+    "cjs",
+    "esm",
     "src"
   ],
   "publishConfig": {
@@ -46,8 +48,8 @@
   },
   "devDependencies": {
     "@babel/runtime": "7.14.8",
-    "@types/jest": "26.0.24",
-    "@types/react": "17.0.15",
+    "@types/jest": "27.0.1",
+    "@types/react": "17.0.19",
     "@types/react-dom": "17.0.9",
     "@types/react-test-renderer": "17.0.1",
     "react": "17.0.2",
