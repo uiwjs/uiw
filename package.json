@@ -41,8 +41,7 @@
   },
   "jest": {
     "testMatch": [
-      "<rootDir>/packages/**/src/**/__test__/*.{js,jsx,ts,tsx}",
-      "<rootDir>/packages/**/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
+      "<rootDir>/packages/**/src/**/__test__/*.{js,jsx,ts,tsx}"
     ]
   },
   "husky": {
@@ -66,7 +65,7 @@
     "@types/react-dom": "17.0.9",
     "@types/react-test-renderer": "17.0.1",
     "compile-less-cli": "1.8.8",
-    "husky": "4.3.8",
+    "husky": "7.0.2",
     "jest-environment-jsdom": "27.1.0",
     "kkt": "6.11.0",
     "lerna": "4.0.0",
