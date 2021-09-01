@@ -1,6 +1,6 @@
 {
   "name": "@example/uiw",
-  "version": "4.9.5",
+  "version": "4.9.6",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "private": true,
   "sideEffects": true,
@@ -43,7 +43,7 @@
     "react-redux": "7.2.4",
     "react-router-dom": "5.2.1",
     "rehype-attr": "1.4.2",
-    "uiw": "^4.9.5"
+    "uiw": "^4.9.6"
   },
   "devDependencies": {
     "@kkt/less-modules": "6.11.0",
