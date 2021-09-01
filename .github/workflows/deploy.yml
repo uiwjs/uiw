@@ -28,7 +28,7 @@ jobs:
     - run: npm run coverage
     - run: npm run b:website
     - run: npm run b:doc
-    - run: npm run test
+    - run: npm run coverage
 
     - run: rm -rf packages/doc/web
     - run: mkdir -p packages/doc/web
