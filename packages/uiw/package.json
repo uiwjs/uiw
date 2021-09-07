@@ -49,7 +49,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.15.3",
+    "@babel/runtime": "7.15.4",
     "@uiw/formatter": "1.2.4",
     "@uiw/react-affix": "^4.9.6",
     "@uiw/react-alert": "^4.9.6",
@@ -109,7 +109,7 @@
     "@uiw/react-tree-checked": "^4.9.6"
   },
   "devDependencies": {
-    "@babel/runtime": "7.15.3",
+    "@babel/runtime": "7.15.4",
     "@types/react": "17.0.19",
     "@types/react-dom": "17.0.9",
     "react": "17.0.2",
