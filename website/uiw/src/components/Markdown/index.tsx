@@ -78,7 +78,6 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
                 version={version}
                 code={getCodeStr(node.children)}
                 dependencies={dependencies}
-                language={(props.className || '').replace(/^language-/, '')}
                 {...{ noPreview, noScroll, bgWhite, noCode, codePen }}
               />
             );

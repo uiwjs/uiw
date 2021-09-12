@@ -1,3 +1,4 @@
+// @ts-ignore
 import webpack, { Configuration } from 'webpack';
 import { LoaderConfOptions } from 'kkt';
 import path from 'path';

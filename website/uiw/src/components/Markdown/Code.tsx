@@ -2,7 +2,6 @@ import React from 'react';
 import CodePreview, { CodePreviewProps } from '@uiw/react-code-preview';
 
 export interface CodeProps extends CodePreviewProps {
-  language: string;
   code: string;
   version: string;
   codePen: boolean;
@@ -12,7 +11,6 @@ export interface CodeProps extends CodePreviewProps {
 
 export default function Code({
   version,
-  language,
   dependencies,
   codePen,
   codeSandbox,
@@ -90,7 +88,6 @@ export default function Code({
   return (
     <CodePreview
       {...props}
-      language={language}
       dependencies={dependencies}
       style={{ marginBottom: 0 }}
     />
