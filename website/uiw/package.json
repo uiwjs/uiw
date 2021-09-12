@@ -1,6 +1,6 @@
 {
   "name": "@example/uiw",
-  "version": "4.9.6",
+  "version": "4.9.7",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "private": true,
   "sideEffects": true,
@@ -33,10 +33,10 @@
   },
   "dependencies": {
     "@rematch/core": "2.1.0",
+    "@uiw/formatter": "1.2.4",
     "@uiw/react-code-preview": "2.0.0",
     "@uiw/react-markdown-preview": "3.3.2",
     "@uiw/reset.css": "1.0.5",
-    "@uiw/formatter": "1.2.4",
     "history": "5.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -44,7 +44,7 @@
     "react-redux": "7.2.5",
     "react-router-dom": "5.3.0",
     "rehype-attr": "2.0.1",
-    "uiw": "^4.9.6"
+    "uiw": "^4.9.7"
   },
   "devDependencies": {
     "@kkt/less-modules": "6.11.0",

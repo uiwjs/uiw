@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-switch",
-  "version": "4.9.6",
+  "version": "4.9.7",
   "description": "Switch component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/switch",
@@ -44,7 +44,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-radio": "^4.9.6"
+    "@uiw/react-radio": "^4.9.7"
   },
   "devDependencies": {
     "@babel/runtime": "7.15.4",
