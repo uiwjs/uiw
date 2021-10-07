@@ -64,7 +64,7 @@
     "@types/react": "17.0.20",
     "@types/react-dom": "17.0.9",
     "@types/react-test-renderer": "17.0.1",
-    "compile-less-cli": "1.8.8",
+    "compile-less-cli": "1.8.9",
     "husky": "7.0.2",
     "jest-environment-jsdom": "27.1.1",
     "kkt": "6.11.0",
