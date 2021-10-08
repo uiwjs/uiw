@@ -18,10 +18,10 @@ jobs:
 
     - name: Generate changelog
       id: changelog
-      uses: jaywcjlove/changelog-generator@v1.4.3
+      uses: jaywcjlove/changelog-generator@v1.4.6
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        filter-author: (jaywcjlove|小弟调调™|dependabot\[bot\]|Renovate Bot)
+        filter-author: (小弟调调™)
         filter: (^[\s]+?[R|r]elease)|(^[R|r]elease)
 
     - run: npm install
@@ -54,7 +54,7 @@ jobs:
 
     - run: rm -rf packages/doc/web
     - run: mkdir -p packages/doc/web
-    - run: cp -rf website/uiw/build/* packages/doc/web
+    - run: cp -rf website/build/* packages/doc/web
 
     - run: npm run bundle
     - run: git checkout -f packages/uiw/tsconfig.json
@@ -154,7 +154,7 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
-        publish_dir: ./website/uiw/build
+        publish_dir: ./website/build
         publish_branch: master
         external_repository: uiwjs/uiwjs.github.io
 
@@ -163,7 +163,7 @@ jobs:
       with:
         deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         publish_branch: gh-pages
-        publish_dir: ./website/uiw/build
+        publish_dir: ./website/build
         cname: uiw.js.cool
 
     - name: Sync to Gitee

@@ -30,7 +30,7 @@ ReactDOM.render(
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Loader, Row, Col, Message, Icon } from "uiw";
 

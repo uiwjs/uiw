@@ -4,22 +4,21 @@
   "homepage": "https://uiwjs.github.io",
   "private": true,
   "scripts": {
-    "remove": "lerna exec --scope @uiw/* -- rm -rf package-lock.json",
-    "lib": "lerna exec --scope @uiw/react-file-input -- tsbb build --target react",
-    "lib:css": "lerna exec --scope @uiw/react-file-input -- compile-less -d src -o esm",
-    "lib:css:dist": "lerna exec --scope @uiw/react-file-input -- compile-less -d src -o lib --combine=dist.css",
-    "lib:css:watch": "lerna exec --scope @uiw/react-file-input -- compile-less -d src -o esm --watch",
-    "lib:watch": "lerna exec --scope @uiw/react-file-input -- tsbb watch & npm run lib:css:watch",
-    "lib:bootstrap": "lerna bootstrap --hoist --scope @uiw/react-file-input",
+    "lib": "lerna exec --scope @uiw/react-icon -- tsbb build --target react",
+    "lib:css": "lerna exec --scope @uiw/react-icon -- compile-less -d src -o esm",
+    "lib:css:dist": "lerna exec --scope @uiw/react-icon -- compile-less -d src -o lib --combine=dist.css",
+    "lib:css:watch": "lerna exec --scope @uiw/react-icon -- compile-less -d src -o esm --watch",
+    "lib:watch": "lerna exec --scope @uiw/react-icon -- tsbb watch & npm run lib:css:watch",
+    "lib:bootstrap": "lerna bootstrap --hoist --scope @uiw/react-icon",
     "lib:build": "npm run lib && npm run lib:css && npm run lib:css:dist",
     "//>>>>>>>>>>>>": "<<<<<<<<<<",
     "watch:other:lib": "lerna exec --parallel --scope @uiw/* --ignore @uiw/doc -- tsbb watch",
     "watch:uiw": "lerna exec --scope uiw -- tsbb watch",
     "//-----------": "//-----------",
     "build": "npm run b:uiw && npm run b:css && npm run b:css:dist",
-    "start": "lerna exec --scope @example/uiw -- npm run start",
+    "start": "lerna exec --scope website -- npm run start",
     "doc": "npm run b:website && npm run b:doc",
-    "b:website": "lerna exec --scope @example/uiw -- npm run build",
+    "b:website": "lerna exec --scope website -- npm run build",
     "b:doc": "lerna exec --scope @uiw/doc -- node script/released.js",
     "b:uiw": "lerna exec --scope @uiw/* --scope uiw --ignore @uiw/doc -- tsbb build",
     "b:css": "lerna exec --scope @uiw/* -- compile-less -d src -o esm",
@@ -27,13 +26,15 @@
     "b:bundle": "lerna exec --scope uiw -- kkt build --bundle",
     "b:bundle:min": "lerna exec --scope uiw -- kkt build --bundle --mini",
     "bundle": "npm run b:bundle && npm run b:bundle:min",
+    "prepare": "husky install",
     "bootstrap": "lerna bootstrap",
     "hoist": "lerna bootstrap --hoist",
-    "bootstrap:webiste": "lerna bootstrap --scope @example/uiw",
+    "bootstrap:webiste": "lerna bootstrap --scope website",
     "test": "tsbb test --env=jsdom",
     "coverage": "tsbb test --coverage",
     "u:version": "lerna version --no-changelog --no-push --no-git-tag-version --yes && npm run b:doc",
     "u:publish": "lerna publish from-package --yes --no-verify-access",
+    "remove": "lerna exec --scope @uiw/* --scope website -- rm -rf node_modules cjs esm package-lock.json",
     "clean": "lerna clean",
     "compile-less": "compile-less",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
@@ -43,11 +44,6 @@
     "testMatch": [
       "<rootDir>/packages/**/src/**/__test__/*.{js,jsx,ts,tsx}"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
@@ -67,6 +63,8 @@
     "compile-less-cli": "1.8.9",
     "husky": "7.0.2",
     "jest-environment-jsdom": "27.2.4",
+    "babel-jest": "27.2.4",
+    "jest": "27.2.4",
     "kkt": "6.11.0",
     "lerna": "4.0.0",
     "lint-staged": "11.2.0",

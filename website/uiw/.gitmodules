@@ -1,3 +1,0 @@
-[submodule "packages/core"]
-	path = packages/core
-	url = https://github.com/uiwjs/uiw.git
