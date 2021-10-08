@@ -108,18 +108,18 @@
 
 ## 工具
 
-名称 | 版本 | 依赖 uiw | 预览 | 描述
----- | ---- | ---- | ---- | ----
-[kkt](https://github.com/kktjs/kkt) | [![](https://img.shields.io/npm/v/kkt.svg)](https://www.npmjs.com/package/kkt) | - | [文档](https://kktjs.github.io/kkt) | 创建没有构建配置的React应用程序，这是用于创建React应用程序的Cli工具。
-[tsbb](https://github.com/jaywcjlove/tsbb) | [![](https://img.shields.io/npm/v/tsbb.svg)](https://www.npmjs.com/package/tsbb) | - | [文档](http://jaywcjlove.github.io/tsbb) | 一个零配置CLI，可帮助您开发，测试和发布现代 TypeScript 项目。
-[sgo](https://github.com/jaywcjlove/sgo) | [![](https://img.shields.io/npm/v/sgo.svg)](https://www.npmjs.com/package/sgo) | - | [文档](https://jaywcjlove.github.io/sgo) | 一个用于快速原型开发的开发服务器。 将目录设置为静态服务器，它提供404整洁的界面，用于列出目录的内容并切换到子文件夹。
-[mocker-api](https://github.com/jaywcjlove/mocker-api) | [![](https://img.shields.io/npm/v/mocker-api.svg)](https://www.npmjs.com/package/mocker-api) | - | [文档](https://jaywcjlove.github.io/mocker-api) | 用于为 REST API 创建模拟。 当您尝试在没有实际 REST API 服务器的情况下测试应用程序时，这将很有帮助。
-[svgtofont](https://github.com/jaywcjlove/svgtofont) | [![](https://img.shields.io/npm/v/svgtofont.svg)](https://www.npmjs.com/package/svgtofont) | - | [文档](https://jaywcjlove.github.io/svgtofont) | 阅读一组SVG图标并输出 TTF/EOT/WOFF/WOFF2/SVG 字体。
-[bannerjs](https://github.com/jaywcjlove/bannerjs) | [![](https://img.shields.io/npm/v/bannerjs.svg)](https://www.npmjs.com/package/bannerjs) | - | [文档](https://jaywcjlove.github.io/bannerjs) | 将注释添加到代码中。 获取基于package.json的单行/多行注释横幅。
-[markdown-to-html-cli](https://github.com/jaywcjlove/markdown-to-html-cli) | [![](https://img.shields.io/npm/v/markdown-to-html-cli.svg)](https://www.npmjs.com/package/markdown-to-html-cli) | - | [文档](https://jaywcjlove.github.io/markdown-to-html-cli) | 将 Markdown 文本转换为 HTML，提供命令行工具和方法。
-[https://github.com/jaywcjlove/coverage-badges-cli](https://github.com/jaywcjlove/coverage-badges-cli) | [![](https://img.shields.io/npm/v/coverage-badges-cli.svg)](https://www.npmjs.com/package/coverage-badges-cli) | - | [文档](https://jaywcjlove.github.io/coverage-badges-cli) | 从覆盖率报告创建覆盖率徽章。
-[compile-less](https://github.com/jaywcjlove/compile-less) | [![](https://img.shields.io/npm/v/compile-less-cli.svg)](https://www.npmjs.com/package/compile-less-cli) | - | [文档](https://jaywcjlove.github.io/compile-less) | 将所有 `.less` 文件编译为 `.css` 文件。。
-[next-remove-imports](https://github.com/uiwjs/next-remove-imports) | [![](https://img.shields.io/npm/v/next-remove-imports.svg)](https://www.npmjs.com/package/next-remove-imports) | - | [文档](https://uiwjs.github.io/next-remove-imports/) | The default behavior is to remove all .less/.css/.scss/.sass/.styl imports from all packages in node_modules.
+名称 | 版本 | 预览 | 描述
+---- | ---- | ---- | ----
+[kkt](https://github.com/kktjs/kkt) | [![](https://img.shields.io/npm/v/kkt.svg)](https://www.npmjs.com/package/kkt) | [文档](https://kktjs.github.io/kkt) | 创建没有构建配置的React应用程序，这是用于创建React应用程序的Cli工具。
+[tsbb](https://github.com/jaywcjlove/tsbb) | [![](https://img.shields.io/npm/v/tsbb.svg)](https://www.npmjs.com/package/tsbb) | [文档](http://jaywcjlove.github.io/tsbb) | 一个零配置CLI，可帮助您开发，测试和发布现代 TypeScript 项目。
+[sgo](https://github.com/jaywcjlove/sgo) | [![](https://img.shields.io/npm/v/sgo.svg)](https://www.npmjs.com/package/sgo) | [文档](https://jaywcjlove.github.io/sgo) | 一个用于快速原型开发的开发服务器。 将目录设置为静态服务器，它提供404整洁的界面，用于列出目录的内容并切换到子文件夹。
+[mocker-api](https://github.com/jaywcjlove/mocker-api) | [![](https://img.shields.io/npm/v/mocker-api.svg)](https://www.npmjs.com/package/mocker-api) | [文档](https://jaywcjlove.github.io/mocker-api) | 用于为 REST API 创建模拟。 当您尝试在没有实际 REST API 服务器的情况下测试应用程序时，这将很有帮助。
+[svgtofont](https://github.com/jaywcjlove/svgtofont) | [![](https://img.shields.io/npm/v/svgtofont.svg)](https://www.npmjs.com/package/svgtofont) | [文档](https://jaywcjlove.github.io/svgtofont) | 阅读一组SVG图标并输出 TTF/EOT/WOFF/WOFF2/SVG 字体。
+[bannerjs](https://github.com/jaywcjlove/bannerjs) | [![](https://img.shields.io/npm/v/bannerjs.svg)](https://www.npmjs.com/package/bannerjs) | [文档](https://jaywcjlove.github.io/bannerjs) | 将注释添加到代码中。 获取基于package.json的单行/多行注释横幅。
+[markdown-to-html-cli](https://github.com/jaywcjlove/markdown-to-html-cli) | [![](https://img.shields.io/npm/v/markdown-to-html-cli.svg)](https://www.npmjs.com/package/markdown-to-html-cli) | [文档](https://jaywcjlove.github.io/markdown-to-html-cli) | 将 Markdown 文本转换为 HTML，提供命令行工具和方法。
+[coverage-badges-cli](https://github.com/jaywcjlove/coverage-badges-cli) | [![](https://img.shields.io/npm/v/coverage-badges-cli.svg)](https://www.npmjs.com/package/coverage-badges-cli) | [文档](https://jaywcjlove.github.io/coverage-badges-cli) | 从覆盖率报告创建覆盖率徽章。
+[compile-less](https://github.com/jaywcjlove/compile-less) | [![](https://img.shields.io/npm/v/compile-less-cli.svg)](https://www.npmjs.com/package/compile-less-cli) | [文档](https://jaywcjlove.github.io/compile-less) | 将所有 `.less` 文件编译为 `.css` 文件。。
+[next-remove-imports](https://github.com/uiwjs/next-remove-imports) | [![](https://img.shields.io/npm/v/next-remove-imports.svg)](https://www.npmjs.com/package/next-remove-imports) | [文档](https://uiwjs.github.io/next-remove-imports/) | The default behavior is to remove all .less/.css/.scss/.sass/.styl imports from all packages in node_modules.
 
 ## 一些小工具
 
