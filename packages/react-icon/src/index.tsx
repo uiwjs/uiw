@@ -1,11 +1,12 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import svgPaths from '@uiw/icons/fonts/w-icon.json';
 import './style/index.less';
 
 type ElementTag<T = any> = T extends HTMLElement ? React.HTMLAttributes<T> : T;
 
 export type IconsName = keyof typeof svgPaths;
-export interface IconProps<T = HTMLSpanElement> extends ElementTag {
+export interface IconProps<T = HTMLSpanElement | HTMLDivElement>
+  extends ElementTag {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;
@@ -20,7 +21,7 @@ export interface IconProps<T = HTMLSpanElement> extends ElementTag {
   verticalAlign?: 'middle' | 'baseline';
 }
 
-const Icon = React.forwardRef<HTMLDivElement, IconProps>((props, ref) => {
+export default function Icon(props: IconProps) {
   const {
     className,
     prefixCls = 'w-icon',
@@ -32,20 +33,13 @@ const Icon = React.forwardRef<HTMLDivElement, IconProps>((props, ref) => {
     ...others
   } = props;
 
-  const renderSVGPaths = useMemo(() => {
-    if (!type) {
-      return null;
-    }
-    const svgPathsData = svgPaths;
-    const pathStrings: string[] = svgPathsData[type as IconsName] || [];
-    return pathStrings.map((d, i) => <path key={i} d={d} fillRule="evenodd" />);
-  }, [type]);
-
   let svg = null;
   if (typeof type === 'string') {
     svg = (
       <svg fill={color} viewBox="0 0 20 20">
-        {renderSVGPaths}
+        {(svgPaths[type as IconsName] || []).map((d, i) => (
+          <path key={i} d={d} fillRule="evenodd" />
+        ))}
       </svg>
     );
   } else if (React.isValidElement(type)) {
@@ -69,6 +63,4 @@ const Icon = React.forwardRef<HTMLDivElement, IconProps>((props, ref) => {
       .trim(),
   };
   return <TagName {...propps}>{svg}</TagName>;
-});
-
-export default Icon;
+}
