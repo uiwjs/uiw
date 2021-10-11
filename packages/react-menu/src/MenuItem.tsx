@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Icon from '@uiw/react-icon';
+import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
 import './style/item.less';
 
@@ -24,7 +24,7 @@ export interface MenuItemProps<T> extends IProps, Anchor {
   isSubMenuItem?: boolean;
   disabled?: boolean;
   active?: boolean;
-  icon?: JSX.Element | string | false | null;
+  icon?: IconProps['type'];
 }
 
 const MenuItem = React.forwardRef<AnchorElement, MenuItemProps<any>>(

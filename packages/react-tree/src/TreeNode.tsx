@@ -4,15 +4,23 @@ import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, noop } from '@uiw/utils';
 import { TreeData, TreeProps, getChildKeys } from './';
 
-interface TreeNodeProps<T> extends IProps {
+interface TreeNodeIconProps {
+  isOpen: boolean;
+  noChild: boolean;
+  openKeys: TreeNodeProps['openKeys'];
+  selectedKeys: TreeNodeProps['selectedKeys'];
+}
+
+interface TreeNodeProps<
+  T = (data: TreeData, props: TreeNodeIconProps) => IconProps['type'],
+> extends IProps {
   data: TreeData[];
   level: number;
   parent?: TreeData;
-
-  icon?: IconProps<T>['type'];
+  icon?: T;
   iconAnimation?: boolean;
   isSelected?: boolean;
-  renderTitle?: TreeProps<T>['renderTitle'];
+  renderTitle?: TreeProps['renderTitle'];
 
   openKeys?: TreeData['key'][];
   selectedKeys?: TreeData['key'][];

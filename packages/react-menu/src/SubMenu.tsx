@@ -136,7 +136,7 @@ const SubMenu = React.forwardRef<HTMLLIElement, SubMenuProps<any>>(
       overlayTriggerProps.transitionName = `${prefixCls}`;
       overlayTriggerProps.onExit = onExit;
       overlayTriggerProps.onExiting = onExiting;
-      // overlayTriggerProps.onEnter = onEnter;
+      overlayTriggerProps.onEnter = onEnter;
       overlayTriggerProps.onEntered = onEntered;
       overlayTriggerProps.onEntering = onEntering;
     } else {

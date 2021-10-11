@@ -14,6 +14,8 @@
     "//>>>>>>>>>>>>": "<<<<<<<<<<",
     "watch:other:lib": "lerna exec --parallel --scope @uiw/* --ignore @uiw/doc -- tsbb watch",
     "watch:uiw": "lerna exec --scope uiw -- tsbb watch",
+    "watch:react-menu": "lerna exec --scope @uiw/react-menu -- tsbb watch",
+    "watch:css:react-menu": "lerna exec --scope @uiw/react-menu -- compile-less -d src -o esm --watch",
     "//-----------": "//-----------",
     "build": "npm run b:uiw && npm run b:css && npm run b:css:dist",
     "start": "lerna exec --scope website -- npm run start",

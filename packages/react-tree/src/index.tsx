@@ -4,16 +4,16 @@ import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import TreeNode from './TreeNode';
 import './style/index.less';
 
-export type TreeRenderTitleNode<T> = {
+export type TreeRenderTitleNode = {
   selected?: boolean;
   noChild?: boolean;
   isHalfChecked?: boolean;
-  openKeys?: TreeProps<T>['openKeys'];
-  selectedKeys?: TreeProps<T>['selectedKeys'];
+  openKeys?: TreeProps['openKeys'];
+  selectedKeys?: TreeProps['selectedKeys'];
 };
 
-export interface TreeProps<T> extends IProps, HTMLDivProps {
-  icon?: IconProps<T>['type'];
+export interface TreeProps extends IProps, HTMLDivProps {
+  icon?: IconProps['type'];
   data?: TreeData[];
   openKeys?: TreeData['key'][];
   selectedKeys?: TreeData['key'][];
@@ -38,7 +38,7 @@ export interface TreeProps<T> extends IProps, HTMLDivProps {
   multiple?: boolean;
   renderTitle?: (
     item: TreeData,
-    node: TreeRenderTitleNode<T>,
+    node: TreeRenderTitleNode,
   ) => React.ReactElement;
   onExpand?: (
     key: TreeData['key'],
@@ -129,7 +129,7 @@ const getParentSelectKeys = (
   return result;
 };
 
-export default function Tree<T>(props: TreeProps<T>) {
+export default function Tree(props: TreeProps) {
   const {
     prefixCls = 'w-tree',
     icon = 'caret-right',

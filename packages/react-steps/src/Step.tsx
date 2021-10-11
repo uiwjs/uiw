@@ -3,7 +3,7 @@ import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/index.less';
 
-export interface StepProps<T> extends IProps, Omit<HTMLDivProps, 'title'> {
+export interface StepProps extends IProps, Omit<HTMLDivProps, 'title'> {
   title?: React.ReactNode;
   description?: React.ReactNode;
   status?: 'wait' | 'process' | 'finish' | 'error' | 'success';
@@ -11,10 +11,10 @@ export interface StepProps<T> extends IProps, Omit<HTMLDivProps, 'title'> {
   itemWidth?: number;
   stepNumber?: string;
   adjustMarginRight?: number;
-  icon?: IconProps<T>['type'];
+  icon?: IconProps['type'];
 }
 
-export default function Step<T>(props: StepProps<T>) {
+export default function Step(props: StepProps) {
   const {
     prefixCls = 'w-steps',
     className,

@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '@uiw/react-icon';
+import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLButtonProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -19,7 +19,7 @@ export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
   active?: boolean;
   loading?: boolean;
   block?: boolean;
-  icon?: JSX.Element | string | false | null;
+  icon?: IconProps['type'];
   type?: ButtonType;
   size?: ButtonSize;
   htmlType?: 'button' | 'submit' | 'reset';
