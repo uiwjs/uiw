@@ -25,6 +25,9 @@ export default (
     }),
   );
 
+  /** https://github.com/uiwjs/react-code-preview/issues/94 */
+  conf.module!.exprContextCritical = false;
+
   conf.optimization = {
     ...conf.optimization,
     splitChunks: {
