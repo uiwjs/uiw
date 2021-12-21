@@ -43,7 +43,6 @@
     "react-dynamic-loadable": "3.0.0",
     "react-redux": "7.2.5",
     "react-router-dom": "5.3.0",
-    "rehype-attr": "2.0.6",
     "uiw": "^4.9.7"
   },
   "devDependencies": {
