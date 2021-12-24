@@ -41,7 +41,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-dynamic-loadable": "3.0.0",
-    "react-redux": "7.2.5",
+    "react-redux": "7.2.6",
     "react-router-dom": "5.3.0",
     "uiw": "^4.9.7"
   },
@@ -51,7 +51,7 @@
     "@kkt/scope-plugin-options": "6.11.0",
     "@types/react": "17.0.34",
     "@types/react-dom": "17.0.11",
-    "@types/react-redux": "7.1.19",
+    "@types/react-redux": "7.1.21",
     "@types/react-router-dom": "5.3.1",
     "kkt": "6.11.0",
     "react-test-renderer": "17.0.2"
