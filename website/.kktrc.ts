@@ -27,6 +27,7 @@ export default (
 
   /** https://github.com/uiwjs/react-code-preview/issues/94 */
   conf.module!.exprContextCritical = false;
+  conf.module!.exprContextRecursive = false;
   if (env === 'production') {
     conf.optimization = {
       ...conf.optimization,
