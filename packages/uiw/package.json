@@ -38,7 +38,10 @@
     "access": "public"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "scripts": {
     "bundle": "kkt build --bundle",

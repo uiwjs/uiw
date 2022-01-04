@@ -34,32 +34,35 @@
   "dependencies": {
     "@rematch/core": "2.1.0",
     "@uiw/formatter": "1.2.4",
-    "@uiw/react-code-preview": "2.2.4",
-    "@uiw/react-markdown-preview": "3.4.5",
+    "@uiw/react-code-preview": "3.0.0",
+    "@uiw/react-markdown-preview": "3.4.6",
     "@uiw/reset.css": "1.0.5",
     "history": "5.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-dynamic-loadable": "3.0.0",
-    "react-redux": "7.2.5",
+    "react-redux": "7.2.6",
     "react-router-dom": "5.3.0",
     "uiw": "^4.9.7"
   },
   "devDependencies": {
-    "@kkt/less-modules": "6.11.0",
-    "@kkt/raw-modules": "6.11.0",
-    "@kkt/scope-plugin-options": "6.11.0",
+    "@kkt/less-modules": "7.0.4",
+    "@kkt/raw-modules": "7.0.4",
+    "@kkt/scope-plugin-options": "7.0.4",
     "@types/react": "17.0.34",
     "@types/react-dom": "17.0.11",
-    "@types/react-redux": "7.1.19",
+    "@types/react-redux": "7.1.21",
     "@types/react-router-dom": "5.3.1",
-    "kkt": "6.11.0",
+    "kkt": "7.0.4",
     "react-test-renderer": "17.0.2"
   },
   "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT",
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
