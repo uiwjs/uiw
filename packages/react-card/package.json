@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-card",
-  "version": "4.9.7",
+  "version": "4.9.8",
   "description": "Card component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/card",
@@ -44,7 +44,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.9.7"
+    "@uiw/utils": "^4.9.8"
   },
   "devDependencies": {
     "@babel/runtime": "7.16.7",
