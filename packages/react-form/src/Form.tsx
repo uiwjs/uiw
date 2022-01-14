@@ -67,9 +67,7 @@ export type FormElementProps = {
 
 function newFormState<T>(
   fields: FormProps<T>['fields'],
-  cb: (
-    porps: FormFieldsProps<T>,
-  ) => {
+  cb: (porps: FormFieldsProps<T>) => {
     initialValue: FormFieldsProps<T>['initialValue'];
     currentValue: FormFieldsProps<T>['initialValue'];
   },
@@ -210,7 +208,7 @@ function Form<T>(
     const { initial, current } = data;
     setData({ ...data, submitting: true });
     const nextState = { submitting: false } as FormState;
-    const onError = (evn: React.FormEvent) =>
+    const onError = (evn: unknown) =>
       setData({
         ...data,
         ...nextState,
