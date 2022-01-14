@@ -1,7 +1,7 @@
 [
   {
     "name": "指南",
-    "path": "guide",
+    "path": "/guide",
     "icon": "home",
     "children": [
       { "name": "快速开始", "path": "quick-start" },
@@ -26,7 +26,7 @@
   },
   {
     "name": "组件",
-    "path": "components",
+    "path": "/components",
     "icon": "component",
     "children": [
       { "divider": true, "name": "基本" },
@@ -154,7 +154,7 @@
   },
   {
     "name": "扩展",
-    "path": "extensions",
+    "path": "/extensions",
     "icon": "plugin"
   },
   {

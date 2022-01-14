@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import Code from './Code';
 import Footer from './Footer';

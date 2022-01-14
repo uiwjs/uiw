@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { Select } from 'uiw';
 import styles from './index.module.less';
-// VERSION
 
 type OptionsProps = {
   version?: string;

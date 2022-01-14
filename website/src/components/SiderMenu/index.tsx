@@ -1,38 +1,27 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import styles from './index.module.less';
+import menu from '../../menu.json';
 import nav from '../icons/nav';
-import { DefaultProps } from '../../';
-import { MenuDataItem } from '../../common/menu';
 
-type SiderMenuProps = DefaultProps & {
-  topmenu?: boolean;
-  menuData?: MenuDataItem[];
-};
+export default function SiderMenu() {
+  const location = useLocation();
+  const data = menu.find((item) =>
+    new RegExp(`^${item.path || ''}`).test(location.pathname),
+  );
 
-export default function SiderMenu(props: SiderMenuProps) {
-  const { location, topmenu, menuData } = props;
-  const path = location.pathname.split('/')[1];
-  const navData = (menuData || []).filter(
-    (item: MenuDataItem) => item.path === `/${path}`,
-  )[0];
-  if (!navData) {
+  if (!data?.children) {
     return null;
   }
   return (
-    <div
-      className={[styles.wapper, topmenu ? styles.topmenu : null]
-        .filter(Boolean)
-        .join(' ')
-        .trim()}
-    >
+    <div className={styles.wapper}>
       <h2 className={styles.title}>
-        {(nav as any)[navData.icon]}
-        <span>{navData.name}</span>
+        {(nav as any)[data.icon]}
+        <span>{data.name}</span>
       </h2>
       <div className={styles.menu}>
-        {navData.children &&
-          navData.children.map((item, idx) => {
+        {data.children &&
+          data.children.map((item, idx) => {
             if (item.divider) {
               return (
                 <div key={idx} className={styles.divider}>
@@ -40,7 +29,7 @@ export default function SiderMenu(props: SiderMenuProps) {
                 </div>
               );
             }
-            if (/^http(?:|s):\/\//.test(item.path)) {
+            if (/^http(?:|s):\/\//.test(item.path || '')) {
               return (
                 <a key={idx} href={item.path} target="__blank">
                   {item.name}
@@ -52,12 +41,7 @@ export default function SiderMenu(props: SiderMenuProps) {
               );
             }
             return (
-              <NavLink
-                activeClassName={styles.selected}
-                key={idx}
-                to={item.path}
-                replace
-              >
+              <NavLink key={idx} to={item.path || ''} replace>
                 {item.name}
               </NavLink>
             );

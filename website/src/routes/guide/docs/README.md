@@ -44,8 +44,8 @@ sgo --fallback index.html # 启动服务
 在 Markdown 文档中编写代 React 码实例，文档爬取代码实例进行预览。
 
 
-```html
-<\!--DemoStart--> 
+```markdown
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```js
 const Demo = () => (
   <div>
@@ -53,10 +53,9 @@ const Demo = () => (
   </div>
 );
 \```
-<\!--End-->
 ```
 
-使用 `<\!--DemoStart-->` 和 `<\!--End-->` 标识字符串，包裹一段代码高亮区域，文档将自动匹配，进行预览该区域代码，提供源码编辑器，编辑并实时预览。
+使用 `<!--rehype:` 和 `-->` 标识字符串，放在代码高亮区域的前面，文档将自动匹配，进行预览该区域代码，提供源码编辑器，编辑并实时预览。
 
 被包裹的标识字符串是 `HTML` 注释，在 markdown 预览的时候将起到不显示的作用，在 GitHub 中预览 `标识字符串` 会被。
 

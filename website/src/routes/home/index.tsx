@@ -1,10 +1,8 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../components/icons/logo';
 import styles from './index.module.less';
-import { DefaultProps } from '../../';
 
-export default function Home(props: DefaultProps) {
+export default function Home() {
   // @ts-ignore
   // eslint-disable-next-line
   const version = VERSION;

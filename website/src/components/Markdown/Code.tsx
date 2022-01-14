@@ -1,4 +1,3 @@
-import React from 'react';
 import CodePreview, { CodePreviewProps } from '@uiw/react-code-preview';
 
 export interface CodeProps extends CodePreviewProps {

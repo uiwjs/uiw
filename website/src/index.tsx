@@ -1,39 +1,26 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import ReactDOM from 'react-dom';
-import {
-  HashRouter as Router,
-  withRouter,
-  RouteComponentProps,
-} from 'react-router-dom';
-import { History } from 'history';
-import { StaticContext } from 'react-router';
-import { Provider } from 'react-redux';
+import { useRoutes, HashRouter } from 'react-router-dom';
 import '@uiw/reset.css';
-import { getRouterData } from './common/router';
-import RoutersController from './Router';
-import { store } from './store';
+import { routes } from './routers';
 import './styles/index.less';
+import { ThemeContext, reducer, initialState } from './contexts';
 
-export type DefaultProps = React.PropsWithChildren<
-  RouteComponentProps<any, StaticContext, History>
-> & {
-  routerData: typeof getRouterData;
+const App = () => useRoutes(routes);
+export const Provider = ({ children }: { children: React.ReactNode }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <ThemeContext.Provider value={{ state, dispatch }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 };
 
-const RoutersContainer = withRouter((props) => {
-  const routerData = getRouterData;
-  const resetProps: DefaultProps = {
-    ...props,
-    routerData,
-  };
-  return <RoutersController {...resetProps} />;
-});
-
 ReactDOM.render(
-  <Provider store={store}>
-    <Router>
-      <RoutersContainer />
-    </Router>
-  </Provider>,
+  <HashRouter>
+    <Provider>
+      <App />
+    </Provider>
+  </HashRouter>,
   document.getElementById('root'),
 );

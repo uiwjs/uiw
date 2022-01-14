@@ -1,98 +1,118 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Fragment, useContext } from 'react';
 import { Tooltip } from 'uiw';
-import nav from '../icons/nav';
+import { NavLink, Link } from 'react-router-dom';
 import styles from './index.module.less';
-import { DefaultProps } from '../../';
-import { MenuDataItem } from '../../common/menu';
+import data from '../../menu.json';
+import { ThemeContext } from '../../contexts';
+import nav from '../icons/nav';
+import logo from '../icons/logo';
+import menu from '../icons/menu';
 
-type NavProps = DefaultProps & {
-  className?: string;
-  topmenu?: boolean;
-  menuData?: MenuDataItem[];
-  // routerData?: any;
-};
-
-export default function Nav(props: NavProps) {
-  const { className, topmenu, menuData = [], routerData } = props;
+export default function Nav() {
+  const { state, dispatch } = useContext(ThemeContext);
   return (
-    <div
-      className={[styles.nav, className, topmenu ? styles.topmenu : null]
-        .filter(Boolean)
-        .join(' ')
-        .trim()}
-    >
-      {menuData.map((item: any, idx: number) => {
-        let icon = item.icon;
-        if (Object.keys(nav).includes(icon)) {
-          icon = (nav as any)[icon];
-        }
-        if (/^https?:(?:\/\/)?/.test(item.path)) {
-          if (topmenu) {
+    <Fragment>
+      <div
+        className={[styles.logo, state.layout === 'left' ? null : styles.top]
+          .filter(Boolean)
+          .join(' ')
+          .trim()}
+      >
+        <Link to="/">
+          {logo.dark}
+          {state.layout === 'top' && <span>UIW</span>}
+        </Link>
+      </div>
+      <div
+        className={[styles.nav, state.layout === 'left' ? null : styles.navTop]
+          .filter(Boolean)
+          .join(' ')
+          .trim()}
+      >
+        {data.map(({ path, name, icon }, idx) => {
+          if (Object.keys(nav).includes(icon)) {
+            icon = (nav as any)[icon];
+          }
+          if (/^https?:(?:\/\/)?/.test(path)) {
+            if (state.layout === 'top') {
+              return (
+                <a target="__blank" href={path} className={styles.outerUrl}>
+                  {icon} <span>{name}</span>
+                </a>
+              );
+            }
             return (
-              <a
+              <Tooltip
+                usePortal={false}
                 key={idx}
-                target="__blank"
-                href={item.path}
-                className={styles.outerUrl}
+                placement={state.layout === 'left' ? 'right' : 'bottom'}
+                content={<span style={{ whiteSpace: 'nowrap' }}>{name}</span>}
               >
-                {icon}
-              </a>
+                <a target="__blank" href={path} className={styles.outerUrl}>
+                  {icon}
+                </a>
+              </Tooltip>
             );
           }
+          let activeStyle: React.CSSProperties = {
+            color: '#fff',
+          };
+          if (state.layout === 'top') {
+            return (
+              <NavLink
+                to={path}
+                // @ts-ignore
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                {icon} <span>{name}</span>
+              </NavLink>
+            );
+          }
+
           return (
             <Tooltip
               usePortal={false}
               key={idx}
-              placement="right"
-              content={
-                <span style={{ whiteSpace: 'nowrap' }}>{item.name}</span>
-              }
+              placement={state.layout === 'left' ? 'right' : 'bottom'}
+              content={<span style={{ whiteSpace: 'nowrap' }}>{name}</span>}
             >
-              <a target="__blank" href={item.path}>
+              <NavLink
+                to={path}
+                // @ts-ignore
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
                 {icon}
-              </a>
+              </NavLink>
             </Tooltip>
           );
-        }
-        let noPath = null;
-        if (
-          !routerData[item.path as keyof NavProps['routerData']] &&
-          item.children &&
-          item.children.length > 0
-        ) {
-          noPath = item.children[0].path;
-        }
-        if (topmenu) {
-          return (
-            <NavLink
-              key={idx}
-              activeClassName={styles.selected}
-              to={noPath || item.path}
-              replace
-            >
-              {icon}
-              <span>{item.name}</span>
-            </NavLink>
-          );
-        }
-        return (
-          <Tooltip
-            usePortal={false}
-            key={idx}
-            placement="right"
-            content={<span style={{ whiteSpace: 'nowrap' }}>{item.name}</span>}
+        })}
+      </div>
+      <div
+        className={[styles.btn, state.layout === 'left' ? null : styles.btnTop]
+          .filter(Boolean)
+          .join(' ')
+          .trim()}
+      >
+        <Tooltip
+          placement={state.layout === 'left' ? 'right' : 'bottom'}
+          content="国内镜像站点"
+        >
+          <a
+            href="http://uiw.gitee.io"
+            rel="noopener noreferrer"
+            target="_blank"
           >
-            <NavLink
-              activeClassName={styles.selected}
-              to={noPath || item.path}
-              replace
-            >
-              {icon}
-            </NavLink>
-          </Tooltip>
-        );
-      })}
-    </div>
+            {menu.china}
+          </a>
+        </Tooltip>
+        <button
+          onClick={() =>
+            dispatch({ layout: state.layout === 'left' ? 'top' : 'left' })
+          }
+        >
+          {state.layout === 'left' ? menu.menu : menu.menutop}
+        </button>
+      </div>
+    </Fragment>
   );
 }

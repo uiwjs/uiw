@@ -35,13 +35,8 @@ export default class Popover extends React.Component<PopoverProps> {
     );
   };
   render() {
-    const {
-      prefixCls,
-      className,
-      content,
-      visibleArrow,
-      ...other
-    } = this.props;
+    const { prefixCls, className, content, visibleArrow, ...other } =
+      this.props;
     const cls = [prefixCls, className, !visibleArrow ? 'no-arrow' : null]
       .filter(Boolean)
       .join(' ')
