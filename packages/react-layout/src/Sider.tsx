@@ -23,6 +23,7 @@ function Sider(props = {} as SiderProps & LayoutContextProps) {
   } = props;
   const [sliderId] = useState(`w-layout-${randomid()}`);
   const [rawWidth, setRawWidth] = useState(collapsed ? collapsedWidth : width);
+
   useEffect(() => {
     if (siderHook && !!siderHook.addSider) {
       siderHook.addSider(sliderId);
@@ -33,9 +34,12 @@ function Sider(props = {} as SiderProps & LayoutContextProps) {
       }
     };
   }, []);
-  useMemo(() => {
-    setRawWidth(collapsed ? collapsedWidth : width);
-  }, [collapsed]);
+
+  useMemo(
+    () => setRawWidth(collapsed ? collapsedWidth : width),
+    [width, collapsedWidth, collapsed],
+  );
+
   const divStyle = {
     ...style,
     flex: `0 0 ${rawWidth}`,
