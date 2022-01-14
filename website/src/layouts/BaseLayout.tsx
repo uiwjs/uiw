@@ -1,6 +1,6 @@
-import { Fragment, useContext } from 'react';
+import { Fragment, useContext, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Layout } from 'uiw';
+import { Layout, Affix } from 'uiw';
 import VersionSelect from '../components/VersionSelect';
 import styles from './index.module.less';
 import version from '../version.json';
@@ -16,6 +16,7 @@ export interface ComponentsProps {
 export default function Components(props: ComponentsProps) {
   const { siderMenu = true } = props;
   const { state } = useContext(ThemeContext);
+  const [affix, setAffix] = useState(false);
   return (
     <Layout>
       {state.layout === 'top' ? (
@@ -25,7 +26,15 @@ export default function Components(props: ComponentsProps) {
           </Header>
           <Layout>
             <Sider width={siderMenu ? 260 : 0}>
-              <SiderMenu />
+              <Affix
+                offsetTop={0}
+                style={{ height: affix ? '100vh' : '' }}
+                onChange={(affixed) => setAffix(!!affixed)}
+              >
+                <div style={{ height: affix ? '100vh' : '', overflow: 'auto' }}>
+                  <SiderMenu />
+                </div>
+              </Affix>
             </Sider>
             <Content style={{ padding: 20, zIndex: 2 }}>
               <Outlet />

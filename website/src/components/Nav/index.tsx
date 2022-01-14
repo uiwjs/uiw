@@ -36,7 +36,12 @@ export default function Nav() {
           if (/^https?:(?:\/\/)?/.test(path)) {
             if (state.layout === 'top') {
               return (
-                <a target="__blank" href={path} className={styles.outerUrl}>
+                <a
+                  key={idx}
+                  target="__blank"
+                  href={path}
+                  className={styles.outerUrl}
+                >
                   {icon} <span>{name}</span>
                 </a>
               );
@@ -61,6 +66,7 @@ export default function Nav() {
             return (
               <NavLink
                 to={path}
+                key={idx}
                 // @ts-ignore
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
               >
