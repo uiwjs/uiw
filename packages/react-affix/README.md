@@ -18,7 +18,7 @@ import { Affix, Button } from 'uiw';
 
 ReactDOM.render(
   <Affix>
-    <Button type="primary">当按钮距离顶部距离为 0，按钮被钉在顶部</Button>
+    <Button type="primary">1 当按钮距离顶部距离为 0，按钮被钉在顶部</Button>
   </Affix>,
   _mount_
 );
@@ -37,7 +37,7 @@ ReactDOM.render(
   <Affix offsetBottom={10} onChange={(affixed) => {
     console.log('affixed::', affixed);
   }}>
-    <Button type="primary">当按钮距离底部距离为 0，按钮被钉在底部</Button>
+    <Button type="primary" style={{ marginLeft: 20 }}>2 当按钮距离底部距离为 0，按钮被钉在底部</Button>
   </Affix>,
   _mount_
 );
