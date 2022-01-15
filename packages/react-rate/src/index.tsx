@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { IProps, HTMLDivProps, HTMLSpanProps } from '@uiw/utils';
+import { IProps, HTMLDivProps, HTMLSpanProps, noop } from '@uiw/utils';
 import './style/index.less';
 
 export interface RateProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
@@ -13,8 +13,6 @@ export interface RateProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   onChange?: (key: number) => void;
   onHoverChange?: (key: number) => void;
 }
-
-function noop() {}
 
 export default function Rate(props: RateProps = {}) {
   const {

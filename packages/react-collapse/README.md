@@ -13,8 +13,8 @@ import Collapse from '@uiw/react-collapse';
 
 可以同时展开多个面板，这个例子默认展开了第一个。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Collapse } from 'uiw';
 
@@ -48,10 +48,9 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Collapse } from 'uiw';
 
@@ -76,14 +75,13 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## 手风琴折叠面板
 
 手风琴，每次只打开一个tab。默认打开第一个。`Panel` 的 `key` 属性并非必须。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Collapse, Button } from 'uiw';
 
@@ -126,14 +124,13 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## 简洁风格无边框
 
 通过设置`bordered={true}`没有边框的简洁样式。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Collapse } from 'uiw';
 
@@ -160,14 +157,13 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## 自定义面板
 
 自定义各个面板的背景色、圆角、边距和图标。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Collapse } from 'uiw';
 
@@ -202,12 +198,11 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## 自定义面板标题
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Collapse, Icon } from 'uiw';
 
@@ -234,12 +229,11 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## 指定折叠图标
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Collapse, Icon } from 'uiw';
 
@@ -266,7 +260,6 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## Props
 

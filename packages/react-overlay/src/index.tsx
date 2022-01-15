@@ -9,17 +9,13 @@
  * 动画效果
  * https://daneden.github.io/animate.css/
  */
-
-import React, { cloneElement } from 'react';
-import ReactDOM from 'react-dom';
+import React, { cloneElement, useEffect, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { TransitionProps } from 'react-transition-group/Transition';
 import Portal, { PortalProps } from '@uiw/react-portal';
-import { IProps } from '@uiw/utils';
+import { IProps, noop } from '@uiw/utils';
 
 import './style/index.less';
-
-const noop = () => undefined;
 
 export interface OverlayProps extends IProps, Omit<TransitionProps, 'timeout'> {
   timeout?: TransitionProps['timeout'];
@@ -40,185 +36,129 @@ export interface OverlayProps extends IProps, Omit<TransitionProps, 'timeout'> {
     node: HTMLElement | React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
   onClose?: (evn: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-  children?: any;
 }
 
-export interface OverlayState {
-  isMount: boolean;
-  isOpen: boolean;
-}
+export default function Overlay(props: OverlayProps) {
+  const {
+    className,
+    style,
+    isOpen: _ = false,
+    prefixCls = 'w-overlay',
+    usePortal = true,
+    maskClosable = true,
+    backdropProps = {},
+    portalProps = {},
+    hasBackdrop = true,
+    unmountOnExit = true, // 设置 true 销毁根节点
+    timeout = 300,
+    transitionName = 'w-overlay',
+    // onEnter = noop,
+    onOpening = noop,
+    onOpened = noop,
+    onClosing = noop,
+    onClosed = noop,
+    onClose = noop,
+    children,
+    dialogProps = {},
+    ...otherProps
+  } = props;
 
-export default class Overlay extends React.Component<
-  OverlayProps,
-  OverlayState
-> {
-  public static defaultProps: OverlayProps = {
-    isOpen: false,
-    prefixCls: 'w-overlay',
-    usePortal: true,
-    maskClosable: true,
-    backdropProps: {},
-    portalProps: {},
-    hasBackdrop: true,
-    unmountOnExit: true, // 设置 true 销毁根节点
-    timeout: 300,
-    transitionName: 'w-overlay',
-    onEnter: noop,
-    onOpening: noop,
-    onOpened: noop,
-    onClosing: noop,
-    onClosed: noop,
-    onClose: noop,
-  };
-  public container!: HTMLDivElement | null;
-  private visible?: boolean;
-  constructor(props: OverlayProps) {
-    super(props);
-    this.state = {
-      isMount: false,
-      isOpen: false,
-    };
-  }
-  componentDidMount() {
-    if (this.props.isOpen) {
-      this.overlayWillOpen();
+  const [isOpen, setIsOpen] = useState(props.isOpen || false);
+  const [visible, setVisible] = useState(false);
+  const container = useRef<HTMLDivElement>(null);
+  const overlay = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (isOpen !== props.isOpen && props.isOpen) {
+      setVisible(true);
     }
-  }
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleDocumentClick, false);
-  }
-  overlayWillClose() {
-    const { prefixCls } = this.props;
-    document.removeEventListener('mousedown', this.handleDocumentClick, false);
-    document.body.classList.remove(`${prefixCls}-open`);
-    this.setState({ isOpen: false });
-  }
-  handleDocumentClick = (
-    e: MouseEvent | React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    const { maskClosable, onClose } = this.props;
-    const { isOpen } = this.state;
-    const domNode = ReactDOM.findDOMNode(this);
-    if (
-      isOpen &&
-      maskClosable &&
-      domNode &&
-      (domNode.nextSibling === e.target ||
-        domNode.nextElementSibling === e.target)
-    ) {
-      this.setState({ isMount: false }, () => {
-        onClose &&
-          onClose(e as React.MouseEvent<HTMLButtonElement, MouseEvent>);
-      });
+    if (isOpen !== props.isOpen && !props.isOpen) {
+      overlayWillClose();
+      setIsOpen(false);
     }
-  };
-  overlayWillOpen() {
-    const { prefixCls, maskClosable, hasBackdrop, usePortal } = this.props;
-    this.setState({ isMount: true, isOpen: true });
-    if (this.props.hasBackdrop && usePortal) {
-      // add a class to the body to prevent scrolling of content below the overlay
-      document.body.classList.add(`${prefixCls}-open`);
+  }, [props.isOpen]);
+
+  useEffect(() => {
+    if (visible) {
+      overlayWillOpen();
+      setIsOpen(true);
     }
-    if (maskClosable && !hasBackdrop) {
-      document.addEventListener('mousedown', this.handleDocumentClick, false);
-    }
+  }, [visible]);
+
+  const decoratedChild =
+    typeof children === 'object' ? (
+      cloneElement(children, {
+        ...dialogProps,
+        style: { ...children.props.style, ...dialogProps.style },
+        className: [children.props.className, `${prefixCls}-content`]
+          .filter(Boolean)
+          .join(' ')
+          .trim(),
+        tabIndex: 0,
+      })
+    ) : (
+      <span {...dialogProps} className={`${prefixCls}-content`}>
+        {children}
+      </span>
+    );
+
+  function handleClosed(
+    node: HTMLElement | React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) {
+    setVisible(false);
+    onClosed && onClosed(node);
   }
-  componentDidUpdate(prevProps: OverlayProps) {
-    if (
-      this.props.isOpen !== this.state.isOpen &&
-      prevProps.isOpen !== this.props.isOpen
-    ) {
-      this.props.isOpen ? this.overlayWillOpen() : this.overlayWillClose();
-    }
-  }
-  handleBackdropMouseDown = (
+
+  function handleBackdropMouseDown(
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
-    const {
-      backdropProps,
-      maskClosable,
-      hasBackdrop,
-      usePortal,
-      onClose,
-    } = this.props;
-    if (e.target !== this.container && usePortal) {
+  ) {
+    if (e.target !== container.current && usePortal) {
       return;
     }
     if (maskClosable && hasBackdrop) {
-      this.setState({ isOpen: false }, onClose!.bind(this, e));
+      overlayWillClose();
+      setIsOpen(false);
+      onClose && onClose(e);
     }
     backdropProps && backdropProps.onMouseDown && backdropProps.onMouseDown(e);
-  };
-  public onClosed = (
-    node: HTMLElement | React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    const { onClosed } = this.props;
-    if (this.state.isMount) {
-      this.setState({ isMount: false }, () => {
-        onClosed && onClosed(node);
-      });
-    } else {
-      onClosed && onClosed(node);
-    }
-    this.overlayWillClose();
-  };
-  public render() {
-    const {
-      prefixCls,
-      className,
-      style,
-      isOpen,
-      maskClosable,
-      usePortal,
-      children,
-      unmountOnExit,
-      timeout,
-      transitionName,
-      hasBackdrop,
-      portalProps = {},
-      backdropProps = {},
-      dialogProps = {},
-      onClose,
-      ...otherProps
-    } = this.props;
-    const { onOpening, onOpened, onClosing } = this.props;
-    const decoratedChild =
-      typeof children === 'object' ? (
-        cloneElement(children, {
-          ...dialogProps,
-          style: { ...children.props.style, ...dialogProps.style },
-          className: [children.props.className, `${prefixCls}-content`]
-            .filter(Boolean)
-            .join(' ')
-            .trim(),
-          tabIndex: 0,
-        })
-      ) : (
-        <span {...dialogProps} className={`${prefixCls}-content`}>
-          {children}
-        </span>
-      );
+  }
 
-    const TransitionGroupComp = (
-      <CSSTransition
-        in={this.state.isOpen}
-        unmountOnExit={unmountOnExit}
-        onEntering={onOpening}
-        onEntered={onOpened}
-        onExiting={onClosing}
-        onExited={this.onClosed}
-        timeout={timeout!}
-        {...otherProps}
-        classNames={transitionName}
-      >
-        {(status) => (
+  function overlayWillOpen() {
+    if (hasBackdrop && usePortal) {
+      document.body.classList.add(`${prefixCls}-open`);
+    }
+  }
+
+  function overlayWillClose() {
+    if (hasBackdrop && usePortal) {
+      document.body.classList.remove(`${prefixCls}-open`);
+    }
+    // if (unmountOnExit) {
+    //   setVisible(false)
+    // }
+  }
+
+  const TransitionGroupComp = (
+    <CSSTransition
+      classNames={transitionName}
+      unmountOnExit={unmountOnExit}
+      timeout={timeout!}
+      {...otherProps}
+      in={isOpen}
+      onEntering={onOpening}
+      onEntered={onOpened}
+      onExiting={onClosing}
+      onExited={handleClosed}
+    >
+      {(status) => {
+        return (
           <div
             style={style}
+            ref={overlay}
             className={[
               prefixCls,
               className,
               !usePortal ? `${prefixCls}-inline` : null,
-              this.state.isOpen ? `${prefixCls}-enter-done` : null,
+              isOpen ? `${prefixCls}-enter-done` : null,
             ]
               .filter(Boolean)
               .join(' ')
@@ -227,17 +167,17 @@ export default class Overlay extends React.Component<
             {hasBackdrop &&
               cloneElement(<div />, {
                 ...backdropProps,
-                onMouseDown: this.handleBackdropMouseDown.bind(this),
+                onMouseDown: handleBackdropMouseDown,
                 className: [`${prefixCls}-backdrop`, backdropProps.className]
                   .filter(Boolean)
                   .join(' ')
                   .trim(),
-                tabIndex: this.props.maskClosable ? 0 : null,
+                tabIndex: maskClosable ? 0 : null,
               })}
             {usePortal ? (
               <div
-                ref={(node) => (this.container = node)}
-                onMouseDown={this.handleBackdropMouseDown.bind(this)}
+                ref={container}
+                onMouseDown={handleBackdropMouseDown}
                 className={`${prefixCls}-container`}
               >
                 {cloneElement(decoratedChild, { 'data-status': status })}
@@ -246,27 +186,13 @@ export default class Overlay extends React.Component<
               cloneElement(decoratedChild, { 'data-status': status })
             )}
           </div>
-        )}
-      </CSSTransition>
-    );
-    if (usePortal) {
-      if (!this.visible) {
-        this.visible = this.props.isOpen;
-      } else if (
-        this.visible === true &&
-        this.state.isOpen === false &&
-        this.state.isMount === false
-      ) {
-        this.visible = false;
-      }
-      return (
-        <Portal {...{ ...portalProps, ...{ visible: this.visible } }}>
-          {' '}
-          {TransitionGroupComp}{' '}
-        </Portal>
-      );
-    } else {
-      return TransitionGroupComp;
-    }
+        );
+      }}
+    </CSSTransition>
+  );
+  if (visible && usePortal) {
+    return <Portal {...{ ...portalProps }}>{TransitionGroupComp}</Portal>;
+  } else {
+    return TransitionGroupComp;
   }
 }

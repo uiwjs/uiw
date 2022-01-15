@@ -8,7 +8,7 @@ export interface DividerProps extends IProps, HTMLDivProps {
   align?: 'left' | 'right' | 'center';
 }
 
-export default (props: DividerProps = {}) => {
+export default React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
   const {
     prefixCls = 'w-divider',
     className,
@@ -30,10 +30,10 @@ export default (props: DividerProps = {}) => {
     .join(' ')
     .trim();
   return (
-    <div className={cls} {...restProps}>
+    <div className={cls} {...restProps} ref={ref}>
       {children && (
         <span className={`${prefixCls}-inner-text`}>{children}</span>
       )}
     </div>
   );
-};
+});

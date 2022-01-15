@@ -11,7 +11,7 @@ import Switch from '@uiw/react-switch';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { Switch } from 'uiw';
@@ -25,12 +25,11 @@ const Demo = () => (
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 
 ### Form 中使用 Switch
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { Form, Switch, Row, Col, Button, Notify } from 'uiw';
@@ -86,11 +85,10 @@ const Demo = () => (
 
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 设置文字
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { Switch } from 'uiw';
@@ -109,12 +107,11 @@ const Demo = () => (
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 
 ### 禁用状态
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { Switch } from 'uiw';
@@ -128,11 +125,10 @@ const Demo = () => (
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 尺寸
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { Switch } from 'uiw';
@@ -148,13 +144,12 @@ const Demo = () => (
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 控制组件
 
 通过 `checked` 属性改变 `Switch` 组件状态。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -190,7 +185,6 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## Switch 
 

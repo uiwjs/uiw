@@ -78,9 +78,8 @@ export default class Container extends React.Component<
       <React.Fragment>
         {placement &&
           Object.keys(this.state.notifys[placement]).map((key) => {
-            const { description, isOpen, ...alertProps } = this.state.notifys[
-              placement
-            ][key];
+            const { description, isOpen, ...alertProps } =
+              this.state.notifys[placement][key];
             if (alertProps.type === 'open') {
               delete alertProps.type;
             }

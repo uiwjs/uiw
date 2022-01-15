@@ -1,5 +1,8 @@
-dist
 lib
+cjs
+esm
+dist
+dist.css
 coverage
 node_modules
 npm-debug.log*

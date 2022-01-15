@@ -13,8 +13,8 @@ import Tabs from '@uiw/react-tabs';
 
 基础的、简洁的卡片式标签页。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tabs } from 'uiw';
@@ -25,24 +25,23 @@ class Demo extends React.Component {
       <Tabs activeKey="1" onTabClick={(tab, key, e) => {
           console.log("=>", key, tab);
         }}>
-        <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
-        <Tabs.Pane label="配置管理" key="2">配置管理</Tabs.Pane>
-        <Tabs.Pane sequence="fadeIn up" label="角色管理" key="3">角色管理</Tabs.Pane>
-        <Tabs.Pane label="大爷欢乐多" key="4"><div>大爷欢乐多22</div></Tabs.Pane>
+          <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
+          <Tabs.Pane label="配置管理" key="2">配置管理</Tabs.Pane>
+          <Tabs.Pane sequence="fadeIn up" label="角色管理" key="3">角色管理</Tabs.Pane>
+          <Tabs.Pane label="大爷欢乐多" key="4"><div>大爷欢乐多22</div></Tabs.Pane>
       </Tabs>
     );
   }
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 行样式
 
 基础的、简洁的卡片式标签页。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tabs } from 'uiw';
@@ -63,14 +62,13 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 卡片样式
 
 另一种样式的页签，不提供对应的垂直样式。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tabs } from 'uiw';
@@ -91,15 +89,12 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 
 ### 卡片样式
 
-另一种样式的页签，不提供对应的垂直样式。
-
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tabs, Divider } from 'uiw';
@@ -146,7 +141,6 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## Tabs.Porps 
 
@@ -161,5 +155,5 @@ ReactDOM.render(<Demo />, _mount_);
 | 参数 | 说明 | 类型 | 默认值 |
 |------ |-------- |---------- |-------- |
 | label | 选项卡标题 | String,Node | - |
-| keys | 对应 activeKey | String,Node | - |
+| key | 对应 activeKey | String,Node | - |
 | disabled | 标签是禁用不可点击 | Boolean | `false` |

@@ -13,8 +13,8 @@ import Calendar from '@uiw/react-calendar';
 
 下面是基础使用方法，可以设置日历通知事项，在日历渲染单元格时，会根据 data 内容来渲染单元格通知事项。
 
-<!--DemoStart,bgWhite,noScroll,codePen,codePen,codeSandbox--> 
-```js
+<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Calendar, Badge } from 'uiw';
 
@@ -66,15 +66,14 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 
 ### 禁用日历
 
 在日历面板上面添加通知事件，还可以通过设置 `disabledDate` 来禁止部分日期点击，如下实例每月12号不能点击。
 
-<!--DemoStart,bgWhite,noScroll,codePen,codePen,codeSandbox--> 
-```js
+<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Calendar, Badge } from 'uiw';
 
@@ -137,7 +136,6 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |

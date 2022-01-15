@@ -4,37 +4,41 @@ on:
     branches:
       - master
     paths-ignore:
-      - '.github/**/*.yml'
+      # - '.github/**/*.yml'
       - '.gitignore'
       - '.gitpod.yml'
+
+env:
+  SKIP_PREFLIGHT_CHECK: true
+
 jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
-
-    - name: Setup Node
-      uses: actions/setup-node@v1
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
       with:
-        node-version: 12
+        node-version: 14
 
     - run: npm install
     - run: npm run hoist
 
-    # - run: npm run build
-    - run: npm run b:uiw
-    - run: npm run b:css
-    - run: npm run type
-
+    - run: npm run build
     - run: npm run bundle
     - run: npm run coverage
     - run: npm run b:website
+    - run: npm run b:doc
+    - run: npm run coverage
+
+    - run: rm -rf packages/doc/web
+    - run: mkdir -p packages/doc/web
+    - run: cp -rf website/build/* packages/doc/web
 
     - name: Deploy to uiwjs.github.io
       uses: peaceiris/actions-gh-pages@v3
       with:
         personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
-        publish_dir: ./website/uiw/build
+        publish_dir: ./website/build
         publish_branch: master
         external_repository: uiwjs/uiwjs.github.io
 
@@ -43,17 +47,67 @@ jobs:
       with:
         deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         publish_branch: gh-pages
-        publish_dir: ./website/uiw/build
+        publish_dir: ./website/build
         cname: uiw.js.cool
 
-    - name: Sync to Gitee
-      run: |
-        mirror() {
-          git clone "https://github.com/$1/$2"
-          cd "$2"
-          git remote add gitee "https://jaywcjlove:${{ secrets.GITEE_TOKEN }}@gitee.com/uiw/$2.git"
-          git remote set-head origin -d
-          git push gitee --prune +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
-          cd ..
-        }
-        mirror uiwjs uiw
+    # - run: npm install @jsdevtools/npm-publish -g
+
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-affix/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-alert/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-auto-link/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-avatar/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-back-top/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-badge/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-breadcrumb/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-button/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-button-group/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-calendar/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-card/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-checkbox/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-collapse/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-copy-to-clipboard/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-date-input/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-date-picker/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-descriptions/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-divider/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-drawer/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-dropdown/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-file-input/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-form/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-grid/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-icon/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-input/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-layout/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-list/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-loader/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-menu/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-message/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-modal/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-month-picker/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-notify/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-overlay/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-overlay-trigger/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-pagination/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-pin-code/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-popover/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-portal/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-progress/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-radio/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-rate/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-search-select/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-select/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-slider/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-steps/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-switch/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-table/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-tabs/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-tag/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-textarea/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-time-picker/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-tooltip/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-tree/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-tree-checked/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/utils/package.json
+
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/uiw/package.json
+    # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/doc/package.json

@@ -11,8 +11,8 @@ import DateInput from '@uiw/react-date-input';
 
 ## 基本使用
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DateInput, Row, Col } from 'uiw';
@@ -44,14 +44,13 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## 在表单中使用
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<DateInput />`](#/components/date-input) 组件。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { DateInput, Notify, Button, Form, Row, Col } from 'uiw';
 
@@ -94,12 +93,11 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## 日期格式
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DateInput } from 'uiw';
@@ -122,12 +120,11 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## 日期时间设置
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DateInput } from 'uiw';
@@ -150,7 +147,6 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## Props
 

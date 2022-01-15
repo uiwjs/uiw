@@ -6,23 +6,25 @@ export interface ButtonGroupProps extends IProps, HTMLDivProps {
   vertical?: boolean;
 }
 
-export default (props: ButtonGroupProps = {}) => {
-  const {
-    prefixCls = 'w-btn-group',
-    vertical = false,
-    children,
-    className,
-    ...resetProps
-  } = props;
+export default React.forwardRef<HTMLDivElement, ButtonGroupProps>(
+  (props, ref) => {
+    const {
+      prefixCls = 'w-btn-group',
+      vertical = false,
+      children,
+      className,
+      ...resetProps
+    } = props;
 
-  const cls = [prefixCls, className, vertical ? `${prefixCls}-vertical` : null]
-    .filter(Boolean)
-    .join(' ')
-    .trim();
+    const cls = [prefixCls, className, vertical && `${prefixCls}-vertical`]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
 
-  return (
-    <div className={cls} {...resetProps}>
-      {children}
-    </div>
-  );
-};
+    return (
+      <div className={cls} {...resetProps} ref={ref}>
+        {children}
+      </div>
+    );
+  },
+);

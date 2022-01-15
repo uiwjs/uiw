@@ -11,20 +11,22 @@ import Dropdown from '@uiw/react-dropdown';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Dropdown, Menu, ButtonGroup, Button, Divider, Icon } from 'uiw';
 
 const menu = (
-  <Menu bordered style={{ minWidth: 120 }}>
-    <Menu.Item icon="reload" text="重新加载" />
-    <Menu.Item icon="heart-on" text="另存为" active />
-    <Menu.Item icon="appstore" text="应用商城" />
-    <Menu.Item icon="bar-chart" text="月统计报表" />
-    <Menu.Item icon="setting" text="偏好设置" />
-  </Menu>
+  <div>
+    <Menu bordered style={{ minWidth: 120 }}>
+      <Menu.Item icon="reload" text="重新加载" />
+      <Menu.Item icon="heart-on" text="另存为" active />
+      <Menu.Item icon="appstore" text="应用商城" />
+      <Menu.Item icon="bar-chart" text="月统计报表" />
+      <Menu.Item icon="setting" text="偏好设置" />
+    </Menu>
+  </div>
 );
 
 class Demo extends React.Component {
@@ -41,40 +43,31 @@ class Demo extends React.Component {
             点击我出现下拉菜单 <Icon type="down" />
           </a>
         </Dropdown>
-        <Divider />
-        <ButtonGroup style={{ marginRight: 5, display: 'inline-block' }}>
-          <Button icon="copy">点击右边</Button>
-          <Dropdown trigger="click" placement="bottomRight" menu={menu}>
-            <Button icon="more" />
-          </Dropdown>
-        </ButtonGroup>
-        <Dropdown trigger="click" menu={menu}>
-          <Button basic icon="file-text" type="dark">文件<Icon type="caret-down" /></Button>
-        </Dropdown>
       </div>
     )
   }
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 被禁用
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Dropdown, Menu, ButtonGroup, Button } from 'uiw';
 
 const menu = (
-  <Menu bordered style={{ maxWidth: 200 }}>
-    <Menu.Item icon="reload" text="重新加载" />
-    <Menu.Divider />
-    <Menu.Item icon="heart-on" text="另存为" active />
-    <Menu.Item icon="appstore" text="应用商城" />
-    <Menu.Item icon="bar-chart" text="月统计报表导出" />
-    <Menu.Item icon="setting" text="偏好设置" />
-  </Menu>
+  <div>
+    <Menu bordered style={{ maxWidth: 200 }}>
+      <Menu.Item icon="reload" text="重新加载" />
+      <Menu.Divider />
+      <Menu.Item icon="heart-on" text="另存为" active />
+      <Menu.Item icon="appstore" text="应用商城" />
+      <Menu.Item icon="bar-chart" text="月统计报表导出" />
+      <Menu.Item icon="setting" text="偏好设置" />
+    </Menu>
+  </div>
 );
 
 ReactDOM.render(
@@ -110,24 +103,25 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 弹出位置
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Dropdown, Menu, ButtonGroup, Button } from 'uiw';
 
 const menu = (
-  <Menu bordered style={{ maxWidth: 200 }}>
-    <Menu.Item icon="reload" text="重新加载" />
-    <Menu.Divider />
-    <Menu.Item icon="heart-on" text="另存为" active />
-    <Menu.Item icon="appstore" text="应用商城" />
-    <Menu.Item icon="bar-chart" text="月统计报表导出" />
-    <Menu.Item icon="setting" text="偏好设置" />
-  </Menu>
+  <div>
+    <Menu bordered style={{ maxWidth: 200 }}>
+      <Menu.Item icon="reload" text="重新加载" />
+      <Menu.Divider />
+      <Menu.Item icon="heart-on" text="另存为" active />
+      <Menu.Item icon="appstore" text="应用商城" />
+      <Menu.Item icon="bar-chart" text="月统计报表导出" />
+      <Menu.Item icon="setting" text="偏好设置" />
+    </Menu>
+  </div>
 );
 
 ReactDOM.render(
@@ -161,62 +155,57 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 选择器
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Dropdown, Menu, Button, Icon } from 'uiw';
 
-class Select extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: props.value,
-      isOpen: false,
-    };
-  }
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.setState({ value: nextProps.value });
+function Select(props) {
+  const { option, onChange } = props;
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState(props.value);
+  const label = option.find(item => value === item.value);
+
+  React.useEffect(() => {
+    if (props.value !== value) {
+      setValue(props.value);
     }
-  }
-  onVisibleChange(isOpen) {
-    this.setState({ isOpen });
-  }
-  onClick(item) {
-    const { onChange } = this.props;
-    this.setState({ value: item.value, isOpen: false }, () => {
-      onChange && onChange(item);
-    });
-  }
-  render() {
-    const { option } = this.props;
-    const { isOpen, value } = this.state;
-    const label = option.find(item => value === item.value);
-    return (
-      <Dropdown
-        trigger="click"
-        onVisibleChange={this.onVisibleChange.bind(this)}
-        isOpen={isOpen}
-        menu={
+  }, [props.value]);
+
+  return (
+    <Dropdown
+      trigger="click"
+      onVisibleChange={(isOpen) => setOpen(isOpen)}
+      isOpen={open}
+      menu={
+        <div>
           <Menu bordered style={{ minWidth: 120 }}>
             {option.map((item, idx) => {
               const active = value === item.value;
               return (
-                <Menu.Item active={active} key={idx} text={item.label} onClick={this.onClick.bind(this, item)}/>
+                <Menu.Item
+                  key={idx}
+                  active={active}
+                  text={item.label}
+                  onClick={(e) => {
+                    setValue(item.value)
+                    setOpen(false)
+                    onChange && onChange(item.value, e)
+                  }}
+                />
               );
             })}
           </Menu>
-        }
-      >
-        <Button type="link">{label.label}<Icon type={isOpen ? 'up' : 'down'} /></Button>
-      </Dropdown>
-    )
-  }
+        </div>
+      }
+    >
+      <Button type="link">{label.label}<Icon type={open ? 'up' : 'down'} /></Button>
+    </Dropdown>
+  )
 }
 
 const option = [
@@ -241,7 +230,6 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## Props
 

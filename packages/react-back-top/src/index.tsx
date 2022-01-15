@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import { getScrollPercent, getScrollTop, ScrollToAnimate } from './utils';
+import { getScrollPercent, getScrollTop, scrollToAnimate } from './utils';
 import './style/index.less';
 
 export interface BackTopProps extends IProps, HTMLDivProps {
@@ -20,7 +20,7 @@ export interface IBackTopState {
   current: number;
 }
 
-export default (props: BackTopProps = {}) => {
+export default React.forwardRef<HTMLDivElement, BackTopProps>((props, ref) => {
   const {
     prefixCls = 'w-back-top',
     className,
@@ -58,14 +58,25 @@ export default (props: BackTopProps = {}) => {
     setCurrent(getScrollTop());
   }
   function scrollToTop() {
-    ScrollToAnimate(offsetTop, speed, current);
+    if (
+      typeof offsetTop === 'number' &&
+      typeof speed === 'number' &&
+      typeof current === 'number'
+    ) {
+      scrollToAnimate(offsetTop, speed, current);
+    }
   }
   return (
-    <div onClick={() => clickable && scrollToTop()} className={cls} {...other}>
+    <div
+      onClick={() => clickable && scrollToTop()}
+      className={cls}
+      {...other}
+      ref={ref}
+    >
       {content}
       {typeof children !== 'function'
         ? children
         : children({ percent, current, scrollToTop: scrollToTop })}
     </div>
   );
-};
+});

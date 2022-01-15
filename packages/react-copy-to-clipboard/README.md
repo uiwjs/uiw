@@ -11,8 +11,8 @@ import CopyToClipboard from '@uiw/react-copy-to-clipboard';
 
 ### 基础实例
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { CopyToClipboard } from 'uiw';
@@ -46,12 +46,11 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## 复制输入框内容
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { CopyToClipboard, Input, Button } from 'uiw';
@@ -103,7 +102,6 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## CopyToClipboard
 

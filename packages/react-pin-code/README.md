@@ -11,7 +11,7 @@ import PinCode from '@uiw/react-pin-code';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { PinCode } from 'uiw';
@@ -23,13 +23,12 @@ const Demo = () => (
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 在表单中使用
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<PinCode />`](#/components/pin-code) 组件
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { Form, Row, Col, Icon, PinCode, Button, Notify } from 'uiw';
@@ -100,11 +99,10 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 更改占位符
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { PinCode, Divider } from 'uiw';
@@ -120,11 +118,10 @@ const Demo = () => (
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 输入框被禁用
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { PinCode, Divider } from 'uiw';
@@ -140,11 +137,10 @@ const Demo = () => (
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 尺寸大小
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { PinCode, Divider } from 'uiw';
@@ -160,7 +156,6 @@ const Demo = () => (
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## PinCode
 

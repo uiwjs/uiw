@@ -1,4 +1,4 @@
-import React, { useState, useImperativeHandle, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { IProps, HTMLInputProps } from '@uiw/utils';
 
 /**
@@ -14,13 +14,10 @@ export interface RadioAbstractProps
   onChange?: (even: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function Abstract(
-  props: RadioAbstractProps = {},
-  ref?:
-    | ((instance: HTMLInputElement) => void)
-    | React.RefObject<HTMLInputElement | null>
-    | null,
-) {
+export const RadioAbstract = React.forwardRef<
+  HTMLInputElement,
+  RadioAbstractProps
+>((props, ref) => {
   const {
     prefixCls = 'w-radio',
     type = 'radio',
@@ -34,8 +31,6 @@ function Abstract(
     onChange,
     ...other
   } = props;
-  const inputRef = React.createRef<HTMLInputElement>();
-  useImperativeHandle(ref, () => inputRef.current);
 
   const [checked, setChecked] = useState(prChecked);
   const [prevChecked, setPrevChecked] = useState<boolean>();
@@ -76,14 +71,9 @@ function Abstract(
         {...{ ...other, type, disabled, value }}
         checked={checked}
         onChange={handleChange}
-        ref={inputRef}
+        ref={ref}
       />
       {label && <div className={`${prefixCls}-text`}>{label}</div>}
     </label>
   );
-}
-
-export const RadioAbstract = React.forwardRef<
-  HTMLInputElement,
-  RadioAbstractProps
->(Abstract);
+});

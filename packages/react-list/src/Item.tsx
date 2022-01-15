@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { IProps } from '@uiw/utils';
 
-export interface ListItemProps
-  extends IProps,
-    React.AllHTMLAttributes<HTMLElement> {
+type ElementTag<T = any> = T extends HTMLElement ? React.HTMLProps<T> : T;
+
+export interface ListItemProps<T = HTMLDivElement> extends IProps, ElementTag {
   disabled?: boolean;
   active?: boolean;
   extra?: React.ReactNode;
   href?: string;
-  tagName?: keyof JSX.IntrinsicElements | any;
+  tagName?: T extends HTMLElement ? keyof JSX.IntrinsicElements : T;
 }
 
-export default function Item<T>(props = {} as ListItemProps & T) {
+const Item = React.forwardRef<HTMLDivElement, ListItemProps>((props, ref) => {
   const {
     prefixCls = 'w-list-item',
     className,
@@ -31,8 +31,14 @@ export default function Item<T>(props = {} as ListItemProps & T) {
     .join(' ')
     .trim();
   const TagName = props.href && typeof tagName === 'string' ? 'a' : tagName;
-  return (
-    <TagName className={cls} {...resetProps}>
+  return React.createElement(
+    TagName,
+    {
+      ...resetProps,
+      className: cls,
+      ref,
+    },
+    <Fragment>
       {!extra || resetProps.href ? (
         children
       ) : (
@@ -41,6 +47,10 @@ export default function Item<T>(props = {} as ListItemProps & T) {
           <div className={`${prefixCls}-extra`}>{extra}</div>
         </>
       )}
-    </TagName>
+    </Fragment>,
   );
-}
+});
+
+Item.displayName = 'List.Item';
+
+export default Item;

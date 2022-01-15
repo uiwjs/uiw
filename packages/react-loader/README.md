@@ -10,7 +10,7 @@ import Loader from '@uiw/react-loader';
 
 ### 基础实例
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { Loader } from "uiw";
@@ -25,13 +25,12 @@ ReactDOM.render(
 );
 ```
 
-<!--End-->
 
 ### 警告提示中加载
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Loader, Row, Col, Message, Icon } from "uiw";
 
@@ -96,11 +95,10 @@ class Demo extends Component {
 ReactDOM.render(<Demo />, _mount_);
 ```
 
-<!--End-->
 
 ### 卡片加载中
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { Loader, Card, Col, Row } from "uiw";
@@ -172,11 +170,10 @@ ReactDOM.render(
 );
 ```
 
-<!--End-->
 
 ### 自定义加载图标动画
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { Loader, Card, Icon } from "uiw";
@@ -211,13 +208,12 @@ ReactDOM.render(
 );
 ```
 
-<!--End-->
 
 ### 整页加载
 
 页面数据加载时显示。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -269,7 +265,6 @@ class Demo extends React.Component {
 ReactDOM.render(<Demo />, _mount_);
 ```
 
-<!--End-->
 
 ### Props
 

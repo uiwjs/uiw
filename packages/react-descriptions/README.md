@@ -13,8 +13,8 @@ import Descriptions from '@uiw/react-descriptions';
 
 简单的展示。
 
-<!--DemoStart,noScroll,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true&noScroll=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Descriptions } from 'uiw';
 
@@ -31,14 +31,13 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## 带边框的
 
 带边框和背景颜色列表。
 
-<!--DemoStart,noScroll,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true&noScroll=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Descriptions, Badge } from 'uiw';
 
@@ -68,14 +67,13 @@ ReactDOM.render(
   _mount_,
 );
 ```
-<!--End-->
 
 ## 自定义尺寸
 
 自定义尺寸，适应在各种容器中展示。
 
-<!--DemoStart,noScroll,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true&noScroll=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Descriptions, Divider, Radio, RadioGroup } from 'uiw';
@@ -139,14 +137,13 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## 垂直
 
 垂直的列表。
 
-<!--DemoStart,noScroll,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true&noScroll=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Descriptions, Divider } from 'uiw';
 
@@ -175,7 +172,6 @@ ReactDOM.render(
   _mount_,
 );
 ```
-<!--End-->
 
 ## Props
 

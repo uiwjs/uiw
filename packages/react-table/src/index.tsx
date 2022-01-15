@@ -1,21 +1,19 @@
 import React from 'react';
-import { IProps, HTMLDivProps } from '@uiw/utils';
+import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import Thead from './Thead';
 import { getLevelItems, getAllColumnsKeys } from './util';
 import './style/index.less';
 
-function noop() {}
-
-export interface IColumns {
-  title?: (
-    data: IColumns,
-    rowNum: number,
-    colNum: number,
-  ) => JSX.Element | React.ReactNode;
+export type TableColumns = {
+  title?:
+    | string
+    | ((data: TableColumns, rowNum: number, colNum: number) => JSX.Element)
+    | JSX.Element;
   key?: string;
   width?: number;
   colSpan?: number;
-  children?: IColumns[];
+  children?: TableColumns[];
+  ellipsis?: boolean;
   render?: (
     text: string,
     keyName: string,
@@ -25,14 +23,12 @@ export interface IColumns {
   ) => void;
   style?: React.CSSProperties;
   [key: string]: any;
-}
+};
 
 export interface TableProps extends IProps, Omit<HTMLDivProps, 'title'> {
   prefixCls?: string;
-  columns?: IColumns[];
-  data?: {
-    [key: string]: any;
-  }[];
+  columns?: TableColumns[];
+  data?: Record<string, string | number | JSX.Element>[];
   title?: React.ReactNode;
   footer?: React.ReactNode;
   bordered?: boolean;
@@ -42,7 +38,7 @@ export interface TableProps extends IProps, Omit<HTMLDivProps, 'title'> {
     evn: React.MouseEvent<HTMLTableCellElement>,
   ) => void | React.ReactNode;
   onCellHead?: (
-    data: IColumns,
+    data: TableColumns,
     rowNum: number,
     colNum: number,
     evn: React.MouseEvent<HTMLTableCellElement>,
@@ -72,11 +68,11 @@ export default (props: TableProps = {}) => {
     .filter(Boolean)
     .join(' ')
     .trim();
-  const { header, render } = getLevelItems(columns as IColumns[]);
-  const keys = getAllColumnsKeys(columns as IColumns[]);
+  const { header, render, ellipsis } = getLevelItems(columns);
+  const keys = getAllColumnsKeys(columns);
   return (
     <div className={cls} {...other}>
-      <table>
+      <table style={ellipsis ? { tableLayout: 'fixed' } : {}}>
         {title && <caption>{title}</caption>}
         {columns && columns.length > 0 && (
           <Thead onCellHead={onCellHead} data={header} />
@@ -86,7 +82,9 @@ export default (props: TableProps = {}) => {
             {data.map((trData, rowNum) => (
               <tr key={rowNum}>
                 {keys.map((keyName, colNum) => {
-                  const objs = { children: trData[keyName], props: {} };
+                  let objs: React.TdHTMLAttributes<HTMLTableDataCellElement> = {
+                    children: trData[keyName],
+                  };
                   if (render[keyName]) {
                     const child = render[keyName](
                       trData[keyName],
@@ -99,7 +97,7 @@ export default (props: TableProps = {}) => {
                       objs.children = child;
                     } else {
                       if (child.props) {
-                        objs.props = { ...child.props };
+                        objs = { ...child.props, children: objs.children };
                         if (
                           child.props.rowSpan === 0 ||
                           child.props.colSpan === 0
@@ -111,16 +109,17 @@ export default (props: TableProps = {}) => {
                       }
                     }
                   }
+                  if (ellipsis && ellipsis[keyName]) {
+                    objs.className = `${prefixCls}-ellipsis`;
+                  }
                   return (
                     <td
-                      {...objs.props}
+                      {...objs}
+                      key={colNum}
                       onClick={(evn) =>
                         onCell(trData, { rowNum, colNum, keyName }, evn)
                       }
-                      key={colNum}
-                    >
-                      {objs.children}
-                    </td>
+                    />
                   );
                 })}
               </tr>

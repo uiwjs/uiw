@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { IProps } from '@uiw/utils';
+import { IProps, noop } from '@uiw/utils';
 import Input, { InputProps } from '@uiw/react-input';
 import './style/input.less';
-
-function noop() {}
 
 export interface PinCodeProps extends IProps {
   value?: string[];
@@ -18,10 +16,7 @@ export interface PinCodeProps extends IProps {
 
 function InternalPinCode(
   props: PinCodeProps = {},
-  ref:
-    | ((instance: HTMLDivElement) => void)
-    | React.RefObject<HTMLDivElement | null>
-    | null,
+  ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const {
     prefixCls = 'w-pin-code',
@@ -94,7 +89,7 @@ function InternalPinCode(
   }
 
   return (
-    <div className={cls} style={style} {...otherProps}>
+    <div className={cls} style={style} {...otherProps} ref={ref}>
       {[...values].map((val, key) => {
         const inpProps: InputProps<{}> = {
           min: 0,

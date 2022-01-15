@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { IProps, HTMLUlProps } from '@uiw/utils';
 import MenuItem from './MenuItem';
 import Divider from './Divider';
@@ -20,13 +20,7 @@ export interface MenuProps extends IProps, HTMLUlProps {
   bordered?: boolean;
 }
 
-function InternalMenu(
-  props: MenuProps = {},
-  ref?:
-    | ((instance: HTMLUListElement) => void)
-    | React.RefObject<HTMLUListElement | null>
-    | null,
-) {
+const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
   const {
     prefixCls = 'w-menu',
     className,
@@ -37,8 +31,6 @@ function InternalMenu(
     inlineCollapsed,
     ...htmlProps
   } = props;
-  const menuRef = React.createRef<HTMLUListElement>();
-  useImperativeHandle(ref, () => menuRef.current);
   const cls = useMemo(
     () =>
       [
@@ -55,24 +47,22 @@ function InternalMenu(
   );
 
   return (
-    <ul ref={menuRef} {...htmlProps} className={cls} data-menu="menu">
-      {React.Children.map(children, (child: React.ReactNode) => {
+    <ul {...htmlProps} ref={ref} className={cls} data-menu="menu">
+      {React.Children.map(children, (child: React.ReactNode, key) => {
         if (!React.isValidElement(child)) return child;
         const props: { inlineIndent?: number; inlineCollapsed?: boolean } = {};
         // Sub Menu
-        if (child.props.children && child.type === SubMenu) {
+        if (child.props.children && child.type === (SubMenu as any)) {
           props.inlineIndent = inlineIndent;
         }
         return React.cloneElement(
           child,
-          Object.assign({ ...props }, child.props, {}),
+          Object.assign({ ...props }, child.props, { key: `${key}` }),
         );
       })}
     </ul>
   );
-}
-
-const Menu = React.forwardRef<HTMLUListElement, MenuProps>(InternalMenu);
+});
 
 type Menu = typeof Menu & {
   Item: typeof MenuItem;

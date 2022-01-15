@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { IProps, HTMLUlProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -26,71 +25,33 @@ export interface PaginationItemSourceData {
   goto?: number;
 }
 
-export default class Pagination extends React.Component<
-  PaginationProps,
-  PaginationState
-> {
-  public static defaultProps: PaginationProps = {
-    prefixCls: 'w-pagination',
-    alignment: 'left',
-    size: 'default',
-    total: 0,
-    pageSize: 10, // The number of pages displayed.
-    current: 1,
-    onChange: () => null,
-  };
-  constructor(props: PaginationProps) {
-    super(props);
-    this.state = {
-      current: props.current as number,
-    };
-  }
-  UNSAFE_componentWillReceiveProps(nextProps: PaginationProps) {
-    if (nextProps.current !== this.props.current) {
-      this.setState({
-        current: nextProps.current as number,
-      });
-    }
-  }
-  onClick(item: PaginationItemSourceData) {
-    if (item.active || item.disabled) {
-      return;
-    }
-    const { total, pageSize, onChange } = this.props;
-    const { current } = this.state;
-    const count = Math.ceil((total as number) / (pageSize as number));
-    const state = {} as PaginationState;
-    if (item.label) {
-      state.current = item.label as number;
-    }
-    if (item.type === 'prev') {
-      state.current = current - 1 > 0 ? current - 1 : 1;
-    }
-    if (item.type === 'next') {
-      state.current = current + 1 <= count ? current + 1 : count;
-    }
-    if (/^(jumpPrev|jumpNext)/.test(item.type as string) && item.goto) {
-      state.current =
-        item.type === 'jumpPrev' ? current - item.goto : current + item.goto;
-      if (state.current > count) {
-        state.current = count;
-      }
-      if (state.current < 1) {
-        state.current = 1;
-      }
-    }
-    this.setState({ ...state }, () => {
-      onChange &&
-        onChange(this.state.current, total as number, pageSize as number);
-    });
-  }
-  initPageSoure(): PaginationItemSourceData[] {
-    const { total, pageSize } = this.props;
-    const { current } = this.state;
+export default function Pagination(props: PaginationProps) {
+  const {
+    className,
+    prefixCls = 'w-pagination',
+    alignment = 'left',
+    size = 'default',
+    total = 0,
+    pageSize = 10, // The number of pages displayed.
+    current: currentNumber = 1,
+    onChange = () => null,
+    divider,
+    ...other
+  } = props;
+
+  const [current, setCurrent] = useState(currentNumber);
+  useEffect(() => setCurrent(currentNumber), [currentNumber]);
+
+  const cls = [prefixCls, className, divider ? 'divider' : null, size]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
+
+  const initPageSoure = useMemo(() => {
     const data: PaginationItemSourceData[] = [
       { type: 'prev', disabled: current === 1 },
     ];
-    const count = Math.ceil((total as number) / (pageSize as number));
+    const count = Math.ceil(total / pageSize);
     const itemCount = count <= 5 ? count : 5;
     let num = 0;
     let basic = 0;
@@ -134,50 +95,63 @@ export default class Pagination extends React.Component<
     //   { type: 'jumpPrev', label: '•••', goto: 5 },
     //   { type: 'next' },
     // ];
+  }, [current, total, pageSize]);
+
+  function handleClick(item: PaginationItemSourceData) {
+    if (item.active || item.disabled) {
+      return;
+    }
+    const count = Math.ceil(total / pageSize);
+    const state = {} as PaginationState;
+    if (item.label) {
+      state.current = item.label as number;
+    }
+    if (item.type === 'prev') {
+      state.current = current - 1 > 0 ? current - 1 : 1;
+    }
+    if (item.type === 'next') {
+      state.current = current + 1 <= count ? current + 1 : count;
+    }
+    if (/^(jumpPrev|jumpNext)/.test(item.type as string) && item.goto) {
+      state.current =
+        item.type === 'jumpPrev' ? current - item.goto : current + item.goto;
+      if (state.current > count) {
+        state.current = count;
+      }
+      if (state.current < 1) {
+        state.current = 1;
+      }
+    }
+
+    setCurrent(state.current);
+    onChange && onChange(state.current, total as number, pageSize as number);
   }
-  render() {
-    const {
-      prefixCls,
-      className,
-      total,
-      current,
-      pageSize,
-      size,
-      alignment,
-      divider,
-      onChange,
-      ...other
-    } = this.props;
-    const cls = [prefixCls, className, divider ? 'divider' : null, size]
-      .filter(Boolean)
-      .join(' ')
-      .trim();
-    return (
-      <ul className={cls} {...other}>
-        {this.initPageSoure().map((item: PaginationItemSourceData, idx) => {
+
+  return (
+    <ul className={cls} {...other}>
+      {initPageSoure.map((item: PaginationItemSourceData, idx) => {
+        // eslint-disable-next-line jsx-a11y/anchor-is-valid
+        let label = <a>{item.label}</a>;
+        if (/^(prev|next)$/.test(item.type as string)) {
           // eslint-disable-next-line jsx-a11y/anchor-is-valid
-          let label = <a>{item.label}</a>;
-          if (/^(prev|next)$/.test(item.type as string)) {
-            // eslint-disable-next-line jsx-a11y/anchor-is-valid
-            label = <a className={`arrow ${item.type}`} />;
-          }
-          return (
-            <li
-              className={[
-                item.active ? 'active' : null,
-                item.disabled ? 'disabled' : null,
-              ]
-                .filter(Boolean)
-                .join(' ')
-                .trim()}
-              onClick={this.onClick.bind(this, item)}
-              key={idx}
-            >
-              {label}
-            </li>
-          );
-        })}
-      </ul>
-    );
-  }
+          label = <a className={`arrow ${item.type}`} />;
+        }
+        return (
+          <li
+            className={[
+              item.active ? 'active' : null,
+              item.disabled ? 'disabled' : null,
+            ]
+              .filter(Boolean)
+              .join(' ')
+              .trim()}
+            onClick={() => handleClick(item)}
+            key={idx}
+          >
+            {label}
+          </li>
+        );
+      })}
+    </ul>
+  );
 }

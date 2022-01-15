@@ -17,7 +17,7 @@ describe('<Breadcrumb />', () => {
       </Breadcrumb>,
     );
     let tree = component.toJSON();
-    if (tree) {
+    if (tree && !Array.isArray(tree)) {
       expect(tree.type).toBe('div');
       expect(tree.props.className).toBe('w-breadcrumb');
       if (tree.children) {

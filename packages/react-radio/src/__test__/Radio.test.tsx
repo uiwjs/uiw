@@ -6,7 +6,7 @@ describe('<Radio />', () => {
   it('Should output a radio', () => {
     const component = TestRenderer.create(<Radio value="1">Radio</Radio>);
     let json = component.toJSON();
-    if (json) {
+    if (json && !Array.isArray(json)) {
       expect(json.type).toBe('label');
       expect(json.children!.length).toBe(2);
     }

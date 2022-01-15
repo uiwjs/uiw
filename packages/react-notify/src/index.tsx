@@ -123,4 +123,4 @@ export interface NotificationApi {
   error(option: NotificationCreateProps): void;
 }
 
-export default (NotificationCreate as unknown) as NotificationApi;
+export default NotificationCreate as unknown as NotificationApi;

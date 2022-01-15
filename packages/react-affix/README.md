@@ -11,27 +11,25 @@ import Affix from '@uiw/react-affix';
 
 ### 基本用法
  
-<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Affix, Button } from 'uiw';
 
 ReactDOM.render(
   <Affix>
-    <Button type="primary">当按钮距离顶部距离为 0，按钮被钉在顶部</Button>
+    <Button type="primary">1 当按钮距离顶部距离为 0，按钮被钉在顶部</Button>
   </Affix>,
   _mount_
 );
 ```
-<!--End-->
-
 
 ### 钉在底部
 
 这个实例需要你缩小窗口高度，就可以测试看效果啦。
 
-<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Affix, Button } from 'uiw';
 
@@ -39,12 +37,11 @@ ReactDOM.render(
   <Affix offsetBottom={10} onChange={(affixed) => {
     console.log('affixed::', affixed);
   }}>
-    <Button type="primary">当按钮距离底部距离为 0，按钮被钉在底部</Button>
+    <Button type="primary" style={{ marginLeft: 20 }}>2 当按钮距离底部距离为 0，按钮被钉在底部</Button>
   </Affix>,
   _mount_
 );
 ```
-<!--End-->
 
 ### Props
 

@@ -1,19 +1,19 @@
-import React from 'react';
-import { CSSTransition } from 'react-transition-group';
-import Icon, { IconProps } from '@uiw/react-icon';
-import { IProps, HTMLDivProps } from '@uiw/utils';
+import React, { useEffect, useState } from 'react';
+import { IconProps } from '@uiw/react-icon';
+import { IProps, HTMLDivProps, noop } from '@uiw/utils';
+import TreeNode from './TreeNode';
 import './style/index.less';
 
-export type TreeRenderTitleNode<T> = {
+export type TreeRenderTitleNode = {
   selected?: boolean;
   noChild?: boolean;
   isHalfChecked?: boolean;
-  openKeys?: TreeProps<T>['openKeys'];
-  selectedKeys?: TreeProps<T>['selectedKeys'];
+  openKeys?: TreeProps['openKeys'];
+  selectedKeys?: TreeProps['selectedKeys'];
 };
 
-export interface TreeProps<T> extends IProps, HTMLDivProps {
-  icon?: IconProps<T>['type'];
+export interface TreeProps extends IProps, HTMLDivProps {
+  icon?: IconProps['type'];
   data?: TreeData[];
   openKeys?: TreeData['key'][];
   selectedKeys?: TreeData['key'][];
@@ -38,7 +38,7 @@ export interface TreeProps<T> extends IProps, HTMLDivProps {
   multiple?: boolean;
   renderTitle?: (
     item: TreeData,
-    node: TreeRenderTitleNode<T>,
+    node: TreeRenderTitleNode,
   ) => React.ReactElement;
   onExpand?: (
     key: TreeData['key'],
@@ -62,14 +62,6 @@ export interface TreeData {
   [keyName: string]: any;
 }
 
-export interface TreeState {
-  openKeys?: TreeData['key'][];
-  selectedKeys?: TreeData['key'][];
-  halfCheckedKeys?: TreeData['key'][];
-}
-
-const noop = () => undefined;
-
 /**
  * a contains b
  * @param {Array} a
@@ -85,7 +77,7 @@ const isContained = (a: any[], b: any[]) => {
   return true;
 };
 
-const getChildKeys = (
+export const getChildKeys = (
   childs: TreeData[] = [],
   result: TreeData['key'][] = [],
 ): TreeData['key'][] => {
@@ -137,49 +129,73 @@ const getParentSelectKeys = (
   return result;
 };
 
-export default class Tree<T> extends React.Component<TreeProps<T>, TreeState> {
-  public static defaultProps: TreeProps<{}> = {
-    prefixCls: 'w-tree',
-    icon: 'caret-right',
-    data: [],
-    openKeys: [],
-    selectedKeys: [],
-    defaultExpandAll: false,
-    showLine: false,
-    iconAnimation: true,
-    isSelected: true,
-    checkStrictly: false,
-    multiple: false,
-    onExpand: noop,
-    onSelected: noop,
-  };
-  constructor(props: TreeProps<T>) {
-    super(props);
-    this.state = {
-      openKeys: props.openKeys || [],
-      selectedKeys: props.selectedKeys || [],
-      halfCheckedKeys: props.selectedKeys || [],
-    };
-  }
-  componentDidMount() {
-    const { defaultExpandAll, data } = this.props;
-    const openKeys = getChildKeys(data);
-    if (defaultExpandAll) {
-      this.setState({ openKeys });
-    }
-  }
-  UNSAFE_componentWillReceiveProps(nextProps: TreeProps<T>) {
-    if (nextProps.openKeys !== this.props.openKeys) {
-      this.setState({ openKeys: nextProps.openKeys });
-    }
-    if (nextProps.selectedKeys !== this.props.selectedKeys) {
-      this.setState({ selectedKeys: nextProps.selectedKeys });
-    }
-  }
-  onItemSelected(item: TreeData, evn: React.MouseEvent<HTMLElement>) {
-    const { onSelected, multiple, checkStrictly } = this.props;
-    let selKeys = [...(this.state.selectedKeys as TreeData['key'][])];
+export default function Tree(props: TreeProps) {
+  const {
+    prefixCls = 'w-tree',
+    icon = 'caret-right',
+    data = [],
+    openKeys = [],
+    selectedKeys = [],
+    defaultExpandAll = false,
+    showLine = false,
+    iconAnimation = true,
+    isSelected = true,
+    checkStrictly = false,
+    multiple = false,
+    onExpand = noop,
+    onSelected = noop,
 
+    className,
+    autoExpandParent,
+    renderTitle,
+    ...elementProps
+  } = props;
+
+  const [curOpenKeys, setCurOpenKeys] = useState(openKeys);
+  const [curSelectedKeys, setCurSelectedKeys] = useState(selectedKeys);
+
+  // useEffect(() => setCurOpenKeys(openKeys), [openKeys]);
+  // useEffect(() => setCurSelectedKeys(selectedKeys), [selectedKeys]);
+
+  useEffect(() => {
+    const arrOpenKeys = getChildKeys(data);
+    if (defaultExpandAll) {
+      setCurOpenKeys(arrOpenKeys);
+    }
+  }, []);
+
+  const cls = [className, prefixCls, showLine ? `${prefixCls}-line` : null]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
+
+  function onItemClick(item: TreeData, evn: React.MouseEvent<HTMLElement>) {
+    if (!item.children) {
+      return;
+    }
+    // const { onExpand } = this.props;
+    // const { openKeys } = this.state;
+    let currentKeys = [...(curOpenKeys as TreeData['key'][])];
+    const key = currentKeys.find((v) => v === item.key);
+    const cls = evn.currentTarget.className.replace(/(\s)open/g, '');
+    let expanded = false;
+    if (!key && item.key) {
+      currentKeys.push(item.key);
+      evn.currentTarget.className = [cls, 'open']
+        .filter(Boolean)
+        .join(' ')
+        .trim();
+      expanded = true;
+    } else {
+      currentKeys = currentKeys.filter((v) => v !== item.key);
+      evn.currentTarget.className = cls;
+    }
+    setCurOpenKeys(currentKeys);
+    onExpand && onExpand(item.key, expanded, item, evn);
+  }
+  function onItemSelected(item: TreeData, evn: React.MouseEvent<HTMLElement>) {
+    // const { onSelected, multiple, checkStrictly } = this.props;
+    let selKeys = [...(curSelectedKeys as TreeData['key'][])];
     const findKey = selKeys.find((v) => v === item.key);
     let selected = false;
     if (!findKey) {
@@ -209,189 +225,26 @@ export default class Tree<T> extends React.Component<TreeProps<T>, TreeState> {
     if (!multiple) {
       selKeys = !findKey ? [item.key] : [];
     }
-    this.setState({ selectedKeys: selKeys }, () => {
-      onSelected && onSelected(selKeys, item.key, selected, item, evn);
-    });
+    setCurSelectedKeys(selKeys);
+    onSelected && onSelected(selKeys, item.key, selected, item, evn);
   }
-  onExit = (node: HTMLElement) => {
-    node.style.height = `${node.scrollHeight}px`;
-  };
-  onExiting = (node: HTMLElement) => {
-    node.style.height = '1px';
-  };
-  onEnter = (node: HTMLElement, isAppearing: boolean) => {
-    node.style.height = '1px';
-  };
-  onEntering = (node: HTMLElement, isAppearing: boolean) => {
-    node.style.height = `${node.scrollHeight}px`;
-  };
-  onEntered = (node: HTMLElement, isAppearing: boolean) => {
-    node.style.height = 'initial';
-  };
-  onItemClick(item: TreeData, evn: React.MouseEvent<HTMLElement>) {
-    if (!item.children) {
-      return;
-    }
-    const { onExpand } = this.props;
-    const { openKeys } = this.state;
-    let currentKeys = [...(openKeys as TreeData['key'][])];
-    const key = currentKeys.find((v) => v === item.key);
-    const cls = evn.currentTarget.className.replace(/(\s)open/g, '');
-    let expanded = false;
-    if (!key && item.key) {
-      currentKeys.push(item.key);
-      evn.currentTarget.className = [cls, 'open']
-        .filter(Boolean)
-        .join(' ')
-        .trim();
-      expanded = true;
-    } else {
-      currentKeys = currentKeys.filter((v) => v !== item.key);
-      evn.currentTarget.className = cls;
-    }
-    this.setState({ openKeys: currentKeys }, () => {
-      onExpand && onExpand(item.key, expanded, item, evn);
-    });
-  }
-  renderTreeNode(data: TreeData[], level: number, parent?: TreeData) {
-    const {
-      prefixCls,
-      renderTitle,
-      icon,
-      iconAnimation,
-      isSelected,
-    } = this.props;
-    const { openKeys, selectedKeys } = this.state;
-    let isOpen = false;
-
-    if (parent && parent.key) {
-      isOpen = !!(openKeys && openKeys.indexOf(parent.key) > -1);
-    }
-    return (
-      <CSSTransition
-        classNames={prefixCls}
-        in={isOpen}
-        timeout={200}
-        onExit={this.onExit}
-        onExiting={this.onExiting}
-        onEnter={this.onEnter}
-        onEntered={this.onEntered}
-        onEntering={this.onEntering}
-      >
-        <ul
-          className={[
-            level !== 1 && isOpen ? [`${prefixCls}-open`] : null,
-            level !== 1 && !isOpen ? [`${prefixCls}-close`] : null,
-          ]
-            .filter(Boolean)
-            .join(' ')
-            .trim()}
-        >
-          {data.map((item, idx: number) => {
-            item.parent = parent;
-            const selected = !!(
-              selectedKeys && selectedKeys.indexOf(item.key) > -1
-            );
-            const noChild = !item.children;
-            const itemIsOpen =
-              openKeys && openKeys.indexOf(item.key) > -1 && !!item.children;
-            const iconItem =
-              typeof icon === 'function'
-                ? icon(item, {
-                    isOpen: !!itemIsOpen,
-                    noChild,
-                    openKeys,
-                    selectedKeys,
-                  })
-                : icon;
-            const childKeys = noChild ? [] : getChildKeys(item.children);
-            const checkedKeys = selectedKeys
-              ? selectedKeys.filter((key) => childKeys.indexOf(key) > -1)
-              : [];
-            const isHalfChecked =
-              checkedKeys.length > 0 && childKeys.length !== checkedKeys.length;
-            return (
-              <li key={idx}>
-                <div className={`${prefixCls}-label`}>
-                  <span
-                    className={`${prefixCls}-switcher`}
-                    onClick={this.onItemClick.bind(this, item)}
-                  >
-                    <Icon
-                      type={iconItem || 'caret-right'}
-                      className={[
-                        typeof icon === 'function'
-                          ? `${prefixCls}-switcher-noop`
-                          : null,
-                        noChild ? 'no-child' : null,
-                        !iconAnimation ? 'no-animation' : null,
-                        itemIsOpen ? 'open' : null,
-                      ]
-                        .filter(Boolean)
-                        .join(' ')
-                        .trim()}
-                    />
-                  </span>
-                  <div
-                    onClick={this.onItemSelected.bind(this, item)}
-                    className={[
-                      `${prefixCls}-title`,
-                      selected && isSelected ? 'selected' : null,
-                      item.disabled ? 'disabled' : null,
-                    ]
-                      .filter(Boolean)
-                      .join(' ')
-                      .trim()}
-                  >
-                    {renderTitle ? (
-                      renderTitle(item, {
-                        selected,
-                        noChild,
-                        openKeys,
-                        isHalfChecked,
-                        selectedKeys,
-                      })
-                    ) : (
-                      <span>{item.label}</span>
-                    )}
-                  </div>
-                </div>
-                {item.children &&
-                  this.renderTreeNode(item.children, level + 1, item)}
-              </li>
-            );
-          })}
-        </ul>
-      </CSSTransition>
-    );
-  }
-  render() {
-    const {
-      prefixCls,
-      className,
-      icon,
-      data,
-      openKeys,
-      selectedKeys,
-      isSelected,
-      autoExpandParent,
-      defaultExpandAll,
-      checkStrictly,
-      showLine,
-      iconAnimation,
-      renderTitle,
-      onExpand,
-      onSelected,
-      ...elementProps
-    } = this.props;
-    const cls = [className, prefixCls, showLine ? `${prefixCls}-line` : null]
-      .filter(Boolean)
-      .join(' ')
-      .trim();
-    return (
-      <div className={cls} {...elementProps}>
-        {this.renderTreeNode(data as TreeData[], 1)}
-      </div>
-    );
-  }
+  return (
+    <div className={cls} {...elementProps}>
+      <TreeNode
+        {...{
+          icon,
+          iconAnimation,
+          isSelected,
+          openKeys: curOpenKeys,
+          selectedKeys: curSelectedKeys,
+          prefixCls,
+          renderTitle,
+        }}
+        onItemClick={onItemClick}
+        onItemSelected={onItemSelected}
+        data={data}
+        level={1}
+      />
+    </div>
+  );
 }

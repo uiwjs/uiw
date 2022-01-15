@@ -11,8 +11,8 @@ import Modal from '@uiw/react-modal';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Modal, ButtonGroup, Button } from 'uiw';
@@ -69,14 +69,13 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 延迟关闭对话框
 
 这里是利用 `Promise` 等它执行完成再去关闭窗口
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Modal, ButtonGroup, Button } from 'uiw';
@@ -129,15 +128,14 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 
 ### 表单应用
 
 这里是利用 `Promise` 等它执行完成再去关闭窗口
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Modal, ButtonGroup, Button } from 'uiw';
@@ -203,7 +201,8 @@ class Demo extends React.Component {
               userName: {
                 initialValue: 'uiw',
                 label: '姓名',
-                help: '以“u”开头的名字将在此处显示错误信息'
+                help: '以“u”开头的名字将在此处显示错误信息',
+                children: <Input type="text" />
               },
               age: {
                 initialValue: 9,
@@ -247,14 +246,13 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 自定义页脚
 
 设置 `useButton={false}` 隐藏默认的按钮，再根据自己需求定义按钮。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Modal, ButtonGroup, Button } from 'uiw';
@@ -316,7 +314,6 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## Props
 
@@ -331,6 +328,9 @@ ReactDOM.render(<Demo />, _mount_);
 | useButton | 是否使用默认按钮，如果设置 `false` 需要自定义按钮关闭 | Boolean | `true` |
 | type | 按钮类型跟 `<Button>` 组件的 `type` 参数一致，同时会影响按钮颜色。 | String | `light` |
 | width | 设置弹出框宽度 | Number | - |
+| bodyStyle | Modal body 样式 | `CSSProperties` | - |
+| cancelButtonProps | cancel 按钮 props | `ButtonProps` | - |
+| confirmButtonProps | confirm 按钮 props | `ButtonProps` | - |
 | maxWidth | 默认弹出框最大宽度 `500` | Number | `500` |
 | minWidth | 默认弹出框最小宽度 `320` | Number | `320` |
 | isCloseButtonShown | 是否在对话框的标题中显示关闭按钮。 请注意，只有在提供标题时才会呈现标题。 | Boolean | `true` |

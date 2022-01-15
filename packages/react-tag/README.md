@@ -11,8 +11,8 @@ import Tag from '@uiw/react-tag';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import { Tag, Divider } from 'uiw';
 
@@ -41,12 +41,11 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 标签禁用
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import { Tag, Divider } from 'uiw';
 
@@ -73,12 +72,11 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 添加图标
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import { Tag, Divider } from 'uiw';
 
@@ -99,12 +97,11 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 控制关闭标签
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tag, Icon } from 'uiw';
@@ -145,12 +142,11 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 标签组动态删除
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tag, Button, Icon } from 'uiw';
@@ -202,14 +198,13 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 热门标签
 
 选择你感兴趣的话题，下面实例类似 CheckBox 多选。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tag } from 'uiw';
@@ -261,133 +256,124 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 选择器
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Dropdown, Menu, Button, Icon, Input, Checkbox, Tag, Row, Col } from 'uiw';
 
-class SelectTag extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: props.value,
-      option: props.option,
-      selectOption: [],
-      isOpen: false,
-    };
-  }
-  componentDidMount() {
-    const { value, option } = this.state;
-    const selectOption = value.map(val => option.find(item => val === item.value)).filter(item => !!item);
-    this.setState({ selectOption });
-  }
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.setState({ value: nextProps.value });
+function SelectTag(props) {
+  const { placeholder, onChange } = props;
+  const [selectOption, setSelectOption] = React.useState([]);
+  const [value, setValue] = React.useState([...props.value]);
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [option, setOption] = React.useState([...props.option]);
+
+  React.useEffect(() => {
+    const selectOptionVal = props.value.map(val => option.find(item => val === item.value)).filter(item => !!item);
+    if (selectOptionVal !== selectOption) {
+      setSelectOption(selectOptionVal);
     }
-    if (nextProps.option !== this.props.option) {
-      this.setState({ option: nextProps.option });
+    if (value !== props.value) {
+      setValue(props.value);
     }
-  }
-  onVisibleChange(isOpen) {
-    this.setState({ isOpen });
-  }
-  onClick(item) {
-    this.modifyValue(item.value, item);
-  }
-  modifyValue(itemVal, item) {
-    const { onChange } = this.props;
-    let { value, selectOption } = this.state;
-    const checked = value.includes(itemVal);
-    // let values = [...value];
+  }, [props.value]);
+
+  React.useEffect(() => {
+    if (value !== props.option) {
+      setOption(props.option);
+    }
+  }, [props.option]);
+
+  function modifyValue(itemVal, item) {
+    let newValue = [...value];
+    let newSelectOption = [...selectOption];
+    const checked = newValue.includes(itemVal);
     if(!checked) {
-      value.push(itemVal);
-      selectOption.push(item);
+      newValue.push(itemVal);
+      newSelectOption.push(item);
     } else {
-      value = value.filter(v => itemVal !== v);
-      selectOption = selectOption.filter(v => item.value !== v.value);
+      newValue = newValue.filter(v => itemVal !== v);
+      newSelectOption = selectOption.filter(v => item.value !== v.value);
     }
-    this.setState({ value: value, selectOption, isOpen: false }, () => {
-      onChange && onChange(value);
-    });
+    setValue(newValue);
+    setSelectOption(selectOption);
+    // setIsOpen(false);
+    onChange && onChange(newValue);
   }
-  onClose(item, e) {
-    e.stopPropagation();
-    this.modifyValue(item.value, item);
+
+  function handleChange(e) {
+    const options = option.filter(item => item.label.indexOf(e.target.value) > -1);
+    setOption(options);
   }
-  onChange(item, e) {
-    this.modifyValue(item.value);
-  }
-  onSearch(e) {
-    let option = this.state.option;
-    const options = this.props.option.filter(item => item.label.indexOf(e.target.value) > -1);
-    this.setState({ option: options  });
-  }
-  render() {
-    const { placeholder = '请选择' } = this.props;
-    const { isOpen, value, option, selectOption } = this.state;
-    return (
-      <Dropdown
-        trigger="click"
-        onVisibleChange={this.onVisibleChange.bind(this)}
-        isOpen={isOpen}
-        menu={
-          <Menu bordered style={{ minWidth: 220, height: 210, overflow: 'auto' }}>
-            <Menu.Divider
-              title={
-                <Input placeholder="请输入内容" onChange={this.onSearch.bind(this)} />
-              }
-            />
-            {option.map((item, idx) => {
-              const active = value.includes(item.value);
-              return (
-                <Menu.Item
-                  key={idx}
-                  text={
-                    <Row gutter={10} justify="space-between">
-                      <Col>
-                        <span style={{ verticalAlign: 'middle' }}>{item.label}</span>
-                      </Col>
-                      <Col fixed>
-                        {active && <Checkbox checked={active} onChange={this.onChange.bind(this, item)} />}
-                      </Col>
-                    </Row>
-                  }
-                  onClick={this.onClick.bind(this, item)}
-                />
-              );
-            })}
-          </Menu>
-        }
-      >
-        <div style={{ minWidth: 120, maxWidth: 320, padding: 5, border: '1px solid #c7c8ca', borderRadius: 3 }}>
-          {selectOption.length === 0 && (
-            <span style={{
-              lineHeight: '23px',
-              padding: '0 4px',
-            }}>{placeholder}</span>
-          )}
-          {selectOption.map((item, idx) => {
-            const { label, ...itemProps } = item;
-            const props = {
-              style: { margin: 2 },
-              onClose: this.onClose.bind(this, item),
-              key: idx,
-              ...itemProps,
+
+  return (
+    <Dropdown
+      trigger="click"
+      onVisibleChange={(open) => setIsOpen(open)}
+      isOpen={isOpen}
+      menu={
+        <Menu bordered style={{ minWidth: 220, height: 210, overflow: 'auto' }}>
+          <Menu.Divider
+            title={
+              <Input
+                placeholder="请输入内容"
+                onChange={(e) => handleChange(e)}
+              />
             }
+          />
+          {option.map((item, idx) => {
+            const active = value.includes(item.value);
             return (
-              <Tag light closable {...props}>{label}</Tag>
+              <Menu.Item
+                key={idx}
+                text={
+                  <Row gutter={10} justify="space-between">
+                    <Col>
+                      <span style={{ verticalAlign: 'middle' }}>{item.label}</span>
+                    </Col>
+                    <Col fixed>
+                      {active && <Checkbox checked={active} onChange={(e) => handleChange(e)} />}
+                    </Col>
+                  </Row>
+                }
+                onClick={() => {
+                  modifyValue(item.value, item)
+                }}
+              />
             );
           })}
-        </div>
-      </Dropdown>
-    )
-  }
+        </Menu>
+      }
+    >
+      <div style={{ minWidth: 120, maxWidth: 320, padding: 5, border: '1px solid #c7c8ca', borderRadius: 3 }}>
+        {selectOption.length === 0 && (
+          <span style={{
+            lineHeight: '23px',
+            padding: '0 4px',
+          }}>{placeholder}</span>
+        )}
+        {selectOption.map((item, idx) => {
+          const { label, ...itemProps } = item;
+          const props = {
+            style: { margin: 2 },
+            onClose: (e) => {
+              e.stopPropagation();
+              modifyValue(item.value, item);
+            },
+            key: idx,
+            ...itemProps,
+          }
+          return (
+            <Tag light closable {...props}>{label}</Tag>
+          );
+        })}
+      </div>
+    </Dropdown>
+  )
 }
 
 const option = [
@@ -408,7 +394,6 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## Tag
 

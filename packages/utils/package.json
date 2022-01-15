@@ -1,6 +1,6 @@
 {
   "name": "@uiw/utils",
-  "version": "4.7.7",
+  "version": "4.9.9",
   "description": "utils tools for uiw",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/utils#readme",
@@ -9,10 +9,11 @@
     "url": "https://github.com/uiwjs/uiw.git"
   },
   "license": "MIT",
-  "main": "lib/cjs/index.js",
-  "module": "lib/esm/index.js",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
   "files": [
-    "lib",
+    "cjs",
+    "esm",
     "src"
   ],
   "publishConfig": {
@@ -38,14 +39,14 @@
     "frontend"
   ],
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
   },
   "devDependencies": {
-    "@babel/runtime": "7.12.5",
-    "@types/react": "16.9.41",
-    "@types/react-dom": "16.9.8",
-    "react": "16.14.0",
-    "react-dom": "16.14.0"
+    "@babel/runtime": "7.16.7",
+    "@types/react": "17.0.38",
+    "@types/react-dom": "17.0.11",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   }
 }

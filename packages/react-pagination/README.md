@@ -11,7 +11,7 @@ import Pagination from '@uiw/react-pagination';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { Pagination, Divider } from 'uiw';
@@ -33,11 +33,10 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 迷你分页
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { Pagination, Divider } from 'uiw';
@@ -51,13 +50,12 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### 对齐
 
 目前有三种对齐方式 `左边(left)`、`中间(center)`、`右边(right)`。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { Pagination, Divider } from 'uiw';
@@ -93,7 +91,6 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ### Props
 

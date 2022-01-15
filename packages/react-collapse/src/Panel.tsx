@@ -4,17 +4,17 @@ import { TransitionStatus } from 'react-transition-group/Transition';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Icon, { IconProps } from '@uiw/react-icon';
 
-export interface CollapsePanelProps<T> extends IProps, HTMLDivProps {
+export interface CollapsePanelProps extends IProps, HTMLDivProps {
   disabled?: boolean;
   showArrow?: boolean;
   isActive?: boolean;
   header?: React.ReactNode;
-  icon?: IconProps<T>['type'];
+  icon?: IconProps['type'];
   extra?: React.ReactNode;
   onItemClick?: (evn: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-export default function Panel<T>(props: CollapsePanelProps<T> = {}) {
+export default function Panel(props: CollapsePanelProps) {
   const {
     prefixCls = 'w-collapse',
     className,

@@ -1,12 +1,10 @@
 import React from 'react';
-import { IProps } from '@uiw/utils';
-import { TableProps, IColumns } from './';
+import { IProps, noop } from '@uiw/utils';
+import { TableProps, TableColumns } from './';
 import './style/index.less';
 
-function noop() {}
-
 export interface TheadProps extends IProps {
-  data?: TableProps['data'];
+  data?: TableProps['data'][];
   onCellHead?: TableProps['onCellHead'];
 }
 
@@ -14,7 +12,7 @@ export default (
   props: TheadProps & React.HTMLAttributes<HTMLTableSectionElement> = {},
 ) => {
   const {
-    prefixCls = 'w-table-thead',
+    prefixCls = 'w-table',
     className,
     data = [],
     onCellHead = noop,
@@ -26,20 +24,28 @@ export default (
       {...other}
     >
       {data &&
-        data.map((tds, rowNum: number) => (
+        data.length > 0 &&
+        data.map((tds?: TableColumns[], rowNum?: number) => (
           <tr key={rowNum}>
-            {tds.map((item: IColumns, colNum: number) => {
-              const { title, key, render, children, ...thProps } = item;
-              const titleNode = (typeof title === 'function'
-                ? title(item, colNum, rowNum)
-                : title) as IColumns['title'];
+            {(tds || []).map((item, colNum) => {
+              const { title, key, render, children, ellipsis, ...thProps } =
+                item;
+              const titleNode: TableColumns['title'] =
+                typeof title === 'function'
+                  ? title(item, colNum, rowNum!)
+                  : title;
               if (thProps.colSpan === 0) {
                 return null;
+              }
+              if (ellipsis) {
+                thProps.className = `${
+                  thProps.className || ''
+                } ${prefixCls}-ellipsis`;
               }
               return (
                 <th
                   key={colNum}
-                  onClick={(evn) => onCellHead(item, colNum, rowNum, evn)}
+                  onClick={(evn) => onCellHead(item, colNum, rowNum!, evn)}
                   {...thProps}
                 >
                   {titleNode}

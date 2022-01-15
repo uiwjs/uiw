@@ -12,8 +12,8 @@ import ButtonGroup from '@uiw/react-button-group';
 
 ### 基本用法
 
-<!--DemoStart,codePen,codeSandbox--> 
-```js
+<!--rehype:codeSandbox=true&codePen=true--> 
+```jsx
 import ReactDOM from 'react-dom';
 import { Button, Divider, ButtonGroup } from 'uiw';
 
@@ -76,7 +76,6 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## Props
 

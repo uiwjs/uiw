@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import React from 'react';
 import TestRenderer from 'react-test-renderer';
 import Badge from '../';
@@ -6,7 +9,7 @@ describe('<Badge />', () => {
   it('Should output a Badge', () => {
     const component = TestRenderer.create(<Badge color="#28a745" />);
     let tree = component.toJSON();
-    if (tree) {
+    if (tree && !Array.isArray(tree)) {
       expect(tree.type).toBe('span');
       expect(tree.props.className).toBe('w-badge nowrap w-badge-status');
       expect(tree.children).toHaveLength(1);

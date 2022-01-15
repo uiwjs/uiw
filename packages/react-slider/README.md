@@ -13,82 +13,65 @@ import Slider from '@uiw/react-slider';
 
 按钮样式的单选组合。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Slider, Divider } from 'uiw';
 
-class Demo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 20,
-      value2: -5,
-      value3: [10, 50],
-    };
-  }
-  render() {
-    return (
-      <div>
-        <Slider
-          value={this.state.value}
-          style={{ maxWidth: 360 }}
-          onChange={(value)=> {
-            this.setState({ value });
-          }}
-        />
-        <div>设置 progress 值为 <b>"false"</b> 不显示进度条</div>
-        <Slider
-          progress={false}
-          value={this.state.value}
-          style={{ maxWidth: 360, marginTop: 30 }}
-          onChange={(value)=> {
-            this.setState({ value });
-          }}
-        />
-        <div>设置 progress 值为 <b>"#dc3545"</b> 这是一个颜色值，设置进度条颜色</div>
-        <Slider
-          // progress={false}
-          progress="#dc3545"
-          value={this.state.value}
-          style={{ maxWidth: 360, marginTop: 30 }}
-          onChange={(value)=> {
-            this.setState({ value });
-          }}
-        />
-        <div>当前值：<b>{this.state.value}</b></div>
-        <Divider />
-        <Slider
-          min={-10}
-          max={30}
-          value={this.state.value2}
-          style={{ maxWidth: 260 }}
-          onChange={(value2)=> {
-            this.setState({ value2 });
-          }}
-        />
-        <div>可选 -10~30值范围：<b>{this.state.value2}</b></div>
-        <Divider />
-        <Slider value={this.state.value3} style={{ maxWidth: 260 }}
-          onChange={(value3)=> {
-            this.setState({ value3 });
-          }}
-        />
-        <div>取值范围：<b>{this.state.value3[0]} ~ {this.state.value3[1]}</b></div>
-      </div>
-    )
-  }
+function Demo() {
+  const [value, setValue] = React.useState(20);
+  const [value2, setValue2] = React.useState(-5);
+  const [value3, setValue3] = React.useState([10, 50]);
+  return (
+    <div>
+      <Slider
+        value={value}
+        style={{ maxWidth: 360 }}
+        onChange={(value)=> setValue(value)}
+      />
+      <div>设置 progress 值为 <b>"false"</b> 不显示进度条</div>
+      <Slider
+        progress={false}
+        value={value}
+        style={{ maxWidth: 360, marginTop: 30 }}
+        onChange={(value)=> setValue(value)}
+      />
+      <div>设置 progress 值为 <b>"#dc3545"</b> 这是一个颜色值，设置进度条颜色</div>
+      <Slider
+        // progress={false}
+        progress="#dc3545"
+        value={value}
+        style={{ maxWidth: 360, marginTop: 30 }}
+        onChange={(value)=> setValue(value)}
+      />
+      <div>当前值：<b>{value}</b></div>
+      <Divider />
+      <Slider
+        min={-10}
+        max={30}
+        value={value2}
+        style={{ maxWidth: 260 }}
+        onChange={(val)=> setValue2(val)}
+      />
+      <div>可选 -10~30值范围：<b>{value2}</b></div>
+      <Divider />
+      <Slider value={value3} style={{ maxWidth: 260 }}
+        onChange={(val)=> setValue3(val)}
+      />
+      <div>取值范围：<b>{value3[0]} ~ {value3[1]}</b></div>
+    </div>
+  )
 }
+
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 在表单中使用
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<Slider />`](#/components/slider) 组件，需要设置 `initialValue` 初始值。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { Form, Row, Col, Slider, Button, Notify } from 'uiw';
@@ -148,43 +131,39 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 控制提示显示
 
 通过设置 `tooltip` 的值，来控制提示的显示。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Slider, Divider} from 'uiw';
+import { Slider, Divider } from 'uiw';
 
-class Demo extends React.Component {
-  render() {
-    return (
-      <div>
-        <div>设置 tooltip 值为 <b>true</b>，提示将始终显示。</div>
-        <Slider value={25} style={{ maxWidth: 260 }} tooltip />
-        <Divider />
-        <div>设置 tooltip 值为 <b>null</b>，提示将始终不显示。</div>
-        <Slider value={25} style={{ maxWidth: 260 }} tooltip={null} />
-        <Divider />
-        <div>设置 tooltip 值为 <b>false</b>，鼠标经过显示提示。</div>
-        <Slider value={25} style={{ maxWidth: 260 }} tooltip={false} />
-      </div>
-    )
-  }
+function Demo() {
+  return (
+    <div>
+      <div>设置 tooltip 值为 <b>true</b>，提示将始终显示。</div>
+      <Slider value={25} style={{ maxWidth: 260 }} tooltip />
+      <Divider />
+      <div>设置 tooltip 值为 <b>null</b>，提示将始终不显示。</div>
+      <Slider value={25} style={{ maxWidth: 260 }} tooltip={null} />
+      <Divider />
+      <div>设置 tooltip 值为 <b>false</b>，鼠标经过显示提示。</div>
+      <Slider value={25} style={{ maxWidth: 260 }} tooltip={false} />
+    </div>
+  )
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 刻度
 
 通过 `step` 设置或返回每次拖动滑块控件时的递增量。
 
-<!--DemoStart,bgWhite,codePen-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -253,11 +232,10 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 标记刻度
 
-<!--DemoStart,bgWhite,codePen-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -332,11 +310,10 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 禁用样式
 
-<!--DemoStart,bgWhite,codePen-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -363,11 +340,10 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 垂直方向
 
-<!--DemoStart,bgWhite,codePen-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -419,7 +395,6 @@ class Demo extends React.Component {
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## Props
 

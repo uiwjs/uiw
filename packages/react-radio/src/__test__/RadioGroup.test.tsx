@@ -14,7 +14,7 @@ describe('<RadioGroup />', () => {
       </RadioGroup>,
     );
     let json = component.toJSON();
-    if (json) {
+    if (json && !Array.isArray(json)) {
       expect(json.type).toBe('div');
       expect(json.props.className).toBe('w-radio-group');
       if (json.children) {

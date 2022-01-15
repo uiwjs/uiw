@@ -1,5 +1,5 @@
 import React from 'react';
-import { IProps, HTMLDivProps, getScroll } from '@uiw/utils';
+import { IProps, HTMLDivProps, getScroll, noop } from '@uiw/utils';
 
 export interface AffixProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   /**
@@ -46,8 +46,6 @@ function getOffset(element: HTMLElement, target: HTMLElement | Window | null) {
   };
 }
 
-function noop() {}
-
 function getDefaultTarget() {
   return typeof window !== 'undefined' ? window : null;
 }
@@ -81,7 +79,7 @@ export default class Affix extends React.Component<AffixProps, IAffixState> {
   componentDidMount() {
     const target = this.props.target || getDefaultTarget;
     // Wait for parent component ref has its value
-    this.timeout = setTimeout(() => {
+    this.timeout = window.setTimeout(() => {
       this.target = target();
       this.setTargetEventListeners();
     });
@@ -96,22 +94,27 @@ export default class Affix extends React.Component<AffixProps, IAffixState> {
     if (!this.box || !this.box.offsetParent) {
       return;
     }
+
     const elemSize = {
       width: this.box.clientWidth,
       height: this.box.clientHeight,
     };
-    const offsetMode = { top: false, bottom: false };
+    const offsetMode = { top: true, bottom: false };
     if (typeof offsetTop !== 'number' && typeof offsetBottom !== 'number') {
       offsetMode.top = true;
       offsetTop = 0;
-    } else {
-      offsetMode.top = typeof offsetTop === 'number';
-      offsetMode.bottom = typeof offsetBottom === 'number';
     }
+
+    if (typeof offsetBottom === 'number') {
+      offsetMode.top = false;
+      offsetMode.bottom = true;
+    }
+
     const elemOffset = getOffset(this.box, this.target);
     const box = this.box.getBoundingClientRect();
     const bottom =
       document.documentElement.clientHeight - box.y - elemOffset.height;
+
     if (offsetMode.top && box.y < 0) {
       this.setPlaceholderStyle({ ...elemSize });
       this.setAffixStyle({
@@ -120,7 +123,7 @@ export default class Affix extends React.Component<AffixProps, IAffixState> {
         left: elemOffset.left,
         width: elemOffset.width,
       });
-    } else if (bottom < 0) {
+    } else if (offsetMode.bottom && bottom < 0) {
       this.setPlaceholderStyle({ ...elemSize });
       this.setAffixStyle({
         position: 'fixed',

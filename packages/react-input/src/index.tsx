@@ -3,19 +3,13 @@ import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLInputProps } from '@uiw/utils';
 import './style/input.less';
 
-export interface InputProps<T> extends IProps, Omit<HTMLInputProps, 'size'> {
-  preIcon?: IconProps<T>['type'];
+export interface InputProps extends IProps, Omit<HTMLInputProps, 'size'> {
+  preIcon?: IconProps['type'];
   addonAfter?: React.ReactNode;
   size?: 'large' | 'default' | 'small';
 }
 
-function InternalInput<T>(
-  props: InputProps<T> = {},
-  ref:
-    | ((instance: HTMLInputElement) => void)
-    | React.RefObject<HTMLInputElement | null>
-    | null,
-) {
+export default React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     prefixCls = 'w-input',
     className,
@@ -26,9 +20,12 @@ function InternalInput<T>(
     addonAfter,
     ...otherProps
   } = props;
-  const inputRef = React.createRef<HTMLInputElement>();
-  const addonRef = React.createRef<HTMLSpanElement>();
-  useImperativeHandle(ref, () => inputRef.current);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const addonRef = React.useRef<HTMLSpanElement>(null);
+  useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(
+    ref,
+    () => inputRef.current,
+  );
   const cls = [
     prefixCls,
     className,
@@ -58,6 +55,7 @@ function InternalInput<T>(
       <input
         ref={inputRef}
         type={type}
+        autoComplete="off"
         {...otherProps}
         className={`${prefixCls}-inner`}
       />
@@ -68,8 +66,4 @@ function InternalInput<T>(
       )}
     </div>
   );
-}
-
-export default React.forwardRef<HTMLInputElement, InputProps<{}>>(
-  InternalInput,
-);
+});

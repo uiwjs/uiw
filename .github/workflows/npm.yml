@@ -3,37 +3,35 @@ on:
   push:
     tags: 
       - v*
+
+env:
+  SKIP_PREFLIGHT_CHECK: true
+
 jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@master
-
-    - name: Setup Node
-      uses: actions/setup-node@v1
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
       with:
-        node-version: '10.x'
-        registry-url: https://registry.npmjs.org/
+        node-version: 14
 
     - name: Generate changelog
       id: changelog
-      uses: jaywcjlove/changelog-generator@v1.2.1
+      uses: jaywcjlove/changelog-generator@v1.4.6
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        filter-author: (jaywcjlove|小弟调调™|dependabot\[bot\]|Renovate Bot)
+        filter-author: (小弟调调™)
         filter: (^[\s]+?[R|r]elease)|(^[R|r]elease)
 
     - run: npm install
     - run: npm run hoist
 
-    # - run: npm run build
-    - run: npm run b:uiw
-    - run: npm run b:css
-    - run: npm run type
-
-    - run: npm run bundle
+    - run: npm run build
     - run: npm run coverage
 
+    - run: npm run b:website
+    - run: npm run b:doc
 
     - run: |
         # Strip git ref prefix from version
@@ -43,6 +41,7 @@ jobs:
         # Strip "v" prefix from tag name
         [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
         echo "version: $VERSION"
+        export VERSION
 
         node node_modules/.bin/lerna version $VERSION --no-changelog --no-git-tag-version --no-push --yes --force-publish
         npm run b:website
@@ -53,44 +52,118 @@ jobs:
 
         git commit -am $COMMIT
 
+    - run: rm -rf packages/doc/web
+    - run: mkdir -p packages/doc/web
+    - run: cp -rf website/build/* packages/doc/web
+
+    - run: npm run bundle
+    - run: git checkout -f packages/uiw/tsconfig.json
+
+    - run: git status
+
     - name: git push master
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@latest
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
-        body: |
-          ${{ steps.changelog.outputs.compareurl }}
-          ${{ steps.changelog.outputs.changelog }}
-        draft: false
-        prerelease: false
+    - run: npm install @jsdevtools/npm-publish -g
 
-    - name: npm publish
-      run: npm run u:publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-affix/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-alert/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-auto-link/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-avatar/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-back-top/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-badge/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-breadcrumb/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-button/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-button-group/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-calendar/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-card/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-checkbox/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-collapse/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-copy-to-clipboard/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-date-input/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-date-picker/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-descriptions/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-divider/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-drawer/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-dropdown/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-file-input/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-form/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-grid/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-icon/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-input/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-layout/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-list/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-loader/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-menu/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-message/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-modal/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-month-picker/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-notify/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-overlay/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-overlay-trigger/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-pagination/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-pin-code/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-popover/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-portal/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-progress/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-radio/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-rate/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-search-select/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-select/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-slider/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-steps/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-switch/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-table/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-tabs/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-tag/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-textarea/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-time-picker/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-tooltip/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-tree/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-tree-checked/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/utils/package.json
+
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/uiw/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/doc/package.json
+
+    - run: |
+        echo "tag: ${{ steps.changelog.outputs.tag }}"
+        echo "version: ${{ steps.changelog.outputs.version }}"
+        echo "ref: ${{ github.ref }}"
+
+    - name: Create Release
+      uses: ncipollo/release-action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        name: ${{ steps.changelog.outputs.tag }}
+        tag: ${{ steps.changelog.outputs.tag }}
+        body: |
+          [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/uiw@${{steps.changelog.outputs.version}}/file/README.md) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/uiw)](https://bundlephobia.com/result?p=uiw@${{steps.changelog.outputs.version}}) [![npm version](https://img.shields.io/npm/v/uiw.svg)](https://www.npmjs.com/package/uiw)
+          
+          ```bash
+          npm i uiw@${{steps.changelog.outputs.version}}
+          ```
+
+          ${{ steps.changelog.outputs.compareurl }}
+
+          ${{ steps.changelog.outputs.changelog }}
 
     - name: Deploy to uiwjs.github.io
       uses: peaceiris/actions-gh-pages@v3
       with:
         personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
-        publish_dir: ./website/uiw/build
+        publish_dir: ./website/build
         publish_branch: master
         external_repository: uiwjs/uiwjs.github.io
 
-    - name: Build and Deploy
+    - name: Deploy gh-pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         publish_branch: gh-pages
-        publish_dir: ./website/uiw/build
+        publish_dir: ./website/build
         cname: uiw.js.cool
 
     - name: Sync to Gitee

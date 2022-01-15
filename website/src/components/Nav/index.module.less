@@ -1,0 +1,102 @@
+.logo {
+  width: 32px;
+  padding: 25px 0 0 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  span {
+    display: none;
+  }
+  &.top {
+    padding-top: 0;
+    a {
+      display: flex;
+      align-items: center;
+    }
+    svg {
+      height: 32px;
+      margin-right: 10px;
+    }
+    span {
+      display: inline-table;
+      font-weight: bold;
+      color: #fff;
+      font-size: 16px;
+    }
+  }
+}
+
+.nav {
+  padding-top: 25px;
+  flex: 1;
+  svg {
+    height: 18px;
+    width: 18px;
+    margin: 0 auto;
+    margin-right: 6px;
+    path {
+      fill: currentColor;
+    }
+  }
+  a {
+    color: #9e9e9e;
+    display: block;
+    padding: 10px 0;
+    text-align: center;
+    &:global {
+      &:hover svg.gitee path {
+        fill: #c71d23 !important;
+      }
+    }
+    &:global(.active) {
+      color: #fff;
+    }
+  }
+}
+
+.navTop {
+  flex: 1;
+  padding-top: 0;
+  display: flex;
+  justify-content: center;
+  line-height: initial;
+  a {
+    padding: 0 10px;
+    display: flex;
+  }
+  svg {
+    display: flex;
+  }
+  // .logo {
+  //   padding-top: 0;
+  // }
+}
+
+.btn {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding-bottom: 10px;
+  a {
+    display: block;
+    padding: 10px 0;
+    text-align: center;
+  }
+  button {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+}
+
+.btnTop {
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 0;
+  a {
+    padding: 0;
+  }
+  svg {
+    display: flex;
+  }
+}

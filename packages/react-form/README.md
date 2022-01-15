@@ -11,8 +11,8 @@ import { Form, FormItem } from '@uiw/react-form';
 
 ### 基本用法
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, Input, Row, Col, Slider, Button, Notify } from 'uiw';
 
@@ -66,16 +66,15 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 自定义校验
 
 一般校验可不需引入外部包解决，如果遇到大型工程表单比较多的地方推荐使用 [jquense/yup](https://github.com/jquense/yup)
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
-import { Form, Input, Checkbox, Switch, RadioGroup, Radio, Textarea, Row, Col, Button } from 'uiw';
+import { Form, Input, Notify, Checkbox, Switch, RadioGroup, Radio, Textarea, Row, Col, Button } from 'uiw';
 
 const Demo = () => (
   <Form
@@ -95,6 +94,10 @@ const Demo = () => (
         err.filed = errorObj;
         throw err;
       }
+      Notify.success({
+        title: '提交成功！',
+        description: `姓名为：${current.userName}，提交完成，将自动填充初始化值！`,
+      });
     }}
     onSubmitError={(error) => {
       if (error.filed) {
@@ -216,12 +219,11 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 水平登录栏
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, Input, Row, Col, Notify, Button } from 'uiw';
 
@@ -286,12 +288,11 @@ const Demo = () => (
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## 登录
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, Input, Row, Col, Checkbox, Notify, Button } from 'uiw';
 
@@ -347,12 +348,11 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 表单提交
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, Input, Select, Row, Col, Button } from 'uiw';
 
@@ -429,7 +429,6 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 
 ### 自定义控件应用
@@ -437,69 +436,58 @@ ReactDOM.render(<Demo />, _mount_);
 下面实例是在 [`<Form />`](#/components/form) 表单组件中，应用自定义 `<CustomSelect />` 控件组件。
 
 > ⚠️ 注意，自定义控件需要两个必要的 `props` 参数，`value` 和 `onChange`
+<!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
 - `value` 用于值传递，
 - `onChange(value)` 用于值变更需要执行的回调函数，回调函数第一个参数必须是 `value`。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { Form, Row, Col, Dropdown, Menu, Icon, Button, Notify } from 'uiw';
 
 // 自定义组件
-class CustomSelect extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: props.value,
-      isOpen: false,
-    };
-  }
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.setState({ value: nextProps.value });
+function CustomSelect(props) {
+  const { option = [], onChange } = props;
+  const [value, setValue] = React.useState(props.value);
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    if (value !== props.value) {
+      setValue(props.value);
     }
-  }
-  onVisibleChange(isOpen) {
-    this.setState({ isOpen });
-  }
-  onClick(item) {
-    const { onChange } = this.props;
-    this.setState({ value: item.value, isOpen: false }, () => {
-      onChange && onChange(item.value);
-    });
-  }
-  render() {
-    const { option } = this.props;
-    const { isOpen, value } = this.state;
-    const label = option.find(item => value === item.value);
-    return (
-      <Dropdown
-        trigger="click"
-        onVisibleChange={this.onVisibleChange.bind(this)}
-        isOpen={isOpen}
-        menu={
-          <Menu bordered style={{ minWidth: 120 }}>
-            {option.map((item, idx) => {
-              const active = value === item.value;
-              return (
-                <Menu.Item active={active} key={idx} text={item.label} onClick={this.onClick.bind(this, item)}/>
-              );
-            })}
-          </Menu>
-        }
+  }, [props.value]);
+  const label = option.find(item => value === item.value);
+  return (
+    <Dropdown
+      trigger="click"
+      onVisibleChange={(open) => setIsOpen(open)}
+      isOpen={isOpen}
+      menu={
+        <Menu bordered style={{ minWidth: 120 }}>
+          {option.map((item, idx) => (
+            <Menu.Item active={value === item.value} key={idx} text={item.label}
+              onClick={() => {
+                setValue(item.value);
+                setIsOpen(false)
+                onChange && onChange(item.value);
+              }}
+            />
+          ))}
+        </Menu>
+      }
+    >
+      <Button
+        style={{
+          boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 -1px 0 rgba(16, 22, 26, 0.1)'
+        }}
+        type="link"
       >
-        <Button
-          style={{
-            boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 -1px 0 rgba(16, 22, 26, 0.1)'
-          }}
-          type="link"
-        >
-          {label.label}<Icon type={isOpen ? 'up' : 'down'} />
-        </Button>
-      </Dropdown>
-    )
-  }
+        {label.label}<Icon type={isOpen ? 'up' : 'down'} />
+      </Button>
+    </Dropdown>
+  );
 }
 
 // 自定义组件应用实例
@@ -563,16 +551,16 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### FormItem 竖排
 
 对组件 `FormItem` 竖排展示示例。
 
 > ⚠️ 注意：当前只展示效果，`FormItem` 组件只在 `Form` 组件中使用。
+<!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, FormItem } from 'uiw';
 
@@ -597,16 +585,16 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### FormItem 横排
 
 对组件 `FormItem` 横排展示示例。
 
 > ⚠️ 注意：当前只展示效果，`FormItem` 组件只在 `Form` 组件中使用。
+<!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { Form, FormItem } from 'uiw';
 
@@ -637,7 +625,6 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## Form
 

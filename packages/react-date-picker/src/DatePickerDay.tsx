@@ -1,12 +1,10 @@
-import React from 'react';
-import {
-  IProps,
-  HTMLDivProps,
-  getFirstDayOfWeek,
-  solarMonthDays,
-  isSameDate,
-} from '@uiw/utils';
+import React, { useMemo } from 'react';
+import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/day.less';
+
+function isValidDate(date: Date) {
+  return date instanceof Date && !isNaN(date.getTime());
+}
 
 export interface DatePickerDayDateSource {
   day?: number;
@@ -64,190 +62,173 @@ export type DatePickerDayRenderDayProps = {
   onClick?: (cellDate: Date, event: React.MouseEvent<HTMLDivProps>) => void;
 };
 
-function initSameDate(date: Date) {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-}
+export type DayRectProps = {
+  col: number;
+  row: number;
+  index: number;
+  date?: DatePickerDayProps['date'];
+  today?: DatePickerDayProps['today'];
+  disabledDate?: DatePickerDayProps['disabledDate'];
+  renderDay?: DatePickerDayProps['renderDay'];
+  panelDate?: DatePickerDayProps['panelDate'];
+  onSelectDay?: DatePickerDayProps['onSelectDay'];
+};
 
-function setTimeDate(selDate: Date, curDate: Date) {
-  if (!selDate) {
-    return curDate;
+export function DayRect(props: DayRectProps) {
+  const {
+    date: selectedDate,
+    row,
+    col,
+    index,
+    today,
+    panelDate,
+    disabledDate,
+    renderDay,
+    onSelectDay,
+    ...other
+  } = props;
+  const cls: Omit<DatePickerDayRenderDay, 'date'> = {
+    end: col === 0 || col === 6,
+    prev: false,
+    today: false,
+    selected: false,
+    next: false,
+    disabled: false,
+  };
+  let date = panelDate;
+  if (!date || !isValidDate(date)) date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const week = useMemo(
+    () => new Date(new Date(date!).setDate(1)).getDay(),
+    [date.toDateString()],
+  );
+  const lastDay = useMemo(
+    () => new Date(year, month === 0 ? 12 : month + 1, 0).getDate(),
+    [date.toDateString()],
+  );
+  let day = index;
+  if (date) {
+    day = day - week + 1;
+    if (day < 1) {
+      cls.prev = true;
+    }
+    if (day > lastDay) {
+      cls.next = true;
+    }
   }
-  return new Date(
-    curDate.getFullYear(),
-    curDate.getMonth(),
-    curDate.getDate(),
-    selDate.getHours(),
-    selDate.getMinutes(),
-    selDate.getSeconds(),
+  let cellDate = useMemo(() => new Date(new Date(date!).setDate(day)), [day]);
+  if (today && today.toDateString() === cellDate.toDateString()) {
+    cls.today = true;
+  }
+  if (selectedDate && selectedDate.toDateString() === cellDate.toDateString()) {
+    cls.selected = true;
+  }
+  const divProps: React.HTMLAttributes<HTMLDivElement> = {
+    onClick: () => {
+      const cellMonth = cellDate.getMonth();
+      onSelectDay &&
+        onSelectDay!(cellDate, {
+          year: cellDate.getFullYear(),
+          month: cellMonth === 0 ? 12 : cellMonth + 1,
+          day: cellDate.getDate(),
+        });
+    },
+  };
+  if (disabledDate && disabledDate(cellDate, { ...props, ...cls })) {
+    cls.disabled = true;
+    delete divProps.onClick;
+  }
+  return (
+    <div className={classnames(cls)} {...other} {...divProps}>
+      {renderDay ? (
+        renderDay(cellDate.getDate(), { ...props, ...cls, date: cellDate })
+      ) : (
+        <div>{cellDate.getDate()}</div>
+      )}
+    </div>
   );
 }
 
-export class DatePickerDay extends React.Component<
-  DatePickerDayProps,
-  PickerDayState
-> {
-  public state: PickerDayState;
-  public static defaultProps: DatePickerDayProps = {
-    prefixCls: 'w-datepicker',
-    weekday: ['日', '一', '二', '三', '四', '五', '六'],
-    weekTitle: [
-      '星期天',
-      '星期一',
-      '星期二',
-      '星期三',
-      '星期四',
-      '星期五',
-      '星期六',
-    ],
-    onSelectDay() {},
-  };
-  constructor(props: DatePickerDayProps & HTMLDivProps) {
-    super(props);
-    this.state = {
-      selected: props.date,
-      panelDate: props.panelDate,
-    };
-  }
-  UNSAFE_componentWillReceiveProps(nextProps: DatePickerDayProps) {
-    if (nextProps.panelDate !== this.props.panelDate) {
-      this.setState({ panelDate: nextProps.panelDate });
-    }
-    if (nextProps.date !== this.props.date) {
-      this.setState({ selected: nextProps.date });
-    }
-  }
-  handleClick(selectedDate?: Date, dateSource?: DatePickerDayDateSource) {
-    const { date } = this.props;
-    if (
-      date &&
-      isSameDate(initSameDate(selectedDate as Date), initSameDate(date))
-    ) {
-      this.setState({ selected: selectedDate });
-      selectedDate = undefined;
-    }
-    this.setState({ panelDate: selectedDate });
-    this.props.onSelectDay!(selectedDate, dateSource);
-  }
-  renderDay(num: number, row: number) {
-    const { date: selectedDate, disabledDate, renderDay } = this.props;
-    const today = initSameDate(this.props.today as Date);
-    const date = initSameDate(this.state.panelDate as Date);
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const firstDayOfWeek = getFirstDayOfWeek(year, month + 1);
-    let day = row * 7 + num - firstDayOfWeek + 1;
-    const cls: Omit<DatePickerDayRenderDay, 'date'> = {
-      end: num === 0 || num === 6,
-      prev: false,
-      today: false,
-      selected: false,
-      next: false,
-      disabled: false,
-    };
-    // Prev Month
-    const preDate = new Date(new Date(date).setMonth(month - 1));
-    // Next Month
-    const nextDate = new Date(new Date(date).setMonth(month + 1));
-    const prevDays = solarMonthDays(
-      preDate.getFullYear(),
-      preDate.getMonth() + 1,
-    );
-    const days = solarMonthDays(year, month + 1);
-    let cellDate = null;
-    if (day <= 0) {
-      // Prev Month
-      day = prevDays + day;
-      cls.prev = true;
-      cellDate = new Date(preDate).setDate(day);
-    } else if (day > days) {
-      // Next Month
-      day -= days;
-      cls.next = true;
-      cellDate = new Date(nextDate).setDate(day);
-    } else {
-      cellDate = new Date(this.state.panelDate as Date).setDate(day);
-    }
-    cellDate = setTimeDate(selectedDate as Date, new Date(cellDate));
-    if (isSameDate(initSameDate(new Date(cellDate)), today)) {
-      cls.today = true;
-    }
-    if (
-      selectedDate &&
-      isSameDate(initSameDate(cellDate), initSameDate(selectedDate))
-    ) {
-      cls.selected = true;
-    }
-    const props: { key: number; onClick?: () => void } = {
-      key: num,
-      onClick: this.handleClick.bind(this, cellDate, { day, month, year }),
-    };
-    if (disabledDate && disabledDate(cellDate, { ...props, ...cls })) {
-      cls.disabled = true;
-      delete props.onClick;
-    }
-    return (
-      <div {...props} className={classnames(cls)}>
-        {renderDay ? (
-          renderDay(day, { ...props, ...cls, date: cellDate })
-        ) : (
-          <div>{day}</div>
-        )}
+const WEEKTITLE = [
+  '星期天',
+  '星期一',
+  '星期二',
+  '星期三',
+  '星期四',
+  '星期五',
+  '星期六',
+];
+const WEEKDAY = ['日', '一', '二', '三', '四', '五', '六'];
+
+export function DatePickerDay(props: DatePickerDayProps) {
+  const {
+    prefixCls = 'w-datepicker',
+    className,
+    weekday = WEEKDAY,
+    weekTitle = WEEKTITLE,
+    date,
+    today,
+    panelDate,
+    disabledDate,
+    renderDay,
+    onSelectDay,
+    ...other
+  } = props;
+
+  const weekdayLabel = useMemo(
+    () => (
+      <div className={`${prefixCls}-weekday`}>
+        {(weekday || []).map((week, idx) => (
+          <div
+            key={idx}
+            className={classnames({ end: idx === 0 || idx === 6 })}
+            title={weekTitle && weekTitle[idx]}
+          >
+            {week}
+          </div>
+        ))}
       </div>
-    );
-  }
-  renderWeek(num: number) {
-    const { prefixCls } = this.props;
-    return (
-      <div key={num} className={`${prefixCls}-week`}>
-        {[...Array(7)].map((_, idx) => this.renderDay(idx, num))}
-      </div>
-    );
-  }
-  render() {
-    const {
-      prefixCls,
-      className,
-      weekday,
-      weekTitle,
-      date,
-      today,
-      panelDate,
-      disabledDate,
-      renderDay,
-      onSelectDay,
-      ...other
-    } = this.props;
-    return (
+    ),
+    [prefixCls, weekday, weekTitle],
+  );
+
+  return (
+    <div
+      {...other}
+      className={[prefixCls ? `${prefixCls}-body` : null, className]
+        .filter(Boolean)
+        .join(' ')
+        .trim()}
+    >
+      {weekdayLabel}
       <div
-        {...other}
-        className={[prefixCls ? `${prefixCls}-body` : null, className]
+        className={[prefixCls ? `${prefixCls}-day-body` : null]
           .filter(Boolean)
           .join(' ')
           .trim()}
       >
-        <div className={`${prefixCls}-weekday`}>
-          {weekday &&
-            weekday.map((week, idx) => {
-              return (
-                <div
-                  key={idx}
-                  className={classnames({ end: idx === 0 || idx === 6 })}
-                  title={weekTitle && weekTitle[idx]}
-                >
-                  {week}
-                </div>
-              );
-            })}
-        </div>
-        <div
-          className={[prefixCls ? `${prefixCls}-day-body` : null]
-            .filter(Boolean)
-            .join(' ')
-            .trim()}
-        >
-          {[...Array(6)].map((_, idx) => this.renderWeek(idx))}
-        </div>
+        {[...Array(6)].map((_, idx) => (
+          <div key={idx} className={`${prefixCls}-week`}>
+            {[...Array(7)].map((_, col) => (
+              <DayRect
+                date={date}
+                today={today}
+                disabledDate={disabledDate}
+                renderDay={renderDay}
+                panelDate={panelDate}
+                key={col}
+                col={col}
+                row={idx}
+                onSelectDay={(curDate, data) => {
+                  onSelectDay && onSelectDay(curDate, data);
+                }}
+                index={idx * 7 + col}
+              />
+            ))}
+          </div>
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
 }

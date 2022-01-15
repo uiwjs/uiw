@@ -11,8 +11,8 @@ import AutoLink from '@uiw/react-auto-link';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,noScroll,codePen,codeSandbox--> 
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import ReactDOM from 'react-dom';
 import { AutoLink } from 'uiw';
 
@@ -26,7 +26,6 @@ ReactDOM.render(
   _mount_
 );
 ```
-<!--End-->
 
 ## API
 

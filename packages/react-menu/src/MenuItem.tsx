@@ -1,5 +1,5 @@
-import React from 'react';
-import Icon from '@uiw/react-icon';
+import React, { Fragment } from 'react';
+import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
 import './style/item.less';
 
@@ -12,69 +12,78 @@ const disabledProps = {
   tabIndex: -1,
 };
 
-export interface MenuItemProps
-  extends IProps,
-    React.AllHTMLAttributes<HTMLElement> {
+type AnchorElement = React.AnchorHTMLAttributes<HTMLAnchorElement>;
+
+type Anchor<T = any> = T extends HTMLElement ? React.HTMLProps<T> : T;
+
+export interface MenuItemProps<T> extends IProps, Anchor {
   text?: React.ReactNode;
   addonAfter?: React.ReactNode;
-  tagName?: keyof JSX.IntrinsicElements | any;
+  tagName?: T extends HTMLElement ? keyof JSX.IntrinsicElements : never;
   multiline?: boolean;
   isSubMenuItem?: boolean;
   disabled?: boolean;
   active?: boolean;
-  icon?: JSX.Element | string | false | null;
+  icon?: IconProps['type'];
 }
 
-function MenuItem<T>(props = {} as MenuItemProps & T) {
-  const {
-    prefixCls = 'w-menu-item',
-    className,
-    tagName: TagName = 'a',
-    children,
-    disabled = false,
-    multiline = false,
-    icon,
-    text,
-    active = false,
-    addonAfter,
-    isSubMenuItem,
-    ...htmlProps
-  } = props;
-  const anchorCls = [
-    prefixCls,
-    active ? 'active' : null,
-    disabled ? 'w-disabled' : null,
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ')
-    .trim();
-  const tagComp = (
-    <TagName
-      {...htmlProps}
-      {...(disabled ? disabledProps : {})}
-      className={anchorCls}
-    >
-      <Icon className={`${prefixCls}-icon`} type={icon} />
-      <div
-        className={[
-          prefixCls ? `${prefixCls}-text` : null,
-          !multiline ? `${prefixCls}-multiline` : null,
-        ]
-          .filter(Boolean)
-          .join(' ')
-          .trim()}
-      >
-        {text}
-      </div>
-      {addonAfter}
-    </TagName>
-  );
-  if (isSubMenuItem) {
-    return tagComp;
-  }
-  return <li> {tagComp} </li>;
-}
+const MenuItem = React.forwardRef<AnchorElement, MenuItemProps<any>>(
+  (props, ref) => {
+    const {
+      prefixCls = 'w-menu-item',
+      className,
+      tagName: TagName = 'a',
+      children,
+      disabled = false,
+      multiline = false,
+      icon,
+      text,
+      active = false,
+      addonAfter,
+      isSubMenuItem,
+      ...htmlProps
+    } = props;
+    const anchorCls = [
+      prefixCls,
+      active ? 'active' : null,
+      disabled ? 'w-disabled' : null,
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
+
+    const tagComp = React.createElement(
+      TagName,
+      {
+        ...htmlProps,
+        ...(disabled ? disabledProps : {}),
+        className: anchorCls,
+        ref,
+      },
+      <Fragment>
+        <Icon className={`${prefixCls}-icon`} type={icon} />
+        <div
+          className={[
+            prefixCls && `${prefixCls}-text`,
+            !multiline && `${prefixCls}-multiline`,
+          ]
+            .filter(Boolean)
+            .join(' ')
+            .trim()}
+        >
+          {text}
+        </div>
+        {addonAfter}
+      </Fragment>,
+    );
+    if (isSubMenuItem) {
+      return tagComp;
+    }
+    return <li> {tagComp} </li>;
+  },
+);
 
 MenuItem.displayName = 'uiw.MenuItem';
+
 export default MenuItem;

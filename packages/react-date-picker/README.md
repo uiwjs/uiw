@@ -11,162 +11,126 @@ import DatePicker from '@uiw/react-date-picker';
 
 ### 基础用法
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
 
-class Demo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: new Date('2019-02-26 02:00:00'),
-    };
-  }
-  onChange(selectedDate) {
-    console.log('selectedDate:', selectedDate)
-    this.setState({ date: selectedDate });
-  }
-  render() {
-    return (
-      <div>
-        <DatePicker
-          date={this.state.date}
-          todayButton="今天"
-          onChange={this.onChange.bind(this)}
-        />
-        <DatePicker
-          showTime
-          date={this.state.date}
-          todayButton="今天"
-          onChange={this.onChange.bind(this)}
-        />
-        <div>{this.state.date ? String(this.state.date) : 'no date'}</div>
-      </div>
-    )
-  }
+function Demo() {
+  const [date, setDate] = React.useState(new Date('2019-02-26 02:00:00'));
+  return (
+    <div>
+      <DatePicker
+        date={date}
+        weekday={['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']}
+        monthLabel={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']}
+        todayButton="今天"
+        onChange={(selectedDate) => setDate(selectedDate)}
+      />
+      <DatePicker
+        showTime
+        date={date}
+        todayButton="今天"
+        onChange={(selectedDate) => setDate(selectedDate)}
+      />
+      <DatePicker
+        date={date}
+        todayButton="今天"
+        onChange={(selectedDate) => setDate(selectedDate)}
+      />
+      <div>{date ? String(date) : 'no date'}</div>
+    </div>
+  );
 }
+
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 显示时间
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
 
-class Demo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: null,
-    };
-  }
-  onChange(selectedDate) {
-    console.log('selectedDate:', selectedDate)
-    this.setState({ date: selectedDate });
-  }
-  render() {
-    return (
-      <div>
-        <DatePicker
-          showTime
-          date={this.state.date}
-          todayButton="今天"
-          onChange={this.onChange.bind(this)}
-        />
-        <div>{this.state.date ? String(this.state.date) : 'no date'}</div>
-      </div>
-    )
-  }
+function Demo() {
+  const [date, setDate] = React.useState(null);
+  return (
+    <div>
+      <DatePicker
+        showTime
+        date={date}
+        todayButton="今天"
+        onChange={(selectedDate) => setDate(selectedDate)}
+      />
+      <div>{date ? String(date) : 'no date'}</div>
+    </div>
+  )
 }
+
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 设置本地语言
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
 
-class Demo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: null,
-    };
-  }
-  onChange(selectedDate) {
-    console.log('selectedDate:', selectedDate)
-    this.setState({ date: selectedDate });
-  }
-  render() {
-    return (
-      <div>
-        <DatePicker
-          todayButton="Today"
-          weekTitle={['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']}
-          weekday={['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']}
-          monthLabel={['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']}
-          date={this.state.date}
-          onChange={this.onChange.bind(this)}
-        />
-        <div>{this.state.date ? String(this.state.date) : 'no date'}</div>
-      </div>
-    )
-  }
+function Demo() {
+  const [date, setDate] = React.useState(null);
+  return (
+    <div>
+      <DatePicker
+        todayButton="Today"
+        weekTitle={['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']}
+        weekday={['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']}
+        monthLabel={['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']}
+        date={date}
+        onChange={(selectedDate) => setDate(selectedDate)}
+      />
+      <div>{date ? String(date) : 'no date'}</div>
+    </div>
+  )
 }
+
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 初始展示日期
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
 
-class Demo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: null,
-    };
-  }
-  onChange(selectedDate) {
-    this.setState({ date: selectedDate });
-  }
-  render() {
-    return (
-      <div>
-        <DatePicker
-          date={this.state.date}
-          onChange={this.onChange.bind(this)}
-        />
-        <div>{this.state.date ? String(this.state.date) : 'no date'}</div>
-      </div>
-    );
-  }
+function Demo() {
+  const [date, setDate] = React.useState(null);
+  return (
+    <div>
+      <DatePicker
+        date={date}
+        onChange={(selectedDate) => setDate(selectedDate)}
+      />
+      <div>{date ? String(date) : 'no date'}</div>
+    </div>
+  )
 }
+
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ### 禁用时间
 
 通过 `disabledDate` 方法设置，今天和今天之前不能选择。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
@@ -175,79 +139,59 @@ function disabledDate(currentDate) {
   // 今天和今天之前不能选择
   return currentDate && currentDate.valueOf() < Date.now();
 }
-class Demo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: null,
-      // date: new Date(),
-    };
-  }
-  onChange(selectedDate) {
-    this.setState({ date: selectedDate });
-  }
-  render() {
-    return (
-      <div>
-        <DatePicker
+
+function Demo() {
+  const [date, setDate] = React.useState(null);
+  return (
+    <div>
+      <DatePicker
           disabledDate={disabledDate}
-          date={this.state.date && new Date(this.state.date)}
-          onChange={this.onChange.bind(this)}
-        />
-        <div>{this.state.date ? String(this.state.date) : 'no date'}</div>
-      </div>
-    );
-  }
+        date={date}
+        onChange={(selectedDate) => setDate(selectedDate)}
+      />
+      <div>{date ? String(date) : 'no date'}</div>
+    </div>
+  );
 }
+
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## 定制日历单元格
 
 使用 `renderDay` 可以自定义日期单元格的内容和样式。
 
-<!--DemoStart,bgWhite,codePen,codeSandbox-->
-```js
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
 
-class Demo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: null,
-    };
-  }
-  onChange(selectedDate) {
-    this.setState({ date: selectedDate });
-  }
-  render() {
-    return (
-      <div>
-        <DatePicker
-          date={this.state.date}
-          renderDay={(day, props) => {
-            const style = {}
-            const week = props.date.getDay();
-            if (week === 0 && !props.prev && !props.next) {
-              style.border = '1px solid red';
-            }
-            return (
-              <div style={style}> {day} </div>
-            );
-          }}
-          onChange={this.onChange.bind(this)}
-        />
-        <div>{this.state.date ? String(this.state.date) : 'no date'}</div>
-      </div>
-    );
-  }
+function Demo() {
+  const [date, setDate] = React.useState(null);
+  return (
+    <div>
+      <DatePicker
+        renderDay={(day, props) => {
+          const style = {}
+          const week = props.date.getDay();
+          if (week === 0 && !props.prev && !props.next) {
+            style.boxShadow = 'inset 0 0 0 1px rgb(255 0 0)';
+          }
+          return (
+            <div style={style}> {day} </div>
+          );
+        }}
+        date={date}
+        onChange={(selectedDate) => setDate(selectedDate)}
+      />
+      <div>{date ? String(date) : 'no date'}</div>
+    </div>
+  );
 }
+
 ReactDOM.render(<Demo />, _mount_);
 ```
-<!--End-->
 
 ## DatePicker
 
