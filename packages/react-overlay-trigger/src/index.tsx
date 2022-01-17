@@ -158,6 +158,14 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>(
     }, [props.isOpen]);
 
     useEffect(() => {
+      const styls = getStyle({
+        placement: overlayStyl.placement || placement,
+        trigger: triggerRef.current as HTMLElement | IBoundingClientRect,
+        popup: popupRef.current as HTMLElement | IBoundingClientRect,
+        usePortal,
+        autoAdjustOverflow,
+      });
+      setOverlayStyl({ ...styls, zIndex: zIndex.current });
       onVisibleChange(isOpen);
     }, [isOpen]);
 
