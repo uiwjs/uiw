@@ -51,7 +51,7 @@ You can use [`kkt`](https://github.com/kktjs/kkt) to quickly create a react + ui
 npx create-kkt my-app -e uiw
 ```
 
-You can use the [`uiw v1.x`](https://github.com/uiwjs/uiw/tree/v1) version. [Please see here for instructions](https://github.com/uiwjs/uiw/tree/v1). ([**npx**](https://github.com/npm/npm/releases/tag/v5.2.0) comes with npm 5.2+ and higher.)
+You can use the [`uiw v1.x`](https://github.com/uiwjs/uiw/tree/v1) version. [Please see here for instructions](https://github.com/uiwjs/uiw/tree/v1). ([**npx**](https://github.com/npm/npm/releases/tag/v5.2.0) comes with npm `5.2+` and higher.)
 
 ### Basic Usage
 
@@ -151,7 +151,7 @@ Or clone locally:
 $ git clone https://github.com/uiwjs/uiwjs.github.io.git --recurse-submodules
 ```
 
-Compiled component code.
+Install dependencies & compile component code.
 
 ```bash
 $ npm install # Install dependencies
