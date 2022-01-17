@@ -42,7 +42,7 @@
     "uiw": "^4.9.9"
   },
   "devDependencies": {
-    "@kkt/less-modules": "7.0.5",
+    "@kkt/less-modules": "7.0.6",
     "@kkt/raw-modules": "7.0.5",
     "@kkt/scope-plugin-options": "7.0.5",
     "@types/react": "17.0.38",
