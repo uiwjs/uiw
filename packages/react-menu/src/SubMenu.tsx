@@ -96,6 +96,7 @@ const SubMenu = React.forwardRef<HTMLLIElement, SubMenuProps<any>>(
     useMemo(() => {
       setIsOpen(false);
     }, [collapse]);
+
     function onClick(e: React.MouseEvent<HTMLUListElement, MouseEvent>) {
       const target = e.currentTarget;
       const related = (e.relatedTarget || e.nativeEvent.target) as HTMLElement;
@@ -142,7 +143,7 @@ const SubMenu = React.forwardRef<HTMLLIElement, SubMenuProps<any>>(
     } else {
       overlayTriggerProps.className = `${prefixCls}-popup`;
       overlayTriggerProps.trigger = 'hover';
-      // overlayTriggerProps.usePortal = true;
+      overlayTriggerProps.usePortal = true;
       menuProps.onClick = onClick;
     }
     return (
