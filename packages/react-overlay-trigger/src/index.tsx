@@ -273,7 +273,6 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>(
         usePortal,
         autoAdjustOverflow,
       });
-      console.log('789:::', styls);
       setOverlayStyl({ ...styls, zIndex: zIndex.current });
     }
 
@@ -302,7 +301,6 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>(
       }
     }
     overlayProps.style = { ...overlayProps.style, ...overlayStyl };
-    // console.log('aaaa', overlayProps)
     return (
       <React.Fragment>
         {cloneElement(
