@@ -27,20 +27,10 @@ export default function Home() {
             {' '}
             Extensions{' '}
           </Link>
-          <a
-            className={styles.AppLink}
-            href="https://github.com/uiwjs/uiw"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a className={styles.AppLink} href="https://github.com/uiwjs/uiw" target="_blank" rel="noopener noreferrer">
             Github
           </a>
-          <a
-            className={styles.AppLink}
-            href="https://gitee.com/uiw/uiw"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a className={styles.AppLink} href="https://gitee.com/uiw/uiw" target="_blank" rel="noopener noreferrer">
             Gitee
           </a>
         </div>

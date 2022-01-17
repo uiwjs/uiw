@@ -28,20 +28,14 @@ export default class Circle<T> extends React.Component<ProgressCircleProps<T>> {
     const { strokeWidth, percent } = this.props;
     if (elm && elm.parentNode) {
       const { width } = (elm.parentNode as SVGAElement).getBoundingClientRect();
-      const _strokeWidth: string = (
-        ((strokeWidth as number) / width) *
-        100
-      ).toFixed(1);
-      const radius = parseInt(
-        (50 - parseFloat(_strokeWidth) / 2).toString(),
-        10,
-      );
+      const _strokeWidth: string = (((strokeWidth as number) / width) * 100).toFixed(1);
+      const radius = parseInt((50 - parseFloat(_strokeWidth) / 2).toString(), 10);
       elm.setAttribute('stroke-width', _strokeWidth);
       elm.setAttribute(
         'd',
-        `M 50 50 m 0 -${radius} a ${radius} ${radius} 0 1 1 0 ${
+        `M 50 50 m 0 -${radius} a ${radius} ${radius} 0 1 1 0 ${radius * 2} a ${radius} ${radius} 0 1 1 0 -${
           radius * 2
-        } a ${radius} ${radius} 0 1 1 0 -${radius * 2}`,
+        }`,
       );
       if (type === 'track') {
         // 计算周长
@@ -56,38 +50,22 @@ export default class Circle<T> extends React.Component<ProgressCircleProps<T>> {
     }
   }
   render() {
-    const {
-      prefixCls,
-      style,
-      type,
-      className,
-      showText,
-      percent,
-      format,
-      strokeWidth,
-      width,
-      status,
-      ...resetProps
-    } = this.props;
+    const { prefixCls, style, type, className, showText, percent, format, strokeWidth, width, status, ...resetProps } =
+      this.props;
     const cls = [
       prefixCls,
       className,
       `${prefixCls}-circle`,
       showText ? `${prefixCls}-show-text` : null,
       status ? `${prefixCls}-status-${status}` : null,
-      parseInt((percent as number).toString(), 10) >= 100
-        ? `${prefixCls}-status-success`
-        : null,
+      parseInt((percent as number).toString(), 10) >= 100 ? `${prefixCls}-status-success` : null,
     ]
       .filter(Boolean)
       .join(' ')
       .trim();
     let progressInfo;
     const progressStatus =
-      parseInt((percent as number).toString(), 10) >= 100 &&
-      !('status' in this.props)
-        ? 'success'
-        : status;
+      parseInt((percent as number).toString(), 10) >= 100 && !('status' in this.props) ? 'success' : status;
     if (showText) {
       let percentView: React.ReactNode = `${percent}%`;
       if (progressStatus === 'exception') {
@@ -96,10 +74,7 @@ export default class Circle<T> extends React.Component<ProgressCircleProps<T>> {
         percentView = <IconProgress type="check" />;
       }
       progressInfo = (
-        <span
-          className={`${prefixCls}-text`}
-          style={{ fontSize: (width as number) * 0.16 + 6 }}
-        >
+        <span className={`${prefixCls}-text`} style={{ fontSize: (width as number) * 0.16 + 6 }}>
           {format ? format(percent as number) : percentView}
         </span>
       );
@@ -107,11 +82,7 @@ export default class Circle<T> extends React.Component<ProgressCircleProps<T>> {
     return (
       <div className={cls} style={style} {...resetProps}>
         <svg viewBox="0 0 100 100" width={`${width}`}>
-          <path
-            ref={this.relativeStrokeWidth.bind(this, 'bg')}
-            className={`${prefixCls}-trail`}
-            fill="none"
-          />
+          <path ref={this.relativeStrokeWidth.bind(this, 'bg')} className={`${prefixCls}-trail`} fill="none" />
           <path
             ref={this.relativeStrokeWidth.bind(this, 'track')}
             strokeLinecap="round"

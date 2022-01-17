@@ -24,10 +24,7 @@ export default React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     ...other
   } = props;
   const supProps = {
-    className: [!dot ? `${prefixCls}-count` : null, dot ? 'dot' : null]
-      .filter(Boolean)
-      .join(' ')
-      .trim(),
+    className: [!dot ? `${prefixCls}-count` : null, dot ? 'dot' : null].filter(Boolean).join(' ').trim(),
     style: {},
   };
   const cls = [
@@ -49,18 +46,9 @@ export default React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   }
   return (
     <span className={cls} {...other} {...warpperProps} ref={ref}>
-      {color && (
-        <span
-          className={`${prefixCls}-dot`}
-          style={{ backgroundColor: color }}
-        />
-      )}
+      {color && <span className={`${prefixCls}-dot`} style={{ backgroundColor: color }} />}
       {children}
-      {count !== 0 && !color && (
-        <sup {...supProps}>
-          {!dot && count && max && count > max ? `${max}+` : count}
-        </sup>
-      )}
+      {count !== 0 && !color && <sup {...supProps}>{!dot && count && max && count > max ? `${max}+` : count}</sup>}
     </span>
   );
 });

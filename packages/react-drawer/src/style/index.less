@@ -2,8 +2,7 @@
 
 .@{drawer-prefix} {
   &-wrapper {
-    box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1),
-      0 0 46px 6px rgba(16, 22, 26, 0.2);
+    box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 0 46px 6px rgba(16, 22, 26, 0.2);
     background-color: #fff;
     position: fixed;
     margin: 0 !important;
@@ -88,38 +87,33 @@
 .@{drawer-prefix}.right.@{overlay-prefix}-enter .@{overlay-prefix}-content {
   transform: translateX(100%);
 }
-.@{drawer-prefix}.right.@{overlay-prefix}-enter-active
-  .@{overlay-prefix}-content {
+.@{drawer-prefix}.right.@{overlay-prefix}-enter-active .@{overlay-prefix}-content {
   transform: translateX(0);
 }
 .@{drawer-prefix}.right.@{overlay-prefix}-exit .@{overlay-prefix}-content {
   transform: translateX(0);
 }
-.@{drawer-prefix}.right.@{overlay-prefix}-exit-active
-  .@{overlay-prefix}-content {
+.@{drawer-prefix}.right.@{overlay-prefix}-exit-active .@{overlay-prefix}-content {
   transform: translateX(100%);
 }
 
 .@{drawer-prefix}.left.@{overlay-prefix}-enter .@{overlay-prefix}-content {
   transform: translateX(-100%);
 }
-.@{drawer-prefix}.left.@{overlay-prefix}-enter-active
-  .@{overlay-prefix}-content {
+.@{drawer-prefix}.left.@{overlay-prefix}-enter-active .@{overlay-prefix}-content {
   transform: translateX(0);
 }
 .@{drawer-prefix}.left.@{overlay-prefix}-exit .@{overlay-prefix}-content {
   transform: translateX(0);
 }
-.@{drawer-prefix}.left.@{overlay-prefix}-exit-active
-  .@{overlay-prefix}-content {
+.@{drawer-prefix}.left.@{overlay-prefix}-exit-active .@{overlay-prefix}-content {
   transform: translateX(-100%);
 }
 
 .@{drawer-prefix}.top.@{overlay-prefix}-enter .@{overlay-prefix}-content {
   transform: translateY(-100%);
 }
-.@{drawer-prefix}.top.@{overlay-prefix}-enter-active
-  .@{overlay-prefix}-content {
+.@{drawer-prefix}.top.@{overlay-prefix}-enter-active .@{overlay-prefix}-content {
   transform: translateY(0);
 }
 .@{drawer-prefix}.top.@{overlay-prefix}-exit .@{overlay-prefix}-content {
@@ -132,14 +126,12 @@
 .@{drawer-prefix}.bottom.@{overlay-prefix}-enter .@{overlay-prefix}-content {
   transform: translateY(100%);
 }
-.@{drawer-prefix}.bottom.@{overlay-prefix}-enter-active
-  .@{overlay-prefix}-content {
+.@{drawer-prefix}.bottom.@{overlay-prefix}-enter-active .@{overlay-prefix}-content {
   transform: translateY(0);
 }
 .@{drawer-prefix}.bottom.@{overlay-prefix}-exit .@{overlay-prefix}-content {
   transform: translateY(0);
 }
-.@{drawer-prefix}.bottom.@{overlay-prefix}-exit-active
-  .@{overlay-prefix}-content {
+.@{drawer-prefix}.bottom.@{overlay-prefix}-exit-active .@{overlay-prefix}-content {
   transform: translateY(100%);
 }

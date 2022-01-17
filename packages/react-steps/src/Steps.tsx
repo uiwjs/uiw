@@ -29,11 +29,7 @@ function InternalSteps<T>(props: StepsProps<T>) {
   const [lastStepOffsetWidth, setLastStepOffsetWidth] = useState(0);
   const filteredChildren = React.Children.toArray(children).filter((c) => !!c);
   const lastIndex = filteredChildren.length - 1; // 最后一个节点的索引数字
-  const classString = [
-    prefixCls,
-    `${prefixCls}-${direction}`,
-    !!progressDot ? `${prefixCls}-dot` : null,
-  ]
+  const classString = [prefixCls, `${prefixCls}-${direction}`, !!progressDot ? `${prefixCls}-dot` : null]
     .filter(Boolean)
     .join(' ')
     .trim();
@@ -45,10 +41,7 @@ function InternalSteps<T>(props: StepsProps<T>) {
     const domNode = warpRef.current;
     if (domNode && domNode.lastChild) {
       const width = ((domNode.lastChild as HTMLElement).offsetWidth || 0) + 1;
-      if (
-        width === lastStepOffsetWidth ||
-        Math.abs(width - lastStepOffsetWidth) <= 3
-      ) {
+      if (width === lastStepOffsetWidth || Math.abs(width - lastStepOffsetWidth) <= 3) {
         return;
       }
       setLastStepOffsetWidth(width);
@@ -66,9 +59,7 @@ function InternalSteps<T>(props: StepsProps<T>) {
         };
         if (index !== lastIndex && direction !== 'vertical') {
           childProps.itemWidth = `${100 / lastIndex}%`;
-          childProps.adjustMarginRight = -Math.round(
-            lastStepOffsetWidth / lastIndex + 1,
-          );
+          childProps.adjustMarginRight = -Math.round(lastStepOffsetWidth / lastIndex + 1);
         }
 
         if (progressDot && direction !== 'vertical') {

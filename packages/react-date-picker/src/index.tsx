@@ -2,11 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import formatter from '@uiw/formatter';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import { TimePickerTime, TimePickerPanelProps } from '@uiw/react-time-picker';
-import {
-  DatePickerDay,
-  DatePickerDayProps,
-  DatePickerDayDateSource,
-} from './DatePickerDay';
+import { DatePickerDay, DatePickerDayProps, DatePickerDayDateSource } from './DatePickerDay';
 import { DatePickerMonth } from './DatePickerMonth';
 import { DatePickerYear } from './DatePickerYear';
 import { DatePickerCaption, DatePickerCaptionType } from './DatePickerCaption';
@@ -35,13 +31,8 @@ const MONTH_LABEL = [
 export interface DatePickerShowTimeProps extends TimePickerPanelProps {
   format?: string;
 }
-export interface DatePickerProps
-  extends IProps,
-    Omit<HTMLDivProps, 'onChange'> {
-  onChange?: (
-    selectedDate?: Date,
-    dateSource?: DatePickerDayDateSource,
-  ) => void;
+export interface DatePickerProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
+  onChange?: (selectedDate?: Date, dateSource?: DatePickerDayDateSource) => void;
   renderDay?: DatePickerDayProps['renderDay'];
   disabledDate?: DatePickerDayProps['disabledDate'];
   showTime?: DatePickerShowTimeProps | boolean;
@@ -123,21 +114,14 @@ export default function DatePicker(props: DatePickerProps) {
     onChange && onChange(new Date(selectPanelDate));
   }
 
-  function onSelectedDate(
-    type: 'setMonth' | 'setFullYear',
-    month: number,
-    paging?: boolean,
-  ) {
+  function onSelectedDate(type: 'setMonth' | 'setFullYear', month: number, paging?: boolean) {
     (selectPanelDate || new Date())[type](month);
     setSelectPanelDate(new Date(selectPanelDate));
     setType('day');
     onChange && onChange(new Date(selectPanelDate));
   }
   return (
-    <div
-      className={[prefixCls, className].filter(Boolean).join(' ').trim()}
-      {...other}
-    >
+    <div className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...other}>
       <DatePickerCaption
         todayButton={todayButton}
         panelDate={selectPanelDate}
@@ -184,10 +168,7 @@ export default function DatePicker(props: DatePickerProps) {
         />
       )}
       {showTime && format && (
-        <div
-          className={`${prefixCls}-time-btn`}
-          onClick={() => handleSelected('time')}
-        >
+        <div className={`${prefixCls}-time-btn`} onClick={() => handleSelected('time')}>
           {formatter(format!, selectDate || selectPanelDate)}
         </div>
       )}

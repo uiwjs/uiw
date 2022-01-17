@@ -5,25 +5,12 @@ import './style/row.less';
 export interface RowProps extends IProps, HTMLDivProps {
   fixed?: boolean;
   gutter?: number;
-  justify?:
-    | 'flex-start'
-    | 'flex-end'
-    | 'center'
-    | 'space-between'
-    | 'space-around'
-    | 'space-evenly';
+  justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   align?: 'top' | 'middle' | 'bottom' | 'baseline';
 }
 
 export function Row(props: RowProps = {}) {
-  const {
-    prefixCls = 'w-row',
-    className,
-    gutter = 0,
-    justify,
-    align,
-    ...other
-  } = props;
+  const { prefixCls = 'w-row', className, gutter = 0, justify, align, ...other } = props;
   const cls = [
     prefixCls,
     className,
@@ -33,9 +20,7 @@ export function Row(props: RowProps = {}) {
     .filter(Boolean)
     .join(' ')
     .trim();
-  const gutterStyl = !gutter
-    ? {}
-    : { paddingLeft: gutter / 2, paddingRight: gutter / 2 };
+  const gutterStyl = !gutter ? {} : { paddingLeft: gutter / 2, paddingRight: gutter / 2 };
   return (
     <div {...other} className={cls}>
       {React.Children.toArray(props.children).map((child) => {

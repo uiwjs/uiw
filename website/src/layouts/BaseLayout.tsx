@@ -26,11 +26,7 @@ export default function Components(props: ComponentsProps) {
           </Header>
           <Layout>
             <Sider width={siderMenu ? 260 : 0}>
-              <Affix
-                offsetTop={0}
-                style={{ height: affix ? '100vh' : '' }}
-                onChange={(affixed) => setAffix(!!affixed)}
-              >
+              <Affix offsetTop={0} style={{ height: affix ? '100vh' : '' }} onChange={(affixed) => setAffix(!!affixed)}>
                 <div style={{ height: affix ? '100vh' : '', overflow: 'auto' }}>
                   <SiderMenu />
                 </div>

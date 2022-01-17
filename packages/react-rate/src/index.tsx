@@ -31,10 +31,7 @@ export default function Rate(props: RateProps = {}) {
   } = props;
   const [value, setValue] = useState(defValue);
   const [hoverCount, setHoverCount] = useState(-1);
-  const cls = [prefixCls, className, disabled ? 'disabled' : null]
-    .filter(Boolean)
-    .join(' ')
-    .trim();
+  const cls = [prefixCls, className, disabled ? 'disabled' : null].filter(Boolean).join(' ').trim();
   const [prevValue, setPrevValue] = useState<number>();
   if (defValue !== prevValue) {
     setPrevValue(defValue);
@@ -54,8 +51,7 @@ export default function Rate(props: RateProps = {}) {
     e.persist();
     let currentValue = key;
     const isLeft =
-      e.clientX - e.currentTarget.getBoundingClientRect().left <=
-      e.currentTarget.getBoundingClientRect().width / 2;
+      e.clientX - e.currentTarget.getBoundingClientRect().left <= e.currentTarget.getBoundingClientRect().width / 2;
     if (allowHalf) {
       e.persist();
       currentValue = isLeft ? key + 0.5 : key + 1;
@@ -82,10 +78,7 @@ export default function Rate(props: RateProps = {}) {
     <div {...other} className={cls} onMouseLeave={() => onMouseLeave()}>
       {[...Array(count)].map((_, idx) => {
         const halfon =
-          (value <= idx + 0.5 &&
-            Math.ceil(value) - 1 === idx &&
-            hoverCount === -1) ||
-          hoverCount === idx + 0.5;
+          (value <= idx + 0.5 && Math.ceil(value) - 1 === idx && hoverCount === -1) || hoverCount === idx + 0.5;
         const activeCls = [
           `${prefixCls}-hight`,
           idx + 1 <= value && hoverCount === -1 ? 'star-on' : null,

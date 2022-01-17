@@ -24,20 +24,13 @@ export default function Dots(props: TooltipProps) {
             style={{
               [vertical ? 'top' : 'left']: `${val}%`,
             }}
-            className={[
-              `${prefixCls}-mark`,
-              marks && marks !== true && !marks[stepValue] ? 'no-marks' : null,
-            ]
+            className={[`${prefixCls}-mark`, marks && marks !== true && !marks[stepValue] ? 'no-marks' : null]
               .filter(Boolean)
               .join(' ')
               .trim()}
           >
             {marks === true && markRender && markRender(stepValue)}
-            {marks !== true &&
-              marks &&
-              marks[stepValue] &&
-              markRender &&
-              markRender(stepValue, marks[stepValue])}
+            {marks !== true && marks && marks[stepValue] && markRender && markRender(stepValue, marks[stepValue])}
           </div>
         );
       })}

@@ -55,10 +55,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
         if (child.props.children && child.type === (SubMenu as any)) {
           props.inlineIndent = inlineIndent;
         }
-        return React.cloneElement(
-          child,
-          Object.assign({ ...props }, child.props, { key: `${key}` }),
-        );
+        return React.cloneElement(child, Object.assign({ ...props }, child.props, { key: `${key}` }));
       })}
     </ul>
   );

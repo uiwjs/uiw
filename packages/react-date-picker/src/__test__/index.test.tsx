@@ -9,10 +9,7 @@ describe('<DatePicker />', () => {
       <DatePicker
         date={new Date()}
         todayButton="今天"
-        onChange={(
-          selectedDate?: Date,
-          dateSource?: DatePickerDayDateSource,
-        ) => {
+        onChange={(selectedDate?: Date, dateSource?: DatePickerDayDateSource) => {
           console.log('selectedDate:', selectedDate);
           console.log('dateSource:', dateSource);
         }}
@@ -32,10 +29,7 @@ describe('<DatePicker />', () => {
         showTime
         date={new Date('2019-06-30T18:19:20')}
         todayButton="今天"
-        onChange={(
-          selectedDate?: Date,
-          dateSource?: DatePickerDayDateSource,
-        ) => {
+        onChange={(selectedDate?: Date, dateSource?: DatePickerDayDateSource) => {
           console.log('selectedDate:', selectedDate);
           console.log('dateSource:', dateSource);
         }}

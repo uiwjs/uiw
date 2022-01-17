@@ -8,9 +8,7 @@ export default function Page() {
       path="https://github.com/uiwjs/uiw/tree/master/packages/react-collapse/README.md"
       dependencies={{ Collapse, Button, Icon }}
       renderPage={async () => {
-        const md = await import(
-          'uiw/node_modules/@uiw/react-collapse/README.md'
-        );
+        const md = await import('uiw/node_modules/@uiw/react-collapse/README.md');
         return md.default || md;
       }}
     />

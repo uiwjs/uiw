@@ -5,10 +5,7 @@ import { getLevelItems, getAllColumnsKeys } from './util';
 import './style/index.less';
 
 export type TableColumns = {
-  title?:
-    | string
-    | ((data: TableColumns, rowNum: number, colNum: number) => JSX.Element)
-    | JSX.Element;
+  title?: string | ((data: TableColumns, rowNum: number, colNum: number) => JSX.Element) | JSX.Element;
   key?: string;
   width?: number;
   colSpan?: number;
@@ -64,19 +61,14 @@ export default (props: TableProps = {}) => {
     onCellHead = noop,
     ...other
   } = props;
-  const cls = [prefixCls, className, bordered ? `${prefixCls}-bordered` : null]
-    .filter(Boolean)
-    .join(' ')
-    .trim();
+  const cls = [prefixCls, className, bordered ? `${prefixCls}-bordered` : null].filter(Boolean).join(' ').trim();
   const { header, render, ellipsis } = getLevelItems(columns);
   const keys = getAllColumnsKeys(columns);
   return (
     <div className={cls} {...other}>
       <table style={ellipsis ? { tableLayout: 'fixed' } : {}}>
         {title && <caption>{title}</caption>}
-        {columns && columns.length > 0 && (
-          <Thead onCellHead={onCellHead} data={header} />
-        )}
+        {columns && columns.length > 0 && <Thead onCellHead={onCellHead} data={header} />}
         {data && data.length > 0 && (
           <tbody>
             {data.map((trData, rowNum) => (
@@ -86,23 +78,13 @@ export default (props: TableProps = {}) => {
                     children: trData[keyName],
                   };
                   if (render[keyName]) {
-                    const child = render[keyName](
-                      trData[keyName],
-                      keyName,
-                      trData,
-                      rowNum,
-                      colNum,
-                    );
+                    const child = render[keyName](trData[keyName], keyName, trData, rowNum, colNum);
                     if (React.isValidElement(child)) {
                       objs.children = child;
                     } else {
                       if (child.props) {
                         objs = { ...child.props, children: objs.children };
-                        if (
-                          child.props.rowSpan === 0 ||
-                          child.props.colSpan === 0
-                        )
-                          return null;
+                        if (child.props.rowSpan === 0 || child.props.colSpan === 0) return null;
                       }
                       if (child.children) {
                         objs.children = child.children;
@@ -113,13 +95,7 @@ export default (props: TableProps = {}) => {
                     objs.className = `${prefixCls}-ellipsis`;
                   }
                   return (
-                    <td
-                      {...objs}
-                      key={colNum}
-                      onClick={(evn) =>
-                        onCell(trData, { rowNum, colNum, keyName }, evn)
-                      }
-                    />
+                    <td {...objs} key={colNum} onClick={(evn) => onCell(trData, { rowNum, colNum, keyName }, evn)} />
                   );
                 })}
               </tr>

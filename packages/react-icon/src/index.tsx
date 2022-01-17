@@ -5,8 +5,7 @@ import './style/index.less';
 type ElementTag<T = any> = T extends HTMLElement ? React.HTMLAttributes<T> : T;
 
 export type IconsName = keyof typeof svgPaths;
-export interface IconProps<T = HTMLSpanElement | HTMLDivElement>
-  extends ElementTag {
+export interface IconProps<T = HTMLSpanElement | HTMLDivElement> extends ElementTag {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;

@@ -45,10 +45,7 @@ export interface ILevelItems {
  * JSON Array => Array
  * @param {Array} date
  */
-export const getLevelItems = (
-  data: TableColumns[],
-  result?: ILevelItems,
-): ILevelItems => {
+export const getLevelItems = (data: TableColumns[], result?: ILevelItems): ILevelItems => {
   if (!result) {
     result = { header: [], render: {} };
   }
@@ -70,14 +67,8 @@ export const getLevelItems = (
     }
     if (result.header.length === 0) {
       // Calculation rowspan
-      if (
-        data[i].children &&
-        data[i].children &&
-        data[i].children!.length > 0
-      ) {
-        data[i].colSpan = getRowspanNum(
-          data[i].children as TableColumns[],
-        ).length;
+      if (data[i].children && data[i].children && data[i].children!.length > 0) {
+        data[i].colSpan = getRowspanNum(data[i].children as TableColumns[]).length;
       }
       levelTop.push(data[i]);
     }
@@ -126,10 +117,7 @@ export const getLevelItems = (
  * Get all columns keys
  * @param {Array} data
  */
-export const getAllColumnsKeys = (
-  data: TableColumns[],
-  keys: any[] = [],
-): string[] => {
+export const getAllColumnsKeys = (data: TableColumns[], keys: any[] = []): string[] => {
   for (let i = 0; i < data.length; i += 1) {
     if (data[i].children) {
       keys = keys.concat(getAllColumnsKeys(data[i].children || []));

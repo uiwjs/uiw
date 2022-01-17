@@ -3,26 +3,14 @@ import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/group.less';
 
 export type Value = string | number;
-export interface CheckboxGroupPorps
-  extends IProps,
-    Omit<HTMLDivProps, 'onChange'> {
+export interface CheckboxGroupPorps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   value?: Value[];
   name?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>, values: Value[]) => void;
 }
 
-export const CheckboxGroup = React.forwardRef<
-  HTMLDivElement,
-  CheckboxGroupPorps
->((props, ref) => {
-  const {
-    prefixCls = 'w-checkbox-group',
-    className,
-    name,
-    value,
-    onChange,
-    ...other
-  } = props;
+export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupPorps>((props, ref) => {
+  const { prefixCls = 'w-checkbox-group', className, name, value, onChange, ...other } = props;
   const valueRef = useRef<Value[]>([]);
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   const childs = React.Children.toArray(props.children);
@@ -54,9 +42,7 @@ export const CheckboxGroup = React.forwardRef<
               if (!include && checked) {
                 valueRef.current.push(element.props.value);
               } else if (include && !checked) {
-                valueRef.current = valueRef.current.filter(
-                  (val) => val !== element.props.value,
-                );
+                valueRef.current = valueRef.current.filter((val) => val !== element.props.value);
               }
               onChange && onChange(e, valueRef.current);
             },

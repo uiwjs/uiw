@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Table,
-  Notify,
-  Button,
-  Checkbox,
-  Pagination,
-  Loader,
-  Tooltip,
-} from 'uiw';
+import { Table, Notify, Button, Checkbox, Pagination, Loader, Tooltip } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 export default () => (

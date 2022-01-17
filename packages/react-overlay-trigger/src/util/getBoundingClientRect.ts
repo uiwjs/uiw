@@ -52,12 +52,9 @@ export default function getBoundingClientRect(element: HTMLElement) {
   } as IBoundingClientRect;
 
   // subtract scrollbar size from sizes
-  const sizes: WindowSize =
-    element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument!) : {};
-  const width =
-    sizes.width || element.clientWidth || result.right - result.left;
-  const height =
-    sizes.height || element.clientHeight || result.bottom - result.top;
+  const sizes: WindowSize = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument!) : {};
+  const width = sizes.width || element.clientWidth || result.right - result.left;
+  const height = sizes.height || element.clientHeight || result.bottom - result.top;
 
   let horizScrollbar = element.offsetWidth - width;
   let vertScrollbar = element.offsetHeight - height;

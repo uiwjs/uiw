@@ -5,19 +5,14 @@ import { IProps, HTMLInputProps } from '@uiw/utils';
  * Constructs a type by picking all properties from `HTMLInputProps` and then removing `size`.
  * Omit: https://www.typescriptlang.org/docs/handbook/utility-types.html#omittk
  */
-export interface RadioAbstractProps
-  extends IProps,
-    Omit<HTMLInputProps, 'size'> {
+export interface RadioAbstractProps extends IProps, Omit<HTMLInputProps, 'size'> {
   size?: 'large' | 'default' | 'small';
   checked?: boolean;
   disabled?: boolean;
   onChange?: (even: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const RadioAbstract = React.forwardRef<
-  HTMLInputElement,
-  RadioAbstractProps
->((props, ref) => {
+export const RadioAbstract = React.forwardRef<HTMLInputElement, RadioAbstractProps>((props, ref) => {
   const {
     prefixCls = 'w-radio',
     type = 'radio',
@@ -43,12 +38,7 @@ export const RadioAbstract = React.forwardRef<
     }
   }, [prevChecked]);
 
-  const cls = [
-    prefixCls,
-    className,
-    disabled ? 'disabled' : null,
-    size ? `${prefixCls}-${size}` : null,
-  ]
+  const cls = [prefixCls, className, disabled ? 'disabled' : null, size ? `${prefixCls}-${size}` : null]
     .filter(Boolean)
     .join(' ')
     .trim();
@@ -67,12 +57,7 @@ export const RadioAbstract = React.forwardRef<
   const label = children || value;
   return (
     <label {...{ className: cls, style }}>
-      <input
-        {...{ ...other, type, disabled, value }}
-        checked={checked}
-        onChange={handleChange}
-        ref={ref}
-      />
+      <input {...{ ...other, type, disabled, value }} checked={checked} onChange={handleChange} ref={ref} />
       {label && <div className={`${prefixCls}-text`}>{label}</div>}
     </label>
   );

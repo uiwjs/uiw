@@ -7,9 +7,7 @@ export default () => (
     path="https://github.com/uiwjs/uiw/tree/master/packages/react-tree-checked/README.md"
     dependencies={{ TreeChecked, Row, Col, Card, Icon }}
     renderPage={async () => {
-      const md = await import(
-        'uiw/node_modules/@uiw/react-tree-checked/README.md'
-      );
+      const md = await import('uiw/node_modules/@uiw/react-tree-checked/README.md');
       return md.default || md;
     }}
   />

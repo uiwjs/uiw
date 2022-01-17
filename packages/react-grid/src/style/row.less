@@ -1,7 +1,6 @@
 @w-row:~ "w-row";
 
-@justifyContentProps: flex-start flex-end center space-between space-around
-  space-evenly;
+@justifyContentProps: flex-start flex-end center space-between space-around space-evenly;
 
 .@{w-row} {
   box-sizing: border-box;
@@ -15,8 +14,7 @@
     &.@{w-row}-justify-@{value} {
       justify-content: @value;
     }
-  })
-    &-align-top {
+  }) &-align-top {
     align-items: flex-start;
   }
   &-align-middle {

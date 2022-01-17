@@ -29,22 +29,12 @@ export default (props: LoaderProps = {}) => {
     fullscreen = false,
     ...otherProps
   } = props;
-  const cls = [prefixCls, className, size ? `${prefixCls}-${size}` : null]
-    .filter(Boolean)
-    .join(' ')
-    .trim();
+  const cls = [prefixCls, className, size ? `${prefixCls}-${size}` : null].filter(Boolean).join(' ').trim();
 
   const indicatorView = useMemo(
     () => (
       <svg viewBox="25 25 50 50">
-        <circle
-          cx="50"
-          cy="50"
-          r="20"
-          fill="none"
-          strokeWidth="5"
-          strokeMiterlimit="10"
-        />
+        <circle cx="50" cy="50" r="20" fill="none" strokeWidth="5" strokeMiterlimit="10" />
       </svg>
     ),
     [],
@@ -53,10 +43,7 @@ export default (props: LoaderProps = {}) => {
   const tipsView = useMemo(
     () => (
       <div
-        className={[
-          `${prefixCls}-tips`,
-          fullscreen ? `${prefixCls}-fullscreen` : null,
-        ]
+        className={[`${prefixCls}-tips`, fullscreen ? `${prefixCls}-fullscreen` : null]
           .filter(Boolean)
           .join(' ')
           .trim()}
@@ -66,10 +53,7 @@ export default (props: LoaderProps = {}) => {
           {indicator || indicatorView}
           {tip && (
             <div
-              className={[
-                `${prefixCls}-text`,
-                vertical ? `${prefixCls}-vertical` : null,
-              ]
+              className={[`${prefixCls}-text`, vertical ? `${prefixCls}-vertical` : null]
                 .filter(Boolean)
                 .join(' ')
                 .trim()}
@@ -90,13 +74,7 @@ export default (props: LoaderProps = {}) => {
         React.cloneElement(
           children,
           Object.assign({}, children.props, {
-            className: [
-              `${prefixCls}-warp`,
-              loading ? `${prefixCls}-blur` : null,
-            ]
-              .filter(Boolean)
-              .join(' ')
-              .trim(),
+            className: [`${prefixCls}-warp`, loading ? `${prefixCls}-blur` : null].filter(Boolean).join(' ').trim(),
           }),
         )}
     </div>

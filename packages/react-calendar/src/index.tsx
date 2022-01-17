@@ -1,9 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import {
-  DatePickerDay,
-  DatePickerDayProps,
-  DatePickerDayDateSource,
-} from '@uiw/react-date-picker';
+import { DatePickerDay, DatePickerDayProps, DatePickerDayDateSource } from '@uiw/react-date-picker';
 import Icon from '@uiw/react-icon';
 import formatter from '@uiw/formatter';
 import { IProps } from '@uiw/utils';
@@ -18,10 +14,7 @@ export interface CalendarProps extends IProps, DatePickerDayProps {
   /**
    * 点击选择日期回调
    */
-  onSelectDay?: (
-    selectDay?: Date,
-    dateSource?: DatePickerDayDateSource,
-  ) => void;
+  onSelectDay?: (selectDay?: Date, dateSource?: DatePickerDayDateSource) => void;
   /**
    * 日历面板默认展示哪一页
    */
@@ -47,11 +40,7 @@ export interface CalendarProps extends IProps, DatePickerDayProps {
    */
   monthLabel?: string[];
   /** 翻页触发事件 */
-  onPaging?: (
-    type: 'prev' | 'next' | 'today',
-    month: number,
-    panelDate?: Date,
-  ) => void;
+  onPaging?: (type: 'prev' | 'next' | 'today', month: number, panelDate?: Date) => void;
 }
 
 export interface ICalendarData {
@@ -92,9 +81,7 @@ export default function Calendar(props: CalendarProps) {
     ...otherProps
   } = props;
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
-  const [panelDate, setPanelDate] = useState<Date>(
-    props.panelDate || new Date(),
-  );
+  const [panelDate, setPanelDate] = useState<Date>(props.panelDate || new Date());
 
   useEffect(() => {
     if (props.panelDate !== panelDate) {
@@ -121,11 +108,7 @@ export default function Calendar(props: CalendarProps) {
   }
 
   const titleLable = useMemo(
-    () => (
-      <div className={`${prefixCls}-title`}>
-        {formatter(titleFormat, panelDate)}
-      </div>
-    ),
+    () => <div className={`${prefixCls}-title`}>{formatter(titleFormat, panelDate)}</div>,
     [prefixCls, titleFormat, panelDate],
   );
 
@@ -133,10 +116,7 @@ export default function Calendar(props: CalendarProps) {
     () => (
       <div className={`${prefixCls}-btn-group`}>
         <Icon type="down" onClick={() => handlePaging('prev')} />
-        <span
-          className={`${prefixCls}-btn`}
-          onClick={() => handlePaging('today')}
-        >
+        <span className={`${prefixCls}-btn`} onClick={() => handlePaging('today')}>
           {todayLabel}
         </span>
         <Icon type="down" onClick={() => handlePaging('next')} />
@@ -157,12 +137,7 @@ export default function Calendar(props: CalendarProps) {
           onSelectDay && onSelectDay(currentDate, dateSource);
         }}
         renderDay={(day, propsNext) => (
-          <RenderDay
-            prefixCls={prefixCls}
-            day={day}
-            data={data}
-            currentDate={propsNext.date}
-          />
+          <RenderDay prefixCls={prefixCls} day={day} data={data} currentDate={propsNext.date} />
         )}
         date={date}
         today={today}

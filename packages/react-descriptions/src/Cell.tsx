@@ -48,9 +48,7 @@ function Cell(props: CellProps = {}) {
       return (
         <TagName {...other} colSpan={span}>
           <span {...labelProps}>{label}</span>
-          <span className={prefixCls ? `${prefixCls}-item-content` : ''}>
-            {children}
-          </span>
+          <span className={prefixCls ? `${prefixCls}-item-content` : ''}>{children}</span>
         </TagName>
       );
     }
@@ -68,10 +66,7 @@ function Cell(props: CellProps = {}) {
     );
   }
   return (
-    <TagName
-      colSpan={span}
-      className={`${prefixCls}-item-${TagName === 'td' ? 'content' : 'label'}`}
-    >
+    <TagName colSpan={span} className={`${prefixCls}-item-${TagName === 'td' ? 'content' : 'label'}`}>
       {children}
     </TagName>
   );

@@ -36,16 +36,8 @@ export interface TreeProps extends IProps, HTMLDivProps {
    * 支持点选多个节点
    */
   multiple?: boolean;
-  renderTitle?: (
-    item: TreeData,
-    node: TreeRenderTitleNode,
-  ) => React.ReactElement;
-  onExpand?: (
-    key: TreeData['key'],
-    expanded: boolean,
-    item: TreeData,
-    evn: React.MouseEvent<HTMLElement>,
-  ) => void;
+  renderTitle?: (item: TreeData, node: TreeRenderTitleNode) => React.ReactElement;
+  onExpand?: (key: TreeData['key'], expanded: boolean, item: TreeData, evn: React.MouseEvent<HTMLElement>) => void;
   onSelected?: (
     keys: TreeData['key'][],
     key: TreeData['key'],
@@ -77,10 +69,7 @@ const isContained = (a: any[], b: any[]) => {
   return true;
 };
 
-export const getChildKeys = (
-  childs: TreeData[] = [],
-  result: TreeData['key'][] = [],
-): TreeData['key'][] => {
+export const getChildKeys = (childs: TreeData[] = [], result: TreeData['key'][] = []): TreeData['key'][] => {
   childs.forEach((item) => {
     result.push(item.key as string | number);
     if (item.children && item.children.length > 0) {
@@ -90,10 +79,7 @@ export const getChildKeys = (
   return result;
 };
 
-const getParentKeys = (
-  childs: TreeData = {},
-  result: TreeData['key'][] = [],
-) => {
+const getParentKeys = (childs: TreeData = {}, result: TreeData['key'][] = []) => {
   if (childs.key) {
     result.push(childs.key);
   }
@@ -108,11 +94,7 @@ const getParentSelectKeys = (
   selectedKeys: TreeData['key'][] = [],
   result: TreeData['key'][] = [],
 ) => {
-  if (
-    childs.key &&
-    childs.children &&
-    isContained(selectedKeys, getChildKeys(childs.children))
-  ) {
+  if (childs.key && childs.children && isContained(selectedKeys, getChildKeys(childs.children))) {
     result.push(childs.key);
     if (childs.parent && !childs.parent.parent) {
       if (isContained(selectedKeys, getChildKeys(childs.children))) {
@@ -164,10 +146,7 @@ export default function Tree(props: TreeProps) {
     }
   }, []);
 
-  const cls = [className, prefixCls, showLine ? `${prefixCls}-line` : null]
-    .filter(Boolean)
-    .join(' ')
-    .trim();
+  const cls = [className, prefixCls, showLine ? `${prefixCls}-line` : null].filter(Boolean).join(' ').trim();
 
   function onItemClick(item: TreeData, evn: React.MouseEvent<HTMLElement>) {
     if (!item.children) {
@@ -181,10 +160,7 @@ export default function Tree(props: TreeProps) {
     let expanded = false;
     if (!key && item.key) {
       currentKeys.push(item.key);
-      evn.currentTarget.className = [cls, 'open']
-        .filter(Boolean)
-        .join(' ')
-        .trim();
+      evn.currentTarget.className = [cls, 'open'].filter(Boolean).join(' ').trim();
       expanded = true;
     } else {
       currentKeys = currentKeys.filter((v) => v !== item.key);
@@ -206,20 +182,12 @@ export default function Tree(props: TreeProps) {
     }
     if (checkStrictly) {
       if (!findKey) {
-        selKeys = selKeys.concat(
-          getChildKeys(item.children).filter(
-            (val) => selKeys.indexOf(val) === -1,
-          ),
-        );
+        selKeys = selKeys.concat(getChildKeys(item.children).filter((val) => selKeys.indexOf(val) === -1));
         selKeys = selKeys.concat(getParentSelectKeys(item, selKeys));
         selKeys = Array.from(new Set(selKeys)); // Remove duplicates.
       } else {
-        selKeys = selKeys.filter(
-          (val) => getChildKeys(item.children).indexOf(val) === -1,
-        );
-        selKeys = selKeys.filter(
-          (val) => getParentKeys(item.parent).indexOf(val) === -1,
-        );
+        selKeys = selKeys.filter((val) => getChildKeys(item.children).indexOf(val) === -1);
+        selKeys = selKeys.filter((val) => getParentKeys(item.parent).indexOf(val) === -1);
       }
     }
     if (!multiple) {

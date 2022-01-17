@@ -52,13 +52,7 @@ export default React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
         </div>
       )}
       {children && (
-        <div
-          className={[`${prefixCls}-body`, bodyClassName]
-            .filter(Boolean)
-            .join(' ')
-            .trim()}
-          style={bodyStyle}
-        >
+        <div className={[`${prefixCls}-body`, bodyClassName].filter(Boolean).join(' ').trim()} style={bodyStyle}>
           {children}
         </div>
       )}

@@ -62,12 +62,7 @@ export default function Panel(props: CollapsePanelProps) {
         <span className={`${prefixCls}-title`}>{header}</span>
         {extra && <div className={`${prefixCls}-extra`}>{extra}</div>}
       </div>
-      <CSSTransition
-        in={isActive}
-        unmountOnExit={false}
-        timeout={300}
-        classNames={`${prefixCls}-panel`}
-      >
+      <CSSTransition in={isActive} unmountOnExit={false} timeout={300} classNames={`${prefixCls}-panel`}>
         {(status: TransitionStatus) =>
           React.cloneElement(<div>{children}</div>, {
             className: `${prefixCls}-panel`,

@@ -52,9 +52,7 @@ export default function Slider(props: SliderProps) {
   const barWidth = React.useRef<number>();
   const barOffsetLeft = React.useRef<number>();
   const move = React.useRef<boolean>();
-  const [arrValue, setArrValue] = useState(
-    Array.isArray(value) ? value : [value],
-  );
+  const [arrValue, setArrValue] = useState(Array.isArray(value) ? value : [value]);
 
   useEffect(() => setArrValue(Array.isArray(value) ? value : [value]), [value]);
 
@@ -63,9 +61,7 @@ export default function Slider(props: SliderProps) {
       return;
     }
     const markOffset = slider.current!.getBoundingClientRect();
-    const vals = getWidthToValue(
-      evn[vertical ? 'clientY' : 'clientX'] - markOffset[vertical ? 'y' : 'x'],
-    );
+    const vals = getWidthToValue(evn[vertical ? 'clientY' : 'clientX'] - markOffset[vertical ? 'y' : 'x']);
     const curr = getRangeValue(vals);
     handleChange(curr);
   };
@@ -114,9 +110,7 @@ export default function Slider(props: SliderProps) {
     const equal = (max - min) / step;
     let percent = 0;
     if (slider.current) {
-      percent =
-        (width / slider.current[vertical ? 'clientHeight' : 'clientWidth']) *
-        100;
+      percent = (width / slider.current[vertical ? 'clientHeight' : 'clientWidth']) * 100;
     }
 
     if (percent <= 0) {
@@ -141,32 +135,24 @@ export default function Slider(props: SliderProps) {
     startX.current = env[vertical ? 'clientY' : 'clientX'];
     if (bar.current) {
       barWidth.current = bar.current[vertical ? 'clientHeight' : 'clientWidth'];
-      barOffsetLeft.current =
-        bar.current[vertical ? 'offsetTop' : 'offsetLeft'];
+      barOffsetLeft.current = bar.current[vertical ? 'offsetTop' : 'offsetLeft'];
     }
     const vals = [...arrValue];
     if (Array.isArray(value)) {
       barWidth.current =
-        (indexBar.current === 1 && vals[1] > vals[0]) ||
-        (indexBar.current !== 1 && vals[0] > vals[1])
+        (indexBar.current === 1 && vals[1] > vals[0]) || (indexBar.current !== 1 && vals[0] > vals[1])
           ? barWidth.current! + barOffsetLeft.current!
           : barOffsetLeft.current;
     }
     window.addEventListener('mousemove', onDragging);
     window.addEventListener('mouseup', onDragEnd);
   }
-  function onDragging(
-    env: MouseEvent | React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) {
+  function onDragging(env: MouseEvent | React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     if (!move.current) {
       return;
     }
     const vals = [...arrValue];
-    const valueToWidth = getWidthToValue(
-      env[vertical ? 'clientY' : 'clientX'] -
-        startX.current! +
-        barWidth.current!,
-    );
+    const valueToWidth = getWidthToValue(env[vertical ? 'clientY' : 'clientX'] - startX.current! + barWidth.current!);
     if (valueToWidth !== curValue.current) {
       vals[indexBar.current!] = valueToWidth;
       const barStyl = getStyle(vals);
@@ -215,18 +201,9 @@ export default function Slider(props: SliderProps) {
   function getLabelValue(val: number) {
     if (marks && marks !== true && marks[val] && marks[val].label) {
       return marks[val].label;
-    } else if (
-      marks &&
-      marks !== true &&
-      marks[val] &&
-      typeof marks[val] === 'string'
-    ) {
+    } else if (marks && marks !== true && marks[val] && typeof marks[val] === 'string') {
       return marks[val];
-    } else if (
-      renderMarks &&
-      typeof renderMarks === 'function' &&
-      renderMarks(val)
-    ) {
+    } else if (renderMarks && typeof renderMarks === 'function' && renderMarks(val)) {
       return renderMarks(val);
     }
     return val;
@@ -257,9 +234,7 @@ export default function Slider(props: SliderProps) {
         style={{
           [vertical ? 'top' : 'left']: barStyl.left,
           [vertical ? 'bottom' : 'right']: barStyl.right,
-          ...(progress !== true
-            ? { backgroundColor: progress || 'initial' }
-            : {}),
+          ...(progress !== true ? { backgroundColor: progress || 'initial' } : {}),
         }}
       />
       {[...arrValue].map((item, idx) => {
@@ -272,12 +247,7 @@ export default function Slider(props: SliderProps) {
             style={{ [vertical ? 'top' : 'left']: `${lleftPostion}%` }}
           >
             {(tooltip || tooltip === false) && (
-              <div
-                className={[`${prefixCls}-tooltip`, tooltip ? 'open' : null]
-                  .filter(Boolean)
-                  .join(' ')
-                  .trim()}
-              >
+              <div className={[`${prefixCls}-tooltip`, tooltip ? 'open' : null].filter(Boolean).join(' ').trim()}>
                 {getLabelValue(item)}
               </div>
             )}

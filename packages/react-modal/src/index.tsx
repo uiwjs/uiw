@@ -61,16 +61,11 @@ export default React.forwardRef<OverlayProps, ModalProps>((props, ref) => {
   }, [props.isOpen]);
 
   const [loading, setLoading] = useState(false);
-  const cls = [prefixCls, className, type ? `${type}` : null]
-    .filter(Boolean)
-    .join(' ')
-    .trim();
+  const cls = [prefixCls, className, type ? `${type}` : null].filter(Boolean).join(' ').trim();
   function onClose() {
     setIsOpen(false);
   }
-  async function handleCancel(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent> & MouseEvent,
-  ) {
+  async function handleCancel(e: React.MouseEvent<HTMLButtonElement, MouseEvent> & MouseEvent) {
     setLoading(true);
     try {
       onCancel && (await onCancel(e));
@@ -78,9 +73,7 @@ export default React.forwardRef<OverlayProps, ModalProps>((props, ref) => {
     setIsOpen(false);
     setLoading(false);
   }
-  async function handleConfirm(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent> & MouseEvent,
-  ) {
+  async function handleConfirm(e: React.MouseEvent<HTMLButtonElement, MouseEvent> & MouseEvent) {
     setLoading(true);
     try {
       onConfirm && (await onConfirm(e));
@@ -89,13 +82,7 @@ export default React.forwardRef<OverlayProps, ModalProps>((props, ref) => {
     setLoading(false);
   }
   return (
-    <Overlay
-      usePortal={usePortal}
-      isOpen={isOpen}
-      {...other}
-      onClose={onClose}
-      className={cls}
-    >
+    <Overlay usePortal={usePortal} isOpen={isOpen} {...other} onClose={onClose} className={cls}>
       <div className={`${prefixCls}-container`}>
         <div
           className={[
@@ -112,14 +99,7 @@ export default React.forwardRef<OverlayProps, ModalProps>((props, ref) => {
             <div className={`${prefixCls}-header`}>
               {icon && <Icon type={icon} />}
               {title && <h4>{title}</h4>}
-              {isCloseButtonShown && (
-                <Button
-                  basic
-                  onClick={(e) => handleCancel(e)}
-                  icon="close"
-                  type="light"
-                />
-              )}
+              {isCloseButtonShown && <Button basic onClick={(e) => handleCancel(e)} icon="close" type="light" />}
             </div>
           )}
           <div className={`${prefixCls}-body`} style={bodyStyle}>

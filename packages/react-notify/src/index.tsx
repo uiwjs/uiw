@@ -8,20 +8,10 @@ import './style/index.less';
 export interface NotificationCreateProps extends Omit<AlertProps, 'type'> {
   placement?: Placement;
   description?: React.ReactNode;
-  type?:
-    | 'primary'
-    | 'danger'
-    | 'open'
-    | 'success'
-    | 'warning'
-    | 'info'
-    | 'error';
+  type?: 'primary' | 'danger' | 'open' | 'success' | 'warning' | 'info' | 'error';
   duration?: number;
   key?: string;
-  willUnmount?: (
-    props: NotificationCreateProps,
-    notifys: ContainerNotifys,
-  ) => void;
+  willUnmount?: (props: NotificationCreateProps, notifys: ContainerNotifys) => void;
 }
 
 export type Notifys = { [key: string]: any };
@@ -35,10 +25,7 @@ export interface NotificationProps {
   [key: string]: () => void;
 }
 
-function NotificationCreate(
-  props: NotificationCreateProps,
-  type: NotificationCreateProps['type'] = 'open',
-) {
+function NotificationCreate(props: NotificationCreateProps, type: NotificationCreateProps['type'] = 'open') {
   if (!props.placement) {
     props.placement = 'topRight';
   }
@@ -75,10 +62,7 @@ function NotificationCreate(
   if (props.placement && !notifys[props.placement]) {
     const div = document.createElement('div');
     document.body.appendChild(div);
-    div.className = ['w-notify-warpper', props.placement]
-      .filter(Boolean)
-      .join(' ')
-      .trim();
+    div.className = ['w-notify-warpper', props.placement].filter(Boolean).join(' ').trim();
     notifysDom[props.placement] = div;
     notifys[props.placement] = ReactDOM.render(<Container />, div);
   }
@@ -108,9 +92,7 @@ function NotificationCreate(
 }
 
 ['open', 'success', 'warning', 'info', 'error'].forEach((type) => {
-  (NotificationCreate as NotificationProps)[type] = (
-    options: NotificationCreateProps = {},
-  ) => {
+  (NotificationCreate as NotificationProps)[type] = (options: NotificationCreateProps = {}) => {
     return NotificationCreate(options, type as NotificationCreateProps['type']);
   };
 });

@@ -58,25 +58,14 @@ export default React.forwardRef<HTMLDivElement, BackTopProps>((props, ref) => {
     setCurrent(getScrollTop());
   }
   function scrollToTop() {
-    if (
-      typeof offsetTop === 'number' &&
-      typeof speed === 'number' &&
-      typeof current === 'number'
-    ) {
+    if (typeof offsetTop === 'number' && typeof speed === 'number' && typeof current === 'number') {
       scrollToAnimate(offsetTop, speed, current);
     }
   }
   return (
-    <div
-      onClick={() => clickable && scrollToTop()}
-      className={cls}
-      {...other}
-      ref={ref}
-    >
+    <div onClick={() => clickable && scrollToTop()} className={cls} {...other} ref={ref}>
       {content}
-      {typeof children !== 'function'
-        ? children
-        : children({ percent, current, scrollToTop: scrollToTop })}
+      {typeof children !== 'function' ? children : children({ percent, current, scrollToTop: scrollToTop })}
     </div>
   );
 });

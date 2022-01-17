@@ -32,9 +32,7 @@ export interface OverlayProps extends IProps, Omit<TransitionProps, 'timeout'> {
   onOpening?: (node: HTMLElement, isAppearing: boolean) => void;
   onOpened?: (node: HTMLElement, isAppearing: boolean) => void;
   onClosing?: (node: HTMLElement) => void;
-  onClosed?: (
-    node: HTMLElement | React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => void;
+  onClosed?: (node: HTMLElement | React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   onClose?: (evn: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 
@@ -89,10 +87,7 @@ export default function Overlay(props: OverlayProps) {
       cloneElement(children, {
         ...dialogProps,
         style: { ...children.props.style, ...dialogProps.style },
-        className: [children.props.className, `${prefixCls}-content`]
-          .filter(Boolean)
-          .join(' ')
-          .trim(),
+        className: [children.props.className, `${prefixCls}-content`].filter(Boolean).join(' ').trim(),
         tabIndex: 0,
       })
     ) : (
@@ -101,16 +96,12 @@ export default function Overlay(props: OverlayProps) {
       </span>
     );
 
-  function handleClosed(
-    node: HTMLElement | React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) {
+  function handleClosed(node: HTMLElement | React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     setVisible(false);
     onClosed && onClosed(node);
   }
 
-  function handleBackdropMouseDown(
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) {
+  function handleBackdropMouseDown(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     if (e.target !== container.current && usePortal) {
       return;
     }
@@ -168,18 +159,11 @@ export default function Overlay(props: OverlayProps) {
               cloneElement(<div />, {
                 ...backdropProps,
                 onMouseDown: handleBackdropMouseDown,
-                className: [`${prefixCls}-backdrop`, backdropProps.className]
-                  .filter(Boolean)
-                  .join(' ')
-                  .trim(),
+                className: [`${prefixCls}-backdrop`, backdropProps.className].filter(Boolean).join(' ').trim(),
                 tabIndex: maskClosable ? 0 : null,
               })}
             {usePortal ? (
-              <div
-                ref={container}
-                onMouseDown={handleBackdropMouseDown}
-                className={`${prefixCls}-container`}
-              >
+              <div ref={container} onMouseDown={handleBackdropMouseDown} className={`${prefixCls}-container`}>
                 {cloneElement(decoratedChild, { 'data-status': status })}
               </div>
             ) : (

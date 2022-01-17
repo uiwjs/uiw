@@ -14,19 +14,13 @@ const Loadable = (Component: any) => (props: any) =>
 const Home = Loadable(lazy(() => import('./routes/home')));
 const Extensions = Loadable(lazy(() => import('./routes/extensions')));
 
-const GuideQuickStart = Loadable(
-  lazy(() => import('./routes/guide/quick-start')),
-);
+const GuideQuickStart = Loadable(lazy(() => import('./routes/guide/quick-start')));
 const GuideImport = Loadable(lazy(() => import('./routes/guide/import')));
-const GuideCreateReactApp = Loadable(
-  lazy(() => import('./routes/guide/create-react-app')),
-);
+const GuideCreateReactApp = Loadable(lazy(() => import('./routes/guide/create-react-app')));
 const GuideKKT = Loadable(lazy(() => import('./routes/guide/kkt')));
 const GuideDocs = Loadable(lazy(() => import('./routes/guide/docs')));
 const GuideVscode = Loadable(lazy(() => import('./routes/guide/vscode')));
-const GuideRecommendation = Loadable(
-  lazy(() => import('./routes/guide/recommendation')),
-);
+const GuideRecommendation = Loadable(lazy(() => import('./routes/guide/recommendation')));
 
 const Overview = Loadable(lazy(() => import('./routes/overview')));
 const Colors = Loadable(lazy(() => import('./routes/components/colors')));
@@ -37,75 +31,51 @@ const Avatar = Loadable(lazy(() => import('./routes/components/avatar')));
 const Affix = Loadable(lazy(() => import('./routes/components/affix')));
 const Calendar = Loadable(lazy(() => import('./routes/components/calendar')));
 const Checkbox = Loadable(lazy(() => import('./routes/components/checkbox')));
-const CopyToClipboard = Loadable(
-  lazy(() => import('./routes/components/copy-to-clipboard')),
-);
+const CopyToClipboard = Loadable(lazy(() => import('./routes/components/copy-to-clipboard')));
 const Collapse = Loadable(lazy(() => import('./routes/components/collapse')));
 const Card = Loadable(lazy(() => import('./routes/components/card')));
-const Descriptions = Loadable(
-  lazy(() => import('./routes/components/descriptions')),
-);
+const Descriptions = Loadable(lazy(() => import('./routes/components/descriptions')));
 const Loader = Loadable(lazy(() => import('./routes/components/loader')));
 const Icon = Loadable(lazy(() => import('./routes/components/icon')));
 const Divider = Loadable(lazy(() => import('./routes/components/divider')));
 const Drawer = Loadable(lazy(() => import('./routes/components/drawer')));
-const DatePicker = Loadable(
-  lazy(() => import('./routes/components/date-picker')),
-);
-const DateInput = Loadable(
-  lazy(() => import('./routes/components/date-input')),
-);
+const DatePicker = Loadable(lazy(() => import('./routes/components/date-picker')));
+const DateInput = Loadable(lazy(() => import('./routes/components/date-input')));
 const Dropdown = Loadable(lazy(() => import('./routes/components/dropdown')));
 const Badge = Loadable(lazy(() => import('./routes/components/badge')));
 const Progress = Loadable(lazy(() => import('./routes/components/progress')));
-const Pagination = Loadable(
-  lazy(() => import('./routes/components/pagination')),
-);
+const Pagination = Loadable(lazy(() => import('./routes/components/pagination')));
 const PinCode = Loadable(lazy(() => import('./routes/components/pin-code')));
 const Input = Loadable(lazy(() => import('./routes/components/input')));
 const Button = Loadable(lazy(() => import('./routes/components/button')));
 const Radio = Loadable(lazy(() => import('./routes/components/radio')));
 const Select = Loadable(lazy(() => import('./routes/components/select')));
-const SearchSelect = Loadable(
-  lazy(() => import('./routes/components/search-select')),
-);
+const SearchSelect = Loadable(lazy(() => import('./routes/components/search-select')));
 const Split = Loadable(lazy(() => import('./routes/components/split')));
 const Switch = Loadable(lazy(() => import('./routes/components/switch')));
 const Slider = Loadable(lazy(() => import('./routes/components/slider')));
 const Grid = Loadable(lazy(() => import('./routes/components/grid')));
 const Form = Loadable(lazy(() => import('./routes/components/form')));
-const FileInput = Loadable(
-  lazy(() => import('./routes/components/file-input')),
-);
-const Breadcrumb = Loadable(
-  lazy(() => import('./routes/components/breadcrumb')),
-);
+const FileInput = Loadable(lazy(() => import('./routes/components/file-input')));
+const Breadcrumb = Loadable(lazy(() => import('./routes/components/breadcrumb')));
 const List = Loadable(lazy(() => import('./routes/components/list')));
 const Layout = Loadable(lazy(() => import('./routes/components/layout')));
 const Notify = Loadable(lazy(() => import('./routes/components/notify')));
 const Tree = Loadable(lazy(() => import('./routes/components/tree')));
-const TreeChecked = Loadable(
-  lazy(() => import('./routes/components/tree-checked')),
-);
+const TreeChecked = Loadable(lazy(() => import('./routes/components/tree-checked')));
 const Tag = Loadable(lazy(() => import('./routes/components/tag')));
 const Tabs = Loadable(lazy(() => import('./routes/components/tabs')));
 const Tooltip = Loadable(lazy(() => import('./routes/components/tooltip')));
 const Table = Loadable(lazy(() => import('./routes/components/table')));
-const TimePicker = Loadable(
-  lazy(() => import('./routes/components/time-picker')),
-);
+const TimePicker = Loadable(lazy(() => import('./routes/components/time-picker')));
 const Rate = Loadable(lazy(() => import('./routes/components/rate')));
 const Overlay = Loadable(lazy(() => import('./routes/components/overlay')));
 const BackTop = Loadable(lazy(() => import('./routes/components/back-top')));
 const Portal = Loadable(lazy(() => import('./routes/components/portal')));
-const OverlayTrigger = Loadable(
-  lazy(() => import('./routes/components/overlay-trigger')),
-);
+const OverlayTrigger = Loadable(lazy(() => import('./routes/components/overlay-trigger')));
 const Popover = Loadable(lazy(() => import('./routes/components/popover')));
 const Message = Loadable(lazy(() => import('./routes/components/message')));
-const MonthPicker = Loadable(
-  lazy(() => import('./routes/components/month-picker')),
-);
+const MonthPicker = Loadable(lazy(() => import('./routes/components/month-picker')));
 const Textarea = Loadable(lazy(() => import('./routes/components/textarea')));
 const Modal = Loadable(lazy(() => import('./routes/components/modal')));
 const Formatter = Loadable(lazy(() => import('./routes/components/formatter')));

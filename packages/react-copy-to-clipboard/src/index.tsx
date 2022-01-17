@@ -3,15 +3,9 @@ import copy from '@uiw/copy-to-clipboard';
 import { IProps, HTMLSpanProps } from '@uiw/utils';
 import './style/index.less';
 
-export interface CopyToClipboardProps
-  extends IProps,
-    Omit<HTMLSpanProps, 'onClick'> {
+export interface CopyToClipboardProps extends IProps, Omit<HTMLSpanProps, 'onClick'> {
   text?: string;
-  onClick?: (
-    text: string,
-    isCopy: boolean,
-    event: React.MouseEvent<HTMLElement>,
-  ) => void;
+  onClick?: (text: string, isCopy: boolean, event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export default function CopyToClipboard<T>(props: CopyToClipboardProps & T) {

@@ -10,9 +10,7 @@ import './style/index.less';
 export * from './Panel';
 export * from './Time';
 
-export interface TimePickerProps<T>
-  extends IProps,
-    Omit<InputProps<T>, 'onChange' | 'value'> {
+export interface TimePickerProps<T> extends IProps, Omit<InputProps<T>, 'onChange' | 'value'> {
   value?: Date;
   format?: string;
   popoverProps?: PopoverProps;
@@ -102,10 +100,7 @@ export default function TimePicker<T>(props: TimePickerProps<T>) {
         readOnly
         disabled={disabled}
         {..._props}
-        className={[`${prefixCls}-input`, className]
-          .filter(Boolean)
-          .join(' ')
-          .trim()}
+        className={[`${prefixCls}-input`, className].filter(Boolean).join(' ').trim()}
       />
     </Popover>
   );

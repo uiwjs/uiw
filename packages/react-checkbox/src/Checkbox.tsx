@@ -7,10 +7,7 @@ export interface CheckboxProps extends RadioAbstractProps {
   indeterminate?: boolean;
 }
 
-function InternalCheckbox(
-  props: CheckboxProps,
-  ref: React.ForwardedRef<HTMLInputElement>,
-) {
+function InternalCheckbox(props: CheckboxProps, ref: React.ForwardedRef<HTMLInputElement>) {
   const {
     className,
     prefixCls = 'w-checkbox',
@@ -21,10 +18,7 @@ function InternalCheckbox(
     ...other
   } = props;
 
-  const cls = [className, indeterminate && 'indeterminate']
-    .filter(Boolean)
-    .join(' ')
-    .trim();
+  const cls = [className, indeterminate && 'indeterminate'].filter(Boolean).join(' ').trim();
   return (
     <RadioAbstract
       ref={ref}
@@ -38,9 +32,7 @@ function InternalCheckbox(
   );
 }
 
-const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  InternalCheckbox,
-);
+const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(InternalCheckbox);
 type Checkbox = typeof Checkbox & {
   Group: typeof CheckboxGroup;
 };

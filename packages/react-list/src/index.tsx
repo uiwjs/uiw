@@ -17,10 +17,7 @@ export interface ListProps<T> extends IProps, HTMLDivProps {
   dataSource?: T[];
 }
 
-function InternalList<T>(
-  props: ListProps<T>,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
+function InternalList<T>(props: ListProps<T>, ref: React.ForwardedRef<HTMLDivElement>) {
   const {
     prefixCls = 'w-list',
     bordered = true,
@@ -38,9 +35,7 @@ function InternalList<T>(
   } = props;
   let items: React.ReactNode;
   if (dataSource && dataSource.length > 0) {
-    items = dataSource.map((item: any, index: number) =>
-      renderItem!(item, index),
-    );
+    items = dataSource.map((item: any, index: number) => renderItem!(item, index));
   } else {
     items = children;
   }

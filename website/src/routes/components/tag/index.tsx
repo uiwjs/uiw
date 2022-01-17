@@ -1,16 +1,5 @@
 import React from 'react';
-import {
-  Tag,
-  Divider,
-  Dropdown,
-  Checkbox,
-  Menu,
-  Button,
-  Input,
-  Icon,
-  Row,
-  Col,
-} from 'uiw';
+import { Tag, Divider, Dropdown, Checkbox, Menu, Button, Input, Icon, Row, Col } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 export default function Page() {

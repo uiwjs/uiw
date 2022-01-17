@@ -38,11 +38,7 @@
     transform: translateX(-50%);
     box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.2), 0 1px 1px rgba(16, 22, 26, 0.2);
     background-color: #f5f8fa;
-    background-image: linear-gradient(
-      180deg,
-      hsla(0, 0%, 100%, 0.8),
-      hsla(0, 0%, 100%, 0)
-    );
+    background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0));
     border-radius: 50%;
     transition: all 0.3;
   }
@@ -59,8 +55,7 @@
   &:not(.disabled) &-handle:active {
     background-color: #d8e1e8;
     transition: all 0.3;
-    box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.2), 0 1px 1px rgba(16, 22, 26, 0.2),
-      0px 0px 0px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.2), 0 1px 1px rgba(16, 22, 26, 0.2), 0px 0px 0px 2px rgba(0, 0, 0, 0.1);
   }
   &:not(.disabled) &-handle:hover &-tooltip,
   &:not(.disabled) &-handle:focus &-tooltip,

@@ -3,9 +3,7 @@ import { IProps } from '@uiw/utils';
 import FormItem, { FormItemProps } from './FormItem';
 import './style/form.less';
 
-export interface FormProps<T>
-  extends IProps,
-    Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onChange' | 'onSubmit'> {
+export interface FormProps<T> extends IProps, Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onChange' | 'onSubmit'> {
   prefixCls?: string;
   fields?: Record<string, FormFieldsProps<T>>;
   onSubmit?: (state: FormSubmitProps) => any;
@@ -13,9 +11,7 @@ export interface FormProps<T>
   onChange?: (state: FormState) => void;
   onSubmitError?: (evn: any) => any;
   resetOnSubmit?: boolean;
-  children?: (
-    handle: FormChildrenProps,
-  ) => JSX.Element | JSX.Element | undefined;
+  children?: (handle: FormChildrenProps) => JSX.Element | JSX.Element | undefined;
 }
 
 export interface FormState {
@@ -59,10 +55,7 @@ export type FormElementProps = {
   name?: string;
   value?: string;
   checked?: boolean;
-  onChange?: (
-    env: React.BaseSyntheticEvent<HTMLInputElement>,
-    list?: string[],
-  ) => void;
+  onChange?: (env: React.BaseSyntheticEvent<HTMLInputElement>, list?: string[]) => void;
 };
 
 function newFormState<T>(
@@ -92,8 +85,7 @@ function newInitialValue<T>(value: FormFieldsProps<T>['initialValue']) {
   return value === null || value === undefined ? '' : value;
 }
 
-const isPromise = (promise: Promise<any>) =>
-  promise && typeof promise.then === 'function';
+const isPromise = (promise: Promise<any>) => promise && typeof promise.then === 'function';
 
 function Form<T>(
   {
@@ -108,10 +100,7 @@ function Form<T>(
     afterSubmit,
     ...others
   }: FormProps<T>,
-  ref:
-    | ((instance: HTMLInputElement) => void)
-    | React.RefObject<HTMLInputElement | null>
-    | null,
+  ref: ((instance: HTMLInputElement) => void) | React.RefObject<HTMLInputElement | null> | null,
 ) {
   const initData = newFormState(fields, ({ initialValue }) => {
     initialValue = newInitialValue(initialValue);
@@ -156,32 +145,16 @@ function Form<T>(
     element?: React.ReactElement,
     cb?: (env: React.BaseSyntheticEvent<HTMLInputElement>) => void,
   ) {
-    return (
-      env: React.BaseSyntheticEvent<HTMLInputElement>,
-      list?: string[],
-    ) => {
-      let value =
-        env && env.target && 'value' in env.target ? env.target.value : env;
+    return (env: React.BaseSyntheticEvent<HTMLInputElement>, list?: string[]) => {
+      let value = env && env.target && 'value' in env.target ? env.target.value : env;
       // 控件 Checkbox.Group 多选值的处理
       value = list || value;
       // 控件 Checkbox 值的处理
-      if (
-        !list &&
-        element &&
-        env &&
-        env.target &&
-        /(radio)/.test(env.target.type)
-      ) {
+      if (!list && element && env && env.target && /(radio)/.test(env.target.type)) {
         // 控件 Switch/Radio/Checkbox 值的处理
         value = env.target.value ? env.target.value : env.target.checked;
       }
-      if (
-        !list &&
-        element &&
-        env &&
-        env.target &&
-        /(checkbox)/.test(env.target.type)
-      ) {
+      if (!list && element && env && env.target && /(checkbox)/.test(env.target.type)) {
         // 控件 Switch/Radio/Checkbox 值的处理
         value = env.target.checked;
       }
@@ -193,8 +166,7 @@ function Form<T>(
         nextState.errors = { ...data.errors };
         delete nextState.errors[name];
       }
-      if (env && env.persist && typeof env.persist === 'function')
-        env.persist();
+      if (env && env.persist && typeof env.persist === 'function') env.persist();
       setData({ ...data, ...nextState });
       if (cb) {
         cb(env);
@@ -275,20 +247,14 @@ function Form<T>(
             onSubmit: handleSubmit,
             canSubmit: canSubmit,
           });
-    if (!element || React.Children.count(element) !== 1 || !name)
-      return element;
+    if (!element || React.Children.count(element) !== 1 || !name) return element;
     const props = {
       name: element.props.name || name,
       ...other,
     } as FormElementProps;
-    const hasCurrentValue = Object.prototype.hasOwnProperty.call(
-      data.current,
-      name,
-    );
+    const hasCurrentValue = Object.prototype.hasOwnProperty.call(data.current, name);
     props.id = element.props.id;
-    props.value = hasCurrentValue
-      ? data.current && data.current[name]
-      : props.value;
+    props.value = hasCurrentValue ? data.current && data.current[name] : props.value;
     // : element.props.value;
 
     const type = element.props.type;
@@ -296,12 +262,7 @@ function Form<T>(
       props.checked = !!props.checked;
       delete props.value;
     }
-    props.onChange = handleChange(
-      name,
-      validator,
-      element,
-      element.props.onChange,
-    ) as FormElementProps['onChange'];
+    props.onChange = handleChange(name, validator, element, element.props.onChange) as FormElementProps['onChange'];
     return React.cloneElement(element, props as FormElementProps);
   }
   return (

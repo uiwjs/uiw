@@ -54,11 +54,7 @@ export default function Step(props: StepProps) {
     iconNode = <span className={`${prefixCls}-dot`} />;
   } else if (icon && typeof icon !== 'string') {
     iconNode = <span className={`${prefixCls}-icon`}>{icon}</span>;
-  } else if (
-    (icon && typeof icon === 'string') ||
-    status === 'finish' ||
-    status === 'error'
-  ) {
+  } else if ((icon && typeof icon === 'string') || status === 'finish' || status === 'error') {
     iconNode = (
       <Icon
         type={[
@@ -80,20 +76,13 @@ export default function Step(props: StepProps) {
         <i />
       </div>
       <div className={`${prefixCls}-item-head`}>
-        <div
-          className={[`${prefixCls}-item-inner`, !!icon && 'is-icon']
-            .filter(Boolean)
-            .join(' ')
-            .trim()}
-        >
+        <div className={[`${prefixCls}-item-inner`, !!icon && 'is-icon'].filter(Boolean).join(' ').trim()}>
           {iconNode}
         </div>
       </div>
       <div className={`${prefixCls}-item-main`}>
         <div className={`${prefixCls}-item-title`}>{title}</div>
-        {description && (
-          <div className={`${prefixCls}-item-description`}>{description}</div>
-        )}
+        {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
       </div>
     </div>
   );

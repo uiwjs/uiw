@@ -1,7 +1,5 @@
 import { getScroll } from '@uiw/utils';
-import getBoundingClientRect, {
-  IBoundingClientRect,
-} from './util/getBoundingClientRect';
+import getBoundingClientRect, { IBoundingClientRect } from './util/getBoundingClientRect';
 import getOuterSizes from './util/getOuterSizes';
 import { OverlayStyl, OverlayTriggerProps, Placement } from './';
 
@@ -14,35 +12,18 @@ type GetStyleOptions = {
 };
 
 export function getStyle(options: GetStyleOptions) {
-  let {
-    trigger: triggerDom,
-    popup: popupDom,
-    placement,
-    usePortal,
-    autoAdjustOverflow,
-  } = options || {};
+  let { trigger: triggerDom, popup: popupDom, placement, usePortal, autoAdjustOverflow } = options || {};
   const sty = {} as OverlayStyl;
   if (!triggerDom || !popupDom || !document) {
     return sty;
   }
 
-  const winSizeHeight = Math.max(
-    document.documentElement.clientHeight,
-    window.innerHeight || 0,
-  );
-  const winSizeWidth = Math.max(
-    document.documentElement.clientWidth,
-    window.innerWidth || 0,
-  );
+  const winSizeHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  const winSizeWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
   sty.placement = placement;
-  const scrollTop = getScroll(
-    (triggerDom as HTMLElement).ownerDocument!.documentElement,
-    true,
-  );
-  const scrollLeft = getScroll(
-    (triggerDom as HTMLElement).ownerDocument!.documentElement,
-  );
+  const scrollTop = getScroll((triggerDom as HTMLElement).ownerDocument!.documentElement, true);
+  const scrollLeft = getScroll((triggerDom as HTMLElement).ownerDocument!.documentElement);
   const trigger = {
     ...getBoundingClientRect(triggerDom as HTMLElement),
     ...getOuterSizes(triggerDom as HTMLElement),
@@ -104,21 +85,11 @@ export function getStyle(options: GetStyleOptions) {
       break;
   }
   if (autoAdjustOverflow) {
-    if (
-      placement &&
-      /^(top)/.test(placement) &&
-      trigger.top < popup.height &&
-      bottom > popup.height
-    ) {
+    if (placement && /^(top)/.test(placement) && trigger.top < popup.height && bottom > popup.height) {
       sty.placement = placement.replace(/^top/, 'bottom') as Placement;
       sty.top = sty.top + popup.height + trigger.height;
     }
-    if (
-      placement &&
-      /^(bottom)/.test(placement) &&
-      bottom < popup.height &&
-      trigger.top > popup.height
-    ) {
+    if (placement && /^(bottom)/.test(placement) && bottom < popup.height && trigger.top > popup.height) {
       sty.placement = placement.replace(/^bottom/, 'top') as Placement;
       sty.top = sty.top - popup.height - trigger.height;
     }
@@ -135,10 +106,8 @@ export function getStyle(options: GetStyleOptions) {
       // Top
       if (
         (/(Top)$/.test(placement) && trigger.top < 0) ||
-        (/(right|left)$/.test(placement) &&
-          trigger.top + trigger.height / 2 < popup.height / 2) ||
-        (/(Bottom)$/.test(placement) &&
-          trigger.top + trigger.height < popup.height)
+        (/(right|left)$/.test(placement) && trigger.top + trigger.height / 2 < popup.height / 2) ||
+        (/(Bottom)$/.test(placement) && trigger.top + trigger.height < popup.height)
       ) {
         sty.top = scrollTop;
       }
@@ -147,21 +116,12 @@ export function getStyle(options: GetStyleOptions) {
       if (placement && /(Top)$/.test(placement) && trigger.top < 0) {
         sty.top -= trigger.top;
       }
-      if (
-        placement &&
-        /(Bottom)$/.test(placement) &&
-        trigger.bottom < popup.height
-      ) {
+      if (placement && /(Bottom)$/.test(placement) && trigger.bottom < popup.height) {
         // eslint-disable-next-line
         sty.top = sty.top + (popup.height - trigger.bottom);
       }
-      if (
-        placement &&
-        /(right|left)$/.test(placement) &&
-        trigger.bottom - trigger.height / 2 < popup.height / 2
-      ) {
-        sty.top =
-          sty.top + popup.height / 2 - (trigger.bottom - trigger.height / 2);
+      if (placement && /(right|left)$/.test(placement) && trigger.bottom - trigger.height / 2 < popup.height / 2) {
+        sty.top = sty.top + popup.height / 2 - (trigger.bottom - trigger.height / 2);
       }
     }
     // Bottom Public Part
@@ -169,10 +129,7 @@ export function getStyle(options: GetStyleOptions) {
       if (/(Top)$/.test(placement) && bottom + trigger.height < popup.height) {
         sty.top = sty.top - (popup.height - bottom - trigger.height); // eslint-disable-line
       }
-      if (
-        /(right|left)$/.test(placement) &&
-        bottom + trigger.height / 2 < popup.height / 2
-      ) {
+      if (/(right|left)$/.test(placement) && bottom + trigger.height / 2 < popup.height / 2) {
         sty.top = sty.top - (popup.height / 2 - bottom - trigger.height / 2); // eslint-disable-line
       }
       if (/(Bottom)$/.test(placement) && bottom < 0) {
@@ -184,25 +141,16 @@ export function getStyle(options: GetStyleOptions) {
       // left
       if (
         (/(Left)$/.test(placement) && trigger.left < 0) ||
-        (/(top|bottom)$/.test(placement) &&
-          trigger.left + trigger.width / 2 < popup.width / 2) ||
-        (/(Right)$/.test(placement) &&
-          trigger.left + trigger.width < popup.width)
+        (/(top|bottom)$/.test(placement) && trigger.left + trigger.width / 2 < popup.width / 2) ||
+        (/(Right)$/.test(placement) && trigger.left + trigger.width < popup.width)
       ) {
         sty.left = scrollLeft;
       }
       // right
-      if (
-        /(top|bottom)$/.test(placement) &&
-        right + trigger.width / 2 < popup.width / 2
-      ) {
+      if (/(top|bottom)$/.test(placement) && right + trigger.width / 2 < popup.width / 2) {
         sty.left = trigger.left + trigger.width + right - popup.width;
       }
-    } else if (
-      placement &&
-      /(top|bottom)$/.test(placement) &&
-      right + trigger.width / 2 < popup.width / 2
-    ) {
+    } else if (placement && /(top|bottom)$/.test(placement) && right + trigger.width / 2 < popup.width / 2) {
       sty.left = sty.left + (right + trigger.width / 2 - popup.width / 2); // eslint-disable-line
     }
     if (placement && /^(top|bottom)/.test(placement)) {

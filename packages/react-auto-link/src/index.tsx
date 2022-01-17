@@ -16,11 +16,7 @@ export default (props: AutoLinkProps = {}) => {
         if (match && match[0]) {
           const url = match[0];
           return (
-            <a
-              {...other}
-              key={idx}
-              href={url.startsWith('http') ? url : `http://${url}`}
-            >
+            <a {...other} key={idx} href={url.startsWith('http') ? url : `http://${url}`}>
               {url}
             </a>
           );

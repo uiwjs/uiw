@@ -1,8 +1,4 @@
-const canUseDOM = !!(
-  typeof window !== 'undefined' &&
-  window.document &&
-  window.document.createElement
-);
+const canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 
 function fallback(context: HTMLElement, node: HTMLElement) {
   if (node) {
@@ -17,10 +13,7 @@ function fallback(context: HTMLElement, node: HTMLElement) {
 function isDOM(item: Node) {
   return typeof HTMLElement === 'function'
     ? item instanceof HTMLElement
-    : item &&
-        typeof item === 'object' &&
-        item.nodeType === 1 &&
-        typeof item.nodeName === 'string';
+    : item && typeof item === 'object' && item.nodeType === 1 && typeof item.nodeName === 'string';
 }
 
 const contains = (() => {
@@ -28,18 +21,11 @@ const contains = (() => {
   // so we need to check on context instead of a document root element.
   return canUseDOM
     ? function (context: HTMLElement, node: HTMLElement) {
-        if (
-          context &&
-          context.contains &&
-          typeof context.contains === 'function' &&
-          isDOM(node)
-        ) {
+        if (context && context.contains && typeof context.contains === 'function' && isDOM(node)) {
           return context.contains(node);
         }
         if (context && context.compareDocumentPosition && isDOM(node)) {
-          return (
-            context === node || !!(context.compareDocumentPosition(node) && 16)
-          );
+          return context === node || !!(context.compareDocumentPosition(node) && 16);
         }
         return fallback(context, node);
       }

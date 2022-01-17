@@ -9,11 +9,7 @@ import { ThemeContext, reducer, initialState } from './contexts';
 const App = () => useRoutes(routes);
 export const Provider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  return (
-    <ThemeContext.Provider value={{ state, dispatch }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ state, dispatch }}>{children}</ThemeContext.Provider>;
 };
 
 ReactDOM.render(

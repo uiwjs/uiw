@@ -6,17 +6,9 @@ export interface HeaderProps extends IProps {
 }
 
 export default (props: HeaderProps = {}) => {
-  const {
-    prefixCls = 'w-layout-header',
-    className,
-    children,
-    ...other
-  } = props;
+  const { prefixCls = 'w-layout-header', className, children, ...other } = props;
   return (
-    <header
-      className={[prefixCls, className].filter(Boolean).join(' ').trim()}
-      {...other}
-    >
+    <header className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...other}>
       {children}
     </header>
   );

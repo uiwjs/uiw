@@ -8,9 +8,7 @@ export default function Page() {
       path="https://github.com/uiwjs/uiw/tree/master/packages/react-breadcrumb/README.md"
       dependencies={{ Breadcrumb, Icon, Divider }}
       renderPage={async () => {
-        const md = await import(
-          'uiw/node_modules/@uiw/react-breadcrumb/README.md'
-        );
+        const md = await import('uiw/node_modules/@uiw/react-breadcrumb/README.md');
         return md.default || md;
       }}
     />

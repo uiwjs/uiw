@@ -1,4 +1,3 @@
-// @ts-ignore
 import webpack, { Configuration } from 'webpack';
 import { LoaderConfOptions } from 'kkt';
 import path from 'path';
@@ -7,11 +6,7 @@ import rawModules from '@kkt/raw-modules';
 import scopePluginOptions from '@kkt/scope-plugin-options';
 import pkg from './package.json';
 
-export default (
-  conf: Configuration,
-  env: 'development' | 'production',
-  options: LoaderConfOptions,
-) => {
+export default (conf: Configuration, env: 'development' | 'production', options: LoaderConfOptions) => {
   conf = lessModules(conf, env, options);
   conf = rawModules(conf, env, { ...options });
   conf = scopePluginOptions(conf, env, {

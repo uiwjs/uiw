@@ -7,9 +7,7 @@ import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
 import './style/index.less';
 
-export interface DateInputProps<T>
-  extends IProps,
-    Omit<InputProps<T>, 'onChange' | 'value'> {
+export interface DateInputProps<T> extends IProps, Omit<InputProps<T>, 'onChange' | 'value'> {
   popoverProps?: PopoverProps;
   datePickerProps?: DatePickerProps;
   value?: Date | string;
@@ -32,8 +30,7 @@ export default function DateInput<T>(props: DateInputProps<T>) {
   const [date, setDate] = useState(props.value);
 
   const value = date || '';
-  inputProps.value =
-    typeof value === 'string' ? value : formatter(format, value);
+  inputProps.value = typeof value === 'string' ? value : formatter(format, value);
 
   useEffect(() => {
     if (props.value !== date) {
@@ -47,11 +44,7 @@ export default function DateInput<T>(props: DateInputProps<T>) {
   }
   if (allowClear && inputProps.value) {
     inputProps.addonAfter = (
-      <Icon
-        className={`${prefixCls}-close-btn`}
-        onClick={() => handleChange(undefined)}
-        type="close"
-      />
+      <Icon className={`${prefixCls}-close-btn`} onClick={() => handleChange(undefined)} type="close" />
     );
   }
   return (

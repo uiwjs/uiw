@@ -61,9 +61,7 @@ export default function SearchSelect(props: SearchSelectProps) {
 
   useEffect(() => {
     if (defaultValue) {
-      const defaultMenuItem = option.find(
-        (menuItem: MenuItemData) => defaultValue === menuItem.value,
-      );
+      const defaultMenuItem = option.find((menuItem: MenuItemData) => defaultValue === menuItem.value);
       setSelectedValue(defaultValue);
       setSelectedLabel(defaultMenuItem ? defaultMenuItem.label : '');
     }
@@ -134,20 +132,11 @@ export default function SearchSelect(props: SearchSelectProps) {
           }}
         >
           {!option || option.length === 0 ? (
-            <div style={{ color: '#c7c7c7', fontSize: 12 }}>
-              {loading ? '正在加载数据...' : '没有数据'}
-            </div>
+            <div style={{ color: '#c7c7c7', fontSize: 12 }}>{loading ? '正在加载数据...' : '没有数据'}</div>
           ) : (
             option.map((item, idx) => {
               const active = selectedValue === item.value;
-              return (
-                <Menu.Item
-                  active={active}
-                  key={idx}
-                  text={item.label}
-                  onClick={() => handleItemClick(item)}
-                />
-              );
+              return <Menu.Item active={active} key={idx} text={item.label} onClick={() => handleItemClick(item)} />;
             })
           )}
         </Menu>
@@ -167,13 +156,8 @@ export default function SearchSelect(props: SearchSelectProps) {
           value={selectedLabel}
           placeholder={placeholder}
           addonAfter={
-            (selectIconType === 'close' ||
-              (selectIconType === 'loading' && loading)) && (
-              <Icon
-                type={selectIconType}
-                spin={loading && selectIconType === 'loading'}
-                onClick={resetSelectedValue}
-              />
+            (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
+              <Icon type={selectIconType} spin={loading && selectIconType === 'loading'} onClick={resetSelectedValue} />
             )
           }
         />

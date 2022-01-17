@@ -37,7 +37,7 @@
 
 ## uiw
 
-`uiw` 是基于 React 16+ 的 UI 组件库。
+一个高质量的 UI 工具包，一个 React 16+ 的组件库。 💘
 
 ### 安装
 
@@ -152,10 +152,14 @@ Package | Version | Description
 或者在本地克隆：
 
 ```bash
+$ git clone https://github.com/uiwjs/uiwjs.github.io.git --recurse-submodules
+```
+
+安装依赖 & 编译组件代码
+
+```bash
 $ npm install # Install dependencies
 
-$ npm run bootstrap
-$ npm run bootstrap:webiste
 $ npm run hoist
 $ npm run build
 ```

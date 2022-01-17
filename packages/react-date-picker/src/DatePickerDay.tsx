@@ -27,18 +27,9 @@ export interface DatePickerDayProps extends IProps, HTMLDivProps {
   date?: Date;
   today?: Date;
   prefixCls?: string;
-  onSelectDay?: (
-    selectedDate?: Date,
-    dateSource?: DatePickerDayDateSource,
-  ) => void;
-  renderDay?: (
-    day: number,
-    props: DatePickerDayRenderDay & DatePickerDayRenderDayProps,
-  ) => React.ReactNode;
-  disabledDate?: (
-    cellDate: Date,
-    props: DatePickerDayRenderDay & DatePickerDayRenderDayProps,
-  ) => boolean;
+  onSelectDay?: (selectedDate?: Date, dateSource?: DatePickerDayDateSource) => void;
+  renderDay?: (day: number, props: DatePickerDayRenderDay & DatePickerDayRenderDayProps) => React.ReactNode;
+  disabledDate?: (cellDate: Date, props: DatePickerDayRenderDay & DatePickerDayRenderDayProps) => boolean;
 }
 
 export interface PickerDayState {
@@ -99,14 +90,8 @@ export function DayRect(props: DayRectProps) {
   if (!date || !isValidDate(date)) date = new Date();
   const year = date.getFullYear();
   const month = date.getMonth();
-  const week = useMemo(
-    () => new Date(new Date(date!).setDate(1)).getDay(),
-    [date.toDateString()],
-  );
-  const lastDay = useMemo(
-    () => new Date(year, month === 0 ? 12 : month + 1, 0).getDate(),
-    [date.toDateString()],
-  );
+  const week = useMemo(() => new Date(new Date(date!).setDate(1)).getDay(), [date.toDateString()]);
+  const lastDay = useMemo(() => new Date(year, month === 0 ? 12 : month + 1, 0).getDate(), [date.toDateString()]);
   let day = index;
   if (date) {
     day = day - week + 1;
@@ -150,15 +135,7 @@ export function DayRect(props: DayRectProps) {
   );
 }
 
-const WEEKTITLE = [
-  '星期天',
-  '星期一',
-  '星期二',
-  '星期三',
-  '星期四',
-  '星期五',
-  '星期六',
-];
+const WEEKTITLE = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
 const WEEKDAY = ['日', '一', '二', '三', '四', '五', '六'];
 
 export function DatePickerDay(props: DatePickerDayProps) {
@@ -180,11 +157,7 @@ export function DatePickerDay(props: DatePickerDayProps) {
     () => (
       <div className={`${prefixCls}-weekday`}>
         {(weekday || []).map((week, idx) => (
-          <div
-            key={idx}
-            className={classnames({ end: idx === 0 || idx === 6 })}
-            title={weekTitle && weekTitle[idx]}
-          >
+          <div key={idx} className={classnames({ end: idx === 0 || idx === 6 })} title={weekTitle && weekTitle[idx]}>
             {week}
           </div>
         ))}
@@ -194,20 +167,9 @@ export function DatePickerDay(props: DatePickerDayProps) {
   );
 
   return (
-    <div
-      {...other}
-      className={[prefixCls ? `${prefixCls}-body` : null, className]
-        .filter(Boolean)
-        .join(' ')
-        .trim()}
-    >
+    <div {...other} className={[prefixCls ? `${prefixCls}-body` : null, className].filter(Boolean).join(' ').trim()}>
       {weekdayLabel}
-      <div
-        className={[prefixCls ? `${prefixCls}-day-body` : null]
-          .filter(Boolean)
-          .join(' ')
-          .trim()}
-      >
+      <div className={[prefixCls ? `${prefixCls}-day-body` : null].filter(Boolean).join(' ').trim()}>
         {[...Array(6)].map((_, idx) => (
           <div key={idx} className={`${prefixCls}-week`}>
             {[...Array(7)].map((_, col) => (
