@@ -42,15 +42,10 @@ export default function Pagination(props: PaginationProps) {
   const [current, setCurrent] = useState(currentNumber);
   useEffect(() => setCurrent(currentNumber), [currentNumber]);
 
-  const cls = [prefixCls, className, divider ? 'divider' : null, size]
-    .filter(Boolean)
-    .join(' ')
-    .trim();
+  const cls = [prefixCls, className, divider ? 'divider' : null, size].filter(Boolean).join(' ').trim();
 
   const initPageSoure = useMemo(() => {
-    const data: PaginationItemSourceData[] = [
-      { type: 'prev', disabled: current === 1 },
-    ];
+    const data: PaginationItemSourceData[] = [{ type: 'prev', disabled: current === 1 }];
     const count = Math.ceil(total / pageSize);
     const itemCount = count <= 5 ? count : 5;
     let num = 0;
@@ -113,8 +108,7 @@ export default function Pagination(props: PaginationProps) {
       state.current = current + 1 <= count ? current + 1 : count;
     }
     if (/^(jumpPrev|jumpNext)/.test(item.type as string) && item.goto) {
-      state.current =
-        item.type === 'jumpPrev' ? current - item.goto : current + item.goto;
+      state.current = item.type === 'jumpPrev' ? current - item.goto : current + item.goto;
       if (state.current > count) {
         state.current = count;
       }
@@ -138,10 +132,7 @@ export default function Pagination(props: PaginationProps) {
         }
         return (
           <li
-            className={[
-              item.active ? 'active' : null,
-              item.disabled ? 'disabled' : null,
-            ]
+            className={[item.active ? 'active' : null, item.disabled ? 'disabled' : null]
               .filter(Boolean)
               .join(' ')
               .trim()}

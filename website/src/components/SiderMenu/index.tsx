@@ -6,9 +6,7 @@ import nav from '../icons/nav';
 
 export default function SiderMenu() {
   const location = useLocation();
-  const data = menu.find((item) =>
-    new RegExp(`^${item.path || ''}`).test(location.pathname),
-  );
+  const data = menu.find((item) => new RegExp(`^${item.path || ''}`).test(location.pathname));
 
   if (!data?.children) {
     return null;

@@ -7,9 +7,7 @@ export default () => (
     path="https://github.com/uiwjs/uiw/tree/master/packages/react-time-picker/README.md"
     dependencies={{ TimePicker, formatter, Notify, Button, Form, Row, Col }}
     renderPage={async () => {
-      const md = await import(
-        'uiw/node_modules/@uiw/react-time-picker/README.md'
-      );
+      const md = await import('uiw/node_modules/@uiw/react-time-picker/README.md');
       return md.default || md;
     }}
   />

@@ -8,9 +8,7 @@ export default function Page() {
       path="https://github.com/uiwjs/uiw/tree/master/packages/react-pagination/README.md"
       dependencies={{ Pagination, Divider }}
       renderPage={async () => {
-        const md = await import(
-          'uiw/node_modules/@uiw/react-pagination/README.md'
-        );
+        const md = await import('uiw/node_modules/@uiw/react-pagination/README.md');
         return md.default || md;
       }}
     />

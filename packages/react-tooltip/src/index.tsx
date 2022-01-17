@@ -1,7 +1,5 @@
 import React from 'react';
-import OverlayTrigger, {
-  OverlayTriggerProps,
-} from '@uiw/react-overlay-trigger';
+import OverlayTrigger, { OverlayTriggerProps } from '@uiw/react-overlay-trigger';
 import { IProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -23,10 +21,7 @@ export default (props: TooltipProps = {}) => {
     onVisibleChange,
     ...other
   } = props;
-  const cls = [prefixCls, className, !visibleArrow ? 'no-arrow' : null]
-    .filter(Boolean)
-    .join(' ')
-    .trim();
+  const cls = [prefixCls, className, !visibleArrow ? 'no-arrow' : null].filter(Boolean).join(' ').trim();
   return (
     <OverlayTrigger
       usePortal={usePortal}
@@ -43,11 +38,7 @@ export default (props: TooltipProps = {}) => {
         </div>
       }
     >
-      {typeof props.children === 'object' ? (
-        props.children
-      ) : (
-        <span>{props.children}</span>
-      )}
+      {typeof props.children === 'object' ? props.children : <span>{props.children}</span>}
     </OverlayTrigger>
   );
 };

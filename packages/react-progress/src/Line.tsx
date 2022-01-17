@@ -15,27 +15,15 @@ export default class Line<T> extends React.Component<ProgressLineProp<T>> {
     strokeWidth: 6, // 进度条大小设置
   };
   render() {
-    const {
-      prefixCls,
-      style,
-      className,
-      showText,
-      percent,
-      format,
-      strokeWidth,
-      width,
-      status,
-      ...resetProps
-    } = this.props;
+    const { prefixCls, style, className, showText, percent, format, strokeWidth, width, status, ...resetProps } =
+      this.props;
     const cls = [
       prefixCls,
       className,
       `${prefixCls}-line`,
       showText ? `${prefixCls}-show-text` : null,
       status ? `${prefixCls}-status-${status}` : null,
-      parseInt((percent as number).toString(), 10) >= 100
-        ? `${prefixCls}-status-success`
-        : null,
+      parseInt((percent as number).toString(), 10) >= 100 ? `${prefixCls}-status-success` : null,
     ]
       .filter(Boolean)
       .join(' ')
@@ -43,21 +31,14 @@ export default class Line<T> extends React.Component<ProgressLineProp<T>> {
     let progressInfo;
     if (showText) {
       const progressStatus =
-        parseInt((percent as number).toString(), 10) >= 100 &&
-        !('status' in this.props)
-          ? 'success'
-          : status;
+        parseInt((percent as number).toString(), 10) >= 100 && !('status' in this.props) ? 'success' : status;
       let percentView: React.ReactNode = `${percent}%`;
       if (progressStatus === 'exception') {
         percentView = <IconProgress type="circle-close" />;
       } else if (progressStatus === 'success') {
         percentView = <IconProgress type="circle-check" />;
       }
-      progressInfo = (
-        <span className={`${prefixCls}-text`}>
-          {format ? format(percent as number) : percentView}
-        </span>
-      );
+      progressInfo = <span className={`${prefixCls}-text`}>{format ? format(percent as number) : percentView}</span>;
     }
     const percentStyle = {
       width: `${percent}%`,

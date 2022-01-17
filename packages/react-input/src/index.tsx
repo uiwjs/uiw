@@ -22,10 +22,7 @@ export default React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   } = props;
   const inputRef = React.useRef<HTMLInputElement>(null);
   const addonRef = React.useRef<HTMLSpanElement>(null);
-  useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(
-    ref,
-    () => inputRef.current,
-  );
+  useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(ref, () => inputRef.current);
   const cls = [
     prefixCls,
     className,
@@ -52,13 +49,7 @@ export default React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return (
     <div className={cls} style={style}>
       <Icon type={preIcon} />
-      <input
-        ref={inputRef}
-        type={type}
-        autoComplete="off"
-        {...otherProps}
-        className={`${prefixCls}-inner`}
-      />
+      <input ref={inputRef} type={type} autoComplete="off" {...otherProps} className={`${prefixCls}-inner`} />
       {addonAfter && (
         <span className={`${prefixCls}-addon-after`} ref={addonRef}>
           {addonAfter}

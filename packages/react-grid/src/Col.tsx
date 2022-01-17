@@ -10,15 +10,7 @@ export interface ColProps extends IProps, HTMLDivProps {
 }
 
 export function Col(props: ColProps = {}) {
-  const {
-    prefixCls = 'w-col',
-    className,
-    fixed,
-    span,
-    grow,
-    align,
-    ...other
-  } = props;
+  const { prefixCls = 'w-col', className, fixed, span, grow, align, ...other } = props;
   const cls = [
     prefixCls,
     className,

@@ -18,26 +18,12 @@ export function DatePickerMonth(props: DatePickerMonthProps) {
     ...other
   } = props;
   return (
-    <div
-      className={[prefixCls ? `${prefixCls}-month` : null, className]
-        .filter(Boolean)
-        .join(' ')
-        .trim()}
-      {...other}
-    >
+    <div className={[prefixCls ? `${prefixCls}-month` : null, className].filter(Boolean).join(' ').trim()} {...other}>
       {[...Array(12)].map((_, idx) => {
         const selectedMonth = panelDate!.getMonth();
         return (
-          <div
-            key={idx}
-            className={[selectedMonth === idx ? 'selected' : null]
-              .filter(Boolean)
-              .join(' ')
-              .trim()}
-          >
-            <span onClick={() => onSelected(idx, false)}>
-              {(monthLabel && monthLabel[idx]) || idx}
-            </span>
+          <div key={idx} className={[selectedMonth === idx ? 'selected' : null].filter(Boolean).join(' ').trim()}>
+            <span onClick={() => onSelected(idx, false)}>{(monthLabel && monthLabel[idx]) || idx}</span>
           </div>
         );
       })}

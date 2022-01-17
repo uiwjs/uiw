@@ -11,9 +11,7 @@ interface TreeNodeIconProps {
   selectedKeys: TreeNodeProps['selectedKeys'];
 }
 
-interface TreeNodeProps<
-  T = (data: TreeData, props: TreeNodeIconProps) => IconProps['type'],
-> extends IProps {
+interface TreeNodeProps<T = (data: TreeData, props: TreeNodeIconProps) => IconProps['type']> extends IProps {
   data: TreeData[];
   level: number;
   parent?: TreeData;
@@ -29,8 +27,7 @@ interface TreeNodeProps<
   onItemSelected?: (item: TreeData, evn: React.MouseEvent<HTMLElement>) => void;
 }
 
-const Label = ({ label }: { label: React.ReactNode }) =>
-  useMemo(() => <span>{label}</span>, [label]);
+const Label = ({ label }: { label: React.ReactNode }) => useMemo(() => <span>{label}</span>, [label]);
 
 export default function TreeNode<T>(props: TreeNodeProps<T>) {
   const {
@@ -92,12 +89,9 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
       >
         {data.map((item, idx: number) => {
           item.parent = parent;
-          const selected = !!(
-            selectedKeys && selectedKeys.indexOf(item.key) > -1
-          );
+          const selected = !!(selectedKeys && selectedKeys.indexOf(item.key) > -1);
           const noChild = !item.children;
-          const itemIsOpen =
-            openKeys && openKeys.indexOf(item.key) > -1 && !!item.children;
+          const itemIsOpen = openKeys && openKeys.indexOf(item.key) > -1 && !!item.children;
           const iconItem =
             typeof icon === 'function'
               ? icon(item, {
@@ -108,24 +102,16 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
                 })
               : icon;
           const childKeys = noChild ? [] : getChildKeys(item.children);
-          const checkedKeys = selectedKeys
-            ? selectedKeys.filter((key) => childKeys.indexOf(key) > -1)
-            : [];
-          const isHalfChecked =
-            checkedKeys.length > 0 && childKeys.length !== checkedKeys.length;
+          const checkedKeys = selectedKeys ? selectedKeys.filter((key) => childKeys.indexOf(key) > -1) : [];
+          const isHalfChecked = checkedKeys.length > 0 && childKeys.length !== checkedKeys.length;
           return (
             <li key={idx}>
               <div className={`${prefixCls}-label`}>
-                <span
-                  className={`${prefixCls}-switcher`}
-                  onClick={(evn) => onItemClick(item, evn)}
-                >
+                <span className={`${prefixCls}-switcher`} onClick={(evn) => onItemClick(item, evn)}>
                   <Icon
                     type={iconItem || 'caret-right'}
                     className={[
-                      typeof icon === 'function'
-                        ? `${prefixCls}-switcher-noop`
-                        : null,
+                      typeof icon === 'function' ? `${prefixCls}-switcher-noop` : null,
                       noChild ? 'no-child' : null,
                       !iconAnimation ? 'no-animation' : null,
                       itemIsOpen ? 'open' : null,

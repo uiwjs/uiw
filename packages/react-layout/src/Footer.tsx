@@ -6,17 +6,9 @@ export interface FooterProps extends IProps {
 }
 
 export default (props: FooterProps = {}) => {
-  const {
-    prefixCls = 'w-layout-footer',
-    className,
-    children,
-    ...other
-  } = props;
+  const { prefixCls = 'w-layout-footer', className, children, ...other } = props;
   return (
-    <footer
-      className={[prefixCls, className].filter(Boolean).join(' ').trim()}
-      {...other}
-    >
+    <footer className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...other}>
       {children}
     </footer>
   );

@@ -8,9 +8,7 @@ export default function Page() {
       path="https://github.com/uiwjs/uiw/tree/master/packages/react-divider/README.md"
       dependencies={{ Divider }}
       renderPage={async () => {
-        const md = await import(
-          'uiw/node_modules/@uiw/react-divider/README.md'
-        );
+        const md = await import('uiw/node_modules/@uiw/react-divider/README.md');
         return md.default || md;
       }}
     />

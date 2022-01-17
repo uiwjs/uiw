@@ -35,10 +35,7 @@ function Sider(props = {} as SiderProps & LayoutContextProps) {
     };
   }, []);
 
-  useMemo(
-    () => setRawWidth(collapsed ? collapsedWidth : width),
-    [width, collapsedWidth, collapsed],
-  );
+  useMemo(() => setRawWidth(collapsed ? collapsedWidth : width), [width, collapsedWidth, collapsed]);
 
   const divStyle = {
     ...style,
@@ -48,11 +45,7 @@ function Sider(props = {} as SiderProps & LayoutContextProps) {
     width: rawWidth,
   };
   return (
-    <div
-      className={[prefixCls, className].filter(Boolean).join(' ').trim()}
-      style={divStyle}
-      {...other}
-    >
+    <div className={[prefixCls, className].filter(Boolean).join(' ').trim()} style={divStyle} {...other}>
       {children}
     </div>
   );

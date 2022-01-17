@@ -14,10 +14,7 @@ export interface PinCodeProps extends IProps {
   placeholder?: string;
 }
 
-function InternalPinCode(
-  props: PinCodeProps = {},
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
+function InternalPinCode(props: PinCodeProps = {}, ref: React.ForwardedRef<HTMLDivElement>) {
   const {
     prefixCls = 'w-pin-code',
     placeholder = '○',
@@ -37,12 +34,7 @@ function InternalPinCode(
   }>({});
   const [placehold, setPlacehold] = useState(placeholder);
   const [values, setValues] = useState(value);
-  const cls = [
-    prefixCls,
-    className,
-    size ? `${prefixCls}-${size}` : null,
-    disabled ? 'disabled' : null,
-  ]
+  const cls = [prefixCls, className, size ? `${prefixCls}-${size}` : null, disabled ? 'disabled' : null]
     .filter(Boolean)
     .join(' ')
     .trim();
@@ -63,10 +55,7 @@ function InternalPinCode(
       setValues(arr);
     }
   }
-  function handleKeyDown(
-    e: React.KeyboardEvent<HTMLInputElement>,
-    idx: number,
-  ) {
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>, idx: number) {
     let val = e.currentTarget.value;
     const key = e.key.toLocaleLowerCase();
     if (!val && input[idx - 1] && /(backspace|delete)/.test(key)) {

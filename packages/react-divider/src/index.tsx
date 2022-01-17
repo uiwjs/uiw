@@ -31,9 +31,7 @@ export default React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
     .trim();
   return (
     <div className={cls} {...restProps} ref={ref}>
-      {children && (
-        <span className={`${prefixCls}-inner-text`}>{children}</span>
-      )}
+      {children && <span className={`${prefixCls}-inner-text`}>{children}</span>}
     </div>
   );
 });

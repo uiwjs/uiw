@@ -5,9 +5,7 @@ import menu from '../../menu.json';
 
 export default function Overview() {
   const location = useLocation();
-  const data = menu.find((item) =>
-    new RegExp(`^${item.path}`).test(location.pathname),
-  );
+  const data = menu.find((item) => new RegExp(`^${item.path}`).test(location.pathname));
   return (
     <div className={styles.App}>
       <h1>概览 组件</h1>

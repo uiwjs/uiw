@@ -8,9 +8,7 @@ export default function Page() {
       path="https://github.com/uiwjs/uiw/tree/master/packages/react-dropdown/README.md"
       dependencies={{ Dropdown, Divider, Menu, Button, ButtonGroup, Icon }}
       renderPage={async () => {
-        const md = await import(
-          'uiw/node_modules/@uiw/react-dropdown/README.md'
-        );
+        const md = await import('uiw/node_modules/@uiw/react-dropdown/README.md');
         return md.default || md;
       }}
     />

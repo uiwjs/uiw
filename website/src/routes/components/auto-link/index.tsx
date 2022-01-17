@@ -8,9 +8,7 @@ export default function Page() {
       path="https://github.com/uiwjs/uiw/tree/master/packages/react-auto-link/README.md"
       dependencies={{ AutoLink }}
       renderPage={async () => {
-        const md = await import(
-          'uiw/node_modules/@uiw/react-auto-link/README.md'
-        );
+        const md = await import('uiw/node_modules/@uiw/react-auto-link/README.md');
         return md.default || md;
       }}
     />

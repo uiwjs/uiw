@@ -4,17 +4,10 @@ import Popover, { PopoverProps } from '@uiw/react-popover';
 import { IProps } from '@uiw/utils';
 import Button from '@uiw/react-button';
 import formatter from '@uiw/formatter';
-import {
-  DatePickerMonth,
-  DatePickerYear,
-  DatePickerCaption,
-  DatePickerCaptionProps,
-} from '@uiw/react-date-picker';
+import { DatePickerMonth, DatePickerYear, DatePickerCaption, DatePickerCaptionProps } from '@uiw/react-date-picker';
 import './style/index.less';
 
-export interface MonthPickerProps<T>
-  extends IProps,
-    Omit<InputProps<T>, 'value' | 'onChange'> {
+export interface MonthPickerProps<T> extends IProps, Omit<InputProps<T>, 'value' | 'onChange'> {
   popoverProps?: PopoverProps;
   pickerCaptionProps?: DatePickerCaptionProps;
   value?: Date | string;
@@ -60,8 +53,7 @@ export default function MonthPicker<T>(props: MonthPickerProps<T>) {
   useEffect(() => setDate(props.value), [props.value]);
 
   inputProps.value = useMemo(
-    () =>
-      typeof date === 'string' ? date : date ? formatter(format, date) : '',
+    () => (typeof date === 'string' ? date : date ? formatter(format, date) : ''),
     [format, date],
   );
 
@@ -81,11 +73,7 @@ export default function MonthPicker<T>(props: MonthPickerProps<T>) {
     );
   }
 
-  function handleSelectedDate(
-    type: 'setMonth' | 'setFullYear',
-    num: number,
-    paging?: boolean,
-  ) {
+  function handleSelectedDate(type: 'setMonth' | 'setFullYear', num: number, paging?: boolean) {
     const curPanelDate = new Date(new Date(panelDate)[type](num));
     if (!paging) {
       setType('month');
@@ -118,11 +106,7 @@ export default function MonthPicker<T>(props: MonthPickerProps<T>) {
                 setType(captionType);
               } else {
                 const year = new Date(panelDate).getFullYear();
-                const curPanelDate = new Date(
-                  new Date(panelDate).setFullYear(
-                    type === 'next' ? year + 1 : year - 1,
-                  ),
-                );
+                const curPanelDate = new Date(new Date(panelDate).setFullYear(type === 'next' ? year + 1 : year - 1));
                 setPanelDate(curPanelDate);
               }
             }}
@@ -131,17 +115,13 @@ export default function MonthPicker<T>(props: MonthPickerProps<T>) {
             <DatePickerMonth
               panelDate={panelDate}
               monthLabel={monthLabel}
-              onSelected={(month, paging) =>
-                handleSelectedDate('setMonth', month, paging)
-              }
+              onSelected={(month, paging) => handleSelectedDate('setMonth', month, paging)}
             />
           )}
           {type === 'year' && (
             <DatePickerYear
               panelDate={panelDate}
-              onSelected={(year, paging) =>
-                handleSelectedDate('setFullYear', year, paging)
-              }
+              onSelected={(year, paging) => handleSelectedDate('setFullYear', year, paging)}
             />
           )}
         </div>

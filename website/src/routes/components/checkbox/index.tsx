@@ -8,9 +8,7 @@ export default function Page() {
       path="https://github.com/uiwjs/uiw/tree/master/packages/react-checkbox/README.md"
       dependencies={{ Checkbox, Button, Form, Row, Col, Divider, Notify }}
       renderPage={async () => {
-        const md = await import(
-          'uiw/node_modules/@uiw/react-checkbox/README.md'
-        );
+        const md = await import('uiw/node_modules/@uiw/react-checkbox/README.md');
         return md.default || md;
       }}
     />

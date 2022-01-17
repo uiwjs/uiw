@@ -8,12 +8,7 @@ interface Window {
   MSInputMethodContext?: any;
 }
 
-const isIE11 =
-  isBrowser &&
-  !!(
-    (window as Window).MSInputMethodContext &&
-    (document as Document).documentMode
-  );
+const isIE11 = isBrowser && !!((window as Window).MSInputMethodContext && (document as Document).documentMode);
 const isIE10 = isBrowser && /MSIE 10/.test(navigator.userAgent);
 
 /**

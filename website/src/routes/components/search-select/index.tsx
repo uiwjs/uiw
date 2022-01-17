@@ -7,9 +7,7 @@ export default () => (
     path="https://github.com/uiwjs/uiw/tree/master/packages/react-search-select/README.md"
     dependencies={{ Form, Row, Col, Button, Notify, SearchSelect }}
     renderPage={async () => {
-      const md = await import(
-        'uiw/node_modules/@uiw/react-search-select/README.md'
-      );
+      const md = await import('uiw/node_modules/@uiw/react-search-select/README.md');
       return md.default || md;
     }}
   />

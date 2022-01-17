@@ -61,15 +61,7 @@ export default class Affix extends React.Component<AffixProps, IAffixState> {
   };
   private box: any;
   private target!: Window | HTMLElement | null;
-  private readonly events = [
-    'resize',
-    'scroll',
-    'touchstart',
-    'touchmove',
-    'touchend',
-    'pageshow',
-    'load',
-  ];
+  private readonly events = ['resize', 'scroll', 'touchstart', 'touchmove', 'touchend', 'pageshow', 'load'];
   private eventHandlers: Record<string, any> = {};
   private timeout?: number;
   constructor(props: AffixProps & HTMLDivProps) {
@@ -112,8 +104,7 @@ export default class Affix extends React.Component<AffixProps, IAffixState> {
 
     const elemOffset = getOffset(this.box, this.target);
     const box = this.box.getBoundingClientRect();
-    const bottom =
-      document.documentElement.clientHeight - box.y - elemOffset.height;
+    const bottom = document.documentElement.clientHeight - box.y - elemOffset.height;
 
     if (offsetMode.top && box.y < 0) {
       this.setPlaceholderStyle({ ...elemSize });
@@ -151,8 +142,7 @@ export default class Affix extends React.Component<AffixProps, IAffixState> {
     this.clearEventListeners();
     this.events.forEach((eventName) => {
       this.eventHandlers[eventName] = this.updatePosition;
-      this.target &&
-        this.target.addEventListener(eventName, this.updatePosition, false);
+      this.target && this.target.addEventListener(eventName, this.updatePosition, false);
     });
   }
   clearEventListeners() {
@@ -167,23 +157,10 @@ export default class Affix extends React.Component<AffixProps, IAffixState> {
     }
   };
   public render() {
-    const {
-      prefixCls,
-      className,
-      children,
-      offsetTop,
-      offsetBottom,
-      target,
-      onChange,
-      ...resetProps
-    } = this.props;
+    const { prefixCls, className, children, offsetTop, offsetBottom, target, onChange, ...resetProps } = this.props;
     const cls = [className, prefixCls].filter(Boolean).join(' ').trim();
     return (
-      <div
-        {...resetProps}
-        ref={this.getInstance}
-        style={{ ...this.state.placeholderStyle, ...this.props.style }}
-      >
+      <div {...resetProps} ref={this.getInstance} style={{ ...this.state.placeholderStyle, ...this.props.style }}>
         <div className={cls} style={this.state.affixStyle}>
           {children}
         </div>

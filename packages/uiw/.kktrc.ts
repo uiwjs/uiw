@@ -4,11 +4,7 @@ import reactLibrary from '@kkt/react-library';
 import lessModules from '@kkt/less-modules';
 import pkg from './package.json';
 
-export default (
-  conf: Configuration,
-  env: string,
-  options: LoaderConfOptions,
-) => {
+export default (conf: Configuration, env: string, options: LoaderConfOptions) => {
   conf = lessModules(conf, env, options);
   conf = reactLibrary(conf, env, {
     ...options,

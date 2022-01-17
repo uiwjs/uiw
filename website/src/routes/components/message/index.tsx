@@ -8,9 +8,7 @@ export default function Page() {
       path="https://github.com/uiwjs/uiw/tree/master/packages/react-message/README.md"
       dependencies={{ Message, Divider }}
       renderPage={async () => {
-        const md = await import(
-          'uiw/node_modules/@uiw/react-message/README.md'
-        );
+        const md = await import('uiw/node_modules/@uiw/react-message/README.md');
         return md.default || md;
       }}
     />

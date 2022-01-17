@@ -1,7 +1,5 @@
 import React from 'react';
-import OverlayTrigger, {
-  OverlayTriggerProps,
-} from '@uiw/react-overlay-trigger';
+import OverlayTrigger, { OverlayTriggerProps } from '@uiw/react-overlay-trigger';
 import { IProps } from '@uiw/utils';
 import { useMemo } from 'react';
 
@@ -10,20 +8,9 @@ export interface DropdownProps extends IProps, OverlayTriggerProps {
 }
 
 export default function Dropdown(props: DropdownProps) {
-  const {
-    prefixCls = 'w-dropdown',
-    placement = 'bottomLeft',
-    className,
-    menu,
-    children,
-    disabled,
-    ...other
-  } = props;
+  const { prefixCls = 'w-dropdown', placement = 'bottomLeft', className, menu, children, disabled, ...other } = props;
 
-  const cls = useMemo(
-    () => [prefixCls, className].filter(Boolean).join(' ').trim(),
-    [prefixCls, className],
-  );
+  const cls = useMemo(() => [prefixCls, className].filter(Boolean).join(' ').trim(), [prefixCls, className]);
 
   return (
     <OverlayTrigger

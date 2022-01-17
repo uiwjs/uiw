@@ -1,16 +1,5 @@
 import React from 'react';
-import {
-  Rate,
-  Radio,
-  RadioGroup,
-  Icon,
-  Divider,
-  Form,
-  Row,
-  Col,
-  Button,
-  Notify,
-} from 'uiw';
+import { Rate, Radio, RadioGroup, Icon, Divider, Form, Row, Col, Button, Notify } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 export default () => (

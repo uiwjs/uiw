@@ -1,11 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
-export const canUseDOM = !!(
-  typeof window !== 'undefined' &&
-  window.document &&
-  window.document.createElement
-);
+export const canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 
 export interface PortalProps {
   children?: React.ReactNode;

@@ -23,10 +23,7 @@ function toArray(activeKey: CollapseProps['activeKey']) {
   return currentActiveKey;
 }
 
-function InternalCollapse(
-  props: CollapseProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
+function InternalCollapse(props: CollapseProps, ref: React.ForwardedRef<HTMLDivElement>) {
   const {
     prefixCls = 'w-collapse',
     className,
@@ -39,10 +36,7 @@ function InternalCollapse(
     ...resetProps
   } = props;
   const [activeKey, setActiveKey] = useState(toArray(propsActiveKey));
-  const cls = [prefixCls, className, bordered ? 'w-noborder' : null]
-    .filter(Boolean)
-    .join(' ')
-    .trim();
+  const cls = [prefixCls, className, bordered ? 'w-noborder' : null].filter(Boolean).join(' ').trim();
   function onItemClick(key: string) {
     let keys = activeKey;
     if (accordion) {
@@ -96,9 +90,7 @@ function InternalCollapse(
   );
 }
 
-const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(
-  InternalCollapse,
-);
+const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(InternalCollapse);
 type Collapse = typeof Collapse & {
   Panel: typeof Panel;
 };

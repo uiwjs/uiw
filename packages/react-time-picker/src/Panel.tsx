@@ -47,9 +47,7 @@ export default function TimePickerPanel(props: TimePickerPanelProps) {
   const disableds = useRef<number[]>([]);
   function getMaybeNumber() {
     if (date && type) {
-      return new Date(date)[
-        `get${type}` as 'getHours' | 'getMinutes' | 'getSeconds'
-      ]();
+      return new Date(date)[`get${type}` as 'getHours' | 'getMinutes' | 'getSeconds']();
     }
     return 0;
   }
@@ -60,13 +58,7 @@ export default function TimePickerPanel(props: TimePickerPanelProps) {
     onSelected && onSelected(type, num, disableds.current, currentDate);
   }
   function getDisabledItem(num: number) {
-    const disabled =
-      props[
-        `disabled${type}` as
-          | 'disabledHours'
-          | 'disabledMinutes'
-          | 'disabledSeconds'
-      ];
+    const disabled = props[`disabled${type}` as 'disabledHours' | 'disabledMinutes' | 'disabledSeconds'];
     if (disabled) {
       return disabled(num, type, new Date(date!));
     }

@@ -56,13 +56,7 @@ export default class Layout extends React.Component<LayoutProps, LayoutState> {
           className={[
             prefixCls,
             className,
-            (
-              typeof hasSider === 'boolean'
-                ? hasSider
-                : this.state.siders.length > 0
-            )
-              ? `${prefixCls}-has-sider`
-              : null,
+            (typeof hasSider === 'boolean' ? hasSider : this.state.siders.length > 0) ? `${prefixCls}-has-sider` : null,
           ]
             .filter(Boolean)
             .join(' ')

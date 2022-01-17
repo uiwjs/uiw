@@ -29,13 +29,7 @@ export function DatePickerYear(props: DatePickerYearProps) {
     }
   }
   return (
-    <div
-      className={[prefixCls ? `${prefixCls}-year` : null, className]
-        .filter(Boolean)
-        .join(' ')
-        .trim()}
-      {...other}
-    >
+    <div className={[prefixCls ? `${prefixCls}-year` : null, className].filter(Boolean).join(' ').trim()} {...other}>
       {panelNum &&
         panelNum.map((_, idx) => {
           const selectedYear = activeYear!.getFullYear();

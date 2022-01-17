@@ -1,7 +1,5 @@
 import React from 'react';
-import OverlayTrigger, {
-  OverlayTriggerProps,
-} from '@uiw/react-overlay-trigger';
+import OverlayTrigger, { OverlayTriggerProps } from '@uiw/react-overlay-trigger';
 import './style/index.less';
 
 export interface PopoverProps extends OverlayTriggerProps {
@@ -35,12 +33,8 @@ export default class Popover extends React.Component<PopoverProps> {
     );
   };
   render() {
-    const { prefixCls, className, content, visibleArrow, ...other } =
-      this.props;
-    const cls = [prefixCls, className, !visibleArrow ? 'no-arrow' : null]
-      .filter(Boolean)
-      .join(' ')
-      .trim();
+    const { prefixCls, className, content, visibleArrow, ...other } = this.props;
+    const cls = [prefixCls, className, !visibleArrow ? 'no-arrow' : null].filter(Boolean).join(' ').trim();
     return (
       <OverlayTrigger
         {...other}
@@ -51,11 +45,7 @@ export default class Popover extends React.Component<PopoverProps> {
           </div>
         }
       >
-        {typeof this.props.children === 'object' ? (
-          this.props.children
-        ) : (
-          <span>{this.props.children}</span>
-        )}
+        {typeof this.props.children === 'object' ? this.props.children : <span>{this.props.children}</span>}
       </OverlayTrigger>
     );
   }

@@ -12,12 +12,7 @@ interface ComputedStyle extends CSSStyleDeclaration {
   [key: string]: any;
 }
 
-function getSize(
-  axis: 'Height' | 'Width',
-  body: BodyElement,
-  html: IHTMLElement,
-  computedStyle: ComputedStyle,
-) {
+function getSize(axis: 'Height' | 'Width', body: BodyElement, html: IHTMLElement, computedStyle: ComputedStyle) {
   return Math.max(
     body[`offset${axis}`],
     body[`scroll${axis}`],
@@ -26,14 +21,8 @@ function getSize(
     html[`scroll${axis}`],
     isIE(10)
       ? parseInt(html[`offset${axis}`], 10) +
-          parseInt(
-            computedStyle[`margin${axis === 'Height' ? 'Top' : 'Left'}`],
-            10,
-          ) +
-          parseInt(
-            computedStyle[`margin${axis === 'Height' ? 'Bottom' : 'Right'}`],
-            10,
-          )
+          parseInt(computedStyle[`margin${axis === 'Height' ? 'Top' : 'Left'}`], 10) +
+          parseInt(computedStyle[`margin${axis === 'Height' ? 'Bottom' : 'Right'}`], 10)
       : 0,
   );
 }

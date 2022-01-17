@@ -14,9 +14,6 @@ export default function getStyleComputedProperty(
   }
   // NOTE: 1 DOM access here
   const window = element.ownerDocument!.defaultView;
-  const css: CSSStyleDeclaration = (window as Window).getComputedStyle(
-    element,
-    null,
-  );
+  const css: CSSStyleDeclaration = (window as Window).getComputedStyle(element, null);
   return property ? css[property] : css;
 }

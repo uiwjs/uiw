@@ -22,9 +22,7 @@ describe('<Breadcrumb />', () => {
       expect(tree.props.className).toBe('w-breadcrumb');
       if (tree.children) {
         expect(tree.children.length).toBe(3);
-        expect((tree.children[0] as any).props.className).toBe(
-          'w-breadcrumb-item',
-        );
+        expect((tree.children[0] as any).props.className).toBe('w-breadcrumb-item');
         expect((tree.children[0] as any).type).toBe('span');
       }
     }

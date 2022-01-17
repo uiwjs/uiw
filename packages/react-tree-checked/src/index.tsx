@@ -1,22 +1,12 @@
 import React, { Fragment } from 'react';
-import Tree, {
-  TreeProps,
-  TreeRenderTitleNode,
-  TreeData,
-} from '@uiw/react-tree';
+import Tree, { TreeProps, TreeRenderTitleNode, TreeData } from '@uiw/react-tree';
 import Checkbox, { CheckboxProps } from '@uiw/react-checkbox';
 import './style/index.less';
 
 export interface TreeCheckedProps<T> extends TreeProps<T> {}
 
-export default function TreeChecked<T>({
-  prefixCls = 'w-treechecked',
-  ...props
-}: TreeCheckedProps<T>): JSX.Element {
-  props.className = [prefixCls, props.className]
-    .filter(Boolean)
-    .join(' ')
-    .trim();
+export default function TreeChecked<T>({ prefixCls = 'w-treechecked', ...props }: TreeCheckedProps<T>): JSX.Element {
+  props.className = [prefixCls, props.className].filter(Boolean).join(' ').trim();
   props.checkStrictly = true;
   props.isSelected = false;
   props.multiple = true;

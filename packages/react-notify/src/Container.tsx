@@ -22,10 +22,7 @@ export type ContainerNotifys = {
 const notifys: ContainerNotifys = {};
 const timer: { [key: string]: any } = {};
 
-export default class Container extends React.Component<
-  ContainerProps,
-  ContainerState
-> {
+export default class Container extends React.Component<ContainerProps, ContainerState> {
   public static defaultProps: ContainerProps = {
     prefixCls: 'w-notify',
     placement: 'topRight',
@@ -78,8 +75,7 @@ export default class Container extends React.Component<
       <React.Fragment>
         {placement &&
           Object.keys(this.state.notifys[placement]).map((key) => {
-            const { description, isOpen, ...alertProps } =
-              this.state.notifys[placement][key];
+            const { description, isOpen, ...alertProps } = this.state.notifys[placement][key];
             if (alertProps.type === 'open') {
               delete alertProps.type;
             }

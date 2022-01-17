@@ -6,12 +6,7 @@ export interface MenuDividerProps extends IProps, Omit<HTMLLiProps, 'title'> {
 }
 
 function Divider(props: MenuDividerProps = {}) {
-  const {
-    prefixCls = 'w-menu-divider',
-    className,
-    title,
-    ...htmlProps
-  } = props;
+  const { prefixCls = 'w-menu-divider', className, title, ...htmlProps } = props;
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   if (!title) {
     return <li {...htmlProps} className={cls} />;

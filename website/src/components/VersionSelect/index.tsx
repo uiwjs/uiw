@@ -7,10 +7,7 @@ type OptionsProps = {
 };
 
 function Options(props = {} as OptionsProps) {
-  return useMemo(
-    () => <Select.Option value={props.version}>{props.version}</Select.Option>,
-    [props.version],
-  );
+  return useMemo(() => <Select.Option value={props.version}>{props.version}</Select.Option>, [props.version]);
 }
 
 export type VersionSelectProps = {

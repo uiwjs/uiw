@@ -20,10 +20,7 @@ export interface IMessageState {
   isOpen: boolean;
 }
 
-export default class Message extends React.Component<
-  MessageProps,
-  IMessageState
-> {
+export default class Message extends React.Component<MessageProps, IMessageState> {
   public static defaultProps: MessageProps = {
     prefixCls: 'w-message',
     rounded: true,
@@ -83,20 +80,14 @@ export default class Message extends React.Component<
       `${prefixCls}-${type}`,
       rounded ? `${prefixCls}-rounded` : null,
       showIcon ? `${prefixCls}-icon` : null,
-      showIcon
-        ? `${prefixCls}${title ? '-title' : ''}${
-            children ? '-description' : ''
-          }`
-        : null,
+      showIcon ? `${prefixCls}${title ? '-title' : ''}${children ? '-description' : ''}` : null,
     ]
       .filter(Boolean)
       .join(' ')
       .trim();
     const Child = (
       <div className={cls} {...elementProps}>
-        {isCloseButtonShown && (
-          <Button basic onClick={this.handleClosed} icon="close" type="light" />
-        )}
+        {isCloseButtonShown && <Button basic onClick={this.handleClosed} icon="close" type="light" />}
         {showIcon && <Icon type={this.renderIcon()} />}
         <span className={`${prefixCls}-title`}>{title}</span>
         <span className={`${prefixCls}-description`}>{children}</span>
@@ -106,12 +97,7 @@ export default class Message extends React.Component<
       return Child;
     }
     return (
-      <CSSTransition
-        in={this.state.isOpen}
-        unmountOnExit
-        timeout={300}
-        classNames={prefixCls}
-      >
+      <CSSTransition in={this.state.isOpen} unmountOnExit timeout={300} classNames={prefixCls}>
         {Child}
       </CSSTransition>
     );

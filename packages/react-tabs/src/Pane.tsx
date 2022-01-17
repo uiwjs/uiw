@@ -7,16 +7,6 @@ export interface TabsPaneProps extends IProps, HTMLDivProps {
 }
 
 export default (props: TabsPaneProps = {}) => {
-  const {
-    prefixCls = 'w-tabs-pane',
-    className,
-    label: _,
-    ...resetProps
-  } = props;
-  return (
-    <div
-      className={[prefixCls, className].filter(Boolean).join(' ').trim()}
-      {...resetProps}
-    />
-  );
+  const { prefixCls = 'w-tabs-pane', className, label: _, ...resetProps } = props;
+  return <div className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...resetProps} />;
 };
