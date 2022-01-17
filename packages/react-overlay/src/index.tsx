@@ -133,12 +133,12 @@ export default function Overlay(props: OverlayProps) {
       classNames={transitionName}
       unmountOnExit={unmountOnExit}
       timeout={timeout!}
-      {...otherProps}
       in={isOpen}
       onEntering={onOpening}
       onEntered={onOpened}
       onExiting={onClosing}
       onExited={handleClosed}
+      {...otherProps}
     >
       {(status) => {
         return (
