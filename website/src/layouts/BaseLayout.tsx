@@ -32,7 +32,7 @@ export default function Components(props: ComponentsProps) {
                 </div>
               </Affix>
             </Sider>
-            <Content style={{ padding: 20, zIndex: 2, left: siderMenu ? 260 : 0 }} className={styles.layoutContent}>
+            <Content style={{ padding: 20, zIndex: 2 }} className={styles.layoutContent}>
               <Outlet />
             </Content>
           </Layout>
