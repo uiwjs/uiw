@@ -2,10 +2,8 @@ import React from 'react';
 import svgPaths from '@uiw/icons/fonts/w-icon.json';
 import './style/index.less';
 
-type ElementTag<T = any> = T extends HTMLElement ? React.HTMLAttributes<T> : T;
-
 export type IconsName = keyof typeof svgPaths;
-export interface IconProps<T = HTMLSpanElement | HTMLDivElement> extends ElementTag {
+export interface IconProps<T = HTMLSpanElement | HTMLElement, E = React.ReactElement> {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;
@@ -14,7 +12,7 @@ export interface IconProps<T = HTMLSpanElement | HTMLDivElement> extends Element
    * @default "span"
    */
   tagName?: T extends HTMLElement ? keyof JSX.IntrinsicElements : T;
-  type?: IconsName | null | T;
+  type?: IconsName | null | E;
   spin?: boolean;
   color?: string;
   verticalAlign?: 'middle' | 'baseline';
@@ -42,7 +40,7 @@ export default function Icon(props: IconProps) {
       </svg>
     );
   } else if (React.isValidElement(type)) {
-    svg = React.cloneElement(type as unknown as React.ReactElement, {
+    svg = React.cloneElement(type, {
       fill: color,
     });
   } else {
