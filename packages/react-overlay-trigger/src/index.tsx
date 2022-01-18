@@ -135,9 +135,11 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
   useEffect(() => {
     if (isClickOutside) {
       document && document.addEventListener('mousedown', handleClickOutside);
+      window.addEventListener('resize', handleResize);
     }
     return () => {
       document && isClickOutside && document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -158,6 +160,12 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
     setOverlayStyl({ ...styls, zIndex: zIndex.current });
     onVisibleChange(isOpen);
   }, [isOpen]);
+
+  const handleResize = () => {
+    zIndex.current -= 1;
+    setIsOpen(false);
+    onVisibleChange && onVisibleChange(false);
+  };
 
   const handleClickOutside = (e: MouseEvent) => {
     const popNode = popupRef.current;

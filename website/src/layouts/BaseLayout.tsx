@@ -18,21 +18,21 @@ export default function Components(props: ComponentsProps) {
   const { state } = useContext(ThemeContext);
   const [affix, setAffix] = useState(false);
   return (
-    <Layout>
+    <Layout className={styles.layout}>
       {state.layout === 'top' ? (
         <Fragment>
           <Header style={{ display: 'flex', alignItems: 'center' }}>
             <Nav />
           </Header>
-          <Layout>
-            <Sider width={siderMenu ? 260 : 0}>
+          <Layout className={styles.layoutWrap}>
+            <Sider width={siderMenu ? 260 : 0} className={styles.layoutSider}>
               <Affix offsetTop={0} style={{ height: affix ? '100vh' : '' }} onChange={(affixed) => setAffix(!!affixed)}>
                 <div style={{ height: affix ? '100vh' : '', overflow: 'auto' }}>
                   <SiderMenu />
                 </div>
               </Affix>
             </Sider>
-            <Content style={{ padding: 20, zIndex: 2 }}>
+            <Content style={{ padding: 20, zIndex: 2 }} className={styles.layoutContent}>
               <Outlet />
             </Content>
           </Layout>
@@ -73,11 +73,12 @@ export default function Components(props: ComponentsProps) {
                 flexDirection: 'row',
                 justifyContent: 'flex-end',
                 backgroundColor: 'transparent',
+                zIndex: 99,
               }}
             >
               <VersionSelect data={version} />
             </Header>
-            <Content style={{ padding: 20 }}>
+            <Content style={{ padding: 20 }} className={styles.layoutContent}>
               <Outlet />
             </Content>
           </Layout>
