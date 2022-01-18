@@ -20,12 +20,11 @@
 .subMenu {
   background: #343a40;
 }
-.layout {
-  .layoutWrap {
-    height: calc(100vh - 53px);
-  }
-  .layoutSider,
-  .layoutContent {
-    overflow: auto;
-  }
+
+.layoutWrap {
+  min-height: calc(100vh - 53px);
+}
+.layoutSider > div {
+  position: fixed;
+  overflow: auto;
 }

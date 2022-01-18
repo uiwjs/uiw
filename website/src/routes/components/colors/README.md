@@ -6,7 +6,7 @@ Color 色彩
 主色以象征广阔海洋的湖蓝色作为主色调，它给人以年轻、鲜明、清爽的形象多展现出来，湖蓝色是一种纯洁的颜色，象征着大海。
 （ 取色含义：我们致力于创新，积极并且不断努力，这正是我们团队的精神追求。）
 
-<!--rehype:bgWhite=true&noCode=true-->
+<!--rehype:bgWhite=true&noCode=true&bordered=false-->
 ```js
 const colors = [
   { name: 'Light Blue', cn: '主要-浅蓝色', color: '#5BB5F4', des: '通常用于按钮、及任何修饰元素', },
@@ -36,7 +36,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 这些亮丽的辅助色多用于按钮，提示，警告等修饰元素，以及一些侧边修饰的元素上。
 
-<!--rehype:bgWhite=true&noCode=true-->
+<!--rehype:bgWhite=true&noCode=true&bordered=false-->
 ```js
 const colors = [
   { name: 'Green', cn: '成功-绿色', color: '#28a745' },
@@ -72,7 +72,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 极简中性色是白色从灰色再到深灰色的一个过渡颜色，可以搭配文字以及任何元素，以这种色调来缓解视觉疲劳，低调内敛！
 
-<!--rehype:bgWhite=true&noCode=true-->
+<!--rehype:bgWhite=true&noCode=true&bordered=false-->
 ```js
 const colors = [
   { name: '白色', color: '#FFFFFF', fontColor: '#6F6F6F' },
@@ -112,7 +112,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 这内置的几种颜色可以用于各种元素中，比如：导航，按钮，徽章等背景中。
 
-<!--rehype:bgWhite=true&noCode=true-->
+<!--rehype:bgWhite=true&noCode=true&bordered=false-->
 ```js
 const colors = [
   { name: '警告-黄色', backgroundColor: '#ffc107', des: 'warning', },

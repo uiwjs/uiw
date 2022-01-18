@@ -1,6 +1,6 @@
 import { Fragment, useContext } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Layout } from 'uiw';
+import { Layout, Affix } from 'uiw';
 import VersionSelect from '../components/VersionSelect';
 import styles from './index.module.less';
 import version from '../version.json';
@@ -20,14 +20,18 @@ export default function Components(props: ComponentsProps) {
     <Layout className={styles.layout}>
       {state.layout === 'top' ? (
         <Fragment>
-          <Header style={{ display: 'flex', alignItems: 'center' }}>
-            <Nav />
-          </Header>
+          <Affix offsetTop={0} style={{ zIndex: 999 }}>
+            <Header style={{ display: 'flex', alignItems: 'center' }}>
+              <Nav />
+            </Header>
+          </Affix>
           <Layout className={styles.layoutWrap}>
             <Sider width={siderMenu ? 260 : 0} className={styles.layoutSider}>
-              <SiderMenu />
+              <div style={{ width: siderMenu ? 260 : 0, height: 'calc(100vh - 53px)' }}>
+                <SiderMenu />
+              </div>
             </Sider>
-            <Content style={{ padding: 20, zIndex: 2 }} className={styles.layoutContent}>
+            <Content style={{ padding: 20 }} className={styles.layoutContent}>
               <Outlet />
             </Content>
           </Layout>
