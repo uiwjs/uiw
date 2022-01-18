@@ -209,7 +209,7 @@ ReactDOM.render(<Demo />, _mount_);
 | weekday | 星期显示文本 | Array | \[`日`, `一`, `二`, `三`, `四`, `五`, `六`\] |
 | monthLabel | 月份显示文本 | Array | \[`一月`, `二月`, `三月`, `四月`, `五月`, `六月`, `七月`, `八月`, `九月`, `十月`, `十一月`, `十二月`\] |
 | onChange | 选择一天时调用。 | (selectedDate?: Date, dateSource?: IDateSource) | - |
-| onSizeChange | 点击左右箭头回调。 | (date?: Date) | - |
+| onPanelChange | 面板变化事件。 | (date?: Date, mode?: 'next' | 'prev') | - |
 
 ## DatePicker.showTime
 
