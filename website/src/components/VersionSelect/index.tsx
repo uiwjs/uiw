@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Select } from 'uiw';
+import pkg from 'uiw/package.json';
 import styles from './index.module.less';
 
 type OptionsProps = {
@@ -26,7 +27,7 @@ const VersionSelect = (props = {} as VersionSelectProps) => {
   }
   // @ts-ignore
   // eslint-disable-next-line no-undef
-  const currentVersion = VERSION;
+  const currentVersion = pkg.version;
   const versionList = props.data;
   const firstVersion = versionList[0];
   if (firstVersion !== currentVersion) {

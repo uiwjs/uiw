@@ -7,6 +7,7 @@ import { ThemeContext } from '../../contexts';
 import nav from '../icons/nav';
 import logo from '../icons/logo';
 import menu from '../icons/menu';
+import pkg from 'uiw/package.json';
 
 export default function Nav() {
   const { state, dispatch } = useContext(ThemeContext);
@@ -15,7 +16,11 @@ export default function Nav() {
       <div className={[styles.logo, state.layout === 'left' ? null : styles.top].filter(Boolean).join(' ').trim()}>
         <Link to="/">
           {logo.dark}
-          {state.layout === 'top' && <span>UIW</span>}
+          {state.layout === 'top' && (
+            <span>
+              UIW<sup>{pkg.version}</sup>
+            </span>
+          )}
         </Link>
       </div>
       <div className={[styles.nav, state.layout === 'left' ? null : styles.navTop].filter(Boolean).join(' ').trim()}>
