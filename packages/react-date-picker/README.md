@@ -19,6 +19,7 @@ import { DatePicker } from 'uiw';
 
 function Demo() {
   const [date, setDate] = React.useState(new Date('2019-02-26 02:00:00'));
+  
   return (
     <div>
       <DatePicker
@@ -204,10 +205,11 @@ ReactDOM.render(<Demo />, _mount_);
 | showTime | 增加时间选择功能，当 showTime 为一个对象时，其属性会传递给内建的 [`<TimePicker />`](#/components/time-picker)。 | Boolean/Object | - |
 | renderDay | 增加时间选择功能。 `end`: 周末，`prev`: 上个月，`next`：下个月 `@3.0.0+` | Function(day, { end: bool, prev: bool, next: bool, date: Date }) | - |
 | disabledDate | 不可选择的日期，函数返回 `true` 当前日期被禁用无法选择。`end`: 周末，`prev`: 上个月，`next`：下个月 | Function(currentDate, { end: bool, prev: bool, next: bool }) | - |
-| onChange | 选择一天时调用。 | (selectedDate?: Date, dateSource?: IDateSource) | - |
 | weekTitle | 星期显示文本提示 | Array | \[`星期天`, `星期一`, `星期二`, `星期三`, `星期四`, `星期五`, `星期六`\] |
 | weekday | 星期显示文本 | Array | \[`日`, `一`, `二`, `三`, `四`, `五`, `六`\] |
 | monthLabel | 月份显示文本 | Array | \[`一月`, `二月`, `三月`, `四月`, `五月`, `六月`, `七月`, `八月`, `九月`, `十月`, `十一月`, `十二月`\] |
+| onChange | 选择一天时调用。 | (selectedDate?: Date, dateSource?: IDateSource) | - |
+| onSizeChange | 点击左右箭头回调。 | (date?: Date) | - |
 
 ## DatePicker.showTime
 

@@ -43,6 +43,7 @@ export interface DatePickerProps extends IProps, Omit<HTMLDivProps, 'onChange'> 
   panelDate?: Date;
   today?: Date;
   todayButton?: string;
+  onSizeChange?: (date?: Date) => void;
 }
 export interface DatePickerState {
   panelDate?: Date;
@@ -64,6 +65,7 @@ export default function DatePicker(props: DatePickerProps) {
     disabledDate,
     renderDay,
     onChange = noop,
+    onSizeChange = noop,
     showTime,
     ...other
   } = props;
@@ -101,6 +103,9 @@ export default function DatePicker(props: DatePickerProps) {
         month += 1;
       }
       currentDate.setMonth(month);
+      if (curType === 'prev' || curType === 'next') {
+        onSizeChange && onSizeChange(new Date(currentDate));
+      }
       setSelectPanelDate(curType === 'today' ? today : currentDate);
       setSelectDate(curType === 'today' ? today : currentDate);
 
