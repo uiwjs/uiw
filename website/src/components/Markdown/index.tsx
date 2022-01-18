@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import MarkdownPreview from '@uiw/react-markdown-preview';
+import pkg from 'uiw/package.json';
 import Code from './Code';
 import Footer from './Footer';
 import styles from './index.module.less';
@@ -25,9 +26,7 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
   const { renderPage, dependencies, path } = props;
   const [mdStr, setMdStr] = useState('');
 
-  // @ts-ignore
-  // eslint-disable-next-line
-  const version = VERSION || '2.0.0';
+  const version = pkg.version || '2.0.0';
   useEffect(() => {
     if (renderPage) {
       renderPage()

@@ -79,7 +79,7 @@
     "@uiw/react-grid": "^4.9.9",
     "@uiw/react-icon": "^4.9.9",
     "@uiw/react-input": "^4.9.9",
-    "@uiw/react-layout": "^4.9.9",
+    "@uiw/react-layout": "^4.9.13",
     "@uiw/react-list": "^4.9.9",
     "@uiw/react-loader": "^4.9.9",
     "@uiw/react-menu": "^4.9.9",

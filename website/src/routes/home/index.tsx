@@ -1,17 +1,15 @@
 import { Link } from 'react-router-dom';
+import pkg from 'uiw/package.json';
 import logo from '../../components/icons/logo';
 import styles from './index.module.less';
 
 export default function Home() {
-  // @ts-ignore
-  // eslint-disable-next-line
-  const version = VERSION;
   return (
     <div className={styles.App}>
       <header className={styles.AppHeader}>
         <div className={styles.Logo}>{logo.dark}</div>
         <div className={styles.Title}>
-          uiw<sup>{version}</sup>
+          uiw<sup>{pkg.version}</sup>
         </div>
         <div className={styles.Des}>A Component Library for React 16+.</div>
         <div>
