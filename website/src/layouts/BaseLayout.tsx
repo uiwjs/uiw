@@ -73,6 +73,7 @@ export default function Components(props: ComponentsProps) {
                 flexDirection: 'row',
                 justifyContent: 'flex-end',
                 backgroundColor: 'transparent',
+                zIndex: 99,
               }}
             >
               <VersionSelect data={version} />
