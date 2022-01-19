@@ -33,6 +33,8 @@ jobs:
     - run: npm run b:website
     - run: npm run b:doc
 
+    - run: cp -rp LICENSE packages/uiw
+
     - run: |
         # Strip git ref prefix from version
         VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
@@ -93,7 +95,6 @@ jobs:
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-grid/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-icon/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-input/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-layout/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-list/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-loader/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-menu/package.json

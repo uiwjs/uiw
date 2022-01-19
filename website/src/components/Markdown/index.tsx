@@ -49,6 +49,7 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
         className={styles.markdown}
         components={{
           /**
+           * bordered 边框
            * bgWhite 设置代码预览背景白色，否则为格子背景。
            * noCode 不显示代码编辑器。
            * noPreview 不显示代码预览效果。
@@ -56,12 +57,13 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
            * codePen 显示 Codepen 按钮，要特别注意 包导入的问题，实例中的 import 主要用于 Codepen 使用。
            */
           code: ({ inline, node, ...props }) => {
-            const { noPreview, noScroll, bgWhite, noCode, codePen } = props as any;
+            const { noPreview, bordered, noScroll, bgWhite, noCode, codePen } = props as any;
             if (inline) {
               return <code {...props} />;
             }
             const config = {
               noPreview,
+              bordered,
               noScroll,
               bgWhite,
               noCode,
@@ -75,7 +77,7 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
                 version={version}
                 code={getCodeStr(node.children)}
                 dependencies={dependencies}
-                {...{ noPreview, noScroll, bgWhite, noCode, codePen }}
+                {...{ noPreview, bordered, noScroll, bgWhite, noCode, codePen }}
               />
             );
           },
