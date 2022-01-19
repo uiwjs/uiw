@@ -28,6 +28,7 @@ export interface PaginationItemSourceData {
 export default function Pagination(props: PaginationProps) {
   const {
     className,
+    style,
     prefixCls = 'w-pagination',
     alignment = 'left',
     size = 'default',
@@ -122,7 +123,7 @@ export default function Pagination(props: PaginationProps) {
   }
 
   return (
-    <ul className={cls} {...other}>
+    <ul className={cls} style={{ ...style, textAlign: alignment }} {...other}>
       {initPageSoure.map((item: PaginationItemSourceData, idx) => {
         // eslint-disable-next-line jsx-a11y/anchor-is-valid
         let label = <a>{item.label}</a>;

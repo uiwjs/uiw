@@ -24,7 +24,7 @@ ReactDOM.render(
     <Divider />
     <Pagination current={1} pageSize={5} total={249} />
     <Divider />
-    <Pagination current={1} pageSize={10} total={50} />
+    <Pagination current={1} alignment="center" pageSize={10} total={50} />
     <Divider />
     <Pagination current={1} pageSize={10} total={60} divider />
     <Divider />
