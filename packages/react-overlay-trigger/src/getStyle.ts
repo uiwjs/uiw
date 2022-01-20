@@ -18,6 +18,7 @@ export function getStyle(options: GetStyleOptions) {
     top: 0,
     placement,
   } as OverlayStyl;
+
   if (!triggerDom || !popupDom || !document) {
     return sty;
   }
