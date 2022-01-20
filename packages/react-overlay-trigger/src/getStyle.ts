@@ -13,7 +13,11 @@ type GetStyleOptions = {
 
 export function getStyle(options: GetStyleOptions) {
   let { trigger: triggerDom, popup: popupDom, placement, usePortal, autoAdjustOverflow } = options || {};
-  const sty = {} as OverlayStyl;
+  const sty = {
+    left: 0,
+    top: 0,
+    placement,
+  } as OverlayStyl;
   if (!triggerDom || !popupDom || !document) {
     return sty;
   }
