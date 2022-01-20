@@ -30,6 +30,8 @@ jobs:
     - run: npm run b:doc
     - run: npm run coverage
 
+    - run: cp -rp LICENSE packages/uiw
+
     - run: rm -rf packages/doc/web
     - run: mkdir -p packages/doc/web
     - run: cp -rf website/build/* packages/doc/web

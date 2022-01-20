@@ -17,7 +17,7 @@ import ReactDOM from 'react-dom';
 import { Affix, Button } from 'uiw';
 
 ReactDOM.render(
-  <Affix>
+  <Affix offsetTop={60}>
     <Button type="primary">1 当按钮距离顶部距离为 0，按钮被钉在顶部</Button>
   </Affix>,
   _mount_
