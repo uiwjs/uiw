@@ -20,7 +20,7 @@ export default function Components(props: ComponentsProps) {
     <Layout className={styles.layout}>
       {state.layout === 'top' ? (
         <Fragment>
-          <Affix offsetTop={0} style={{ zIndex: 999 }}>
+          <Affix offsetTop={0} style={{ zIndex: 999, position: 'relative' }}>
             <Header style={{ display: 'flex', alignItems: 'center' }}>
               <Nav />
             </Header>
