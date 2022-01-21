@@ -9,9 +9,9 @@ Menu 菜单
 
 ```jsx
 import { Menu } from 'uiw';
-import { MenuItem, MenuDivider, SubMenu } from 'uiw'; // @ v4.9.11+
+import { MenuItem, MenuDivider, SubMenu } from 'uiw'; // @ v4.10.0+
 // or
-import Menu, { MenuItem, MenuDivider, SubMenu } from '@uiw/react-menu';
+import Menu, { MenuItem, MenuDivider, SubMenu } from '@uiw/react-menu'; // @ v4.10.0+
 
 // Menu.Item === MenuItem
 // Menu.Divider === MenuDivider
@@ -24,7 +24,7 @@ import Menu, { MenuItem, MenuDivider, SubMenu } from '@uiw/react-menu';
 <!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
-import { Menu, Row, Col } from 'uiw';
+import { Menu, MenuItem, Row, Col } from 'uiw';
 
 const Demo = () => (
   <Row justify="flex-start" gutter={10}>

@@ -1,12 +1,20 @@
 List 列表
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-list/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-list.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-list)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-list.svg?label=@uiw/react-list)](https://www.npmjs.com/package/@uiw/react-list)
+
 列表组件
 
 ```jsx
 import { List } from 'uiw';
+import { ListItem } from 'uiw'; // @ v4.10.0+
 // or
 import List from '@uiw/react-list';
+import List, { ListItem } from '@uiw/react-list'; // @ v4.10.0+
+
+// List.Item === ListItem
 ```
 
 ### 基础用法
