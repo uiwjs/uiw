@@ -5,7 +5,10 @@
 package.json
 dist
 build
+coverage
 packages/doc/web
 website/uiw/build
 lib
+cjs
+esm
 node_modules
