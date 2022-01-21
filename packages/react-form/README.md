@@ -632,7 +632,7 @@ ReactDOM.render(<Demo />, _mount_);
 |--------- |-------- |--------- |-------- |
 | fields | 设置字段 | object | - |
 | children | 回调 {`fields`, `state`, `canSubmit`, `resetForm`} | function | - |
-| onSubmit | 在 `onSubmit` 之后执行  | function({ initial, current }) | - |
+| onSubmit | 提交表单时调用  | function({ initial, current }) | - |
 | afterSubmit `@3.0.0+` | 提交回调 {`initial`, `current`}  | function({ initial, current }) | - |
 | onChange | 表单发生改变回调函数 {`initial`, `current`}  | function({ initial, current }) | - |
 | onSubmitError | 调用 `onSubmit` 抛出的任何错误。从字段名称返回对象映射。  | function | - |
