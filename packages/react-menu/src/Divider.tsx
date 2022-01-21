@@ -5,7 +5,7 @@ export interface MenuDividerProps extends IProps, Omit<HTMLLiProps, 'title'> {
   title?: React.ReactNode;
 }
 
-export const Divider = React.forwardRef<HTMLLIElement, MenuDividerProps>((props, ref) => {
+export const MenuDivider = React.forwardRef<HTMLLIElement, MenuDividerProps>((props, ref) => {
   const { prefixCls = 'w-menu-divider', className, title, ...htmlProps } = props;
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   if (!title) {
@@ -18,4 +18,4 @@ export const Divider = React.forwardRef<HTMLLIElement, MenuDividerProps>((props,
   );
 });
 
-Divider.displayName = 'uiw.MenuDivider';
+MenuDivider.displayName = 'uiw.MenuDivider';

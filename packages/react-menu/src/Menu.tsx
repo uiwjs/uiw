@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { IProps, HTMLUlProps } from '@uiw/utils';
 import { MenuItem } from './MenuItem';
-import { Divider } from './Divider';
+import { MenuDivider } from './Divider';
 import { SubMenu } from './SubMenu';
 import './style/menu.less';
 
@@ -66,11 +66,11 @@ Menu.displayName = 'uiw.Menu';
 type Menu = typeof Menu & {
   Item: typeof MenuItem;
   SubMenu: typeof SubMenu;
-  Divider: typeof Divider;
+  Divider: typeof MenuDivider;
 };
 
 (Menu as Menu).Item = MenuItem;
 (Menu as Menu).SubMenu = SubMenu;
-(Menu as Menu).Divider = Divider;
+(Menu as Menu).Divider = MenuDivider;
 
 export default Menu as Menu;
