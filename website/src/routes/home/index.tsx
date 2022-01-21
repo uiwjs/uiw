@@ -14,16 +14,13 @@ export default function Home() {
         <div className={styles.Des}>A Component Library for React 16+.</div>
         <div>
           <Link className={styles.AppLink} to="/guide/quick-start">
-            {' '}
-            Getting Started{' '}
+            Getting Started
           </Link>
           <Link className={styles.AppLink} to="/components">
-            {' '}
-            Components{' '}
+            Components
           </Link>
           <Link className={styles.AppLink} to="/extensions">
-            {' '}
-            Extensions{' '}
+            Extensions
           </Link>
           <a className={styles.AppLink} href="https://github.com/uiwjs/uiw" target="_blank" rel="noopener noreferrer">
             Github
