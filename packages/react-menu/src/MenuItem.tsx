@@ -12,22 +12,21 @@ const disabledProps = {
   tabIndex: -1,
 };
 
-type AnchorElement = React.AnchorHTMLAttributes<HTMLAnchorElement>;
+export type TagType = React.ComponentType | keyof JSX.IntrinsicElements;
 
-type Anchor<T = any> = T extends HTMLElement ? React.HTMLProps<T> : T;
-
-export interface MenuItemProps<T> extends IProps, Anchor {
+export interface MenuItemProps<Tag extends TagType> extends IProps, React.HTMLProps<Tag> {
   text?: React.ReactNode;
   addonAfter?: React.ReactNode;
-  tagName?: T extends HTMLElement ? keyof JSX.IntrinsicElements : never;
+  tagName?: Tag;
   multiline?: boolean;
   isSubMenuItem?: boolean;
   disabled?: boolean;
   active?: boolean;
   icon?: IconProps['type'];
+  children?: React.ReactNode;
 }
 
-const MenuItem = React.forwardRef<AnchorElement, MenuItemProps<any>>((props, ref) => {
+function Internal<Tag extends TagType = 'a'>(props: MenuItemProps<Tag>, ref: React.Ref<React.HTMLProps<Tag>>) {
   const {
     prefixCls = 'w-menu-item',
     className,
@@ -54,7 +53,7 @@ const MenuItem = React.forwardRef<AnchorElement, MenuItemProps<any>>((props, ref
       ...(disabled ? disabledProps : {}),
       className: anchorCls,
       ref,
-    },
+    } as any,
     <Fragment>
       <Icon className={`${prefixCls}-icon`} type={icon} />
       <div
@@ -72,8 +71,8 @@ const MenuItem = React.forwardRef<AnchorElement, MenuItemProps<any>>((props, ref
     return tagComp;
   }
   return <li> {tagComp} </li>;
-});
+}
+
+export const MenuItem = React.forwardRef(Internal);
 
 MenuItem.displayName = 'uiw.MenuItem';
-
-export default MenuItem;
