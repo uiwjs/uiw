@@ -34,7 +34,7 @@ export default function Icon(props: IconProps) {
   if (typeof type === 'string') {
     svg = (
       <svg fill={color} viewBox="0 0 20 20">
-        {(svgPaths[type as IconsName] || []).map((d, i) => (
+        {(svgPaths[type] || []).map((d, i) => (
           <path key={i} d={d} fillRule="evenodd" />
         ))}
       </svg>
