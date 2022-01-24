@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { IProps, HTMLUlProps } from '@uiw/utils';
-import MenuItem from './MenuItem';
-import Divider from './Divider';
-import SubMenu from './SubMenu';
+import { MenuItem } from './MenuItem';
+import { MenuDivider } from './Divider';
+import { SubMenu } from './SubMenu';
 import './style/menu.less';
 
 export interface MenuProps extends IProps, HTMLUlProps {
@@ -61,15 +61,16 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
   );
 });
 
+Menu.displayName = 'uiw.Menu';
+
 type Menu = typeof Menu & {
   Item: typeof MenuItem;
   SubMenu: typeof SubMenu;
-  Divider: typeof Divider;
+  Divider: typeof MenuDivider;
 };
 
 (Menu as Menu).Item = MenuItem;
 (Menu as Menu).SubMenu = SubMenu;
-(Menu as Menu).Divider = Divider;
-(Menu as Menu).displayName = 'uiw.Menu';
+(Menu as Menu).Divider = MenuDivider;
 
 export default Menu as Menu;

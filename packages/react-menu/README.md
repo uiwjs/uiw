@@ -1,12 +1,21 @@
 Menu 菜单
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-menu/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-menu.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-menu)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-menu.svg?label=@uiw/react-menu)](https://www.npmjs.com/package/@uiw/react-menu)
+
 为页面和功能提供导航的菜单列表。
 
 ```jsx
 import { Menu } from 'uiw';
+import { MenuItem, MenuDivider, SubMenu } from 'uiw'; // @ v4.10.0+
 // or
-import Menu from '@uiw/react-menu';
+import Menu, { MenuItem, MenuDivider, SubMenu } from '@uiw/react-menu'; // @ v4.10.0+
+
+// Menu.Item === MenuItem
+// Menu.Divider === MenuDivider
+// Menu.SubMenu === SubMenu
 ```
 
 ### 基本用法
@@ -15,13 +24,13 @@ import Menu from '@uiw/react-menu';
 <!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
-import { Menu, Row, Col } from 'uiw';
+import { Menu, MenuItem, Row, Col } from 'uiw';
 
 const Demo = () => (
   <Row justify="flex-start" gutter={10}>
     <Col fixed>
       <Menu bordered>
-        <Menu.Item icon="reload" text="重新加载" />
+        <MenuItem icon="reload" text="重新加载" />
         <Menu.Divider />
         <Menu.Item icon="heart-on" text="另存为" active />
         <Menu.Item icon="appstore" text="应用商城" />

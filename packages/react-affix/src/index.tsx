@@ -1,5 +1,6 @@
 import React from 'react';
-import { IProps, HTMLDivProps, getScroll, noop } from '@uiw/utils';
+import { IProps, HTMLDivProps, noop } from '@uiw/utils';
+import { getDefaultTarget, getOffset } from './utils';
 
 export interface AffixProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   /**
@@ -17,45 +18,17 @@ export interface AffixProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   onChange?: (affixed?: boolean) => void;
 }
 
-export interface IAffixState {
+export interface AffixState {
   affixStyle?: React.CSSProperties;
   placeholderStyle?: React.CSSProperties;
 }
 
-function getTargetRect(target: HTMLElement | Window | null): ClientRect {
-  return target !== window
-    ? (target as HTMLElement).getBoundingClientRect()
-    : ({ top: 0, left: 0, bottom: 0 } as ClientRect);
-}
-
-function getOffset(element: HTMLElement, target: HTMLElement | Window | null) {
-  const elemRect = element.getBoundingClientRect();
-  const targetRect = getTargetRect(target);
-  const scrollTop = getScroll(target, true);
-  const scrollLeft = getScroll(target);
-
-  const docElem = window.document.body;
-  const clientTop = docElem.clientTop || 0;
-  const clientLeft = docElem.clientLeft || 0;
-
-  return {
-    top: elemRect.top - targetRect.top + scrollTop - clientTop,
-    left: elemRect.left - targetRect.left + scrollLeft - clientLeft,
-    width: elemRect.width,
-    height: elemRect.height,
-  };
-}
-
-function getDefaultTarget() {
-  return typeof window !== 'undefined' ? window : null;
-}
-
-export default class Affix extends React.Component<AffixProps, IAffixState> {
+export default class Affix extends React.Component<AffixProps, AffixState> {
   public static defaultProps: AffixProps = {
     prefixCls: 'w-affix',
     onChange: noop,
   };
-  public state: IAffixState = {
+  public state: AffixState = {
     placeholderStyle: undefined,
     affixStyle: undefined,
   };

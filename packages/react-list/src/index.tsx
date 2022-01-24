@@ -1,6 +1,6 @@
 import React from 'react';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
-import Item from './Item';
+import { ListItem } from './Item';
 import './style/index.less';
 
 export * from './Item';
@@ -43,7 +43,7 @@ function InternalList<T>(props: ListProps<T>, ref: React.ForwardedRef<HTMLDivEle
     items,
     (child: React.ReactNode, index) =>
       React.isValidElement(child) &&
-      React.cloneElement(child as React.ReactElement, {
+      React.cloneElement(child, {
         key: index,
       }),
   );
@@ -70,9 +70,9 @@ function InternalList<T>(props: ListProps<T>, ref: React.ForwardedRef<HTMLDivEle
 
 const List = React.forwardRef<HTMLDivElement, ListProps<any>>(InternalList);
 type List = typeof List & {
-  Item: typeof Item;
+  Item: typeof ListItem;
 };
 
-(List as List).Item = Item;
+(List as List).Item = ListItem;
 
 export default List as List;

@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-upload",
-  "version": "4.9.11",
+  "version": "4.10.0",
   "description": "Upload component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/file-input",
