@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-message",
-  "version": "4.10.1",
+  "version": "4.10.2",
   "description": "Message component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/message",
@@ -44,9 +44,9 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-button": "~4.10.1",
-    "@uiw/react-icon": "~4.10.1",
-    "@uiw/utils": "~4.10.1",
+    "@uiw/react-button": "^4.10.2",
+    "@uiw/react-icon": "^4.10.2",
+    "@uiw/utils": "^4.10.2",
     "react-transition-group": "~4.4.2"
   },
   "devDependencies": {
