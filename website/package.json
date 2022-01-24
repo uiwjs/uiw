@@ -32,22 +32,22 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/formatter": "1.3.1",
-    "@uiw/react-code-preview": "4.0.5",
-    "@uiw/react-markdown-preview": "3.4.7",
-    "@uiw/reset.css": "1.0.5",
+    "@uiw/formatter": "~1.3.1",
+    "@uiw/react-code-preview": "~4.0.5",
+    "@uiw/react-markdown-preview": "~3.4.7",
+    "@uiw/reset.css": "~1.0.5",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-router-dom": "6.2.1",
-    "uiw": "^4.10.1"
+    "uiw": "~4.10.1"
   },
   "devDependencies": {
-    "@kkt/less-modules": "7.0.6",
-    "@kkt/raw-modules": "7.0.6",
-    "@kkt/scope-plugin-options": "7.0.6",
+    "@kkt/less-modules": "~7.0.6",
+    "@kkt/raw-modules": "~7.0.6",
+    "@kkt/scope-plugin-options": "~7.0.6",
     "@types/react": "17.0.38",
     "@types/react-dom": "17.0.11",
-    "kkt": "7.0.6",
+    "kkt": "~7.0.6",
     "react-test-renderer": "17.0.2"
   },
   "author": "kenny wang <wowohoo@qq.com>",

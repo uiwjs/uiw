@@ -44,7 +44,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-overlay-trigger": "^4.10.1"
+    "@uiw/react-overlay-trigger": "~4.10.1"
   },
   "devDependencies": {
     "@babel/runtime": "7.16.7",

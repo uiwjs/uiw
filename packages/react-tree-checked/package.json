@@ -44,9 +44,9 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-checkbox": "^4.10.1",
-    "@uiw/react-tree": "^4.10.1",
-    "@uiw/utils": "^4.10.1"
+    "@uiw/react-checkbox": "~4.10.1",
+    "@uiw/react-tree": "~4.10.1",
+    "@uiw/utils": "~4.10.1"
   },
   "devDependencies": {
     "@babel/runtime": "7.16.7",

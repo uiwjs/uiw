@@ -44,8 +44,8 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-input": "^4.10.1",
-    "@uiw/utils": "^4.10.1"
+    "@uiw/react-input": "~4.10.1",
+    "@uiw/utils": "~4.10.1"
   },
   "devDependencies": {
     "@babel/runtime": "7.16.7",
