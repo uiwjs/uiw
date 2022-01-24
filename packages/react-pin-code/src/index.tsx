@@ -7,10 +7,10 @@ export interface PinCodeProps extends IProps {
   value?: string[];
   disabled?: boolean;
   onChange?: (value: string[]) => void;
-  onBlur?: InputProps<{}>['onBlur'];
-  onFocus?: InputProps<{}>['onFocus'];
+  onBlur?: InputProps['onBlur'];
+  onFocus?: InputProps['onFocus'];
   autoFocus?: boolean;
-  size?: InputProps<{}>['size'];
+  size?: InputProps['size'];
   placeholder?: string;
 }
 
@@ -80,7 +80,7 @@ function InternalPinCode(props: PinCodeProps = {}, ref: React.ForwardedRef<HTMLD
   return (
     <div className={cls} style={style} {...otherProps} ref={ref}>
       {[...values].map((val, key) => {
-        const inpProps: InputProps<{}> = {
+        const inpProps: InputProps = {
           min: 0,
           type: 'text',
           inputMode: 'numeric',
