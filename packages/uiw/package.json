@@ -109,7 +109,8 @@
     "@uiw/react-time-picker": "^4.9.11",
     "@uiw/react-tooltip": "^4.9.11",
     "@uiw/react-tree": "^4.9.11",
-    "@uiw/react-tree-checked": "^4.9.11"
+    "@uiw/react-tree-checked": "^4.9.11",
+    "@uiw/react-upload": "^4.9.11"
   },
   "devDependencies": {
     "@babel/runtime": "7.16.7",
