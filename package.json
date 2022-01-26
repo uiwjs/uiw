@@ -14,8 +14,6 @@
     "//>>>>>>>>>>>>": "<<<<<<<<<<",
     "watch:other:lib": "lerna exec --parallel --scope @uiw/* --ignore @uiw/doc -- tsbb watch",
     "watch:uiw": "lerna exec --scope uiw -- tsbb watch",
-    "watch:react-upload": "lerna exec --scope @uiw/react-upload -- tsbb watch",
-    "watch:css:react-dropdown": "lerna exec --scope @uiw/react-overlay-trigger -- compile-less -d src -o esm --watch",
     "watch:react-menu": "lerna exec --scope @uiw/react-menu -- tsbb watch",
     "watch:css:react-menu": "lerna exec --scope @uiw/react-menu -- compile-less -d src -o esm --watch",
     "//-----------": "//-----------",

@@ -45,7 +45,6 @@
       { "name": "Checkbox 多选框", "path": "checkbox" },
       { "name": "Input 输入框", "path": "input" },
       { "name": "FileInput 上传输入框", "path": "file-input" },
-      { "name": "Upload 上传", "path": "upload" },
       { "name": "PinCode PIN码", "path": "pin-code" },
       { "name": "Rate 评分", "path": "rate" },
       { "name": "Switch 开关", "path": "switch" },

@@ -57,7 +57,6 @@ const Slider = Loadable(lazy(() => import('./routes/components/slider')));
 const Grid = Loadable(lazy(() => import('./routes/components/grid')));
 const Form = Loadable(lazy(() => import('./routes/components/form')));
 const FileInput = Loadable(lazy(() => import('./routes/components/file-input')));
-const Upload = Loadable(lazy(() => import('./routes/components/upload')));
 const Breadcrumb = Loadable(lazy(() => import('./routes/components/breadcrumb')));
 const List = Loadable(lazy(() => import('./routes/components/list')));
 const Layout = Loadable(lazy(() => import('./routes/components/layout')));
@@ -147,7 +146,6 @@ export const routes: RouteObject[] = [
       { path: '/components/grid', element: <Grid /> },
       { path: '/components/form', element: <Form /> },
       { path: '/components/file-input', element: <FileInput /> },
-      { path: '/components/upload', element: <Upload /> },
       { path: '/components/breadcrumb', element: <Breadcrumb /> },
       { path: '/components/list', element: <List /> },
       { path: '/components/layout', element: <Layout /> },
