@@ -4,12 +4,12 @@
   "homepage": "https://uiwjs.github.io",
   "private": true,
   "scripts": {
-    "lib": "lerna exec --scope @uiw/react-affix -- tsbb build --target react",
-    "lib:css": "lerna exec --scope @uiw/react-affix -- compile-less -d src -o esm",
-    "lib:css:dist": "lerna exec --scope @uiw/react-affix -- compile-less -d src -o lib --combine=dist.css",
-    "lib:css:watch": "lerna exec --scope @uiw/react-affix -- compile-less -d src -o esm --watch",
-    "lib:watch": "lerna exec --scope @uiw/react-affix -- tsbb watch & npm run lib:css:watch",
-    "lib:bootstrap": "lerna bootstrap --hoist --scope @uiw/react-affix",
+    "lib": "lerna exec --scope @uiw/react-tree-checkeds -- tsbb build --target react",
+    "lib:css": "lerna exec --scope @uiw/react-tree-checkeds -- compile-less -d src -o esm",
+    "lib:css:dist": "lerna exec --scope @uiw/react-tree-checkeds -- compile-less -d src -o lib --combine=dist.css",
+    "lib:css:watch": "lerna exec --scope @uiw/react-tree-checkeds -- compile-less -d src -o esm --watch",
+    "lib:watch": "lerna exec --scope @uiw/react-tree-checkeds -- tsbb watch & npm run lib:css:watch",
+    "lib:bootstrap": "lerna bootstrap --hoist --scope @uiw/react-tree-checkeds",
     "lib:build": "npm run lib && npm run lib:css && npm run lib:css:dist",
     "//>>>>>>>>>>>>": "<<<<<<<<<<",
     "watch:other:lib": "lerna exec --parallel --scope @uiw/* --ignore @uiw/doc -- tsbb watch",
@@ -56,20 +56,20 @@
     ]
   },
   "devDependencies": {
-    "@kkt/less-modules": "7.0.6",
-    "@kkt/react-library": "7.0.6",
+    "@kkt/less-modules": "~7.0.6",
+    "@kkt/react-library": "~7.0.6",
     "@types/react": "17.0.38",
     "@types/react-dom": "17.0.11",
     "@types/react-test-renderer": "17.0.1",
     "compile-less-cli": "1.8.11",
     "husky": "7.0.4",
-    "kkt": "7.0.6",
+    "kkt": "~7.0.6",
     "lerna": "4.0.0",
     "lint-staged": "12.1.7",
     "prettier": "2.5.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-test-renderer": "17.0.2",
-    "tsbb": "3.5.4"
+    "tsbb": "~3.5.4"
   }
 }

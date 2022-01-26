@@ -62,7 +62,7 @@ export default class App extends Component {
   "version": "0.1.0",
   "private": true,
 +  "devDependencies": {
-+    "kkt": "7.0.6"
++    "kkt": "~7.0.6"
 +  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",

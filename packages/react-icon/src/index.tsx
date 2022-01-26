@@ -3,7 +3,9 @@ import svgPaths from '@uiw/icons/fonts/w-icon.json';
 import './style/index.less';
 
 export type IconsName = keyof typeof svgPaths;
-export interface IconProps<T = HTMLSpanElement | HTMLElement, E = React.ReactElement> {
+type TagType = React.ComponentType | keyof JSX.IntrinsicElements;
+
+export interface IconProps<Tag extends TagType = 'span', E = React.ReactElement> extends React.HTMLAttributes<Tag> {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;
@@ -11,14 +13,14 @@ export interface IconProps<T = HTMLSpanElement | HTMLElement, E = React.ReactEle
    * HTML tag to use for the rendered element.
    * @default "span"
    */
-  tagName?: T extends HTMLElement ? keyof JSX.IntrinsicElements : T;
+  tagName?: Tag;
   type?: IconsName | null | E;
   spin?: boolean;
   color?: string;
   verticalAlign?: 'middle' | 'baseline';
 }
 
-export default function Icon(props: IconProps) {
+export default function Icon<Tag extends TagType = 'span'>(props: IconProps<Tag>) {
   const {
     className,
     prefixCls = 'w-icon',
@@ -59,5 +61,6 @@ export default function Icon(props: IconProps) {
       .join(' ')
       .trim(),
   };
-  return <TagName {...propps}>{svg}</TagName>;
+
+  return React.createElement(TagName, { ...propps } as any, svg);
 }

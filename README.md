@@ -189,6 +189,12 @@ Folders
     └── react-affix
 ```
 
+### Contributors
+
+<a href="https://github.com/uiwjs/uiw/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=uiwjs/uiw" />
+</a>
+
 ### License
 
 Licensed under the MIT License.

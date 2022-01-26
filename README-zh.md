@@ -197,6 +197,14 @@ $ lerna exec --scope @uiw/button -- tsbb watch --target react --env-name esm:dev
 
 当前工程目前通过 `git tag` 触发 [GitHub Workflow](https://github.com/uiwjs/uiw/blob/3e5ae42a7b4f6b8ea2f2c331be61048d7e5c3e9e/.github/workflows/deploy.yml#L54-L57) 自动发布到 [npm](https://www.npmjs.com/package/uiw) 包管理平台中
 
+
+### Contributors
+
+<a href="https://github.com/uiwjs/uiw/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=uiwjs/uiw" />
+</a>
+
+
 ### License
 
 Licensed under the MIT License.

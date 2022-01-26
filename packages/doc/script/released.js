@@ -11,7 +11,7 @@
 const fs = require('fs-extra');
 const { join } = require('path');
 
-const docsPath = join(process.cwd(), '..', '..', 'website', 'uiw', 'build');
+const docsPath = join(process.cwd(), '..', '..', 'website', 'build');
 const libPath = join(process.cwd(), '..', 'uiw');
 const docRepoPath = join(process.cwd(), '..', 'doc');
 const uiwPkg = join(libPath, 'package.json');
@@ -46,11 +46,13 @@ const docPkg = join(docRepoPath, 'package.json');
     );
     await fs.emptyDir(join(docRepoPath, 'web'));
     await fs.copy(docsPath, join(docRepoPath, 'web'));
-
     console.log(`> Copy From: \x1b[32;1m${docsPath}\x1b[0m`);
     console.log(`> To: \x1b[32;1m${join(docRepoPath, 'web')}\x1b[0m`);
     console.log(`> Update to v\x1b[32;1m${uiwPkgContent.version}\x1b[0m`);
   } catch (error) {
-    console.log('error:', error);
+    const message = error && error.message ? error.message : '';
+    console.log('\x1b[31;1m UIW:RELEASED:ERROR: \x1b[0m\n', error);
+    new Error(`UIW:RELEASED:ERROR: \n ${message}`);
+    process.exit(1);
   }
 })();

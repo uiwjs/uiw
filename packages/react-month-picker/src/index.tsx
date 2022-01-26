@@ -7,7 +7,7 @@ import formatter from '@uiw/formatter';
 import { DatePickerMonth, DatePickerYear, DatePickerCaption, DatePickerCaptionProps } from '@uiw/react-date-picker';
 import './style/index.less';
 
-export interface MonthPickerProps<T> extends IProps, Omit<InputProps<T>, 'value' | 'onChange'> {
+export interface MonthPickerProps extends IProps, Omit<InputProps, 'value' | 'onChange'> {
   popoverProps?: PopoverProps;
   pickerCaptionProps?: DatePickerCaptionProps;
   value?: Date | string;
@@ -32,7 +32,7 @@ const MONTH_LABEL = [
   '十二月',
 ];
 
-export default function MonthPicker<T>(props: MonthPickerProps<T>) {
+export default function MonthPicker(props: MonthPickerProps) {
   const {
     prefixCls = 'w-monthpicker',
     format = 'YYYY/MM',

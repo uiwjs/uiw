@@ -7,7 +7,7 @@ import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
 import './style/index.less';
 
-export interface DateInputProps<T> extends IProps, Omit<InputProps<T>, 'onChange' | 'value'> {
+export interface DateInputProps extends IProps, Omit<InputProps, 'onChange' | 'value'> {
   popoverProps?: PopoverProps;
   datePickerProps?: DatePickerProps;
   value?: Date | string;
@@ -16,7 +16,7 @@ export interface DateInputProps<T> extends IProps, Omit<InputProps<T>, 'onChange
   onChange?: (selectedDate?: Date) => void;
 }
 
-export default function DateInput<T>(props: DateInputProps<T>) {
+export default function DateInput(props: DateInputProps) {
   const {
     prefixCls = 'w-dateinput',
     className,
@@ -65,7 +65,7 @@ export default function DateInput<T>(props: DateInputProps<T>) {
       <Input
         placeholder="请选择日期"
         readOnly
-        {...(inputProps as InputProps<string>)}
+        {...(inputProps as InputProps)}
         className={[prefixCls, className].filter(Boolean).join(' ').trim()}
       />
     </Popover>

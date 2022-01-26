@@ -10,7 +10,7 @@ import './style/index.less';
 export * from './Panel';
 export * from './Time';
 
-export interface TimePickerProps<T> extends IProps, Omit<InputProps<T>, 'onChange' | 'value'> {
+export interface TimePickerProps extends IProps, Omit<InputProps, 'onChange' | 'value'> {
   value?: Date;
   format?: string;
   popoverProps?: PopoverProps;
@@ -30,7 +30,7 @@ export interface TimePickerProps<T> extends IProps, Omit<InputProps<T>, 'onChang
   ) => void;
 }
 
-export default function TimePicker<T>(props: TimePickerProps<T>) {
+export default function TimePicker(props: TimePickerProps) {
   const {
     prefixCls = 'w-timepicker',
     className,
@@ -58,7 +58,7 @@ export default function TimePicker<T>(props: TimePickerProps<T>) {
   };
   const inputValue = date ? formatter(format, date) : '';
   const datePickerTime = date || new Date();
-  const _props: InputProps<T> = { ...inputProps, value: inputValue };
+  const _props: InputProps = { ...inputProps, value: inputValue };
   if (allowClear && inputValue !== '' && !!inputValue) {
     _props.addonAfter = (
       <Button
