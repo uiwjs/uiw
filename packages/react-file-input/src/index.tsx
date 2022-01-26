@@ -1,11 +1,26 @@
 import React from 'react';
-import Input, { InputProps } from '@uiw/react-input';
+import Input from './Input';
+import FileList from './FileList';
+import { isUploadType } from './utils';
+import { UploadType } from './types';
 import './style/index.less';
 
-export interface FileInputProps extends InputProps {}
+interface Props {
+  uploadType?: UploadType;
+  [key: string]: any;
+}
 
-export default React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { className, prefixCls = 'w-fileinput', ...other } = props;
-  const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
-  return <Input ref={ref} data-label="Browse" className={cls} {...other} type="file" />;
-});
+function Upload(props: Props) {
+  const { uploadType = 'input' } = props;
+
+  if (uploadType === 'input') {
+    return <Input {...props} />;
+  }
+
+  if (isUploadType(uploadType)) {
+    return <FileList {...props} />;
+  }
+  return null;
+}
+
+export default Upload;

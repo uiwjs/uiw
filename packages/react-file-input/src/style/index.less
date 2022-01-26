@@ -41,4 +41,129 @@
       bottom: 0;
     }
   }
+  &-card {
+    margin-right: -8px;
+    &_box {
+      width: 104px;
+      height: 104px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      text-align: center;
+      vertical-align: top;
+      background-color: #fafafa;
+      border: 1px dashed #d9d9d9;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: border-color 0.3s;
+      display: inline-flex;
+      position: relative;
+      &_info {
+        padding: 5px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    &_actions {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.5s;
+      opacity: 0;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 2px;
+      &_remove {
+        width: 24px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+    }
+    &_btn {
+      align-items: center;
+      justify-content: center;
+    }
+    &_box:hover &_actions {
+      opacity: 1;
+    }
+  }
+  &-list {
+    padding-bottom: 8px;
+    &_actions {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.5s;
+      opacity: 0;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 2px;
+      &_search {
+        width: 24px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+    }
+    &_info:hover &_actions {
+      opacity: 1;
+    }
+  }
+  &-list_picture {
+    border: 1px solid #d9d9d9;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin-top: 8px;
+    &_info {
+      margin-right: 10px;
+      position: relative;
+      img {
+        width: 48px;
+        height: 48px;
+        display: block;
+      }
+    }
+    &_text {
+      flex: 1;
+    }
+    &_icon {
+      padding: 5px;
+      cursor: pointer;
+    }
+  }
+  &-list_text {
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    transition: all 0.5s;
+    &:hover {
+      background: #f5f5f5;
+    }
+    &:first-child {
+      margin-top: 8px;
+    }
+    &_text {
+      flex: 1;
+    }
+    &_icon {
+      padding: 0 5px;
+      cursor: pointer;
+    }
+  }
 }
