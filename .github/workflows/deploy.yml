@@ -36,6 +36,13 @@ jobs:
     - run: mkdir -p packages/doc/web
     - run: cp -rf website/build/* packages/doc/web
 
+    - name: Generate Contributors Images
+      uses: jaywcjlove/github-action-contributors@main
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        filter-author: (renovate\[bot\]|renovate-bot|dependabot\[bot\])
+        output: ./website/build/CONTRIBUTORS.svg
+
     - name: Deploy to uiwjs.github.io
       uses: peaceiris/actions-gh-pages@v3
       with:
