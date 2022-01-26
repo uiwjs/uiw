@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputProps } from '@uiw/react-input';
 
-export type uploadType = 'input' | 'picture' | 'text' | 'card';
+export type UploadType = 'input' | 'picture' | 'text' | 'card';
 
 export interface FileType {
   dataURL?: string;
@@ -17,21 +17,21 @@ export type ErrorsType = {
   resolution?: boolean;
 } | null;
 
-export interface baseProps {
+export interface BaseProps {
   className?: string;
   prefixCls?: string;
   /** 上传列表的内置样式 */
-  uploadType: uploadType;
+  uploadType?: UploadType;
   multiple?: boolean;
 }
 
 // input
-export interface FileInputProps extends baseProps, InputProps {
+export interface FileInputProps extends BaseProps, InputProps {
   dataLabel?: string;
 }
 
 // text / card / picture
-export interface FileUploadProps extends baseProps {
+export interface FileUploadProps extends BaseProps {
   value?: FileType[];
   /** 是否是只读模式 */
   readonly?: boolean;

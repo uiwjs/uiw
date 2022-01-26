@@ -99,17 +99,18 @@ ReactDOM.render(
 
 ## Props 
 
-- `input` 基础输入框上传
+- `uploadType: input` 基础输入框上传
 
-- `picture` 图片列展示列表，显示图片
+- `uploadType: picture` 图片列展示列表，显示图片
 
-- `text` 图片列展示列表，不显示图片
+- `uploadType: text` 图片列展示列表，不显示图片
 
-- `card` 图片墙列表
+- `uploadType: card` 图片墙列表
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | uploadType | 上传展示类型 | `input`、`picture`、`text`、`card` | `input` |
+| className | CSS类名称 | String | - |
 | multiple | 是否多选上传 | boolean | - |
 
 
