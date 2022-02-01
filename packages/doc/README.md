@@ -6,3 +6,9 @@ We use [`npm`](https://www.npmjs.com/package/@uiw/doc) to manage the version of 
 https://unpkg.com/@uiw/doc/web/index.html
 
 > Old documentation preview: [v1.x.x](https://unpkg.com/uiw@1.16.14/dist/index.html)
+
+## Contributors
+
+<a href="https://github.com/uiwjs/uiw/graphs/contributors">
+  <img src="https://uiwjs.github.io/uiw/CONTRIBUTORS.svg" />
+</a>
