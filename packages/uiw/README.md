@@ -189,7 +189,7 @@ Folders
     └── react-affix
 ```
 
-## Contributors
+### Contributors
 
 <a href="https://github.com/uiwjs/uiw/graphs/contributors">
   <img src="https://uiwjs.github.io/uiw/CONTRIBUTORS.svg" />
