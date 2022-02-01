@@ -63,6 +63,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         filter-author: (renovate\[bot\]|renovate-bot|dependabot\[bot\])
         output: ./website/build/CONTRIBUTORS.svg
+        avatarSize: 32
 
     - run: cp -rf website/build/* packages/doc/web
 
