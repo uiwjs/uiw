@@ -556,33 +556,51 @@ ReactDOM.render(<Demo />, _mount_);
 
 对组件 `FormItem` 竖排展示示例。
 
-> ⚠️ 注意：当前只展示效果，`FormItem` 组件只在 `Form` 组件中使用。
+> ⚠️ 注意：`FormItem` 组件只在 `Form` 组件中使用，在 `@v4.10.4+` 以上版本可以当普通 `form` 使用。
 <!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { Form, FormItem } from 'uiw';
+import { Form, FormItem, Button } from 'uiw';
 
-const Demo = () => (
-  <Form>
-    <FormItem
-      label="可选字段"
-      labelFor="basic-input"
-      help={<span>在上面的字段中输入一个值</span>}
-    >
-      <Input id="basic-input" type="text"/>
-    </FormItem>
-    <FormItem
-      label="用户名"
-      labelFor="username-input"
-      help="用户名长度至少为8个字符串。"
-      hasError={true}
-    >
-      <Input id="username-input" type="text"/>
-    </FormItem>
-  </Form>
-)
+const Demo = () => {
+  const [formData, setFormData] = React.useState({});
+  const handleSubmit = (_, e) => {
+    e && e.preventDefault();
+    const fData = new FormData(e.target);
+    const data = {};
+    fData.forEach((value, key) => { data[key] = value; });
+    setFormData(data);
+  }
+  return (
+    <Form onSubmit={handleSubmit} onReset={() => setFormData({})}>
+      <FormItem
+        label="可选字段"
+        labelFor="item-basic-input"
+        help={<span>在上面的字段中输入一个值</span>}
+      >
+        <Input id="item-basic-input" name="basic" type="text"/>
+      </FormItem>
+      <FormItem
+        label="用户名"
+        labelFor="item-username-input"
+        help={(!formData.username || formData.username.length < 8) ? "用户名长度至少为8个字符串。" : "用户名正确 √ "}
+        hasError={(!formData.username || formData.username.length < 8)}
+      >
+        <Input id="item-username-input" name="username" type="text"/>
+      </FormItem>
+      <FormItem>
+        <Button type="success" htmlType="submit"> Submit </Button>
+        <Button type="light" htmlType="reset"> Reset </Button>
+      </FormItem>
+      <pre>
+      {JSON.stringify(formData, null, 2)}
+      </pre>
+    </Form>
+  );
+}
 ReactDOM.render(<Demo />, _mount_);
 ```
 
@@ -590,7 +608,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 对组件 `FormItem` 横排展示示例。
 
-> ⚠️ 注意：当前只展示效果，`FormItem` 组件只在 `Form` 组件中使用。
+> ⚠️ 注意：`FormItem` 组件只在 `Form` 组件中使用，在 `@v4.10.4+` 以上版本可以当普通 `form` 使用。
 <!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
@@ -609,7 +627,7 @@ const Demo = () => (
         console.log('TEST::');
       }}
     >
-      <Input id="basic-input-inline" type="text"/>
+      <Input id="basic-input-inline" name="basic" type="text"/>
     </FormItem>
     <FormItem
       inline={true}
@@ -619,7 +637,7 @@ const Demo = () => (
       help="用户名长度至少为8个字符串。"
       hasError={true}
     >
-      <Input id="username-input-inline" type="text"/>
+      <Input id="username-input-inline" name="username" type="text"/>
     </FormItem>
   </Form>
 )
@@ -632,7 +650,7 @@ ReactDOM.render(<Demo />, _mount_);
 |--------- |-------- |--------- |-------- |
 | fields | 设置字段 | object | - |
 | children | 回调 {`fields`, `state`, `canSubmit`, `resetForm`} | function | - |
-| onSubmit | 提交表单时调用  | function({ initial, current }) | - |
+| onSubmit | 提交表单时调用  | `(state: FormSubmitProps, event: React.FormEvent) => any` | - |
 | afterSubmit `@3.0.0+` | 提交回调 {`initial`, `current`}  | function({ initial, current }) | - |
 | onChange | 表单发生改变回调函数 {`initial`, `current`}  | function({ initial, current }) | - |
 | onSubmitError | 调用 `onSubmit` 抛出的任何错误。从字段名称返回对象映射。  | function | - |
