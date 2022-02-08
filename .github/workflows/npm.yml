@@ -60,10 +60,9 @@ jobs:
     - name: Generate Contributors Images
       uses: jaywcjlove/github-action-contributors@main
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        filter-author: (renovate\[bot\]|renovate-bot|dependabot\[bot\])
+        filter-author: (renovate\[bot\]|actions-user|renovate-bot|dependabot\[bot\])
         output: ./website/build/CONTRIBUTORS.svg
-        avatarSize: 32
+        avatarSize: 42
 
     - run: cp -rf website/build/* packages/doc/web
 
