@@ -1,9 +1,9 @@
 import React from 'react';
 import Icon from '@uiw/react-icon';
-import { FileListProps } from './';
+import { FileInputListProps } from './';
 import './style/index.less';
 
-const Picture = (props: FileListProps) => {
+const Picture = (props: FileInputListProps) => {
   const {
     className,
     prefixCls = 'w-fileinput-list',

@@ -123,10 +123,10 @@ ReactDOM.render(
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| value | 默认图片列表  | FileType[] | - |
+| value | 默认图片列表  | FileInputType[] | - |
 | readonly | 是否是只读模式 | boolean | false |
 | maxNumber | 文件上传数量 | boolean | false |
-| showFileIcon | 设置图标按钮是否展示 | showFileIconProps: {showPreviewIcon?: boolean,showRemoveIcon?: boolean} | {showPreviewIcon: true, showRemoveIcon: true} |
-| onChange | 文件上传回调 | (value: FileType[]) => void | - |
-| onPreview | 预览图标时的回调 | (value: FileType[]) => void | - |
+| showFileIcon | 设置图标按钮是否展示 | {showPreviewIcon?: boolean,showRemoveIcon?: boolean} | {showPreviewIcon: true, showRemoveIcon: true} |
+| onChange | 文件上传回调 | (value: FileInputType[]) => void | - |
+| onPreview | 预览图标时的回调 | (value: FileInputType[]) => void | - |
 
