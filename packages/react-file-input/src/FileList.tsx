@@ -1,7 +1,7 @@
 import React, { useRef, useCallback, useEffect, useState } from 'react';
 import List from './List';
 import Card from './Card';
-import { FileUploadProps, FileType, FileListProps } from './types';
+import { FileUploadProps, FileType, FileListProps } from './';
 import { openFileDialog, getListFiles } from './utils';
 
 export const FileList = (props: FileUploadProps) => {
@@ -17,6 +17,7 @@ export const FileList = (props: FileUploadProps) => {
   const handleClickInput = useCallback(() => openFileDialog(inputRef), [inputRef]);
 
   const onFileUpload = useCallback((): void => {
+    if (inputRef.current) inputRef.current.value = '';
     handleClickInput();
   }, [handleClickInput]);
 
@@ -36,7 +37,7 @@ export const FileList = (props: FileUploadProps) => {
     const updatedList = [...fileList];
     updatedList.splice(index, 1);
     setFileList(updatedList);
-    onChange?.(fileList);
+    onChange?.(updatedList);
   };
 
   let Comp: ((props: FileListProps) => JSX.Element) | undefined;

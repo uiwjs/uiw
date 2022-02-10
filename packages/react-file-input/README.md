@@ -47,10 +47,15 @@ const Demo = () => {
   return (
     <FileInput
       uploadType="card"
+      showFileIcon={{
+        showPreviewIcon: false,
+        showRemoveIcon: true
+      }}
       onPreview={(file) => console.log(file)}
       value={[
         { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4'}
       ]}
+      onChange={(items) => console.log(items)}
     >
       <Icon type="plus" />
     </FileInput>
@@ -121,6 +126,7 @@ ReactDOM.render(
 | value | 默认图片列表  | FileType[] | - |
 | readonly | 是否是只读模式 | boolean | false |
 | maxNumber | 文件上传数量 | boolean | false |
+| showFileIcon | 设置图标按钮是否展示 | showFileIconProps: {showPreviewIcon?: boolean,showRemoveIcon?: boolean} | {showPreviewIcon: true, showRemoveIcon: true} |
 | onChange | 文件上传回调 | (value: FileType[]) => void | - |
 | onPreview | 预览图标时的回调 | (value: FileType[]) => void | - |
 

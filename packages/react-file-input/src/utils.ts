@@ -1,4 +1,4 @@
-import { FileType } from './types';
+import { FileType } from './';
 
 export const openFileDialog = (inputRef: any): void => {
   if (inputRef.current) inputRef.current.click();

@@ -1,6 +1,6 @@
 import React from 'react';
 import Icon from '@uiw/react-icon';
-import { FileListProps } from './types';
+import { FileListProps } from './';
 import './style/index.less';
 
 const Picture = (props: FileListProps) => {
@@ -9,7 +9,12 @@ const Picture = (props: FileListProps) => {
     prefixCls = 'w-fileinput-list',
     dataList = [],
     uploadType,
+    readonly,
     children,
+    showFileIcon = {
+      showPreviewIcon: true,
+      showRemoveIcon: true,
+    },
     onPreview,
     onAdd,
     onRemove,
@@ -20,6 +25,7 @@ const Picture = (props: FileListProps) => {
   return (
     <div className={cls}>
       {children &&
+        !readonly &&
         React.isValidElement(children) &&
         React.cloneElement(children, {
           onClick: onAdd,
@@ -30,9 +36,9 @@ const Picture = (props: FileListProps) => {
             {uploadType === 'picture' && (
               <div className={`${cls}_info ${cls}_${uploadType}_info`}>
                 <img src={item['dataURL']} alt="" />
-                {onPreview && (
+                {showFileIcon?.showPreviewIcon && (
                   <div className={`${cls}_actions`}>
-                    <span className={`${cls}_actions_search`} onClick={() => onPreview(item)}>
+                    <span className={`${cls}_actions_search`} onClick={() => onPreview?.(item)}>
                       <Icon type="search" style={{ color: '#fff', fontSize: 16 }} />
                     </span>
                   </div>
@@ -40,9 +46,11 @@ const Picture = (props: FileListProps) => {
               </div>
             )}
             <div className={`${cls}_${uploadType}_text`}>{item.name}</div>
-            <div className={`${cls}_${uploadType}_icon`} onClick={() => onRemove(index)}>
-              <Icon type="delete" style={{ color: '#999' }} />
-            </div>
+            {showFileIcon?.showRemoveIcon && (
+              <div className={`${cls}_${uploadType}_icon`} onClick={() => onRemove?.(index)}>
+                <Icon type="delete" style={{ color: '#999' }} />
+              </div>
+            )}
           </div>
         ))}
       </div>

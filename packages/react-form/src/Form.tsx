@@ -6,7 +6,7 @@ import './style/form.less';
 export interface FormProps<T> extends IProps, Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onChange' | 'onSubmit'> {
   prefixCls?: string;
   fields?: Record<string, FormFieldsProps<T>>;
-  onSubmit?: (state: FormSubmitProps) => any;
+  onSubmit?: (state: FormSubmitProps, event: React.FormEvent) => any;
   afterSubmit?: (result: FormAfterSubmitProps) => any;
   onChange?: (state: FormState) => void;
   onSubmitError?: (evn: any) => any;
@@ -194,8 +194,8 @@ function Form<T>(
       return () => afterSubmit!({ state: data, response, reset: handleReset });
     };
     try {
-      const afterSubmitPromise = onSubmit!({ initial, current });
-      if (isPromise(afterSubmitPromise)) {
+      const afterSubmitPromise = onSubmit ? onSubmit({ initial, current }, e) : undefined;
+      if (afterSubmitPromise && isPromise(afterSubmitPromise)) {
         return afterSubmitPromise.then(onSuccess).catch(onError);
       } else {
         return onSuccess(afterSubmitPromise);

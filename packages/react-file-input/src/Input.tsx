@@ -1,6 +1,6 @@
 import React from 'react';
 import Input, { InputProps } from '@uiw/react-input';
-import { FileInputProps } from './types';
+import { FileInputProps } from './';
 
 export interface InputUploadProps extends FileInputProps, InputProps {}
 
