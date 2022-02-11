@@ -1,14 +1,15 @@
 import React, { useRef, useCallback, useEffect, useState } from 'react';
 import List from './List';
 import Card from './Card';
-import { FileUploadProps, FileType, FileListProps } from './types';
+import { FileInputValue, FileInputListProps } from './';
+import { FileInputUploadProps } from './types';
 import { openFileDialog, getListFiles } from './utils';
 
-export const FileList = (props: FileUploadProps) => {
+export const FileList = (props: FileInputUploadProps) => {
   const { uploadType, value = [], multiple = false, maxNumber = 3, onChange } = props;
   const inputRef = useRef<HTMLInputElement>(null);
-  const inValue: FileType[] = value || [];
-  const [fileList, setFileList] = useState<FileType[]>([]);
+  const inValue: FileInputValue[] = value || [];
+  const [fileList, setFileList] = useState<FileInputValue[]>([]);
 
   useEffect(() => {
     setFileList(inValue);
@@ -17,6 +18,7 @@ export const FileList = (props: FileUploadProps) => {
   const handleClickInput = useCallback(() => openFileDialog(inputRef), [inputRef]);
 
   const onFileUpload = useCallback((): void => {
+    if (inputRef.current) inputRef.current.value = '';
     handleClickInput();
   }, [handleClickInput]);
 
@@ -36,10 +38,10 @@ export const FileList = (props: FileUploadProps) => {
     const updatedList = [...fileList];
     updatedList.splice(index, 1);
     setFileList(updatedList);
-    onChange?.(fileList);
+    onChange?.(updatedList);
   };
 
-  let Comp: ((props: FileListProps) => JSX.Element) | undefined;
+  let Comp: ((props: FileInputListProps) => JSX.Element) | undefined;
 
   if (uploadType === 'card') {
     Comp = Card;

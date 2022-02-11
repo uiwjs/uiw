@@ -43,29 +43,30 @@
   }
   &-card {
     margin-right: -8px;
-    &_box {
-      width: 104px;
-      height: 104px;
+    &-box {
       margin-right: 8px;
       margin-bottom: 8px;
       text-align: center;
       vertical-align: top;
       background-color: #fafafa;
       border: 1px dashed #d9d9d9;
+      overflow: hidden;
       border-radius: 2px;
       cursor: pointer;
       transition: border-color 0.3s;
       display: inline-flex;
       position: relative;
-      &_info {
-        padding: 5px;
+      &-info {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
         img {
           width: 100%;
           height: 100%;
         }
       }
     }
-    &_actions {
+    &-actions {
       position: absolute;
       left: 0;
       top: 0;
@@ -78,7 +79,7 @@
       opacity: 0;
       background: rgba(0, 0, 0, 0.6);
       border-radius: 2px;
-      &_remove {
+      &-remove {
         width: 24px;
         height: 20px;
         display: flex;
@@ -87,17 +88,36 @@
         cursor: pointer;
       }
     }
-    &_btn {
+    &-btn {
       align-items: center;
       justify-content: center;
     }
-    &_box:hover &_actions {
+    &-box:hover &-actions {
       opacity: 1;
+    }
+    &-size-large &-box {
+      width: 110px;
+      height: 110px;
+    }
+    &-size-middle &-box {
+      width: 80px;
+      height: 80px;
+    }
+    &-size-small &-box {
+      width: 50px;
+      height: 50px;
+    }
+    &-shape-round &-box {
+      border-radius: 2px;
+    }
+    &-shape-circle &-box {
+      border-radius: 50%;
     }
   }
   &-list {
     padding-bottom: 8px;
-    &_actions {
+    width: 100%;
+    &-actions {
       position: absolute;
       left: 0;
       top: 0;
@@ -110,7 +130,7 @@
       opacity: 0;
       background: rgba(0, 0, 0, 0.6);
       border-radius: 2px;
-      &_search {
+      &-search {
         width: 24px;
         height: 20px;
         display: flex;
@@ -119,34 +139,64 @@
         cursor: pointer;
       }
     }
-    &_info:hover &_actions {
+    &-info:hover &-actions {
       opacity: 1;
     }
-  }
-  &-list_picture {
-    border: 1px solid #d9d9d9;
-    display: flex;
-    align-items: center;
-    padding: 5px;
-    margin-top: 8px;
-    &_info {
-      margin-right: 10px;
-      position: relative;
-      img {
-        width: 48px;
-        height: 48px;
-        display: block;
+    &-picture {
+      border: 1px solid #d9d9d9;
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      margin-top: 8px;
+      &-info {
+        margin-right: 10px;
+        position: relative;
+        overflow: hidden;
+        img {
+          width: 48px;
+          height: 48px;
+          display: block;
+        }
+      }
+      &-text {
+        flex: 1;
+      }
+      &-icon {
+        padding: 5px;
+        cursor: pointer;
       }
     }
-    &_text {
-      flex: 1;
+    &-size-large &-picture {
+      &-info img {
+        width: 70px;
+        height: 70px;
+      }
     }
-    &_icon {
-      padding: 5px;
-      cursor: pointer;
+    &-size-middle &-picture {
+      &-info img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+    &-size-small &-picture {
+      &-info img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    &-shape-round &-picture {
+      &-info {
+        border-radius: 2px;
+      }
+    }
+    &-shape-circle &-box {
+      &-info {
+        border-radius: 50px;
+      }
     }
   }
-  &-list_text {
+
+  &-list-text {
     border: 1px solid transparent;
     display: flex;
     align-items: center;
@@ -158,10 +208,10 @@
     &:first-child {
       margin-top: 8px;
     }
-    &_text {
+    &-text {
       flex: 1;
     }
-    &_icon {
+    &-icon {
       padding: 0 5px;
       cursor: pointer;
     }
