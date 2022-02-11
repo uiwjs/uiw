@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useImperativeHandle } from 'react';
 import { IProps } from '@uiw/utils';
 import FormItem, { FormItemProps } from './FormItem';
 import './style/form.less';
@@ -58,6 +58,8 @@ export type FormElementProps = {
   onChange?: (env: React.BaseSyntheticEvent<HTMLInputElement>, list?: string[]) => void;
 };
 
+export type FormRefType = Record<'onSubmit' | 'resetForm' | 'getFieldValues', Function>;
+
 function newFormState<T>(
   fields: FormProps<T>['fields'],
   cb: (porps: FormFieldsProps<T>) => {
@@ -100,7 +102,7 @@ function Form<T>(
     afterSubmit,
     ...others
   }: FormProps<T>,
-  ref: React.ForwardedRef<HTMLInputElement>,
+  ref: React.ForwardedRef<HTMLInputElement> | React.RefObject<FormRefType>,
 ) {
   const initData = newFormState(fields, ({ initialValue }) => {
     initialValue = newInitialValue(initialValue);
@@ -109,17 +111,15 @@ function Form<T>(
 
   const [data, setData] = useState<FormState>(initData);
 
-  useEffect(() => {
-    if (ref) {
-      (ref as unknown as React.MutableRefObject<
-        Record<'onSubmit' | 'resetForm' | 'getFieldValues', Function>
-      >)!.current = {
-        onSubmit: handleSubmit,
-        resetForm: handleReset,
-        getFieldValues: getFieldValues,
-      };
-    }
-  }, [data]);
+  useImperativeHandle(
+    ref as React.RefObject<FormRefType>,
+    () => ({
+      onSubmit: handleSubmit,
+      resetForm: handleReset,
+      getFieldValues: () => data.current,
+    }),
+    [data],
+  );
 
   const formUnits: FormChildrenProps['fields'] = {};
   for (const name in fields) {
@@ -149,10 +149,6 @@ function Form<T>(
         }}
       />
     );
-  }
-
-  function getFieldValues() {
-    return data.current;
   }
 
   function handleChange(
@@ -191,7 +187,7 @@ function Form<T>(
     };
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  function handleSubmit(e: React.FormEvent) {
     e && e.preventDefault();
     const { initial, current } = data;
     setData({ ...data, submitting: true });
@@ -219,7 +215,7 @@ function Form<T>(
     } catch (evn) {
       onError(evn);
     }
-  };
+  }
 
   function canSubmit() {
     const { submitting, current = {} } = data;
