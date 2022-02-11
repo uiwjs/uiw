@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useImperativeHandle } from 'react';
 import { IProps } from '@uiw/utils';
 import FormItem, { FormItemProps } from './FormItem';
 import './style/form.less';
@@ -58,6 +58,8 @@ export type FormElementProps = {
   onChange?: (env: React.BaseSyntheticEvent<HTMLInputElement>, list?: string[]) => void;
 };
 
+export type FormRefType = Record<'onSubmit' | 'resetForm' | 'getFieldValues', Function>;
+
 function newFormState<T>(
   fields: FormProps<T>['fields'],
   cb: (porps: FormFieldsProps<T>) => {
@@ -100,7 +102,7 @@ function Form<T>(
     afterSubmit,
     ...others
   }: FormProps<T>,
-  ref: ((instance: HTMLInputElement) => void) | React.RefObject<HTMLInputElement | null> | null,
+  ref: React.ForwardedRef<HTMLInputElement> | React.RefObject<FormRefType>,
 ) {
   const initData = newFormState(fields, ({ initialValue }) => {
     initialValue = newInitialValue(initialValue);
@@ -108,6 +110,16 @@ function Form<T>(
   });
 
   const [data, setData] = useState<FormState>(initData);
+
+  useImperativeHandle(
+    ref as React.RefObject<FormRefType>,
+    () => ({
+      onSubmit: handleSubmit,
+      resetForm: handleReset,
+      getFieldValues: () => data.current,
+    }),
+    [data],
+  );
 
   const formUnits: FormChildrenProps['fields'] = {};
   for (const name in fields) {
@@ -265,6 +277,7 @@ function Form<T>(
     props.onChange = handleChange(name, validator, element, element.props.onChange) as FormElementProps['onChange'];
     return React.cloneElement(element, props as FormElementProps);
   }
+
   return (
     <form
       {...{
