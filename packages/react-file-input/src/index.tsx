@@ -5,7 +5,7 @@ import { isUploadType } from './utils';
 import { InputProps } from '@uiw/react-input';
 import { UploadType, FileInputBaseProps, FileInputUploadProps, FileInputShowIconProps } from './types';
 import './style/index.less';
-export interface FileInputType {
+export interface FileInputValue {
   dataURL?: string;
   file?: File;
   name?: string;
@@ -15,8 +15,10 @@ export interface FileInputProps extends FileInputBaseProps, InputProps {
   dataLabel?: string;
 }
 export interface FileInputListProps extends FileInputUploadProps {
+  shape?: 'circle' | 'round';
+  size?: 'large' | 'middle' | 'small';
   showFileIcon?: FileInputShowIconProps;
-  dataList: FileInputType[];
+  dataList: FileInputValue[];
   onAdd?: () => void;
   onRemove?: (index: number) => void;
 }

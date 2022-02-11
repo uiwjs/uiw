@@ -9,6 +9,8 @@ const Picture = (props: FileInputListProps) => {
     prefixCls = 'w-fileinput-list',
     dataList = [],
     uploadType,
+    size = 'middle',
+    shape = 'round',
     readonly,
     children,
     showFileIcon = {
@@ -20,7 +22,10 @@ const Picture = (props: FileInputListProps) => {
     onRemove,
   } = props;
 
-  const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
+  const cls = [prefixCls, `${prefixCls}-size-${size}`, `${prefixCls}-shape-${shape}`, className]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
 
   return (
     <div className={cls}>
@@ -32,22 +37,22 @@ const Picture = (props: FileInputListProps) => {
         })}
       <div>
         {dataList.map((item, index) => (
-          <div className={`${cls}_${uploadType}`} key={index}>
+          <div className={`${prefixCls}-${uploadType}`} key={index}>
             {uploadType === 'picture' && (
-              <div className={`${cls}_info ${cls}_${uploadType}_info`}>
+              <div className={`${prefixCls}-info ${prefixCls}-${uploadType}-info`}>
                 <img src={item['dataURL']} alt="" />
                 {showFileIcon?.showPreviewIcon && (
-                  <div className={`${cls}_actions`}>
-                    <span className={`${cls}_actions_search`} onClick={() => onPreview?.(item)}>
+                  <div className={`${prefixCls}-actions`}>
+                    <span className={`${prefixCls}-actions-search`} onClick={() => onPreview?.(item)}>
                       <Icon type="search" style={{ color: '#fff', fontSize: 16 }} />
                     </span>
                   </div>
                 )}
               </div>
             )}
-            <div className={`${cls}_${uploadType}_text`}>{item.name}</div>
+            <div className={`${prefixCls}-${uploadType}-text`}>{item.name}</div>
             {showFileIcon?.showRemoveIcon && (
-              <div className={`${cls}_${uploadType}_icon`} onClick={() => onRemove?.(index)}>
+              <div className={`${prefixCls}-${uploadType}-icon`} onClick={() => onRemove?.(index)}>
                 <Icon type="delete" style={{ color: '#999' }} />
               </div>
             )}

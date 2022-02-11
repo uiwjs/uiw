@@ -1,15 +1,15 @@
 import React, { useRef, useCallback, useEffect, useState } from 'react';
 import List from './List';
 import Card from './Card';
-import { FileInputType, FileInputListProps } from './';
+import { FileInputValue, FileInputListProps } from './';
 import { FileInputUploadProps } from './types';
 import { openFileDialog, getListFiles } from './utils';
 
 export const FileList = (props: FileInputUploadProps) => {
   const { uploadType, value = [], multiple = false, maxNumber = 3, onChange } = props;
   const inputRef = useRef<HTMLInputElement>(null);
-  const inValue: FileInputType[] = value || [];
-  const [fileList, setFileList] = useState<FileInputType[]>([]);
+  const inValue: FileInputValue[] = value || [];
+  const [fileList, setFileList] = useState<FileInputValue[]>([]);
 
   useEffect(() => {
     setFileList(inValue);

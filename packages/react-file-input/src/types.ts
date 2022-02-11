@@ -1,4 +1,4 @@
-import { FileInputType } from './index';
+import { FileInputValue } from './index';
 
 export type UploadType = 'input' | 'picture' | 'text' | 'card';
 
@@ -17,14 +17,14 @@ export interface FileInputBaseProps {
 }
 
 export interface FileInputUploadProps extends FileInputBaseProps {
-  value?: FileInputType[];
+  value?: FileInputValue[];
   /** 是否是只读模式 */
   readonly?: boolean;
   /** 文件上传数量 */
   maxNumber?: number;
   children?: React.ReactNode;
   /** 文件上传成功回调 */
-  onChange?: (value: FileInputType[]) => void;
+  onChange?: (value: FileInputValue[]) => void;
   /** 预览 */
-  onPreview?: (file: FileInputType) => void;
+  onPreview?: (file: FileInputValue) => void;
 }
