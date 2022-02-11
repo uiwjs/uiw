@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import Select from '@uiw/react-select';
 import { IProps, HTMLUlProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -6,11 +7,13 @@ export interface PaginationProps extends IProps, Omit<HTMLUlProps, 'onChange'> {
   prefixCls?: string;
   alignment?: 'left' | 'center' | 'right';
   size?: 'default' | 'small';
+  pageSizeOptions?: number[];
   total?: number;
   pageSize?: number;
   divider?: boolean;
   current?: number;
   onChange?: (current: number, total: number, pageSize: number) => void;
+  onShowSizeChange?: (current: number, pageSize: number) => void;
 }
 
 export interface PaginationState {
@@ -34,8 +37,10 @@ export default function Pagination(props: PaginationProps) {
     size = 'default',
     total = 0,
     pageSize = 10, // The number of pages displayed.
+    pageSizeOptions = [],
     current: currentNumber = 1,
     onChange = () => null,
+    onShowSizeChange,
     divider,
     ...other
   } = props;
@@ -122,6 +127,13 @@ export default function Pagination(props: PaginationProps) {
     onChange && onChange(state.current, total as number, pageSize as number);
   }
 
+  const onSizeChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
+    const sizeCount: number = Number(e.target.value);
+    const count = Math.ceil(total / sizeCount);
+    const newCurrent: number = current > count ? count : current;
+    onShowSizeChange && onShowSizeChange(newCurrent, sizeCount);
+  };
+
   return (
     <ul className={cls} style={{ ...style, textAlign: alignment }} {...other}>
       {initPageSoure.map((item: PaginationItemSourceData, idx) => {
@@ -144,6 +156,17 @@ export default function Pagination(props: PaginationProps) {
           </li>
         );
       })}
+      {pageSizeOptions.length > 0 && (
+        <li className={`${prefixCls}-options`}>
+          <Select size={size} defaultValue={pageSize} onChange={onSizeChange}>
+            {pageSizeOptions.map((item: number, index: number) => (
+              <Select.Option value={item} key={index}>
+                {item}条/页
+              </Select.Option>
+            ))}
+          </Select>
+        </li>
+      )}
     </ul>
   );
 }
