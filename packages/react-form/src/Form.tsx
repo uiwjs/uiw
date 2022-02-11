@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IProps } from '@uiw/utils';
 import FormItem, { FormItemProps } from './FormItem';
 import './style/form.less';
@@ -100,7 +100,7 @@ function Form<T>(
     afterSubmit,
     ...others
   }: FormProps<T>,
-  ref: ((instance: HTMLInputElement) => void) | React.RefObject<HTMLInputElement | null> | null,
+  ref: React.ForwardedRef<HTMLInputElement>,
 ) {
   const initData = newFormState(fields, ({ initialValue }) => {
     initialValue = newInitialValue(initialValue);
@@ -108,6 +108,18 @@ function Form<T>(
   });
 
   const [data, setData] = useState<FormState>(initData);
+
+  useEffect(() => {
+    if (ref) {
+      (ref as unknown as React.MutableRefObject<
+        Record<'onSubmit' | 'resetForm' | 'getFieldValues', Function>
+      >)!.current = {
+        onSubmit: handleSubmit,
+        resetForm: handleReset,
+        getFieldValues: getFieldValues,
+      };
+    }
+  }, [data]);
 
   const formUnits: FormChildrenProps['fields'] = {};
   for (const name in fields) {
@@ -137,6 +149,10 @@ function Form<T>(
         }}
       />
     );
+  }
+
+  function getFieldValues() {
+    return data.current;
   }
 
   function handleChange(
@@ -175,7 +191,7 @@ function Form<T>(
     };
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  const handleSubmit = (e: React.FormEvent) => {
     e && e.preventDefault();
     const { initial, current } = data;
     setData({ ...data, submitting: true });
@@ -203,7 +219,7 @@ function Form<T>(
     } catch (evn) {
       onError(evn);
     }
-  }
+  };
 
   function canSubmit() {
     const { submitting, current = {} } = data;
@@ -265,6 +281,7 @@ function Form<T>(
     props.onChange = handleChange(name, validator, element, element.props.onChange) as FormElementProps['onChange'];
     return React.cloneElement(element, props as FormElementProps);
   }
+
   return (
     <form
       {...{
