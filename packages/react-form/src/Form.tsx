@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useImperativeHandle } from 'react';
+import React, { useState, useImperativeHandle } from 'react';
 import { IProps } from '@uiw/utils';
 import FormItem, { FormItemProps } from './FormItem';
 import './style/form.less';
@@ -102,7 +102,7 @@ function Form<T>(
     afterSubmit,
     ...others
   }: FormProps<T>,
-  ref: React.ForwardedRef<HTMLInputElement> | React.RefObject<FormRefType>,
+  ref: React.Ref<React.ForwardedRef<FormRefType>>, //| React.RefObject<FormRefType>,
 ) {
   const initData = newFormState(fields, ({ initialValue }) => {
     initialValue = newInitialValue(initialValue);
@@ -111,8 +111,8 @@ function Form<T>(
 
   const [data, setData] = useState<FormState>(initData);
 
-  useImperativeHandle(
-    ref as React.RefObject<FormRefType>,
+  useImperativeHandle<React.ForwardedRef<FormRefType>, any>(
+    ref,
     () => ({
       onSubmit: handleSubmit,
       resetForm: handleReset,
@@ -300,4 +300,4 @@ function Form<T>(
   );
 }
 
-export default React.forwardRef<HTMLInputElement, FormProps<{}>>(Form);
+export default React.forwardRef<React.Ref<FormRefType>, FormProps<{}>>(Form);
