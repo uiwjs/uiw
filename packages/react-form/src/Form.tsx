@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useImperativeHandle } from 'react';
+import React, { useState, useImperativeHandle, useMemo } from 'react';
 import { IProps } from '@uiw/utils';
 import FormItem, { FormItemProps } from './FormItem';
 import './style/form.less';
@@ -53,7 +53,7 @@ export interface FormChildrenProps {
 export type FormElementProps = {
   id?: string;
   name?: string;
-  value?: string;
+  value?: string | boolean;
   checked?: boolean;
   onChange?: (env: React.BaseSyntheticEvent<HTMLInputElement>, list?: string[]) => void;
 };
@@ -102,17 +102,25 @@ function Form<T>(
     afterSubmit,
     ...others
   }: FormProps<T>,
-  ref: React.ForwardedRef<HTMLInputElement> | React.RefObject<FormRefType>,
+  ref: React.Ref<React.ForwardedRef<FormRefType>>, //| React.RefObject<FormRefType>,
 ) {
-  const initData = newFormState(fields, ({ initialValue }) => {
-    initialValue = newInitialValue(initialValue);
-    return { initialValue, currentValue: initialValue };
-  });
+  const initData = useMemo(
+    () =>
+      newFormState(fields, ({ initialValue }) => {
+        initialValue = newInitialValue(initialValue);
+        return { initialValue, currentValue: initialValue };
+      }),
+    [],
+  );
 
-  const [data, setData] = useState<FormState>(initData);
+  const [data, setDatas] = useState<FormState>(JSON.parse(JSON.stringify(initData)));
+  const setData = (values: any) => {
+    // 解决value为数组时不进行深拷贝,initvalue无法重置问题
+    setDatas(JSON.parse(JSON.stringify(values)));
+  };
 
-  useImperativeHandle(
-    ref as React.RefObject<FormRefType>,
+  useImperativeHandle<React.ForwardedRef<FormRefType>, any>(
+    ref,
     () => ({
       onSubmit: handleSubmit,
       resetForm: handleReset,
@@ -270,8 +278,9 @@ function Form<T>(
     // : element.props.value;
 
     const type = element.props.type;
-    if (type === 'checkbox' || type === 'switch') {
-      props.checked = !!props.checked;
+    // console.log('type', element)
+    if (type === 'checkbox' || type === 'switch' || typeof props.value === 'boolean') {
+      props.checked = !!props.value;
       delete props.value;
     }
     props.onChange = handleChange(name, validator, element, element.props.onChange) as FormElementProps['onChange'];
@@ -300,4 +309,4 @@ function Form<T>(
   );
 }
 
-export default React.forwardRef<HTMLInputElement, FormProps<{}>>(Form);
+export default React.forwardRef<React.Ref<FormRefType>, FormProps<{}>>(Form);

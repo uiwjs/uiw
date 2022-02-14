@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-tag",
-  "version": "4.10.6",
+  "version": "4.10.7",
   "description": "Tag component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/tag",
@@ -44,7 +44,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.10.6"
+    "@uiw/utils": "^4.10.7"
   },
   "devDependencies": {
     "@babel/runtime": "7.16.7",

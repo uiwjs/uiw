@@ -13,57 +13,77 @@ import { Form, FormItem } from '@uiw/react-form';
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
+
+import React, { useState, useRef } from "react";
 import ReactDOM from 'react-dom';
 import { Form, Input, Row, Col, Slider, Button, Notify } from 'uiw';
 
-const Demo = () => (
-  <div>
-    <Form
-      onChange={({ initial, current }) => {
-        console.log('onChange', initial, current);
-      }}
-      onSubmit={({initial, current}) => {
-        if(current.name === initial.name) {
-          Notify.error({
-            title: '提交失败！',
-            description: `表单提交内容为空！`,
-          });
-        } else {
-          Notify.success({
-            title: '提交成功！',
-            description: `姓名为：${current.name}，提交完成，将自动填充初始化值！`,
-          });
-        }
-      }}
-      fields={{
-        name: {
-          label: '姓名',
-          children: <Input placeholder="请输入姓名" />
-        },
-      }}
-    >
-      {({ fields, state, canSubmit }) => {
-        return (
-          <div>
-            <Row>
-              <Col style={{ maxWidth: 300 }}>{fields.name}</Col>
-            </Row>
-            <Row>
-              <Col>
-                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                {JSON.stringify(state.current)}
-              </Col>
-            </Row>
-          </div>
-        )
-      }}
-    </Form>
-  </div>
-)
+function Demo() {
+  const form = useRef()
+
+  const onSubmit = () => {
+    form.current.onSubmit()
+  }
+  const resetForm = () => {
+    form.current.resetForm()
+  }
+  const getFieldValues = () => {
+    console.log('getFieldValues', form.current.getFieldValues())
+  }
+
+  return (
+    <div>
+      <Form
+        ref={form}
+        onChange={({ initial, current }) => {
+          console.log('onChange', initial, current);
+        }}
+        onSubmit={({ initial, current }) => {
+          if (current.name === initial.name) {
+            Notify.error({
+              title: '提交失败！',
+              description: `表单提交内容为空！`,
+            });
+          } else {
+            Notify.success({
+              title: '提交成功！',
+              description: `姓名为：${current.name}，提交完成，将自动填充初始化值！`,
+            });
+          }
+        }}
+        fields={{
+          name: {
+            label: '姓名',
+            children: <Input placeholder="请输入姓名" />
+          },
+        }}
+      >
+        {({ fields, state, canSubmit }) => {
+          return (
+            <div>
+              <Row>
+                <Col style={{ maxWidth: 300 }}>{fields.name}</Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  {JSON.stringify(state.current)}
+                </Col>
+              </Row>
+            </div>
+          )
+        }}
+      </Form>
+      <Button type="primary" onClick={onSubmit} >submit</Button>
+      <Button type="primary" onClick={resetForm}>resetForm</Button>
+      <Button type="primary" onClick={getFieldValues}>getValues</Button>
+    </div>
+  )
+}
 ReactDOM.render(<Demo />, _mount_);
 ```
 
