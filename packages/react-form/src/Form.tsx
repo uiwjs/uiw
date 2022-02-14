@@ -103,7 +103,7 @@ function Form<T>(
     afterSubmit,
     ...others
   }: FormProps<T>,
-  ref: React.Ref<React.ForwardedRef<FormRefType>>, //| React.RefObject<FormRefType>,
+  ref: React.ForwardedRef<FormRefType | undefined>, //| React.RefObject<FormRefType>,
 ) {
   const initData = useMemo(
     () =>
@@ -115,7 +115,7 @@ function Form<T>(
   );
   const [data, setData] = useState<FormState>(initData);
 
-  useImperativeHandle<React.ForwardedRef<FormRefType>, any>(
+  useImperativeHandle(
     ref,
     () => ({
       onSubmit: handleSubmit,
@@ -318,4 +318,4 @@ function Form<T>(
   );
 }
 
-export default React.forwardRef<React.Ref<FormRefType>, FormProps<{}>>(Form);
+export default React.forwardRef<FormRefType | undefined, FormProps<{}>>(Form);
