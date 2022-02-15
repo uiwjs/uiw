@@ -76,6 +76,7 @@
       { "name": "Progress 进度条", "path": "progress" },
       { "name": "List 列表", "path": "list" },
       { "name": "AutoLink 文本超链接", "path": "auto-link" },
+      { "name": "Empty 空状态", "path": "empty" },
       {
         "name": "HeatMap 日历热图",
         "path": "https://uiwjs.github.io/react-heat-map"

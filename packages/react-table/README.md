@@ -56,13 +56,7 @@ const dataSource = [
 ];
 const Demo = () => (
   <div>
-    <Table columns={columns} data={dataSource} scroll={{
-      x: '150%'
-    }} empty={{
-      text: '没有数据了',
-      type: 'file-excel',
-      size: 40
-    }} />
+    <Table columns={columns} data={dataSource} />
   </div>
 );
 ReactDOM.render(<Demo />, _mount_);
@@ -632,21 +626,15 @@ ReactDOM.render(<Demo />, _mount_);
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
-import { Table, Button } from 'uiw';
+import { Table, Button, Empty } from 'uiw';
 
 const columns = [
   {
-    // title: '姓名',
     ellipsis: true, 
-    title: ({ key }) => {
-      return (
-        <span>字段: {key}</span>
-      )
-    },
+    title: '姓名',
     key: 'name', 
   }, {
     title: '年龄',
-    style: { color: 'red' },
     key: 'age',
   }, {
     title: '地址',
@@ -666,13 +654,11 @@ const columns = [
 const dataSource = [];
 const Demo = () => (
   <div>
-    <Table columns={columns} data={dataSource} scroll={{
-      x: '150%'
-    }} empty={{
-      text: '没有数据了',
-      type: 'file-excel',
-      size: 40
-    }} />
+    <Table
+      columns={columns}
+      data={dataSource}
+      empty={<Empty />}  
+    />
   </div>
 );
 ReactDOM.render(<Demo />, _mount_);
@@ -689,8 +675,7 @@ ReactDOM.render(<Demo />, _mount_);
 | title | 表格标题 | ~~Function(text, key, rowData, rowNumber, columnNumber)~~ /<br/> Function(data: IColumns, rowNum: number, colNum: number)`@3.0.0+` /<br/> String / ReactNode | - |
 | footer | 表格尾部 | String/ReactNode | - |
 | bordered | 是否展示外边框和列边框 | Boolean | - |
-| scroll | 设置表格是可滚动 | `{x: string / number}` | - |
-| empty | 无数据状态 | TableEmptyProps | - |
+| empty | 无数据状态 | ReactNode | - |
 | onCellHead | 表头单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ /<br/> Function(data: IColumns, colNum: number, rowNum: number, evn: React.MouseEvent<HTMLTableCellElement\>) `@3.0.0+` | - |
 | onCell | 单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ /<br/> Function(data: IColumns, options:{ colNum: number, rowNum: number, keyName: string }, evn: React.MouseEvent<HTMLTableCellElement\>) `@3.1.0+` | - |
 
@@ -706,14 +691,3 @@ ReactDOM.render(<Demo />, _mount_);
 | colSpan | 合并表头行。| Number | - |
 | ellipsis | 超过宽度将自动省略。`v4.8.7+`| Boolean | `false` |
 | render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前值的 `key`，行索引数据，当前行号，当前列号。| `Function(text, key, rowData, rowNumber, columnNumber)` | - |
-
-### TableEmptyProps
-
-列表无数据状态
-
-| 参数 | 说明 | 类型 | 默认值 |
-|--------- |-------- |--------- |-------- |
-| size | icon 大小 | string / number | - |
-| type | [icon 图标](#/components/icon) | `IconsName` | - |
-| text | 文字说明 | string | - |
-| textColor | 文字颜色| string | - |

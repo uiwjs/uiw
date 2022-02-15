@@ -1,0 +1,58 @@
+{
+  "name": "@uiw/react-empty",
+  "version": "4.10.7",
+  "description": "Empty component",
+  "author": "Kenny Wong <wowohoo@qq.com>",
+  "homepage": "https://uiwjs.github.io/#/components/table",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uiwjs/uiw.git"
+  },
+  "license": "MIT",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "files": [
+    "dist.css",
+    "cjs",
+    "esm",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "empty",
+    "react-empty",
+    "design",
+    "uiw",
+    "uiw-react",
+    "react.js",
+    "react",
+    "react-component",
+    "component",
+    "components",
+    "ui",
+    "css",
+    "uikit",
+    "react-ui",
+    "framework",
+    "front-end",
+    "frontend"
+  ],
+  "peerDependencies": {
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
+  },
+  "dependencies": {
+    "@uiw/utils": "^4.10.7",
+    "@uiw/react-icon": "^4.10.7"
+  },
+  "devDependencies": {
+    "@babel/runtime": "7.16.7",
+    "@types/jest": "27.4.0",
+    "@types/react": "17.0.38",
+    "@types/react-dom": "17.0.11",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  }
+}

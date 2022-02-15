@@ -1,14 +1,31 @@
 import React from 'react';
-import Icon from '@uiw/react-icon';
-import { TableEmptyProps } from './index';
+import Icon, { IconsName } from '@uiw/react-icon';
+import { IProps, HTMLDivProps } from '@uiw/utils';
+import './style/index.less';
 
-interface EmptyProps extends TableEmptyProps {
-  prefixCls: string;
-  width: number;
+export interface TableEmptyProps extends IProps, Omit<HTMLDivProps, 'title'> {
+  prefixCls?: string;
+  iconColor?: string;
+  size?: number;
+  type?: IconsName;
+  text?: string;
+  textColor?: string;
+  description?: React.ReactNode;
 }
 
-const Empty = (props: EmptyProps) => {
-  const { prefixCls, width, iconColor = '#cdcdcd', size = 40, text = '暂无数据', textColor = '#cdcdcd', type } = props;
+const Empty = (props: TableEmptyProps) => {
+  const {
+    prefixCls = 'w-empty',
+    className,
+    iconColor = '#cdcdcd',
+    size = 40,
+    text = '暂无数据',
+    textColor = '#cdcdcd',
+    type,
+    description,
+  } = props;
+
+  const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
 
   const nData = type ? (
     type
@@ -32,11 +49,12 @@ const Empty = (props: EmptyProps) => {
     </svg>
   );
   return (
-    <div className={`${prefixCls}-empty`} style={{ width: width }}>
+    <div className={cls}>
       <Icon type={nData} style={{ fontSize: size, color: iconColor }} />
-      <div className={`${prefixCls}-empty-text`} style={{ color: textColor }}>
+      <div className={`${prefixCls}-text`} style={{ color: textColor }}>
         {text}
       </div>
+      {description && <div className={`${prefixCls}-description`}>{description}</div>}
     </div>
   );
 };
