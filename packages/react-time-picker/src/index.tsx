@@ -56,7 +56,7 @@ export default function TimePicker(props: TimePickerProps) {
     hideDisabled,
     precision,
   };
-  const inputValue = date ? formatter(format, date) : '';
+  const inputValue = date ? formatter(format, new Date(date)) : '';
   const datePickerTime = date || new Date();
   const _props: InputProps = { ...inputProps, value: inputValue };
   if (allowClear && inputValue !== '' && !!inputValue) {
