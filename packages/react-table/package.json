@@ -44,8 +44,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.10.7",
-    "@uiw/react-icon": "^4.10.7"
+    "@uiw/utils": "^4.10.7"
   },
   "devDependencies": {
     "@babel/runtime": "7.16.7",
