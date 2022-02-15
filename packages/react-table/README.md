@@ -19,6 +19,7 @@ import { Table, Button } from 'uiw';
 const columns = [
   {
     // title: '姓名',
+    ellipsis: true, 
     title: ({ key }) => {
       return (
         <span>字段: {key}</span>
@@ -620,6 +621,49 @@ const Demo = () => (
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+### 无数据状态
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { Table, Button, Empty } from 'uiw';
+
+const columns = [
+  {
+    ellipsis: true, 
+    title: '姓名',
+    key: 'name', 
+  }, {
+    title: '年龄',
+    key: 'age',
+  }, {
+    title: '地址',
+    key: 'info',
+  }, {
+    title: '操作',
+    key: 'edit',
+    width: 98,
+    render: (text, key, rowData, rowNumber, columnNumber) => (
+      <div>
+        <Button size="small" type="danger">删除</Button>
+        <Button size="small" type="success">修改</Button>
+      </div>
+    ),
+  },
+];
+const dataSource = [];
+const Demo = () => (
+  <div>
+    <Table
+      columns={columns}
+      data={dataSource}
+      empty={<Empty />}  
+    />
+  </div>
+);
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ## Props
 
 ### Table
@@ -631,6 +675,7 @@ ReactDOM.render(<Demo />, _mount_);
 | title | 表格标题 | ~~Function(text, key, rowData, rowNumber, columnNumber)~~ /<br/> Function(data: IColumns, rowNum: number, colNum: number)`@3.0.0+` /<br/> String / ReactNode | - |
 | footer | 表格尾部 | String/ReactNode | - |
 | bordered | 是否展示外边框和列边框 | Boolean | - |
+| empty | 无数据状态 | ReactNode | - |
 | onCellHead | 表头单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ /<br/> Function(data: IColumns, colNum: number, rowNum: number, evn: React.MouseEvent<HTMLTableCellElement\>) `@3.0.0+` | - |
 | onCell | 单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ /<br/> Function(data: IColumns, options:{ colNum: number, rowNum: number, keyName: string }, evn: React.MouseEvent<HTMLTableCellElement\>) `@3.1.0+` | - |
 

@@ -74,6 +74,7 @@
     "@uiw/react-divider": "^4.10.7",
     "@uiw/react-drawer": "^4.10.7",
     "@uiw/react-dropdown": "^4.10.7",
+    "@uiw/react-empty": "^4.10.7",
     "@uiw/react-file-input": "^4.10.7",
     "@uiw/react-form": "^4.10.7",
     "@uiw/react-grid": "^4.10.7",
