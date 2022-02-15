@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-auto-link",
-  "version": "4.10.7",
+  "version": "4.11.0",
   "description": "AutoLink component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/auto-link",

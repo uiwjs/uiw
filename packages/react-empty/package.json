@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-empty",
-  "version": "4.10.7",
+  "version": "4.11.0",
   "description": "Empty component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/table",
@@ -44,8 +44,13 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@uiw/utils": "^4.10.7",
     "@uiw/react-icon": "^4.10.7"
+=======
+    "@uiw/react-icon": "^4.11.0",
+    "@uiw/utils": "^4.11.0"
+>>>>>>> a23f1f9d3035f88ca693bc3d4013b5e37fea270c
   },
   "devDependencies": {
     "@babel/runtime": "7.16.7",
