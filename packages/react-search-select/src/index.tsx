@@ -19,13 +19,13 @@ export interface SearchSelectProps extends IProps, DropdownProps {
   allowClear: boolean;
   defaultValue?: string | number;
   value?: ValueType;
-  option: MenuItemData[];
+  option: SearchSelectOptionData[];
   onSelect?: (value: ValueType | Array<ValueType>) => void;
   onSearch?: (value: string) => void;
   onChange?: (value: ValueType | Array<ValueType>) => void;
 }
 
-export interface MenuItemData {
+export interface SearchSelectOptionData {
   label: string;
   value: string | number;
   [keyName: string]: any;
@@ -55,14 +55,14 @@ export default function SearchSelect(props: SearchSelectProps) {
 
   const isMultiple = useMemo(() => mode === 'multiple', [mode]);
   const [innerIsOpen, setInnerIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<Array<MenuItemData>>(
+  const [selectedValue, setSelectedValue] = useState<Array<SearchSelectOptionData>>(
     option.filter((item) => item.value === value),
   );
   const [selectedLabel, setSelectedLabel] = useState('');
   const [selectIconType, setSelectIconType] = useState('');
   const divRef = useRef<HTMLDivElement>(null);
 
-  const valueRef = useRef<Array<MenuItemData>>();
+  const valueRef = useRef<Array<SearchSelectOptionData>>();
   valueRef.current = useMemo(() => selectedValue, [selectedValue]);
 
   useEffect(() => {
@@ -73,13 +73,13 @@ export default function SearchSelect(props: SearchSelectProps) {
   }, []);
 
   function removeSelectItem(index: number) {
-    const selectedValue = valueRef.current as MenuItemData[];
+    const selectedValue = valueRef.current as SearchSelectOptionData[];
     selectedValue.splice(index, 1);
     const values = [...selectedValue];
     return values;
   }
 
-  function handleItemClick(item: MenuItemData) {
+  function handleItemClick(item: SearchSelectOptionData) {
     setInnerIsOpen(false);
     const values = [item];
     setSelectedValue(values);
@@ -90,8 +90,8 @@ export default function SearchSelect(props: SearchSelectProps) {
     handleSelectChange(resultValue);
   }
 
-  function handleItemsClick(item: MenuItemData) {
-    let values: MenuItemData[] = [];
+  function handleItemsClick(item: SearchSelectOptionData) {
+    let values: SearchSelectOptionData[] = [];
     const index = selectedValue.findIndex((finds) => finds.value === item.value);
     if (index !== -1) {
       values = removeSelectItem(index);
