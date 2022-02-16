@@ -1,9 +1,9 @@
 {
-  "name": "@uiw/react-alert",
+  "name": "@uiw/react-empty",
   "version": "4.11.0",
-  "description": "Alert component",
+  "description": "Empty component",
   "author": "Kenny Wong <wowohoo@qq.com>",
-  "homepage": "https://uiwjs.github.io/#/components/alert",
+  "homepage": "https://uiwjs.github.io/#/components/table",
   "repository": {
     "type": "git",
     "url": "https://github.com/uiwjs/uiw.git"
@@ -21,8 +21,8 @@
     "access": "public"
   },
   "keywords": [
-    "alert",
-    "react-alert",
+    "empty",
+    "react-empty",
     "design",
     "uiw",
     "uiw-react",
@@ -44,11 +44,12 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-modal": "^4.11.0",
+    "@uiw/react-icon": "^4.11.0",
     "@uiw/utils": "^4.11.0"
   },
   "devDependencies": {
     "@babel/runtime": "7.16.7",
+    "@types/jest": "27.4.0",
     "@types/react": "17.0.38",
     "@types/react-dom": "17.0.11",
     "react": "17.0.2",

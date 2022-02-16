@@ -81,6 +81,7 @@ const Modal = Loadable(lazy(() => import('./routes/components/modal')));
 const Formatter = Loadable(lazy(() => import('./routes/components/formatter')));
 const Steps = Loadable(lazy(() => import('./routes/components/steps')));
 const Menu = Loadable(lazy(() => import('./routes/components/menu')));
+const Empty = Loadable(lazy(() => import('./routes/components/empty')));
 
 export const routes: RouteObject[] = [
   {
@@ -170,6 +171,7 @@ export const routes: RouteObject[] = [
       { path: '/components/formatter', element: <Formatter /> },
       { path: '/components/steps', element: <Steps /> },
       { path: '/components/menu', element: <Menu /> },
+      { path: '/components/empty', element: <Empty /> },
       { path: '*', element: <NoMatch /> },
     ],
   },

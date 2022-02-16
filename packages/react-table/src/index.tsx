@@ -29,6 +29,7 @@ export interface TableProps extends IProps, Omit<HTMLDivProps, 'title'> {
   title?: React.ReactNode;
   footer?: React.ReactNode;
   bordered?: boolean;
+  empty?: React.ReactNode;
   onCell?: (
     data: { [key: string]: any },
     options: ICellOptions,
@@ -59,8 +60,11 @@ export default (props: TableProps = {}) => {
     bordered,
     onCell = noop,
     onCellHead = noop,
+    empty,
+    children,
     ...other
   } = props;
+
   const cls = [prefixCls, className, bordered ? `${prefixCls}-bordered` : null].filter(Boolean).join(' ').trim();
   const { header, render, ellipsis } = getLevelItems(columns);
   const keys = getAllColumnsKeys(columns);
@@ -100,6 +104,15 @@ export default (props: TableProps = {}) => {
                 })}
               </tr>
             ))}
+          </tbody>
+        )}
+        {data && data.length === 0 && empty && (
+          <tbody>
+            <tr>
+              <td colSpan={columns.length} style={{ position: 'relative', left: 0 }}>
+                {empty}
+              </td>
+            </tr>
           </tbody>
         )}
         {props.children}
