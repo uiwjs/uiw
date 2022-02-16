@@ -54,5 +54,5 @@ ReactDOM.render(<Demo />, _mount_);
 |--------- |-------- |--------- |-------- |
 | description | 自定义描述内容 | `ReactNode` | `暂无数据` |
 | icon | 可以替换内置图标 | `ReactNode` | - |
-| size | 内置 svg 图标：尺寸 | `number | string` | - |
+| size | 内置 svg 图标：尺寸 | `number \| string` | - |
 | iconProps | 内置 svg 图标：属性设置| `React.SVGProps<SVGSVGElement>` | - |
