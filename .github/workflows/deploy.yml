@@ -82,6 +82,7 @@ jobs:
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-divider/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-drawer/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-dropdown/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-empty/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-file-input/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-form/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-grid/package.json
