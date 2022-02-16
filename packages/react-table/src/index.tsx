@@ -25,7 +25,7 @@ export type TableColumns = {
 export interface TableProps extends IProps, Omit<HTMLDivProps, 'title'> {
   prefixCls?: string;
   columns?: TableColumns[];
-  data?: Record<string, string | number | JSX.Element>[];
+  data?: Record<string, string | number | JSX.Element | boolean>[];
   title?: React.ReactNode;
   footer?: React.ReactNode;
   bordered?: boolean;
