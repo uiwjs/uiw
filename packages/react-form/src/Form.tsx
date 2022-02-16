@@ -59,7 +59,7 @@ export type FormElementProps = {
   onChange?: (env: React.BaseSyntheticEvent<HTMLInputElement>, list?: string[]) => void;
 };
 
-export type FormRefType = Record<'onSubmit' | 'resetForm' | 'getFieldValues', Function>;
+export type FormRefType = Record<'onSubmit' | 'resetForm' | 'getFieldValues' | 'setFields', Function>;
 
 function newFormState<T>(
   fields: FormProps<T>['fields'],
@@ -120,13 +120,15 @@ function Form<T>(
     setDatas(JSON.parse(JSON.stringify(values)));
   };
 
-  useImperativeHandle<React.ForwardedRef<FormRefType>, any>(
+  useImperativeHandle<React.ForwardedRef<FormRefType>, React.MutableRefObject<FormRefType>>(
     ref,
     () => ({
-      onSubmit: handleSubmit,
-      resetForm: handleReset,
-      getFieldValues: () => data.current,
-      setFields: setFields,
+      current: {
+        onSubmit: handleSubmit,
+        resetForm: handleReset,
+        getFieldValues: () => data.current,
+        setFields: setFields,
+      },
     }),
     [data],
   );
