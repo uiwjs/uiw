@@ -48,7 +48,7 @@ const Empty = (props: EmptyProps) => {
         )}
       </div>
       {description && <div className={`${prefixCls}-description`}>{description}</div>}
-      <div className={`${prefixCls}-footer`}>{children}</div>
+      {children && <div className={`${prefixCls}-footer`}>{children}</div>}
     </div>
   );
 };

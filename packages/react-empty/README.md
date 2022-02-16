@@ -48,6 +48,16 @@ const Demo = () => {
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+### 无描述展示
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { Empty, Button } from 'uiw';
+
+ReactDOM.render(<Empty description={false} />, _mount_);
+```
+
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
