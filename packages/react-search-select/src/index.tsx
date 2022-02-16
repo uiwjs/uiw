@@ -38,7 +38,7 @@ export default function SearchSelect(props: SearchSelectProps) {
     size = 'default',
     option = [],
     loading = false,
-    prefixCls,
+    prefixCls = 'w-search-select',
     className,
     mode = 'single',
     style,
@@ -53,6 +53,7 @@ export default function SearchSelect(props: SearchSelectProps) {
     ...others
   } = props;
 
+  const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   const isMultiple = useMemo(() => mode === 'multiple', [mode]);
   const [innerIsOpen, setInnerIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState<Array<SearchSelectOptionData>>(
@@ -145,6 +146,7 @@ export default function SearchSelect(props: SearchSelectProps) {
 
   return (
     <Dropdown
+      className={cls}
       trigger="focus"
       style={{ marginTop: 5 }}
       disabled={option && option.length > 0 ? false : true}
@@ -218,7 +220,7 @@ export default function SearchSelect(props: SearchSelectProps) {
             })}
           <Input
             style={{ flex: 1, boxShadow: 'none' }}
-            className={isMultiple ? `inptContents` : undefined}
+            className={isMultiple ? `${prefixCls}-inptContents` : undefined}
             readOnly={!showSearch}
             size={size}
             disabled={disabled}

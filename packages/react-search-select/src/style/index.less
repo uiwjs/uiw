@@ -1,13 +1,19 @@
-.inptContents {
-  input {
-    box-shadow: none;
-  }
-  .w-input-inner {
-    &:hover {
-      box-shadow: none !important;
+@w-search-select: ~'w-search-select';
+
+.@{w-search-select} {
+  &-inptContents {
+    input {
+      box-shadow: none;
     }
-    &:focus {
-      box-shadow: none !important;
+
+    .w-input-inner {
+      &:hover {
+        box-shadow: none !important;
+      }
+
+      &:focus {
+        box-shadow: none !important;
+      }
     }
   }
 }
