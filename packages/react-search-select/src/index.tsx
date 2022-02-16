@@ -220,7 +220,7 @@ export default function SearchSelect(props: SearchSelectProps) {
             })}
           <Input
             style={{ flex: 1, boxShadow: 'none' }}
-            className={isMultiple ? `${prefixCls}-inptContents` : undefined}
+            className={isMultiple ? `${prefixCls}-input-contents` : undefined}
             readOnly={!showSearch}
             size={size}
             disabled={disabled}
