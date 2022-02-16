@@ -48,6 +48,7 @@
     "@uiw/react-icon": "^4.11.1",
     "@uiw/react-input": "^4.11.1",
     "@uiw/react-loader": "^4.11.1",
+    "@uiw/react-tag": "^4.11.1",
     "@uiw/react-menu": "^4.11.1",
     "@uiw/utils": "^4.11.1"
   },

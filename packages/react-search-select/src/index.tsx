@@ -186,14 +186,7 @@ export default function SearchSelect(props: SearchSelectProps) {
         ref={divRef}
         onMouseOver={() => renderSelectIcon('enter')}
         onMouseLeave={() => renderSelectIcon('leave')}
-        style={{
-          ...style,
-          maxWidth: 'none',
-          width: 200,
-          // display: 'flex',
-          // flexWrap: 'wrap',
-          // flex: '1 1 auto',
-        }}
+        style={{ width: 'auto', maxWidth: 'none', ...style }}
       >
         <div
           style={
