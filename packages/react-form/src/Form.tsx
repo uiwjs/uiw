@@ -29,6 +29,7 @@ export interface FormFieldsProps<T> extends FormItemProps<T> {
   inline?: boolean;
   checked?: boolean;
   initialValue?: string | number | T;
+  required?: boolean;
   validator?: (currentValue: any) => any;
 }
 
