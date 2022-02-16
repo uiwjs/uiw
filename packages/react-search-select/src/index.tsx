@@ -160,6 +160,7 @@ export default function SearchSelect(props: SearchSelectProps) {
           style={{
             minHeight: 25,
             maxHeight: 280,
+            minWidth: style?.minWidth || 200,
             overflowY: 'scroll',
             width: divRef.current ? divRef.current.offsetWidth : 'auto',
           }}
