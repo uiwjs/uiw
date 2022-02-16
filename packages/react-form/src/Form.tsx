@@ -120,15 +120,14 @@ function Form<T>(
     setDatas(JSON.parse(JSON.stringify(values)));
   };
 
-  useImperativeHandle<React.ForwardedRef<FormRefType>, React.MutableRefObject<FormRefType>>(
+  useImperativeHandle<React.ForwardedRef<FormRefType>, any>(
     ref,
     () => ({
-      current: {
-        onSubmit: handleSubmit,
-        resetForm: handleReset,
-        getFieldValues: () => data.current,
-        setFields: setFields,
-      },
+      onSubmit: handleSubmit,
+      resetForm: handleReset,
+      getFieldValues: () => data.current,
+      getError: () => data.errors,
+      setFields: setFields,
     }),
     [data],
   );
