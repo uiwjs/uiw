@@ -21,28 +21,38 @@ const Demo = () => {
   const [loading, setLoading] = React.useState(false);
   const [value, setValue] = React.useState(undefined);
   function handleSearch(e) {
+    console.log('handleSearch',e)
     setLoading(true)
     setTimeout(() =>  {
       setOption([
         { label: 'a', value: 2 },
         { label: 'aa', value: 3 },
         { label: 'aaa', value: 4 },
+        { label: 'a5', value: 5 },
+        { label: 'a6', value: 6 },
+        { label: 'a7', value: 7 },
+        { label: 'a8', value: 8 },
       ]);
       setLoading(false);
     }, 2000);
   }
   return(
     <SearchSelect
+      mode="multiple"
       style={{ maxWidth: 200 }}
       showSearch={true}
       allowClear
-      value={value}
+      value={[2,3]}
       disabled={false}
       placeholder="请输入选择"
       onSearch={handleSearch}
+      // onSelect={(value)=>console.log('onSelect',value)}
       loading={loading}
       option={option}
-      onChange={(value) => setValue(value)}
+      onChange={(value) => {
+      console.log('onChange',value)
+        setValue(value)
+      }}
     />
   );
 };
@@ -62,6 +72,7 @@ const Demo = () => {
   const [option, setOption] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   function handleSearch(e) {
+    console.log('handleSearch',e)
     setLoading(true)
     setTimeout(() =>  {
       setOption([
@@ -107,6 +118,9 @@ const Demo = () => {
                 disabled={false}
                 placeholder="请输入选择"
                 onSearch={handleSearch}
+                onChange={(v)=>{
+                  console.log('onChange',v)
+                }}
                 option={option}
                 loading={loading}
               />
@@ -148,6 +162,7 @@ ReactDOM.render(<Demo />, _mount_);
 |--------- |-------- |--------- |-------- |
 | allowClear | 支持清除 | Boolean | `false` |
 | disabled | 禁用选择器 | Boolean | `false` |
+| mode | 是否可以多选; 'multiple','single' | String | 'single' |
 | defaultValue | 指定默认选中的条目 | String/Number | - |
 | value | 指定选中的条目的值 | String/Number | - |
 | placeholder | 选择框默认文字 | String | - |

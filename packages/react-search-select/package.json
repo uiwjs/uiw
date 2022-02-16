@@ -49,6 +49,7 @@
     "@uiw/react-input": "^4.10.6",
     "@uiw/react-loader": "^4.10.6",
     "@uiw/react-menu": "^4.10.6",
+    "@uiw/react-tag": "^4.10.7",
     "@uiw/utils": "^4.10.6"
   },
   "devDependencies": {
