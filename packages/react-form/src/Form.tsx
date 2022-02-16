@@ -29,6 +29,7 @@ export interface FormFieldsProps<T> extends FormItemProps<T> {
   inline?: boolean;
   checked?: boolean;
   initialValue?: string | number | T;
+  required?: boolean;
   validator?: (currentValue: any) => any;
 }
 
@@ -58,7 +59,7 @@ export type FormElementProps = {
   onChange?: (env: React.BaseSyntheticEvent<HTMLInputElement>, list?: string[]) => void;
 };
 
-export type FormRefType = Record<'onSubmit' | 'resetForm' | 'getFieldValues', Function>;
+export type FormRefType = Record<'onSubmit' | 'resetForm' | 'getFieldValues' | 'setFields', Function>;
 
 function newFormState<T>(
   fields: FormProps<T>['fields'],
@@ -125,6 +126,8 @@ function Form<T>(
       onSubmit: handleSubmit,
       resetForm: handleReset,
       getFieldValues: () => data.current,
+      getError: () => data.errors,
+      setFields: setFields,
     }),
     [data],
   );
@@ -157,6 +160,11 @@ function Form<T>(
         }}
       />
     );
+  }
+
+  function setFields(fields: FormState['current']) {
+    data.current = fields;
+    setData(data);
   }
 
   function handleChange(
@@ -211,7 +219,7 @@ function Form<T>(
         nextState.current = initial;
       }
       setData({ ...data, ...nextState, errors: {} });
-      return () => afterSubmit!({ state: data, response, reset: handleReset });
+      afterSubmit && afterSubmit({ state: data, response, reset: handleReset });
     };
     try {
       const afterSubmitPromise = onSubmit ? onSubmit({ initial, current }, e) : undefined;

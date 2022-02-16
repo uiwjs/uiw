@@ -8,6 +8,7 @@ export interface FormItemProps<T> extends IProps, HTMLDivProps {
   inline?: boolean;
   hasError?: boolean;
   label?: React.ReactNode;
+  required?: boolean;
   labelFor?: string;
   labelClassName?: string;
   help?: React.ReactNode;
@@ -24,6 +25,7 @@ export default class FormItem<T> extends React.PureComponent<FormItemProps<T>> {
     const {
       prefixCls,
       className,
+      required,
       style,
       label,
       labelFor,
@@ -36,6 +38,7 @@ export default class FormItem<T> extends React.PureComponent<FormItemProps<T>> {
       hasError,
       ...otherProps
     } = this.props;
+
     const cls = [prefixCls, className, hasError ? `${prefixCls}-error` : null].filter(Boolean).join(' ').trim();
     const labelCls = ['w-form-label', labelClassName].filter(Boolean).join(' ').trim();
     if (inline) {
@@ -43,6 +46,7 @@ export default class FormItem<T> extends React.PureComponent<FormItemProps<T>> {
         <div className={cls} style={style} {...otherProps}>
           <Row>
             <Col fixed className={labelCls}>
+              {required && <label style={{ color: 'red' }}>*</label>}
               <label style={labelStyle} htmlFor={labelFor}>
                 {label}
               </label>
@@ -60,9 +64,12 @@ export default class FormItem<T> extends React.PureComponent<FormItemProps<T>> {
     return (
       <div className={cls} style={style} {...otherProps}>
         {label && (
-          <label className={labelCls} style={labelStyle} htmlFor={labelFor}>
-            {label}
-          </label>
+          <React.Fragment>
+            {required && <label style={{ color: 'red' }}>*</label>}
+            <label className={labelCls} style={labelStyle} htmlFor={labelFor}>
+              {label}
+            </label>
+          </React.Fragment>
         )}
         <Col className="w-form-row">{this.props.children}</Col>
         {help && <div className="w-form-help">{help}</div>}
