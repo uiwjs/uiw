@@ -43,10 +43,7 @@
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0"
   },
-  "dependencies": {
-    "@uiw/react-icon": "^4.11.0",
-    "@uiw/utils": "^4.11.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/runtime": "7.16.7",
     "@types/jest": "27.4.0",
