@@ -186,7 +186,7 @@ export default function SearchSelect(props: SearchSelectProps) {
         ref={divRef}
         onMouseOver={() => renderSelectIcon('enter')}
         onMouseLeave={() => renderSelectIcon('leave')}
-        style={{ width: 'auto', maxWidth: 'none', ...style }}
+        style={style}
       >
         <div
           style={
@@ -205,7 +205,7 @@ export default function SearchSelect(props: SearchSelectProps) {
             selectedValue.map((item, index) => {
               return (
                 <Tag
-                  style={{ fontSize: 15, display: 'flex', alignItems: 'center' }}
+                  style={{ margin: '0px 3px 3px 0px', display: 'flex', alignItems: 'center' }}
                   key={index}
                   closable
                   onClose={() => setSelectedValue(removeSelectItem(index))}
