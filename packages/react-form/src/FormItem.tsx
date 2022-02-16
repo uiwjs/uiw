@@ -38,7 +38,7 @@ export default class FormItem<T> extends React.PureComponent<FormItemProps<T>> {
       hasError,
       ...otherProps
     } = this.props;
-    console.log('required', required);
+
     const cls = [prefixCls, className, hasError ? `${prefixCls}-error` : null].filter(Boolean).join(' ').trim();
     const labelCls = ['w-form-label', labelClassName].filter(Boolean).join(' ').trim();
     if (inline) {

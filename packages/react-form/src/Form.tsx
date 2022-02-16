@@ -219,7 +219,7 @@ function Form<T>(
         nextState.current = initial;
       }
       setData({ ...data, ...nextState, errors: {} });
-      return () => afterSubmit!({ state: data, response, reset: handleReset });
+      afterSubmit && afterSubmit({ state: data, response, reset: handleReset });
     };
     try {
       const afterSubmitPromise = onSubmit ? onSubmit({ initial, current }, e) : undefined;
