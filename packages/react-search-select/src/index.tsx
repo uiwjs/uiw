@@ -189,7 +189,7 @@ export default function SearchSelect(props: SearchSelectProps) {
         ref={divRef}
         onMouseOver={() => renderSelectIcon('enter')}
         onMouseLeave={() => renderSelectIcon('leave')}
-        style={style}
+        style={{ width: 'auto', maxWidth: 'none', ...style }}
       >
         <div
           style={

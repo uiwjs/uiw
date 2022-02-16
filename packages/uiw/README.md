@@ -100,7 +100,8 @@ Package | Version | Description
 [`@uiw/react-descriptions`](/packages/react-descriptions)| [![npm version](https://img.shields.io/npm/v/@uiw/react-descriptions.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-descriptions)           | -
 [`@uiw/react-divider`](/packages/react-divider)| [![npm version](https://img.shields.io/npm/v/@uiw/react-divider.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-divider)                     | -
 [`@uiw/react-drawer`](/packages/react-drawer)| [![npm version](https://img.shields.io/npm/v/@uiw/react-drawer.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-drawer)                       | -
-[`@uiw/react-dropdown`](/packages/react-dropdown)| [![npm version](https://img.shields.io/npm/v/@uiw/react-dropdown.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-dropdown)                   | -
+[`@uiw/react-dropdown`](/packages/react-dropdown)| [![npm version](https://img.shields.io/npm/v/@uiw/react-dropdown.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-dropdown) 
+[`@uiw/react-empty`](/packages/react-empty)| [![npm version](https://img.shields.io/npm/v/@uiw/react-empty.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-empty)                   | -
 [`@uiw/react-file-input`](/packages/react-file-input)| [![npm version](https://img.shields.io/npm/v/@uiw/react-file-input.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-file-input)               | -
 [`@uiw/react-form`](/packages/react-form)| [![npm version](https://img.shields.io/npm/v/@uiw/react-form.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-form)                           | -
 [`@uiw/react-grid`](/packages/react-grid)| [![npm version](https://img.shields.io/npm/v/@uiw/react-grid.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-grid)                           | -
