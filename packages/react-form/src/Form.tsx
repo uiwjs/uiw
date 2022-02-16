@@ -125,6 +125,7 @@ function Form<T>(
       onSubmit: handleSubmit,
       resetForm: handleReset,
       getFieldValues: () => data.current,
+      setFields: setFields,
     }),
     [data],
   );
@@ -157,6 +158,11 @@ function Form<T>(
         }}
       />
     );
+  }
+
+  function setFields(fields: FormState['current']) {
+    data.current = fields;
+    setData(data);
   }
 
   function handleChange(
