@@ -3,7 +3,7 @@
   "version": "4.11.3",
   "description": "Empty component",
   "author": "Kenny Wong <wowohoo@qq.com>",
-  "homepage": "https://uiwjs.github.io/#/components/table",
+  "homepage": "https://uiwjs.github.io/#/components/empty",
   "repository": {
     "type": "git",
     "url": "https://github.com/uiwjs/uiw.git"
