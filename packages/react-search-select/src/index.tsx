@@ -17,7 +17,7 @@ export interface SearchSelectProps extends IProps, DropdownProps {
   loading?: boolean;
   showSearch?: boolean;
   allowClear?: boolean;
-  defaultValue?: string | number;
+  defaultValue?: ValueType | Array<ValueType>;
   value?: ValueType | Array<ValueType>;
   option: SearchSelectOptionData[];
   onSelect?: (value: ValueType | Array<ValueType>) => void;
@@ -65,28 +65,33 @@ export default function SearchSelect(props: SearchSelectProps) {
   valueRef.current = useMemo(() => selectedValue, [selectedValue]);
 
   useEffect(() => {
-    if (defaultValue) {
-      const defaultMenuItem = option.filter((opt) => opt.value === defaultValue);
-      setSelectedValue(defaultMenuItem);
+    if (value === undefined && defaultValue !== undefined) {
+      selectedValueChange(defaultValue);
     }
   }, []);
 
   useEffect(() => {
+    if (value !== undefined) {
+      selectedValueChange(value!);
+    }
+  }, [JSON.stringify(value)]);
+
+  function selectedValueChange(changeValue: ValueType | Array<ValueType>) {
     let opts: Array<SearchSelectOptionData> = [];
-    if (Array.isArray(value)) {
+    if (Array.isArray(changeValue)) {
       opts = option.filter((item) => {
-        const findResult = value.find((v) => item.value === v);
+        const findResult = changeValue.find((v) => item.value === v);
         return findResult;
       });
-    } else {
-      const findResult = option.find((item) => value === item.value);
+    } else if (!isMultiple) {
+      const findResult = option.find((item) => item.value === changeValue);
       if (findResult) {
         setSelectedLabel(findResult.label);
         opts.push(findResult);
       }
     }
     setSelectedValue(opts);
-  }, [JSON.stringify(value)]);
+  }
 
   function removeSelectItem(index: number) {
     const selectedValue = valueRef.current as SearchSelectOptionData[];
