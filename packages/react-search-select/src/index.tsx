@@ -82,15 +82,17 @@ export default function SearchSelect(props: SearchSelectProps) {
     }
   }, [JSON.stringify(value)]);
 
+  const getSelectOption = (option: Array<SearchSelectOptionData>, value: ValueType) => {
+    const findResult = option.find((item) => item.value === value);
+    return findResult;
+  };
+
   function selectedValueChange(changeValue: ValueType | Array<ValueType>) {
     let opts: Array<SearchSelectOptionData> = [];
     if (Array.isArray(changeValue)) {
-      opts = option.filter((item) => {
-        const findResult = changeValue.find((v) => item.value === v);
-        return findResult;
-      });
+      opts = changeValue.map((v) => getSelectOption(option, v)!);
     } else if (!isMultiple) {
-      const findResult = option.find((item) => item.value === changeValue);
+      const findResult = getSelectOption(option, changeValue);
       if (findResult) {
         setSelectedLabel(findResult.label);
         opts.push(findResult);
@@ -162,7 +164,7 @@ export default function SearchSelect(props: SearchSelectProps) {
   }
 
   function inputKeyDown(e: any) {
-    if (selectedValue.length > 0 && !!selectedLabel && e.keyCode === 8) {
+    if (isMultiple && selectedValue.length > 0 && !selectedLabel && e.keyCode === 8) {
       const values = removeSelectItem(selectedValue.length - 1);
       setSelectedValue(values);
     }
@@ -194,14 +196,14 @@ export default function SearchSelect(props: SearchSelectProps) {
           {!option || option.length === 0 ? (
             <div style={{ color: '#c7c7c7', fontSize: 12 }}>{loading ? '正在加载数据...' : '没有数据'}</div>
           ) : (
-            option.map((item, idx) => {
-              const active = !!selectedValue.find((finds) => finds.value === item.value);
+            option.map((opt, idx) => {
+              const active = !!getSelectOption(selectedValue, opt.value);
               return (
                 <Menu.Item
                   active={active}
                   key={idx}
-                  text={item.label}
-                  onClick={() => (isMultiple ? handleItemsClick(item) : handleItemClick(item))}
+                  text={opt.label}
+                  onClick={() => (isMultiple ? handleItemsClick(opt) : handleItemClick(opt))}
                 />
               );
             })

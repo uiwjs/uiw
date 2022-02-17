@@ -32,7 +32,6 @@ const Demo = () => {
   const [loading, setLoading] = React.useState(false);
   const [value, setValue] = React.useState([2,5]);
   function handleSearch(e) {
-    setValue([3,4])
     setLoading(true)
     setTimeout(() =>  {
       setOption();
