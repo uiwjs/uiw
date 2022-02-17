@@ -92,12 +92,13 @@ const Demo = () => (
       <Col fixed>
         <Card title="单选">
           <Tree
+            defaultExpandAll={true}
             data={data}
             onExpand={(key, expanded, data, node) => {
-              console.log(key, expanded, data, node);
+              console.log('onExpand',key, expanded, data, node);
             }}
             onSelected={(key, selected, item, evn) => {
-              console.log(key, selected, item, evn);
+              console.log('onSelected',key, selected, item, evn);
             }}
           />
         </Card>
@@ -105,6 +106,7 @@ const Demo = () => (
       <Col fixed>
         <Card title="多选，子节点不受控">
           <Tree
+          autoExpandParent={true}
             data={data}
             multiple
             onExpand={(key, expanded, data, node) => {
@@ -282,7 +284,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 通过设置 `checkStrictly` 父节点受子节点控制，设置 `multiple` 为多选，设置 `isSelected` 取消选中效果，也可以使用 [`TreeChecked`](#/components/tree-checked) 组件。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
 import { Tree, Card, Row, Col } from 'uiw';

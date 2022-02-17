@@ -69,11 +69,17 @@ const isContained = (a: any[], b: any[]) => {
   return true;
 };
 
-export const getChildKeys = (childs: TreeData[] = [], result: TreeData['key'][] = []): TreeData['key'][] => {
+export const getChildKeys = (
+  childs: TreeData[] = [],
+  result: TreeData['key'][] = [],
+  depth?: number,
+): TreeData['key'][] => {
   childs.forEach((item) => {
     result.push(item.key as string | number);
+    if (typeof depth === 'number' && !(depth - 1)) return;
+
     if (item.children && item.children.length > 0) {
-      result = result.concat(getChildKeys(item.children));
+      result = result.concat(getChildKeys(item.children, undefined, depth ? depth - 1 : undefined));
     }
   });
   return result;
@@ -128,7 +134,7 @@ export default function Tree(props: TreeProps) {
     onSelected = noop,
 
     className,
-    autoExpandParent,
+    autoExpandParent = true,
     renderTitle,
     ...elementProps
   } = props;
@@ -140,10 +146,13 @@ export default function Tree(props: TreeProps) {
   // useEffect(() => setCurSelectedKeys(selectedKeys), [selectedKeys]);
 
   useEffect(() => {
-    const arrOpenKeys = getChildKeys(data);
+    let arrOpenKeys: TreeData['key'][] = [];
     if (defaultExpandAll) {
-      setCurOpenKeys(arrOpenKeys);
+      arrOpenKeys = getChildKeys(data);
+    } else if (autoExpandParent) {
+      arrOpenKeys = getChildKeys(data, undefined, 1);
     }
+    setCurOpenKeys(arrOpenKeys);
   }, []);
 
   const cls = [className, prefixCls, showLine ? `${prefixCls}-line` : null].filter(Boolean).join(' ').trim();
