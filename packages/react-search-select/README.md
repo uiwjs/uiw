@@ -44,6 +44,7 @@ const Demo = () => {
       mode="multiple"
       style={{ maxWidth: 200 }}
       showSearch={true}
+      maxTagCount={2}
       allowClear
       value={value}
       disabled={false}
