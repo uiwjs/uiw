@@ -17,22 +17,25 @@ import ReactDOM from 'react-dom';
 import { SearchSelect } from 'uiw';
 
 const Demo = () => {
-  const [option, setOption] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
-  const [value, setValue] = React.useState(undefined);
-  function handleSearch(e) {
-    console.log('handleSearch',e)
-    setLoading(true)
-    setTimeout(() =>  {
-      setOption([
-        { label: 'a', value: 2 },
-        { label: 'aa', value: 3 },
-        { label: 'aaa', value: 4 },
+  const selectOption=[
+        { label: 'a1', value: 1 },
+        { label: 'a2', value: 2 },
+        { label: 'a3', value: 3 },
+        { label: 'a4', value: 4 },
         { label: 'a5', value: 5 },
         { label: 'a6', value: 6 },
         { label: 'a7', value: 7 },
         { label: 'a8', value: 8 },
-      ]);
+      ]
+
+  const [option, setOption] = React.useState(selectOption);
+  const [loading, setLoading] = React.useState(false);
+  const [value, setValue] = React.useState([2,5]);
+  function handleSearch(e) {
+    setValue([3,4])
+    setLoading(true)
+    setTimeout(() =>  {
+      setOption();
       setLoading(false);
     }, 2000);
   }
@@ -42,7 +45,7 @@ const Demo = () => {
       style={{ maxWidth: 200 }}
       showSearch={true}
       allowClear
-      value={[2,3]}
+      value={value}
       disabled={false}
       placeholder="请输入选择"
       onSearch={handleSearch}
@@ -50,7 +53,6 @@ const Demo = () => {
       loading={loading}
       option={option}
       onChange={(value) => {
-      console.log('onChange',value)
         setValue(value)
       }}
     />
@@ -162,13 +164,13 @@ ReactDOM.render(<Demo />, _mount_);
 |--------- |-------- |--------- |-------- |
 | allowClear | 支持清除 | Boolean | `false` |
 | disabled | 禁用选择器 | Boolean | `false` |
-| mode | 是否可以多选; 'multiple','single' | String | 'single' |
+| mode | 选择模式: `multiple`  `single` | String | `single` |
 | defaultValue | 指定默认选中的条目 | String/Number | - |
-| value | 指定选中的条目的值 | String/Number | - |
+| value | 指定选中的条目的值 | String/Number  多选模式下`value`皆为`Array<String/Number>` | - |
 | placeholder | 选择框默认文字 | String | - |
 | showSearch | 使单选模式可搜索 | Boolean | - |
 | size | 选择框尺寸 | Enum{`large`, `default`, `small` } | `default` |
-| onChange | 选中 option，或 input 的 value，调用此函数 | `function(value, option:Option/Array<Option>)` | - |
+| onChange | 选中 option，或 input 的 value，调用此函数 | `function(value: String/Number, option:Array<Option>)` | - |
 | onSearch | 文本框值变化时回调 | `function(value: String)` | - |
 | onSelect | 被选中时调用，参数为选中项的 value | `function(value: String/Number )` | - |
 | loading | 加载中状态 | Boolean | false |

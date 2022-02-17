@@ -10,15 +10,15 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 import './style/index.less';
 
-type ValueType = string | number | undefined;
+type ValueType = string | number;
 export interface SearchSelectProps extends IProps, DropdownProps {
   mode?: 'single' | 'multiple';
   size?: 'large' | 'default' | 'small';
-  loading: boolean;
+  loading?: boolean;
   showSearch?: boolean;
-  allowClear: boolean;
-  defaultValue?: string | number;
-  value?: ValueType;
+  allowClear?: boolean;
+  defaultValue?: ValueType | Array<ValueType>;
+  value?: ValueType | Array<ValueType>;
   option: SearchSelectOptionData[];
   onSelect?: (value: ValueType | Array<ValueType>) => void;
   onSearch?: (value: string) => void;
@@ -56,9 +56,7 @@ export default function SearchSelect(props: SearchSelectProps) {
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   const isMultiple = useMemo(() => mode === 'multiple', [mode]);
   const [innerIsOpen, setInnerIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<Array<SearchSelectOptionData>>(
-    option.filter((item) => item.value === value),
-  );
+  const [selectedValue, setSelectedValue] = useState<Array<SearchSelectOptionData>>([]);
   const [selectedLabel, setSelectedLabel] = useState('');
   const [selectIconType, setSelectIconType] = useState('');
   const divRef = useRef<HTMLDivElement>(null);
@@ -67,11 +65,33 @@ export default function SearchSelect(props: SearchSelectProps) {
   valueRef.current = useMemo(() => selectedValue, [selectedValue]);
 
   useEffect(() => {
-    if (defaultValue) {
-      const defaultMenuItem = option.filter((opt) => opt.value === defaultValue);
-      setSelectedValue(defaultMenuItem);
+    if (value === undefined && defaultValue !== undefined) {
+      selectedValueChange(defaultValue);
     }
   }, []);
+
+  useEffect(() => {
+    if (value !== undefined) {
+      selectedValueChange(value!);
+    }
+  }, [JSON.stringify(value)]);
+
+  function selectedValueChange(changeValue: ValueType | Array<ValueType>) {
+    let opts: Array<SearchSelectOptionData> = [];
+    if (Array.isArray(changeValue)) {
+      opts = option.filter((item) => {
+        const findResult = changeValue.find((v) => item.value === v);
+        return findResult;
+      });
+    } else if (!isMultiple) {
+      const findResult = option.find((item) => item.value === changeValue);
+      if (findResult) {
+        setSelectedLabel(findResult.label);
+        opts.push(findResult);
+      }
+    }
+    setSelectedValue(opts);
+  }
 
   function removeSelectItem(index: number) {
     const selectedValue = valueRef.current as SearchSelectOptionData[];
@@ -83,12 +103,11 @@ export default function SearchSelect(props: SearchSelectProps) {
   function handleItemClick(item: SearchSelectOptionData) {
     setInnerIsOpen(false);
     const values = [item];
-    setSelectedValue(values);
     setSelectedLabel(item.label);
     const resultValue = item.value;
+    value === undefined && setSelectedValue(values); // 如果存在props.value,内部不维护value状态
     onSelect && onSelect(resultValue);
-    // 支持form组件
-    handleSelectChange(resultValue);
+    handleSelectChange(resultValue); // 支持form组件
   }
 
   function handleItemsClick(item: SearchSelectOptionData) {
@@ -99,11 +118,10 @@ export default function SearchSelect(props: SearchSelectProps) {
     } else {
       values = [...selectedValue, item];
     }
-    setSelectedValue(values);
     const resultValue = values.map((item) => item.value);
+    value === undefined && setSelectedValue(values);
     onSelect && onSelect(resultValue);
-    // // 支持form组件
-    handleSelectChange(resultValue);
+    handleSelectChange(resultValue); // 支持form组件
   }
 
   // 渲染icon
