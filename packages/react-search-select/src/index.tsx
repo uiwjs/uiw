@@ -14,6 +14,7 @@ type ValueType = string | number;
 export interface SearchSelectProps extends IProps, DropdownProps {
   mode?: 'single' | 'multiple';
   size?: 'large' | 'default' | 'small';
+  maxTagCount?: number;
   loading?: boolean;
   showSearch?: boolean;
   allowClear?: boolean;
@@ -36,6 +37,7 @@ export default function SearchSelect(props: SearchSelectProps) {
     allowClear = false,
     disabled = false,
     size = 'default',
+    maxTagCount,
     option = [],
     loading = false,
     prefixCls = 'w-search-select',
@@ -59,6 +61,7 @@ export default function SearchSelect(props: SearchSelectProps) {
   const [selectedValue, setSelectedValue] = useState<Array<SearchSelectOptionData>>([]);
   const [selectedLabel, setSelectedLabel] = useState('');
   const [selectIconType, setSelectIconType] = useState('');
+  const omitTagCount = useMemo(() => (maxTagCount ? selectedValue.length - maxTagCount : 0), [selectedValue.length]);
   const divRef = useRef<HTMLDivElement>(null);
 
   const valueRef = useRef<Array<SearchSelectOptionData>>();
@@ -207,7 +210,7 @@ export default function SearchSelect(props: SearchSelectProps) {
         ref={divRef}
         onMouseOver={() => renderSelectIcon('enter')}
         onMouseLeave={() => renderSelectIcon('leave')}
-        style={{ width: 'auto', maxWidth: 'none', ...style }}
+        style={{ width: '100%', maxWidth: 'none', ...style }}
       >
         <div
           style={
@@ -215,7 +218,6 @@ export default function SearchSelect(props: SearchSelectProps) {
               ? {
                   display: 'flex',
                   flexFlow: 'wrap',
-                  padding: 2,
                   borderRadius: 3,
                   boxShadow: '0px 0px 2px #333',
                 }
@@ -223,10 +225,10 @@ export default function SearchSelect(props: SearchSelectProps) {
           }
         >
           {isMultiple &&
-            selectedValue.map((item, index) => {
+            selectedValue.slice(0, maxTagCount).map((item, index) => {
               return (
                 <Tag
-                  style={{ margin: '0px 3px 3px 0px', display: 'flex', alignItems: 'center' }}
+                  style={{ margin: 2, display: 'flex', alignItems: 'center' }}
                   key={index}
                   closable
                   onClose={() => setSelectedValue(removeSelectItem(index))}
@@ -236,6 +238,11 @@ export default function SearchSelect(props: SearchSelectProps) {
                 </Tag>
               );
             })}
+          {!!omitTagCount && (
+            <Tag style={{ margin: 2, display: 'flex', alignItems: 'center' }} disabled={true}>
+              +{omitTagCount} …{' '}
+            </Tag>
+          )}
           <Input
             style={{ flex: 1, boxShadow: 'none' }}
             className={isMultiple ? `${prefixCls}-input-contents` : undefined}
