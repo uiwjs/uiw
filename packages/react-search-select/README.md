@@ -30,7 +30,7 @@ const Demo = () => {
 
   const [option, setOption] = React.useState(selectOption);
   const [loading, setLoading] = React.useState(false);
-  const [value, setValue] = React.useState([2,5]);
+  const [value, setValue] = React.useState([{label: 'a8', value: 8}]);
   function handleSearch(e) {
     setLoading(true)
     setTimeout(() =>  {
@@ -43,6 +43,7 @@ const Demo = () => {
       mode="multiple"
       style={{ maxWidth: 200 }}
       showSearch={true}
+      labelInValue={true}
       maxTagCount={2}
       allowClear
       value={value}
@@ -53,6 +54,7 @@ const Demo = () => {
       loading={loading}
       option={option}
       onChange={(value) => {
+        console.log('value',value)
         setValue(value)
       }}
     />
@@ -166,8 +168,10 @@ ReactDOM.render(<Demo />, _mount_);
 | disabled | 禁用选择器 | Boolean | `false` |
 | mode | 选择模式: `multiple`  `single` | String | `single` |
 | defaultValue | 指定默认选中的条目 | String/Number | - |
-| value | 指定选中的条目的值 | String/Number  多选模式下`value`皆为`Array<String/Number>` | - |
+| value | 指定选中的条目的值 | `String/Number` `Array<String/Number>`, 多选模式下`value`为`LabelInValue` `Array<LabelInValue>` | - |
 | placeholder | 选择框默认文字 | String | - |
+| maxTagCount | 多选模式下展示tag的个数,默认所有 | - |
+| labelInValue | 开启会把 Select 的 value 类型从 `string/number` 变为 `{ value: string/number, label: string }` | false |
 | showSearch | 使单选模式可搜索 | Boolean | - |
 | size | 选择框尺寸 | Enum{`large`, `default`, `small` } | `default` |
 | onChange | 选中 option，或 input 的 value，调用此函数 | `function(value: String/Number, option:Array<Option>)` | - |

@@ -15,15 +15,16 @@ export interface SearchSelectProps extends IProps, DropdownProps {
   mode?: 'single' | 'multiple';
   size?: 'large' | 'default' | 'small';
   maxTagCount?: number;
+  labelInValue?: boolean;
   loading?: boolean;
   showSearch?: boolean;
   allowClear?: boolean;
   defaultValue?: ValueType | Array<ValueType>;
   value?: ValueType | Array<ValueType>;
   option: SearchSelectOptionData[];
-  onSelect?: (value: ValueType | Array<ValueType>) => void;
+  onSelect?: (value: ValueType | Array<ValueType> | Array<SearchSelectOptionData>) => void;
   onSearch?: (value: string) => void;
-  onChange?: (value: ValueType | Array<ValueType>) => void;
+  onChange?: (value: ValueType | Array<ValueType> | Array<SearchSelectOptionData>) => void;
 }
 
 export interface SearchSelectOptionData {
@@ -40,6 +41,7 @@ export default function SearchSelect(props: SearchSelectProps) {
     maxTagCount,
     option = [],
     loading = false,
+    labelInValue = false,
     prefixCls = 'w-search-select',
     className,
     mode = 'single',
@@ -87,15 +89,26 @@ export default function SearchSelect(props: SearchSelectProps) {
     return findResult;
   };
 
-  function selectedValueChange(changeValue: ValueType | Array<ValueType>) {
+  function selectedValueChange(
+    changeValue: ValueType | Array<ValueType> | SearchSelectOptionData | Array<SearchSelectOptionData>,
+  ) {
     let opts: Array<SearchSelectOptionData> = [];
-    if (Array.isArray(changeValue)) {
-      opts = changeValue.map((v) => getSelectOption(option, v)!);
-    } else if (!isMultiple) {
-      const findResult = getSelectOption(option, changeValue);
-      if (findResult) {
-        setSelectedLabel(findResult.label);
-        opts.push(findResult);
+
+    if (labelInValue) {
+      if (Array.isArray(changeValue)) {
+        opts = changeValue as Array<SearchSelectOptionData>;
+      } else {
+        opts.push(changeValue as SearchSelectOptionData);
+      }
+    } else {
+      if (Array.isArray(changeValue)) {
+        opts = changeValue.map((v) => getSelectOption(option, v as ValueType)!);
+      } else {
+        const findResult = getSelectOption(option, changeValue as ValueType);
+        if (findResult) {
+          setSelectedLabel(findResult.label);
+          opts.push(findResult);
+        }
       }
     }
     setSelectedValue(opts);
@@ -113,9 +126,10 @@ export default function SearchSelect(props: SearchSelectProps) {
     const values = [item];
     setSelectedLabel(item.label);
     const resultValue = item.value;
-    value === undefined && setSelectedValue(values); // 如果存在props.value,内部不维护value状态
     onSelect && onSelect(resultValue);
-    handleSelectChange(resultValue); // 支持form组件
+    handleSelectChange(resultValue, values); // 支持form组件
+
+    value === undefined && setSelectedValue(values); // 如果存在props.value,内部不维护value状态
   }
 
   function handleItemsClick(item: SearchSelectOptionData) {
@@ -127,9 +141,10 @@ export default function SearchSelect(props: SearchSelectProps) {
       values = [...selectedValue, item];
     }
     const resultValue = values.map((item) => item.value);
-    value === undefined && setSelectedValue(values);
     onSelect && onSelect(resultValue);
-    handleSelectChange(resultValue); // 支持form组件
+    handleSelectChange(resultValue, values); // 支持form组件
+
+    value === undefined && setSelectedValue(values);
   }
 
   // 渲染icon
@@ -157,10 +172,12 @@ export default function SearchSelect(props: SearchSelectProps) {
     setSelectedValue([]);
     setSelectedLabel('');
     setSelectIconType('');
-    handleSelectChange('');
+    handleSelectChange('', []);
   }
-  function handleSelectChange(value: ValueType | Array<ValueType>) {
-    onChange && onChange(value);
+  function handleSelectChange(value: ValueType | Array<ValueType>, options: Array<SearchSelectOptionData>) {
+    if (!onChange) return;
+
+    onChange(labelInValue ? options : value);
   }
 
   function inputKeyDown(e: any) {
