@@ -41,10 +41,10 @@ const Demo = () => {
   return(
     <SearchSelect
       mode="multiple"
-      style={{ maxWidth: 200 }}
+      style={{ width: 176 }}
       showSearch={true}
       labelInValue={true}
-      maxTagCount={2}
+      maxTagCount={6}
       allowClear
       value={value}
       disabled={false}

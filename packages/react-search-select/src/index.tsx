@@ -205,7 +205,7 @@ export default function SearchSelect(props: SearchSelectProps) {
           style={{
             minHeight: 25,
             maxHeight: 280,
-            minWidth: style?.minWidth || 200,
+            minWidth: 200,
             overflowY: 'scroll',
             width: divRef.current ? divRef.current.offsetWidth : 'auto',
           }}
@@ -234,44 +234,50 @@ export default function SearchSelect(props: SearchSelectProps) {
         onMouseLeave={() => renderSelectIcon('leave')}
         style={{ width: '100%', maxWidth: 'none', ...style }}
       >
-        <div
-          style={
-            isMultiple
-              ? {
-                  display: 'flex',
-                  flexFlow: 'wrap',
-                  borderRadius: 3,
-                  boxShadow: '0px 0px 2px #333',
-                }
-              : undefined
-          }
-        >
-          {isMultiple &&
-            selectedValue.slice(0, maxTagCount).map((item, index) => {
-              return (
-                <Tag
-                  style={{ margin: 2, display: 'flex', alignItems: 'center' }}
-                  key={index}
-                  closable
-                  onClose={() => setSelectedValue(removeSelectItem(index))}
-                  color="#ccc"
-                >
-                  {item.label}
+        {isMultiple ? (
+          <div className={`${prefixCls}-inner`}>
+            <div style={{ display: 'flex', flexFlow: 'wrap' }}>
+              {isMultiple &&
+                selectedValue.slice(0, maxTagCount).map((item, index) => {
+                  return (
+                    <Tag
+                      style={{ height: 20, margin: 1, display: 'flex', alignItems: 'center' }}
+                      className={`${prefixCls}-tag`}
+                      key={index}
+                      closable
+                      onClose={() => setSelectedValue(removeSelectItem(index))}
+                      color="#ccc"
+                    >
+                      {item.label}
+                    </Tag>
+                  );
+                })}
+              {!!omitTagCount && (
+                <Tag style={{ height: 20, margin: 1, display: 'flex', alignItems: 'center' }} disabled={true}>
+                  +{omitTagCount} …{' '}
                 </Tag>
-              );
-            })}
-          {!!omitTagCount && (
-            <Tag style={{ margin: 2, display: 'flex', alignItems: 'center' }} disabled={true}>
-              +{omitTagCount} …{' '}
-            </Tag>
-          )}
+              )}
+              <Input
+                style={{ flex: 1 }}
+                className={`${prefixCls}-input-contents`}
+                readOnly={!showSearch}
+                size={size}
+                disabled={disabled}
+                onKeyDown={inputKeyDown}
+                onChange={handleInputChange}
+                value={selectedLabel}
+                placeholder={!selectedValue.length && placeholder}
+              />
+            </div>
+            {(selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
+              <Icon type={selectIconType} spin={loading && selectIconType === 'loading'} onClick={resetSelectedValue} />
+            )}
+          </div>
+        ) : (
           <Input
-            style={{ flex: 1, boxShadow: 'none' }}
-            className={isMultiple ? `${prefixCls}-input-contents` : undefined}
             readOnly={!showSearch}
             size={size}
             disabled={disabled}
-            onKeyDown={inputKeyDown}
             onChange={handleInputChange}
             value={selectedLabel}
             placeholder={placeholder}
@@ -285,7 +291,7 @@ export default function SearchSelect(props: SearchSelectProps) {
               )
             }
           />
-        </div>
+        )}
       </div>
     </Dropdown>
   );
