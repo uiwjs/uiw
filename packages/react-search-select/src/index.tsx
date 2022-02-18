@@ -266,7 +266,7 @@ export default function SearchSelect(props: SearchSelectProps) {
                 onKeyDown={inputKeyDown}
                 onChange={handleInputChange}
                 value={selectedLabel}
-                placeholder={!selectedValue.length && placeholder}
+                placeholder={selectedValue.length ? '' : placeholder}
               />
             </div>
             {(selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
