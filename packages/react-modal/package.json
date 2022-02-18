@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-modal",
-  "version": "4.11.2",
+  "version": "4.11.3",
   "description": "Modal component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/modal",
@@ -44,10 +44,10 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-button": "^4.11.2",
-    "@uiw/react-icon": "^4.11.2",
-    "@uiw/react-overlay": "^4.11.2",
-    "@uiw/utils": "^4.11.2"
+    "@uiw/react-button": "^4.11.3",
+    "@uiw/react-icon": "^4.11.3",
+    "@uiw/react-overlay": "^4.11.3",
+    "@uiw/utils": "^4.11.3"
   },
   "devDependencies": {
     "@babel/runtime": "7.16.7",
