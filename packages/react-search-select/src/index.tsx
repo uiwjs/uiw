@@ -15,15 +15,16 @@ export interface SearchSelectProps extends IProps, DropdownProps {
   mode?: 'single' | 'multiple';
   size?: 'large' | 'default' | 'small';
   maxTagCount?: number;
+  labelInValue?: boolean;
   loading?: boolean;
   showSearch?: boolean;
   allowClear?: boolean;
   defaultValue?: ValueType | Array<ValueType>;
   value?: ValueType | Array<ValueType>;
   option: SearchSelectOptionData[];
-  onSelect?: (value: ValueType | Array<ValueType>) => void;
+  onSelect?: (value: ValueType | Array<ValueType> | Array<SearchSelectOptionData>) => void;
   onSearch?: (value: string) => void;
-  onChange?: (value: ValueType | Array<ValueType>) => void;
+  onChange?: (value: ValueType | Array<ValueType> | Array<SearchSelectOptionData>) => void;
 }
 
 export interface SearchSelectOptionData {
@@ -40,6 +41,7 @@ export default function SearchSelect(props: SearchSelectProps) {
     maxTagCount,
     option = [],
     loading = false,
+    labelInValue = false,
     prefixCls = 'w-search-select',
     className,
     mode = 'single',
@@ -82,18 +84,31 @@ export default function SearchSelect(props: SearchSelectProps) {
     }
   }, [JSON.stringify(value)]);
 
-  function selectedValueChange(changeValue: ValueType | Array<ValueType>) {
+  const getSelectOption = (option: Array<SearchSelectOptionData>, value: ValueType) => {
+    const findResult = option.find((item) => item.value === value);
+    return findResult;
+  };
+
+  function selectedValueChange(
+    changeValue: ValueType | Array<ValueType> | SearchSelectOptionData | Array<SearchSelectOptionData>,
+  ) {
     let opts: Array<SearchSelectOptionData> = [];
-    if (Array.isArray(changeValue)) {
-      opts = option.filter((item) => {
-        const findResult = changeValue.find((v) => item.value === v);
-        return findResult;
-      });
-    } else if (!isMultiple) {
-      const findResult = option.find((item) => item.value === changeValue);
-      if (findResult) {
-        setSelectedLabel(findResult.label);
-        opts.push(findResult);
+
+    if (labelInValue) {
+      if (Array.isArray(changeValue)) {
+        opts = changeValue as Array<SearchSelectOptionData>;
+      } else {
+        opts.push(changeValue as SearchSelectOptionData);
+      }
+    } else {
+      if (Array.isArray(changeValue)) {
+        opts = changeValue.map((v) => getSelectOption(option, v as ValueType)!);
+      } else {
+        const findResult = getSelectOption(option, changeValue as ValueType);
+        if (findResult) {
+          setSelectedLabel(findResult.label);
+          opts.push(findResult);
+        }
       }
     }
     setSelectedValue(opts);
@@ -111,9 +126,10 @@ export default function SearchSelect(props: SearchSelectProps) {
     const values = [item];
     setSelectedLabel(item.label);
     const resultValue = item.value;
-    value === undefined && setSelectedValue(values); // 如果存在props.value,内部不维护value状态
     onSelect && onSelect(resultValue);
-    handleSelectChange(resultValue); // 支持form组件
+    handleSelectChange(resultValue, values); // 支持form组件
+
+    value === undefined && setSelectedValue(values); // 如果存在props.value,内部不维护value状态
   }
 
   function handleItemsClick(item: SearchSelectOptionData) {
@@ -125,9 +141,10 @@ export default function SearchSelect(props: SearchSelectProps) {
       values = [...selectedValue, item];
     }
     const resultValue = values.map((item) => item.value);
-    value === undefined && setSelectedValue(values);
     onSelect && onSelect(resultValue);
-    handleSelectChange(resultValue); // 支持form组件
+    handleSelectChange(resultValue, values); // 支持form组件
+
+    value === undefined && setSelectedValue(values);
   }
 
   // 渲染icon
@@ -155,14 +172,16 @@ export default function SearchSelect(props: SearchSelectProps) {
     setSelectedValue([]);
     setSelectedLabel('');
     setSelectIconType('');
-    handleSelectChange('');
+    handleSelectChange('', []);
   }
-  function handleSelectChange(value: ValueType | Array<ValueType>) {
-    onChange && onChange(value);
+  function handleSelectChange(value: ValueType | Array<ValueType>, options: Array<SearchSelectOptionData>) {
+    if (!onChange) return;
+
+    onChange(labelInValue ? options : value);
   }
 
   function inputKeyDown(e: any) {
-    if (selectedValue.length > 0 && !!selectedLabel && e.keyCode === 8) {
+    if (isMultiple && selectedValue.length > 0 && !selectedLabel && e.keyCode === 8) {
       const values = removeSelectItem(selectedValue.length - 1);
       setSelectedValue(values);
     }
@@ -186,7 +205,7 @@ export default function SearchSelect(props: SearchSelectProps) {
           style={{
             minHeight: 25,
             maxHeight: 280,
-            minWidth: style?.minWidth || 200,
+            minWidth: 200,
             overflowY: 'scroll',
             width: divRef.current ? divRef.current.offsetWidth : 'auto',
           }}
@@ -194,14 +213,14 @@ export default function SearchSelect(props: SearchSelectProps) {
           {!option || option.length === 0 ? (
             <div style={{ color: '#c7c7c7', fontSize: 12 }}>{loading ? '正在加载数据...' : '没有数据'}</div>
           ) : (
-            option.map((item, idx) => {
-              const active = !!selectedValue.find((finds) => finds.value === item.value);
+            option.map((opt, idx) => {
+              const active = !!getSelectOption(selectedValue, opt.value);
               return (
                 <Menu.Item
                   active={active}
                   key={idx}
-                  text={item.label}
-                  onClick={() => (isMultiple ? handleItemsClick(item) : handleItemClick(item))}
+                  text={opt.label}
+                  onClick={() => (isMultiple ? handleItemsClick(opt) : handleItemClick(opt))}
                 />
               );
             })
@@ -215,44 +234,50 @@ export default function SearchSelect(props: SearchSelectProps) {
         onMouseLeave={() => renderSelectIcon('leave')}
         style={{ width: '100%', maxWidth: 'none', ...style }}
       >
-        <div
-          style={
-            isMultiple
-              ? {
-                  display: 'flex',
-                  flexFlow: 'wrap',
-                  borderRadius: 3,
-                  boxShadow: '0px 0px 2px #333',
-                }
-              : undefined
-          }
-        >
-          {isMultiple &&
-            selectedValue.slice(0, maxTagCount).map((item, index) => {
-              return (
-                <Tag
-                  style={{ margin: 2, display: 'flex', alignItems: 'center' }}
-                  key={index}
-                  closable
-                  onClose={() => setSelectedValue(removeSelectItem(index))}
-                  color="#ccc"
-                >
-                  {item.label}
+        {isMultiple ? (
+          <div className={`${prefixCls}-inner`}>
+            <div style={{ display: 'flex', flexFlow: 'wrap' }}>
+              {isMultiple &&
+                selectedValue.slice(0, maxTagCount).map((item, index) => {
+                  return (
+                    <Tag
+                      style={{ height: 20, margin: 1, display: 'flex', alignItems: 'center' }}
+                      className={`${prefixCls}-tag`}
+                      key={index}
+                      closable
+                      onClose={() => setSelectedValue(removeSelectItem(index))}
+                      color="#ccc"
+                    >
+                      {item.label}
+                    </Tag>
+                  );
+                })}
+              {!!omitTagCount && (
+                <Tag style={{ height: 20, margin: 1, display: 'flex', alignItems: 'center' }} disabled={true}>
+                  +{omitTagCount} …{' '}
                 </Tag>
-              );
-            })}
-          {!!omitTagCount && (
-            <Tag style={{ margin: 2, display: 'flex', alignItems: 'center' }} disabled={true}>
-              +{omitTagCount} …{' '}
-            </Tag>
-          )}
+              )}
+              <Input
+                style={{ flex: 1 }}
+                className={`${prefixCls}-input-contents`}
+                readOnly={!showSearch}
+                size={size}
+                disabled={disabled}
+                onKeyDown={inputKeyDown}
+                onChange={handleInputChange}
+                value={selectedLabel}
+                placeholder={selectedValue.length ? '' : placeholder}
+              />
+            </div>
+            {(selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
+              <Icon type={selectIconType} spin={loading && selectIconType === 'loading'} onClick={resetSelectedValue} />
+            )}
+          </div>
+        ) : (
           <Input
-            style={{ flex: 1, boxShadow: 'none' }}
-            className={isMultiple ? `${prefixCls}-input-contents` : undefined}
             readOnly={!showSearch}
             size={size}
             disabled={disabled}
-            onKeyDown={inputKeyDown}
             onChange={handleInputChange}
             value={selectedLabel}
             placeholder={placeholder}
@@ -266,7 +291,7 @@ export default function SearchSelect(props: SearchSelectProps) {
               )
             }
           />
-        </div>
+        )}
       </div>
     </Dropdown>
   );
