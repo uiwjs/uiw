@@ -78,7 +78,7 @@ function newFormState<T>(
     const props = fields[name];
     if (!props) continue;
     const { initialValue, currentValue } = cb({ ...props, name });
-    state.initial[name] = initialValue;
+    state.initial[name] = Array.isArray(initialValue) ? [...initialValue] : initialValue;
     state.current[name] = currentValue;
   }
   return state;
@@ -113,12 +113,7 @@ function Form<T>(
       }),
     [],
   );
-
-  const [data, setDatas] = useState<FormState>(JSON.parse(JSON.stringify(initData)));
-  const setData = (values: any) => {
-    // 解决value为数组时不进行深拷贝,initvalue无法重置问题
-    setDatas(JSON.parse(JSON.stringify(values)));
-  };
+  const [data, setData] = useState<FormState>(initData);
 
   useImperativeHandle<React.ForwardedRef<FormRefType>, any>(
     ref,
@@ -250,8 +245,14 @@ function Form<T>(
   }
 
   function handleReset() {
-    const { initial } = data;
-    setData({ ...data, current: initial, errors: {} });
+    let { initial } = data;
+    const initials = { ...initial };
+    Object.entries(initials).map(([key, value]) => {
+      if (Array.isArray(value)) {
+        initials[key] = [...value];
+      }
+    });
+    setData({ ...data, initial, current: initials, errors: {} });
   }
 
   function controlField({
