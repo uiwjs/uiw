@@ -126,25 +126,20 @@ export default function SearchSelect(props: SearchSelectProps) {
     const values = [item];
     setSelectedLabel(item.label);
     const resultValue = item.value;
-    onSelect && onSelect(resultValue);
-    handleSelectChange(resultValue, values); // 支持form组件
-
-    value === undefined && setSelectedValue(values); // 如果存在props.value,内部不维护value状态
+    handleChange(resultValue, values);
   }
 
-  function handleItemsClick(item: SearchSelectOptionData) {
-    let values: SearchSelectOptionData[] = [];
-    const index = selectedValue.findIndex((finds) => finds.value === item.value);
-    if (index !== -1) {
-      values = removeSelectItem(index);
-    } else {
-      values = [...selectedValue, item];
-    }
+  function handleItemsClick(index: number, item?: SearchSelectOptionData) {
+    let values: SearchSelectOptionData[] = index !== -1 ? removeSelectItem(index) : [...selectedValue, item!];
     const resultValue = values.map((item) => item.value);
+    handleChange(resultValue, values);
+  }
+
+  function handleChange(resultValue: ValueType | Array<ValueType>, values: SearchSelectOptionData[]) {
     onSelect && onSelect(resultValue);
     handleSelectChange(resultValue, values); // 支持form组件
 
-    value === undefined && setSelectedValue(values);
+    value === undefined && setSelectedValue(values); // 如果受控于父组件则不需要内部维护状态
   }
 
   // 渲染icon
@@ -182,8 +177,7 @@ export default function SearchSelect(props: SearchSelectProps) {
 
   function inputKeyDown(e: any) {
     if (isMultiple && selectedValue.length > 0 && !selectedLabel && e.keyCode === 8) {
-      const values = removeSelectItem(selectedValue.length - 1);
-      setSelectedValue(values);
+      handleItemsClick(selectedValue.length - 1);
     }
   }
 
@@ -213,14 +207,14 @@ export default function SearchSelect(props: SearchSelectProps) {
           {!option || option.length === 0 ? (
             <div style={{ color: '#c7c7c7', fontSize: 12 }}>{loading ? '正在加载数据...' : '没有数据'}</div>
           ) : (
-            option.map((opt, idx) => {
-              const active = !!getSelectOption(selectedValue, opt.value);
+            option.map((item) => {
+              const index = selectedValue.findIndex((finds) => finds.value === item.value);
               return (
                 <Menu.Item
-                  active={active}
-                  key={idx}
-                  text={opt.label}
-                  onClick={() => (isMultiple ? handleItemsClick(opt) : handleItemClick(opt))}
+                  active={index !== -1}
+                  key={index}
+                  text={item.label}
+                  onClick={() => (isMultiple ? handleItemsClick(index, item) : handleItemClick(item))}
                 />
               );
             })
@@ -245,7 +239,7 @@ export default function SearchSelect(props: SearchSelectProps) {
                       className={`${prefixCls}-tag`}
                       key={index}
                       closable
-                      onClose={() => setSelectedValue(removeSelectItem(index))}
+                      onClose={() => handleItemsClick(index, item)}
                       color="#ccc"
                     >
                       {item.label}
