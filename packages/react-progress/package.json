@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-progress",
-  "version": "4.11.5",
+  "version": "4.11.6",
   "description": "Progress component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/progress",
@@ -44,8 +44,8 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-icon": "^4.11.5",
-    "@uiw/utils": "^4.11.5"
+    "@uiw/react-icon": "^4.11.6",
+    "@uiw/utils": "^4.11.6"
   },
   "devDependencies": {
     "@babel/runtime": "7.16.7",
