@@ -53,7 +53,6 @@ const data = [
   },
   { label: '澳门', key: '3' },
 ];
-console.log('data',data)
 
 const Demo = () => (
   <SearchTree

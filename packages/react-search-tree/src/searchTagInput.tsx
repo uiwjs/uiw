@@ -1,17 +1,15 @@
-import React, { useMemo, useState, useRef, useEffect } from 'react';
-import Dropdown, { DropdownProps } from '@uiw/react-dropdown';
+import React, { useMemo, useState, useRef, useEffect, ReactElement } from 'react';
+import Dropdown from '@uiw/react-dropdown';
 import Icon from '@uiw/react-icon';
 import Input from '@uiw/react-input';
 import Tag from '@uiw/react-tag';
+import Card from '@uiw/react-card';
 import { IProps } from '@uiw/utils';
 import './style/index.less';
 
-export interface DropContent extends React.ReactElement {
-  value: Array<SearchTagInputOption> | undefined;
-  onSelected: () => void;
-  // key: any,
-  // type: any,
-  // props: any
+export interface DropContent {
+  values: Array<SearchTagInputOption> | undefined;
+  onSelected: (options: Array<SearchTagInputOption>) => void;
   // data: Array<SearchTagInputOption>,
 }
 
@@ -21,7 +19,7 @@ export interface SearchTagInputOption {
 }
 
 export interface SearchTagInputProps extends IProps {
-  content: DropContent;
+  content: ReactElement<DropContent>;
   onChange?: (_: Array<SearchTagInputOption>) => void;
   mode?: 'single' | 'multiple';
   loading?: boolean;
@@ -41,48 +39,45 @@ function SearchTagInput(props: SearchTagInputProps) {
   } = props;
 
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
-  const isMultiple = useMemo(() => mode === 'multiple', [mode]);
-  const [innerIsOpen, setInnerIsOpen] = useState(false);
+  // const isMultiple = useMemo(() => mode === 'multiple', [mode]);
+  // const [innerIsOpen, setInnerIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<Array<SearchTagInputOption>>([]);
+  const optionRef = useRef<Array<SearchTagInputOption>>();
+  optionRef.current = useMemo(() => selectedOption, [selectedOption]);
   const [selectIconType, setSelectIconType] = useState('');
 
   const onSelected = (selectedOption: Array<SearchTagInputOption>) => {
-    console.log('selectedOption', selectedOption);
     setSelectedOption(selectedOption);
+
+    onChange && onChange(selectedOption);
   };
 
   const removeSelectItem = (index: number) => {
-    const selectedValue = selectedOption;
-    selectedValue.splice(index, 1);
-    const values = [...selectedValue];
-    return values;
+    const selectedOption = optionRef.current as Array<SearchTagInputOption>;
+    selectedOption.splice(index, 1);
+    onSelected([...selectedOption]);
   };
 
-  const handleChangeForProps = (changeValue: Array<SearchTagInputOption>) => {
-    if (!onChange) return;
-
-    onChange(changeValue);
-  };
+  // const handleChangeForProps = (selectedOption: Array<SearchTagInputOption>) => {
+  //   if (!onChange) return;
+  //   onChange(selectedOption);
+  // };
 
   const newContent = useMemo(() => {
     const newProps = { ...content.props, onSelected };
-    return React.cloneElement(content as any, newProps);
+    return React.cloneElement(content as JSX.Element, newProps);
   }, []);
 
   return (
-    <Dropdown className={cls} trigger="focus" menu={newContent}>
-      {/* <Dropdown trigger="click" menu={<div>123</div>}> */}
-      {/* <a href='#' onClick={e => e.preventDefault()}>
-        点击我出现下拉菜单 <Icon type="down" />
-      </a> */}
+    <Dropdown className={cls} trigger="focus" menu={<Card>{newContent}</Card>}>
       <div
-        // ref={divRef}
         // onMouseOver={() => renderSelectIcon('enter')}
         // onMouseLeave={() => renderSelectIcon('leave')}
         style={{ width: 200, maxWidth: 'none', ...style }}
       >
         <div className={`${prefixCls}-inner`}>
           <div style={{ display: 'flex', flexFlow: 'wrap' }}>
+            {/* {optionRef.current.map((item, index) => { */}
             {selectedOption.map((item, index) => {
               return (
                 <Tag
@@ -90,10 +85,10 @@ function SearchTagInput(props: SearchTagInputProps) {
                   className={`${prefixCls}-tag`}
                   key={index}
                   closable
-                  onClose={() => setSelectedOption(removeSelectItem(index))}
+                  onClose={() => removeSelectItem(index)}
                   color="#ccc"
                 >
-                  {item}
+                  {item.label}
                 </Tag>
               );
             })}

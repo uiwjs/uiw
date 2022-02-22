@@ -48,6 +48,7 @@
     "@uiw/react-dropdown": "^4.11.3",
     "@uiw/react-icon": "^4.11.3",
     "@uiw/react-input": "^4.11.3",
+    "@uiw/react-card": "^4.11.3",
     "@uiw/react-tag": "^4.11.3",
     "@uiw/react-tree": "^4.11.3",
     "@uiw/react-tree-checked": "^4.11.3",
