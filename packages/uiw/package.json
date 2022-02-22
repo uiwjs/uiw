@@ -110,6 +110,7 @@
     "@uiw/react-time-picker": "^4.11.4",
     "@uiw/react-tooltip": "^4.11.4",
     "@uiw/react-tree": "^4.11.4",
+    "@uiw/react-search-tree": "^4.11.4",
     "@uiw/react-tree-checked": "^4.11.4"
   },
   "devDependencies": {

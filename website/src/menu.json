@@ -72,6 +72,7 @@
       { "name": "Tag 标签", "path": "tag" },
       { "name": "Tree 树形控件", "path": "tree" },
       { "name": "TreeChecked 树形选择控件", "path": "tree-checked" },
+      { "name": "SearchTree 搜索树形控件", "path": "search-tree" },
       { "name": "Table 表格", "path": "table" },
       { "name": "Progress 进度条", "path": "progress" },
       { "name": "List 列表", "path": "list" },
