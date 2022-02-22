@@ -1,0 +1,64 @@
+{
+  "name": "@uiw/react-search-tree",
+  "version": "4.11.4",
+  "description": "TreeChecked component",
+  "author": "Kenny Wong <wowohoo@qq.com>",
+  "homepage": "https://uiwjs.github.io/#/components/search-tree",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uiwjs/uiw.git"
+  },
+  "license": "MIT",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "files": [
+    "dist.css",
+    "cjs",
+    "esm",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "tree-checked",
+    "react-tree-checked",
+    "design",
+    "uiw",
+    "uiw-react",
+    "react.js",
+    "react",
+    "react-component",
+    "component",
+    "components",
+    "ui",
+    "css",
+    "uikit",
+    "react-ui",
+    "framework",
+    "front-end",
+    "frontend"
+  ],
+  "peerDependencies": {
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
+  },
+  "dependencies": {
+    "@uiw/react-checkbox": "^4.11.3",
+    "@uiw/react-dropdown": "^4.11.3",
+    "@uiw/react-icon": "^4.11.3",
+    "@uiw/react-input": "^4.11.3",
+    "@uiw/react-tag": "^4.11.3",
+    "@uiw/react-tree": "^4.11.3",
+    "@uiw/react-tree-checked": "^4.11.3",
+    "@uiw/utils": "^4.11.3"
+  },
+  "devDependencies": {
+    "@babel/runtime": "7.16.7",
+    "@types/jest": "27.4.0",
+    "@types/react": "17.0.38",
+    "@types/react-dom": "17.0.11",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  }
+}
