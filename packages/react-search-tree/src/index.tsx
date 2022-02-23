@@ -1,144 +1,74 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SearchTagInput, { DropContent, SearchTagInputOption } from './searchTagInput';
-import TreeChecked from '@uiw/react-tree-checked';
+import { TreeData } from '@uiw/react-tree';
+import TreeChecked, { TreeCheckedProps } from '@uiw/react-tree-checked';
 
 type SelectOtpion = Record<string, string>;
-const TreeCheckeds = (props: DropContent & { reff: any }) => {
-  // const [selectOption, selectOptionSet] = useState<SelectOtpion>({})
-  // const [keys, keysSet] = useState<Array<string>>()
 
-  const {
-    option: [selectOption, selectOptionSet],
-    keys: [keys, keysSet],
-  } = props.reff.current;
-  console.log(',,,,,,,', keys);
-  const onSelected = (_1: any, _2: any, isChecked: any, evn: any) => {
-    let curSelectOption: SelectOtpion = {};
-    curSelectOption = getOptionsRecursion([evn], selectOption, isChecked);
-    selectOptionSet(curSelectOption);
-    // const option = Object.entries(curSelectOption).map(([value, label]) => ({ value, label }))
-    const keys: any = [];
-    const option = Object.entries(curSelectOption).map(([value, label]) => {
-      keys.push(value);
-      return { value, label };
+// type TreeCheckedsProps = TreeCheckedProps & Partial<DropContent<SearchTagInputOption>>
+function TreeCheckeds<V extends SearchTagInputOption>(
+  props: Omit<TreeCheckedProps, 'onSelected'> & Partial<DropContent<V>>,
+) {
+  const [selectOption, selectOptionSet] = useState<SelectOtpion>({});
+  const [keys, keysSet] = useState<Array<string | number>>([]);
+
+  useEffect(() => {
+    let selectOption: SelectOtpion = {};
+    const keys = props.values?.map((opt) => {
+      selectOption[opt.value] = opt.label;
+      return opt.value;
     });
-    keysSet(keys);
-    props.onSelected(option);
+    selectOptionSet(selectOption);
+    keysSet(keys || []);
+  }, [props.values]);
+
+  const onSelected = (_1: any, _2: any, isChecked: boolean, evn: TreeData) => {
+    const curSelectOption: SelectOtpion = getOptionsRecursion([evn], selectOption, isChecked);
+    const option = Object.entries(curSelectOption).map(([value, label]) => ({ value, label } as V));
+    props.onSelected?.(option, { value: evn.key, label: evn.label as string } as V, isChecked);
   };
 
-  const getOptionsRecursion = (childrens: Array<any>, selectOption: SelectOtpion, isAdd: boolean) => {
-    childrens.forEach((child: any) => {
-      if (child?.children?.length > 0) {
+  const getOptionsRecursion = (childrens: TreeData[], selectOption: SelectOtpion, isAdd: boolean) => {
+    childrens.forEach((child: TreeData) => {
+      if (!!child.children?.length) {
         selectOption = getOptionsRecursion(child.children, selectOption, isAdd);
       } else if (isAdd) {
-        selectOption[child.key] = child.label;
+        selectOption[child.key!] = child.label?.toString()!;
       } else {
-        delete selectOption[child.key];
+        delete selectOption[child.key!];
       }
     });
     return selectOption;
   };
 
-  const data = [
-    {
-      label: '湖北省',
-      key: '0-0-0',
-      children: [
-        {
-          label: '武汉市',
-          key: '0-1-0',
-          children: [
-            { label: '新洲区', key: '0-1-1', disabled: true },
-            { label: '武昌区', key: '0-1-2' },
-            {
-              label: '汉南区',
-              key: '0-1-3',
-              children: [
-                { label: '汉南区1', key: '0-1-3-1' },
-                { label: '汉南区2', key: '0-1-3-2' },
-                { label: '汉南区3', key: '0-1-3-3' },
-              ],
-            },
-          ],
-        },
-        { label: '黄冈市', key: '0-2-0' },
-        {
-          label: '黄石市',
-          key: '0-3-0',
-          children: [
-            { label: '青山区', key: '0-3-1' },
-            { label: '黄陂区', key: '0-3-2' },
-            { label: '青山区', key: '0-3-3' },
-          ],
-        },
-      ],
-    },
-    {
-      label: '上海市',
-      key: '1-0-0',
-      children: [
-        { label: '黄浦区', key: '1-0-1' },
-        { label: '卢湾区', key: '1-0-2' },
-        {
-          label: '徐汇区',
-          key: '1-0-3',
-          children: [
-            { label: '半淞园路街道', key: '1-1-0' },
-            { label: '南京东路街道', key: '1-2-0' },
-            { label: '外滩街道', key: '1-3-0' },
-          ],
-        },
-      ],
-    },
-    {
-      label: '北京市',
-      key: '2-0-0',
-      children: [
-        { label: '东城区', key: '2-1-0' },
-        { label: '西城区', key: '2-2-0' },
-        {
-          label: '崇文区',
-          key: '2-3-0',
-          children: [
-            { label: '东花市街道', key: '2-3-1' },
-            { label: '体育馆路街道', key: '2-3-2' },
-            { label: '前门街道', key: '2-3-3' },
-          ],
-        },
-      ],
-    },
-    { label: '澳门', key: '3' },
-  ];
+  return <TreeChecked {...props} data={props.options} selectedKeys={keys} onSelected={onSelected} />;
+}
 
-  return <TreeChecked data={data} selectedKeys={keys} onSelected={onSelected} />;
-};
+export interface SearchTreeProps<V> {
+  onChange?: (selectedAll: Array<V>, selectd: V, isChecked: boolean) => void;
+  onSearch?: (seachValue: string) => void;
+  value?: Array<V>;
+  options?: TreeData[];
+  treeProps?: Omit<TreeCheckedProps, 'onSelected'> & Partial<DropContent<V>>;
+}
 
-function SearchTreeChecked(props: any) {
-  const reff = useRef<any>();
-  reff.current = {
-    option: useState<SelectOtpion>({}),
-    keys: useState<Array<string>>(),
-  };
+function SearchTree<V extends SearchTagInputOption>(props: SearchTreeProps<V>) {
+  const { onChange, onSearch, options = [], value = [], treeProps, ...other } = props;
+  const [selectedValues, selectedValuesSet] = useState<Array<V>>(value);
 
-  const onChange = (resultValue: Array<SearchTagInputOption>) => {
-    // console.log('resultVal--ue', resultValue)
-    // props.onChange(resultValue)
+  const selectedChange = (resultValue: Array<V>, cur: V, isChecked: boolean) => {
+    selectedValuesSet(resultValue);
+    onChange?.(resultValue, cur, isChecked);
   };
 
   return (
     <SearchTagInput
-      onChange={onChange}
-      content={
-        <TreeCheckeds
-          reff={reff}
-          values={[]}
-          onSelected={(option: any) => {
-            console.log('------------------', option);
-          }}
-        />
-      }
+      {...other}
+      onChange={selectedChange}
+      values={selectedValues}
+      content={<TreeCheckeds {...treeProps} options={options} />}
     />
   );
 }
 
-export default SearchTreeChecked;
+export default SearchTree;

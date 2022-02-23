@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useRef, useEffect, ReactElement } from 'react';
-import Dropdown from '@uiw/react-dropdown';
+import Dropdown, { DropdownProps } from '@uiw/react-dropdown';
 import Icon from '@uiw/react-icon';
 import Input from '@uiw/react-input';
 import Tag from '@uiw/react-tag';
@@ -7,77 +7,116 @@ import Card from '@uiw/react-card';
 import { IProps } from '@uiw/utils';
 import './style/index.less';
 
-export interface DropContent {
-  values: Array<SearchTagInputOption> | undefined;
-  onSelected: (options: Array<SearchTagInputOption>) => void;
-  // data: Array<SearchTagInputOption>,
+export interface DropContent<V> {
+  values: Array<V>;
+  onSelected?: (selectedAll: Array<V>, selectd: V, isChecked: boolean) => void;
+  options?: any;
 }
 
 export interface SearchTagInputOption {
   label: string;
-  value: any;
+  value: string | number;
 }
 
-export interface SearchTagInputProps extends IProps {
-  content: ReactElement<DropContent>;
-  onChange?: (_: Array<SearchTagInputOption>) => void;
-  mode?: 'single' | 'multiple';
+export interface SearchTagInputProps<V> extends IProps, DropdownProps, DropContent<V> {
+  allowClear?: boolean;
+  content: ReactElement<DropContent<V>>;
+  size?: 'large' | 'default' | 'small';
+  onChange: (selectedAll: Array<V>, selectd: V, isChecked: boolean) => void;
+  onSearch?: (seachValue: string) => void;
+  // mode?: 'single' | 'multiple';
   loading?: boolean;
+  placeholder?: string;
 }
 
-function SearchTagInput(props: SearchTagInputProps) {
+function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputProps<V>) {
   const {
     prefixCls = 'w-search-tree',
     mode = 'single',
-    className,
-    content,
-    onChange,
-
-    style,
+    size = 'default',
+    disabled = false,
+    allowClear = false,
     loading = false,
+    className,
+    style,
+    placeholder,
+
+    content,
+    values,
+    onChange,
+    onSearch,
     ...others
   } = props;
 
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   // const isMultiple = useMemo(() => mode === 'multiple', [mode]);
   // const [innerIsOpen, setInnerIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<Array<SearchTagInputOption>>([]);
-  const optionRef = useRef<Array<SearchTagInputOption>>();
+  const [selectedOption, setSelectedOption] = useState<Array<V>>(values);
+  const optionRef = useRef<Array<V>>();
+  const [searchValue, searchValueSet] = useState<string>('');
   optionRef.current = useMemo(() => selectedOption, [selectedOption]);
   const [selectIconType, setSelectIconType] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const onSelected = (selectedOption: Array<SearchTagInputOption>) => {
-    setSelectedOption(selectedOption);
+  function renderSelectIcon(type: string) {
+    const selectIconType = type === 'enter' && allowClear && (!!selectedOption.length || searchValue) ? 'close' : '';
+    setSelectIconType(selectIconType);
+  }
 
-    onChange && onChange(selectedOption);
+  const handleSelectChange = (selectedAll: Array<V>, selectd?: V, isChecked: boolean = true) => {
+    setSelectedOption(selectedAll);
+
+    onChange && onChange(selectedAll, selectd!, isChecked);
   };
 
   const removeSelectItem = (index: number) => {
-    const selectedOption = optionRef.current as Array<SearchTagInputOption>;
+    const selectedOption = optionRef.current as Array<V>;
+    const curreentItem = selectedOption[index];
     selectedOption.splice(index, 1);
-    onSelected([...selectedOption]);
+    handleSelectChange([...selectedOption], curreentItem, false);
   };
 
-  // const handleChangeForProps = (selectedOption: Array<SearchTagInputOption>) => {
-  //   if (!onChange) return;
-  //   onChange(selectedOption);
-  // };
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    searchValueSet(value);
+    onSearch?.(value);
+    setSelectIconType(value ? 'loading' : '');
+  }
+
+  // 清除选中的值
+  function resetSelectedValue() {
+    // setInnerIsOpen(false);
+    setSelectedOption([]);
+    searchValueSet('');
+    setSelectIconType('');
+    handleSelectChange([]);
+  }
+
+  function inputKeyDown(e: any) {
+    if (selectedOption.length > 0 && !searchValue && e.keyCode === 8) {
+      removeSelectItem(selectedOption.length - 1);
+    }
+  }
 
   const newContent = useMemo(() => {
-    const newProps = { ...content.props, onSelected };
+    const newProps = {
+      ...content.props,
+      onSelected: handleSelectChange,
+      values: selectedOption,
+    };
     return React.cloneElement(content as JSX.Element, newProps);
-  }, []);
+  }, [selectedOption]);
 
   return (
-    <Dropdown className={cls} trigger="focus" menu={<Card>{newContent}</Card>}>
+    <Dropdown className={cls} trigger="focus" {...others} menu={<Card>{newContent}</Card>}>
       <div
-        // onMouseOver={() => renderSelectIcon('enter')}
-        // onMouseLeave={() => renderSelectIcon('leave')}
+        onMouseOver={() => renderSelectIcon('enter')}
+        onMouseLeave={() => renderSelectIcon('leave')}
+        onClick={() => inputRef.current?.focus()}
         style={{ width: 200, maxWidth: 'none', ...style }}
       >
         <div className={`${prefixCls}-inner`}>
           <div style={{ display: 'flex', flexFlow: 'wrap' }}>
-            {/* {optionRef.current.map((item, index) => { */}
             {selectedOption.map((item, index) => {
               return (
                 <Tag
@@ -85,7 +124,10 @@ function SearchTagInput(props: SearchTagInputProps) {
                   className={`${prefixCls}-tag`}
                   key={index}
                   closable
-                  onClose={() => removeSelectItem(index)}
+                  onClose={(e) => {
+                    e.stopPropagation();
+                    removeSelectItem(index);
+                  }}
                   color="#ccc"
                 >
                   {item.label}
@@ -93,19 +135,20 @@ function SearchTagInput(props: SearchTagInputProps) {
               );
             })}
             <Input
+              ref={inputRef}
               style={{ flex: 1 }}
               className={`${prefixCls}-input-contents`}
-              // readOnly={!showSearch}
-              // size={size}
-              // disabled={disabled}
-              // onKeyDown={inputKeyDown}
-              // onChange={handleInputChange}
-              // value={selectedLabel}
-              // placeholder={selectedValue.length ? '' : placeholder}
+              size={size}
+              disabled={disabled}
+              onKeyDown={inputKeyDown}
+              onChange={handleInputChange}
+              value={searchValue}
+              placeholder={selectedOption.length ? '' : placeholder}
+              // readOnly={false}
             />
           </div>
           {(selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
-            <Icon type={selectIconType} spin={loading && selectIconType === 'loading'} onClick={() => {}} />
+            <Icon type={selectIconType} spin={loading && selectIconType === 'loading'} onClick={resetSelectedValue} />
           )}
         </div>
       </div>

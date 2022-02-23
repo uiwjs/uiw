@@ -56,34 +56,12 @@ const data = [
 
 const Demo = () => (
   <SearchTree
-    onSearch={(searchValue)=>consoe.log('SearchTree-> SearchTreeOption',SearchTreeOption)}
-    onChange={()=>console.log('SearchTree-> onChange',onChange)}
-    content={
-      <TreeChecked
-        data={data}
-        selectedKeys={['0-1-1']}
-      //   onExpand={(key, expanded, data, node) => {
-      //     console.log(key, expanded, data, node);
-      //   }}
-      //   onSelected={(key, selected, item, evn) => {
-      //     console.log('select:', key);
-      //     console.log('select:', selected);
-      //     console.log('select:', item);
-      //     console.log('select:', evn);
-      // }}
-  />
-    }
-    // data={data}
-    // selectedKeys={['0-1-1']}
-    // onExpand={(key, expanded, data, node) => {
-    //   console.log(key, expanded, data, node);
-    // }}
-    // onSelected={(key, selected, item, evn) => {
-    //   console.log('select:', key);
-    //   console.log('select:', selected);
-    //   console.log('select:', item);
-    //   console.log('select:', evn);
-    // }}
+    allowClear={true}
+    onSearch={(searchValue)=>console.log('SearchTree-> SearchTreeOption',searchValue)}
+    onChange={(selectedAll, selectd, isChecked)=>console.log('SearchTree-> onChange',selectedAll, selectd, isChecked)}
+    value={[{ label: '东花市街道', value: '2-3-1' }]}
+    options={data}
+    placeholder="请输入选择"
   />
 )
 ReactDOM.render(<Demo />, _mount_);
@@ -91,10 +69,15 @@ ReactDOM.render(<Demo />, _mount_);
 
 ## Props
 
-完全继承 [Tree](#/components/Tree) 组件属性，默认初始值不一样，下面仅列出默认不一致的 Props。
-
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| checkStrictly | 子节点受父节点控制设置 `true`，需要配合 `multiple` 参数使用。 | Boolean | `true` |
-| isSelected | 是否选中当前节点 | Boolean | `false` |
-| multiple | 支持点选多个节点 | Boolean | `true` |
+| allowClear | 支持清除 | Boolean | `false` |
+| disabled | 禁用选择器 | Boolean | `false` |
+| value | 指定当前选中的条目 | [{label:string, value:string}] | - |
+| options | 下拉数据源 | [{label:string, value:string}] | - |
+| placeholder | 选择框默认文字 | String | - |
+| size | 选择框尺寸 | Enum{large, default, small } | `default` |
+| onChange | 选中 option，或 input 的 value，调用此函数 | function(selectdAll, selectd, isChecked)=>void | - |
+| onSearch | 文本框值变化时回调 | function(searchValue) | - |
+| loading | 加载中状态 | Boolean | `false` |
+

@@ -142,6 +142,10 @@ export default function Tree(props: TreeProps) {
   const [curOpenKeys, setCurOpenKeys] = useState(openKeys);
   const [curSelectedKeys, setCurSelectedKeys] = useState(selectedKeys);
 
+  useEffect(() => {
+    setCurSelectedKeys(props.selectedKeys!);
+  }, [JSON.parse(JSON.stringify(props.selectedKeys))]);
+
   // useEffect(() => setCurOpenKeys(openKeys), [openKeys]);
   // useEffect(() => setCurSelectedKeys(selectedKeys), [selectedKeys]);
 
