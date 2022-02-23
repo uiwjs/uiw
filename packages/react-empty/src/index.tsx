@@ -5,7 +5,7 @@ export interface EmptyProps extends React.HTMLAttributes<HTMLDivElement> {
   prefixCls?: string;
   icon?: React.ReactNode;
   size?: number | string;
-  iconProps: React.SVGProps<SVGSVGElement>;
+  iconProps?: React.SVGProps<SVGSVGElement>;
   /** 自定义描述内容 */
   description?: React.ReactNode;
 }
