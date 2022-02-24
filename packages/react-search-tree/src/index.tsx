@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import SearchTagInput, { DropContent, SearchTagInputOption } from './searchTagInput';
+import SearchTagInput, { DropContent, SearchTagInputOption } from './SearchTagInput';
 import { TreeData } from '@uiw/react-tree';
 import TreeChecked, { TreeCheckedProps } from '@uiw/react-tree-checked';
 
