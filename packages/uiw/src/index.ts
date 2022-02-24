@@ -55,6 +55,7 @@ export * from '@uiw/react-time-picker';
 export * from '@uiw/react-tooltip';
 export * from '@uiw/react-tree';
 export * from '@uiw/react-tree-checked';
+export * from '@uiw/react-search-tree';
 
 export { default as Affix } from '@uiw/react-affix';
 export { default as Alert } from '@uiw/react-alert';
@@ -112,3 +113,4 @@ export { default as TimePicker } from '@uiw/react-time-picker';
 export { default as Tooltip } from '@uiw/react-tooltip';
 export { default as Tree } from '@uiw/react-tree';
 export { default as TreeChecked } from '@uiw/react-tree-checked';
+export { default as SearchTree } from '@uiw/react-search-tree';

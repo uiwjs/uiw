@@ -63,6 +63,7 @@ const Layout = Loadable(lazy(() => import('./routes/components/layout')));
 const Notify = Loadable(lazy(() => import('./routes/components/notify')));
 const Tree = Loadable(lazy(() => import('./routes/components/tree')));
 const TreeChecked = Loadable(lazy(() => import('./routes/components/tree-checked')));
+const SearchTree = Loadable(lazy(() => import('./routes/components/search-tree')));
 const Tag = Loadable(lazy(() => import('./routes/components/tag')));
 const Tabs = Loadable(lazy(() => import('./routes/components/tabs')));
 const Tooltip = Loadable(lazy(() => import('./routes/components/tooltip')));
@@ -153,6 +154,7 @@ export const routes: RouteObject[] = [
       { path: '/components/notify', element: <Notify /> },
       { path: '/components/tree', element: <Tree /> },
       { path: '/components/tree-checked', element: <TreeChecked /> },
+      { path: '/components/search-tree', element: <SearchTree /> },
       { path: '/components/tag', element: <Tag /> },
       { path: '/components/tabs', element: <Tabs /> },
       { path: '/components/tooltip', element: <Tooltip /> },
