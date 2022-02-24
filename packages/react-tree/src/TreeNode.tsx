@@ -105,7 +105,7 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
           const checkedKeys = selectedKeys ? selectedKeys.filter((key) => childKeys.indexOf(key) > -1) : [];
           const isHalfChecked = checkedKeys.length > 0 && childKeys.length !== checkedKeys.length;
           return (
-            <li key={idx}>
+            <li key={idx} style={{ display: item.hideNode ? 'none' : 'block' }}>
               <div className={`${prefixCls}-label`}>
                 <span className={`${prefixCls}-switcher`} onClick={(evn) => onItemClick(item, evn)}>
                   <Icon

@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef, useEffect, ReactElement } from 'react';
+import React, { useMemo, useState, useRef, ReactElement } from 'react';
 import Dropdown, { DropdownProps } from '@uiw/react-dropdown';
 import Icon from '@uiw/react-icon';
 import Input from '@uiw/react-input';
@@ -10,7 +10,7 @@ import './style/index.less';
 export interface DropContent<V> {
   values: Array<V>;
   onSelected?: (selectedAll: Array<V>, selectd: V, isChecked: boolean) => void;
-  options?: any;
+  options?: Array<any>;
 }
 
 export interface SearchTagInputOption {
@@ -42,6 +42,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
     placeholder,
 
     content,
+    options,
     values,
     onChange,
     onSearch,
@@ -103,9 +104,10 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
       ...content.props,
       onSelected: handleSelectChange,
       values: selectedOption,
+      options,
     };
     return React.cloneElement(content as JSX.Element, newProps);
-  }, [selectedOption]);
+  }, [selectedOption, options]);
 
   return (
     <Dropdown className={cls} trigger="focus" {...others} menu={<Card>{newContent}</Card>}>
@@ -136,7 +138,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
             })}
             <Input
               ref={inputRef}
-              style={{ flex: 1 }}
+              style={{ flex: 1, minWidth: 30 }}
               className={`${prefixCls}-input-contents`}
               size={size}
               disabled={disabled}

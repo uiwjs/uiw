@@ -41,7 +41,9 @@ function TreeCheckeds<V extends SearchTagInputOption>(
     return selectOption;
   };
 
-  return <TreeChecked {...props} data={props.options} selectedKeys={keys} onSelected={onSelected} />;
+  return (
+    <TreeChecked defaultExpandAll={true} {...props} data={props.options} selectedKeys={keys} onSelected={onSelected} />
+  );
 }
 
 export interface SearchTreeProps<V> {
@@ -55,18 +57,51 @@ export interface SearchTreeProps<V> {
 function SearchTree<V extends SearchTagInputOption>(props: SearchTreeProps<V>) {
   const { onChange, onSearch, options = [], value = [], treeProps, ...other } = props;
   const [selectedValues, selectedValuesSet] = useState<Array<V>>(value);
+  const [selectedOptions, selectedOptionSet] = useState<Array<TreeData>>(options);
 
   const selectedChange = (resultValue: Array<V>, cur: V, isChecked: boolean) => {
     selectedValuesSet(resultValue);
     onChange?.(resultValue, cur, isChecked);
   };
 
+  // 防抖
+  const debounce = (fn: Function, ms: number) => {
+    let timeoutId: NodeJS.Timeout;
+    return (searchValue: string) => {
+      onSearch?.(searchValue);
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        fn(searchValue);
+      }, ms);
+    };
+  };
+
+  const selectedSearch = (searchValue: string) => {
+    const hiddenNodeForSeach = (childrens: TreeData[]) => {
+      childrens.forEach((child: TreeData) => {
+        const isHide = !(child.label as string).includes(searchValue);
+        if (!!child.children?.length) {
+          hiddenNodeForSeach(child.children);
+          const find = child.children.find((item) => !item.hideNode);
+          child.hideNode = isHide && !find;
+        } else {
+          // const isHide = !(child.label as string).includes(searchValue)
+          child.hideNode = isHide;
+        }
+      });
+    };
+    hiddenNodeForSeach(options);
+    selectedOptionSet([...options]);
+  };
+
   return (
     <SearchTagInput
       {...other}
+      onSearch={debounce(selectedSearch, 700)}
       onChange={selectedChange}
       values={selectedValues}
-      content={<TreeCheckeds {...treeProps} options={options} />}
+      options={selectedOptions}
+      content={<TreeCheckeds {...treeProps} />}
     />
   );
 }

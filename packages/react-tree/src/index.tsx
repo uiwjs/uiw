@@ -50,6 +50,7 @@ export interface TreeProps extends IProps, HTMLDivProps {
 export interface TreeData {
   label?: React.ReactNode;
   children?: TreeData[];
+  hideNode?: boolean;
   key?: string | number;
   [keyName: string]: any;
 }
