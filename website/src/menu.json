@@ -50,7 +50,9 @@
       { "name": "Switch 开关", "path": "switch" },
       { "name": "Select 选择器", "path": "select" },
       { "name": "SearchSelect 搜索选择器", "path": "search-select" },
+      { "name": "SearchTree 搜索树形控件", "path": "search-tree" },
       { "name": "Slider 滑块输入条", "path": "slider" },
+      { "name": "TreeChecked 树形选择控件", "path": "tree-checked" },
       { "name": "Textarea 多行文本输入框", "path": "textarea" },
       {
         "name": "Color 颜色选择器",
@@ -71,8 +73,6 @@
       { "name": "Descriptions 描述列表", "path": "descriptions" },
       { "name": "Tag 标签", "path": "tag" },
       { "name": "Tree 树形控件", "path": "tree" },
-      { "name": "TreeChecked 树形选择控件", "path": "tree-checked" },
-      { "name": "SearchTree 搜索树形控件", "path": "search-tree" },
       { "name": "Table 表格", "path": "table" },
       { "name": "Progress 进度条", "path": "progress" },
       { "name": "List 列表", "path": "list" },
