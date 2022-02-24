@@ -2,7 +2,6 @@
   "name": "@uiw/react-search-tree",
   "version": "4.11.4",
   "description": "TreeChecked component",
-  "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/search-tree",
   "repository": {
     "type": "git",
@@ -21,8 +20,8 @@
     "access": "public"
   },
   "keywords": [
-    "tree-checked",
-    "react-tree-checked",
+    "react-search-checked",
+    "search-checked",
     "design",
     "uiw",
     "uiw-react",
