@@ -145,7 +145,7 @@ export default function Tree(props: TreeProps) {
 
   useEffect(() => {
     setCurSelectedKeys(props.selectedKeys!);
-  }, [JSON.parse(JSON.stringify(props.selectedKeys))]);
+  }, [JSON.stringify(props.selectedKeys)]);
 
   // useEffect(() => setCurOpenKeys(openKeys), [openKeys]);
   // useEffect(() => setCurSelectedKeys(selectedKeys), [selectedKeys]);
