@@ -1,6 +1,10 @@
 MonthPicker 月份选择器
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-month-picker/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-month-picker.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-month-picker)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-month-picker.svg?label=@uiw/react-month-picker)](https://npmjs.com/@uiw/react-month-picker)
+
 模态对话框。
 
 ```jsx

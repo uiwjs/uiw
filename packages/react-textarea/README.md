@@ -1,6 +1,10 @@
 Textarea 多行文本输入框
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-textarea/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-textarea.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-textarea)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-textarea.svg?label=@uiw/react-textarea)](https://npmjs.com/@uiw/react-textarea)
+
 标准的多行文本输入框。
 
 ```jsx

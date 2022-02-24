@@ -1,6 +1,10 @@
 Steps 步骤条
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-steps/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-steps.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-steps)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-steps.svg?label=@uiw/react-steps)](https://npmjs.com/@uiw/react-steps)
+
 引导用户按照流程完成任务的导航条。当任务复杂或者存在先后关系时，将其分解成一系列步骤，从而简化任务。
 
 ```jsx

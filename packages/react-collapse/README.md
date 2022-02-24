@@ -1,6 +1,10 @@
 Collapse 折叠面板
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-collapse/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-collapse.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-collapse)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-collapse.svg?label=@uiw/react-collapse)](https://npmjs.com/@uiw/react-collapse)
+
 可以折叠/展开的内容区域。
 
 ```jsx

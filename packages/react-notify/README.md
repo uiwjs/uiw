@@ -1,6 +1,10 @@
 Notify 消息通知
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-notify/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-notify.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-notify)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-notify.svg?label=@uiw/react-notify)](https://npmjs.com/@uiw/react-notify)
+
 全局展示通知提醒信息。
 
 ```jsx

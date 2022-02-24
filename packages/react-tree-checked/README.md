@@ -1,6 +1,10 @@
 TreeChecked 树形选择控件
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-tree-checked/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-tree-checked.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-tree-checked)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-tree-checked.svg?label=@uiw/react-tree-checked)](https://npmjs.com/@uiw/react-tree-checked)
+
 使用树选择控件可以完整展现其中的层级关系，并具有选中状态。
 
 ```jsx

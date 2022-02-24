@@ -1,6 +1,10 @@
 Rate 评分
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-rate/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-rate.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-rate)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-rate.svg?label=@uiw/react-rate)](https://npmjs.com/@uiw/react-rate)
+
 评分组件
 
 ```jsx

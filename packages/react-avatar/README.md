@@ -1,6 +1,10 @@
 Avatar 头像
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-avatar/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-avatar.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-avatar)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-avatar.svg?label=@uiw/react-avatar)](https://npmjs.com/@uiw/react-avatar)
+
 用来代表用户或事物，支持图片、图标或字符展示。
 
 ```jsx

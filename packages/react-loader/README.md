@@ -1,4 +1,9 @@
-# Loader 加载器
+Loader 加载器
+===
+
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-loader/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-loader.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-loader)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-loader.svg?label=@uiw/react-loader)](https://npmjs.com/@uiw/react-loader)
 
 用于页面和区块的加载中状态。
 

@@ -1,6 +1,10 @@
 Card 卡片
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-card/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-card.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-card)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-card.svg?label=@uiw/react-card)](https://npmjs.com/@uiw/react-card)
+
 通用卡片容器，将信息聚合在卡片容器中展示，用来显示文字、列表、图文等内容。
 
 ```jsx

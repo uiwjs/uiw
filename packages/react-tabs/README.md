@@ -1,6 +1,10 @@
 Tabs 标签页
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-tabs/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-tabs.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-tabs)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-tabs.svg?label=@uiw/react-tabs)](https://npmjs.com/@uiw/react-tabs)
+
 标签页切换组件，分隔内容上有关联但属于不同类别的数据集合。
 
 ```jsx

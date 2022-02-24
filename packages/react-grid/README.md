@@ -1,6 +1,10 @@
 Grid 删格
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-grid/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-grid.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-grid)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-grid.svg?label=@uiw/react-grid)](https://npmjs.com/@uiw/react-grid)
+
 基于 `flex` 栅格系统。
 
 ```jsx

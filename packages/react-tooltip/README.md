@@ -1,6 +1,10 @@
 Tooltip 文字提示
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-tooltip/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-tooltip.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-tooltip)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-tooltip.svg?label=@uiw/react-tooltip)](https://npmjs.com/@uiw/react-tooltip)
+
 简单的文字提示气泡框。
 
 ```jsx

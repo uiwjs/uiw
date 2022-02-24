@@ -1,6 +1,10 @@
 Popover 气泡卡片
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-popover/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-popover.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-popover)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-popover.svg?label=@uiw/react-popover)](https://npmjs.com/@uiw/react-popover)
+
 点击/鼠标移入元素，弹出气泡式的卡片浮层。
 
 ```jsx

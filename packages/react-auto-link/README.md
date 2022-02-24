@@ -1,6 +1,10 @@
 AutoLink 文本超链接
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-auto-link/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-auto-link.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-auto-link)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-auto-link.svg?label=@uiw/react-auto-link)](https://npmjs.com/@uiw/react-auto-link)
+
 将字符串呈现为纯文本，并将 URL 转换为适当的链接元素。
 
 ```jsx

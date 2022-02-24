@@ -1,6 +1,10 @@
 Switch 开关
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-switch/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-switch.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-switch)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-switch.svg?label=@uiw/react-switch)](https://npmjs.com/@uiw/react-switch)
+
 表示两种相互对立的状态间的切换，多用于触发「开/关」。选中时的内容支持响应式。
 
 ```jsx

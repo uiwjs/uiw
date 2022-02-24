@@ -1,6 +1,10 @@
 Breadcrumb 面包屑
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-breadcrumb/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-breadcrumb.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-breadcrumb)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-breadcrumb.svg?label=@uiw/react-breadcrumb)](https://npmjs.com/@uiw/react-breadcrumb)
+
 显示当前页面的路径，快速返回之前的任意页面。
 
 ```jsx

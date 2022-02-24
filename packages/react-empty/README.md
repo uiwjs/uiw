@@ -1,7 +1,9 @@
 Empty 空状态
 ===
 
-[![npm version](https://img.shields.io/npm/v/@uiw/react-empty.svg)](https://npmjs.com/@uiw/react-empty)
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-empty/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-empty.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-empty)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-empty.svg?label=@uiw/react-empty)](https://npmjs.com/@uiw/react-empty)
 
 空状态时的展示占位图。新组件 `v4.11.0+` 支持。
 

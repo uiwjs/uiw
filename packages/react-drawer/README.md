@@ -1,6 +1,10 @@
 Drawer 抽屉
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-drawer/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-drawer.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-drawer)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-drawer.svg?label=@uiw/react-drawer)](https://npmjs.com/@uiw/react-drawer)
+
 一个从页面边缘滑动出来的浮层，可以替代 [`<Modal>`](#/components/modal) 更多样的展示方式。
 
 ```jsx

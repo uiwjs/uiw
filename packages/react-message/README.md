@@ -1,6 +1,10 @@
 Message 警告提示
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-message/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-message.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-message)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-message.svg?label=@uiw/react-message)](https://npmjs.com/@uiw/react-message)
+
 警告提示，用于页面中展示重要的提示信息。
 
 ```jsx

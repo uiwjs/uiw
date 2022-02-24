@@ -1,6 +1,10 @@
 OverlayTrigger 基础触发弹出
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-overlay-trigger/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-overlay-trigger.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-overlay-trigger)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-overlay-trigger.svg?label=@uiw/react-overlay-trigger)](https://npmjs.com/@uiw/react-overlay-trigger)
+
 基础弹出触发组件，在组件 [`<Overlay>`](#/components/overlay) 的基础上添加事件和 12 个方向的位置，组件 [`<Tooltip>`](#/components/tooltip)，[`<Popover>`](#/components/popover) 是基于这个组件封装的，弹出框围绕对象指定位置。
 
 ```jsx

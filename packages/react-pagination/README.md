@@ -1,6 +1,10 @@
 Pagination 分页
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-pagination/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-pagination.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-pagination)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-pagination.svg?label=@uiw/react-pagination)](https://npmjs.com/@uiw/react-pagination)
+
 当数据量较多时，使用分页可以快速进行数据切换，每次只加载一个页面。
 
 ```jsx
