@@ -115,7 +115,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
         onMouseOver={() => renderSelectIcon('enter')}
         onMouseLeave={() => renderSelectIcon('leave')}
         onClick={() => inputRef.current?.focus()}
-        style={{ width: 200, maxWidth: 'none', ...style }}
+        style={{ minWidth: 200, maxWidth: 'none', ...style }}
       >
         <div className={`${prefixCls}-inner`}>
           <div style={{ display: 'flex', flexFlow: 'wrap' }}>
@@ -126,11 +126,11 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
                   className={`${prefixCls}-tag`}
                   key={index}
                   closable
+                  color="#393E48"
                   onClose={(e) => {
                     e.stopPropagation();
                     removeSelectItem(index);
                   }}
-                  color="#ccc"
                 >
                   {item.label}
                 </Tag>
@@ -149,9 +149,11 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
               // readOnly={false}
             />
           </div>
-          {(selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
-            <Icon type={selectIconType} spin={loading && selectIconType === 'loading'} onClick={resetSelectedValue} />
-          )}
+          <span style={{ height: 25 }} className={`${prefixCls}-close-tag-contents`}>
+            {(selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
+              <Icon type={selectIconType} spin={loading && selectIconType === 'loading'} onClick={resetSelectedValue} />
+            )}
+          </span>
         </div>
       </div>
     </Dropdown>
