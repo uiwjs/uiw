@@ -15,8 +15,8 @@ function TreeCheckeds<V extends SearchTagInputOption>(
   useEffect(() => {
     let selectOption: SelectOtpion = {};
     const keys = props.values?.map((opt) => {
-      selectOption[opt.value] = opt.label;
-      return opt.value;
+      selectOption[opt.key] = opt.label;
+      return opt.key;
     });
     selectOptionSet(selectOption);
     keysSet(keys || []);
@@ -24,18 +24,27 @@ function TreeCheckeds<V extends SearchTagInputOption>(
 
   const onSelected = (_1: any, _2: any, isChecked: boolean, evn: TreeData) => {
     const curSelectOption: SelectOtpion = getOptionsRecursion([evn], selectOption, isChecked);
-    const option = Object.entries(curSelectOption).map(([value, label]) => ({ value, label } as V));
-    props.onSelected?.(option, { value: evn.key, label: evn.label as string } as V, isChecked);
+    const option = Object.entries(curSelectOption).map(([key, label]) => ({ key, label } as V));
+    props.onSelected?.(option, { key: evn.key, label: evn.label as string } as V, isChecked);
   };
 
   const getOptionsRecursion = (childrens: TreeData[], selectOption: SelectOtpion, isAdd: boolean) => {
+    const addOrDel = (key: string | number, label: string, isAdd: boolean) => {
+      if (isAdd) {
+        selectOption[key] = label;
+      } else {
+        delete selectOption[key!];
+      }
+    };
+
     childrens.forEach((child: TreeData) => {
       if (!!child.children?.length) {
         selectOption = getOptionsRecursion(child.children, selectOption, isAdd);
-      } else if (isAdd) {
-        selectOption[child.key!] = child.label?.toString()!;
-      } else {
-        delete selectOption[child.key!];
+      }
+      addOrDel(child.key!, child.label?.toString()!, isAdd);
+      if (child.parent) {
+        const selectCount = child.parent.children.filter((child: TreeData) => !selectOption[child.key!]).length;
+        addOrDel(child.parent.key, child.parent.label, selectCount === 0);
       }
     });
     return selectOption;

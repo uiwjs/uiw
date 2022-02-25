@@ -15,7 +15,7 @@ export interface DropContent<V> {
 
 export interface SearchTagInputOption {
   label: string;
-  value: string | number;
+  key: string | number;
 }
 
 export interface SearchTagInputProps<V> extends IProps, DropdownProps, DropContent<V> {
