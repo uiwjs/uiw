@@ -1,6 +1,10 @@
 Icon 图标
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-icon/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-icon.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-icon)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-icon.svg?label=@uiw/react-icon)](https://npmjs.com/@uiw/react-icon)
+
 语义化的矢量图形，内置的图标属于UI框架常用图形字体。icon字体以及样式，被抽离到一个新的仓库 [uiw icon](https://uiwjs.github.io/icons/) ，`uiw`去依赖 [uiw-iconfont](https://github.com/uiwjs/icons)，这个仓库主要是维护一套svg图片，并将svg图片转换为 `*.symbol.svg` `*.ttf` `*.woff` `*.woff2` `*.eot` `svgPaths.json` 等字体及相关文件并发布到 [npm](https://www.npmjs.com/package/uiw-iconfont) 上去。
 
 ```jsx

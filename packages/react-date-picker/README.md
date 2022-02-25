@@ -1,6 +1,10 @@
 DatePicker 日期选择器
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-date-picker/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-date-picker.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-date-picker)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-date-picker.svg?label=@uiw/react-date-picker)](https://npmjs.com/@uiw/react-date-picker)
+
 显示一个月的日历，并允许用户选择单个日期，常见的应用场景在表单中应用，请查看基于 `DatePicker` 的 [`DateInput`](#/components/date-input) 组件。
 
 ```jsx

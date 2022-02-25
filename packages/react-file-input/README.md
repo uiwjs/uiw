@@ -1,6 +1,10 @@
 FileInput 上传输入框
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-file-input/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-file-input.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-file-input)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-file-input.svg?label=@uiw/react-file-input)](https://npmjs.com/@uiw/react-file-input)
+
 这个组件仅仅是对 `<input type="file">` 的美化，他是基于 Input 组件封装      。
 
 ```jsx

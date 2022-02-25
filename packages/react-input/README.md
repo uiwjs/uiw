@@ -1,6 +1,10 @@
 Input 输入框
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-input/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-input.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-input)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-input.svg?label=@uiw/react-input)](https://npmjs.com/@uiw/react-input)
+
 通过鼠标或键盘输入内容，是最基础的表单域的包装。
 
 ```jsx

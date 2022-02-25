@@ -1,6 +1,10 @@
 Divider 分割线
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-divider/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-divider.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-divider)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-divider.svg?label=@uiw/react-divider)](https://npmjs.com/@uiw/react-divider)
+
 区隔内容的分割线。
 
 ```jsx

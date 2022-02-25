@@ -1,6 +1,10 @@
 Affix 图钉
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-affix/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-affix.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-affix)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-affix.svg?label=@uiw/react-affix)](https://npmjs.com/@uiw/react-affix)
+
 使用图钉，可以将内容固定在屏幕可视范围，并且不随页面的滚动而滚动，常用于菜单等。
 
 ```jsx

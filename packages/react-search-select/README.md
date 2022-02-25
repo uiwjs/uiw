@@ -1,6 +1,10 @@
 SearchSelect 搜索选择器
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-search-select/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-search-select.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-search-select)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-search-select.svg?label=@uiw/react-search-select)](https://npmjs.com/@uiw/react-search-select)
+
 搜索选择器
 
 ```jsx

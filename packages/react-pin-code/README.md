@@ -1,6 +1,10 @@
 PinCode 安全码
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-pin-code/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-pin-code.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-pin-code)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-pin-code.svg?label=@uiw/react-pin-code)](https://npmjs.com/@uiw/react-pin-code)
+
 针对输入数字序列进行了优化。最常见的应用是输入一次性安全码。它经过优化，可快速输入数字。
 
 ```jsx

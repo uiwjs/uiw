@@ -1,6 +1,10 @@
 Dropdown 下拉菜单
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-dropdown/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-dropdown.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-dropdown)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-dropdown.svg?label=@uiw/react-dropdown)](https://npmjs.com/@uiw/react-dropdown)
+
 向下弹出的列表。
 
 ```jsx

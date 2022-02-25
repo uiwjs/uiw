@@ -1,6 +1,10 @@
 Progress 进度条
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-progress/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-progress.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-progress)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-progress.svg?label=@uiw/react-progress)](https://npmjs.com/@uiw/react-progress)
+
 用于展示操作进度，告知用户当前状态和预期。
 
 ```jsx

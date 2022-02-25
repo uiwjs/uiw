@@ -1,6 +1,10 @@
 Tree 树形控件
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-tree/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-tree.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-tree)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-tree.svg?label=@uiw/react-tree)](https://npmjs.com/@uiw/react-tree)
+
 使用树控件可以完整展现其中的层级关系，并具有展开收起选择等交互功能。
 
 ```jsx

@@ -1,6 +1,10 @@
 Tag 标签
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-tag/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-tag.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-tag)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-tag.svg?label=@uiw/react-tag)](https://npmjs.com/@uiw/react-tag)
+
 进行标记和分类的小标签。
 
 ```jsx

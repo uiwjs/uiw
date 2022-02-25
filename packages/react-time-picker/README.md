@@ -1,6 +1,10 @@
 TimePicker 时间选择器
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-time-picker/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-time-picker.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-time-picker)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-time-picker.svg?label=@uiw/react-time-picker)](https://npmjs.com/@uiw/react-time-picker)
+
 当用户需要输入一个时间，可以点击标准输入框，弹出时间面板进行选择。
 
 ```jsx

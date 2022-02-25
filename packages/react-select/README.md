@@ -1,6 +1,10 @@
 Select 选择器
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-select/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-select.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-select)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-select.svg?label=@uiw/react-select)](https://npmjs.com/@uiw/react-select)
+
 当选项过多时，使用下拉菜单展示并选择内容。
 
 ```jsx

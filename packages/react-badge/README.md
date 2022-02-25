@@ -1,6 +1,10 @@
 Badge 标记
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-badge/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-badge.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-badge)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-badge.svg?label=@uiw/react-badge)](https://npmjs.com/@uiw/react-badge)
+
 出现在按钮、图标旁的数字或状态标记。
 
 ```jsx

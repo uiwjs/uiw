@@ -1,6 +1,10 @@
 Modal 模态对话框
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-modal/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-modal.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-modal)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-modal.svg?label=@uiw/react-modal)](https://npmjs.com/@uiw/react-modal)
+
 模态对话框。
 
 ```jsx

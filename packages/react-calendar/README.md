@@ -1,5 +1,9 @@
 Calendar 日历
----
+===
+
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-calendar/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-calendar.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-calendar)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-calendar.svg?label=@uiw/react-calendar)](https://npmjs.com/@uiw/react-calendar)
 
 按照日历形式展示数据的容器。
 

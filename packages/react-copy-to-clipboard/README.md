@@ -1,6 +1,10 @@
 CopyToClipboard 复制
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-copy-to-clipboard/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-copy-to-clipboard.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-copy-to-clipboard)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-copy-to-clipboard.svg?label=@uiw/react-copy-to-clipboard)](https://npmjs.com/@uiw/react-copy-to-clipboard)
+
 将文本到剪切板，复制到剪贴板功能可以应用于各种元素，基于 [@uiwjs/copy-to-clipboard](https://github.com/uiwjs/copy-to-clipboard) 封装。
 
 ```jsx

@@ -1,6 +1,10 @@
 Radio 单选框
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-radio/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-radio.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-radio)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-radio.svg?label=@uiw/react-radio)](https://npmjs.com/@uiw/react-radio)
+
 单选框，在一组备选项中进行单选。
 
 ```jsx

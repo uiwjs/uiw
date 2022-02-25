@@ -1,6 +1,10 @@
 Overlay 基础弹出层
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-overlay/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-overlay.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-overlay)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-overlay.svg?label=@uiw/react-overlay)](https://npmjs.com/@uiw/react-overlay)
+
 这是一个基础的弹出层组件，其它弹出组件的抽象组件，都基于它来扩展比如 [`<Modal>`](#/components/modal)、[`<Dawer>`](#/components/drawer)、[`<Alert>`](#/components/alert)、[`<OverlayTrigger>`](#/components/overlay-trigger)、[`<Popover>`](#/components/popover)、[`<Tooltip>`](#/components/tooltip) 等。
 
 ```jsx
