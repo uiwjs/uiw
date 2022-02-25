@@ -121,6 +121,7 @@ jobs:
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-radio/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-rate/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-search-select/package.json
+    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-search-tree/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-select/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-slider/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-steps/package.json
