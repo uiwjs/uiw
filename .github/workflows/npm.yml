@@ -67,6 +67,9 @@ jobs:
     - run: cp -rf website/build/* packages/doc/web
 
     - run: npm run bundle
+    - run: cp -rp packages/uiw/dist/*js website/build
+    - run: cp -rp packages/uiw/dist/*css website/build
+
     - run: git checkout -f packages/uiw/tsconfig.json
 
     - run: git status
