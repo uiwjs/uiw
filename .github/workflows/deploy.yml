@@ -25,8 +25,6 @@ jobs:
 
     - run: npm run build
     - run: npm run bundle
-    - run: cp -rp packages/uiw/dist/*js website/build
-    - run: cp -rp packages/uiw/dist/*css website/build
     - run: npm run coverage
     - run: npm run b:website
     - run: npm run b:doc
