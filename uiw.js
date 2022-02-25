@@ -5564,8 +5564,11 @@ function Form(_ref, ref //| React.RefObject<FormRefType>,
   }
 
   function setFields(fields) {
-    data.current = fields;
-    setData(data);
+    var tempData = _extends({}, data, {
+      current: fields
+    });
+
+    setData(tempData);
   }
 
   function handleChange(name, validator, element, cb) {
@@ -9657,6 +9660,9 @@ function SearchTagInput(props) {
   optionRef.current = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => selectedOption, [selectedOption]);
   var [selectIconType, setSelectIconType] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)('');
   var inputRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    setSelectedOption(values);
+  }, [JSON.stringify(values)]);
 
   function renderSelectIcon(type) {
     var selectIconType = type === 'enter' && allowClear && (!!selectedOption.length || searchValue) ? 'close' : '';
@@ -9835,6 +9841,15 @@ function TreeCheckeds(props) {
       }
     };
 
+    var iteratorParent = child => {
+      // 向上迭代
+      if (child.parent) {
+        var selectCount = child.parent.children.filter(child => !selectOption[child.key]).length;
+        addOrDel(child.parent.key, child.parent.label, selectCount === 0);
+        iteratorParent(child.parent);
+      }
+    };
+
     childrens.forEach(child => {
       var _child$children, _child$label;
 
@@ -9843,11 +9858,7 @@ function TreeCheckeds(props) {
       }
 
       addOrDel(child.key, (_child$label = child.label) == null ? void 0 : _child$label.toString(), isAdd);
-
-      if (child.parent) {
-        var selectCount = child.parent.children.filter(child => !selectOption[child.key]).length;
-        addOrDel(child.parent.key, child.parent.label, selectCount === 0);
-      }
+      iteratorParent(child);
     });
     return selectOption;
   };
@@ -9873,10 +9884,13 @@ function SearchTree(props) {
 
   var [selectedValues, selectedValuesSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(value);
   var [selectedOptions, selectedOptionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(options);
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    selectedValuesSet(value);
+  }, [JSON.stringify(value)]);
 
   var selectedChange = (resultValue, cur, isChecked) => {
     selectedValuesSet(resultValue);
-    onChange == null ? void 0 : onChange(resultValue, cur, isChecked);
+    onChange == null ? void 0 : onChange(cur, resultValue, isChecked);
   }; // 防抖
 
 
