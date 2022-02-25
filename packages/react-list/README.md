@@ -45,7 +45,7 @@ const Demo = () => (
     <h4 style={{ margin: '16px 10px' }}>小尺寸</h4>
     <List
       size="small"
-      header={<div>列表头部</div>} 
+      header={<div>列表头部</div>}
       footer={<div>列表尾部</div>}
       dataSource={data}
       renderItem={item => (<List.Item>{item}</List.Item>)}
@@ -53,7 +53,7 @@ const Demo = () => (
     <h4 style={{ margin: '16px 10px' }}>大尺寸</h4>
     <List
       size="large"
-      header={<div>列表头部</div>} 
+      header={<div>列表头部</div>}
       footer={<div>列表尾部</div>}
       dataSource={data}
       renderItem={item => (<List.Item>{item}</List.Item>)}
@@ -278,7 +278,7 @@ ReactDOM.render(<Demo />, _mount_);
 | footer | 列表底部 | String/ReactNode | - |
 | header | 列表头部 | String/ReactNode | - |
 | dataSource | 是否展示边框 | Boolean | - |
-| renderItem | 通过毁掉函数返回Dome，渲染列表每个行 | Function(item,index) | - |
+| renderItem | 通过回调函数返回Dome，渲染列表每个行 | Function(item,index) | - |
 
 ## List.Item
 
