@@ -241,7 +241,7 @@ export default function SearchSelect(props: SearchSelectProps) {
                       key={index}
                       closable
                       onClose={() => handleItemsClick(index, item)}
-                      color="#ccc"
+                      color="#393E48"
                     >
                       {item.label}
                     </Tag>
