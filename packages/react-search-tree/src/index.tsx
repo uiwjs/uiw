@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchTagInput, { DropContent, SearchTagInputOption } from './SearchTagInput';
 import { TreeData } from '@uiw/react-tree';
 import TreeChecked, { TreeCheckedProps } from '@uiw/react-tree-checked';
@@ -36,16 +36,21 @@ function TreeCheckeds<V extends SearchTagInputOption>(
         delete selectOption[key!];
       }
     };
+    const iteratorParent = (child: TreeData) => {
+      // 向上迭代
+      if (child.parent) {
+        const selectCount = child.parent.children.filter((child: TreeData) => !selectOption[child.key!]).length;
+        addOrDel(child.parent.key, child.parent.label, selectCount === 0);
+        iteratorParent(child.parent);
+      }
+    };
 
     childrens.forEach((child: TreeData) => {
       if (!!child.children?.length) {
         selectOption = getOptionsRecursion(child.children, selectOption, isAdd);
       }
       addOrDel(child.key!, child.label?.toString()!, isAdd);
-      if (child.parent) {
-        const selectCount = child.parent.children.filter((child: TreeData) => !selectOption[child.key!]).length;
-        addOrDel(child.parent.key, child.parent.label, selectCount === 0);
-      }
+      iteratorParent(child);
     });
     return selectOption;
   };
@@ -54,9 +59,8 @@ function TreeCheckeds<V extends SearchTagInputOption>(
     <TreeChecked defaultExpandAll={true} {...props} data={props.options} selectedKeys={keys} onSelected={onSelected} />
   );
 }
-
 export interface SearchTreeProps<V> {
-  onChange?: (selectedAll: Array<V>, selectd: V, isChecked: boolean) => void;
+  onChange?: (selectd: V, selectedAll: Array<V>, isChecked: boolean) => void;
   onSearch?: (seachValue: string) => void;
   value?: Array<V>;
   options?: TreeData[];
@@ -68,9 +72,13 @@ function SearchTree<V extends SearchTagInputOption>(props: SearchTreeProps<V>) {
   const [selectedValues, selectedValuesSet] = useState<Array<V>>(value);
   const [selectedOptions, selectedOptionSet] = useState<Array<TreeData>>(options);
 
+  useEffect(() => {
+    selectedValuesSet(value);
+  }, [JSON.stringify(value)]);
+
   const selectedChange = (resultValue: Array<V>, cur: V, isChecked: boolean) => {
     selectedValuesSet(resultValue);
-    onChange?.(resultValue, cur, isChecked);
+    onChange?.(cur, resultValue, isChecked);
   };
 
   // 防抖

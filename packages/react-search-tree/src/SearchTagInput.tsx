@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef, ReactElement } from 'react';
+import React, { useMemo, useState, useRef, useEffect, ReactElement } from 'react';
 import Dropdown, { DropdownProps } from '@uiw/react-dropdown';
 import Icon from '@uiw/react-icon';
 import Input from '@uiw/react-input';
@@ -58,6 +58,10 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
   optionRef.current = useMemo(() => selectedOption, [selectedOption]);
   const [selectIconType, setSelectIconType] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setSelectedOption(values);
+  }, [JSON.stringify(values)]);
 
   function renderSelectIcon(type: string) {
     const selectIconType = type === 'enter' && allowClear && (!!selectedOption.length || searchValue) ? 'close' : '';

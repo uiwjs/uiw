@@ -158,8 +158,8 @@ function Form<T>(
   }
 
   function setFields(fields: FormState['current']) {
-    data.current = fields;
-    setData(data);
+    const tempData = { ...data, current: fields };
+    setData(tempData);
   }
 
   function handleChange(
