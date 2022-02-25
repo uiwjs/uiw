@@ -1,16 +1,16 @@
 SearchTree 带搜索的Tree选择控件
 ===
 
-[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-tree-checked/file/README.md)
-[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-tree-checked.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-tree-checked)
-[![npm version](https://img.shields.io/npm/v/@uiw/react-tree-checked.svg?label=@uiw/react-tree-checked)](https://npmjs.com/@uiw/react-tree-checked)
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-search-tree/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-search-tree.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-search-tree)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-search-tree.svg?label=@uiw/react-search-tree)](https://npmjs.com/@uiw/react-search-tree)
 
 使用树选择控件可以完整展现其中的层级关系，并具有选中状态。新组件 v4.11.7+ 支持。
 
 ```jsx
-import { TreeChecked } from 'uiw';
+import { SearchTree } from 'uiw';
 // or
-import TreeChecked from '@uiw/react-tree-checked';
+import SearchTree from '@uiw/react-search-tree';
 ```
 
 ### 基础实例

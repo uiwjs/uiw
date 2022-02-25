@@ -51,9 +51,8 @@ export default function Code({ version, dependencies, codePen, codeSandbox, ...o
               uiw: 'latest',
             },
             devDependencies: {
-              '@kkt/less-modules': '6.9.0',
-              kkt: '6.9.0',
-              typescript: '4.1.3',
+              '@kkt/less-modules': '~7.1.1',
+              kkt: '~7.1.5',
             },
             license: 'MIT',
             scripts: {
