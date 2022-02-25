@@ -17,6 +17,7 @@ import SearchTree from '@uiw/react-search-tree';
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
+import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import {  SearchTree } from 'uiw';
 
@@ -57,17 +58,24 @@ const data = [
   },
   { label: '澳门', key: '3' },
 ];
+const Demo = () => {
 
-const Demo = () => (
-  <SearchTree
+const [value,valueSet]=useState([{ label: '东花市街道', key: '2-3-1' }])
+
+const onChange=(selectd, selectedAll,  isChecked)=>{
+  console.log('SearchTree-> onChange',selectedAll, selectd, isChecked)
+  valueSet(selectedAll)
+}
+
+ return (<SearchTree
     allowClear={true}
     onSearch={(searchValue)=>console.log('SearchTree-> SearchTreeOption',searchValue)}
-    onChange={(selectedAll, selectd, isChecked)=>console.log('SearchTree-> onChange',selectedAll, selectd, isChecked)}
-    value={[{ label: '东花市街道', key: '2-3-1' }]}
+    onChange={onChange}
+    value={value}
     options={data}
     placeholder="请输入选择"
-  />
-)
+  />)
+}
 ReactDOM.render(<Demo />, _mount_);
 ```
 
@@ -75,10 +83,13 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
+import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import {  Form, Button, SearchTree, Card, Row, Col } from 'uiw';;
 
+
 const Demo = () => {
+const form=useRef()
 
   const data = [
     {
@@ -118,9 +129,18 @@ const Demo = () => {
     { label: '澳门', key: '3' },
   ];
 
+  const setValue=()=>{
+    form.current.setFields({ searchTree: [{ label: '东城区', key: '2-1-0' }, { label: '外滩街道', key: '1-3-0' }] })
+  }
+
+  const resetValue=()=>{
+    form.current.resetForm()
+  }
+
   return (
     <div>
       <Form
+        ref={form}
         onSubmitError={(error) => {
           if (error.filed) {
             return { ...error.filed };
@@ -128,6 +148,7 @@ const Demo = () => {
           return null;
         }}
         onSubmit={({initial, current}) => {
+          console.log('current',current)
           const errorObj = {};
           if (!current.selectField) {
             errorObj.selectField = '默认需要选择内容，选择入内容';
@@ -145,12 +166,12 @@ const Demo = () => {
         }}
         fields={{
           searchTree: {
-            initialValue:[{ label: '东花市街道', key: '2-3-1' }],
+            initialValue:[{ label: '东花市街道', key: '2-3-1' },{ label: '前门街道', key: '2-3-3' }],
             children: (
                 <SearchTree
                   allowClear={true}
                   onSearch={(searchValue)=>console.log('SearchTree-> SearchTreeOption',searchValue)}
-                  onChange={(selectedAll, selectd, isChecked)=>console.log('SearchTree-> onChange',selectedAll, selectd, isChecked)}
+                  onChange={(selectd, selectedAll,  isChecked)=>console.log('SearchTree-> onChange', selectd, selectedAll, isChecked)}
                   options={data}
                   placeholder="请输入选择"
                 />
@@ -167,12 +188,13 @@ const Demo = () => {
               <Row>
                 <Col fixed>
                   <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+                  <Button onClick={setValue} type="primary" >setValue</Button>
+                  <Button onClick={resetValue} type="primary" >重置</Button>
                 </Col>
               </Row>
               <Row>
                 <Col>
                   <pre style={{ padding: 10, marginTop: 10 }}>
-                  {console.log('state',state)}
                     {JSON.stringify(state.current, null, 2)}
                   </pre>
                 </Col>
@@ -197,7 +219,7 @@ ReactDOM.render(<Demo />, _mount_);
 | options | 下拉数据源,可参考Tree下拉数据源 | [{label:string, key:string, children: [{label:string, key:string}] }] | - |
 | placeholder | 选择框默认文字 | String | - |
 | size | 选择框尺寸 | Enum{large, default, small } | `default` |
-| onChange | 选中 option，或 input 的 value，调用此函数 | function(selectdAll, selectd, isChecked)=>void | - |
+| onChange | 选中 option，或 input 的 value，调用此函数 | function(selectd, selectdAll, isChecked)=>void | - |
 | onSearch | 文本框值变化时回调 | function(searchValue) | - |
 | loading | 加载中状态 | Boolean | `false` |
 
