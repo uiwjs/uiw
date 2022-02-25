@@ -1,6 +1,11 @@
 文档编辑预览
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/doc/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/doc.svg?style=flat)](https://www.npmjs.com/package/@uiw/doc)
+[![jsdelivr cdn](https://data.jsdelivr.com/v1/package/npm/@uiw/doc/badge?style=rounded)](https://www.jsdelivr.com/package/npm/@uiw/doc)
+[![npm version](https://img.shields.io/npm/v/@uiw/doc.svg?label=@uiw/doc)](https://npmjs.com/@uiw/doc)
+
 我们使用 [`npm`](https://www.npmjs.com/package/@uiw/doc) 来管理 `uiw` 文档站点的版本，使用 [unpkg.com](https://unpkg.com/@uiw/doc/web/index.html) 预览。文档版本管理，是根据 `unpkg` 工具支持静态服务和同步 `npm` 包的特点，来实现这一功能的。所以我们在发布 [`uiw`](https://www.npmjs.com/package/uiw) 包的同时会发布 [`@uiw/doc`](https://www.npmjs.com/package/@uiw/doc) 包，版本是同步的。
 
 - 通过 unpkg 预览文档网站：https://unpkg.com/@uiw/doc/web/index.html  
@@ -74,3 +79,9 @@ const Demo = () => (
 - `codePen` 显示 Codepen 按钮，要特别注意 `包导入的问题`，实例中的 `import` 主要用于 Codepen 使用。
 - `codeSandbox` 显示 codeSandbox 按钮，要特别注意 `包导入的问题`，实例中的 `import` 主要用于 Codepen 使用。
 
+
+## Contributors
+
+<a href="https://github.com/uiwjs/uiw/graphs/contributors">
+  <img src="https://uiwjs.github.io/uiw/CONTRIBUTORS.svg" />
+</a>
