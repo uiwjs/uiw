@@ -1,18 +1,12 @@
 import { Configuration } from 'webpack';
 import { LoaderConfOptions } from 'kkt';
-import reactLibrary from '@kkt/react-library';
 import lessModules from '@kkt/less-modules';
-import pkg from './package.json';
 
 export default (conf: Configuration, env: string, options: LoaderConfOptions) => {
   conf = lessModules(conf, env, options);
-  conf = reactLibrary(conf, env, {
-    ...options,
-    ...pkg,
-    name: 'uiw',
-    main: 'dist/uiw.js',
-    // webpack externals options
-    dependencies: {
+  if (options.bundle) {
+    conf.output!.library = 'uiw';
+    conf.externals = {
       react: {
         root: 'React',
         commonjs2: 'react',
@@ -25,7 +19,7 @@ export default (conf: Configuration, env: string, options: LoaderConfOptions) =>
         commonjs: 'react-dom',
         amd: 'react-dom',
       },
-    },
-  });
+    };
+  }
   return conf;
 };
