@@ -5907,7 +5907,7 @@ class Layout extends (external_root_React_commonjs2_react_commonjs_react_amd_rea
         siderHook: this.getSiderHook()
       },
       children: /*#__PURE__*/(0,jsx_runtime.jsx)("section", _extends({
-        className: [prefixCls, className, (typeof hasSider === 'boolean' ? hasSider : this.state.siders.length > 0) ? prefixCls + "-has-sider" : null].filter(Boolean).join(' ').trim()
+        className: [prefixCls, className, typeof hasSider === 'boolean' && hasSider || this.state.siders.length > 0 ? prefixCls + "-has-sider" : null].filter(Boolean).join(' ').trim()
       }, other, {
         children: children
       }))
@@ -8158,7 +8158,7 @@ class Split extends (external_root_React_commonjs2_react_commonjs_react_amd_reac
 
         return /*#__PURE__*/(0,jsx_runtime.jsxs)((external_root_React_commonjs2_react_commonjs_react_amd_react_default()).Fragment, {
           children: [BarCom, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(element, _extends({}, props))]
-        });
+        }, idx);
       })
     }));
   }
