@@ -150,7 +150,7 @@ Use Gitpod, a free online dev environment for GitHub.
 Or clone locally:
 
 ```bash
-$ git clone https://github.com/uiwjs/uiwjs.github.io.git --recurse-submodules
+$ git clone git@github.com:uiwjs/uiw.git
 ```
 
 Install dependencies & compile component code.
