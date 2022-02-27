@@ -345,7 +345,11 @@ __webpack_require__.d(__webpack_exports__, {
   "Icon": () => (/* reexport */ Icon),
   "Input": () => (/* reexport */ react_input_esm),
   "Layout": () => (/* reexport */ react_layout_esm),
+  "LayoutContent": () => (/* reexport */ LayoutContent),
   "LayoutContext": () => (/* reexport */ LayoutContext),
+  "LayoutFooter": () => (/* reexport */ LayoutFooter),
+  "LayoutHeader": () => (/* reexport */ LayoutHeader),
+  "LayoutSider": () => (/* reexport */ LayoutSider),
   "List": () => (/* reexport */ react_list_esm),
   "ListItem": () => (/* reexport */ ListItem),
   "Loader": () => (/* reexport */ react_loader_esm),
@@ -5929,24 +5933,21 @@ Layout.defaultProps = {
 var Header_excluded = ["prefixCls", "className", "children"];
 
 
-/* harmony default export */ const Header = (function (props) {
-  if (props === void 0) {
-    props = {};
-  }
-
-  var {
+function LayoutHeader(props) {
+  var _ref = props || {},
+      {
     prefixCls = 'w-layout-header',
     className,
     children
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, Header_excluded);
+  } = _ref,
+      other = _objectWithoutPropertiesLoose(_ref, Header_excluded);
 
   return /*#__PURE__*/(0,jsx_runtime.jsx)("header", _extends({
     className: [prefixCls, className].filter(Boolean).join(' ').trim()
   }, other, {
     children: children
   }));
-});
+}
 
 ;// CONCATENATED MODULE: ../../node_modules/@uiw/react-layout/esm/Footer.js
 
@@ -5954,11 +5955,7 @@ var Header_excluded = ["prefixCls", "className", "children"];
 var Footer_excluded = ["prefixCls", "className", "children"];
 
 
-/* harmony default export */ const Footer = (function (props) {
-  if (props === void 0) {
-    props = {};
-  }
-
+function LayoutFooter(props) {
   var {
     prefixCls = 'w-layout-footer',
     className,
@@ -5971,7 +5968,7 @@ var Footer_excluded = ["prefixCls", "className", "children"];
   }, other, {
     children: children
   }));
-});
+}
 
 ;// CONCATENATED MODULE: ../../node_modules/@uiw/react-layout/esm/Sider.js
 
@@ -6031,15 +6028,11 @@ function Sider(props) {
   }));
 }
 
-/* harmony default export */ const esm_Sider = (function (props) {
-  if (props === void 0) {
-    props = {};
-  }
-
+function LayoutSider(props) {
   return /*#__PURE__*/(0,jsx_runtime.jsx)(LayoutContext.Consumer, {
     children: context => /*#__PURE__*/(0,jsx_runtime.jsx)(Sider, _extends({}, props, context))
   });
-});
+}
 
 ;// CONCATENATED MODULE: ../../node_modules/@uiw/react-layout/esm/Content.js
 
@@ -6047,11 +6040,7 @@ function Sider(props) {
 var Content_excluded = ["prefixCls", "className", "children"];
 
 
-/* harmony default export */ const Content = (function (props) {
-  if (props === void 0) {
-    props = {};
-  }
-
+function LayoutContent(props) {
   var {
     prefixCls = 'w-layout-content',
     className,
@@ -6064,7 +6053,7 @@ var Content_excluded = ["prefixCls", "className", "children"];
   }, other, {
     children: children
   }));
-});
+}
 
 ;// CONCATENATED MODULE: ../../node_modules/@uiw/react-layout/esm/style/index.css
 // extracted by mini-css-extract-plugin
@@ -6076,10 +6065,10 @@ var Content_excluded = ["prefixCls", "className", "children"];
 
 
 
-Layout.Header = Header;
-Layout.Footer = Footer;
-Layout.Sider = esm_Sider;
-Layout.Content = Content;
+Layout.Header = LayoutHeader;
+Layout.Footer = LayoutFooter;
+Layout.Sider = LayoutSider;
+Layout.Content = LayoutContent;
 
 
 
