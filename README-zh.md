@@ -7,27 +7,24 @@
   <a href="https://github.com/uiwjs/uiw/actions">
     <img alt="Github Actions" src="https://github.com/uiwjs/uiw/workflows/Build%20uiw/badge.svg">
   </a>
-  <a href="https://github.com/uiwjs/uiw/issues">
-    <img alt="Github Issues" src="https://img.shields.io/github/issues/uiwjs/uiw.svg">
+  <a href="https://github.com/uiwjs/uiw">
+    <img alt="License MIT" src="https://img.shields.io/dub/l/vibe-d.svg">
   </a>
-  <a href="https://github.com/uiwjs/uiw/network">
-    <img alt="Github Forks" src="https://img.shields.io/github/forks/uiwjs/uiw.svg">
+  <a href="https://github.com/facebook/jest">
+    <img alt="jest" src="https://facebook.github.io/jest/img/jest-badge.svg">
   </a>
-  <a href="https://github.com/uiwjs/uiw/stargazers">
-    <img alt="Github Stars" src="https://img.shields.io/github/stars/uiwjs/uiw.svg">
+  <a href="https://gitpod.io/#https://github.com/uiwjs/uiw">
+    <img alt="Open in Gitpod" src="https://shields.io/badge/Open%20in-Gitpod-green?logo=Gitpod">
   </a>
   <br>
   <a href="https://github.com/uiwjs/uiw/releases">
     <img alt="Github Releases" src="https://img.shields.io/github/release/uiwjs/uiw.svg">
   </a>
-  <a href="https://github.com/uiwjs/uiw">
-    <img alt="License MIT" src="https://img.shields.io/dub/l/vibe-d.svg">
-  </a>
   <a href="https://www.npmjs.com/package/uiw">
     <img alt="npm version" src="https://img.shields.io/npm/v/uiw.svg">
   </a>
-  <a href="https://github.com/facebook/jest">
-    <img alt="jest" src="https://facebook.github.io/jest/img/jest-badge.svg">
+  <a href="https://github.com/uiwjs/uiw/stargazers">
+    <img alt="Github Stars" src="https://img.shields.io/github/stars/uiwjs/uiw.svg">
   </a>
 </p>
 
@@ -110,7 +107,7 @@ Package | Version | Description
 [`@uiw/react-grid`](/packages/react-grid)| [![npm version](https://img.shields.io/npm/v/@uiw/react-grid.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-grid)                           | -
 [`@uiw/react-icon`](/packages/react-icon)| [![npm version](https://img.shields.io/npm/v/@uiw/react-icon.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-icon)                           | -
 [`@uiw/react-input`](/packages/react-input)| [![npm version](https://img.shields.io/npm/v/@uiw/react-input.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-input)                         | -
-[`@uiw/react-layout`](/packages/react-layout)| [![npm version](https://img.shields.io/npm/v/@uiw/react-layout.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-layout)                       | -
+[`@uiw/react-layout`](https://github.com/uiwjs/react-layout)| [![npm version](https://img.shields.io/npm/v/@uiw/react-layout.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-layout)                       | -
 [`@uiw/react-list`](/packages/react-list)| [![npm version](https://img.shields.io/npm/v/@uiw/react-list.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-list)                           | -
 [`@uiw/react-loader`](/packages/react-loader)| [![npm version](https://img.shields.io/npm/v/@uiw/react-loader.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-loader)                       | -
 [`@uiw/react-menu`](/packages/react-menu)| [![npm version](https://img.shields.io/npm/v/@uiw/react-menu.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-menu)                           | -
@@ -127,7 +124,8 @@ Package | Version | Description
 [`@uiw/react-progress`](/packages/react-progress)| [![npm version](https://img.shields.io/npm/v/@uiw/react-progress.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-progress)                   | -
 [`@uiw/react-radio`](/packages/react-radio)| [![npm version](https://img.shields.io/npm/v/@uiw/react-radio.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-radio)                         | -
 [`@uiw/react-rate`](/packages/react-rate)| [![npm version](https://img.shields.io/npm/v/@uiw/react-rate.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-rate)                           | -
-[`@uiw/react-search-select`](/packages/react-search-select)| [![npm version](https://img.shields.io/npm/v/@uiw/react-search-select.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-search-select)         | -
+[`@uiw/react-search-select`](/packages/react-search-select)| [![npm version](https://img.shields.io/npm/v/@uiw/react-search-select.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-search-select) | -
+[`@uiw/react-search-tree`](/packages/react-search-tree)| [![npm version](https://img.shields.io/npm/v/@uiw/react-search-tree.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-search-tree) | -
 [`@uiw/react-select`](/packages/react-select)| [![npm version](https://img.shields.io/npm/v/@uiw/react-select.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-select)                       | -
 [`@uiw/react-split`](https://github.com/uiwjs/react-split)| [![npm version](https://img.shields.io/npm/v/@uiw/react-split.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-split) | -
 [`@uiw/react-slider`](/packages/react-slider)| [![npm version](https://img.shields.io/npm/v/@uiw/react-slider.svg?maxAge=3600)](https://www.npmjs.com/package/@uiw/react-slider)                       | -
@@ -152,7 +150,7 @@ Package | Version | Description
 或者在本地克隆：
 
 ```bash
-$ git clone https://github.com/uiwjs/uiwjs.github.io.git --recurse-submodules
+$ git clone git@github.com:uiwjs/uiw.git
 ```
 
 安装依赖 & 编译组件代码
