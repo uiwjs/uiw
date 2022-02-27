@@ -17,7 +17,7 @@ export default function Code({ version, dependencies, codePen, codeSandbox, ...o
       js: (props.code || '').replace('_mount_', 'document.getElementById("container")'),
       html: '<div id="container" style="padding: 24px"></div>',
       css_external: `https://unpkg.com/uiw@${version}/dist/uiw.min.css`,
-      js_external: `https://unpkg.com/react@16.x/umd/react.development.js;https://unpkg.com/react-dom@16.x/umd/react-dom.development.js;https://unpkg.com/classnames@2.2.6/index.js;https://unpkg.com/uiw@${version}/dist/uiw.min.js;https://unpkg.com/@uiw/codepen-require-polyfill@1.0.2/index.js`,
+      js_external: `https://unpkg.com/react@17.x/umd/react.development.js;https://unpkg.com/react-dom@17.x/umd/react-dom.development.js;https://unpkg.com/classnames@2.2.6/index.js;https://unpkg.com/uiw@${version}/dist/uiw.min.js;https://unpkg.com/@uiw/codepen-require-polyfill@1.1.3/index.js`,
     };
   }
   if (codeSandbox) {
