@@ -80,7 +80,7 @@
     "@uiw/react-grid": "^4.12.1",
     "@uiw/react-icon": "^4.12.1",
     "@uiw/react-input": "^4.12.1",
-    "@uiw/react-layout": "~4.9.14",
+    "@uiw/react-layout": "~4.10.0",
     "@uiw/react-list": "^4.12.1",
     "@uiw/react-loader": "^4.12.1",
     "@uiw/react-menu": "^4.12.1",
