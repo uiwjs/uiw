@@ -1,14 +1,6 @@
 ports:
-- port: 19870
-  onOpen: open-preview
-
+  - port: 3000
+    onOpen: open-preview
 tasks:
-- before: >
-    cd /workspace/uiw/
-  init: npm install
-  command: npm run bootstrap &&
-    npm run b:uiw &&
-    npm run b:css &&
-    npm run type &&
-    npm run website
-
+  - init: npm install
+    command: npm run hoist && npm run build && npm run start
