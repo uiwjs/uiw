@@ -6,7 +6,6 @@ DateInput 日期输入框
 [![npm version](https://img.shields.io/npm/v/@uiw/react-date-input.svg?label=@uiw/react-date-input)](https://npmjs.com/@uiw/react-date-input)
 
 显示一个月的日历，并允许用户选择单个日期。
-在v4.12.3版本中增加 DateInputRange组件
 
 ```jsx
 import { DateInput, DateInputRange } from 'uiw';
