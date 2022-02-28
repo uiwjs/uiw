@@ -7682,7 +7682,7 @@ var react_tag_esm_excluded = ["prefixCls", "className", "style", "title", "child
 ;// CONCATENATED MODULE: ../react-search-select/esm/index.js
 
 
-var react_search_select_esm_excluded = ["allowClear", "disabled", "size", "maxTagCount", "option", "loading", "labelInValue", "prefixCls", "className", "mode", "style", "isOpen", "value", "defaultValue", "showSearch", "placeholder", "onSearch", "onChange", "onSelect"];
+var react_search_select_esm_excluded = ["allowClear", "disabled", "size", "maxTagCount", "option", "loading", "labelInValue", "prefixCls", "className", "mode", "style", "isOpen", "value", "defaultValue", "showSearch", "tagProps", "placeholder", "onSearch", "onChange", "onSelect"];
 
 
 
@@ -7711,6 +7711,7 @@ function SearchSelect(props) {
     value,
     defaultValue,
     showSearch,
+    tagProps = {},
     placeholder,
     onSearch,
     onChange,
@@ -7893,19 +7894,20 @@ function SearchSelect(props) {
             flexFlow: 'wrap'
           },
           children: [isMultiple && selectedValue.slice(0, maxTagCount).map((item, index) => {
-            return /*#__PURE__*/(0,jsx_runtime.jsx)(react_tag_esm, {
-              style: {
+            return /*#__PURE__*/(0,jsx_runtime.jsx)(react_tag_esm, _extends({
+              style: _extends({
                 height: 20,
                 margin: 1,
                 display: 'flex',
                 alignItems: 'center'
-              },
+              }, tagProps.style),
               className: prefixCls + "-tag",
+              color: "#393E48"
+            }, tagProps, {
               closable: true,
               onClose: () => handleItemsClick(index, item),
-              color: "#393E48",
               children: item.label
-            }, index);
+            }), index);
           }), !!omitTagCount && /*#__PURE__*/(0,jsx_runtime.jsxs)(react_tag_esm, {
             style: {
               height: 20,
