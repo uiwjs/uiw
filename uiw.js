@@ -328,6 +328,7 @@ __webpack_require__.d(__webpack_exports__, {
   "Collapse": () => (/* reexport */ react_collapse_esm),
   "CopyToClipboard": () => (/* reexport */ CopyToClipboard),
   "DateInput": () => (/* reexport */ DateInput),
+  "DateInputRange": () => (/* reexport */ DateInputRange),
   "DatePicker": () => (/* reexport */ DatePicker),
   "DatePickerCaption": () => (/* reexport */ DatePickerCaption),
   "DatePickerDay": () => (/* reexport */ DatePickerDay),
@@ -4483,6 +4484,117 @@ function CopyToClipboard(props) {
   }));
 }
 
+;// CONCATENATED MODULE: ../react-date-input/esm/style/date-input-range.css
+// extracted by mini-css-extract-plugin
+/* harmony default export */ const date_input_range = ({});
+;// CONCATENATED MODULE: ../react-date-input/esm/DateInputRange.js
+
+
+var DateInputRange_excluded = ["prefixCls", "bodyStyle", "className", "popoverProps", "datePickerProps", "allowClear", "format", "onChange", "value"];
+
+
+
+
+
+
+
+
+
+function DateInputRange(props) {
+  var {
+    prefixCls = 'w-dateinputrange',
+    bodyStyle = undefined,
+    className,
+    popoverProps,
+    datePickerProps,
+    allowClear = true,
+    format = 'YYYY/MM/DD',
+    onChange,
+    value
+  } = props,
+      inputProps = _objectWithoutPropertiesLoose(props, DateInputRange_excluded);
+
+  var [dateRange, setDateRange] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    var valueTemp = [];
+    var propsValue = value;
+
+    if (Array.isArray(propsValue) && !!(propsValue != null && propsValue.length)) {
+      propsValue.forEach((date, index) => {
+        valueTemp[index] = typeof propsValue[index] === 'string' ? new Date(date) : date;
+      });
+    }
+
+    setDateRange(valueTemp);
+  }, [JSON.stringify(value)]);
+
+  function handleChange(cdate, idx) {
+    var changeValue = [...dateRange];
+    changeValue[idx] = cdate;
+    setDateRange(changeValue);
+    onChange && onChange(cdate, changeValue);
+  }
+
+  return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
+    className: [prefixCls + "-contents", prefixCls + "-inner"].filter(Boolean).join(' ').trim(),
+    style: _extends({
+      width: 300
+    }, bodyStyle),
+    children: [/*#__PURE__*/(0,jsx_runtime.jsx)(Popover, _extends({
+      trigger: "focus",
+      placement: "bottomLeft",
+      autoAdjustOverflow: true
+    }, popoverProps, {
+      content: /*#__PURE__*/(0,jsx_runtime.jsx)(DatePicker, _extends({
+        date: dateRange[0],
+        className: prefixCls + "-popover"
+      }, datePickerProps, {
+        onChange: selectedDate => handleChange(selectedDate, 0)
+      })),
+      children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, _extends({
+        placeholder: "\u8BF7\u9009\u62E9\u65E5\u671F",
+        readOnly: true
+      }, inputProps, {
+        // onChange={(v) => console.log('v', v)}
+        value: dateRange[0] ? formatter(format, dateRange[0]) : '',
+        className: [prefixCls, className].filter(Boolean).join(' ').trim()
+      }))
+    })), /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+      type: "swap-right",
+      verticalAlign: "baseline",
+      style: {
+        fontSize: 21,
+        top: -1,
+        margin: '0px 8px 0px 5px'
+      }
+    }), /*#__PURE__*/(0,jsx_runtime.jsx)(Popover, _extends({
+      trigger: "focus",
+      placement: "bottomLeft",
+      autoAdjustOverflow: true
+    }, popoverProps, {
+      content: /*#__PURE__*/(0,jsx_runtime.jsx)(DatePicker, _extends({
+        date: dateRange[1],
+        className: prefixCls + "-popover"
+      }, datePickerProps, {
+        onChange: selectedDate => handleChange(selectedDate, 1)
+      })),
+      children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, _extends({
+        placeholder: "\u8BF7\u9009\u62E9\u65E5\u671F",
+        readOnly: true
+      }, inputProps, {
+        value: dateRange[1] ? formatter(format, dateRange[1]) : '' // onChange={(v) => console.log('v2', v)}
+        ,
+        className: [prefixCls, className].filter(Boolean).join(' ').trim()
+      }))
+    })), allowClear && dateRange.length > 0 && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+      className: prefixCls + "-close-btn",
+      color: "#ccc",
+      onClick: () => setDateRange([]),
+      type: "close"
+    })]
+  });
+}
+
 ;// CONCATENATED MODULE: ../react-date-input/esm/style/index.css
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const react_date_input_esm_style = ({});
@@ -4490,6 +4602,7 @@ function CopyToClipboard(props) {
 
 
 var react_date_input_esm_excluded = ["prefixCls", "className", "popoverProps", "datePickerProps", "allowClear", "format", "onChange"];
+
 
 
 
