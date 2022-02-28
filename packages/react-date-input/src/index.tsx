@@ -5,6 +5,7 @@ import DatePicker, { DatePickerProps } from '@uiw/react-date-picker';
 import Icon from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
+export * from './DateInputRange';
 import './style/index.less';
 
 export interface DateInputProps extends IProps, Omit<InputProps, 'onChange' | 'value'> {
