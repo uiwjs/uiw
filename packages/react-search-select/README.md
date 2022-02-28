@@ -166,20 +166,20 @@ ReactDOM.render(<Demo />, _mount_);
 
 ## Props
 
-| 参数 | 说明 | 类型 | 默认值 |
-|--------- |-------- |--------- |-------- |
-| allowClear | 支持清除 | Boolean | `false` |
-| disabled | 禁用选择器 | Boolean | `false` |
-| mode | 选择模式: `multiple`  `single` | String | `single` |
-| defaultValue | 指定默认选中的条目 | String/Number | - |
-| value | 指定当前选中的条目，多选时为一个数组 | String \| Number \| String[] \| Number[] \| LabeledValue \| LabeledValue[] | - |
-| placeholder | 选择框默认文字 | String | - |
-| maxTagCount | 多选模式下展示tag的个数,默认所有 | number | - |
-| labelInValue | 开启会把 Select 的 value 类型从 `string/number` 变为 `{ value: string/number, label: string }` | Boolean | `false` |
-| showSearch | 使单选模式可搜索 | Boolean | - |
-| size | 选择框尺寸 | Enum{large, default, small } | `default` |
-| tagProps | 将参数传递给 [`<Tag>`](https://uiwjs.github.io/#/components/tag) 组件 | `TagProps` | `{}` |
-| onChange | 选中 option，或 input 的 value，调用此函数 | function(value:String \| Number \| String[] \| Number[] \| LabeledValue \| LabeledValue[]) | - |
-| onSearch | 文本框值变化时回调 | function(value: String) | - |
-| onSelect | 被选中时调用，参数为选中项的 value | function(value: String/Number ) | - |
-| loading | 加载中状态 | Boolean | `false` |
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| ---- | ---- | ---- | ---- | ---- |
+| allowClear | 支持清除 | Boolean | `false` | - |
+| disabled | 禁用选择器 | Boolean | `false` | - |
+| mode | 选择模式: `multiple`  `single` | String | `single` | - |
+| defaultValue | 指定默认选中的条目 | String/Number | - | - |
+| value | 指定当前选中的条目，多选时为一个数组 | String \| Number \| String[] \| Number[] \| LabeledValue \| LabeledValue[] | - | - |
+| placeholder | 选择框默认文字 | String | - | - |
+| maxTagCount | 多选模式下展示tag的个数,默认所有 | number | - | - |
+| labelInValue | 开启会把 Select 的 value 类型从 `string/number` 变为 `{ value: string/number, label: string }` | Boolean | `false` | - |
+| showSearch | 使单选模式可搜索 | Boolean | - | - |
+| size | 选择框尺寸 | Enum{large, default, small } | `default` | - |
+| tagProps | 将参数传递给 [`<Tag>`](https://uiwjs.github.io/#/components/tag) 组件 | `TagProps` | `{}` | `4.13.0` |
+| onChange | 选中 option，或 input 的 value，调用此函数 | function(value:String \| Number \| String[] \| Number[] \| LabeledValue \| LabeledValue[]) | - | - |
+| onSearch | 文本框值变化时回调 | function(value: String) | - | - |
+| onSelect | 被选中时调用，参数为选中项的 value | function(value: String/Number ) | - | - |
+| loading | 加载中状态 | Boolean | `false` | - |
