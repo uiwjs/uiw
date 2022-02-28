@@ -22,15 +22,15 @@ import { SearchSelect } from 'uiw';
 
 const Demo = () => {
   const selectOption=[
-        { label: 'a1', value: 1 },
-        { label: 'a2', value: 2 },
-        { label: 'a3', value: 3 },
-        { label: 'a4', value: 4 },
-        { label: 'a5', value: 5 },
-        { label: 'a6', value: 6 },
-        { label: 'a7', value: 7 },
-        { label: 'a8', value: 8 },
-      ]
+    { label: 'a1', value: 1 },
+    { label: 'a2', value: 2 },
+    { label: 'a3', value: 3 },
+    { label: 'a4', value: 4 },
+    { label: 'a5', value: 5 },
+    { label: 'a6', value: 6 },
+    { label: 'a7', value: 7 },
+    { label: 'a8', value: 8 },
+  ]
 
   const [option, setOption] = React.useState(selectOption);
   const [loading, setLoading] = React.useState(false);
@@ -178,6 +178,7 @@ ReactDOM.render(<Demo />, _mount_);
 | labelInValue | 开启会把 Select 的 value 类型从 `string/number` 变为 `{ value: string/number, label: string }` | Boolean | `false` |
 | showSearch | 使单选模式可搜索 | Boolean | - |
 | size | 选择框尺寸 | Enum{large, default, small } | `default` |
+| tagProps | 将参数传递给 [`<Tag>`](https://uiwjs.github.io/#/components/tag) 组件 | `TagProps` | `{}` |
 | onChange | 选中 option，或 input 的 value，调用此函数 | function(value:String \| Number \| String[] \| Number[] \| LabeledValue \| LabeledValue[]) | - |
 | onSearch | 文本框值变化时回调 | function(value: String) | - |
 | onSelect | 被选中时调用，参数为选中项的 value | function(value: String/Number ) | - |

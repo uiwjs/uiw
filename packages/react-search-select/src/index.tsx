@@ -3,7 +3,7 @@ import Dropdown, { DropdownProps } from '@uiw/react-dropdown';
 import Icon from '@uiw/react-icon';
 import Menu from '@uiw/react-menu';
 import Input from '@uiw/react-input';
-import Tag from '@uiw/react-tag';
+import Tag, { TagProps } from '@uiw/react-tag';
 import { IProps } from '@uiw/utils';
 import { useState } from 'react';
 import { useRef } from 'react';
@@ -20,6 +20,7 @@ export interface SearchSelectProps extends IProps, DropdownProps {
   showSearch?: boolean;
   allowClear?: boolean;
   defaultValue?: ValueType | Array<ValueType>;
+  tagProps: TagProps;
   value?: ValueType | Array<ValueType>;
   option: SearchSelectOptionData[];
   onSelect?: (value: ValueType | Array<ValueType> | Array<SearchSelectOptionData>) => void;
@@ -50,6 +51,7 @@ export default function SearchSelect(props: SearchSelectProps) {
     value,
     defaultValue,
     showSearch,
+    tagProps = {},
     placeholder,
     onSearch,
     onChange,
@@ -236,12 +238,13 @@ export default function SearchSelect(props: SearchSelectProps) {
                 selectedValue.slice(0, maxTagCount).map((item, index) => {
                   return (
                     <Tag
-                      style={{ height: 20, margin: 1, display: 'flex', alignItems: 'center' }}
+                      style={{ height: 20, margin: 1, display: 'flex', alignItems: 'center', ...tagProps.style }}
                       className={`${prefixCls}-tag`}
                       key={index}
+                      color="#393E48"
+                      {...tagProps}
                       closable
                       onClose={() => handleItemsClick(index, item)}
-                      color="#393E48"
                     >
                       {item.label}
                     </Tag>
