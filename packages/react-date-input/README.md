@@ -8,9 +8,9 @@ DateInput 日期输入框
 显示一个月的日历，并允许用户选择单个日期。
 
 ```jsx
-import { DateInput } from 'uiw';
+import { DateInput, DateInputRange } from 'uiw';
 // or
-import DateInput from '@uiw/react-date-input';
+import DateInput,{ DateInputRange } from '@uiw/react-date-input';
 ```
 
 ## 基本使用
@@ -19,32 +19,46 @@ import DateInput from '@uiw/react-date-input';
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { DateInput, Row, Col } from 'uiw';
+import { DateInput, DateInputRange, Row, Col } from 'uiw';
 
-class Demo extends React.Component {
-  onChange(selectedDate) {
-    console.log('selectedDate:', selectedDate)
+function Demo () {
+
+  const [dataRange,dataRangeSet] =React.useState(['2022-02-25 15:06:24','2022-02-27 14:47:32'])
+
+ function onChange(selectedDate,dataRange) {
+    console.log('selectedDate',selectedDate,dataRange)
   }
-  render() {
     return (
-      <Row gutter={10} style={{ maxWidth: 360 }}>
-        <Col fixed>
-          <DateInput
-            value={new Date()}
-            datePickerProps={{ todayButton: '今天' }}
-            onChange={this.onChange.bind(this)}
-          />
-        </Col>
-        <Col>
-          <DateInput
-            value={new Date()}
-            disabled
-            onChange={this.onChange.bind(this)}
-          />
-        </Col>
-      </Row>
+      <div>
+        <Row gutter={10} style={{ maxWidth: 360,marginBottom:10 }}>
+          <Col fixed>
+            <DateInput
+              value={new Date()}
+              datePickerProps={{ todayButton: '今天' }}
+              onChange={onChange}
+            />
+          </Col>
+          <Col>
+            <DateInput
+              value={new Date()}
+              disabled
+              onChange={onChange}
+            />
+          </Col>
+        </Row>
+        <Row gutter={10}>
+          <Col>
+            <DateInputRange
+              bodyStyle={{width:350}}
+              format="YYYY/MM/DD HH:mm:ss"
+              value={dataRange}
+              datePickerProps={{ todayButton: '今天',showTime:true }}
+              onChange={onChange}
+            />
+          </Col>
+        </Row>
+      </div>
     )
-  }
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
@@ -55,13 +69,26 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { DateInput, Notify, Button, Form, Row, Col } from 'uiw';
+import { DateInput,DateInputRange, Notify, Button, Form, Row, Col } from 'uiw';
 
-ReactDOM.render(
-  <Form
-      onSubmit={({initial, current}) => {
-        if(current.date) {
+function Demo(){
+  const form = React.useRef(null)
+
+  const resetDateRange = () => {
+    form.current.resetForm()
+  }
+
+  const setDateRange = () => {
+    form.current.setFields({dateRange:[new Date(),new Date()]})
+  }
+
+  return (
+    <Form
+      ref={form}
+      onSubmit={({ initial, current }) => {
+        if (current.date) {
           Notify.success({
             title: '提交成功！',
             description: `表单提交时间成功，时间为：${current.date}`,
@@ -72,7 +99,6 @@ ReactDOM.render(
             description: `表单提交时间成功，时间为：${current.date}，将自动填充初始化值！`,
           });
         }
-        console.log('-->>', initial, current);
       }}
       fields={{
         date: {
@@ -81,21 +107,38 @@ ReactDOM.render(
           labelFor: 'date-inline',
           children: <DateInput datePickerProps={{ todayButton: '今天' }} id="date-inline" />
         },
+        dateRange: {
+          initialValue: ['2019/02/17', '2019/02/20'],
+          labelClassName: 'fieldLabel',
+          labelFor: 'date-inline',
+          children: <DateInputRange datePickerProps={{ todayButton: '今天' }} id="date-inline" />
+        },
       }}
     >
       {({ fields, state, canSubmit }) => {
         return (
-          <Row gutter={10}>
-            <Col fixed>{fields.date}</Col>
-            <Col>
-              <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
-            </Col>
-          </Row>
+          <div>
+            <Row gutter={10}>
+              <Col fixed>{fields.date}</Col>
+            </Row>
+            <Row gutter={10}>
+              <Col fixed>{fields.dateRange}</Col>
+            </Row>
+            <Row gutter={10}>
+              <Col>
+                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+                <Button onClick={resetDateRange} >重置</Button>
+                <Button onClick={setDateRange}>setValue</Button>
+              </Col>
+            </Row>
+          </div>
         )
       }}
-    </Form>,
-  _mount_
-);
+    </Form>
+  )
+}
+
+ReactDOM.render(<Demo />, _mount_);
 ```
 
 ## 日期格式
