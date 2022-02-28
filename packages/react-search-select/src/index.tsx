@@ -104,7 +104,7 @@ export default function SearchSelect(props: SearchSelectProps) {
       }
     } else {
       if (Array.isArray(changeValue)) {
-        opts = changeValue.map((v) => getSelectOption(option, v as ValueType)!);
+        opts = changeValue.map((v) => getSelectOption(option, v as ValueType)!).filter((m) => !!m);
       } else {
         const findResult = getSelectOption(option, changeValue as ValueType);
         if (findResult) {
