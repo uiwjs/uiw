@@ -6,12 +6,12 @@ DateInput 日期输入框
 [![npm version](https://img.shields.io/npm/v/@uiw/react-date-input.svg?label=@uiw/react-date-input)](https://npmjs.com/@uiw/react-date-input)
 
 显示一个月的日历，并允许用户选择单个日期。
-在v4.12.3版本中增加 DateInputRange组件
 
 ```jsx
 import { DateInput, DateInputRange } from 'uiw';
 // or
 import DateInput,{ DateInputRange } from '@uiw/react-date-input';
+// 在 `v4.13.0` 版本中增加 DateInputRange 组件
 ```
 
 ## 基本使用
@@ -199,7 +199,7 @@ ReactDOM.render(<Demo />, _mount_);
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
-|--------- |-------- |--------- |-------- |
+| ---- | ---- | ---- | ---- |
 | value | 初始时间值 | Date | - |
 | placeholder | 输入框提示文字 | String | - |
 | allowClear | 是否显示清除按钮 | Boolean | true |
@@ -209,12 +209,14 @@ ReactDOM.render(<Demo />, _mount_);
 | datePickerProps | 将参数传递给 [`<DatePicker>`](#/components/date-picker) 组件 | Object | - |
 | disabled | 组件 [`<Input>`](#/components/input) 的属性，禁用日历 | Boolean | - |
 
-更多属性文档请参考 [`<Input>`](#/components/input)。
+组件 `DateInput` 继承 `<Input>` 组件，更多属性文档请参考 [`<Input>`](#/components/input)。
 
 ## DateInputRange
 
+在 `v4.13.0` 版本中增加 `DateInputRange` 组件。
+
 | 参数 | 说明 | 类型 | 默认值 |
-|--------- |-------- |--------- |-------- |
+| ---- | ---- | ---- | ---- |
 | value | 初始时间值 | Array<Date, string> | - |
 | placeholder | 输入框提示文字 | String | - |
 | allowClear | 是否显示清除按钮 | Boolean | true |
@@ -225,5 +227,5 @@ ReactDOM.render(<Demo />, _mount_);
 | disabled | 组件 [`<Input>`](#/components/input) 的属性，禁用日历 | Boolean | - |
 | bodyStyle | 选择框样式  | Object | { width: 300 } | - |
 
-更多属性文档请参考 [`<Input>`](#/components/input)。
+组件 `DateInputRange` 继承 `<Input>` 组件，更多属性文档请参考 [`<Input>`](#/components/input)。
 
