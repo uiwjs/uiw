@@ -7869,7 +7869,7 @@ function SearchSelect(props) {
       }
     } else {
       if (Array.isArray(changeValue)) {
-        opts = changeValue.map(v => getSelectOption(option, v));
+        opts = changeValue.map(v => getSelectOption(option, v)).filter(m => !!m);
       } else {
         var findResult = getSelectOption(option, changeValue);
 
