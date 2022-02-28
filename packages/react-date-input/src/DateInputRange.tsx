@@ -5,7 +5,7 @@ import DatePicker, { DatePickerProps } from '@uiw/react-date-picker';
 import Icon from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
-import './style/dateRange.less';
+import './style/date-input-range.less';
 
 export interface DateInputRangeProps<V> extends IProps, Omit<InputProps, 'onChange' | 'value'> {
   popoverProps?: PopoverProps;
@@ -19,7 +19,7 @@ export interface DateInputRangeProps<V> extends IProps, Omit<InputProps, 'onChan
 
 export function DateInputRange<V extends string | Date>(props: DateInputRangeProps<V>) {
   const {
-    prefixCls = 'w-daterange',
+    prefixCls = 'w-dateinputrange',
     bodyStyle = undefined,
     className,
     popoverProps,
