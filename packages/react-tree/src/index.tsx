@@ -101,7 +101,7 @@ const getParentSelectKeys = (
   selectedKeys: TreeData['key'][] = [],
   result: TreeData['key'][] = [],
 ) => {
-  if (childs.key && childs.children && isContained(selectedKeys, getChildKeys(childs.children))) {
+  if (childs.key && childs.children && isContained(selectedKeys, getChildKeys(childs.children, undefined, 1))) {
     result.push(childs.key);
     if (childs.parent && !childs.parent.parent) {
       if (isContained(selectedKeys, getChildKeys(childs.children))) {
