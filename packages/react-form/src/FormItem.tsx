@@ -1,10 +1,10 @@
 import React, { CSSProperties } from 'react';
 import { Col, Row } from '@uiw/react-grid';
-import { IProps, HTMLDivProps } from '@uiw/utils';
+import { IProps, HTMLInputProps } from '@uiw/utils';
 import { FormFieldsProps } from './Form';
 import './style/form-item.less';
 
-export interface FormItemProps<T> extends IProps, HTMLDivProps {
+export interface FormItemProps<T> extends IProps, HTMLInputProps {
   inline?: boolean;
   hasError?: boolean;
   label?: React.ReactNode;
