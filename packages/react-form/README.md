@@ -702,6 +702,7 @@ ReactDOM.render(<Demo />, _mount_);
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | label | 表单标题展示 | string | - |
+| required | 表单是否必填标识 | boolean | - |
 | labelClassName | 表单标题样式名称 | string | - |
 | labelStyle | 表单标题样式 | object | - |
 | labelFor | 列的宽度相对于同一网格中其他列的比率 | number | - |
