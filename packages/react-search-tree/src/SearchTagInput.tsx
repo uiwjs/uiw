@@ -81,8 +81,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
     handleSelectChange([...selectedOption], curreentItem, false);
   };
 
-  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const value = e.target.value;
+  function handleInputChange(value: string) {
     searchValueSet(value);
     onSearch?.(value);
     setSelectIconType(value ? 'loading' : '');
@@ -92,8 +91,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
   function resetSelectedValue() {
     // setInnerIsOpen(false);
     setSelectedOption([]);
-    searchValueSet('');
-    setSelectIconType('');
+    handleInputChange('');
     handleSelectChange([]);
   }
 
@@ -147,7 +145,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
               size={size}
               disabled={disabled}
               onKeyDown={inputKeyDown}
-              onChange={handleInputChange}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange(e.target.value)}
               value={searchValue}
               placeholder={selectedOption.length ? '' : placeholder}
               // readOnly={false}
