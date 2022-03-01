@@ -1231,7 +1231,7 @@ sup.w-badge-count {
 .w-timepicker-spinner {
   max-height: 189px;
   flex: 1 1;
-  overflow: hidden;
+  overflow: auto;
   font-size: 14px;
 }
 .w-timepicker-spinner:hover {
