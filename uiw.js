@@ -9789,8 +9789,7 @@ function SearchTagInput(props) {
     handleSelectChange([...selectedOption], curreentItem, false);
   };
 
-  function handleInputChange(e) {
-    var value = e.target.value;
+  function handleInputChange(value) {
     searchValueSet(value);
     onSearch == null ? void 0 : onSearch(value);
     setSelectIconType(value ? 'loading' : '');
@@ -9800,8 +9799,7 @@ function SearchTagInput(props) {
   function resetSelectedValue() {
     // setInnerIsOpen(false);
     setSelectedOption([]);
-    searchValueSet('');
-    setSelectIconType('');
+    handleInputChange('');
     handleSelectChange([]);
   }
 
@@ -9873,7 +9871,7 @@ function SearchTagInput(props) {
             size: size,
             disabled: disabled,
             onKeyDown: inputKeyDown,
-            onChange: handleInputChange,
+            onChange: e => handleInputChange(e.target.value),
             value: searchValue,
             placeholder: selectedOption.length ? '' : placeholder // readOnly={false}
 
