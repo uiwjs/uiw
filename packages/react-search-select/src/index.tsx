@@ -20,7 +20,7 @@ export interface SearchSelectProps extends IProps, DropdownProps {
   showSearch?: boolean;
   allowClear?: boolean;
   defaultValue?: ValueType | Array<ValueType>;
-  tagProps: TagProps;
+  tagProps?: TagProps;
   value?: ValueType | Array<ValueType>;
   option: SearchSelectOptionData[];
   onSelect?: (value: ValueType | Array<ValueType> | Array<SearchSelectOptionData>) => void;
