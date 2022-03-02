@@ -94,7 +94,11 @@ const Demo = () => {
   return(
     <>
       <SearchTree style={{ width:200 }} />
-      <SearchTree style={{ width:200,marginTop:5 }} emptyOption={<span>暂无数据..</span>} placeholder="请输入选择"/>
+      <SearchTree
+        style={{ width:200,marginTop:5 }}
+        emptyOption={<span>暂无数据..</span>}
+        placeholder="请输入选择"
+      />
     </>
   )
 }
@@ -171,7 +175,6 @@ const form=useRef()
           return null;
         }}
         onSubmit={({initial, current}) => {
-          console.log('current',current)
           const errorObj = {};
           if (!current.searchTree) {
             errorObj.searchTree = '默认需要选择内容，选择入内容';
