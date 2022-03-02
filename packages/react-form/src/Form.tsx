@@ -123,6 +123,7 @@ function Form<T>(
       getFieldValues: () => data.current,
       getError: () => data.errors,
       setFields: setFields,
+      setFieldValue: setFieldValue,
     }),
     [data],
   );
@@ -159,6 +160,11 @@ function Form<T>(
 
   function setFields(fields: FormState['current']) {
     const tempData = { ...data, current: fields };
+    setData(tempData);
+  }
+
+  function setFieldValue<V>(fieldName: string, value: V) {
+    const tempData = { ...data, current: { ...data.current, [fieldName]: value } };
     setData(tempData);
   }
 
