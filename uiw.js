@@ -9725,7 +9725,8 @@ function TreeChecked(_ref) {
 ;// CONCATENATED MODULE: ../react-search-tree/esm/SearchTagInput.js
 
 
-var SearchTagInput_excluded = ["prefixCls", "mode", "size", "disabled", "allowClear", "loading", "className", "style", "placeholder", "content", "options", "values", "onChange", "onSearch"];
+var SearchTagInput_excluded = ["prefixCls", "mode", "size", "disabled", "allowClear", "loading", "className", "style", "placeholder", "content", "options", "values", "onChange", "onSearch", "emptyOption"];
+
 
 
 
@@ -9751,7 +9752,8 @@ function SearchTagInput(props) {
     options,
     values,
     onChange,
-    onSearch
+    onSearch,
+    emptyOption
   } = props,
       others = _objectWithoutPropertiesLoose(props, SearchTagInput_excluded);
 
@@ -9796,7 +9798,8 @@ function SearchTagInput(props) {
   } // 清除选中的值
 
 
-  function resetSelectedValue() {
+  function resetSelectedValue(e) {
+    e.stopPropagation();
     setInnerIsOpen(false);
     setSelectedOption([]);
     handleInputChange('');
@@ -9810,6 +9813,15 @@ function SearchTagInput(props) {
   }
 
   var newContent = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
+    if (emptyOption) {
+      return typeof emptyOption === 'boolean' ? /*#__PURE__*/(0,jsx_runtime.jsx)(react_empty_esm, {
+        style: {
+          minWidth: 200,
+          width: style == null ? void 0 : style.width
+        }
+      }) : emptyOption;
+    }
+
     var newProps = _extends({}, content.props, {
       onSelected: handleSelectChange,
       values: selectedOption,
@@ -9817,7 +9829,7 @@ function SearchTagInput(props) {
     });
 
     return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(content, newProps);
-  }, [selectedOption, options]);
+  }, [selectedOption, options, emptyOption]);
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Dropdown, _extends({
     className: cls,
     trigger: "focus"
@@ -9898,7 +9910,7 @@ function SearchTagInput(props) {
 ;// CONCATENATED MODULE: ../react-search-tree/esm/index.js
 
 
-var react_search_tree_esm_excluded = ["onChange", "onSearch", "options", "value", "treeProps"];
+var react_search_tree_esm_excluded = ["onChange", "onSearch", "options", "value", "emptyOption", "treeProps"];
 
 
 
@@ -9981,12 +9993,14 @@ function SearchTree(props) {
     onSearch,
     options = [],
     value = [],
+    emptyOption = !options.length,
     treeProps
   } = props,
       other = _objectWithoutPropertiesLoose(props, react_search_tree_esm_excluded);
 
   var [selectedValues, selectedValuesSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(value);
   var [selectedOptions, selectedOptionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(options);
+  var [isEmpty, isEmptySet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(emptyOption);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     selectedValuesSet(value);
   }, [JSON.stringify(value)]);
@@ -10028,9 +10042,14 @@ function SearchTree(props) {
 
     hiddenNodeForSeach(options);
     selectedOptionSet([...options]);
+    var isEmpt = true;
+    options.forEach(opt => isEmpt = isEmpt && !!opt.hideNode);
+    isEmptySet(isEmpt);
+    console.log('isEmpt', isEmpt);
   };
 
   return /*#__PURE__*/(0,jsx_runtime.jsx)(esm_SearchTagInput, _extends({}, other, {
+    emptyOption: isEmpty,
     onSearch: debounce(selectedSearch, 700),
     onChange: selectedChange,
     values: selectedValues,
