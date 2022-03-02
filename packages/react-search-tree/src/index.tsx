@@ -65,12 +65,14 @@ export interface SearchTreeProps<V> {
   value?: Array<V>;
   options?: TreeData[];
   treeProps?: Omit<TreeCheckedProps, 'onSelected'> & Partial<DropContent<V>>;
+  emptyOption?: React.ReactNode;
 }
 
 function SearchTree<V extends SearchTagInputOption>(props: SearchTreeProps<V>) {
-  const { onChange, onSearch, options = [], value = [], treeProps, ...other } = props;
+  const { onChange, onSearch, options = [], value = [], emptyOption = !options.length, treeProps, ...other } = props;
   const [selectedValues, selectedValuesSet] = useState<Array<V>>(value);
   const [selectedOptions, selectedOptionSet] = useState<Array<TreeData>>(options);
+  const [isEmpty, isEmptySet] = useState(emptyOption);
 
   useEffect(() => {
     selectedValuesSet(value);
@@ -109,11 +111,17 @@ function SearchTree<V extends SearchTagInputOption>(props: SearchTreeProps<V>) {
     };
     hiddenNodeForSeach(options);
     selectedOptionSet([...options]);
+
+    let isEmpt = true;
+    options.forEach((opt) => (isEmpt = isEmpt && !!opt.hideNode));
+    isEmptySet(isEmpt);
+    console.log('isEmpt', isEmpt);
   };
 
   return (
     <SearchTagInput
       {...other}
+      emptyOption={isEmpty}
       onSearch={debounce(selectedSearch, 700)}
       onChange={selectedChange}
       values={selectedValues}

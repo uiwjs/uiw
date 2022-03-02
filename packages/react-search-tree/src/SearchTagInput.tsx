@@ -4,6 +4,7 @@ import Icon from '@uiw/react-icon';
 import Input from '@uiw/react-input';
 import Tag from '@uiw/react-tag';
 import Card from '@uiw/react-card';
+import Empty from '@uiw/react-empty';
 import { IProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -27,6 +28,7 @@ export interface SearchTagInputProps<V> extends IProps, DropdownProps, DropConte
   // mode?: 'single' | 'multiple';
   loading?: boolean;
   placeholder?: string;
+  emptyOption?: boolean | React.ReactNode;
 }
 
 function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputProps<V>) {
@@ -46,6 +48,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
     values,
     onChange,
     onSearch,
+    emptyOption,
     ...others
   } = props;
 
@@ -88,7 +91,8 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
   }
 
   // 清除选中的值
-  function resetSelectedValue() {
+  function resetSelectedValue(e: any) {
+    e.stopPropagation();
     setInnerIsOpen(false);
     setSelectedOption([]);
     handleInputChange('');
@@ -102,6 +106,10 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
   }
 
   const newContent = useMemo(() => {
+    if (emptyOption) {
+      return typeof emptyOption === 'boolean' ? <Empty style={{ minWidth: 200, width: style?.width }} /> : emptyOption;
+    }
+
     const newProps = {
       ...content.props,
       onSelected: handleSelectChange,
@@ -109,16 +117,14 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
       options,
     };
     return React.cloneElement(content as JSX.Element, newProps);
-  }, [selectedOption, options]);
+  }, [selectedOption, options, emptyOption]);
 
   return (
     <Dropdown className={cls} trigger="focus" {...others} isOpen={innerIsOpen} menu={<Card>{newContent}</Card>}>
       <div
         onMouseOver={() => renderSelectIcon('enter')}
         onMouseLeave={() => renderSelectIcon('leave')}
-        onClick={() => {
-          if (innerIsOpen) inputRef.current?.focus();
-        }}
+        onClick={() => inputRef.current?.focus()}
         style={{ minWidth: 200, maxWidth: 'none', ...style }}
       >
         <div className={`${prefixCls}-inner`}>

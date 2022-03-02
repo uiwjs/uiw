@@ -46,6 +46,7 @@
     "@uiw/react-card": "^4.13.3",
     "@uiw/react-checkbox": "^4.13.3",
     "@uiw/react-dropdown": "^4.13.3",
+    "@uiw/react-empty": "^4.13.3",
     "@uiw/react-icon": "^4.13.3",
     "@uiw/react-input": "^4.13.3",
     "@uiw/react-tag": "^4.13.3",
