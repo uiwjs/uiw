@@ -124,7 +124,9 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
       <div
         onMouseOver={() => renderSelectIcon('enter')}
         onMouseLeave={() => renderSelectIcon('leave')}
-        onClick={() => inputRef.current?.focus()}
+        onClick={() => {
+          if (innerIsOpen) inputRef.current?.focus();
+        }}
         style={{ minWidth: 200, maxWidth: 'none', ...style }}
       >
         <div className={`${prefixCls}-inner`}>
