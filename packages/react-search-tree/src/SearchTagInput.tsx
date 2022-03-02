@@ -120,7 +120,13 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
   }, [selectedOption, options, emptyOption]);
 
   return (
-    <Dropdown className={cls} trigger="focus" {...others} isOpen={innerIsOpen} menu={<Card>{newContent}</Card>}>
+    <Dropdown
+      className={cls}
+      trigger="focus"
+      {...others}
+      isOpen={innerIsOpen}
+      menu={<Card bodyStyle={{ padding: 0 }}>{newContent}</Card>}
+    >
       <div
         onMouseOver={() => renderSelectIcon('enter')}
         onMouseLeave={() => renderSelectIcon('leave')}
@@ -156,7 +162,6 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange(e.target.value)}
               value={searchValue}
               placeholder={selectedOption.length ? '' : placeholder}
-              // readOnly={false}
             />
           </div>
           <span style={{ height: 25 }} className={`${prefixCls}-close-tag-contents`}>
