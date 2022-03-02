@@ -64,8 +64,9 @@ function SingeTree<V extends SearchTagInputOption>(props: Omit<TreeProps, 'onSel
   const [keys, keysSet] = useState<Array<string | number>>([]);
 
   useEffect(() => {
-    const key = props.values?.[0].key;
-    keysSet(key ? [key] : []);
+    const keys: Array<string | number> = [];
+    if (props.values?.length) keys[0] = props.values[0].key;
+    keysSet(keys);
   }, [props.values]);
 
   const onSelected = (_1: any, _2: any, isChecked: boolean, evn: TreeData) => {
