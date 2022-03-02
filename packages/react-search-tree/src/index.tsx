@@ -115,7 +115,6 @@ function SearchTree<V extends SearchTagInputOption>(props: SearchTreeProps<V>) {
     let isEmpt = true;
     options.forEach((opt) => (isEmpt = isEmpt && !!opt.hideNode));
     isEmptySet(isEmpt);
-    console.log('isEmpt', isEmpt);
   };
 
   return (
