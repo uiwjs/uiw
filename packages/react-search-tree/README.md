@@ -150,8 +150,8 @@ const form=useRef()
         onSubmit={({initial, current}) => {
           console.log('current',current)
           const errorObj = {};
-          if (!current.selectField) {
-            errorObj.selectField = '默认需要选择内容，选择入内容';
+          if (!current.searchTree) {
+            errorObj.searchTree = '默认需要选择内容，选择入内容';
           }
           if(Object.keys(errorObj).length > 0) {
             const err = new Error();
