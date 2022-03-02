@@ -202,7 +202,6 @@ const form=useRef()
           return null;
         }}
         onSubmit={({initial, current}) => {
-          console.log('current',current)
           const errorObj = {};
           if (!current.searchTree) {
             errorObj.searchTree = '默认需要选择内容，选择入内容';
