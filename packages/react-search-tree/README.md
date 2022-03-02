@@ -84,6 +84,7 @@ ReactDOM.render(<Demo />, _mount_);
 ```
 
 ## 自定义空选项
+
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import React, { useState, useEffect, useRef } from 'react';
