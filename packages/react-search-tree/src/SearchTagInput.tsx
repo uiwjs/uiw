@@ -51,7 +51,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
 
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   // const isMultiple = useMemo(() => mode === 'multiple', [mode]);
-  // const [innerIsOpen, setInnerIsOpen] = useState(false);
+  const [innerIsOpen, setInnerIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<Array<V>>(values);
   const optionRef = useRef<Array<V>>();
   const [searchValue, searchValueSet] = useState<string>('');
@@ -89,7 +89,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
 
   // 清除选中的值
   function resetSelectedValue() {
-    // setInnerIsOpen(false);
+    setInnerIsOpen(false);
     setSelectedOption([]);
     handleInputChange('');
     handleSelectChange([]);
@@ -112,11 +112,13 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
   }, [selectedOption, options]);
 
   return (
-    <Dropdown className={cls} trigger="focus" {...others} menu={<Card>{newContent}</Card>}>
+    <Dropdown className={cls} trigger="focus" {...others} isOpen={innerIsOpen} menu={<Card>{newContent}</Card>}>
       <div
         onMouseOver={() => renderSelectIcon('enter')}
         onMouseLeave={() => renderSelectIcon('leave')}
-        onClick={() => inputRef.current?.focus()}
+        onClick={() => {
+          if (innerIsOpen) inputRef.current?.focus();
+        }}
         style={{ minWidth: 200, maxWidth: 'none', ...style }}
       >
         <div className={`${prefixCls}-inner`}>
