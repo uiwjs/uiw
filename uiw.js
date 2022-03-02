@@ -9578,17 +9578,17 @@ function Tree(props) {
   var [curOpenKeys, setCurOpenKeys] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(openKeys);
   var [curSelectedKeys, setCurSelectedKeys] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(selectedKeys);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
-    setCurSelectedKeys(props.selectedKeys);
+    setCurSelectedKeys(props.selectedKeys || []);
   }, [JSON.stringify(props.selectedKeys)]); // useEffect(() => setCurOpenKeys(openKeys), [openKeys]);
   // useEffect(() => setCurSelectedKeys(selectedKeys), [selectedKeys]);
 
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
-    var arrOpenKeys = [];
+    var arrOpenKeys = curOpenKeys;
 
     if (defaultExpandAll) {
       arrOpenKeys = getChildKeys(data);
     } else if (autoExpandParent) {
-      arrOpenKeys = getChildKeys(data, undefined, 1);
+      arrOpenKeys.push(...getChildKeys(data, undefined, 1));
     }
 
     setCurOpenKeys(arrOpenKeys);
