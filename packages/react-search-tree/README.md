@@ -67,15 +67,37 @@ const onChange=(selectd, selectedAll,  isChecked)=>{
   valueSet(selectedAll)
 }
 
- return (<SearchTree
-    allowClear={true}
-    onSearch={(searchValue)=>console.log('SearchTree-> SearchTreeOption',searchValue)}
-    onChange={onChange}
-    value={value}
-    options={data}
-    placeholder="请输入选择"
-  />)
+ return (
+    <>
+       <SearchTree
+        allowClear={true}
+        onSearch={(searchValue)=>console.log('SearchTree-> SearchTreeOption',searchValue)}
+        onChange={onChange}
+        value={value}
+        options={data}
+        placeholder="请输入选择"
+      />
+    </>
+  )
 }
+ReactDOM.render(<Demo />, _mount_);
+```
+
+## 自定义空选项
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import React, { useState, useEffect, useRef } from 'react';
+import {  SearchTree } from 'uiw';
+
+const Demo = () => {
+  return(
+    <>
+      <SearchTree style={{ width:200 }} />
+      <SearchTree style={{ width:200,marginTop:5 }} emptyOption={<span>暂无数据..</span>} placeholder="请输入选择"/>
+    </>
+  )
+}
+
 ReactDOM.render(<Demo />, _mount_);
 ```
 
@@ -222,4 +244,5 @@ ReactDOM.render(<Demo />, _mount_);
 | onChange | 选中 option，或 input 的 value，调用此函数 | function(selectd, selectdAll, isChecked)=>void | - |
 | onSearch | 文本框值变化时回调 | function(searchValue) | - |
 | loading | 加载中状态 | Boolean | `false` |
+| emptyOption | 自定义下拉选项为空时显示内容 | React.ReactNode | [Empty](https://uiwjs.github.io/#/components/empty) |
 
