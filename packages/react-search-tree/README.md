@@ -61,23 +61,47 @@ const data = [
 const Demo = () => {
 
 const [value,valueSet]=useState([{ label: '东花市街道', key: '2-3-1' }])
+const [valueSinge,valueSingeSet]=useState([{ label: '上海市', key: '1-0-0' }])
 
 const onChange=(selectd, selectedAll,  isChecked)=>{
   console.log('SearchTree-> onChange',selectedAll, selectd, isChecked)
   valueSet(selectedAll)
 }
 
+const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
+  console.log('SearchTree-> onChange', selectd, selectedAll, isChecked)
+  valueSingeSet(selectedAll)
+}
+
  return (
-    <>
-       <SearchTree
-        allowClear={true}
-        onSearch={(searchValue)=>console.log('SearchTree-> SearchTreeOption',searchValue)}
-        onChange={onChange}
-        value={value}
-        options={data}
-        placeholder="请输入选择"
-      />
-    </>
+    <Row>
+      <Col >
+        <label>多选</label>
+        <SearchTree
+          style={{width:400}}
+          allowClear={true}
+          onSearch={(searchValue)=>console.log('multiple',searchValue)}
+          onChange={onChange}
+          value={value}
+          options={data}
+          placeholder="请输入选择"
+        />
+      </Col>
+      <Col >
+        <label>单选</label>
+        <SearchTree
+          style={{width:400}}
+          multiple={false}
+          allowClear={true}
+          onSearch={(searchValue)=>console.log('singe',searchValue)}
+          onChange={onChangeSinge}
+          value={valueSinge}
+          options={data}
+          placeholder="请输入选择"
+        />
+      </Col>
+
+    </Row>
   )
 }
 ReactDOM.render(<Demo />, _mount_);
@@ -157,7 +181,10 @@ const form=useRef()
   ];
 
   const setValue=()=>{
-    form.current.setFields({ searchTree: [{ label: '东城区', key: '2-1-0' }, { label: '外滩街道', key: '1-3-0' }] })
+    form.current.setFields({
+      searchTree: [{ label: '东城区', key: '2-1-0' }, { label: '外滩街道', key: '1-3-0' }],
+      searchTreeSinge:[{ label: '前门街道', key: '2-3-3' }]
+       })
   }
 
   const resetValue=()=>{
@@ -175,6 +202,7 @@ const form=useRef()
           return null;
         }}
         onSubmit={({initial, current}) => {
+          console.log('current',current)
           const errorObj = {};
           if (!current.searchTree) {
             errorObj.searchTree = '默认需要选择内容，选择入内容';
@@ -203,6 +231,19 @@ const form=useRef()
                 />
             )
           },
+          searchTreeSinge: {
+            initialValue:[{ label: '东花市街道', key: '2-3-1' }],
+            children: (
+                <SearchTree
+                  multiple={false}
+                  allowClear={true}
+                  onSearch={(searchValue)=>console.log('SearchTree-> SearchTreeOption',searchValue)}
+                  onChange={(selectd, selectedAll,  isChecked)=>console.log('SearchTree-> onChange', selectd, selectedAll, isChecked)}
+                  options={data}
+                  placeholder="请输入选择"
+                />
+            )
+          },
         }}
       >
         {({ fields, state, canSubmit }) => {
@@ -210,6 +251,9 @@ const form=useRef()
             <div>
               <Row>
                 <Col fixed>{fields.searchTree}</Col>
+              </Row>
+              <Row>
+                <Col fixed>{fields.searchTreeSinge}</Col>
               </Row>
               <Row>
                 <Col fixed>
@@ -241,6 +285,7 @@ ReactDOM.render(<Demo />, _mount_);
 |--------- |-------- |--------- |-------- |
 | allowClear | 支持清除 | Boolean | `false` |
 | disabled | 禁用选择器 | Boolean | `false` |
+| multiple | 是否可以多选 | Boolean | `true` |
 | value | 指定当前选中的条目 | [{label:string, key:string}] | - |
 | options | 下拉数据源,可参考Tree下拉数据源 | [{label:string, key:string, children: [{label:string, key:string}] }] | - |
 | placeholder | 选择框默认文字 | String | - |

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SearchTagInput, { DropContent, SearchTagInputOption } from './SearchTagInput';
-import { TreeData } from '@uiw/react-tree';
+import Tree, { TreeData, TreeProps } from '@uiw/react-tree';
 import TreeChecked, { TreeCheckedProps } from '@uiw/react-tree-checked';
 
 type SelectOtpion = Record<string, string>;
@@ -59,6 +59,33 @@ function TreeCheckeds<V extends SearchTagInputOption>(
     <TreeChecked defaultExpandAll={true} {...props} data={props.options} selectedKeys={keys} onSelected={onSelected} />
   );
 }
+
+function SingeTree<V extends SearchTagInputOption>(props: Omit<TreeProps, 'onSelected'> & Partial<DropContent<V>>) {
+  const [keys, keysSet] = useState<Array<string | number>>([]);
+
+  useEffect(() => {
+    const key = props.values?.[0].key;
+    keysSet(key ? [key] : []);
+  }, [props.values]);
+
+  const onSelected = (_1: any, _2: any, isChecked: boolean, evn: TreeData) => {
+    const { key, label } = evn;
+    const cur = { key, label } as V;
+    props.onSelected?.([cur], cur, isChecked);
+  };
+
+  return (
+    <Tree
+      defaultExpandAll={true}
+      {...props}
+      multiple={false}
+      data={props.options}
+      selectedKeys={keys}
+      onSelected={onSelected}
+    />
+  );
+}
+
 export interface SearchTreeProps<V> {
   onChange?: (selectd: V, selectedAll: Array<V>, isChecked: boolean) => void;
   onSearch?: (seachValue: string) => void;
@@ -66,11 +93,21 @@ export interface SearchTreeProps<V> {
   options?: TreeData[];
   treeProps?: Omit<TreeCheckedProps, 'onSelected'> & Partial<DropContent<V>>;
   emptyOption?: React.ReactNode;
+  multiple?: boolean;
 }
 
 function SearchTree<V extends SearchTagInputOption>(props: SearchTreeProps<V>) {
-  const { onChange, onSearch, options = [], value = [], emptyOption = !options.length, treeProps, ...other } = props;
-  const [selectedValues, selectedValuesSet] = useState<Array<V>>(value);
+  const {
+    onChange,
+    onSearch,
+    multiple = true,
+    options = [],
+    value = [],
+    emptyOption = !options.length,
+    treeProps,
+    ...other
+  } = props;
+  const [selectedValues, selectedValuesSet] = useState<Array<V>>(Array.isArray(value) ? value : [value]);
   const [selectedOptions, selectedOptionSet] = useState<Array<TreeData>>(options);
   const [isEmpty, isEmptySet] = useState(emptyOption);
 
@@ -125,7 +162,7 @@ function SearchTree<V extends SearchTagInputOption>(props: SearchTreeProps<V>) {
       onChange={selectedChange}
       values={selectedValues}
       options={selectedOptions}
-      content={<TreeCheckeds {...treeProps} />}
+      content={multiple ? <TreeCheckeds {...treeProps} /> : <SingeTree {...treeProps} />}
     />
   );
 }
