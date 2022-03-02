@@ -5651,7 +5651,8 @@ function Form(_ref, ref //| React.RefObject<FormRefType>,
     resetForm: handleReset,
     getFieldValues: () => data.current,
     getError: () => data.errors,
-    setFields: setFields
+    setFields: setFields,
+    setFieldValue: setFieldValue
   }), [data]);
   var formUnits = {};
 
@@ -5683,6 +5684,16 @@ function Form(_ref, ref //| React.RefObject<FormRefType>,
   function setFields(fields) {
     var tempData = _extends({}, data, {
       current: fields
+    });
+
+    setData(tempData);
+  }
+
+  function setFieldValue(fieldName, value) {
+    var tempData = _extends({}, data, {
+      current: _extends({}, data.current, {
+        [fieldName]: value
+      })
     });
 
     setData(tempData);
@@ -9836,9 +9847,9 @@ function SearchTagInput(props) {
   }, others, {
     isOpen: innerIsOpen,
     menu: /*#__PURE__*/(0,jsx_runtime.jsx)(react_card_esm, {
-      bodyStyle: {
+      bodyStyle: emptyOption === true ? {
         padding: 0
-      },
+      } : undefined,
       children: newContent
     }),
     children: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
@@ -9995,8 +10006,9 @@ function SingeTree(props) {
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     var _props$values2;
 
-    var key = (_props$values2 = props.values) == null ? void 0 : _props$values2[0].key;
-    keysSet(key ? [key] : []);
+    var keys = [];
+    if ((_props$values2 = props.values) != null && _props$values2.length) keys[0] = props.values[0].key;
+    keysSet(keys);
   }, [props.values]);
 
   var onSelected = (_1, _2, isChecked, evn) => {
