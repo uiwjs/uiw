@@ -679,9 +679,12 @@ ReactDOM.render(<Demo />, _mount_);
 | onChange | 表单发生改变回调函数 {`initial`, `current`}  | function({ initial, current }) | - |
 | onSubmitError | 调用 `onSubmit` 抛出的任何错误。从字段名称返回对象映射。  | function | - |
 | resetOnSubmit | 在 `onSubmit` 成功后将表单重置为其初始状态。| bool | `true` |
+| ref | 返回form各种内部函数,可用于主动触发事件 | Ref | - |
+
+
+#### fields
 
 ```js
-// => fields props
 {
   firstName: {
     initialValue: '王',
@@ -695,6 +698,22 @@ ReactDOM.render(<Demo />, _mount_);
     children: <Input type="number" />
   },
 }
+```
+
+#### ref
+
+```jsx
+  const form = useRef()
+  render(<Form ref={form}/>)
+```
+
+```js
+    form.current.onSubmit()                                   // 提交表单
+    form.current.resetForm()                                  // 重置form
+    const fieldValues = form.current.getFieldValues()         // 获取所有 field的 value对象
+    const error = form.current.getError()                     // 获取所有提交时验证错误
+    form.current.setFields({ /** [fieldName]: value **/  })   // 设置表单的值,覆盖 form所有 field的值
+    form.current.setFieldValue(fieldName, value)              // 对单个 field设置 value,如果 value为数组请自行深度拷贝后传值,以免破坏原数组
 ```
 
 ## FormItem
