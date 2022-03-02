@@ -125,7 +125,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
       trigger="focus"
       {...others}
       isOpen={innerIsOpen}
-      menu={<Card bodyStyle={{ padding: 0 }}>{newContent}</Card>}
+      menu={<Card bodyStyle={emptyOption === true ? { padding: 0 } : undefined}>{newContent}</Card>}
     >
       <div
         onMouseOver={() => renderSelectIcon('enter')}
