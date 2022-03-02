@@ -9836,6 +9836,9 @@ function SearchTagInput(props) {
   }, others, {
     isOpen: innerIsOpen,
     menu: /*#__PURE__*/(0,jsx_runtime.jsx)(react_card_esm, {
+      bodyStyle: {
+        padding: 0
+      },
       children: newContent
     }),
     children: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
@@ -9886,8 +9889,7 @@ function SearchTagInput(props) {
             onKeyDown: inputKeyDown,
             onChange: e => handleInputChange(e.target.value),
             value: searchValue,
-            placeholder: selectedOption.length ? '' : placeholder // readOnly={false}
-
+            placeholder: selectedOption.length ? '' : placeholder
           })]
         }), /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
           style: {
@@ -9910,7 +9912,8 @@ function SearchTagInput(props) {
 ;// CONCATENATED MODULE: ../react-search-tree/esm/index.js
 
 
-var react_search_tree_esm_excluded = ["onChange", "onSearch", "options", "value", "emptyOption", "treeProps"];
+var react_search_tree_esm_excluded = ["onChange", "onSearch", "multiple", "options", "value", "emptyOption", "treeProps"];
+
 
 
 
@@ -9987,10 +9990,42 @@ function TreeCheckeds(props) {
   }));
 }
 
+function SingeTree(props) {
+  var [keys, keysSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    var _props$values2;
+
+    var key = (_props$values2 = props.values) == null ? void 0 : _props$values2[0].key;
+    keysSet(key ? [key] : []);
+  }, [props.values]);
+
+  var onSelected = (_1, _2, isChecked, evn) => {
+    var {
+      key,
+      label
+    } = evn;
+    var cur = {
+      key,
+      label
+    };
+    props.onSelected == null ? void 0 : props.onSelected([cur], cur, isChecked);
+  };
+
+  return /*#__PURE__*/(0,jsx_runtime.jsx)(Tree, _extends({
+    defaultExpandAll: true
+  }, props, {
+    multiple: false,
+    data: props.options,
+    selectedKeys: keys,
+    onSelected: onSelected
+  }));
+}
+
 function SearchTree(props) {
   var {
     onChange,
     onSearch,
+    multiple = true,
     options = [],
     value = [],
     emptyOption = !options.length,
@@ -9998,7 +10033,7 @@ function SearchTree(props) {
   } = props,
       other = _objectWithoutPropertiesLoose(props, react_search_tree_esm_excluded);
 
-  var [selectedValues, selectedValuesSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(value);
+  var [selectedValues, selectedValuesSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(Array.isArray(value) ? value : [value]);
   var [selectedOptions, selectedOptionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(options);
   var [isEmpty, isEmptySet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(emptyOption);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
@@ -10053,7 +10088,7 @@ function SearchTree(props) {
     onChange: selectedChange,
     values: selectedValues,
     options: selectedOptions,
-    content: /*#__PURE__*/(0,jsx_runtime.jsx)(TreeCheckeds, _extends({}, treeProps))
+    content: multiple ? /*#__PURE__*/(0,jsx_runtime.jsx)(TreeCheckeds, _extends({}, treeProps)) : /*#__PURE__*/(0,jsx_runtime.jsx)(SingeTree, _extends({}, treeProps))
   }));
 }
 
