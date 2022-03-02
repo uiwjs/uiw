@@ -9844,7 +9844,7 @@ function SearchTagInput(props) {
       onClick: () => {
         var _inputRef$current;
 
-        if (innerIsOpen) (_inputRef$current = inputRef.current) == null ? void 0 : _inputRef$current.focus();
+        return (_inputRef$current = inputRef.current) == null ? void 0 : _inputRef$current.focus();
       },
       style: _extends({
         minWidth: 200,
@@ -10045,7 +10045,6 @@ function SearchTree(props) {
     var isEmpt = true;
     options.forEach(opt => isEmpt = isEmpt && !!opt.hideNode);
     isEmptySet(isEmpt);
-    console.log('isEmpt', isEmpt);
   };
 
   return /*#__PURE__*/(0,jsx_runtime.jsx)(esm_SearchTagInput, _extends({}, other, {
