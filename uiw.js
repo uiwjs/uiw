@@ -9756,8 +9756,8 @@ function SearchTagInput(props) {
       others = _objectWithoutPropertiesLoose(props, SearchTagInput_excluded);
 
   var cls = [prefixCls, className].filter(Boolean).join(' ').trim(); // const isMultiple = useMemo(() => mode === 'multiple', [mode]);
-  // const [innerIsOpen, setInnerIsOpen] = useState(false);
 
+  var [innerIsOpen, setInnerIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
   var [selectedOption, setSelectedOption] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(values);
   var optionRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)();
   var [searchValue, searchValueSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)('');
@@ -9797,7 +9797,7 @@ function SearchTagInput(props) {
 
 
   function resetSelectedValue() {
-    // setInnerIsOpen(false);
+    setInnerIsOpen(false);
     setSelectedOption([]);
     handleInputChange('');
     handleSelectChange([]);
@@ -9822,6 +9822,7 @@ function SearchTagInput(props) {
     className: cls,
     trigger: "focus"
   }, others, {
+    isOpen: innerIsOpen,
     menu: /*#__PURE__*/(0,jsx_runtime.jsx)(react_card_esm, {
       children: newContent
     }),
@@ -9831,7 +9832,7 @@ function SearchTagInput(props) {
       onClick: () => {
         var _inputRef$current;
 
-        return (_inputRef$current = inputRef.current) == null ? void 0 : _inputRef$current.focus();
+        if (innerIsOpen) (_inputRef$current = inputRef.current) == null ? void 0 : _inputRef$current.focus();
       },
       style: _extends({
         minWidth: 200,
