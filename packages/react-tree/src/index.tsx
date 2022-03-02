@@ -151,11 +151,11 @@ export default function Tree(props: TreeProps) {
   // useEffect(() => setCurSelectedKeys(selectedKeys), [selectedKeys]);
 
   useEffect(() => {
-    let arrOpenKeys: TreeData['key'][] = [];
+    let arrOpenKeys: TreeData['key'][] = curOpenKeys;
     if (defaultExpandAll) {
       arrOpenKeys = getChildKeys(data);
     } else if (autoExpandParent) {
-      arrOpenKeys = getChildKeys(data, undefined, 1);
+      arrOpenKeys.push(...getChildKeys(data, undefined, 1));
     }
     setCurOpenKeys(arrOpenKeys);
   }, []);
