@@ -35,6 +35,10 @@ function Demo() {
     console.log('getFieldValues', form.current.getFieldValues())
   }
 
+  const setFieldValue=()=>{
+    form.current.setFieldValue('name','UIW')
+  }
+
   return (
     <div>
       <Form
@@ -85,6 +89,7 @@ function Demo() {
       <Button type="primary" onClick={onSubmit} >submit</Button>
       <Button type="primary" onClick={resetForm}>resetForm</Button>
       <Button type="primary" onClick={getFieldValues}>getValues</Button>
+      <Button type="primary" onClick={setFieldValue}>setFieldValue</Button>
     </div>
   )
 }
