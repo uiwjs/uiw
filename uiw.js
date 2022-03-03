@@ -8358,7 +8358,11 @@ function Step(props) {
     children: [/*#__PURE__*/(0,jsx_runtime.jsx)("div", {
       className: prefixCls + "-item-tail",
       style: stepItemDotStyle,
-      children: /*#__PURE__*/(0,jsx_runtime.jsx)("i", {})
+      children: /*#__PURE__*/(0,jsx_runtime.jsx)("i", {
+        style: {
+          paddingRight: '100%'
+        }
+      })
     }), /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
       className: prefixCls + "-item-head",
       children: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
