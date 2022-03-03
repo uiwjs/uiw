@@ -1,6 +1,7 @@
 ---
 name: 功能要求(Feature Request)
-about: 为 uiw 组件推荐一个功能
+about: 为 uiw 组件推荐一个功能（添加一个组件，一个组件 API）！
+labels: feature,enhancement
 ---
 
 **您的功能请求是否与问题有关？请描述。**
