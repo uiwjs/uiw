@@ -7782,21 +7782,20 @@ var react_tag_esm_excluded = ["prefixCls", "className", "style", "title", "child
     return null;
   }
 
-  var closeBtn = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => closable ? /*#__PURE__*/(0,jsx_runtime.jsx)("svg", {
-    onClick: onClose,
-    className: prefixCls + "-close",
-    width: "15",
-    height: "15",
-    viewBox: "0 0 16 16",
-    children: /*#__PURE__*/(0,jsx_runtime.jsx)("path", {
-      d: "M9.41 8l2.29-2.29c.19-.18.3-.43.3-.71a1.003 1.003 0 0 0-1.71-.71L8 6.59l-2.29-2.3a1.003 1.003 0 0 0-1.42 1.42L6.59 8 4.3 10.29c-.19.18-.3.43-.3.71a1.003 1.003 0 0 0 1.71.71L8 9.41l2.29 2.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71L9.41 8z"
-    })
-  }) : null, [closable]);
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("span", _extends({
     className: cls,
     style: styl
   }, other, {
-    children: [title || children, closeBtn]
+    children: [title || children, closable ? /*#__PURE__*/(0,jsx_runtime.jsx)("svg", {
+      onClick: onClose,
+      className: prefixCls + "-close",
+      width: "15",
+      height: "15",
+      viewBox: "0 0 16 16",
+      children: /*#__PURE__*/(0,jsx_runtime.jsx)("path", {
+        d: "M9.41 8l2.29-2.29c.19-.18.3-.43.3-.71a1.003 1.003 0 0 0-1.71-.71L8 6.59l-2.29-2.3a1.003 1.003 0 0 0-1.42 1.42L6.59 8 4.3 10.29c-.19.18-.3.43-.3.71a1.003 1.003 0 0 0 1.71.71L8 9.41l2.29 2.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71L9.41 8z"
+      })
+    }) : null]
   }));
 });
 
@@ -9840,7 +9839,7 @@ function SearchTagInput(props) {
     });
 
     return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(content, newProps);
-  }, [selectedOption, options, emptyOption]);
+  }, [JSON.parse(JSON.stringify(selectedOption)), options, emptyOption]);
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Dropdown, _extends({
     className: cls,
     trigger: "focus"
