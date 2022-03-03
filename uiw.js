@@ -9594,7 +9594,7 @@ function Tree(props) {
   // useEffect(() => setCurSelectedKeys(selectedKeys), [selectedKeys]);
 
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
-    var arrOpenKeys = curOpenKeys;
+    var arrOpenKeys = [...curOpenKeys];
 
     if (defaultExpandAll) {
       arrOpenKeys = getChildKeys(data);
