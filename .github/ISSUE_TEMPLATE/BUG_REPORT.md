@@ -22,6 +22,8 @@ labels: bug,question
 
 ### 提供在线重现示例
 
+尽可能的提供一个在线示例，帮助我们快速解决问题。
+
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/s/uiw-demo-forked-gk9bin)
 
 ### 预期行为
