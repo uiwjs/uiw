@@ -113,7 +113,7 @@ function SearchTree<V extends SearchTagInputOption>(props: SearchTreeProps<V>) {
   const [isEmpty, isEmptySet] = useState(emptyOption);
 
   useEffect(() => {
-    selectedValuesSet(value);
+    selectedValuesSet(Array.isArray(value) ? value : []);
   }, [JSON.stringify(value)]);
 
   const selectedChange = (resultValue: Array<V>, cur: V, isChecked: boolean) => {
