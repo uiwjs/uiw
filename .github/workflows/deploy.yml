@@ -50,7 +50,7 @@ jobs:
       id: tag_version
       uses: jaywcjlove/changelog-generator@v1.5.0
 
-    - name: Deploy to uiwjs.github.io
+    - name: Deploy to uiwjs.github.io Repo
       uses: peaceiris/actions-gh-pages@v3
       with:
         commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
@@ -59,12 +59,11 @@ jobs:
         publish_branch: master
         external_repository: uiwjs/uiwjs.github.io
 
-    - name: Build and Deploy
+    - name: Deploy gh-pages Branch
       uses: peaceiris/actions-gh-pages@v3
       with:
         commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
-        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        publish_branch: gh-pages
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./website/build
         cname: uiw.js.cool
 
