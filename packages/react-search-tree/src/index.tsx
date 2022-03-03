@@ -134,15 +134,14 @@ function SearchTree<V extends SearchTagInputOption>(props: SearchTreeProps<V>) {
   };
 
   const selectedSearch = (searchValue: string) => {
-    const hiddenNodeForSeach = (childrens: TreeData[]) => {
+    const hiddenNodeForSeach = (childrens: TreeData[], parentIsHide: boolean = true) => {
       childrens.forEach((child: TreeData) => {
-        const isHide = !(child.label as string).includes(searchValue);
+        const isHide = !(child.label as string).includes(searchValue.trim()) && parentIsHide;
         if (!!child.children?.length) {
-          hiddenNodeForSeach(child.children);
+          hiddenNodeForSeach(child.children, isHide);
           const find = child.children.find((item) => !item.hideNode);
           child.hideNode = isHide && !find;
         } else {
-          // const isHide = !(child.label as string).includes(searchValue)
           child.hideNode = isHide;
         }
       });
@@ -159,7 +158,7 @@ function SearchTree<V extends SearchTagInputOption>(props: SearchTreeProps<V>) {
     <SearchTagInput
       {...other}
       emptyOption={isEmpty}
-      onSearch={debounce(selectedSearch, 700)}
+      onSearch={debounce(selectedSearch, 600)}
       onChange={selectedChange}
       values={selectedValues}
       options={selectedOptions}
