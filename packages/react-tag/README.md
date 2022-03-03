@@ -186,7 +186,7 @@ class Demo extends React.Component {
         {dataTags.map((item, idx) => {
           return (
             <Tag
-              key={item.value}
+              key={idx}
               closable
               onClose={this.onClose.bind(this, item)}
               visible={this.state.visible}
