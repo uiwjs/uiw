@@ -46,9 +46,14 @@ jobs:
 
     - run: cp -rf website/build/* packages/doc/web
 
+    - name: get tag version
+      id: tag_version
+      uses: jaywcjlove/changelog-generator@v1.5.0
+
     - name: Deploy to uiwjs.github.io
       uses: peaceiris/actions-gh-pages@v3
       with:
+        commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
         personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
         publish_dir: ./website/build
         publish_branch: master
@@ -57,6 +62,7 @@ jobs:
     - name: Build and Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
+        commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
         deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         publish_branch: gh-pages
         publish_dir: ./website/build
