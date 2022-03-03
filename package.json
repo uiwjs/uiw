@@ -4,6 +4,7 @@
   "homepage": "https://uiwjs.github.io",
   "private": true,
   "scripts": {
+    "debug":"./debug",
     "lib": "lerna exec --scope @uiw/react-file-input -- tsbb build --target react",
     "lib:css": "lerna exec --scope @uiw/react-file-input -- compile-less -d src -o esm",
     "lib:css:dist": "lerna exec --scope @uiw/react-file-input -- compile-less -d src -o lib --combine=dist.css",
