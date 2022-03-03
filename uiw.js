@@ -10070,18 +10070,21 @@ function SearchTree(props) {
   };
 
   var selectedSearch = searchValue => {
-    var hiddenNodeForSeach = childrens => {
+    var hiddenNodeForSeach = function hiddenNodeForSeach(childrens, parentIsHide) {
+      if (parentIsHide === void 0) {
+        parentIsHide = true;
+      }
+
       childrens.forEach(child => {
         var _child$children2;
 
-        var isHide = !child.label.includes(searchValue);
+        var isHide = !child.label.includes(searchValue.trim()) && parentIsHide;
 
         if (!!((_child$children2 = child.children) != null && _child$children2.length)) {
-          hiddenNodeForSeach(child.children);
+          hiddenNodeForSeach(child.children, isHide);
           var find = child.children.find(item => !item.hideNode);
           child.hideNode = isHide && !find;
         } else {
-          // const isHide = !(child.label as string).includes(searchValue)
           child.hideNode = isHide;
         }
       });
@@ -10096,7 +10099,7 @@ function SearchTree(props) {
 
   return /*#__PURE__*/(0,jsx_runtime.jsx)(esm_SearchTagInput, _extends({}, other, {
     emptyOption: isEmpty,
-    onSearch: debounce(selectedSearch, 700),
+    onSearch: debounce(selectedSearch, 600),
     onChange: selectedChange,
     values: selectedValues,
     options: selectedOptions,
