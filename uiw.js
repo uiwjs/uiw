@@ -10048,7 +10048,7 @@ function SearchTree(props) {
   var [selectedOptions, selectedOptionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(options);
   var [isEmpty, isEmptySet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(emptyOption);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
-    selectedValuesSet(value);
+    selectedValuesSet(Array.isArray(value) ? value : []);
   }, [JSON.stringify(value)]);
 
   var selectedChange = (resultValue, cur, isChecked) => {
