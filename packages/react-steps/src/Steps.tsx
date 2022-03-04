@@ -3,8 +3,8 @@ import { IProps, HTMLDivProps } from '@uiw/utils';
 import Step, { StepProps } from './Step';
 
 export interface StepsProps<T> extends IProps, HTMLDivProps {
-  status?: StepProps<T>['status'];
-  progressDot?: StepProps<T>['progressDot'];
+  status?: StepProps['status'];
+  progressDot?: StepProps['progressDot'];
   direction?: 'horizontal' | 'vertical';
   /**
    * 指定当前步骤，从 `0` 开始记数。
@@ -71,7 +71,7 @@ function InternalSteps<T>(props: StepsProps<T>) {
           childProps.className = `${prefixCls}-next-error`;
         }
         if (!child.props.status) {
-          if (index === current) {
+          if (index === current!) {
             childProps.status = status;
           } else if (index < (current as number)) {
             childProps.status = 'finish';
