@@ -8014,7 +8014,8 @@ function SearchSelect(props) {
         children: [/*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
           style: {
             display: 'flex',
-            flexFlow: 'wrap'
+            flexFlow: 'wrap',
+            width: '100%'
           },
           children: [isMultiple && selectedValue.slice(0, maxTagCount).map((item, index) => {
             return /*#__PURE__*/(0,jsx_runtime.jsx)(react_tag_esm, _extends({
@@ -9877,7 +9878,8 @@ function SearchTagInput(props) {
         children: [/*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
           style: {
             display: 'flex',
-            flexFlow: 'wrap'
+            flexFlow: 'wrap',
+            width: '100%'
           },
           children: [selectedOption.map((item, index) => {
             return /*#__PURE__*/(0,jsx_runtime.jsx)(react_tag_esm, {
@@ -9912,7 +9914,8 @@ function SearchTagInput(props) {
           })]
         }), /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
           style: {
-            height: 25
+            height: 25,
+            width: 14
           },
           className: prefixCls + "-close-tag-contents",
           children: (selectIconType === 'close' || selectIconType === 'loading' && loading) && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {

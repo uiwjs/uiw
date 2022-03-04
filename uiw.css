@@ -3847,7 +3847,8 @@ a.w-list-item:hover:not(.w-disabled) {
 .w-search-select-input-contents input {
   box-shadow: none;
   padding: 0px;
-  height: 20px;
+  min-width: 50px;
+  height: 22px;
 }
 .w-search-select-input-contents .w-input-inner:hover {
   box-shadow: none !important;
@@ -4952,6 +4953,7 @@ a.w-list-item:hover:not(.w-disabled) {
   box-shadow: none;
   padding: 0px;
   height: 20px;
+  min-width: 50px;
 }
 .w-search-tree-input-contents .w-input-inner:hover {
   box-shadow: none !important;
