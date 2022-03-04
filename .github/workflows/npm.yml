@@ -16,14 +16,6 @@ jobs:
       with:
         node-version: 14
 
-    - name: Generate changelog
-      id: changelog
-      uses: jaywcjlove/changelog-generator@v1.4.6
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        filter-author: (小弟调调™)
-        filter: (^[\s]+?[R|r]elease)|(^[R|r]elease)
-
     - run: npm install
     - run: npm run hoist
 
@@ -78,6 +70,72 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: get tag version
+      id: tag_version
+      uses: jaywcjlove/changelog-generator@v1.5.0
+
+    - name: Deploy to uiwjs.github.io
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
+        personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
+        publish_dir: ./website/build
+        publish_branch: master
+        external_repository: uiwjs/uiwjs.github.io
+
+    - name: Deploy gh-pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_branch: gh-pages
+        publish_dir: ./website/build
+        cname: uiw.js.cool
+
+    - name: Generate changelog
+      id: changelog
+      uses: jaywcjlove/changelog-generator@v1.5.0
+      with:
+        filter-author: (小弟调调™)
+        filter: (^[\s]+?[R|r]elease)|(^[R|r]elease)
+
+    - run: |
+        echo "tag: ${{ steps.changelog.outputs.tag }}"
+        echo "version: ${{ steps.changelog.outputs.version }}"
+        echo "ref: ${{ github.ref }}"
+
+    - name: Create Release
+      uses: ncipollo/release-action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        name: ${{ steps.changelog.outputs.tag }}
+        tag: ${{ steps.changelog.outputs.tag }}
+        body: |
+          [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/uiw@${{steps.changelog.outputs.version}}/file/README.md) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/uiw)](https://bundlephobia.com/result?p=uiw@${{steps.changelog.outputs.version}}) [![npm version](https://img.shields.io/npm/v/uiw.svg)](https://www.npmjs.com/package/uiw)
+          
+          Documentation ${{ steps.changelog.outputs.tag }}: https://raw.githack.com/uiwjs/uiw/${{ steps.changelog.outputs.gh-pages-short-hash }}/index.html
+          Comparing Changes: ${{ steps.changelog.outputs.compareurl }}
+
+          ```bash
+          npm i uiw@${{steps.changelog.outputs.version}}
+          ```
+
+          ${{ steps.changelog.outputs.changelog }}
+
+
+    - name: Sync to Gitee
+      run: |
+        mirror() {
+          git clone "https://github.com/$1/$2"
+          cd "$2"
+          git remote add gitee "https://jaywcjlove:${{ secrets.GITEE_TOKEN }}@gitee.com/uiw/$2.git"
+          git remote set-head origin -d
+          git push gitee --prune +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
+          cd ..
+        }
+        mirror uiwjs uiw
+
 
     - run: npm install @jsdevtools/npm-publish -g
 
@@ -141,53 +199,3 @@ jobs:
 
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/uiw/package.json
     - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/doc/package.json
-
-    - run: |
-        echo "tag: ${{ steps.changelog.outputs.tag }}"
-        echo "version: ${{ steps.changelog.outputs.version }}"
-        echo "ref: ${{ github.ref }}"
-
-    - name: Create Release
-      uses: ncipollo/release-action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        name: ${{ steps.changelog.outputs.tag }}
-        tag: ${{ steps.changelog.outputs.tag }}
-        body: |
-          [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/uiw@${{steps.changelog.outputs.version}}/file/README.md) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/uiw)](https://bundlephobia.com/result?p=uiw@${{steps.changelog.outputs.version}}) [![npm version](https://img.shields.io/npm/v/uiw.svg)](https://www.npmjs.com/package/uiw)
-          
-          ```bash
-          npm i uiw@${{steps.changelog.outputs.version}}
-          ```
-
-          ${{ steps.changelog.outputs.compareurl }}
-
-          ${{ steps.changelog.outputs.changelog }}
-
-    - name: Deploy to uiwjs.github.io
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
-        publish_dir: ./website/build
-        publish_branch: master
-        external_repository: uiwjs/uiwjs.github.io
-
-    - name: Deploy gh-pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        publish_branch: gh-pages
-        publish_dir: ./website/build
-        cname: uiw.js.cool
-
-    - name: Sync to Gitee
-      run: |
-        mirror() {
-          git clone "https://github.com/$1/$2"
-          cd "$2"
-          git remote add gitee "https://jaywcjlove:${{ secrets.GITEE_TOKEN }}@gitee.com/uiw/$2.git"
-          git remote set-head origin -d
-          git push gitee --prune +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
-          cd ..
-        }
-        mirror uiwjs uiw
