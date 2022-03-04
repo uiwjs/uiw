@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-button-group",
-  "version": "4.13.4",
+  "version": "4.13.6",
   "description": "ButtonGroup component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/button-group",
@@ -44,16 +44,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-button": "^4.13.4",
-    "@uiw/utils": "^4.13.4"
-  },
-  "devDependencies": {
-    "@babel/runtime": "7.17.2",
-    "@types/react": "17.0.39",
-    "@types/react-dom": "17.0.11",
-    "@types/react-test-renderer": "17.0.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-test-renderer": "17.0.2"
+    "@uiw/react-button": "^4.13.6",
+    "@uiw/utils": "^4.13.6"
   }
 }
