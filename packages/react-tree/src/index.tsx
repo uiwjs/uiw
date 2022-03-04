@@ -12,7 +12,7 @@ export type TreeRenderTitleNode = {
   selectedKeys?: TreeProps['selectedKeys'];
 };
 
-export interface TreeProps extends IProps, HTMLDivProps {
+export interface TreeProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   icon?: IconProps['type'];
   data?: TreeData[];
   openKeys?: TreeData['key'][];
@@ -45,6 +45,8 @@ export interface TreeProps extends IProps, HTMLDivProps {
     item: TreeData,
     evn: React.MouseEvent<HTMLElement>,
   ) => void;
+  onChange?: (keys: (string | number | undefined)[]) => void;
+  value?: TreeData['key'][];
 }
 
 export interface TreeData {
@@ -137,16 +139,19 @@ export default function Tree(props: TreeProps) {
     className,
     autoExpandParent = true,
     renderTitle,
+    onChange,
     ...elementProps
   } = props;
 
   const [curOpenKeys, setCurOpenKeys] = useState(openKeys);
-  const [curSelectedKeys, setCurSelectedKeys] = useState(selectedKeys);
+  const [curSelectedKeys, setCurSelectedKeys] = useState(props.value || selectedKeys);
 
   useEffect(() => {
     setCurSelectedKeys(props.selectedKeys || []);
   }, [JSON.stringify(props.selectedKeys)]);
-
+  useEffect(() => {
+    setCurSelectedKeys(props.value || []);
+  }, [JSON.stringify(props.value)]);
   // useEffect(() => setCurOpenKeys(openKeys), [openKeys]);
   // useEffect(() => setCurSelectedKeys(selectedKeys), [selectedKeys]);
 
@@ -155,7 +160,7 @@ export default function Tree(props: TreeProps) {
     if (defaultExpandAll) {
       arrOpenKeys = getChildKeys(data);
     } else if (autoExpandParent) {
-      arrOpenKeys.push(...getChildKeys(data, undefined, 1));
+      arrOpenKeys.push(...getChildKeys(data || [], undefined, 1));
     }
     setCurOpenKeys(arrOpenKeys);
   }, []);
@@ -209,6 +214,7 @@ export default function Tree(props: TreeProps) {
     }
     setCurSelectedKeys(selKeys);
     onSelected && onSelected(selKeys, item.key, selected, item, evn);
+    onChange?.(selKeys);
   }
   return (
     <div className={cls} {...elementProps}>
