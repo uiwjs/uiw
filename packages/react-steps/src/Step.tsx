@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import Icon, { IconProps } from '@uiw/react-icon';
+import Icon, { IconProps, IconsName } from '@uiw/react-icon';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -57,14 +57,16 @@ export default function Step(props: StepProps) {
   } else if ((icon && typeof icon === 'string') || status === 'finish' || status === 'error') {
     iconNode = (
       <Icon
-        type={[
-          icon && typeof icon === 'string' ? `${icon}` : null,
-          !icon && status === 'finish' ? 'check' : null,
-          !icon && status === 'error' ? 'close' : null,
-        ]
-          .filter(Boolean)
-          .join(' ')
-          .trim()}
+        type={
+          [
+            icon && typeof icon === 'string' ? `${icon}` : null,
+            !icon && status === 'finish' ? 'check' : null,
+            !icon && status === 'error' ? 'close' : null,
+          ]
+            .filter(Boolean)
+            .join(' ')
+            .trim() as IconsName | null
+        }
       />
     );
   } else {
@@ -73,7 +75,7 @@ export default function Step(props: StepProps) {
   return (
     <div {...restProps} className={classString} style={stepItemStyle}>
       <div className={`${prefixCls}-item-tail`} style={stepItemDotStyle}>
-        <i />
+        <i style={{ paddingRight: '100%' }} />
       </div>
       <div className={`${prefixCls}-item-head`}>
         <div className={[`${prefixCls}-item-inner`, !!icon && 'is-icon'].filter(Boolean).join(' ').trim()}>

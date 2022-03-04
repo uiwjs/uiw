@@ -17,6 +17,7 @@ import {
   Notify,
   Menu,
   Dropdown,
+  TreeChecked,
 } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
@@ -41,6 +42,7 @@ export default function Page() {
         Textarea,
         Notify,
         Menu,
+        TreeChecked,
         Dropdown,
         useRef,
       }}
