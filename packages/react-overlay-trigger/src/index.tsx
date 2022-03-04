@@ -97,7 +97,7 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
     ...other
   } = props;
 
-  const zIndex = useRef<number>(999);
+  const zIndex = useRef<number>(990);
   const triggerRef = useRef<HTMLElement>();
   const popupRef = useRef<HTMLElement>();
   const timeoutRef = useRef<number[]>([]);

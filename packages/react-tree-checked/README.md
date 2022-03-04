@@ -109,6 +109,119 @@ const Demo = () => (
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+### 表单使用
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import React, { useState, useRef } from "react";
+import ReactDOM from 'react-dom';
+import { Form, Input, Row, Col, TreeChecked, Slider, Button, Notify } from 'uiw';
+
+const data = [
+  {
+    label: '湖北省',
+    key: '0-0-0',
+    children:[
+      {
+        label: '武汉市',
+        key: '0-1-0',
+        children:[
+          { label: '新洲区', key: '0-1-1', disabled: true },
+          { label: '武昌区', key: '0-1-2' },
+          {
+            label: '汉南区',
+            key: '0-1-3',
+            children:[
+              { label: '汉南区1', key: '0-1-3-1' },
+              { label: '汉南区2', key: '0-1-3-2' },
+              { label: '汉南区3', key: '0-1-3-3' },
+            ]
+          },
+        ]
+      },
+      { label: '黄冈市', key: '0-2-0' },
+      {
+        label: '黄石市',
+        key: '0-3-0',
+        children:[
+          { label: '青山区', key: '0-3-1' },
+          { label: '黄陂区', key: '0-3-2' },
+          { label: '青山区', key: '0-3-3' },
+        ]
+      },
+    ]
+  },
+  { label: '澳门', key: '3' },
+];
+
+function Demo() {
+  const form = useRef()
+
+  const onSubmit = () => {
+    form.current.onSubmit()
+  }
+  const resetForm = () => {
+    form.current.resetForm()
+  }
+  const getFieldValues = () => {
+    console.log('getFieldValues', form.current.getFieldValues())
+  }
+
+  const setFieldValue=()=>{
+    form.current.setFieldValue('name','UIW')
+  }
+
+  return (
+    <div>
+      <Form
+        ref={form}
+        onChange={({ initial, current }) => {
+          console.log('onChange', initial, current);
+        }}
+        onSubmit={({ initial, current }) => {
+          if (current.tree === initial.tree) {
+            Notify.error({
+              title: '提交失败！',
+              description: `表单提交内容为空！`,
+            });
+          } else {
+            Notify.success({
+              title: '提交成功！',
+            });
+          }
+        }}
+        fields={{
+          tree: {
+            label: "树",
+            initialValue: ['3'],
+            children: <TreeChecked
+              data={data}
+              selectedKeys={['0-2-0']}
+            />
+          }
+        }}
+      >
+        {({ fields, state, canSubmit }) => {
+          return (
+            <div>
+              <Row>
+                <Col style={{ maxWidth: 300 }}>{fields.tree}</Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+                </Col>
+              </Row>
+            </div>
+          )
+        }}
+      </Form>
+    </div>
+  )
+}
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ## Props
 
 完全继承 [Tree](#/components/Tree) 组件属性，默认初始值不一样，下面仅列出默认不一致的 Props。

@@ -107,6 +107,48 @@ ReactDOM.render(
 );
 ```
 
+### 图片预览
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { FileInput, Overlay } from 'uiw';
+
+const Demo=()=>{
+  const [visible,visibleSet]=React.useState(false)
+  const [curfile,curFileSet]=React.useState(null)
+  console.log('curfile',curfile)
+
+   return(
+     <>
+      <Overlay
+        isOpen={visible}
+        onClosed={()=>visibleSet(false)}
+      >
+        <img src={`${curfile?.dataURL}`} alt={`${curfile?.name}`} />
+      </Overlay>
+      <FileInput
+        uploadType="picture"
+        size="large"
+        onPreview={(file) =>{
+          visibleSet(true)
+          curFileSet(file)
+        }}
+        value={[
+          { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
+        ]}
+      >
+        <Icon type="plus" />
+      </FileInput>
+    </>
+   )
+}
+
+ReactDOM.render(<Demo/>   ,_mount_
+);
+```
+
 ### 图片列表样式
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
@@ -173,12 +215,12 @@ import { Form, Row, Col, Icon } from 'uiw';
 
 ReactDOM.render(
   <div>
-    <Form 
+    <Form
       fields={{
         picture1: {
           label: '图片墙',
           initialValue: [
-            { 
+            {
               dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png'
             }
           ],
@@ -191,7 +233,7 @@ ReactDOM.render(
         picture2: {
           label: '图片列表',
           initialValue: [
-            { 
+            {
               dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png'
             }
           ],
@@ -238,7 +280,7 @@ ReactDOM.render(
 );
 ```
 
-## Props 
+## Props
 
 - `uploadType: input` 基础输入框上传
 
