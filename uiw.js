@@ -2814,7 +2814,7 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
   } = props,
       other = _objectWithoutPropertiesLoose(props, react_overlay_trigger_esm_excluded);
 
-  var zIndex = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(999);
+  var zIndex = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(990);
   var triggerRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)();
   var popupRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)();
   var timeoutRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)([]);
