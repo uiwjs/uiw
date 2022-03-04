@@ -9470,7 +9470,7 @@ function TreeNode(props) {
 ;// CONCATENATED MODULE: ../react-tree/esm/index.js
 
 
-var react_tree_esm_excluded = ["prefixCls", "icon", "data", "openKeys", "selectedKeys", "defaultExpandAll", "showLine", "iconAnimation", "isSelected", "checkStrictly", "multiple", "onExpand", "onSelected", "className", "autoExpandParent", "renderTitle"];
+var react_tree_esm_excluded = ["prefixCls", "icon", "data", "openKeys", "selectedKeys", "defaultExpandAll", "showLine", "iconAnimation", "isSelected", "checkStrictly", "multiple", "onExpand", "onSelected", "className", "autoExpandParent", "renderTitle", "onChange"];
 
 
 
@@ -9585,15 +9585,19 @@ function Tree(props) {
     onSelected = noop,
     className,
     autoExpandParent = true,
-    renderTitle
+    renderTitle,
+    onChange
   } = props,
       elementProps = _objectWithoutPropertiesLoose(props, react_tree_esm_excluded);
 
   var [curOpenKeys, setCurOpenKeys] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(openKeys);
-  var [curSelectedKeys, setCurSelectedKeys] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(selectedKeys);
+  var [curSelectedKeys, setCurSelectedKeys] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(props.value || selectedKeys);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     setCurSelectedKeys(props.selectedKeys || []);
-  }, [JSON.stringify(props.selectedKeys)]); // useEffect(() => setCurOpenKeys(openKeys), [openKeys]);
+  }, [JSON.stringify(props.selectedKeys)]);
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    setCurSelectedKeys(props.value || []);
+  }, [JSON.stringify(props.value)]); // useEffect(() => setCurOpenKeys(openKeys), [openKeys]);
   // useEffect(() => setCurSelectedKeys(selectedKeys), [selectedKeys]);
 
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
@@ -9602,7 +9606,7 @@ function Tree(props) {
     if (defaultExpandAll) {
       arrOpenKeys = getChildKeys(data);
     } else if (autoExpandParent) {
-      arrOpenKeys.push(...getChildKeys(data, undefined, 1));
+      arrOpenKeys.push(...getChildKeys(data || [], undefined, 1));
     }
 
     setCurOpenKeys(arrOpenKeys);
@@ -9664,6 +9668,7 @@ function Tree(props) {
 
     setCurSelectedKeys(selKeys);
     onSelected && onSelected(selKeys, item.key, selected, item, evn);
+    onChange == null ? void 0 : onChange(selKeys);
   }
 
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
