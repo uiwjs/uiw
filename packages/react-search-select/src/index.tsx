@@ -233,7 +233,7 @@ export default function SearchSelect(props: SearchSelectProps) {
       >
         {isMultiple ? (
           <div className={`${prefixCls}-inner`}>
-            <div style={{ display: 'flex', flexFlow: 'wrap' }}>
+            <div style={{ display: 'flex', flexFlow: 'wrap', width: '100%' }}>
               {isMultiple &&
                 selectedValue.slice(0, maxTagCount).map((item, index) => {
                   return (
