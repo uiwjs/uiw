@@ -9072,75 +9072,80 @@ var react_table_esm_excluded = ["prefixCls", "className", "columns", "data", "ti
     ellipsis
   } = getLevelItems(columns);
   var keys = getAllColumnsKeys(columns);
-  return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", _extends({
-    className: cls
-  }, other, {
-    children: [/*#__PURE__*/(0,jsx_runtime.jsxs)("table", {
-      style: ellipsis ? {
-        tableLayout: 'fixed'
-      } : {},
-      children: [title && /*#__PURE__*/(0,jsx_runtime.jsx)("caption", {
-        children: title
-      }), columns && columns.length > 0 && /*#__PURE__*/(0,jsx_runtime.jsx)(Thead, {
-        onCellHead: onCellHead,
-        data: header
-      }), data && data.length > 0 && /*#__PURE__*/(0,jsx_runtime.jsx)("tbody", {
-        children: data.map((trData, rowNum) => /*#__PURE__*/(0,jsx_runtime.jsx)("tr", {
-          children: keys.map((keyName, colNum) => {
-            var objs = {
-              children: trData[keyName]
-            };
+  return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
+    children: [/*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
+      style: {
+        overflowY: 'scroll'
+      },
+      className: cls
+    }, other, {
+      children: /*#__PURE__*/(0,jsx_runtime.jsxs)("table", {
+        style: ellipsis ? {
+          tableLayout: 'fixed'
+        } : {},
+        children: [title && /*#__PURE__*/(0,jsx_runtime.jsx)("caption", {
+          children: title
+        }), columns && columns.length > 0 && /*#__PURE__*/(0,jsx_runtime.jsx)(Thead, {
+          onCellHead: onCellHead,
+          data: header
+        }), data && data.length > 0 && /*#__PURE__*/(0,jsx_runtime.jsx)("tbody", {
+          children: data.map((trData, rowNum) => /*#__PURE__*/(0,jsx_runtime.jsx)("tr", {
+            children: keys.map((keyName, colNum) => {
+              var objs = {
+                children: trData[keyName]
+              };
 
-            if (render[keyName]) {
-              var child = render[keyName](trData[keyName], keyName, trData, rowNum, colNum);
+              if (render[keyName]) {
+                var child = render[keyName](trData[keyName], keyName, trData, rowNum, colNum);
 
-              if ( /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().isValidElement(child)) {
-                objs.children = child;
-              } else {
-                if (child.props) {
-                  objs = _extends({}, child.props, {
-                    children: objs.children
-                  });
-                  if (child.props.rowSpan === 0 || child.props.colSpan === 0) return null;
-                }
+                if ( /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().isValidElement(child)) {
+                  objs.children = child;
+                } else {
+                  if (child.props) {
+                    objs = _extends({}, child.props, {
+                      children: objs.children
+                    });
+                    if (child.props.rowSpan === 0 || child.props.colSpan === 0) return null;
+                  }
 
-                if (child.children) {
-                  objs.children = child.children;
+                  if (child.children) {
+                    objs.children = child.children;
+                  }
                 }
               }
-            }
 
-            if (ellipsis && ellipsis[keyName]) {
-              objs.className = prefixCls + "-ellipsis";
-            }
+              if (ellipsis && ellipsis[keyName]) {
+                objs.className = prefixCls + "-ellipsis";
+              }
 
-            return /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.createElement)("td", _extends({}, objs, {
-              key: colNum,
-              onClick: evn => onCell(trData, {
-                rowNum,
-                colNum,
-                keyName
-              }, evn)
-            }));
+              return /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.createElement)("td", _extends({}, objs, {
+                key: colNum,
+                onClick: evn => onCell(trData, {
+                  rowNum,
+                  colNum,
+                  keyName
+                }, evn)
+              }));
+            })
+          }, rowNum))
+        }), data && data.length === 0 && empty && /*#__PURE__*/(0,jsx_runtime.jsx)("tbody", {
+          children: /*#__PURE__*/(0,jsx_runtime.jsx)("tr", {
+            children: /*#__PURE__*/(0,jsx_runtime.jsx)("td", {
+              colSpan: columns.length,
+              style: {
+                position: 'relative',
+                left: 0
+              },
+              children: empty
+            })
           })
-        }, rowNum))
-      }), data && data.length === 0 && empty && /*#__PURE__*/(0,jsx_runtime.jsx)("tbody", {
-        children: /*#__PURE__*/(0,jsx_runtime.jsx)("tr", {
-          children: /*#__PURE__*/(0,jsx_runtime.jsx)("td", {
-            colSpan: columns.length,
-            style: {
-              position: 'relative',
-              left: 0
-            },
-            children: empty
-          })
-        })
-      }), props.children]
-    }), footer && /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+        }), props.children]
+      })
+    })), footer && /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
       className: prefixCls + "-footer",
       children: footer
     })]
-  }));
+  });
 });
 
 ;// CONCATENATED MODULE: ../react-tabs/esm/Pane.js
