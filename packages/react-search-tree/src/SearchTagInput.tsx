@@ -134,7 +134,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
         style={{ minWidth: 200, maxWidth: 'none', ...style }}
       >
         <div className={`${prefixCls}-inner`}>
-          <div style={{ display: 'flex', flexFlow: 'wrap' }}>
+          <div style={{ display: 'flex', flexFlow: 'wrap', width: '100%' }}>
             {selectedOption.map((item, index) => {
               return (
                 <Tag
@@ -164,7 +164,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
               placeholder={selectedOption.length ? '' : placeholder}
             />
           </div>
-          <span style={{ height: 25 }} className={`${prefixCls}-close-tag-contents`}>
+          <span style={{ height: 25, width: 14 }} className={`${prefixCls}-close-tag-contents`}>
             {(selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
               <Icon type={selectIconType} spin={loading && selectIconType === 'loading'} onClick={resetSelectedValue} />
             )}
