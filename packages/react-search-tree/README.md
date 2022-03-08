@@ -58,14 +58,27 @@ const data = [
   },
   { label: '澳门', key: '3' },
 ];
+
+const datas =[
+  { label: '上海市',  key: 0 },
+  { label: '北京市',  key: 1 },
+  { label: '成都市',  key: 2 },
+]
+
 const Demo = () => {
 
 const [value,valueSet]=useState([{ label: '东花市街道', key: '2-3-1' }])
+const [values,valuesSet]=useState([{ label: '北京市', key: 1 }])
 const [valueSinge,valueSingeSet]=useState([{ label: '上海市', key: '1-0-0' }])
 
 const onChange=(selectd, selectedAll,  isChecked)=>{
   console.log('SearchTree-> onChange',selectedAll, selectd, isChecked)
   valueSet(selectedAll)
+}
+
+const onChanges=(selectd, selectedAll,  isChecked)=>{
+  console.log('SearchTree-> onChange',selectedAll, selectd, isChecked)
+  valuesSet(selectedAll)
 }
 
 const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
@@ -74,6 +87,7 @@ const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
 }
 
  return (
+   <>
     <Row>
       <Col >
         <label>多选</label>
@@ -87,8 +101,22 @@ const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
           placeholder="请输入选择"
         />
       </Col>
-      <Col >
-        <label>单选</label>
+    </Row>
+    <label>单选</label>
+    <Row>
+      <Col>
+        <SearchTree
+          style={{width:400}}
+          multiple={false}
+          allowClear={true}
+          onSearch={(searchValue)=>console.log('singe',searchValue)}
+          onChange={onChanges}
+          value={values}
+          options={datas}
+          placeholder="请输入选择"
+        />
+      </Col>
+      <Col>
         <SearchTree
           style={{width:400}}
           multiple={false}
@@ -100,8 +128,8 @@ const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
           placeholder="请输入选择"
         />
       </Col>
-
     </Row>
+  </>
   )
 }
 ReactDOM.render(<Demo />, _mount_);
@@ -202,7 +230,6 @@ const form=useRef()
           return null;
         }}
         onSubmit={({initial, current}) => {
-          console.log('current',current)
           const errorObj = {};
           if (!current.searchTree) {
             errorObj.searchTree = '默认需要选择内容，选择入内容';

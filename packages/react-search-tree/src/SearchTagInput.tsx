@@ -29,6 +29,7 @@ export interface SearchTagInputProps<V> extends IProps, DropdownProps, DropConte
   loading?: boolean;
   placeholder?: string;
   emptyOption?: boolean | React.ReactNode;
+  selectCloseDrop?: boolean;
 }
 
 function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputProps<V>) {
@@ -39,6 +40,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
     disabled = false,
     allowClear = false,
     loading = false,
+    selectCloseDrop = false,
     className,
     style,
     placeholder,
@@ -74,7 +76,8 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
   const handleSelectChange = (selectedAll: Array<V>, selectd?: V, isChecked: boolean = true) => {
     setSelectedOption(selectedAll);
 
-    onChange && onChange(selectedAll, selectd!, isChecked);
+    searchValueChange('');
+    onChange?.(selectedAll, selectd!, isChecked);
   };
 
   const removeSelectItem = (index: number) => {
@@ -85,10 +88,15 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
   };
 
   function handleInputChange(value: string) {
-    searchValueSet(value);
-    onSearch?.(value);
+    setInnerIsOpen(true);
+    searchValueChange(value);
     setSelectIconType(value ? 'loading' : '');
   }
+
+  const searchValueChange = (value: string) => {
+    searchValueSet(value);
+    onSearch?.(value);
+  };
 
   // 清除选中的值
   function resetSelectedValue(e: any) {
@@ -112,18 +120,24 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
 
     const newProps = {
       ...content.props,
-      onSelected: handleSelectChange,
+      onSelected: (selectedAll: Array<V>, selectd?: V, isChecked: boolean = true) => {
+        setInnerIsOpen(!selectCloseDrop);
+        handleSelectChange(selectedAll, selectd, isChecked);
+      },
       values: selectedOption,
       options,
     };
     return React.cloneElement(content as JSX.Element, newProps);
-  }, [JSON.parse(JSON.stringify(selectedOption)), options, emptyOption]);
+  }, [JSON.stringify(selectedOption), options, emptyOption]);
 
   return (
     <Dropdown
       className={cls}
-      trigger="focus"
-      {...others}
+      trigger="click"
+      onVisibleChange={(isOpen: boolean) => {
+        setInnerIsOpen(isOpen);
+        if (!isOpen) searchValueChange('');
+      }}
       isOpen={innerIsOpen}
       menu={<Card bodyStyle={emptyOption === true ? { padding: 0 } : undefined}>{newContent}</Card>}
     >
