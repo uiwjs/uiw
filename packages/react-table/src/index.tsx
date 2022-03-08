@@ -69,54 +69,56 @@ export default (props: TableProps = {}) => {
   const { header, render, ellipsis } = getLevelItems(columns);
   const keys = getAllColumnsKeys(columns);
   return (
-    <div className={cls} {...other}>
-      <table style={ellipsis ? { tableLayout: 'fixed' } : {}}>
-        {title && <caption>{title}</caption>}
-        {columns && columns.length > 0 && <Thead onCellHead={onCellHead} data={header} />}
-        {data && data.length > 0 && (
-          <tbody>
-            {data.map((trData, rowNum) => (
-              <tr key={rowNum}>
-                {keys.map((keyName, colNum) => {
-                  let objs: React.TdHTMLAttributes<HTMLTableDataCellElement> = {
-                    children: trData[keyName],
-                  };
-                  if (render[keyName]) {
-                    const child = render[keyName](trData[keyName], keyName, trData, rowNum, colNum);
-                    if (React.isValidElement(child)) {
-                      objs.children = child;
-                    } else {
-                      if (child.props) {
-                        objs = { ...child.props, children: objs.children };
-                        if (child.props.rowSpan === 0 || child.props.colSpan === 0) return null;
-                      }
-                      if (child.children) {
-                        objs.children = child.children;
+    <div>
+      <div style={{ overflowY: 'scroll' }} className={cls} {...other}>
+        <table style={ellipsis ? { tableLayout: 'fixed' } : {}}>
+          {title && <caption>{title}</caption>}
+          {columns && columns.length > 0 && <Thead onCellHead={onCellHead} data={header} />}
+          {data && data.length > 0 && (
+            <tbody>
+              {data.map((trData, rowNum) => (
+                <tr key={rowNum}>
+                  {keys.map((keyName, colNum) => {
+                    let objs: React.TdHTMLAttributes<HTMLTableDataCellElement> = {
+                      children: trData[keyName],
+                    };
+                    if (render[keyName]) {
+                      const child = render[keyName](trData[keyName], keyName, trData, rowNum, colNum);
+                      if (React.isValidElement(child)) {
+                        objs.children = child;
+                      } else {
+                        if (child.props) {
+                          objs = { ...child.props, children: objs.children };
+                          if (child.props.rowSpan === 0 || child.props.colSpan === 0) return null;
+                        }
+                        if (child.children) {
+                          objs.children = child.children;
+                        }
                       }
                     }
-                  }
-                  if (ellipsis && ellipsis[keyName]) {
-                    objs.className = `${prefixCls}-ellipsis`;
-                  }
-                  return (
-                    <td {...objs} key={colNum} onClick={(evn) => onCell(trData, { rowNum, colNum, keyName }, evn)} />
-                  );
-                })}
+                    if (ellipsis && ellipsis[keyName]) {
+                      objs.className = `${prefixCls}-ellipsis`;
+                    }
+                    return (
+                      <td {...objs} key={colNum} onClick={(evn) => onCell(trData, { rowNum, colNum, keyName }, evn)} />
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          )}
+          {data && data.length === 0 && empty && (
+            <tbody>
+              <tr>
+                <td colSpan={columns.length} style={{ position: 'relative', left: 0 }}>
+                  {empty}
+                </td>
               </tr>
-            ))}
-          </tbody>
-        )}
-        {data && data.length === 0 && empty && (
-          <tbody>
-            <tr>
-              <td colSpan={columns.length} style={{ position: 'relative', left: 0 }}>
-                {empty}
-              </td>
-            </tr>
-          </tbody>
-        )}
-        {props.children}
-      </table>
+            </tbody>
+          )}
+          {props.children}
+        </table>
+      </div>
       {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
     </div>
   );
