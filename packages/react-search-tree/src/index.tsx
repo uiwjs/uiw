@@ -72,7 +72,7 @@ function SingeTree<V extends SearchTagInputOption>(props: Omit<TreeProps, 'onSel
   const onSelected = (_1: any, _2: any, isChecked: boolean, evn: TreeData) => {
     const { key, label } = evn;
     const cur = { key, label } as V;
-    props.onSelected?.([cur], cur, isChecked);
+    props.onSelected?.(isChecked ? [cur] : [], cur, isChecked);
   };
 
   return (
