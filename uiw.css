@@ -624,7 +624,7 @@
 }
 
 .w-modal {
-  z-index: 990;
+  z-index: 1001;
 }
 .w-modal-inner {
   padding-bottom: 20px;
@@ -2717,6 +2717,10 @@ sup.w-badge-count {
   color: #dc3545;
 }
 .w-form-item-error .w-input-inner,
+.w-form-item-error .w-select,
+.w-form-item-error .w-select-default,
+.w-form-item-error .w-select:hover,
+.w-form-item-error .w-select-default:hover,
 .w-form-item-error .w-input-inner:hover,
 .w-form-item-error .w-input-inner:focus.w-input-inner:hover,
 .w-form-item-error .w-textarea,
