@@ -4641,9 +4641,14 @@ a.w-list-item:hover:not(.w-disabled) {
 
 .w-tabs-bar {
   position: relative;
+  overflow-x: auto;
 }
 .w-tabs-nav {
   position: relative;
+}
+.w-tabs-nav-hidden {
+  display: flex;
+  flex-direction: column;
 }
 .w-tabs-item {
   padding: 7px 10px;
@@ -4666,6 +4671,12 @@ a.w-list-item:hover:not(.w-disabled) {
            -ms-user-select: none;
        user-select: none;
   color: rgba(0, 0, 0, 0.25);
+}
+.w-tabs-flow-content {
+  margin-left: 5px;
+  padding: 0px 10px 0px 10px;
+  box-shadow: 1px 0px 0px #d9d9d9 inset;
+  cursor: pointer;
 }
 .w-tabs-card .w-tabs-nav::after,
 .w-tabs-line .w-tabs-nav::after {

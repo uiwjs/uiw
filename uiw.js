@@ -9183,8 +9183,11 @@ var react_tabs_esm_excluded = ["prefixCls", "className", "children", "type", "ac
 
 
 
+
 Tabs.Pane = Pane;
 function Tabs(props) {
+  var _flowNav$nav;
+
   var {
     prefixCls = 'w-tabs',
     className,
@@ -9201,6 +9204,71 @@ function Tabs(props) {
   });
   var activeItem = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)();
   var cls = [prefixCls, className, type ? prefixCls + "-" + type : null].filter(Boolean).join(' ').trim();
+  var [flowNav, flowNavSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)({
+    content: 0,
+    nav: [],
+    flowLeft: -1,
+    displayStart: 0,
+    displayEnd: 0
+  });
+  var [hiddenNav, hiddenNavSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
+  var deviation = 15;
+  var [nodes, nodesSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)();
+  var divContentRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)(node => {
+    if (node !== null) {
+      nodesSet(nodes);
+      node.addEventListener('scroll', e => {
+        var {
+          clientWidth,
+          scrollLeft
+        } = e.target;
+        flowNav.displayStart = scrollLeft;
+        flowNav.displayEnd = clientWidth + scrollLeft;
+        flowNavSet(_extends({}, flowNav));
+      });
+      flowNav.displayEnd = node.getBoundingClientRect().width;
+      flowNavSet(_extends({}, flowNav));
+    }
+  }, []);
+  var divNavRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)((node, key) => {
+    if (node !== null) {
+      node.addEventListener('click', e => {
+        activeItem.current = node;
+      });
+      divNavWidthChange(node.getBoundingClientRect().width, key);
+    }
+  }, []);
+
+  var divNavWidthChange = (width, index) => {
+    var curWidth = 0;
+    flowNav.nav.slice(0, index + 1).forEach(nav => curWidth += nav.width);
+    flowNav.nav[index] = {
+      width,
+      curWidth: Math.floor(curWidth),
+      index
+    };
+    flowNavSet(flowNav);
+  };
+
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    showHideenNav();
+  }, [flowNav.displayEnd > ((_flowNav$nav = flowNav.nav[flowNav.nav.length - 1]) == null ? void 0 : _flowNav$nav.curWidth)]);
+
+  var showHideenNav = () => {
+    var hiddenNav = [];
+
+    if (flowNav.nav.length > 0) {
+      flowNav.nav.forEach(item => {
+        var curWidth = item.curWidth - deviation;
+
+        if (curWidth < flowNav.displayStart || curWidth > flowNav.displayEnd) {
+          hiddenNav.push(item.index);
+        }
+      });
+      hiddenNavSet(hiddenNav);
+    }
+  };
+
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => setActiveKey(props.activeKey), [props.activeKey]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => calcSlideStyle(), [activeKey]);
 
@@ -9217,38 +9285,37 @@ function Tabs(props) {
     className: cls
   }, elementProps, {
     children: [/*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
-      className: prefixCls + "-bar",
+      style: {
+        display: 'flex'
+      },
       children: [/*#__PURE__*/(0,jsx_runtime.jsx)("div", {
-        className: prefixCls + "-nav",
-        children: external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.map(children, (item, key) => {
-          if (!item) {
-            return null;
-          }
-
-          var divProps = {
-            className: [prefixCls + "-item", item.key === activeKey ? 'active' : null, item.props.disabled ? 'disabled' : null].filter(Boolean).join(' ').trim(),
-            children: item.props.label
-          };
-
-          if (!item.props.disabled) {
-            divProps.onClick = e => {
-              setActiveKey(item.key);
-              onTabClick && onTabClick(item.key, item, e);
-              calcSlideStyle();
-            };
-          }
-
-          return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
-            ref: node => {
-              if (node && item.key === activeKey) {
-                activeItem.current = node;
-              }
-            }
-          }, divProps), key);
+        className: prefixCls + "-bar",
+        ref: divContentRef,
+        children: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+          className: prefixCls + "-nav",
+          style: {
+            width: 'max-content'
+          },
+          children: renderNav(children)
         })
       }), /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
         style: slideStyle,
         className: prefixCls + "-slide"
+      }), hiddenNav.length > 0 && /*#__PURE__*/(0,jsx_runtime.jsx)(Popover, {
+        trigger: "click",
+        placement: "bottomRight",
+        visibleArrow: false,
+        content: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+          className: prefixCls + "-nav-hidden",
+          children: renderNav(hiddenNav.map(idx => children[idx]))
+        }),
+        children: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+          onClick: showHideenNav,
+          className: prefixCls + "-flow-content",
+          children: /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
+            children: "\u2026"
+          })
+        })
       })]
     }), external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.map(children, item => {
       if (!item || activeKey !== item.key) {
@@ -9258,6 +9325,31 @@ function Tabs(props) {
       return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(item, Object.assign({}, item.props, {}));
     })]
   }));
+
+  function renderNav(children) {
+    return external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.map(children, (item, key) => {
+      if (!item) {
+        return null;
+      }
+
+      var divProps = {
+        className: [prefixCls + "-item", item.key === activeKey ? 'active' : null, item.props.disabled ? 'disabled' : null].filter(Boolean).join(' ').trim(),
+        children: item.props.label
+      };
+
+      if (!item.props.disabled) {
+        divProps.onClick = e => {
+          setActiveKey(item.key);
+          onTabClick && onTabClick(item.key, item, e);
+          calcSlideStyle();
+        };
+      }
+
+      return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
+        ref: _ref => divNavRef(_ref, key)
+      }, divProps), key);
+    });
+  }
 }
 
 ;// CONCATENATED MODULE: ../react-textarea/esm/style/index.css
