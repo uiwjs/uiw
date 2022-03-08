@@ -16,7 +16,7 @@ export interface TabsProps extends IProps, HTMLDivProps {
   onTabClick?: (key: string, item: React.ReactElement, e: React.MouseEvent) => void;
 }
 
-type flowNavType = {
+type FlowNavType = {
   content: number;
   nav: Array<Record<'index' | 'width' | 'curWidth', number>>;
   flowLeft: number;
@@ -40,7 +40,7 @@ export default function Tabs(props: TabsProps) {
   const activeItem = useRef<HTMLDivElement | undefined>();
   const cls = [prefixCls, className, type ? `${prefixCls}-${type}` : null].filter(Boolean).join(' ').trim();
 
-  const [flowNav, flowNavSet] = useState<flowNavType>({
+  const [flowNav, flowNavSet] = useState<FlowNavType>({
     content: 0,
     nav: [],
     flowLeft: -1,
@@ -113,9 +113,11 @@ export default function Tabs(props: TabsProps) {
   return (
     <div className={cls} {...elementProps}>
       <div style={{ display: 'flex' }}>
-        <div className={`${prefixCls}-bar`} ref={divContentRef}>
-          <div className={`${prefixCls}-nav`} style={{ width: 'max-content' }}>
-            {renderNav(children)}
+        <div style={{ overflow: 'hidden' }}>
+          <div className={`${prefixCls}-bar`} ref={divContentRef}>
+            <div className={`${prefixCls}-nav`} style={{ width: 'max-content' }}>
+              {renderNav(children)}
+            </div>
           </div>
         </div>
         <div style={slideStyle} className={`${prefixCls}-slide`} />

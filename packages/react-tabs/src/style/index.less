@@ -4,12 +4,16 @@
   &-bar {
     position: relative;
     overflow-x: auto;
+    height: calc(100% + 17px);
   }
   &-nav {
     position: relative;
   }
   &-nav-hidden {
     display: flex;
+    overflow-x: scroll;
+    padding: 5px 30px 5px 5px;
+    max-height: 200px;
     flex-direction: column;
   }
   &-item {
