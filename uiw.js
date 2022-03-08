@@ -9573,7 +9573,7 @@ function TreeNode(props) {
 ;// CONCATENATED MODULE: ../react-tree/esm/index.js
 
 
-var react_tree_esm_excluded = ["prefixCls", "icon", "data", "openKeys", "selectedKeys", "defaultExpandAll", "showLine", "iconAnimation", "isSelected", "checkStrictly", "multiple", "onExpand", "onSelected", "className", "autoExpandParent", "renderTitle", "onChange"];
+var react_tree_esm_excluded = ["prefixCls", "icon", "data", "openKeys", "selectedKeys", "defaultExpandAll", "showLine", "iconAnimation", "isSelected", "checkStrictly", "multiple", "onExpand", "onSelected", "className", "autoExpandParent", "renderTitle", "onChange", "value"];
 
 
 
@@ -9689,20 +9689,16 @@ function Tree(props) {
     className,
     autoExpandParent = true,
     renderTitle,
-    onChange
+    onChange,
+    value
   } = props,
       elementProps = _objectWithoutPropertiesLoose(props, react_tree_esm_excluded);
 
   var [curOpenKeys, setCurOpenKeys] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(openKeys);
-  var [curSelectedKeys, setCurSelectedKeys] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(props.value || selectedKeys);
+  var [curSelectedKeys, setCurSelectedKeys] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(value || selectedKeys);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
-    setCurSelectedKeys(props.selectedKeys || []);
-  }, [JSON.stringify(props.selectedKeys)]);
-  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
-    setCurSelectedKeys(props.value || []);
-  }, [JSON.stringify(props.value)]); // useEffect(() => setCurOpenKeys(openKeys), [openKeys]);
-  // useEffect(() => setCurSelectedKeys(selectedKeys), [selectedKeys]);
-
+    setCurSelectedKeys(props.value || props.selectedKeys || []);
+  }, [JSON.stringify(props.selectedKeys), JSON.stringify(props.value)]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     var arrOpenKeys = [...curOpenKeys];
 
