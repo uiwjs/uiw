@@ -146,7 +146,45 @@ class Demo extends React.Component {
 ReactDOM.render(<Demo />, _mount_);
 ```
 
-## Tabs.Porps 
+### 超出收缩
+
+当pane过多,超出宽度度时,会将超出部分收缩到下拉选项
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Tabs } from 'uiw';
+
+class Demo extends React.Component {
+
+render() {
+    const panes=[]
+    for (let index = 0; index < 20; index++) {
+      panes.push({label:`Tabs-${index}`,key:index})
+    }
+
+    return (
+      <Tabs
+        style={{width:700}}
+        activeKey="1"
+        onTabClick={(tab, key, e) => {
+          console.log("=>", key, tab);
+        }}>
+        {panes.map(item=>{
+          return(
+            <Tabs.Pane label={item.label} key={item.key}>{item.label}</Tabs.Pane>
+          )
+        })}
+      </Tabs>
+    );
+  }
+}
+ReactDOM.render(<Demo />, _mount_);
+```
+
+
+## Tabs.Porps
 
 | 参数 | 说明 | 类型 | 默认值 |
 |------ |-------- |---------- |-------- |
@@ -154,7 +192,7 @@ ReactDOM.render(<Demo />, _mount_);
 | activeKey | 当前激活 `tab` 面板的 `key` | String | - |
 | onTabClick | `tab` 被点击的回调 | Function | `(item, key, e)=>{}` |
 
-## Tabs.Pane.Porps 
+## Tabs.Pane.Porps
 
 | 参数 | 说明 | 类型 | 默认值 |
 |------ |-------- |---------- |-------- |
