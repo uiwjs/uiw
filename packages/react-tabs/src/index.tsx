@@ -113,9 +113,11 @@ export default function Tabs(props: TabsProps) {
   return (
     <div className={cls} {...elementProps}>
       <div style={{ display: 'flex' }}>
-        <div className={`${prefixCls}-bar`} ref={divContentRef}>
-          <div className={`${prefixCls}-nav`} style={{ width: 'max-content' }}>
-            {renderNav(children)}
+        <div style={{ overflow: 'hidden' }}>
+          <div className={`${prefixCls}-bar`} ref={divContentRef}>
+            <div className={`${prefixCls}-nav`} style={{ width: 'max-content' }}>
+              {renderNav(children)}
+            </div>
           </div>
         </div>
         <div style={slideStyle} className={`${prefixCls}-slide`} />
