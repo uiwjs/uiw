@@ -9742,7 +9742,7 @@ function Tree(props) {
     var findKey = selKeys.find(v => v === item.key);
     var selected = false;
 
-    if (!findKey) {
+    if (!findKey && findKey !== 0) {
       selected = true;
       selKeys.push(item.key);
     } else {
@@ -10128,7 +10128,7 @@ function SingeTree(props) {
       key,
       label
     };
-    props.onSelected == null ? void 0 : props.onSelected([cur], cur, isChecked);
+    props.onSelected == null ? void 0 : props.onSelected(isChecked ? [cur] : [], cur, isChecked);
   };
 
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Tree, _extends({
