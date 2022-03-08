@@ -44,6 +44,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
+    "@uiw/react-popover": "^4.13.6",
     "@uiw/utils": "^4.13.6"
   }
 }

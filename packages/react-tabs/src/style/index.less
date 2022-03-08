@@ -3,9 +3,14 @@
 .@{w-tabs} {
   &-bar {
     position: relative;
+    overflow-x: auto;
   }
   &-nav {
     position: relative;
+  }
+  &-nav-hidden {
+    display: flex;
+    flex-direction: column;
   }
   &-item {
     padding: 7px 10px;
@@ -25,6 +30,12 @@
       user-select: none;
       color: rgba(0, 0, 0, 0.25);
     }
+  }
+  &-flow-content {
+    margin-left: 5px;
+    padding: 0px 10px 0px 10px;
+    box-shadow: 1px 0px 0px #d9d9d9 inset;
+    cursor: pointer;
   }
 }
 
