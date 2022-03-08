@@ -140,20 +140,16 @@ export default function Tree(props: TreeProps) {
     autoExpandParent = true,
     renderTitle,
     onChange,
+    value,
     ...elementProps
   } = props;
 
   const [curOpenKeys, setCurOpenKeys] = useState(openKeys);
-  const [curSelectedKeys, setCurSelectedKeys] = useState(props.value || selectedKeys);
+  const [curSelectedKeys, setCurSelectedKeys] = useState(value || selectedKeys);
 
   useEffect(() => {
-    setCurSelectedKeys(props.selectedKeys || []);
-  }, [JSON.stringify(props.selectedKeys)]);
-  useEffect(() => {
-    setCurSelectedKeys(props.value || []);
-  }, [JSON.stringify(props.value)]);
-  // useEffect(() => setCurOpenKeys(openKeys), [openKeys]);
-  // useEffect(() => setCurSelectedKeys(selectedKeys), [selectedKeys]);
+    setCurSelectedKeys(props.value || props.selectedKeys || []);
+  }, [JSON.stringify(props.selectedKeys), JSON.stringify(props.value)]);
 
   useEffect(() => {
     let arrOpenKeys: TreeData['key'][] = [...curOpenKeys];
