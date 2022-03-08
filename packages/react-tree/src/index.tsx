@@ -193,7 +193,7 @@ export default function Tree(props: TreeProps) {
     let selKeys = [...(curSelectedKeys as TreeData['key'][])];
     const findKey = selKeys.find((v) => v === item.key);
     let selected = false;
-    if (!findKey) {
+    if (!findKey && findKey !== 0) {
       selected = true;
       selKeys.push(item.key);
     } else {
