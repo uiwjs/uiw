@@ -2814,7 +2814,7 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
   } = props,
       other = _objectWithoutPropertiesLoose(props, react_overlay_trigger_esm_excluded);
 
-  var zIndex = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(990);
+  var zIndex = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(999);
   var triggerRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)();
   var popupRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)();
   var timeoutRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)([]);
@@ -9747,7 +9747,7 @@ function Tree(props) {
     var findKey = selKeys.find(v => v === item.key);
     var selected = false;
 
-    if (!findKey) {
+    if (!findKey && findKey !== 0) {
       selected = true;
       selKeys.push(item.key);
     } else {
@@ -9847,7 +9847,7 @@ function TreeChecked(_ref) {
 ;// CONCATENATED MODULE: ../react-search-tree/esm/SearchTagInput.js
 
 
-var SearchTagInput_excluded = ["prefixCls", "mode", "size", "disabled", "allowClear", "loading", "className", "style", "placeholder", "content", "options", "values", "onChange", "onSearch", "emptyOption"];
+var SearchTagInput_excluded = ["prefixCls", "mode", "size", "disabled", "allowClear", "loading", "selectCloseDrop", "className", "style", "placeholder", "content", "options", "values", "onChange", "onSearch", "emptyOption"];
 
 
 
@@ -9867,6 +9867,7 @@ function SearchTagInput(props) {
     disabled = false,
     allowClear = false,
     loading = false,
+    selectCloseDrop = false,
     className,
     style,
     placeholder,
@@ -9903,7 +9904,8 @@ function SearchTagInput(props) {
     }
 
     setSelectedOption(selectedAll);
-    onChange && onChange(selectedAll, selectd, isChecked);
+    searchValueChange('');
+    onChange == null ? void 0 : onChange(selectedAll, selectd, isChecked);
   };
 
   var removeSelectItem = index => {
@@ -9914,10 +9916,15 @@ function SearchTagInput(props) {
   };
 
   function handleInputChange(value) {
+    setInnerIsOpen(true);
+    searchValueChange(value);
+    setSelectIconType(value ? 'loading' : '');
+  }
+
+  var searchValueChange = value => {
     searchValueSet(value);
     onSearch == null ? void 0 : onSearch(value);
-    setSelectIconType(value ? 'loading' : '');
-  } // 清除选中的值
+  }; // 清除选中的值
 
 
   function resetSelectedValue(e) {
@@ -9945,17 +9952,27 @@ function SearchTagInput(props) {
     }
 
     var newProps = _extends({}, content.props, {
-      onSelected: handleSelectChange,
+      onSelected: function onSelected(selectedAll, selectd, isChecked) {
+        if (isChecked === void 0) {
+          isChecked = true;
+        }
+
+        setInnerIsOpen(!selectCloseDrop);
+        handleSelectChange(selectedAll, selectd, isChecked);
+      },
       values: selectedOption,
       options
     });
 
     return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(content, newProps);
-  }, [JSON.parse(JSON.stringify(selectedOption)), options, emptyOption]);
-  return /*#__PURE__*/(0,jsx_runtime.jsx)(Dropdown, _extends({
+  }, [JSON.stringify(selectedOption), options, emptyOption]);
+  return /*#__PURE__*/(0,jsx_runtime.jsx)(Dropdown, {
     className: cls,
-    trigger: "focus"
-  }, others, {
+    trigger: "click",
+    onVisibleChange: isOpen => {
+      setInnerIsOpen(isOpen);
+      if (!isOpen) searchValueChange('');
+    },
     isOpen: innerIsOpen,
     menu: /*#__PURE__*/(0,jsx_runtime.jsx)(react_card_esm, {
       bodyStyle: emptyOption === true ? {
@@ -10028,7 +10045,7 @@ function SearchTagInput(props) {
         })]
       })
     })
-  }));
+  });
 }
 
 /* harmony default export */ const esm_SearchTagInput = (SearchTagInput);
@@ -10133,7 +10150,7 @@ function SingeTree(props) {
       key,
       label
     };
-    props.onSelected == null ? void 0 : props.onSelected([cur], cur, isChecked);
+    props.onSelected == null ? void 0 : props.onSelected(isChecked ? [cur] : [], cur, isChecked);
   };
 
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Tree, _extends({
@@ -10212,7 +10229,8 @@ function SearchTree(props) {
 
   return /*#__PURE__*/(0,jsx_runtime.jsx)(esm_SearchTagInput, _extends({}, other, {
     emptyOption: isEmpty,
-    onSearch: debounce(selectedSearch, 600),
+    selectCloseDrop: !multiple,
+    onSearch: selectedSearch,
     onChange: selectedChange,
     values: selectedValues,
     options: selectedOptions,

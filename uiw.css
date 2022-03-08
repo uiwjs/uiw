@@ -624,7 +624,7 @@
 }
 
 .w-modal {
-  z-index: 990;
+  z-index: 1001;
 }
 .w-modal-inner {
   padding-bottom: 20px;
