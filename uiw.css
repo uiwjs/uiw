@@ -2717,6 +2717,10 @@ sup.w-badge-count {
   color: #dc3545;
 }
 .w-form-item-error .w-input-inner,
+.w-form-item-error .w-select,
+.w-form-item-error .w-select-default,
+.w-form-item-error .w-select:hover,
+.w-form-item-error .w-select-default:hover,
 .w-form-item-error .w-input-inner:hover,
 .w-form-item-error .w-input-inner:focus.w-input-inner:hover,
 .w-form-item-error .w-textarea,
@@ -4641,9 +4645,18 @@ a.w-list-item:hover:not(.w-disabled) {
 
 .w-tabs-bar {
   position: relative;
+  overflow-x: auto;
+  height: calc(100% + 17px);
 }
 .w-tabs-nav {
   position: relative;
+}
+.w-tabs-nav-hidden {
+  display: flex;
+  overflow-x: scroll;
+  padding: 5px 30px 5px 5px;
+  max-height: 200px;
+  flex-direction: column;
 }
 .w-tabs-item {
   padding: 7px 10px;
@@ -4666,6 +4679,12 @@ a.w-list-item:hover:not(.w-disabled) {
            -ms-user-select: none;
        user-select: none;
   color: rgba(0, 0, 0, 0.25);
+}
+.w-tabs-flow-content {
+  margin-left: 5px;
+  padding: 0px 10px 0px 10px;
+  box-shadow: 1px 0px 0px #d9d9d9 inset;
+  cursor: pointer;
 }
 .w-tabs-card .w-tabs-nav::after,
 .w-tabs-line .w-tabs-nav::after {
