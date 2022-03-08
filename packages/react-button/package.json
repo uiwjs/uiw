@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-button",
-  "version": "4.13.6",
+  "version": "4.13.7",
   "description": "Button component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/button",
@@ -44,7 +44,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-icon": "^4.13.6",
-    "@uiw/utils": "^4.13.6"
+    "@uiw/react-icon": "^4.13.7",
+    "@uiw/utils": "^4.13.7"
   }
 }
