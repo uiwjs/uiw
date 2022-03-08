@@ -158,7 +158,9 @@ function SearchTree<V extends SearchTagInputOption>(props: SearchTreeProps<V>) {
     <SearchTagInput
       {...other}
       emptyOption={isEmpty}
-      onSearch={debounce(selectedSearch, 600)}
+      selectCloseDrop={!multiple}
+      // onSearch={debounce(selectedSearch, 300)}
+      onSearch={selectedSearch}
       onChange={selectedChange}
       values={selectedValues}
       options={selectedOptions}
