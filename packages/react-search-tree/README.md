@@ -24,39 +24,39 @@ import {  SearchTree } from 'uiw';
 const data = [
   {
     label: '上海市',
-    key: '1-0-0',
+    key: 1,
     children:[
-      { label: '黄浦区', key: '1-0-1' },
-      { label: '卢湾区', key: '1-0-2' },
+      { label: '黄浦区', key: 2 },
+      { label: '卢湾区', key: 3 },
       {
         label: '徐汇区',
-        key: '1-0-3',
+        key: 4,
         children:[
-          { label: '半淞园路街道', key: '1-1-0' },
-          { label: '南京东路街道', key: '1-2-0' },
-          { label: '外滩街道', key: '1-3-0' },
+          { label: '半淞园路街道', key: 6 },
+          { label: '南京东路街道', key: 7 },
+          { label: '外滩街道', key: 8 },
         ]
       },
     ]
   },
   {
     label: '北京市',
-    key: '2-0-0',
+    key: 9,
     children:[
-      { label: '东城区', key: '2-1-0' },
-      { label: '西城区', key: '2-2-0' },
+      { label: '东城区', key: 10 },
+      { label: '西城区', key: 11 },
       {
         label: '崇文区',
-        key: '2-3-0',
+        key: 12,
         children:[
-          { label: '东花市街道', key: '2-3-1' },
-          { label: '体育馆路街道', key: '2-3-2' },
-          { label: '前门街道', key: '2-3-3' },
+          { label: '东花市街道', key: 13 },
+          { label: '体育馆路街道', key: 14 },
+          { label: '前门街道', key: 15 },
         ]
       },
     ]
   },
-  { label: '澳门', key: '3' },
+  { label: '澳门', key: 16 },
 ];
 
 const datas =[
@@ -67,7 +67,7 @@ const datas =[
 
 const Demo = () => {
 
-const [value,valueSet]=useState([{ label: '东花市街道', key: '2-3-1' }])
+const [value,valueSet]=useState([{ label: '黄浦区', key: 12 }])
 const [values,valuesSet]=useState([{ label: '北京市', key: 1 }])
 const [valueSinge,valueSingeSet]=useState([{ label: '上海市', key: '1-0-0' }])
 
@@ -92,7 +92,7 @@ const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
       <Col >
         <label>多选</label>
         <SearchTree
-          style={{width:400}}
+          style={{ width:400 }}
           allowClear={true}
           onSearch={(searchValue)=>console.log('multiple',searchValue)}
           onChange={onChange}
