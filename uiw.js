@@ -9766,7 +9766,7 @@ function Tree(props) {
 
     setCurSelectedKeys(selKeys);
     onSelected && onSelected(selKeys, item.key, selected, item, evn);
-    onChange == null ? void 0 : onChange(selKeys);
+    onChange == null ? void 0 : onChange(item.key, selKeys);
   }
 
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
