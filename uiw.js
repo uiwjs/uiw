@@ -9484,7 +9484,7 @@ function TreeNode(props) {
 
   var isOpen = false;
 
-  if (parent && parent.key) {
+  if (parent && (parent.key || parent.key === 0)) {
     isOpen = !!(openKeys && openKeys.indexOf(parent.key) > -1);
   }
 
@@ -9969,7 +9969,7 @@ function SearchTagInput(props) {
     });
 
     return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(content, newProps);
-  }, [JSON.stringify(selectedOption), options, emptyOption]);
+  }, [JSON.parse(JSON.stringify(selectedOption)), options, emptyOption]);
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Dropdown, {
     className: cls,
     trigger: "click",
@@ -10080,12 +10080,14 @@ function TreeCheckeds(props) {
     keysSet(keys || []);
   }, [props.values]);
 
-  var onSelected = (_1, _2, isChecked, evn) => {
+  var onSelected = (_, item, isChecked, evn) => {
     var curSelectOption = getOptionsRecursion([evn], selectOption, isChecked);
+    var isNumberKey = false;
+    if (typeof item === 'number') isNumberKey = true;
     var option = Object.entries(curSelectOption).map(_ref => {
       var [key, label] = _ref;
       return {
-        key,
+        key: isNumberKey ? Number.parseInt(key) : key,
         label
       };
     });
