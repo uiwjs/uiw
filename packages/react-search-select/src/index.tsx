@@ -63,7 +63,7 @@ export default function SearchSelect(props: SearchSelectProps) {
   const isMultiple = useMemo(() => mode === 'multiple', [mode]);
   const [innerIsOpen, setInnerIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState<Array<SearchSelectOptionData>>([]);
-  const [selectedLabel, setSelectedLabel] = useState('');
+  const [selectedLabel, setSelectedLabel] = useState<string>('');
   const [selectIconType, setSelectIconType] = useState('');
   const omitTagCount = useMemo(
     () => (maxTagCount && selectedValue.length > maxTagCount ? selectedValue.length - maxTagCount : 0),
@@ -95,7 +95,6 @@ export default function SearchSelect(props: SearchSelectProps) {
     changeValue: ValueType | Array<ValueType> | SearchSelectOptionData | Array<SearchSelectOptionData>,
   ) {
     let opts: Array<SearchSelectOptionData> = [];
-
     if (labelInValue) {
       if (Array.isArray(changeValue)) {
         opts = changeValue as Array<SearchSelectOptionData>;
@@ -113,6 +112,8 @@ export default function SearchSelect(props: SearchSelectProps) {
         }
       }
     }
+
+    if (!isMultiple && opts.length > 0) setSelectedLabel(opts[0].label || '');
     setSelectedValue(opts);
   }
 
@@ -138,6 +139,7 @@ export default function SearchSelect(props: SearchSelectProps) {
   }
 
   function handleChange(resultValue: ValueType | Array<ValueType>, values: SearchSelectOptionData[]) {
+    setSelectedLabel('');
     onSelect && onSelect(resultValue);
     handleSelectChange(resultValue, values); // 支持form组件
 
@@ -157,7 +159,7 @@ export default function SearchSelect(props: SearchSelectProps) {
   // handle change
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
-    setInnerIsOpen(!!value);
+    setInnerIsOpen(true);
     setSelectedLabel(value);
     setSelectIconType(showSearch && value ? 'loading' : '');
     showSearch && onSearch && onSearch(value);
@@ -183,17 +185,22 @@ export default function SearchSelect(props: SearchSelectProps) {
     }
   }
 
+  function onVisibleChange(open: boolean) {
+    if (!open) setSelectedLabel('');
+    if (!isMultiple && selectedValue.length > 0) {
+      setSelectedLabel(selectedValue[0].label);
+    }
+    setInnerIsOpen(open);
+  }
+
   return (
     <Dropdown
       className={cls}
-      trigger="focus"
+      trigger="click"
       style={{ marginTop: 5 }}
       disabled={option && option.length > 0 ? false : true}
       {...others}
-      onVisibleChange={(open) => {
-        if (!open && isMultiple) setSelectedLabel('');
-        setInnerIsOpen(open);
-      }}
+      onVisibleChange={onVisibleChange}
       isOpen={innerIsOpen}
       menu={
         <Menu
