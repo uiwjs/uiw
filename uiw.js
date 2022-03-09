@@ -7926,7 +7926,6 @@ function SearchSelect(props) {
     var selectIconType;
 
     if (type === 'enter' && allowClear && selectedValue) {
-      console.log(123);
       selectIconType = 'close';
     } else {
       selectIconType = '';

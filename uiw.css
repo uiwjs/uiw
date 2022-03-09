@@ -4653,10 +4653,13 @@ a.w-list-item:hover:not(.w-disabled) {
 }
 .w-tabs-nav-hidden {
   display: flex;
-  overflow-x: scroll;
-  padding: 5px 30px 5px 5px;
+  overflow-y: auto;
+  padding: 5px 10px 5px 5px;
   max-height: 200px;
   flex-direction: column;
+}
+.w-tabs-nav-hidden :hover {
+  background: #d9d9d9;
 }
 .w-tabs-item {
   padding: 7px 10px;
