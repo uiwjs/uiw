@@ -63,7 +63,7 @@ export default function SearchSelect(props: SearchSelectProps) {
   const isMultiple = useMemo(() => mode === 'multiple', [mode]);
   const [innerIsOpen, setInnerIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState<Array<SearchSelectOptionData>>([]);
-  const [selectedLabel, setSelectedLabel] = useState('');
+  const [selectedLabel, setSelectedLabel] = useState<string>('');
   const [selectIconType, setSelectIconType] = useState('');
   const omitTagCount = useMemo(
     () => (maxTagCount && selectedValue.length > maxTagCount ? selectedValue.length - maxTagCount : 0),
@@ -82,6 +82,7 @@ export default function SearchSelect(props: SearchSelectProps) {
 
   useEffect(() => {
     if (value !== undefined) {
+      // console.log('value', value[0])
       selectedValueChange(value!);
     }
   }, [JSON.stringify(value)]);
@@ -95,7 +96,6 @@ export default function SearchSelect(props: SearchSelectProps) {
     changeValue: ValueType | Array<ValueType> | SearchSelectOptionData | Array<SearchSelectOptionData>,
   ) {
     let opts: Array<SearchSelectOptionData> = [];
-
     if (labelInValue) {
       if (Array.isArray(changeValue)) {
         opts = changeValue as Array<SearchSelectOptionData>;
@@ -113,6 +113,8 @@ export default function SearchSelect(props: SearchSelectProps) {
         }
       }
     }
+
+    if (!isMultiple && opts.length > 0) setSelectedLabel(opts[0].label || '');
     setSelectedValue(opts);
   }
 
