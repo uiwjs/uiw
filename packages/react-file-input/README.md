@@ -216,6 +216,9 @@ import { Form, Row, Col, Icon } from 'uiw';
 ReactDOM.render(
   <div>
     <Form
+      onSubmit={({initial, current}) => {
+         console.log('current',current)
+      }}
       fields={{
         picture1: {
           label: '图片墙',
@@ -263,6 +266,11 @@ ReactDOM.render(
             </Row>
             <Row>
               <Col>{fields.picture3}</Col>
+            </Row>
+            <Row gutter={10}>
+              <Col>
+                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+              </Col>
             </Row>
             <Row>
               <Col>

@@ -128,7 +128,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
       options,
     };
     return React.cloneElement(content as JSX.Element, newProps);
-  }, [JSON.stringify(selectedOption), options, emptyOption]);
+  }, [JSON.parse(JSON.stringify(selectedOption)), options, emptyOption]);
 
   return (
     <Dropdown
