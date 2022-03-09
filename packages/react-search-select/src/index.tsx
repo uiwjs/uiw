@@ -148,7 +148,7 @@ export default function SearchSelect(props: SearchSelectProps) {
   function renderSelectIcon(type: string) {
     let selectIconType;
     if (type === 'enter' && allowClear && selectedValue) {
-      console.log(123);
+      // console.log(123);
       selectIconType = 'close';
     } else {
       selectIconType = '';
