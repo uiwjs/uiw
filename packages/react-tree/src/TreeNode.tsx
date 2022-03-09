@@ -49,7 +49,7 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
   } = props;
   let isOpen = false;
 
-  if (parent && parent.key) {
+  if (parent && (parent.key || parent.key === 0)) {
     isOpen = !!(openKeys && openKeys.indexOf(parent.key) > -1);
   }
   const onExit = useCallback((node: HTMLElement) => {
