@@ -40,9 +40,10 @@ const Demo = () => {
   function handleSearch(e) {
     setLoading(true)
     setTimeout(() =>  {
-      setOption();
+     const filterOpion= selectOption.filter(item=>!!item.label.includes(e.trim()))
+      setOption([...filterOpion]);
       setLoading(false);
-    }, 2000);
+    }, 500);
   }
 
   return(
@@ -105,7 +106,7 @@ import ReactDOM from 'react-dom';
 import { Form, Row, Col, SearchSelect, Button, Notify } from 'uiw';
 
 const Demo = () => {
-  const [option, setOption] = React.useState([
+  const selectOption =[
         { label: 'a1', value: 1 },
         { label: 'a2', value: 2 },
         { label: 'a3', value: 3 },
@@ -114,10 +115,17 @@ const Demo = () => {
         { label: 'a6', value: 6 },
         { label: 'a7', value: 7 },
         { label: 'a8', value: 8 },
-      ]);
+      ];
+  const [option, setOption] = React.useState(selectOption);
   const [loading, setLoading] = React.useState(false);
+
   function handleSearch(e) {
-    console.log('handleSearch',e)
+    setLoading(true)
+    setTimeout(() =>  {
+     const filterOpion= selectOption.filter(item=>!!item.label.includes(e.trim()))
+      setOption([...filterOpion]);
+      setLoading(false);
+    }, 500);
   }
 
   return (

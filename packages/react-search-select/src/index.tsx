@@ -82,7 +82,6 @@ export default function SearchSelect(props: SearchSelectProps) {
 
   useEffect(() => {
     if (value !== undefined) {
-      // console.log('value', value[0])
       selectedValueChange(value!);
     }
   }, [JSON.stringify(value)]);
@@ -140,6 +139,7 @@ export default function SearchSelect(props: SearchSelectProps) {
   }
 
   function handleChange(resultValue: ValueType | Array<ValueType>, values: SearchSelectOptionData[]) {
+    setSelectedLabel('');
     onSelect && onSelect(resultValue);
     handleSelectChange(resultValue, values); // 支持form组件
 
@@ -159,7 +159,7 @@ export default function SearchSelect(props: SearchSelectProps) {
   // handle change
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
-    setInnerIsOpen(!!value);
+    setInnerIsOpen(true);
     setSelectedLabel(value);
     setSelectIconType(showSearch && value ? 'loading' : '');
     showSearch && onSearch && onSearch(value);
@@ -185,17 +185,22 @@ export default function SearchSelect(props: SearchSelectProps) {
     }
   }
 
+  function onVisibleChange(open: boolean) {
+    if (!open) setSelectedLabel('');
+    if (!isMultiple && selectedValue.length > 0) {
+      setSelectedLabel(selectedValue[0].label);
+    }
+    setInnerIsOpen(open);
+  }
+
   return (
     <Dropdown
       className={cls}
-      trigger="focus"
+      trigger="click"
       style={{ marginTop: 5 }}
       disabled={option && option.length > 0 ? false : true}
       {...others}
-      onVisibleChange={(open) => {
-        if (!open && isMultiple) setSelectedLabel('');
-        setInnerIsOpen(open);
-      }}
+      onVisibleChange={onVisibleChange}
       isOpen={innerIsOpen}
       menu={
         <Menu
