@@ -18,7 +18,7 @@ import Tree from '@uiw/react-tree';
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
-import { Tree, Card, Row, Col } from 'uiw';
+import { Tree, Card, Row, Col, } from 'uiw';
 
 const data = [
   {
@@ -650,6 +650,138 @@ const Demo = () => (
 )
 ReactDOM.render(<Demo />, _mount_);
 ```
+
+
+### Form中使用
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { Tree, Row, Col, Form, Button } from 'uiw';
+
+const data = [
+  {
+    label: '湖北省',
+    key: '0-0-0',
+    children:[
+      {
+        label: '武汉市',
+        key: '0-1-0',
+        children:[
+          { label: '新洲区', key: '0-1-1' },
+          { label: '武昌区', key: '0-1-2' },
+          {
+            label: '汉南区',
+            key: '0-1-3',
+            children:[
+              { label: '汉南区1', key: '0-1-3-1' },
+              { label: '汉南区2', key: '0-1-3-2' },
+              { label: '汉南区3', key: '0-1-3-3' },
+            ]
+          },
+        ]
+      },
+      { label: '黄冈市', key: '0-2-0' },
+      {
+        label: '黄石市',
+        key: '0-3-0',
+        children:[
+          { label: '青山区', key: '0-3-1' },
+          { label: '黄陂区', key: '0-3-2' },
+          { label: '青山区', key: '0-3-3' },
+        ]
+      },
+    ]
+  },
+  {
+    label: '上海市',
+    key: '1-0-0',
+    children:[
+      { label: '黄浦区', key: '1-0-1' },
+      { label: '卢湾区', key: '1-0-2' },
+      {
+        label: '徐汇区',
+        key: '1-0-3',
+        children:[
+          { label: '半淞园路街道', key: '1-1-0' },
+          { label: '南京东路街道', key: '1-2-0' },
+          { label: '外滩街道', key: '1-3-0' },
+        ]
+      },
+    ]
+  },
+  {
+    label: '北京市',
+    key: '2-0-0',
+    children:[
+      { label: '东城区', key: '2-1-0' },
+      { label: '西城区', key: '2-2-0' },
+    ]
+  }
+];
+
+const Demo = () => {
+  return (
+    <Form
+      onChange={({ initial, current }) => {}}
+      resetOnSubmit={false}
+      onSubmitError={(error) => error && error.filed ? { ...error.filed } : null}
+      onSubmit={({initial, current}) => {
+        console.log('current: ', current);
+        const ErrObj = {};
+        if (current.tree === 'unknown') {
+          ErrObj.radioGroup = '请选择性别！';
+        }
+        if(Object.keys(ErrObj).length > 0) {
+          const err = new Error();
+          err.filed = ErrObj;
+          throw err;
+        }
+        Notify.success({
+          title: '提交成功！', description: `填写：【填写成功】！`
+        });
+      }}
+      fields={{
+        tree: {
+          value: 'girl',
+          label: '请输入内容',
+          help: '必须选择性别！',
+          initialValue: ['0-1-1'],
+          children: <Tree
+            // multiple 
+            checkStrictly
+            data={data}
+          />,
+        },
+      }}
+    >
+      {({ fields, state, canSubmit }) => {
+        return (
+          <div>
+            <Row>
+              <Col>{fields.tree}</Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <pre style={{ padding: 10, marginTop: 10 }}>
+                  {JSON.stringify(state.current, null, 2)}
+                </pre>
+              </Col>
+            </Row>
+          </div>
+        );
+      }}
+    </Form>
+  )
+}
+ReactDOM.render(<Demo />, _mount_);
+```
+
 
 ## Props
 
