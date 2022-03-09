@@ -7890,6 +7890,7 @@ function SearchSelect(props) {
       }
     }
 
+    if (!isMultiple && opts.length > 0) setSelectedLabel(opts[0].label || '');
     setSelectedValue(opts);
   }
 
@@ -7915,6 +7916,7 @@ function SearchSelect(props) {
   }
 
   function handleChange(resultValue, values) {
+    setSelectedLabel('');
     onSelect && onSelect(resultValue);
     handleSelectChange(resultValue, values); // 支持form组件
 
@@ -7937,7 +7939,7 @@ function SearchSelect(props) {
 
   function handleInputChange(e) {
     var value = e.target.value;
-    setInnerIsOpen(!!value);
+    setInnerIsOpen(true);
     setSelectedLabel(value);
     setSelectIconType(showSearch && value ? 'loading' : '');
     showSearch && onSearch && onSearch(value); // handleSelectChange(value);
@@ -7963,18 +7965,25 @@ function SearchSelect(props) {
     }
   }
 
+  function onVisibleChange(open) {
+    if (!open) setSelectedLabel('');
+
+    if (!isMultiple && selectedValue.length > 0) {
+      setSelectedLabel(selectedValue[0].label);
+    }
+
+    setInnerIsOpen(open);
+  }
+
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Dropdown, _extends({
     className: cls,
-    trigger: "focus",
+    trigger: "click",
     style: {
       marginTop: 5
     },
     disabled: option && option.length > 0 ? false : true
   }, others, {
-    onVisibleChange: open => {
-      if (!open && isMultiple) setSelectedLabel('');
-      setInnerIsOpen(open);
-    },
+    onVisibleChange: onVisibleChange,
     isOpen: innerIsOpen,
     menu: /*#__PURE__*/(0,jsx_runtime.jsx)(react_menu_esm, {
       bordered: true,
