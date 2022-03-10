@@ -102,7 +102,7 @@ export function DayRect(props: DayRectProps) {
       cls.next = true;
     }
   }
-  let cellDate = useMemo(() => new Date(new Date(date!).setDate(day)), [day]);
+  let cellDate = new Date(new Date(date!).setDate(day));
   if (today && today.toDateString() === cellDate.toDateString()) {
     cls.today = true;
   }

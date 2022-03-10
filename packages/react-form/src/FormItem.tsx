@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import { Col, Row } from '@uiw/react-grid';
 import { IProps, HTMLInputProps } from '@uiw/utils';
 import { FormFieldsProps } from './Form';
@@ -12,7 +12,7 @@ export interface FormItemProps<T> extends IProps, HTMLInputProps {
   labelFor?: string;
   labelClassName?: string;
   help?: React.ReactNode;
-  labelStyle?: CSSProperties;
+  labelStyle?: React.CSSProperties;
   initialValue?: string | number | T;
   validator?: FormFieldsProps<T>['validator'];
 }
