@@ -45,7 +45,7 @@ export interface TreeProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
     item: TreeData,
     evn: React.MouseEvent<HTMLElement>,
   ) => void;
-  onChange?: (key: string | number, eys: (string | number | undefined)[]) => void;
+  onChange?: (key: string | number | undefined, eys: (string | number | undefined)[]) => void;
   value?: TreeData['key'][];
 }
 

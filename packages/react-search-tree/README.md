@@ -24,50 +24,55 @@ import {  SearchTree } from 'uiw';
 const data = [
   {
     label: '上海市',
-    key: '1-0-0',
+    key: 1,
     children:[
-      { label: '黄浦区', key: '1-0-1' },
-      { label: '卢湾区', key: '1-0-2' },
+      { label: '黄浦区', key: 2 },
+      { label: '卢湾区', key: 3 },
       {
         label: '徐汇区',
-        key: '1-0-3',
+        key: 4,
         children:[
-          { label: '半淞园路街道', key: '1-1-0' },
-          { label: '南京东路街道', key: '1-2-0' },
-          { label: '外滩街道', key: '1-3-0' },
+          { label: '半淞园路街道', key: 6 },
+          { label: '南京东路街道', key: 7 },
+          { label: '外滩街道', key: 8 },
         ]
       },
     ]
   },
   {
     label: '北京市',
-    key: '2-0-0',
+    key: 9,
     children:[
-      { label: '东城区', key: '2-1-0' },
-      { label: '西城区', key: '2-2-0' },
+      { label: '东城区', key: 10 },
+      { label: '西城区', key: 11 },
       {
         label: '崇文区',
-        key: '2-3-0',
+        key: 12,
         children:[
-          { label: '东花市街道', key: '2-3-1' },
-          { label: '体育馆路街道', key: '2-3-2' },
-          { label: '前门街道', key: '2-3-3' },
+          { label: '东花市街道', key: 13 },
+          { label: '体育馆路街道', key: 14 },
+          { label: '前门街道', key: 15 },
         ]
       },
     ]
   },
-  { label: '澳门', key: '3' },
+  { label: '澳门', key: 16 },
 ];
 
 const datas =[
   { label: '上海市',  key: 0 },
-  { label: '北京市',  key: 1 },
+  {
+    label: '北京市',  key: 1,
+    children:[
+      { label: '东城区', key: 10 },
+   ]
+  },
   { label: '成都市',  key: 2 },
 ]
 
 const Demo = () => {
 
-const [value,valueSet]=useState([{ label: '东花市街道', key: '2-3-1' }])
+const [value,valueSet]=useState([{ label: '黄浦区', key: 12 }])
 const [values,valuesSet]=useState([{ label: '北京市', key: 1 }])
 const [valueSinge,valueSingeSet]=useState([{ label: '上海市', key: '1-0-0' }])
 
@@ -92,7 +97,7 @@ const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
       <Col >
         <label>多选</label>
         <SearchTree
-          style={{width:400}}
+          style={{ width:300 }}
           allowClear={true}
           onSearch={(searchValue)=>console.log('multiple',searchValue)}
           onChange={onChange}
@@ -104,9 +109,9 @@ const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
     </Row>
     <label>单选</label>
     <Row>
-      <Col>
         <SearchTree
-          style={{width:400}}
+          style={{width:300}}
+          loading={true}
           multiple={false}
           allowClear={true}
           onSearch={(searchValue)=>console.log('singe',searchValue)}
@@ -115,10 +120,9 @@ const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
           options={datas}
           placeholder="请输入选择"
         />
-      </Col>
-      <Col>
+        <Col style={{marginLeft:20}}>
         <SearchTree
-          style={{width:400}}
+          style={{width:300}}
           multiple={false}
           allowClear={true}
           onSearch={(searchValue)=>console.log('singe',searchValue)}
@@ -127,7 +131,7 @@ const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
           options={data}
           placeholder="请输入选择"
         />
-      </Col>
+        </Col>
     </Row>
   </>
   )
@@ -145,7 +149,10 @@ import {  SearchTree } from 'uiw';
 const Demo = () => {
   return(
     <>
-      <SearchTree style={{ width:200 }} />
+      <SearchTree
+        style={{ width:200 }}
+        placeholder="请输入选择"
+      />
       <SearchTree
         style={{ width:200,marginTop:5 }}
         emptyOption={<span>暂无数据..</span>}
@@ -247,7 +254,7 @@ const form=useRef()
         }}
         fields={{
           searchTree: {
-            initialValue:[{ label: '东花市街道', key: '2-3-1' },{ label: '前门街道', key: '2-3-3' }],
+            initialValue:[ { label: '黄浦区', key: '1-0-1' }, { label: '卢湾区', key: '1-0-2' }],
             children: (
                 <SearchTree
                   allowClear={true}
@@ -276,11 +283,13 @@ const form=useRef()
         {({ fields, state, canSubmit }) => {
           return (
             <div>
-              <Row>
-                <Col fixed>{fields.searchTree}</Col>
+              <Row style={{display:'flex',flexDirection:'column'}}>
+                <div>多选</div>
+                <Col >{fields.searchTree}</Col>
               </Row>
-              <Row>
-                <Col fixed>{fields.searchTreeSinge}</Col>
+              <Row style={{display:'flex',flexDirection:'column'}}>
+                <label>单选</label>
+                <Col >{fields.searchTreeSinge}</Col>
               </Row>
               <Row>
                 <Col fixed>
