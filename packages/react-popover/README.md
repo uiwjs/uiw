@@ -21,7 +21,7 @@ import Popover from '@uiw/react-popover';
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Popover, Card, Button } from 'uiw';
+import { Popover, Card, Icon,Row,Col, Button } from 'uiw';
 
 class Demo extends React.Component {
   constructor() {
@@ -38,7 +38,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div>
+      <Row style={{ alignItems:'center' }}>
         <Popover
           trigger="click"
           placement="top"
@@ -60,7 +60,28 @@ class Demo extends React.Component {
         >
           <Button active={this.state.isOpen}>弹出目标</Button>
         </Popover>
-      </div>
+                <div style={{marginLeft:20}}>
+        <Popover
+          trigger="click"
+          placement="top"
+          content={
+            <Card bordered={false} title="Card标题" extra={<a href="#">更多</a>} style={{ width: 200 }}>
+              <div>Are you sure you want to delete these items? You won't be able to recover them.</div>
+              <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 15 }}>
+                <Button size="small" onClick={this.onClick.bind(this)}>
+                  Cancel
+                </Button>
+                <Button type="danger" size="small" onClick={this.onClick.bind(this)}>
+                  Delete
+                </Button>
+              </div>
+            </Card>
+          }
+        >
+          <Icon type="setting" color="#343a40" style={{ fontSize: 20 }} />
+        </Popover>
+                </div>
+      </Row>
     )
   }
 }
