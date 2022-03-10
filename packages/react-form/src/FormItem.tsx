@@ -4,7 +4,7 @@ import { IProps, HTMLInputProps } from '@uiw/utils';
 import { FormFieldsProps } from './Form';
 import './style/form-item.less';
 
-export interface FormItemProps<T> extends IProps, Omit<HTMLInputProps, 'onChange'> {
+export interface FormItemProps<T> extends IProps, HTMLInputProps {
   inline?: boolean;
   hasError?: boolean;
   label?: React.ReactNode;
@@ -14,7 +14,6 @@ export interface FormItemProps<T> extends IProps, Omit<HTMLInputProps, 'onChange
   help?: React.ReactNode;
   labelStyle?: React.CSSProperties;
   initialValue?: string | number | T;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   validator?: FormFieldsProps<T>['validator'];
 }
 
@@ -37,7 +36,6 @@ export default class FormItem<T> extends React.PureComponent<FormItemProps<T>> {
       initialValue,
       validator,
       hasError,
-      onChange,
       ...otherProps
     } = this.props;
 
@@ -45,7 +43,7 @@ export default class FormItem<T> extends React.PureComponent<FormItemProps<T>> {
     const labelCls = ['w-form-label', labelClassName].filter(Boolean).join(' ').trim();
     if (inline) {
       return (
-        <div className={cls} style={style} {...otherProps} onChange={onChange}>
+        <div className={cls} style={style} {...otherProps}>
           <Row>
             <Col fixed className={labelCls}>
               {required && <label style={{ color: 'red' }}>*</label>}
@@ -64,7 +62,7 @@ export default class FormItem<T> extends React.PureComponent<FormItemProps<T>> {
       );
     }
     return (
-      <div className={cls} style={style} {...otherProps} onChange={onChange}>
+      <div className={cls} style={style} {...otherProps}>
         {label && (
           <React.Fragment>
             {required && <label style={{ color: 'red' }}>*</label>}
