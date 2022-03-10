@@ -7851,15 +7851,20 @@ function SearchSelect(props) {
   var inputRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
   var omitTagCount = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => maxTagCount && selectedValue.length > maxTagCount ? selectedValue.length - maxTagCount : 0, [selectedValue.length]);
   var divRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
+
+  var valueVerify = value => {
+    return value !== undefined && value !== '';
+  };
+
   var valueRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)();
   valueRef.current = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => selectedValue, [selectedValue]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
-    if (value === undefined && defaultValue !== undefined) {
+    if (!valueVerify(value) && valueVerify(defaultValue)) {
       selectedValueChange(defaultValue);
     }
   }, []);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
-    if (value !== undefined) {
+    if (valueVerify(value)) {
       selectedValueChange(value);
     }
   }, [JSON.stringify(value)]);
@@ -7902,6 +7907,11 @@ function SearchSelect(props) {
     return values;
   }
 
+  var selectedLabelChange = value => {
+    setSelectedLabel(value);
+    showSearch && (onSearch == null ? void 0 : onSearch(value));
+  };
+
   function handleItemClick(item) {
     setInnerIsOpen(false);
     var values = [item];
@@ -7940,9 +7950,10 @@ function SearchSelect(props) {
 
   function handleInputChange(value) {
     setInnerIsOpen(true);
-    setSelectedLabel(value);
-    setSelectIconType(showSearch && value ? 'loading' : '');
-    showSearch && onSearch && onSearch(value);
+    setSelectIconType(showSearch && value ? 'loading' : ''); // setSelectedLabel(value);
+    // showSearch && onSearch && onSearch(value);
+
+    selectedLabelChange(value);
   } // 清除选中的值
 
 
@@ -7968,9 +7979,10 @@ function SearchSelect(props) {
     }
   }
 
-  function onVisibleChange(open) {
-    setInnerIsOpen(open);
-    if (!open) setSelectedLabel('');
+  function onVisibleChange(isOpen) {
+    var selectedValue = valueRef.current;
+    setInnerIsOpen(isOpen);
+    if (!isOpen) selectedLabelChange('');
 
     if (!isMultiple && selectedValue.length > 0) {
       setSelectedLabel(selectedValue[0].label);
@@ -8015,6 +8027,11 @@ function SearchSelect(props) {
       ref: divRef,
       onMouseOver: () => renderSelectIcon('enter'),
       onMouseLeave: () => renderSelectIcon('leave'),
+      onClick: () => {
+        var _inputRef$current2;
+
+        return (_inputRef$current2 = inputRef.current) == null ? void 0 : _inputRef$current2.focus();
+      },
       style: _extends({
         width: '100%',
         maxWidth: 'none'
