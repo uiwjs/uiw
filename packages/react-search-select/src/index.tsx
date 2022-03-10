@@ -65,6 +65,7 @@ export default function SearchSelect(props: SearchSelectProps) {
   const [selectedValue, setSelectedValue] = useState<Array<SearchSelectOptionData>>([]);
   const [selectedLabel, setSelectedLabel] = useState<string>('');
   const [selectIconType, setSelectIconType] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
   const omitTagCount = useMemo(
     () => (maxTagCount && selectedValue.length > maxTagCount ? selectedValue.length - maxTagCount : 0),
     [selectedValue.length],
@@ -149,7 +150,7 @@ export default function SearchSelect(props: SearchSelectProps) {
   // 渲染icon
   function renderSelectIcon(type: string) {
     let selectIconType;
-    if (type === 'enter' && allowClear && selectedValue) {
+    if (type === 'enter' && allowClear && (selectedValue.length > 0 || selectedLabel)) {
       selectIconType = 'close';
     } else {
       selectIconType = '';
@@ -157,20 +158,19 @@ export default function SearchSelect(props: SearchSelectProps) {
     setSelectIconType(selectIconType);
   }
   // handle change
-  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const value = e.target.value;
+  function handleInputChange(value: string) {
     setInnerIsOpen(true);
     setSelectedLabel(value);
     setSelectIconType(showSearch && value ? 'loading' : '');
     showSearch && onSearch && onSearch(value);
-    // handleSelectChange(value);
   }
   // 清除选中的值
-  function resetSelectedValue() {
-    setInnerIsOpen(false);
+  function resetSelectedValue(e: React.MouseEvent<any, MouseEvent>) {
+    e.stopPropagation();
+    inputRef.current?.focus();
     setSelectedValue([]);
-    setSelectedLabel('');
-    setSelectIconType('');
+    handleInputChange('');
+    setInnerIsOpen(false);
     handleSelectChange('', []);
   }
   function handleSelectChange(value: ValueType | Array<ValueType>, options: Array<SearchSelectOptionData>) {
@@ -186,11 +186,11 @@ export default function SearchSelect(props: SearchSelectProps) {
   }
 
   function onVisibleChange(open: boolean) {
+    setInnerIsOpen(open);
     if (!open) setSelectedLabel('');
     if (!isMultiple && selectedValue.length > 0) {
       setSelectedLabel(selectedValue[0].label);
     }
-    setInnerIsOpen(open);
   }
 
   return (
@@ -250,7 +250,10 @@ export default function SearchSelect(props: SearchSelectProps) {
                       color="#393E48"
                       {...tagProps}
                       closable
-                      onClose={() => handleItemsClick(index, item)}
+                      onClose={(e) => {
+                        e.stopPropagation();
+                        handleItemsClick(index, item);
+                      }}
                     >
                       {item.label}
                     </Tag>
@@ -266,9 +269,10 @@ export default function SearchSelect(props: SearchSelectProps) {
                 className={`${prefixCls}-input-contents`}
                 readOnly={!showSearch}
                 size={size}
+                ref={inputRef}
                 disabled={disabled}
                 onKeyDown={inputKeyDown}
-                onChange={handleInputChange}
+                onChange={(e) => handleInputChange(e.target.value)}
                 value={selectedLabel}
                 placeholder={selectedValue.length ? '' : placeholder}
               />
@@ -281,8 +285,9 @@ export default function SearchSelect(props: SearchSelectProps) {
           <Input
             readOnly={!showSearch}
             size={size}
+            ref={inputRef}
             disabled={disabled}
-            onChange={handleInputChange}
+            onChange={(e) => handleInputChange(e.target.value)}
             value={selectedLabel}
             placeholder={placeholder}
             addonAfter={
