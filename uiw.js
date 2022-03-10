@@ -7848,6 +7848,7 @@ function SearchSelect(props) {
   var [selectedValue, setSelectedValue] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
   var [selectedLabel, setSelectedLabel] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)('');
   var [selectIconType, setSelectIconType] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)('');
+  var inputRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
   var omitTagCount = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => maxTagCount && selectedValue.length > maxTagCount ? selectedValue.length - maxTagCount : 0, [selectedValue.length]);
   var divRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
   var valueRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)();
@@ -7927,7 +7928,7 @@ function SearchSelect(props) {
   function renderSelectIcon(type) {
     var selectIconType;
 
-    if (type === 'enter' && allowClear && selectedValue) {
+    if (type === 'enter' && allowClear && (selectedValue.length > 0 || selectedLabel)) {
       selectIconType = 'close';
     } else {
       selectIconType = '';
@@ -7937,20 +7938,22 @@ function SearchSelect(props) {
   } // handle change
 
 
-  function handleInputChange(e) {
-    var value = e.target.value;
+  function handleInputChange(value) {
     setInnerIsOpen(true);
     setSelectedLabel(value);
     setSelectIconType(showSearch && value ? 'loading' : '');
-    showSearch && onSearch && onSearch(value); // handleSelectChange(value);
+    showSearch && onSearch && onSearch(value);
   } // 清除选中的值
 
 
-  function resetSelectedValue() {
-    setInnerIsOpen(false);
+  function resetSelectedValue(e) {
+    var _inputRef$current;
+
+    e.stopPropagation();
+    (_inputRef$current = inputRef.current) == null ? void 0 : _inputRef$current.focus();
     setSelectedValue([]);
-    setSelectedLabel('');
-    setSelectIconType('');
+    handleInputChange('');
+    setInnerIsOpen(false);
     handleSelectChange('', []);
   }
 
@@ -7966,13 +7969,12 @@ function SearchSelect(props) {
   }
 
   function onVisibleChange(open) {
+    setInnerIsOpen(open);
     if (!open) setSelectedLabel('');
 
     if (!isMultiple && selectedValue.length > 0) {
       setSelectedLabel(selectedValue[0].label);
     }
-
-    setInnerIsOpen(open);
   }
 
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Dropdown, _extends({
@@ -8037,7 +8039,10 @@ function SearchSelect(props) {
               color: "#393E48"
             }, tagProps, {
               closable: true,
-              onClose: () => handleItemsClick(index, item),
+              onClose: e => {
+                e.stopPropagation();
+                handleItemsClick(index, item);
+              },
               children: item.label
             }), index);
           }), !!omitTagCount && /*#__PURE__*/(0,jsx_runtime.jsxs)(react_tag_esm, {
@@ -8056,9 +8061,10 @@ function SearchSelect(props) {
             className: prefixCls + "-input-contents",
             readOnly: !showSearch,
             size: size,
+            ref: inputRef,
             disabled: disabled,
             onKeyDown: inputKeyDown,
-            onChange: handleInputChange,
+            onChange: e => handleInputChange(e.target.value),
             value: selectedLabel,
             placeholder: selectedValue.length ? '' : placeholder
           })]
@@ -8070,8 +8076,9 @@ function SearchSelect(props) {
       }) : /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
         readOnly: !showSearch,
         size: size,
+        ref: inputRef,
         disabled: disabled,
-        onChange: handleInputChange,
+        onChange: e => handleInputChange(e.target.value),
         value: selectedLabel,
         placeholder: placeholder,
         addonAfter: (selectIconType === 'close' || selectIconType === 'loading' && loading) && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
@@ -9851,8 +9858,6 @@ function TreeChecked(_ref) {
 ;// CONCATENATED MODULE: ../react-search-tree/esm/SearchTagInput.js
 
 
-var SearchTagInput_excluded = ["prefixCls", "mode", "size", "disabled", "allowClear", "loading", "selectCloseDrop", "className", "style", "placeholder", "content", "options", "values", "onChange", "onSearch", "emptyOption"];
-
 
 
 
@@ -9866,7 +9871,6 @@ var SearchTagInput_excluded = ["prefixCls", "mode", "size", "disabled", "allowCl
 function SearchTagInput(props) {
   var {
     prefixCls = 'w-search-tree',
-    mode = 'single',
     size = 'default',
     disabled = false,
     allowClear = false,
@@ -9880,12 +9884,10 @@ function SearchTagInput(props) {
     values,
     onChange,
     onSearch,
-    emptyOption
-  } = props,
-      others = _objectWithoutPropertiesLoose(props, SearchTagInput_excluded);
+    emptyOption // ...others
 
-  var cls = [prefixCls, className].filter(Boolean).join(' ').trim(); // const isMultiple = useMemo(() => mode === 'multiple', [mode]);
-
+  } = props;
+  var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   var [innerIsOpen, setInnerIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
   var [selectedOption, setSelectedOption] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(values);
   var optionRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)();
@@ -9932,10 +9934,13 @@ function SearchTagInput(props) {
 
 
   function resetSelectedValue(e) {
+    var _inputRef$current;
+
     e.stopPropagation();
+    (_inputRef$current = inputRef.current) == null ? void 0 : _inputRef$current.focus();
+    handleInputChange('');
     setInnerIsOpen(false);
     setSelectedOption([]);
-    handleInputChange('');
     handleSelectChange([]);
   }
 
@@ -9988,9 +9993,9 @@ function SearchTagInput(props) {
       onMouseOver: () => renderSelectIcon('enter'),
       onMouseLeave: () => renderSelectIcon('leave'),
       onClick: () => {
-        var _inputRef$current;
+        var _inputRef$current2;
 
-        return (_inputRef$current = inputRef.current) == null ? void 0 : _inputRef$current.focus();
+        return (_inputRef$current2 = inputRef.current) == null ? void 0 : _inputRef$current2.focus();
       },
       style: _extends({
         minWidth: 200,
@@ -10230,7 +10235,7 @@ function SearchTree(props) {
     selectedOptionSet([...options]);
     var isEmpt = true;
     options.forEach(opt => isEmpt = isEmpt && !!opt.hideNode);
-    isEmptySet(isEmpt);
+    isEmptySet(typeof emptyOption === 'boolean' && isEmpt ? isEmpt : emptyOption);
   };
 
   return /*#__PURE__*/(0,jsx_runtime.jsx)(esm_SearchTagInput, _extends({}, other, {
