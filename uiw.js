@@ -3441,7 +3441,7 @@ function DayRect(props) {
     }
   }
 
-  var cellDate = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => new Date(new Date(date).setDate(day)), [day]);
+  var cellDate = new Date(new Date(date).setDate(day));
 
   if (today && today.toDateString() === cellDate.toDateString()) {
     cls.today = true;
