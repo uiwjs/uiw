@@ -72,17 +72,21 @@ export default function SearchSelect(props: SearchSelectProps) {
   );
   const divRef = useRef<HTMLDivElement>(null);
 
+  const valueVerify = (value: ValueType | Array<ValueType> | undefined) => {
+    return value !== undefined && value !== '';
+  };
+
   const valueRef = useRef<Array<SearchSelectOptionData>>();
   valueRef.current = useMemo(() => selectedValue, [selectedValue]);
 
   useEffect(() => {
-    if (value === undefined && defaultValue !== undefined) {
-      selectedValueChange(defaultValue);
+    if (!valueVerify(value) && valueVerify(defaultValue)) {
+      selectedValueChange(defaultValue!);
     }
   }, []);
 
   useEffect(() => {
-    if (value !== undefined) {
+    if (valueVerify(value)) {
       selectedValueChange(value!);
     }
   }, [JSON.stringify(value)]);
@@ -125,6 +129,11 @@ export default function SearchSelect(props: SearchSelectProps) {
     return values;
   }
 
+  const selectedLabelChange = (value: string) => {
+    setSelectedLabel(value);
+    showSearch && onSearch?.(value);
+  };
+
   function handleItemClick(item: SearchSelectOptionData) {
     setInnerIsOpen(false);
     const values = [item];
@@ -160,9 +169,10 @@ export default function SearchSelect(props: SearchSelectProps) {
   // handle change
   function handleInputChange(value: string) {
     setInnerIsOpen(true);
-    setSelectedLabel(value);
     setSelectIconType(showSearch && value ? 'loading' : '');
-    showSearch && onSearch && onSearch(value);
+    // setSelectedLabel(value);
+    // showSearch && onSearch && onSearch(value);
+    selectedLabelChange(value);
   }
   // 清除选中的值
   function resetSelectedValue(e: React.MouseEvent<any, MouseEvent>) {
@@ -185,9 +195,10 @@ export default function SearchSelect(props: SearchSelectProps) {
     }
   }
 
-  function onVisibleChange(open: boolean) {
-    setInnerIsOpen(open);
-    if (!open) setSelectedLabel('');
+  function onVisibleChange(isOpen: boolean) {
+    const selectedValue = valueRef.current as SearchSelectOptionData[];
+    setInnerIsOpen(isOpen);
+    if (!isOpen) selectedLabelChange('');
     if (!isMultiple && selectedValue.length > 0) {
       setSelectedLabel(selectedValue[0].label);
     }
@@ -235,6 +246,7 @@ export default function SearchSelect(props: SearchSelectProps) {
         ref={divRef}
         onMouseOver={() => renderSelectIcon('enter')}
         onMouseLeave={() => renderSelectIcon('leave')}
+        onClick={() => inputRef.current?.focus()}
         style={{ width: '100%', maxWidth: 'none', ...style }}
       >
         {isMultiple ? (
