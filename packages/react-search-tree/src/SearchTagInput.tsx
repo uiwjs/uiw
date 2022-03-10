@@ -25,7 +25,6 @@ export interface SearchTagInputProps<V> extends IProps, DropdownProps, DropConte
   size?: 'large' | 'default' | 'small';
   onChange: (selectedAll: Array<V>, selectd: V, isChecked: boolean) => void;
   onSearch?: (seachValue: string) => void;
-  // mode?: 'single' | 'multiple';
   loading?: boolean;
   placeholder?: string;
   emptyOption?: boolean | React.ReactNode;
@@ -35,7 +34,6 @@ export interface SearchTagInputProps<V> extends IProps, DropdownProps, DropConte
 function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputProps<V>) {
   const {
     prefixCls = 'w-search-tree',
-    mode = 'single',
     size = 'default',
     disabled = false,
     allowClear = false,
@@ -51,11 +49,10 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
     onChange,
     onSearch,
     emptyOption,
-    ...others
+    // ...others
   } = props;
 
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
-  // const isMultiple = useMemo(() => mode === 'multiple', [mode]);
   const [innerIsOpen, setInnerIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<Array<V>>(values);
   const optionRef = useRef<Array<V>>();
@@ -101,9 +98,10 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
   // 清除选中的值
   function resetSelectedValue(e: any) {
     e.stopPropagation();
+    inputRef.current?.focus();
+    handleInputChange('');
     setInnerIsOpen(false);
     setSelectedOption([]);
-    handleInputChange('');
     handleSelectChange([]);
   }
 
