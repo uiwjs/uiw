@@ -3707,6 +3707,7 @@ a.w-list-item:hover:not(.w-disabled) {
   width: 100%;
   border-radius: 100px;
   background-color: #e5e9f2;
+  overflow: hidden;
 }
 .w-progress-bg {
   height: 100%;
