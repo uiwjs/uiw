@@ -8,7 +8,7 @@ SearchSelect 搜索选择器
 搜索选择器
 
 ```jsx
-import { SearchSelect } from 'uiw';
+import { SearchSelect, Row ,Col } from 'uiw';
 // or
 import SearchSelect from '@uiw/react-search-select';
 ```
@@ -18,7 +18,7 @@ import SearchSelect from '@uiw/react-search-select';
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
-import { SearchSelect } from 'uiw';
+import { SearchSelect,Row,Col } from 'uiw';
 
 const Demo = () => {
   const selectOption=[
@@ -34,34 +34,63 @@ const Demo = () => {
 
   const [option, setOption] = React.useState(selectOption);
   const [loading, setLoading] = React.useState(false);
-  const [value, setValue] = React.useState([{label: 'a8', value: 8}]);
+  const [values, setValues] = React.useState([{label: 'a7', value: 7},{label: 'a8', value: 8}]);
+  const [value, setValue] = React.useState([{label: 'a7', value: 7}]);
+
   function handleSearch(e) {
     setLoading(true)
     setTimeout(() =>  {
-      setOption();
+     const filterOpion= selectOption.filter(item=>!!item.label.includes(e.trim()))
+      setOption([...filterOpion]);
       setLoading(false);
-    }, 2000);
+    }, 500);
   }
+
   return(
-    <SearchSelect
-      mode="multiple"
-      style={{ width: 176 }}
-      showSearch={true}
-      labelInValue={true}
-      maxTagCount={6}
-      allowClear
-      value={value}
-      disabled={false}
-      placeholder="请输入选择"
-      onSearch={handleSearch}
-      // onSelect={(value)=>console.log('onSelect',value)}
-      loading={loading}
-      option={option}
-      onChange={(value) => {
-        console.log('value',value)
-        setValue(value)
-      }}
-    />
+    <Row gutter={20}>
+     <Row>
+       <SearchSelect
+         mode="multiple"
+         style={{ width: 176 }}
+         showSearch={true}
+         labelInValue={true}
+         maxTagCount={6}
+         allowClear
+         value={values}
+         disabled={false}
+         placeholder="请输入选择"
+         onSearch={handleSearch}
+         // onSelect={(value)=>console.log('onSelect',value)}
+         loading={loading}
+         option={option}
+         onChange={(value) => {
+           console.log('value', value)
+           setValues(value)
+         }}
+       />
+     </Row>
+     <Row>
+       <SearchSelect
+         mode="single"
+         style={{ width: 176 }}
+         showSearch={true}
+         labelInValue={true}
+         maxTagCount={6}
+         allowClear
+         value={value}
+         disabled={false}
+         placeholder="请输入选择"
+         onSearch={handleSearch}
+         // onSelect={(value)=>console.log('onSelect',value)}
+         loading={loading}
+         option={option}
+         onChange={(value) => {
+           console.log('value', value)
+           setValue(value)
+         }}
+       />
+     </Row>
+    </Row>
   );
 };
 ReactDOM.render(<Demo />, _mount_);
@@ -77,19 +106,26 @@ import ReactDOM from 'react-dom';
 import { Form, Row, Col, SearchSelect, Button, Notify } from 'uiw';
 
 const Demo = () => {
-  const [option, setOption] = React.useState([]);
+  const selectOption =[
+        { label: 'a1', value: 1 },
+        { label: 'a2', value: 2 },
+        { label: 'a3', value: 3 },
+        { label: 'a4', value: 4 },
+        { label: 'a5', value: 5 },
+        { label: 'a6', value: 6 },
+        { label: 'a7', value: 7 },
+        { label: 'a8', value: 8 },
+      ];
+  const [option, setOption] = React.useState(selectOption);
   const [loading, setLoading] = React.useState(false);
+
   function handleSearch(e) {
-    console.log('handleSearch',e)
     setLoading(true)
     setTimeout(() =>  {
-      setOption([
-        { label: 'a', value: 2 },
-        { label: 'aa', value: 3 },
-        { label: 'aaa', value: 4 },
-      ]);
+     const filterOpion= selectOption.filter(item=>!!item.label.includes(e.trim()))
+      setOption([...filterOpion]);
       setLoading(false);
-    }, 2000);
+    }, 500);
   }
 
   return (
@@ -119,8 +155,30 @@ const Demo = () => {
         }}
         fields={{
           selectField: {
+            initialValue:[{label: 'a7', value: 7},{label: 'a8', value: 8}],
             children: (
               <SearchSelect
+                allowClear
+                labelInValue={true}
+                showSearch={true}
+                mode="multiple"
+                disabled={false}
+                placeholder="请输入选择"
+                onSearch={handleSearch}
+                onChange={(v)=>{
+                  console.log('onChange',v)
+                }}
+                option={option}
+                loading={loading}
+              />
+            )
+          },
+          selectSingle: {
+            initialValue:[{label: 'a7', value: 7}],
+            children: (
+              <SearchSelect
+                mode="single"
+                labelInValue={true}
                 showSearch={true}
                 allowClear
                 disabled={false}
@@ -139,8 +197,11 @@ const Demo = () => {
         {({ fields, state, canSubmit }) => {
           return (
             <div>
-              <Row>
+              <Row gutter={20}>
                 <Col fixed>{fields.selectField}</Col>
+              </Row>
+              <Row gutter={20}>
+                <Col fixed>{fields.selectSingle}</Col>
               </Row>
               <Row>
                 <Col fixed>
