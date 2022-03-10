@@ -11,7 +11,7 @@ Progress 进度条
 import { Progress } from 'uiw';
 const { Line, Circle } = Progress;
 // or
-import Progress from '@uiw/react-progress'; 
+import Progress from '@uiw/react-progress';
 ```
 
 ### 基本用法
@@ -176,6 +176,7 @@ class Demo extends React.Component {
         )}/>
         <Progress.Circle style={sty} percent={100} type="circle" format={percent => `已完成`}/>
         <Progress.Line style={sty} percent={70} format={percent => `${percent}℃`}/>
+        <Progress.Line strokeWidth={18} percent={1} status="exception" />
       </div>
     )
   }
