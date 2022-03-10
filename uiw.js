@@ -3091,7 +3091,7 @@ class Popover extends (external_root_React_commonjs2_react_commonjs_react_amd_re
           children: this.props.content
         })]
       }),
-      children: typeof this.props.children === 'object' ? this.props.children : /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
+      children: typeof this.props.children === 'object' && this.props.children.type.name !== 'Icon' ? this.props.children : /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
         children: this.props.children
       })
     }));
