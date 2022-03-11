@@ -94,7 +94,7 @@ export default function DatePicker(props: DatePickerProps) {
       }
       setType(curType);
     } else {
-      let currentDate = new Date(selectDate || selectPanelDate);
+      let currentDate = new Date(selectPanelDate);
       let month = currentDate.getMonth();
       if (curType === 'prev') {
         month -= 1;
@@ -107,7 +107,7 @@ export default function DatePicker(props: DatePickerProps) {
         onPanelChange && onPanelChange(new Date(currentDate), curType);
       }
       setSelectPanelDate(curType === 'today' ? today : currentDate);
-      setSelectDate(curType === 'today' ? today : currentDate);
+      curType === 'today' && setSelectDate(today);
 
       setType('day');
     }
