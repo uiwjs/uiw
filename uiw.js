@@ -3734,7 +3734,7 @@ function DatePicker(props) {
 
       setType(curType);
     } else {
-      var currentDate = new Date(selectDate || selectPanelDate);
+      var currentDate = new Date(selectPanelDate);
       var month = currentDate.getMonth();
 
       if (curType === 'prev') {
@@ -3752,7 +3752,7 @@ function DatePicker(props) {
       }
 
       setSelectPanelDate(curType === 'today' ? today : currentDate);
-      setSelectDate(curType === 'today' ? today : currentDate);
+      curType === 'today' && setSelectDate(today);
       setType('day');
     }
   }
