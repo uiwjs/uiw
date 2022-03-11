@@ -381,7 +381,7 @@ __webpack_require__.d(__webpack_exports__, {
   "Steps": () => (/* reexport */ react_steps_esm),
   "SubMenu": () => (/* reexport */ SubMenu),
   "Switch": () => (/* reexport */ react_switch_esm),
-  "Table": () => (/* reexport */ react_table_esm),
+  "Table": () => (/* reexport */ Table),
   "Tabs": () => (/* reexport */ Tabs),
   "Tag": () => (/* reexport */ react_tag_esm),
   "Textarea": () => (/* reexport */ react_textarea_esm),
@@ -8860,7 +8860,7 @@ var Thead_excluded = ["prefixCls", "className", "data", "onCellHead"],
 
 
 
-/* harmony default export */ const Thead = (function (props) {
+function TheadComponent(props) {
   if (props === void 0) {
     props = {};
   }
@@ -8902,7 +8902,7 @@ var Thead_excluded = ["prefixCls", "className", "data", "onCellHead"],
       })
     }, rowNum))
   }));
-});
+}
 
 ;// CONCATENATED MODULE: ../react-table/esm/util.js
 /**
@@ -8964,7 +8964,7 @@ function getRowspanNum(data, child) {
  * JSON Array => Array
  * @param {Array} date
  */
-var getLevelItems = (data, result) => {
+function getLevelItems(data, result) {
   if (!result) {
     result = {
       header: [],
@@ -9044,13 +9044,13 @@ var getLevelItems = (data, result) => {
   }
 
   return result;
-};
+}
 /**
  * Get all columns keys
  * @param {Array} data
  */
 
-var getAllColumnsKeys = function getAllColumnsKeys(data, keys) {
+function getAllColumnsKeys(data, keys) {
   if (keys === void 0) {
     keys = [];
   }
@@ -9064,7 +9064,7 @@ var getAllColumnsKeys = function getAllColumnsKeys(data, keys) {
   }
 
   return keys;
-};
+}
 
 ;// CONCATENATED MODULE: ../react-table/esm/index.js
 
@@ -9078,7 +9078,7 @@ var react_table_esm_excluded = ["prefixCls", "className", "columns", "data", "ti
 
 
 
-/* harmony default export */ const react_table_esm = (function (props) {
+function Table(props) {
   if (props === void 0) {
     props = {};
   }
@@ -9117,7 +9117,7 @@ var react_table_esm_excluded = ["prefixCls", "className", "columns", "data", "ti
         } : {},
         children: [title && /*#__PURE__*/(0,jsx_runtime.jsx)("caption", {
           children: title
-        }), columns && columns.length > 0 && /*#__PURE__*/(0,jsx_runtime.jsx)(Thead, {
+        }), columns && columns.length > 0 && /*#__PURE__*/(0,jsx_runtime.jsx)(TheadComponent, {
           onCellHead: onCellHead,
           data: header
         }), data && data.length > 0 && /*#__PURE__*/(0,jsx_runtime.jsx)("tbody", {
@@ -9178,7 +9178,7 @@ var react_table_esm_excluded = ["prefixCls", "className", "columns", "data", "ti
       children: footer
     })]
   });
-});
+}
 
 ;// CONCATENATED MODULE: ../react-tabs/esm/Pane.js
 
