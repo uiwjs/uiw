@@ -3,7 +3,7 @@ import SearchTagInput, { DropContent, SearchTagInputOption } from './SearchTagIn
 import Tree, { TreeData, TreeProps } from '@uiw/react-tree';
 import TreeChecked, { TreeCheckedProps } from '@uiw/react-tree-checked';
 
-type SelectOtpion = Record<string, string>;
+type SelectOtpion = Record<string | number, string>;
 
 // type TreeCheckedsProps = TreeCheckedProps & Partial<DropContent<SearchTagInputOption>>
 function TreeCheckeds<V extends SearchTagInputOption>(
@@ -22,9 +22,13 @@ function TreeCheckeds<V extends SearchTagInputOption>(
     keysSet(keys || []);
   }, [props.values]);
 
-  const onSelected = (_1: any, _2: any, isChecked: boolean, evn: TreeData) => {
+  const onSelected = (_: any, item: any, isChecked: boolean, evn: TreeData) => {
     const curSelectOption: SelectOtpion = getOptionsRecursion([evn], selectOption, isChecked);
-    const option = Object.entries(curSelectOption).map(([key, label]) => ({ key, label } as V));
+    let isNumberKey = false;
+    if (typeof item === 'number') isNumberKey = true;
+    const option = Object.entries(curSelectOption).map(
+      ([key, label]) => ({ key: isNumberKey ? Number.parseInt(key) : key, label } as V),
+    );
     props.onSelected?.(option, { key: evn.key, label: evn.label as string } as V, isChecked);
   };
 
@@ -72,7 +76,7 @@ function SingeTree<V extends SearchTagInputOption>(props: Omit<TreeProps, 'onSel
   const onSelected = (_1: any, _2: any, isChecked: boolean, evn: TreeData) => {
     const { key, label } = evn;
     const cur = { key, label } as V;
-    props.onSelected?.([cur], cur, isChecked);
+    props.onSelected?.(isChecked ? [cur] : [], cur, isChecked);
   };
 
   return (
@@ -151,14 +155,15 @@ function SearchTree<V extends SearchTagInputOption>(props: SearchTreeProps<V>) {
 
     let isEmpt = true;
     options.forEach((opt) => (isEmpt = isEmpt && !!opt.hideNode));
-    isEmptySet(isEmpt);
+    isEmptySet(typeof emptyOption === 'boolean' && isEmpt ? isEmpt : emptyOption);
   };
 
   return (
     <SearchTagInput
       {...other}
       emptyOption={isEmpty}
-      onSearch={debounce(selectedSearch, 600)}
+      selectCloseDrop={!multiple}
+      onSearch={selectedSearch}
       onChange={selectedChange}
       values={selectedValues}
       options={selectedOptions}

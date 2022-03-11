@@ -8,9 +8,6 @@ on:
       - '.gitignore'
       - '.gitpod.yml'
 
-env:
-  SKIP_PREFLIGHT_CHECK: true
-
 jobs:
   build-deploy:
     runs-on: ubuntu-18.04
@@ -67,65 +64,298 @@ jobs:
         publish_dir: ./website/build
         cname: uiw.js.cool
 
-    - run: npm install @jsdevtools/npm-publish -g
-
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-affix/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-alert/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-auto-link/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-avatar/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-back-top/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-badge/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-breadcrumb/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-button/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-button-group/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-calendar/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-card/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-checkbox/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-collapse/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-copy-to-clipboard/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-date-input/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-date-picker/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-descriptions/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-divider/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-drawer/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-dropdown/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-empty/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-file-input/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-form/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-grid/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-icon/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-input/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-list/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-loader/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-menu/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-message/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-modal/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-month-picker/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-notify/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-overlay/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-overlay-trigger/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-pagination/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-pin-code/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-popover/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-portal/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-progress/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-radio/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-rate/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-search-select/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-search-tree/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-select/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-slider/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-steps/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-switch/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-table/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-tabs/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-tag/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-textarea/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-time-picker/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-tooltip/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-tree/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/react-tree-checked/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/utils/package.json
-
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/uiw/package.json
-    - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./packages/doc/package.json
+    - name: 📦 @uiw/react-affix publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-affix/package.json
+    - name: 📦 @uiw/react-alert publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-alert/package.json
+    - name: 📦 @uiw/react-auto-link publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-auto-link/package.json
+    - name: 📦 @uiw/react-avatar publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-avatar/package.json
+    - name: 📦 @uiw/react-back-top publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-back-top/package.json
+    - name: 📦 @uiw/react-badge publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-badge/package.json
+    - name: 📦 @uiw/react-breadcrumb publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-breadcrumb/package.json
+    - name: 📦 @uiw/react-button publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-button/package.json
+    - name: 📦 @uiw/react-button-group publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-button-group/package.json
+    - name: 📦 @uiw/react-calendar publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-calendar/package.json
+    - name: 📦 @uiw/react-card publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-card/package.json
+    - name: 📦 @uiw/react-checkbox publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-checkbox/package.json
+    - name: 📦 @uiw/react-collapse publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-collapse/package.json
+    - name: 📦 @uiw/react-copy-to-clipboard publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-copy-to-clipboard/package.json
+    - name: 📦 @uiw/react-date-input publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-date-input/package.json
+    - name: 📦 @uiw/react-date-picker publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-date-picker/package.json
+    - name: 📦 @uiw/react-descriptions publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-descriptions/package.json
+    - name: 📦 @uiw/react-divider publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-divider/package.json
+    - name: 📦 @uiw/react-drawer publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-drawer/package.json
+    - name: 📦 @uiw/react-dropdown publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-dropdown/package.json
+    - name: 📦 @uiw/react-empty publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-empty/package.json
+    - name: 📦 @uiw/react-file-input publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-file-input/package.json
+    - name: 📦 @uiw/react-form publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-form/package.json
+    - name: 📦 @uiw/react-grid publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-grid/package.json
+    - name: 📦 @uiw/react-icon publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-icon/package.json
+    - name: 📦 @uiw/react-input publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-input/package.json
+    - name: 📦 @uiw/react-list publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-list/package.json
+    - name: 📦 @uiw/react-loader publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-loader/package.json
+    - name: 📦 @uiw/react-menu publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-menu/package.json
+    - name: 📦 @uiw/react-message publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-message/package.json
+    - name: 📦 @uiw/react-modal publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-modal/package.json
+    - name: 📦 @uiw/react-month-picker publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-month-picker/package.json
+    - name: 📦 @uiw/react-notify publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-notify/package.json
+    - name: 📦 @uiw/react-overlay publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-overlay/package.json
+    - name: 📦 @uiw/react-overlay-trigger publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-overlay-trigger/package.json
+    - name: 📦 @uiw/react-pagination publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-pagination/package.json
+    - name: 📦 @uiw/react-pin-code publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-pin-code/package.json
+    - name: 📦 @uiw/react-popover publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-popover/package.json
+    - name: 📦 @uiw/react-portal publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-portal/package.json
+    - name: 📦 @uiw/react-progress publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-progress/package.json
+    - name: 📦 @uiw/react-radio publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-radio/package.json
+    - name: 📦 @uiw/react-rate publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-rate/package.json
+    - name: 📦 @uiw/react-search-select publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-search-select/package.json
+    - name: 📦 @uiw/react-search-tree publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-search-tree/package.json
+    - name: 📦 @uiw/react-select publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-select/package.json
+    - name: 📦 @uiw/react-slider publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-slider/package.json
+    - name: 📦 @uiw/react-steps publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-steps/package.json
+    - name: 📦 @uiw/react-switch publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-switch/package.json
+    - name: 📦 @uiw/react-table publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-table/package.json
+    - name: 📦 @uiw/react-tabs publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-tabs/package.json
+    - name: 📦 @uiw/react-tag publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-tag/package.json
+    - name: 📦 @uiw/react-textarea publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-textarea/package.json
+    - name: 📦 @uiw/react-time-picker publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-time-picker/package.json
+    - name: 📦 @uiw/react-tooltip publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-tooltip/package.json
+    - name: 📦 @uiw/react-tree publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-tree/package.json
+    - name: 📦 @uiw/react-tree-checked publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-tree-checked/package.json
+    - name: 📦 @uiw/utils publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/utils/package.json
+    - name: 📦 @uiw/uiw publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/uiw/package.json
+    - name: 📦 @uiw/doc publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/doc/package.json

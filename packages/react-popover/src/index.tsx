@@ -45,7 +45,11 @@ export default class Popover extends React.Component<PopoverProps> {
           </div>
         }
       >
-        {typeof this.props.children === 'object' ? this.props.children : <span>{this.props.children}</span>}
+        {typeof this.props.children === 'object' && (this.props.children as JSX.Element).type.name !== 'Icon' ? (
+          this.props.children
+        ) : (
+          <span>{this.props.children}</span>
+        )}
       </OverlayTrigger>
     );
   }

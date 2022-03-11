@@ -25,20 +25,20 @@ export interface SearchTagInputProps<V> extends IProps, DropdownProps, DropConte
   size?: 'large' | 'default' | 'small';
   onChange: (selectedAll: Array<V>, selectd: V, isChecked: boolean) => void;
   onSearch?: (seachValue: string) => void;
-  // mode?: 'single' | 'multiple';
   loading?: boolean;
   placeholder?: string;
   emptyOption?: boolean | React.ReactNode;
+  selectCloseDrop?: boolean;
 }
 
 function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputProps<V>) {
   const {
     prefixCls = 'w-search-tree',
-    mode = 'single',
     size = 'default',
     disabled = false,
     allowClear = false,
     loading = false,
+    selectCloseDrop = false,
     className,
     style,
     placeholder,
@@ -49,11 +49,10 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
     onChange,
     onSearch,
     emptyOption,
-    ...others
+    // ...others
   } = props;
 
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
-  // const isMultiple = useMemo(() => mode === 'multiple', [mode]);
   const [innerIsOpen, setInnerIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<Array<V>>(values);
   const optionRef = useRef<Array<V>>();
@@ -74,7 +73,8 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
   const handleSelectChange = (selectedAll: Array<V>, selectd?: V, isChecked: boolean = true) => {
     setSelectedOption(selectedAll);
 
-    onChange && onChange(selectedAll, selectd!, isChecked);
+    searchValueChange('');
+    onChange?.(selectedAll, selectd!, isChecked);
   };
 
   const removeSelectItem = (index: number) => {
@@ -85,17 +85,23 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
   };
 
   function handleInputChange(value: string) {
-    searchValueSet(value);
-    onSearch?.(value);
+    setInnerIsOpen(true);
+    searchValueChange(value);
     setSelectIconType(value ? 'loading' : '');
   }
+
+  const searchValueChange = (value: string) => {
+    searchValueSet(value);
+    onSearch?.(value);
+  };
 
   // 清除选中的值
   function resetSelectedValue(e: any) {
     e.stopPropagation();
+    inputRef.current?.focus();
+    handleInputChange('');
     setInnerIsOpen(false);
     setSelectedOption([]);
-    handleInputChange('');
     handleSelectChange([]);
   }
 
@@ -112,7 +118,10 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
 
     const newProps = {
       ...content.props,
-      onSelected: handleSelectChange,
+      onSelected: (selectedAll: Array<V>, selectd?: V, isChecked: boolean = true) => {
+        setInnerIsOpen(!selectCloseDrop);
+        handleSelectChange(selectedAll, selectd, isChecked);
+      },
       values: selectedOption,
       options,
     };
@@ -122,8 +131,11 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
   return (
     <Dropdown
       className={cls}
-      trigger="focus"
-      {...others}
+      trigger="click"
+      onVisibleChange={(isOpen: boolean) => {
+        setInnerIsOpen(isOpen);
+        if (!isOpen) searchValueChange('');
+      }}
       isOpen={innerIsOpen}
       menu={<Card bodyStyle={emptyOption === true ? { padding: 0 } : undefined}>{newContent}</Card>}
     >

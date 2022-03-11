@@ -45,7 +45,7 @@ export interface TreeProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
     item: TreeData,
     evn: React.MouseEvent<HTMLElement>,
   ) => void;
-  onChange?: (keys: (string | number | undefined)[]) => void;
+  onChange?: (key: string | number | undefined, eys: (string | number | undefined)[]) => void;
   value?: TreeData['key'][];
 }
 
@@ -140,20 +140,16 @@ export default function Tree(props: TreeProps) {
     autoExpandParent = true,
     renderTitle,
     onChange,
+    value,
     ...elementProps
   } = props;
 
   const [curOpenKeys, setCurOpenKeys] = useState(openKeys);
-  const [curSelectedKeys, setCurSelectedKeys] = useState(props.value || selectedKeys);
+  const [curSelectedKeys, setCurSelectedKeys] = useState(value || selectedKeys);
 
   useEffect(() => {
-    setCurSelectedKeys(props.selectedKeys || []);
-  }, [JSON.stringify(props.selectedKeys)]);
-  useEffect(() => {
-    setCurSelectedKeys(props.value || []);
-  }, [JSON.stringify(props.value)]);
-  // useEffect(() => setCurOpenKeys(openKeys), [openKeys]);
-  // useEffect(() => setCurSelectedKeys(selectedKeys), [selectedKeys]);
+    setCurSelectedKeys(props.value || props.selectedKeys || []);
+  }, [JSON.stringify(props.selectedKeys), JSON.stringify(props.value)]);
 
   useEffect(() => {
     let arrOpenKeys: TreeData['key'][] = [...curOpenKeys];
@@ -193,7 +189,7 @@ export default function Tree(props: TreeProps) {
     let selKeys = [...(curSelectedKeys as TreeData['key'][])];
     const findKey = selKeys.find((v) => v === item.key);
     let selected = false;
-    if (!findKey) {
+    if (!findKey && findKey !== 0) {
       selected = true;
       selKeys.push(item.key);
     } else {
@@ -214,7 +210,7 @@ export default function Tree(props: TreeProps) {
     }
     setCurSelectedKeys(selKeys);
     onSelected && onSelected(selKeys, item.key, selected, item, evn);
-    onChange?.(selKeys);
+    onChange?.(item.key, selKeys);
   }
   return (
     <div className={cls} {...elementProps}>
