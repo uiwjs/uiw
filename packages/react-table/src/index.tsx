@@ -4,28 +4,22 @@ import Thead from './Thead';
 import { getLevelItems, getAllColumnsKeys } from './util';
 import './style/index.less';
 
-export type TableColumns = {
-  title?: string | ((data: TableColumns, rowNum: number, colNum: number) => JSX.Element) | JSX.Element;
+export type TableColumns<T = any, V = any> = {
+  title?: string | ((data: TableColumns<T, V>, rowNum: number, colNum: number) => JSX.Element) | JSX.Element;
   key?: string;
   width?: number;
   colSpan?: number;
-  children?: TableColumns[];
+  children?: TableColumns<T, V>[];
   ellipsis?: boolean;
-  render?: (
-    text: string,
-    keyName: string,
-    rowData: { [key: string]: any },
-    rowNumber: number,
-    columnNumber: number,
-  ) => void;
+  render?: (text: V, keyName: V, rowData: T, rowNumber: number, columnNumber: number) => React.ReactNode;
   style?: React.CSSProperties;
   [key: string]: any;
 };
 
-export interface TableProps extends IProps, Omit<HTMLDivProps, 'title'> {
+export interface TableProps<T extends { [key: string]: V } = any, V = any> extends IProps, Omit<HTMLDivProps, 'title'> {
   prefixCls?: string;
-  columns?: TableColumns[];
-  data?: Record<string, string | number | JSX.Element | boolean>[];
+  columns?: TableColumns<T, V>[];
+  data?: Array<T>;
   title?: React.ReactNode;
   footer?: React.ReactNode;
   bordered?: boolean;
@@ -36,7 +30,7 @@ export interface TableProps extends IProps, Omit<HTMLDivProps, 'title'> {
     evn: React.MouseEvent<HTMLTableCellElement>,
   ) => void | React.ReactNode;
   onCellHead?: (
-    data: TableColumns,
+    data: TableColumns<T, V>,
     rowNum: number,
     colNum: number,
     evn: React.MouseEvent<HTMLTableCellElement>,
@@ -49,7 +43,7 @@ export interface ICellOptions {
   keyName: string;
 }
 
-export default (props: TableProps = {}) => {
+export default function Table<T extends { [key: string]: V }, V>(props: TableProps<T, V> = {}) {
   const {
     prefixCls = 'w-table',
     className,
@@ -67,7 +61,7 @@ export default (props: TableProps = {}) => {
 
   const cls = [prefixCls, className, bordered ? `${prefixCls}-bordered` : null].filter(Boolean).join(' ').trim();
   const { header, render, ellipsis } = getLevelItems(columns);
-  const keys = getAllColumnsKeys(columns);
+  const keys = getAllColumnsKeys<T>(columns);
   return (
     <div>
       <div style={{ overflowY: 'scroll' }} className={cls} {...other}>
@@ -122,4 +116,4 @@ export default (props: TableProps = {}) => {
       {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
     </div>
   );
-};
+}
