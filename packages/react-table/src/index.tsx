@@ -4,7 +4,7 @@ import Thead from './Thead';
 import { getLevelItems, getAllColumnsKeys } from './util';
 import './style/index.less';
 
-export type TableColumns<T extends { [key: string]: V }, V = any> = {
+export type TableColumns<T = any, V = any> = {
   title?: string | ((data: TableColumns<T, V>, rowNum: number, colNum: number) => JSX.Element) | JSX.Element;
   key?: string;
   width?: number;
@@ -16,7 +16,7 @@ export type TableColumns<T extends { [key: string]: V }, V = any> = {
   [key: string]: any;
 };
 
-export interface TableProps<T extends { [key: string]: V }, V> extends IProps, Omit<HTMLDivProps, 'title'> {
+export interface TableProps<T extends { [key: string]: V } = any, V = any> extends IProps, Omit<HTMLDivProps, 'title'> {
   prefixCls?: string;
   columns?: TableColumns<T, V>[];
   data?: Array<T>;
