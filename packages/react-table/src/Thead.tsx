@@ -4,7 +4,7 @@ import { TableProps, TableColumns } from './';
 import './style/index.less';
 
 export interface TheadProps<T extends { [key: string]: V }, V = any> extends IProps {
-  data?: TableColumns<T, V>[][];
+  data?: TableColumns<T>[][];
   onCellHead?: TableProps<T, V>['onCellHead'];
 }
 
