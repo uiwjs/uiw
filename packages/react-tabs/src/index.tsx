@@ -105,7 +105,7 @@ export default function Tabs(props: TabsProps) {
     if (activeItem.current && type === 'line') {
       setSlideStyle({
         width: activeItem.current.clientWidth,
-        left: activeItem.current.offsetLeft,
+        left: activeItem.current.offsetLeft + 15,
       });
     }
   }
@@ -120,6 +120,7 @@ export default function Tabs(props: TabsProps) {
             </div>
           </div>
         </div>
+        {/* Donging */}
         <div style={slideStyle} className={`${prefixCls}-slide`} />
         {hiddenNav.length > 0 && (
           <Popover
