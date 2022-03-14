@@ -50,6 +50,8 @@ jobs:
     - name: Deploy to uiwjs.github.io Repo
       uses: peaceiris/actions-gh-pages@v3
       with:
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
         commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
         personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
         publish_dir: ./website/build
@@ -59,6 +61,8 @@ jobs:
     - name: Deploy gh-pages Branch
       uses: peaceiris/actions-gh-pages@v3
       with:
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
         commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./website/build
