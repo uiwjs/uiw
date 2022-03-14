@@ -760,11 +760,8 @@ ReactDOM.render(<Demo />, _mount_);
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| expandedRowRender | 自定义展开行| (record: T, index: number, expanded: boolean) => React.ReactNode | - |
-| expandIcon | 自定义图标 | (expanded: boolean, record: T, index: number) => React.ReactNode; | - |
-| rowExpandable | 是否允许展开| (record: T)=>boolean | - |
+| expandedRowRender | 自定义展开行| (record, index, expanded) => React.ReactNode | - |
+| expandIcon | 自定义图标 | (expanded, record, index) => React.ReactNode; | - |
+| rowExpandable | 是否允许展开| (record)=>boolean | - |
 | defaultExpandAllRows | 初始时，是否展开所有行| boolean | false |
-| defaultExpandedRowKeys | 初始时，默认展开的行	rowKey数组 | Array<T[keyof T] \| number> | - |
-
-
-
+| defaultExpandedRowKeys | 初始时，默认展开的行	rowKey数组 | Array | - |
