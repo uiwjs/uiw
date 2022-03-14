@@ -120,7 +120,6 @@ export default function Tabs(props: TabsProps) {
             </div>
           </div>
         </div>
-        {/* Donging */}
         <div style={slideStyle} className={`${prefixCls}-slide`} />
         {hiddenNav.length > 0 && (
           <Popover
