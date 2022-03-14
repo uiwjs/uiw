@@ -9308,7 +9308,7 @@ function Tabs(props) {
     if (activeItem.current && type === 'line') {
       setSlideStyle({
         width: activeItem.current.clientWidth,
-        left: activeItem.current.offsetLeft
+        left: activeItem.current.offsetLeft + 15
       });
     }
   }
