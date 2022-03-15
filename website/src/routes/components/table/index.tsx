@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Empty, Notify, Button, Checkbox, Pagination, Loader, Tooltip } from 'uiw';
+import { Table, Icon, Empty, Notify, Button, Checkbox, Pagination, Loader, Tooltip } from 'uiw';
 import Markdown from '../../../components/Markdown';
 
 export default () => (
@@ -14,6 +14,7 @@ export default () => (
       Loader,
       Tooltip,
       Empty,
+      Icon,
     }}
     renderPage={async () => {
       const md = await import('uiw/node_modules/@uiw/react-table/README.md');

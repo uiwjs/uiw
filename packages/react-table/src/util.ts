@@ -4,8 +4,8 @@ import { TableColumns } from './';
  * Get colspan number
  * @param {Array} date
  */
-function getColspanNum(data: TableColumns[] = [], num = 1) {
-  let childs: TableColumns[] = [];
+function getColspanNum<T>(data: TableColumns<T>[] = [], num = 1) {
+  let childs: TableColumns<T>[] = [];
   for (let i = 0; i < data.length; i += 1) {
     if (data[i].children) {
       childs = childs.concat(data[i].children || []);
@@ -21,8 +21,8 @@ function getColspanNum(data: TableColumns[] = [], num = 1) {
  * Get rowspan number
  * @param {Array} date
  */
-function getRowspanNum(data: TableColumns[] = [], child = []) {
-  let childs: TableColumns[] = [];
+function getRowspanNum<T>(data: TableColumns<T>[] = [], child = []) {
+  let childs: TableColumns<T>[] = [];
   for (let i = 0; i < data.length; i += 1) {
     if (!data[i].children) {
       childs.push(data[i]);
@@ -33,8 +33,8 @@ function getRowspanNum(data: TableColumns[] = [], child = []) {
   return childs;
 }
 
-export interface ILevelItems {
-  header: TableColumns[][];
+export interface ILevelItems<T> {
+  header: TableColumns<T>[][];
   ellipsis?: Record<string, boolean>;
   render: {
     [key: string]: any;
@@ -45,7 +45,7 @@ export interface ILevelItems {
  * JSON Array => Array
  * @param {Array} date
  */
-export const getLevelItems = (data: TableColumns[], result?: ILevelItems): ILevelItems => {
+export function getLevelItems<T>(data: TableColumns<T>[], result?: ILevelItems<T>): ILevelItems<T> {
   if (!result) {
     result = { header: [], render: {} };
   }
@@ -55,8 +55,8 @@ export const getLevelItems = (data: TableColumns[], result?: ILevelItems): ILeve
   if (result && !result.render) {
     result.render = {};
   }
-  let child: TableColumns[] = [];
-  const levelTop: TableColumns[] = [];
+  let child: TableColumns<T>[] = [];
+  const levelTop: TableColumns<T>[] = [];
   for (let i = 0; i < data.length; i += 1) {
     if (data[i].render && data[i].key) {
       result.render[data[i].key as string] = data[i].render;
@@ -68,13 +68,13 @@ export const getLevelItems = (data: TableColumns[], result?: ILevelItems): ILeve
     if (result.header.length === 0) {
       // Calculation rowspan
       if (data[i].children && data[i].children && data[i].children!.length > 0) {
-        data[i].colSpan = getRowspanNum(data[i].children as TableColumns[]).length;
+        data[i].colSpan = getRowspanNum(data[i].children as TableColumns<T>[]).length;
       }
       levelTop.push(data[i]);
     }
     if (data[i] && data[i].children) {
       child = child.concat(
-        data[i].children!.map((item: TableColumns) => {
+        data[i].children!.map((item: TableColumns<T>) => {
           // Calculation rowspan
           if (item.children && item.children.length > 0) {
             item.colSpan = getRowspanNum(item.children).length;
@@ -100,7 +100,7 @@ export const getLevelItems = (data: TableColumns[], result?: ILevelItems): ILeve
   if (child && child.length > 0) {
     const num = getColspanNum(child);
     result.header.push(
-      child.map((item: TableColumns) => {
+      child.map((item: TableColumns<T>) => {
         if (num === 1) return item;
         if (!item.children || (item.children && item.children.length === 0)) {
           item.rowSpan = num;
@@ -111,13 +111,13 @@ export const getLevelItems = (data: TableColumns[], result?: ILevelItems): ILeve
     result = getLevelItems(child, result);
   }
   return result;
-};
+}
 
 /**
  * Get all columns keys
  * @param {Array} data
  */
-export const getAllColumnsKeys = (data: TableColumns[], keys: any[] = []): string[] => {
+export function getAllColumnsKeys<T>(data: TableColumns<T>[], keys: any[] = []): string[] {
   for (let i = 0; i < data.length; i += 1) {
     if (data[i].children) {
       keys = keys.concat(getAllColumnsKeys(data[i].children || []));
@@ -126,4 +126,4 @@ export const getAllColumnsKeys = (data: TableColumns[], keys: any[] = []): strin
     }
   }
   return keys;
-};
+}
