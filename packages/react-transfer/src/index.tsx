@@ -17,7 +17,7 @@ interface TransferProps extends IProps {
   bodyStyle?: React.CSSProperties;
 
   onChange?: (transfer: string, selectedAll: Array<TransferOptionType>) => void;
-  onSearch?: (seachValue: string) => void;
+  onSearch?: (transfer: string, seachValue: string, searchkeys: any) => void;
   showSearch?: boolean;
   value?: Array<TransferOptionType>;
   options?: TreeData[];
@@ -130,6 +130,7 @@ function Transfer(props: TransferProps) {
   };
 
   const searchValueLeftChange = (vlaue: string) => {
+    console.log('vlaue', vlaue);
     searchValueLeftSet(vlaue);
   };
 
@@ -140,7 +141,7 @@ function Transfer(props: TransferProps) {
   return (
     <div className={cls} style={{ width: 400, ...style }}>
       <Card
-        bodyStyle={{ padding: '5px 0px 5px 5px' }}
+        bodyStyle={{ padding: 5 }}
         title={`${leftSelectedKeys.length}/${selectedOptions.length}`}
         className={`${prefixCls}-card`}
       >
@@ -175,13 +176,13 @@ function Transfer(props: TransferProps) {
         />
       </div>
       <Card
-        bodyStyle={{ padding: '5px 0px 5px 0px' }}
+        bodyStyle={{ padding: 5 }}
         className={`${prefixCls}-card`}
         title={`${rightSelectedKeys.length}/${rightOpions.length}`}
       >
         {showSearch && (
           <Input
-            placeholder={placeholder || '搜索选项'}
+            placeholder={placeholder}
             value={searchValueRight}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => searchValueRightChange(e.target.value)}
           />
