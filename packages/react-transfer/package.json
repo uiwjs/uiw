@@ -1,0 +1,54 @@
+{
+  "name": "@uiw/react-transfer",
+  "version": "4.13.9",
+  "description": "TreeChecked component",
+  "homepage": "https://uiwjs.github.io/#/components/transfer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uiwjs/uiw.git"
+  },
+  "license": "MIT",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "files": [
+    "dist.css",
+    "cjs",
+    "esm",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "checked",
+    "design",
+    "uiw",
+    "uiw-react",
+    "react.js",
+    "react",
+    "react-component",
+    "component",
+    "components",
+    "ui",
+    "css",
+    "uikit",
+    "react-ui",
+    "framework",
+    "front-end",
+    "frontend"
+  ],
+  "peerDependencies": {
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
+  },
+  "dependencies": {
+    "@uiw/react-card": "^4.13.9",
+    "@uiw/react-grid": "^4.13.9",
+    "@uiw/react-icon": "^4.13.9",
+    "@uiw/react-input": "^4.13.9",
+    "@uiw/react-tree": "^4.13.9",
+    "@uiw/react-tree-checked": "^4.13.9",
+    "@uiw/react-checkbox": "^4.13.9",
+    "@uiw/utils": "^4.13.9"
+  }
+}

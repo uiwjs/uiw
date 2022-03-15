@@ -56,6 +56,7 @@ export * from '@uiw/react-tooltip';
 export * from '@uiw/react-tree';
 export * from '@uiw/react-tree-checked';
 export * from '@uiw/react-search-tree';
+export * from '@uiw/react-transfer';
 
 export { default as Affix } from '@uiw/react-affix';
 export { default as Alert } from '@uiw/react-alert';
@@ -114,3 +115,4 @@ export { default as Tooltip } from '@uiw/react-tooltip';
 export { default as Tree } from '@uiw/react-tree';
 export { default as TreeChecked } from '@uiw/react-tree-checked';
 export { default as SearchTree } from '@uiw/react-search-tree';
+export { default as Transfer } from '@uiw/react-transfer';
