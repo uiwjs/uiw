@@ -9066,14 +9066,47 @@ function getAllColumnsKeys(data, keys) {
   return keys;
 }
 
+;// CONCATENATED MODULE: ../react-table/esm/Expandable.js
+
+
+
+/**
+ * 可展开配置
+*/
+function ExpandableComponent(_ref) {
+  var {
+    defaultExpand,
+    onClick: _onClick,
+    expandIcon
+  } = _ref;
+  var [expand, setExpand] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(defaultExpand);
+  return /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    onClick: () => {
+      setExpand(!expand);
+
+      _onClick(expand); // record: T, index: number, expanded: boolean
+
+    },
+    children: expandIcon(expand)
+  });
+}
+
 ;// CONCATENATED MODULE: ../react-table/esm/index.js
 
 
-var react_table_esm_excluded = ["prefixCls", "className", "columns", "data", "title", "footer", "bordered", "onCell", "onCellHead", "empty", "children"];
+var react_table_esm_excluded = ["prefixCls", "className", "columns", "data", "title", "footer", "bordered", "onCell", "onCellHead", "empty", "children", "expandable", "rowKey"];
 
 
 
 
+
+
+ // 展开配置
 
 
 
@@ -9093,17 +9126,117 @@ function Table(props) {
     bordered,
     onCell = noop,
     onCellHead = noop,
-    empty
+    empty,
+    expandable,
+    rowKey
   } = props,
       other = _objectWithoutPropertiesLoose(props, react_table_esm_excluded);
+
+  var [expandIndex, setExpandIndex] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    if (expandable) {
+      if (expandable.defaultExpandAllRows) {
+        setExpandIndex(data.map((it, index) => rowKey ? it[rowKey] : index));
+        return;
+      }
+
+      if (expandable.defaultExpandedRowKeys) {
+        setExpandIndex(expandable.defaultExpandedRowKeys);
+        return;
+      }
+    }
+  }, []);
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    if (expandable) {
+      if (expandable.expandedRowKeys && JSON.stringify(expandable.expandedRowKeys) !== JSON.stringify(expandIndex)) {
+        setExpandIndex(expandable.expandedRowKeys);
+      }
+    }
+  }, [expandable == null ? void 0 : expandable.expandedRowKeys]);
+  var isExpandedDom = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
+    return (record, index) => {
+      if (!expandable) {
+        return false;
+      }
+
+      if (!expandable.expandedRowRender) {
+        return false;
+      }
+
+      var flag = true;
+
+      if (expandable.rowExpandable) {
+        flag = expandable.rowExpandable(record);
+      }
+
+      return flag && /*#__PURE__*/(0,jsx_runtime.jsx)("tr", {
+        style: expandIndex.includes(rowKey ? record[rowKey] : index) ? {} : {
+          display: 'none'
+        },
+        children: /*#__PURE__*/(0,jsx_runtime.jsx)("td", {
+          style: {
+            paddingLeft: 16
+          },
+          colSpan: columns.length + 1,
+          children: expandable.expandedRowRender(record, index, true)
+        })
+      });
+    };
+  }, [expandable, expandIndex]);
+  var keys = getAllColumnsKeys(columns);
+  var selfColumns = [];
+
+  if (expandable != null && expandable.expandedRowRender) {
+    keys = ['uiw-expanded', ...keys];
+    selfColumns = [{
+      title: '',
+      key: 'uiw-expanded',
+      width: 50,
+      align: 'center',
+      render: (text, key, record, index) => {
+        var _expandable$defaultEx;
+
+        return /*#__PURE__*/(0,jsx_runtime.jsx)(ExpandableComponent, {
+          defaultExpand: expandable.defaultExpandAllRows === undefined ? !!((_expandable$defaultEx = expandable.defaultExpandedRowKeys) != null && _expandable$defaultEx.includes(rowKey ? record[rowKey] : index)) : !!expandable.defaultExpandAllRows,
+          onClick: expand => {
+            expandable.onExpand == null ? void 0 : expandable.onExpand(expand, record, index);
+
+            if (expand) {
+              var result = expandIndex.filter(it => rowKey ? it !== record[rowKey] : it !== index);
+              expandable.onExpandedRowsChange ? expandable.onExpandedRowsChange(result) : setExpandIndex(result);
+            } else {
+              var _result = [...expandIndex, rowKey ? record[rowKey] : index];
+              expandable.onExpandedRowsChange ? expandable.onExpandedRowsChange(_result) : setExpandIndex(_result);
+            }
+          },
+          expandIcon: expand => {
+            if (expandable.rowExpandable && !(expandable.rowExpandable != null && expandable.rowExpandable(record))) {
+              return null;
+            }
+
+            if (expandable.expandIcon) {
+              return expandable.expandIcon(expand, record, index);
+            }
+
+            return expand ? /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+              type: "minus-square-o"
+            }) : /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+              type: "plus-square-o"
+            });
+          }
+        });
+      }
+    }, ...columns];
+  } else {
+    selfColumns = [...columns];
+  }
 
   var cls = [prefixCls, className, bordered ? prefixCls + "-bordered" : null].filter(Boolean).join(' ').trim();
   var {
     header,
     render,
     ellipsis
-  } = getLevelItems(columns);
-  var keys = getAllColumnsKeys(columns);
+  } = getLevelItems(selfColumns);
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
     children: [/*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
       style: {
@@ -9121,45 +9254,49 @@ function Table(props) {
           onCellHead: onCellHead,
           data: header
         }), data && data.length > 0 && /*#__PURE__*/(0,jsx_runtime.jsx)("tbody", {
-          children: data.map((trData, rowNum) => /*#__PURE__*/(0,jsx_runtime.jsx)("tr", {
-            children: keys.map((keyName, colNum) => {
-              var objs = {
-                children: trData[keyName]
-              };
+          children: data.map((trData, rowNum) => {
+            return /*#__PURE__*/(0,jsx_runtime.jsxs)((external_root_React_commonjs2_react_commonjs_react_amd_react_default()).Fragment, {
+              children: [/*#__PURE__*/(0,jsx_runtime.jsx)("tr", {
+                children: keys.map((keyName, colNum) => {
+                  var objs = {
+                    children: trData[keyName]
+                  };
 
-              if (render[keyName]) {
-                var child = render[keyName](trData[keyName], keyName, trData, rowNum, colNum);
+                  if (render[keyName]) {
+                    var child = render[keyName](trData[keyName], keyName, trData, rowNum, colNum);
 
-                if ( /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().isValidElement(child)) {
-                  objs.children = child;
-                } else {
-                  if (child.props) {
-                    objs = _extends({}, child.props, {
-                      children: objs.children
-                    });
-                    if (child.props.rowSpan === 0 || child.props.colSpan === 0) return null;
+                    if ( /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().isValidElement(child)) {
+                      objs.children = child;
+                    } else {
+                      if (child.props) {
+                        objs = _extends({}, child.props, {
+                          children: objs.children
+                        });
+                        if (child.props.rowSpan === 0 || child.props.colSpan === 0) return null;
+                      }
+
+                      if (child.children) {
+                        objs.children = child.children;
+                      }
+                    }
                   }
 
-                  if (child.children) {
-                    objs.children = child.children;
+                  if (ellipsis && ellipsis[keyName]) {
+                    objs.className = prefixCls + "-ellipsis";
                   }
-                }
-              }
 
-              if (ellipsis && ellipsis[keyName]) {
-                objs.className = prefixCls + "-ellipsis";
-              }
-
-              return /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.createElement)("td", _extends({}, objs, {
-                key: colNum,
-                onClick: evn => onCell(trData, {
-                  rowNum,
-                  colNum,
-                  keyName
-                }, evn)
-              }));
-            })
-          }, rowNum))
+                  return /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.createElement)("td", _extends({}, objs, {
+                    key: colNum,
+                    onClick: evn => onCell(trData, {
+                      rowNum,
+                      colNum,
+                      keyName
+                    }, evn)
+                  }));
+                })
+              }, rowKey ? trData[rowKey] + '' : rowNum), isExpandedDom(trData, rowNum)]
+            }, rowNum);
+          })
         }), data && data.length === 0 && empty && /*#__PURE__*/(0,jsx_runtime.jsx)("tbody", {
           children: /*#__PURE__*/(0,jsx_runtime.jsx)("tr", {
             children: /*#__PURE__*/(0,jsx_runtime.jsx)("td", {
