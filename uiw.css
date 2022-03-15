@@ -5031,3 +5031,29 @@ a.w-list-item:hover:not(.w-disabled) {
   align-content: center;
 }
 
+.w-transfer {
+  display: flex;
+  justify-content: space-between;
+}
+.w-transfer-card {
+  width: 50%;
+}
+.w-transfer-cheked-content {
+  height: 200px;
+  overflow-y: auto;
+}
+.w-transfer-arrow-content {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: space-between;
+}
+.w-transfer-arrow-left:hover,
+.w-transfer-arrow-right:hover {
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px #6e6e6e, 0 0 0 1px rgba(57, 62, 72, 0), inset 0 1px 1px rgba(16, 22, 26, 0.2);
+}
+

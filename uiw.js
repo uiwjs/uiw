@@ -388,6 +388,7 @@ __webpack_require__.d(__webpack_exports__, {
   "TimePicker": () => (/* reexport */ TimePicker),
   "TimePickerTime": () => (/* reexport */ TimePickerTime),
   "Tooltip": () => (/* reexport */ react_tooltip_esm),
+  "Transfer": () => (/* reexport */ react_transfer_esm),
   "Tree": () => (/* reexport */ Tree),
   "TreeChecked": () => (/* reexport */ TreeChecked),
   "canUseDOM": () => (/* reexport */ canUseDOM),
@@ -9072,7 +9073,7 @@ function getAllColumnsKeys(data, keys) {
 
 /**
  * 可展开配置
-*/
+ */
 function ExpandableComponent(_ref) {
   var {
     defaultExpand,
@@ -10404,6 +10405,217 @@ function SearchTree(props) {
 }
 
 /* harmony default export */ const react_search_tree_esm = (SearchTree);
+
+;// CONCATENATED MODULE: ../react-transfer/esm/style/index.css
+// extracted by mini-css-extract-plugin
+/* harmony default export */ const react_transfer_esm_style = ({});
+;// CONCATENATED MODULE: ../react-transfer/esm/index.js
+
+
+
+
+
+
+
+
+
+
+function Transfer(props) {
+  var {
+    placeholder,
+    options,
+    value,
+    showSearch = false,
+    bodyStyle,
+    style,
+    className,
+    prefixCls = 'w-transfer'
+  } = props;
+  var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
+  var [searchValueLeft, searchValueLeftSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)('');
+  var [searchValueRight, searchValueRightSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)('');
+  var [selectedOptions, selectedOptionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(options || []);
+  var [selectOption, selectOptionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(new Map());
+  var [leftSelectedKeys, leftSelectedKeySet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
+  var [rightSelectedKeys, rightSelectedKeySet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
+  var [rightOpions, rightOpionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    leftSelectedKeySet([]);
+    rightSelectedKeySet([]);
+    rightOpionSet(value || []);
+    value == null ? void 0 : value.forEach(selectd => selectOption.set(selectd.key, selectd.label));
+    hiddenNode(child => !!(value != null && value.find(selectd => child.key === selectd.key)));
+  }, [JSON.stringify(value)]);
+
+  var hiddenNode = callBackfn => {
+    var hiddenNodeForSeach = childrens => {
+      childrens.forEach(child => {
+        var _child$children;
+
+        var isHide = callBackfn(child); // && parentIsHide;
+
+        if (!!((_child$children = child.children) != null && _child$children.length)) {
+          hiddenNodeForSeach(child.children);
+          var find = child.children.find(item => !item.hideNode);
+          child.hideNode = isHide && !find;
+        } else {
+          child.hideNode = isHide;
+        }
+      });
+    };
+
+    hiddenNodeForSeach(selectedOptions);
+    selectedOptionSet([...selectedOptions]);
+  };
+
+  var leftTreeOnSelected = (selectedKeys, _1, isChecked, evn) => {
+    leftSelectedKeySet(selectedKeys);
+    var selectOptionTemp = getOptionsRecursion([evn], selectOption, isChecked);
+    selectOptionSet(selectOptionTemp);
+  };
+
+  var rightTreeOnSelected = (selectedKeys, _1, _2, evn) => {
+    rightSelectedKeySet(selectedKeys);
+    selectedKeys.forEach(key => {
+      selectOption.delete(key);
+    });
+    selectOptionSet(selectOption);
+  };
+
+  var getOptionsRecursion = (childrens, selectOption, isAdd) => {
+    var addOrDel = (key, label, isAdd) => {
+      if (isAdd) {
+        selectOption.set(key, label);
+      } else {
+        selectOption.delete(key);
+      }
+    };
+
+    var iteratorParent = child => {
+      // 向上迭代
+      if (child.parent) {
+        var selectCount = child.parent.children.filter(child => !selectOption.get(child.key)).length;
+        addOrDel(child.parent.key, child.parent.label, selectCount === 0);
+        iteratorParent(child.parent);
+      }
+    };
+
+    childrens.forEach(child => {
+      var _child$children2, _child$label;
+
+      if (!!((_child$children2 = child.children) != null && _child$children2.length)) {
+        selectOption = getOptionsRecursion(child.children, selectOption, isAdd);
+      }
+
+      addOrDel(child.key, (_child$label = child.label) == null ? void 0 : _child$label.toString(), isAdd);
+      iteratorParent(child);
+    });
+    return selectOption;
+  };
+
+  var transferClick = transferType => {
+    var option = [];
+    selectOption.forEach((label, key) => option.push({
+      key,
+      label
+    }));
+    props.onChange == null ? void 0 : props.onChange(transferType, option);
+  };
+
+  var searchValueLeftChange = searchValue => {
+    hiddenNode(child => {
+      var searchIsMatch = !child.label.includes(searchValue.trim());
+
+      if (!searchIsMatch) {
+        var isSekected = rightOpions.find(selected => selected.key === child.key);
+        searchIsMatch = !!isSekected;
+      }
+
+      return searchIsMatch;
+    });
+    searchValueLeftSet(searchValue);
+    props.onSearch == null ? void 0 : props.onSearch('left', searchValue);
+  };
+
+  var searchValueRightChange = searchValue => {
+    searchValueRightSet(searchValue);
+    rightOpions.forEach(option => {
+      var isHide = !option.label.includes(searchValue.trim());
+      option.hideNode = isHide;
+    });
+    console.log('rightOpions', rightOpions);
+    rightOpionSet(rightOpions);
+    props.onSearch == null ? void 0 : props.onSearch('right', searchValue);
+  };
+
+  return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
+    className: cls,
+    style: _extends({
+      width: 400
+    }, style),
+    children: [/*#__PURE__*/(0,jsx_runtime.jsxs)(react_card_esm, {
+      bodyStyle: {
+        padding: 5
+      },
+      title: leftSelectedKeys.length + "/" + selectedOptions.length,
+      className: prefixCls + "-card",
+      children: [showSearch && /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
+        placeholder: placeholder,
+        value: searchValueLeft,
+        onChange: e => searchValueLeftChange(e.target.value)
+      }), /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+        className: prefixCls + "-cheked-content",
+        children: /*#__PURE__*/(0,jsx_runtime.jsx)(TreeChecked, {
+          defaultExpandAll: true,
+          placeholder: placeholder || '搜索选项',
+          data: selectedOptions,
+          selectedKeys: leftSelectedKeys,
+          onSelected: leftTreeOnSelected
+        })
+      })]
+    }), /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
+      className: prefixCls + "-arrow-content",
+      children: [/*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+        onClick: () => transferClick('left'),
+        type: "down-square-o",
+        className: prefixCls + "-arrow-left",
+        style: {
+          transform: 'rotate(-90deg)',
+          fontSize: 20
+        }
+      }), /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+        onClick: () => transferClick('right'),
+        type: "down-square-o",
+        className: prefixCls + "-arrow-right",
+        style: {
+          transform: 'rotate(90deg)',
+          fontSize: 20
+        }
+      })]
+    }), /*#__PURE__*/(0,jsx_runtime.jsxs)(react_card_esm, {
+      bodyStyle: {
+        padding: 5
+      },
+      className: prefixCls + "-card",
+      title: rightSelectedKeys.length + "/" + rightOpions.length,
+      children: [showSearch && /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
+        placeholder: placeholder,
+        value: searchValueRight,
+        onChange: e => searchValueRightChange(e.target.value)
+      }), /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+        className: prefixCls + "-cheked-content",
+        style: bodyStyle,
+        children: /*#__PURE__*/(0,jsx_runtime.jsx)(TreeChecked, {
+          data: rightOpions,
+          selectedKeys: rightSelectedKeys,
+          onSelected: rightTreeOnSelected
+        })
+      })]
+    })]
+  });
+}
+
+/* harmony default export */ const react_transfer_esm = (Transfer);
 
 ;// CONCATENATED MODULE: ./src/index.ts
 
