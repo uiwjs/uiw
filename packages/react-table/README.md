@@ -756,7 +756,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### expandable
 
-展开功能的配置。
+注意 expandedRowKeys 与 onExpandedRowsChange 必须成对出现
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
@@ -765,3 +765,6 @@ ReactDOM.render(<Demo />, _mount_);
 | rowExpandable | 是否允许展开| (record)=>boolean | - |
 | defaultExpandAllRows | 初始时，是否展开所有行| boolean | false |
 | defaultExpandedRowKeys | 初始时，默认展开的行	rowKey数组 | Array | - |
+| expandedRowKeys | 控制展开的行	rowKey数组 | Array | - |
+| onExpandedRowsChange | 展开的行变化触发 | (expandedRows)=>void | - |
+| onExpand | 点击展开图标触发 | (expanded,record,index)=>void | - |

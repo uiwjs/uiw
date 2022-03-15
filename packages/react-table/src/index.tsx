@@ -1,9 +1,9 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
-import Icon from '@uiw/react-icon'
+import Icon from '@uiw/react-icon';
 import Thead from './Thead';
 import { getLevelItems, getAllColumnsKeys } from './util';
-import ExpandableComponent from './Expandable'
+import ExpandableComponent from './Expandable';
 import './style/index.less';
 
 // 展开配置
@@ -18,9 +18,15 @@ export interface ExpandableType<T> {
   defaultExpandAllRows?: boolean;
   // 默认展开的行	rowKey数组
   defaultExpandedRowKeys?: Array<T[keyof T] | number>;
+  // 控制展开的行	rowKey数组
+  expandedRowKeys?: Array<T[keyof T] | number>;
+  // 展开的行变化触发
+  onExpandedRowsChange?: (expandedRows: Array<T[keyof T] | number>) => void;
+  // 点击展开图标触发
+  onExpand?: (expanded: boolean, record: T, index: number) => void;
 }
 
-export type TableColumns<T = any,> = {
+export type TableColumns<T = any> = {
   title?: string | ((data: TableColumns<T>, rowNum: number, colNum: number) => JSX.Element) | JSX.Element;
   key?: string;
   width?: number;
@@ -51,7 +57,7 @@ export interface TableProps<T extends { [key: string]: V } = any, V = any> exten
     colNum: number,
     evn: React.MouseEvent<HTMLTableCellElement>,
   ) => void;
-  expandable?: ExpandableType<T>,
+  expandable?: ExpandableType<T>;
   rowKey?: keyof T;
 }
 
@@ -77,37 +83,52 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
     rowKey,
     ...other
   } = props;
-  const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([])
+  const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
   useEffect(() => {
     if (expandable) {
       if (expandable.defaultExpandAllRows) {
-        setExpandIndex(data.map((it, index) => rowKey ? it[rowKey] : index))
-        return
+        setExpandIndex(data.map((it, index) => (rowKey ? it[rowKey] : index)));
+        return;
       }
       if (expandable.defaultExpandedRowKeys) {
-        setExpandIndex(expandable.defaultExpandedRowKeys)
-        return
+        setExpandIndex(expandable.defaultExpandedRowKeys);
+        return;
       }
     }
-  }, [expandable])
+  }, []);
+  useEffect(() => {
+    if (expandable) {
+      if (expandable.expandedRowKeys && JSON.stringify(expandable.expandedRowKeys) !== JSON.stringify(expandIndex)) {
+        setExpandIndex(expandable.expandedRowKeys);
+      }
+    }
+  }, [expandable?.expandedRowKeys]);
 
   const isExpandedDom = useMemo(() => {
     return (record: T, index: number) => {
       if (!expandable) {
-        return false
+        return false;
       }
-      let a = true;
-      if (expandable.expandedRowRender) {
-        a = true
+      if (!expandable.expandedRowRender) {
+        return false;
       }
+      let flag = true;
       if (expandable.rowExpandable) {
-        a = expandable.rowExpandable(record)
+        flag = expandable.rowExpandable(record);
       }
-      return a && <tr style={expandIndex.includes(rowKey ? record[rowKey] : index) ? {} : { display: 'none' }}><td style={{ paddingLeft: 16 }} colSpan={columns.length + 1} >{expandable?.expandedRowRender?.(record, index, true)}</td></tr>
-    }
-  }, [expandable, expandIndex])
+      return (
+        flag && (
+          <tr style={expandIndex.includes(rowKey ? record[rowKey] : index) ? {} : { display: 'none' }}>
+            <td style={{ paddingLeft: 16 }} colSpan={columns.length + 1}>
+              {expandable.expandedRowRender(record, index, true)}
+            </td>
+          </tr>
+        )
+      );
+    };
+  }, [expandable, expandIndex]);
   let keys = getAllColumnsKeys<T>(columns);
-  let selfColumns: TableColumns<T>[] = []
+  let selfColumns: TableColumns<T>[] = [];
   if (expandable?.expandedRowRender) {
     keys = ['uiw-expanded', ...keys];
     selfColumns = [
@@ -117,34 +138,40 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
         width: 50,
         align: 'center',
         render: (text, key, record, index) => {
-          return <ExpandableComponent
-            defaultExpand={
-              expandable.defaultExpandAllRows === undefined ? !!expandable.defaultExpandedRowKeys?.includes(rowKey ? record[rowKey] : index) : !!expandable.defaultExpandAllRows
-            }
-            onClick={(expand) => {
-              if (expand) {
-                setExpandIndex(expandIndex.filter(it => rowKey ? it !== record[rowKey] : it !== index))
-                expandable.expandedRowRender?.(record, index, false)
-              } else {
-                setExpandIndex([...expandIndex, rowKey ? record[rowKey] : index])
+          return (
+            <ExpandableComponent
+              defaultExpand={
+                expandable.defaultExpandAllRows === undefined
+                  ? !!expandable.defaultExpandedRowKeys?.includes(rowKey ? record[rowKey] : index)
+                  : !!expandable.defaultExpandAllRows
               }
-            }}
-            expandIcon={(expand) => {
-              if (expandable.rowExpandable && !expandable.rowExpandable?.(record)) {
-                return null
-              }
-              if (expandable.expandIcon) {
-                return expandable.expandIcon(expand, record, index)
-              }
-              return expand ? <Icon type="minus-square-o" /> : <Icon type="plus-square-o" />
-            }}
-          />
-        }
+              onClick={(expand) => {
+                expandable.onExpand?.(expand, record, index);
+                if (expand) {
+                  const result = expandIndex.filter((it) => (rowKey ? it !== record[rowKey] : it !== index));
+                  expandable.onExpandedRowsChange ? expandable.onExpandedRowsChange(result) : setExpandIndex(result);
+                } else {
+                  const result = [...expandIndex, rowKey ? record[rowKey] : index];
+                  expandable.onExpandedRowsChange ? expandable.onExpandedRowsChange(result) : setExpandIndex(result);
+                }
+              }}
+              expandIcon={(expand) => {
+                if (expandable.rowExpandable && !expandable.rowExpandable?.(record)) {
+                  return null;
+                }
+                if (expandable.expandIcon) {
+                  return expandable.expandIcon(expand, record, index);
+                }
+                return expand ? <Icon type="minus-square-o" /> : <Icon type="plus-square-o" />;
+              }}
+            />
+          );
+        },
       },
-      ...columns
-    ]
+      ...columns,
+    ];
   } else {
-    selfColumns = [...columns]
+    selfColumns = [...columns];
   }
   const cls = [prefixCls, className, bordered ? `${prefixCls}-bordered` : null].filter(Boolean).join(' ').trim();
   const { header, render, ellipsis } = getLevelItems(selfColumns);
@@ -160,7 +187,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
               {data.map((trData, rowNum) => {
                 return (
                   <React.Fragment key={rowNum}>
-                    <tr key={rowKey ? trData[rowKey]+'' : rowNum}>
+                    <tr key={rowKey ? trData[rowKey] + '' : rowNum}>
                       {keys.map((keyName, colNum) => {
                         let objs: React.TdHTMLAttributes<HTMLTableDataCellElement> = {
                           children: trData[keyName],
@@ -183,13 +210,17 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
                           objs.className = `${prefixCls}-ellipsis`;
                         }
                         return (
-                          <td {...objs} key={colNum} onClick={(evn) => onCell(trData, { rowNum, colNum, keyName }, evn)} />
+                          <td
+                            {...objs}
+                            key={colNum}
+                            onClick={(evn) => onCell(trData, { rowNum, colNum, keyName }, evn)}
+                          />
                         );
                       })}
                     </tr>
                     {isExpandedDom(trData, rowNum)}
                   </React.Fragment>
-                )
+                );
               })}
             </tbody>
           )}
