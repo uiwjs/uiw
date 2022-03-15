@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IProps } from '@uiw/utils';
 import Card from '@uiw/react-card';
 import Icon from '@uiw/react-icon';
-import Input from '@uiw/react-Input';
+import Input from '@uiw/react-input';
 import TreeChecked from '@uiw/react-tree-checked';
 import { TreeData } from '@uiw/react-tree';
 import './style/index.less';
@@ -17,7 +17,7 @@ interface TransferProps extends IProps {
   bodyStyle?: React.CSSProperties;
 
   onChange?: (transfer: string, selectedAll: Array<TransferOptionType>) => void;
-  onSearch?: (transfer: string, seachValue: string, searchkeys: any) => void;
+  onSearch?: (transfer: string, seachValue: string) => void;
   showSearch?: boolean;
   value?: Array<TransferOptionType>;
   options?: TreeData[];
@@ -44,7 +44,7 @@ function Transfer(props: TransferProps) {
   const [selectOption, selectOptionSet] = useState<Map<string | number, string>>(new Map());
   const [leftSelectedKeys, leftSelectedKeySet] = useState<Array<string | number | undefined>>([]);
   const [rightSelectedKeys, rightSelectedKeySet] = useState<Array<string | number | undefined>>([]);
-  const [rightOpions, rightOpionSet] = useState<Array<TransferOptionType>>([]);
+  const [rightOpions, rightOpionSet] = useState<Array<TreeData>>([]);
 
   useEffect(() => {
     leftSelectedKeySet([]);
@@ -86,7 +86,7 @@ function Transfer(props: TransferProps) {
   const rightTreeOnSelected = (
     selectedKeys: Array<string | number | undefined>,
     _1: any,
-    isChecked: boolean,
+    _2: boolean,
     evn: TreeData,
   ) => {
     rightSelectedKeySet(selectedKeys);
@@ -129,13 +129,32 @@ function Transfer(props: TransferProps) {
     props.onChange?.(transferType, option);
   };
 
-  const searchValueLeftChange = (vlaue: string) => {
-    console.log('vlaue', vlaue);
-    searchValueLeftSet(vlaue);
+  const searchValueLeftChange = (searchValue: string) => {
+    hiddenNode((child: TreeData) => {
+      let searchIsMatch = !(child.label as string).includes(searchValue.trim());
+      if (!searchIsMatch) {
+        const isSekected = rightOpions.find((selected) => selected.key === child.key);
+        searchIsMatch = !!isSekected;
+      }
+      return searchIsMatch;
+    });
+
+    searchValueLeftSet(searchValue);
+
+    props.onSearch?.('left', searchValue);
   };
 
-  const searchValueRightChange = (vlaue: string) => {
-    searchValueRightSet(vlaue);
+  const searchValueRightChange = (searchValue: string) => {
+    searchValueRightSet(searchValue);
+
+    rightOpions.forEach((option) => {
+      const isHide = !(option.label as string).includes(searchValue.trim());
+      option.hideNode = isHide;
+    });
+    console.log('rightOpions', rightOpions);
+    rightOpionSet(rightOpions);
+
+    props.onSearch?.('right', searchValue);
   };
 
   return (
@@ -154,6 +173,7 @@ function Transfer(props: TransferProps) {
         )}
         <div className={`${prefixCls}-cheked-content`}>
           <TreeChecked
+            defaultExpandAll={true}
             placeholder={placeholder || '搜索选项'}
             data={selectedOptions}
             selectedKeys={leftSelectedKeys}

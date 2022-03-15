@@ -113,7 +113,11 @@ const options = [
     }
   ];
 
-  const [value,valueSet] = React.useState([{ label: '武汉市',  key: 1 }])
+  const [value,valueSet] = React.useState([
+    { label: '武昌区', key: 3 },
+    { label: '汉南区1', key: 5 },
+    { label: '汉南区2', key: 6 },
+  ])
 
   return (
     <Row style={{ flexDirection:'column' }} >
@@ -239,4 +243,4 @@ ReactDOM.render(<Demo />, _mount_);
 | options | 下拉数据源,可参考Tree下拉数据源 | [{ label, key, children: [{label, key}] }] | - |
 | showSearch | 启用搜索 | boolean | false |
 | placeholder | 搜索输入框文字 | string | - |
-| onSearch | 搜索时回调函数 |  (arrow, searchValue, searchkeys) => void | - |
+| onSearch | 搜索时回调函数 |  (arrow, searchValue) => void | - |

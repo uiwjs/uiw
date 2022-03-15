@@ -43,12 +43,12 @@
   },
   "dependencies": {
     "@uiw/react-card": "^4.13.9",
+    "@uiw/react-checkbox": "^4.13.9",
     "@uiw/react-grid": "^4.13.9",
     "@uiw/react-icon": "^4.13.9",
-    "@uiw/react-input": "^4.13.9",
+    "@uiw/react-input": "^4.13.12",
     "@uiw/react-tree": "^4.13.9",
     "@uiw/react-tree-checked": "^4.13.9",
-    "@uiw/react-checkbox": "^4.13.9",
     "@uiw/utils": "^4.13.9"
   }
 }
