@@ -253,8 +253,8 @@ function Transfer(props: TransferProps) {
         </div>
       </Card>
       <div className={`${prefixCls}-arrow-content`}>
-        <Arrow click={() => transferClick('left')} style={{ transform: 'rotate(90deg)' }} />
-        <Arrow click={() => transferClick('right')} style={{ transform: 'rotate(-90deg)' }} />
+        <Arrow click={() => transferClick('left')} style={{ transform: 'rotate(-90deg)' }} />
+        <Arrow click={() => transferClick('right')} style={{ transform: 'rotate(90deg)' }} />
       </div>
       <Card
         bodyStyle={{ padding: 5 }}
