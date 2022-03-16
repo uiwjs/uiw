@@ -43,6 +43,41 @@ function Demo() {
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+## 全部选择
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import React from 'react';
+import { Transfer } from 'uiw';
+
+function Demo() {
+
+  const options = [
+    { label: '武汉市',  key: 1 },
+    { label: '汉南区1', key: 5 },
+    { label: '汉南区2', key: 6 },
+    { label: '汉南区3', key: 7 },
+  ]
+
+  const [value,valueSet] = React.useState([{ label: '武汉市',  key: 1 }, { label: '汉南区1', key: 5 }])
+
+  return (
+    <Row style={{ flexDirection:'column' }} >
+      <Transfer
+        options={options}
+        selectedAll={true}
+        value={value}
+        onChange={(transfer,option)=>{
+          valueSet(option)
+        }}
+      />
+    </Row>
+  );
+}
+
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ## 树形节点
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
@@ -248,3 +283,4 @@ ReactDOM.render(<Demo />, _mount_);
 | showSearch | 启用搜索 | boolean | false |
 | placeholder | 搜索输入框文字 | string | - |
 | onSearch | 搜索时回调函数 |  (arrow, searchValue) => void | - |
+| selectedAll | 启用全部勾选 |  boolean | false |
