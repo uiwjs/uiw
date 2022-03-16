@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { IProps } from '@uiw/utils';
 import Card from '@uiw/react-card';
 import Icon from '@uiw/react-icon';
@@ -41,6 +41,7 @@ function Transfer(props: TransferProps) {
   const [searchValueLeft, searchValueLeftSet] = useState('');
   const [searchValueRight, searchValueRightSet] = useState('');
   const [selectedOptions, selectedOptionSet] = useState<Array<TreeData>>(options || []);
+  const selectedOptionsShowCount = useRef<number>(0);
   const [selectOption, selectOptionSet] = useState<Map<string | number, string>>(new Map());
   const [leftSelectedKeys, leftSelectedKeySet] = useState<Array<string | number | undefined>>([]);
   const [rightSelectedKeys, rightSelectedKeySet] = useState<Array<string | number | undefined>>([]);
@@ -56,6 +57,7 @@ function Transfer(props: TransferProps) {
   }, [JSON.stringify(value)]);
 
   const hiddenNode = (callBackfn: (child: TreeData) => boolean) => {
+    selectedOptionsShowCount.current = 0;
     const hiddenNodeForSeach = (childrens: TreeData[]) => {
       childrens.forEach((child: TreeData) => {
         const isHide = callBackfn(child); // && parentIsHide;
@@ -65,6 +67,9 @@ function Transfer(props: TransferProps) {
           child.hideNode = isHide && !find;
         } else {
           child.hideNode = isHide;
+          if (!child.hideNode) {
+            selectedOptionsShowCount.current++;
+          }
         }
       });
     };
@@ -83,12 +88,7 @@ function Transfer(props: TransferProps) {
     selectOptionSet(selectOptionTemp);
   };
 
-  const rightTreeOnSelected = (
-    selectedKeys: Array<string | number | undefined>,
-    _1: any,
-    _2: boolean,
-    evn: TreeData,
-  ) => {
+  const rightTreeOnSelected = (selectedKeys: Array<string | number | undefined>) => {
     rightSelectedKeySet(selectedKeys);
     selectedKeys.forEach((key) => {
       selectOption.delete(key!);
@@ -105,7 +105,6 @@ function Transfer(props: TransferProps) {
       }
     };
     const iteratorParent = (child: TreeData) => {
-      // 向上迭代
       if (child.parent) {
         const selectCount = child.parent.children.filter((child: TreeData) => !selectOption.get(child.key!)).length;
         addOrDel(child.parent.key, child.parent.label, selectCount === 0);
@@ -161,7 +160,7 @@ function Transfer(props: TransferProps) {
     <div className={cls} style={{ width: 400, ...style }}>
       <Card
         bodyStyle={{ padding: 5 }}
-        title={`${leftSelectedKeys.length}/${selectedOptions.length}`}
+        title={`${leftSelectedKeys.length}/${selectedOptionsShowCount.current}`}
         className={`${prefixCls}-card`}
       >
         {showSearch && (
