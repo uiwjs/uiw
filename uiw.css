@@ -5050,10 +5050,12 @@ a.w-list-item:hover:not(.w-disabled) {
   align-self: center;
   justify-content: space-between;
 }
-.w-transfer-arrow-left:hover,
-.w-transfer-arrow-right:hover {
-  cursor: pointer;
+.w-transfer-arrow {
+  transition: all 0.3s;
   border-radius: 3px;
-  box-shadow: 0 0 0 1px #6e6e6e, 0 0 0 1px rgba(57, 62, 72, 0), inset 0 1px 1px rgba(16, 22, 26, 0.2);
+}
+.w-transfer-arrow:hover {
+  cursor: pointer;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
 }
 

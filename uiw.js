@@ -10554,6 +10554,17 @@ function Transfer(props) {
     props.onSearch == null ? void 0 : props.onSearch('right', searchValue);
   };
 
+  var Arrow = props => /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+    onClick: () => props.click(),
+    type: "down-square-o",
+    className: prefixCls + "-arrow",
+    style: _extends({
+      fontSize: 20,
+      stroke: '#e9e9e9',
+      fill: '#333'
+    }, props.style)
+  });
+
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
     className: cls,
     style: _extends({
@@ -10581,21 +10592,15 @@ function Transfer(props) {
       })]
     }), /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
       className: prefixCls + "-arrow-content",
-      children: [/*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
-        onClick: () => transferClick('left'),
-        type: "down-square-o",
-        className: prefixCls + "-arrow-left",
+      children: [/*#__PURE__*/(0,jsx_runtime.jsx)(Arrow, {
+        click: () => transferClick('left'),
         style: {
-          transform: 'rotate(-90deg)',
-          fontSize: 20
+          transform: 'rotate(90deg)'
         }
-      }), /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
-        onClick: () => transferClick('right'),
-        type: "down-square-o",
-        className: prefixCls + "-arrow-right",
+      }), /*#__PURE__*/(0,jsx_runtime.jsx)(Arrow, {
+        click: () => transferClick('right'),
         style: {
-          transform: 'rotate(90deg)',
-          fontSize: 20
+          transform: 'rotate(-90deg)'
         }
       })]
     }), /*#__PURE__*/(0,jsx_runtime.jsxs)(react_card_esm, {
