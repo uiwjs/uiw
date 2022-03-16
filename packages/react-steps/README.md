@@ -191,7 +191,7 @@ ReactDOM.render(<Demo />, _mount_);
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Steps } from 'uiw';
+import { Steps, Row, Col } from 'uiw';
 
 function Demo() {
   return (
@@ -221,7 +221,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ## Props
 
-### Steps 
+### Steps
 
 | 参数      | 说明    | 类型      |  默认值   |
 |--------- |-------- |---------- |-------- |
