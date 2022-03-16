@@ -1,6 +1,10 @@
 Transfer 双栏穿梭选择框控件
 ===
 
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-transfer/file/README.md)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-transfer.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-transfer)
+[![npm version](https://img.shields.io/npm/v/@uiw/react-transfer.svg?label=@uiw/react-transfer)](https://npmjs.com/@uiw/react-transfer)
+
 选择一个或以上的选项后，点击左右的方向按钮，可以把选中的选项移动到另一栏为选中。在 v4.14.0+ 添加。
 
 ## 基础用法
