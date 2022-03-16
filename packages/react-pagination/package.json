@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-pagination",
-  "version": "4.13.12",
+  "version": "4.14.0",
   "description": "Pagination component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/pagination",
@@ -44,7 +44,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-select": "^4.13.12",
-    "@uiw/utils": "^4.13.12"
+    "@uiw/react-select": "^4.14.0",
+    "@uiw/utils": "^4.14.0"
   }
 }
