@@ -10446,6 +10446,7 @@ function Transfer(props) {
   var [selectedOptions, selectedOptionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(options || []);
   var selectedOptionsShowCount = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(0);
   var [selectOption, selectOptionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(new Map());
+  var [leftSelectOption, leftSelectOptionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(new Map());
   var [leftSelectedKeys, leftSelectedKeySet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
   var [rightSelectedKeys, rightSelectedKeySet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
   var [rightOpions, rightOpionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
@@ -10476,10 +10477,10 @@ function Transfer(props) {
           child.hideNode = isHide && !find;
         } else {
           child.hideNode = isHide;
+        }
 
-          if (!child.hideNode) {
-            selectedOptionsShowCount.current++;
-          }
+        if (!child.hideNode) {
+          selectedOptionsShowCount.current++;
         }
       });
     };
@@ -10487,32 +10488,6 @@ function Transfer(props) {
     hiddenNodeForSeach(selectedOptions);
     selectedOptionSet([...selectedOptions]);
   };
-
-  var leftTreeOnSelected = (selectedKeys, _1, isChecked, evn) => {
-    selectedAllActive(selectedKeys, 'left');
-    leftSelectedKeySet(selectedKeys);
-    var selectOptionTemp = getOptionsRecursion([evn], selectOption, isChecked);
-    selectOptionSet(selectOptionTemp);
-  };
-
-  var rightTreeOnSelected = selectedKeys => {
-    selectedAllActive(selectedKeys, 'right');
-    rightSelectedKeySet(selectedKeys);
-    selectedKeys.forEach(key => {
-      selectOption.delete(key);
-    });
-    selectOptionSet(selectOption);
-  };
-
-  function selectedAllActive(selectedKeys, key) {
-    var selectedAll = true;
-    rightOpions.forEach(selected => {
-      var find = selectedKeys.find(key => key === selected.key);
-      selectedAll = selectedAll && !!find;
-    });
-    selectAllChecked[key] = selectedAll ? CheckedStatus.AllChecked : selectedKeys.length ? CheckedStatus.Indeterminate : CheckedStatus.UnChecked;
-    selectAllCheckedSet(selectAllChecked);
-  }
 
   var getOptionsRecursion = (childrens, selectOption, isAdd) => {
     var addOrDel = (key, label, isAdd) => {
@@ -10544,11 +10519,33 @@ function Transfer(props) {
     return selectOption;
   };
 
+  var leftTreeOnSelected = (selectedKeys, _1, isChecked, evn) => {
+    leftSelectedKeySet(selectedKeys);
+    var selectOptionTemp = getOptionsRecursion([evn], leftSelectOption, isChecked);
+    leftSelectOptionSet(selectOptionTemp);
+  };
+
+  var rightTreeOnSelected = selectedKeys => {
+    rightSelectedKeySet(selectedKeys);
+  };
+
   var transferClick = transferType => {
-    selectAllChecked.right = CheckedStatus.UnChecked;
-    selectAllCheckedSet(selectAllChecked);
+    var selectOptionTemp = selectOption;
+
+    if (transferType === 'left') {
+      leftSelectOption.forEach((value, key) => {
+        selectOptionTemp.set(key, value);
+      });
+    } else {
+      rightSelectedKeys.forEach(key => {
+        selectOption.delete(key);
+      });
+    }
+
+    selectOptionSet(selectOptionTemp); // leftSelectOptionSet(selectOptionTemp);
+
     var option = [];
-    selectOption.forEach((label, key) => option.push({
+    selectOptionTemp.forEach((label, key) => option.push({
       key,
       label
     }));
@@ -10580,14 +10577,46 @@ function Transfer(props) {
     props.onSearch == null ? void 0 : props.onSearch('right', searchValue);
   };
 
-  var selectAllCheckedChange = e => {
+  var selectAllLeftChange = e => {
+    var isChecked = e.target.checked;
+    selectAllChecked.left = isChecked ? 1 : 0;
+
+    if (isChecked) {
+      var keys = [];
+
+      var selectedOptionsRecursion = selectedOptions => {
+        selectedOptions.forEach(child => {
+          var _child$children3;
+
+          if ((_child$children3 = child.children) != null && _child$children3.length) {
+            selectedOptionsRecursion(child.children);
+          } else {
+            if (!child.hideNode) {
+              selectOption.set(child.key, child.label);
+              keys.push(child.key);
+            }
+          }
+        });
+      };
+
+      selectedOptionsRecursion(selectedOptions);
+      leftSelectedKeySet(keys);
+    } else {
+      leftSelectedKeySet([]);
+    }
+
+    selectOptionSet(selectOption);
+    selectAllCheckedSet(selectAllChecked);
+  };
+
+  var selectAllRightChange = e => {
     var isChecked = e.target.checked;
     selectAllChecked.right = isChecked ? 1 : 0;
 
     if (isChecked) {
-      var keys = rightOpions.map(selected => {
-        selectOption.delete(selected.key);
-        return selected.key;
+      var keys = rightOpions.map(child => {
+        selectOption.delete(child.key);
+        return child.key;
       });
       rightSelectedKeySet(keys);
     } else {
@@ -10618,13 +10647,17 @@ function Transfer(props) {
       bodyStyle: {
         padding: 5
       },
-      title: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
-        children: /*#__PURE__*/(0,jsx_runtime.jsxs)("span", {
+      title: /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
+        children: [selectedAll && /*#__PURE__*/(0,jsx_runtime.jsx)(react_checkbox_esm, {
+          indeterminate: leftSelectedKeys.length < selectedOptionsShowCount.current && !!leftSelectedKeys.length,
+          checked: leftSelectedKeys.length >= selectedOptionsShowCount.current && !!leftSelectedKeys.length,
+          onChange: selectAllLeftChange
+        }), /*#__PURE__*/(0,jsx_runtime.jsxs)("span", {
           style: {
             marginLeft: 10
           },
           children: [leftSelectedKeys.length, "/", selectedOptionsShowCount.current]
-        })
+        })]
       }),
       className: prefixCls + "-card",
       children: [showSearch && /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
@@ -10661,9 +10694,9 @@ function Transfer(props) {
       className: prefixCls + "-card",
       title: /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
         children: [selectedAll && /*#__PURE__*/(0,jsx_runtime.jsx)(react_checkbox_esm, {
-          indeterminate: selectAllChecked.right === CheckedStatus.Indeterminate,
-          checked: selectAllChecked.right === CheckedStatus.AllChecked,
-          onChange: selectAllCheckedChange
+          indeterminate: rightSelectedKeys.length < rightOpions.length && !!rightSelectedKeys.length,
+          checked: rightSelectedKeys.length === rightOpions.length && !!rightSelectedKeys.length,
+          onChange: selectAllRightChange
         }), /*#__PURE__*/(0,jsx_runtime.jsxs)("span", {
           style: {
             marginLeft: 10
