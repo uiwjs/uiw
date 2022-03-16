@@ -10420,12 +10420,21 @@ function SearchTree(props) {
 
 
 
+var CheckedStatus;
+
+(function (CheckedStatus) {
+  CheckedStatus[CheckedStatus["UnChecked"] = 0] = "UnChecked";
+  CheckedStatus[CheckedStatus["AllChecked"] = 1] = "AllChecked";
+  CheckedStatus[CheckedStatus["Indeterminate"] = 2] = "Indeterminate";
+})(CheckedStatus || (CheckedStatus = {}));
+
 function Transfer(props) {
   var {
     placeholder,
     options,
     value,
     showSearch = false,
+    selectedAll = false,
     bodyStyle,
     style,
     className,
@@ -10440,6 +10449,10 @@ function Transfer(props) {
   var [leftSelectedKeys, leftSelectedKeySet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
   var [rightSelectedKeys, rightSelectedKeySet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
   var [rightOpions, rightOpionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
+  var [selectAllChecked, selectAllCheckedSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)({
+    left: CheckedStatus.UnChecked,
+    right: CheckedStatus.UnChecked
+  });
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     leftSelectedKeySet([]);
     rightSelectedKeySet([]);
@@ -10476,18 +10489,30 @@ function Transfer(props) {
   };
 
   var leftTreeOnSelected = (selectedKeys, _1, isChecked, evn) => {
+    selectedAllActive(selectedKeys, 'left');
     leftSelectedKeySet(selectedKeys);
     var selectOptionTemp = getOptionsRecursion([evn], selectOption, isChecked);
     selectOptionSet(selectOptionTemp);
   };
 
   var rightTreeOnSelected = selectedKeys => {
+    selectedAllActive(selectedKeys, 'right');
     rightSelectedKeySet(selectedKeys);
     selectedKeys.forEach(key => {
       selectOption.delete(key);
     });
     selectOptionSet(selectOption);
   };
+
+  function selectedAllActive(selectedKeys, key) {
+    var selectedAll = true;
+    rightOpions.forEach(selected => {
+      var find = selectedKeys.find(key => key === selected.key);
+      selectedAll = selectedAll && !!find;
+    });
+    selectAllChecked[key] = selectedAll ? CheckedStatus.AllChecked : selectedKeys.length ? CheckedStatus.Indeterminate : CheckedStatus.UnChecked;
+    selectAllCheckedSet(selectAllChecked);
+  }
 
   var getOptionsRecursion = (childrens, selectOption, isAdd) => {
     var addOrDel = (key, label, isAdd) => {
@@ -10520,6 +10545,8 @@ function Transfer(props) {
   };
 
   var transferClick = transferType => {
+    selectAllChecked.right = CheckedStatus.UnChecked;
+    selectAllCheckedSet(selectAllChecked);
     var option = [];
     selectOption.forEach((label, key) => option.push({
       key,
@@ -10549,9 +10576,26 @@ function Transfer(props) {
       var isHide = !option.label.includes(searchValue.trim());
       option.hideNode = isHide;
     });
-    console.log('rightOpions', rightOpions);
     rightOpionSet(rightOpions);
     props.onSearch == null ? void 0 : props.onSearch('right', searchValue);
+  };
+
+  var selectAllCheckedChange = e => {
+    var isChecked = e.target.checked;
+    selectAllChecked.right = isChecked ? 1 : 0;
+
+    if (isChecked) {
+      var keys = rightOpions.map(selected => {
+        selectOption.delete(selected.key);
+        return selected.key;
+      });
+      rightSelectedKeySet(keys);
+    } else {
+      rightSelectedKeySet([]);
+    }
+
+    selectOptionSet(selectOption);
+    selectAllCheckedSet(selectAllChecked);
   };
 
   var Arrow = props => /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
@@ -10574,7 +10618,14 @@ function Transfer(props) {
       bodyStyle: {
         padding: 5
       },
-      title: leftSelectedKeys.length + "/" + selectedOptionsShowCount.current,
+      title: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+        children: /*#__PURE__*/(0,jsx_runtime.jsxs)("span", {
+          style: {
+            marginLeft: 10
+          },
+          children: [leftSelectedKeys.length, "/", selectedOptionsShowCount.current]
+        })
+      }),
       className: prefixCls + "-card",
       children: [showSearch && /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
         placeholder: placeholder,
@@ -10595,12 +10646,12 @@ function Transfer(props) {
       children: [/*#__PURE__*/(0,jsx_runtime.jsx)(Arrow, {
         click: () => transferClick('left'),
         style: {
-          transform: 'rotate(90deg)'
+          transform: 'rotate(-90deg)'
         }
       }), /*#__PURE__*/(0,jsx_runtime.jsx)(Arrow, {
         click: () => transferClick('right'),
         style: {
-          transform: 'rotate(-90deg)'
+          transform: 'rotate(90deg)'
         }
       })]
     }), /*#__PURE__*/(0,jsx_runtime.jsxs)(react_card_esm, {
@@ -10608,7 +10659,18 @@ function Transfer(props) {
         padding: 5
       },
       className: prefixCls + "-card",
-      title: rightSelectedKeys.length + "/" + rightOpions.length,
+      title: /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
+        children: [selectedAll && /*#__PURE__*/(0,jsx_runtime.jsx)(react_checkbox_esm, {
+          indeterminate: selectAllChecked.right === CheckedStatus.Indeterminate,
+          checked: selectAllChecked.right === CheckedStatus.AllChecked,
+          onChange: selectAllCheckedChange
+        }), /*#__PURE__*/(0,jsx_runtime.jsxs)("span", {
+          style: {
+            marginLeft: 10
+          },
+          children: [rightSelectedKeys.length, "/", rightOpions.length]
+        })]
+      }),
       children: [showSearch && /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
         placeholder: placeholder,
         value: searchValueRight,
