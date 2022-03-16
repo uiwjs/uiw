@@ -1,4 +1,4 @@
-Transfer 双栏穿梭选择框控件
+Transfer 穿梭框
 ===
 
 [![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-transfer/file/README.md)
