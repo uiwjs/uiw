@@ -53,11 +53,24 @@ import { Transfer } from 'uiw';
 function Demo() {
 
   const options = [
-    { label: '武汉市',  key: 1 },
-    { label: '汉南区1', key: 5 },
-    { label: '汉南区2', key: 6 },
-    { label: '汉南区3', key: 7 },
-  ]
+    {
+      label: '武汉市',
+      key: 1,
+      children: [
+        { label: '新洲区', key: 2, disabled: true },
+        { label: '武昌区', key: 3 },
+        {
+          label: '汉南区',
+          key: 4,
+          children: [
+            { label: '汉南区1', key: 5 },
+            { label: '汉南区2', key: 6 },
+            { label: '汉南区3', key: 7 },
+          ]
+        },
+      ]
+    }
+  ];
 
   const [value,valueSet] = React.useState([{ label: '武汉市',  key: 1 }, { label: '汉南区1', key: 5 }])
 
