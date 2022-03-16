@@ -10435,6 +10435,7 @@ function Transfer(props) {
   var [searchValueLeft, searchValueLeftSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)('');
   var [searchValueRight, searchValueRightSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)('');
   var [selectedOptions, selectedOptionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(options || []);
+  var selectedOptionsShowCount = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(0);
   var [selectOption, selectOptionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(new Map());
   var [leftSelectedKeys, leftSelectedKeySet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
   var [rightSelectedKeys, rightSelectedKeySet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
@@ -10448,6 +10449,8 @@ function Transfer(props) {
   }, [JSON.stringify(value)]);
 
   var hiddenNode = callBackfn => {
+    selectedOptionsShowCount.current = 0;
+
     var hiddenNodeForSeach = childrens => {
       childrens.forEach(child => {
         var _child$children;
@@ -10460,6 +10463,10 @@ function Transfer(props) {
           child.hideNode = isHide && !find;
         } else {
           child.hideNode = isHide;
+
+          if (!child.hideNode) {
+            selectedOptionsShowCount.current++;
+          }
         }
       });
     };
@@ -10474,7 +10481,7 @@ function Transfer(props) {
     selectOptionSet(selectOptionTemp);
   };
 
-  var rightTreeOnSelected = (selectedKeys, _1, _2, evn) => {
+  var rightTreeOnSelected = selectedKeys => {
     rightSelectedKeySet(selectedKeys);
     selectedKeys.forEach(key => {
       selectOption.delete(key);
@@ -10492,7 +10499,6 @@ function Transfer(props) {
     };
 
     var iteratorParent = child => {
-      // 向上迭代
       if (child.parent) {
         var selectCount = child.parent.children.filter(child => !selectOption.get(child.key)).length;
         addOrDel(child.parent.key, child.parent.label, selectCount === 0);
@@ -10557,7 +10563,7 @@ function Transfer(props) {
       bodyStyle: {
         padding: 5
       },
-      title: leftSelectedKeys.length + "/" + selectedOptions.length,
+      title: leftSelectedKeys.length + "/" + selectedOptionsShowCount.current,
       className: prefixCls + "-card",
       children: [showSearch && /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
         placeholder: placeholder,
