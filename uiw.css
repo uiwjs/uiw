@@ -4627,6 +4627,10 @@ a.w-list-item:hover:not(.w-disabled) {
   text-overflow: ellipsis;
   word-break: keep-all;
 }
+.w-table-has-children {
+  display: flex;
+  align-items: center;
+}
 .w-table-bordered > table tr > th,
 .w-table-bordered > table tr > td,
 .w-table-bordered > table > caption {
