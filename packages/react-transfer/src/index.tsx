@@ -156,6 +156,15 @@ function Transfer(props: TransferProps) {
     props.onSearch?.('right', searchValue);
   };
 
+  const Arrow = (props: { click: () => void; style: React.CSSProperties }) => (
+    <Icon
+      onClick={() => props.click()}
+      type="down-square-o"
+      className={`${prefixCls}-arrow`}
+      style={{ fontSize: 20, stroke: '#e9e9e9', fill: '#333', ...props.style }}
+    />
+  );
+
   return (
     <div className={cls} style={{ width: 400, ...style }}>
       <Card
@@ -181,18 +190,8 @@ function Transfer(props: TransferProps) {
         </div>
       </Card>
       <div className={`${prefixCls}-arrow-content`}>
-        <Icon
-          onClick={() => transferClick('left')}
-          type="down-square-o"
-          className={`${prefixCls}-arrow-left`}
-          style={{ transform: 'rotate(-90deg)', fontSize: 20 }}
-        />
-        <Icon
-          onClick={() => transferClick('right')}
-          type="down-square-o"
-          className={`${prefixCls}-arrow-right`}
-          style={{ transform: 'rotate(90deg)', fontSize: 20 }}
-        />
+        <Arrow click={() => transferClick('left')} style={{ transform: 'rotate(90deg)' }} />
+        <Arrow click={() => transferClick('right')} style={{ transform: 'rotate(-90deg)' }} />
       </div>
       <Card
         bodyStyle={{ padding: 5 }}
