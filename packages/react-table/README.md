@@ -724,6 +724,87 @@ const Demo = () => (
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+### 树形数据展示
+
+表格支持树形数据的展示，当数据中有 children 字段时会自动展示为树形表格，如果不需要或配置为其他字段可以用 childrenColumnName 进行配置。
+
+可以通过设置 indentSize 以控制每一层的缩进宽度
+
+> ⚠️ 注意: 树形数据展示和`expandable.expandedRowRender`请不要同时出现，后续或将支持
+<!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import React from 'react';
+import { Table, Button, Icon } from 'uiw';
+
+const columns = [
+  {
+    title: '姓名',
+    ellipsis: true, 
+    key: 'name', 
+  }, 
+  {
+    title: '年龄',
+    style: { color: 'red' },
+    key: 'age',
+  }, 
+  {
+    title: '操作',
+    key: 'edit',
+    width: 98,
+    render: (text, key, rowData, rowNumber, columnNumber) => (
+      <div>
+        <Button size="small" type="danger">删除</Button>
+        <Button size="small" type="success">修改</Button>
+      </div>
+    ),
+  },
+];
+const dataSource = [
+  { 
+    name: '邓紫棋', 
+    age: '10', 
+    id: '1', 
+    children: [
+      {
+        name: '邓紫棋-0-1', 
+        age: '10', 
+        id: '1-1', 
+        children: [
+          { name: '邓紫棋-0-1-1', age: '10', id: '1-1-1',},
+          { name: '邓紫棋-0-1-2', age: '10', id: '1-1-2',}
+        ]
+      },
+      {name: '邓紫棋-0-2', age: '10', id: '1-1'},
+      {name: '邓紫棋-0-3', age: '10', id: '1-1'},
+    ]
+  },
+  { name: '李易峰', age: '32', id: '2',},
+  { name: '范冰冰', age: '23', id: '3', 
+    children: [
+      {name: '范冰冰0-1', age: '23', id: '3-1'},
+      {name: '范冰冰0-2', age: '23', id: '3-2'},
+      {name: '范冰冰0-3', age: '23', id: '3-3'},
+    ]
+  },
+];
+const Demo = () => {
+  const [expandedRowKeys, setExpandedRowKeys] = React.useState([])
+  return (
+    <div>
+      <Table 
+        rowKey="id"
+        columns={columns}
+        data={dataSource} 
+      />
+    </div>
+  )
+};
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ## Props
 
 ### Table
@@ -768,3 +849,5 @@ ReactDOM.render(<Demo />, _mount_);
 | expandedRowKeys | 控制展开的行	rowKey数组 | Array | - |
 | onExpandedRowsChange | 展开的行变化触发 | (expandedRows)=>void | - |
 | onExpand | 点击展开图标触发 | (expanded,record,index)=>void | - |
+| indentSize | 控制树形结构每一层的缩进宽度 | number | 16 |
+| childrenColumnName | 指定树形结构的列名 | string | children |
