@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import Icon from '@uiw/react-icon';
 import { TableProps } from './';
 import './style/index.less';
@@ -7,7 +7,7 @@ import { noop } from '@uiw/utils';
 interface TableTrProps<T> {
   rowKey?: keyof T;
   data: T[];
-  keys: string[];
+  keys: TableProps['columns'];
   render: { [key: string]: any };
   ellipsis?: Record<string, boolean>;
   prefixCls: string;
@@ -34,8 +34,11 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     indentSize,
     childrenColumnName,
   } = props;
-
+  const [isOpacity, setIsOpacity] = useState(false);
   const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
+  useEffect(() => {
+    setIsOpacity(!!data?.find((it) => it[childrenColumnName]));
+  }, [data]);
 
   const IconDom = useMemo(() => {
     return (key: T[keyof T] | number, isOpacity: boolean) => {
@@ -43,7 +46,13 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
       return (
         <Icon
           type={flag ? 'minus-square-o' : 'plus-square-o'}
-          style={{ marginRight: 10, opacity: isOpacity ? 1 : 0, marginLeft: hierarchy * indentSize }}
+          style={{
+            marginRight: 10,
+            opacity: isOpacity ? 1 : 0,
+            marginLeft: hierarchy * indentSize,
+            float: 'left',
+            marginTop: 3.24,
+          }}
           onClick={() => {
             setExpandIndex(flag ? expandIndex.filter((it) => it !== key) : [...expandIndex, key]);
           }}
@@ -61,12 +70,12 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
         return (
           <React.Fragment key={rowNum}>
             <tr key={key}>
-              {keys.map((keyName, colNum) => {
+              {keys!.map((keyName, colNum) => {
                 let objs: React.TdHTMLAttributes<HTMLTableDataCellElement> = {
-                  children: trData[keyName],
+                  children: trData[keyName.key!],
                 };
-                if (render[keyName]) {
-                  const child = render[keyName](trData[keyName], keyName, trData, rowNum, colNum);
+                if (render[keyName.key!]) {
+                  const child = render[keyName.key!](trData[keyName.key!], keyName.key!, trData, rowNum, colNum);
                   if (React.isValidElement(child)) {
                     objs.children = child;
                   } else {
@@ -79,21 +88,29 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                     }
                   }
                 }
-                if (ellipsis && ellipsis[keyName]) {
+                if (ellipsis && ellipsis[keyName.key!]) {
                   objs.className = `${prefixCls}-ellipsis`;
                 }
                 const isHasChildren = Array.isArray(trData[childrenColumnName]);
-                if (colNum === 0 && (hierarchy || isHasChildren)) {
-                  objs.className = `${objs.className} ${prefixCls}-has-children`;
+                if (colNum === 0 && (isOpacity || hierarchy || isHasChildren)) {
                   objs.children = (
                     <>
                       {IconDom(key, isHasChildren)}
+                      <span style={{ paddingLeft: hierarchy * indentSize }}></span>
                       {objs.children}
                     </>
                   );
                 }
                 return (
-                  <td {...objs} key={colNum} onClick={(evn) => onCell(trData, { rowNum, colNum, keyName }, evn)} />
+                  <td
+                    {...objs}
+                    key={colNum}
+                    // style={keyName?.style}
+                    className={`${objs.className} ${prefixCls}-tr-children-${keyName?.align || 'left'}  ${
+                      keyName.className || ''
+                    }`}
+                    onClick={(evn) => onCell(trData, { rowNum, colNum, keyName: keyName.key! }, evn)}
+                  />
                 );
               })}
             </tr>

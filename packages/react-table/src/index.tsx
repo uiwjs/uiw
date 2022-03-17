@@ -40,6 +40,8 @@ export type TableColumns<T = any> = {
   ellipsis?: boolean;
   render?: (text: string, keyName: string, rowData: T, rowNumber: number, columnNumber: number) => React.ReactNode;
   style?: React.CSSProperties;
+  align?: 'left' | 'center' | 'right';
+  className?: string;
   [key: string]: any;
 };
 
@@ -137,7 +139,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
     let keys = getAllColumnsKeys<T>(columns);
     let selfColumns: TableColumns<T>[] = [];
     if (expandable?.expandedRowRender) {
-      keys = ['uiw-expanded', ...keys];
+      keys = [{ key: 'uiw-expanded', align: 'center' }, ...keys];
       selfColumns = [
         {
           title: '',
