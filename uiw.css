@@ -4627,9 +4627,14 @@ a.w-list-item:hover:not(.w-disabled) {
   text-overflow: ellipsis;
   word-break: keep-all;
 }
-.w-table-has-children {
-  display: flex;
-  align-items: center;
+.w-table-tr-children-center {
+  text-align: center;
+}
+.w-table-tr-children-left {
+  text-align: left;
+}
+.w-table-tr-children-right {
+  text-align: right;
 }
 .w-table-bordered > table tr > th,
 .w-table-bordered > table tr > td,

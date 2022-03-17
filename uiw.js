@@ -8894,9 +8894,9 @@ function TheadComponent(props) {
           thProps.className = (thProps.className || '') + " " + prefixCls + "-ellipsis";
         }
 
-        return /*#__PURE__*/(0,jsx_runtime.jsx)("th", _extends({
-          onClick: evn => onCellHead(item, colNum, rowNum, evn)
-        }, thProps, {
+        return /*#__PURE__*/(0,jsx_runtime.jsx)("th", _extends({}, thProps, {
+          className: prefixCls + "-tr-children-" + ((item == null ? void 0 : item.align) || 'left') + " " + (className || ''),
+          onClick: evn => onCellHead(item, colNum, rowNum, evn),
           children: titleNode
         }), colNum);
       })
@@ -9059,7 +9059,7 @@ function getAllColumnsKeys(data, keys) {
     if (data[i].children) {
       keys = keys.concat(getAllColumnsKeys(data[i].children || []));
     } else if (data[i].key) {
-      keys.push(data[i].key);
+      keys.push(data[i]);
     }
   }
 
@@ -9120,7 +9120,11 @@ function TableTr(props) {
     indentSize,
     childrenColumnName
   } = props;
+  var [isOpacity, setIsOpacity] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
   var [expandIndex, setExpandIndex] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    setIsOpacity(!!(data != null && data.find(it => it[childrenColumnName])));
+  }, [data]);
   var IconDom = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
     return (key, isOpacity) => {
       var flag = expandIndex.includes(key);
@@ -9129,7 +9133,9 @@ function TableTr(props) {
         style: {
           marginRight: 10,
           opacity: isOpacity ? 1 : 0,
-          marginLeft: hierarchy * indentSize
+          marginLeft: hierarchy * indentSize,
+          float: 'left',
+          marginTop: 3.24
         },
         onClick: () => {
           setExpandIndex(flag ? expandIndex.filter(it => it !== key) : [...expandIndex, key]);
@@ -9149,11 +9155,11 @@ function TableTr(props) {
         children: [/*#__PURE__*/(0,jsx_runtime.jsx)("tr", {
           children: keys.map((keyName, colNum) => {
             var objs = {
-              children: trData[keyName]
+              children: trData[keyName.key]
             };
 
-            if (render[keyName]) {
-              var child = render[keyName](trData[keyName], keyName, trData, rowNum, colNum);
+            if (render[keyName.key]) {
+              var child = render[keyName.key](trData[keyName.key], keyName.key, trData, rowNum, colNum);
 
               if ( /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().isValidElement(child)) {
                 objs.children = child;
@@ -9171,25 +9177,30 @@ function TableTr(props) {
               }
             }
 
-            if (ellipsis && ellipsis[keyName]) {
+            if (ellipsis && ellipsis[keyName.key]) {
               objs.className = prefixCls + "-ellipsis";
             }
 
             var isHasChildren = Array.isArray(trData[childrenColumnName]);
 
-            if (colNum === 0 && (hierarchy || isHasChildren)) {
-              objs.className = objs.className + " " + prefixCls + "-has-children";
+            if (colNum === 0 && (isOpacity || hierarchy || isHasChildren)) {
               objs.children = /*#__PURE__*/(0,jsx_runtime.jsxs)(jsx_runtime.Fragment, {
-                children: [IconDom(key, isHasChildren), objs.children]
+                children: [IconDom(key, isHasChildren), /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
+                  style: {
+                    paddingLeft: hierarchy * indentSize
+                  }
+                }), objs.children]
               });
             }
 
             return /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.createElement)("td", _extends({}, objs, {
-              key: colNum,
+              key: colNum // style={keyName?.style}
+              ,
+              className: objs.className + " " + prefixCls + "-tr-children-" + ((keyName == null ? void 0 : keyName.align) || 'left') + "  " + (keyName.className || ''),
               onClick: evn => onCell(trData, {
                 rowNum,
                 colNum,
-                keyName
+                keyName: keyName.key
               }, evn)
             }));
           })
@@ -9294,7 +9305,10 @@ function Table(props) {
     var selfColumns = [];
 
     if (expandable != null && expandable.expandedRowRender) {
-      keys = ['uiw-expanded', ...keys];
+      keys = [{
+        key: 'uiw-expanded',
+        align: 'center'
+      }, ...keys];
       selfColumns = [{
         title: '',
         key: 'uiw-expanded',
