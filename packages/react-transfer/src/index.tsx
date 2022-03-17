@@ -36,7 +36,7 @@ function Transfer(props: TransferProps) {
   const {
     placeholder,
     options,
-    value,
+    value = [],
     showSearch = false,
     selectedAll = false,
 
@@ -62,13 +62,12 @@ function Transfer(props: TransferProps) {
   });
 
   useEffect(() => {
-    leftSelectedKeySet([]);
-    rightSelectedKeySet([]);
+    if (value) {
+      rightOpionSet(value || []);
 
-    rightOpionSet(value || []);
-
-    value?.forEach((selectd) => selectOption.set(selectd.key, selectd.label));
-    hiddenNode((child) => !!value?.find((selectd) => child.key === selectd.key));
+      value?.forEach((selectd) => selectOption.set(selectd.key, selectd.label));
+      hiddenNode((child) => !!value?.find((selectd) => child.key === selectd.key));
+    }
   }, [JSON.stringify(value)]);
 
   const hiddenNode = (callBackfn: (child: TreeData) => boolean) => {
@@ -136,20 +135,22 @@ function Transfer(props: TransferProps) {
   };
 
   const transferClick = (transferType: 'left' | 'right') => {
-    let selectOptionTemp = selectOption;
     if (transferType === 'left') {
       leftSelectOption.forEach((value, key) => {
-        selectOptionTemp.set(key, value);
+        selectOption.set(key, value);
       });
-      leftSelectOptionSet(selectOptionTemp);
+      leftSelectOptionSet(new Map());
+      leftSelectedKeySet([]);
     } else {
       rightSelectedKeys.forEach((key) => {
         selectOption.delete(key!);
       });
+      rightSelectedKeySet([]);
     }
-    selectOptionSet(selectOptionTemp);
+
+    selectOptionSet(selectOption);
     const option: Array<TransferOptionType> = [];
-    selectOptionTemp.forEach((label, key) => option.push({ key, label }));
+    selectOption.forEach((label, key) => option.push({ key, label }));
     props.onChange?.(transferType, option);
   };
 
@@ -192,17 +193,19 @@ function Transfer(props: TransferProps) {
             selectedOptionsRecursion(child.children);
           }
           if (!child.hideNode) {
-            selectOption.set(child.key!, child.label as string);
+            leftSelectOption.set(child.key!, child.label as string);
             keys.push(child.key!);
           }
         });
       };
       selectedOptionsRecursion(selectedOptions);
+
+      leftSelectOptionSet(leftSelectOption);
       leftSelectedKeySet(keys);
     } else {
       leftSelectedKeySet([]);
+      leftSelectOptionSet(new Map());
     }
-    selectOptionSet(selectOption);
     selectAllCheckedSet(selectAllChecked);
   };
 
@@ -211,15 +214,11 @@ function Transfer(props: TransferProps) {
 
     selectAllChecked.right = isChecked ? 1 : 0;
     if (isChecked) {
-      const keys = rightOpions.map((child) => {
-        selectOption.delete(child.key!);
-        return child.key;
-      });
+      const keys = rightOpions.map((child) => child.key);
       rightSelectedKeySet(keys);
     } else {
       rightSelectedKeySet([]);
     }
-    selectOptionSet(selectOption);
     selectAllCheckedSet(selectAllChecked);
   };
 
