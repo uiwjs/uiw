@@ -139,14 +139,13 @@ function Transfer(props: TransferProps) {
       leftSelectOption.forEach((value, key) => {
         selectOptionTemp.set(key, value);
       });
+      leftSelectOptionSet(selectOptionTemp);
     } else {
       rightSelectedKeys.forEach((key) => {
         selectOption.delete(key!);
       });
     }
-
     selectOptionSet(selectOptionTemp);
-    // leftSelectOptionSet(selectOptionTemp);
     const option: Array<TransferOptionType> = [];
     selectOptionTemp.forEach((label, key) => option.push({ key, label }));
     props.onChange?.(transferType, option);
@@ -270,8 +269,14 @@ function Transfer(props: TransferProps) {
         </div>
       </Card>
       <div className={`${prefixCls}-arrow-content`}>
-        <Arrow click={() => transferClick('left')} style={{ transform: 'rotate(-90deg)' }} />
-        <Arrow click={() => transferClick('right')} style={{ transform: 'rotate(90deg)' }} />
+        <Arrow
+          click={() => transferClick('left')}
+          style={{ transform: 'rotate(-90deg)', background: leftSelectedKeys.length > 0 ? '#393E48' : 'none' }}
+        />
+        <Arrow
+          click={() => transferClick('right')}
+          style={{ transform: 'rotate(90deg)', background: rightSelectedKeys.length > 0 ? '#393E48' : 'none' }}
+        />
       </div>
       <Card
         bodyStyle={{ padding: 5 }}
