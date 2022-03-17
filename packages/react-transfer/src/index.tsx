@@ -139,14 +139,13 @@ function Transfer(props: TransferProps) {
       leftSelectOption.forEach((value, key) => {
         selectOptionTemp.set(key, value);
       });
+      leftSelectOptionSet(selectOptionTemp);
     } else {
       rightSelectedKeys.forEach((key) => {
         selectOption.delete(key!);
       });
     }
-
     selectOptionSet(selectOptionTemp);
-    leftSelectOptionSet(selectOptionTemp);
     const option: Array<TransferOptionType> = [];
     selectOptionTemp.forEach((label, key) => option.push({ key, label }));
     props.onChange?.(transferType, option);
