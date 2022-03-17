@@ -57,7 +57,7 @@ function Demo() {
       label: '武汉市',
       key: 1,
       children: [
-        { label: '新洲区', key: 2, disabled: true },
+        { label: '新洲区', key: 2 },
         { label: '武昌区', key: 3 },
         {
           label: '汉南区',
@@ -72,7 +72,7 @@ function Demo() {
     }
   ];
 
-  const [value,valueSet] = React.useState([{ label: '武汉市',  key: 1 }, { label: '汉南区1', key: 5 }])
+  const [value,valueSet] = React.useState([{ label: '武昌区', key: 3 }, { label: '汉南区1', key: 5 }])
 
   return (
     <Row style={{ flexDirection:'column' }} >
