@@ -234,7 +234,7 @@ function Transfer(props: TransferProps) {
   return (
     <div className={cls} style={{ width: 400, ...style }}>
       <Card
-        bodyStyle={{ padding: 5 }}
+        bodyStyle={{ padding: '5px 9px' }}
         title={
           <div>
             {selectedAll && (
@@ -244,9 +244,9 @@ function Transfer(props: TransferProps) {
                 onChange={selectAllLeftChange}
               />
             )}
-            <span style={{ marginLeft: 10 }}>
+            <label style={{ marginLeft: 3 }}>
               {leftSelectedKeys.length}/{selectedOptionsShowCount.current}
-            </span>
+            </label>
           </div>
         }
         className={`${prefixCls}-card`}
@@ -279,7 +279,7 @@ function Transfer(props: TransferProps) {
         />
       </div>
       <Card
-        bodyStyle={{ padding: 5 }}
+        bodyStyle={{ padding: '5px 9px' }}
         className={`${prefixCls}-card`}
         title={
           <div>
@@ -290,9 +290,9 @@ function Transfer(props: TransferProps) {
                 onChange={selectAllRightChange}
               />
             )}
-            <span style={{ marginLeft: 10 }}>
+            <label style={{ marginLeft: 3 }}>
               {rightSelectedKeys.length}/{rightOpions.length}
-            </span>
+            </label>
           </div>
         }
       >
