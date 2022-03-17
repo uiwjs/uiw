@@ -102,7 +102,9 @@ function Transfer(props: TransferProps) {
     };
     const iteratorParent = (child: TreeData) => {
       if (child.parent) {
-        const selectCount = child.parent.children.filter((child: TreeData) => !selectOption.get(child.key!)).length;
+        const selectCount = child.parent.children.filter(
+          (child: TreeData) => !selectOption.get(child.key!) && !child.hideNode,
+        ).length;
         addOrDel(child.parent.key, child.parent.label, selectCount === 0);
         iteratorParent(child.parent);
       }
@@ -188,11 +190,10 @@ function Transfer(props: TransferProps) {
         selectedOptions.forEach((child) => {
           if (child.children?.length) {
             selectedOptionsRecursion(child.children);
-          } else {
-            if (!child.hideNode) {
-              selectOption.set(child.key!, child.label as string);
-              keys.push(child.key!);
-            }
+          }
+          if (!child.hideNode) {
+            selectOption.set(child.key!, child.label as string);
+            keys.push(child.key!);
           }
         });
       };
