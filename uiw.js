@@ -9861,7 +9861,10 @@ var getChildKeys = function getChildKeys(childs, result, depth) {
   }
 
   childs.forEach(item => {
-    result.push(item.key);
+    if (!item.hideNode) {
+      result.push(item.key);
+    }
+
     if (typeof depth === 'number' && !(depth - 1)) return;
 
     if (item.children && item.children.length > 0) {
@@ -10584,7 +10587,7 @@ function Transfer(props) {
 
     var iteratorParent = child => {
       if (child.parent) {
-        var selectCount = child.parent.children.filter(child => !selectOption.get(child.key)).length;
+        var selectCount = child.parent.children.filter(child => !selectOption.get(child.key) && !child.hideNode).length;
         addOrDel(child.parent.key, child.parent.label, selectCount === 0);
         iteratorParent(child.parent);
       }
@@ -10674,11 +10677,11 @@ function Transfer(props) {
 
           if ((_child$children3 = child.children) != null && _child$children3.length) {
             selectedOptionsRecursion(child.children);
-          } else {
-            if (!child.hideNode) {
-              selectOption.set(child.key, child.label);
-              keys.push(child.key);
-            }
+          }
+
+          if (!child.hideNode) {
+            selectOption.set(child.key, child.label);
+            keys.push(child.key);
           }
         });
       };
