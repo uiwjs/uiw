@@ -6,6 +6,8 @@ import './style/index.less';
 export interface TheadProps<T extends { [key: string]: V }, V = any> extends IProps {
   data?: TableColumns<T>[][];
   onCellHead?: TableProps<T, V>['onCellHead'];
+  align?: TableColumns['align'];
+  className?: TableColumns['className'];
 }
 
 export default function TheadComponent<T extends { [key: string]: V }, V>(
@@ -29,7 +31,12 @@ export default function TheadComponent<T extends { [key: string]: V }, V>(
                 thProps.className = `${thProps.className || ''} ${prefixCls}-ellipsis`;
               }
               return (
-                <th key={colNum} onClick={(evn) => onCellHead(item, colNum, rowNum!, evn)} {...thProps}>
+                <th
+                  key={colNum}
+                  {...thProps}
+                  className={`${prefixCls}-tr-children-${item?.align || 'left'} ${className || ''}`}
+                  onClick={(evn) => onCellHead(item, colNum, rowNum!, evn)}
+                >
                   {titleNode}
                 </th>
               );

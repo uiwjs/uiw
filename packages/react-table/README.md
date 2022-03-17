@@ -773,7 +773,16 @@ const dataSource = [
         age: '10', 
         id: '1-1', 
         children: [
-          { name: '邓紫棋-0-1-1', age: '10', id: '1-1-1',},
+          { 
+            name: '邓紫棋-0-1-1', 
+            age: '10', 
+            id: '1-1-1',
+            children: [
+              {name: '邓紫棋-0-1-1-1', age: '10', id: '-0-1-1-1'},
+              {name: '邓紫棋-0-1-1-2', age: '10', id: '-0-1-1-2'},
+              {name: '邓紫棋-0-1-1-3', age: '10', id: '-0-1-1-3'},
+            ]
+          },
           { name: '邓紫棋-0-1-2', age: '10', id: '1-1-2',}
         ]
       },
@@ -834,6 +843,8 @@ ReactDOM.render(<Demo />, _mount_);
 | colSpan | 合并表头行。| Number | - |
 | ellipsis | 超过宽度将自动省略。`v4.8.7+`| Boolean | `false` |
 | render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前值的 `key`，行索引数据，当前行号，当前列号。| `Function(text, key, rowData, rowNumber, columnNumber)` | - |
+| align | 设置列的对齐方式 | "left"|"center"|"right" | - |
+| className | 列样式类名 | string | - |
 
 ### expandable
 

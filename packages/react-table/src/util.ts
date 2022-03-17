@@ -117,12 +117,12 @@ export function getLevelItems<T>(data: TableColumns<T>[], result?: ILevelItems<T
  * Get all columns keys
  * @param {Array} data
  */
-export function getAllColumnsKeys<T>(data: TableColumns<T>[], keys: any[] = []): string[] {
+export function getAllColumnsKeys<T>(data: TableColumns<T>[], keys: TableColumns<T>[] = []): TableColumns<T>[] {
   for (let i = 0; i < data.length; i += 1) {
     if (data[i].children) {
       keys = keys.concat(getAllColumnsKeys(data[i].children || []));
     } else if (data[i].key) {
-      keys.push(data[i].key);
+      keys.push(data[i]);
     }
   }
   return keys;
