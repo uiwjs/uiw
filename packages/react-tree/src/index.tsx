@@ -78,7 +78,9 @@ export const getChildKeys = (
   depth?: number,
 ): TreeData['key'][] => {
   childs.forEach((item) => {
-    result.push(item.key as string | number);
+    if (!item.hideNode) {
+      result.push(item.key as string | number);
+    }
     if (typeof depth === 'number' && !(depth - 1)) return;
 
     if (item.children && item.children.length > 0) {
