@@ -146,7 +146,7 @@ function Transfer(props: TransferProps) {
     }
 
     selectOptionSet(selectOptionTemp);
-    // leftSelectOptionSet(selectOptionTemp);
+    leftSelectOptionSet(selectOptionTemp);
     const option: Array<TransferOptionType> = [];
     selectOptionTemp.forEach((label, key) => option.push({ key, label }));
     props.onChange?.(transferType, option);
