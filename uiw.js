@@ -9778,6 +9778,9 @@ function TreeNode(props) {
           children: [/*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
             className: prefixCls + "-label",
             children: [/*#__PURE__*/(0,jsx_runtime.jsx)("span", {
+              style: {
+                display: noChild ? 'none' : 'auto'
+              },
               className: prefixCls + "-switcher",
               onClick: evn => onItemClick(item, evn),
               children: /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
@@ -10726,16 +10729,16 @@ function Transfer(props) {
     }, style),
     children: [/*#__PURE__*/(0,jsx_runtime.jsxs)(react_card_esm, {
       bodyStyle: {
-        padding: 5
+        padding: '5px 9px'
       },
       title: /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
         children: [selectedAll && /*#__PURE__*/(0,jsx_runtime.jsx)(react_checkbox_esm, {
           indeterminate: leftSelectedKeys.length < selectedOptionsShowCount.current && !!leftSelectedKeys.length,
           checked: leftSelectedKeys.length >= selectedOptionsShowCount.current && !!leftSelectedKeys.length,
           onChange: selectAllLeftChange
-        }), /*#__PURE__*/(0,jsx_runtime.jsxs)("span", {
+        }), /*#__PURE__*/(0,jsx_runtime.jsxs)("label", {
           style: {
-            marginLeft: 10
+            marginLeft: 3
           },
           children: [leftSelectedKeys.length, "/", selectedOptionsShowCount.current]
         })]
@@ -10772,7 +10775,7 @@ function Transfer(props) {
       })]
     }), /*#__PURE__*/(0,jsx_runtime.jsxs)(react_card_esm, {
       bodyStyle: {
-        padding: 5
+        padding: '5px 9px'
       },
       className: prefixCls + "-card",
       title: /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
@@ -10780,9 +10783,9 @@ function Transfer(props) {
           indeterminate: rightSelectedKeys.length < rightOpions.length && !!rightSelectedKeys.length,
           checked: rightSelectedKeys.length === rightOpions.length && !!rightSelectedKeys.length,
           onChange: selectAllRightChange
-        }), /*#__PURE__*/(0,jsx_runtime.jsxs)("span", {
+        }), /*#__PURE__*/(0,jsx_runtime.jsxs)("label", {
           style: {
-            marginLeft: 10
+            marginLeft: 3
           },
           children: [rightSelectedKeys.length, "/", rightOpions.length]
         })]
