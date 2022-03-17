@@ -10617,14 +10617,14 @@ function Transfer(props) {
       leftSelectOption.forEach((value, key) => {
         selectOptionTemp.set(key, value);
       });
+      leftSelectOptionSet(selectOptionTemp);
     } else {
       rightSelectedKeys.forEach(key => {
         selectOption.delete(key);
       });
     }
 
-    selectOptionSet(selectOptionTemp); // leftSelectOptionSet(selectOptionTemp);
-
+    selectOptionSet(selectOptionTemp);
     var option = [];
     selectOptionTemp.forEach((label, key) => option.push({
       key,
@@ -10760,12 +10760,14 @@ function Transfer(props) {
       children: [/*#__PURE__*/(0,jsx_runtime.jsx)(Arrow, {
         click: () => transferClick('left'),
         style: {
-          transform: 'rotate(-90deg)'
+          transform: 'rotate(-90deg)',
+          background: leftSelectedKeys.length > 0 ? '#393E48' : 'none'
         }
       }), /*#__PURE__*/(0,jsx_runtime.jsx)(Arrow, {
         click: () => transferClick('right'),
         style: {
-          transform: 'rotate(90deg)'
+          transform: 'rotate(90deg)',
+          background: rightSelectedKeys.length > 0 ? '#393E48' : 'none'
         }
       })]
     }), /*#__PURE__*/(0,jsx_runtime.jsxs)(react_card_esm, {
