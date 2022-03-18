@@ -34,6 +34,7 @@ const Checkbox = Loadable(lazy(() => import('./routes/components/checkbox')));
 const CopyToClipboard = Loadable(lazy(() => import('./routes/components/copy-to-clipboard')));
 const Collapse = Loadable(lazy(() => import('./routes/components/collapse')));
 const Card = Loadable(lazy(() => import('./routes/components/card')));
+const Carousel = Loadable(lazy(() => import('./routes/components/carousel')));
 const Descriptions = Loadable(lazy(() => import('./routes/components/descriptions')));
 const Loader = Loadable(lazy(() => import('./routes/components/loader')));
 const Icon = Loadable(lazy(() => import('./routes/components/icon')));
@@ -126,6 +127,7 @@ export const routes: RouteObject[] = [
       { path: '/components/copy-to-clipboard', element: <CopyToClipboard /> },
       { path: '/components/collapse', element: <Collapse /> },
       { path: '/components/card', element: <Card /> },
+      { path: '/components/carousel', element: <Carousel /> },
       { path: '/components/descriptions', element: <Descriptions /> },
       { path: '/components/loader', element: <Loader /> },
       { path: '/components/icon', element: <Icon /> },
