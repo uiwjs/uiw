@@ -9201,7 +9201,7 @@ function TableTr(props) {
             return /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.createElement)("td", _extends({}, objs, {
               key: colNum // style={keyName?.style}
               ,
-              className: objs.className + " " + prefixCls + "-tr-children-" + ((keyName == null ? void 0 : keyName.align) || 'left') + "  " + (keyName.className || ''),
+              className: (objs.className || '') + " " + prefixCls + "-tr-children-" + (keyName.align || 'left') + "  " + (keyName.className || ''),
               onClick: evn => onCell(trData, {
                 rowNum,
                 colNum,
@@ -9221,7 +9221,7 @@ function TableTr(props) {
 ;// CONCATENATED MODULE: ../react-table/esm/index.js
 
 
-var react_table_esm_excluded = ["prefixCls", "className", "columns", "data", "title", "footer", "bordered", "onCell", "onCellHead", "empty", "children", "expandable", "rowKey"];
+var react_table_esm_excluded = ["prefixCls", "className", "columns", "data", "title", "footer", "bordered", "onCell", "onCellHead", "empty", "children", "expandable", "rowKey", "scroll"];
 
 
 
@@ -9250,7 +9250,8 @@ function Table(props) {
     onCellHead = noop,
     empty,
     expandable,
-    rowKey
+    rowKey,
+    scroll
   } = props,
       other = _objectWithoutPropertiesLoose(props, react_table_esm_excluded);
 
@@ -9362,23 +9363,43 @@ function Table(props) {
       selfColumns
     };
   }, [columns, expandIndex]);
+  var style = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
+    var style = {
+      table: {},
+      div: {}
+    };
+
+    if (scroll) {
+      if (scroll.x !== undefined) {
+        style.table.minWidth = '100%';
+        style.table.width = scroll.x;
+        style.div.overflowX = 'auto';
+        style.div.overflowY = 'hidden';
+      }
+
+      if (scroll.y !== undefined) {
+        style.div.maxHeight = scroll.y;
+        style.div.overflowY = 'scroll';
+      }
+    }
+
+    return style;
+  }, [scroll]);
   var cls = [prefixCls, className, bordered ? prefixCls + "-bordered" : null].filter(Boolean).join(' ').trim();
   var {
     header,
     render,
     ellipsis
   } = getLevelItems(self.selfColumns);
-  return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
+  return /*#__PURE__*/(0,jsx_runtime.jsxs)((external_root_React_commonjs2_react_commonjs_react_amd_react_default()).Fragment, {
     children: [/*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
-      style: {
-        overflowY: 'scroll'
-      },
       className: cls
     }, other, {
+      style: _extends({}, other.style, style.div),
       children: /*#__PURE__*/(0,jsx_runtime.jsxs)("table", {
-        style: ellipsis ? {
-          tableLayout: 'fixed'
-        } : {},
+        style: _extends({
+          tableLayout: ellipsis ? 'fixed' : 'auto'
+        }, style.table),
         children: [title && /*#__PURE__*/(0,jsx_runtime.jsx)("caption", {
           children: title
         }), columns && columns.length > 0 && /*#__PURE__*/(0,jsx_runtime.jsx)(TheadComponent, {
