@@ -7819,6 +7819,8 @@ var react_search_select_esm_excluded = ["allowClear", "disabled", "size", "maxTa
 
 
 function SearchSelect(props) {
+  var _style$width;
+
   var {
     allowClear = false,
     disabled = false,
@@ -7995,6 +7997,9 @@ function SearchSelect(props) {
     style: {
       marginTop: 5
     },
+    overlayStyl: {
+      width: 100
+    },
     disabled: option && option.length > 0 ? false : true
   }, others, {
     onVisibleChange: onVisibleChange,
@@ -8004,9 +8009,9 @@ function SearchSelect(props) {
       style: {
         minHeight: 25,
         maxHeight: 280,
-        minWidth: 200,
+        minWidth: (_style$width = style == null ? void 0 : style.width) != null ? _style$width : 200,
         overflowY: 'scroll',
-        width: divRef.current ? divRef.current.offsetWidth : 'auto'
+        width: style == null ? void 0 : style.width
       },
       children: !option || option.length === 0 ? /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
         style: {
