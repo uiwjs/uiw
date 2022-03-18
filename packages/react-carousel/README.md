@@ -18,21 +18,21 @@ import { Carousel } from 'uiw';
 
 function Demo() {
   return (
-      <Carousel>
-          <div style={{ height: '100%', background: '#1EABCD' }}>
-            <span>1</span>
-          </div>
-          <div style={{ height: '100%',  background: '#393b46' }}>
-            <span>2</span>
-          </div>
-          <div style={{ height: '100%',  background: '#008EF0' }}>
-            <span>3</span>
-          </div>
-          <div style={{ height: '100%',  background: '#393E48' }}>
-            <span>4</span>
-          </div>
-      </Carousel>
-    );
+    <Carousel>
+      <div style={{ height: '100%', background: '#1EABCD' }}>
+        <span>1</span>
+      </div>
+      <div style={{ height: '100%',  background: '#393b46' }}>
+        <span>2</span>
+      </div>
+      <div style={{ height: '100%',  background: '#008EF0' }}>
+        <span>3</span>
+      </div>
+      <div style={{ height: '100%',  background: '#393E48' }}>
+        <span>4</span>
+      </div>
+    </Carousel>
+  );
 }
 
 ReactDOM.render(<Demo />, _mount_);
@@ -49,21 +49,21 @@ import { Carousel } from 'uiw';
 
 function Demo() {
   return (
-      <Carousel palyTime={1000} scrollTime={500}>
-          <div style={{ height: '100%', background: '#1EABCD' }}>
-            <span>1</span>
-          </div>
-          <div style={{ height: '100%',  background: '#393b46' }}>
-            <span>2</span>
-          </div>
-          <div style={{ height: '100%',  background: '#008EF0' }}>
-            <span>3</span>
-          </div>
-          <div style={{ height: '100%',  background: '#393E48' }}>
-            <span>4</span>
-          </div>
-      </Carousel>
-    );
+    <Carousel palyTime={1000} scrollTime={500}>
+      <div style={{ height: '100%', background: '#1EABCD' }}>
+        <span>1</span>
+      </div>
+      <div style={{ height: '100%',  background: '#393b46' }}>
+        <span>2</span>
+      </div>
+      <div style={{ height: '100%',  background: '#008EF0' }}>
+        <span>3</span>
+      </div>
+      <div style={{ height: '100%',  background: '#393E48' }}>
+        <span>4</span>
+      </div>
+    </Carousel>
+  );
 }
 
 ReactDOM.render(<Demo />, _mount_);
@@ -79,12 +79,13 @@ import React from 'react';
 import { Carousel } from 'uiw';
 
 function Demo() {
+
   const ref=React.useRef()
   const [autoPlay,autoPlaySet]=React.useState(true)
 
-return (
-    <React.Fragment>
-      <Carousel ref={ref} position={2} autoPlay={autoPlay}>
+  return (
+      <React.Fragment>
+        <Carousel ref={ref} position={2} autoPlay={autoPlay}>
           <div style={{ height: '100%', background: '#1EABCD' }}>
             <span>1</span>
           </div>
@@ -97,14 +98,14 @@ return (
           <div style={{ height: '100%',  background: '#393E48' }}>
             <span>4</span>
           </div>
-      </Carousel>
-      <button onClick={() => ref.current.gotoSlide(1)}>跳转</button>
-      <button onClick={() => ref.current.prevSlide()}>上一张</button>
-      <button onClick={() => ref.current.nextSlide()}>下一张</button>
-      <button onClick={() =>autoPlaySet(autoPlay?false:true)}>{autoPlay?'暂停':'开始'}</button>
-    </React.Fragment>
+        </Carousel>
+        <button onClick={() => ref.current.gotoSlide(1)}>跳转</button>
+        <button onClick={() => ref.current.prevSlide()}>上一张</button>
+        <button onClick={() => ref.current.nextSlide()}>下一张</button>
+        <button onClick={() =>autoPlaySet(autoPlay?false:true)}>{autoPlay?'暂停':'开始'}</button>
+      </React.Fragment>
     );
-}
+  }
 
 ReactDOM.render(<Demo />, _mount_);
 ```
@@ -124,6 +125,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 
 ### ref
+
 ```ts
   // 跳转到指定帧
   gotoSlide: (slideNumber: number) => void;

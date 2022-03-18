@@ -1,7 +1,7 @@
 {
   "name": "@uiw/react-carousel",
   "version": "4.14.2",
-  "description": "TreeChecked component",
+  "description": "Carousel component",
   "homepage": "https://uiwjs.github.io/#/components/carousel",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
     "access": "public"
   },
   "keywords": [
-    "checked",
+    "carousel",
     "design",
     "uiw",
     "uiw-react",
