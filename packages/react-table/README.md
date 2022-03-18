@@ -815,7 +815,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### 表格列过宽导致 footer 滑动出表格底部
 
-使用 scroll 属性给表格设置宽或高即可
+使用 scroll 属性给表格设置宽(x)或高(y)即可
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
