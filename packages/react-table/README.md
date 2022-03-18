@@ -65,7 +65,6 @@ const Demo = () => (
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
-
 ### 表头分组
 
 表头分组通过 `columns` 数组中对象的 `children` 来实现，以渲染分组表头。。
@@ -814,6 +813,66 @@ const Demo = () => {
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+### 表格列过宽导致 footer 滑动出表格底部
+
+使用 scroll 属性给表格设置宽或高即可
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { Table, Button } from 'uiw';
+
+const columns = [
+  {
+    // title: '姓名',
+    ellipsis: true, 
+    width: 1000,
+    title: ({ key }) => {
+      return (
+        <span>字段: {key}</span>
+      )
+    },
+    key: 'name', 
+  }, {
+    title: '年龄',
+    style: { color: 'red' },
+    key: 'age',
+  }, {
+    title: '地址',
+    key: 'info',
+  }, {
+    title: '操作',
+    key: 'edit',
+    width: 98,
+    render: (text, key, rowData, rowNumber, columnNumber) => (
+      <div>
+        <Button size="small" type="danger">删除</Button>
+        <Button size="small" type="success">修改</Button>
+      </div>
+    ),
+  },
+];
+const dataSource = [
+  { name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，中国香港创作型女歌手。', edit: '' },
+  { name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人', edit: '' },
+  { name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手', edit: '' },
+  { name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。', edit: '' },
+  { name: 'Angelababy', age: '54', info: '1989年2月28日出生于上海市，华语影视女演员、时尚模特。', edit: '' },
+  { name: '唐嫣', age: '12', info: '1983年12月6日出生于上海市，毕业于中央戏剧学院表演系本科班', edit: '' },
+  { name: '吴亦凡', age: '4', info: '1990年11月06日出生于广东省广州市，华语影视男演员、流行乐歌手。', edit: '' },
+];
+const Demo = () => (
+  <div>
+    <Table 
+      scroll={{x: 1800, y: 100}}
+      footer={<div style={{height: 20, }}>这个是footer</div>}
+      columns={columns} data={dataSource} 
+    />
+  </div>
+);
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ## Props
 
 ### Table
@@ -845,6 +904,7 @@ ReactDOM.render(<Demo />, _mount_);
 | render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前值的 `key`，行索引数据，当前行号，当前列号。| `Function(text, key, rowData, rowNumber, columnNumber)` | - |
 | align | 设置列的对齐方式 | "left"|"center"|"right" | - |
 | className | 列样式类名 | string | - |
+| scroll | 表格是否可滚动，也可以指定滚动区域的宽、高 | { x?: React.CSSProperties['width'], y?: React.CSSProperties['height'] } | - |
 
 ### expandable
 
