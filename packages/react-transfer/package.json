@@ -44,7 +44,6 @@
   "dependencies": {
     "@uiw/react-card": "^4.14.2",
     "@uiw/react-checkbox": "^4.14.2",
-    "@uiw/react-grid": "^4.14.2",
     "@uiw/react-icon": "^4.14.2",
     "@uiw/react-input": "^4.14.2",
     "@uiw/react-tree": "^4.14.2",
