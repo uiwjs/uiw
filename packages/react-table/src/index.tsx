@@ -4,6 +4,7 @@ import Icon from '@uiw/react-icon';
 import Thead from './Thead';
 import { getLevelItems, getAllColumnsKeys } from './util';
 import ExpandableComponent from './Expandable';
+import TableTr from './TableTr';
 import './style/index.less';
 
 // 展开配置
@@ -16,14 +17,18 @@ export interface ExpandableType<T> {
   rowExpandable?: (record: T) => boolean;
   // 初始时，是否展开所有行
   defaultExpandAllRows?: boolean;
-  // 默认展开的行	rowKey数组
+  // 默认展开的行 rowKey数组
   defaultExpandedRowKeys?: Array<T[keyof T] | number>;
-  // 控制展开的行	rowKey数组
+  // 控制展开的行 rowKey数组
   expandedRowKeys?: Array<T[keyof T] | number>;
   // 展开的行变化触发
   onExpandedRowsChange?: (expandedRows: Array<T[keyof T] | number>) => void;
   // 点击展开图标触发
   onExpand?: (expanded: boolean, record: T, index: number) => void;
+  // 控制树形结构每一层的缩进宽度
+  indentSize?: number;
+  // 指定树形结构的列名
+  childrenColumnName?: string;
 }
 
 export type TableColumns<T = any> = {
@@ -35,6 +40,8 @@ export type TableColumns<T = any> = {
   ellipsis?: boolean;
   render?: (text: string, keyName: string, rowData: T, rowNumber: number, columnNumber: number) => React.ReactNode;
   style?: React.CSSProperties;
+  align?: 'left' | 'center' | 'right';
+  className?: string;
   [key: string]: any;
 };
 
@@ -59,6 +66,7 @@ export interface TableProps<T extends { [key: string]: V } = any, V = any> exten
   ) => void;
   expandable?: ExpandableType<T>;
   rowKey?: keyof T;
+  scroll?: { x?: React.CSSProperties['width']; y?: React.CSSProperties['height'] };
 }
 
 export interface ICellOptions {
@@ -81,6 +89,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
     children,
     expandable,
     rowKey,
+    scroll,
     ...other
   } = props;
   const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
@@ -127,101 +136,101 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
       );
     };
   }, [expandable, expandIndex]);
-  let keys = getAllColumnsKeys<T>(columns);
-  let selfColumns: TableColumns<T>[] = [];
-  if (expandable?.expandedRowRender) {
-    keys = ['uiw-expanded', ...keys];
-    selfColumns = [
-      {
-        title: '',
-        key: 'uiw-expanded',
-        width: 50,
-        align: 'center',
-        render: (text, key, record, index) => {
-          return (
-            <ExpandableComponent
-              defaultExpand={
-                expandable.defaultExpandAllRows === undefined
-                  ? !!expandable.defaultExpandedRowKeys?.includes(rowKey ? record[rowKey] : index)
-                  : !!expandable.defaultExpandAllRows
-              }
-              onClick={(expand) => {
-                expandable.onExpand?.(expand, record, index);
-                if (expand) {
-                  const result = expandIndex.filter((it) => (rowKey ? it !== record[rowKey] : it !== index));
-                  expandable.onExpandedRowsChange ? expandable.onExpandedRowsChange(result) : setExpandIndex(result);
-                } else {
-                  const result = [...expandIndex, rowKey ? record[rowKey] : index];
-                  expandable.onExpandedRowsChange ? expandable.onExpandedRowsChange(result) : setExpandIndex(result);
-                }
-              }}
-              expandIcon={(expand) => {
-                if (expandable.rowExpandable && !expandable.rowExpandable?.(record)) {
-                  return null;
-                }
-                if (expandable.expandIcon) {
-                  return expandable.expandIcon(expand, record, index);
-                }
-                return expand ? <Icon type="minus-square-o" /> : <Icon type="plus-square-o" />;
-              }}
-            />
-          );
-        },
-      },
-      ...columns,
-    ];
-  } else {
-    selfColumns = [...columns];
-  }
-  const cls = [prefixCls, className, bordered ? `${prefixCls}-bordered` : null].filter(Boolean).join(' ').trim();
-  const { header, render, ellipsis } = getLevelItems(selfColumns);
 
+  const self = useMemo(() => {
+    let keys = getAllColumnsKeys<T>(columns);
+    let selfColumns: TableColumns<T>[] = [];
+    if (expandable?.expandedRowRender) {
+      keys = [{ key: 'uiw-expanded', align: 'center' }, ...keys];
+      selfColumns = [
+        {
+          title: '',
+          key: 'uiw-expanded',
+          width: 50,
+          align: 'center',
+          render: (text, key, record, index) => {
+            return (
+              <ExpandableComponent
+                defaultExpand={
+                  expandable.defaultExpandAllRows === undefined
+                    ? !!expandable.defaultExpandedRowKeys?.includes(rowKey ? record[rowKey] : index)
+                    : !!expandable.defaultExpandAllRows
+                }
+                onClick={(expand) => {
+                  expandable.onExpand?.(expand, record, index);
+                  if (expand) {
+                    const result = expandIndex.filter((it) => (rowKey ? it !== record[rowKey] : it !== index));
+                    expandable.onExpandedRowsChange ? expandable.onExpandedRowsChange(result) : setExpandIndex(result);
+                  } else {
+                    const result = [...expandIndex, rowKey ? record[rowKey] : index];
+                    expandable.onExpandedRowsChange ? expandable.onExpandedRowsChange(result) : setExpandIndex(result);
+                  }
+                }}
+                expandIcon={(expand) => {
+                  if (expandable.rowExpandable && !expandable.rowExpandable?.(record)) {
+                    return null;
+                  }
+                  if (expandable.expandIcon) {
+                    return expandable.expandIcon(expand, record, index);
+                  }
+                  return expand ? <Icon type="minus-square-o" /> : <Icon type="plus-square-o" />;
+                }}
+              />
+            );
+          },
+        },
+        ...columns,
+      ];
+    } else {
+      selfColumns = [...columns];
+    }
+    return {
+      keys,
+      selfColumns,
+    };
+  }, [columns, expandIndex]);
+  const style: { table: React.CSSProperties; div: React.CSSProperties } = useMemo(() => {
+    const style: { table: React.CSSProperties; div: React.CSSProperties } = {
+      table: {},
+      div: {},
+    };
+    if (scroll) {
+      if (scroll.x !== undefined) {
+        style.table.minWidth = '100%';
+        style.table.width = scroll.x;
+        style.div.overflowX = 'auto';
+        style.div.overflowY = 'hidden';
+      }
+      if (scroll.y !== undefined) {
+        style.div.maxHeight = scroll.y;
+        style.div.overflowY = 'scroll';
+      }
+    }
+    return style;
+  }, [scroll]);
+  const cls = [prefixCls, className, bordered ? `${prefixCls}-bordered` : null].filter(Boolean).join(' ').trim();
+  const { header, render, ellipsis } = getLevelItems(self.selfColumns);
   return (
-    <div>
-      <div style={{ overflowY: 'scroll' }} className={cls} {...other}>
-        <table style={ellipsis ? { tableLayout: 'fixed' } : {}}>
+    <React.Fragment>
+      <div className={cls} {...other} style={{ ...other.style, ...style.div }}>
+        <table style={{ tableLayout: ellipsis ? 'fixed' : 'auto', ...style.table }}>
           {title && <caption>{title}</caption>}
           {columns && columns.length > 0 && <Thead onCellHead={onCellHead} data={header} />}
           {data && data.length > 0 && (
             <tbody>
-              {data.map((trData, rowNum) => {
-                return (
-                  <React.Fragment key={rowNum}>
-                    <tr key={rowKey ? trData[rowKey] + '' : rowNum}>
-                      {keys.map((keyName, colNum) => {
-                        let objs: React.TdHTMLAttributes<HTMLTableDataCellElement> = {
-                          children: trData[keyName],
-                        };
-                        if (render[keyName]) {
-                          const child = render[keyName](trData[keyName], keyName, trData, rowNum, colNum);
-                          if (React.isValidElement(child)) {
-                            objs.children = child;
-                          } else {
-                            if (child.props) {
-                              objs = { ...child.props, children: objs.children };
-                              if (child.props.rowSpan === 0 || child.props.colSpan === 0) return null;
-                            }
-                            if (child.children) {
-                              objs.children = child.children;
-                            }
-                          }
-                        }
-                        if (ellipsis && ellipsis[keyName]) {
-                          objs.className = `${prefixCls}-ellipsis`;
-                        }
-                        return (
-                          <td
-                            {...objs}
-                            key={colNum}
-                            onClick={(evn) => onCell(trData, { rowNum, colNum, keyName }, evn)}
-                          />
-                        );
-                      })}
-                    </tr>
-                    {isExpandedDom(trData, rowNum)}
-                  </React.Fragment>
-                );
-              })}
+              <TableTr
+                rowKey={rowKey}
+                data={data}
+                keys={self.keys}
+                render={render}
+                ellipsis={ellipsis}
+                prefixCls={prefixCls}
+                onCell={onCell}
+                hierarchy={0}
+                isExpandedDom={isExpandedDom}
+                indentSize={expandable?.indentSize || 16}
+                childrenColumnName={expandable?.childrenColumnName || 'children'}
+              />
             </tbody>
           )}
           {data && data.length === 0 && empty && (
@@ -237,6 +246,6 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
         </table>
       </div>
       {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
-    </div>
+    </React.Fragment>
   );
 }

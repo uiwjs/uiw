@@ -51,7 +51,7 @@ const Demo = () => {
      <Row>
        <SearchSelect
          mode="multiple"
-         style={{ width: 176 }}
+         style={{ width: 200 }}
          showSearch={true}
          labelInValue={true}
          maxTagCount={6}
@@ -72,7 +72,7 @@ const Demo = () => {
      <Row>
        <SearchSelect
          mode="single"
-         style={{ width: 176 }}
+         style={{ width: 200 }}
          showSearch={true}
          labelInValue={true}
          maxTagCount={6}
@@ -196,12 +196,12 @@ const Demo = () => {
       >
         {({ fields, state, canSubmit }) => {
           return (
-            <div>
-              <Row gutter={20}>
-                <Col fixed>{fields.selectField}</Col>
+            <div style={{ marginLeft:10}}>
+              <Row >
+                <Col fixed style={{width:200}}>{fields.selectField}</Col>
               </Row>
-              <Row gutter={20}>
-                <Col fixed>{fields.selectSingle}</Col>
+              <Row>
+                <Col fixed style={{width:200}}>{fields.selectSingle}</Col>
               </Row>
               <Row>
                 <Col fixed>

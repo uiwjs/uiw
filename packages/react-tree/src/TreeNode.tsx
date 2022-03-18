@@ -107,7 +107,11 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
           return (
             <li key={idx} style={{ display: item.hideNode ? 'none' : 'block' }}>
               <div className={`${prefixCls}-label`}>
-                <span className={`${prefixCls}-switcher`} onClick={(evn) => onItemClick(item, evn)}>
+                <span
+                  style={{ display: noChild ? 'none' : 'auto' }}
+                  className={`${prefixCls}-switcher`}
+                  onClick={(evn) => onItemClick(item, evn)}
+                >
                   <Icon
                     type={iconItem || 'caret-right'}
                     className={[

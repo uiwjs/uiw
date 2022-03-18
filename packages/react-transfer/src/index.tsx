@@ -36,7 +36,7 @@ function Transfer(props: TransferProps) {
   const {
     placeholder,
     options,
-    value,
+    value = [],
     showSearch = false,
     selectedAll = false,
 
@@ -52,6 +52,7 @@ function Transfer(props: TransferProps) {
   const [selectedOptions, selectedOptionSet] = useState<Array<TreeData>>(options || []);
   const selectedOptionsShowCount = useRef<number>(0);
   const [selectOption, selectOptionSet] = useState<Map<string | number, string>>(new Map());
+  const [leftSelectOption, leftSelectOptionSet] = useState<Map<string | number, string>>(new Map());
   const [leftSelectedKeys, leftSelectedKeySet] = useState<Array<string | number | undefined>>([]);
   const [rightSelectedKeys, rightSelectedKeySet] = useState<Array<string | number | undefined>>([]);
   const [rightOpions, rightOpionSet] = useState<Array<TreeData>>([]);
@@ -61,13 +62,12 @@ function Transfer(props: TransferProps) {
   });
 
   useEffect(() => {
-    leftSelectedKeySet([]);
-    rightSelectedKeySet([]);
+    if (value) {
+      rightOpionSet(value || []);
 
-    rightOpionSet(value || []);
-
-    value?.forEach((selectd) => selectOption.set(selectd.key, selectd.label));
-    hiddenNode((child) => !!value?.find((selectd) => child.key === selectd.key));
+      value?.forEach((selectd) => selectOption.set(selectd.key, selectd.label));
+      hiddenNode((child) => !!value?.find((selectd) => child.key === selectd.key));
+    }
   }, [JSON.stringify(value)]);
 
   const hiddenNode = (callBackfn: (child: TreeData) => boolean) => {
@@ -81,53 +81,15 @@ function Transfer(props: TransferProps) {
           child.hideNode = isHide && !find;
         } else {
           child.hideNode = isHide;
-          if (!child.hideNode) {
-            selectedOptionsShowCount.current++;
-          }
+        }
+        if (!child.hideNode) {
+          selectedOptionsShowCount.current++;
         }
       });
     };
     hiddenNodeForSeach(selectedOptions);
     selectedOptionSet([...selectedOptions]);
   };
-
-  const leftTreeOnSelected = (
-    selectedKeys: Array<string | number | undefined>,
-    _1: any,
-    isChecked: boolean,
-    evn: TreeData,
-  ) => {
-    selectedAllActive(selectedKeys, 'left');
-
-    leftSelectedKeySet(selectedKeys);
-    const selectOptionTemp = getOptionsRecursion([evn], selectOption, isChecked);
-    selectOptionSet(selectOptionTemp);
-  };
-
-  const rightTreeOnSelected = (selectedKeys: Array<string | number | undefined>) => {
-    selectedAllActive(selectedKeys, 'right');
-
-    rightSelectedKeySet(selectedKeys);
-    selectedKeys.forEach((key) => {
-      selectOption.delete(key!);
-    });
-    selectOptionSet(selectOption);
-  };
-
-  function selectedAllActive(selectedKeys: (string | number | undefined)[], key: 'left' | 'right') {
-    let selectedAll = true;
-    rightOpions.forEach((selected) => {
-      const find = selectedKeys.find((key) => key === selected.key);
-      selectedAll = selectedAll && !!find;
-    });
-    selectAllChecked[key] = selectedAll
-      ? CheckedStatus.AllChecked
-      : selectedKeys.length
-      ? CheckedStatus.Indeterminate
-      : CheckedStatus.UnChecked;
-
-    selectAllCheckedSet(selectAllChecked);
-  }
 
   const getOptionsRecursion = (childrens: TreeData[], selectOption: Map<string | number, string>, isAdd: boolean) => {
     const addOrDel = (key: string | number, label: string, isAdd: boolean) => {
@@ -139,7 +101,9 @@ function Transfer(props: TransferProps) {
     };
     const iteratorParent = (child: TreeData) => {
       if (child.parent) {
-        const selectCount = child.parent.children.filter((child: TreeData) => !selectOption.get(child.key!)).length;
+        const selectCount = child.parent.children.filter(
+          (child: TreeData) => !selectOption.get(child.key!) && !child.hideNode,
+        ).length;
         addOrDel(child.parent.key, child.parent.label, selectCount === 0);
         iteratorParent(child.parent);
       }
@@ -155,10 +119,36 @@ function Transfer(props: TransferProps) {
     return selectOption;
   };
 
-  const transferClick = (transferType: string) => {
-    selectAllChecked.right = CheckedStatus.UnChecked;
-    selectAllCheckedSet(selectAllChecked);
+  const leftTreeOnSelected = (
+    selectedKeys: Array<string | number | undefined>,
+    _1: any,
+    isChecked: boolean,
+    evn: TreeData,
+  ) => {
+    leftSelectedKeySet(selectedKeys);
+    const selectOptionTemp = getOptionsRecursion([evn], leftSelectOption, isChecked);
+    leftSelectOptionSet(selectOptionTemp);
+  };
 
+  const rightTreeOnSelected = (selectedKeys: Array<string | number | undefined>) => {
+    rightSelectedKeySet(selectedKeys);
+  };
+
+  const transferClick = (transferType: 'left' | 'right') => {
+    if (transferType === 'left') {
+      leftSelectOption.forEach((value, key) => {
+        selectOption.set(key, value);
+      });
+      leftSelectOptionSet(new Map());
+      leftSelectedKeySet([]);
+    } else {
+      rightSelectedKeys.forEach((key) => {
+        selectOption.delete(key!);
+      });
+      rightSelectedKeySet([]);
+    }
+
+    selectOptionSet(selectOption);
     const option: Array<TransferOptionType> = [];
     selectOption.forEach((label, key) => option.push({ key, label }));
     props.onChange?.(transferType, option);
@@ -191,20 +181,44 @@ function Transfer(props: TransferProps) {
     props.onSearch?.('right', searchValue);
   };
 
-  const selectAllCheckedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const selectAllLeftChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const isChecked = e.target.checked;
+
+    selectAllChecked.left = isChecked ? 1 : 0;
+    if (isChecked) {
+      const keys: Array<string | number> = [];
+      const selectedOptionsRecursion = (selectedOptions: Array<TreeData>) => {
+        selectedOptions.forEach((child) => {
+          if (child.children?.length) {
+            selectedOptionsRecursion(child.children);
+          }
+          if (!child.hideNode) {
+            leftSelectOption.set(child.key!, child.label as string);
+            keys.push(child.key!);
+          }
+        });
+      };
+      selectedOptionsRecursion(selectedOptions);
+
+      leftSelectOptionSet(leftSelectOption);
+      leftSelectedKeySet(keys);
+    } else {
+      leftSelectedKeySet([]);
+      leftSelectOptionSet(new Map());
+    }
+    selectAllCheckedSet(selectAllChecked);
+  };
+
+  const selectAllRightChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.checked;
 
     selectAllChecked.right = isChecked ? 1 : 0;
     if (isChecked) {
-      const keys = rightOpions.map((selected) => {
-        selectOption.delete(selected.key!);
-        return selected.key;
-      });
+      const keys = rightOpions.map((child) => child.key);
       rightSelectedKeySet(keys);
     } else {
       rightSelectedKeySet([]);
     }
-    selectOptionSet(selectOption);
     selectAllCheckedSet(selectAllChecked);
   };
 
@@ -220,17 +234,19 @@ function Transfer(props: TransferProps) {
   return (
     <div className={cls} style={{ width: 400, ...style }}>
       <Card
-        bodyStyle={{ padding: 5 }}
+        bodyStyle={{ padding: '5px 9px' }}
         title={
           <div>
-            {/* <Checkbox
-              indeterminate={selectAllChecked.left === CheckedStatus.Indeterminate}
-              checked={selectAllChecked.left === CheckedStatus.AllChecked}
-              onChange={selectAllCheckedChange}
-            /> */}
-            <span style={{ marginLeft: 10 }}>
+            {selectedAll && (
+              <Checkbox
+                indeterminate={leftSelectedKeys.length < selectedOptionsShowCount.current && !!leftSelectedKeys.length}
+                checked={leftSelectedKeys.length >= selectedOptionsShowCount.current && !!leftSelectedKeys.length}
+                onChange={selectAllLeftChange}
+              />
+            )}
+            <label style={{ marginLeft: 3 }}>
               {leftSelectedKeys.length}/{selectedOptionsShowCount.current}
-            </span>
+            </label>
           </div>
         }
         className={`${prefixCls}-card`}
@@ -253,24 +269,30 @@ function Transfer(props: TransferProps) {
         </div>
       </Card>
       <div className={`${prefixCls}-arrow-content`}>
-        <Arrow click={() => transferClick('left')} style={{ transform: 'rotate(-90deg)' }} />
-        <Arrow click={() => transferClick('right')} style={{ transform: 'rotate(90deg)' }} />
+        <Arrow
+          click={() => transferClick('left')}
+          style={{ transform: 'rotate(-90deg)', background: leftSelectedKeys.length > 0 ? '#393E48' : 'none' }}
+        />
+        <Arrow
+          click={() => transferClick('right')}
+          style={{ transform: 'rotate(90deg)', background: rightSelectedKeys.length > 0 ? '#393E48' : 'none' }}
+        />
       </div>
       <Card
-        bodyStyle={{ padding: 5 }}
+        bodyStyle={{ padding: '5px 9px' }}
         className={`${prefixCls}-card`}
         title={
           <div>
             {selectedAll && (
               <Checkbox
-                indeterminate={selectAllChecked.right === CheckedStatus.Indeterminate}
-                checked={selectAllChecked.right === CheckedStatus.AllChecked}
-                onChange={selectAllCheckedChange}
+                indeterminate={rightSelectedKeys.length < rightOpions.length && !!rightSelectedKeys.length}
+                checked={rightSelectedKeys.length === rightOpions.length && !!rightSelectedKeys.length}
+                onChange={selectAllRightChange}
               />
             )}
-            <span style={{ marginLeft: 10 }}>
+            <label style={{ marginLeft: 3 }}>
               {rightSelectedKeys.length}/{rightOpions.length}
-            </span>
+            </label>
           </div>
         }
       >

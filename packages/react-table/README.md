@@ -65,7 +65,6 @@ const Demo = () => (
 );
 ReactDOM.render(<Demo />, _mount_);
 ```
-
 ### 表头分组
 
 表头分组通过 `columns` 数组中对象的 `children` 来实现，以渲染分组表头。。
@@ -724,6 +723,156 @@ const Demo = () => (
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+### 树形数据展示
+
+表格支持树形数据的展示，当数据中有 children 字段时会自动展示为树形表格，如果不需要或配置为其他字段可以用 childrenColumnName 进行配置。
+
+可以通过设置 indentSize 以控制每一层的缩进宽度
+
+> ⚠️ 注意: 树形数据展示和`expandable.expandedRowRender`请不要同时出现，后续或将支持
+<!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import React from 'react';
+import { Table, Button, Icon } from 'uiw';
+
+const columns = [
+  {
+    title: '姓名',
+    ellipsis: true, 
+    key: 'name', 
+  }, 
+  {
+    title: '年龄',
+    style: { color: 'red' },
+    key: 'age',
+  }, 
+  {
+    title: '操作',
+    key: 'edit',
+    width: 98,
+    render: (text, key, rowData, rowNumber, columnNumber) => (
+      <div>
+        <Button size="small" type="danger">删除</Button>
+        <Button size="small" type="success">修改</Button>
+      </div>
+    ),
+  },
+];
+const dataSource = [
+  { 
+    name: '邓紫棋', 
+    age: '10', 
+    id: '1', 
+    children: [
+      {
+        name: '邓紫棋-0-1', 
+        age: '10', 
+        id: '1-1', 
+        children: [
+          { 
+            name: '邓紫棋-0-1-1', 
+            age: '10', 
+            id: '1-1-1',
+            children: [
+              {name: '邓紫棋-0-1-1-1', age: '10', id: '-0-1-1-1'},
+              {name: '邓紫棋-0-1-1-2', age: '10', id: '-0-1-1-2'},
+              {name: '邓紫棋-0-1-1-3', age: '10', id: '-0-1-1-3'},
+            ]
+          },
+          { name: '邓紫棋-0-1-2', age: '10', id: '1-1-2',}
+        ]
+      },
+      {name: '邓紫棋-0-2', age: '10', id: '1-1'},
+      {name: '邓紫棋-0-3', age: '10', id: '1-1'},
+    ]
+  },
+  { name: '李易峰', age: '32', id: '2',},
+  { name: '范冰冰', age: '23', id: '3', 
+    children: [
+      {name: '范冰冰0-1', age: '23', id: '3-1'},
+      {name: '范冰冰0-2', age: '23', id: '3-2'},
+      {name: '范冰冰0-3', age: '23', id: '3-3'},
+    ]
+  },
+];
+const Demo = () => {
+  const [expandedRowKeys, setExpandedRowKeys] = React.useState([])
+  return (
+    <div>
+      <Table 
+        rowKey="id"
+        columns={columns}
+        data={dataSource} 
+      />
+    </div>
+  )
+};
+ReactDOM.render(<Demo />, _mount_);
+```
+
+### 表格列过宽导致 footer 滑动出表格底部
+
+使用 scroll 属性给表格设置宽(x)或高(y)即可
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { Table, Button } from 'uiw';
+
+const columns = [
+  {
+    // title: '姓名',
+    ellipsis: true, 
+    width: 1000,
+    title: ({ key }) => {
+      return (
+        <span>字段: {key}</span>
+      )
+    },
+    key: 'name', 
+  }, {
+    title: '年龄',
+    style: { color: 'red' },
+    key: 'age',
+  }, {
+    title: '地址',
+    key: 'info',
+  }, {
+    title: '操作',
+    key: 'edit',
+    width: 98,
+    render: (text, key, rowData, rowNumber, columnNumber) => (
+      <div>
+        <Button size="small" type="danger">删除</Button>
+        <Button size="small" type="success">修改</Button>
+      </div>
+    ),
+  },
+];
+const dataSource = [
+  { name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，中国香港创作型女歌手。', edit: '' },
+  { name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人', edit: '' },
+  { name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手', edit: '' },
+  { name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。', edit: '' },
+  { name: 'Angelababy', age: '54', info: '1989年2月28日出生于上海市，华语影视女演员、时尚模特。', edit: '' },
+  { name: '唐嫣', age: '12', info: '1983年12月6日出生于上海市，毕业于中央戏剧学院表演系本科班', edit: '' },
+  { name: '吴亦凡', age: '4', info: '1990年11月06日出生于广东省广州市，华语影视男演员、流行乐歌手。', edit: '' },
+];
+const Demo = () => (
+  <div>
+    <Table 
+      scroll={{x: 1800, y: 100}}
+      footer={<div style={{height: 20, }}>这个是footer</div>}
+      columns={columns} data={dataSource} 
+    />
+  </div>
+);
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ## Props
 
 ### Table
@@ -753,6 +902,9 @@ ReactDOM.render(<Demo />, _mount_);
 | colSpan | 合并表头行。| Number | - |
 | ellipsis | 超过宽度将自动省略。`v4.8.7+`| Boolean | `false` |
 | render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前值的 `key`，行索引数据，当前行号，当前列号。| `Function(text, key, rowData, rowNumber, columnNumber)` | - |
+| align | 设置列的对齐方式 | "left"|"center"|"right" | - |
+| className | 列样式类名 | string | - |
+| scroll | 表格是否可滚动，也可以指定滚动区域的宽、高 | { x?: React.CSSProperties['width'], y?: React.CSSProperties['height'] } | - |
 
 ### expandable
 
@@ -768,3 +920,5 @@ ReactDOM.render(<Demo />, _mount_);
 | expandedRowKeys | 控制展开的行	rowKey数组 | Array | - |
 | onExpandedRowsChange | 展开的行变化触发 | (expandedRows)=>void | - |
 | onExpand | 点击展开图标触发 | (expanded,record,index)=>void | - |
+| indentSize | 控制树形结构每一层的缩进宽度 | number | 16 |
+| childrenColumnName | 指定树形结构的列名 | string | children |

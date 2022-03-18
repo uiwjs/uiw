@@ -743,9 +743,9 @@ const Demo = () => {
       }}
       fields={{
         tree: {
-          value: 'girl',
+          value: 'region',
           label: '请输入内容',
-          help: '必须选择性别！',
+          help: '必须选择地区！',
           initialValue: ['0-1-1'],
           children: <Tree
             // multiple 
