@@ -75,7 +75,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   children: trData[keyName.key!],
                 };
                 if (render[keyName.key!]) {
-                  const child = render[keyName.key!](trData[keyName.key!], keyName.key!, trData, rowNum, colNum);
+                  const child = render[keyName.key!](trData[keyName.key!], keyName.key, trData, rowNum, colNum);
                   if (React.isValidElement(child)) {
                     objs.children = child;
                   } else {
@@ -106,7 +106,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                     {...objs}
                     key={colNum}
                     // style={keyName?.style}
-                    className={`${objs.className} ${prefixCls}-tr-children-${keyName?.align || 'left'}  ${
+                    className={`${objs.className || ''} ${prefixCls}-tr-children-${keyName.align || 'left'}  ${
                       keyName.className || ''
                     }`}
                     onClick={(evn) => onCell(trData, { rowNum, colNum, keyName: keyName.key! }, evn)}
