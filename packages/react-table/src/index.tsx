@@ -66,6 +66,7 @@ export interface TableProps<T extends { [key: string]: V } = any, V = any> exten
   ) => void;
   expandable?: ExpandableType<T>;
   rowKey?: keyof T;
+  scroll?: { x?: React.CSSProperties['width']; y?: React.CSSProperties['height'] };
 }
 
 export interface ICellOptions {
@@ -88,6 +89,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
     children,
     expandable,
     rowKey,
+    scroll,
     ...other
   } = props;
   const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
@@ -187,14 +189,31 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
       selfColumns,
     };
   }, [columns, expandIndex]);
-
+  const style: { table: React.CSSProperties; div: React.CSSProperties } = useMemo(() => {
+    const style: { table: React.CSSProperties; div: React.CSSProperties } = {
+      table: {},
+      div: {},
+    };
+    if (scroll) {
+      if (scroll.x !== undefined) {
+        style.table.minWidth = '100%';
+        style.table.width = scroll.x;
+        style.div.overflowX = 'auto';
+        style.div.overflowY = 'hidden';
+      }
+      if (scroll.y !== undefined) {
+        style.div.maxHeight = scroll.y;
+        style.div.overflowY = 'scroll';
+      }
+    }
+    return style;
+  }, [scroll]);
   const cls = [prefixCls, className, bordered ? `${prefixCls}-bordered` : null].filter(Boolean).join(' ').trim();
   const { header, render, ellipsis } = getLevelItems(self.selfColumns);
-
   return (
-    <div>
-      <div style={{ overflowY: 'scroll' }} className={cls} {...other}>
-        <table style={ellipsis ? { tableLayout: 'fixed' } : {}}>
+    <React.Fragment>
+      <div className={cls} {...other} style={{ ...other.style, ...style.div }}>
+        <table style={{ tableLayout: ellipsis ? 'fixed' : 'auto', ...style.table }}>
           {title && <caption>{title}</caption>}
           {columns && columns.length > 0 && <Thead onCellHead={onCellHead} data={header} />}
           {data && data.length > 0 && (
@@ -227,6 +246,6 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
         </table>
       </div>
       {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
-    </div>
+    </React.Fragment>
   );
 }
