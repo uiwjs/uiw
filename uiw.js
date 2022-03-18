@@ -9567,7 +9567,7 @@ function Tabs(props) {
     if (activeItem.current && type === 'line') {
       setSlideStyle({
         width: activeItem.current.clientWidth,
-        left: activeItem.current.offsetLeft + 15
+        left: activeItem.current.offsetLeft
       });
     }
   }
@@ -9586,17 +9586,17 @@ function Tabs(props) {
         children: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
           className: prefixCls + "-bar",
           ref: divContentRef,
-          children: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+          children: /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
             className: prefixCls + "-nav",
             style: {
               width: 'max-content'
             },
-            children: renderNav(children)
+            children: [renderNav(children), /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+              style: slideStyle,
+              className: prefixCls + "-slide"
+            })]
           })
         })
-      }), /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
-        style: slideStyle,
-        className: prefixCls + "-slide"
       }), hiddenNav.length > 0 && /*#__PURE__*/(0,jsx_runtime.jsx)(Popover, {
         trigger: "click",
         placement: "bottomRight",

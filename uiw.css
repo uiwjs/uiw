@@ -4709,7 +4709,7 @@ a.w-list-item:hover:not(.w-disabled) {
 .w-tabs-line .w-tabs-slide {
   background-color: #108ee9;
   box-sizing: border-box;
-  bottom: 45px;
+  bottom: 0;
   position: absolute;
   height: 1px;
   left: 0;
