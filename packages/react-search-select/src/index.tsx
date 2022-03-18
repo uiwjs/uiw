@@ -209,6 +209,7 @@ export default function SearchSelect(props: SearchSelectProps) {
       className={cls}
       trigger="click"
       style={{ marginTop: 5 }}
+      overlayStyl={{ width: 100 }}
       disabled={option && option.length > 0 ? false : true}
       {...others}
       onVisibleChange={onVisibleChange}
@@ -219,9 +220,9 @@ export default function SearchSelect(props: SearchSelectProps) {
           style={{
             minHeight: 25,
             maxHeight: 280,
-            minWidth: 200,
+            minWidth: style?.width ?? 200,
             overflowY: 'scroll',
-            width: divRef.current ? divRef.current.offsetWidth : 'auto',
+            width: style?.width,
           }}
         >
           {!option || option.length === 0 ? (
