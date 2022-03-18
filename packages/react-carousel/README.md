@@ -5,7 +5,7 @@ Carousel 走马灯
 [![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-carousel.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-carousel)
 [![npm version](https://img.shields.io/npm/v/@uiw/react-carousel.svg?label=@uiw/react-carousel)](https://npmjs.com/@uiw/react-carousel)
 
-选择一个或以上的选项后，点击左右的方向按钮，可以把选中的选项移动到另一栏为选中。在 v4.15.0+ 添加。
+滚动播放。在 v4.15.0+ 添加。
 
 ## 基础用法
 
@@ -121,7 +121,7 @@ ReactDOM.render(<Demo />, _mount_);
 | position | 设置初始帧位置 | number | 0 |
 | palyTime | 每帧停留时间(ms) | number | 2000 |
 | scrollTime | 滚动动画的速度(ms) | number | 200 |
-| autoPlay | 是否自定播放 | boolean | true |
+| autoPlay | 是否自动播放 | boolean | true |
 
 
 ### ref
