@@ -1700,6 +1700,16 @@ sup.w-badge-count {
   color: rgba(0, 0, 0, 0.4);
 }
 
+.w-carousel {
+  overflow: hidden;
+}
+.w-carousel-content {
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  transition: 0.6s ease-in-out;
+}
+
 .w-radio {
   vertical-align: middle;
   display: inline-block;

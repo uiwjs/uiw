@@ -321,6 +321,7 @@ __webpack_require__.d(__webpack_exports__, {
   "ButtonGroup": () => (/* reexport */ react_button_group_esm),
   "Calendar": () => (/* reexport */ Calendar),
   "Card": () => (/* reexport */ react_card_esm),
+  "Carousel": () => (/* reexport */ react_carousel_esm),
   "Checkbox": () => (/* reexport */ react_checkbox_esm),
   "CheckboxGroup": () => (/* reexport */ CheckboxGroup),
   "Col": () => (/* reexport */ Col),
@@ -4020,6 +4021,108 @@ var react_card_esm_excluded = ["prefixCls", "className", "title", "extra", "foot
     })]
   }));
 }));
+
+;// CONCATENATED MODULE: ../react-carousel/esm/style/index.css
+// extracted by mini-css-extract-plugin
+/* harmony default export */ const react_carousel_esm_style = ({});
+;// CONCATENATED MODULE: ../react-carousel/esm/index.js
+
+
+
+
+
+function Carousel(props, ref) {
+  var {
+    position = 0,
+    width = 400,
+    height = 200,
+    palyTime = 2000,
+    scrollTime = 200,
+    autoPlay = true,
+    prefixCls = 'w-carousel',
+    className,
+    style
+  } = props;
+  var cls = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => [prefixCls, className].filter(Boolean).join(' ').trim(), [prefixCls, className]);
+  var [currentPosition, currentPositionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(position);
+  var positionRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(currentPosition);
+  var childCount = external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.count(props.children);
+
+  var _stopPlay = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(() => {});
+
+  external_root_React_commonjs2_react_commonjs_react_amd_react_default().useImperativeHandle(ref, () => ({
+    gotoSlide,
+    prevSlide: () => gotoSlide(positionRef.current - 1),
+    nextSlide: () => gotoSlide(positionRef.current + 1),
+    stopPlay: () => _stopPlay.current()
+  }), [ref]);
+
+  var gotoSlide = slidNumber => {
+    _stopPlay.current();
+
+    var maxSlid = childCount - 1;
+    var slidNumberTemp = slidNumber > maxSlid ? maxSlid : slidNumber;
+    slidNumberTemp = slidNumber < 0 ? 0 : slidNumberTemp;
+    positionRef.current = slidNumberTemp;
+    currentPositionSet(slidNumberTemp);
+    play();
+  };
+
+  var play = function play(ms) {
+    if (ms === void 0) {
+      ms = palyTime;
+    }
+
+    if (autoPlay) {
+      var time = setInterval(() => {
+        positionRef.current++;
+
+        if (positionRef.current >= childCount) {
+          positionRef.current = 0;
+        }
+
+        currentPositionSet(positionRef.current);
+      }, ms);
+
+      _stopPlay.current = () => {
+        clearInterval(time);
+      };
+    }
+  };
+
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    play();
+    return () => {
+      _stopPlay.current();
+    };
+  }, [autoPlay]);
+  return /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+    className: cls,
+    style: {
+      width,
+      height
+    },
+    children: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+      className: cls + "-content",
+      style: {
+        width: width * childCount,
+        transform: "translate3d(" + -(currentPosition * width) + "px, 0px, 0px)",
+        transition: scrollTime * 0.001 + "s ease-in-out"
+      },
+      children: external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.map(props.children, child => {
+        return /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+          style: _extends({
+            width,
+            height
+          }, style),
+          children: child
+        });
+      })
+    })
+  });
+}
+
+/* harmony default export */ const react_carousel_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(Carousel));
 
 ;// CONCATENATED MODULE: ../react-radio/esm/RadioAbstract.js
 
