@@ -4,7 +4,7 @@ import Markdown from '../../../components/Markdown';
 
 export default () => (
   <Markdown
-    path="https://github.com/uiwjs/uiw/tree/master/packages/react-search-tree/README.md"
+    path="https://github.com/uiwjs/uiw/tree/master/packages/react-transfer/README.md"
     dependencies={{ Form, Button, TreeChecked, Transfer, Row, Col, Card, Icon, React }}
     renderPage={async () => {
       const md = await import('uiw/node_modules/@uiw/react-transfer/README.md');

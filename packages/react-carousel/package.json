@@ -1,8 +1,8 @@
 {
-  "name": "@uiw/react-transfer",
+  "name": "@uiw/react-carousel",
   "version": "4.14.2",
-  "description": "TreeChecked component",
-  "homepage": "https://uiwjs.github.io/#/components/transfer",
+  "description": "Carousel component",
+  "homepage": "https://uiwjs.github.io/#/components/carousel",
   "repository": {
     "type": "git",
     "url": "https://github.com/uiwjs/uiw.git"
@@ -20,7 +20,7 @@
     "access": "public"
   },
   "keywords": [
-    "checked",
+    "carousel",
     "design",
     "uiw",
     "uiw-react",
@@ -42,12 +42,6 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-card": "^4.14.2",
-    "@uiw/react-checkbox": "^4.14.2",
-    "@uiw/react-icon": "^4.14.2",
-    "@uiw/react-input": "^4.14.2",
-    "@uiw/react-tree": "^4.14.2",
-    "@uiw/react-tree-checked": "^4.14.2",
     "@uiw/utils": "^4.14.2"
   }
 }
