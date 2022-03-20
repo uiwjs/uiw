@@ -1,9 +1,8 @@
 {
-  "name": "@uiw/react-card",
+  "name": "@uiw/react-carousel",
   "version": "4.15.0",
-  "description": "Card component",
-  "author": "Kenny Wong <wowohoo@qq.com>",
-  "homepage": "https://uiwjs.github.io/#/components/card",
+  "description": "Carousel component",
+  "homepage": "https://uiwjs.github.io/#/components/carousel",
   "repository": {
     "type": "git",
     "url": "https://github.com/uiwjs/uiw.git"
@@ -21,8 +20,7 @@
     "access": "public"
   },
   "keywords": [
-    "card",
-    "react-card",
+    "carousel",
     "design",
     "uiw",
     "uiw-react",

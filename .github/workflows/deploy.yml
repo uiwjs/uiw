@@ -123,6 +123,11 @@ jobs:
       with:
         token: ${{ secrets.NPM_TOKEN }}
         package: ./packages/react-card/package.json
+    - name: 📦 @uiw/react-carousel publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-carousel/package.json
     - name: 📦 @uiw/react-checkbox publish to NPM
       uses: JS-DevTools/npm-publish@v1
       with:
