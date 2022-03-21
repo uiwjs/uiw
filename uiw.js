@@ -7889,7 +7889,7 @@ var react_tag_esm_excluded = ["prefixCls", "className", "style", "title", "child
     className: cls,
     style: styl
   }, other, {
-    children: [title || children, closable ? /*#__PURE__*/(0,jsx_runtime.jsx)("svg", {
+    children: [title || children, !disabled && closable ? /*#__PURE__*/(0,jsx_runtime.jsx)("svg", {
       onClick: onClose,
       className: prefixCls + "-close",
       width: "15",
@@ -7968,6 +7968,11 @@ function SearchSelect(props) {
       selectedValueChange(defaultValue);
     }
   }, []);
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    if (disabled) {
+      setInnerIsOpen(false);
+    }
+  }, [disabled]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     if (valueVerify(value)) {
       selectedValueChange(value);
@@ -8103,7 +8108,7 @@ function SearchSelect(props) {
     overlayStyl: {
       width: 100
     },
-    disabled: option && option.length > 0 ? false : true
+    disabled: disabled
   }, others, {
     onVisibleChange: onVisibleChange,
     isOpen: innerIsOpen,
@@ -8164,6 +8169,7 @@ function SearchSelect(props) {
               color: "#393E48"
             }, tagProps, {
               closable: true,
+              disabled: disabled,
               onClose: e => {
                 e.stopPropagation();
                 handleItemsClick(index, item);
@@ -8193,7 +8199,7 @@ function SearchSelect(props) {
             value: selectedLabel,
             placeholder: selectedValue.length ? '' : placeholder
           })]
-        }), (selectIconType === 'close' || selectIconType === 'loading' && loading) && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+        }), !disabled && (selectIconType === 'close' || selectIconType === 'loading' && loading) && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
           type: selectIconType,
           spin: loading && selectIconType === 'loading',
           onClick: resetSelectedValue
@@ -8206,7 +8212,7 @@ function SearchSelect(props) {
         onChange: e => handleInputChange(e.target.value),
         value: selectedLabel,
         placeholder: placeholder,
-        addonAfter: (selectIconType === 'close' || selectIconType === 'loading' && loading) && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+        addonAfter: !disabled && (selectIconType === 'close' || selectIconType === 'loading' && loading) && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
           type: selectIconType,
           spin: loading && selectIconType === 'loading',
           onClick: resetSelectedValue
