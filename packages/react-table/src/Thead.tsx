@@ -1,19 +1,30 @@
 import React from 'react';
 import { IProps, noop } from '@uiw/utils';
-import { TableProps, TableColumns } from './';
+import { TableProps, TableColumns, LocationWidth } from './';
 import './style/index.less';
+import ThComponentProps from './ThComponent';
 
 export interface TheadProps<T extends { [key: string]: V }, V = any> extends IProps {
   data?: TableColumns<T>[][];
   onCellHead?: TableProps<T, V>['onCellHead'];
   align?: TableColumns['align'];
   className?: TableColumns['className'];
+  locationWidth?: { [key: number]: LocationWidth };
+  updateLocation?: (params: LocationWidth, index: number) => void;
 }
 
 export default function TheadComponent<T extends { [key: string]: V }, V>(
   props: TheadProps<T, V> & React.HTMLAttributes<HTMLTableSectionElement> = {},
 ) {
-  const { prefixCls = 'w-table', className, data = [], onCellHead = noop, ...other } = props;
+  const {
+    prefixCls = 'w-table',
+    className,
+    data = [],
+    onCellHead = noop,
+    locationWidth,
+    updateLocation,
+    ...other
+  } = props;
   return (
     <thead className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...other}>
       {data &&
@@ -21,24 +32,27 @@ export default function TheadComponent<T extends { [key: string]: V }, V>(
         data.map((tds?: TableColumns<T>[], rowNum?: number) => (
           <tr key={rowNum}>
             {(tds || []).map((item, colNum) => {
-              const { title, key, render, children, ellipsis, ...thProps } = item;
-              const titleNode: TableColumns<T>['title'] =
-                typeof title === 'function' ? title(item, colNum, rowNum!) : title;
+              const { title, key, render, children, ellipsis, fixed = false, ...thProps } = item;
+              const titleNode: TableColumns<T>['title'] = (
+                <span className={ellipsis ? `${thProps.className || ''} ${prefixCls}-ellipsis` : undefined}>
+                  {typeof title === 'function' ? title(item, colNum, rowNum!) : title}
+                </span>
+              );
               if (thProps.colSpan === 0) {
                 return null;
               }
-              if (ellipsis) {
-                thProps.className = `${thProps.className || ''} ${prefixCls}-ellipsis`;
-              }
               return (
-                <th
+                <ThComponentProps
+                  colNum={colNum}
+                  item={item}
                   key={colNum}
-                  {...thProps}
-                  className={`${prefixCls}-tr-children-${item?.align || 'left'} ${className || ''}`}
-                  onClick={(evn) => onCellHead(item, colNum, rowNum!, evn)}
-                >
-                  {titleNode}
-                </th>
+                  prefixCls={prefixCls}
+                  onCellHead={onCellHead}
+                  rowNum={rowNum!}
+                  titleNode={titleNode}
+                  locationWidth={locationWidth!}
+                  updateLocation={updateLocation!}
+                />
               );
             })}
           </tr>

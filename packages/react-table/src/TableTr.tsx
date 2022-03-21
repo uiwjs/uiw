@@ -1,8 +1,9 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import Icon from '@uiw/react-icon';
-import { TableProps } from './';
+import { LocationWidth, TableProps } from './';
 import './style/index.less';
 import { noop } from '@uiw/utils';
+import { locationFixed } from './util';
 
 interface TableTrProps<T> {
   rowKey?: keyof T;
@@ -18,6 +19,7 @@ interface TableTrProps<T> {
   // 层级
   hierarchy: number;
   childrenColumnName: string;
+  locationWidth: { [key: number]: LocationWidth };
 }
 
 export default function TableTr<T extends { [key: string]: any }>(props: TableTrProps<T>) {
@@ -33,6 +35,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     hierarchy,
     indentSize,
     childrenColumnName,
+    locationWidth,
   } = props;
   const [isOpacity, setIsOpacity] = useState(false);
   const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
@@ -88,9 +91,6 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                     }
                   }
                 }
-                if (ellipsis && ellipsis[keyName.key!]) {
-                  objs.className = `${prefixCls}-ellipsis`;
-                }
                 const isHasChildren = Array.isArray(trData[childrenColumnName]);
                 if (colNum === 0 && (isOpacity || hierarchy || isHasChildren)) {
                   objs.children = (
@@ -101,13 +101,25 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                     </>
                   );
                 }
+                if (keyName.fixed) {
+                  if (keyName.fixed === 'right') {
+                    objs.className = `${objs.className} ${prefixCls}-fixed-right`;
+                  } else {
+                    objs.className = `${objs.className} ${prefixCls}-fixed-true`;
+                  }
+                }
                 return (
                   <td
                     {...objs}
+                    style={{ ...locationFixed(keyName.fixed!, locationWidth, colNum) }}
+                    children={
+                      <span className={ellipsis && ellipsis[keyName.key!] ? `${prefixCls}-ellipsis` : undefined}>
+                        {objs.children}
+                      </span>
+                    }
                     key={colNum}
-                    // style={keyName?.style}
-                    className={`${objs.className || ''} ${prefixCls}-tr-children-${keyName.align || 'left'}  ${
-                      keyName.className || ''
+                    className={`${prefixCls}-tr-children-${keyName.align || 'left'}  ${keyName.className || ''} ${
+                      objs.className || ''
                     }`}
                     onClick={(evn) => onCell(trData, { rowNum, colNum, keyName: keyName.key! }, evn)}
                   />

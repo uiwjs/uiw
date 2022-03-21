@@ -1,4 +1,5 @@
-import { TableColumns } from './';
+import { TableColumns, LocationWidth } from './';
+import React from 'react';
 
 /**
  * Get colspan number
@@ -126,4 +127,14 @@ export function getAllColumnsKeys<T>(data: TableColumns<T>[], keys: TableColumns
     }
   }
   return keys;
+}
+
+export function locationFixed(
+  fixed: boolean | 'left' | 'right',
+  location: { [key: number]: LocationWidth },
+  index: number,
+): React.CSSProperties {
+  if (!fixed) return {};
+  if (fixed === 'right') return { right: location[index]?.right };
+  return { left: location[index]?.left };
 }
