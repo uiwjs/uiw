@@ -9,6 +9,8 @@ export interface CarouselProps extends IProps, HTMLDivProps {
   palyTime?: number;
   scrollTime?: number;
   autoPlay?: boolean;
+  afterChange?: (current: number) => void;
+  beforeChange?: (current: number) => void;
 }
 
 export interface CarouselRef {
@@ -18,7 +20,7 @@ export interface CarouselRef {
   stopPlay: () => void;
 }
 
-function Carousel(props: CarouselProps, ref: CarouselRef) {
+function Carousel(props: CarouselProps, ref: CarouselRef | any) {
   const {
     position = 0,
     width = 400,
@@ -26,6 +28,8 @@ function Carousel(props: CarouselProps, ref: CarouselRef) {
     palyTime = 2000,
     scrollTime = 200,
     autoPlay = true,
+    afterChange,
+    beforeChange,
 
     prefixCls = 'w-carousel',
     className,
@@ -35,9 +39,10 @@ function Carousel(props: CarouselProps, ref: CarouselRef) {
   const cls = useMemo(() => [prefixCls, className].filter(Boolean).join(' ').trim(), [prefixCls, className]);
 
   const [currentPosition, currentPositionSet] = useState(position);
+  const [transitionInner, transitionInnerSet] = useState(`${scrollTime * 0.001}s ease-in-out`);
   const positionRef = useRef(currentPosition);
-  const childCount = React.Children.count(props.children);
-  const stopPlay = useRef<Function>(() => {});
+  const childCount = React.Children.count(props.children) + 1;
+  const stopPlay = useRef({ stop: () => {}, after: afterChange, before: beforeChange });
 
   React.useImperativeHandle(
     ref,
@@ -45,13 +50,13 @@ function Carousel(props: CarouselProps, ref: CarouselRef) {
       gotoSlide,
       prevSlide: () => gotoSlide(positionRef.current - 1),
       nextSlide: () => gotoSlide(positionRef.current + 1),
-      stopPlay: () => stopPlay.current(),
+      stopPlay: () => stopPlay.current.stop(),
     }),
     [ref],
   );
 
   const gotoSlide = (slidNumber: number) => {
-    stopPlay.current();
+    stopPlay.current.stop();
     const maxSlid = childCount - 1;
     let slidNumberTemp = slidNumber > maxSlid ? maxSlid : slidNumber;
     slidNumberTemp = slidNumber < 0 ? 0 : slidNumberTemp;
@@ -63,13 +68,15 @@ function Carousel(props: CarouselProps, ref: CarouselRef) {
   const play = (ms: number = palyTime) => {
     if (autoPlay) {
       const time = setInterval(() => {
+        stopPlay.current.after?.(positionRef.current);
         positionRef.current++;
         if (positionRef.current >= childCount) {
           positionRef.current = 0;
         }
         currentPositionSet(positionRef.current);
+        stopPlay.current.before?.(positionRef.current);
       }, ms);
-      stopPlay.current = () => {
+      stopPlay.current.stop = () => {
         clearInterval(time);
       };
     }
@@ -78,9 +85,30 @@ function Carousel(props: CarouselProps, ref: CarouselRef) {
   useEffect(() => {
     play();
     return () => {
-      stopPlay.current();
+      stopPlay.current.stop();
     };
   }, [autoPlay]);
+
+  useEffect(() => {
+    let time: NodeJS.Timeout;
+    if (childCount === currentPosition + 1) {
+      time = setTimeout(() => {
+        stopPlay.current.before = () => {
+          transitionInnerSet(`${scrollTime * 0.001}s ease-in-out`);
+          stopPlay.current.before = props.beforeChange;
+        };
+        transitionInnerSet('none');
+        gotoSlide(0);
+      }, scrollTime);
+    }
+    return () => {
+      clearTimeout(time);
+    };
+  }, [currentPosition]);
+
+  const childrens = React.Children.map(props.children, (child) => {
+    return <div style={{ width, height, ...style }}>{child}</div>;
+  });
 
   return (
     <div className={cls} style={{ width, height }}>
@@ -89,15 +117,14 @@ function Carousel(props: CarouselProps, ref: CarouselRef) {
         style={{
           width: width * childCount,
           transform: `translate3d(${-(currentPosition * width)}px, 0px, 0px)`,
-          transition: `${scrollTime * 0.001}s ease-in-out`,
+          transition: transitionInner,
         }}
       >
-        {React.Children.map(props.children, (child) => {
-          return <div style={{ width, height, ...style }}>{child}</div>;
-        })}
+        {childrens}
+        <div style={{ width, height, ...style }}>{childrens?.[0]}</div>
       </div>
     </div>
   );
 }
 
-export default React.forwardRef<CarouselRef, CarouselProps>(Carousel);
+export default React.forwardRef<CarouselRef, CarouselProps>(Carousel as any);

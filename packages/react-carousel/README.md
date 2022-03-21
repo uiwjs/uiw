@@ -91,7 +91,13 @@ function Demo() {
 
   return (
       <React.Fragment>
-        <Carousel ref={ref} position={2} autoPlay={autoPlay}>
+        <Carousel
+          ref={ref}
+          position={2}
+          autoPlay={autoPlay}
+          afterChange={(current)=>console.log('after',current)}
+          beforeChange={(current)=>console.log('before',current)}
+        >
           <div style={{ height: '100%', background: '#1EABCD' }}>
             <span>1</span>
           </div>
@@ -128,6 +134,8 @@ ReactDOM.render(<Demo />, _mount_);
 | palyTime | 每帧停留时间(ms) | number | 2000 |
 | scrollTime | 滚动动画的速度(ms) | number | 200 |
 | autoPlay | 是否自动播放 | boolean | true |
+| afterChange | 切换面板的回调 | (current) => void | - |
+| beforeChange | 切换面板的回调 | (current) => void | - |
 
 
 ### ref
