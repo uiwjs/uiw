@@ -4031,6 +4031,7 @@ var react_card_esm_excluded = ["prefixCls", "className", "title", "extra", "foot
 
 
 
+
 function Carousel(props, ref) {
   var {
     position = 0,
@@ -4039,26 +4040,33 @@ function Carousel(props, ref) {
     palyTime = 2000,
     scrollTime = 200,
     autoPlay = true,
+    afterChange,
+    beforeChange,
     prefixCls = 'w-carousel',
     className,
     style
   } = props;
   var cls = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => [prefixCls, className].filter(Boolean).join(' ').trim(), [prefixCls, className]);
   var [currentPosition, currentPositionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(position);
+  var [transitionInner, transitionInnerSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(scrollTime * 0.001 + "s ease-in-out");
   var positionRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(currentPosition);
-  var childCount = external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.count(props.children);
+  var childCount = external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.count(props.children) + 1;
 
-  var _stopPlay = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(() => {});
+  var _stopPlay = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)({
+    stop: () => {},
+    after: afterChange,
+    before: beforeChange
+  });
 
   external_root_React_commonjs2_react_commonjs_react_amd_react_default().useImperativeHandle(ref, () => ({
     gotoSlide,
     prevSlide: () => gotoSlide(positionRef.current - 1),
     nextSlide: () => gotoSlide(positionRef.current + 1),
-    stopPlay: () => _stopPlay.current()
+    stopPlay: () => _stopPlay.current.stop()
   }), [ref]);
 
   var gotoSlide = slidNumber => {
-    _stopPlay.current();
+    _stopPlay.current.stop();
 
     var maxSlid = childCount - 1;
     var slidNumberTemp = slidNumber > maxSlid ? maxSlid : slidNumber;
@@ -4075,6 +4083,7 @@ function Carousel(props, ref) {
 
     if (autoPlay) {
       var time = setInterval(() => {
+        _stopPlay.current.after == null ? void 0 : _stopPlay.current.after(positionRef.current);
         positionRef.current++;
 
         if (positionRef.current >= childCount) {
@@ -4082,9 +4091,10 @@ function Carousel(props, ref) {
         }
 
         currentPositionSet(positionRef.current);
+        _stopPlay.current.before == null ? void 0 : _stopPlay.current.before(positionRef.current);
       }, ms);
 
-      _stopPlay.current = () => {
+      _stopPlay.current.stop = () => {
         clearInterval(time);
       };
     }
@@ -4093,31 +4103,57 @@ function Carousel(props, ref) {
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     play();
     return () => {
-      _stopPlay.current();
+      _stopPlay.current.stop();
     };
   }, [autoPlay]);
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    var time;
+
+    if (childCount === currentPosition + 1) {
+      time = setTimeout(() => {
+        _stopPlay.current.before = () => {
+          transitionInnerSet(scrollTime * 0.001 + "s ease-in-out");
+          _stopPlay.current.before = props.beforeChange;
+        };
+
+        transitionInnerSet('none');
+        gotoSlide(0);
+      }, scrollTime);
+    }
+
+    return () => {
+      clearTimeout(time);
+    };
+  }, [currentPosition]);
+  var childrens = external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.map(props.children, child => {
+    return /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+      style: _extends({
+        width,
+        height
+      }, style),
+      children: child
+    });
+  });
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
     className: cls,
     style: {
       width,
       height
     },
-    children: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+    children: /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
       className: cls + "-content",
       style: {
         width: width * childCount,
         transform: "translate3d(" + -(currentPosition * width) + "px, 0px, 0px)",
-        transition: scrollTime * 0.001 + "s ease-in-out"
+        transition: transitionInner
       },
-      children: external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.map(props.children, child => {
-        return /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
-          style: _extends({
-            width,
-            height
-          }, style),
-          children: child
-        });
-      })
+      children: [childrens, /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+        style: _extends({
+          width,
+          height
+        }, style),
+        children: childrens == null ? void 0 : childrens[0]
+      })]
     })
   });
 }
