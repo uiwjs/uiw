@@ -134,8 +134,8 @@ ReactDOM.render(<Demo />, _mount_);
 | palyTime | 每帧停留时间(ms) | number | 2000 |
 | scrollTime | 滚动动画的速度(ms) | number | 200 |
 | autoPlay | 是否自动播放 | boolean | true |
-| afterChange | 切换面板的回调 | (current) => void | - |
-| beforeChange | 切换面板的回调 | (current) => void | - |
+| afterChange | 切换面板前的回调 | (current) => void | - |
+| beforeChange | 切换面板后的回调 | (current) => void | - |
 
 
 ### ref
