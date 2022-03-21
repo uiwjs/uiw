@@ -16,7 +16,7 @@ interface ThComponentProps<T> {
 export default class ThComponent<T> extends Component<ThComponentProps<T>> {
   componentDidMount() {
     const rect = ReactDOM.findDOMNode(this);
-    this.props.updateLocation({ width: (rect as any).getBoundingClientRect().width }, this.props.colNum);
+    this.props.updateLocation({ width: (rect as Element).getBoundingClientRect().width }, this.props.colNum);
   }
 
   render() {
