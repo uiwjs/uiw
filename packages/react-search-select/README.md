@@ -37,7 +37,7 @@ const Demo = () => {
   const [values, setValues] = React.useState([{label: 'a7', value: 7},{label: 'a8', value: 8}]);
   const [value, setValue] = React.useState([{label: 'a7', value: 7}]);
 
-  function handleSearch(e) {
+function handleSearch(e) {
     setLoading(true)
     setTimeout(() =>  {
      const filterOpion= selectOption.filter(item=>!!item.label.includes(e.trim()))
@@ -95,6 +95,69 @@ const Demo = () => {
 };
 ReactDOM.render(<Demo />, _mount_);
 ```
+
+## 限制选项个数
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { SearchSelect,Row,Col } from 'uiw';
+
+const Demo = () => {
+  const selectOption=[
+    { label: 'a1', value: 1 },
+    { label: 'a2', value: 2 },
+    { label: 'a3', value: 3 },
+    { label: 'a4', value: 4 },
+    { label: 'a5', value: 5 },
+    { label: 'a6', value: 6 },
+    { label: 'a7', value: 7 },
+    { label: 'a8', value: 8 },
+  ]
+
+  const [option, setOption] = React.useState(selectOption);
+  const [loading, setLoading] = React.useState(false);
+  const [values, setValues] = React.useState([{label: 'a7', value: 7}]);
+  const [disabled, setDisabled] = React.useState(false);
+  const maxTagCount = 2
+
+  function handleSearch(e) {
+    setLoading(true)
+    setTimeout(() =>  {
+     const filterOpion= selectOption.filter(item=>!!item.label.includes(e.trim()))
+      setOption([...filterOpion]);
+      setLoading(false);
+    }, 500);
+  }
+
+  return(
+    <Row gutter={20}>
+        <SearchSelect
+          mode="multiple"
+          style={{ width: 200 }}
+          showSearch={true}
+          labelInValue={true}
+          maxTagCount={maxTagCount}
+          allowClear
+          value={values}
+          disabled={disabled}
+          placeholder="请输入选择"
+          onSearch={handleSearch}
+          // onSelect={(value)=>console.log('onSelect',value)}
+          loading={loading}
+          option={option}
+          onChange={(value) => {
+            if(value?.length >= maxTagCount)
+              setDisabled(true)
+            setValues(value)
+          }}
+        />
+    </Row>
+  );
+};
+ReactDOM.render(<Demo />, _mount_);
+```
+
 
 ### 在表单中使用
 
