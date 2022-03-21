@@ -7,6 +7,12 @@ Carousel 走马灯
 
 滚动播放。在 v4.15.0+ 添加。
 
+```jsx
+import { Carousel } from 'uiw';
+// or
+import Carousel from '@uiw/react-carousel';
+```
+
 ## 基础用法
 
 最简单的用法。
