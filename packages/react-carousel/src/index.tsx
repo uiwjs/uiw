@@ -20,7 +20,7 @@ export interface CarouselRef {
   stopPlay: () => void;
 }
 
-function Carousel(props: CarouselProps, ref: CarouselRef | any) {
+function Carousel(props: CarouselProps, ref: React.ForwardedRef<CarouselRef>) {
   const {
     position = 0,
     width = 400,
@@ -127,4 +127,4 @@ function Carousel(props: CarouselProps, ref: CarouselRef | any) {
   );
 }
 
-export default React.forwardRef<CarouselRef, CarouselProps>(Carousel as any);
+export default React.forwardRef<CarouselRef, CarouselProps>(Carousel);
