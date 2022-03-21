@@ -9001,59 +9001,6 @@ var react_switch_esm_excluded = ["prefixCls"];
 ;// CONCATENATED MODULE: ../react-table/esm/style/index.css
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const react_table_esm_style = ({});
-;// CONCATENATED MODULE: ../react-table/esm/Thead.js
-
-
-var Thead_excluded = ["prefixCls", "className", "data", "onCellHead"],
-    Thead_excluded2 = ["title", "key", "render", "children", "ellipsis"];
-
-
-
-
-function TheadComponent(props) {
-  if (props === void 0) {
-    props = {};
-  }
-
-  var {
-    prefixCls = 'w-table',
-    className,
-    data = [],
-    onCellHead = noop
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, Thead_excluded);
-
-  return /*#__PURE__*/(0,jsx_runtime.jsx)("thead", _extends({
-    className: [prefixCls, className].filter(Boolean).join(' ').trim()
-  }, other, {
-    children: data && data.length > 0 && data.map((tds, rowNum) => /*#__PURE__*/(0,jsx_runtime.jsx)("tr", {
-      children: (tds || []).map((item, colNum) => {
-        var {
-          title,
-          ellipsis
-        } = item,
-            thProps = _objectWithoutPropertiesLoose(item, Thead_excluded2);
-
-        var titleNode = typeof title === 'function' ? title(item, colNum, rowNum) : title;
-
-        if (thProps.colSpan === 0) {
-          return null;
-        }
-
-        if (ellipsis) {
-          thProps.className = (thProps.className || '') + " " + prefixCls + "-ellipsis";
-        }
-
-        return /*#__PURE__*/(0,jsx_runtime.jsx)("th", _extends({}, thProps, {
-          className: prefixCls + "-tr-children-" + ((item == null ? void 0 : item.align) || 'left') + " " + (className || ''),
-          onClick: evn => onCellHead(item, colNum, rowNum, evn),
-          children: titleNode
-        }), colNum);
-      })
-    }, rowNum))
-  }));
-}
-
 ;// CONCATENATED MODULE: ../react-table/esm/util.js
 /**
  * Get colspan number
@@ -9215,6 +9162,130 @@ function getAllColumnsKeys(data, keys) {
 
   return keys;
 }
+function locationFixed(fixed, location, index) {
+  var _location$index, _location$index2;
+
+  if (!fixed) return {};
+  if (fixed === 'right') return {
+    right: (_location$index = location[index]) == null ? void 0 : _location$index.right
+  };
+  return {
+    left: (_location$index2 = location[index]) == null ? void 0 : _location$index2.left
+  };
+}
+
+;// CONCATENATED MODULE: ../react-table/esm/ThComponent.js
+
+
+var ThComponent_excluded = ["title", "key", "render", "children", "ellipsis", "fixed"];
+
+
+
+
+class ThComponent extends external_root_React_commonjs2_react_commonjs_react_amd_react_.Component {
+  componentDidMount() {
+    var rect = external_root_ReactDOM_commonjs2_react_dom_commonjs_react_dom_amd_react_dom_default().findDOMNode(this);
+    this.props.updateLocation({
+      width: rect.getBoundingClientRect().width
+    }, this.props.colNum);
+  }
+
+  render() {
+    var {
+      colNum,
+      prefixCls,
+      item,
+      titleNode,
+      onCellHead,
+      rowNum,
+      locationWidth
+    } = this.props;
+
+    var {
+      fixed = false
+    } = item,
+        thProps = _objectWithoutPropertiesLoose(item, ThComponent_excluded);
+
+    var cls = '';
+
+    if (fixed) {
+      if (fixed === 'right') {
+        cls = prefixCls + '-fixed-right';
+      } else {
+        cls = prefixCls + '-fixed-true';
+      }
+    }
+
+    return /*#__PURE__*/(0,jsx_runtime.jsx)("th", _extends({}, thProps, {
+      style: _extends({}, thProps.style, locationFixed(fixed, locationWidth, colNum)),
+      className: prefixCls + "-tr-children-" + ((item == null ? void 0 : item.align) || 'left') + " " + (item.className || '') + " " + cls,
+      onClick: evn => onCellHead == null ? void 0 : onCellHead(item, colNum, rowNum, evn),
+      children: titleNode
+    }), colNum);
+  }
+
+}
+
+;// CONCATENATED MODULE: ../react-table/esm/Thead.js
+
+
+var Thead_excluded = ["prefixCls", "className", "data", "onCellHead", "locationWidth", "updateLocation"],
+    Thead_excluded2 = ["title", "key", "render", "children", "ellipsis", "fixed"];
+
+
+
+
+
+function TheadComponent(props) {
+  if (props === void 0) {
+    props = {};
+  }
+
+  var {
+    prefixCls = 'w-table',
+    className,
+    data = [],
+    onCellHead = noop,
+    locationWidth,
+    updateLocation
+  } = props,
+      other = _objectWithoutPropertiesLoose(props, Thead_excluded);
+
+  return /*#__PURE__*/(0,jsx_runtime.jsx)("thead", _extends({
+    className: [prefixCls, className].filter(Boolean).join(' ').trim()
+  }, other, {
+    children: data && data.length > 0 && data.map((tds, rowNum) => /*#__PURE__*/(0,jsx_runtime.jsx)("tr", {
+      children: (tds || []).map((item, colNum) => {
+        var {
+          title,
+          ellipsis,
+          fixed = false
+        } = item,
+            thProps = _objectWithoutPropertiesLoose(item, Thead_excluded2);
+
+        var titleNode = /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
+          className: ellipsis ? (thProps.className || '') + " " + prefixCls + "-ellipsis" : undefined,
+          children: typeof title === 'function' ? title(item, colNum, rowNum) : title
+        });
+
+        if (thProps.colSpan === 0) {
+          return null;
+        }
+
+        return /*#__PURE__*/(0,jsx_runtime.jsx)(ThComponent, {
+          colNum: colNum,
+          item: item,
+          prefixCls: prefixCls,
+          onCellHead: onCellHead,
+          rowNum: rowNum,
+          titleNode: titleNode,
+          locationWidth: locationWidth,
+          updateLocation: updateLocation
+        }, colNum);
+      })
+    }, rowNum))
+  }));
+}
 
 ;// CONCATENATED MODULE: ../react-table/esm/Expandable.js
 
@@ -9256,6 +9327,7 @@ function ExpandableComponent(_ref) {
 
 
 
+
 function TableTr(props) {
   var {
     rowKey,
@@ -9268,7 +9340,8 @@ function TableTr(props) {
     isExpandedDom,
     hierarchy,
     indentSize,
-    childrenColumnName
+    childrenColumnName,
+    locationWidth
   } = props;
   var [isOpacity, setIsOpacity] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
   var [expandIndex, setExpandIndex] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
@@ -9327,10 +9400,6 @@ function TableTr(props) {
               }
             }
 
-            if (ellipsis && ellipsis[keyName.key]) {
-              objs.className = prefixCls + "-ellipsis";
-            }
-
             var isHasChildren = Array.isArray(trData[childrenColumnName]);
 
             if (colNum === 0 && (isOpacity || hierarchy || isHasChildren)) {
@@ -9343,10 +9412,22 @@ function TableTr(props) {
               });
             }
 
+            if (keyName.fixed) {
+              if (keyName.fixed === 'right') {
+                objs.className = objs.className + " " + prefixCls + "-fixed-right";
+              } else {
+                objs.className = objs.className + " " + prefixCls + "-fixed-true";
+              }
+            }
+
             return /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.createElement)("td", _extends({}, objs, {
-              key: colNum // style={keyName?.style}
-              ,
-              className: (objs.className || '') + " " + prefixCls + "-tr-children-" + (keyName.align || 'left') + "  " + (keyName.className || ''),
+              style: _extends({}, locationFixed(keyName.fixed, locationWidth, colNum)),
+              children: /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
+                className: ellipsis && ellipsis[keyName.key] ? prefixCls + "-ellipsis" : undefined,
+                children: objs.children
+              }),
+              key: colNum,
+              className: prefixCls + "-tr-children-" + (keyName.align || 'left') + "  " + (keyName.className || '') + " " + (objs.className || ''),
               onClick: evn => onCell(trData, {
                 rowNum,
                 colNum,
@@ -9401,6 +9482,40 @@ function Table(props) {
       other = _objectWithoutPropertiesLoose(props, react_table_esm_excluded);
 
   var [expandIndex, setExpandIndex] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
+  var [locationWidth, setLocationWidth] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)({});
+  var finalLocationWidth = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)({});
+
+  var updateLocation = (params, index) => {
+    finalLocationWidth.current = _extends({}, finalLocationWidth.current, {
+      [index]: _extends({}, finalLocationWidth.current[index], params)
+    });
+
+    if (index === columns.length - 1) {
+      setLocationWidth(computed());
+    }
+  };
+
+  var computed = () => {
+    var left = 0,
+        right = 0;
+
+    for (var _index = 0; _index < columns.length; _index++) {
+      if (finalLocationWidth.current[_index]) {
+        finalLocationWidth.current[_index].left = left;
+        left = finalLocationWidth.current[_index].width + left;
+      }
+    }
+
+    for (var _index2 = columns.length - 1; _index2 > -1; _index2--) {
+      if (finalLocationWidth.current[_index2]) {
+        finalLocationWidth.current[_index2].right = right;
+        right = finalLocationWidth.current[_index2].width + right;
+      }
+    }
+
+    return finalLocationWidth.current;
+  };
+
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     if (expandable) {
       if (expandable.defaultExpandAllRows) {
@@ -9549,10 +9664,13 @@ function Table(props) {
           children: title
         }), columns && columns.length > 0 && /*#__PURE__*/(0,jsx_runtime.jsx)(TheadComponent, {
           onCellHead: onCellHead,
-          data: header
+          data: header,
+          locationWidth: locationWidth,
+          updateLocation: updateLocation
         }), data && data.length > 0 && /*#__PURE__*/(0,jsx_runtime.jsx)("tbody", {
           children: /*#__PURE__*/(0,jsx_runtime.jsx)(TableTr, {
             rowKey: rowKey,
+            locationWidth: locationWidth,
             data: data,
             keys: self.keys,
             render: render,

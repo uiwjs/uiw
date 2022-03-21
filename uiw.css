@@ -4623,16 +4623,24 @@ a.w-list-item:hover:not(.w-disabled) {
 .w-table > table > tbody > tr {
   transition: all 0.3s;
 }
-.w-table > table > tbody > tr:hover,
-.w-table > table > tbody > tr:hover:nth-child(2n) {
+.w-table > table > tbody > tr > td {
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+}
+.w-table > table > tbody > tr:hover > td,
+.w-table > table > tbody > tr:hover:nth-child(2n) > td {
   background-color: #efefef;
 }
-.w-table > table > tbody > tr:nth-child(2n) {
+.w-table > table > tbody > tr:nth-child(2n) > td {
   background-color: #f9f9f9;
 }
 .w-table > table > thead > tr > th {
   font-weight: normal;
   padding: 8px;
+  background-color: #f6f9fb;
+  position: relative;
+  z-index: 1;
 }
 .w-table > table > thead > tr,
 .w-table > table > thead tr:nth-child(2n) {
@@ -4644,6 +4652,7 @@ a.w-list-item:hover:not(.w-disabled) {
   white-space: nowrap;
   text-overflow: ellipsis;
   word-break: keep-all;
+  display: block;
 }
 .w-table-tr-children-center {
   text-align: center;
@@ -4653,6 +4662,41 @@ a.w-list-item:hover:not(.w-disabled) {
 }
 .w-table-tr-children-right {
   text-align: right;
+}
+.w-table-fixed-true {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  z-index: 2 !important;
+}
+.w-table-fixed-right {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  z-index: 2 !important;
+}
+.w-table-fixed-true::after {
+  box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: -1px;
+  width: 30px;
+  transform: translateX(100%);
+  transition: box-shadow 0.3s;
+  content: '';
+  pointer-events: none;
+}
+.w-table-fixed-right::after {
+  box-shadow: inset -10px 0 8px -8px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 0;
+  bottom: -1px;
+  left: 0;
+  width: 30px;
+  transform: translateX(-100%);
+  transition: box-shadow 0.3s;
+  content: '';
+  pointer-events: none;
+  border-right: 1px solid #f0f0f0;
 }
 .w-table-bordered > table tr > th,
 .w-table-bordered > table tr > td,
