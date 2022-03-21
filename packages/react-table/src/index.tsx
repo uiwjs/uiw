@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import Icon from '@uiw/react-icon';
 import Thead from './Thead';
@@ -42,6 +42,7 @@ export type TableColumns<T = any> = {
   style?: React.CSSProperties;
   align?: 'left' | 'center' | 'right';
   className?: string;
+  fixed?: boolean | 'left' | 'right';
   [key: string]: any;
 };
 
@@ -69,6 +70,11 @@ export interface TableProps<T extends { [key: string]: V } = any, V = any> exten
   scroll?: { x?: React.CSSProperties['width']; y?: React.CSSProperties['height'] };
 }
 
+export interface LocationWidth {
+  left?: number;
+  right?: number;
+  width: number;
+}
 export interface ICellOptions {
   rowNum: number;
   colNum: number;
@@ -93,6 +99,37 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
     ...other
   } = props;
   const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
+  const [locationWidth, setLocationWidth] = useState<{ [key: number]: LocationWidth }>({});
+  const finalLocationWidth = useRef<{ [key: number]: LocationWidth }>({});
+  const updateLocation = (params: LocationWidth, index: number) => {
+    finalLocationWidth.current = {
+      ...finalLocationWidth.current,
+      [index]: {
+        ...finalLocationWidth.current[index],
+        ...params,
+      },
+    };
+    if (index === columns.length - 1) {
+      setLocationWidth(computed());
+    }
+  };
+  const computed = () => {
+    let left = 0,
+      right = 0;
+    for (let index = 0; index < columns.length; index++) {
+      if (finalLocationWidth.current[index]) {
+        finalLocationWidth.current[index].left = left;
+        left = finalLocationWidth.current[index].width + left;
+      }
+    }
+    for (let index = columns.length - 1; index > -1; index--) {
+      if (finalLocationWidth.current[index]) {
+        finalLocationWidth.current[index].right = right;
+        right = finalLocationWidth.current[index].width + right;
+      }
+    }
+    return finalLocationWidth.current;
+  };
   useEffect(() => {
     if (expandable) {
       if (expandable.defaultExpandAllRows) {
@@ -215,11 +252,19 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
       <div className={cls} {...other} style={{ ...other.style, ...style.div }}>
         <table style={{ tableLayout: ellipsis ? 'fixed' : 'auto', ...style.table }}>
           {title && <caption>{title}</caption>}
-          {columns && columns.length > 0 && <Thead onCellHead={onCellHead} data={header} />}
+          {columns && columns.length > 0 && (
+            <Thead
+              onCellHead={onCellHead}
+              data={header}
+              locationWidth={locationWidth}
+              updateLocation={updateLocation}
+            />
+          )}
           {data && data.length > 0 && (
             <tbody>
               <TableTr
                 rowKey={rowKey}
+                locationWidth={locationWidth}
                 data={data}
                 keys={self.keys}
                 render={render}
