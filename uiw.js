@@ -10527,7 +10527,6 @@ function SearchTagInput(props) {
       setInnerIsOpen(isOpen);
       if (!isOpen) searchValueChange('');
     },
-    disabled: disabled,
     isOpen: innerIsOpen,
     menu: /*#__PURE__*/(0,jsx_runtime.jsx)(react_card_esm, {
       bodyStyle: emptyOption === true ? {
@@ -10565,7 +10564,6 @@ function SearchTagInput(props) {
               },
               className: prefixCls + "-tag",
               closable: true,
-              disabled: disabled,
               color: "#393E48",
               onClose: e => {
                 e.stopPropagation();
@@ -10575,7 +10573,10 @@ function SearchTagInput(props) {
             }, index);
           }), /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
             ref: inputRef,
-            style: {},
+            style: {
+              flex: 1,
+              minWidth: 30
+            },
             className: prefixCls + "-input-contents",
             size: size,
             disabled: disabled,
@@ -10584,7 +10585,7 @@ function SearchTagInput(props) {
             value: searchValue,
             placeholder: selectedOption.length ? '' : placeholder
           })]
-        }), !disabled && /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
+        }), /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
           style: {
             height: 25,
             width: 14

@@ -5044,11 +5044,6 @@ a.w-list-item:hover:not(.w-disabled) {
   margin-right: 5px;
 }
 
-.w-search-tree-input-contents {
-  flex: 1 1;
-  min-width: 30px;
-  top: 1px;
-}
 .w-search-tree-input-contents input {
   box-shadow: none;
   padding: 0px;
