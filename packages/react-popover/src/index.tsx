@@ -48,7 +48,7 @@ export default class Popover extends React.Component<PopoverProps> {
         {typeof this.props.children === 'object' && (this.props.children as JSX.Element).type.name !== 'Icon' ? (
           this.props.children
         ) : (
-          <span>{this.props.children}</span>
+          <span style={{ display: 'block', writingMode: 'vertical-rl' }}>{this.props.children}</span>
         )}
       </OverlayTrigger>
     );
