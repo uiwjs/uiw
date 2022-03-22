@@ -38,9 +38,11 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     locationWidth,
   } = props;
   const [isOpacity, setIsOpacity] = useState(false);
+  const [childrenIndex, setChildrenIndex] = useState(0);
   const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
   useEffect(() => {
     setIsOpacity(!!data?.find((it) => it[childrenColumnName]));
+    setChildrenIndex(keys?.findIndex((it) => it.key === 'uiw-expanded') === -1 ? 0 : 1);
   }, [data]);
 
   const IconDom = useMemo(() => {
@@ -92,7 +94,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   }
                 }
                 const isHasChildren = Array.isArray(trData[childrenColumnName]);
-                if (colNum === 0 && (isOpacity || hierarchy || isHasChildren)) {
+                if (colNum === childrenIndex && (isOpacity || hierarchy || isHasChildren)) {
                   objs.children = (
                     <>
                       {IconDom(key, isHasChildren)}
@@ -126,10 +128,10 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                 );
               })}
             </tr>
+            {isExpandedDom(trData, rowNum)}
             {expandIndex.includes(key) && (
               <TableTr {...props} data={trData[childrenColumnName]} hierarchy={hierarchy + 1} />
             )}
-            {isExpandedDom(trData, rowNum)}
           </React.Fragment>
         );
       })}

@@ -729,9 +729,6 @@ ReactDOM.render(<Demo />, _mount_);
 
 可以通过设置 indentSize 以控制每一层的缩进宽度
 
-> ⚠️ 注意: 树形数据展示和`expandable.expandedRowRender`请不要同时出现，后续或将支持
-<!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
-
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
@@ -805,7 +802,7 @@ const Demo = () => {
       <Table 
         rowKey="id"
         columns={columns}
-        data={dataSource} 
+        data={dataSource}
       />
     </div>
   )
@@ -968,7 +965,8 @@ ReactDOM.render(<Demo />, _mount_);
 
 ### expandable
 
-注意 expandedRowKeys 与 onExpandedRowsChange 必须成对出现
+> ⚠️ 注意: expandedRowKeys 与 onExpandedRowsChange 必须同时出现或不出现
+<!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
