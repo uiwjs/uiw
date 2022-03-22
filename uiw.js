@@ -9371,9 +9371,11 @@ function TableTr(props) {
     locationWidth
   } = props;
   var [isOpacity, setIsOpacity] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
+  var [childrenIndex, setChildrenIndex] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(0);
   var [expandIndex, setExpandIndex] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     setIsOpacity(!!(data != null && data.find(it => it[childrenColumnName])));
+    setChildrenIndex((keys == null ? void 0 : keys.findIndex(it => it.key === 'uiw-expanded')) === -1 ? 0 : 1);
   }, [data]);
   var IconDom = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
     return (key, isOpacity) => {
@@ -9429,7 +9431,7 @@ function TableTr(props) {
 
             var isHasChildren = Array.isArray(trData[childrenColumnName]);
 
-            if (colNum === 0 && (isOpacity || hierarchy || isHasChildren)) {
+            if (colNum === childrenIndex && (isOpacity || hierarchy || isHasChildren)) {
               objs.children = /*#__PURE__*/(0,jsx_runtime.jsxs)(jsx_runtime.Fragment, {
                 children: [IconDom(key, isHasChildren), /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
                   style: {
@@ -9462,10 +9464,10 @@ function TableTr(props) {
               }, evn)
             }));
           })
-        }, key), expandIndex.includes(key) && /*#__PURE__*/(0,jsx_runtime.jsx)(TableTr, _extends({}, props, {
+        }, key), isExpandedDom(trData, rowNum), expandIndex.includes(key) && /*#__PURE__*/(0,jsx_runtime.jsx)(TableTr, _extends({}, props, {
           data: trData[childrenColumnName],
           hierarchy: hierarchy + 1
-        })), isExpandedDom(trData, rowNum)]
+        }))]
       }, rowNum);
     })
   });
@@ -9544,9 +9546,23 @@ function Table(props) {
   };
 
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    var childKey = (expandable == null ? void 0 : expandable.childrenColumnName) || 'children';
+
+    var deep = params => {
+      var arr1 = [];
+      var arr = params.map((it, index) => {
+        if (Array.isArray(it[childKey])) {
+          arr1.push(...deep(it[childKey]));
+        }
+
+        return rowKey ? it[rowKey] : index;
+      });
+      return [...arr1, ...arr];
+    };
+
     if (expandable) {
       if (expandable.defaultExpandAllRows) {
-        setExpandIndex(data.map((it, index) => rowKey ? it[rowKey] : index));
+        setExpandIndex(deep(data));
         return;
       }
 
