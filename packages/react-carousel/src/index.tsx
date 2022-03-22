@@ -9,6 +9,7 @@ export interface CarouselProps extends IProps, HTMLDivProps {
   palyTime?: number;
   scrollTime?: number;
   autoPlay?: boolean;
+  direction?: 'horizontal' | 'vertical';
   afterChange?: (current: number) => void;
   beforeChange?: (current: number) => void;
 }
@@ -23,6 +24,7 @@ export interface CarouselRef {
 function Carousel(props: CarouselProps, ref: React.ForwardedRef<CarouselRef>) {
   const {
     position = 0,
+    direction = 'horizontal',
     width = 400,
     height = 200,
     palyTime = 2000,
@@ -110,15 +112,28 @@ function Carousel(props: CarouselProps, ref: React.ForwardedRef<CarouselRef>) {
     return <div style={{ width, height, ...style }}>{child}</div>;
   });
 
+  const innerStyle = useMemo(() => {
+    const style = { transform: '', display: '' };
+    switch (direction) {
+      case 'horizontal':
+        style.transform = `translate3d(${-(currentPosition * width)}px, 0px, 0px)`;
+        style.display = 'flex';
+        break;
+      case 'vertical':
+        style.transform = `translate3d(0px, ${-(currentPosition * height)}px, 0px)`;
+        style.display = 'block';
+        break;
+      default:
+        break;
+    }
+    return style;
+  }, [direction, currentPosition, width, height]);
+
   return (
     <div className={cls} style={{ width, height }}>
       <div
         className={`${cls}-content`}
-        style={{
-          width: width * childCount,
-          transform: `translate3d(${-(currentPosition * width)}px, 0px, 0px)`,
-          transition: transitionInner,
-        }}
+        style={{ width: width * childCount, transition: transitionInner, ...innerStyle }}
       >
         {childrens}
         <div style={{ width, height, ...style }}>{childrens?.[0]}</div>

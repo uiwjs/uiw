@@ -24,20 +24,37 @@ import { Carousel } from 'uiw';
 
 function Demo() {
   return (
-    <Carousel>
-      <div style={{ height: '100%', background: '#1EABCD' }}>
-        <span>1</span>
-      </div>
-      <div style={{ height: '100%',  background: '#393b46' }}>
-        <span>2</span>
-      </div>
-      <div style={{ height: '100%',  background: '#008EF0' }}>
-        <span>3</span>
-      </div>
-      <div style={{ height: '100%',  background: '#393E48' }}>
-        <span>4</span>
-      </div>
-    </Carousel>
+    <div style={{ display:'flex' }}>
+      <Carousel>
+        <div style={{ height: '100%', background: '#1EABCD' }}>
+          <span>1</span>
+        </div>
+        <div style={{ height: '100%',  background: '#393b46' }}>
+          <span>2</span>
+        </div>
+        <div style={{ height: '100%',  background: '#008EF0' }}>
+          <span>3</span>
+        </div>
+        <div style={{ height: '100%',  background: '#393E48' }}>
+          <span>4</span>
+        </div>
+      </Carousel>
+      <span style={{marginLeft:10}}/>
+      <Carousel direction="vertical" >
+        <div style={{ height: '100%', background: '#1EABCD' }}>
+          <span>1</span>
+        </div>
+        <div style={{ height: '100%',  background: '#393b46' }}>
+          <span>2</span>
+        </div>
+        <div style={{ height: '100%',  background: '#008EF0' }}>
+          <span>3</span>
+        </div>
+        <div style={{ height: '100%',  background: '#393E48' }}>
+          <span>4</span>
+        </div>
+      </Carousel>
+    </div>
   );
 }
 
@@ -136,7 +153,7 @@ ReactDOM.render(<Demo />, _mount_);
 | autoPlay | 是否自动播放 | boolean | true |
 | afterChange | 切换面板前的回调 | (current) => void | - |
 | beforeChange | 切换面板后的回调 | (current) => void | - |
-
+| direction | 滚动方位`horizontal`横向，`vertical`竖向 | horizontal \| vertical | horizontal |
 
 ### ref
 
