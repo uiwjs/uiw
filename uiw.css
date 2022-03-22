@@ -1705,8 +1705,6 @@ sup.w-badge-count {
 }
 .w-carousel-content {
   height: 200px;
-  display: flex;
-  flex-direction: row;
   transition: 0.6s ease-in-out;
 }
 

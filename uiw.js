@@ -4039,6 +4039,7 @@ var react_card_esm_excluded = ["prefixCls", "className", "title", "extra", "foot
 function Carousel(props, ref) {
   var {
     position = 0,
+    direction = 'horizontal',
     width = 400,
     height = 200,
     palyTime = 2000,
@@ -4138,6 +4139,29 @@ function Carousel(props, ref) {
       children: child
     });
   });
+  var innerStyle = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
+    var style = {
+      transform: '',
+      display: ''
+    };
+
+    switch (direction) {
+      case 'horizontal':
+        style.transform = "translate3d(" + -(currentPosition * width) + "px, 0px, 0px)";
+        style.display = 'flex';
+        break;
+
+      case 'vertical':
+        style.transform = "translate3d(0px, " + -(currentPosition * height) + "px, 0px)";
+        style.display = 'block';
+        break;
+
+      default:
+        break;
+    }
+
+    return style;
+  }, [direction, currentPosition, width, height]);
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
     className: cls,
     style: {
@@ -4146,11 +4170,10 @@ function Carousel(props, ref) {
     },
     children: /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
       className: cls + "-content",
-      style: {
+      style: _extends({
         width: width * childCount,
-        transform: "translate3d(" + -(currentPosition * width) + "px, 0px, 0px)",
         transition: transitionInner
-      },
+      }, innerStyle),
       children: [childrens, /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
         style: _extends({
           width,
