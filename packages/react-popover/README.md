@@ -28,13 +28,15 @@ class Demo extends React.Component {
     super();
     this.state = {
       isOpen: false,
+      isOpen1: false,
     }
   }
-  onClick() {
-    this.setState({ isOpen: false });
+  onClick(field) {
+    this.setState({ [field]: false });
   }
-  handleVisibleChange(isOpen) {
-    this.setState({ isOpen });
+
+  handleVisibleChange(field, isOpen) {
+    this.setState({ [field]:isOpen });
   }
   render() {
     return (
@@ -43,15 +45,15 @@ class Demo extends React.Component {
           trigger="click"
           placement="top"
           isOpen={this.state.isOpen}
-          onVisibleChange={this.handleVisibleChange.bind(this)}
+          onVisibleChange={this.handleVisibleChange.bind(this, 'isOpen')}
           content={
             <Card bordered={false} title="Card标题" extra={<a href="#">更多</a>} style={{ width: 200 }}>
               <div>Are you sure you want to delete these items? You won't be able to recover them.</div>
               <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 15 }}>
-                <Button size="small" onClick={this.onClick.bind(this)}>
+                <Button size="small" onClick={this.onClick.bind(this, 'isOpen')}>
                   Cancel
                 </Button>
-                <Button type="danger" size="small" onClick={this.onClick.bind(this)}>
+                <Button type="danger" size="small" onClick={this.onClick.bind(this, 'isOpen')}>
                   Delete
                 </Button>
               </div>
@@ -64,14 +66,16 @@ class Demo extends React.Component {
           <Popover
             trigger="click"
             placement="top"
+            isOpen={this.state.isOpen1}
+            onVisibleChange={this.handleVisibleChange.bind(this, 'isOpen1')}
             content={
               <Card bordered={false} title="Card标题" extra={<a href="#">更多</a>} style={{ width: 200 }}>
                 <div>Are you sure you want to delete these items? You won't be able to recover them.</div>
                 <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 15 }}>
-                  <Button size="small" onClick={this.onClick.bind(this)}>
+                  <Button size="small" onClick={this.onClick.bind(this, 'isOpen1')}>
                     Cancel
                   </Button>
-                  <Button type="danger" size="small" onClick={this.onClick.bind(this)}>
+                  <Button type="danger" size="small" onClick={this.onClick.bind(this, 'isOpen1')}>
                     Delete
                   </Button>
                 </div>

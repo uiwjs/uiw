@@ -136,6 +136,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
         setInnerIsOpen(isOpen);
         if (!isOpen) searchValueChange('');
       }}
+      disabled={disabled}
       isOpen={innerIsOpen}
       menu={<Card bodyStyle={emptyOption === true ? { padding: 0 } : undefined}>{newContent}</Card>}
     >
@@ -154,6 +155,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
                   className={`${prefixCls}-tag`}
                   key={index}
                   closable
+                  disabled={disabled}
                   color="#393E48"
                   onClose={(e) => {
                     e.stopPropagation();
@@ -166,7 +168,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
             })}
             <Input
               ref={inputRef}
-              style={{ flex: 1, minWidth: 30 }}
+              style={{}}
               className={`${prefixCls}-input-contents`}
               size={size}
               disabled={disabled}
@@ -176,11 +178,17 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
               placeholder={selectedOption.length ? '' : placeholder}
             />
           </div>
-          <span style={{ height: 25, width: 14 }} className={`${prefixCls}-close-tag-contents`}>
-            {(selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
-              <Icon type={selectIconType} spin={loading && selectIconType === 'loading'} onClick={resetSelectedValue} />
-            )}
-          </span>
+          {!disabled && (
+            <span style={{ height: 25, width: 14 }} className={`${prefixCls}-close-tag-contents`}>
+              {(selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
+                <Icon
+                  type={selectIconType}
+                  spin={loading && selectIconType === 'loading'}
+                  onClick={resetSelectedValue}
+                />
+              )}
+            </span>
+          )}
         </div>
       </div>
     </Dropdown>
