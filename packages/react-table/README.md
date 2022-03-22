@@ -954,17 +954,17 @@ ReactDOM.render(<Demo />, _mount_);
 
 列描述数据对象，是 columns 中的一项，
 
-| 参数 | 说明 | 类型 | 默认值 |
-|--------- |-------- |--------- |-------- |
-| title | 列头显示文字。| ReactNode | - |
-| key | 需要的 key，可以忽略这个属性，如果标题带有 `render` 函数，那么这个 `key` 为必须非常重要。| String | - |
-| width | 列宽度。| Number | - |
-| colSpan | 合并表头行。| Number | - |
-| ellipsis | 超过宽度将自动省略。`v4.8.7+`| Boolean | `false` |
-| render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前值的 `key`，行索引数据，当前行号，当前列号。| `Function(text, key, rowData, rowNumber, columnNumber)` | - |
-| align | 设置列的对齐方式 | "left"\|"center"\|"right" | - |
-| className | 列样式类名 | String | - |
-| fixed | 把选择框列固定	 | Boolean \|"left"\|"right" | - |
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+|--------- |-------- |--------- |-------- |-------- |
+| title | 列头显示文字。| ReactNode | - | - |
+| key | 需要的 key，可以忽略这个属性，如果标题带有 `render` 函数，那么这个 `key` 为必须非常重要。| String | - | - |
+| width | 列宽度。| Number | - | - |
+| colSpan | 合并表头行。| Number | - | - |
+| ellipsis | 超过宽度将自动省略。`v4.8.7+`| Boolean | `false` | - |
+| render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前值的 `key`，行索引数据，当前行号，当前列号。| `Function(text, key, rowData, rowNumber, columnNumber)` | - | - |
+| align | 设置列的对齐方式 | "left"\|"center"\|"right" | - | - |
+| className | 列样式类名 | String | - | - |
+| fixed | 把选择框列固定	 | Boolean \|"left"\|"right" | - | 4.15.1 |
 
 ### expandable
 
