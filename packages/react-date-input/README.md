@@ -26,40 +26,41 @@ function Demo () {
 
   const [dataRange,dataRangeSet] =React.useState(['2022-02-25 15:06:24','2022-02-27 14:47:32'])
 
- function onChange(selectedDate,dataRange) {
+  function onChange(selectedDate,dataRange) {
     console.log('selectedDate',selectedDate,dataRange)
   }
-    return (
-      <div>
-        <Row gutter={10} style={{ maxWidth: 360,marginBottom:10 }}>
-          <Col fixed>
-            <DateInput
-              value={new Date()}
-              datePickerProps={{ todayButton: '今天' }}
-              onChange={onChange}
-            />
-          </Col>
-          <Col>
-            <DateInput
-              value={new Date()}
-              disabled
-              onChange={onChange}
-            />
-          </Col>
-        </Row>
-        <Row gutter={10}>
-          <Col>
-            <DateInputRange
-              bodyStyle={{width:350}}
-              format="YYYY/MM/DD HH:mm:ss"
-              value={dataRange}
-              datePickerProps={{ todayButton: '今天',showTime:true }}
-              onChange={onChange}
-            />
-          </Col>
-        </Row>
-      </div>
-    )
+
+  return (
+    <div>
+      <Row gutter={10} style={{ maxWidth: 360,marginBottom:10 }}>
+        <Col fixed>
+          <DateInput
+            value={new Date()}
+            datePickerProps={{ todayButton: '今天' }}
+            onChange={onChange}
+          />
+        </Col>
+        <Col>
+          <DateInput
+            value={new Date()}
+            disabled
+            onChange={onChange}
+          />
+        </Col>
+      </Row>
+      <Row gutter={10}>
+        <Col>
+          <DateInputRange
+            bodyStyle={{width:350}}
+            format="YYYY/MM/DD HH:mm:ss"
+            value={dataRange}
+            datePickerProps={{ todayButton: '今天',showTime:true }}
+            onChange={onChange}
+          />
+        </Col>
+      </Row>
+    </div>
+  )
 }
 ReactDOM.render(<Demo />, _mount_);
 ```
@@ -196,6 +197,34 @@ class Demo extends React.Component {
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+## 自动隐藏弹层
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { DateInput } from 'uiw';
+
+class Demo extends React.Component {
+  onChange(selectedDate) {
+    console.log('selectedDate:', selectedDate);
+  }
+  render() {
+    return (
+      <div style={{ maxWidth: 200 }}>
+        <DateInput
+          autoClose={true}
+          format="YYYY/MM/DD HH:mm:ss"
+          datePickerProps={{ showTime: true, todayButton: '今天' }}
+          onChange={this.onChange.bind(this)}
+        />
+      </div>
+    )
+  }
+}
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -208,6 +237,7 @@ ReactDOM.render(<Demo />, _mount_);
 | popoverProps | 将参数传递给 [`<Popover>`](#/components/popover) 组件 | Object | - |
 | datePickerProps | 将参数传递给 [`<DatePicker>`](#/components/date-picker) 组件 | Object | - |
 | disabled | 组件 [`<Input>`](#/components/input) 的属性，禁用日历 | Boolean | - |
+| autoClose | 是否自动关闭弹层 | Boolean | false |
 
 组件 `DateInput` 继承 `<Input>` 组件，更多属性文档请参考 [`<Input>`](#/components/input)。
 
