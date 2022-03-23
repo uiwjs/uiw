@@ -131,9 +131,20 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
     return finalLocationWidth.current;
   };
   useEffect(() => {
+    const childKey = expandable?.childrenColumnName || 'children';
+    const deep = (params: TableColumns<T>) => {
+      const arr1: Array<T[keyof T] | number> = [];
+      const arr = params.map((it: T, index: number) => {
+        if (Array.isArray(it[childKey])) {
+          arr1.push(...deep(it[childKey]));
+        }
+        return rowKey ? it[rowKey] : index;
+      });
+      return [...arr1, ...arr];
+    };
     if (expandable) {
       if (expandable.defaultExpandAllRows) {
-        setExpandIndex(data.map((it, index) => (rowKey ? it[rowKey] : index)));
+        setExpandIndex(deep(data));
         return;
       }
       if (expandable.defaultExpandedRowKeys) {
