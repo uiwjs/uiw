@@ -284,7 +284,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
                 onCell={onCell}
                 hierarchy={0}
                 isExpandedDom={isExpandedDom}
-                indentSize={expandable?.indentSize || 16}
+                indentSize={typeof expandable?.indentSize === 'number' ? expandable?.indentSize : 16}
                 childrenColumnName={expandable?.childrenColumnName || 'children'}
               />
             </tbody>
