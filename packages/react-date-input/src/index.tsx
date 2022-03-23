@@ -15,6 +15,7 @@ export interface DateInputProps extends IProps, Omit<InputProps, 'onChange' | 'v
   format?: string;
   allowClear?: boolean;
   onChange?: (selectedDate?: Date) => void;
+  autoClose?: boolean;
 }
 
 export default function DateInput(props: DateInputProps) {
@@ -24,6 +25,7 @@ export default function DateInput(props: DateInputProps) {
     popoverProps,
     datePickerProps,
     allowClear = true,
+    autoClose = false,
     format = 'YYYY/MM/DD',
     onChange,
     ...inputProps
@@ -40,6 +42,7 @@ export default function DateInput(props: DateInputProps) {
   }, [props.value]);
 
   function handleChange(cdate?: Date) {
+    autoClose && setIsOpen(false);
     setDate(cdate);
     onChange && onChange(cdate);
   }
@@ -48,11 +51,16 @@ export default function DateInput(props: DateInputProps) {
       <Icon className={`${prefixCls}-close-btn`} onClick={() => handleChange(undefined)} type="close" />
     );
   }
+
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Popover
       trigger="focus"
       placement="bottomLeft"
       autoAdjustOverflow
+      isOpen={isOpen}
+      onVisibleChange={(open) => setIsOpen(open)}
       {...popoverProps}
       content={
         <DatePicker
