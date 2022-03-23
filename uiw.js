@@ -4767,7 +4767,7 @@ function DateInputRange(props) {
 ;// CONCATENATED MODULE: ../react-date-input/esm/index.js
 
 
-var react_date_input_esm_excluded = ["prefixCls", "className", "popoverProps", "datePickerProps", "allowClear", "format", "onChange"];
+var react_date_input_esm_excluded = ["prefixCls", "className", "popoverProps", "datePickerProps", "allowClear", "autoClose", "format", "onChange"];
 
 
 
@@ -4784,6 +4784,7 @@ function DateInput(props) {
     popoverProps,
     datePickerProps,
     allowClear = true,
+    autoClose = false,
     format = 'YYYY/MM/DD',
     onChange
   } = props,
@@ -4799,6 +4800,7 @@ function DateInput(props) {
   }, [props.value]);
 
   function handleChange(cdate) {
+    autoClose && setIsOpen(false);
     setDate(cdate);
     onChange && onChange(cdate);
   }
@@ -4811,10 +4813,13 @@ function DateInput(props) {
     });
   }
 
+  var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Popover, _extends({
     trigger: "focus",
     placement: "bottomLeft",
-    autoAdjustOverflow: true
+    autoAdjustOverflow: true,
+    isOpen: isOpen,
+    onVisibleChange: open => setIsOpen(open)
   }, popoverProps, {
     content: /*#__PURE__*/(0,jsx_runtime.jsx)(DatePicker, _extends({
       date: value && new Date(value) || undefined,
