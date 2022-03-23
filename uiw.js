@@ -9722,7 +9722,7 @@ function Table(props) {
             onCell: onCell,
             hierarchy: 0,
             isExpandedDom: isExpandedDom,
-            indentSize: (expandable == null ? void 0 : expandable.indentSize) || 16,
+            indentSize: typeof (expandable == null ? void 0 : expandable.indentSize) === 'number' ? expandable == null ? void 0 : expandable.indentSize : 16,
             childrenColumnName: (expandable == null ? void 0 : expandable.childrenColumnName) || 'children'
           })
         }), data && data.length === 0 && empty && /*#__PURE__*/(0,jsx_runtime.jsx)("tbody", {
