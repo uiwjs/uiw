@@ -2056,6 +2056,9 @@ sup.w-badge-count {
   font-size: 16px;
   line-height: 1.5;
 }
+.w-descriptions-tbody {
+  word-wrap: break-word;
+}
 .w-descriptions .w-descriptions-row:nth-child(2n) {
   background-color: transparent;
 }

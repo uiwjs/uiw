@@ -5031,6 +5031,7 @@ function InternalDescriptions(props, ref) {
         className: prefixCls + "-title",
         children: title
       }), /*#__PURE__*/(0,jsx_runtime.jsx)("tbody", {
+        className: prefixCls + "-tbody",
         children: childs.map((child, index) => /*#__PURE__*/(0,jsx_runtime.jsx)(Row, {
           prefixCls: prefixCls,
           bordered: bordered,
