@@ -30,6 +30,7 @@ const ResetCss = Loadable(lazy(() => import('./routes/components/reset-css')));
 const Avatar = Loadable(lazy(() => import('./routes/components/avatar')));
 const Affix = Loadable(lazy(() => import('./routes/components/affix')));
 const Calendar = Loadable(lazy(() => import('./routes/components/calendar')));
+const Cascader = Loadable(lazy(() => import('./routes/components/cascader')));
 const Checkbox = Loadable(lazy(() => import('./routes/components/checkbox')));
 const CopyToClipboard = Loadable(lazy(() => import('./routes/components/copy-to-clipboard')));
 const Collapse = Loadable(lazy(() => import('./routes/components/collapse')));
@@ -128,6 +129,7 @@ export const routes: RouteObject[] = [
       { path: '/components/collapse', element: <Collapse /> },
       { path: '/components/card', element: <Card /> },
       { path: '/components/carousel', element: <Carousel /> },
+      { path: '/components/cascader', element: <Cascader /> },
       { path: '/components/descriptions', element: <Descriptions /> },
       { path: '/components/loader', element: <Loader /> },
       { path: '/components/icon', element: <Icon /> },

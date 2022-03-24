@@ -1,0 +1,54 @@
+{
+  "name": "@uiw/react-cascader",
+  "version": "4.15.1",
+  "description": "Cascader component",
+  "author": "Kenny Wong <wowohoo@qq.com>",
+  "homepage": "https://uiwjs.github.io/#/components/cascader",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uiwjs/uiw.git"
+  },
+  "license": "MIT",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "files": [
+    "dist.css",
+    "cjs",
+    "esm",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "cascader",
+    "design",
+    "uiw",
+    "uiw-react",
+    "react.js",
+    "react",
+    "react-component",
+    "component",
+    "components",
+    "ui",
+    "css",
+    "uikit",
+    "react-ui",
+    "framework",
+    "front-end",
+    "frontend"
+  ],
+  "peerDependencies": {
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
+  },
+  "dependencies": {
+    "@uiw/react-dropdown": "^4.15.1",
+    "@uiw/react-icon": "^4.15.1",
+    "@uiw/react-input": "^4.15.1",
+    "@uiw/react-loader": "^4.15.1",
+    "@uiw/react-menu": "^4.15.1",
+    "@uiw/react-tag": "^4.15.1",
+    "@uiw/utils": "^4.15.1"
+  }
+}

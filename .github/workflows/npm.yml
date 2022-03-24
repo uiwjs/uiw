@@ -197,6 +197,11 @@ jobs:
       with:
         token: ${{ secrets.NPM_TOKEN }}
         package: ./packages/react-carousel/package.json
+    - name: 📦 @uiw/react-cascader publish to NPM
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/react-cascader/package.json
     - name: 📦 @uiw/react-checkbox publish to NPM
       uses: JS-DevTools/npm-publish@v1
       with:

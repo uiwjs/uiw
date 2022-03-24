@@ -68,6 +68,7 @@
     "@uiw/react-calendar": "^4.15.1",
     "@uiw/react-card": "^4.15.1",
     "@uiw/react-carousel": "^4.15.1",
+    "@uiw/react-cascader": "^4.15.1",
     "@uiw/react-checkbox": "^4.15.1",
     "@uiw/react-collapse": "^4.15.1",
     "@uiw/react-copy-to-clipboard": "^4.15.1",
