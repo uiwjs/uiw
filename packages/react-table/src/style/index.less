@@ -22,18 +22,30 @@
     }
     > tbody > tr {
       transition: all 0.3s;
+      > td {
+        background-color: #fff;
+        position: relative;
+        z-index: 1;
+      }
       &:hover,
       &:hover:nth-child(2n) {
-        background-color: #efefef;
+        > td {
+          background-color: #efefef;
+        }
       }
       &:nth-child(2n) {
-        background-color: #f9f9f9;
+        > td {
+          background-color: #f9f9f9;
+        }
       }
     }
     > thead {
       > tr > th {
         font-weight: normal;
         padding: 8px;
+        background-color: #f6f9fb;
+        position: relative;
+        z-index: 1;
       }
       > tr,
       tr:nth-child(2n) {
@@ -47,6 +59,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     word-break: keep-all;
+    display: block;
   }
   &-tr-children-center {
     text-align: center;
@@ -56,6 +69,41 @@
   }
   &-tr-children-right {
     text-align: right;
+  }
+  &-fixed-true {
+    position: sticky !important;
+    z-index: 2 !important;
+    // border: 0; 透风 1px
+  }
+  &-fixed-right {
+    position: sticky !important;
+    z-index: 2 !important;
+    // border: 0; 透风 1px
+  }
+  &-fixed-true::after {
+    box-shadow: inset 10px 0 8px -8px rgb(0 0 0 / 15%);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: -1px;
+    width: 30px;
+    transform: translateX(100%);
+    transition: box-shadow 0.3s;
+    content: '';
+    pointer-events: none;
+  }
+  &-fixed-right::after {
+    box-shadow: inset -10px 0 8px -8px rgb(0 0 0 / 15%);
+    position: absolute;
+    top: 0;
+    bottom: -1px;
+    left: 0;
+    width: 30px;
+    transform: translateX(-100%);
+    transition: box-shadow 0.3s;
+    content: '';
+    pointer-events: none;
+    border-right: 1px solid #f0f0f0;
   }
   &-bordered {
     > table {

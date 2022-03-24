@@ -729,9 +729,6 @@ ReactDOM.render(<Demo />, _mount_);
 
 可以通过设置 indentSize 以控制每一层的缩进宽度
 
-> ⚠️ 注意: 树形数据展示和`expandable.expandedRowRender`请不要同时出现，后续或将支持
-<!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
-
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
@@ -805,7 +802,7 @@ const Demo = () => {
       <Table 
         rowKey="id"
         columns={columns}
-        data={dataSource} 
+        data={dataSource}
       />
     </div>
   )
@@ -873,6 +870,64 @@ const Demo = () => (
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+### 固定列 
+
+通过使用 fixed 使其列固定
+> ⚠️ 注意: 若并没有 scroll 滚动条，fixed 属性并不会有直观的效果
+<!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { Table, Button } from 'uiw';
+
+const columns = [
+  {
+    title: '姓名',
+    ellipsis: true, 
+    // fixed: true,
+    width: 50,
+    key: 'name', 
+  }, {
+    // fixed: true,
+    title: '年龄',
+    width: 50,
+    style: { color: 'red' },
+    key: 'age',
+  }, {
+    title: '地址',
+    width: 50,
+    key: 'info',
+  }, {
+    title: '操作',
+    key: 'edit',
+    width: 98,
+    fixed: 'right',
+    render: (text, key, rowData, rowNumber, columnNumber) => (
+      <div>
+        <Button size="small" type="danger">删除</Button>
+        <Button size="small" type="success">修改</Button>
+      </div>
+    ),
+  },
+];
+const dataSource = [
+  { name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，中国香港创作型女歌手。', edit: '' },
+  { name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人', edit: '' },
+  { name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手', edit: '' },
+  { name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。', edit: '' },
+  { name: 'Angelababy', age: '54', info: '1989年2月28日出生于上海市，华语影视女演员、时尚模特。', edit: '' },
+  { name: '唐嫣', age: '12', info: '1983年12月6日出生于上海市，毕业于中央戏剧学院表演系本科班', edit: '' },
+  { name: '吴亦凡', age: '4', info: '1990年11月06日出生于广东省广州市，华语影视男演员、流行乐歌手。', edit: '' },
+];
+const Demo = () => (
+  <div>
+    <Table scroll={{x: 1200}} bordered columns={columns} data={dataSource} />
+  </div>
+);
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ## Props
 
 ### Table
@@ -881,44 +936,47 @@ ReactDOM.render(<Demo />, _mount_);
 |--------- |-------- |--------- |-------- |
 | columns | 表格列的配置描述，可以内嵌 `children`，以渲染分组表头。| ColumnProps[] | `[]` |
 | data | 数据数组。| Array[] | `[]` |
-| title | 表格标题 | ~~Function(text, key, rowData, rowNumber, columnNumber)~~ /<br/> Function(data: IColumns, rowNum: number, colNum: number)`@3.0.0+` /<br/> String / ReactNode | - |
+| title | 表格标题 | ~~Function(text, key, rowData, rowNumber, columnNumber)~~ /<br/> Function(data: IColumns, rowNum: Number, colNum: Number)`@3.0.0+` /<br/> String / ReactNode | - |
 | footer | 表格尾部 | String/ReactNode | - |
 | bordered | 是否展示外边框和列边框 | Boolean | - |
 | empty | 无数据状态 | ReactNode | - |
-| onCellHead | 表头单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ /<br/> Function(data: IColumns, colNum: number, rowNum: number, evn: React.MouseEvent<HTMLTableCellElement\>) `@3.0.0+` | - |
-| onCell | 单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ /<br/> Function(data: IColumns, options:{ colNum: number, rowNum: number, keyName: string }, evn: React.MouseEvent<HTMLTableCellElement\>) `@3.1.0+` | - |
+| onCellHead | 表头单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ /<br/> Function(data: IColumns, colNum: Number, rowNum: Number, evn: React.MouseEvent<HTMLTableCellElement\>) `@3.0.0+` | - |
+| onCell | 单元格点击回调 | ~~`Function(text, key, rowData, rowNumber, columnNumber)`~~ /<br/> Function(data: IColumns, options:{ colNum: Number, rowNum: Number, keyName: String }, evn: React.MouseEvent<HTMLTableCellElement\>) `@3.1.0+` | - |
 | expandable | 可展开配置 | ExpandableType | - |
-| rowKey | 表格行 key 的取值 | string | - |
+| rowKey | 表格行 key 的取值 | String | - |
+| scroll | 表格是否可滚动，也可以指定滚动区域的宽、高 | { x?: React.CSSProperties['width'], y?: React.CSSProperties['height'] } | - |
+
 
 ### ColumnProps
 
 列描述数据对象，是 columns 中的一项，
 
-| 参数 | 说明 | 类型 | 默认值 |
-|--------- |-------- |--------- |-------- |
-| title | 列头显示文字。| ReactNode | - |
-| key | 需要的 key，可以忽略这个属性，如果标题带有 `render` 函数，那么这个 `key` 为必须非常重要。| String | - |
-| width | 列宽度。| Number | - |
-| colSpan | 合并表头行。| Number | - |
-| ellipsis | 超过宽度将自动省略。`v4.8.7+`| Boolean | `false` |
-| render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前值的 `key`，行索引数据，当前行号，当前列号。| `Function(text, key, rowData, rowNumber, columnNumber)` | - |
-| align | 设置列的对齐方式 | "left"|"center"|"right" | - |
-| className | 列样式类名 | string | - |
-| scroll | 表格是否可滚动，也可以指定滚动区域的宽、高 | { x?: React.CSSProperties['width'], y?: React.CSSProperties['height'] } | - |
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+|--------- |-------- |--------- |-------- |-------- |
+| title | 列头显示文字。| ReactNode | - | - |
+| key | 需要的 key，可以忽略这个属性，如果标题带有 `render` 函数，那么这个 `key` 为必须非常重要。| String | - | - |
+| width | 列宽度。| Number | - | - |
+| colSpan | 合并表头行。| Number | - | - |
+| ellipsis | 超过宽度将自动省略。`v4.8.7+`| Boolean | `false` | - |
+| render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前值的 `key`，行索引数据，当前行号，当前列号。| `Function(text, key, rowData, rowNumber, columnNumber)` | - | - |
+| align | 设置列的对齐方式 | "left"\|"center"\|"right" | - | - |
+| className | 列样式类名 | String | - | - |
+| fixed | 把选择框列固定	 | Boolean \|"left"\|"right" | - | 4.15.1 |
 
 ### expandable
 
-注意 expandedRowKeys 与 onExpandedRowsChange 必须成对出现
+> ⚠️ 注意: expandedRowKeys 与 onExpandedRowsChange 必须同时出现或不出现
+<!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | expandedRowRender | 自定义展开行| (record, index, expanded) => React.ReactNode | - |
 | expandIcon | 自定义图标 | (expanded, record, index) => React.ReactNode; | - |
-| rowExpandable | 是否允许展开| (record)=>boolean | - |
-| defaultExpandAllRows | 初始时，是否展开所有行| boolean | false |
+| rowExpandable | 是否允许展开| (record)=>Boolean | - |
+| defaultExpandAllRows | 初始时，是否展开所有行| Boolean | false |
 | defaultExpandedRowKeys | 初始时，默认展开的行	rowKey数组 | Array | - |
 | expandedRowKeys | 控制展开的行	rowKey数组 | Array | - |
 | onExpandedRowsChange | 展开的行变化触发 | (expandedRows)=>void | - |
 | onExpand | 点击展开图标触发 | (expanded,record,index)=>void | - |
-| indentSize | 控制树形结构每一层的缩进宽度 | number | 16 |
-| childrenColumnName | 指定树形结构的列名 | string | children |
+| indentSize | 控制树形结构每一层的缩进宽度 | Number | 16 |
+| childrenColumnName | 指定树形结构的列名 | String | children |

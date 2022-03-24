@@ -86,6 +86,12 @@ export default function SearchSelect(props: SearchSelectProps) {
   }, []);
 
   useEffect(() => {
+    if (disabled) {
+      setInnerIsOpen(false);
+    }
+  }, [disabled]);
+
+  useEffect(() => {
     if (valueVerify(value)) {
       selectedValueChange(value!);
     }
@@ -210,7 +216,7 @@ export default function SearchSelect(props: SearchSelectProps) {
       trigger="click"
       style={{ marginTop: 5 }}
       overlayStyl={{ width: 100 }}
-      disabled={option && option.length > 0 ? false : true}
+      disabled={disabled}
       {...others}
       onVisibleChange={onVisibleChange}
       isOpen={innerIsOpen}
@@ -263,6 +269,7 @@ export default function SearchSelect(props: SearchSelectProps) {
                       color="#393E48"
                       {...tagProps}
                       closable
+                      disabled={disabled}
                       onClose={(e) => {
                         e.stopPropagation();
                         handleItemsClick(index, item);
@@ -290,7 +297,7 @@ export default function SearchSelect(props: SearchSelectProps) {
                 placeholder={selectedValue.length ? '' : placeholder}
               />
             </div>
-            {(selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
+            {!disabled && (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
               <Icon type={selectIconType} spin={loading && selectIconType === 'loading'} onClick={resetSelectedValue} />
             )}
           </div>
@@ -304,6 +311,7 @@ export default function SearchSelect(props: SearchSelectProps) {
             value={selectedLabel}
             placeholder={placeholder}
             addonAfter={
+              !disabled &&
               (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
                 <Icon
                   type={selectIconType}

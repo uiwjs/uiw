@@ -1,8 +1,9 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import Icon from '@uiw/react-icon';
-import { TableProps } from './';
+import { LocationWidth, TableProps } from './';
 import './style/index.less';
 import { noop } from '@uiw/utils';
+import { locationFixed } from './util';
 
 interface TableTrProps<T> {
   rowKey?: keyof T;
@@ -18,6 +19,7 @@ interface TableTrProps<T> {
   // 层级
   hierarchy: number;
   childrenColumnName: string;
+  locationWidth: { [key: number]: LocationWidth };
 }
 
 export default function TableTr<T extends { [key: string]: any }>(props: TableTrProps<T>) {
@@ -33,11 +35,14 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     hierarchy,
     indentSize,
     childrenColumnName,
+    locationWidth,
   } = props;
   const [isOpacity, setIsOpacity] = useState(false);
+  const [childrenIndex, setChildrenIndex] = useState(0);
   const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
   useEffect(() => {
     setIsOpacity(!!data?.find((it) => it[childrenColumnName]));
+    setChildrenIndex(keys?.findIndex((it) => it.key === 'uiw-expanded') === -1 ? 0 : 1);
   }, [data]);
 
   const IconDom = useMemo(() => {
@@ -88,11 +93,8 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                     }
                   }
                 }
-                if (ellipsis && ellipsis[keyName.key!]) {
-                  objs.className = `${prefixCls}-ellipsis`;
-                }
                 const isHasChildren = Array.isArray(trData[childrenColumnName]);
-                if (colNum === 0 && (isOpacity || hierarchy || isHasChildren)) {
+                if (colNum === childrenIndex && (isOpacity || hierarchy || isHasChildren)) {
                   objs.children = (
                     <>
                       {IconDom(key, isHasChildren)}
@@ -101,23 +103,35 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                     </>
                   );
                 }
+                if (keyName.fixed) {
+                  if (keyName.fixed === 'right') {
+                    objs.className = `${objs.className} ${prefixCls}-fixed-right`;
+                  } else {
+                    objs.className = `${objs.className} ${prefixCls}-fixed-true`;
+                  }
+                }
                 return (
                   <td
                     {...objs}
+                    style={{ ...locationFixed(keyName.fixed!, locationWidth, colNum) }}
+                    children={
+                      <span className={ellipsis && ellipsis[keyName.key!] ? `${prefixCls}-ellipsis` : undefined}>
+                        {objs.children}
+                      </span>
+                    }
                     key={colNum}
-                    // style={keyName?.style}
-                    className={`${objs.className || ''} ${prefixCls}-tr-children-${keyName.align || 'left'}  ${
-                      keyName.className || ''
+                    className={`${prefixCls}-tr-children-${keyName.align || 'left'}  ${keyName.className || ''} ${
+                      objs.className || ''
                     }`}
                     onClick={(evn) => onCell(trData, { rowNum, colNum, keyName: keyName.key! }, evn)}
                   />
                 );
               })}
             </tr>
+            {isExpandedDom(trData, rowNum)}
             {expandIndex.includes(key) && (
               <TableTr {...props} data={trData[childrenColumnName]} hierarchy={hierarchy + 1} />
             )}
-            {isExpandedDom(trData, rowNum)}
           </React.Fragment>
         );
       })}

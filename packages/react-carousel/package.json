@@ -1,8 +1,8 @@
 {
-  "name": "@uiw/react-search-tree",
+  "name": "@uiw/react-carousel",
   "version": "4.15.1",
-  "description": "TreeChecked component",
-  "homepage": "https://uiwjs.github.io/#/components/search-tree",
+  "description": "Carousel component",
+  "homepage": "https://uiwjs.github.io/#/components/carousel",
   "repository": {
     "type": "git",
     "url": "https://github.com/uiwjs/uiw.git"
@@ -20,8 +20,7 @@
     "access": "public"
   },
   "keywords": [
-    "react-search-checked",
-    "search-checked",
+    "carousel",
     "design",
     "uiw",
     "uiw-react",
@@ -43,15 +42,6 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-card": "^4.15.1",
-    "@uiw/react-checkbox": "^4.15.1",
-    "@uiw/react-dropdown": "^4.15.1",
-    "@uiw/react-empty": "^4.15.1",
-    "@uiw/react-icon": "^4.15.1",
-    "@uiw/react-input": "^4.15.1",
-    "@uiw/react-tag": "^4.15.1",
-    "@uiw/react-tree": "^4.15.1",
-    "@uiw/react-tree-checked": "^4.15.1",
     "@uiw/utils": "^4.15.1"
   }
 }
