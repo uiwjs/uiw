@@ -322,6 +322,7 @@ __webpack_require__.d(__webpack_exports__, {
   "Calendar": () => (/* reexport */ Calendar),
   "Card": () => (/* reexport */ react_card_esm),
   "Carousel": () => (/* reexport */ react_carousel_esm),
+  "Cascader": () => (/* reexport */ react_cascader_esm),
   "Checkbox": () => (/* reexport */ react_checkbox_esm),
   "CheckboxGroup": () => (/* reexport */ CheckboxGroup),
   "Col": () => (/* reexport */ Col),
@@ -4187,6 +4188,468 @@ function Carousel(props, ref) {
 
 /* harmony default export */ const react_carousel_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(Carousel));
 
+;// CONCATENATED MODULE: ../react-dropdown/esm/index.js
+
+
+var react_dropdown_esm_excluded = ["prefixCls", "placement", "className", "menu", "children", "disabled"];
+
+
+
+
+function Dropdown(props) {
+  var {
+    prefixCls = 'w-dropdown',
+    placement = 'bottomLeft',
+    className,
+    menu,
+    children,
+    disabled
+  } = props,
+      other = _objectWithoutPropertiesLoose(props, react_dropdown_esm_excluded);
+
+  var cls = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => [prefixCls, className].filter(Boolean).join(' ').trim(), [prefixCls, className]);
+  return /*#__PURE__*/(0,jsx_runtime.jsx)(react_overlay_trigger_esm, _extends({
+    isOutside: true,
+    autoAdjustOverflow: true,
+    className: cls,
+    disabled: disabled,
+    placement: placement
+  }, other, {
+    overlay: menu,
+    children: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(children, Object.assign({}, children.props))
+  }));
+}
+
+;// CONCATENATED MODULE: ../react-menu/esm/style/item.css
+// extracted by mini-css-extract-plugin
+/* harmony default export */ const style_item = ({});
+;// CONCATENATED MODULE: ../react-menu/esm/MenuItem.js
+
+
+var MenuItem_excluded = ["prefixCls", "className", "tagName", "children", "disabled", "multiline", "icon", "text", "active", "addonAfter", "isSubMenuItem"];
+
+
+
+
+
+var disabledProps = {
+  href: undefined,
+  onClick: undefined,
+  onMouseDown: undefined,
+  onMouseEnter: undefined,
+  onMouseLeave: undefined,
+  tabIndex: -1
+};
+
+function Internal(props, ref) {
+  var {
+    prefixCls = 'w-menu-item',
+    className,
+    tagName: TagName = 'a',
+    disabled = false,
+    multiline = false,
+    icon,
+    text,
+    active = false,
+    addonAfter,
+    isSubMenuItem
+  } = props,
+      htmlProps = _objectWithoutPropertiesLoose(props, MenuItem_excluded);
+
+  var anchorCls = [prefixCls, active ? 'active' : null, disabled ? 'w-disabled' : null, className].filter(Boolean).join(' ').trim();
+  var tagComp = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().createElement(TagName, _extends({}, htmlProps, disabled ? disabledProps : {}, {
+    className: anchorCls,
+    ref
+  }), /*#__PURE__*/(0,jsx_runtime.jsxs)(external_root_React_commonjs2_react_commonjs_react_amd_react_.Fragment, {
+    children: [/*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+      className: prefixCls + "-icon",
+      type: icon
+    }), /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+      className: [prefixCls && prefixCls + "-text", !multiline && prefixCls + "-multiline"].filter(Boolean).join(' ').trim(),
+      children: text
+    }), addonAfter]
+  }));
+
+  if (isSubMenuItem) {
+    return tagComp;
+  }
+
+  return /*#__PURE__*/(0,jsx_runtime.jsxs)("li", {
+    children: [" ", tagComp, " "]
+  });
+}
+
+var MenuItem = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(Internal);
+MenuItem.displayName = 'uiw.MenuItem';
+
+;// CONCATENATED MODULE: ../react-menu/esm/Divider.js
+
+
+var Divider_excluded = ["prefixCls", "className", "title"];
+
+
+var MenuDivider = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
+  var {
+    prefixCls = 'w-menu-divider',
+    className,
+    title
+  } = props,
+      htmlProps = _objectWithoutPropertiesLoose(props, Divider_excluded);
+
+  var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
+
+  if (!title) {
+    return /*#__PURE__*/(0,jsx_runtime.jsx)("li", _extends({}, htmlProps, {
+      ref: ref,
+      className: cls
+    }));
+  }
+
+  return /*#__PURE__*/(0,jsx_runtime.jsx)("li", _extends({}, htmlProps, {
+    ref: ref,
+    className: cls,
+    "data-menu": "divider",
+    children: /*#__PURE__*/(0,jsx_runtime.jsx)("strong", {
+      children: title
+    })
+  }));
+});
+MenuDivider.displayName = 'uiw.MenuDivider';
+
+;// CONCATENATED MODULE: ../react-menu/esm/style/submenu.css
+// extracted by mini-css-extract-plugin
+/* harmony default export */ const submenu = ({});
+;// CONCATENATED MODULE: ../react-menu/esm/SubMenu.js
+
+
+var SubMenu_excluded = ["prefixCls", "className", "disabled", "overlayProps", "children", "collapse", "inlineIndent", "inlineCollapsed"];
+
+
+
+
+
+
+
+
+function checkedMenuItem(node) {
+  var isCheck = false;
+
+  if (node) {
+    // eslint-disable-next-line
+    do {
+      if (!node.dataset.menu) {
+        isCheck = true;
+      }
+
+      if (node.dataset.menu && /^(subitem|divider)$/.test(node.dataset.menu)) {
+        isCheck = false;
+      }
+    } while (!node.dataset.menu && (node = node.parentNode));
+  }
+
+  return isCheck;
+}
+
+function IconView(_ref) {
+  var {
+    prefixCls,
+    collapse,
+    isOpen
+  } = _ref;
+  return (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+    type: "caret-right",
+    className: [prefixCls ? prefixCls + "-collapse-icon" : null, !collapse && isOpen ? 'w-open' : null, !collapse && !isOpen ? 'w-close' : null].filter(Boolean).join(' ').trim()
+  }), [prefixCls, collapse, isOpen]);
+}
+
+var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(function (props, ref) {
+  var {
+    prefixCls = 'w-menu-subitem',
+    className,
+    disabled,
+    overlayProps = {},
+    children,
+    collapse = false,
+    inlineIndent
+  } = props,
+      other = _objectWithoutPropertiesLoose(props, SubMenu_excluded);
+
+  var overlayTriggerProps = {};
+  var menuProps = {
+    bordered: true,
+    children,
+    inlineIndent,
+    className: [prefixCls ? prefixCls + "-overlay" : null].filter(Boolean).join(' ').trim()
+  };
+  var popupRef = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef(null);
+  var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
+    setIsOpen(false);
+  }, [collapse]);
+
+  function onClick(e) {
+    var target = e.currentTarget;
+    var related = e.relatedTarget || e.nativeEvent.target;
+    if (target.children.length < 1) return;
+
+    if (checkedMenuItem(related)) {
+      if (popupRef.current) {
+        popupRef.current.hide();
+      }
+    }
+  }
+
+  function onExit(node) {
+    node.style.height = node.scrollHeight + "px";
+    setIsOpen(false);
+  }
+
+  function onExiting(node) {
+    node.style.height = '0px';
+  }
+
+  function onEnter(node) {
+    node.style.height = '1px';
+    setIsOpen(true);
+  }
+
+  function onEntering(node) {
+    node.style.height = node.scrollHeight + "px";
+  }
+
+  function onEntered(node) {
+    node.style.height = 'initial';
+  }
+
+  if (!collapse) {
+    delete menuProps.onClick;
+    menuProps.bordered = false;
+    overlayTriggerProps.className = prefixCls + "-collapse";
+    overlayTriggerProps.appear = false;
+    overlayTriggerProps.isOutside = true;
+    overlayTriggerProps.isClickOutside = false;
+    overlayTriggerProps.unmountOnExit = false;
+    overlayTriggerProps.trigger = 'click';
+    overlayTriggerProps.transitionName = "" + prefixCls;
+    overlayTriggerProps.onExit = onExit;
+    overlayTriggerProps.onExiting = onExiting;
+    overlayTriggerProps.onEnter = onEnter;
+    overlayTriggerProps.onEntered = onEntered;
+    overlayTriggerProps.onEntering = onEntering;
+  } else {
+    overlayTriggerProps.className = prefixCls + "-popup";
+    overlayTriggerProps.trigger = 'hover';
+    overlayTriggerProps.usePortal = true;
+    menuProps.onClick = onClick;
+  }
+
+  return /*#__PURE__*/(0,jsx_runtime.jsx)("li", {
+    "data-menu": "subitem",
+    ref: ref,
+    children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_overlay_trigger_esm, _extends({
+      placement: "rightTop",
+      autoAdjustOverflow: true,
+      disabled: disabled,
+      isOpen: isOpen,
+      usePortal: false,
+      isOutside: true
+    }, overlayTriggerProps, overlayProps, {
+      ref: popupRef,
+      overlay: /*#__PURE__*/(0,jsx_runtime.jsx)(esm_Menu, _extends({}, menuProps, {
+        style: !collapse ? {
+          paddingLeft: inlineIndent
+        } : {}
+      })),
+      children: /*#__PURE__*/(0,jsx_runtime.jsx)(MenuItem, _extends({}, other, {
+        ref: null,
+        disabled: disabled,
+        isSubMenuItem: true,
+        addonAfter: /*#__PURE__*/(0,jsx_runtime.jsx)(IconView, {
+          collapse: collapse,
+          prefixCls: prefixCls,
+          isOpen: isOpen
+        }),
+        className: [prefixCls ? prefixCls + "-title" : null, !collapse ? prefixCls + "-collapse-title" : null, className].filter(Boolean).join(' ').trim()
+      }))
+    }))
+  });
+});
+SubMenu.displayName = 'uiw.SubMenu';
+
+;// CONCATENATED MODULE: ../react-menu/esm/style/menu.css
+// extracted by mini-css-extract-plugin
+/* harmony default export */ const menu = ({});
+;// CONCATENATED MODULE: ../react-menu/esm/Menu.js
+
+
+var Menu_excluded = ["prefixCls", "className", "children", "bordered", "theme", "inlineIndent", "inlineCollapsed"];
+
+
+
+
+
+
+var Menu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
+  var {
+    prefixCls = 'w-menu',
+    className,
+    children,
+    bordered,
+    theme = 'light',
+    inlineIndent = 10,
+    inlineCollapsed
+  } = props,
+      htmlProps = _objectWithoutPropertiesLoose(props, Menu_excluded);
+
+  var cls = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => [prefixCls, bordered ? 'w-bordered' : null, inlineCollapsed ? prefixCls + "-inline-collapsed" : null, theme ? prefixCls + "-" + theme : null, className].filter(Boolean).join(' ').trim(), [prefixCls, bordered, inlineCollapsed, theme, className]);
+  return /*#__PURE__*/(0,jsx_runtime.jsx)("ul", _extends({}, htmlProps, {
+    ref: ref,
+    className: cls,
+    "data-menu": "menu",
+    children: external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.map(children, (child, key) => {
+      if (! /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().isValidElement(child)) return child;
+      var props = {}; // Sub Menu
+
+      if (child.props.children && child.type === SubMenu) {
+        props.inlineIndent = inlineIndent;
+      }
+
+      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(child, Object.assign(_extends({}, props), child.props, {
+        key: "" + key
+      }));
+    })
+  }));
+});
+Menu.displayName = 'uiw.Menu';
+Menu.Item = MenuItem;
+Menu.SubMenu = SubMenu;
+Menu.Divider = MenuDivider;
+/* harmony default export */ const esm_Menu = (Menu);
+
+;// CONCATENATED MODULE: ../react-menu/esm/index.js
+
+
+
+
+
+/* harmony default export */ const react_menu_esm = (esm_Menu);
+
+;// CONCATENATED MODULE: ../react-cascader/esm/index.js
+
+
+
+
+
+
+
+
+function Cascader(props) {
+  var {
+    placeholder,
+    prefixCls = 'w-search-select',
+    className,
+    style = {
+      width: 200
+    },
+    option = [],
+    others
+  } = props;
+  var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
+  var [innerIsOpen, setInnerIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
+  var [selectedValue, setSelectedValue] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
+
+  function onVisibleChange(isOpen) {
+    setInnerIsOpen(isOpen);
+  }
+
+  var handleItemClick = (optionsItem, level) => {
+    selectedValue.splice(level, selectedValue.length - level, optionsItem);
+    setSelectedValue([...selectedValue]);
+    handelChange();
+  };
+
+  var handelChange = () => {
+    var value = selectedValue.map(item => item.value);
+    props.onChange == null ? void 0 : props.onChange(value, selectedValue);
+  };
+
+  var widths = (style == null ? void 0 : style.width) * 0.6 || undefined;
+
+  var OptionIter = function OptionIter(option, level) {
+    if (level === void 0) {
+      level = 0;
+    }
+
+    if (!option) return;
+    return /*#__PURE__*/(0,jsx_runtime.jsx)(react_menu_esm, {
+      bordered: true,
+      style: {
+        minHeight: 25,
+        minWidth: widths,
+        overflowY: 'scroll',
+        width: widths
+      },
+      children: !option || option.length === 0 ? /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+        style: {
+          color: '#c7c7c7',
+          fontSize: 12
+        },
+        children: '没有数据'
+      }) : option.map((item, index) => {
+        var _selectedValue$level;
+
+        var active = ((_selectedValue$level = selectedValue[level]) == null ? void 0 : _selectedValue$level.value) === item.value;
+        return /*#__PURE__*/(0,jsx_runtime.jsx)(react_menu_esm.Item, {
+          active: active,
+          text: item.label,
+          addonAfter: item.children ? /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+            type: "right"
+          }) : undefined,
+          onClick: () => handleItemClick(item, level)
+        }, index);
+      })
+    }, level);
+  };
+
+  var inputValue = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
+    return selectedValue.map(item => item.label).join(' / ');
+  }, [selectedValue.length]);
+  return /*#__PURE__*/(0,jsx_runtime.jsx)(Dropdown, _extends({
+    className: cls,
+    trigger: "click",
+    style: _extends({
+      marginTop: 5
+    }, style),
+    overlayStyl: {
+      width: 100
+    }
+  }, others, {
+    onVisibleChange: onVisibleChange,
+    isOpen: innerIsOpen,
+    menu: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+      style: {
+        display: 'flex'
+      },
+      children: new Array(selectedValue.length + 1).fill(0).map((_, index) => {
+        var _selectedValue;
+
+        var options = index ? (_selectedValue = selectedValue[index - 1]) == null ? void 0 : _selectedValue.children : option;
+        return OptionIter(options, index);
+      }).filter(m => !!m)
+    }),
+    children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
+      value: inputValue,
+      onChange: () => {},
+      placeholder: placeholder,
+      style: {
+        width: style == null ? void 0 : style.width
+      }
+    })
+  }));
+}
+
+/* harmony default export */ const react_cascader_esm = (Cascader);
+
 ;// CONCATENATED MODULE: ../react-radio/esm/RadioAbstract.js
 
 
@@ -5162,38 +5625,6 @@ var react_drawer_esm_excluded = ["prefixCls", "className", "style", "placement",
     })
   }));
 });
-
-;// CONCATENATED MODULE: ../react-dropdown/esm/index.js
-
-
-var react_dropdown_esm_excluded = ["prefixCls", "placement", "className", "menu", "children", "disabled"];
-
-
-
-
-function Dropdown(props) {
-  var {
-    prefixCls = 'w-dropdown',
-    placement = 'bottomLeft',
-    className,
-    menu,
-    children,
-    disabled
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_dropdown_esm_excluded);
-
-  var cls = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => [prefixCls, className].filter(Boolean).join(' ').trim(), [prefixCls, className]);
-  return /*#__PURE__*/(0,jsx_runtime.jsx)(react_overlay_trigger_esm, _extends({
-    isOutside: true,
-    autoAdjustOverflow: true,
-    className: cls,
-    disabled: disabled,
-    placement: placement
-  }, other, {
-    overlay: menu,
-    children: /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(children, Object.assign({}, children.props))
-  }));
-}
 
 ;// CONCATENATED MODULE: ../react-empty/esm/style/index.css
 // extracted by mini-css-extract-plugin
@@ -6437,320 +6868,6 @@ var react_loader_esm_excluded = ["prefixCls", "className", "size", "loading", "t
     }))]
   }));
 });
-
-;// CONCATENATED MODULE: ../react-menu/esm/style/item.css
-// extracted by mini-css-extract-plugin
-/* harmony default export */ const style_item = ({});
-;// CONCATENATED MODULE: ../react-menu/esm/MenuItem.js
-
-
-var MenuItem_excluded = ["prefixCls", "className", "tagName", "children", "disabled", "multiline", "icon", "text", "active", "addonAfter", "isSubMenuItem"];
-
-
-
-
-
-var disabledProps = {
-  href: undefined,
-  onClick: undefined,
-  onMouseDown: undefined,
-  onMouseEnter: undefined,
-  onMouseLeave: undefined,
-  tabIndex: -1
-};
-
-function Internal(props, ref) {
-  var {
-    prefixCls = 'w-menu-item',
-    className,
-    tagName: TagName = 'a',
-    disabled = false,
-    multiline = false,
-    icon,
-    text,
-    active = false,
-    addonAfter,
-    isSubMenuItem
-  } = props,
-      htmlProps = _objectWithoutPropertiesLoose(props, MenuItem_excluded);
-
-  var anchorCls = [prefixCls, active ? 'active' : null, disabled ? 'w-disabled' : null, className].filter(Boolean).join(' ').trim();
-  var tagComp = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().createElement(TagName, _extends({}, htmlProps, disabled ? disabledProps : {}, {
-    className: anchorCls,
-    ref
-  }), /*#__PURE__*/(0,jsx_runtime.jsxs)(external_root_React_commonjs2_react_commonjs_react_amd_react_.Fragment, {
-    children: [/*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
-      className: prefixCls + "-icon",
-      type: icon
-    }), /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
-      className: [prefixCls && prefixCls + "-text", !multiline && prefixCls + "-multiline"].filter(Boolean).join(' ').trim(),
-      children: text
-    }), addonAfter]
-  }));
-
-  if (isSubMenuItem) {
-    return tagComp;
-  }
-
-  return /*#__PURE__*/(0,jsx_runtime.jsxs)("li", {
-    children: [" ", tagComp, " "]
-  });
-}
-
-var MenuItem = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(Internal);
-MenuItem.displayName = 'uiw.MenuItem';
-
-;// CONCATENATED MODULE: ../react-menu/esm/Divider.js
-
-
-var Divider_excluded = ["prefixCls", "className", "title"];
-
-
-var MenuDivider = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
-  var {
-    prefixCls = 'w-menu-divider',
-    className,
-    title
-  } = props,
-      htmlProps = _objectWithoutPropertiesLoose(props, Divider_excluded);
-
-  var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
-
-  if (!title) {
-    return /*#__PURE__*/(0,jsx_runtime.jsx)("li", _extends({}, htmlProps, {
-      ref: ref,
-      className: cls
-    }));
-  }
-
-  return /*#__PURE__*/(0,jsx_runtime.jsx)("li", _extends({}, htmlProps, {
-    ref: ref,
-    className: cls,
-    "data-menu": "divider",
-    children: /*#__PURE__*/(0,jsx_runtime.jsx)("strong", {
-      children: title
-    })
-  }));
-});
-MenuDivider.displayName = 'uiw.MenuDivider';
-
-;// CONCATENATED MODULE: ../react-menu/esm/style/submenu.css
-// extracted by mini-css-extract-plugin
-/* harmony default export */ const submenu = ({});
-;// CONCATENATED MODULE: ../react-menu/esm/SubMenu.js
-
-
-var SubMenu_excluded = ["prefixCls", "className", "disabled", "overlayProps", "children", "collapse", "inlineIndent", "inlineCollapsed"];
-
-
-
-
-
-
-
-
-function checkedMenuItem(node) {
-  var isCheck = false;
-
-  if (node) {
-    // eslint-disable-next-line
-    do {
-      if (!node.dataset.menu) {
-        isCheck = true;
-      }
-
-      if (node.dataset.menu && /^(subitem|divider)$/.test(node.dataset.menu)) {
-        isCheck = false;
-      }
-    } while (!node.dataset.menu && (node = node.parentNode));
-  }
-
-  return isCheck;
-}
-
-function IconView(_ref) {
-  var {
-    prefixCls,
-    collapse,
-    isOpen
-  } = _ref;
-  return (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
-    type: "caret-right",
-    className: [prefixCls ? prefixCls + "-collapse-icon" : null, !collapse && isOpen ? 'w-open' : null, !collapse && !isOpen ? 'w-close' : null].filter(Boolean).join(' ').trim()
-  }), [prefixCls, collapse, isOpen]);
-}
-
-var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(function (props, ref) {
-  var {
-    prefixCls = 'w-menu-subitem',
-    className,
-    disabled,
-    overlayProps = {},
-    children,
-    collapse = false,
-    inlineIndent
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, SubMenu_excluded);
-
-  var overlayTriggerProps = {};
-  var menuProps = {
-    bordered: true,
-    children,
-    inlineIndent,
-    className: [prefixCls ? prefixCls + "-overlay" : null].filter(Boolean).join(' ').trim()
-  };
-  var popupRef = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef(null);
-  var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
-  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
-    setIsOpen(false);
-  }, [collapse]);
-
-  function onClick(e) {
-    var target = e.currentTarget;
-    var related = e.relatedTarget || e.nativeEvent.target;
-    if (target.children.length < 1) return;
-
-    if (checkedMenuItem(related)) {
-      if (popupRef.current) {
-        popupRef.current.hide();
-      }
-    }
-  }
-
-  function onExit(node) {
-    node.style.height = node.scrollHeight + "px";
-    setIsOpen(false);
-  }
-
-  function onExiting(node) {
-    node.style.height = '0px';
-  }
-
-  function onEnter(node) {
-    node.style.height = '1px';
-    setIsOpen(true);
-  }
-
-  function onEntering(node) {
-    node.style.height = node.scrollHeight + "px";
-  }
-
-  function onEntered(node) {
-    node.style.height = 'initial';
-  }
-
-  if (!collapse) {
-    delete menuProps.onClick;
-    menuProps.bordered = false;
-    overlayTriggerProps.className = prefixCls + "-collapse";
-    overlayTriggerProps.appear = false;
-    overlayTriggerProps.isOutside = true;
-    overlayTriggerProps.isClickOutside = false;
-    overlayTriggerProps.unmountOnExit = false;
-    overlayTriggerProps.trigger = 'click';
-    overlayTriggerProps.transitionName = "" + prefixCls;
-    overlayTriggerProps.onExit = onExit;
-    overlayTriggerProps.onExiting = onExiting;
-    overlayTriggerProps.onEnter = onEnter;
-    overlayTriggerProps.onEntered = onEntered;
-    overlayTriggerProps.onEntering = onEntering;
-  } else {
-    overlayTriggerProps.className = prefixCls + "-popup";
-    overlayTriggerProps.trigger = 'hover';
-    overlayTriggerProps.usePortal = true;
-    menuProps.onClick = onClick;
-  }
-
-  return /*#__PURE__*/(0,jsx_runtime.jsx)("li", {
-    "data-menu": "subitem",
-    ref: ref,
-    children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_overlay_trigger_esm, _extends({
-      placement: "rightTop",
-      autoAdjustOverflow: true,
-      disabled: disabled,
-      isOpen: isOpen,
-      usePortal: false,
-      isOutside: true
-    }, overlayTriggerProps, overlayProps, {
-      ref: popupRef,
-      overlay: /*#__PURE__*/(0,jsx_runtime.jsx)(esm_Menu, _extends({}, menuProps, {
-        style: !collapse ? {
-          paddingLeft: inlineIndent
-        } : {}
-      })),
-      children: /*#__PURE__*/(0,jsx_runtime.jsx)(MenuItem, _extends({}, other, {
-        ref: null,
-        disabled: disabled,
-        isSubMenuItem: true,
-        addonAfter: /*#__PURE__*/(0,jsx_runtime.jsx)(IconView, {
-          collapse: collapse,
-          prefixCls: prefixCls,
-          isOpen: isOpen
-        }),
-        className: [prefixCls ? prefixCls + "-title" : null, !collapse ? prefixCls + "-collapse-title" : null, className].filter(Boolean).join(' ').trim()
-      }))
-    }))
-  });
-});
-SubMenu.displayName = 'uiw.SubMenu';
-
-;// CONCATENATED MODULE: ../react-menu/esm/style/menu.css
-// extracted by mini-css-extract-plugin
-/* harmony default export */ const menu = ({});
-;// CONCATENATED MODULE: ../react-menu/esm/Menu.js
-
-
-var Menu_excluded = ["prefixCls", "className", "children", "bordered", "theme", "inlineIndent", "inlineCollapsed"];
-
-
-
-
-
-
-var Menu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
-  var {
-    prefixCls = 'w-menu',
-    className,
-    children,
-    bordered,
-    theme = 'light',
-    inlineIndent = 10,
-    inlineCollapsed
-  } = props,
-      htmlProps = _objectWithoutPropertiesLoose(props, Menu_excluded);
-
-  var cls = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => [prefixCls, bordered ? 'w-bordered' : null, inlineCollapsed ? prefixCls + "-inline-collapsed" : null, theme ? prefixCls + "-" + theme : null, className].filter(Boolean).join(' ').trim(), [prefixCls, bordered, inlineCollapsed, theme, className]);
-  return /*#__PURE__*/(0,jsx_runtime.jsx)("ul", _extends({}, htmlProps, {
-    ref: ref,
-    className: cls,
-    "data-menu": "menu",
-    children: external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.map(children, (child, key) => {
-      if (! /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().isValidElement(child)) return child;
-      var props = {}; // Sub Menu
-
-      if (child.props.children && child.type === SubMenu) {
-        props.inlineIndent = inlineIndent;
-      }
-
-      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(child, Object.assign(_extends({}, props), child.props, {
-        key: "" + key
-      }));
-    })
-  }));
-});
-Menu.displayName = 'uiw.Menu';
-Menu.Item = MenuItem;
-Menu.SubMenu = SubMenu;
-Menu.Divider = MenuDivider;
-/* harmony default export */ const esm_Menu = (Menu);
-
-;// CONCATENATED MODULE: ../react-menu/esm/index.js
-
-
-
-
-
-/* harmony default export */ const react_menu_esm = (esm_Menu);
 
 ;// CONCATENATED MODULE: ../react-message/esm/style/index.css
 // extracted by mini-css-extract-plugin
