@@ -118,7 +118,7 @@ function Cascader(props: CascaderProps) {
 
   const inputValue = useMemo(() => {
     return selectedValue.map((opt) => opt.label).join(' / ');
-  }, [selectedValue.length]);
+  }, [selectedValue]);
 
   return (
     <Dropdown
@@ -149,9 +149,11 @@ function Cascader(props: CascaderProps) {
           style={{ width: style?.width }}
           readOnly
           addonAfter={
-            selectIconType === 'close' && (
-              <Icon type={`${selectIconType}`} onClick={onClear} className={`${prefixCls}-close`} />
-            )
+            <span style={{ width: 'auto' }}>
+              {selectIconType === 'close' && (
+                <Icon type={selectIconType} onClick={onClear} className={`${prefixCls}-close`} />
+              )}
+            </span>
           }
         />
       </span>
