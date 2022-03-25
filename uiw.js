@@ -9389,7 +9389,7 @@ class ThComponent extends external_root_React_commonjs2_react_commonjs_react_amd
     var rect = external_root_ReactDOM_commonjs2_react_dom_commonjs_react_dom_amd_react_dom_default().findDOMNode(this);
     this.props.updateLocation({
       width: rect.getBoundingClientRect().width
-    }, this.props.colNum);
+    }, "" + this.props.rowNum + this.props.colNum, this.props.item.key, this.props.item.colSpan);
   }
 
   render() {
@@ -9419,7 +9419,7 @@ class ThComponent extends external_root_React_commonjs2_react_commonjs_react_amd
     }
 
     return /*#__PURE__*/(0,jsx_runtime.jsx)("th", _extends({}, thProps, {
-      style: _extends({}, thProps.style, locationFixed(fixed, locationWidth, colNum)),
+      style: _extends({}, thProps.style, locationFixed(fixed, locationWidth, "" + rowNum + colNum)),
       className: prefixCls + "-tr-children-" + ((item == null ? void 0 : item.align) || 'left') + " " + (item.className || '') + " " + cls,
       onClick: evn => onCellHead == null ? void 0 : onCellHead(item, colNum, rowNum, evn),
       children: titleNode
@@ -9543,7 +9543,8 @@ function TableTr(props) {
     hierarchy,
     indentSize,
     childrenColumnName,
-    locationWidth
+    locationWidth,
+    header
   } = props;
   var [isOpacity, setIsOpacity] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
   var [childrenIndex, setChildrenIndex] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(0);
@@ -9570,6 +9571,15 @@ function TableTr(props) {
       });
     };
   }, [expandIndex]);
+
+  var getIndex = key => {
+    var j = 0;
+    var i = header.findIndex(it => {
+      j = it.findIndex(item => item.key === key);
+      return j > -1;
+    });
+    return "" + i + j;
+  };
 
   if (!Array.isArray(data) || !data.length) {
     return null;
@@ -9625,7 +9635,7 @@ function TableTr(props) {
             }
 
             return /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.createElement)("td", _extends({}, objs, {
-              style: _extends({}, locationFixed(keyName.fixed, locationWidth, colNum)),
+              style: keyName.fixed ? _extends({}, locationFixed(keyName.fixed, locationWidth, "" + getIndex(keyName.key || 'undefined'))) : {},
               children: /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
                 className: ellipsis && ellipsis[keyName.key] ? prefixCls + "-ellipsis" : undefined,
                 children: objs.children
@@ -9689,34 +9699,71 @@ function Table(props) {
   var [locationWidth, setLocationWidth] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)({});
   var finalLocationWidth = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)({});
 
-  var updateLocation = (params, index) => {
+  var updateLocation = function updateLocation(params, index, key, colSpan) {
+    if (colSpan === void 0) {
+      colSpan = 0;
+    }
+
     finalLocationWidth.current = _extends({}, finalLocationWidth.current, {
-      [index]: _extends({}, finalLocationWidth.current[index], params)
+      [index]: _extends({}, finalLocationWidth.current[index], params, {
+        key: key,
+        colSpan
+      })
     });
 
-    if (index === columns.length - 1) {
+    if (index === "" + (header.length - 1) + (header[header.length - 1].length - 1)) {
       setLocationWidth(computed());
     }
   };
 
+  var deepClumnsLocation = (params, fistIndex, leftOrRight, isReverse) => {
+    var initialValue = 0,
+        lastIndex = isReverse ? 0 : params.length - 1,
+        deepParams = [];
+    params.forEach(() => {
+      var abs = Math.abs(lastIndex);
+      var i = "" + fistIndex + abs;
+
+      if (isReverse) {
+        lastIndex += 1;
+      } else {
+        lastIndex -= 1;
+      }
+
+      if (typeof params[abs] === 'number') {
+        initialValue = params[abs] + initialValue;
+        deepParams.push(params[abs]);
+        return;
+      }
+
+      if (finalLocationWidth.current[i]) {
+        finalLocationWidth.current[i][leftOrRight] = initialValue;
+        initialValue = finalLocationWidth.current[i].width + initialValue;
+      }
+
+      if (Array.isArray(params[abs].children)) {
+        deepParams.push(...params[abs].children);
+        return;
+      }
+
+      if (finalLocationWidth.current[i]) {
+        deepParams.push(finalLocationWidth.current[i].width);
+      } else {
+        var parent = header.find(it => it.find(it => it.key === params[abs].key)) || [];
+        var sub = parent.findIndex(it => it.key === params[abs].key);
+
+        if (finalLocationWidth.current["" + i[0] + sub]) {
+          // 合并单元格
+          deepParams.push(finalLocationWidth.current["" + i[0] + sub].width);
+        }
+      }
+    });
+    if (deepParams.filter(it => typeof it !== 'number').length) deepClumnsLocation(deepParams, fistIndex + 1, leftOrRight, isReverse);
+  };
+
   var computed = () => {
-    var left = 0,
-        right = 0;
-
-    for (var _index = 0; _index < columns.length; _index++) {
-      if (finalLocationWidth.current[_index]) {
-        finalLocationWidth.current[_index].left = left;
-        left = finalLocationWidth.current[_index].width + left;
-      }
-    }
-
-    for (var _index2 = columns.length - 1; _index2 > -1; _index2--) {
-      if (finalLocationWidth.current[_index2]) {
-        finalLocationWidth.current[_index2].right = right;
-        right = finalLocationWidth.current[_index2].width + right;
-      }
-    }
-
+    deepClumnsLocation(columns, 0, 'left', true);
+    deepClumnsLocation(columns, 0, 'right', false);
     return finalLocationWidth.current;
   };
 
@@ -9890,6 +9937,7 @@ function Table(props) {
             rowKey: rowKey,
             locationWidth: locationWidth,
             data: data,
+            header: header,
             keys: self.keys,
             render: render,
             ellipsis: ellipsis,
