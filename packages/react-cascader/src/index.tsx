@@ -6,43 +6,64 @@ import Menu from '@uiw/react-menu';
 import Icon from '@uiw/react-icon';
 
 type ValueType = Array<string | number>;
-type optionType = { value: string | number; label: React.ReactNode; children?: Array<optionType> };
+type OptionType = { value: string | number; label: React.ReactNode; children?: Array<OptionType> };
 
 export interface CascaderProps extends IProps, DropdownProps {
-  option?: Array<optionType>;
+  option?: Array<OptionType>;
   value?: ValueType;
-  onChange?: (value: ValueType, selectedOptions: Array<optionType>) => void;
+  onChange?: (current: OptionType, value: ValueType, selectedOptions: Array<OptionType>) => void;
   allowClear?: boolean;
   placeholder?: string;
   isOpen?: boolean;
 }
 
 function Cascader(props: CascaderProps) {
-  const { placeholder, prefixCls = 'w-search-select', className, style = { width: 200 }, option = [], others } = props;
+  const {
+    value,
+    onChange,
+
+    placeholder,
+    prefixCls = 'w-search-select',
+    className,
+    style = { width: 200 },
+    option = [],
+    others,
+  } = props;
 
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   const [innerIsOpen, setInnerIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<Array<optionType>>([]);
+  const [selectedValue, setSelectedValue] = useState<Array<OptionType>>([]);
+
+  useEffect(() => {
+    const valueTemp: Array<OptionType> = [];
+    let optChildren = option;
+    value?.map((item) => {
+      const findOpt = optChildren.find((opt) => opt.value === item);
+      optChildren = findOpt?.children || [];
+      valueTemp.push({ label: item, value: item, ...findOpt });
+    });
+    setSelectedValue(valueTemp);
+  }, [value]);
 
   function onVisibleChange(isOpen: boolean) {
     setInnerIsOpen(isOpen);
   }
 
-  const handleItemClick = (optionsItem: optionType, level: number) => {
+  const handleItemClick = (optionsItem: OptionType, level: number) => {
     selectedValue.splice(level, selectedValue.length - level, optionsItem);
     setSelectedValue([...selectedValue]);
 
-    handelChange();
+    handelChange(optionsItem);
   };
 
-  const handelChange = () => {
+  const handelChange = (current: OptionType) => {
     const value = selectedValue.map((item) => item.value);
-    props.onChange?.(value, selectedValue);
+    props.onChange?.(current, value, selectedValue);
   };
 
-  const widths = (style?.width as number) * 0.6 || undefined;
+  const widths = (style?.width as number) * 0.5 || undefined;
 
-  const OptionIter = (option: Array<optionType>, level: number = 0) => {
+  const OptionIter = (option: Array<OptionType>, level: number = 0) => {
     if (!option) return;
 
     return (
