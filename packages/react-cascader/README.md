@@ -57,7 +57,7 @@ const Demo = () => {
 
   return (
     <div style={{ width: 200 }}>
-      <Cascader placeholder="请选择" value={[1, 4, 7]} option={options} onChange={(value, seleteds) => console.log(value, seleteds)} />
+      <Cascader allowClear={true} placeholder="请选择" value={[1, 4, 7]} option={options} onChange={(value, seleteds) => console.log(value, seleteds)} />
     </div>
   )
 };
@@ -137,6 +137,7 @@ const options = [
             initialValue:[1, 4, 7],
             children: (
               <Cascader
+                allowClear={true}
                 placeholder="请选择"
                 option={options}
                 onChange={(value, seleteds) => console.log(value, seleteds)}
@@ -181,4 +182,4 @@ ReactDOM.render(<Demo />, _mount_);
 | placeholder | 选择框默认文字 | String | - | - |
 | option | 选项菜单 | { value: String \| Number, label: React.ReactNode, children: Array<String \| Number>} | - | - |
 | value | 指定当前选中的条目，多选时为一个数组 | String[] \| Number[] | - | - |
-| onChange | 选中选项调用此函数 | function( value, current, selectedOptions) | - | - |
+| onChange | 选中选项调用此函数 | function( isSeleted, value, selectedOptions) | - | - |

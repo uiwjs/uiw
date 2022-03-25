@@ -11,7 +11,7 @@ type OptionType = { value: string | number; label: React.ReactNode; children?: A
 export interface CascaderProps extends IProps, DropdownProps {
   option?: Array<OptionType>;
   value?: ValueType;
-  onChange?: (current: OptionType, value: ValueType, selectedOptions: Array<OptionType>) => void;
+  onChange?: (isSeleted: boolean, value: ValueType, selectedOptions: Array<OptionType>) => void;
   allowClear?: boolean;
   placeholder?: string;
   isOpen?: boolean;
@@ -22,6 +22,7 @@ function Cascader(props: CascaderProps) {
     value,
     onChange,
 
+    allowClear,
     placeholder,
     prefixCls = 'w-search-select',
     className,
@@ -51,14 +52,18 @@ function Cascader(props: CascaderProps) {
 
   const handleItemClick = (optionsItem: OptionType, level: number) => {
     selectedValue.splice(level, selectedValue.length - level, optionsItem);
-    setSelectedValue([...selectedValue]);
 
-    handelChange(optionsItem);
+    handelChange(true, selectedValue);
   };
 
-  const handelChange = (current: OptionType) => {
+  const handelChange = (isSeleted: boolean, selectedValue: Array<OptionType>) => {
+    setSelectedValue([...selectedValue]);
     const value = selectedValue.map((item) => item.value);
-    props.onChange?.(current, value, selectedValue);
+    onChange?.(isSeleted, value, selectedValue);
+  };
+
+  const onClear = () => {
+    handelChange(false, []);
   };
 
   const widths = (style?.width as number) * 0.5 || undefined;
@@ -80,15 +85,15 @@ function Cascader(props: CascaderProps) {
         {!option || option.length === 0 ? (
           <div style={{ color: '#c7c7c7', fontSize: 12 }}>{'没有数据'}</div>
         ) : (
-          option.map((item, index) => {
-            const active = selectedValue[level]?.value === item.value;
+          option.map((opt, index) => {
+            const active = selectedValue[level]?.value === opt.value;
             return (
               <Menu.Item
                 active={active}
                 key={index}
-                text={item.label}
-                addonAfter={item.children ? <Icon type="right" /> : undefined}
-                onClick={() => handleItemClick(item, level)}
+                text={opt.label}
+                addonAfter={opt.children ? <Icon type="right" /> : undefined}
+                onClick={() => handleItemClick(opt, level)}
               />
             );
           })
@@ -98,7 +103,7 @@ function Cascader(props: CascaderProps) {
   };
 
   const inputValue = useMemo(() => {
-    return selectedValue.map((item) => item.label).join(' / ');
+    return selectedValue.map((opt) => opt.label).join(' / ');
   }, [selectedValue.length]);
 
   return (
@@ -122,7 +127,13 @@ function Cascader(props: CascaderProps) {
         </div>
       }
     >
-      <Input value={inputValue} onChange={() => {}} placeholder={placeholder} style={{ width: style?.width }} />
+      <Input
+        value={inputValue}
+        onChange={() => {}}
+        placeholder={placeholder}
+        style={{ width: style?.width }}
+        addonAfter={allowClear && selectedValue.length > 0 && <Icon onClick={onClear} type="close" />}
+      />
     </Dropdown>
   );
 }
