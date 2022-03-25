@@ -84,7 +84,7 @@ function InternalDescriptions(props: DescriptionsProps, ref: React.ForwardedRef<
     <div className={cls} ref={ref}>
       <table {...other}>
         {title && <caption className={`${prefixCls}-title`}>{title}</caption>}
-        <tbody>
+        <tbody className={`${prefixCls}-tbody`}>
           {childs.map((child, index) => (
             <Row key={index} prefixCls={prefixCls} bordered={bordered} colon={colon} column={column} layout={layout}>
               {child}

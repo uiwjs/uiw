@@ -1,9 +1,9 @@
 {
-  "name": "@uiw/react-notify",
+  "name": "@uiw/react-cascader",
   "version": "4.16.0",
-  "description": "Notify component",
+  "description": "Cascader component",
   "author": "Kenny Wong <wowohoo@qq.com>",
-  "homepage": "https://uiwjs.github.io/#/components/notify",
+  "homepage": "https://uiwjs.github.io/#/components/cascader",
   "repository": {
     "type": "git",
     "url": "https://github.com/uiwjs/uiw.git"
@@ -21,8 +21,7 @@
     "access": "public"
   },
   "keywords": [
-    "notify",
-    "react-notify",
+    "cascader",
     "design",
     "uiw",
     "uiw-react",
@@ -44,9 +43,12 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-alert": "^4.16.0",
-    "@uiw/react-button": "^4.16.0",
+    "@uiw/react-dropdown": "^4.16.0",
     "@uiw/react-icon": "^4.16.0",
+    "@uiw/react-input": "^4.16.0",
+    "@uiw/react-loader": "^4.16.0",
+    "@uiw/react-menu": "^4.16.0",
+    "@uiw/react-tag": "^4.16.0",
     "@uiw/utils": "^4.16.0"
   }
 }
