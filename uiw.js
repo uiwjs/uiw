@@ -10005,6 +10005,7 @@ var react_tabs_esm_excluded = ["prefixCls", "className", "children", "type", "ac
 
 
 Tabs.Pane = Pane;
+var labelWidth = 0;
 function Tabs(props) {
   var _flowNav$nav;
 
@@ -10050,12 +10051,16 @@ function Tabs(props) {
       flowNavSet(_extends({}, flowNav));
     }
   }, []);
-  var divNavRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)((node, key) => {
+  var divNavRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)((node, key, itemKey) => {
     if (node !== null) {
       node.addEventListener('click', e => {
         activeItem.current = node;
       });
       divNavWidthChange(node.getBoundingClientRect().width, key);
+
+      if (itemKey === props.activeKey && type === 'line' && labelWidth === 0) {
+        activeItem.current = node;
+      }
     }
   }, []);
 
@@ -10094,6 +10099,7 @@ function Tabs(props) {
 
   function calcSlideStyle() {
     if (activeItem.current && type === 'line') {
+      labelWidth = activeItem.current.clientWidth;
       setSlideStyle({
         width: activeItem.current.clientWidth,
         left: activeItem.current.offsetLeft
@@ -10171,7 +10177,7 @@ function Tabs(props) {
       }
 
       return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
-        ref: _ref => divNavRef(_ref, key)
+        ref: _ref => divNavRef(_ref, key, item.key)
       }, divProps), key);
     });
   }
