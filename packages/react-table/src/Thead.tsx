@@ -9,8 +9,8 @@ export interface TheadProps<T extends { [key: string]: V }, V = any> extends IPr
   onCellHead?: TableProps<T, V>['onCellHead'];
   align?: TableColumns['align'];
   className?: TableColumns['className'];
-  locationWidth?: { [key: number]: LocationWidth };
-  updateLocation?: (params: LocationWidth, index: number) => void;
+  locationWidth?: { [key: string]: LocationWidth };
+  updateLocation?: (params: LocationWidth, index: string, key: string, colSpan?: number) => void;
 }
 
 export default function TheadComponent<T extends { [key: string]: V }, V>(

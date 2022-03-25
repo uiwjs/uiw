@@ -131,8 +131,8 @@ export function getAllColumnsKeys<T>(data: TableColumns<T>[], keys: TableColumns
 
 export function locationFixed(
   fixed: boolean | 'left' | 'right',
-  location: { [key: number]: LocationWidth },
-  index: number,
+  location: { [key: string]: LocationWidth },
+  index: string,
 ): React.CSSProperties {
   if (!fixed) return {};
   if (fixed === 'right') return { right: location[index]?.right };
