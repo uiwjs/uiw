@@ -10,13 +10,18 @@ interface ThComponentProps<T> {
   titleNode: JSX.Element;
   onCellHead: TableProps<T>['onCellHead'];
   rowNum: number;
-  locationWidth: { [key: number]: LocationWidth };
-  updateLocation: (params: LocationWidth, index: number) => void;
+  locationWidth: { [key: string]: LocationWidth };
+  updateLocation: (params: LocationWidth, index: string, key: string, colSpan?: number) => void;
 }
 export default class ThComponent<T> extends Component<ThComponentProps<T>> {
   componentDidMount() {
-    const rect = ReactDOM.findDOMNode(this);
-    this.props.updateLocation({ width: (rect as Element).getBoundingClientRect().width }, this.props.colNum);
+    const rect = ReactDOM.findDOMNode(this) as Element;
+    this.props.updateLocation(
+      { width: rect.getBoundingClientRect().width },
+      `${this.props.rowNum}${this.props.colNum}`,
+      this.props.item.key!,
+      this.props.item.colSpan,
+    );
   }
 
   render() {
@@ -34,7 +39,7 @@ export default class ThComponent<T> extends Component<ThComponentProps<T>> {
       <th
         key={colNum}
         {...thProps}
-        style={{ ...thProps.style, ...locationFixed(fixed, locationWidth, colNum) }}
+        style={{ ...thProps.style, ...locationFixed(fixed, locationWidth, `${rowNum}${colNum}`) }}
         className={`${prefixCls}-tr-children-${item?.align || 'left'} ${item.className || ''} ${cls}`}
         onClick={(evn) => onCellHead?.(item, colNum, rowNum!, evn)}
       >
