@@ -4551,6 +4551,7 @@ function Cascader(props) {
   var {
     value,
     onChange,
+    onSearch,
     allowClear,
     placeholder,
     prefixCls = 'w-cascader',
@@ -4565,18 +4566,54 @@ function Cascader(props) {
   var [innerIsOpen, setInnerIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
   var [selectedValue, setSelectedValue] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
   var [selectIconType, setSelectIconType] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)('');
+  var [searchText, setSearchText] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)('');
+  var [searchOn, setSearchOn] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
+  var [inputValue, setInputValue] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)('');
+  var [searchOption, setSearchOption] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)();
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
-    var valueTemp = [];
-    var optChildren = option;
-    value == null ? void 0 : value.map(item => {
-      var findOpt = optChildren.find(opt => opt.value === item);
-      optChildren = (findOpt == null ? void 0 : findOpt.children) || [];
-      valueTemp.push(_extends({
-        label: item,
-        value: item
-      }, findOpt));
+    if (onSearch) {
+      var tempOptions = [];
+      iteratorOption(option, opt => {
+        var label = opt.map(m => m.label).join(' / ');
+        tempOptions.push({
+          label,
+          options: opt
+        });
+      });
+      setSearchOption(tempOptions);
+    }
+  }, [onSearch]);
+
+  var iteratorOption = function iteratorOption(options, cb, opts) {
+    if (opts === void 0) {
+      opts = [];
+    }
+
+    options.map(opt => {
+      var optsTemp = [...opts, opt];
+
+      if (opt.children) {
+        iteratorOption(opt.children, cb, optsTemp);
+      } else {
+        cb == null ? void 0 : cb(optsTemp);
+      }
     });
-    setSelectedValue(valueTemp);
+  };
+
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    if (value) {
+      var valueTemp = [];
+      var optChildren = option;
+      value == null ? void 0 : value.map(item => {
+        var findOpt = optChildren.find(opt => opt.value === item);
+        optChildren = (findOpt == null ? void 0 : findOpt.children) || [];
+        valueTemp.push(_extends({
+          label: item,
+          value: item
+        }, findOpt));
+      });
+      setSelectedValue(valueTemp);
+    }
   }, [value]);
 
   function onVisibleChange(isOpen) {
@@ -4595,6 +4632,12 @@ function Cascader(props) {
     setSelectIconType(selectIconType);
   }
 
+  var searchItemClick = options => {
+    setSearchText('');
+    setInnerIsOpen(false);
+    handelChange(false, options);
+  };
+
   var handleItemClick = (optionsItem, level) => {
     selectedValue.splice(level, selectedValue.length - level, optionsItem);
     handelChange(true, selectedValue);
@@ -4608,8 +4651,20 @@ function Cascader(props) {
 
   var onClear = e => {
     e.stopPropagation();
-    console.log(123);
     handelChange(false, []);
+  };
+
+  var handelSearch = searchText => {
+    setSearchText(searchText);
+  };
+
+  var inputChange = e => {
+    if (!innerIsOpen) {
+      setInnerIsOpen(!innerIsOpen);
+    }
+
+    var value = e.target.value;
+    onSearch && handelSearch(value);
   };
 
   var widths = (style == null ? void 0 : style.width) * 0.5 || undefined;
@@ -4650,9 +4705,10 @@ function Cascader(props) {
     }, level);
   };
 
-  var inputValue = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
-    return selectedValue.map(opt => opt.label).join(' / ');
-  }, [selectedValue.length]);
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    var inputValue = selectedValue.map(opt => opt.label).join(' / ');
+    setInputValue(inputValue);
+  }, [selectedValue]);
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Dropdown, _extends({
     className: cls,
     trigger: "click",
@@ -4665,7 +4721,7 @@ function Cascader(props) {
   }, others, {
     onVisibleChange: onVisibleChange,
     isOpen: innerIsOpen,
-    menu: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+    menu: !searchText ? /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
       style: {
         display: 'flex'
       },
@@ -4675,22 +4731,50 @@ function Cascader(props) {
         var options = index ? (_selectedValue = selectedValue[index - 1]) == null ? void 0 : _selectedValue.children : option;
         return OptionIter(options, index);
       }).filter(m => !!m)
+    }) : /*#__PURE__*/(0,jsx_runtime.jsx)(react_menu_esm, {
+      bordered: true,
+      style: {
+        minHeight: 25,
+        minWidth: style == null ? void 0 : style.width,
+        overflowY: 'scroll',
+        width: style == null ? void 0 : style.width
+      },
+      children: !searchOption || searchOption.length === 0 ? /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+        style: {
+          color: '#c7c7c7',
+          fontSize: 12
+        },
+        children: '没有数据'
+      }) : searchOption.filter(opt => opt.label.includes(searchText.trim())).map((opt, index) => {
+        return /*#__PURE__*/(0,jsx_runtime.jsx)(react_menu_esm.Item, {
+          text: opt.label,
+          onClick: () => searchItemClick(opt.options) //
+
+        }, index);
+      })
     }),
     children: /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
       onMouseLeave: () => renderSelectIcon('leave'),
       onMouseOver: () => renderSelectIcon('enter'),
       children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
-        value: inputValue,
-        onChange: () => {},
-        placeholder: placeholder,
+        value: searchOn ? searchText : inputValue,
+        onChange: inputChange,
+        placeholder: searchOn ? inputValue : placeholder,
         style: {
           width: style == null ? void 0 : style.width
         },
-        readOnly: true,
-        addonAfter: selectIconType === 'close' && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
-          type: "" + selectIconType,
-          onClick: onClear,
-          className: prefixCls + "-close"
+        onFocus: () => onSearch && setSearchOn(true),
+        onBlur: () => onSearch && setSearchOn(false),
+        readOnly: !onSearch,
+        addonAfter: /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
+          style: {
+            width: 'auto'
+          },
+          children: selectIconType === 'close' && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+            type: selectIconType,
+            onClick: onClear,
+            className: prefixCls + "-close"
+          })
         })
       })
     })
