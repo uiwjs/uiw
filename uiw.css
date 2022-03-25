@@ -1896,6 +1896,12 @@ sup.w-badge-count {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.w-cascader-close {
+  font-size: 15px;
+  margin-right: 1px;
+  color: #393e48;
+}
+
 .w-radio {
   vertical-align: middle;
   display: inline-block;
@@ -3919,6 +3925,13 @@ a.w-list-item:hover:not(.w-disabled) {
   color: #a5a5a5;
   cursor: not-allowed;
   resize: none;
+}
+.w-search-select-multiple-colse {
+  left: 7px;
+  font-size: 15px;
+}
+.w-search-select-singe-colse {
+  font-size: 15px;
 }
 
 .w-split {

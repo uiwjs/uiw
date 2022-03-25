@@ -4534,7 +4534,11 @@ Menu.Divider = MenuDivider;
 
 /* harmony default export */ const react_menu_esm = (esm_Menu);
 
+;// CONCATENATED MODULE: ../react-cascader/esm/style/index.css
+// extracted by mini-css-extract-plugin
+/* harmony default export */ const react_cascader_esm_style = ({});
 ;// CONCATENATED MODULE: ../react-cascader/esm/index.js
+
 
 
 
@@ -4545,8 +4549,11 @@ Menu.Divider = MenuDivider;
 
 function Cascader(props) {
   var {
+    value,
+    onChange,
+    allowClear,
     placeholder,
-    prefixCls = 'w-search-select',
+    prefixCls = 'w-cascader',
     className,
     style = {
       width: 200
@@ -4557,23 +4564,55 @@ function Cascader(props) {
   var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   var [innerIsOpen, setInnerIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
   var [selectedValue, setSelectedValue] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
+  var [selectIconType, setSelectIconType] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)('');
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    var valueTemp = [];
+    var optChildren = option;
+    value == null ? void 0 : value.map(item => {
+      var findOpt = optChildren.find(opt => opt.value === item);
+      optChildren = (findOpt == null ? void 0 : findOpt.children) || [];
+      valueTemp.push(_extends({
+        label: item,
+        value: item
+      }, findOpt));
+    });
+    setSelectedValue(valueTemp);
+  }, [value]);
 
   function onVisibleChange(isOpen) {
     setInnerIsOpen(isOpen);
   }
 
+  function renderSelectIcon(type) {
+    var selectIconType;
+
+    if (type === 'enter' && allowClear && selectedValue.length > 0) {
+      selectIconType = 'close';
+    } else {
+      selectIconType = '';
+    }
+
+    setSelectIconType(selectIconType);
+  }
+
   var handleItemClick = (optionsItem, level) => {
     selectedValue.splice(level, selectedValue.length - level, optionsItem);
+    handelChange(true, selectedValue);
+  };
+
+  var handelChange = (isSeleted, selectedValue) => {
     setSelectedValue([...selectedValue]);
-    handelChange();
-  };
-
-  var handelChange = () => {
     var value = selectedValue.map(item => item.value);
-    props.onChange == null ? void 0 : props.onChange(value, selectedValue);
+    onChange == null ? void 0 : onChange(isSeleted, value, selectedValue);
   };
 
-  var widths = (style == null ? void 0 : style.width) * 0.6 || undefined;
+  var onClear = e => {
+    e.stopPropagation();
+    console.log(123);
+    handelChange(false, []);
+  };
+
+  var widths = (style == null ? void 0 : style.width) * 0.5 || undefined;
 
   var OptionIter = function OptionIter(option, level) {
     if (level === void 0) {
@@ -4595,24 +4634,24 @@ function Cascader(props) {
           fontSize: 12
         },
         children: '没有数据'
-      }) : option.map((item, index) => {
+      }) : option.map((opt, index) => {
         var _selectedValue$level;
 
-        var active = ((_selectedValue$level = selectedValue[level]) == null ? void 0 : _selectedValue$level.value) === item.value;
+        var active = ((_selectedValue$level = selectedValue[level]) == null ? void 0 : _selectedValue$level.value) === opt.value;
         return /*#__PURE__*/(0,jsx_runtime.jsx)(react_menu_esm.Item, {
           active: active,
-          text: item.label,
-          addonAfter: item.children ? /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+          text: opt.label,
+          addonAfter: opt.children ? /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
             type: "right"
           }) : undefined,
-          onClick: () => handleItemClick(item, level)
+          onClick: () => handleItemClick(opt, level)
         }, index);
       })
     }, level);
   };
 
   var inputValue = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
-    return selectedValue.map(item => item.label).join(' / ');
+    return selectedValue.map(opt => opt.label).join(' / ');
   }, [selectedValue.length]);
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Dropdown, _extends({
     className: cls,
@@ -4637,13 +4676,23 @@ function Cascader(props) {
         return OptionIter(options, index);
       }).filter(m => !!m)
     }),
-    children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
-      value: inputValue,
-      onChange: () => {},
-      placeholder: placeholder,
-      style: {
-        width: style == null ? void 0 : style.width
-      }
+    children: /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
+      onMouseLeave: () => renderSelectIcon('leave'),
+      onMouseOver: () => renderSelectIcon('enter'),
+      children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
+        value: inputValue,
+        onChange: () => {},
+        placeholder: placeholder,
+        style: {
+          width: style == null ? void 0 : style.width
+        },
+        readOnly: true,
+        addonAfter: selectIconType === 'close' && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+          type: "" + selectIconType,
+          onClick: onClear,
+          className: prefixCls + "-close"
+        })
+      })
     })
   }));
 }
@@ -8386,6 +8435,7 @@ function SearchSelect(props) {
             placeholder: selectedValue.length ? '' : placeholder
           })]
         }), !disabled && (selectIconType === 'close' || selectIconType === 'loading' && loading) && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+          className: prefixCls + "-multiple-colse",
           type: selectIconType,
           spin: loading && selectIconType === 'loading',
           onClick: resetSelectedValue
@@ -8400,6 +8450,8 @@ function SearchSelect(props) {
         placeholder: placeholder,
         addonAfter: !disabled && (selectIconType === 'close' || selectIconType === 'loading' && loading) && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
           type: selectIconType,
+          className: prefixCls + "-singe-colse",
+          color: "#393e48",
           spin: loading && selectIconType === 'loading',
           onClick: resetSelectedValue
         })
