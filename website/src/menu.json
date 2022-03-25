@@ -43,6 +43,7 @@
       { "name": "Form 表单", "path": "form" },
       { "name": "Radio 单选框", "path": "radio" },
       { "name": "Checkbox 多选框", "path": "checkbox" },
+      { "name": "Cascader 级联选择", "path": "cascader" },
       { "name": "Input 输入框", "path": "input" },
       { "name": "FileInput 上传输入框", "path": "file-input" },
       { "name": "PinCode PIN码", "path": "pin-code" },
