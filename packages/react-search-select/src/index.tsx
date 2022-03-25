@@ -298,7 +298,12 @@ export default function SearchSelect(props: SearchSelectProps) {
               />
             </div>
             {!disabled && (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
-              <Icon type={selectIconType} spin={loading && selectIconType === 'loading'} onClick={resetSelectedValue} />
+              <Icon
+                className={`${prefixCls}-multiple-colse`}
+                type={selectIconType}
+                spin={loading && selectIconType === 'loading'}
+                onClick={resetSelectedValue}
+              />
             )}
           </div>
         ) : (
@@ -315,6 +320,8 @@ export default function SearchSelect(props: SearchSelectProps) {
               (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
                 <Icon
                   type={selectIconType}
+                  className={`${prefixCls}-singe-colse`}
+                  color="#393e48"
                   spin={loading && selectIconType === 'loading'}
                   onClick={resetSelectedValue}
                 />
