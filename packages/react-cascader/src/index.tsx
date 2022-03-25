@@ -4,6 +4,7 @@ import { IProps } from '@uiw/utils';
 import Dropdown, { DropdownProps } from '@uiw/react-dropdown';
 import Menu from '@uiw/react-menu';
 import Icon from '@uiw/react-icon';
+import './style/index.less';
 
 type ValueType = Array<string | number>;
 type OptionType = { value: string | number; label: React.ReactNode; children?: Array<OptionType> };
@@ -24,7 +25,7 @@ function Cascader(props: CascaderProps) {
 
     allowClear,
     placeholder,
-    prefixCls = 'w-search-select',
+    prefixCls = 'w-cascader',
     className,
     style = { width: 200 },
     option = [],
@@ -34,6 +35,7 @@ function Cascader(props: CascaderProps) {
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   const [innerIsOpen, setInnerIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState<Array<OptionType>>([]);
+  const [selectIconType, setSelectIconType] = useState('');
 
   useEffect(() => {
     const valueTemp: Array<OptionType> = [];
@@ -50,6 +52,16 @@ function Cascader(props: CascaderProps) {
     setInnerIsOpen(isOpen);
   }
 
+  function renderSelectIcon(type: string) {
+    let selectIconType;
+    if (type === 'enter' && allowClear && selectedValue.length > 0) {
+      selectIconType = 'close';
+    } else {
+      selectIconType = '';
+    }
+    setSelectIconType(selectIconType);
+  }
+
   const handleItemClick = (optionsItem: OptionType, level: number) => {
     selectedValue.splice(level, selectedValue.length - level, optionsItem);
 
@@ -62,7 +74,9 @@ function Cascader(props: CascaderProps) {
     onChange?.(isSeleted, value, selectedValue);
   };
 
-  const onClear = () => {
+  const onClear = (e: React.MouseEvent<any, MouseEvent>) => {
+    e.stopPropagation();
+    console.log(123);
     handelChange(false, []);
   };
 
@@ -127,13 +141,20 @@ function Cascader(props: CascaderProps) {
         </div>
       }
     >
-      <Input
-        value={inputValue}
-        onChange={() => {}}
-        placeholder={placeholder}
-        style={{ width: style?.width }}
-        addonAfter={allowClear && selectedValue.length > 0 && <Icon onClick={onClear} type="close" />}
-      />
+      <span onMouseLeave={() => renderSelectIcon('leave')} onMouseOver={() => renderSelectIcon('enter')}>
+        <Input
+          value={inputValue}
+          onChange={() => {}}
+          placeholder={placeholder}
+          style={{ width: style?.width }}
+          readOnly
+          addonAfter={
+            selectIconType === 'close' && (
+              <Icon type={`${selectIconType}`} onClick={onClear} className={`${prefixCls}-close`} />
+            )
+          }
+        />
+      </span>
     </Dropdown>
   );
 }
