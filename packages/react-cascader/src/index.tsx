@@ -70,14 +70,16 @@ function Cascader(props: CascaderProps) {
   };
 
   useEffect(() => {
-    const valueTemp: Array<OptionType> = [];
-    let optChildren = option;
-    value?.map((item) => {
-      const findOpt = optChildren.find((opt) => opt.value === item);
-      optChildren = findOpt?.children || [];
-      valueTemp.push({ label: item, value: item, ...findOpt });
-    });
-    setSelectedValue(valueTemp);
+    if (value) {
+      const valueTemp: Array<OptionType> = [];
+      let optChildren = option;
+      value?.map((item) => {
+        const findOpt = optChildren.find((opt) => opt.value === item);
+        optChildren = findOpt?.children || [];
+        valueTemp.push({ label: item, value: item, ...findOpt });
+      });
+      setSelectedValue(valueTemp);
+    }
   }, [value]);
 
   function onVisibleChange(isOpen: boolean) {
