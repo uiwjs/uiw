@@ -8,20 +8,22 @@ import './style/index.less';
 
 type ValueType = Array<string | number>;
 type OptionType = { value: string | number; label: React.ReactNode; children?: Array<OptionType> };
+type SearchOptionType = { label: string; options: Array<OptionType> };
 
 export interface CascaderProps extends IProps, DropdownProps {
   option?: Array<OptionType>;
   value?: ValueType;
   onChange?: (isSeleted: boolean, value: ValueType, selectedOptions: Array<OptionType>) => void;
+  onSearch?: boolean | ((searchText: string) => void);
   allowClear?: boolean;
   placeholder?: string;
-  isOpen?: boolean;
 }
 
 function Cascader(props: CascaderProps) {
   const {
     value,
     onChange,
+    onSearch,
 
     allowClear,
     placeholder,
@@ -36,16 +38,48 @@ function Cascader(props: CascaderProps) {
   const [innerIsOpen, setInnerIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState<Array<OptionType>>([]);
   const [selectIconType, setSelectIconType] = useState('');
+  const [searchText, setSearchText] = useState<string>('');
+  const [searchOn, setSearchOn] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [searchOption, setSearchOption] = useState<Array<SearchOptionType>>();
 
   useEffect(() => {
-    const valueTemp: Array<OptionType> = [];
-    let optChildren = option;
-    value?.map((item) => {
-      const findOpt = optChildren.find((opt) => opt.value === item);
-      optChildren = findOpt?.children || [];
-      valueTemp.push({ label: item, value: item, ...findOpt });
+    if (onSearch) {
+      const tempOptions: Array<SearchOptionType> = [];
+      iteratorOption(option, (opt) => {
+        const label = opt.map((m) => m.label).join(' / ');
+        tempOptions.push({ label, options: opt });
+      });
+      setSearchOption(tempOptions);
+    }
+  }, [onSearch]);
+
+  const iteratorOption = (
+    options: Array<OptionType>,
+    cb: (opt: Array<OptionType>) => void,
+    opts: Array<OptionType> = [],
+  ) => {
+    options.map((opt) => {
+      const optsTemp = [...opts, opt];
+      if (opt.children) {
+        iteratorOption(opt.children, cb, optsTemp);
+      } else {
+        cb?.(optsTemp);
+      }
     });
-    setSelectedValue(valueTemp);
+  };
+
+  useEffect(() => {
+    if (value) {
+      const valueTemp: Array<OptionType> = [];
+      let optChildren = option;
+      value?.map((item) => {
+        const findOpt = optChildren.find((opt) => opt.value === item);
+        optChildren = findOpt?.children || [];
+        valueTemp.push({ label: item, value: item, ...findOpt });
+      });
+      setSelectedValue(valueTemp);
+    }
   }, [value]);
 
   function onVisibleChange(isOpen: boolean) {
@@ -62,6 +96,12 @@ function Cascader(props: CascaderProps) {
     setSelectIconType(selectIconType);
   }
 
+  const searchItemClick = (options: Array<OptionType>) => {
+    setSearchText('');
+    setInnerIsOpen(false);
+    handelChange(false, options);
+  };
+
   const handleItemClick = (optionsItem: OptionType, level: number) => {
     selectedValue.splice(level, selectedValue.length - level, optionsItem);
 
@@ -76,8 +116,19 @@ function Cascader(props: CascaderProps) {
 
   const onClear = (e: React.MouseEvent<any, MouseEvent>) => {
     e.stopPropagation();
-    console.log(123);
     handelChange(false, []);
+  };
+
+  const handelSearch = (searchText: string) => {
+    setSearchText(searchText);
+  };
+
+  const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!innerIsOpen) {
+      setInnerIsOpen(!innerIsOpen);
+    }
+    const value = e.target.value;
+    onSearch && handelSearch(value);
   };
 
   const widths = (style?.width as number) * 0.5 || undefined;
@@ -116,9 +167,10 @@ function Cascader(props: CascaderProps) {
     ) as JSX.Element;
   };
 
-  const inputValue = useMemo(() => {
-    return selectedValue.map((opt) => opt.label).join(' / ');
-  }, [selectedValue.length]);
+  useEffect(() => {
+    const inputValue = selectedValue.map((opt) => opt.label).join(' / ');
+    setInputValue(inputValue);
+  }, [selectedValue]);
 
   return (
     <Dropdown
@@ -130,28 +182,60 @@ function Cascader(props: CascaderProps) {
       onVisibleChange={onVisibleChange}
       isOpen={innerIsOpen}
       menu={
-        <div style={{ display: 'flex' }}>
-          {new Array(selectedValue.length + 1)
-            .fill(0)
-            .map((_, index) => {
-              const options = index ? selectedValue[index - 1]?.children! : option;
-              return OptionIter(options, index);
-            })
-            .filter((m) => !!m)}
-        </div>
+        !searchText ? (
+          <div style={{ display: 'flex' }}>
+            {new Array(selectedValue.length + 1)
+              .fill(0)
+              .map((_, index) => {
+                const options = index ? selectedValue[index - 1]?.children! : option;
+                return OptionIter(options, index);
+              })
+              .filter((m) => !!m)}
+          </div>
+        ) : (
+          <Menu
+            bordered
+            style={{
+              minHeight: 25,
+              minWidth: style?.width,
+              overflowY: 'scroll',
+              width: style?.width,
+            }}
+          >
+            {!searchOption || searchOption.length === 0 ? (
+              <div style={{ color: '#c7c7c7', fontSize: 12 }}>{'没有数据'}</div>
+            ) : (
+              searchOption
+                .filter((opt) => opt.label.includes(searchText.trim()))
+                .map((opt, index) => {
+                  return (
+                    <Menu.Item
+                      key={index}
+                      text={opt.label}
+                      onClick={() => searchItemClick(opt.options)} //
+                    />
+                  );
+                })
+            )}
+          </Menu>
+        )
       }
     >
       <span onMouseLeave={() => renderSelectIcon('leave')} onMouseOver={() => renderSelectIcon('enter')}>
         <Input
-          value={inputValue}
-          onChange={() => {}}
-          placeholder={placeholder}
+          value={searchOn ? searchText : inputValue}
+          onChange={inputChange}
+          placeholder={searchOn ? inputValue : placeholder}
           style={{ width: style?.width }}
-          readOnly
+          onFocus={() => onSearch && setSearchOn(true)}
+          onBlur={() => onSearch && setSearchOn(false)}
+          readOnly={!onSearch}
           addonAfter={
-            selectIconType === 'close' && (
-              <Icon type={`${selectIconType}`} onClick={onClear} className={`${prefixCls}-close`} />
-            )
+            <span style={{ width: 'auto' }}>
+              {selectIconType === 'close' && (
+                <Icon type={selectIconType} onClick={onClear} className={`${prefixCls}-close`} />
+              )}
+            </span>
           }
         />
       </span>

@@ -8,6 +8,7 @@ export * from './Pane';
 
 Tabs.Pane = Pane;
 
+let labelWidth: number = 0;
 export interface TabsProps extends IProps, HTMLDivProps {
   prefixCls?: string;
   activeKey?: string;
@@ -65,12 +66,16 @@ export default function Tabs(props: TabsProps) {
     }
   }, []);
 
-  const divNavRef = useCallback((node, key: number) => {
+  const divNavRef = useCallback((node, key: number, itemKey: React.Key | null) => {
     if (node !== null) {
       node.addEventListener('click', (e: any) => {
         activeItem.current = node;
       });
       divNavWidthChange(node.getBoundingClientRect().width, key);
+
+      if (itemKey === props.activeKey && type === 'line' && labelWidth === 0) {
+        activeItem.current = node;
+      }
     }
   }, []);
 
@@ -103,6 +108,7 @@ export default function Tabs(props: TabsProps) {
 
   function calcSlideStyle() {
     if (activeItem.current && type === 'line') {
+      labelWidth = activeItem.current.clientWidth;
       setSlideStyle({
         width: activeItem.current.clientWidth,
         left: activeItem.current.offsetLeft,
@@ -170,7 +176,7 @@ export default function Tabs(props: TabsProps) {
           calcSlideStyle();
         };
       }
-      return <div key={key} ref={(ref) => divNavRef(ref, key)} {...divProps} />;
+      return <div key={key} ref={(ref) => divNavRef(ref, key, item.key)} {...divProps} />;
     });
   }
 }
