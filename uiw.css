@@ -2258,7 +2258,6 @@ sup.w-badge-count {
 }
 .w-descriptions-item-label {
   font-size: 14px;
-  white-space: nowrap;
   font-weight: normal;
 }
 .w-descriptions-item-label::after {
