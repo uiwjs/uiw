@@ -72,9 +72,9 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
     className: [prefixCls ? `${prefixCls}-overlay` : null].filter(Boolean).join(' ').trim(),
   };
   const popupRef = React.useRef<OverlayTriggerRef>(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(!!overlayProps.isOpen);
   useMemo(() => {
-    setIsOpen(false);
+    if (collapse) setIsOpen(false);
   }, [collapse]);
 
   function onClick(e: React.MouseEvent<HTMLUListElement, MouseEvent>) {
