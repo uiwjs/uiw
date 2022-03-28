@@ -4382,9 +4382,9 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
     className: [prefixCls ? prefixCls + "-overlay" : null].filter(Boolean).join(' ').trim()
   };
   var popupRef = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef(null);
-  var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
+  var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(!!overlayProps.isOpen);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
-    setIsOpen(false);
+    if (collapse) setIsOpen(false);
   }, [collapse]);
 
   function onClick(e) {
