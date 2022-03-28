@@ -523,6 +523,7 @@ ReactDOM.render(<Demo />, _mount_);
 | inlineIndent | 菜单缩进宽度 | Number | `10` |
 | theme | 主题颜色 | Enum{`light`, `dark`} | - |
 | bordered | 是否有边框 | Boolean | `false` |
+| inlineCollapsed | 菜单是否收起状态 | Boolean | `false` |
 
 
 ## Menu.Item.Props
@@ -535,7 +536,6 @@ ReactDOM.render(<Demo />, _mount_);
 | ~~isSubMenuItem~~ | 不可用，SubMenu 组件传递给 Item 组件的**标记**属性，这是一个内部参数。 | Boolean | - |
 | tagName | 设置子节点标签名，默认 `<a />` 标签，也可以指定路由 [`<Link />`](https://reacttraining.com/react-router/web/api/Link) | String | `a` |
 | active | 激活选中状态 | Boolean | `false` |
-| inlineCollapsed | 菜单是否收起状态 | Boolean | `false` |
 | disabled | 禁用状态 | Boolean | `false` |
 
 其它参数可根据 `tagName` 来设置，默认 `<a />` 标签时，可设置 `href="https://wwww.google.com"` 或者 `target="_blank"` 等参数，你可以设置 [react-router-dom](https://github.com/ReactTraining/react-router) 路由 `<Link>`，例如：
