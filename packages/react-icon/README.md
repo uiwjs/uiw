@@ -303,7 +303,7 @@ const Demo = () => (
 |--------- |-------- |--------- |-------- |
 | type | 图标的名称 | String/ReactNode | - |
 | spin | 是否有旋转动画 |  Boolean | `false` |
-| verticalAlign | 是否有旋转动画 | Enum {baseline, middle} | `baseline` |
+| verticalAlign | 垂直对齐方式 | Enum {baseline, middle} | `baseline` |
 | style | 设置图标的样式，例如 `fill` 和 `stroke` | Object | - |
 
 
