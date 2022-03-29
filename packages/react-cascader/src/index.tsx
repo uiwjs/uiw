@@ -133,7 +133,7 @@ function Cascader(props: CascaderProps) {
     onSearch && handelSearch(value);
   };
 
-  const widths = (style?.width as number) * 0.5 || undefined;
+  const widths = (style?.width as number) * 0.7 || undefined;
 
   const OptionIter = (option: Array<OptionType>, level: number = 0) => {
     if (!option) return;

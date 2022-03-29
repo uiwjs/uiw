@@ -127,16 +127,15 @@ const Demo = () => {
   ];
 
   return (
-    <div style={{ width: 200 }}>
-      <Cascader
-        allowClear={true}
-        placeholder="请选择"
-        value={[1, 4, 7]}
-        option={options}
-        onChange={(value, seleteds) => console.log(value, seleteds)}
-        onSearch={(text)=> console.log('text', text)}
-      />
-    </div>
+    <Cascader
+      style={{ width: 200 }}
+      allowClear={true}
+      placeholder="请选择"
+      value={[1, 4, 7]}
+      option={options}
+      onChange={(value, seleteds) => console.log(value, seleteds)}
+      onSearch={(text)=> console.log('text', text)}
+    />
   )
 };
 ReactDOM.render(<Demo />, _mount_);
