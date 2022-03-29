@@ -60,7 +60,7 @@ export default function SearchSelect(props: SearchSelectProps) {
     onSelect,
     ...others
   } = props;
-  console.log('valueAmount', valueAmount);
+
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   const isMultiple = useMemo(() => mode === 'multiple', [mode]);
   const [innerIsOpen, setInnerIsOpen] = useState(false);
@@ -155,7 +155,6 @@ export default function SearchSelect(props: SearchSelectProps) {
       index !== -1
         ? removeSelectItem(index)
         : [...selectedValue.slice(0, valueAmount ? valueAmount - 1 : undefined), item!];
-    console.log('values', values);
     const resultValue = values.map((item) => item.value);
     handleChange(resultValue, values);
   }
