@@ -4552,6 +4552,7 @@ function Cascader(props) {
     value,
     onChange,
     onSearch,
+    disabled,
     allowClear,
     placeholder,
     prefixCls = 'w-cascader',
@@ -4667,7 +4668,7 @@ function Cascader(props) {
     onSearch && handelSearch(value);
   };
 
-  var widths = (style == null ? void 0 : style.width) * 0.5 || undefined;
+  var widths = (style == null ? void 0 : style.width) * 0.7 || undefined;
 
   var OptionIter = function OptionIter(option, level) {
     if (level === void 0) {
@@ -4717,7 +4718,8 @@ function Cascader(props) {
     }, style),
     overlayStyl: {
       width: 100
-    }
+    },
+    disabled: disabled
   }, others, {
     onVisibleChange: onVisibleChange,
     isOpen: innerIsOpen,
@@ -4759,6 +4761,7 @@ function Cascader(props) {
       children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
         value: searchOn ? searchText : inputValue,
         onChange: inputChange,
+        disabled: disabled,
         placeholder: searchOn ? inputValue : placeholder,
         style: {
           width: style == null ? void 0 : style.width
@@ -4770,7 +4773,7 @@ function Cascader(props) {
           style: {
             width: 'auto'
           },
-          children: selectIconType === 'close' && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+          children: !disabled && selectIconType === 'close' && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
             type: selectIconType,
             onClick: onClear,
             className: prefixCls + "-close"
