@@ -8,7 +8,7 @@ Cascader 级联选择
 级联选择框。v4.16.0中添加
 
 ```jsx
-import { Cascader  } from 'uiw';
+import { Cascader, Row, Col  } from 'uiw';
 // or
 import Cascader from '@uiw/react-cascader';
 ```
@@ -56,15 +56,29 @@ const Demo = () => {
   ];
 
   return (
-    <div style={{ width: 200 }}>
-    < Cascader
-        allowClear={true}
-        placeholder="请选择"
-        value={[1, 4, 7]}
-        option={options}
-        onChange={(value, seleteds) => console.log(value, seleteds)}
-      />
-    </div>
+    <Row>
+      <Row>
+        <Cascader
+          style={{ width:200 }}
+          allowClear={true}
+          placeholder="请选择"
+          value={[1, 4, 7]}
+          option={options}
+          onChange={(value, seleteds) => console.log(value, seleteds)}
+        />
+      </Row>
+      <Row style={{ marginLeft: 20 }}>
+        <Cascader
+          style={{ width:200 }}
+          allowClear={true}
+          placeholder="请选择"
+          value={[1, 4, 7]}
+          disabled={true}
+          option={options}
+          onChange={(value, seleteds) => console.log(value, seleteds)}
+        />
+      </Row>
+    </Row>
   )
 };
 ReactDOM.render(<Demo />, _mount_);
@@ -244,6 +258,7 @@ ReactDOM.render(<Demo />, _mount_);
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | ---- | ---- | ---- | ---- | ---- |
 | allowClear | 支持清除 | Boolean | `false` | - |
+| disabled | 禁用选择器 | Boolean | `false` | - |
 | placeholder | 选择框默认文字 | String | - | - |
 | option | 选项菜单 | { value: String \| Number, label: React.ReactNode, children: Array<String \| Number>} | - | - |
 | value | 指定当前选中的条目，多选时为一个数组 | String[] \| Number[] | - | - |
