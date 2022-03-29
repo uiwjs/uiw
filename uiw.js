@@ -8227,7 +8227,7 @@ var react_tag_esm_excluded = ["prefixCls", "className", "style", "title", "child
 ;// CONCATENATED MODULE: ../react-search-select/esm/index.js
 
 
-var react_search_select_esm_excluded = ["allowClear", "disabled", "size", "maxTagCount", "option", "loading", "labelInValue", "prefixCls", "className", "mode", "style", "isOpen", "value", "defaultValue", "showSearch", "tagProps", "placeholder", "onSearch", "onChange", "onSelect"];
+var react_search_select_esm_excluded = ["allowClear", "disabled", "valueAmount", "size", "option", "maxTagCount", "loading", "labelInValue", "prefixCls", "className", "mode", "style", "isOpen", "value", "defaultValue", "showSearch", "tagProps", "placeholder", "onSearch", "onChange", "onSelect"];
 
 
 
@@ -8246,9 +8246,10 @@ function SearchSelect(props) {
   var {
     allowClear = false,
     disabled = false,
+    valueAmount,
     size = 'default',
-    maxTagCount,
     option = [],
+    maxTagCount,
     loading = false,
     labelInValue = false,
     prefixCls = 'w-search-select',
@@ -8326,7 +8327,7 @@ function SearchSelect(props) {
     }
 
     if (!isMultiple && opts.length > 0) setSelectedLabel(opts[0].label || '');
-    setSelectedValue(opts);
+    setSelectedValue(opts.slice(0, valueAmount));
   }
 
   function removeSelectItem(index) {
@@ -8350,7 +8351,7 @@ function SearchSelect(props) {
   }
 
   function handleItemsClick(index, item) {
-    var values = index !== -1 ? removeSelectItem(index) : [...selectedValue, item];
+    var values = index !== -1 ? removeSelectItem(index) : [...selectedValue.slice(0, valueAmount ? valueAmount - 1 : undefined), item];
     var resultValue = values.map(item => item.value);
     handleChange(resultValue, values);
   }
