@@ -1,8 +1,9 @@
 {
-  "name": "@uiw/react-carousel",
+  "name": "@uiw/react-cascader",
   "version": "4.16.2",
-  "description": "Carousel component",
-  "homepage": "https://uiwjs.github.io/#/components/carousel",
+  "description": "Cascader component",
+  "author": "Kenny Wong <wowohoo@qq.com>",
+  "homepage": "https://uiwjs.github.io/#/components/cascader",
   "repository": {
     "type": "git",
     "url": "https://github.com/uiwjs/uiw.git"
@@ -20,7 +21,7 @@
     "access": "public"
   },
   "keywords": [
-    "carousel",
+    "cascader",
     "design",
     "uiw",
     "uiw-react",
@@ -42,6 +43,12 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
+    "@uiw/react-dropdown": "^4.16.2",
+    "@uiw/react-icon": "^4.16.2",
+    "@uiw/react-input": "^4.16.2",
+    "@uiw/react-loader": "^4.16.2",
+    "@uiw/react-menu": "^4.16.2",
+    "@uiw/react-tag": "^4.16.2",
     "@uiw/utils": "^4.16.2"
   }
 }

@@ -15,6 +15,7 @@ export interface SearchSelectProps extends IProps, DropdownProps {
   mode?: 'single' | 'multiple';
   size?: 'large' | 'default' | 'small';
   maxTagCount?: number;
+  valueAmount?: number;
   labelInValue?: boolean;
   loading?: boolean;
   showSearch?: boolean;
@@ -38,9 +39,10 @@ export default function SearchSelect(props: SearchSelectProps) {
   const {
     allowClear = false,
     disabled = false,
+    valueAmount,
     size = 'default',
-    maxTagCount,
     option = [],
+    maxTagCount,
     loading = false,
     labelInValue = false,
     prefixCls = 'w-search-select',
@@ -125,7 +127,7 @@ export default function SearchSelect(props: SearchSelectProps) {
     }
 
     if (!isMultiple && opts.length > 0) setSelectedLabel(opts[0].label || '');
-    setSelectedValue(opts);
+    setSelectedValue(opts.slice(0, valueAmount));
   }
 
   function removeSelectItem(index: number) {
@@ -149,7 +151,10 @@ export default function SearchSelect(props: SearchSelectProps) {
   }
 
   function handleItemsClick(index: number, item?: SearchSelectOptionData) {
-    let values: SearchSelectOptionData[] = index !== -1 ? removeSelectItem(index) : [...selectedValue, item!];
+    let values: SearchSelectOptionData[] =
+      index !== -1
+        ? removeSelectItem(index)
+        : [...selectedValue.slice(0, valueAmount ? valueAmount - 1 : undefined), item!];
     const resultValue = values.map((item) => item.value);
     handleChange(resultValue, values);
   }
@@ -298,7 +303,12 @@ export default function SearchSelect(props: SearchSelectProps) {
               />
             </div>
             {!disabled && (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
-              <Icon type={selectIconType} spin={loading && selectIconType === 'loading'} onClick={resetSelectedValue} />
+              <Icon
+                className={`${prefixCls}-multiple-colse`}
+                type={selectIconType}
+                spin={loading && selectIconType === 'loading'}
+                onClick={resetSelectedValue}
+              />
             )}
           </div>
         ) : (
@@ -315,6 +325,8 @@ export default function SearchSelect(props: SearchSelectProps) {
               (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
                 <Icon
                   type={selectIconType}
+                  className={`${prefixCls}-singe-colse`}
+                  color="#393e48"
                   spin={loading && selectIconType === 'loading'}
                   onClick={resetSelectedValue}
                 />

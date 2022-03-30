@@ -1,12 +1,13 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import Icon from '@uiw/react-icon';
-import { LocationWidth, TableProps } from './';
+import { LocationWidth, TableColumns, TableProps } from './';
 import './style/index.less';
 import { noop } from '@uiw/utils';
 import { locationFixed } from './util';
 
 interface TableTrProps<T> {
   rowKey?: keyof T;
+  header: TableColumns<T>[][];
   data: T[];
   keys: TableProps['columns'];
   render: { [key: string]: any };
@@ -19,7 +20,7 @@ interface TableTrProps<T> {
   // 层级
   hierarchy: number;
   childrenColumnName: string;
-  locationWidth: { [key: number]: LocationWidth };
+  locationWidth: { [key: string]: LocationWidth };
 }
 
 export default function TableTr<T extends { [key: string]: any }>(props: TableTrProps<T>) {
@@ -36,6 +37,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     indentSize,
     childrenColumnName,
     locationWidth,
+    header,
   } = props;
   const [isOpacity, setIsOpacity] = useState(false);
   const [childrenIndex, setChildrenIndex] = useState(0);
@@ -65,6 +67,14 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
       );
     };
   }, [expandIndex]);
+  const getIndex = (key: string) => {
+    let j = 0;
+    const i = header.findIndex((it) => {
+      j = it.findIndex((item) => item.key === key);
+      return j > -1;
+    });
+    return `${i}${j}`;
+  };
   if (!Array.isArray(data) || !data.length) {
     return null;
   }
@@ -113,7 +123,11 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                 return (
                   <td
                     {...objs}
-                    style={{ ...locationFixed(keyName.fixed!, locationWidth, colNum) }}
+                    style={
+                      keyName.fixed
+                        ? { ...locationFixed(keyName.fixed!, locationWidth, `${getIndex(keyName.key || 'undefined')}`) }
+                        : {}
+                    }
                     children={
                       <span className={ellipsis && ellipsis[keyName.key!] ? `${prefixCls}-ellipsis` : undefined}>
                         {objs.children}

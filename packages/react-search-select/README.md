@@ -57,7 +57,6 @@ function handleSearch(e) {
          maxTagCount={6}
          allowClear
          value={values}
-         disabled={false}
          placeholder="请输入选择"
          onSearch={handleSearch}
          // onSelect={(value)=>console.log('onSelect',value)}
@@ -78,7 +77,6 @@ function handleSearch(e) {
          maxTagCount={6}
          allowClear
          value={value}
-         disabled={false}
          placeholder="请输入选择"
          onSearch={handleSearch}
          // onSelect={(value)=>console.log('onSelect',value)}
@@ -88,6 +86,14 @@ function handleSearch(e) {
            console.log('value', value)
            setValue(value)
          }}
+       />
+     </Row>
+     <Row>
+       <SearchSelect
+         mode="single"
+         style={{ width: 200 }}
+         placeholder="请输入选择"
+         disabled={true}
        />
      </Row>
     </Row>
@@ -115,11 +121,10 @@ const Demo = () => {
     { label: 'a8', value: 8 },
   ]
 
+  const valueAmount = 2
   const [option, setOption] = React.useState(selectOption);
   const [loading, setLoading] = React.useState(false);
-  const [values, setValues] = React.useState([{label: 'a7', value: 7}]);
-  const [disabled, setDisabled] = React.useState(false);
-  const maxTagCount = 2
+  const [values, setValues] = React.useState([ 1, 2, 7]);
 
   function handleSearch(e) {
     setLoading(true)
@@ -131,24 +136,20 @@ const Demo = () => {
   }
 
   return(
-    <Row gutter={20}>
+    <Row style={{ marginLeft: 10 }}>
         <SearchSelect
           mode="multiple"
           style={{ width: 200 }}
           showSearch={true}
-          labelInValue={true}
-          maxTagCount={maxTagCount}
+          valueAmount={valueAmount}
           allowClear
           value={values}
-          disabled={disabled}
           placeholder="请输入选择"
           onSearch={handleSearch}
           // onSelect={(value)=>console.log('onSelect',value)}
           loading={loading}
           option={option}
           onChange={(value) => {
-            if(value?.length >= maxTagCount)
-              setDisabled(true)
             setValues(value)
           }}
         />
@@ -158,6 +159,110 @@ const Demo = () => {
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+## 显示最大数量
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { SearchSelect,Row,Col } from 'uiw';
+
+const Demo = () => {
+  const selectOption=[
+    { label: 'a1', value: 1 },
+    { label: 'a2', value: 2 },
+    { label: 'a3', value: 3 },
+    { label: 'a4', value: 4 },
+    { label: 'a5', value: 5 },
+    { label: 'a6', value: 6 },
+    { label: 'a7', value: 7 },
+    { label: 'a8', value: 8 },
+  ]
+
+  const maxTagCount = 4
+  const [option, setOption] = React.useState(selectOption);
+  const [loading, setLoading] = React.useState(false);
+  const [values, setValues] = React.useState([
+      { label: 'a1', value: 1 },
+      { label: 'a2', value: 2 },
+      { label: 'a5', value: 5 },
+      { label: 'a7', value: 7 },
+      { label: 'a8', value: 8 },
+    ]);
+
+  function handleSearch(e) {
+    setLoading(true)
+    setTimeout(() =>  {
+     const filterOpion= selectOption.filter(item=>!!item.label.includes(e.trim()))
+      setOption([...filterOpion]);
+      setLoading(false);
+    }, 500);
+  }
+
+  return(
+    <Row style={{ marginLeft: 10 }}>
+        <SearchSelect
+          mode="multiple"
+          style={{ width: 200 }}
+          showSearch={true}
+          labelInValue={true}
+          maxTagCount={maxTagCount}
+          allowClear
+          value={values}
+          placeholder="请输入选择"
+          onSearch={handleSearch}
+          loading={loading}
+          option={option}
+          onChange={(value) => {
+            setValues(value)
+          }}
+        />
+    </Row>
+  );
+};
+ReactDOM.render(<Demo />, _mount_);
+```
+
+## 不可搜索
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { SearchSelect,Row,Col } from 'uiw';
+
+const Demo = () => {
+  const selectOption=[
+    { label: 'a1', value: 1 },
+    { label: 'a2', value: 2 },
+    { label: 'a3', value: 3 },
+    { label: 'a4', value: 4 },
+    { label: 'a5', value: 5 },
+    { label: 'a6', value: 6 },
+    { label: 'a7', value: 7 },
+    { label: 'a8', value: 8 },
+  ]
+
+  const [values, setValues] = React.useState([1,7]);
+
+  return(
+    <Row style={{ marginLeft: 10 }}>
+        <SearchSelect
+          mode="multiple"
+          style={{ width: 200 }}
+          showSearch={true}
+          labelInValue={false}
+          showSearch={false}
+          placeholder="请输入选择"
+          value={values}
+          option={selectOption}
+          onChange={(value) => {
+            setValues(value)
+          }}
+        />
+    </Row>
+  );
+};
+ReactDOM.render(<Demo />, _mount_);
+```
 
 ### 在表单中使用
 
@@ -307,3 +412,4 @@ ReactDOM.render(<Demo />, _mount_);
 | onSearch | 文本框值变化时回调 | function(value: String) | - | - |
 | onSelect | 被选中时调用，参数为选中项的 value | function(value: String/Number ) | - | - |
 | loading | 加载中状态 | Boolean | `false` | - |
+| valueAmount | 多选模式下,限制最多选择多少个(value的长度) | number | - | - |

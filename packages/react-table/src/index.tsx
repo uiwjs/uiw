@@ -74,12 +74,15 @@ export interface LocationWidth {
   left?: number;
   right?: number;
   width: number;
+  key?: string;
+  colSpan?: number;
 }
 export interface ICellOptions {
   rowNum: number;
   colNum: number;
   keyName: string;
 }
+
 export default function Table<T extends { [key: string]: V }, V>(props: TableProps<T, V> = {}) {
   const {
     prefixCls = 'w-table',
@@ -99,35 +102,70 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
     ...other
   } = props;
   const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
-  const [locationWidth, setLocationWidth] = useState<{ [key: number]: LocationWidth }>({});
-  const finalLocationWidth = useRef<{ [key: number]: LocationWidth }>({});
-  const updateLocation = (params: LocationWidth, index: number) => {
+  const [locationWidth, setLocationWidth] = useState<{ [key: string]: LocationWidth }>({});
+  const finalLocationWidth = useRef<{ [key: string]: LocationWidth }>({});
+  const updateLocation = (params: LocationWidth, index: string, key: string, colSpan: number = 0) => {
     finalLocationWidth.current = {
       ...finalLocationWidth.current,
       [index]: {
         ...finalLocationWidth.current[index],
         ...params,
+        key: key,
+        colSpan,
       },
     };
-    if (index === columns.length - 1) {
+    if (index === `${header.length - 1}${header[header.length - 1].length - 1}`) {
       setLocationWidth(computed());
     }
   };
+  const deepClumnsLocation = (
+    params: Array<TableColumns<T> | number>,
+    fistIndex: number,
+    leftOrRight: 'left' | 'right',
+    isReverse: boolean,
+  ) => {
+    let initialValue = 0,
+      lastIndex = isReverse ? 0 : params.length - 1,
+      deepParams: Array<TableColumns<T> | number> = [];
+    params.forEach(() => {
+      let abs = Math.abs(lastIndex);
+      const i = `${fistIndex}${abs}`;
+      if (isReverse) {
+        lastIndex += 1;
+      } else {
+        lastIndex -= 1;
+      }
+      if (typeof params[abs] === 'number') {
+        initialValue = (params[abs] as number) + initialValue;
+        deepParams.push(params[abs]);
+        return;
+      }
+      if (finalLocationWidth.current[i]) {
+        finalLocationWidth.current[i][leftOrRight] = initialValue;
+        initialValue = finalLocationWidth.current[i].width + initialValue;
+      }
+      if (Array.isArray((params[abs] as TableColumns<T>).children)) {
+        deepParams.push(...(params[abs] as TableColumns<T>).children!);
+        return;
+      }
+      if (finalLocationWidth.current[i]) {
+        deepParams.push(finalLocationWidth.current[i].width);
+      } else {
+        const parent = header.find((it) => it.find((it) => it.key === (params[abs] as TableColumns<T>).key)) || [];
+        const sub = parent.findIndex((it) => it.key === (params[abs] as TableColumns<T>).key);
+        if (finalLocationWidth.current[`${i[0]}${sub}`]) {
+          // 合并单元格
+          deepParams.push(finalLocationWidth.current[`${i[0]}${sub}`].width);
+        }
+      }
+    });
+    if (deepParams.filter((it) => typeof it !== 'number').length)
+      deepClumnsLocation(deepParams, fistIndex + 1, leftOrRight, isReverse);
+  };
+
   const computed = () => {
-    let left = 0,
-      right = 0;
-    for (let index = 0; index < columns.length; index++) {
-      if (finalLocationWidth.current[index]) {
-        finalLocationWidth.current[index].left = left;
-        left = finalLocationWidth.current[index].width + left;
-      }
-    }
-    for (let index = columns.length - 1; index > -1; index--) {
-      if (finalLocationWidth.current[index]) {
-        finalLocationWidth.current[index].right = right;
-        right = finalLocationWidth.current[index].width + right;
-      }
-    }
+    deepClumnsLocation(columns, 0, 'left', true);
+    deepClumnsLocation(columns, 0, 'right', false);
     return finalLocationWidth.current;
   };
   useEffect(() => {
@@ -277,6 +315,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
                 rowKey={rowKey}
                 locationWidth={locationWidth}
                 data={data}
+                header={header}
                 keys={self.keys}
                 render={render}
                 ellipsis={ellipsis}
@@ -284,7 +323,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
                 onCell={onCell}
                 hierarchy={0}
                 isExpandedDom={isExpandedDom}
-                indentSize={expandable?.indentSize || 16}
+                indentSize={typeof expandable?.indentSize === 'number' ? expandable?.indentSize : 16}
                 childrenColumnName={expandable?.childrenColumnName || 'children'}
               />
             </tbody>
