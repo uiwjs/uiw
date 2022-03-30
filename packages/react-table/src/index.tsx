@@ -288,7 +288,6 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
   }, [scroll]);
   const cls = [prefixCls, className, bordered ? `${prefixCls}-bordered` : null].filter(Boolean).join(' ').trim();
   const { header, render, ellipsis } = getLevelItems(self.selfColumns);
-  console.log('header: ', header);
 
   return (
     <React.Fragment>
