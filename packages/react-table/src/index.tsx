@@ -118,54 +118,47 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
       setLocationWidth(computed());
     }
   };
-  const deepClumnsLocation = (
-    params: Array<TableColumns<T> | number>,
-    fistIndex: number,
-    leftOrRight: 'left' | 'right',
-    isReverse: boolean,
-  ) => {
+  const deepClumnsLocation = (params: Array<TableColumns<T> | number>, fistIndex: number) => {
     let initialValue = 0,
-      lastIndex = isReverse ? 0 : params.length - 1,
+      headerIndex = 0,
       deepParams: Array<TableColumns<T> | number> = [];
-    params.forEach(() => {
-      let abs = Math.abs(lastIndex);
-      const i = `${fistIndex}${abs}`;
-      if (isReverse) {
-        lastIndex += 1;
-      } else {
-        lastIndex -= 1;
-      }
-      if (typeof params[abs] === 'number') {
-        initialValue = (params[abs] as number) + initialValue;
-        deepParams.push(params[abs]);
+    params.forEach((_, index) => {
+      const i = `${fistIndex}${headerIndex}`;
+      if (typeof params[index] === 'number') {
+        initialValue = (params[index] as number) + initialValue;
+        deepParams.push(params[index]);
         return;
       }
       if (finalLocationWidth.current[i]) {
-        finalLocationWidth.current[i][leftOrRight] = initialValue;
+        finalLocationWidth.current[i].left = initialValue;
         initialValue = finalLocationWidth.current[i].width + initialValue;
-      }
-      if (Array.isArray((params[abs] as TableColumns<T>).children)) {
-        deepParams.push(...(params[abs] as TableColumns<T>).children!);
-        return;
-      }
-      if (finalLocationWidth.current[i]) {
-        deepParams.push(finalLocationWidth.current[i].width);
-      } else {
-        const parent = header.find((it) => it.find((it) => it.key === (params[abs] as TableColumns<T>).key)) || [];
-        const sub = parent.findIndex((it) => it.key === (params[abs] as TableColumns<T>).key);
-        if (finalLocationWidth.current[`${i[0]}${sub}`]) {
-          // 合并单元格
-          deepParams.push(finalLocationWidth.current[`${i[0]}${sub}`].width);
+        if (Array.isArray((params[index] as TableColumns<T>).children)) {
+          deepParams.push(...(params[index] as TableColumns<T>).children!);
+        } else {
+          deepParams.push(finalLocationWidth.current[i].width);
         }
       }
+      headerIndex += 1;
     });
-    if (deepParams.filter((it) => typeof it !== 'number').length)
-      deepClumnsLocation(deepParams, fistIndex + 1, leftOrRight, isReverse);
+    (initialValue = 0), (headerIndex = header[fistIndex].length - 1);
+    for (let index = params.length - 1; index >= 0; index--) {
+      const i = `${fistIndex}${headerIndex}`;
+      if (typeof params[index] === 'number') {
+        initialValue = (params[index] as number) + initialValue;
+        continue;
+      }
+      if (finalLocationWidth.current[i]) {
+        finalLocationWidth.current[i].right = initialValue;
+        initialValue = finalLocationWidth.current[i].width + initialValue;
+      }
+      headerIndex -= 1;
+    }
+    if (deepParams.filter((it) => typeof it !== 'number').length) deepClumnsLocation(deepParams, fistIndex + 1);
   };
 
   const computed = () => {
-    deepClumnsLocation(columns, 0, 'left', true);
-    deepClumnsLocation(columns, 0, 'right', false);
+    deepClumnsLocation(columns, 0);
+    // deepClumnsLocation(columns, 0, 'right', false);
     return finalLocationWidth.current;
   };
   useEffect(() => {
@@ -296,6 +289,8 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
   }, [scroll]);
   const cls = [prefixCls, className, bordered ? `${prefixCls}-bordered` : null].filter(Boolean).join(' ').trim();
   const { header, render, ellipsis } = getLevelItems(self.selfColumns);
+  console.log('header: ', header);
+
   return (
     <React.Fragment>
       <div className={cls} {...other} style={{ ...other.style, ...style.div }}>

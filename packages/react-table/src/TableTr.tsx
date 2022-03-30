@@ -115,9 +115,9 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                 }
                 if (keyName.fixed) {
                   if (keyName.fixed === 'right') {
-                    objs.className = `${objs.className} ${prefixCls}-fixed-right`;
+                    objs.className = `${prefixCls}-fixed-right`;
                   } else {
-                    objs.className = `${objs.className} ${prefixCls}-fixed-true`;
+                    objs.className = `${prefixCls}-fixed-true`;
                   }
                 }
                 return (
@@ -134,9 +134,14 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                       </span>
                     }
                     key={colNum}
-                    className={`${prefixCls}-tr-children-${keyName.align || 'left'}  ${keyName.className || ''} ${
-                      objs.className || ''
-                    }`}
+                    className={[
+                      prefixCls + '-tr-children-' + (keyName.align || 'left'),
+                      keyName.className,
+                      objs.className,
+                    ]
+                      .filter((it) => it)
+                      .join(' ')
+                      .trim()}
                     onClick={(evn) => onCell(trData, { rowNum, colNum, keyName: keyName.key! }, evn)}
                   />
                 );
