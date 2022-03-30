@@ -158,7 +158,6 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
 
   const computed = () => {
     deepClumnsLocation(columns, 0);
-    // deepClumnsLocation(columns, 0, 'right', false);
     return finalLocationWidth.current;
   };
   useEffect(() => {
