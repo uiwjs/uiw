@@ -9716,9 +9716,9 @@ function TableTr(props) {
 
             if (keyName.fixed) {
               if (keyName.fixed === 'right') {
-                objs.className = objs.className + " " + prefixCls + "-fixed-right";
+                objs.className = prefixCls + "-fixed-right";
               } else {
-                objs.className = objs.className + " " + prefixCls + "-fixed-true";
+                objs.className = prefixCls + "-fixed-true";
               }
             }
 
@@ -9729,7 +9729,7 @@ function TableTr(props) {
                 children: objs.children
               }),
               key: colNum,
-              className: prefixCls + "-tr-children-" + (keyName.align || 'left') + "  " + (keyName.className || '') + " " + (objs.className || ''),
+              className: [prefixCls + '-tr-children-' + (keyName.align || 'left'), keyName.className, objs.className].filter(it => it).join(' ').trim(),
               onClick: evn => onCell(trData, {
                 rowNum,
                 colNum,
@@ -9804,54 +9804,55 @@ function Table(props) {
     }
   };
 
-  var deepClumnsLocation = (params, fistIndex, leftOrRight, isReverse) => {
+  var deepClumnsLocation = (params, fistIndex) => {
     var initialValue = 0,
-        lastIndex = isReverse ? 0 : params.length - 1,
+        headerIndex = 0,
         deepParams = [];
-    params.forEach(() => {
-      var abs = Math.abs(lastIndex);
-      var i = "" + fistIndex + abs;
+    params.forEach((_, index) => {
+      var i = "" + fistIndex + headerIndex;
 
-      if (isReverse) {
-        lastIndex += 1;
-      } else {
-        lastIndex -= 1;
-      }
-
-      if (typeof params[abs] === 'number') {
-        initialValue = params[abs] + initialValue;
-        deepParams.push(params[abs]);
+      if (typeof params[index] === 'number') {
+        initialValue = params[index] + initialValue;
+        deepParams.push(params[index]);
         return;
       }
 
       if (finalLocationWidth.current[i]) {
-        finalLocationWidth.current[i][leftOrRight] = initialValue;
+        finalLocationWidth.current[i].left = initialValue;
+        initialValue = finalLocationWidth.current[i].width + initialValue;
+
+        if (Array.isArray(params[index].children)) {
+          deepParams.push(...params[index].children);
+        } else {
+          deepParams.push(finalLocationWidth.current[i].width);
+        }
+      }
+
+      headerIndex += 1;
+    });
+    initialValue = 0, headerIndex = header[fistIndex].length - 1;
+
+    for (var _index = params.length - 1; _index >= 0; _index--) {
+      var i = "" + fistIndex + headerIndex;
+
+      if (typeof params[_index] === 'number') {
+        initialValue = params[_index] + initialValue;
+        continue;
+      }
+
+      if (finalLocationWidth.current[i]) {
+        finalLocationWidth.current[i].right = initialValue;
         initialValue = finalLocationWidth.current[i].width + initialValue;
       }
 
-      if (Array.isArray(params[abs].children)) {
-        deepParams.push(...params[abs].children);
-        return;
-      }
+      headerIndex -= 1;
+    }
 
-      if (finalLocationWidth.current[i]) {
-        deepParams.push(finalLocationWidth.current[i].width);
-      } else {
-        var parent = header.find(it => it.find(it => it.key === params[abs].key)) || [];
-        var sub = parent.findIndex(it => it.key === params[abs].key);
-
-        if (finalLocationWidth.current["" + i[0] + sub]) {
-          // 合并单元格
-          deepParams.push(finalLocationWidth.current["" + i[0] + sub].width);
-        }
-      }
-    });
-    if (deepParams.filter(it => typeof it !== 'number').length) deepClumnsLocation(deepParams, fistIndex + 1, leftOrRight, isReverse);
+    if (deepParams.filter(it => typeof it !== 'number').length) deepClumnsLocation(deepParams, fistIndex + 1);
   };
 
   var computed = () => {
-    deepClumnsLocation(columns, 0, 'left', true);
-    deepClumnsLocation(columns, 0, 'right', false);
+    deepClumnsLocation(columns, 0);
     return finalLocationWidth.current;
   };
 
