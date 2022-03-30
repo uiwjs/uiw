@@ -8,9 +8,9 @@ Radio 单选框
 单选框，在一组备选项中进行单选。
 
 ```jsx
-import { Radio, RadioGroup } from 'uiw';
+import { Radio, RadioButton, RadioGroup } from 'uiw';
 // or
-import { Radio, RadioGroup } from '@uiw/react-radio';
+import { Radio, RadioButton, RadioGroup } from '@uiw/react-radio';
 ```
 
 ### 基础用法
@@ -20,7 +20,7 @@ import { Radio, RadioGroup } from '@uiw/react-radio';
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
-import { Radio } from 'uiw';
+import { Radio, RadioButton } from 'uiw';
 
 const Demo = () => (
   <div>
@@ -28,6 +28,9 @@ const Demo = () => (
     <Radio value="2" checked>选中</Radio>
     <Radio value="3" disabled>禁用</Radio>
     <Radio value="4" checked disabled>选中并禁用</Radio>
+    <Radio value="4" checked disabled>选中并禁用</Radio>
+    <RadioButton value="5" >RadioButton</RadioButton>
+    <RadioButton value="5" checked >RadioButton 选中</RadioButton>
   </div>
 );
 ReactDOM.render(<Demo />, _mount_);
@@ -38,7 +41,7 @@ ReactDOM.render(<Demo />, _mount_);
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
 import ReactDOM from 'react-dom';
-import { Form, Radio, RadioGroup, Row, Col, Button, Notify } from 'uiw';
+import { Form, Radio, RadioGroup, RadioButton, Row, Col, Button, Notify } from 'uiw';
 
 const Demo = () => (
   <Form
@@ -75,6 +78,19 @@ const Demo = () => (
           </RadioGroup>
         ),
       },
+      radioButtonGroup: {
+        value: 'girl',
+        label: '请输入内容',
+        help: '必须选择性别！',
+        children: (
+          <RadioGroup>
+            <RadioButton value="man">男</RadioButton>
+            <RadioButton value="girl">女</RadioButton>
+            <RadioButton value="shemale">中性</RadioButton>
+            <RadioButton value="unknown">未知</RadioButton>
+          </RadioGroup>
+        ),
+      },
       radio: {
         help: '请选择！该选项为必选！',
         validator: (value) => !value ? '必填选项！' : null,
@@ -87,6 +103,9 @@ const Demo = () => (
         <div>
           <Row>
             <Col>{fields.radioGroup}</Col>
+          </Row>
+          <Row>
+            <Col>{fields.radioButtonGroup}</Col>
           </Row>
           <Row>
             <Col>{fields.radio}</Col>
@@ -120,24 +139,30 @@ ReactDOM.render(<Demo />, _mount_);
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Radio, RadioGroup } from 'uiw';
+import { Radio, RadioGroup, RadioButton } from 'uiw';
 
 class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = { value: '未知' };
   }
-  onChange(e) {
-    this.setState({ value: e.target.value });
+  onChange(value) {
+    this.setState({ value });
   }
   render() {
     return (
       <div>
-        <RadioGroup name="sexs" value={this.state.value} onChange={this.onChange.bind(this)}>
+        <RadioGroup name="sexs" value={this.state.value} onChange={(e)=>this.onChange(e.target.value)}>
           <Radio value="man">男</Radio>
           <Radio value="girl">女</Radio>
           <Radio value="shemale" disabled>中性</Radio>
           <Radio value="unknown" disabled>未知</Radio>
+        </RadioGroup>
+        <RadioGroup name="sexs" value={this.state.value} onChange={this.onChange.bind(this)} style={{ marginTop: 20 }}>
+          <RadioButton value="man">男</RadioButton>
+          <RadioButton value="girl">女</RadioButton>
+          <RadioButton value="shemale" disabled>中性</RadioButton>
+          <RadioButton value="unknown" disabled>未知</RadioButton>
         </RadioGroup>
       </div>
     )
@@ -161,13 +186,13 @@ class Demo extends React.Component {
     super(props);
     this.state = { value: '未知' };
   }
-  onChange(e) {
-    this.setState({ value: e.target.value });
+  onChange(value) {
+    this.setState({ value });
   }
   render() {
     return (
       <div>
-        <RadioGroup name="other" value={this.state.value} onChange={this.onChange.bind(this)}>
+        <RadioGroup name="other" value={this.state.value} onChange={(e)=>this.onChange(e.target.value)}>
           <div>Group 1</div>
           <Radio value="男">男</Radio>
           <Radio value="女">女</Radio>
@@ -177,6 +202,13 @@ class Demo extends React.Component {
           <div>Group 3</div>
           <Radio value="E" style={{ display: 'block' }}>Item E</Radio>
           <Radio value="F" style={{ display: 'block' }}>Item F</Radio>
+          <div>Group 3</div>
+        </RadioGroup>
+
+        <RadioGroup name="other" value={this.state.value} onChange={this.onChange.bind(this)} style={{ marginTop:20 }}>
+          <RadioButton value="男">男</RadioButton>
+          <RadioButton value="女">女</RadioButton>
+          <RadioButton value="未知">未知</RadioButton>
         </RadioGroup>
         <Divider />
         <Button
@@ -205,7 +237,7 @@ ReactDOM.render(<Demo />, _mount_);
 | disabled | 是否禁用 | Boolean | `false` |
 | onChange | 数值改变时的回调，返回当前值 | Funtcion(e:Even) | - |
 
-## RadioGroup 
+## RadioGroup
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
