@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { IProps, HTMLInputProps, HTMLButtonProps } from '@uiw/utils';
+import { IProps, HTMLButtonProps } from '@uiw/utils';
 import Button from '@uiw/react-button';
 
 /**
