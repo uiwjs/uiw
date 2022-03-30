@@ -80,6 +80,11 @@ const columns = [
     style: { color: 'red' },
     key: 'name', 
     children: [
+       {
+        title: '英文名字',
+        width: 100,
+        key: 'name_en',
+      },
       {
         title: '中文名字',
         key: 'cnname',
@@ -90,7 +95,7 @@ const columns = [
             key: 'firstname',
             children:[
               { title: '姓', key: 'name1', width: 80 },
-              { title: '名', key: 'name2', width: 80 },
+              { title: '名',  key: 'name2', width: 80 },
             ]
           }, {
             title: '拼音',
@@ -101,14 +106,11 @@ const columns = [
             ],
           },
         ],
-      }, {
-        title: '英文名字',
-        width: 100,
-        key: 'name_en',
-      },
+      }, 
     ]
   }, {
     title: '其它',
+    key: 'other',
     children:[
       { title: '生日', key: 'birthday', width: 150 },
       { title: '职业', key: 'job', width: 150 },
