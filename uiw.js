@@ -371,6 +371,7 @@ __webpack_require__.d(__webpack_exports__, {
   "Progress": () => (/* reexport */ react_progress_esm),
   "Radio": () => (/* reexport */ Radio),
   "RadioAbstract": () => (/* reexport */ RadioAbstract),
+  "RadioButton": () => (/* reexport */ esm_RadioButton),
   "RadioGroup": () => (/* reexport */ RadioGroup),
   "Rate": () => (/* reexport */ Rate),
   "Row": () => (/* reexport */ Row_Row),
@@ -4877,6 +4878,7 @@ var RadioGroup_excluded = ["prefixCls", "className", "name", "value", "onChange"
 
 
 
+
 /* harmony default export */ const RadioGroup = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
     prefixCls = 'w-radio-group',
@@ -4891,19 +4893,91 @@ var RadioGroup_excluded = ["prefixCls", "className", "name", "value", "onChange"
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({}, other, {
     ref: ref,
     className: [prefixCls, className].filter(Boolean).join(' ').trim(),
-    children: external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.toArray(children).map(child => {
-      if (!child) return;
-      if (! /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().isValidElement(child)) return child;
-      return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(child, _extends({}, child.props || {}, {
-        checked: child.props.value === value,
-        name,
-        onChange
-      }));
+    children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_button_group_esm, {
+      children: external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.toArray(children).map(child => {
+        if (!child) return;
+        if (! /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().isValidElement(child)) return child;
+        return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(child, _extends({}, child.props || {}, {
+          checked: child.props.value === value,
+          name,
+          onChange
+        }));
+      })
     })
   }));
 }));
 
+;// CONCATENATED MODULE: ../react-radio/esm/RadioButton.js
+
+
+var RadioButton_excluded = ["prefixCls", "type", "disabled", "value", "className", "style", "children", "size", "checked", "onChange"];
+
+
+/**
+ * Constructs a type by picking all properties from `HTMLInputProps` and then removing `size`.
+ * Omit: https://www.typescriptlang.org/docs/handbook/utility-types.html#omittk
+ */
+
+
+var RadioButton = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
+  var {
+    prefixCls = 'w-radio',
+    type = 'button',
+    disabled = false,
+    value = '',
+    className,
+    style,
+    children,
+    size = 'small',
+    checked: prChecked = false,
+    onChange
+  } = props,
+      other = _objectWithoutPropertiesLoose(props, RadioButton_excluded);
+
+  var [checked, setChecked] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(prChecked);
+  var [prevChecked, setPrevChecked] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)();
+
+  if (prChecked !== prevChecked) {
+    setPrevChecked(prChecked);
+  }
+
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
+    if (prChecked !== prevChecked) {
+      setChecked(prChecked);
+    }
+  }, [prevChecked]);
+  var cls = [prefixCls, className, disabled ? 'disabled' : null, size ? prefixCls + "-" + size : null].filter(Boolean).join(' ').trim();
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
+    if (checked !== props.checked) {
+      setChecked(!!props.checked);
+    }
+  }, [props.checked]);
+  console.log('props.checked', props.checked);
+
+  function handleChange(e) {
+    e.persist();
+    setChecked(!checked);
+    onChange && onChange(value);
+  }
+
+  var label = children || value;
+  return /*#__PURE__*/(0,jsx_runtime.jsx)(esm, _extends({}, _extends({}, other, {
+    className: cls,
+    style,
+    disabled,
+    value
+  }), {
+    type: checked ? 'primary' : 'light',
+    ref: ref,
+    onClick: handleChange,
+    children: label
+  }));
+});
+/* harmony default export */ const esm_RadioButton = (RadioButton);
+
 ;// CONCATENATED MODULE: ../react-radio/esm/index.js
+
+
 
 
 
