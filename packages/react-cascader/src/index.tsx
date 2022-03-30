@@ -17,6 +17,7 @@ export interface CascaderProps extends IProps, DropdownProps {
   onSearch?: boolean | ((searchText: string) => void);
   allowClear?: boolean;
   placeholder?: string;
+  disabled?: boolean;
 }
 
 function Cascader(props: CascaderProps) {
@@ -25,6 +26,7 @@ function Cascader(props: CascaderProps) {
     onChange,
     onSearch,
 
+    disabled,
     allowClear,
     placeholder,
     prefixCls = 'w-cascader',
@@ -131,7 +133,7 @@ function Cascader(props: CascaderProps) {
     onSearch && handelSearch(value);
   };
 
-  const widths = (style?.width as number) * 0.5 || undefined;
+  const widths = (style?.width as number) * 0.7 || undefined;
 
   const OptionIter = (option: Array<OptionType>, level: number = 0) => {
     if (!option) return;
@@ -178,6 +180,7 @@ function Cascader(props: CascaderProps) {
       trigger="click"
       style={{ marginTop: 5, ...style }}
       overlayStyl={{ width: 100 }}
+      disabled={disabled}
       {...others}
       onVisibleChange={onVisibleChange}
       isOpen={innerIsOpen}
@@ -225,6 +228,7 @@ function Cascader(props: CascaderProps) {
         <Input
           value={searchOn ? searchText : inputValue}
           onChange={inputChange}
+          disabled={disabled}
           placeholder={searchOn ? inputValue : placeholder}
           style={{ width: style?.width }}
           onFocus={() => onSearch && setSearchOn(true)}
@@ -232,7 +236,7 @@ function Cascader(props: CascaderProps) {
           readOnly={!onSearch}
           addonAfter={
             <span style={{ width: 'auto' }}>
-              {selectIconType === 'close' && (
+              {!disabled && selectIconType === 'close' && (
                 <Icon type={selectIconType} onClick={onClear} className={`${prefixCls}-close`} />
               )}
             </span>
