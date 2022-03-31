@@ -288,19 +288,19 @@ const Demo = () => {
 
   return(
     <Row style={{ marginLeft: 10 }}>
-        <SearchSelect
-          mode="multiple"
-          showSearch={true}
-          value={values}
-          option={option}
-          loading={loading}
-          onSearch={handleSearch}
-          placeholder="请输入选择"
-          style={{ width: 200 }}
-          onChange={(value) => {
-            setValues(value)
-          }}
-        />
+      <SearchSelect
+        mode="multiple"
+        showSearch={true}
+        value={values}
+        option={option}
+        loading={loading}
+        onSearch={handleSearch}
+        placeholder="请输入选择"
+        style={{ width: 200 }}
+        onChange={(value) => {
+          setValues(value)
+        }}
+      />
     </Row>
   );
 };
