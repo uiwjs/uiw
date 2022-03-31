@@ -59,31 +59,14 @@ const data = [
   { label: '澳门', key: 16 },
 ];
 
-const datas =[
-  { label: '上海市',  key: 0 },
-  {
-    label: '北京市',  key: 1,
-    children:[
-      { label: '东城区', key: 10 },
-   ]
-  },
-  { label: '成都市',  key: 2 },
-]
-
 const Demo = () => {
 
 const [value,valueSet]=useState([{ label: '黄浦区', key: 12 }])
-const [values,valuesSet]=useState([{ label: '北京市', key: 1 }])
 const [valueSinge,valueSingeSet]=useState([{ label: '上海市', key: '1-0-0' }])
 
 const onChange=(selectd, selectedAll,  isChecked)=>{
   console.log('SearchTree-> onChange',selectedAll, selectd, isChecked)
   valueSet(selectedAll)
-}
-
-const onChanges=(selectd, selectedAll,  isChecked)=>{
-  console.log('SearchTree-> onChange',selectedAll, selectd, isChecked)
-  valuesSet(selectedAll)
 }
 
 const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
@@ -92,86 +75,46 @@ const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
 }
 
  return (
-   <>
-    <Row>
-      <Col >
-        <label>多选</label>
-        <SearchTree
-          style={{ width:300 }}
-          allowClear={true}
-          onSearch={(searchValue)=>console.log('multiple',searchValue)}
-          onChange={onChange}
-          value={value}
-          options={data}
-          placeholder="请输入选择"
-        />
-      </Col>
-    </Row>
+   <Row gutter={20}>
     <label>单选</label>
     <Row>
-        <SearchTree
-          style={{width:300}}
-          loading={true}
-          multiple={false}
-          allowClear={true}
-          onSearch={(searchValue)=>console.log('singe',searchValue)}
-          onChange={onChanges}
-          value={values}
-          options={datas}
-          placeholder="请输入选择"
-        />
-        <Col style={{marginLeft:20}}>
-        <SearchTree
-          style={{width:300}}
-          multiple={false}
-          allowClear={true}
-          onSearch={(searchValue)=>console.log('singe',searchValue)}
-          onChange={onChangeSinge}
-          value={valueSinge}
-          options={data}
-          placeholder="请输入选择"
-        />
-        </Col>
+      <SearchTree
+        style={{width: 200}}
+        multiple={false}
+        allowClear={true}
+        onSearch={(searchValue)=>console.log('singe',searchValue)}
+        onChange={onChangeSinge}
+        value={valueSinge}
+        options={data}
+        placeholder="请输入选择"
+      />
     </Row>
-  </>
+    <label>多选</label>
+    <Row>
+      <SearchTree
+        style={{ width: 200 }}
+        allowClear={true}
+        onSearch={(searchValue)=>console.log('multiple',searchValue)}
+        onChange={onChange}
+        value={value}
+        options={data}
+        placeholder="请输入选择"
+      />
+    </Row>
+    <label>禁用</label>
+    <Row>
+      <SearchTree
+        disabled={true}
+        style={{ width: 200 }}
+        allowClear={true}
+        value={[{ label: '东城区', key: 10 },{ label: '成都市',  key: 2 }]}
+        options={data}
+        placeholder="请输入选择"
+      />
+    </Row>
+  </Row>
   )
 }
-ReactDOM.render(<Demo />, _mount_);
-```
-
-### 禁用
-
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import React, { useState, useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
-import {  SearchTree } from 'uiw';
-
-const data = [
-  { label: '上海市',  key: 0 },
-  {
-    label: '北京市',  key: 1,
-    children:[
-      { label: '东城区', key: 10 },
-   ]
-  },
-  { label: '成都市',  key: 2 },
-]
-
-const Demo = () => {
-
-  return(
-    <SearchTree
-      disabled={true}
-      style={{ width:300 }}
-      allowClear={true}
-      value={[{ label: '东城区', key: 10 },{ label: '成都市',  key: 2 }]}
-      options={data}
-      placeholder="请输入选择"
-    />
-  )
-}
-
 ReactDOM.render(<Demo />, _mount_);
 ```
 
@@ -294,6 +237,7 @@ const form=useRef()
             children: (
                 <SearchTree
                   allowClear={true}
+                  style={{ width: 200 }}
                   onSearch={(searchValue)=>console.log('SearchTree-> SearchTreeOption',searchValue)}
                   onChange={(selectd, selectedAll,  isChecked)=>console.log('SearchTree-> onChange', selectd, selectedAll, isChecked)}
                   options={data}
@@ -306,6 +250,7 @@ const form=useRef()
             children: (
                 <SearchTree
                   multiple={false}
+                  style={{ width: 200 }}
                   allowClear={true}
                   onSearch={(searchValue)=>console.log('SearchTree-> SearchTreeOption',searchValue)}
                   onChange={(selectd, selectedAll,  isChecked)=>console.log('SearchTree-> onChange', selectd, selectedAll, isChecked)}
@@ -366,4 +311,4 @@ ReactDOM.render(<Demo />, _mount_);
 | onSearch | 文本框值变化时回调 | function(searchValue) | - |
 | loading | 加载中状态 | Boolean | `false` |
 | emptyOption | 自定义下拉选项为空时显示内容 | React.ReactNode | [Empty](https://uiwjs.github.io/#/components/empty) |
-
+| tagProps | 将参数传递给 [`<Tag>`](https://uiwjs.github.io/#/components/tag) 组件 | `TagProps` | `{}` | `4.13.0` |

@@ -2,7 +2,7 @@ import React, { useMemo, useState, useRef, useEffect, ReactElement } from 'react
 import Dropdown, { DropdownProps } from '@uiw/react-dropdown';
 import Icon from '@uiw/react-icon';
 import Input from '@uiw/react-input';
-import Tag from '@uiw/react-tag';
+import Tag, { TagProps } from '@uiw/react-tag';
 import Card from '@uiw/react-card';
 import Empty from '@uiw/react-empty';
 import { IProps } from '@uiw/utils';
@@ -29,6 +29,7 @@ export interface SearchTagInputProps<V> extends IProps, DropdownProps, DropConte
   placeholder?: string;
   emptyOption?: boolean | React.ReactNode;
   selectCloseDrop?: boolean;
+  tagProps?: TagProps;
 }
 
 function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputProps<V>) {
@@ -43,6 +44,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
     style,
     placeholder,
 
+    tagProps = {},
     content,
     options,
     values,
@@ -155,8 +157,9 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
                   className={`${prefixCls}-tag`}
                   key={index}
                   closable
-                  disabled={disabled}
                   color="#393E48"
+                  {...tagProps}
+                  disabled={disabled}
                   onClose={(e) => {
                     e.stopPropagation();
                     removeSelectItem(index);
