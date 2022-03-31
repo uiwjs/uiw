@@ -101,45 +101,20 @@ const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
         placeholder="请输入选择"
       />
     </Row>
+    <label>禁用</label>
+    <Row>
+      <SearchTree
+        disabled={true}
+        style={{ width: 200 }}
+        allowClear={true}
+        value={[{ label: '东城区', key: 10 },{ label: '成都市',  key: 2 }]}
+        options={data}
+        placeholder="请输入选择"
+      />
+    </Row>
   </Row>
   )
 }
-ReactDOM.render(<Demo />, _mount_);
-```
-
-### 禁用
-
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import React, { useState, useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
-import {  SearchTree } from 'uiw';
-
-const data = [
-  { label: '上海市',  key: 0 },
-  {
-    label: '北京市',  key: 1,
-    children:[
-      { label: '东城区', key: 10 },
-   ]
-  },
-  { label: '成都市',  key: 2 },
-]
-
-const Demo = () => {
-
-  return(
-    <SearchTree
-      disabled={true}
-      style={{ width: 200 }}
-      allowClear={true}
-      value={[{ label: '东城区', key: 10 },{ label: '成都市',  key: 2 }]}
-      options={data}
-      placeholder="请输入选择"
-    />
-  )
-}
-
 ReactDOM.render(<Demo />, _mount_);
 ```
 
