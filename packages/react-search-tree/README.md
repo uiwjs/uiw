@@ -336,4 +336,4 @@ ReactDOM.render(<Demo />, _mount_);
 | onSearch | 文本框值变化时回调 | function(searchValue) | - |
 | loading | 加载中状态 | Boolean | `false` |
 | emptyOption | 自定义下拉选项为空时显示内容 | React.ReactNode | [Empty](https://uiwjs.github.io/#/components/empty) |
-
+| tagProps | 将参数传递给 [`<Tag>`](https://uiwjs.github.io/#/components/tag) 组件 | `TagProps` | `{}` | `4.13.0` |
