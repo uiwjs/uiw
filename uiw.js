@@ -10859,6 +10859,7 @@ function SearchTagInput(props) {
     className,
     style,
     placeholder,
+    tagProps = {},
     content,
     options,
     values,
@@ -10991,7 +10992,7 @@ function SearchTagInput(props) {
             width: '100%'
           },
           children: [selectedOption.map((item, index) => {
-            return /*#__PURE__*/(0,jsx_runtime.jsx)(react_tag_esm, {
+            return /*#__PURE__*/(0,jsx_runtime.jsx)(react_tag_esm, _extends({
               style: {
                 height: 20,
                 margin: 1,
@@ -11000,14 +11001,15 @@ function SearchTagInput(props) {
               },
               className: prefixCls + "-tag",
               closable: true,
+              color: "#393E48"
+            }, tagProps, {
               disabled: disabled,
-              color: "#393E48",
               onClose: e => {
                 e.stopPropagation();
                 removeSelectItem(index);
               },
               children: item.label
-            }, index);
+            }), index);
           }), /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
             ref: inputRef,
             style: {},
