@@ -43,7 +43,57 @@ function Demo() {
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+## 树形节点
+
+使用 [Tree](https://uiwjs.github.io/#/components/tree) 结构作为选项节点
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import React from 'react';
+import { Transfer } from 'uiw';
+
+function Demo() {
+const options = [
+    {
+      label: '武汉市',
+      key: 1,
+      children: [
+        { label: '新洲区', key: 2, disabled: true },
+        { label: '武昌区', key: 3 },
+        {
+          label: '汉南区',
+          key: 4,
+          children: [
+            { label: '汉南区1', key: 5 },
+            { label: '汉南区2', key: 6 },
+            { label: '汉南区3', key: 7 },
+          ]
+        },
+      ]
+    }
+  ];
+
+  const [value,valueSet] = React.useState([{ label: '汉南区1', key: 5 }])
+
+  return (
+    <Row style={{ flexDirection:'column' }} >
+      <Transfer
+        options={options}
+        value={value}
+        onChange={(transfer,option)=>{
+          valueSet(option)
+        }}
+      />
+    </Row>
+  );
+}
+
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ## 全部选择
+
+将`selectedAll`设置为`true`,启用全部勾选功能
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
@@ -91,53 +141,9 @@ function Demo() {
 ReactDOM.render(<Demo />, _mount_);
 ```
 
-## 树形节点
-
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import React from 'react';
-import { Transfer } from 'uiw';
-
-function Demo() {
-const options = [
-    {
-      label: '武汉市',
-      key: 1,
-      children: [
-        { label: '新洲区', key: 2, disabled: true },
-        { label: '武昌区', key: 3 },
-        {
-          label: '汉南区',
-          key: 4,
-          children: [
-            { label: '汉南区1', key: 5 },
-            { label: '汉南区2', key: 6 },
-            { label: '汉南区3', key: 7 },
-          ]
-        },
-      ]
-    }
-  ];
-
-  const [value,valueSet] = React.useState([{ label: '武汉市',  key: 1 }])
-
-  return (
-    <Row style={{ flexDirection:'column' }} >
-      <Transfer
-        options={options}
-        value={value}
-        onChange={(transfer,option)=>{
-          valueSet(option)
-        }}
-      />
-    </Row>
-  );
-}
-
-ReactDOM.render(<Demo />, _mount_);
-```
-
 ## 搜索选项
+
+将`showSearch`设置为`true`，启用选项搜索框
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
