@@ -68,6 +68,68 @@ const Demo = () => {
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+## 尺寸
+
+通过 size 属性设置选择器的尺寸，提供三个尺寸参数设置。
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { SearchSelect,Row,Col } from 'uiw';
+
+const Demo = () => {
+  const option=[
+    { label: '小尺寸', value: 1 },
+    { label: '默认尺寸', value: 2 },
+    { label: '大尺寸', value: 3 },
+  ]
+
+  return(
+    <Row style={{ flexDirection: 'column' }}>
+      <Col>
+        <Row>
+          <SearchSelect
+            mode="multiple"
+            style={{ width: 150 }}
+            option={option}
+            value={[1]}
+            showSearch={true}
+            placeholder="请输入选择"
+            size={'small'}
+          />
+        </Row>
+      </Col>
+      <Col style={{ margin:'10px 0px' }}>
+        <Row>
+          <SearchSelect
+            mode="multiple"
+            style={{ width: 175 }}
+            option={option}
+            value={[2]}
+            showSearch={true}
+            placeholder="请输入选择"
+          />
+        </Row>
+      </Col>
+      <Col  >
+        <Row>
+          <SearchSelect
+            mode="multiple"
+            style={{ width: 200 }}
+            option={option}
+            value={[3]}
+            showSearch={true}
+            placeholder="请输入选择"
+            size={'large'}
+          />
+        </Row>
+      </Col>
+    </Row>
+  );
+};
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ## 不同的value类型
 
 通`labelInValue`参数控制value类型和onChange时间返回参数的类型，设置为`true`时，`value`和`onChange`回调返回的值类型从[..., value]变成[..., { label, value}]
