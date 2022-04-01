@@ -8317,6 +8317,11 @@ var react_search_select_esm_excluded = ["allowClear", "disabled", "valueAmount",
 
 
 
+var TagSize = {
+  large: 25,
+  default: 20,
+  small: 17
+};
 function SearchSelect(props) {
   var _style$width;
 
@@ -8547,7 +8552,7 @@ function SearchSelect(props) {
         maxWidth: 'none'
       }, style),
       children: isMultiple ? /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
-        className: prefixCls + "-inner",
+        className: [prefixCls + "-inner", prefixCls + "-" + size].filter(Boolean).join(' ').trim(),
         children: [/*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
           style: {
             display: 'flex',
@@ -8557,12 +8562,11 @@ function SearchSelect(props) {
           children: [isMultiple && selectedValue.slice(0, maxTagCount).map((item, index) => {
             return /*#__PURE__*/(0,jsx_runtime.jsx)(react_tag_esm, _extends({
               style: _extends({
-                height: 20,
+                height: TagSize[size],
                 margin: 1,
                 display: 'flex',
                 alignItems: 'center'
               }, tagProps.style),
-              className: prefixCls + "-tag",
               color: "#393E48"
             }, tagProps, {
               closable: true,
