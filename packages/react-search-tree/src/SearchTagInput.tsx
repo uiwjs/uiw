@@ -8,6 +8,8 @@ import Empty from '@uiw/react-empty';
 import { IProps } from '@uiw/utils';
 import './style/index.less';
 
+const TagSize = { large: 25, default: 20, small: 17 };
+
 export interface DropContent<V> {
   values: Array<V>;
   onSelected?: (selectedAll: Array<V>, selectd: V, isChecked: boolean) => void;
@@ -146,14 +148,14 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
         onMouseOver={() => renderSelectIcon('enter')}
         onMouseLeave={() => renderSelectIcon('leave')}
         onClick={() => inputRef.current?.focus()}
-        style={{ minWidth: 200, maxWidth: 'none', ...style }}
+        style={{ minWidth: style?.width || 200, maxWidth: 'none', ...style }}
       >
-        <div className={`${prefixCls}-inner`}>
+        <div className={[`${prefixCls}-inner`, `${prefixCls}-${size}`].filter(Boolean).join(' ').trim()}>
           <div style={{ display: 'flex', flexFlow: 'wrap', width: '100%' }}>
             {selectedOption.map((item, index) => {
               return (
                 <Tag
-                  style={{ height: 20, margin: 1, display: 'flex', alignItems: 'center' }}
+                  style={{ height: TagSize[size], margin: 1, display: 'flex', alignItems: 'center' }}
                   className={`${prefixCls}-tag`}
                   key={index}
                   closable
