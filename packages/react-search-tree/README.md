@@ -118,6 +118,47 @@ const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+## 尺寸
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import React, { useState, useEffect, useRef } from 'react';
+import {  SearchTree } from 'uiw';
+
+const Demo = () => {
+
+const data = [
+    { label: '小尺寸', key: 1 },
+    { label: '默认尺寸', key: 2 },
+    { label: '大尺寸', key: 3 },
+  ]
+
+  return(
+    <>
+      <SearchTree
+        style={{ width: 150 }}
+        value={[{ label: '小尺寸', key: 1 }]}
+        options={data}
+        size="small"
+      />
+      <SearchTree
+        style={{ width: 175, marginTop: 10 }}
+        value={[{ label: '默认尺寸', key: 2 }]}
+        options={data}
+      />
+      <SearchTree
+        style={{ width: 200, marginTop: 10 }}
+        value={[{ label: '大尺寸', key: 3 }]}
+        options={data}
+        size="large"
+      />
+    </>
+  )
+}
+
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ## 自定义空选项
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
