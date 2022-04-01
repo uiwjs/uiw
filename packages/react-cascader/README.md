@@ -84,6 +84,57 @@ const Demo = () => {
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+## 尺寸
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { Cascader } from 'uiw';
+
+const Demo = () => {
+
+  const options = [
+    {
+      label: '尺寸', value: 1,
+      children: [
+        {
+          label: 'size',
+          value: 2,
+          children: [
+            { label: '小尺寸', value: 3 },
+            { label: '默认尺寸', value: 4 },
+            { label: '大尺寸', value: 5 },
+          ]
+        },
+      ]
+    }
+  ];
+
+  return (
+    <Row style={{ flexDirection: 'column' }}>
+        <Cascader
+          style={{ width: 150 }}
+          value={[1, 2, 3]}
+          option={options}
+          size="small"
+        />
+        <Cascader
+          style={{ width: 175, marginTop: 10 }}
+          value={[1, 2, 4]}
+          option={options}
+        />
+        <Cascader
+          style={{ width: 200, marginTop: 10 }}
+          value={[1, 2, 5]}
+          option={options}
+          size="large"
+        />
+    </Row>
+  )
+};
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ## 搜索选项
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
@@ -263,3 +314,5 @@ ReactDOM.render(<Demo />, _mount_);
 | value | 指定当前选中的条目，多选时为一个数组 | String[] \| Number[] | - | - |
 | onChange | 选中选项调用此函数 | function( isSeleted, value, selectedOptions) | - | - |
 | onSearch | 开启搜索选项 | functionon(searchText) \| Boolean | - | v4.16.1 |
+| size | 选择框尺寸 | Enum{large, default, small } | `default` | v17.0.1 |
+| inputProps | 传给[Input](http://localhost:3000/#/components/input)组件的参数 | Object | - | v17.0.1 |
