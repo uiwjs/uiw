@@ -11,6 +11,9 @@ import { useEffect } from 'react';
 import './style/index.less';
 
 type ValueType = string | number;
+
+const TagSize = { large: 25, default: 20, small: 17 };
+
 export interface SearchSelectProps extends IProps, DropdownProps {
   mode?: 'single' | 'multiple';
   size?: 'large' | 'default' | 'small';
@@ -262,14 +265,19 @@ export default function SearchSelect(props: SearchSelectProps) {
         style={{ width: '100%', maxWidth: 'none', ...style }}
       >
         {isMultiple ? (
-          <div className={`${prefixCls}-inner`}>
+          <div className={[`${prefixCls}-inner`, `${prefixCls}-${size}`].filter(Boolean).join(' ').trim()}>
             <div style={{ display: 'flex', flexFlow: 'wrap', width: '100%' }}>
               {isMultiple &&
                 selectedValue.slice(0, maxTagCount).map((item, index) => {
                   return (
                     <Tag
-                      style={{ height: 20, margin: 1, display: 'flex', alignItems: 'center', ...tagProps.style }}
-                      className={`${prefixCls}-tag`}
+                      style={{
+                        height: TagSize[size],
+                        margin: 1,
+                        display: 'flex',
+                        alignItems: 'center',
+                        ...tagProps.style,
+                      }}
                       key={index}
                       color="#393E48"
                       {...tagProps}

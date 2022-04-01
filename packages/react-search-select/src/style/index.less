@@ -40,7 +40,6 @@
       inset 0 1px 1px rgba(16, 22, 26, 0.2);
     box-sizing: border-box;
     background: #fff;
-    min-height: 30px;
     margin: 0 !important;
     padding: 3px 10px 3px 10px;
     vertical-align: middle;
@@ -71,11 +70,32 @@
       cursor: not-allowed;
       resize: none;
     }
+
+    &-inner-small {
+      height: 20px;
+    }
+
+    &-inner-large {
+      height: 30px;
+    }
+
+    .w-input-small .w-input-inner {
+      height: 16px;
+      font-size: 10px;
+      padding: 0px;
+    }
+
+    .w-input-large .w-input-inner {
+      // line-height:0px !important;
+      height: 28px;
+    }
   }
+
   &-multiple-colse {
     left: 7px;
     font-size: 15px;
   }
+
   &-singe-colse {
     font-size: 15px;
   }
