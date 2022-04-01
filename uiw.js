@@ -4553,6 +4553,7 @@ function Cascader(props) {
     value,
     onChange,
     onSearch,
+    size,
     disabled,
     allowClear,
     placeholder,
@@ -4562,7 +4563,8 @@ function Cascader(props) {
       width: 200
     },
     option = [],
-    others
+    others,
+    inputProps
   } = props;
   var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   var [innerIsOpen, setInnerIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
@@ -4714,9 +4716,9 @@ function Cascader(props) {
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Dropdown, _extends({
     className: cls,
     trigger: "click",
-    style: _extends({
+    style: {
       marginTop: 5
-    }, style),
+    },
     overlayStyl: {
       width: 100
     },
@@ -4759,14 +4761,13 @@ function Cascader(props) {
     children: /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
       onMouseLeave: () => renderSelectIcon('leave'),
       onMouseOver: () => renderSelectIcon('enter'),
-      children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
+      children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, _extends({}, inputProps, {
         value: searchOn ? searchText : inputValue,
         onChange: inputChange,
+        size: size,
         disabled: disabled,
         placeholder: searchOn ? inputValue : placeholder,
-        style: {
-          width: style == null ? void 0 : style.width
-        },
+        style: style,
         onFocus: () => onSearch && setSearchOn(true),
         onBlur: () => onSearch && setSearchOn(false),
         readOnly: !onSearch,
@@ -4780,7 +4781,7 @@ function Cascader(props) {
             className: prefixCls + "-close"
           })
         })
-      })
+      }))
     })
   }));
 }
