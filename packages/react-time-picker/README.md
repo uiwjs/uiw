@@ -22,17 +22,17 @@ import { TimePicker, Row, Col } from 'uiw';
 
 const Demo = () => (
   <Row gutter={10}>
-    <Col fixed>
+    <Col style={{ width: 200 }} fixed>
       <TimePicker
         onChange={(formatDate, date) => {
           console.log('--->', formatDate, date);
         }}
       />
     </Col>
-    <Col fixed>
+    <Col style={{ width: 200 }} fixed>
       <TimePicker format="HH:mm" precision="minute" />
     </Col>
-    <Col fixed>
+    <Col style={{ width: 200 }} fixed>
       <TimePicker format="HH" precision="hour" />
     </Col>
   </Row>
@@ -51,13 +51,13 @@ const Demo = () => {
   const value = new Date(2018, 1, 24, 4,5,35);
   return (
     <Row gutter={10}>
-      <Col fixed>
+      <Col style={{ width: 200 }} fixed>
         <TimePicker value={value} />
       </Col>
-      <Col fixed>
+      <Col style={{ width: 200 }} fixed>
         <TimePicker value={value} format="HH:mm" precision="minute" />
       </Col>
-      <Col fixed>
+      <Col style={{ width: 200 }} fixed>
         <TimePicker value={value} format="HH" precision="hour" />
       </Col>
     </Row>
@@ -77,14 +77,14 @@ const Demo = () => {
   const value = new Date(2018, 1, 24, 4,5,35);
   return (
     <Row gutter={10}>
-      <Col fixed>
+      <Col style={{ width: 200 }} fixed>
         <TimePicker size="small" value={value} />
       </Col>
-      <Col fixed>
-        <TimePicker size="large" value={value} format="HH:mm" precision="minute" />
-      </Col>
-      <Col fixed>
+      <Col style={{ width: 200 }} fixed>
         <TimePicker value={value} format="HH" precision="hour" />
+      </Col>
+      <Col style={{ width: 200 }} fixed>
+        <TimePicker size="large" value={value} format="HH:mm" precision="minute" />
       </Col>
     </Row>
   )
@@ -129,7 +129,7 @@ const Demo = () => (
       {({ fields, state, canSubmit }) => {
         return (
           <Row gutter={10}>
-            <Col fixed>{fields.date}</Col>
+            <Col style={{ width: 200 }} fixed>{fields.date}</Col>
             <Col>
               <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
             </Col>
@@ -153,7 +153,7 @@ import { TimePicker, Row, Col } from 'uiw';
 
 const Demo = () => (
   <Row gutter={10} style={{ maxWidth: 360 }}>
-    <Col fixed>
+      <Col style={{ width: 200 }} fixed>
       <TimePicker
         disabledMinutes={(minute, type) => {
           if (minute % 15 !== 0) {
@@ -168,7 +168,7 @@ const Demo = () => (
         }}
       />
     </Col>
-    <Col>
+    <Col style={{ width: 200 }} fixed>
       <TimePicker disabled value={new Date(2018, 1, 24, 4,5,35)} />
     </Col>
   </Row>
@@ -187,7 +187,7 @@ import { TimePicker, Row, Col } from 'uiw';
 
 const Demo = () => (
   <Row gutter={10} style={{ maxWidth: 360 }}>
-    <Col fixed>
+    <Col style={{ width: 200 }} fixed>
       <TimePicker
         hideDisabled
         disabledMinutes={(minute, type) => {
@@ -219,7 +219,7 @@ import { TimePicker, Row, Col } from 'uiw';
 
 const Demo = () => (
   <Row gutter={10} style={{ maxWidth: 360 }}>
-    <Col fixed>
+    <Col style={{ width: 200 }} fixed>
       <TimePicker
         hideDisabled
         disabledMinutes={(minute, date) => {

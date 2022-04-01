@@ -2,11 +2,13 @@ import React, { useMemo, useState, useRef, useEffect, ReactElement } from 'react
 import Dropdown, { DropdownProps } from '@uiw/react-dropdown';
 import Icon from '@uiw/react-icon';
 import Input from '@uiw/react-input';
-import Tag from '@uiw/react-tag';
+import Tag, { TagProps } from '@uiw/react-tag';
 import Card from '@uiw/react-card';
 import Empty from '@uiw/react-empty';
 import { IProps } from '@uiw/utils';
 import './style/index.less';
+
+const TagSize = { large: 25, default: 20, small: 17 };
 
 export interface DropContent<V> {
   values: Array<V>;
@@ -29,6 +31,7 @@ export interface SearchTagInputProps<V> extends IProps, DropdownProps, DropConte
   placeholder?: string;
   emptyOption?: boolean | React.ReactNode;
   selectCloseDrop?: boolean;
+  tagProps?: TagProps;
 }
 
 function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputProps<V>) {
@@ -43,6 +46,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
     style,
     placeholder,
 
+    tagProps = {},
     content,
     options,
     values,
@@ -144,19 +148,20 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
         onMouseOver={() => renderSelectIcon('enter')}
         onMouseLeave={() => renderSelectIcon('leave')}
         onClick={() => inputRef.current?.focus()}
-        style={{ minWidth: 200, maxWidth: 'none', ...style }}
+        style={{ minWidth: style?.width || 200, maxWidth: 'none', ...style }}
       >
-        <div className={`${prefixCls}-inner`}>
+        <div className={[`${prefixCls}-inner`, `${prefixCls}-${size}`].filter(Boolean).join(' ').trim()}>
           <div style={{ display: 'flex', flexFlow: 'wrap', width: '100%' }}>
             {selectedOption.map((item, index) => {
               return (
                 <Tag
-                  style={{ height: 20, margin: 1, display: 'flex', alignItems: 'center' }}
+                  style={{ height: TagSize[size], margin: 1, display: 'flex', alignItems: 'center' }}
                   className={`${prefixCls}-tag`}
                   key={index}
                   closable
-                  disabled={disabled}
                   color="#393E48"
+                  {...tagProps}
+                  disabled={disabled}
                   onClose={(e) => {
                     e.stopPropagation();
                     removeSelectItem(index);

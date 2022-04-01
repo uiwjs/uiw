@@ -59,7 +59,7 @@ export type FormElementProps = {
   onChange?: (env: React.BaseSyntheticEvent<HTMLInputElement>, list?: string[]) => void;
 };
 
-export type FormRefType = Record<'onSubmit' | 'resetForm' | 'getFieldValues' | 'setFields', Function>;
+export type FormRefType = Record<'onSubmit' | 'resetForm' | 'getFieldValues' | 'setFields' | 'getError' | 'setFieldValue', Function>;
 
 function newFormState<T>(
   fields: FormProps<T>['fields'],
