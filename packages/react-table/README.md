@@ -930,6 +930,240 @@ const Demo = () => (
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+### 可编辑
+
+利用 render 属性, 传递自定义组件实现
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { Table, Button, Input, Select } from 'uiw';
+
+const columns = (onChange) => [
+  {
+    title: '姓名',
+    ellipsis: true, 
+    key: 'name', 
+    render: (text,key, rowData) => {
+      return <EditInput 
+        value={text} 
+        onChange={(value)=>{
+          onChange({...rowData, name: value}, rowData.id)
+        }} 
+      />
+    }
+  }, 
+  {
+    title: '性别',
+    key: 'gender',
+    render: (text,key, rowData) => {
+      return <EditInput 
+        value={text} 
+        component="Select"
+        onChange={(value)=>{
+          onChange({...rowData, gender: value}, rowData.id)
+        }} 
+      />
+    }
+  },
+  {
+    title: '年龄',
+    key: 'age',
+    render: (text,key, rowData) => {
+      return <EditInput 
+        value={text} 
+        type="number"
+        onChange={(value)=>{
+          onChange({...rowData, age: value}, rowData.id)
+        }} 
+      />
+    }
+  }, 
+  {
+    title: '地址',
+    key: 'info',
+    render: (text,key, rowData) => {
+      return <EditInput 
+        value={text} 
+        onChange={(value)=>{
+          onChange({...rowData, info: value}, rowData.id)
+        }} 
+      />
+    }
+  }, 
+];
+const dataSource = [
+  { id: 1, gender: "男", name: '邓紫棋', age: '12', info: '又名G.E.M.，原名邓诗颖，1991年8月16日生于中国上海，中国香港创作型女'},
+  { id: 2, gender: "男", name: '李易峰', age: '32', info: '1987年5月4日出生于四川成都，中国内地男演员、流行乐歌手、影视制片人', },
+  { id: 3, gender: "男", name: '范冰冰', age: '23', info: '1981年9月16日出生于山东青岛，中国影视女演员、制片人、流行乐女歌手', },
+  { id: 4, gender: "男", name: '杨幂', age: '34', info: '1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。'},
+  { id: 5, gender: "男", name: 'Angelababy', age: '54', info: '1989年2月28日出生于上海市，华语影视女演员、时尚模特。', },
+  { id: 6, gender: "男", name: '唐嫣', age: '12', info: '1983年12月6日出生于上海市，毕业于中央戏剧学院表演系本科班', },
+  { id: 7, gender: "男", name: '吴亦凡', age: '4', info: '1990年11月06日出生于广东省广州市，华语影视男演员、流行乐歌手。', },
+];
+const EditInput = ({edit, value, type, onChange, component, ...other}) => {
+  const [isEdit, setIsEdit] = React.useState(edit);
+  const inputRef = React.useRef();
+  React.useEffect(()=>{
+    isEdit && inputRef.current.focus()
+  }, [isEdit])
+  if(isEdit) {
+    if(component === "Select") {
+      return <Select 
+        ref={inputRef}
+        defaultValue={value} 
+        onBlur={e=>{
+          onChange(e.target.value)
+          setIsEdit(false)
+        }}
+      >
+        <Select.Option value="男">男</Select.Option>
+        <Select.Option value="女">女</Select.Option>
+      </Select>
+    }
+    return <Input 
+      {...other}
+      defaultValue={value} 
+      ref={inputRef} 
+      type={type || "text"}
+      onBlur={(e)=>{
+        onChange(e.target.value)
+        setIsEdit(false)
+      }}
+    />
+  }
+  return <div onClick={()=>{
+    setIsEdit(true)
+  }}>{value}</div>
+}
+const Demo = () => {
+  const [data, setData] = React.useState(dataSource)
+  const onChange = (value, id) => {
+    setData(data.map(it=>it.id === id ? value : it))
+  }
+  return <div>
+    <Table columns={columns(onChange)} data={data} />
+  </div>
+};
+ReactDOM.render(<Demo />, _mount_);
+```
+
+### 可编辑行
+
+利用 Form 组件和 render 属性, 实现编辑行效果
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { Table, Button, Input, Select, Form, Notify } from 'uiw';
+
+const columns = (actived, setChange, fields) => {
+  return [
+    {
+      title: '姓名',
+      ellipsis: true, 
+      key: 'name', 
+      render: (text,key, rowData) => {
+        if(rowData.id === actived) return fields.name
+        return text
+      }
+    }, 
+    {
+      title: '性别',
+      key: 'gender',
+      render: (text,key, rowData) => {
+        if(rowData.id === actived) return fields.gender
+        return text
+      }
+    },
+    {
+      title: '年龄',
+      key: 'age',
+      render: (text,key, rowData) => {
+        if(rowData.id === actived) return fields.age
+        return text
+      }
+    }, 
+    {
+      key: 'id',
+      render: (id, key, rowData)=>{
+        const flag = id === actived
+        if(flag){
+          return <>
+            <Button type="primary" htmlType="submit">Save</Button>
+            <Button type="danger" onClick={()=>setChange({})}>Cancel</Button>
+          </>
+        }
+        return <Button type="primary" onClick={()=>setChange(rowData)} disabled={actived !== undefined && !flag}>Edit</Button>
+      }
+    }
+  ]
+};
+const dataSource = [
+  { id: 1, gender: "男", name: '邓紫棋', age: '12', },
+  { id: 2, gender: "男", name: '李易峰', age: '32', },
+  { id: 3, gender: "男", name: '范冰冰', age: '23',  },
+  { id: 4, gender: "男", name: '杨幂', age: '34',},
+  { id: 5, gender: "男", name: 'Angelababy', age: '54', },
+  { id: 6, gender: "男", name: '唐嫣', age: '12', },
+  { id: 7, gender: "男", name: '吴亦凡', age: '4', },
+];
+const Demo = () => {
+  const [data, setData] = React.useState(dataSource)
+  const [itemRowData, setItemRowData] = React.useState({})
+  const [id, setId] = React.useState()
+  
+  const form = React.useRef()
+  const setChange = (rowData) => {
+    setId(rowData.id)
+    setItemRowData(rowData)
+    form.current.setFields(rowData)
+  }
+
+  return <Form
+    ref={form}
+    onSubmit={({ current }) => {
+      if(JSON.stringify(itemRowData) === JSON.stringify(current)) {
+        Notify.error({
+          title: '提交失败！',
+          description: `表单提交内容并没有修改！`,
+        });
+        return 
+      }
+      setData(data.map(it=>it.id === current.id ? current : it))
+      setId(undefined)
+      Notify.success({
+        title: '提交成功！',
+        description: '数据已经更新'
+      });
+    }}
+    fields={{
+      name: {
+        children: <Input placeholder="请输入姓名" />
+      },
+      age: {
+        children: <Input placeholder="请输入年龄" type="number" />
+      },
+      gender: {
+        children: <Select>
+          <Select.Option value="男">男</Select.Option>
+          <Select.Option value="女">女</Select.Option>
+      </Select>
+      }
+    }}
+  >
+    {({ fields, state, canSubmit }) => {
+      return (
+        <div>
+          <Table columns={columns(id, setChange, fields)} data={data} />
+        </div>
+      )
+    }}
+  </Form>
+};
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ## Props
 
 ### Table
