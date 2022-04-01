@@ -5132,6 +5132,20 @@ a.w-list-item:hover:not(.w-disabled) {
   display: flex;
   align-content: center;
 }
+.w-search-tree-inner-inner-small {
+  height: 20px;
+}
+.w-search-tree-inner-inner-large {
+  height: 30px;
+}
+.w-search-tree-inner .w-input-small .w-input-inner {
+  height: 16px;
+  font-size: 10px;
+  padding: 0px;
+}
+.w-search-tree-inner .w-input-large .w-input-inner {
+  height: 28px;
+}
 
 .w-transfer {
   display: flex;

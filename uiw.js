@@ -10851,6 +10851,11 @@ function TreeChecked(_ref) {
 
 
 
+var SearchTagInput_TagSize = {
+  large: 25,
+  default: 20,
+  small: 17
+};
 
 function SearchTagInput(props) {
   var {
@@ -10984,11 +10989,11 @@ function SearchTagInput(props) {
         return (_inputRef$current2 = inputRef.current) == null ? void 0 : _inputRef$current2.focus();
       },
       style: _extends({
-        minWidth: 200,
+        minWidth: (style == null ? void 0 : style.width) || 200,
         maxWidth: 'none'
       }, style),
       children: /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
-        className: prefixCls + "-inner",
+        className: [prefixCls + "-inner", prefixCls + "-" + size].filter(Boolean).join(' ').trim(),
         children: [/*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
           style: {
             display: 'flex',
@@ -10998,7 +11003,7 @@ function SearchTagInput(props) {
           children: [selectedOption.map((item, index) => {
             return /*#__PURE__*/(0,jsx_runtime.jsx)(react_tag_esm, _extends({
               style: {
-                height: 20,
+                height: SearchTagInput_TagSize[size],
                 margin: 1,
                 display: 'flex',
                 alignItems: 'center'
