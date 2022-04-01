@@ -32,26 +32,24 @@ function Demo () {
 
   return (
     <div>
-      <Row gutter={10} style={{ maxWidth: 360,marginBottom:10 }}>
-        <Col fixed>
+      <Row style={{ marginBottom:10 }}>
+        <Col style={{ width: 200 }} fixed>
           <DateInput
             value={new Date()}
             datePickerProps={{ todayButton: '今天' }}
             onChange={onChange}
           />
         </Col>
-        <Col>
+        <Col style={{ width: 200, marginLeft: 10 }} fixed>
           <DateInput
             value={new Date()}
             disabled
             onChange={onChange}
           />
         </Col>
-      </Row>
-      <Row gutter={10}>
-        <Col>
+        <Col style={{ width: 400, marginLeft: 10 }} fixed>
           <DateInputRange
-            bodyStyle={{width:350}}
+            bodyStyle={{ width: 400 }}
             format="YYYY/MM/DD HH:mm:ss"
             value={dataRange}
             datePickerProps={{ todayButton: '今天',showTime:true }}
@@ -120,10 +118,10 @@ function Demo(){
       {({ fields, state, canSubmit }) => {
         return (
           <div>
-            <Row gutter={10}>
-              <Col fixed>{fields.date}</Col>
+            <Row>
+              <Col style={{ width: 200 }} fixed>{fields.date}</Col>
             </Row>
-            <Row gutter={10}>
+            <Row style={{ width: 200 }} >
               <Col fixed>{fields.dateRange}</Col>
             </Row>
             <Row gutter={10}>
@@ -157,7 +155,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ maxWidth: 200 }}>
+      <div style={{ width: 200 }}>
         <DateInput
           format="YYYY # MM # DD"
           datePickerProps={{ todayButton: '今天' }}
@@ -184,7 +182,7 @@ class Demo extends React.Component {
   }
   render() {
     return (
-      <div style={{ maxWidth: 200 }}>
+      <div style={{ width: 200 }}>
         <DateInput
           format="YYYY/MM/DD HH:mm:ss"
           datePickerProps={{ showTime: true, todayButton: '今天' }}

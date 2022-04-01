@@ -28,10 +28,10 @@ const Demo = () => {
   }
   return (
     <Row gutter={10}>
-      <Col fixed>
+      <Col style={{ width: 200 }} fixed>
         <MonthPicker size="large" onChange={onChange} placeholder="Select month" />
       </Col>
-      <Col fixed>
+      <Col style={{ width: 200 }} fixed>
         <MonthPicker disabled value={formatDate} placeholder="Select month" />
       </Col>
     </Row>
@@ -75,7 +75,7 @@ const Demo = () => (
       {({ fields, state, canSubmit }) => {
         return (
           <Row gutter={10}>
-            <Col fixed>{fields.date}</Col>
+            <Col style={{ width: 200 }} fixed>{fields.date}</Col>
             <Col>
               <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
             </Col>
