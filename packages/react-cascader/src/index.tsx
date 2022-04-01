@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Input from '@uiw/react-input';
-import { IProps } from '@uiw/utils';
+import { HTMLInputProps, IProps } from '@uiw/utils';
 import Dropdown, { DropdownProps } from '@uiw/react-dropdown';
 import Menu from '@uiw/react-menu';
 import Icon from '@uiw/react-icon';
@@ -11,6 +11,7 @@ type OptionType = { value: string | number; label: React.ReactNode; children?: A
 type SearchOptionType = { label: string; options: Array<OptionType> };
 
 export interface CascaderProps extends IProps, DropdownProps {
+  size?: 'large' | 'default' | 'small';
   option?: Array<OptionType>;
   value?: ValueType;
   onChange?: (isSeleted: boolean, value: ValueType, selectedOptions: Array<OptionType>) => void;
@@ -18,6 +19,7 @@ export interface CascaderProps extends IProps, DropdownProps {
   allowClear?: boolean;
   placeholder?: string;
   disabled?: boolean;
+  inputProps?: HTMLInputProps;
 }
 
 function Cascader(props: CascaderProps) {
@@ -26,6 +28,7 @@ function Cascader(props: CascaderProps) {
     onChange,
     onSearch,
 
+    size,
     disabled,
     allowClear,
     placeholder,
@@ -34,6 +37,7 @@ function Cascader(props: CascaderProps) {
     style = { width: 200 },
     option = [],
     others,
+    inputProps,
   } = props;
 
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
@@ -178,7 +182,7 @@ function Cascader(props: CascaderProps) {
     <Dropdown
       className={cls}
       trigger="click"
-      style={{ marginTop: 5, ...style }}
+      style={{ marginTop: 5 }}
       overlayStyl={{ width: 100 }}
       disabled={disabled}
       {...others}
@@ -226,11 +230,13 @@ function Cascader(props: CascaderProps) {
     >
       <span onMouseLeave={() => renderSelectIcon('leave')} onMouseOver={() => renderSelectIcon('enter')}>
         <Input
+          {...inputProps}
           value={searchOn ? searchText : inputValue}
           onChange={inputChange}
+          size={size}
           disabled={disabled}
           placeholder={searchOn ? inputValue : placeholder}
-          style={{ width: style?.width }}
+          style={style}
           onFocus={() => onSearch && setSearchOn(true)}
           onBlur={() => onSearch && setSearchOn(false)}
           readOnly={!onSearch}
