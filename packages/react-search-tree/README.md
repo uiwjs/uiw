@@ -351,5 +351,5 @@ ReactDOM.render(<Demo />, _mount_);
 | onChange | 选中 option，或 input 的 value，调用此函数 | function(selectd, selectdAll, isChecked)=>void | - |
 | onSearch | 文本框值变化时回调 | function(searchValue) | - |
 | loading | 加载中状态 | Boolean | `false` |
-| emptyOption | 自定义下拉选项为空时显示内容 | React.ReactNode | [Empty](https://uiwjs.github.io/#/components/empty) |
-| tagProps | 将参数传递给 [`<Tag>`](https://uiwjs.github.io/#/components/tag) 组件 | `TagProps` | `{}` | `4.13.0` |
+| emptyOption | 自定义下拉选项为空时显示内容 | React.ReactNode | [Empty](#/components/empty) |
+| tagProps | 将参数传递给 [`<Tag>`](#/components/tag) 组件 | `TagProps` | `{}` | `4.13.0` |

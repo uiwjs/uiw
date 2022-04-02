@@ -512,7 +512,7 @@ ReactDOM.render(<Demo />, _mount_);
 | labelInValue | 开启会把 Select 的 value 类型从 `string/number` 变为 `{ value: string/number, label: string }` | Boolean | `false` | - |
 | showSearch | 是否可搜索 | Boolean | - | - |
 | size | 选择框尺寸 | Enum{large, default, small } | `default` | - |
-| tagProps | 将参数传递给 [`<Tag>`](https://uiwjs.github.io/#/components/tag) 组件 | `TagProps` | `{}` | `4.13.0` |
+| tagProps | 将参数传递给 [`<Tag>`](#/components/tag) 组件 | `TagProps` | `{}` | `4.13.0` |
 | onChange | 选中 option，或 input 的 value，调用此函数 | function(value:String \| Number \| String[] \| Number[] \| LabeledValue \| LabeledValue[]) | - | - |
 | onSearch | 文本框值变化时回调 | function(value: String) | - | - |
 | onSelect | 被选中时调用，参数为选中项的 value | function(value: String/Number ) | - | - |
