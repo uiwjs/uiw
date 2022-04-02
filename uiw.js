@@ -2854,7 +2854,7 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
   }
 
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
-    if (isClickOutside) {
+    if (isClickOutside && isOpen) {
       document && document.addEventListener('mousedown', handleClickOutside);
       window.addEventListener('resize', handleResize);
     }
@@ -2863,7 +2863,7 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
       document && isClickOutside && document.removeEventListener('mousedown', handleClickOutside);
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [isOpen]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     if (props.isOpen !== isOpen) {
       setIsOpen(!!props.isOpen);
@@ -2884,9 +2884,11 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
   }, [isOpen]);
 
   var handleResize = () => {
-    zIndex.current -= 1;
-    setIsOpen(false);
-    onVisibleChange && onVisibleChange(false);
+    if (isOpen) {
+      zIndex.current -= 1;
+      setIsOpen(false);
+      onVisibleChange && onVisibleChange(false);
+    }
   };
 
   var handleClickOutside = e => {
