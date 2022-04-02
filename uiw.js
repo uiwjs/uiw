@@ -7,7 +7,7 @@
 		exports["uiw"] = factory(require("react"), require("react-dom"));
 	else
 		root["uiw"] = factory(root["React"], root["ReactDOM"]);
-})(self, function(__WEBPACK_EXTERNAL_MODULE__787__, __WEBPACK_EXTERNAL_MODULE__156__) {
+})(self, (__WEBPACK_EXTERNAL_MODULE__787__, __WEBPACK_EXTERNAL_MODULE__156__) => {
 return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
