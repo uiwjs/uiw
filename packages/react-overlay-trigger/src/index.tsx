@@ -133,7 +133,7 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
   }
 
   useEffect(() => {
-    if (isClickOutside) {
+    if (isClickOutside && isOpen) {
       document && document.addEventListener('mousedown', handleClickOutside);
       window.addEventListener('resize', handleResize);
     }
@@ -141,7 +141,7 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
       document && isClickOutside && document.removeEventListener('mousedown', handleClickOutside);
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [isOpen]);
 
   useEffect(() => {
     if (props.isOpen !== isOpen) {
@@ -162,9 +162,11 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
   }, [isOpen]);
 
   const handleResize = () => {
-    zIndex.current -= 1;
-    setIsOpen(false);
-    onVisibleChange && onVisibleChange(false);
+    if (isOpen) {
+      zIndex.current -= 1;
+      setIsOpen(false);
+      onVisibleChange && onVisibleChange(false);
+    }
   };
 
   const handleClickOutside = (e: MouseEvent) => {

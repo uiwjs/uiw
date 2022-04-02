@@ -229,6 +229,7 @@ class Demo extends React.Component {
   }
   onVisibleChange(isOpen) {
     console.log('onVisibleChange: ', isOpen);
+    this.setState({ isOpen: isOpen });
   }
   render() {
     return (

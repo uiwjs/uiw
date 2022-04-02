@@ -45,7 +45,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 ## 树形节点
 
-使用 [Tree](https://uiwjs.github.io/#/components/tree) 结构作为选项节点
+使用 [`Tree`](#/components/tree) 结构作为选项节点
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
