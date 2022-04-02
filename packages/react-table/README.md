@@ -936,6 +936,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { Table, Button, Input, Select } from 'uiw';
 
@@ -1054,6 +1055,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { Table, Button, Input, Select, Form, Notify } from 'uiw';
 
@@ -1094,7 +1096,14 @@ const columns = (actived, setChange, fields) => {
             <Button type="danger" onClick={()=>setChange({})}>Cancel</Button>
           </>
         }
-        return <Button type="primary" onClick={()=>setChange(rowData)} disabled={actived !== undefined && !flag}>Edit</Button>
+        return <Button 
+          type="primary" 
+          onClick={(e)=>{
+            e.preventDefault();
+            setChange(rowData)
+          }} 
+          disabled={actived !== undefined && !flag}
+        >Edit</Button>
       }
     }
   ]
@@ -1148,17 +1157,11 @@ const Demo = () => {
         children: <Select>
           <Select.Option value="男">男</Select.Option>
           <Select.Option value="女">女</Select.Option>
-      </Select>
+        </Select>
       }
     }}
   >
-    {({ fields, state, canSubmit }) => {
-      return (
-        <div>
-          <Table columns={columns(id, setChange, fields)} data={data} />
-        </div>
-      )
-    }}
+    {({ fields }) => <Table columns={columns(id, setChange, fields)} data={data} />}
   </Form>
 };
 ReactDOM.render(<Demo />, _mount_);
