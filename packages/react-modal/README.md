@@ -90,6 +90,7 @@ class Demo extends React.Component {
     this.state = {
       visible: false,
     }
+    this.time = null
   }
   onClick() {
     this.setState({ visible: !this.state.visible });
@@ -106,14 +107,17 @@ class Demo extends React.Component {
           confirmText="确定按钮"
           cancelText="取消按钮"
           type="danger"
-          onCancel={() => console.log('您点击了取消按钮！')}
+          onCancel={() => {
+            clearTimeout(this.time)
+            console.log('您点击了取消按钮！')
+          }}
           onClosed={this.onClosed.bind(this)}
           onConfirm={() => {
             console.log('确定回调！, 这里是利用Promise等执行完成再去关闭窗口');
             return new Promise((resolve, reject) => {
               const random = Math.random();
               console.log('测试，随机值大于 0.5 执行 resolve 事件，否则 执行 reject 触发 catch 错误', random, random > 0.5)
-              setTimeout(random > 0.5 ? resolve : reject, 3000);
+              this.time = setTimeout(random > 0.5 ? resolve : reject, 3000);
             }).catch(() => {
               // 可以通过下面方式，阻止弹框消失
               // throw new Error();
