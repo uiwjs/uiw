@@ -5,8 +5,8 @@
     input {
       box-shadow: none;
       padding: 0px;
-      min-width: 50px;
-      height: 22px;
+      // min-width: 50px;
+      height: 28px;
     }
 
     .w-input-inner {
@@ -41,9 +41,10 @@
     box-sizing: border-box;
     background: #fff;
     margin: 0 !important;
-    padding: 3px 10px 3px 10px;
+    padding: 1px 10px;
     vertical-align: middle;
     line-height: 30px;
+    align-items: center;
     color: #393e48;
     font-weight: 400;
     font-size: inherit;
@@ -89,6 +90,17 @@
       // line-height:0px !important;
       height: 28px;
     }
+  }
+
+  &-tag-content {
+    display: flex;
+    align-items: center;
+    flex-flow: wrap;
+    width: 100%;
+  }
+
+  &-search-false {
+    cursor: pointer;
   }
 
   &-multiple-colse {
