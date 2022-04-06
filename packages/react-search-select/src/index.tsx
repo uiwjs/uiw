@@ -55,7 +55,7 @@ export default function SearchSelect(props: SearchSelectProps) {
     isOpen,
     value,
     defaultValue,
-    showSearch,
+    showSearch = false,
     tagProps = {},
     placeholder,
     onSearch,
@@ -265,8 +265,13 @@ export default function SearchSelect(props: SearchSelectProps) {
         style={{ width: '100%', maxWidth: 'none', ...style }}
       >
         {isMultiple ? (
-          <div className={[`${prefixCls}-inner`, `${prefixCls}-${size}`].filter(Boolean).join(' ').trim()}>
-            <div style={{ display: 'flex', flexFlow: 'wrap', width: '100%' }}>
+          <div
+            className={[`${prefixCls}-inner`, `${prefixCls}-search-${showSearch}`, `${prefixCls}-${size}`]
+              .filter(Boolean)
+              .join(' ')
+              .trim()}
+          >
+            <div className={`${prefixCls}-tag-content`} style={{}}>
               {isMultiple &&
                 selectedValue.slice(0, maxTagCount).map((item, index) => {
                   return (
@@ -298,7 +303,7 @@ export default function SearchSelect(props: SearchSelectProps) {
                 </Tag>
               )}
               <Input
-                style={{ flex: 1 }}
+                style={{ flex: 1, width: showSearch ? 0 : 50 }}
                 className={`${prefixCls}-input-contents`}
                 readOnly={!showSearch}
                 size={size}
@@ -321,6 +326,7 @@ export default function SearchSelect(props: SearchSelectProps) {
           </div>
         ) : (
           <Input
+            className={`${prefixCls}-search-${showSearch}`}
             readOnly={!showSearch}
             size={size}
             ref={inputRef}

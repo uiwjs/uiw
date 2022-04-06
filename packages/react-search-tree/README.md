@@ -86,7 +86,7 @@ const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
         onChange={onChangeSinge}
         value={valueSinge}
         options={data}
-        placeholder="请输入选择"
+        placeholder="请选择选项"
       />
     </Row>
     <label>多选</label>
@@ -98,7 +98,7 @@ const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
         onChange={onChange}
         value={value}
         options={data}
-        placeholder="请输入选择"
+        placeholder="请选择选项"
       />
     </Row>
     <label>禁用</label>
@@ -109,7 +109,7 @@ const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
         allowClear={true}
         value={[{ label: '东城区', key: 10 },{ label: '成都市',  key: 2 }]}
         options={data}
-        placeholder="请输入选择"
+        placeholder="请选择选项"
       />
     </Row>
   </Row>
@@ -171,12 +171,12 @@ const Demo = () => {
     <>
       <SearchTree
         style={{ width:200 }}
-        placeholder="请输入选择"
+        placeholder="请选择选项"
       />
       <SearchTree
         style={{ width:200,marginTop:5 }}
         emptyOption={<span>暂无数据..</span>}
-        placeholder="请输入选择"
+        placeholder="请选择选项"
       />
     </>
   )
@@ -282,7 +282,7 @@ const form=useRef()
                   onSearch={(searchValue)=>console.log('SearchTree-> SearchTreeOption',searchValue)}
                   onChange={(selectd, selectedAll,  isChecked)=>console.log('SearchTree-> onChange', selectd, selectedAll, isChecked)}
                   options={data}
-                  placeholder="请输入选择"
+                  placeholder="请选择选项"
                 />
             )
           },
@@ -296,7 +296,7 @@ const form=useRef()
                   onSearch={(searchValue)=>console.log('SearchTree-> SearchTreeOption',searchValue)}
                   onChange={(selectd, selectedAll,  isChecked)=>console.log('SearchTree-> onChange', selectd, selectedAll, isChecked)}
                   options={data}
-                  placeholder="请输入选择"
+                  placeholder="请选择选项"
                 />
             )
           },
