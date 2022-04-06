@@ -8343,7 +8343,7 @@ function SearchSelect(props) {
     style,
     value,
     defaultValue,
-    showSearch,
+    showSearch = false,
     tagProps = {},
     placeholder,
     onSearch,
@@ -8555,13 +8555,10 @@ function SearchSelect(props) {
         maxWidth: 'none'
       }, style),
       children: isMultiple ? /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
-        className: [prefixCls + "-inner", prefixCls + "-" + size].filter(Boolean).join(' ').trim(),
+        className: [prefixCls + "-inner", prefixCls + "-search-" + showSearch, prefixCls + "-" + size].filter(Boolean).join(' ').trim(),
         children: [/*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
-          style: {
-            display: 'flex',
-            flexFlow: 'wrap',
-            width: '100%'
-          },
+          className: prefixCls + "-tag-content",
+          style: {},
           children: [isMultiple && selectedValue.slice(0, maxTagCount).map((item, index) => {
             return /*#__PURE__*/(0,jsx_runtime.jsx)(react_tag_esm, _extends({
               style: _extends({
@@ -8591,7 +8588,8 @@ function SearchSelect(props) {
             children: ["+", omitTagCount, " \u2026", ' ']
           }), /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
             style: {
-              flex: 1
+              flex: 1,
+              width: showSearch ? 0 : 50
             },
             className: prefixCls + "-input-contents",
             readOnly: !showSearch,
@@ -8610,6 +8608,7 @@ function SearchSelect(props) {
           onClick: resetSelectedValue
         })]
       }) : /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
+        className: prefixCls + "-search-" + showSearch,
         readOnly: !showSearch,
         size: size,
         ref: inputRef,
@@ -11024,7 +11023,6 @@ function SearchTagInput(props) {
             }), index);
           }), /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, {
             ref: inputRef,
-            style: {},
             className: prefixCls + "-input-contents",
             size: size,
             disabled: disabled,
