@@ -16,7 +16,6 @@ export default function CallShow(props: Omit<Omit<ModalProps, 'onClosed'>, 'isOp
         document.getElementById('uiw-modal-call-show-element')!.remove();
       }}
     >
-      {' '}
       {children}
     </Modal>,
     document.getElementById('uiw-modal-call-show-element'),
