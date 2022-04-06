@@ -4,6 +4,7 @@ import Button, { ButtonType, ButtonProps } from '@uiw/react-button';
 import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, noop } from '@uiw/utils';
 import './style/index.less';
+import CallShow from './CallShow';
 
 export interface ModalProps extends IProps, OverlayProps {
   type?: ButtonType;
@@ -27,7 +28,9 @@ export interface ModalProps extends IProps, OverlayProps {
   onConfirm?: (evn: React.MouseEvent<HTMLButtonElement> & MouseEvent) => void;
 }
 
-export default React.forwardRef<OverlayProps, ModalProps>((props, ref) => {
+const Modal: React.ForwardRefExoticComponent<Pick<ModalProps, keyof ModalProps> & React.RefAttributes<OverlayProps>> & {
+  show?: React.ReactNode;
+} = React.forwardRef<OverlayProps, ModalProps>((props, ref) => {
   const {
     prefixCls = 'w-modal',
     className,
@@ -129,3 +132,6 @@ export default React.forwardRef<OverlayProps, ModalProps>((props, ref) => {
     </Overlay>
   );
 });
+
+Modal.show = CallShow;
+export default Modal;

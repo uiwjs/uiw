@@ -323,6 +323,35 @@ class Demo extends React.Component {
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+### 快捷弹出
+
+使用 show() 可以快捷地弹出确认框。接受的参数与 ModalProps 一样, 只是少了 isOpen 与 onClosed
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Modal, ButtonGroup, Button } from 'uiw';
+
+class Demo extends React.Component {
+  onClick() {
+    Modal.show({
+      confirmText: "知道了",
+      children: "快捷提示",
+      onConfirm: () => console.log('您点击了确定按钮！'),
+    })
+  }
+  render() {
+    return (
+      <div>
+        <Button onClick={this.onClick.bind(this)}>确认对话框</Button>
+      </div>
+    )
+  }
+}
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -344,5 +373,10 @@ ReactDOM.render(<Demo />, _mount_);
 | isCloseButtonShown | 是否在对话框的标题中显示关闭按钮。 请注意，只有在提供标题时才会呈现标题。 | Boolean | `true` |
 | isOpen[`<Overlay>`](#/components/overlay) | 对话框是否可见 | Boolean | `false` |
 | maskClosable[`<Overlay>`](#/components/overlay) | 点击遮罩层是否允许关闭 | Boolean | `true` |
+
+## Modal.show()
+
+继承 ModalProps, 除了 isOpen 与 onClosed
+
 
 更多属性文档请参考 [Overlay](#/components/overlay)。
