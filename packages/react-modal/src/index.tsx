@@ -30,7 +30,7 @@ export interface ModalProps extends IProps, OverlayProps {
 
 const Modal: React.ForwardRefExoticComponent<Pick<ModalProps, keyof ModalProps> & React.RefAttributes<OverlayProps>> & {
   show?: (
-    props: Omit<Omit<ModalProps, 'onClosed'>, 'isOpen'> & {
+    props: Omit<ModalProps, 'onClosed' | 'isOpen'> & {
       children: React.ReactNode;
     },
   ) => void;

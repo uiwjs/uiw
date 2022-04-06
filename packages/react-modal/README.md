@@ -374,9 +374,9 @@ ReactDOM.render(<Demo />, _mount_);
 | isOpen[`<Overlay>`](#/components/overlay) | 对话框是否可见 | Boolean | `false` |
 | maskClosable[`<Overlay>`](#/components/overlay) | 点击遮罩层是否允许关闭 | Boolean | `true` |
 
-## Modal.show()
+## Modal.show(params)
 
-继承 ModalProps, 除了 isOpen 与 onClosed
+params: Omit<ModalProps, \'onClosed\' \| \'isOpen\'> & { children: React.ReactNode }
 
 
 更多属性文档请参考 [Overlay](#/components/overlay)。
