@@ -1562,8 +1562,7 @@ function Overlay(props) {
   } = props,
       otherProps = _objectWithoutPropertiesLoose(props, esm_excluded);
 
-  var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(); // const [isOpen, setIsOpen] = useState(props.isOpen || false);
-
+  var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(props.isOpen || false);
   var [visible, setVisible] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
   var container = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
   var overlay = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
@@ -1773,34 +1772,6 @@ var react_button_esm_excluded = ["prefixCls", "disabled", "active", "loading", "
 ;// CONCATENATED MODULE: ../react-modal/esm/style/index.css
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const react_modal_esm_style = ({});
-;// CONCATENATED MODULE: ../react-modal/esm/CallShow.js
-
-
-var CallShow_excluded = ["title", "children"];
-
-
-
-
-function CallShow(props) {
-  var {
-    title = '提示框',
-    children
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, CallShow_excluded);
-
-  var dv = document.createElement('div');
-  dv.id = 'uiw-modal-call-show-element';
-  document.body.appendChild(dv);
-  external_root_ReactDOM_commonjs2_react_dom_commonjs_react_dom_amd_react_dom_default().render( /*#__PURE__*/(0,jsx_runtime.jsx)(react_modal_esm, _extends({}, other, {
-    title: title,
-    isOpen: true,
-    onClosed: () => {
-      document.getElementById('uiw-modal-call-show-element').remove();
-    },
-    children: children
-  })), document.getElementById('uiw-modal-call-show-element'));
-}
-
 ;// CONCATENATED MODULE: ../react-modal/esm/index.js
 
 
@@ -1814,8 +1785,7 @@ var react_modal_esm_excluded = ["prefixCls", "className", "children", "useButton
 
 
 
-
-var Modal = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
+/* harmony default export */ const react_modal_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
     prefixCls = 'w-modal',
     className,
@@ -1940,9 +1910,7 @@ var Modal = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_
       })
     })
   }));
-});
-Modal.show = CallShow;
-/* harmony default export */ const react_modal_esm = (Modal);
+}));
 
 ;// CONCATENATED MODULE: ../react-alert/esm/style/index.css
 // extracted by mini-css-extract-plugin
