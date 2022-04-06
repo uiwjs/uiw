@@ -1562,7 +1562,8 @@ function Overlay(props) {
   } = props,
       otherProps = _objectWithoutPropertiesLoose(props, esm_excluded);
 
-  var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(props.isOpen || false);
+  var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(); // const [isOpen, setIsOpen] = useState(props.isOpen || false);
+
   var [visible, setVisible] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
   var container = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
   var overlay = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
@@ -1772,6 +1773,34 @@ var react_button_esm_excluded = ["prefixCls", "disabled", "active", "loading", "
 ;// CONCATENATED MODULE: ../react-modal/esm/style/index.css
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const react_modal_esm_style = ({});
+;// CONCATENATED MODULE: ../react-modal/esm/CallShow.js
+
+
+var CallShow_excluded = ["title", "children"];
+
+
+
+
+function CallShow(props) {
+  var {
+    title = '提示框',
+    children
+  } = props,
+      other = _objectWithoutPropertiesLoose(props, CallShow_excluded);
+
+  var dv = document.createElement('div');
+  dv.id = 'uiw-modal-call-show-element';
+  document.body.appendChild(dv);
+  external_root_ReactDOM_commonjs2_react_dom_commonjs_react_dom_amd_react_dom_default().render( /*#__PURE__*/(0,jsx_runtime.jsx)(react_modal_esm, _extends({}, other, {
+    title: title,
+    isOpen: true,
+    onClosed: () => {
+      document.getElementById('uiw-modal-call-show-element').remove();
+    },
+    children: children
+  })), document.getElementById('uiw-modal-call-show-element'));
+}
+
 ;// CONCATENATED MODULE: ../react-modal/esm/index.js
 
 
@@ -1785,7 +1814,8 @@ var react_modal_esm_excluded = ["prefixCls", "className", "children", "useButton
 
 
 
-/* harmony default export */ const react_modal_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
+
+var Modal = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
     prefixCls = 'w-modal',
     className,
@@ -1910,7 +1940,9 @@ var react_modal_esm_excluded = ["prefixCls", "className", "children", "useButton
       })
     })
   }));
-}));
+});
+Modal.show = CallShow;
+/* harmony default export */ const react_modal_esm = (Modal);
 
 ;// CONCATENATED MODULE: ../react-alert/esm/style/index.css
 // extracted by mini-css-extract-plugin
@@ -4555,6 +4587,7 @@ function Cascader(props) {
     value,
     onChange,
     onSearch,
+    expandTrigger = 'click',
     size,
     disabled,
     allowClear,
@@ -4646,6 +4679,7 @@ function Cascader(props) {
 
   var handleItemClick = (optionsItem, level) => {
     selectedValue.splice(level, selectedValue.length - level, optionsItem);
+    if (!optionsItem.children) setInnerIsOpen(false);
     handelChange(true, selectedValue);
   };
 
@@ -4674,6 +4708,26 @@ function Cascader(props) {
   };
 
   var widths = (style == null ? void 0 : style.width) * 0.7 || undefined;
+  var trigger = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
+    return (cb, click) => {
+      var triggers = {
+        onClick: () => {},
+        onMouseOver: () => {}
+      };
+
+      var callback = () => {
+        cb();
+      };
+
+      if (expandTrigger === 'click' || click) {
+        triggers.onClick = callback;
+      } else if (expandTrigger === 'hover') {
+        triggers.onMouseOver = callback;
+      }
+
+      return triggers;
+    };
+  }, []);
 
   var OptionIter = function OptionIter(option, level) {
     if (level === void 0) {
@@ -4696,17 +4750,18 @@ function Cascader(props) {
         },
         children: '没有数据'
       }) : option.map((opt, index) => {
-        var _selectedValue$level;
+        var _selectedValue$level, _opt$children;
 
         var active = ((_selectedValue$level = selectedValue[level]) == null ? void 0 : _selectedValue$level.value) === opt.value;
-        return /*#__PURE__*/(0,jsx_runtime.jsx)(react_menu_esm.Item, {
+        return /*#__PURE__*/(0,jsx_runtime.jsx)(react_menu_esm.Item, _extends({
           active: active,
           text: opt.label,
           addonAfter: opt.children ? /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
             type: "right"
-          }) : undefined,
-          onClick: () => handleItemClick(opt, level)
-        }, index);
+          }) : undefined
+        }, trigger(() => {
+          handleItemClick(opt, level);
+        }, !((_opt$children = opt.children) != null && _opt$children.length))), index);
       })
     }, level);
   };
@@ -4755,8 +4810,7 @@ function Cascader(props) {
       }) : searchOption.filter(opt => opt.label.includes(searchText.trim())).map((opt, index) => {
         return /*#__PURE__*/(0,jsx_runtime.jsx)(react_menu_esm.Item, {
           text: opt.label,
-          onClick: () => searchItemClick(opt.options) //
-
+          onClick: () => searchItemClick(opt.options)
         }, index);
       })
     }),
