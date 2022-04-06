@@ -20,6 +20,7 @@ export interface CascaderProps extends IProps, DropdownProps {
   placeholder?: string;
   disabled?: boolean;
   inputProps?: HTMLInputProps;
+  expandTrigger: 'click' | 'hover';
 }
 
 function Cascader(props: CascaderProps) {
@@ -27,7 +28,7 @@ function Cascader(props: CascaderProps) {
     value,
     onChange,
     onSearch,
-
+    expandTrigger = 'click',
     size,
     disabled,
     allowClear,
@@ -110,6 +111,7 @@ function Cascader(props: CascaderProps) {
 
   const handleItemClick = (optionsItem: OptionType, level: number) => {
     selectedValue.splice(level, selectedValue.length - level, optionsItem);
+    if (!optionsItem.children) setInnerIsOpen(false);
 
     handelChange(true, selectedValue);
   };
@@ -139,6 +141,21 @@ function Cascader(props: CascaderProps) {
 
   const widths = (style?.width as number) * 0.7 || undefined;
 
+  const trigger = useMemo(() => {
+    return (cb: Function, click?: boolean) => {
+      const triggers: Record<'onClick' | 'onMouseOver', () => void> = { onClick: () => {}, onMouseOver: () => {} };
+      const callback = () => {
+        cb();
+      };
+      if (expandTrigger === 'click' || click) {
+        triggers.onClick = callback;
+      } else if (expandTrigger === 'hover') {
+        triggers.onMouseOver = callback;
+      }
+      return triggers;
+    };
+  }, []);
+
   const OptionIter = (option: Array<OptionType>, level: number = 0) => {
     if (!option) return;
 
@@ -164,7 +181,9 @@ function Cascader(props: CascaderProps) {
                 key={index}
                 text={opt.label}
                 addonAfter={opt.children ? <Icon type="right" /> : undefined}
-                onClick={() => handleItemClick(opt, level)}
+                {...trigger(() => {
+                  handleItemClick(opt, level);
+                }, !opt.children?.length)}
               />
             );
           })
@@ -215,13 +234,7 @@ function Cascader(props: CascaderProps) {
               searchOption
                 .filter((opt) => opt.label.includes(searchText.trim()))
                 .map((opt, index) => {
-                  return (
-                    <Menu.Item
-                      key={index}
-                      text={opt.label}
-                      onClick={() => searchItemClick(opt.options)} //
-                    />
-                  );
+                  return <Menu.Item key={index} text={opt.label} onClick={() => searchItemClick(opt.options)} />;
                 })
             )}
           </Menu>
