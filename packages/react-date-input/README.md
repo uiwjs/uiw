@@ -249,7 +249,7 @@ ReactDOM.render(<Demo />, _mount_);
 | placeholder | 输入框提示文字 | String | - |
 | allowClear | 是否显示清除按钮 | Boolean | true |
 | format | 格式化时间，规则查看 [`<formatter>`](#/components/formatter) 文档 | String | `YYYY/MM/DD` |
-| onChange | 选择一天时调用。 | Function(selectedDate:Date, dateRange: Array<Date>) | - |
+| onChange | 选择一天时调用。 | Function(selectedDate:Date, dateRange: Array\<Date>) | - |
 | popoverProps | 将参数传递给 [`<Popover>`](#/components/popover) 组件 | Object | - |
 | datePickerProps | 将参数传递给 [`<DatePicker>`](#/components/date-picker) 组件 | Object | - |
 | disabled | 组件 [`<Input>`](#/components/input) 的属性，禁用日历 | Boolean | - |
