@@ -173,7 +173,6 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
             })}
             <Input
               ref={inputRef}
-              style={{}}
               className={`${prefixCls}-input-contents`}
               size={size}
               disabled={disabled}

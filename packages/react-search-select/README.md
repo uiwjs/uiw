@@ -39,7 +39,7 @@ const Demo = () => {
        <SearchSelect
          mode="single"
          style={{ width: 200 }}
-         placeholder="请输入选择"
+         placeholder="请选择选项"
          option={option}
        />
      </Row>
@@ -48,7 +48,8 @@ const Demo = () => {
        <SearchSelect
          mode="multiple"
          style={{ width: 200 }}
-         placeholder="请输入选择"
+         allowClear={true}
+         placeholder="请选择选项"
          option={option}
        />
      </Row>
@@ -57,7 +58,8 @@ const Demo = () => {
        <SearchSelect
          mode="single"
          style={{ width: 200 }}
-         placeholder="请输入选择"
+         allowClear={true}
+         placeholder="请选择选项"
          option={option}
          disabled={true}
        />
@@ -93,8 +95,8 @@ const Demo = () => {
             style={{ width: 150 }}
             option={option}
             value={[1]}
-            showSearch={true}
-            placeholder="请输入选择"
+            allowClear={true}
+            placeholder="请选择选项"
             size={'small'}
           />
         </Row>
@@ -106,8 +108,8 @@ const Demo = () => {
             style={{ width: 175 }}
             option={option}
             value={[2]}
-            showSearch={true}
-            placeholder="请输入选择"
+            allowClear={true}
+            placeholder="请选择选项"
           />
         </Row>
       </Col>
@@ -118,8 +120,8 @@ const Demo = () => {
             style={{ width: 200 }}
             option={option}
             value={[3]}
-            showSearch={true}
-            placeholder="请输入选择"
+            allowClear={true}
+            placeholder="请选择选项"
             size={'large'}
           />
         </Row>
@@ -168,7 +170,7 @@ const Demo = () => {
            console.log('value', value)
            setValue(value)
          }}
-         placeholder="请输入选择"
+         placeholder="请选择选项"
        />
      </Row>
      <Row>
@@ -183,7 +185,7 @@ const Demo = () => {
            setLabelValue(value)
          }}
          plac
-         placeholder="请输入选择"
+         placeholder="请选择选项"
        />
      </Row>
     </Row>
@@ -235,7 +237,7 @@ const Demo = () => {
           valueAmount={valueAmount}
           allowClear
           value={values}
-          placeholder="请输入选择"
+          placeholder="请选择选项"
           onSearch={handleSearch}
           // onSelect={(value)=>console.log('onSelect',value)}
           loading={loading}
@@ -300,7 +302,7 @@ const Demo = () => {
           maxTagCount={maxTagCount}
           allowClear
           value={values}
-          placeholder="请输入选择"
+          placeholder="请选择选项"
           onSearch={handleSearch}
           loading={loading}
           option={option}
@@ -335,6 +337,7 @@ const Demo = () => {
     { label: 'a8', value: 8 },
   ]
 
+  const [value, setValue] = React.useState([1,7]);
   const [values, setValues] = React.useState([1,7]);
   const [option, setOption] = React.useState(selectOption);
   const [loading, setLoading] = React.useState(false);
@@ -350,19 +353,36 @@ const Demo = () => {
 
   return(
     <Row style={{ marginLeft: 10 }}>
-      <SearchSelect
-        mode="multiple"
-        showSearch={true}
-        value={values}
-        option={option}
-        loading={loading}
-        onSearch={handleSearch}
-        placeholder="请输入选择"
-        style={{ width: 200 }}
-        onChange={(value) => {
-          setValues(value)
-        }}
-      />
+      <Col fixed style={{width:200}}>
+        <SearchSelect
+          mode="singe"
+          showSearch={true}
+          value={value}
+          option={option}
+          loading={loading}
+          onSearch={handleSearch}
+          placeholder="请选择选项"
+          style={{ width: 200 }}
+          onChange={(value) => {
+            setValue(value)
+          }}
+        />
+      </Col>
+      <Col fixed style={{width:200, marginLeft: 20}}>
+        <SearchSelect
+          mode="multiple"
+          showSearch={true}
+          value={values}
+          option={option}
+          loading={loading}
+          onSearch={handleSearch}
+          placeholder="请选择选项"
+          style={{ width: 200 }}
+          onChange={(value) => {
+            setValues(value)
+          }}
+        />
+      </Col>
     </Row>
   );
 };
@@ -436,7 +456,7 @@ const Demo = () => {
                 showSearch={true}
                 mode="multiple"
                 disabled={false}
-                placeholder="请输入选择"
+                placeholder="请选择选项"
                 onSearch={handleSearch}
                 onChange={(v)=>{
                   console.log('onChange',v)
@@ -455,7 +475,7 @@ const Demo = () => {
                 showSearch={true}
                 allowClear
                 disabled={false}
-                placeholder="请输入选择"
+                placeholder="请选择选项"
                 onSearch={handleSearch}
                 onChange={(v)=>{
                   console.log('onChange',v)
