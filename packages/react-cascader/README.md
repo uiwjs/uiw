@@ -192,6 +192,66 @@ const Demo = () => {
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+## 移入展开菜单
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { Cascader } from 'uiw';
+
+const Demo = () => {
+
+  const options = [
+    {
+      label: '上海市',
+      value: 1,
+      children: [
+        {
+          label: '徐汇区',
+          value: 4,
+          children: [
+            { label: '半淞园路街道', value: 6 },
+            { label: '南京东路街道', value: 7 },
+            { label: '外滩街道', value: 8 },
+          ]
+        },
+      ]
+    },
+    {
+      label: '北京市',
+      value: 9,
+      children: [
+        {
+          label: '崇文区',
+          value: 12,
+          children: [
+            { label: '东花市街道', value: 13 },
+            { label: '体育馆路街道', value: 14 },
+            { label: '前门街道', value: 15 },
+          ]
+        },
+      ]
+    },
+  ];
+
+  return (
+    <Row style={{ flexDirection: 'column' }}>
+        <Cascader
+          style={{ width:200 }}
+          expandTrigger="hover"
+          allowClear={true}
+          placeholder="请选择"
+          value={[1, 4, 7]}
+          option={options}
+          onChange={(value, seleteds) => console.log(value, seleteds)}
+          onSearch={true}
+        />
+    </Row>
+  )
+};
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ### 在表单中使用
 
 在 [`<Form />`](#/components/form) 表单中应用 `<Cascader />` 组件。
@@ -316,3 +376,4 @@ ReactDOM.render(<Demo />, _mount_);
 | onSearch | 开启搜索选项 | functionon(searchText) \| Boolean | - | v4.16.1 |
 | size | 选择框尺寸 | Enum{large, default, small } | `default` | v17.0.1 |
 | inputProps | 传给[Input](http://localhost:3000/#/components/input)组件的参数 | Object | - | v17.0.1 |
+| expandTrigger |	子集菜单的展开方式，'click' 和 'hover' |	String | `click` | v4.18.2 |
