@@ -61,7 +61,8 @@ export default function Overlay(props: OverlayProps) {
     ...otherProps
   } = props;
 
-  const [isOpen, setIsOpen] = useState(props.isOpen || false);
+  const [isOpen, setIsOpen] = useState<boolean>();
+  // const [isOpen, setIsOpen] = useState(props.isOpen || false);
   const [visible, setVisible] = useState(false);
   const container = useRef<HTMLDivElement>(null);
   const overlay = useRef<HTMLDivElement>(null);
@@ -127,7 +128,6 @@ export default function Overlay(props: OverlayProps) {
     //   setVisible(false)
     // }
   }
-
   const TransitionGroupComp = (
     <CSSTransition
       classNames={transitionName}
