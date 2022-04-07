@@ -28,6 +28,26 @@ const Demo = () => (
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+### 数字输入框
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { InputNumber } from 'uiw';
+
+const Demo = () => (
+  <div>
+    <InputNumber
+      placeholder="请输入内容"
+      style={{ maxWidth: 200 }}
+      min={1}
+      max={10}
+    />
+  </div>
+);
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ### Form 中使用 Input
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
@@ -69,6 +89,13 @@ const Demo = () => (
         validator: (value = '') => value.length < 4 ? '必填选项！' : null,
         children: <Input placeholder="请输入内容" style={{ maxWidth: 200 }} />,
       },
+      inputNumber: {
+        value: 'www',
+        label: '请输入内容',
+        help: '必须长度超过 3 个字符！',
+        validator: (value = '') => value.length < 4 ? '必填选项！' : null,
+        children: <InputNumber placeholder="请输入内容" style={{ maxWidth: 200 }} />,
+      },
     }}
   >
     {({ fields, state, canSubmit }) => {
@@ -76,6 +103,9 @@ const Demo = () => (
         <div>
           <Row>
             <Col>{fields.input}</Col>
+          </Row>
+          <Row>
+            <Col>{fields.inputNumber}</Col>
           </Row>
           <Row>
             <Col>
@@ -387,3 +417,10 @@ ReactDOM.render(<Demo />, _mount_);
 | preIcon | 输入框`前`面放置图标  | String/ReactNode | - |
 | addonAfter | 	带标签的 input，设置后置标签 | String/ReactNode | - |
 | size | 指定输入框的尺寸，除了默认的大小外，还提供了 `large`、`small` 和 `default` 三种尺寸。 | String | - |
+
+## InputNumber
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+|--------- |-------- |--------- |-------- |-------- |
+| min | 最小值 | Number | - | v4.18.2 |
+| max | 最大值 | Number | - | v4.18.2 |

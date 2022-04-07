@@ -2,6 +2,8 @@ import React, { useEffect, useImperativeHandle } from 'react';
 import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLInputProps } from '@uiw/utils';
 import './style/input.less';
+export * from './InputNumber';
+export { default as InputNumber } from './InputNumber';
 
 export interface InputProps extends IProps, Omit<HTMLInputProps, 'size'> {
   preIcon?: IconProps['type'];
