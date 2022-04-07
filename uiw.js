@@ -346,6 +346,7 @@ __webpack_require__.d(__webpack_exports__, {
   "FormItem": () => (/* reexport */ FormItem),
   "Icon": () => (/* reexport */ Icon),
   "Input": () => (/* reexport */ react_input_esm),
+  "InputNumber": () => (/* reexport */ InputNumber),
   "Layout": () => (/* reexport */ react_layout_esm),
   "LayoutContent": () => (/* reexport */ LayoutContent),
   "LayoutContext": () => (/* reexport */ LayoutContext),
@@ -1562,7 +1563,8 @@ function Overlay(props) {
   } = props,
       otherProps = _objectWithoutPropertiesLoose(props, esm_excluded);
 
-  var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(props.isOpen || false);
+  var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(); // const [isOpen, setIsOpen] = useState(props.isOpen || false);
+
   var [visible, setVisible] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
   var container = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
   var overlay = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
@@ -1772,6 +1774,34 @@ var react_button_esm_excluded = ["prefixCls", "disabled", "active", "loading", "
 ;// CONCATENATED MODULE: ../react-modal/esm/style/index.css
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const react_modal_esm_style = ({});
+;// CONCATENATED MODULE: ../react-modal/esm/CallShow.js
+
+
+var CallShow_excluded = ["title", "children"];
+
+
+
+
+function CallShow(props) {
+  var {
+    title = '提示框',
+    children
+  } = props,
+      other = _objectWithoutPropertiesLoose(props, CallShow_excluded);
+
+  var dv = document.createElement('div');
+  dv.id = 'uiw-modal-call-show-element';
+  document.body.appendChild(dv);
+  external_root_ReactDOM_commonjs2_react_dom_commonjs_react_dom_amd_react_dom_default().render( /*#__PURE__*/(0,jsx_runtime.jsx)(react_modal_esm, _extends({}, other, {
+    title: title,
+    isOpen: true,
+    onClosed: () => {
+      document.getElementById('uiw-modal-call-show-element').remove();
+    },
+    children: children
+  })), document.getElementById('uiw-modal-call-show-element'));
+}
+
 ;// CONCATENATED MODULE: ../react-modal/esm/index.js
 
 
@@ -1785,7 +1815,8 @@ var react_modal_esm_excluded = ["prefixCls", "className", "children", "useButton
 
 
 
-/* harmony default export */ const react_modal_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
+
+var Modal = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
     prefixCls = 'w-modal',
     className,
@@ -1910,7 +1941,9 @@ var react_modal_esm_excluded = ["prefixCls", "className", "children", "useButton
       })
     })
   }));
-}));
+});
+Modal.show = CallShow;
+/* harmony default export */ const react_modal_esm = (Modal);
 
 ;// CONCATENATED MODULE: ../react-alert/esm/style/index.css
 // extracted by mini-css-extract-plugin
@@ -3118,10 +3151,43 @@ Popover.defaultProps = {
 ;// CONCATENATED MODULE: ../react-input/esm/style/input.css
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const input = ({});
+;// CONCATENATED MODULE: ../react-input/esm/InputNumber.js
+
+
+var InputNumber_excluded = ["min", "max"];
+
+
+
+/* harmony default export */ const InputNumber = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
+  var {
+    min,
+    max
+  } = props,
+      inputProps = _objectWithoutPropertiesLoose(props, InputNumber_excluded);
+
+  var [value, valueSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(props.value || 0);
+
+  var onChange = v => {
+    var parseValue = Number.parseInt(v.target.value);
+    if (typeof min === 'number' && parseValue < min) return;
+    if (typeof max === 'number' && parseValue > max) return;
+    valueSet(v.target.value);
+    props.onChange == null ? void 0 : props.onChange(v);
+  };
+
+  return /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, _extends({}, inputProps, {
+    value: value,
+    onChange: onChange,
+    type: "number"
+  }));
+}));
+
 ;// CONCATENATED MODULE: ../react-input/esm/index.js
 
 
 var react_input_esm_excluded = ["prefixCls", "className", "style", "size", "type", "preIcon", "addonAfter"];
+
+
 
 
 
