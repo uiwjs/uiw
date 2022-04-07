@@ -9,6 +9,7 @@ export interface InputProps extends IProps, Omit<HTMLInputProps, 'size'> {
   preIcon?: IconProps['type'];
   addonAfter?: React.ReactNode;
   size?: 'large' | 'default' | 'small';
+  inputStyle?: React.CSSProperties;
 }
 
 export default React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
@@ -20,6 +21,7 @@ export default React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     type = 'text',
     preIcon = null,
     addonAfter,
+    inputStyle,
     ...otherProps
   } = props;
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -51,7 +53,14 @@ export default React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return (
     <div className={cls} style={style}>
       <Icon type={preIcon} />
-      <input ref={inputRef} type={type} autoComplete="off" {...otherProps} className={`${prefixCls}-inner`} />
+      <input
+        ref={inputRef}
+        type={type}
+        autoComplete="off"
+        {...otherProps}
+        style={inputStyle}
+        className={`${prefixCls}-inner`}
+      />
       {addonAfter && (
         <span className={`${prefixCls}-addon-after`} ref={addonRef}>
           {addonAfter}

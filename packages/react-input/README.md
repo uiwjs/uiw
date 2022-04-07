@@ -35,16 +35,48 @@ ReactDOM.render(<Demo />, _mount_);
 import ReactDOM from 'react-dom';
 import { InputNumber } from 'uiw';
 
-const Demo = () => (
-  <div>
-    <InputNumber
-      placeholder="请输入内容"
-      style={{ maxWidth: 200 }}
-      min={1}
-      max={10}
-    />
-  </div>
-);
+const Demo = () => {
+
+  return(
+    <div>
+      <Row gutter={10}>
+        <Col fixed>
+          <InputNumber
+            placeholder="请输入内容"
+            style={{ width: 200 }}
+          />
+        </Col>
+        <Col fixed>限制大小</Col>
+        <Col fixed>
+          <InputNumber
+            placeholder="请输入内容"
+            style={{ width: 200 }}
+            min={1}
+            max={10}
+          />
+        </Col>
+        <Col fixed>超出限界警告</Col>
+        <Col fixed>
+          <InputNumber
+            placeholder="请输入内容"
+            style={{ width: 200 }}
+            min={1}
+            max={10}
+            overLimitColor={'red'}
+          />
+        </Col>
+        <Col fixed>设置步涨值</Col>
+        <Col fixed>
+          <InputNumber
+            placeholder="请输入内容"
+            style={{ width: 200 }}
+            step={5}
+          />
+        </Col>
+      </Row>
+    </div>
+  )
+};
 ReactDOM.render(<Demo />, _mount_);
 ```
 
@@ -410,17 +442,23 @@ ReactDOM.render(<Demo />, _mount_);
 
 ## Input
 
-| 参数 | 说明 | 类型 | 默认值 |
-|--------- |-------- |--------- |-------- |
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+|--------- |-------- |--------- |-------- |-------- |
 | value | 绑定值 | String | - |
 | disabled | 禁用输入框 | Boolean | `false` |
 | preIcon | 输入框`前`面放置图标  | String/ReactNode | - |
 | addonAfter | 	带标签的 input，设置后置标签 | String/ReactNode | - |
 | size | 指定输入框的尺寸，除了默认的大小外，还提供了 `large`、`small` 和 `default` 三种尺寸。 | String | - |
+| inputStyle | 传递给input的样式，在需要动态设置样式场景下使用 | Object | - | v4.18.2 |
 
 ## InputNumber
+在v4.18.2中增加
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 |--------- |-------- |--------- |-------- |-------- |
-| min | 最小值 | Number | - | v4.18.2 |
-| max | 最大值 | Number | - | v4.18.2 |
+| min | 最小值 | Number | - |
+| max | 最大值 | Number | - |
+| step | 设置步长值 | Number | - |
+| overLimitColor | 允许超出`min`,`max`限制, 使用该警告色显示 | String | - |
+
+更多属性文档请参考 Input。
