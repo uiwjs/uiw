@@ -1,25 +1,61 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import Input, { InputProps } from './';
 
 interface InputNumberProps extends InputProps {
   min?: number;
   max?: number;
   step?: number;
+  overLimitColor?: string;
+  formatter?: (value: number) => string;
+  parser?: (value: number) => number;
+  keyboard?: boolean;
 }
 
 export default React.forwardRef<HTMLInputElement, InputNumberProps>((props, ref) => {
-  const { min, max, ...inputProps } = props;
+  const {
+    className,
+    min,
+    max,
+    step,
+    overLimitColor,
+    keyboard = false,
+    formatter,
+    prefixCls = 'w-input-number',
+    ...otherProps
+  } = props;
 
-  const [value, valueSet] = useState(props.value || 0);
+  const value = useMemo(() => Number.parseFloat((props.value || 0)?.toString()), [props.value]);
+  const [isOverLimit, isOverLimitSet] = useState(overLimitComp(value));
+
+  function overLimitComp(value: number) {
+    if (typeof min === 'number' && value < min) return true;
+    if (typeof max === 'number' && value > max) return true;
+    return false;
+  }
 
   const onChange = (v: React.ChangeEvent<HTMLInputElement>) => {
-    const parseValue = Number.parseInt(v.target.value);
-    if (typeof min === 'number' && parseValue < min) return;
-    if (typeof max === 'number' && parseValue > max) return;
+    const isOverLimit = overLimitComp(Number.parseFloat(v.target.value));
+    isOverLimitSet(isOverLimit);
 
-    valueSet(v.target.value);
     props.onChange?.(v);
   };
 
-  return <Input {...inputProps} value={value} onChange={onChange} type="number" />;
+  const overLimitProps = useMemo(() => {
+    if (!overLimitColor) return { min, max };
+  }, []);
+
+  const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
+  const inputStyle = useMemo(() => (isOverLimit ? { color: overLimitColor?.toString() } : undefined), [isOverLimit]);
+
+  return (
+    <Input
+      {...otherProps}
+      className={cls}
+      type="number"
+      inputStyle={inputStyle}
+      onChange={onChange}
+      step={step}
+      {...overLimitProps}
+    />
+  );
 });
