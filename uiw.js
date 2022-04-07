@@ -3154,38 +3154,64 @@ Popover.defaultProps = {
 ;// CONCATENATED MODULE: ../react-input/esm/InputNumber.js
 
 
-var InputNumber_excluded = ["min", "max"];
+var InputNumber_excluded = ["className", "min", "max", "step", "overLimitColor", "keyboard", "formatter", "prefixCls"];
 
 
 
 /* harmony default export */ const InputNumber = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
+    className,
     min,
-    max
+    max,
+    step,
+    overLimitColor,
+    keyboard = false,
+    prefixCls = 'w-input-number'
   } = props,
-      inputProps = _objectWithoutPropertiesLoose(props, InputNumber_excluded);
+      otherProps = _objectWithoutPropertiesLoose(props, InputNumber_excluded);
 
-  var [value, valueSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(props.value || 0);
+  var value = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
+    var _ref;
+
+    return Number.parseFloat((_ref = props.value || 0) == null ? void 0 : _ref.toString());
+  }, [props.value]);
+  var [isOverLimit, isOverLimitSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(overLimitComp(value));
+
+  function overLimitComp(value) {
+    if (typeof min === 'number' && value < min) return true;
+    if (typeof max === 'number' && value > max) return true;
+    return false;
+  }
 
   var onChange = v => {
-    var parseValue = Number.parseInt(v.target.value);
-    if (typeof min === 'number' && parseValue < min) return;
-    if (typeof max === 'number' && parseValue > max) return;
-    valueSet(v.target.value);
+    var isOverLimit = overLimitComp(Number.parseFloat(v.target.value));
+    isOverLimitSet(isOverLimit);
     props.onChange == null ? void 0 : props.onChange(v);
   };
 
-  return /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, _extends({}, inputProps, {
-    value: value,
+  var overLimitProps = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
+    if (!overLimitColor) return {
+      min,
+      max
+    };
+  }, []);
+  var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
+  var inputStyle = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => isOverLimit ? {
+    color: overLimitColor == null ? void 0 : overLimitColor.toString()
+  } : undefined, [isOverLimit]);
+  return /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, _extends({}, otherProps, {
+    className: cls,
+    type: "number",
+    inputStyle: inputStyle,
     onChange: onChange,
-    type: "number"
-  }));
+    step: step
+  }, overLimitProps));
 }));
 
 ;// CONCATENATED MODULE: ../react-input/esm/index.js
 
 
-var react_input_esm_excluded = ["prefixCls", "className", "style", "size", "type", "preIcon", "addonAfter"];
+var react_input_esm_excluded = ["prefixCls", "className", "style", "size", "type", "preIcon", "addonAfter", "inputStyle"];
 
 
 
@@ -3201,7 +3227,8 @@ var react_input_esm_excluded = ["prefixCls", "className", "style", "size", "type
     size = 'default',
     type = 'text',
     preIcon = null,
-    addonAfter
+    addonAfter,
+    inputStyle
   } = props,
       otherProps = _objectWithoutPropertiesLoose(props, react_input_esm_excluded);
 
@@ -3230,6 +3257,7 @@ var react_input_esm_excluded = ["prefixCls", "className", "style", "size", "type
       type: type,
       autoComplete: "off"
     }, otherProps, {
+      style: inputStyle,
       className: prefixCls + "-inner"
     })), addonAfter && /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
       className: prefixCls + "-addon-after",
