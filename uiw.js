@@ -9751,12 +9751,15 @@ var ThComponent_excluded = ["title", "key", "render", "children", "ellipsis", "f
 
 
 
-
 class ThComponent extends external_root_React_commonjs2_react_commonjs_react_amd_react_.Component {
+  constructor() {
+    super(...arguments);
+    this.wrapper = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().createRef();
+  }
+
   componentDidMount() {
-    var rect = external_root_ReactDOM_commonjs2_react_dom_commonjs_react_dom_amd_react_dom_default().findDOMNode(this);
     this.props.updateLocation({
-      width: rect.getBoundingClientRect().width
+      width: this.wrapper.current.getBoundingClientRect().width
     }, "" + this.props.rowNum + this.props.colNum, this.props.item.key, this.props.item.colSpan);
   }
 
@@ -9786,7 +9789,9 @@ class ThComponent extends external_root_React_commonjs2_react_commonjs_react_amd
       }
     }
 
-    return /*#__PURE__*/(0,jsx_runtime.jsx)("th", _extends({}, thProps, {
+    return /*#__PURE__*/(0,jsx_runtime.jsx)("th", _extends({
+      ref: this.wrapper
+    }, thProps, {
       style: _extends({}, thProps.style, locationFixed(fixed, locationWidth, "" + rowNum + colNum)),
       className: prefixCls + "-tr-children-" + ((item == null ? void 0 : item.align) || 'left') + " " + (item.className || '') + " " + cls,
       onClick: evn => onCellHead == null ? void 0 : onCellHead(item, colNum, rowNum, evn),
