@@ -1796,10 +1796,10 @@ function CallShow(props) {
     title: title,
     isOpen: true,
     onClosed: () => {
-      document.getElementById('uiw-modal-call-show-element').remove();
+      dv.remove();
     },
     children: children
-  })), document.getElementById('uiw-modal-call-show-element'));
+  })), dv);
 }
 
 ;// CONCATENATED MODULE: ../react-modal/esm/index.js
