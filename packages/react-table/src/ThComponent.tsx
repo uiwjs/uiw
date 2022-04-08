@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { TableColumns, TableProps, LocationWidth } from './';
 import { locationFixed } from './util';
 
@@ -14,10 +13,10 @@ interface ThComponentProps<T> {
   updateLocation: (params: LocationWidth, index: string, key: string, colSpan?: number) => void;
 }
 export default class ThComponent<T> extends Component<ThComponentProps<T>> {
+  wrapper = React.createRef<HTMLTableCellElement>();
   componentDidMount() {
-    const rect = ReactDOM.findDOMNode(this) as Element;
     this.props.updateLocation(
-      { width: rect.getBoundingClientRect().width },
+      { width: this.wrapper.current!.getBoundingClientRect().width },
       `${this.props.rowNum}${this.props.colNum}`,
       this.props.item.key!,
       this.props.item.colSpan,
@@ -37,6 +36,7 @@ export default class ThComponent<T> extends Component<ThComponentProps<T>> {
     }
     return (
       <th
+        ref={this.wrapper}
         key={colNum}
         {...thProps}
         style={{ ...thProps.style, ...locationFixed(fixed, locationWidth, `${rowNum}${colNum}`) }}
