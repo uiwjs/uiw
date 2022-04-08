@@ -13,11 +13,11 @@ export default function CallShow(props: Omit<ModalProps, 'onClosed' | 'isOpen'> 
       title={title}
       isOpen={true}
       onClosed={() => {
-        dv.remove();
+        document.getElementById('uiw-modal-call-show-element')!.remove();
       }}
     >
       {children}
     </Modal>,
-    dv,
+    document.getElementById('uiw-modal-call-show-element'),
   );
 }
