@@ -3078,10 +3078,93 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
 ;// CONCATENATED MODULE: ../react-popover/esm/style/index.css
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const react_popover_esm_style = ({});
+;// CONCATENATED MODULE: ../react-popover/esm/Confirm.js
+
+
+
+
+
+
+
+function Confirm(props) {
+  var {
+    trigger = 'click',
+    placement = 'top',
+    confirmText = 'Yes',
+    title,
+    cancelText = 'No',
+    visibleArrow,
+    children,
+    onConfirm
+  } = props;
+  var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
+  return /*#__PURE__*/(0,jsx_runtime.jsx)(Popover, {
+    isOpen: isOpen,
+    visibleArrow: visibleArrow,
+    content: /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
+      style: {
+        padding: '12px 16px',
+        position: 'relative'
+      },
+      children: [/*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+        type: "information",
+        style: {
+          position: 'absolute',
+          top: 13.5,
+          fontSize: 14,
+          transform: 'rotate(180deg)',
+          color: '#faad14'
+        }
+      }), /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
+        style: {
+          paddingLeft: 20
+        },
+        children: [/*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+          style: {
+            fontSize: 14
+          },
+          children: title
+        }), /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
+          style: {
+            position: 'relative',
+            bottom: 0,
+            marginTop: 12,
+            display: 'flex',
+            justifyContent: 'end'
+          },
+          children: [/*#__PURE__*/(0,jsx_runtime.jsx)(esm, {
+            size: "small",
+            onClick: () => setIsOpen(false),
+            children: cancelText
+          }), /*#__PURE__*/(0,jsx_runtime.jsx)(esm, {
+            size: "small",
+            type: "primary",
+            style: {
+              marginLeft: 10
+            },
+            onClick: () => {
+              onConfirm == null ? void 0 : onConfirm();
+              setIsOpen(false);
+            },
+            children: confirmText
+          })]
+        })]
+      })]
+    }),
+    trigger: trigger,
+    placement: placement,
+    children: /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+      onClick: () => setIsOpen(true),
+      children: children
+    })
+  });
+}
+
 ;// CONCATENATED MODULE: ../react-popover/esm/index.js
 
 
 var react_popover_esm_excluded = ["prefixCls", "className", "content", "visibleArrow"];
+
 
 
 
@@ -3140,6 +3223,7 @@ class Popover extends (external_root_React_commonjs2_react_commonjs_react_amd_re
   }
 
 }
+Popover.Confirm = Confirm;
 Popover.defaultProps = {
   prefixCls: 'w-popover',
   placement: 'top',
