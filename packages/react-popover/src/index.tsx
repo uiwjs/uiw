@@ -1,5 +1,6 @@
 import React from 'react';
 import OverlayTrigger, { OverlayTriggerProps } from '@uiw/react-overlay-trigger';
+import Confirm from './Confirm';
 import './style/index.less';
 
 export interface PopoverProps extends OverlayTriggerProps {
@@ -8,6 +9,7 @@ export interface PopoverProps extends OverlayTriggerProps {
 }
 
 export default class Popover extends React.Component<PopoverProps> {
+  static Confirm = Confirm;
   public static defaultProps: PopoverProps = {
     prefixCls: 'w-popover',
     placement: 'top',

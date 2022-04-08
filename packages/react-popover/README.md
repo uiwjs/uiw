@@ -334,6 +334,26 @@ class Demo extends React.Component {
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+### Confirm 用法
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Popover, Row } from 'uiw';
+
+class Demo extends React.Component {
+  render() {
+    return (
+      <Row style={{ alignItems: 'center' }}>
+        <Popover.Confirm title="Are you sure delete this?">delete</Popover.Confirm>
+      </Row>
+    )
+  }
+}
+ReactDOM.render(<Demo />, _mount_);
+```
+
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -347,5 +367,19 @@ ReactDOM.render(<Demo />, _mount_);
 | isOpen | 默认是否显示弹窗，继承 `<OverlayTrigger />` 组件属性 | Boolean | `false` |
 | autoAdjustOverflow | 弹出层被遮挡时自动调整位置，继承 `<OverlayTrigger />` 组件属性 | Boolean | `false` |
 | onVisibleChange | 显示隐藏的回调，继承 `<OverlayTrigger />` 组件属性 | Function(isVisible:bool) | - |
+
+## Confirm Props
+
+| 参数 | 说明 | 类型 | 默认值 |
+|--------- |-------- |--------- |-------- |
+| trigger| 悬停/点击弹出窗口，继承 `<OverlayTrigger />` 组件属性 | Enum{`hover`, `click`, `focus`} | `hover` |
+| placement | 气泡框位置，可现实箭头在不同的方位 | Enum{`top`, `topLeft`, `topRight`,<br /> `left`, `leftTop`, `leftBottom`,<br /> `right`, `rightTop`, `rightBottom`,<br /> `bottom`, `bottomLeft`, `bottomRight`} | `top` |
+| visibleArrow | 是否显示箭头 | Boolean | `true` |
+| children | 子元素 | React.ReactNode | - |
+| onConfirm | 确定方法 | ()=>void |  |
+| confirmText | 确定按钮文本 | string | Yes |
+| title | 标题信息 | React.ReactNode | - |
+| cancelText | 取消按钮文本 | string | No |
+
 
 更多属性请参考 [OverlayTrigger](#/components/overlay-trigger)。
