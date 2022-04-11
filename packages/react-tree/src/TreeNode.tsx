@@ -49,26 +49,31 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
   } = props;
   let isOpen = false;
 
+  const node = React.useRef<HTMLUListElement>(null);
+
   if (parent && (parent.key || parent.key === 0)) {
     isOpen = !!(openKeys && openKeys.indexOf(parent.key) > -1);
   }
-  const onExit = useCallback((node: HTMLElement) => {
-    node.style.height = `${node.scrollHeight}px`;
+
+  const onExit = useCallback(() => {
+    node.current!.style.height = `${node.current!.scrollHeight}px`;
   }, []);
-  const onExiting = useCallback((node: HTMLElement) => {
-    node.style.height = '1px';
+  const onExiting = useCallback(() => {
+    node.current!.style.height = '1px';
   }, []);
-  const onEnter = useCallback((node: HTMLElement, isAppearing: boolean) => {
-    node.style.height = '1px';
+  const onEnter = useCallback(() => {
+    node.current!.style.height = '1px';
   }, []);
-  const onEntering = useCallback((node: HTMLElement, isAppearing: boolean) => {
-    node.style.height = `${node.scrollHeight}px`;
+  const onEntering = useCallback(() => {
+    node.current!.style.height = `${node.current!.scrollHeight}px`;
   }, []);
-  const onEntered = useCallback((node: HTMLElement, isAppearing: boolean) => {
-    node.style.height = 'initial';
+  const onEntered = useCallback(() => {
+    node.current!.style.height = 'initial';
   }, []);
+
   return (
     <CSSTransition
+      nodeRef={node}
       classNames={prefixCls}
       in={isOpen}
       timeout={200}
@@ -79,6 +84,7 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
       onEntering={onEntering}
     >
       <ul
+        ref={node}
         className={[
           level !== 1 && isOpen ? [`${prefixCls}-open`] : null,
           level !== 1 && !isOpen ? [`${prefixCls}-close`] : null,
