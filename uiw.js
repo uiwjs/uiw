@@ -10675,27 +10675,29 @@ function TreeNode(props) {
       other = _objectWithoutPropertiesLoose(props, TreeNode_excluded);
 
   var isOpen = false;
+  var node = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef(null);
 
   if (parent && (parent.key || parent.key === 0)) {
     isOpen = !!(openKeys && openKeys.indexOf(parent.key) > -1);
   }
 
-  var onExit = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)(node => {
-    node.style.height = node.scrollHeight + "px";
+  var onExit = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)(() => {
+    node.current.style.height = node.current.scrollHeight + "px";
   }, []);
-  var onExiting = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)(node => {
-    node.style.height = '1px';
+  var onExiting = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)(() => {
+    node.current.style.height = '1px';
   }, []);
-  var onEnter = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)((node, isAppearing) => {
-    node.style.height = '1px';
+  var onEnter = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)(() => {
+    node.current.style.height = '1px';
   }, []);
-  var onEntering = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)((node, isAppearing) => {
-    node.style.height = node.scrollHeight + "px";
+  var onEntering = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)(() => {
+    node.current.style.height = node.current.scrollHeight + "px";
   }, []);
-  var onEntered = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)((node, isAppearing) => {
-    node.style.height = 'initial';
+  var onEntered = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)(() => {
+    node.current.style.height = 'initial';
   }, []);
   return /*#__PURE__*/(0,jsx_runtime.jsx)(esm_CSSTransition, {
+    nodeRef: node,
     classNames: prefixCls,
     in: isOpen,
     timeout: 200,
@@ -10705,6 +10707,7 @@ function TreeNode(props) {
     onEntered: onEntered,
     onEntering: onEntering,
     children: /*#__PURE__*/(0,jsx_runtime.jsx)("ul", {
+      ref: node,
       className: [level !== 1 && isOpen ? [prefixCls + "-open"] : null, level !== 1 && !isOpen ? [prefixCls + "-close"] : null].filter(Boolean).join(' ').trim(),
       children: data.map((item, idx) => {
         item.parent = parent;
