@@ -1635,7 +1635,8 @@ function Overlay(props) {
     onEntering: onOpening,
     onEntered: onOpened,
     onExiting: onClosing,
-    onExited: handleClosed
+    onExited: handleClosed,
+    nodeRef: overlay
   }, otherProps, {
     children: status => {
       return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
@@ -4581,25 +4582,25 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
   }
 
   function onExit(node) {
-    node.style.height = node.scrollHeight + "px";
+    node && (node.style.height = node.scrollHeight + "px");
     setIsOpen(false);
   }
 
   function onExiting(node) {
-    node.style.height = '0px';
+    node && (node.style.height = '0px');
   }
 
   function onEnter(node) {
-    node.style.height = '1px';
+    node && (node.style.height = '1px');
     setIsOpen(true);
   }
 
   function onEntering(node) {
-    node.style.height = node.scrollHeight + "px";
+    node && (node.style.height = node.scrollHeight + "px");
   }
 
   function onEntered(node) {
-    node.style.height = 'initial';
+    node && (node.style.height = 'initial');
   }
 
   if (!collapse) {
