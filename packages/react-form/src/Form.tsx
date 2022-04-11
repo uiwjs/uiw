@@ -11,7 +11,7 @@ export interface FormProps<T> extends IProps, Omit<React.FormHTMLAttributes<HTML
   onChange?: (state: FormState) => void;
   onSubmitError?: (evn: any) => any;
   resetOnSubmit?: boolean;
-  children?: (handle: FormChildrenProps) => JSX.Element | JSX.Element | undefined;
+  children?: ((handle: FormChildrenProps) => JSX.Element | undefined) | JSX.Element | undefined;
 }
 
 export interface FormState {
