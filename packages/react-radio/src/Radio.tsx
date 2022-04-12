@@ -4,6 +4,7 @@ import './style/index.less';
 
 export interface RadioProps extends RadioAbstractProps {}
 
-export default React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
+export const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
   return <RadioAbstract ref={ref} {...props} />;
 });
+export default Radio;

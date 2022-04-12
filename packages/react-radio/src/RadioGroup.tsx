@@ -10,7 +10,7 @@ export interface RadioGroupProps extends IProps, HTMLDivProps {
   onChange?: RadioProps['onChange'];
 }
 
-export default React.forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
+export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
   const { prefixCls = 'w-radio-group', className, name, value, onChange, children, ...other } = props;
   return (
     <div {...other} ref={ref} className={[prefixCls, className].filter(Boolean).join(' ').trim()}>
@@ -31,3 +31,4 @@ export default React.forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) =>
     </div>
   );
 });
+export default RadioGroup;
