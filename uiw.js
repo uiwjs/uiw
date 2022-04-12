@@ -11084,8 +11084,10 @@ function TreeChecked(_ref) {
 
       return /*#__PURE__*/(0,jsx_runtime.jsxs)(external_root_React_commonjs2_react_commonjs_react_amd_react_.Fragment, {
         children: [/*#__PURE__*/(0,jsx_runtime.jsx)(react_checkbox_esm, _extends({
-          className: prefixCls + "-checked"
+          className: prefixCls + "-checked",
+          disabled: node.disabled
         }, checkedProps)), item.label && /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
+          className: node.disabledClass,
           children: item.label
         })]
       });
