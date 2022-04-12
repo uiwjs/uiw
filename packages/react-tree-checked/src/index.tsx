@@ -24,8 +24,8 @@ export default function TreeChecked({ prefixCls = 'w-treechecked', ...props }: T
         }
         return (
           <Fragment>
-            <Checkbox className={`${prefixCls}-checked`} {...checkedProps} />
-            {item.label && <span>{item.label}</span>}
+            <Checkbox className={`${prefixCls}-checked`} disabled={node.disabled} {...checkedProps} />
+            {item.label && <span className={node.disabledClass}>{item.label}</span>}
           </Fragment>
         );
       }}
