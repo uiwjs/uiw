@@ -1517,7 +1517,7 @@ function Portal(props) {
 ;// CONCATENATED MODULE: ../react-overlay/esm/index.js
 
 
-var esm_excluded = ["className", "style", "isOpen", "prefixCls", "usePortal", "maskClosable", "backdropProps", "portalProps", "hasBackdrop", "unmountOnExit", "timeout", "transitionName", "onOpening", "onOpened", "onClosing", "onClosed", "onClose", "children", "dialogProps"];
+var esm_excluded = ["className", "style", "isOpen", "prefixCls", "usePortal", "maskClosable", "backdropProps", "portalProps", "hasBackdrop", "unmountOnExit", "timeout", "transitionName", "onOpening", "onOpened", "onClosing", "onClosed", "onClose", "onEnter", "children", "dialogProps"];
 
 /**
  * Overlay 组件
@@ -1558,6 +1558,7 @@ function Overlay(props) {
     onClosing = noop,
     onClosed = noop,
     onClose = noop,
+    onEnter: _onEnter = noop,
     children,
     dialogProps = {}
   } = props,
@@ -1632,10 +1633,21 @@ function Overlay(props) {
     unmountOnExit: unmountOnExit,
     timeout: timeout,
     in: isOpen,
-    onEntering: onOpening,
-    onEntered: onOpened,
-    onExiting: onClosing,
-    onExited: handleClosed,
+    onEnter: (_, isAppearing) => {
+      _onEnter(overlay.current, isAppearing);
+    },
+    onEntering: (_, isAppearing) => {
+      onOpening(overlay.current, isAppearing);
+    },
+    onEntered: (_, isAppearing) => {
+      onOpened(overlay.current, isAppearing);
+    },
+    onExiting: () => {
+      onClosing(overlay.current);
+    },
+    onExited: () => {
+      handleClosed(overlay.current);
+    },
     nodeRef: overlay
   }, otherProps, {
     children: status => {
