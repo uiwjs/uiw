@@ -56,6 +56,7 @@ export default function Overlay(props: OverlayProps) {
     onClosing = noop,
     onClosed = noop,
     onClose = noop,
+    onEnter = noop,
     children,
     dialogProps = {},
     ...otherProps
@@ -65,7 +66,7 @@ export default function Overlay(props: OverlayProps) {
   // const [isOpen, setIsOpen] = useState(props.isOpen || false);
   const [visible, setVisible] = useState(false);
   const container = useRef<HTMLDivElement>(null);
-  const overlay = useRef<HTMLDivElement>(null);
+  const overlay = useRef(null);
   useEffect(() => {
     if (isOpen !== props.isOpen && props.isOpen) {
       setVisible(true);
@@ -134,10 +135,22 @@ export default function Overlay(props: OverlayProps) {
       unmountOnExit={unmountOnExit}
       timeout={timeout!}
       in={isOpen}
-      onEntering={onOpening}
-      onEntered={onOpened}
-      onExiting={onClosing}
-      onExited={handleClosed}
+      onEnter={(_, isAppearing) => {
+        onEnter(overlay.current!, isAppearing);
+      }}
+      onEntering={(_, isAppearing) => {
+        onOpening(overlay.current!, isAppearing);
+      }}
+      onEntered={(_, isAppearing) => {
+        onOpened(overlay.current!, isAppearing);
+      }}
+      onExiting={() => {
+        onClosing(overlay.current!);
+      }}
+      onExited={() => {
+        handleClosed(overlay.current!);
+      }}
+      nodeRef={overlay}
       {...otherProps}
     >
       {(status) => {
