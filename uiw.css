@@ -5041,6 +5041,12 @@ a.w-list-item:hover:not(.w-disabled) {
 .w-tree-title > * {
   vertical-align: middle;
 }
+.w-tree-disabled-mouse {
+  cursor: not-allowed;
+}
+.w-tree-disabled-ele {
+  color: #00000040;
+}
 .w-tree-title.selected {
   background-color: #d5e8fc;
 }

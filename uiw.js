@@ -10673,9 +10673,11 @@ var TreeNode_excluded = ["prefixCls", "renderTitle", "icon", "iconAnimation", "i
 
 var Label = _ref => {
   var {
-    label
+    label,
+    className
   } = _ref;
   return (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
+    className: className,
     children: label
   }), [label]);
 };
@@ -10746,6 +10748,24 @@ function TreeNode(props) {
         var childKeys = noChild ? [] : getChildKeys(item.children);
         var checkedKeys = selectedKeys ? selectedKeys.filter(key => childKeys.indexOf(key) > -1) : [];
         var isHalfChecked = checkedKeys.length > 0 && childKeys.length !== checkedKeys.length;
+        var disabledObj = {
+          onClick: onItemSelected,
+          disabled: null,
+          disabledMouse: null,
+          disabledClass: undefined,
+          disabledStyle: undefined
+        };
+
+        if (item.disabled) {
+          disabledObj.onClick = undefined;
+          disabledObj.disabled = 'disabled';
+          disabledObj.disabledMouse = prefixCls + "-disabled-mouse";
+          disabledObj.disabledClass = prefixCls + "-disabled-ele";
+          disabledObj.disabledStyle = {
+            color: '#00000040'
+          };
+        }
+
         return /*#__PURE__*/(0,jsx_runtime.jsxs)("li", {
           style: {
             display: item.hideNode ? 'none' : 'block'
@@ -10763,16 +10783,20 @@ function TreeNode(props) {
                 className: [typeof icon === 'function' ? prefixCls + "-switcher-noop" : null, noChild ? 'no-child' : null, !iconAnimation ? 'no-animation' : null, itemIsOpen ? 'open' : null].filter(Boolean).join(' ').trim()
               })
             }), /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
-              onClick: evn => onItemSelected(item, evn),
-              className: [prefixCls + "-title", selected && isSelected ? 'selected' : null, item.disabled ? 'disabled' : null].filter(Boolean).join(' ').trim(),
+              onClick: evn => disabledObj.onClick == null ? void 0 : disabledObj.onClick(item, evn),
+              className: [prefixCls + "-title", selected && isSelected ? 'selected' : null, disabledObj.disabled, disabledObj.disabledMouse].filter(Boolean).join(' ').trim(),
               children: renderTitle ? renderTitle(item, {
                 selected,
                 noChild,
                 openKeys,
                 isHalfChecked,
-                selectedKeys
+                selectedKeys,
+                disabled: item.disabled,
+                disabledClass: disabledObj.disabledClass,
+                disabledStyle: disabledObj.disabledStyle
               }) : /*#__PURE__*/(0,jsx_runtime.jsx)(Label, {
-                label: item.label
+                label: item.label,
+                className: disabledObj.disabledClass
               })
             })]
           }), item.children && /*#__PURE__*/(0,jsx_runtime.jsx)(TreeNode, _extends({}, other, {
