@@ -411,6 +411,7 @@ const Demo = () => {
       ];
   const [option, setOption] = React.useState(selectOption);
   const [loading, setLoading] = React.useState(false);
+  const refForm = React.useRef()
 
   function handleSearch(e) {
     setLoading(true)
@@ -421,9 +422,14 @@ const Demo = () => {
     }, 500);
   }
 
+  const reSetForm = () => {
+    console.log('form', refForm.current.resetForm())
+  }
+
   return (
     <div>
       <Form
+        ref={refForm}
         onSubmitError={(error) => {
           if (error.filed) {
             return { ...error.filed };
@@ -499,6 +505,9 @@ const Demo = () => {
               <Row>
                 <Col fixed>
                   <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+                </Col>
+                <Col fixed>
+                  <Button onClick={reSetForm}>重置</Button>
                 </Col>
               </Row>
               <Row>
