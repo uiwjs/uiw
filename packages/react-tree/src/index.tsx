@@ -10,6 +10,9 @@ export type TreeRenderTitleNode = {
   isHalfChecked?: boolean;
   openKeys?: TreeProps['openKeys'];
   selectedKeys?: TreeProps['selectedKeys'];
+  disabled?: boolean;
+  disabledClass?: string;
+  disabledStyle?: React.CSSProperties;
 };
 
 export interface TreeProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
@@ -54,6 +57,7 @@ export interface TreeData {
   children?: TreeData[];
   hideNode?: boolean;
   key?: string | number;
+  disabled?: boolean;
   [keyName: string]: any;
 }
 
