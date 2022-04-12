@@ -6,6 +6,7 @@ import './style/index.less';
 import './style/circle.less';
 
 export type Status = 'success' | 'active' | 'exception';
+
 export interface ProgressCircleProps<T> extends IProps, HTMLDivProps {
   type?: IconProps<T>['type'];
   status?: Status;
@@ -95,3 +96,4 @@ export default class Circle<T> extends React.Component<ProgressCircleProps<T>> {
     );
   }
 }
+export { Circle };
