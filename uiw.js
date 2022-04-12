@@ -8594,6 +8594,9 @@ function SearchSelect(props) {
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     if (valueVerify(value)) {
       selectedValueChange(value);
+    } else {
+      setSelectedValue([]);
+      setSelectedLabel('');
     }
   }, [JSON.stringify(value)]);
 
