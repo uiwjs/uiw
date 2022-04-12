@@ -3,7 +3,13 @@ import { IProps, HTMLDivProps } from '@uiw/utils';
 import { getScrollPercent, getScrollTop, scrollToAnimate } from './utils';
 import './style/index.less';
 
-export interface BackTopProps extends IProps, HTMLDivProps {
+export interface ChildrenFunction {
+  scrollToTop: () => void;
+  percent: number;
+  current: number;
+}
+
+export interface BackTopProps extends IProps, Omit<HTMLDivProps, 'children'> {
   offsetTop?: number;
   clickable?: boolean;
   content?: JSX.Element | string;
@@ -13,6 +19,7 @@ export interface BackTopProps extends IProps, HTMLDivProps {
    */
   showBelow?: number;
   speed?: number;
+  children?: React.ReactNode | ((props: ChildrenFunction) => React.ReactNode);
 }
 
 export interface IBackTopState {
