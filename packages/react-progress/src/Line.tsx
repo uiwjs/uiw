@@ -56,3 +56,4 @@ export default class Line<T> extends React.Component<ProgressLineProp<T>> {
     );
   }
 }
+export { Line };
