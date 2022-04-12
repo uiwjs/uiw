@@ -99,6 +99,9 @@ export default function SearchSelect(props: SearchSelectProps) {
   useEffect(() => {
     if (valueVerify(value)) {
       selectedValueChange(value!);
+    } else {
+      setSelectedValue([]);
+      setSelectedLabel('');
     }
   }, [JSON.stringify(value)]);
 
