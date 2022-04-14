@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-slider",
-  "version": "4.20.0",
+  "version": "4.21.0",
   "description": "Slider component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/slider",
@@ -44,6 +44,6 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.20.0"
+    "@uiw/utils": "^4.21.0"
   }
 }
