@@ -35,7 +35,7 @@ object-assign
  */
 
 /**! 
- * @uiw/formatter v1.3.2 
+ * @uiw/formatter v1.3.3 
  * Get a formatted date. 
  * 
  * Copyright (c) 2022 Kenny Wang <wowohoo@qq.com> 
