@@ -198,14 +198,14 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
     hoverStateRef.current = 'show';
 
     const delay = normalizeDelay(props.delay);
-
-    if (!delay.show) {
+    if (!delay.show && !(props.children as JSX.Element)?.props.disabled) {
       show();
       return;
     }
     const handle = window.setTimeout(() => {
       if (hoverStateRef.current === 'show') show();
     }, delay.show);
+    clearTimeout(handle);
     timeoutRef.current.push(handle);
   }
 
