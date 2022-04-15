@@ -1519,7 +1519,7 @@ function Portal(props) {
 ;// CONCATENATED MODULE: ../react-overlay/esm/index.js
 
 
-var esm_excluded = ["className", "style", "isOpen", "prefixCls", "usePortal", "maskClosable", "backdropProps", "portalProps", "hasBackdrop", "unmountOnExit", "timeout", "transitionName", "onOpening", "onOpened", "onClosing", "onClosed", "onClose", "onEnter", "children", "dialogProps"];
+var esm_excluded = ["className", "style", "isOpen", "prefixCls", "usePortal", "maskClosable", "backdropProps", "portalProps", "hasBackdrop", "unmountOnExit", "timeout", "transitionName", "onOpening", "onOpened", "onClosing", "onClosed", "onClose", "onEnter", "onExiting", "onEntering", "onEntered", "onExit", "children", "dialogProps"];
 
 /**
  * Overlay 组件
@@ -1561,6 +1561,10 @@ function Overlay(props) {
     onClosed = noop,
     onClose = noop,
     onEnter: _onEnter = noop,
+    onExiting: _onExiting = noop,
+    onEntering: _onEntering = noop,
+    onEntered: _onEntered = noop,
+    onExit = noop,
     children,
     dialogProps = {}
   } = props,
@@ -1635,20 +1639,27 @@ function Overlay(props) {
     unmountOnExit: unmountOnExit,
     timeout: timeout,
     in: isOpen,
-    onEnter: (_, isAppearing) => {
+    onEnter: isAppearing => {
       _onEnter(overlay.current, isAppearing);
     },
-    onEntering: (_, isAppearing) => {
+    onEntering: isAppearing => {
       onOpening(overlay.current, isAppearing);
+
+      _onEntering(overlay.current);
     },
-    onEntered: (_, isAppearing) => {
+    onEntered: isAppearing => {
       onOpened(overlay.current, isAppearing);
+
+      _onEntered(overlay.current);
     },
     onExiting: () => {
       onClosing(overlay.current);
+
+      _onExiting(overlay.current);
     },
     onExited: () => {
       handleClosed(overlay.current);
+      onExit(overlay.current);
     },
     nodeRef: overlay
   }, otherProps, {
@@ -2961,11 +2972,13 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
   }
 
   function handleShow() {
+    var _props$children;
+
     clearTimeouts();
     hoverStateRef.current = 'show';
     var delay = normalizeDelay(props.delay);
 
-    if (!delay.show) {
+    if (!delay.show && !((_props$children = props.children) != null && _props$children.props.disabled)) {
       _show();
 
       return;
@@ -2974,6 +2987,7 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
     var handle = window.setTimeout(() => {
       if (hoverStateRef.current === 'show') _show();
     }, delay.show);
+    clearTimeout(handle);
     timeoutRef.current.push(handle);
   }
 
@@ -4596,25 +4610,25 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
   }
 
   function onExit(node) {
-    node && (node.style.height = node.scrollHeight + "px");
+    node.style.height = node.scrollHeight + "px";
     setIsOpen(false);
   }
 
   function onExiting(node) {
-    node && (node.style.height = '0px');
+    node.style.height = '0px';
   }
 
   function onEnter(node) {
-    node && (node.style.height = '1px');
+    node.style.height = '1px';
     setIsOpen(true);
   }
 
   function onEntering(node) {
-    node && (node.style.height = node.scrollHeight + "px");
+    node.style.height = node.scrollHeight + "px";
   }
 
   function onEntered(node) {
-    node && (node.style.height = 'initial');
+    node.style.height = 'initial';
   }
 
   if (!collapse) {
