@@ -1519,7 +1519,7 @@ function Portal(props) {
 ;// CONCATENATED MODULE: ../react-overlay/esm/index.js
 
 
-var esm_excluded = ["className", "style", "isOpen", "prefixCls", "usePortal", "maskClosable", "backdropProps", "portalProps", "hasBackdrop", "unmountOnExit", "timeout", "transitionName", "onOpening", "onOpened", "onClosing", "onClosed", "onClose", "onEnter", "onExiting", "onEntering", "onEntered", "onExit", "children", "dialogProps"];
+var esm_excluded = ["className", "style", "isOpen", "prefixCls", "usePortal", "maskClosable", "backdropProps", "portalProps", "hasBackdrop", "unmountOnExit", "timeout", "transitionName", "onOpening", "onOpened", "onClosing", "onClosed", "onClose", "onEnter", "children", "dialogProps"];
 
 /**
  * Overlay 组件
@@ -1561,10 +1561,6 @@ function Overlay(props) {
     onClosed = noop,
     onClose = noop,
     onEnter: _onEnter = noop,
-    onExiting: _onExiting = noop,
-    onEntering: _onEntering = noop,
-    onEntered: _onEntered = noop,
-    onExit = noop,
     children,
     dialogProps = {}
   } = props,
@@ -1639,27 +1635,20 @@ function Overlay(props) {
     unmountOnExit: unmountOnExit,
     timeout: timeout,
     in: isOpen,
-    onEnter: isAppearing => {
+    onEnter: (_, isAppearing) => {
       _onEnter(overlay.current, isAppearing);
     },
-    onEntering: isAppearing => {
+    onEntering: (_, isAppearing) => {
       onOpening(overlay.current, isAppearing);
-
-      _onEntering(overlay.current);
     },
-    onEntered: isAppearing => {
+    onEntered: (_, isAppearing) => {
       onOpened(overlay.current, isAppearing);
-
-      _onEntered(overlay.current);
     },
     onExiting: () => {
       onClosing(overlay.current);
-
-      _onExiting(overlay.current);
     },
     onExited: () => {
       handleClosed(overlay.current);
-      onExit(overlay.current);
     },
     nodeRef: overlay
   }, otherProps, {
@@ -4607,25 +4596,25 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
   }
 
   function onExit(node) {
-    node.style.height = node.scrollHeight + "px";
+    node && (node.style.height = node.scrollHeight + "px");
     setIsOpen(false);
   }
 
   function onExiting(node) {
-    node.style.height = '0px';
+    node && (node.style.height = '0px');
   }
 
   function onEnter(node) {
-    node.style.height = '1px';
+    node && (node.style.height = '1px');
     setIsOpen(true);
   }
 
   function onEntering(node) {
-    node.style.height = node.scrollHeight + "px";
+    node && (node.style.height = node.scrollHeight + "px");
   }
 
   function onEntered(node) {
-    node.style.height = 'initial';
+    node && (node.style.height = 'initial');
   }
 
   if (!collapse) {
