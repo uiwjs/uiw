@@ -88,21 +88,21 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
     }
   }
   function onExit(node: HTMLElement) {
-    node && (node.style.height = `${node.scrollHeight}px`);
+    node.style.height = `${node.scrollHeight}px`;
     setIsOpen(false);
   }
   function onExiting(node: HTMLElement) {
-    node && (node.style.height = '0px');
+    node.style.height = '0px';
   }
   function onEnter(node: HTMLElement) {
-    node && (node.style.height = '1px');
+    node.style.height = '1px';
     setIsOpen(true);
   }
   function onEntering(node: HTMLElement) {
-    node && (node.style.height = `${node.scrollHeight}px`);
+    node.style.height = `${node.scrollHeight}px`;
   }
   function onEntered(node: HTMLElement) {
-    node && (node.style.height = 'initial');
+    node.style.height = 'initial';
   }
 
   if (!collapse) {
