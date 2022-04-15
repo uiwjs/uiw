@@ -399,6 +399,132 @@ const Demo = () => (
 ReactDOM.render(<Demo />, _mount_);
 ```
 
+### 禁用选项
+
+<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+```jsx
+import ReactDOM from 'react-dom';
+import { Tree, Card, Row, Col, Icon } from 'uiw';
+
+const data = [
+  {
+    label: '湖北省',
+    key: '0-0-0',
+    children:[
+      {
+        label: '武汉市',
+        disabled: true,
+        key: '0-1-0',
+        children:[
+          { label: '新洲区', key: '0-1-1' },
+          { label: '武昌区', key: '0-1-2' },
+          {
+            label: '汉南区',
+            key: '0-1-3',
+            children:[
+              { label: '汉南区1', key: '0-1-3-1' },
+              { label: '汉南区2', key: '0-1-3-2' },
+              { label: '汉南区3', key: '0-1-3-3' },
+            ]
+          },
+        ]
+      },
+      { label: '黄冈市', key: '0-2-0' },
+      {
+        label: '黄石市',
+        key: '0-3-0',
+        children:[
+          { label: '青山区', key: '0-3-1' },
+          { label: '黄陂区', key: '0-3-2' },
+          { label: '青山区', key: '0-3-3' },
+        ]
+      },
+    ]
+  },
+  {
+    label: '上海市',
+    key: '1-0-0',
+    children:[
+      { label: '黄浦区', key: '1-0-1' },
+      { label: '卢湾区', key: '1-0-2' },
+      {
+        label: '徐汇区',
+        key: '1-0-3',
+        children:[
+          { label: '半淞园路街道', key: '1-1-0' },
+          { label: '南京东路街道', key: '1-2-0' },
+          { label: '外滩街道', key: '1-3-0' },
+        ]
+      },
+    ]
+  },
+  {
+    label: '北京市',
+    key: '2-0-0',
+    children:[
+      { label: '东城区', key: '2-1-0' },
+      { label: '西城区', key: '2-2-0' },
+      {
+        label: '崇文区',
+        key: '2-3-0',
+        children:[
+          { label: '东花市街道', key: '2-3-1' },
+          { label: '体育馆路街道', key: '2-3-2' },
+          { label: '前门街道', key: '2-3-3' },
+        ]
+      },
+    ]
+  }
+];
+
+const Demo = () => (
+  <div>
+    <Row gutter={10}>
+      <Col fixed>
+        <Card title="基础使用">
+          <Tree data={data} />
+        </Card>
+      </Col>
+      <Col fixed>
+        <Card title="自定义图标">
+          <Tree
+            data={data}
+            renderTitle={(item, { selected, noChild, disabledStyle }) => (
+              <>
+                <Icon style={{ display: '-webkit-inline-box', ...disabledStyle }} type={noChild ? 'smile-o' : 'apple'} />
+                <span style={disabledStyle}>{item.label}</span>
+              </>
+            )}
+          />
+        </Card>
+      </Col>
+      <Col fixed>
+        <Card title="自定义选中效果">
+          <Tree
+            data={data}
+            renderTitle={(item, { selected, isHalfChecked, disabledStyle, disabledClass }) => {
+              if(isHalfChecked) {
+                return (
+                  <><Icon type="minus-square-o" style={{ color: 'green', ...disabledStyle }} /> <span className={disabledClass} >{item.label}</span></>
+                );
+              }
+              if (selected) {
+                return (
+                  <><Icon type="check-square-o" style={{ color: 'green', ...disabledStyle }} /> <span className={disabledClass} >{item.label}</span></>
+                );
+              }
+              return (
+                <><Icon type="square-o" style={{ color: '#b6b6b6',...disabledStyle }} /> <span className={disabledClass} >{item.label}</span></>
+              );
+            }}
+          />
+        </Card>
+      </Col>
+    </Row>
+  </div>
+)
+ReactDOM.render(<Demo />, _mount_);
+```
 
 ### 连接线
 
@@ -798,10 +924,21 @@ ReactDOM.render(<Demo />, _mount_);
 | checkStrictly | 子节点受父节点控制设置 `true`，需要配合 `multiple` 参数使用。 | Boolean | `false` |
 | multiple | 支持点选多个节点 | Boolean | `false` |
 | icon | 重新定义，展开收缩图标，当为函数时视为自定义图标，并展示非折叠项的图标。 | ~~Function(data: object, noChild: bool)/String/Node~~ `@3.4.0+` Function(data: object, { selected: bool, noChild: bool })/String/Node| - |
-| renderTitle | 重新定义每个标题节点的显示 | ~~Function(item, selected: bool, noChild: bool)~~ `@3.4.0+` Function(item: TreeData, node?: { selected?: boolean, noChild?: boolean, isHalfChecked?: boolean, openKeys?: TreeProps['openKeys'], selectedKeys?: TreeProps['selectedKeys'] }) => React.ReactElement; | - |
+| renderTitle | 重新定义每个标题节点的显示 | ~~Function(item, selected: bool, noChild: bool)~~ `@3.4.0+` Function(item: TreeData, node?: Node) => React.ReactElement; | - |
 | onSelected | 点击选择树节点触发 | Function(selectedKeys: array, key, selected: bool, data, e) | - |
 | onExpand | 展开/收起节点时触发 | Function(key, expanded: bool, data, evn) | - |
 
+## Node Type 
+| 参数 | 类型 | 版本 |
+|--------- |-------- |-------- |
+| selected | boolean | - |
+| noChild  | boolean | - |
+| isHalfChecked  | boolean | `@3.4.0+` |
+| openKeys  | Props['openKeys'] | `@3.4.0+` |
+| selectedKeys  | Props['selectedKeys'] | `@3.4.0+` |
+| disabled  | boolean | `@4.20.0+` |
+| disabledClass  | string | `@4.20.0+` |
+| disabledStyle  | React.CSSProperties | `@4.20.0+` |
 ### data
 
 ```json

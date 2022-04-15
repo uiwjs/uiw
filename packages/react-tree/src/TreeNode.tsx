@@ -11,6 +11,13 @@ interface TreeNodeIconProps {
   selectedKeys: TreeNodeProps['selectedKeys'];
 }
 
+interface DisabledObj {
+  onClick?: (item: TreeData, evn: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  disabled: string | null;
+  disabledMouse: string | null;
+  disabledClass?: string;
+  disabledStyle?: React.CSSProperties;
+}
 interface TreeNodeProps<T = (data: TreeData, props: TreeNodeIconProps) => IconProps['type']> extends IProps {
   data: TreeData[];
   level: number;
@@ -27,7 +34,8 @@ interface TreeNodeProps<T = (data: TreeData, props: TreeNodeIconProps) => IconPr
   onItemSelected?: (item: TreeData, evn: React.MouseEvent<HTMLElement>) => void;
 }
 
-const Label = ({ label }: { label: React.ReactNode }) => useMemo(() => <span>{label}</span>, [label]);
+const Label = ({ label, className }: { label: React.ReactNode; className?: string }) =>
+  useMemo(() => <span className={className}>{label}</span>, [label]);
 
 export default function TreeNode<T>(props: TreeNodeProps<T>) {
   const {
@@ -48,7 +56,6 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
     ...other
   } = props;
   let isOpen = false;
-
   const node = React.useRef<HTMLUListElement>(null);
 
   if (parent && (parent.key || parent.key === 0)) {
@@ -110,6 +117,20 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
           const childKeys = noChild ? [] : getChildKeys(item.children);
           const checkedKeys = selectedKeys ? selectedKeys.filter((key) => childKeys.indexOf(key) > -1) : [];
           const isHalfChecked = checkedKeys.length > 0 && childKeys.length !== checkedKeys.length;
+          const disabledObj: DisabledObj = {
+            onClick: onItemSelected,
+            disabled: null,
+            disabledMouse: null,
+            disabledClass: undefined,
+            disabledStyle: undefined,
+          };
+          if (item.disabled) {
+            disabledObj.onClick = undefined;
+            disabledObj.disabled = 'disabled';
+            disabledObj.disabledMouse = `${prefixCls}-disabled-mouse`;
+            disabledObj.disabledClass = `${prefixCls}-disabled-ele`;
+            disabledObj.disabledStyle = { color: '#00000040' };
+          }
           return (
             <li key={idx} style={{ display: item.hideNode ? 'none' : 'block' }}>
               <div className={`${prefixCls}-label`}>
@@ -132,11 +153,12 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
                   />
                 </span>
                 <div
-                  onClick={(evn) => onItemSelected(item, evn)}
+                  onClick={(evn) => disabledObj.onClick?.(item, evn)}
                   className={[
                     `${prefixCls}-title`,
                     selected && isSelected ? 'selected' : null,
-                    item.disabled ? 'disabled' : null,
+                    disabledObj.disabled,
+                    disabledObj.disabledMouse,
                   ]
                     .filter(Boolean)
                     .join(' ')
@@ -149,9 +171,12 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
                       openKeys,
                       isHalfChecked,
                       selectedKeys,
+                      disabled: item.disabled,
+                      disabledClass: disabledObj.disabledClass,
+                      disabledStyle: disabledObj.disabledStyle,
                     })
                   ) : (
-                    <Label label={item.label} />
+                    <Label label={item.label} className={disabledObj.disabledClass} />
                   )}
                 </div>
               </div>

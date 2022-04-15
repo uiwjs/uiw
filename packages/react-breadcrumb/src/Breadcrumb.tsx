@@ -28,3 +28,4 @@ type Breadcrumb = typeof Breadcrumb & {
 (Breadcrumb as Breadcrumb).Item = Item;
 
 export default Breadcrumb as Breadcrumb;
+export { Breadcrumb };

@@ -13,7 +13,7 @@ export interface RadioButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> 
   onChange?: (even: any) => void;
 }
 
-const RadioButton = React.forwardRef<any, RadioButtonProps>((props, ref) => {
+export const RadioButton = React.forwardRef<any, RadioButtonProps>((props, ref) => {
   const {
     prefixCls = 'w-radio',
     type = 'button',
