@@ -57,6 +57,10 @@ export default function Overlay(props: OverlayProps) {
     onClosed = noop,
     onClose = noop,
     onEnter = noop,
+    onExiting = noop,
+    onEntering = noop,
+    onEntered = noop,
+    onExit = noop,
     children,
     dialogProps = {},
     ...otherProps
@@ -135,20 +139,24 @@ export default function Overlay(props: OverlayProps) {
       unmountOnExit={unmountOnExit}
       timeout={timeout!}
       in={isOpen}
-      onEnter={(_, isAppearing) => {
+      onEnter={(isAppearing: boolean) => {
         onEnter(overlay.current!, isAppearing);
       }}
-      onEntering={(_, isAppearing) => {
+      onEntering={(isAppearing: boolean) => {
         onOpening(overlay.current!, isAppearing);
+        onEntering(overlay.current!);
       }}
-      onEntered={(_, isAppearing) => {
+      onEntered={(isAppearing: boolean) => {
         onOpened(overlay.current!, isAppearing);
+        onEntered(overlay.current!);
       }}
       onExiting={() => {
         onClosing(overlay.current!);
+        onExiting(overlay.current!);
       }}
       onExited={() => {
         handleClosed(overlay.current!);
+        onExit(overlay.current!);
       }}
       nodeRef={overlay}
       {...otherProps}
