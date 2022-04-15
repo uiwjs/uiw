@@ -124,6 +124,8 @@ export function getAllColumnsKeys<T>(data: TableColumns<T>[], keys: TableColumns
       keys = keys.concat(getAllColumnsKeys(data[i].children || []));
     } else if (data[i].key) {
       keys.push(data[i]);
+    } else {
+      keys.push({ ...data[i], key: i.toString() });
     }
   }
   return keys;
