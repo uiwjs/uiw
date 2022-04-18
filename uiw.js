@@ -2892,7 +2892,8 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
   });
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useImperativeHandle)(ref, () => ({
     hide: () => _hide(),
-    show: () => _show()
+    show: () => _show(),
+    overlayDom: popupRef
   }));
   var child = external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.only(children);
 
@@ -4629,6 +4630,10 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
 
   function onEntered(node) {
     node.style.height = 'initial';
+
+    if (popupRef.current && popupRef.current.overlayDom) {
+      node.style.height = popupRef.current.overlayDom.current.getBoundingClientRect().height + 'px';
+    }
   }
 
   if (!collapse) {
