@@ -72,6 +72,7 @@ const normalizeDelay = (delay?: Delay) => (delay && typeof delay === 'object' ? 
 export type OverlayTriggerRef = {
   hide: () => void;
   show: () => void;
+  overlayDom: React.MutableRefObject<HTMLElement | undefined>;
 };
 
 export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, ref) => {
@@ -114,6 +115,7 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
   useImperativeHandle(ref, () => ({
     hide: () => hide(),
     show: () => show(),
+    overlayDom: popupRef,
   }));
 
   const child: any = React.Children.only(children);
