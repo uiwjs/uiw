@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-back-top",
-  "version": "4.21.1",
+  "version": "4.21.2",
   "description": "BackTop component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/back-top",
@@ -44,6 +44,6 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.21.1"
+    "@uiw/utils": "^4.21.2"
   }
 }
