@@ -36,6 +36,9 @@ const Demo = () => (
     <Tooltip placement="bottom" content="下边文字提示">
       <Button>下边文字提示(bottom)</Button>
     </Tooltip>
+    <Tooltip placement="top" content="已被禁用">
+      <Button disabled={true}>禁用</Button>
+    </Tooltip>
   </div>
 )
 ReactDOM.render(<Demo />, _mount_);
