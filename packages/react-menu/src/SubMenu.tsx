@@ -103,6 +103,9 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
   }
   function onEntered(node: HTMLElement) {
     node.style.height = 'initial';
+    if (popupRef.current && popupRef.current.overlayDom) {
+      node.style.height = popupRef.current.overlayDom.current!.getBoundingClientRect().height + 'px';
+    }
   }
 
   if (!collapse) {
