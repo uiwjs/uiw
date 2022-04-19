@@ -5195,8 +5195,11 @@ var RadioButton = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_reac
 
   function handleChange(e) {
     e.persist();
-    setChecked(!checked);
-    onChange && onChange(value);
+
+    if (!checked) {
+      setChecked(!checked);
+      onChange && onChange(value);
+    }
   }
 
   var label = children || value;
