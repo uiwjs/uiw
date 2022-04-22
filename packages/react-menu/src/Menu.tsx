@@ -18,6 +18,7 @@ export interface MenuProps extends IProps, HTMLUlProps {
    */
   inlineIndent?: number;
   bordered?: boolean;
+  setParamHeight?: (height: number) => void;
 }
 
 const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
@@ -29,6 +30,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
     theme = 'light',
     inlineIndent = 10,
     inlineCollapsed,
+    setParamHeight,
     ...htmlProps
   } = props;
   const cls = useMemo(
@@ -50,10 +52,14 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
     <ul {...htmlProps} ref={ref} className={cls} data-menu="menu">
       {React.Children.map(children, (child: React.ReactNode, key) => {
         if (!React.isValidElement(child)) return child;
-        const props: { inlineIndent?: number; inlineCollapsed?: boolean } = {};
+        const props: { inlineIndent?: number; inlineCollapsed?: boolean; setParamHeight?: (height: number) => void } =
+          {};
         // Sub Menu
         if (child.props.children && child.type === (SubMenu as any)) {
           props.inlineIndent = inlineIndent;
+        }
+        if ((child.type as typeof child.type & { displayName: string }).displayName === 'uiw.SubMenu') {
+          props.setParamHeight = setParamHeight;
         }
         return React.cloneElement(child, Object.assign({ ...props }, child.props, { key: `${key}` }));
       })}

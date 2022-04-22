@@ -13,6 +13,7 @@ export interface SubMenuProps<T extends TagType> extends IProps, MenuItemProps<T
   disabled?: boolean;
   inlineCollapsed?: boolean;
   inlineIndent?: number;
+  setParamHeight?: (height: number) => void;
 }
 
 function checkedMenuItem(node?: HTMLElement) {
@@ -62,6 +63,7 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
     collapse = false,
     inlineIndent,
     inlineCollapsed,
+    setParamHeight,
     ...other
   } = props;
   const overlayTriggerProps = {} as OverlayTriggerProps & CSSTransitionProps;
@@ -72,6 +74,8 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
     className: [prefixCls ? `${prefixCls}-overlay` : null].filter(Boolean).join(' ').trim(),
   };
   const popupRef = React.useRef<OverlayTriggerRef>(null);
+  const refNode = React.useRef<HTMLElement>();
+  const currentHeight = React.useRef<number>(0);
   const [isOpen, setIsOpen] = useState(!!overlayProps.isOpen);
   useMemo(() => {
     if (collapse) setIsOpen(false);
@@ -93,21 +97,28 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
   }
   function onExiting(node: HTMLElement) {
     node.style.height = '0px';
+    setParamHeight?.(-currentHeight.current);
   }
   function onEnter(node: HTMLElement) {
     node.style.height = '1px';
     setIsOpen(true);
+    currentHeight.current = popupRef.current!.overlayDom.current!.getBoundingClientRect().height;
+    setParamHeight?.(currentHeight.current);
   }
   function onEntering(node: HTMLElement) {
     node.style.height = `${node.scrollHeight}px`;
   }
   function onEntered(node: HTMLElement) {
-    node.style.height = 'initial';
-    if (popupRef.current && popupRef.current.overlayDom) {
-      node.style.height = popupRef.current.overlayDom.current!.getBoundingClientRect().height + 'px';
-    }
+    // node.style.height = 'initial';
+    node.style.height = currentHeight.current + 'px';
+    refNode.current = node;
   }
-
+  const setHeight = (height: number) => {
+    if (refNode.current && refNode.current.style) {
+      const currentHeight = refNode.current!.style.height;
+      refNode.current!.style.height = Number(currentHeight.substr(0, currentHeight.length - 2)) + height + 'px';
+    }
+  };
   if (!collapse) {
     delete menuProps.onClick;
     menuProps.bordered = false;
@@ -141,7 +152,9 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
         {...overlayTriggerProps}
         {...overlayProps}
         ref={popupRef}
-        overlay={<Menu {...menuProps} style={!collapse ? { paddingLeft: inlineIndent } : {}} />}
+        overlay={
+          <Menu {...menuProps} style={!collapse ? { paddingLeft: inlineIndent } : {}} setParamHeight={setHeight} />
+        }
       >
         <MenuItem
           {...other}
