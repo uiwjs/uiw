@@ -58,19 +58,23 @@
   "devDependencies": {
     "@kkt/less-modules": "~7.1.1",
     "@kkt/ncc": "~1.0.8",
-    "@types/react": "~17.0.39",
-    "@types/react-dom": "~17.0.11",
-    "@types/react-test-renderer": "~17.0.1",
-    "@types/react-transition-group": "~4.4.4",
-    "compile-less-cli": "~1.8.11",
+    "@types/react": "^18.0.6",
+    "@types/react-dom": "^18.0.2",
+    "@types/react-test-renderer": "^18.0.0",
+    "@types/react-transition-group": "^4.4.4",
+    "compile-less-cli": "~1.8.13",
     "husky": "~7.0.4",
-    "kkt": "~7.1.5",
+    "kkt": "^7.1.5",
     "lerna": "~4.0.0",
-    "lint-staged": "~12.3.4",
-    "prettier": "~2.6.0",
-    "react": "~17.0.2",
-    "react-dom": "~17.0.2",
-    "react-test-renderer": "~17.0.2",
+    "lint-staged": "~12.4.0",
+    "prettier": "~2.6.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-test-renderer": "^18.0.0",
     "tsbb": "~3.7.0"
+  },
+  "dependencies": {
+    "@uiw/react-button": "^4.21.3",
+    "@uiw/react-button-group": "^4.21.3"
   }
 }
