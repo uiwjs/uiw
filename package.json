@@ -64,7 +64,7 @@
     "@types/react-transition-group": "^4.4.4",
     "compile-less-cli": "~1.8.13",
     "husky": "~7.0.4",
-    "kkt": "^7.1.5",
+    "kkt": "~7.1.5",
     "lerna": "~4.0.0",
     "lint-staged": "~12.4.0",
     "prettier": "~2.6.2",

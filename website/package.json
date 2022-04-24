@@ -45,10 +45,10 @@
     "@kkt/less-modules": "~7.1.1",
     "@kkt/raw-modules": "~7.1.1",
     "@kkt/scope-plugin-options": "~7.1.1",
-    "@types/react": "~17.0.39",
-    "@types/react-dom": "~17.0.11",
+    "@types/react": "^18.0.6",
+    "@types/react-dom": "^18.0.2",
     "kkt": "~7.1.5",
-    "react-test-renderer": "~17.0.2"
+    "react-test-renderer": "^18.0.0"
   },
   "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT",
