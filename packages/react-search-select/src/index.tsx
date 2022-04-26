@@ -274,7 +274,7 @@ export default function SearchSelect(props: SearchSelectProps) {
               .join(' ')
               .trim()}
           >
-            <div className={`${prefixCls}-tag-content`} style={{}}>
+            <div className={`${prefixCls}-tag-content`}>
               {isMultiple &&
                 selectedValue.slice(0, maxTagCount).map((item, index) => {
                   return (
