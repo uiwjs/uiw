@@ -3893,7 +3893,7 @@ a.w-list-item:hover:not(.w-disabled) {
   box-sizing: border-box;
   background: #fff;
   margin: 0 !important;
-  padding: 1px 10px;
+  padding: 1px 1px;
   vertical-align: middle;
   line-height: 30px;
   align-items: center;
@@ -3941,12 +3941,13 @@ a.w-list-item:hover:not(.w-disabled) {
   align-items: center;
   flex-flow: wrap;
   width: 100%;
+  padding: 0 9px;
 }
 .w-search-select-search-false {
   cursor: pointer;
 }
 .w-search-select-multiple-colse {
-  left: 7px;
+  right: 3px;
   font-size: 15px;
 }
 .w-search-select-singe-colse {
