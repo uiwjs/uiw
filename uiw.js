@@ -328,6 +328,7 @@ __webpack_require__.d(__webpack_exports__, {
   "Circle": () => (/* reexport */ Circle),
   "Col": () => (/* reexport */ Col),
   "Collapse": () => (/* reexport */ react_collapse_esm),
+  "ContextMenu": () => (/* reexport */ ContextMenu),
   "CopyToClipboard": () => (/* reexport */ CopyToClipboard),
   "DateInput": () => (/* reexport */ DateInput),
   "DateInputRange": () => (/* reexport */ DateInputRange),
@@ -390,6 +391,7 @@ __webpack_require__.d(__webpack_exports__, {
   "Tabs": () => (/* reexport */ Tabs),
   "Tag": () => (/* reexport */ react_tag_esm),
   "Textarea": () => (/* reexport */ react_textarea_esm),
+  "ThemeContext": () => (/* reexport */ ThemeContext),
   "TimePicker": () => (/* reexport */ TimePicker),
   "TimePickerTime": () => (/* reexport */ TimePickerTime),
   "Tooltip": () => (/* reexport */ react_tooltip_esm),
@@ -4593,7 +4595,22 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
     className: [prefixCls ? prefixCls + "-overlay" : null].filter(Boolean).join(' ').trim()
   };
   var popupRef = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef(null);
+  var refNode = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef();
+  var currentHeight = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef(0);
+  var elementSource = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef();
   var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(!!overlayProps.isOpen);
+  var {
+    height,
+    setContextHeight,
+    ele
+  } = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useContext)(ThemeContext);
+  external_root_React_commonjs2_react_commonjs_react_amd_react_default().useEffect(() => {
+    if (refNode.current && refNode.current.style && ele === elementSource.current) {
+      var _currentHeight = refNode.current.style.height;
+      if (height + 'px' === _currentHeight) return;
+      refNode.current.style.height = Number(_currentHeight.substr(0, _currentHeight.length - 2)) + height + 'px';
+    }
+  }, [height]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
     if (collapse) setIsOpen(false);
   }, [collapse]);
@@ -4617,11 +4634,20 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
 
   function onExiting(node) {
     node.style.height = '0px';
+    setContextHeight({
+      height: -currentHeight.current,
+      ele: elementSource.current
+    });
   }
 
   function onEnter(node) {
     node.style.height = '1px';
     setIsOpen(true);
+    currentHeight.current = popupRef.current.overlayDom.current.getBoundingClientRect().height;
+    setContextHeight({
+      height: currentHeight.current,
+      ele: elementSource.current
+    });
   }
 
   function onEntering(node) {
@@ -4629,11 +4655,9 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
   }
 
   function onEntered(node) {
-    node.style.height = 'initial';
-
-    if (popupRef.current && popupRef.current.overlayDom) {
-      node.style.height = popupRef.current.overlayDom.current.getBoundingClientRect().height + 'px';
-    }
+    // node.style.height = 'initial';
+    node.style.height = currentHeight.current + 'px';
+    refNode.current = node;
   }
 
   if (!collapse) {
@@ -4658,35 +4682,45 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
     menuProps.onClick = onClick;
   }
 
-  return /*#__PURE__*/(0,jsx_runtime.jsx)("li", {
-    "data-menu": "subitem",
-    ref: ref,
-    children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_overlay_trigger_esm, _extends({
-      placement: "rightTop",
-      autoAdjustOverflow: true,
-      disabled: disabled,
-      isOpen: isOpen,
-      usePortal: false,
-      isOutside: true
-    }, overlayTriggerProps, overlayProps, {
-      ref: popupRef,
-      overlay: /*#__PURE__*/(0,jsx_runtime.jsx)(esm_Menu, _extends({}, menuProps, {
-        style: !collapse ? {
-          paddingLeft: inlineIndent
-        } : {}
-      })),
-      children: /*#__PURE__*/(0,jsx_runtime.jsx)(MenuItem, _extends({}, other, {
-        ref: null,
+  return /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+    onClick: e => {
+      if (collapse) {
+        e.stopPropagation();
+        return;
+      }
+
+      elementSource.current = e.target;
+    },
+    children: /*#__PURE__*/(0,jsx_runtime.jsx)("li", {
+      "data-menu": "subitem",
+      ref: ref,
+      children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_overlay_trigger_esm, _extends({
+        placement: "rightTop",
+        autoAdjustOverflow: true,
         disabled: disabled,
-        isSubMenuItem: true,
-        addonAfter: /*#__PURE__*/(0,jsx_runtime.jsx)(IconView, {
-          collapse: collapse,
-          prefixCls: prefixCls,
-          isOpen: isOpen
-        }),
-        className: [prefixCls ? prefixCls + "-title" : null, !collapse ? prefixCls + "-collapse-title" : null, className].filter(Boolean).join(' ').trim()
+        isOpen: isOpen,
+        usePortal: false,
+        isOutside: true
+      }, overlayTriggerProps, overlayProps, {
+        ref: popupRef,
+        overlay: /*#__PURE__*/(0,jsx_runtime.jsx)(Menu, _extends({}, menuProps, {
+          style: !collapse ? {
+            paddingLeft: inlineIndent
+          } : {}
+        })),
+        children: /*#__PURE__*/(0,jsx_runtime.jsx)(MenuItem, _extends({}, other, {
+          ref: null,
+          disabled: disabled,
+          isSubMenuItem: true,
+          addonAfter: /*#__PURE__*/(0,jsx_runtime.jsx)(IconView, {
+            collapse: collapse,
+            prefixCls: prefixCls,
+            isOpen: isOpen
+          }),
+          className: [prefixCls ? prefixCls + "-title" : null, !collapse ? prefixCls + "-collapse-title" : null, className].filter(Boolean).join(' ').trim()
+        }))
       }))
-    }))
+    })
   });
 });
 SubMenu.displayName = 'uiw.SubMenu';
@@ -4704,6 +4738,7 @@ var Menu_excluded = ["prefixCls", "className", "children", "bordered", "theme", 
 
 
 
+var ThemeContext = /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.createContext)({});
 var Menu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
     prefixCls = 'w-menu',
@@ -4735,11 +4770,26 @@ var Menu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_r
     })
   }));
 });
+var ContextMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
+  var [contextHeight, setContextHeight] = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useState({
+    height: 0,
+    ele: null
+  });
+  return /*#__PURE__*/(0,jsx_runtime.jsx)(ThemeContext.Provider, {
+    value: _extends({}, contextHeight, {
+      setContextHeight
+    }),
+    children: /*#__PURE__*/(0,jsx_runtime.jsx)(Menu, _extends({}, props, {
+      ref: ref
+    }))
+  });
+});
 Menu.displayName = 'uiw.Menu';
-Menu.Item = MenuItem;
-Menu.SubMenu = SubMenu;
-Menu.Divider = MenuDivider;
-/* harmony default export */ const esm_Menu = (Menu);
+ContextMenu.displayName = 'uiw.Menu';
+ContextMenu.Item = MenuItem;
+ContextMenu.SubMenu = SubMenu;
+ContextMenu.Divider = MenuDivider;
+/* harmony default export */ const esm_Menu = (ContextMenu);
 
 ;// CONCATENATED MODULE: ../react-menu/esm/index.js
 
