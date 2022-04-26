@@ -1,8 +1,7 @@
-import { Fragment, useState, useContext, ChangeEvent } from 'react';
+import { Fragment, useState, useContext, ChangeEvent, useMemo } from 'react';
 import { Col, Row, Tooltip } from 'uiw';
 import { NavLink, Link, BrowserRouter } from 'react-router-dom';
 import styles from './index.module.less';
-import data from '../../menu.json';
 import { ThemeContext } from '../../contexts';
 import nav from '../icons/nav';
 import logo from '../icons/logo';
@@ -10,14 +9,17 @@ import menu from '../icons/menu';
 import pkg from 'uiw/package.json';
 import i18n from '../../react-i18next-config';
 import { useTranslation } from 'react-i18next';
+import { LayoutMenuType } from 'locale/menu/layoutMenuType';
 
 export default function Nav() {
   const { state, dispatch } = useContext(ThemeContext);
   const [language, setLanguage] = useState('zh-CN');
   const { t: trans } = useTranslation();
+  const data = useMemo(() => JSON.parse(trans('menu')), [language]);
 
   const changeLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
     setLanguage(e.target.value);
+    console.log('e.target.value', e.target.value);
     i18n.changeLanguage(e.target.value);
   };
 
@@ -34,7 +36,7 @@ export default function Nav() {
         </Link>
       </div>
       <div className={[styles.nav, state.layout === 'left' ? null : styles.navTop].filter(Boolean).join(' ').trim()}>
-        {data.map(({ path, name, icon }, idx) => {
+        {data.map(({ path, name, icon }: LayoutMenuType, idx: number) => {
           if (Object.keys(nav).includes(icon)) {
             icon = (nav as any)[icon];
           }
@@ -92,15 +94,12 @@ export default function Nav() {
             </Tooltip>
           );
         })}
-
-        <NavLink to="/home">{trans('home.title')}</NavLink>
-        <NavLink to="/about">{trans('about.title')}</NavLink>
       </div>
 
       <div className={[styles.btn, state.layout === 'left' ? null : styles.btnTop].filter(Boolean).join(' ').trim()}>
         <select value={language} onChange={(e) => changeLanguage(e)}>
           <option value="zh-CN">简</option>
-          <option value="en-US">英</option>
+          <option value="en-US">English</option>
         </select>
 
         <Tooltip placement={state.layout === 'left' ? 'right' : 'bottom'} content="国内镜像站点">

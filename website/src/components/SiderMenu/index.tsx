@@ -1,12 +1,17 @@
 import { NavLink } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import styles from './index.module.less';
-import menu from '../../menu.json';
 import nav from '../icons/nav';
+import { useTranslation } from 'react-i18next';
+import { LayoutMenuType } from 'locale/menu/layoutMenuType';
 
 export default function SiderMenu() {
   const location = useLocation();
-  const data = menu.find((item) => new RegExp(`^${item.path || ''}`).test(location.pathname));
+  const { t: trans } = useTranslation();
+  const menu = JSON.parse(trans('menu'));
+  const data: LayoutMenuType = menu.find((item: LayoutMenuType) =>
+    new RegExp(`^${item.path || ''}`).test(location.pathname),
+  );
 
   if (!data?.children) {
     return null;

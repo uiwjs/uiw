@@ -1,14 +1,17 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from 'uiw';
 import styles from './index.module.less';
-import menu from '../../menu.json';
+import { useTranslation } from 'react-i18next';
+import { LayoutMenuType } from 'locale/menu/layoutMenuType';
 
 export default function Overview() {
   const location = useLocation();
-  const data = menu.find((item) => new RegExp(`^${item.path}`).test(location.pathname));
+  const { t: trans } = useTranslation();
+  const menu = JSON.parse(trans('menu'));
+  const data: LayoutMenuType = menu.find((item: LayoutMenuType) => new RegExp(`^${item.path}`).test(location.pathname));
   return (
     <div className={styles.App}>
-      <h1>概览 组件</h1>
+      <h1>{trans('overview.title')}</h1>
       {data &&
         data.children &&
         data.children.map((item, idx) => {
