@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, createContext } from 'react';
 import { IProps, HTMLUlProps } from '@uiw/utils';
 import { MenuItem } from './MenuItem';
 import { MenuDivider } from './Divider';
@@ -18,10 +18,18 @@ export interface MenuProps extends IProps, HTMLUlProps {
    */
   inlineIndent?: number;
   bordered?: boolean;
-  setParamHeight?: (height: number) => void;
 }
+interface MenuContextType {
+  height: number;
+  ele: EventTarget | null;
+}
+export const ThemeContext = createContext(
+  {} as MenuContextType & {
+    setContextHeight: React.Dispatch<React.SetStateAction<MenuContextType>>;
+  },
+);
 
-const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
+export const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
   const {
     prefixCls = 'w-menu',
     className,
@@ -30,7 +38,6 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
     theme = 'light',
     inlineIndent = 10,
     inlineCollapsed,
-    setParamHeight,
     ...htmlProps
   } = props;
   const cls = useMemo(
@@ -47,19 +54,14 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
         .trim(),
     [prefixCls, bordered, inlineCollapsed, theme, className],
   );
-
   return (
     <ul {...htmlProps} ref={ref} className={cls} data-menu="menu">
       {React.Children.map(children, (child: React.ReactNode, key) => {
         if (!React.isValidElement(child)) return child;
-        const props: { inlineIndent?: number; inlineCollapsed?: boolean; setParamHeight?: (height: number) => void } =
-          {};
+        const props: { inlineIndent?: number; inlineCollapsed?: boolean } = {};
         // Sub Menu
         if (child.props.children && child.type === (SubMenu as any)) {
           props.inlineIndent = inlineIndent;
-        }
-        if ((child.type as typeof child.type & { displayName: string }).displayName === 'uiw.SubMenu') {
-          props.setParamHeight = setParamHeight;
         }
         return React.cloneElement(child, Object.assign({ ...props }, child.props, { key: `${key}` }));
       })}
@@ -67,7 +69,16 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
   );
 });
 
+export const ContextMenu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
+  const [contextHeight, setContextHeight] = React.useState<MenuContextType>({ height: 0, ele: null });
+  return (
+    <ThemeContext.Provider value={{ ...contextHeight, setContextHeight }}>
+      <Menu {...props} ref={ref} />
+    </ThemeContext.Provider>
+  );
+});
 Menu.displayName = 'uiw.Menu';
+ContextMenu.displayName = 'uiw.Menu';
 
 type Menu = typeof Menu & {
   Item: typeof MenuItem;
@@ -75,8 +86,7 @@ type Menu = typeof Menu & {
   Divider: typeof MenuDivider;
 };
 
-(Menu as Menu).Item = MenuItem;
-(Menu as Menu).SubMenu = SubMenu;
-(Menu as Menu).Divider = MenuDivider;
-
-export default Menu as Menu;
+(ContextMenu as Menu).Item = MenuItem;
+(ContextMenu as Menu).SubMenu = SubMenu;
+(ContextMenu as Menu).Divider = MenuDivider;
+export default ContextMenu as Menu;

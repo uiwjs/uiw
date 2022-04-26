@@ -1,10 +1,10 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useContext } from 'react';
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 import OverlayTrigger, { OverlayTriggerProps, OverlayTriggerRef } from '@uiw/react-overlay-trigger';
 import Icon from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
 import { MenuItem, MenuItemProps, TagType } from './MenuItem';
-import Menu, { MenuProps } from './Menu';
+import { MenuProps, Menu, ThemeContext } from './Menu';
 import './style/submenu.less';
 
 export interface SubMenuProps<T extends TagType> extends IProps, MenuItemProps<T> {
@@ -13,7 +13,6 @@ export interface SubMenuProps<T extends TagType> extends IProps, MenuItemProps<T
   disabled?: boolean;
   inlineCollapsed?: boolean;
   inlineIndent?: number;
-  setParamHeight?: (height: number) => void;
 }
 
 function checkedMenuItem(node?: HTMLElement) {
@@ -50,6 +49,7 @@ function IconView({ prefixCls, collapse, isOpen }: { prefixCls?: string; collaps
     [prefixCls, collapse, isOpen],
   );
 }
+
 export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
   props: SubMenuProps<Tag>,
   ref: React.Ref<HTMLLIElement>,
@@ -63,7 +63,6 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
     collapse = false,
     inlineIndent,
     inlineCollapsed,
-    setParamHeight,
     ...other
   } = props;
   const overlayTriggerProps = {} as OverlayTriggerProps & CSSTransitionProps;
@@ -74,9 +73,20 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
     className: [prefixCls ? `${prefixCls}-overlay` : null].filter(Boolean).join(' ').trim(),
   };
   const popupRef = React.useRef<OverlayTriggerRef>(null);
-  const refNode = React.useRef<HTMLElement>();
+  const refNode = React.useRef<HTMLElement | null>();
   const currentHeight = React.useRef<number>(0);
+  const elementSource = React.useRef<EventTarget | null>();
   const [isOpen, setIsOpen] = useState(!!overlayProps.isOpen);
+  const { height, setContextHeight, ele } = useContext(ThemeContext);
+
+  React.useEffect(() => {
+    if (refNode.current && refNode.current.style && ele === elementSource.current) {
+      const currentHeight = refNode.current!.style.height;
+      if (height + 'px' === currentHeight) return;
+      refNode.current!.style.height = Number(currentHeight.substr(0, currentHeight.length - 2)) + height + 'px';
+    }
+  }, [height]);
+
   useMemo(() => {
     if (collapse) setIsOpen(false);
   }, [collapse]);
@@ -97,13 +107,19 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
   }
   function onExiting(node: HTMLElement) {
     node.style.height = '0px';
-    setParamHeight?.(-currentHeight.current);
+    setContextHeight({
+      height: -currentHeight.current,
+      ele: elementSource.current!,
+    });
   }
   function onEnter(node: HTMLElement) {
     node.style.height = '1px';
     setIsOpen(true);
     currentHeight.current = popupRef.current!.overlayDom.current!.getBoundingClientRect().height;
-    setParamHeight?.(currentHeight.current);
+    setContextHeight({
+      height: currentHeight.current,
+      ele: elementSource.current!,
+    });
   }
   function onEntering(node: HTMLElement) {
     node.style.height = `${node.scrollHeight}px`;
@@ -113,12 +129,6 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
     node.style.height = currentHeight.current + 'px';
     refNode.current = node;
   }
-  const setHeight = (height: number) => {
-    if (refNode.current && refNode.current.style) {
-      const currentHeight = refNode.current!.style.height;
-      refNode.current!.style.height = Number(currentHeight.substr(0, currentHeight.length - 2)) + height + 'px';
-    }
-  };
   if (!collapse) {
     delete menuProps.onClick;
     menuProps.bordered = false;
@@ -141,38 +151,46 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
     menuProps.onClick = onClick;
   }
   return (
-    <li data-menu="subitem" ref={ref}>
-      <OverlayTrigger
-        placement="rightTop"
-        autoAdjustOverflow
-        disabled={disabled}
-        isOpen={isOpen}
-        usePortal={false}
-        isOutside
-        {...overlayTriggerProps}
-        {...overlayProps}
-        ref={popupRef}
-        overlay={
-          <Menu {...menuProps} style={!collapse ? { paddingLeft: inlineIndent } : {}} setParamHeight={setHeight} />
+    <div
+      onClick={(e) => {
+        if (collapse) {
+          e.stopPropagation();
+          return;
         }
-      >
-        <MenuItem
-          {...other}
-          ref={null}
+        elementSource.current = e.target;
+      }}
+    >
+      <li data-menu="subitem" ref={ref}>
+        <OverlayTrigger
+          placement="rightTop"
+          autoAdjustOverflow
           disabled={disabled}
-          isSubMenuItem
-          addonAfter={<IconView collapse={collapse} prefixCls={prefixCls} isOpen={isOpen} />}
-          className={[
-            prefixCls ? `${prefixCls}-title` : null,
-            !collapse ? `${prefixCls}-collapse-title` : null,
-            className,
-          ]
-            .filter(Boolean)
-            .join(' ')
-            .trim()}
-        />
-      </OverlayTrigger>
-    </li>
+          isOpen={isOpen}
+          usePortal={false}
+          isOutside
+          {...overlayTriggerProps}
+          {...overlayProps}
+          ref={popupRef}
+          overlay={<Menu {...menuProps} style={!collapse ? { paddingLeft: inlineIndent } : {}} />}
+        >
+          <MenuItem
+            {...other}
+            ref={null}
+            disabled={disabled}
+            isSubMenuItem
+            addonAfter={<IconView collapse={collapse} prefixCls={prefixCls} isOpen={isOpen} />}
+            className={[
+              prefixCls ? `${prefixCls}-title` : null,
+              !collapse ? `${prefixCls}-collapse-title` : null,
+              className,
+            ]
+              .filter(Boolean)
+              .join(' ')
+              .trim()}
+          />
+        </OverlayTrigger>
+      </li>
+    </div>
   );
 });
 
