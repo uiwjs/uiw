@@ -21,7 +21,7 @@ i18n
     resources, //本地多语言数据
     fallbackLng: 'cn', //默认当前环境的语言
     detection: {
-      caches: ['localStorage'], //, 'sessionStorage', 'cookie'],
+      caches: ['localStorage', 'sessionStorage', 'cookie'],
     },
   });
 

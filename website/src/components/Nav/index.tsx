@@ -1,5 +1,5 @@
 import { Fragment, useState, useContext, ChangeEvent, useMemo } from 'react';
-import { Col, Row, Tooltip } from 'uiw';
+import { Tooltip } from 'uiw';
 import { NavLink, Link, BrowserRouter } from 'react-router-dom';
 import styles from './index.module.less';
 import { ThemeContext } from '../../contexts';
@@ -13,13 +13,12 @@ import { LayoutMenuType } from 'locale/menu/layoutMenuType';
 
 export default function Nav() {
   const { state, dispatch } = useContext(ThemeContext);
-  const [language, setLanguage] = useState('zh-CN');
+  const [language, setLanguage] = useState(i18n.language);
   const { t: trans } = useTranslation();
   const data = useMemo(() => JSON.parse(trans('menu')), [language]);
 
   const changeLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
     setLanguage(e.target.value);
-    console.log('e.target.value', e.target.value);
     i18n.changeLanguage(e.target.value);
   };
 

@@ -4,6 +4,7 @@ import styles from './index.module.less';
 import nav from '../icons/nav';
 import { useTranslation } from 'react-i18next';
 import { LayoutMenuType } from 'locale/menu/layoutMenuType';
+import i18n from '../../react-i18next-config';
 
 export default function SiderMenu() {
   const location = useLocation();
@@ -16,6 +17,11 @@ export default function SiderMenu() {
   if (!data?.children) {
     return null;
   }
+
+  const urlSuffix = i18n.language === 'zh-CN' ? '' : `${i18n.language.toLowerCase()}/`;
+
+  console.log('--', i18n.language);
+
   return (
     <div className={styles.wapper}>
       <h2 className={styles.title}>
@@ -44,7 +50,7 @@ export default function SiderMenu() {
               );
             }
             return (
-              <NavLink key={idx} to={item.path || ''} replace>
+              <NavLink key={idx} to={urlSuffix + item.path || ''} replace>
                 {item.name}
               </NavLink>
             );

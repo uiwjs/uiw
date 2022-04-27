@@ -184,6 +184,15 @@ export const routes: RouteObject[] = [
     ],
   },
   {
+    path: '/components/en-us',
+    element: <BaseLayout />,
+    children: [
+      { index: true, element: <Overview /> },
+      { path: '/components/en-us/button', element: <Button language="en-US" /> },
+      { path: '*', element: <NoMatch /> },
+    ],
+  },
+  {
     path: '/',
     element: <Home />,
   },
