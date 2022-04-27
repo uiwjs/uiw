@@ -1,13 +1,14 @@
 import { Fragment, useState, useContext, ChangeEvent, useMemo } from 'react';
 import { Tooltip } from 'uiw';
-import { NavLink, Link, BrowserRouter } from 'react-router-dom';
+import routers, { NavLink, Link, useLocation } from 'react-router-dom';
+import { History } from 'history';
 import styles from './index.module.less';
 import { ThemeContext } from '../../contexts';
 import nav from '../icons/nav';
 import logo from '../icons/logo';
 import menu from '../icons/menu';
 import pkg from 'uiw/package.json';
-import i18n from '../../react-i18next-config';
+import i18n, { DefLan } from 'react-i18next-config';
 import { useTranslation } from 'react-i18next';
 import { LayoutMenuType } from 'locale/menu/layoutMenuType';
 
@@ -16,10 +17,24 @@ export default function Nav() {
   const [language, setLanguage] = useState(i18n.language);
   const { t: trans } = useTranslation();
   const data = useMemo(() => JSON.parse(trans('menu')), [language]);
+  const location = useLocation();
 
   const changeLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
     setLanguage(e.target.value);
     i18n.changeLanguage(e.target.value);
+    replacePage();
+  };
+
+  const replacePage = () => {
+    const isDefualt = i18n.language === DefLan;
+    const spilitPath = location.pathname.split('/');
+    if (isDefualt) {
+      spilitPath.splice(2, 1);
+    } else {
+      spilitPath.splice(2, 0, i18n.language.toLowerCase());
+    }
+    window.location.replace('#' + spilitPath.join('/'));
+    window.location.reload();
   };
 
   return (

@@ -25,4 +25,8 @@ i18n
     },
   });
 
+const DefLan = 'zh-CN';
+
+export { DefLan };
+
 export default i18n;
