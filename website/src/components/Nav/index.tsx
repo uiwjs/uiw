@@ -1,7 +1,6 @@
 import { Fragment, useState, useContext, ChangeEvent, useMemo } from 'react';
 import { Tooltip } from 'uiw';
 import routers, { NavLink, Link, useLocation } from 'react-router-dom';
-import { History } from 'history';
 import styles from './index.module.less';
 import { ThemeContext } from '../../contexts';
 import nav from '../icons/nav';
@@ -22,7 +21,9 @@ export default function Nav() {
   const changeLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
     setLanguage(e.target.value);
     i18n.changeLanguage(e.target.value);
-    replacePage();
+
+    window.location.reload();
+    // replacePage();
   };
 
   const replacePage = () => {
@@ -34,7 +35,6 @@ export default function Nav() {
       spilitPath.splice(2, 0, i18n.language.toLowerCase());
     }
     window.location.replace('#' + spilitPath.join('/'));
-    window.location.reload();
   };
 
   return (

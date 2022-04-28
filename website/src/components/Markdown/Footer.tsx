@@ -11,7 +11,7 @@ export default function (props: FooterProps = {}) {
   const { path } = props;
   const { t: trans } = useTranslation();
   const url = /^http/.test(path || '') ? path : `https://github.com/uiwjs/uiw/blob/master/${path}`;
-  console.log('path', path);
+
   return (
     <Fragment>
       {trans('footer.greeting')}
