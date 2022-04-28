@@ -5,7 +5,8 @@
     "module": "esnext",
     "moduleResolution": "node",
     "allowJs": false,
-    "declaration": true,
+    "declaration": true, // 这可以生成 API Extractor 将分析的 .d.ts 文件。 根据设计，TypeScript 源文件不是直接分析的，而是必须首先由您的编译器处理。
+    "declarationMap": true, // 这可以生成 .d.ts.map 文件，允许使用原始源文件中的行号报告 API 提取器错误；如果没有这个，错误位置将改为引用生成的 .d.ts 文件。
     "strict": true,
     "noUnusedLocals": true,
     "experimentalDecorators": true,
