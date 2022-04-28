@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback, useMemo } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Pane from './Pane';
 import './style/index.less';
