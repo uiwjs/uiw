@@ -4802,6 +4802,10 @@ a.w-list-item:hover:not(.w-disabled) {
   display: block;
   border-bottom: 1px solid #d9d9d9;
 }
+.w-tabs-card .w-tabs-nav::after,
+.w-tabs-default .w-tabs-nav::after {
+  content: none;
+}
 .w-tabs-line .w-tabs-slide {
   background-color: #108ee9;
   box-sizing: border-box;
