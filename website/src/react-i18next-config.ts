@@ -5,12 +5,26 @@ import { initReactI18next } from 'react-i18next';
 //详情请访问：https://github.com/i18next/i18next-browser-languageDetector
 import LanguageDetector from 'i18next-browser-languagedetector';
 //引入需要实现国际化的简体、繁体、英文三种数据的json文件
-import menuZhCn from './locale/menu/menu-zh-cn.json';
-import menuEnUs from './locale/menu/menu-en-us.json';
+import menuZhCn from './locale/menu/zh-cn.json';
+import menuEnUs from './locale/menu/en-us.json';
+import footerZhCn from './locale/footer/zh-cn.json';
+import footerEnUs from './locale/footer/en-us.json';
 
 const resources = {
-  cn: { translation: { menu: JSON.stringify(menuZhCn), overview: { title: '概览 组件' } } },
-  en: { translation: { menu: JSON.stringify(menuEnUs), overview: { title: 'Overview Components' } } },
+  cn: {
+    translation: {
+      menu: JSON.stringify(menuZhCn),
+      overview: { title: '概览 组件' },
+      footer: footerZhCn,
+    },
+  },
+  en: {
+    translation: {
+      menu: JSON.stringify(menuEnUs),
+      overview: { title: 'Overview Components' },
+      footer: footerEnUs,
+    },
+  },
 };
 
 i18n

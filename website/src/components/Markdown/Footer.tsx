@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 import { Divider } from 'uiw';
+import { useTranslation } from 'react-i18next';
+import i18n, { DefLan } from 'react-i18next-config';
 
 export type FooterProps = {
   path?: string;
@@ -7,38 +9,40 @@ export type FooterProps = {
 
 export default function (props: FooterProps = {}) {
   const { path } = props;
+  const { t: trans } = useTranslation();
   const url = /^http/.test(path || '') ? path : `https://github.com/uiwjs/uiw/blob/master/${path}`;
+  console.log('path', path);
   return (
     <Fragment>
-      犯了错误还是想对文件做出贡献？
+      {trans('footer.greeting')}
       {url && (
         <a href={url} target="_blank" rel="noopener noreferrer">
-          在Github上编辑本页！
+          {trans('footer.greetLinkText')}
         </a>
       )}
       <br />
       <a href="https://github.com/uiwjs/uiw/issues" target="_blank" rel="noopener noreferrer">
-        反馈建议
+        {trans('footer.issues')}
       </a>
       <Divider type="vertical" />
       <a target="_blank" rel="noopener noreferrer" href="https://github.com/uiwjs/uiw/issues/new">
-        提交bug
+        {trans('footer.bug')}
       </a>
       <Divider type="vertical" />
       <a target="_blank" rel="noopener noreferrer" href="https://github.com/uiwjs/uiw">
-        Github
+        {trans('footer.github')}
       </a>
       <Divider type="vertical" />
       <a target="_blank" rel="noopener noreferrer" href="https://github.com/kktjs/kkt">
-        kkt
+        {trans('footer.kkt')}
       </a>
       <Divider type="vertical" />
       <a target="_blank" rel="noopener noreferrer" href="https://github.com/kktjs/kkt-ssr">
-        @kkt/ssr
+        {trans('footer.kkt_ssr')}
       </a>
       <Divider type="vertical" />
       <a target="_blank" rel="noopener noreferrer" href="http://uiw.gitee.io">
-        国内镜像
+        {trans('footer.io')}
       </a>
     </Fragment>
   );
