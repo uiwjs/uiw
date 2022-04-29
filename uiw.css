@@ -3931,7 +3931,7 @@ a.w-list-item:hover:not(.w-disabled) {
 .w-search-select-inner .w-input-small .w-input-inner {
   height: 16px;
   font-size: 10px;
-  padding: 0px;
+  padding: 0;
 }
 .w-search-select-inner .w-input-large .w-input-inner {
   height: 28px;
@@ -3942,6 +3942,9 @@ a.w-list-item:hover:not(.w-disabled) {
   flex-flow: wrap;
   width: 100%;
   padding: 0 9px;
+}
+.w-search-select-tag-content-disabled {
+  background: #dddddd;
 }
 .w-search-select-search-false {
   cursor: pointer;

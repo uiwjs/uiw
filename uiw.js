@@ -8851,7 +8851,7 @@ function SearchSelect(props) {
       children: isMultiple ? /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
         className: [prefixCls + "-inner", prefixCls + "-search-" + showSearch, prefixCls + "-" + size].filter(Boolean).join(' ').trim(),
         children: [/*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
-          className: prefixCls + "-tag-content",
+          className: [prefixCls + "-tag-content", disabled && prefixCls + "-tag-content-disabled"].filter(Boolean).join(' ').trim(),
           children: [isMultiple && selectedValue.slice(0, maxTagCount).map((item, index) => {
             return /*#__PURE__*/(0,jsx_runtime.jsx)(react_tag_esm, _extends({
               style: _extends({
