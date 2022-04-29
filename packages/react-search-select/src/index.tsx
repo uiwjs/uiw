@@ -274,7 +274,12 @@ export default function SearchSelect(props: SearchSelectProps) {
               .join(' ')
               .trim()}
           >
-            <div className={`${prefixCls}-tag-content`}>
+            <div
+              className={[`${prefixCls}-tag-content`, disabled && `${prefixCls}-tag-content-disabled`]
+                .filter(Boolean)
+                .join(' ')
+                .trim()}
+            >
               {isMultiple &&
                 selectedValue.slice(0, maxTagCount).map((item, index) => {
                   return (
