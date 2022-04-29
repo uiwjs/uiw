@@ -13,9 +13,14 @@ export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
   loading?: boolean;
   block?: boolean;
   icon?: IconProps['type'];
+  /** 类型 */
   type?: ButtonType;
+  // 大小
   size?: ButtonSize;
   htmlType?: 'button' | 'submit' | 'reset';
+  /**
+   * @param e MouseEvent类型
+   */
   onClick?: (e: React.MouseEvent<HTMLButtonElement> & MouseEvent) => void;
 }
 
@@ -35,6 +40,7 @@ export default React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
     children,
     ...others
   } = props;
+
   const cls = [
     className,
     prefixCls,

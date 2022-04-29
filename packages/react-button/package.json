@@ -10,7 +10,7 @@
   },
   "license": "MIT",
   "main": "cjs/index.js",
-  "typings":"cjs/index.d.ts",
+  "typings": "cjs/index.d.ts",
   "module": "esm/index.js",
   "files": [
     "dist.css",
