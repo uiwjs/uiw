@@ -18,7 +18,7 @@ export default function SiderMenu() {
     return null;
   }
 
-  const urlSuffix = i18n.language === DefLan ? '' : `${i18n.language.toLowerCase()}/`;
+  // const urlSuffix = i18n.language === DefLan ? '' : `${i18n.language.toLowerCase()}/`;
 
   return (
     <div className={styles.wapper}>
@@ -48,7 +48,7 @@ export default function SiderMenu() {
               );
             }
             return (
-              <NavLink key={idx} to={urlSuffix + item.path || ''} replace>
+              <NavLink key={idx} to={item.path || ''} replace>
                 {item.name}
               </NavLink>
             );

@@ -5,7 +5,6 @@ import '@uiw/reset.css';
 import { routes } from './routers';
 import './styles/index.less';
 import { ThemeContext, reducer, initialState } from './contexts';
-import 'react-i18next-config';
 
 const App = () => useRoutes(routes);
 export const Provider = ({ children }: { children: React.ReactNode }) => {

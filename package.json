@@ -22,7 +22,7 @@
     "doc": "npm run b:website && npm run b:doc",
     "api:doc":"lerna exec --scope @uiw/react-button -- api-extractor run",
     "api:doc:conver":"lerna exec --scope @uiw/react-button -- api-documenter markdown -i api_doc -o api_doc/markdown",
-    "api:document":"npm run api:doc & npm run api:conver",
+    "api:document":"npm run api:doc && npm run api:conver",
     "b:website": "lerna exec --scope website -- npm run build",
     "b:doc": "lerna exec --scope @uiw/doc -- node script/released.js",
     "b:uiw": "lerna exec --scope @uiw/* --scope uiw --ignore @uiw/doc -- tsbb build",

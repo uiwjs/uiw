@@ -1,31 +1,31 @@
 import { Fragment, useState, useContext, ChangeEvent, useMemo } from 'react';
 import { Tooltip } from 'uiw';
-import routers, { NavLink, Link, useLocation } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import styles from './index.module.less';
 import { ThemeContext } from '../../contexts';
 import nav from '../icons/nav';
 import logo from '../icons/logo';
 import menu from '../icons/menu';
 import pkg from 'uiw/package.json';
-import i18n, { DefLan } from 'react-i18next-config';
+import { DefLan } from 'react-i18next-config';
 import { useTranslation } from 'react-i18next';
 import { LayoutMenuType } from 'locale/menu/layoutMenuType';
 
 export default function Nav() {
   const { state, dispatch } = useContext(ThemeContext);
-  const [language, setLanguage] = useState(i18n.language);
+  const i18n = state.i18n;
   const { t: trans } = useTranslation();
+  const [language, setLanguage] = useState(i18n.language);
   const data = useMemo(() => JSON.parse(trans('menu')), [language]);
-  const location = useLocation();
 
   const changeLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
     setLanguage(e.target.value);
     i18n.changeLanguage(e.target.value);
-
     window.location.reload();
     // replacePage();
   };
 
+  const location = useLocation();
   const replacePage = () => {
     const isDefualt = i18n.language === DefLan;
     const spilitPath = location.pathname.split('/');
@@ -121,7 +121,7 @@ export default function Nav() {
             {menu.china}
           </a>
         </Tooltip>
-        <button onClick={() => dispatch({ layout: state.layout === 'left' ? 'top' : 'left' })}>
+        <button onClick={() => dispatch({ ...state, layout: state.layout === 'left' ? 'top' : 'left' })}>
           {state.layout === 'left' ? menu.menu : menu.menutop}
         </button>
       </div>
