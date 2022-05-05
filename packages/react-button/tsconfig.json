@@ -11,6 +11,6 @@
   "typedocOptions": {
     "entryPoints": ["src/index.tsx"],
     "out": "docs"
-    // "args":"--json api_doc.json"
+    // "out":"--json api_doc.json"
   }
 }

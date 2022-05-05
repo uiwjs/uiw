@@ -2504,12 +2504,11 @@
           "kind": 1024,
           "kindString": "Property",
           "flags": {
-            "isExternal": true,
             "isOptional": true
           },
           "sources": [
             {
-              "fileName": "packages/react-button/node_modules/@uiw/utils/cjs/props.d.ts",
+              "fileName": "packages/utils/cjs/props.d.ts",
               "line": 41,
               "character": 4
             }
@@ -3519,7 +3518,7 @@
           "sources": [
             {
               "fileName": "packages/react-button/src/index.tsx",
-              "line": 20,
+              "line": 25,
               "character": 2
             }
           ],
@@ -11192,12 +11191,11 @@
           "kind": 1024,
           "kindString": "Property",
           "flags": {
-            "isExternal": true,
             "isOptional": true
           },
           "sources": [
             {
-              "fileName": "packages/react-button/node_modules/@uiw/utils/cjs/props.d.ts",
+              "fileName": "packages/utils/cjs/props.d.ts",
               "line": 42,
               "character": 4
             }
@@ -11759,7 +11757,7 @@
           "sources": [
             {
               "fileName": "packages/react-button/src/index.tsx",
-              "line": 19,
+              "line": 24,
               "character": 2
             }
           ],
@@ -12036,12 +12034,11 @@
           "kind": 1024,
           "kindString": "Property",
           "flags": {
-            "isExternal": true,
             "isOptional": true
           },
           "sources": [
             {
-              "fileName": "packages/react-button/node_modules/@uiw/utils/cjs/props.d.ts",
+              "fileName": "packages/utils/cjs/props.d.ts",
               "line": 40,
               "character": 4
             }
@@ -12250,12 +12247,26 @@
             "isOptional": true
           },
           "comment": {
-            "shortText": "类型"
+            "tags": [
+              {
+                "tag": "china",
+                "text": "Text 类型"
+              },
+              {
+                "tag": "param",
+                "text": "number\n类型二",
+                "param": "a"
+              },
+              {
+                "tag": "englishtext",
+                "text": "type english\n"
+              }
+            ]
           },
           "sources": [
             {
               "fileName": "packages/react-button/src/index.tsx",
-              "line": 17,
+              "line": 22,
               "character": 2
             }
           ],
@@ -12518,7 +12529,7 @@
           "sources": [
             {
               "fileName": "packages/react-button/src/index.tsx",
-              "line": 24,
+              "line": 29,
               "character": 2
             }
           ],
@@ -12629,8 +12640,6 @@
       "extendedTypes": [
         {
           "type": "reference",
-          "qualifiedName": "IProps",
-          "package": "@uiw/utils",
           "name": "IProps"
         },
         {
@@ -12638,8 +12647,6 @@
           "typeArguments": [
             {
               "type": "reference",
-              "qualifiedName": "HTMLButtonProps",
-              "package": "@uiw/utils",
               "name": "HTMLButtonProps"
             },
             {
@@ -12740,7 +12747,7 @@
       "sources": [
         {
           "fileName": "packages/react-button/src/index.tsx",
-          "line": 27,
+          "line": 32,
           "character": 0
         }
       ],

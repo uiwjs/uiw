@@ -13,7 +13,12 @@ export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
   loading?: boolean;
   block?: boolean;
   icon?: IconProps['type'];
-  /** 类型 */
+  /**
+   * @china Text 类型
+   * @param a number
+   * 类型二
+   * @englishText type english
+   */
   type?: ButtonType;
   // 大小
   size?: ButtonSize;

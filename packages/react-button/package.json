@@ -45,6 +45,7 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
+    "@microsoft/tsdoc": "^0.14.1",
     "@uiw/react-icon": "^4.21.2",
     "@uiw/utils": "^4.21.2"
   }
