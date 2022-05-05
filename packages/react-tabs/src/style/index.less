@@ -47,23 +47,17 @@
 }
 
 .@{w-tabs} {
-  &-card &-nav::after,
-  &-line &-nav::after {
+  &-card > div > div > &-bar > &-nav::after,
+  &-line > div > div > &-bar > &-nav::after {
     content: '';
     position: relative;
     display: block;
     border-bottom: 1px solid #d9d9d9;
   }
 }
-.@{w-tabs} {
-  &-card &-nav::after,
-  &-default &-nav::after {
-    content: none;
-  }
-}
 
 .@{w-tabs} {
-  &-line &-slide {
+  &-line > div > div > &-bar > &-nav > &-slide {
     background-color: #108ee9;
     box-sizing: border-box;
     bottom: 0;
@@ -77,13 +71,13 @@
 }
 
 .@{w-tabs} {
-  &-card &-nav::after {
+  &-card > div > div > &-bar > &-nav::after {
     content: '';
     position: relative;
     display: block;
     border-bottom: 1px solid #d9d9d9;
   }
-  &-card &-item {
+  &-card > div > div > &-bar > &-nav > &-item {
     margin: 0;
     border: 1px solid #d9d9d9;
     border-bottom: 0;
@@ -93,7 +87,7 @@
     margin-right: 5px;
     bottom: -1px;
   }
-  &-card &-item.active {
+  &-card > div > div > &-bar > &-nav > &-item.active {
     background: #fff;
     z-index: 1;
   }
