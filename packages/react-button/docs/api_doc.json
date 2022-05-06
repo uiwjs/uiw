@@ -22,13 +22,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1874,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -47,13 +40,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1912,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -72,13 +58,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1913,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -97,13 +76,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1850,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -122,13 +94,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1914,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -146,13 +111,6 @@
           "flags": {
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "packages/react-button/src/index.tsx",
-              "line": 12,
-              "character": 2
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -167,13 +125,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1915,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -192,13 +143,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1916,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -217,13 +161,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1917,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -245,13 +182,6 @@
           "comment": {
             "shortText": "Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1584,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -273,13 +203,6 @@
           "comment": {
             "shortText": "Indicates whether assistive technologies will present all, or only parts of, the changed region based on the change notifications defined by the aria-relevant attribute."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1586,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "Booleanish",
@@ -303,13 +226,6 @@
           "comment": {
             "shortText": "Indicates whether inputting text could trigger display of one or more predictions of the user's intended value for an input and specifies how predictions would be\npresented if they are made."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1591,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -348,13 +264,6 @@
           "comment": {
             "shortText": "Indicates an element is being modified and that assistive technologies MAY want to wait until the modifications are complete before exposing them to the user."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1593,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "Booleanish",
@@ -384,13 +293,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1598,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -435,13 +337,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1603,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -469,13 +364,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1608,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -503,13 +391,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1613,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -537,13 +418,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1618,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -565,13 +439,6 @@
           "comment": {
             "shortText": "Indicates the element that represents the current item within a container or set of related elements."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1620,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -632,13 +499,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1625,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -666,13 +526,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1630,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -700,13 +553,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1635,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "Booleanish",
@@ -736,13 +582,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1640,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -795,13 +634,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1645,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -823,13 +655,6 @@
           "comment": {
             "shortText": "Indicates whether the element, or another grouping element it controls, is currently expanded or collapsed."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1647,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "Booleanish",
@@ -853,13 +678,6 @@
           "comment": {
             "shortText": "Identifies the next element (or elements) in an alternate reading order of content which, at the user's discretion,\nallows assistive technology to override the general default of reading in document source order."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1652,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -887,13 +705,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1657,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "Booleanish",
@@ -917,13 +728,6 @@
           "comment": {
             "shortText": "Indicates the availability and type of interactive popup element, such as menu or dialog, that can be triggered by an element."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1659,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -984,13 +788,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1664,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "Booleanish",
@@ -1020,13 +817,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1669,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -1069,13 +859,6 @@
           "comment": {
             "shortText": "Indicates keyboard shortcuts that an author has implemented to activate or give focus to an element."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1671,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -1103,13 +886,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1676,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -1137,13 +913,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1681,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -1165,13 +934,6 @@
           "comment": {
             "shortText": "Defines the hierarchical level of an element within a structure."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1683,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -1193,13 +955,6 @@
           "comment": {
             "shortText": "Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1685,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -1234,13 +989,6 @@
           "comment": {
             "shortText": "Indicates whether an element is modal when displayed."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1687,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "Booleanish",
@@ -1264,13 +1012,6 @@
           "comment": {
             "shortText": "Indicates whether a text box accepts multiple lines of input or only a single line."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1689,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "Booleanish",
@@ -1294,13 +1035,6 @@
           "comment": {
             "shortText": "Indicates that the user may select more than one item from the current selectable descendants."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1691,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "Booleanish",
@@ -1324,13 +1058,6 @@
           "comment": {
             "shortText": "Indicates whether the element's orientation is horizontal, vertical, or unknown/ambiguous."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1693,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -1367,13 +1094,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1699,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -1395,13 +1115,6 @@
           "comment": {
             "shortText": "Defines a short hint (a word or short phrase) intended to aid the user with data entry when the control has no value.\nA hint could be a sample value or a brief description of the expected format."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1704,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -1429,13 +1142,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1709,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -1463,13 +1169,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1714,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -1514,13 +1213,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1719,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "Booleanish",
@@ -1550,13 +1242,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1724,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -1619,13 +1304,6 @@
           "comment": {
             "shortText": "Indicates that user input is required on the element before a form may be submitted."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1726,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "Booleanish",
@@ -1649,13 +1327,6 @@
           "comment": {
             "shortText": "Defines a human-readable, author-localized description for the role of an element."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1728,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -1683,13 +1354,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1733,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -1717,13 +1381,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1738,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -1751,13 +1408,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1743,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -1785,13 +1435,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1748,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "Booleanish",
@@ -1821,13 +1464,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1753,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -1849,13 +1485,6 @@
           "comment": {
             "shortText": "Indicates if items in a table or grid are sorted in ascending or descending order."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1755,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -1894,13 +1523,6 @@
           "comment": {
             "shortText": "Defines the maximum allowed value for a range widget."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1757,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -1922,13 +1544,6 @@
           "comment": {
             "shortText": "Defines the minimum allowed value for a range widget."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1759,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -1956,13 +1571,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1764,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -1984,13 +1592,6 @@
           "comment": {
             "shortText": "Defines the human readable text alternative of aria-valuenow for a range widget."
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1766,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2009,13 +1610,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1918,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2034,13 +1628,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1919,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -2059,13 +1646,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1884,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2084,13 +1664,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1920,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2109,13 +1682,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1885,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2134,13 +1700,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1921,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -2159,13 +1718,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1922,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -2184,13 +1736,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1886,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2208,13 +1753,6 @@
           "flags": {
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "packages/react-button/src/index.tsx",
-              "line": 10,
-              "character": 2
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -2228,13 +1766,6 @@
           "flags": {
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "packages/react-button/src/index.tsx",
-              "line": 14,
-              "character": 2
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -2249,13 +1780,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1923,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -2287,13 +1811,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1924,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -2321,13 +1838,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1925,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -2355,13 +1865,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1927,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2380,13 +1883,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1926,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2405,13 +1901,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1928,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -2430,13 +1919,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1372,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "React.ReactNode",
@@ -2457,13 +1939,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1929,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2482,13 +1957,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1930,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2504,15 +1972,9 @@
           "kind": 1024,
           "kindString": "Property",
           "flags": {
+            "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "packages/utils/cjs/props.d.ts",
-              "line": 41,
-              "character": 4
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2531,13 +1993,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1932,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -2556,13 +2011,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1887,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2581,13 +2029,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1931,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -2606,13 +2047,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1933,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2631,13 +2065,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1852,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -2667,13 +2094,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1853,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2692,13 +2112,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1934,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -2717,13 +2130,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1935,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2742,13 +2148,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1936,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2767,13 +2166,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1373,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reflection",
             "declaration": {
@@ -2791,13 +2183,6 @@
                   "flags": {
                     "isExternal": true
                   },
-                  "sources": [
-                    {
-                      "fileName": "node_modules/@types/react/index.d.ts",
-                      "line": 1374,
-                      "character": 12
-                    }
-                  ],
                   "type": {
                     "type": "intrinsic",
                     "name": "string"
@@ -2827,13 +2212,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1937,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2852,13 +2230,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1875,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2877,13 +2248,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1938,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -2902,13 +2266,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1939,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -2927,13 +2284,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1844,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -2952,13 +2302,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1845,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -2997,13 +2340,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1940,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -3022,13 +2358,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1854,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -3046,13 +2375,6 @@
           "flags": {
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "packages/react-button/src/index.tsx",
-              "line": 11,
-              "character": 2
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -3071,13 +2393,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1942,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "any"
@@ -3096,13 +2411,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1855,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "Booleanish",
@@ -3123,13 +2431,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1943,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -3148,13 +2449,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1944,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -3173,13 +2467,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1945,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -3198,13 +2485,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1946,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -3223,13 +2503,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1947,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -3248,13 +2521,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1948,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -3273,13 +2539,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1949,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -3298,13 +2557,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1950,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -3332,13 +2584,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1951,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -3357,13 +2602,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1952,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -3391,13 +2629,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1856,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -3416,13 +2647,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1953,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -3441,13 +2665,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1954,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -3466,13 +2683,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1955,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -3491,13 +2701,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1956,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -3515,13 +2718,6 @@
           "flags": {
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "packages/react-button/src/index.tsx",
-              "line": 25,
-              "character": 2
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -3549,13 +2745,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1957,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -3573,13 +2762,6 @@
           "flags": {
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "packages/react-button/src/index.tsx",
-              "line": 15,
-              "character": 2
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -4488,13 +3670,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1857,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -4513,13 +3688,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1876,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "any"
@@ -4547,13 +3715,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1902,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -4605,13 +3766,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1958,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -4639,13 +3793,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1907,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -4664,13 +3811,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1891,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -4689,13 +3829,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1888,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -4714,13 +3847,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1892,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -4739,13 +3865,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1889,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -4764,13 +3883,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1890,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -4789,13 +3901,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 131,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -4825,13 +3930,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1959,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -4850,13 +3948,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1960,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -4875,13 +3966,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1961,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -4900,13 +3984,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1962,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -4925,13 +4002,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1858,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -4950,13 +4020,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1963,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -4974,13 +4037,6 @@
           "flags": {
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "packages/react-button/src/index.tsx",
-              "line": 13,
-              "character": 2
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -4995,13 +4051,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1964,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -5020,13 +4069,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1965,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -5045,13 +4087,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1966,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -5070,13 +4105,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1967,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -5095,13 +4123,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1968,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -5120,13 +4141,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1969,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -5154,13 +4168,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1970,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -5179,13 +4186,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1971,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -5204,13 +4204,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1972,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -5229,13 +4222,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1973,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -5254,13 +4240,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1974,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -5288,13 +4267,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1975,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -5313,13 +4285,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1976,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -5338,13 +4303,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1977,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -5363,13 +4321,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1978,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -5388,13 +4339,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1980,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -5413,13 +4357,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1979,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -5438,20 +4375,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1430,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -5473,20 +4403,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1431,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -5508,20 +4431,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1560,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -5543,20 +4459,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1561,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -5578,20 +4487,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1562,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -5613,20 +4515,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1563,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -5648,20 +4543,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1558,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -5683,20 +4571,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1559,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -5718,20 +4599,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1476,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -5753,20 +4627,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1477,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -5788,20 +4655,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1402,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -5823,20 +4683,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1403,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -5858,20 +4711,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1396,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -5893,20 +4739,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1397,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -5928,20 +4767,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1432,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -5963,20 +4795,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1433,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -5998,20 +4823,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1434,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6033,20 +4851,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1435,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6068,20 +4879,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1400,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6103,20 +4907,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1401,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6138,20 +4935,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1479,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6173,20 +4963,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1386,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6208,20 +4991,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1387,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6243,20 +5019,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1388,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6278,20 +5047,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1389,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6313,20 +5075,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1390,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6348,20 +5103,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1391,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6383,20 +5131,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1480,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6418,20 +5159,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1481,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6453,20 +5187,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1378,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6488,20 +5215,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1379,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6523,20 +5243,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1380,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6558,20 +5271,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1381,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6593,20 +5299,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1482,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6628,20 +5327,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1483,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6663,20 +5355,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1484,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6698,20 +5383,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1485,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6733,20 +5411,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1486,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6768,20 +5439,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1487,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6803,20 +5467,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1488,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6838,20 +5495,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1489,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6873,20 +5523,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1490,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6908,20 +5551,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1491,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6943,20 +5579,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1492,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -6978,20 +5607,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1493,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7013,20 +5635,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1494,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7048,20 +5663,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1495,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7083,20 +5691,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1496,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7118,20 +5719,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1497,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7153,20 +5747,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1498,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7188,20 +5775,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1499,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7223,20 +5803,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1436,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7258,20 +5831,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1437,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7293,20 +5859,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1438,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7328,20 +5887,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1439,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7363,20 +5915,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1440,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7398,20 +5943,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1441,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7433,20 +5971,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1442,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7468,20 +5999,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1443,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7503,20 +6027,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1416,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7538,20 +6055,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1417,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7573,20 +6083,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1394,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7608,20 +6111,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1395,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7643,20 +6139,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1544,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7678,20 +6167,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1545,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7713,20 +6195,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1404,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7748,20 +6223,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1405,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7783,20 +6251,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1410,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7818,20 +6279,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1411,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7853,20 +6307,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1420,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7888,20 +6335,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1421,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7931,20 +6371,13 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1423,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -7974,20 +6407,13 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1425,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8009,20 +6435,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1426,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8044,20 +6463,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1427,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8079,20 +6491,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1414,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8114,20 +6519,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1415,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8149,20 +6547,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1448,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8184,20 +6575,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1449,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8219,20 +6603,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1444,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8254,20 +6631,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1445,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8289,20 +6659,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1446,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8324,20 +6687,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1447,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8359,20 +6715,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1546,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8394,20 +6743,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1547,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8429,20 +6771,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1500,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8464,20 +6799,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1501,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8499,20 +6827,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1502,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8534,20 +6855,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1503,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8569,20 +6883,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1504,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8604,20 +6911,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1505,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8639,20 +6939,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1506,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8674,20 +6967,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1507,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8709,20 +6995,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1508,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8744,20 +7023,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1509,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8779,20 +7051,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1510,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8814,20 +7079,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1511,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8849,20 +7107,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1382,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8884,20 +7135,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1383,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8919,20 +7163,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1450,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8954,20 +7191,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1451,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -8989,20 +7219,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1452,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9024,20 +7247,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1453,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9059,20 +7275,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1454,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9094,20 +7303,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1455,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9129,20 +7331,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1534,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9164,20 +7359,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1535,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9199,20 +7387,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1528,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9234,20 +7415,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1529,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9269,20 +7443,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1536,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9304,20 +7471,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1537,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9339,20 +7499,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1538,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9374,20 +7527,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1539,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9409,20 +7555,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1530,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9444,20 +7583,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1531,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9479,20 +7611,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1542,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9514,20 +7639,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1543,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9549,20 +7667,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1540,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9584,20 +7695,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1541,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9619,20 +7723,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1532,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9654,20 +7751,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1533,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9689,20 +7779,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1456,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9724,20 +7807,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1457,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9759,20 +7835,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1458,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9794,20 +7863,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1459,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9829,20 +7891,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1406,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9864,20 +7919,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1407,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9899,20 +7947,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1550,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9934,20 +7975,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1551,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -9969,20 +8003,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1460,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10004,20 +8031,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1461,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10039,20 +8059,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1462,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10074,20 +8087,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1463,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10109,20 +8115,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1514,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10144,20 +8143,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1515,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10179,20 +8171,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1464,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10214,20 +8199,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1465,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10249,20 +8227,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1408,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10284,20 +8255,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1409,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10319,20 +8283,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1466,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10354,20 +8311,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1467,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10389,20 +8339,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1468,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10424,20 +8367,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1469,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10459,20 +8395,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1518,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10494,20 +8423,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1519,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10529,20 +8451,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1520,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10564,20 +8479,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1521,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10599,20 +8507,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1522,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10634,20 +8535,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1523,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10669,20 +8563,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1524,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10704,20 +8591,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1525,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10739,20 +8619,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1566,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10774,20 +8647,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1567,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10809,20 +8675,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1470,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10844,20 +8703,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1471,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10879,20 +8731,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1472,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10914,20 +8759,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1473,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10949,20 +8787,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1554,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -10984,20 +8815,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1555,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -11019,13 +8843,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1981,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -11044,13 +8861,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1982,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -11069,13 +8879,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1983,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11094,13 +8897,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1984,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11119,13 +8915,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1985,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -11144,13 +8933,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1986,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11169,13 +8951,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1877,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11191,15 +8966,9 @@
           "kind": 1024,
           "kindString": "Property",
           "flags": {
+            "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "packages/utils/cjs/props.d.ts",
-              "line": 42,
-              "character": 4
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11218,13 +8987,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1987,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11243,13 +9005,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1878,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11268,13 +9023,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1868,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11293,13 +9041,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1988,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -11318,20 +9059,13 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 137,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "typeArguments": [
               {
                 "type": "reference",
                 "qualifiedName": "HTMLButtonElement",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "HTMLButtonElement"
               }
             ],
@@ -11353,13 +9087,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1989,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11378,13 +9105,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1990,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -11403,13 +9123,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1879,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11428,13 +9141,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1893,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -11453,13 +9159,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1991,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -11478,13 +9177,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1871,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "React.AriaRole",
@@ -11505,13 +9197,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1993,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -11530,13 +9215,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1992,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -11555,13 +9233,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1994,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11580,13 +9251,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1995,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11605,13 +9269,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1996,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -11630,13 +9287,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1997,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11655,13 +9305,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1998,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -11680,13 +9323,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1894,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11705,13 +9341,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1999,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -11730,13 +9359,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 2000,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11754,13 +9376,6 @@
           "flags": {
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "packages/react-button/src/index.tsx",
-              "line": 24,
-              "character": 2
-            }
-          ],
           "type": {
             "type": "reference",
             "id": 2,
@@ -11776,13 +9391,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 2002,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11801,13 +9409,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1860,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11826,13 +9427,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 2003,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -11851,13 +9445,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1861,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "Booleanish",
@@ -11878,13 +9465,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 2004,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11903,13 +9483,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 2005,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11928,13 +9501,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 2006,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11953,13 +9519,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 2007,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -11978,13 +9537,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 2008,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -12003,13 +9555,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 2009,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -12034,15 +9579,9 @@
           "kind": 1024,
           "kindString": "Property",
           "flags": {
+            "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "packages/utils/cjs/props.d.ts",
-              "line": 40,
-              "character": 4
-            }
-          ],
           "type": {
             "type": "reference",
             "qualifiedName": "React.CSSProperties",
@@ -12063,13 +9602,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 2010,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -12088,13 +9620,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1846,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -12113,13 +9638,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1847,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "boolean"
@@ -12138,13 +9656,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1863,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "number"
@@ -12163,13 +9674,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 2011,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -12188,13 +9692,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1864,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -12213,13 +9710,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1865,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -12263,13 +9753,6 @@
               }
             ]
           },
-          "sources": [
-            {
-              "fileName": "packages/react-button/src/index.tsx",
-              "line": 22,
-              "character": 2
-            }
-          ],
           "type": {
             "type": "reference",
             "id": 1,
@@ -12289,13 +9772,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1880,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -12314,13 +9790,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1895,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -12348,13 +9817,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 2013,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -12373,13 +9835,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 2014,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -12418,13 +9873,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 1881,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -12443,13 +9891,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 2015,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "union",
             "types": [
@@ -12477,13 +9918,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 2016,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -12502,13 +9936,6 @@
             "isExternal": true,
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "node_modules/@types/react/index.d.ts",
-              "line": 2017,
-              "character": 8
-            }
-          ],
           "type": {
             "type": "intrinsic",
             "name": "string"
@@ -12526,13 +9953,6 @@
           "flags": {
             "isOptional": true
           },
-          "sources": [
-            {
-              "fileName": "packages/react-button/src/index.tsx",
-              "line": 29,
-              "character": 2
-            }
-          ],
           "signatures": [
             {
               "id": 14,
@@ -12560,13 +9980,13 @@
                           {
                             "type": "reference",
                             "qualifiedName": "HTMLButtonElement",
-                            "package": "typescript",
+                            "package": "typedoc",
                             "name": "HTMLButtonElement"
                           },
                           {
                             "type": "reference",
                             "qualifiedName": "MouseEvent",
-                            "package": "typescript",
+                            "package": "typedoc",
                             "name": "MouseEvent"
                           }
                         ],
@@ -12577,7 +9997,7 @@
                       {
                         "type": "reference",
                         "qualifiedName": "MouseEvent",
-                        "package": "typescript",
+                        "package": "typedoc",
                         "name": "MouseEvent"
                       }
                     ]
@@ -12630,16 +10050,11 @@
           "children": [13]
         }
       ],
-      "sources": [
-        {
-          "fileName": "packages/react-button/src/index.tsx",
-          "line": 9,
-          "character": 17
-        }
-      ],
       "extendedTypes": [
         {
           "type": "reference",
+          "qualifiedName": "IProps",
+          "package": "@uiw/utils",
           "name": "IProps"
         },
         {
@@ -12647,6 +10062,8 @@
           "typeArguments": [
             {
               "type": "reference",
+              "qualifiedName": "HTMLButtonProps",
+              "package": "@uiw/utils",
               "name": "HTMLButtonProps"
             },
             {
@@ -12655,7 +10072,7 @@
             }
           ],
           "qualifiedName": "Omit",
-          "package": "typescript",
+          "package": "typedoc",
           "name": "Omit"
         }
       ]
@@ -12666,13 +10083,6 @@
       "kind": 4194304,
       "kindString": "Type alias",
       "flags": {},
-      "sources": [
-        {
-          "fileName": "packages/react-button/src/index.tsx",
-          "line": 7,
-          "character": 12
-        }
-      ],
       "type": {
         "type": "union",
         "types": [
@@ -12697,13 +10107,6 @@
       "kind": 4194304,
       "kindString": "Type alias",
       "flags": {},
-      "sources": [
-        {
-          "fileName": "packages/react-button/src/index.tsx",
-          "line": 6,
-          "character": 12
-        }
-      ],
       "type": {
         "type": "union",
         "types": [
@@ -12744,13 +10147,6 @@
       "kind": 32,
       "kindString": "Variable",
       "flags": {},
-      "sources": [
-        {
-          "fileName": "packages/react-button/src/index.tsx",
-          "line": 32,
-          "character": 0
-        }
-      ],
       "type": {
         "type": "reference",
         "typeArguments": [
@@ -14240,7 +11636,7 @@
                   }
                 ],
                 "qualifiedName": "Pick",
-                "package": "typescript",
+                "package": "typedoc",
                 "name": "Pick"
               },
               {
@@ -14249,7 +11645,7 @@
                   {
                     "type": "reference",
                     "qualifiedName": "HTMLButtonElement",
-                    "package": "typescript",
+                    "package": "typedoc",
                     "name": "HTMLButtonElement"
                   }
                 ],
@@ -14281,13 +11677,6 @@
       "title": "Variables",
       "kind": 32,
       "children": [376]
-    }
-  ],
-  "sources": [
-    {
-      "fileName": "packages/react-button/src/index.tsx",
-      "line": 1,
-      "character": 0
     }
   ]
 }

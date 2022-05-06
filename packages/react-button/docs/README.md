@@ -1,4 +1,4 @@
-@uiw/react-button / [Exports](modules.md)
+@uiw/react-button - v4.21.2 / [Exports](modules.md)
 
 Button 按钮
 ===
