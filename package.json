@@ -76,8 +76,7 @@
     "react-dom": "^18.0.0",
     "react-test-renderer": "^18.0.0",
     "tsbb": "~3.7.0",
-    "typedoc": "^0.22.15",
-    "typedoc-plugin-markdown": "^3.12.1"
+    "typedoc": "^0.22.15"
   },
   "dependencies": {
     "@uiw/react-button": "^4.21.3",

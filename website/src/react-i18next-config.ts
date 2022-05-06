@@ -1,10 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-//i18next-browser-languagedetector插件
-//这是一个 i18next 语言检测插件，用于检测浏览器中的用户语言，
-//详情请访问：https://github.com/i18next/i18next-browser-languageDetector
+// i18next语言检测插件，用于检测浏览器中的用户语言
 import LanguageDetector from 'i18next-browser-languagedetector';
-//引入需要实现国际化的简体、繁体、英文三种数据的json文件
 import menuZhCn from './locale/menu/zh-cn.json';
 import menuEnUs from './locale/menu/en-us.json';
 import footerZhCn from './locale/footer/zh-cn.json';
