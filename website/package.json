@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "version": "4.20.0",
+  "version": "4.21.2",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "private": true,
   "sideEffects": true,
@@ -28,27 +28,30 @@
     "framework"
   ],
   "peerDependencies": {
-    "react": ">=16.9.0",
-    "react-dom": ">=16.9.0"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "dependencies": {
     "@uiw/formatter": "~1.3.2",
     "@uiw/react-code-preview": "~4.0.5",
     "@uiw/react-markdown-preview": "~3.5.0",
     "@uiw/reset.css": "~1.0.5",
-    "react": "~17.0.2",
-    "react-dom": "~17.0.2",
-    "react-router-dom": "~6.2.2",
-    "uiw": "^4.20.0"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "~6.3.0",
+    "react-i18next": "^11.16.7",
+    "i18next": "^21.6.16",
+    "i18next-browser-languagedetector": "^6.1.4",
+    "uiw": "^4.21.3"
   },
   "devDependencies": {
     "@kkt/less-modules": "~7.1.1",
     "@kkt/raw-modules": "~7.1.1",
     "@kkt/scope-plugin-options": "~7.1.1",
-    "@types/react": "~17.0.39",
-    "@types/react-dom": "~17.0.11",
+    "@types/react": "^18.0.6",
+    "@types/react-dom": "^18.0.2",
     "kkt": "~7.1.5",
-    "react-test-renderer": "~17.0.2"
+    "react-test-renderer": "^18.0.0"
   },
   "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT",

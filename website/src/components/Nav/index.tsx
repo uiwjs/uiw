@@ -1,16 +1,42 @@
-import { Fragment, useContext } from 'react';
+import { Fragment, useState, useContext, ChangeEvent, useMemo } from 'react';
 import { Tooltip } from 'uiw';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import styles from './index.module.less';
-import data from '../../menu.json';
 import { ThemeContext } from '../../contexts';
 import nav from '../icons/nav';
 import logo from '../icons/logo';
 import menu from '../icons/menu';
 import pkg from 'uiw/package.json';
+import { DefLan } from 'react-i18next-config';
+import { useTranslation } from 'react-i18next';
+import { LayoutMenuType } from 'locale/menu/layoutMenuType';
 
 export default function Nav() {
   const { state, dispatch } = useContext(ThemeContext);
+  const i18n = state.i18n;
+  const { t: trans } = useTranslation();
+  const [language, setLanguage] = useState(i18n.language);
+  const data = useMemo(() => JSON.parse(trans('menu')), [language]);
+
+  const changeLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
+    setLanguage(e.target.value);
+    i18n.changeLanguage(e.target.value);
+    window.location.reload();
+    // replacePage();
+  };
+
+  const location = useLocation();
+  const replacePage = () => {
+    const isDefualt = i18n.language === DefLan;
+    const spilitPath = location.pathname.split('/');
+    if (isDefualt) {
+      spilitPath.splice(2, 1);
+    } else {
+      spilitPath.splice(2, 0, i18n.language.toLowerCase());
+    }
+    window.location.replace('#' + spilitPath.join('/'));
+  };
+
   return (
     <Fragment>
       <div className={[styles.logo, state.layout === 'left' ? null : styles.top].filter(Boolean).join(' ').trim()}>
@@ -24,7 +50,7 @@ export default function Nav() {
         </Link>
       </div>
       <div className={[styles.nav, state.layout === 'left' ? null : styles.navTop].filter(Boolean).join(' ').trim()}>
-        {data.map(({ path, name, icon }, idx) => {
+        {data.map(({ path, name, icon }: LayoutMenuType, idx: number) => {
           if (Object.keys(nav).includes(icon)) {
             icon = (nav as any)[icon];
           }
@@ -83,13 +109,19 @@ export default function Nav() {
           );
         })}
       </div>
+
       <div className={[styles.btn, state.layout === 'left' ? null : styles.btnTop].filter(Boolean).join(' ').trim()}>
+        <select value={language} onChange={(e) => changeLanguage(e)}>
+          <option value="zh-CN">简</option>
+          <option value="en-US">English</option>
+        </select>
+
         <Tooltip placement={state.layout === 'left' ? 'right' : 'bottom'} content="国内镜像站点">
           <a href="http://uiw.gitee.io" rel="noopener noreferrer" target="_blank">
             {menu.china}
           </a>
         </Tooltip>
-        <button onClick={() => dispatch({ layout: state.layout === 'left' ? 'top' : 'left' })}>
+        <button onClick={() => dispatch({ ...state, layout: state.layout === 'left' ? 'top' : 'left' })}>
           {state.layout === 'left' ? menu.menu : menu.menutop}
         </button>
       </div>

@@ -1,0 +1,180 @@
+[
+  {
+    "name": "Guide",
+    "path": "/guide",
+    "icon": "home",
+    "children": [
+      { "name": "Quick start", "path": "quick-start" },
+      { "divider": true, "name": "Tool" },
+      { "name": "Import", "path": "import" },
+      { "name": "Use in create-react-app", "path": "create-react-app" },
+      { "name": "Use in kkt", "path": "kkt" },
+      { "name": "VSCode plugin", "path": "vscode" },
+      { "divider": true, "name": "Other" },
+      { "name": "Document edit preview", "path": "docs" },
+      { "name": "Changelog", "path": "https://github.com/uiwjs/uiw/releases" },
+      { "name": "Community featured components", "path": "recommendation" },
+      {
+        "name": "Awesome UIKit",
+        "path": "https://github.com/jaywcjlove/awesome-uikit"
+      },
+      {
+        "name": "Awesome React Components",
+        "path": "https://github.com/brillout/awesome-react-components"
+      }
+    ]
+  },
+  {
+    "name": "Components",
+    "path": "/components",
+    "icon": "component",
+    "children": [
+      { "divider": true, "name": "Baisc" },
+      { "name": "Color", "path": "colors" },
+      { "name": "Reset CSS", "path": "reset-css" },
+      { "name": "Icon", "path": "icon" },
+      { "name": "Button", "path": "button" },
+      { "divider": true, "name": "Layout" },
+      { "name": "Divider", "path": "divider" },
+      { "name": "Grid", "path": "grid" },
+      { "name": "Layout", "path": "layout" },
+      { "name": "Split", "path": "Split" },
+      { "divider": true, "name": "Form" },
+      { "name": "Form", "path": "form" },
+      { "name": "Radio", "path": "radio" },
+      { "name": "Checkbox", "path": "checkbox" },
+      { "name": "Cascader", "path": "cascader" },
+      { "name": "Input", "path": "input" },
+      { "name": "FileInput", "path": "file-input" },
+      { "name": "PinCode", "path": "pin-code" },
+      { "name": "Rate", "path": "rate" },
+      { "name": "Switch", "path": "switch" },
+      { "name": "Select", "path": "select" },
+      { "name": "SearchSelect", "path": "search-select" },
+      { "name": "SearchTree", "path": "search-tree" },
+      { "name": "Slider", "path": "slider" },
+      { "name": "TreeChecked", "path": "tree-checked" },
+      { "name": "Transfer", "path": "transfer" },
+      { "name": "Textarea", "path": "textarea" },
+      {
+        "name": "Color Select",
+        "path": "https://uiwjs.github.io/react-color/"
+      },
+      { "divider": true, "name": "Time Calendar" },
+      { "name": "Calendar", "path": "calendar" },
+      { "name": "DatePicker", "path": "date-picker" },
+      { "name": "DateInput", "path": "date-input" },
+      { "name": "TimePicker", "path": "time-picker" },
+      { "name": "MonthPicker", "path": "month-picker" },
+      { "name": "formatter", "path": "formatter" },
+      { "divider": true, "name": "Data Display" },
+      { "name": "Avatar", "path": "avatar" },
+      { "name": "Badge", "path": "badge" },
+      { "name": "Card", "path": "card" },
+      { "name": "Carousel", "path": "carousel" },
+      { "name": "Collapse", "path": "collapse" },
+      { "name": "Descriptions", "path": "descriptions" },
+      { "name": "Tag", "path": "tag" },
+      { "name": "Tree", "path": "tree" },
+      { "name": "Table", "path": "table" },
+      { "name": "Progress", "path": "progress" },
+      { "name": "List", "path": "list" },
+      { "name": "AutoLink", "path": "auto-link" },
+      { "name": "Empty", "path": "empty" },
+      {
+        "name": "HeatMap",
+        "path": "https://uiwjs.github.io/react-heat-map"
+      },
+      {
+        "name": "Markdown Preview",
+        "path": "https://uiwjs.github.io/react-markdown-preview/"
+      },
+      { "divider": true, "name": "Navigation" },
+      { "name": "Affix", "path": "affix" },
+      { "name": "Breadcrumb", "path": "breadcrumb" },
+      { "name": "Dropdown", "path": "dropdown" },
+      { "name": "Menu", "path": "menu" },
+      { "name": "Pagination", "path": "pagination" },
+      { "name": "Steps", "path": "steps" },
+      { "name": "Tabs", "path": "tabs" },
+      { "divider": true, "name": "Feedback" },
+      { "name": "Overlay", "path": "overlay" },
+      { "name": "OverlayTrigger", "path": "overlay-trigger" },
+      { "name": "Alert", "path": "alert" },
+      { "name": "Drawer", "path": "drawer" },
+      { "name": "Modal", "path": "modal" },
+      { "name": "Message", "path": "message" },
+      { "name": "Loader", "path": "loader" },
+      { "name": "Notify", "path": "notify" },
+      { "name": "Popover", "path": "popover" },
+      { "name": "Tooltip", "path": "tooltip" },
+      { "divider": true, "name": "Map" },
+      { "name": "Gaode map", "path": "https://uiwjs.github.io/react-amap" },
+      {
+        "name": "BaiduMap",
+        "path": "https://uiwjs.github.io/react-baidu-map"
+      },
+      { "divider": true, "name": "Editor" },
+      {
+        "name": "Textarea CodeEditor",
+        "path": "https://uiwjs.github.io/react-textarea-code-editor/"
+      },
+      {
+        "name": "MDEditor",
+        "path": "https://uiwjs.github.io/react-md-editor/"
+      },
+      {
+        "name": "Markdown Editor",
+        "path": "https://uiwjs.github.io/react-markdown-editor/"
+      },
+      {
+        "name": "CodePreview JavaScript",
+        "path": "https://uiwjs.github.io/react-code-preview/"
+      },
+      {
+        "name": "Codemirror",
+        "path": "https://uiwjs.github.io/react-codemirror/"
+      },
+      {
+        "name": "MonacoEditor",
+        "path": "https://jaywcjlove.github.io/react-monacoeditor/"
+      },
+      { "divider": true, "name": "Other" },
+      { "name": "BackTop", "path": "back-top" },
+      { "name": "CopyToClipboard", "path": "copy-to-clipboard" },
+      { "name": "Portal", "path": "portal" },
+      {
+        "name": "Github Corners",
+        "path": "https://uiwjs.github.io/react-github-corners/"
+      },
+      {
+        "name": "Only When",
+        "path": "https://uiwjs.github.io/react-only-when/"
+      },
+      {
+        "name": "Run Web",
+        "path": "https://uiwjs.github.io/react-run-web/"
+      }
+    ]
+  },
+  {
+    "name": "Extensions",
+    "path": "/extensions",
+    "icon": "plugin"
+  },
+  {
+    "name": "Issue",
+    "icon": "issue",
+    "path": "https://github.com/uiwjs/uiw/issues/new/choose"
+  },
+  {
+    "name": "Github",
+    "icon": "github",
+    "path": "https://github.com/uiwjs/uiw"
+  },
+  {
+    "name": "Gitee",
+    "icon": "gitee",
+    "path": "https://gitee.com/uiw/uiw"
+  }
+]

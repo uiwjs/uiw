@@ -288,7 +288,6 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
   }, [scroll]);
   const cls = [prefixCls, className, bordered ? `${prefixCls}-bordered` : null].filter(Boolean).join(' ').trim();
   const { header, render, ellipsis } = getLevelItems(self.selfColumns);
-
   return (
     <React.Fragment>
       <div className={cls} {...other} style={{ ...other.style, ...style.div }}>
@@ -324,7 +323,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
           {data && data.length === 0 && empty && (
             <tbody>
               <tr>
-                <td colSpan={columns.length} style={{ position: 'relative', left: 0 }}>
+                <td colSpan={self.keys.length} style={{ position: 'relative', left: 0 }}>
                   {empty}
                 </td>
               </tr>
