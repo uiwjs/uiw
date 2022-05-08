@@ -14,7 +14,7 @@ export default function Code({ version, codePen, codeSandbox, ...other }: CodePr
       js: `${(props.copyNodes || '').replace(
         'export default',
         'const APP_Default = ',
-      )}\nReactDOM.createRoot(document.getElementById("root")).render(<APP_Default />)`,
+      )}\nReactDOM.createRoot(document.getElementById("container")).render(<APP_Default />)`,
       html: '<div id="container" style="padding: 24px"></div>',
       css_external: `https://unpkg.com/uiw@${version}/dist/uiw.min.css`,
       js_external: `https://unpkg.com/react@18.x/umd/react.development.js;https://unpkg.com/react-dom@18.x/umd/react-dom.development.js;https://unpkg.com/classnames@2.2.6/index.js;https://unpkg.com/uiw@${version}/dist/uiw.min.js;https://unpkg.com/@uiw/codepen-require-polyfill@1.1.3/index.js`,
@@ -39,7 +39,7 @@ export default function Code({ version, codePen, codeSandbox, ...other }: CodePr
           content: props.copyNodes,
         },
         'src/index.js': {
-          content: `import React from "react";\nimport ReactClient from "react-dom/client";\nimport App from "./app";\nReactClient.createRoot(document.getElementById("root")).render(<App />);`,
+          content: `import React from "react";\nimport ReactClient from "react-dom/client";\nimport App from "./app";\nReactClient.createRoot(document.getElementById("container")).render(<App />);`,
         },
         // 'src/index.js': {
         //   content: (props.copyNodes || '').replace('_mount_', 'document.getElementById("container")'),
