@@ -1,0 +1,11 @@
+<svg width="3650px" height="2229px" viewBox="0 0 3650 950" version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+    <g id="编组" transform="translate(125.000000, 305.000000)" stroke="#000000" stroke-width="250">
+      <polyline id="路径" points="800 0 4.68375339e-15 800 800 1600"></polyline>
+      <polyline id="路径-2" points="2600 0 3400 800 2600 1600"></polyline>
+    </g>
+    <line x1="2105.5" y1="125.5" x2="1336.5" y2="2103.5" id="直线" stroke="#000000" stroke-width="250"></line>
+  </g>
+</svg>

@@ -1,0 +1,90 @@
+.preview-fieldset {
+  margin: 0px;
+  padding: 0px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background-color: #fff;
+}
+
+.preview-body {
+  padding: 10px;
+}
+
+.preview-button {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+.preview-button .preview-button-ccs {
+  margin-right: 30px;
+}
+.preview-button .preview-button-ccs button {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+  padding-left: 0;
+  padding-right: 0;
+}
+.preview-button .preview-button-ccs button:hover {
+  opacity: 1;
+}
+
+.preview-button-span {
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-button-copy {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.preview-button-copy:hover {
+  opacity: 1;
+}
+.preview-button-copy > .copy {
+  display: inline-block;
+}
+.preview-button-copy > .check {
+  display: none;
+}
+
+.preview-button-copy-active > .copy {
+  display: none;
+}
+
+.preview-button-copy-active > .check {
+  display: inline-block;
+}
+.preview-fieldset .preview-code > pre {
+  margin-bottom: 0px;
+}
+
+.preview-code-false {
+  display: none;
+}
+
+.preview-code-true {
+  display: block;
+}
+
+.preview-button .preview-code-exand-unexpand-icon {
+  opacity: 0.5;
+  display: inline-block;
+  cursor: pointer;
+}
+.preview-button .preview-code-exand-unexpand-icon:hover {
+  opacity: 1;
+}
+
+.preview-button .preview-code-exand-unexpand-icon .preview-code-exand-unexpand-icon-false {
+  display: none;
+}
+.preview-button .preview-code-exand-unexpand-icon .preview-code-exand-unexpand-icon-true {
+  display: inline-block;
+}
