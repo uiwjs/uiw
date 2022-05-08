@@ -4,6 +4,7 @@ import path from 'path';
 import lessModules from '@kkt/less-modules';
 import rawModules from '@kkt/raw-modules';
 import scopePluginOptions from '@kkt/scope-plugin-options';
+import { mdCodeModulesLoader } from 'markdown-react-code-preview-loader';
 
 export default (conf: Configuration, env: 'development' | 'production', options: LoaderConfOptions) => {
   conf = lessModules(conf, env, options);
@@ -16,6 +17,9 @@ export default (conf: Configuration, env: 'development' | 'production', options:
   /** https://github.com/uiwjs/react-code-preview/issues/94 */
   conf.module!.exprContextCritical = false;
   conf.module!.exprContextRecursive = false;
+
+  conf = mdCodeModulesLoader(conf);
+
   if (env === 'production') {
     conf.optimization = {
       ...conf.optimization,

@@ -1,27 +1,27 @@
-import CodePreview, { CodePreviewProps } from '@uiw/react-code-preview';
-
-export interface CodeProps extends CodePreviewProps {
-  code: string;
+import CodeLayout, { PreviewProps } from './../CodeLayout';
+export interface CodeProps extends PreviewProps {
   version: string;
   codePen: boolean;
   codeSandbox?: boolean;
-  dependencies: any;
 }
 
-export default function Code({ version, dependencies, codePen, codeSandbox, ...other }: CodeProps) {
-  const props: CodePreviewProps = { ...other };
+export default function Code({ version, codePen, codeSandbox, ...other }: CodeProps) {
+  const props: PreviewProps = { ...other };
   if (codePen) {
-    props.codePenOption = {
+    props.codePenOptions = {
       title: `uiw${version} - demo`,
       includeModule: ['uiw'],
-      js: (props.code || '').replace('_mount_', 'document.getElementById("container")'),
+      js: `${(props.copyNodes || '').replace(
+        'export default',
+        'const APP_Default = ',
+      )}\nReactDOM.createRoot(document.getElementById("root")).render(<APP_Default />)`,
       html: '<div id="container" style="padding: 24px"></div>',
       css_external: `https://unpkg.com/uiw@${version}/dist/uiw.min.css`,
-      js_external: `https://unpkg.com/react@17.x/umd/react.development.js;https://unpkg.com/react-dom@17.x/umd/react-dom.development.js;https://unpkg.com/classnames@2.2.6/index.js;https://unpkg.com/uiw@${version}/dist/uiw.min.js;https://unpkg.com/@uiw/codepen-require-polyfill@1.1.3/index.js`,
+      js_external: `https://unpkg.com/react@18.x/umd/react.development.js;https://unpkg.com/react-dom@18.x/umd/react-dom.development.js;https://unpkg.com/classnames@2.2.6/index.js;https://unpkg.com/uiw@${version}/dist/uiw.min.js;https://unpkg.com/@uiw/codepen-require-polyfill@1.1.3/index.js`,
     };
   }
   if (codeSandbox) {
-    props.codeSandboxOption = {
+    props.codeSandboxOptions = {
       files: {
         'sandbox.config.json': {
           content: `{
@@ -35,9 +35,15 @@ export default function Code({ version, dependencies, codePen, codeSandbox, ...o
         'public/index.html': {
           content: `<div id="container"></div>`,
         },
-        'src/index.js': {
-          content: (props.code || '').replace('_mount_', 'document.getElementById("container")'),
+        'src/app.js': {
+          content: props.copyNodes,
         },
+        'src/index.js': {
+          content: `import React from "react";\nimport ReactClient from "react-dom/client";\nimport App from "./app";\nReactClient.createRoot(document.getElementById("root")).render(<App />);`,
+        },
+        // 'src/index.js': {
+        //   content: (props.copyNodes || '').replace('_mount_', 'document.getElementById("container")'),
+        // },
         '.kktrc.js': {
           content: `import lessModules from "@kkt/less-modules";\nexport default (conf, env, options) => {\nconf = lessModules(conf, env, options);\nreturn conf;\n};`,
         },
@@ -46,8 +52,8 @@ export default function Code({ version, dependencies, codePen, codeSandbox, ...o
             name: 'uiw-demo',
             description: `uiw v${version} - demo`,
             dependencies: {
-              react: '^17.0.2',
-              'react-dom': '^17.0.2',
+              react: '18.1.0',
+              'react-dom': '18.1.0',
               uiw: 'latest',
             },
             devDependencies: {
@@ -66,5 +72,6 @@ export default function Code({ version, dependencies, codePen, codeSandbox, ...o
       },
     };
   }
-  return <CodePreview {...props} dependencies={dependencies} style={{ marginBottom: 0 }} />;
+  return <CodeLayout {...props} />;
+  // return <CodePreview {...props} dependencies={dependencies} style={{ marginBottom: 0 }} />;
 }
