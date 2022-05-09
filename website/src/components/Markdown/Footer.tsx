@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { Divider } from 'uiw';
 import { useTranslation } from 'react-i18next';
-import i18n, { DefLan } from 'react-i18next-config';
 
 export type FooterProps = {
   path?: string;

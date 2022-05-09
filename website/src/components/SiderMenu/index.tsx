@@ -4,7 +4,6 @@ import styles from './index.module.less';
 import nav from '../icons/nav';
 import { useTranslation } from 'react-i18next';
 import { LayoutMenuType } from 'locale/menu/layoutMenuType';
-import i18n, { DefLan } from 'react-i18next-config';
 
 export default function SiderMenu() {
   const location = useLocation();
@@ -17,8 +16,6 @@ export default function SiderMenu() {
   if (!data?.children) {
     return null;
   }
-
-  // const urlSuffix = i18n.language === DefLan ? '' : `${i18n.language.toLowerCase()}/`;
 
   return (
     <div className={styles.wapper}>
