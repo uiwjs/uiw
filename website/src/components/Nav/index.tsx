@@ -1,41 +1,42 @@
-import { Fragment, useState, useContext, ChangeEvent, useMemo } from 'react';
+import { Fragment, useContext, ChangeEvent, useMemo } from 'react';
 import { Tooltip } from 'uiw';
-import { NavLink, Link, useLocation } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import styles from './index.module.less';
 import { ThemeContext } from '../../contexts';
 import nav from '../icons/nav';
 import logo from '../icons/logo';
 import menu from '../icons/menu';
 import pkg from 'uiw/package.json';
-import { DefLan } from 'react-i18next-config';
+// import { DefLan } from 'react-i18next-config';
 import { useTranslation } from 'react-i18next';
 import { LayoutMenuType } from 'locale/menu/layoutMenuType';
 
 export default function Nav() {
   const { state, dispatch } = useContext(ThemeContext);
-  const i18n = state.i18n;
-  const { t: trans } = useTranslation();
-  const [language, setLanguage] = useState(i18n.language);
-  const data = useMemo(() => JSON.parse(trans('menu')), [language]);
+  // const i18n = state.i18n;
+  const { t: trans, i18n } = useTranslation();
+  // const [language, setLanguage] = useState(i18n.language);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const data = useMemo(() => JSON.parse(trans('menu')), [i18n.language]);
 
   const changeLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
-    setLanguage(e.target.value);
+    // setLanguage(e.target.value);
     i18n.changeLanguage(e.target.value);
-    window.location.reload();
+    // window.location.reload();
     // replacePage();
   };
 
-  const location = useLocation();
-  const replacePage = () => {
-    const isDefualt = i18n.language === DefLan;
-    const spilitPath = location.pathname.split('/');
-    if (isDefualt) {
-      spilitPath.splice(2, 1);
-    } else {
-      spilitPath.splice(2, 0, i18n.language.toLowerCase());
-    }
-    window.location.replace('#' + spilitPath.join('/'));
-  };
+  // const location = useLocation();
+  // const replacePage = () => {
+  //   const isDefualt = i18n.language === DefLan;
+  //   const spilitPath = location.pathname.split('/');
+  //   if (isDefualt) {
+  //     spilitPath.splice(2, 1);
+  //   } else {
+  //     spilitPath.splice(2, 0, i18n.language.toLowerCase());
+  //   }
+  //   window.location.replace('#' + spilitPath.join('/'));
+  // };
 
   return (
     <Fragment>
@@ -111,7 +112,7 @@ export default function Nav() {
       </div>
 
       <div className={[styles.btn, state.layout === 'left' ? null : styles.btnTop].filter(Boolean).join(' ').trim()}>
-        <select value={language} onChange={(e) => changeLanguage(e)}>
+        <select value={i18n.language} onChange={(e) => changeLanguage(e)}>
           <option value="zh-CN">简</option>
           <option value="en-US">English</option>
         </select>

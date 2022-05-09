@@ -17,11 +17,10 @@ import ButtonGroup from '@uiw/react-button-group';
 ### 基本用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Button, Divider, Icon } from 'uiw';
-
-ReactDOM.createRoot(_mount_).render(
+const Demo = ()=>(
   <div>
     <Button type="primary">主要按钮</Button>
     <Button type="success">成功按钮</Button>
@@ -44,16 +43,18 @@ ReactDOM.createRoot(_mount_).render(
     <Button type="link"> (超连接样式)link </Button>
   </div>
 );
+export default Demo
+
 ```
 
 ### 按钮组
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Button, Divider, ButtonGroup } from 'uiw';
 
-ReactDOM.render(
+const Demo = ()=>(
   <div>
     <ButtonGroup>
       <Button type="primary">主要按钮</Button>
@@ -108,15 +109,16 @@ ReactDOM.render(
       <Button icon="linux" />
       <Button icon="apple" />
     </ButtonGroup>
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
+
 ```
 
 ### 图标按钮
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Button, Icon, Divider } from 'uiw';
 
@@ -125,7 +127,7 @@ const open = <svg width="12" height="16" style={{ height: 16 }}> <path fillRule=
 const merged = <svg width="12" height="16" viewBox="0 0 12 16" style={{ height: 16 }}> <path fillRule="evenodd" d="M10 7c-.73 0-1.38.41-1.73 1.02V8C7.22 7.98 6 7.64 5.14 6.98c-.75-.58-1.5-1.61-1.89-2.44A1.993 1.993 0 0 0 2 .99C.89.99 0 1.89 0 3a2 2 0 0 0 1 1.72v6.56c-.59.35-1 .99-1 1.72 0 1.11.89 2 2 2a1.993 1.993 0 0 0 1-3.72V7.67c.67.7 1.44 1.27 2.3 1.69.86.42 2.03.63 2.97.64v-.02c.36.61 1 1.02 1.73 1.02 1.11 0 2-.89 2-2 0-1.11-.89-2-2-2zm-6.8 6c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm8 6c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z" /> </svg>;
 const closed = <svg viewBox="0 0 16 16" width="16" height="16"> <path fillRule="evenodd" d="M7 10h2v2H7v-2zm2-6H7v5h2V4zm1.5 1.5l-1 1L12 9l4-4.5-1-1L12 7l-1.5-1.5zM8 13.7A5.71 5.71 0 0 1 2.3 8c0-3.14 2.56-5.7 5.7-5.7 1.83 0 3.45.88 4.5 2.2l.92-.92A6.947 6.947 0 0 0 8 1C4.14 1 1 4.14 1 8s3.14 7 7 7 7-3.14 7-7l-1.52 1.52c-.66 2.41-2.86 4.19-5.48 4.19v-.01z" /> </svg>;
 
-ReactDOM.render(
+const Demo = ()=>(
   <div>
     <Button icon="weibo" type="primary">主要按钮</Button>
     <Button icon="chrome" type="success">成功按钮</Button>
@@ -143,19 +145,20 @@ ReactDOM.render(
     <Button icon={open} type="success">Open</Button>
     <Button icon={merged} type="light" style={{ backgroundColor: '#6f42c1', color: '#fff' }}>Merged</Button>
     <Button icon={closed} type="danger">Closed</Button>
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
+
 ```
 
 ### 按钮加载状态
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Button, Icon, Divider } from 'uiw';
 
-ReactDOM.render(
+const Demo = ()=>(
   <div>
     <Button type="danger">
       <Icon type="reload" spin={true} />
@@ -173,19 +176,20 @@ ReactDOM.render(
     <Button loading size="small" type="primary">主要按钮</Button>
     <Button loading size="default" type="success">成功按钮</Button>
     <Button loading size="large" type="warning">警告按钮</Button>
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
+
 ```
 
 ### 禁用按钮组
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Button, ButtonGroup, Divider } from 'uiw';
 
-ReactDOM.render(
+const Demo = ()=>(
   <div>
     <ButtonGroup>
       <Button disabled type="primary">主要按钮</Button>
@@ -239,19 +243,20 @@ ReactDOM.render(
       <Button disabled icon="apple" basic type="danger" />
       <Button disabled icon="weibo" basic type="dark" />
     </div>
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
+
 ```
 
 ### 垂直按钮组
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Button, ButtonGroup, Row, Col } from 'uiw';
 
-ReactDOM.render(
+const Demo = ()=>(
   <Row gutter={10}>
     <Col style={{ maxWidth: 120 }}>
       <ButtonGroup vertical>
@@ -287,9 +292,10 @@ ReactDOM.render(
         <Button type="dark">暗按钮</Button>
       </ButtonGroup>
     </Col>
-  </Row>,
-  _mount_
+  </Row>
 );
+export default Demo
+
 ```
 
 ### 基本按钮
@@ -297,11 +303,11 @@ ReactDOM.render(
 设置 `basic=true` 即可获得基本按钮，没有背景颜色的状态按钮。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Button, Divider } from 'uiw';
 
-ReactDOM.render(
+const Demo = ()=>(
   <div>
     <Button basic type="primary">主要按钮</Button>
     <Button basic type="success">成功按钮</Button>
@@ -323,9 +329,10 @@ ReactDOM.render(
     <Button basic disabled type="danger">错误按钮</Button>
     <Button basic disabled type="light">亮按钮</Button>
     <Button basic disabled type="dark">暗按钮</Button>
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
+
 ```
 
 ### 基础按钮添加图标
@@ -333,7 +340,7 @@ ReactDOM.render(
 设置 `basic=true` 即可获得基本按钮，没有背景颜色的状态按钮。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Button, Divider } from 'uiw';
 
@@ -343,7 +350,7 @@ const chat = (
   </svg>
 )
 
-ReactDOM.render(
+const Demo = ()=>(
   <div>
     <Button icon="weibo" basic type="primary">主要按钮</Button>
     <Button icon="chrome" basic type="success">成功按钮</Button>
@@ -357,19 +364,20 @@ ReactDOM.render(
     <Button icon="apple" basic type="danger" />
     <Button icon="weibo" basic type="dark" />
     <Button icon="weibo" basic type="dark" />
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
+
 ```
 
 ### 激活按钮样式
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Button } from 'uiw';
 
-ReactDOM.render(
+const Demo = ()=>(
   <div>
     <Button active type="primary">主要按钮</Button>
     <Button active type="success">成功按钮</Button>
@@ -378,19 +386,20 @@ ReactDOM.render(
     <Button active type="light">亮按钮</Button>
     <Button active type="dark">暗按钮</Button>
     <Button active type="link"> (超连接样式)link </Button>
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
+
 ```
 
 ### 禁用按钮样式
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Button } from 'uiw';
 
-ReactDOM.render(
+const Demo = ()=>(
   <div>
     <Button disabled type="primary">主要按钮</Button>
     <Button disabled type="success">成功按钮</Button>
@@ -399,20 +408,21 @@ ReactDOM.render(
     <Button disabled type="light">亮按钮</Button>
     <Button disabled type="dark">暗按钮</Button>
     <Button disabled type="link"> (超连接样式)link </Button>
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
+
 ```
 
 
 ### block
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Button, Row, Col } from 'uiw';
 
-ReactDOM.render(
+const Demo = ()=>(
   <Row gutter={10}>
     <Col style={{ maxWidth: 320 }}>
       <Button block type="primary">主要按钮</Button>
@@ -422,9 +432,9 @@ ReactDOM.render(
       <Button block type="light">亮按钮</Button>
       <Button block type="dark">暗按钮</Button>
     </Col>
-  </Row>,
-  _mount_
+  </Row>
 );
+export default Demo
 ```
 
 ### size大小
@@ -432,12 +442,12 @@ ReactDOM.render(
 `size` 在 `Button.Group`下面不支持。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Button, Divider } from 'uiw';
 
-ReactDOM.render(
-  <div>
+const Demo =()=>{
+  return <div>
     <Button size="small" type="primary">主要按钮</Button>
     <Button size="default" type="success">成功按钮</Button>
     <Button size="large" type="warning">警告按钮</Button>
@@ -449,9 +459,10 @@ ReactDOM.render(
     <Button icon="chrome" size="small" type="success">谷歌浏览器</Button>
     <Button icon="chrome" type="success">谷歌浏览器</Button>
     <Button icon="apple" size="large" type="warning">淘宝</Button>
-  </div>,
-  _mount_
-);
+  </div>
+}
+
+export default Demo
 ```
 
 ## Props
