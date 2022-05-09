@@ -68,19 +68,3 @@
 .w-code-layout .preview-code > pre {
   margin: 0;
 }
-.w-code-layout .preview-button .preview-button-ccs {
-  margin-right: 30px;
-}
-.w-code-layout .preview-button .preview-button-ccs button {
-  border: none;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  opacity: 0.5;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.w-code-layout .preview-button .preview-button-ccs button:hover {
-  opacity: 1;
-}

@@ -53,7 +53,7 @@
     "@types/react-dom": "^18.0.2",
     "kkt": "~7.1.5",
     "react-test-renderer": "^18.0.0",
-    "markdown-react-code-preview-loader": "~1.0.0"
+    "markdown-react-code-preview-loader": "~1.0.1"
   },
   "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT",
