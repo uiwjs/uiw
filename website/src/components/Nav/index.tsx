@@ -7,36 +7,17 @@ import nav from '../icons/nav';
 import logo from '../icons/logo';
 import menu from '../icons/menu';
 import pkg from 'uiw/package.json';
-// import { DefLan } from 'react-i18next-config';
 import { useTranslation } from 'react-i18next';
 import { LayoutMenuType } from 'locale/menu/layoutMenuType';
 
 export default function Nav() {
   const { state, dispatch } = useContext(ThemeContext);
-  // const i18n = state.i18n;
   const { t: trans, i18n } = useTranslation();
-  // const [language, setLanguage] = useState(i18n.language);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const data = useMemo(() => JSON.parse(trans('menu')), [i18n.language]);
 
   const changeLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
-    // setLanguage(e.target.value);
     i18n.changeLanguage(e.target.value);
-    // window.location.reload();
-    // replacePage();
   };
-
-  // const location = useLocation();
-  // const replacePage = () => {
-  //   const isDefualt = i18n.language === DefLan;
-  //   const spilitPath = location.pathname.split('/');
-  //   if (isDefualt) {
-  //     spilitPath.splice(2, 1);
-  //   } else {
-  //     spilitPath.splice(2, 0, i18n.language.toLowerCase());
-  //   }
-  //   window.location.replace('#' + spilitPath.join('/'));
-  // };
 
   return (
     <Fragment>

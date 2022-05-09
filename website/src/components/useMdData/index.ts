@@ -9,7 +9,7 @@ export const useFileSuffix = () => {
   return fileSuffix;
 };
 
-const useMdData = (path?: (lang?: string) => Promise<CodeBlockData>) => {
+const useMdData = (renderPage?: (lang?: string) => Promise<CodeBlockData>) => {
   const [mdData, setMdData] = useState<CodeBlockData>({
     source: '',
     components: {},
@@ -20,10 +20,10 @@ const useMdData = (path?: (lang?: string) => Promise<CodeBlockData>) => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const getMd = async () => {
-      if (path) {
+      if (renderPage) {
         setLoading(() => true);
         try {
-          const result = await path(fileSuffix);
+          const result = await renderPage(fileSuffix);
           if (result) {
             setMdData(result);
           }
