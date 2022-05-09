@@ -20,6 +20,7 @@ import ButtonGroup from '@uiw/react-button-group';
 ```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Button, Divider, Icon } from 'uiw';
+
 const Demo = ()=>(
   <div>
     <Button type="primary">主要按钮</Button>

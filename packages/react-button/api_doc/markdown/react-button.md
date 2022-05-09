@@ -10,12 +10,6 @@
 |  --- | --- |
 |  [ButtonProps](./react-button.buttonprops.md) |  |
 
-## Variables
-
-|  Variable | Description |
-|  --- | --- |
-|  [\_default](./react-button._default.md) |  |
-
 ## Type Aliases
 
 |  Type Alias | Description |
