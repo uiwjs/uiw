@@ -2,6 +2,7 @@ import React from 'react';
 import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLButtonProps } from '@uiw/utils';
 import './style/index.less';
+import { simpleDemo } from './simpleDemo';
 
 export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'light' | 'dark' | 'link';
 export type ButtonSize = 'large' | 'default' | 'small';
@@ -14,13 +15,15 @@ export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
   block?: boolean;
   icon?: IconProps['type'];
   /**
-   * @china Text 类型
-   * @param a number
-   * 类型二
-   * @englishText type english
+   * @title按钮类型
+   * @china 类型
+   * @engilish Type
    */
   type?: ButtonType;
-  // 大小
+  /**
+   * @title 按钮尺寸
+   * @DefaultValue 'large' | 'default' | 'small'
+   */
   size?: ButtonSize;
   htmlType?: 'button' | 'submit' | 'reset';
   /**
@@ -29,7 +32,8 @@ export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
   onClick?: (e: React.MouseEvent<HTMLButtonElement> & MouseEvent) => void;
 }
 
-export default React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+/**@internal */
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const {
     prefixCls = 'w-btn',
     disabled = false,
@@ -61,6 +65,8 @@ export default React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
     .join(' ')
     .trim();
 
+  simpleDemo();
+
   return (
     <button {...others} ref={ref} type={htmlType} disabled={disabled || loading} className={cls}>
       {icon && <Icon type={icon} />}
@@ -73,3 +79,5 @@ export default React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
     </button>
   );
 });
+
+export default Button;

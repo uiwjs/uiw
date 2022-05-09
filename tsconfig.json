@@ -17,6 +17,8 @@
     "lib": ["esnext", "dom"],
     "types": ["jest", "node"]
   },
+
+  // typedoc 包的配置
   "typedocOptions": {
     "entryPoints": ["./packages/react-button"],
     "out": "docs", // 文档目录

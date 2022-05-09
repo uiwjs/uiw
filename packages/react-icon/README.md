@@ -8,6 +8,7 @@ Icon 图标
 语义化的矢量图形，内置的图标属于UI框架常用图形字体。icon字体以及样式，被抽离到一个新的仓库 [uiw icon](https://uiwjs.github.io/icons/) ，`uiw`去依赖 [uiw-iconfont](https://github.com/uiwjs/icons)，这个仓库主要是维护一套svg图片，并将svg图片转换为 `*.symbol.svg` `*.ttf` `*.woff` `*.woff2` `*.eot` `svgPaths.json` 等字体及相关文件并发布到 [npm](https://www.npmjs.com/package/uiw-iconfont) 上去。
 
 ```jsx
+```jsx mdx:preview
 import { Icon } from 'uiw';
 // or
 import Icon from '@uiw/react-icon';
@@ -16,7 +17,7 @@ import Icon from '@uiw/react-icon';
 ### 搜索图标
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Input, CopyToClipboard, Icon, Notify } from 'uiw';
@@ -80,7 +81,8 @@ class Demo extends React.Component {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
+// ReactDOM.render(<Demo />, _mount_);
 ```
 
 ## 如何使用
@@ -196,11 +198,11 @@ ReactDOM.render(
 
 我们为每个图标赋予了语义化的命名，命名规则如下:
 
-> \[形状?\]-\[图标名\]-\[描线?\]-\[方向?\]  
-> 方向：`down`、`up`、`left`、`right`  
-> 描线：`-o` 图标添加边框描线  
-> 默认：`w-icon-` 默认引用的字体文件作用域  
-> 自定定义：`w-icon-uiw-` 自定定义作用域  
+> \[形状?\]-\[图标名\]-\[描线?\]-\[方向?\]
+> 方向：`down`、`up`、`left`、`right`
+> 描线：`-o` 图标添加边框描线
+> 默认：`w-icon-` 默认引用的字体文件作用域
+> 自定定义：`w-icon-uiw-` 自定定义作用域
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
@@ -409,7 +411,7 @@ import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
 const iconList = [
-  'smile-o', 'smile','frown-o', 'frown', 'meh-o', 'meh', 
+  'smile-o', 'smile','frown-o', 'frown', 'meh-o', 'meh',
   'pause-circle-o', 'pause', 'pause-circle', 'information-o', 'information', 'warning-o', 'warning',
   'question-circle-o', 'question-circle', 'stop-o', 'stop',
 ];
@@ -442,7 +444,7 @@ import { Icon } from 'uiw';
 
 const iconList = [
  'plus', 'plus-circle-o','plus-circle', 'plus-square', 'plus-square-o',
- 'minus', 'minus-circle-o', 'minus-circle', 'minus-square', 'minus-square-o', 
+ 'minus', 'minus-circle-o', 'minus-circle', 'minus-square', 'minus-square-o',
  'close','circle-close-o', 'circle-close','close-square', 'close-square-o', 'asterisk',
   'check', 'circle-check-o', 'circle-check','check-square','check-square-o', 'copyright',
 ]
@@ -475,7 +477,7 @@ import { Icon } from 'uiw';
 
 const iconList = [
   'file-text', 'file-jpg', 'file-unknown', 'file-add', 'file-excel', 'file-pdf',
-  'folder-add', 'folder-open', 'paper-clip', 
+  'folder-add', 'folder-open', 'paper-clip',
 ]
 const itemStyl = {
   fontSize: 18, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
