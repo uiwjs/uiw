@@ -50,6 +50,11 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
     onChange && onChange(cdate, changeValue);
   }
 
+  function clearDateRange() {
+    setDateRange([]);
+    onChange && onChange(undefined, []);
+  }
+
   return (
     <div
       className={[`${prefixCls}-contents`, `${prefixCls}-inner`].filter(Boolean).join(' ').trim()}
@@ -105,7 +110,7 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
         />
       </Popover>
       {allowClear && dateRange.length > 0 && (
-        <Icon className={`${prefixCls}-close-btn`} color="#ccc" onClick={() => setDateRange([])} type="close" />
+        <Icon className={`${prefixCls}-close-btn`} color="#a5a5a5" onClick={() => clearDateRange()} type="close" />
       )}
     </div>
   );
