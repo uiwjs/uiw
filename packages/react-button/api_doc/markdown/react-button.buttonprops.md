@@ -17,12 +17,13 @@ export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'>
 |  --- | --- | --- |
 |  [active?](./react-button.buttonprops.active.md) | boolean | <i>(Optional)</i> |
 |  [basic?](./react-button.buttonprops.basic.md) | boolean | <i>(Optional)</i> |
-|  [block?](./react-button.buttonprops.block.md) | boolean | <i>(Optional)</i> |
+|  [deprecated](./react-button.buttonprops.deprecated.md) | number | The base class for controls that can be rendered. |
 |  [disabled?](./react-button.buttonprops.disabled.md) | boolean | <i>(Optional)</i> |
 |  [htmlType?](./react-button.buttonprops.htmltype.md) | 'button' \| 'submit' \| 'reset' | <i>(Optional)</i> |
 |  [icon?](./react-button.buttonprops.icon.md) | IconProps\['type'\] | <i>(Optional)</i> |
-|  [loading?](./react-button.buttonprops.loading.md) | boolean | <i>(Optional)</i> |
+|  [message](./react-button.buttonprops.message.md) | string | The warning message |
+|  [new](./react-button.buttonprops.new.md) | (hour: number, minute: number) =&gt; void | Shortest name:  Full name:  |
 |  [onClick?](./react-button.buttonprops.onclick.md) | (e: React.MouseEvent&lt;HTMLButtonElement&gt; &amp; MouseEvent) =&gt; void | <i>(Optional)</i> |
-|  [size?](./react-button.buttonprops.size.md) | [ButtonSize](./react-button.buttonsize.md) | <i>(Optional)</i>  按钮尺寸 |
-|  [type?](./react-button.buttonprops.type.md) | [ButtonType](./react-button.buttontype.md) | <i>(Optional)</i> @<!-- -->title按钮类型  类型  Type |
+|  [size?](./react-button.buttonprops.size.md) | [ButtonSize](./react-button.buttonsize.md) | <i>(Optional)</i> 按钮尺寸 |
+|  [type?](./react-button.buttonprops.type.md) | [ButtonType](./react-button.buttontype.md) | <b><i>(BETA)</i></b> <i>(Optional)</i> 按钮类型  |
 

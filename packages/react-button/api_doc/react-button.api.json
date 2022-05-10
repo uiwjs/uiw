@@ -115,15 +115,11 @@
           "syntaxKind": "modifier"
         },
         {
-          "tagName": "@betaDocumentation",
+          "tagName": "@english",
           "syntaxKind": "modifier"
         },
         {
-          "tagName": "@internalRemarks",
-          "syntaxKind": "block"
-        },
-        {
-          "tagName": "@preapproved",
+          "tagName": "@mytag",
           "syntaxKind": "modifier"
         }
       ],
@@ -153,9 +149,7 @@
         "@throws": true,
         "@typeParam": true,
         "@virtual": true,
-        "@betaDocumentation": true,
-        "@internalRemarks": true,
-        "@preapproved": true
+        "@mytag": true
       },
       "reportUnsupportedHtmlElements": false
     }
@@ -264,25 +258,25 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@uiw/react-button!ButtonProps#block:member",
-              "docComment": "",
+              "canonicalReference": "@uiw/react-button!ButtonProps#deprecated:member",
+              "docComment": "/**\n * The base class for controls that can be rendered.\n *\n * @deprecated\n *\n * {@link htmlType}\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "block?: "
+                  "text": "deprecated: "
                 },
                 {
                   "kind": "Content",
-                  "text": "boolean"
+                  "text": "number"
                 },
                 {
                   "kind": "Content",
                   "text": ";"
                 }
               ],
-              "isOptional": true,
+              "isOptional": false,
               "releaseTag": "Public",
-              "name": "block",
+              "name": "deprecated",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -373,25 +367,51 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@uiw/react-button!ButtonProps#loading:member",
-              "docComment": "",
+              "canonicalReference": "@uiw/react-button!ButtonProps#message:member",
+              "docComment": "/**\n * The warning message\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "loading?: "
+                  "text": "message: "
                 },
                 {
                   "kind": "Content",
-                  "text": "boolean"
+                  "text": "string"
                 },
                 {
                   "kind": "Content",
                   "text": ";"
                 }
               ],
-              "isOptional": true,
+              "isOptional": false,
               "releaseTag": "Public",
-              "name": "loading",
+              "name": "message",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@uiw/react-button!ButtonProps#new:member",
+              "docComment": "/**\n * Shortest name: {@link InterfaceL1.(:CONSTRUCTOR)} Full name: {@link (InterfaceL1:interface).(:CONSTRUCTOR)}\n *\n * {@label CONSTRUCTOR}\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "new: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(hour: number, minute: number) => void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "new",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -400,7 +420,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@uiw/react-button!ButtonProps#onClick:member",
-              "docComment": "/**\n * @param e - MouseEvent类型\n */\n",
+              "docComment": "/**\n * @param e - MouseEvent类型\n *\n * @returns 结果\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -453,7 +473,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@uiw/react-button!ButtonProps#size:member",
-              "docComment": "/**\n * @title 按钮尺寸\n *\n * @DefaultValue\n *\n * 'large' | 'default' | 'small'\n */\n",
+              "docComment": "/**\n * 按钮尺寸\n *\n * @defaultValue\n *\n * 'large' | 'default' | 'small'\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -480,7 +500,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@uiw/react-button!ButtonProps#type:member",
-              "docComment": "/**\n * @title按钮类型  @china 类型  @engilish Type\n */\n",
+              "docComment": "/**\n * 按钮类型 {@link link}\n *\n * @mytag @beta\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -497,7 +517,7 @@
                 }
               ],
               "isOptional": true,
-              "releaseTag": "Public",
+              "releaseTag": "Beta",
               "name": "type",
               "propertyTypeTokenRange": {
                 "startIndex": 1,

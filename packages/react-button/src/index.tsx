@@ -2,7 +2,6 @@ import React from 'react';
 import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLButtonProps } from '@uiw/utils';
 import './style/index.less';
-import { simpleDemo } from './simpleDemo';
 
 export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'light' | 'dark' | 'link';
 export type ButtonSize = 'large' | 'default' | 'small';
@@ -11,25 +10,41 @@ export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
   basic?: boolean;
   disabled?: boolean;
   active?: boolean;
+  /** @internal */
   loading?: boolean;
+  /** @alpha */
   block?: boolean;
   icon?: IconProps['type'];
   /**
-   * @title按钮类型
-   * @china 类型
-   * @engilish Type
+   * 按钮类型
+   * @mytag {@link link }
+   * @beta
    */
   type?: ButtonType;
   /**
-   * @title 按钮尺寸
-   * @DefaultValue 'large' | 'default' | 'small'
+   * 按钮尺寸
+   * @defaultValue 'large' | 'default' | 'small'
    */
   size?: ButtonSize;
   htmlType?: 'button' | 'submit' | 'reset';
   /**
    * @param e MouseEvent类型
+   * @returns 结果
    */
   onClick?: (e: React.MouseEvent<HTMLButtonElement> & MouseEvent) => void;
+  /** @internal */
+  range: number;
+  /**
+   * The warning message
+   */
+  message: string;
+  /**
+   * Shortest name:  {@link InterfaceL1.(:CONSTRUCTOR)}
+   * Full name:      {@link (InterfaceL1:interface).(:CONSTRUCTOR)}
+   *
+   * {@label CONSTRUCTOR}
+   */
+  new: (hour: number, minute: number) => void;
 }
 
 /**@internal */
@@ -64,8 +79,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
     .filter(Boolean)
     .join(' ')
     .trim();
-
-  simpleDemo();
 
   return (
     <button {...others} ref={ref} type={htmlType} disabled={disabled || loading} className={cls}>

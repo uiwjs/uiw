@@ -170,9 +170,9 @@
      * (REQUIRED) Whether to generate the .d.ts rollup file.
      */
     "enabled": true,
-    "betaTrimmedFilePath": "<projectFolder>/cjs/<unscopedPackageName>-beta.d.ts",
-    "publicTrimmedFilePath": "<projectFolder>/cjs/<unscopedPackageName>-public.d.ts",
-    "untrimmedFilePath": "<projectFolder>/cjs/<unscopedPackageName>.d.ts"
+    "betaTrimmedFilePath": "<projectFolder>/api_doc/lib/type-beta.d.ts",
+    "publicTrimmedFilePath": "<projectFolder>/api_doc/lib/type-public.d.ts",
+    "untrimmedFilePath": "<projectFolder>/api_doc/lib/type.d.ts"
 
     /**
      * Specifies the output path for a .d.ts rollup file to be generated without any trimming.
@@ -240,7 +240,7 @@
      *
      * DEFAULT VALUE: true
      */
-    // "enabled": true,
+    "enabled": false
     /**
      * Specifies where the TSDoc metadata file should be written.
      *

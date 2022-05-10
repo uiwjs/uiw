@@ -21,11 +21,10 @@
     "build": "npm run b:uiw && npm run b:css && npm run b:css:dist",
     "start": "lerna exec --scope website -- npm run start",
     "doc": "npm run b:website && npm run b:doc",
-
-    "api:clean": "lerna exec --scope @uiw/react-button -- rm -rf api_doc",
     "api:doc": "lerna exec --scope @uiw/react-button -- api-extractor run",
     "api:doc:conver": "lerna exec --scope @uiw/react-button -- api-documenter markdown -i api_doc -o api_doc/markdown",
     "api:document": "npm run api:doc; npm run api:doc:conver",
+    "api:clean": "lerna exec --scope @uiw/react-button -- rm -rf api_doc",
     "api:typedoc": "typedoc --json api_doc.json",
     "b:website": "lerna exec --scope website -- npm run build",
     "b:doc": "lerna exec --scope @uiw/doc -- node script/released.js",
@@ -65,6 +64,8 @@
   "devDependencies": {
     "@kkt/less-modules": "~7.1.1",
     "@kkt/ncc": "~1.0.8",
+    "@microsoft/tsdoc-config": "^0.16.1",
+    "@microsoft/api-extractor-model": "^7.17.3",
     "@types/react": "^18.0.6",
     "@types/react-dom": "^18.0.2",
     "@types/react-test-renderer": "^18.0.0",
