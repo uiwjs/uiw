@@ -5666,6 +5666,11 @@ function DateInputRange(props) {
     onChange && onChange(cdate, changeValue);
   }
 
+  function clearDateRange() {
+    setDateRange([]);
+    onChange && onChange(undefined, []);
+  }
+
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
     className: [prefixCls + "-contents", prefixCls + "-inner"].filter(Boolean).join(' ').trim(),
     style: _extends({
@@ -5719,8 +5724,8 @@ function DateInputRange(props) {
       }))
     })), allowClear && dateRange.length > 0 && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
       className: prefixCls + "-close-btn",
-      color: "#ccc",
-      onClick: () => setDateRange([]),
+      color: "#a5a5a5",
+      onClick: () => clearDateRange(),
       type: "close"
     })]
   });
