@@ -16,7 +16,7 @@ import Switch from '@uiw/react-switch';
 ### 基本用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Switch } from 'uiw';
 
@@ -27,14 +27,14 @@ const Demo = () => (
     <Switch data-checked="开" data-unchecked="关">电源</Switch>
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 
 ### Form 中使用 Switch
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Form, Switch, Row, Col, Button, Notify } from 'uiw';
 
@@ -87,13 +87,13 @@ const Demo = () => (
   </Form>
 );
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 设置文字
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Switch } from 'uiw';
 
@@ -109,14 +109,14 @@ const Demo = () => (
     />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 
 ### 禁用状态
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Switch } from 'uiw';
 
@@ -127,13 +127,13 @@ const Demo = () => (
     <Switch disabled data-checked="开" data-unchecked="关">电源</Switch>
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 尺寸
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Switch } from 'uiw';
 
@@ -146,7 +146,7 @@ const Demo = () => (
     <Switch size="small" data-checked="开" data-unchecked="关">电源</Switch>
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 控制组件
@@ -154,7 +154,7 @@ ReactDOM.render(<Demo />, _mount_);
 通过 `checked` 属性改变 `Switch` 组件状态。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Switch, Button } from 'uiw';
@@ -187,7 +187,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## Switch 

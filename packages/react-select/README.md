@@ -18,7 +18,7 @@ import Select from '@uiw/react-select';
 适用广泛的基础单选 `value` 的值为当前被选中的 `Option` 的 `value` 属性值。自定义 `Select` 请查看 [`<Dropdown />`](#/components/dropdown) 组件实例。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Row, Col, Select } from 'uiw';
 
@@ -35,14 +35,14 @@ const Demo = () => (
     </Col>
   </Row>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 
 ### 禁用选择器
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Row, Col, Select } from 'uiw';
 
@@ -59,7 +59,7 @@ const Demo = () => (
     </Col>
   </Row>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 
@@ -68,7 +68,7 @@ ReactDOM.render(<Demo />, _mount_);
 通过 `size` 属性设置选择器的尺寸，提供三个尺寸参数设置。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Row, Col, Select, Button } from 'uiw';
 
@@ -119,13 +119,13 @@ const Demo = () => (
     </Row>
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 选项组
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Row, Col, Select } from 'uiw';
 
@@ -149,7 +149,7 @@ const Demo = () => (
     </Col>
   </Row>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 在表单中使用
@@ -157,7 +157,7 @@ ReactDOM.render(<Demo />, _mount_);
 在 [`<Form />`](#/components/form) 表单中应用 [`<Select />`](#/components/select) 组件
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Form, Row, Col, Select, Button, Notify } from 'uiw';
 
@@ -224,7 +224,7 @@ const Demo = () => (
     </Form>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### HTML select
@@ -236,7 +236,7 @@ import 'uiw/lib/esm/select/style/index.less';
 ```
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Row, Col, Select } from 'uiw';
 
@@ -262,7 +262,7 @@ const Demo = () => (
     </Col>
   </Row>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## Select
