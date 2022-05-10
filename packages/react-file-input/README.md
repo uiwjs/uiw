@@ -16,7 +16,7 @@ import FileInput from '@uiw/react-file-input';
 ### 基础用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { FileInput, Button } from 'uiw';
 
@@ -34,18 +34,15 @@ const Demo = () => {
   )
 }
 
-ReactDOM.render(
-  <Demo />,
-  _mount_
-);
+export default Demo
 ```
 
 ### 图片墙
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
-import { FileInput, Button } from 'uiw';
+import { FileInput, Button,Icon } from 'uiw';
 
 const Demo = () => {
   return (
@@ -101,19 +98,16 @@ const Demo = () => {
   )
 }
 
-ReactDOM.render(
-  <Demo />,
-  _mount_
-);
+export default Demo
 ```
 
 ### 图片预览
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { FileInput, Overlay } from 'uiw';
+import { FileInput, Overlay,Icon } from 'uiw';
 
 const Demo=()=>{
   const [visible,visibleSet]=React.useState(false)
@@ -145,18 +139,17 @@ const Demo=()=>{
    )
 }
 
-ReactDOM.render(<Demo/>   ,_mount_
-);
+export default Demo
 ```
 
 ### 图片列表样式
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { FileInput, Button } from 'uiw';
 
-ReactDOM.render(
+export default ()=>(
   <div>
     <FileInput
       uploadType="picture"
@@ -201,19 +194,18 @@ ReactDOM.render(
     >
       <Button>新增</Button>
     </FileInput>
-  </div>,
-  _mount_
+  </div>
 );
 ```
 
 ### 在`Form`表单中使用
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
-import { Form, Row, Col, Icon } from 'uiw';
+import { Form, Row, Col, Icon,FileInput,Button } from 'uiw';
 
-ReactDOM.render(
+export default ()=>(
   <div>
     <Form
       onSubmit={({initial, current}) => {
@@ -283,8 +275,7 @@ ReactDOM.render(
         )
       }}
     </Form>
-  </div>,
-  _mount_
+  </div>
 );
 ```
 

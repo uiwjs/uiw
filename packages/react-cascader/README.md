@@ -16,9 +16,9 @@ import Cascader from '@uiw/react-cascader';
 ## 基础示例
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
-import { Cascader } from 'uiw';
+import { Cascader,Row } from 'uiw';
 
 const Demo = () => {
 
@@ -81,15 +81,15 @@ const Demo = () => {
     </Row>
   )
 };
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## 尺寸
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
-import { Cascader } from 'uiw';
+import { Cascader,Row } from 'uiw';
 
 const Demo = () => {
 
@@ -132,15 +132,15 @@ const Demo = () => {
     </Row>
   )
 };
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## 搜索选项
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
-import { Cascader } from 'uiw';
+import { Cascader, } from 'uiw';
 
 const Demo = () => {
 
@@ -189,15 +189,15 @@ const Demo = () => {
     />
   )
 };
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## 移入展开菜单
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
-import { Cascader } from 'uiw';
+import { Cascader,Row } from 'uiw';
 
 const Demo = () => {
 
@@ -249,7 +249,7 @@ const Demo = () => {
     </Row>
   )
 };
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 在表单中使用
@@ -257,7 +257,7 @@ ReactDOM.render(<Demo />, _mount_);
 在 [`<Form />`](#/components/form) 表单中应用 `<Cascader />` 组件。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true&noScroll=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Form, Row, Col, Cascader, Button } from 'uiw';
 
@@ -360,7 +360,7 @@ const options = [
     </div>
   );
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## Props

@@ -16,7 +16,7 @@ import Input from '@uiw/react-input';
 ### 基础用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Input } from 'uiw';
 
@@ -25,15 +25,15 @@ const Demo = () => (
     <Input placeholder="请输入内容" style={{ maxWidth: 200 }} />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 数字输入框
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
-import { InputNumber } from 'uiw';
+import { InputNumber,Row,Col } from 'uiw';
 
 const Demo = () => {
 
@@ -77,15 +77,15 @@ const Demo = () => {
     </div>
   )
 };
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### Form 中使用 Input
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
-import { Form, Input, Row, Col, Button, Notify } from 'uiw';
+import { Form, Input, Row, Col, Button, Notify ,InputNumber} from 'uiw';
 
 const Demo = () => (
   <Form
@@ -157,13 +157,13 @@ const Demo = () => (
   </Form>
 );
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 插入图标
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Input, Row, Col } from 'uiw';
 
@@ -186,7 +186,7 @@ const Demo = () => (
     </Row>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 后面插入内容
@@ -194,7 +194,7 @@ ReactDOM.render(<Demo />, _mount_);
 向后面插入 [`Button`](#/components/button) 或者 [`Tag`](#/components/tag)
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Input, Row, Col, Button, Tag } from 'uiw';
 
@@ -232,13 +232,13 @@ const Demo = () => (
     </Row>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 输入框尺寸
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Input, Row, Col, Tag, Button } from 'uiw';
 
@@ -358,13 +358,13 @@ const Demo = () => (
     </Row>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 密码输入框
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Input, Row, Col, Button } from 'uiw';
@@ -401,15 +401,15 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 输入框被禁用
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
-import { Icon, Input, Row, Col} from 'uiw';
+import { Icon, Input, Row, Col,Button} from 'uiw';
 
 const stylItem = { margin: 20 };
 const Demo = () => (
@@ -437,7 +437,7 @@ const Demo = () => (
     </Row>
   </>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## Input

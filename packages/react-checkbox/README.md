@@ -18,26 +18,25 @@ import Checkbox from '@uiw/react-checkbox';
 单独使用可以表示两种状态之间的切换，半选中只是样式上的表现。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Checkbox } from 'uiw';
 
-ReactDOM.render(
+export default ()=> (
   <div>
     <Checkbox onChange={(e) =>{
       console.log(e.target.checked)
       console.log(e.target)
     }}>未选中</Checkbox>
     <Checkbox checked >选中</Checkbox>
-  </div>,
-  _mount_
+  </div>
 );
 ```
 
 ### Form 中使用 Checkbox
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->  
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Form, Checkbox, Row, Col, Button, Notify } from 'uiw';
 
@@ -113,7 +112,7 @@ const Demo = () => (
     </Form>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 禁用样式
@@ -121,24 +120,23 @@ ReactDOM.render(<Demo />, _mount_);
 通过设置 `disabled` 属性来禁用多选框。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Checkbox } from 'uiw';
 
-ReactDOM.render(
+export default ()=>(
   <div>
     <Checkbox disabled checked>未选中禁用</Checkbox>
     <Checkbox disabled checked>选中禁用</Checkbox>
     <Checkbox disabled indeterminate>半选中禁用</Checkbox>
-  </div>,
-  _mount_
+  </div>
 );
 ```
 
 ### 全选
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Checkbox, Divider } from 'uiw';
 
@@ -186,7 +184,7 @@ class Demo extends React.Component {
   }
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 多选组
@@ -194,7 +192,7 @@ ReactDOM.render(<Demo />, _mount_);
 方便的从数组生成 `Checkbox` 组。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Checkbox, Divider, Button } from 'uiw';
 
@@ -237,7 +235,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 控制组件
@@ -245,7 +243,7 @@ ReactDOM.render(<Demo />, _mount_);
 通过 `checked` 属性改变 `Checkbox` 组件状态。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Checkbox, Button } from 'uiw';
 
@@ -277,7 +275,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 

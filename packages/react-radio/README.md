@@ -18,7 +18,7 @@ import { Radio, RadioButton, RadioGroup } from '@uiw/react-radio';
 适用广泛的基础最简单的用法，展示各种状态下的样式。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Radio, RadioButton } from 'uiw';
 
@@ -33,13 +33,13 @@ const Demo = () => (
     <RadioButton value="5" checked >RadioButton 选中</RadioButton>
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### Form 中使用 Radio
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Form, Radio, RadioGroup, RadioButton, Row, Col, Button, Notify } from 'uiw';
 
@@ -128,7 +128,7 @@ const Demo = () => (
   </Form>
 );
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 单选
@@ -136,7 +136,7 @@ ReactDOM.render(<Demo />, _mount_);
 适用广泛的基础最简单的用法。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Radio, RadioGroup, RadioButton } from 'uiw';
@@ -168,7 +168,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 单选组
@@ -176,10 +176,10 @@ ReactDOM.render(<Demo />, _mount_);
 设置单选初始值
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Radio, RadioGroup, Divider, Button } from 'uiw';
+import { Radio, RadioGroup, Divider, Button,RadioButton } from 'uiw';
 
 class Demo extends React.Component {
   constructor(props) {
@@ -224,7 +224,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## Radio

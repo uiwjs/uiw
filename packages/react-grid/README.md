@@ -16,7 +16,7 @@ import { Row, Col } from '@uiw/react-grid';
 ### 基础用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Row, Col } from 'uiw';
 
@@ -28,7 +28,7 @@ const Demo = () => (
     <Col grow={1}> <Box num="3" background="#A5A5A5" /> </Col>
   </Row>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default ()=>(<Demo />);
 ```
 
 ### Gutter
@@ -36,13 +36,13 @@ ReactDOM.render(<Demo />, _mount_);
 栅格间隔，可以写成像素值
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Row, Col } from 'uiw';
 
 const Blank = ({ num, height, width, style, background }) => <div style={{ ...style, textAlign: 'center', paddingTop: 5,paddingBottom: 5, background, width, height}}>Col {num}</div>
 
-ReactDOM.render(
+export default ()=>(
   <div>
     <Row gutter={10}>
       <Col> <Blank background="#A5A5A5" num={1}/> </Col>
@@ -54,15 +54,14 @@ ReactDOM.render(
       <Col> <Blank background="#dedede" num={2}/> </Col>
       <Col> <Blank background="#A5A5A5" num={3}/> </Col>
     </Row>
-  </div>,
-  _mount_
+  </div>
 );
 ```
 
 ### Flex 行设置列对齐
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Row, Col } from 'uiw';
 
@@ -97,13 +96,13 @@ const Demo = () => (
     </Row>
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default ()=>(<Demo />);
 ```
 
 ### Flex 列对齐
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Row, Col } from 'uiw';
 
@@ -117,13 +116,13 @@ const Demo = () => (
     </Row>
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default ()=>(<Demo />);
 ```
 
 ### 对齐内容
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Row, Col } from 'uiw';
 
@@ -157,7 +156,7 @@ const Demo = () => (
     </Row>
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default ()=>(<Demo />);
 ```
 
 ### 24删格
@@ -165,7 +164,7 @@ ReactDOM.render(<Demo />, _mount_);
 可以通过指定 `24` 列中每列的宽度来创建基本网格系统。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Row, Col } from 'uiw';
 
@@ -201,13 +200,13 @@ const Demo = () => (
     </Row>
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default ()=>(<Demo />);
 ```
 
 ### 动态列增长
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Row, Col } from 'uiw';
 
@@ -225,7 +224,7 @@ const Demo = () => (
     </Row>
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default ()=>(<Demo />);
 ```
 
 ## Row
