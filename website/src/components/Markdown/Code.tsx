@@ -1,12 +1,13 @@
-import CodeLayout, { PreviewProps } from './../CodeLayout';
-export interface CodeProps extends PreviewProps {
+import CodePreviewLayout, { CodeLayoutProps } from 'react-code-preview-layout';
+export interface CodesProps extends CodeLayoutProps {
   version: string;
   codePen: boolean;
   codeSandbox?: boolean;
+  noCode?: boolean;
 }
 
-export default function Code({ version, codePen, codeSandbox, ...other }: CodeProps) {
-  const props: PreviewProps = { ...other };
+export default function Code({ version, codePen, codeSandbox, noCode, ...other }: CodesProps) {
+  const props: CodeLayoutProps = { ...other };
   if (codePen) {
     props.codePenOptions = {
       title: `uiw${version} - demo`,
@@ -72,6 +73,10 @@ export default function Code({ version, codePen, codeSandbox, ...other }: CodePr
       },
     };
   }
-  return <CodeLayout {...props} />;
+  if (typeof noCode === 'boolean') {
+    props.noButton = noCode;
+  }
+  console.log('noCode', noCode);
+  return <CodePreviewLayout {...props} codePadding={0} />;
   // return <CodePreview {...props} dependencies={dependencies} style={{ marginBottom: 0 }} />;
 }
