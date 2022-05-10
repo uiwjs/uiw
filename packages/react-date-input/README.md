@@ -91,12 +91,12 @@ function Demo(){
         if (current.date) {
           Notify.success({
             title: '提交成功！',
-            description: `表单提交时间成功，时间为：${current.date}`,
+            description: `表单提交时间成功，时间为：${current.date} range:${current.dateRange}`,
           });
         } else {
           Notify.error({
             title: '提交失败！',
-            description: `表单提交时间成功，时间为：${current.date}，将自动填充初始化值！`,
+            description: `表单提交时间成功，时间为：${current.date} range:${current.dateRange}，将自动填充初始化值！`,
           });
         }
       }}
@@ -123,6 +123,7 @@ function Demo(){
             </Row>
             <Row style={{ width: 200 }} >
               <Col fixed>{fields.dateRange}</Col>
+              <Col fixed>{JSON.stringify(state)}</Col>
             </Row>
             <Row gutter={10}>
               <Col>
