@@ -35,10 +35,6 @@ export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
   /** @internal */
   range: number;
   /**
-   * The base class for controls that can be rendered.
-   * @deprecated {@link htmlType} */
-  deprecated: number;
-  /**
    * The warning message
    */
   message: string;
