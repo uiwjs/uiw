@@ -43,7 +43,8 @@
     "@uiw/react-codesandbox": "~1.1.5",
     "@uiw/react-codepen": "~1.0.2",
     "i18next-browser-languagedetector": "^6.1.4",
-    "uiw": "^4.21.3"
+    "uiw": "^4.21.3",
+    "react-code-preview-layout": "~1.0.0"
   },
   "devDependencies": {
     "@kkt/less-modules": "~7.1.1",
