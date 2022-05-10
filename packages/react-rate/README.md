@@ -18,7 +18,7 @@ import Rate from '@uiw/react-rate';
 按钮样式的单选组合。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon } from 'uiw';
 
@@ -36,7 +36,7 @@ const Demo = () => (
   </div>
 )
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 在表单中使用
@@ -44,7 +44,7 @@ ReactDOM.render(<Demo />, _mount_);
 在 [`<Form />`](#/components/form) 表单中应用 [`<Rate />`](#/components/rate) 组件
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Form, Row, Col, Icon, Rate, Button, Notify } from 'uiw';
 
@@ -105,13 +105,13 @@ const Demo = () => (
     </Form>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 受控
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon, RadioGroup, Radio } from 'uiw';
 
@@ -133,7 +133,7 @@ const Demo = () => {
   )
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 只读
@@ -141,7 +141,7 @@ ReactDOM.render(<Demo />, _mount_);
 按钮样式的单选组合。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon } from 'uiw';
 
@@ -157,7 +157,7 @@ const Demo = () => (
   </div>
 )
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 文本
@@ -165,7 +165,7 @@ ReactDOM.render(<Demo />, _mount_);
 按钮样式的单选组合。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Rate, Divider } from 'uiw';
 
@@ -179,13 +179,13 @@ const Demo = () => (
   </div>
 )
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 半选
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon } from 'uiw';
 
@@ -197,13 +197,13 @@ const Demo = () => (
   </div>
 );
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 尺寸
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Rate, Divider, Icon } from 'uiw';
 
@@ -213,7 +213,7 @@ const Demo = () => (
   </div>
 )
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## Rate
