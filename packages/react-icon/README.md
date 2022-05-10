@@ -82,7 +82,6 @@ class Demo extends React.Component {
   }
 }
 export default Demo
-// ReactDOM.render(<Demo />, _mount_);
 ```
 
 ## 如何使用
@@ -123,18 +122,19 @@ const Demo = () => (
 ```
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
-ReactDOM.render(
+const Demo =()=>(
   <div style={{ fontSize: 18, lineHeight: '12px' }}>
     <Icon type="heart-on" />
     <Icon type="pie-chart" />
     <Icon type="tag" />
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
+
 ```
 
 ### 图标尺寸
@@ -142,18 +142,18 @@ ReactDOM.render(
 默认情况下，图标非常小，它们继承了父级的字体大小。 如果没有设置字体大小，可以通过 `size` 来设置尺寸。通常情况 `size` 会很累赘没有什么用。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
-ReactDOM.render(
+const Demo = () => (
   <div style={{ fontSize: '28px' }}>
     <Icon type="heart-on" />
     <Icon type="pie-chart" />
     <Icon type="tag" />
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
 ```
 
 ### 图标颜色
@@ -164,34 +164,34 @@ ReactDOM.render(
 <!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
-ReactDOM.render(
+const Demo = () => (
   <div style={{ fontSize: '28px',color: 'green' }}>
     <Icon type="apple" color="red" />
     <Icon type="pie-chart" style={{fill: 'currentColor'}} />
     <Icon type="frown" style={{fill: 'blue'}} />
     <Icon type="uiw" style={{stroke: 'red',fill: '#ffef00'}} />
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
 ```
 
 ### 与文本对齐
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import { Icon } from 'uiw';
 
-ReactDOM.render(
+const Demo = () => (
   <div>
     <h3 style={{ margin: 0 }}>Exit <Icon verticalAlign="baseline" type="baidu" /></h3>
     <span>uiw</span><Icon type="uiw" verticalAlign="baseline" style={{ fill: '#009688', fontSize: 21 }} />
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
 ```
 
 ### 图标的命名规范
@@ -205,18 +205,18 @@ ReactDOM.render(
 > 自定定义：`w-icon-uiw-` 自定定义作用域
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
-ReactDOM.render(
+const Demo = () => (
   <div>
     <Icon type="circle-close" verticalAlign="baseline" />  图标名称：circle-close，[circle圈]-[关闭close]
     <br/>
     <Icon type="circle-close-o" verticalAlign="baseline" /> 图标名称：circle-close-o，[circle圈]-[关闭close]-[o描线]
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
 ```
 
 ### 图标旋转实例
@@ -224,25 +224,25 @@ ReactDOM.render(
 通过设置参数 `spin={true}` 来设置图标旋转。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
-ReactDOM.render(
+const Demo = () => (
   <div style={{ fontSize: 21, color: 'green' }}>
     <Icon type="loading" spin={true} color="red" />
     <Icon type="reload" spin={true} />
     <Icon type="picasa" spin={true} style={{fill: 'blue'}} />
     <Icon type="smile-o" spin={true} style={{fill: 'blue'}} />
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
 ```
 
 ### 自定义图标
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -258,13 +258,13 @@ const contrast = (
 )
 const styl = { marginRight: 10 };
 
-ReactDOM.render(
+const Demo = () => (
   <div style={{ fontSize: 21, color: 'green' }}>
     <Icon style={styl} type={chat} color="red" />
     <Icon style={styl} type={contrast} spin={true} />
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
 ```
 
 ## 字体图标
@@ -314,7 +314,7 @@ const Demo = () => (
 ### 方向性图标
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
-```js
+```js mdx:preview
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -326,7 +326,7 @@ const itemStyl = {
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
 
-ReactDOM.render(
+const Demo = () => (
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -336,15 +336,15 @@ ReactDOM.render(
         </div>
       )
     })}
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
 ```
 
 圆圈方向性图标
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
-```js
+```js mdx:preview
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -355,7 +355,7 @@ const itemStyl = {
   fontSize: 18, minWidth: 120, background: '#eaeaea', marginBottom: 10, marginRight: 10, padding: '20px 0',
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
-ReactDOM.render(
+const Demo = () => (
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -365,15 +365,15 @@ ReactDOM.render(
         </div>
       )
     })}
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
 ```
 
 其它方向性图标
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
-```js
+```js mdx:preview
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -388,7 +388,7 @@ const itemStyl = {
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
 
-ReactDOM.render(
+const Demo = () => (
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -398,15 +398,15 @@ ReactDOM.render(
         </div>
       )
     })}
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
 ```
 
 ### 提示建议性图标
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
-```js
+```js mdx:preview
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -420,7 +420,7 @@ const itemStyl = {
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
 
-ReactDOM.render(
+const Demo = () => (
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -430,15 +430,15 @@ ReactDOM.render(
         </div>
       )
     })}
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
 ```
 
 ## 符号
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
-```js
+```js mdx:preview
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -453,7 +453,7 @@ const itemStyl = {
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
 
-ReactDOM.render(
+const Demo = () => (
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -463,15 +463,15 @@ ReactDOM.render(
         </div>
       )
     })}
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
 ```
 
 ### 文件
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
-```js
+```js mdx:preview
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -484,7 +484,7 @@ const itemStyl = {
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
 
-ReactDOM.render(
+const Demo = () => (
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -494,15 +494,15 @@ ReactDOM.render(
         </div>
       )
     })}
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
 ```
 
 ### 其它
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
-```js
+```js mdx:preview
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -521,7 +521,7 @@ const itemStyl = {
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
 
-ReactDOM.render(
+const Demo = () => (
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -531,15 +531,15 @@ ReactDOM.render(
         </div>
       )
     })}
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
 ```
 
 ### 品牌标识
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
-```js
+```js mdx:preview
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -550,7 +550,7 @@ const itemStyl = {
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
 
-ReactDOM.render(
+const Demo = () => (
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -560,15 +560,15 @@ ReactDOM.render(
         </div>
       )
     })}
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
 ```
 
 ### 浏览器图标
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
-```js
+```js mdx:preview
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -578,7 +578,7 @@ const itemStyl = {
   display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fill: '#525252',
 }
 
-ReactDOM.render(
+const Demo = () => (
   <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: -10, marginRight: -10 }}>
     {iconList.map((type, idx) => {
       return (
@@ -588,7 +588,7 @@ ReactDOM.render(
         </div>
       )
     })}
-  </div>,
-  _mount_
+  </div>
 );
+export default Demo
 ```
