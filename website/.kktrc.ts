@@ -18,7 +18,7 @@ export default (conf: Configuration, env: 'development' | 'production', options:
   conf.module!.exprContextCritical = false;
   conf.module!.exprContextRecursive = false;
 
-  conf = mdCodeModulesLoader(conf);
+  conf = mdCodeModulesLoader(conf, ['jsx', 'js', 'tsx']);
 
   if (env === 'production') {
     conf.optimization = {
