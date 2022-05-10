@@ -16,7 +16,7 @@ import PinCode from '@uiw/react-pin-code';
 ### 基础用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { PinCode } from 'uiw';
 
@@ -25,7 +25,7 @@ const Demo = () => (
     <PinCode autoFocus value={['', '', '', '', '']} onChange={(val) => console.log(val)} />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 在表单中使用
@@ -33,7 +33,7 @@ ReactDOM.render(<Demo />, _mount_);
 在 [`<Form />`](#/components/form) 表单中应用 [`<PinCode />`](#/components/pin-code) 组件
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Form, Row, Col, Icon, PinCode, Button, Notify } from 'uiw';
 
@@ -101,13 +101,13 @@ const Demo = () => (
     </Form>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 更改占位符
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { PinCode, Divider } from 'uiw';
 
@@ -120,13 +120,13 @@ const Demo = () => (
     <PinCode placeholder="🤣" value={['', '', '', '', '']} onChange={(val) => console.log(val)} />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 输入框被禁用
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { PinCode, Divider } from 'uiw';
 
@@ -139,13 +139,13 @@ const Demo = () => (
     <PinCode disabled placeholder="🤣" value={['', '', '', '', '']} />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 尺寸大小
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { PinCode, Divider } from 'uiw';
 
@@ -158,7 +158,7 @@ const Demo = () => (
     <PinCode size="small" value={['', '', '', '', '']} />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## PinCode
