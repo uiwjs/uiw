@@ -1,20 +1,8 @@
 {
   "extends": "../../tsconfig",
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*"],
   "compilerOptions": {
     "outDir": "./cjs",
     "baseUrl": "."
-
-    // "declaration": true, // 这可以生成 API Extractor 将分析的 .d.ts 文件。 根据设计，TypeScript 源文件不是直接分析的，而是必须首先由您的编译器处理。
-    // "declarationMap":true // 这可以生成 .d.ts.map 文件，允许使用原始源文件中的行号报告 API 提取器错误；如果没有这个，错误位置将改为引用生成的 .d.ts 文件。
-  },
-  "typedocOptions": {
-    "entryPoints": ["src/index.tsx"],
-    "out": "docs", // 文档目录
-    "json": "docs/api_doc.json", // JSON 模型存放位置
-    "includeVersion": true, // 文档是否带版本号
-    "readme": true, // 是否将README.MD生成到文档
-    "disableSources": true // 是否显示反射源（例如这个类型的源代码在GitHub哪个位置）
-    // "out":"--json api_doc.json"
   }
 }

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/tsdoc/v0/tsdoc.schema.json",
+  "extends": ["../../tsdoc.json"],
+  "tagDefinitions": [
+    {
+      "tagName": "@mytag", // tag名称
+      "syntaxKind": "modifier", // 语法种类 'modifier' | 'block' | 'inline'   https://github.com/microsoft/tsdoc/blob/b7bddc1ceb6b6759857c66ef3af6e5e95655fb8c/tsdoc/src/configuration/TSDocTagDefinition.ts#L7-L24
+      "allowMultiple": false // 是否允许多个
+    }
+  ],
+  "supportForTags": {
+    "@alpha": true,
+    "@beta": true,
+    "@defaultValue": true,
+    "@decorator": true,
+    "@deprecated": true,
+    "@eventProperty": true,
+    "@example": true,
+    "@experimental": true,
+    "@inheritDoc": true,
+    "@internal": true,
+    "@label": true,
+    "@link": true,
+    "@override": true,
+    "@packageDocumentation": true,
+    "@param": true,
+    "@privateRemarks": true,
+    "@public": true,
+    "@readonly": true,
+    "@remarks": true,
+    "@returns": true,
+    "@sealed": true,
+    "@see": true,
+    "@throws": true,
+    "@typeParam": true,
+    "@virtual": true,
+
+    "@mytag": true
+  }
+}
