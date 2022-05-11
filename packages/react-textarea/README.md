@@ -16,7 +16,7 @@ import Textarea from '@uiw/react-textarea';
 ### 基础用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Textarea } from 'uiw';
 
@@ -25,7 +25,7 @@ const Demo = () => (
     <Textarea placeholder="请输入内容" />
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 在表单中使用
@@ -33,7 +33,7 @@ ReactDOM.render(<Demo />, _mount_);
 在 [`<Form />`](#/components/form) 表单中应用 [`<Textarea />`](#/components/textarea) 组件
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Form, Row, Col, Textarea, Button, Notify } from 'uiw';
@@ -93,14 +93,14 @@ const Demo = () => (
     </Form>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 
 ### 禁用
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Textarea } from 'uiw';
 
@@ -109,13 +109,13 @@ const Demo = () => (
     <Textarea placeholder="请输入内容" disabled />
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### HTML Textarea
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Textarea } from 'uiw';
 
@@ -124,7 +124,7 @@ const Demo = () => (
     <textarea className="w-textarea" placeholder="请输入内容" defaultValue="" />
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## Props

@@ -18,7 +18,7 @@ import Slider from '@uiw/react-slider';
 按钮样式的单选组合。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Slider, Divider } from 'uiw';
@@ -68,7 +68,7 @@ function Demo() {
   )
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 在表单中使用
@@ -76,7 +76,7 @@ ReactDOM.render(<Demo />, _mount_);
 在 [`<Form />`](#/components/form) 表单中应用 [`<Slider />`](#/components/slider) 组件，需要设置 `initialValue` 初始值。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { Form, Row, Col, Slider, Button, Notify } from 'uiw';
 
@@ -133,7 +133,7 @@ const Demo = () => (
     </Form>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 控制提示显示
@@ -141,7 +141,7 @@ ReactDOM.render(<Demo />, _mount_);
 通过设置 `tooltip` 的值，来控制提示的显示。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Slider, Divider } from 'uiw';
@@ -160,7 +160,7 @@ function Demo() {
     </div>
   )
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 刻度
@@ -168,7 +168,7 @@ ReactDOM.render(<Demo />, _mount_);
 通过 `step` 设置或返回每次拖动滑块控件时的递增量。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Slider, Divider} from 'uiw';
@@ -234,13 +234,13 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 标记刻度
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Slider, Divider} from 'uiw';
@@ -312,13 +312,13 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 禁用样式
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Slider, Divider} from 'uiw';
@@ -342,13 +342,13 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 垂直方向
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Row, Col, Slider } from 'uiw';
@@ -397,7 +397,7 @@ class Demo extends React.Component {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## Props

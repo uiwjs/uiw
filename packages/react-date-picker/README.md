@@ -16,7 +16,7 @@ import DatePicker from '@uiw/react-date-picker';
 ### 基础用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
@@ -49,13 +49,13 @@ function Demo() {
   );
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 显示时间
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
@@ -75,13 +75,13 @@ function Demo() {
   )
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 设置本地语言
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
@@ -103,13 +103,13 @@ function Demo() {
   )
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 初始展示日期
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
@@ -127,7 +127,7 @@ function Demo() {
   )
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 禁用时间
@@ -135,7 +135,7 @@ ReactDOM.render(<Demo />, _mount_);
 通过 `disabledDate` 方法设置，今天和今天之前不能选择。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
@@ -159,7 +159,7 @@ function Demo() {
   );
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## 定制日历单元格
@@ -167,7 +167,7 @@ ReactDOM.render(<Demo />, _mount_);
 使用 `renderDay` 可以自定义日期单元格的内容和样式。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DatePicker } from 'uiw';
@@ -195,7 +195,7 @@ function Demo() {
   );
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## DatePicker
