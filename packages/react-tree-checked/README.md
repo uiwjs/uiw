@@ -16,7 +16,7 @@ import TreeChecked from '@uiw/react-tree-checked';
 ### 基础实例
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import ReactDOM from 'react-dom';
 import { TreeChecked, Card, Row, Col } from 'uiw';
 
@@ -106,13 +106,13 @@ const Demo = () => (
     }}
   />
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 表单使用
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React, { useState, useRef } from "react";
 import ReactDOM from 'react-dom';
 import { Form, Input, Row, Col, TreeChecked, Slider, Button, Notify } from 'uiw';
@@ -219,7 +219,7 @@ function Demo() {
     </div>
   )
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## Props

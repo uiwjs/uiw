@@ -17,7 +17,7 @@ import DateInput,{ DateInputRange } from '@uiw/react-date-input';
 ## 基本使用
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DateInput, DateInputRange, Row, Col } from 'uiw';
@@ -60,7 +60,7 @@ function Demo () {
     </div>
   )
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## 在表单中使用
@@ -68,7 +68,7 @@ ReactDOM.render(<Demo />, _mount_);
 在 [`<Form />`](#/components/form) 表单中应用 [`<DateInput />`](#/components/date-input) 组件。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DateInput,DateInputRange, Notify, Button, Form, Row, Col } from 'uiw';
@@ -138,13 +138,13 @@ function Demo(){
   )
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## 日期格式
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DateInput } from 'uiw';
@@ -165,13 +165,13 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## 日期时间设置
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DateInput } from 'uiw';
@@ -192,13 +192,13 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## 自动隐藏弹层
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { DateInput } from 'uiw';
@@ -220,7 +220,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## Props
