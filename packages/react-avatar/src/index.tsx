@@ -2,8 +2,7 @@ import React from 'react';
 import Icon, { IconProps } from '@uiw/react-icon';
 import { HTMLSpanProps, noop } from '@uiw/utils';
 import './style/index.less';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export interface AvatarProps extends HTMLSpanProps {
   style?: React.CSSProperties;
