@@ -22,6 +22,7 @@ import ButtonGroup from '@uiw/react-button-group';
 ```jsx mdx:preview
 import React from "react"
 import { Button, Divider, Icon } from 'uiw';
+import { Down } from '@uiw/icons'
 
 const Demo = ()=>(
   <div>
@@ -42,7 +43,8 @@ const Demo = ()=>(
     <Button>Normal</Button>
     <Button disabled>Disabled</Button>
     <Button type="primary" active>Button</Button>
-    <Button type="primary" size="small">more <Icon type="down" /></Button>
+    <Button type="primary" size="small">more <Down height={14} width={14} style={{ fill: '#fff' }}/></Button>
+
     <Button type="link"> (超连接样式)link </Button>
   </div>
 );
@@ -55,6 +57,7 @@ export default Demo
 ```jsx mdx:preview
 import React from "react"
 import { Button, Divider, ButtonGroup } from 'uiw';
+import { Copy, Delete, FileAdd } from '@uiw/icons'
 
 const Demo = ()=>(
   <div>
@@ -80,9 +83,9 @@ const Demo = ()=>(
     </ButtonGroup>
     <Divider style={{ maxWidth: 220 }}>添加图标</Divider>
     <ButtonGroup>
-      <Button icon="copy" type="primary">复制</Button>
-      <Button icon="delete" type="success">删除</Button>
-      <Button icon="file-add" type="warning">添加文件</Button>
+      <Button icon={<Copy />} type="primary">复制</Button>
+      <Button icon={<Delete />} type="success">删除</Button>
+      <Button icon={<FileAdd/>} type="warning">添加文件</Button>
       <Button icon="map" type="danger">地图</Button>
       <Button icon="linux" type="light">Linux</Button>
       <Button icon="apple" type="dark">Apple</Button>

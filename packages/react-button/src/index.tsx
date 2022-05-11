@@ -1,5 +1,4 @@
 import React from 'react';
-import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLButtonProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -12,7 +11,7 @@ export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
   active?: boolean;
   loading?: boolean;
   block?: boolean;
-  icon?: IconProps['type'];
+  icon?: React.ReactNode;
   /**
    * 按钮类型
    * @mytag {@link link }
@@ -63,7 +62,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
 
   return (
     <button {...others} ref={ref} type={htmlType} disabled={disabled || loading} className={cls}>
-      {icon && <Icon type={icon} />}
+      {icon}
       {children &&
         React.Children.map(children, (child: React.ReactNode) => {
           if (!child) return child;
