@@ -16,10 +16,10 @@ import SearchTree from '@uiw/react-search-tree';
 ### 基础实例
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import {  SearchTree } from 'uiw';
+import {  SearchTree, Row } from 'uiw';
 
 const data = [
   {
@@ -115,13 +115,13 @@ const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
   </Row>
   )
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## 尺寸
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React, { useState, useEffect, useRef } from 'react';
 import {  SearchTree } from 'uiw';
 
@@ -156,13 +156,13 @@ const data = [
   )
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## 自定义空选项
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React, { useState, useEffect, useRef } from 'react';
 import {  SearchTree } from 'uiw';
 
@@ -182,13 +182,13 @@ const Demo = () => {
   )
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## Form中使用
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import {  Form, Button, SearchTree, Card, Row, Col } from 'uiw';;
@@ -334,7 +334,7 @@ const form=useRef()
     </div>
   );
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## Props
