@@ -10,9 +10,7 @@ export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
   basic?: boolean;
   disabled?: boolean;
   active?: boolean;
-  /** @internal */
   loading?: boolean;
-  /** @alpha */
   block?: boolean;
   icon?: IconProps['type'];
   /**
@@ -27,24 +25,7 @@ export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
    */
   size?: ButtonSize;
   htmlType?: 'button' | 'submit' | 'reset';
-  /**
-   * @param e MouseEvent类型
-   * @returns 结果
-   */
   onClick?: (e: React.MouseEvent<HTMLButtonElement> & MouseEvent) => void;
-  /** @internal */
-  range: number;
-  /**
-   * The warning message
-   */
-  message: string;
-  /**
-   * Shortest name:  {@link InterfaceL1.(:CONSTRUCTOR)}
-   * Full name:      {@link (InterfaceL1:interface).(:CONSTRUCTOR)}
-   *
-   * {@label CONSTRUCTOR}
-   */
-  new: (hour: number, minute: number) => void;
 }
 
 /**@internal */
