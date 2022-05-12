@@ -16,8 +16,8 @@ import Notify from '@uiw/react-notify';
 ### 基本用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Button, Notify } from 'uiw';
 
 const Demo = () => {
@@ -68,15 +68,15 @@ const Demo = () => {
     </div>
   );
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 
 ### 弹出位置
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Button, Notify } from 'uiw';
 
 const Demo = () => {
@@ -120,14 +120,14 @@ const Demo = () => {
     </div>
   );
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 弹出通知不消失
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Button, Notify } from 'uiw';
 
 const Demo = () => {
@@ -148,14 +148,14 @@ const Demo = () => {
     </div>
   );
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 标题不展示
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Button, Notify } from 'uiw';
 
 const Demo = () => {
@@ -189,14 +189,14 @@ const Demo = () => {
     </div>
   );
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 只展示标题
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Button, Notify } from 'uiw';
 
 const Demo = () => {
@@ -216,14 +216,14 @@ const Demo = () => {
     </div>
   );
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 不展示图标
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Button, Notify } from 'uiw';
 
 const Demo = () => {
@@ -252,7 +252,7 @@ const Demo = () => {
     </div>
   );
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## Notify

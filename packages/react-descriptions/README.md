@@ -18,12 +18,12 @@ import Descriptions from '@uiw/react-descriptions';
 简单的展示。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true&noScroll=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Descriptions } from 'uiw';
 
-ReactDOM.render(
-  <Descriptions title="用户信息">
+function Demo() {
+  return <Descriptions title="用户信息">
     <Descriptions.Item label="姓名">调调</Descriptions.Item>
     <Descriptions.Item label="手机号码">1360000000</Descriptions.Item>
     <Descriptions.Item label="居住地">上海市，青浦区</Descriptions.Item>
@@ -31,9 +31,9 @@ ReactDOM.render(
     <Descriptions.Item label="地址">
       中国湖北省黄冈市罗田县666号
     </Descriptions.Item>
-  </Descriptions>,
-  _mount_
-);
+  </Descriptions>
+}
+export default Demo
 ```
 
 ## 带边框的
@@ -41,12 +41,12 @@ ReactDOM.render(
 带边框和背景颜色列表。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true&noScroll=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Descriptions, Badge } from 'uiw';
 
-ReactDOM.render(
-  <Descriptions title="详细信息" bordered>
+function Demo() {
+  return <Descriptions title="详细信息" bordered>
     <Descriptions.Item label="项目">UI组件库</Descriptions.Item>
     <Descriptions.Item label="是否收费">免费</Descriptions.Item>
     <Descriptions.Item label="是否持续维护">是</Descriptions.Item>
@@ -67,9 +67,9 @@ ReactDOM.render(
       <br />
       当前 react 版本 >= 16.7.0
     </Descriptions.Item>
-  </Descriptions>,
-  _mount_,
-);
+  </Descriptions>
+}
+export default Demo
 ```
 
 ## 自定义尺寸
@@ -77,10 +77,9 @@ ReactDOM.render(
 自定义尺寸，适应在各种容器中展示。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true&noScroll=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Descriptions, Divider, Radio, RadioGroup } from 'uiw';
+import { Descriptions, Divider, Radio, RadioGroup, Badge } from 'uiw';
 
 class Demo extends React.Component {
   constructor() {
@@ -139,7 +138,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## 垂直
@@ -147,12 +146,12 @@ ReactDOM.render(<Demo />, _mount_);
 垂直的列表。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true&noScroll=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Descriptions, Divider } from 'uiw';
 
-ReactDOM.render(
-  <>
+function Demo() {
+  return <>
     <Descriptions title="垂直的列表" layout="vertical">
       <Descriptions.Item label="姓名">调调</Descriptions.Item>
       <Descriptions.Item label="手机号码">1360000000</Descriptions.Item>
@@ -172,9 +171,9 @@ ReactDOM.render(
         中国湖北省黄冈市罗田县666号
       </Descriptions.Item>
     </Descriptions>
-  </>,
-  _mount_,
-);
+  </>
+}
+export default Demo
 ```
 
 ## Props

@@ -17,7 +17,7 @@ import TimePicker from '@uiw/react-time-picker';
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { TimePicker, Row, Col } from 'uiw';
 
 const Demo = () => (
@@ -44,7 +44,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { TimePicker, Row, Col } from 'uiw';
 
 const Demo = () => {
@@ -70,7 +70,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { TimePicker, Row, Col } from 'uiw';
 
 const Demo = () => {
@@ -98,7 +98,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { TimePicker, Notify, Row, Col, Form, Button } from 'uiw';
 
 const Demo = () => (
@@ -148,7 +148,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { TimePicker, Row, Col } from 'uiw';
 
 const Demo = () => (
@@ -182,7 +182,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { TimePicker, Row, Col } from 'uiw';
 
 const Demo = () => (
@@ -214,7 +214,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { TimePicker, Row, Col } from 'uiw';
 
 const Demo = () => (

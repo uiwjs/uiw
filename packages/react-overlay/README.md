@@ -16,9 +16,8 @@ import Overlay from '@uiw/react-overlay';
 ### 基本用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Overlay, Button, Card } from 'uiw';
 
 function Demo() {
@@ -62,16 +61,15 @@ function Demo() {
   )
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 完全定制弹出容器
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Overlay, Button } from 'uiw';
+import { Overlay, Button, Icon } from 'uiw';
 
 function Demo() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -135,7 +133,7 @@ function Demo() {
   )
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### usePortal
@@ -143,9 +141,8 @@ ReactDOM.render(<Demo />, _mount_);
 [`Portals`](https://reactjs.org/docs/portals.html#event-bubbling-through-portals) 是 react 16 提供的官方解决方案，使得组件可以脱离父组件层级挂载在 DOM 树的任何位置，我们利用这个方法，可将模态对话框生成到根节点的外面，默认情况生成到跟节点的外面，通过将 `usePortal` 设置为 `false` 将对话框生成在父组件层级挂载的 DOM 树中。 
 
 <!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Overlay, Button, Card } from 'uiw';
 
 function Demo() {
@@ -167,7 +164,7 @@ function Demo() {
   )
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 自定义动画
@@ -177,9 +174,8 @@ ReactDOM.render(<Demo />, _mount_);
 > 注意：`@3.2.0` ~~`transitionDuration={1000}`~~ 更名为 `timeout`
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Overlay, Button, Card } from 'uiw';
 
 function Demo() {
@@ -206,7 +202,7 @@ function Demo() {
   )
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 你可以根据动画样式库 [**`animate.css`**](https://daneden.github.io/animate.css/) 添加不同的出入动画。默认通过的 [`Less`](http://lesscss.org/) 生成 CSS 动画的实例代码，定义 `transitionName` 动画样式名字为 `animation-bouce`，下面是上面实例的样式：

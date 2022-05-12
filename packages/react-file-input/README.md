@@ -148,53 +148,56 @@ export default Demo
 import React from 'react';
 import { FileInput, Button } from 'uiw';
 
-export default ()=>(
-  <div>
-    <FileInput
-      uploadType="picture"
-      size="large"
-      onPreview={() => console.log(234)}
-      value={[
-        { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
-      ]}
-    >
-      <Button>新增</Button>
-    </FileInput>
-    <br />
-    <FileInput
-      uploadType="picture"
-      shape="circle"
-      onPreview={() => console.log(234)}
-      value={[
-        { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
-      ]}
-    >
-      <Button>新增</Button>
-    </FileInput>
-    <br />
-    <FileInput
-      uploadType="picture"
-      size="small"
-      onPreview={() => console.log(234)}
-      value={[
-        { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
-      ]}
-    >
-      <Button>新增</Button>
-    </FileInput>
-    <br />
-    <FileInput
-      uploadType="text"
-      multiple
-      maxNumber={2}
-      value={[
-        { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
-      ]}
-    >
-      <Button>新增</Button>
-    </FileInput>
-  </div>
-);
+function Demo() {
+  return (
+    <div>
+      <FileInput
+        uploadType="picture"
+        size="large"
+        onPreview={() => console.log(234)}
+        value={[
+          { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
+        ]}
+      >
+        <Button>新增</Button>
+      </FileInput>
+      <br />
+      <FileInput
+        uploadType="picture"
+        shape="circle"
+        onPreview={() => console.log(234)}
+        value={[
+          { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
+        ]}
+      >
+        <Button>新增</Button>
+      </FileInput>
+      <br />
+      <FileInput
+        uploadType="picture"
+        size="small"
+        onPreview={() => console.log(234)}
+        value={[
+          { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
+        ]}
+      >
+        <Button>新增</Button>
+      </FileInput>
+      <br />
+      <FileInput
+        uploadType="text"
+        multiple
+        maxNumber={2}
+        value={[
+          { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
+        ]}
+      >
+        <Button>新增</Button>
+      </FileInput>
+    </div>
+  );
+}
+export default Demo
 ```
 
 ### 在`Form`表单中使用
@@ -204,8 +207,8 @@ export default ()=>(
 import React from 'react';
 import { Form, Row, Col, Icon,FileInput,Button } from 'uiw';
 
-export default ()=>(
-  <div>
+function Demo() {
+  return <div>
     <Form
       onSubmit={({initial, current}) => {
          console.log('current',current)
@@ -275,7 +278,8 @@ export default ()=>(
       }}
     </Form>
   </div>
-);
+}
+export default Demo
 ```
 
 ## Props

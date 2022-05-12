@@ -16,28 +16,28 @@ import Loader from '@uiw/react-loader';
 ### 基础实例
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Loader } from "uiw";
 
-ReactDOM.render(
-  <div>
+function Demo() {
+  return <div>
     <Loader size="small" />
     <Loader />
     <Loader size="large" />
-  </div>,
-  _mount_
-);
+  </div>
+}
+
+export default Demo
 ```
 
 
 ### 警告提示中加载
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { Loader, Row, Col, Message, Icon } from "uiw";
+import { Loader, Row, Col, Message, Icon, Button } from "uiw";
 
 class Demo extends Component {
   constructor(props) {
@@ -97,19 +97,19 @@ class Demo extends Component {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 
 ### 卡片加载中
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Loader, Card, Col, Row } from "uiw";
 
-ReactDOM.render(
-  <Row gutter={10}>
+function Demo() {
+  return <Row gutter={10}>
     <Col fixed>
       <Card
         title="图标与文字一行显示"
@@ -170,21 +170,21 @@ ReactDOM.render(
         </Loader>
       </Card>
     </Col>
-  </Row>,
-  _mount_
-);
+  </Row>
+}
+export default Demo
 ```
 
 
 ### 自定义加载图标动画
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Loader, Card, Icon } from "uiw";
 
-ReactDOM.render(
-  <div>
+function Demo() {
+  return <div>
     <Card title="Card标题" extra={<a href="#">更多</a>} style={{ width: 300 }}>
       <Loader
         tip="加载中..."
@@ -208,9 +208,10 @@ ReactDOM.render(
         </div>
       </Loader>
     </Card>
-  </div>,
-  _mount_
-);
+  </div>
+}
+
+export default Demo
 ```
 
 
@@ -219,9 +220,8 @@ ReactDOM.render(
 页面数据加载时显示。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Loader, Icon, Button } from "uiw";
 
 class Demo extends React.Component {
@@ -267,7 +267,7 @@ class Demo extends React.Component {
   }
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 

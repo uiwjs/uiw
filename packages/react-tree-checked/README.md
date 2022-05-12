@@ -17,7 +17,7 @@ import TreeChecked from '@uiw/react-tree-checked';
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { TreeChecked, Card, Row, Col } from 'uiw';
 
 const data = [
@@ -114,7 +114,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React, { useState, useRef } from "react";
-import ReactDOM from 'react-dom';
 import { Form, Input, Row, Col, TreeChecked, Slider, Button, Notify } from 'uiw';
 
 const data = [

@@ -19,7 +19,7 @@ import Select from '@uiw/react-select';
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Row, Col, Select } from 'uiw';
 
 const Demo = () => (
@@ -43,7 +43,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Row, Col, Select } from 'uiw';
 
 const Demo = () => (
@@ -69,7 +69,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Row, Col, Select, Button } from 'uiw';
 
 const rowSty = { marginBottom: 10 };
@@ -126,7 +126,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Row, Col, Select } from 'uiw';
 
 const Option = Select.Option;
@@ -158,7 +158,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Form, Row, Col, Select, Button, Notify } from 'uiw';
 
 const Demo = () => (
@@ -237,7 +237,7 @@ import 'uiw/lib/esm/select/style/index.less';
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Row, Col, Select } from 'uiw';
 
 const Demo = () => (

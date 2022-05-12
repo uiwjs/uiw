@@ -18,7 +18,6 @@ import MonthPicker from '@uiw/react-month-picker';
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { MonthPicker, Row, Col } from 'uiw';
 
 const Demo = () => {
@@ -44,7 +43,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Form, MonthPicker, Notify, Row, Col, Button } from 'uiw';
 
 const Demo = () => (

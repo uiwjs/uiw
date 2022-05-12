@@ -16,7 +16,7 @@ import Tag from '@uiw/react-tag';
 ### 基础用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import { Tag, Divider } from 'uiw';
 
@@ -43,13 +43,13 @@ const Demo = () => (
     <Tag light>默认颜色</Tag>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 标签禁用
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import { Tag, Divider } from 'uiw';
 
@@ -74,15 +74,15 @@ const Demo = () => (
     <Tag light disabled>默认颜色</Tag>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 添加图标
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import { Tag, Divider } from 'uiw';
+import { Tag, Divider, Icon } from 'uiw';
 
 const Demo = () => (
   <div>
@@ -99,15 +99,14 @@ const Demo = () => (
     <Tag light color="#dc3545"><Icon type="heart-on" verticalAlign="baseline" /> 信息-红色</Tag>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 控制关闭标签
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Tag, Icon } from 'uiw';
 
 class Demo extends React.Component {
@@ -144,15 +143,14 @@ class Demo extends React.Component {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 标签组动态删除
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Tag, Button, Icon } from 'uiw';
 
 let num = 3;
@@ -200,7 +198,7 @@ class Demo extends React.Component {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 热门标签
@@ -208,9 +206,8 @@ ReactDOM.render(<Demo />, _mount_);
 选择你感兴趣的话题，下面实例类似 CheckBox 多选。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Tag } from 'uiw';
 
 class Demo extends React.Component {
@@ -258,15 +255,14 @@ class Demo extends React.Component {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 选择器
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Dropdown, Menu, Button, Icon, Input, Checkbox, Tag, Row, Col } from 'uiw';
 
 function SelectTag(props) {
@@ -391,12 +387,12 @@ const option = [
   { label: '黄冈市, 中国', value: 8, color: '#dc3545' },
 ];
 
-ReactDOM.render(
-  <div>
+function Demo() {
+  return <div>
     <SelectTag placeholder="选择城市" option={option} value={[2, 8]} onChange={(item) => { console.log('item', item); }} />
-  </div>,
-  _mount_
-);
+  </div>
+}
+export default Demo
 ```
 
 ## Tag

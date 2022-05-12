@@ -22,8 +22,8 @@ import Menu, { MenuItem, MenuDivider, SubMenu } from '@uiw/react-menu'; // @ v4.
 
 
 <!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Menu, MenuItem, Row, Col } from 'uiw';
 
 const Demo = () => (
@@ -99,14 +99,14 @@ const Demo = () => (
     </Col>
   </Row>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 下拉菜单
 
 <!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Menu, Popover, Button, Row, Col } from 'uiw';
 
 const btnStl = {position: 'relative', width: 70 }
@@ -183,7 +183,7 @@ const Demo = () => (
     </div>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 内嵌菜单
@@ -191,8 +191,8 @@ ReactDOM.render(<Demo />, _mount_);
 通过设置 `overlayProps={ isOpen: true }`，让菜单默认展开。
 
 <!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Menu, Row, Col } from 'uiw';
 
 const Demo = () => (
@@ -225,7 +225,7 @@ const Demo = () => (
     </Col>
   </Row>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 主题
@@ -233,8 +233,8 @@ ReactDOM.render(<Demo />, _mount_);
 内建了两套主题 `light`、`dark`，默认 `light`。
 
 <!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Menu, Row, Col, Switch } from 'uiw';
 
 class Demo extends React.Component {
@@ -293,7 +293,7 @@ class Demo extends React.Component {
   }
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 完整菜单展示
@@ -301,9 +301,8 @@ ReactDOM.render(<Demo />, _mount_);
 包括点击选中效果，事件等操作，完整的实例展示。
 
 <!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Menu, Row, Col, Switch } from 'uiw';
 
 class Demo extends React.Component {
@@ -406,7 +405,7 @@ class Demo extends React.Component {
   }
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 缩起内嵌菜单
@@ -414,10 +413,9 @@ ReactDOM.render(<Demo />, _mount_);
 内嵌菜单可以被缩起/展开，需要 `SubMenu` 的参数 `collapse` 和 `inlineCollapsed` 配合使用。
 
 <!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Menu, Row, Col, Icon, Button } from 'uiw';
+import { Menu, Row, Col, Icon, Button, Switch } from 'uiw';
 
 const menusData = [
   { key: '1', icon: 'delete', label: '删除' },
@@ -511,7 +509,7 @@ const Demo = () => {
   )
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## Menu.Props
