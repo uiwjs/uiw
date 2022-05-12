@@ -19,7 +19,6 @@ import { Form, FormItem } from '@uiw/react-form';
 ```jsx mdx:preview
 
 import React, { useState, useRef } from "react";
-import ReactDOM from 'react-dom';
 import { Form, Input, Row, Col, Slider, Button, Notify } from 'uiw';
 
 function Demo() {
@@ -102,7 +101,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Form, Input, Notify, Checkbox, Switch, RadioGroup, Radio, Textarea, Row, Col, Button } from 'uiw';
 
 const Demo = () => (
@@ -253,7 +252,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Form, Input, Row, Col, Notify, Button } from 'uiw';
 
 const Demo = () => (
@@ -322,7 +321,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Form, Input, Row, Col, Checkbox, Notify, Button } from 'uiw';
 
 const Demo = () => (
@@ -382,7 +381,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Form, Input, Select, Row, Col, Button } from 'uiw';
 
 const Demo = () => (
@@ -473,7 +472,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Form, Row, Col, Dropdown, Menu, Icon, Button, Notify } from 'uiw';
 
 // 自定义组件
@@ -591,7 +589,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Form, FormItem, Button ,Input} from 'uiw';
 
 const Demo = () => {
@@ -642,7 +639,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Form, FormItem,Input} from 'uiw';
 
 const Demo = () => (

@@ -122,6 +122,7 @@ const Demo = () => (
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
+import React from "react"
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -142,6 +143,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
+import React from "react"
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -164,6 +166,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
+import React from "react"
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -182,6 +185,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
+import React from "react"
 import { Icon } from 'uiw';
 
 const Demo = () => (
@@ -205,6 +209,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
+import React from "react"
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -224,6 +229,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
+import React from "react"
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -242,6 +248,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
+import React from "react"
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -314,6 +321,7 @@ const Demo = () => (
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js mdx:preview
+import React from "react"
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -344,6 +352,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js mdx:preview
+import React from "react"
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -373,6 +382,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js mdx:preview
+import React from "react"
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -406,6 +416,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js mdx:preview
+import React from "react"
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -438,6 +449,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js mdx:preview
+import React from "react"
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -471,6 +483,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js mdx:preview
+import React from "react"
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -502,6 +515,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js mdx:preview
+import React from "react"
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -539,6 +553,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js mdx:preview
+import React from "react"
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 
@@ -568,6 +583,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&noCode=true&codeSandbox=true&codePen=true-->
 ```js mdx:preview
+import React from "react"
 import ReactDOM from 'react-dom';
 import { Icon } from 'uiw';
 

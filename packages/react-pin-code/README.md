@@ -17,7 +17,7 @@ import PinCode from '@uiw/react-pin-code';
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { PinCode } from 'uiw';
 
 const Demo = () => (
@@ -34,7 +34,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Form, Row, Col, Icon, PinCode, Button, Notify } from 'uiw';
 
 const Demo = () => (
@@ -108,7 +108,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { PinCode, Divider } from 'uiw';
 
 const Demo = () => (
@@ -127,7 +127,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { PinCode, Divider } from 'uiw';
 
 const Demo = () => (
@@ -146,7 +146,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { PinCode, Divider } from 'uiw';
 
 const Demo = () => (

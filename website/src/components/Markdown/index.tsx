@@ -6,18 +6,7 @@ import styles from './index.module.less';
 import useMdData from './../useMdData';
 import { CodeBlockData } from 'markdown-react-code-preview-loader';
 import { Loader } from 'uiw';
-
-const getMetaData = (meta: string) => {
-  if (meta) {
-    const [metaItem] = /mdx:(.[\w|:]+)/i.exec(meta) || [];
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [_, field, val] = (metaItem || '').split(':').map((item) => item.trim());
-    if (val) {
-      return val;
-    }
-  }
-  return '';
-};
+import { getMetaId, isMeta } from 'markdown-react-code-preview-loader';
 
 export type CreatePageProps<T> = {
   dependencies?: T;
@@ -63,14 +52,16 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
                   bordered,
                   ...rest
                 } = props as any;
-                if (inline) {
-                  return <code {...props} />;
+                if (inline || !isMeta(meta)) {
+                  return <code {...rest} />;
                 }
                 const line = node.position?.start.line;
-                const funName = getMetaData(meta || '') || line;
-                const Child = mdData.components[funName || ''];
-                if (funName && typeof Child === 'function') {
-                  const copyNodes = mdData.codeBlock[funName] || '';
+                const metaId = getMetaId(meta) || String(line);
+                const Child = mdData.components[`${metaId}`];
+                console.log(Child, mdData);
+
+                if (metaId && typeof Child === 'function') {
+                  const copyNodes = mdData.data[metaId].value || '';
                   return (
                     <Code
                       codePen={codePen}

@@ -8,6 +8,7 @@ Color 色彩
 
 <!--rehype:bgWhite=true&noCode=true&bordered=false-->
 ```jsx mdx:preview
+import React from "react"
 const colors = [
   { name: 'Light Blue', cn: '主要-浅蓝色', color: '#5BB5F4', des: '通常用于按钮、及任何修饰元素', },
   { name: 'Blue', cn: '主要-蓝色', color: '#2EA3F4', des: '通常用于按钮、及任何修饰元素', },
@@ -38,6 +39,7 @@ export default Demo;
 
 <!--rehype:bgWhite=true&noCode=true&bordered=false-->
 ```jsx mdx:preview
+import React from "react"
 const colors = [
   { name: 'Green', cn: '成功-绿色', color: '#28a745' },
   { name: 'Blue', cn: '主要-蓝色', color: '#008EF0' },
@@ -74,6 +76,7 @@ export default Demo;
 
 <!--rehype:bgWhite=true&noCode=true&bordered=false-->
 ```jsx mdx:preview
+import React from "react"
 const colors = [
   { name: '白色', color: '#FFFFFF', fontColor: '#6F6F6F' },
   { name: '背景', color: '#F6F6F6', fontColor: '#6F6F6F' },
@@ -114,6 +117,7 @@ export default Demo;
 
 <!--rehype:bgWhite=true&noCode=true&bordered=false-->
 ```jsx mdx:preview
+import React from "react"
 const colors = [
   { name: '警告-黄色', backgroundColor: '#ffc107', des: 'warning', },
   { name: '提醒-橙色', backgroundColor: '#F95C2B', des: 'remind', },

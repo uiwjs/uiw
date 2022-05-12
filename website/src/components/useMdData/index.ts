@@ -13,8 +13,7 @@ const useMdData = (renderPage?: (lang?: string) => Promise<CodeBlockData>) => {
   const [mdData, setMdData] = useState<CodeBlockData>({
     source: '',
     components: {},
-    codeBlock: {},
-    languages: {},
+    data: {},
   });
   const fileSuffix = useFileSuffix();
   const [loading, setLoading] = useState(false);

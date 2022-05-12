@@ -19,7 +19,7 @@ import Rate from '@uiw/react-rate';
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Rate, Divider, Icon } from 'uiw';
 
 const Demo = () => (
@@ -45,7 +45,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Form, Row, Col, Icon, Rate, Button, Notify } from 'uiw';
 
 const Demo = () => (
@@ -112,7 +112,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Rate, Divider, Icon, RadioGroup, Radio } from 'uiw';
 
 const Demo = () => {
@@ -142,7 +142,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Rate, Divider, Icon } from 'uiw';
 
 const Demo = () => (
@@ -166,7 +166,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Rate, Divider } from 'uiw';
 
 const Demo = () => (
@@ -186,7 +186,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Rate, Divider, Icon } from 'uiw';
 
 const Demo = () => (
@@ -204,7 +204,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Rate, Divider, Icon } from 'uiw';
 
 const Demo = () => (

@@ -17,7 +17,7 @@ import { Row, Col } from '@uiw/react-grid';
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from "react"
 import { Row, Col } from 'uiw';
 
 const Box = ({ num, height, width, style, background }) => <div style={{ ...style, textAlign: 'center', paddingTop: 5, paddingBottom: 5, background, width, height}}>Col {num}</div>
@@ -28,7 +28,7 @@ const Demo = () => (
     <Col grow={1}> <Box num="3" background="#A5A5A5" /> </Col>
   </Row>
 );
-export default ()=>(<Demo />);
+export default Demo
 ```
 
 ### Gutter
@@ -37,12 +37,12 @@ export default ()=>(<Demo />);
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from "react"
 import { Row, Col } from 'uiw';
 
 const Blank = ({ num, height, width, style, background }) => <div style={{ ...style, textAlign: 'center', paddingTop: 5,paddingBottom: 5, background, width, height}}>Col {num}</div>
 
-export default ()=>(
+const Demo =() =>(
   <div>
     <Row gutter={10}>
       <Col> <Blank background="#A5A5A5" num={1}/> </Col>
@@ -56,13 +56,15 @@ export default ()=>(
     </Row>
   </div>
 );
+export default Demo
+
 ```
 
 ### Flex 行设置列对齐
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from "react"
 import { Row, Col } from 'uiw';
 
 const colStyl = { backgroundColor: 'rgba(230, 230, 230, 0.67)', marginBottom: 10 }
@@ -96,14 +98,14 @@ const Demo = () => (
     </Row>
   </div>
 );
-export default ()=>(<Demo />);
+export default Demo
 ```
 
 ### Flex 列对齐
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from "react"
 import { Row, Col } from 'uiw';
 
 const Blank = ({ num, style, background = '#2EA3F4' }) => <div style={{ ...style, textAlign: 'center', color: '#fff', paddingTop: 5, paddingBottom: 5, background }}>Col {num}</div>
@@ -116,14 +118,14 @@ const Demo = () => (
     </Row>
   </div>
 );
-export default ()=>(<Demo />);
+export default Demo
 ```
 
 ### 对齐内容
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from "react"
 import { Row, Col } from 'uiw';
 
 const rowStyl = { backgroundColor: 'rgba(230, 230, 230, 0.67)', marginBottom: 10 }
@@ -156,7 +158,7 @@ const Demo = () => (
     </Row>
   </div>
 );
-export default ()=>(<Demo />);
+export default Demo
 ```
 
 ### 24删格
@@ -165,7 +167,7 @@ export default ()=>(<Demo />);
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from "react"
 import { Row, Col } from 'uiw';
 
 const Blank = ({ num, height, width, style, background = '#2EA3F4' }) => <div style={{ ...style, textAlign: 'center', color: '#fff', paddingTop: 5, paddingBottom: 5, background, width, height}}>Col {num}</div>
@@ -200,14 +202,14 @@ const Demo = () => (
     </Row>
   </div>
 );
-export default ()=>(<Demo />);
+export default Demo
 ```
 
 ### 动态列增长
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from "react"
 import { Row, Col } from 'uiw';
 
 const Blank = ({ num, style, background = '#2EA3F4' }) => <div style={{ ...style, textAlign: 'center', color: '#fff', paddingTop: 5, paddingBottom: 5, background }}>Col {num}</div>
@@ -224,7 +226,7 @@ const Demo = () => (
     </Row>
   </div>
 );
-export default ()=>(<Demo />);
+export default Demo
 ```
 
 ## Row
