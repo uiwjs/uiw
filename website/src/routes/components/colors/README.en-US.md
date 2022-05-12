@@ -8,6 +8,7 @@ The main color is lake blue, which symbolizes the vast ocean, which gives people
 
 <!--rehype:bgWhite=true&noCode=true&bordered=false-->
 ```jsx mdx:preview
+import React from "react"
 const colors = [
   { name: 'Light Blue', cn: 'Primary-LightBlue', color: '#5BB5F4', des: 'Typically used for buttons, and any decorative elements', },
   { name: 'Blue', cn: 'Primary-Blue', color: '#2EA3F4', des: 'Typically used for buttons, and any decorative elements', },
