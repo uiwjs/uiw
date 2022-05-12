@@ -17,7 +17,7 @@ import FileInput from '@uiw/react-file-input';
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { FileInput, Button } from 'uiw';
 
 const Demo = () => {
@@ -41,7 +41,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { FileInput, Button,Icon } from 'uiw';
 
 const Demo = () => {
@@ -106,7 +106,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { FileInput, Overlay,Icon } from 'uiw';
 
 const Demo=()=>{
@@ -146,7 +145,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { FileInput, Button } from 'uiw';
 
 export default ()=>(
@@ -202,7 +201,7 @@ export default ()=>(
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Form, Row, Col, Icon,FileInput,Button } from 'uiw';
 
 export default ()=>(

@@ -19,7 +19,7 @@ import Divider from '@uiw/react-divider';
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from "react"
 import { Divider } from 'uiw';
 
 const Demo = () => (
@@ -40,7 +40,8 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+
+import React from "react"
 import { Divider } from 'uiw';
 
 const Demo = () => (
@@ -59,7 +60,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from "react"
 import { Divider } from 'uiw';
 
 const Demo = () => (

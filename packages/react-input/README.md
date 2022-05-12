@@ -17,7 +17,7 @@ import Input from '@uiw/react-input';
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Input } from 'uiw';
 
 const Demo = () => (
@@ -32,7 +32,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { InputNumber,Row,Col } from 'uiw';
 
 const Demo = () => {
@@ -84,7 +84,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Form, Input, Row, Col, Button, Notify ,InputNumber} from 'uiw';
 
 const Demo = () => (
@@ -164,7 +164,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Input, Row, Col } from 'uiw';
 
 const stylItem = { margin: 20 };
@@ -195,7 +195,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Input, Row, Col, Button, Tag } from 'uiw';
 
 const Demo = () => (
@@ -239,7 +239,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Input, Row, Col, Tag, Button } from 'uiw';
 
 const Demo = () => (
@@ -366,7 +366,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Input, Row, Col, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -408,7 +407,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Icon, Input, Row, Col,Button} from 'uiw';
 
 const stylItem = { margin: 20 };

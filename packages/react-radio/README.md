@@ -19,7 +19,7 @@ import { Radio, RadioButton, RadioGroup } from '@uiw/react-radio';
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Radio, RadioButton } from 'uiw';
 
 const Demo = () => (
@@ -40,7 +40,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Form, Radio, RadioGroup, RadioButton, Row, Col, Button, Notify } from 'uiw';
 
 const Demo = () => (
@@ -138,7 +138,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Radio, RadioGroup, RadioButton } from 'uiw';
 
 class Demo extends React.Component {
@@ -178,7 +177,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Radio, RadioGroup, Divider, Button,RadioButton } from 'uiw';
 
 class Demo extends React.Component {

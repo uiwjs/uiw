@@ -17,7 +17,7 @@ import Cascader from '@uiw/react-cascader';
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Cascader,Row } from 'uiw';
 
 const Demo = () => {
@@ -88,7 +88,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Cascader,Row } from 'uiw';
 
 const Demo = () => {
@@ -139,7 +139,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Cascader, } from 'uiw';
 
 const Demo = () => {
@@ -196,7 +196,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Cascader,Row } from 'uiw';
 
 const Demo = () => {
@@ -258,7 +258,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true&noScroll=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Form, Row, Col, Cascader, Button } from 'uiw';
 
 const Demo = () => {
