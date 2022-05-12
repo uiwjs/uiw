@@ -18,20 +18,20 @@ import Card from '@uiw/react-card';
 包含标题、内容、操作区域。
 
 <!--rehype:codeSandbox=true&codePen=true--> 
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Card } from 'uiw';
 
-ReactDOM.render(
-  <div>
+function Demo () {
+  return <div>
     <Card title="Card标题" extra={<a href="#">更多</a>} style={{ width: 300 }}>
       卡片内容<br/>
       卡片内容<br/>
       卡片内容<br/>
     </Card>
-  </div>,
-  _mount_
-);
+  </div>
+}
+export default Demo
 ```
 
 ## 无边框
@@ -39,18 +39,18 @@ ReactDOM.render(
 在灰色背景上使用无边框的卡片。
 
 <!--rehype:codeSandbox=true&codePen=true--> 
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Card } from 'uiw';
 
-ReactDOM.render(
-  <Card title="Card标题" bordered={false} style={{ width: 300 }}>
+function Demo() {
+  return   <Card title="Card标题" bordered={false} style={{ width: 300 }}>
     卡片内容<br/>
     卡片内容<br/>
     卡片内容<br/>
-  </Card>,
-  _mount_
-);
+  </Card>
+}
+export default Demo
 ```
 
 ## 简洁卡片
@@ -58,18 +58,18 @@ ReactDOM.render(
 只包含内容区域。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Card } from 'uiw';
 
-ReactDOM.render(
-  <Card style={{ width: 300 }}>
+function Demo() {
+  return <Card style={{ width: 300 }}>
     卡片内容<br/>
     卡片内容<br/>
     卡片内容<br/>
-  </Card>,
-  _mount_
-);
+  </Card>
+}
+export default Demo
 ```
 
 ## 更灵活的内容展示
@@ -77,14 +77,14 @@ ReactDOM.render(
 可以调整默认边距，设定宽度。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Card } from 'uiw';
 
 let titleStyle = { padding: `10px 16px` };
 
-ReactDOM.render(
-  <Card style={{ width: 240 }} bodyStyle={{ padding: 10 }}>
+function Demo() {
+  return <Card style={{ width: 240 }} bodyStyle={{ padding: 10 }}>
     <div>
       <img alt="example" width="100%" src="https://avatars1.githubusercontent.com/u/1680273?v=4" />
     </div>
@@ -92,16 +92,16 @@ ReactDOM.render(
       <h3 style={{margin:0}}>我爱漂亮妹妹</h3>
       <p style={{margin:0}}><a href="https://uiwjs.github.io">https://uiwjs.github.io</a></p>
     </div>
-  </Card>,
-  _mount_
-);
+  </Card>
+}
+export default Demo
 ```
 
 ## 添加页脚
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Card, Icon } from 'uiw';
 
 const footer = (
@@ -111,8 +111,8 @@ const footer = (
   </a>
 )
 
-ReactDOM.render(
-  <Card
+function Demo() {
+  return <Card
     title="Card标题"
     footer={footer}
     style={{ width: 240 }} 
@@ -125,9 +125,9 @@ ReactDOM.render(
       <h3 style={{margin:0}}>我爱漂亮妹妹</h3>
       <p style={{margin:0}}><a href="https://uiwjs.github.io">https://uiwjs.github.io</a></p>
     </div>
-  </Card>,
-  _mount_
-);
+  </Card>
+}
+export default Demo
 ```
 
 ## 激活
@@ -135,8 +135,8 @@ ReactDOM.render(
 设置属性 `active=true` 将激活卡片，默认展示鼠标经过的样式。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Card, Icon } from 'uiw';
 
 const footer = (
@@ -146,8 +146,8 @@ const footer = (
   </a>
 )
 
-ReactDOM.render(
-  <Card
+function Demo() {
+  return <Card
     active
     title="Card标题"
     footer={footer}
@@ -161,9 +161,9 @@ ReactDOM.render(
       <h3 style={{margin:0}}>我爱漂亮妹妹</h3>
       <p style={{margin:0}}><a href="https://uiwjs.github.io">https://uiwjs.github.io</a></p>
     </div>
-  </Card>,
-  _mount_
-);
+  </Card>
+}
+export default Demo
 ```
 
 ## API

@@ -20,7 +20,6 @@ import Slider from '@uiw/react-slider';
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Slider, Divider } from 'uiw';
 
 function Demo() {
@@ -77,7 +76,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Form, Row, Col, Slider, Button, Notify } from 'uiw';
 
 const Demo = () => (
@@ -143,7 +142,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Slider, Divider } from 'uiw';
 
 function Demo() {
@@ -170,7 +168,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Slider, Divider} from 'uiw';
 
 class Demo extends React.Component {
@@ -242,7 +239,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Slider, Divider} from 'uiw';
 
 class Demo extends React.Component {
@@ -320,7 +316,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Slider, Divider} from 'uiw';
 
 class Demo extends React.Component {
@@ -350,7 +345,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Row, Col, Slider } from 'uiw';
 
 class Demo extends React.Component {

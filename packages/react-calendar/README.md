@@ -19,7 +19,7 @@ import Calendar from '@uiw/react-calendar';
 
 <!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
 ```jsx  mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Calendar, Badge } from 'uiw';
 
 const data = [
@@ -57,7 +57,7 @@ function filterData(dt) {
     return item;
   });
 }
-export default function Demo(){
+function Demo(){
   return <Calendar
       onSelectDay={(date, dateSource) => {
         console.log('date:', date, dateSource);
@@ -65,6 +65,7 @@ export default function Demo(){
       data={filterData(data)}
     />
 }
+export default Demo
 ```
 
 
@@ -74,7 +75,7 @@ export default function Demo(){
 
 <!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Calendar, Badge } from 'uiw';
 
 const data = [
@@ -122,15 +123,16 @@ function disabledDate(currentDate, props) {
   // 今天和今天之前不能选择
   // return currentDate && currentDate.valueOf() < Date.now();
 }
-export default function Demo() {
+function Demo() {
   return <Calendar
       onSelectDay={(date, dateSource) => {
         console.log('date:', date, dateSource);
       }}
       disabledDate={disabledDate}
       data={filterData(data)}
-    />
+  />
 }
+export default Demo
 ```
 
 | 参数 | 说明 | 类型 | 默认值 |

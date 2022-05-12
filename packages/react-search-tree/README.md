@@ -18,8 +18,7 @@ import SearchTree from '@uiw/react-search-tree';
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React, { useState, useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
-import {  SearchTree, Row } from 'uiw';
+import { SearchTree, Row } from 'uiw';
 
 const data = [
   {
@@ -164,7 +163,7 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React, { useState, useEffect, useRef } from 'react';
-import {  SearchTree } from 'uiw';
+import { SearchTree } from 'uiw';
 
 const Demo = () => {
   return(
@@ -190,8 +189,7 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React, { useState, useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
-import {  Form, Button, SearchTree, Card, Row, Col } from 'uiw';;
+import { Form, Button, SearchTree, Card, Row, Col } from 'uiw';;
 
 
 const Demo = () => {

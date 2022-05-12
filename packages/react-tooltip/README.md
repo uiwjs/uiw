@@ -18,8 +18,8 @@ import Tooltip from '@uiw/react-tooltip';
 最简单的用法。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Tooltip, Button } from 'uiw';
 
 const Demo = () => (
@@ -41,7 +41,7 @@ const Demo = () => (
     </Tooltip>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 位置
@@ -49,8 +49,8 @@ ReactDOM.render(<Demo />, _mount_);
 位置有 `12` 个方向，根据 `placement` 参数来设置。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Tooltip, Button, Divider } from 'uiw';
 
 const btnStl = {position: 'relative', width: 70 }
@@ -122,7 +122,7 @@ const Demo = () => (
 
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 事件
@@ -130,8 +130,8 @@ ReactDOM.render(<Demo />, _mount_);
 文字提示组件 `<Tooltip />`，通过设置属性 `trigger` 可以文字提示操作方式。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Tooltip, Button } from 'uiw';
 
 const Demo = () => (
@@ -146,7 +146,7 @@ const Demo = () => (
 
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 文字提示框不显示箭头
@@ -154,8 +154,8 @@ ReactDOM.render(<Demo />, _mount_);
 通过设置属性 `visibleArrow` 可以文字提示框不显示箭头。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Tooltip, Button } from 'uiw';
 
 const Demo = () => (
@@ -170,15 +170,14 @@ const Demo = () => (
 
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 受控组件
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Tooltip, Switch, Divider } from 'uiw';
 
 class Demo extends React.Component {
@@ -211,7 +210,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 

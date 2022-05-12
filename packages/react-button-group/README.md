@@ -17,12 +17,12 @@ import ButtonGroup from '@uiw/react-button-group';
 ### 基本用法
 
 <!--rehype:codeSandbox=true&codePen=true--> 
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Button, Divider, ButtonGroup } from 'uiw';
 
-ReactDOM.render(
-  <div>
+function Demo() {
+  return <div>
     <ButtonGroup>
       <Button type="primary">主要按钮</Button>
       <Button type="success">成功按钮</Button>
@@ -76,9 +76,10 @@ ReactDOM.render(
       <Button icon="linux" />
       <Button icon="apple" />
     </ButtonGroup>
-  </div>,
-  _mount_
-);
+  </div>
+}
+
+export default Demo
 ```
 
 ## Props

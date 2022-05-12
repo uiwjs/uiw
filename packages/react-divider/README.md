@@ -40,7 +40,6 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-
 import React from "react"
 import { Divider } from 'uiw';
 

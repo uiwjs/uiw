@@ -16,9 +16,8 @@ import Pagination from '@uiw/react-pagination';
 ### 基本用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Pagination, Divider } from 'uiw';
 
 
@@ -54,27 +53,24 @@ const Demo = () => {
   )
 }
 
-ReactDOM.render(
-  <Demo />,
-  _mount_
-);
+export default Demo
 ```
 
 ### 迷你分页
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Pagination, Divider } from 'uiw';
 
-ReactDOM.render(
-  <div>
+function Demo() {
+  return <div>
     <Pagination size="small" current={1} pageSize={5} pageSizeOptions={[5, 10, 20, 30]} total={249} />
     <Divider />
     <Pagination size="small" current={1} pageSize={10} total={50} />
-  </div>,
-  _mount_
-);
+  </div>
+}
+export default Demo
 ```
 
 ### 对齐
@@ -82,12 +78,12 @@ ReactDOM.render(
 目前有三种对齐方式 `左边(left)`、`中间(center)`、`右边(right)`。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Pagination, Divider } from 'uiw';
 
-ReactDOM.render(
-  <div>
+function Demo() {
+  return <div>
     <Pagination
       current={5}
       total={250}
@@ -113,9 +109,10 @@ ReactDOM.render(
         console.log(`pageNumber:${pageNumber}`)
       }}
     />
-  </div>,
-  _mount_
-);
+  </div>
+}
+
+export default Demo
 ```
 
 ### Props

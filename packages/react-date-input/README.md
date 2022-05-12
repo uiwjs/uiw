@@ -19,7 +19,6 @@ import DateInput,{ DateInputRange } from '@uiw/react-date-input';
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { DateInput, DateInputRange, Row, Col } from 'uiw';
 
 function Demo () {
@@ -70,7 +69,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { DateInput,DateInputRange, Notify, Button, Form, Row, Col } from 'uiw';
 
 function Demo(){
@@ -146,7 +144,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { DateInput } from 'uiw';
 
 class Demo extends React.Component {
@@ -173,7 +170,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { DateInput } from 'uiw';
 
 class Demo extends React.Component {
@@ -200,7 +196,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { DateInput } from 'uiw';
 
 class Demo extends React.Component {

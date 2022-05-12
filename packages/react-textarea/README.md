@@ -17,7 +17,7 @@ import Textarea from '@uiw/react-textarea';
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Textarea } from 'uiw';
 
 const Demo = () => (
@@ -35,7 +35,6 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Form, Row, Col, Textarea, Button, Notify } from 'uiw';
 
 const Demo = () => (
@@ -101,7 +100,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Textarea } from 'uiw';
 
 const Demo = () => (
@@ -116,7 +115,7 @@ export default Demo
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Textarea } from 'uiw';
 
 const Demo = () => (

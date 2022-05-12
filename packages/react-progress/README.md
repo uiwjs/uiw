@@ -17,8 +17,8 @@ import Progress from '@uiw/react-progress';
 ### 基本用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Progress } from 'uiw';
 
 const { Line } = Progress;
@@ -32,7 +32,7 @@ const Demo = () => (
     <Line style={sty} percent={50} showText={false} />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 进度条大小设置
@@ -40,8 +40,8 @@ ReactDOM.render(<Demo />, _mount_);
 设置参数`strokeWidth`即可
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Progress } from 'uiw';
 
 const { Line } = Progress;
@@ -55,14 +55,14 @@ const Demo = () => (
     <Line style={sty} strokeWidth={14} percent={50} showText={false} />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 圆圈进度条
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Progress } from 'uiw';
 
 const { Circle } = Progress;
@@ -75,7 +75,7 @@ const Demo = () => (
     <Circle style={sty} percent={100} />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 不同尺寸圆圈进度条
@@ -83,8 +83,8 @@ ReactDOM.render(<Demo />, _mount_);
 通过`strokeWidth`设置圆圈进度宽带，通过`width`（`type="circle"`有效）设置圆圈大小，
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Progress } from 'uiw';
 
 let sty = {marginRight:15}
@@ -96,7 +96,7 @@ const Demo = () => (
     <Progress.Circle style={sty} width={100} strokeWidth={3} percent={75} />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 动态展示
@@ -104,9 +104,8 @@ ReactDOM.render(<Demo />, _mount_);
 进度条动态展示更直观。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Progress } from 'uiw';
 
 class Demo extends React.Component {
@@ -144,7 +143,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## 自定义文字格式
@@ -152,9 +151,8 @@ ReactDOM.render(<Demo />, _mount_);
 `format` 属性指定格式。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Progress } from 'uiw';
 
 const sty = {marginRight:10}
@@ -181,7 +179,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 

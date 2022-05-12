@@ -20,8 +20,8 @@ import List, { ListItem } from '@uiw/react-list'; // @ v4.10.0+
 ### 基础用法
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { List } from 'uiw';
 
 const data = [
@@ -60,7 +60,7 @@ const Demo = () => (
     />
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 
@@ -69,8 +69,8 @@ ReactDOM.render(<Demo />, _mount_);
 通过`dataSource`和`renderItem`来创建列表，这两个属性是一起使用。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { List } from 'uiw';
 
 const data = [
@@ -88,14 +88,14 @@ const Demo = () => (
     }}
   />
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 禁用行
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { List } from 'uiw';
 
 const data = [
@@ -132,7 +132,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 
@@ -141,8 +141,8 @@ ReactDOM.render(<Demo />, _mount_);
 `List.Item` 设置 `active` 属性即可设置这张被激活的样式。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { List } from 'uiw';
 
 const Demo = () => (
@@ -152,14 +152,14 @@ const Demo = () => (
     <List.Item>快跑!《侏罗纪世界2》正式预告要来了</List.Item>
   </List>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 斑马线
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { List } from 'uiw';
 
 const data = [
@@ -178,7 +178,7 @@ const Demo = () => (
     }}
   />
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 列表为超链接
@@ -186,8 +186,8 @@ ReactDOM.render(<Demo />, _mount_);
 `List.Item` 设置了 `href`，`List.Item`就可以设置标签`<a>`的所有属性了。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { List } from 'uiw';
 
 const data = [
@@ -220,7 +220,7 @@ const Demo = () => (
     }}
   />
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 
@@ -229,8 +229,8 @@ ReactDOM.render(<Demo />, _mount_);
 `List.Item` 设置了 `extra`，`List.Item` 就可以设置右侧内容。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { List } from 'uiw';
 
 const data = [
@@ -263,7 +263,7 @@ const Demo = () => (
     }}
   />
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## List

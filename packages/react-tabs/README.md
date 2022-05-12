@@ -18,9 +18,8 @@ import Tabs from '@uiw/react-tabs';
 基础的、简洁的卡片式标签页。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Tabs } from 'uiw';
 
 class Demo extends React.Component {
@@ -37,7 +36,7 @@ class Demo extends React.Component {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 行样式
@@ -45,9 +44,8 @@ ReactDOM.render(<Demo />, _mount_);
 基础的、简洁的卡片式标签页。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Tabs } from 'uiw';
 
 class Demo extends React.Component {
@@ -64,7 +62,7 @@ class Demo extends React.Component {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 卡片样式
@@ -72,9 +70,8 @@ ReactDOM.render(<Demo />, _mount_);
 另一种样式的页签，不提供对应的垂直样式。
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Tabs } from 'uiw';
 
 class Demo extends React.Component {
@@ -91,16 +88,15 @@ class Demo extends React.Component {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 
 ### 卡片样式
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Tabs, Divider } from 'uiw';
 
 class Demo extends React.Component {
@@ -143,7 +139,7 @@ class Demo extends React.Component {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 超出收缩
@@ -151,9 +147,8 @@ ReactDOM.render(<Demo />, _mount_);
 当pane过多,超出宽度度时,会将超出部分收缩到下拉选项
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Tabs } from 'uiw';
 
 class Demo extends React.Component {
@@ -180,7 +175,7 @@ render() {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 
