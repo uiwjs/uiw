@@ -61,6 +61,18 @@ const buttonVariant = (color: string, background: string) => {
     `;
 };
 
+const buttonSize = (fintSize: string, iconSize: string, lineHeight: string, minHeight: string) => {
+  return css`
+  font - size: ${fintSize};
+  line - height: ${lineHeight};
+  min - height: ${minHeight};
+
+  .w - icon {
+    font - size: iconSize;
+  }
+  `;
+};
+
 const Button = styled.button<ButtonProps>`
 user-select: none;
 display: inline-flex;
@@ -82,127 +94,158 @@ min-height: 30px;
 text-align: center;
 color: #fff;
 transition: background-color 0.5s, opacity 1s;
+
 > *:not(:last-child) {
   margin-right: 5px;
 }
+
 & + &:not(.block) {
   margin-left: 5px;
 }
+
 &.block {
   display: block;
   width: 100%;
 }
+
 &.disabled,
 &[disabled] {
   cursor: not-allowed;
 }
+
 &-primary {
-  ${buttonVariant('#fff', '#008ef0')}
+  ${buttonVariant('#fff', '#008ef0')};
 }
+
 &-success {
   ${buttonVariant('#fff', '#28a745')};
 }
+
 &-warning {
   ${buttonVariant('#fff', '#ffc107')};
 }
+
 &-danger {
   ${buttonVariant('#fff', '#dc3545')};
 }
+
 &-light {
   box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, 0.17), inset 1px -1px 0 0 rgba(0, 0, 0, 0.17),
     inset -1px 0px 0 0 rgba(0, 0, 0, 0.17);
   ${buttonVariant('#393e48', '#f8f9fa')};
+
   &:focus,
   &.focus {
     outline: 0;
     box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, 0.17), inset 1px -1px 0 0 rgba(0, 0, 0, 0.17),
       inset -1px 0px 0 0 rgba(0, 0, 0, 0.17), 0 0 0 2px rgba(0, 0, 0, 0.1);
   }
+
   &.@{w-btn}-basic {
     color: #9199a7;
+
     &:focus,
     &.focus {
       box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.17);
     }
+
     &:hover {
       background-color: lighten(#9199a7, 32%) !important;
     }
+
     &:active,
     &.active {
       color: #9199a7;
       background-color: lighten(#9199a7, 24%) !important;
       background-image: none;
     }
+
     &.disabled,
     &[disabled] {
       background-color: transparent !important;
       color: lighten(#9199a7, 10%);
     }
   }
+
   &.disabled,
   &[disabled] {
     color: lighten(#393e48, 20%);
     z-index: 0;
   }
 }
+
 &-dark {
-  ${buttonVariant('#fff', '#393e48')}
+  ${buttonVariant('#fff', '#393e48')};
 }
-& -link {
+
+&-link {
   ${buttonVariant('#008ef0', 'transparent')};
-    color: #008ef0!important;
-  &: hover: not([disabled]) {
-      color: darken(#008ef0, 12 %);
-      text - decoration: underline;
-    }
-  &: not([disabled]): active,
-  &: not([disabled]).active {
-      color: darken(#008ef0, 32 %);
-      box - shadow: none;
-      text - decoration: underline;
-    }
+  color: #008ef0 !important;
+
+  &:hover:not([disabled]) {
+    color: darken(#008ef0, 12%);
+    text-decoration: underline;
+  }
+
+  &:not([disabled]):active,
+  &:not([disabled]).active {
+    color: darken(#008ef0, 32%);
+    box-shadow: none;
+    text-decoration: underline;
+  }
+
   &.disabled,
-  & [disabled] {
-      z - index: 0;
-    }
+  &[disabled] {
+    z-index: 0;
   }
-.w - icon {
-    font - size: 16px;
-  }
-& -size - large {
-  .button - size(16px, 20px, 16px, 36px);
-  }
-& -size - small {
-    padding: 0 6px;
-    min - width: 20px;
-  .button - size(12px, 14px, 24px, 24px);
-  }
-& .w - icon: not(: last - child) {
-    margin - right: 5px;
-  }
-& -loading.w - btn - light::before {
-    border: 1.2px solid #666f81;
-  }
-& -loading {
+}
+
+.w-icon {
+  font-size: 16px;
+}
+
+&-size-large {
+  ${buttonSize('16px', '20px', '16px', '36px')};
+}
+
+&-size-small {
+  padding: 0 6px;
+  min-width: 20px;
+  ${buttonSize('12px', '14px', '24px', '24px')};
+}
+
+& .w-icon:not(:last-child) {
+  margin-right: 5px;
+}
+
+&-loading.w-btn-light::before {
+  border: 1.2px solid #666f81;
+}
+
+&-loading {
   &::before {
-      content: '';
-      display: inline - block;
-      width: 1em;
-      height: 1em;
-      border - radius: 50 %;
-      border: 1.2px solid #fff;
-      color: #fff;
-      margin: 0 3px 0 0;
-      clip - path: polygon(0 % 0 %, 100 % 0, 100 % 30 %, 0 % 30 %);
-      animation: rotate 0.5s linear infinite;
-      @keyframes rotate {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    border: 1.2px solid #fff;
+    color: #fff;
+    margin: 0 3px 0 0;
+    clip-path: polygon(0% 0%, 100% 0, 100% 30%, 0% 30%);
+    animation: rotate 0.5s linear infinite;
+
+    @keyframes rotate {
       from {
-          transform: rotateZ(0deg);
-        }
+        transform: rotateZ(0deg);
+      }
+
       to {
-          transform: rotateZ(360deg);
-        }
+        transform: rotateZ(360deg);
       }
     }
   }
-  `;
+}
+`;
+
+export default Button;
