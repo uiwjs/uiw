@@ -28,113 +28,114 @@ export interface ModalProps extends IProps, OverlayProps {
   onConfirm?: (evn: React.MouseEvent<HTMLButtonElement> & MouseEvent) => void;
 }
 
-type ShowModalProps = {
-  show?: (props: Omit<ModalProps, 'onClosed' | 'isOpen'> & { children: React.ReactNode }) => void;
-};
+const Modal: React.ForwardRefExoticComponent<ModalProps & React.RefAttributes<OverlayProps>> = React.forwardRef<
+  OverlayProps,
+  ModalProps
+>((props, ref) => {
+  const {
+    prefixCls = 'w-modal',
+    className,
+    children,
+    useButton = true,
+    usePortal = true,
+    autoFocus = false,
+    isOpen: _ = false,
+    title,
+    cancelText,
+    cancelButtonProps,
+    confirmButtonProps,
+    content,
+    confirmText = '确认',
+    type = 'light',
+    icon,
+    maxWidth = 500,
+    minWidth = 320,
+    width,
+    isCloseButtonShown = true,
+    onCancel = noop,
+    onConfirm = noop,
+    bodyStyle,
+    ...other
+  } = props;
+  const [isOpen, setIsOpen] = useState(props.isOpen);
+  useEffect(() => {
+    if (props.isOpen !== isOpen) {
+      setIsOpen(props.isOpen);
+    }
+  }, [props.isOpen]);
 
-const Modal: React.ForwardRefExoticComponent<ModalProps & React.RefAttributes<OverlayProps>> & ShowModalProps =
-  React.forwardRef<OverlayProps, ModalProps>((props, ref) => {
-    const {
-      prefixCls = 'w-modal',
-      className,
-      children,
-      useButton = true,
-      usePortal = true,
-      autoFocus = false,
-      isOpen: _ = false,
-      title,
-      cancelText,
-      cancelButtonProps,
-      confirmButtonProps,
-      content,
-      confirmText = '确认',
-      type = 'light',
-      icon,
-      maxWidth = 500,
-      minWidth = 320,
-      width,
-      isCloseButtonShown = true,
-      onCancel = noop,
-      onConfirm = noop,
-      bodyStyle,
-      ...other
-    } = props;
-    const [isOpen, setIsOpen] = useState(props.isOpen);
-    useEffect(() => {
-      if (props.isOpen !== isOpen) {
-        setIsOpen(props.isOpen);
-      }
-    }, [props.isOpen]);
-
-    const [loading, setLoading] = useState(false);
-    const cls = [prefixCls, className, type ? `${type}` : null].filter(Boolean).join(' ').trim();
-    function onClose() {
-      setIsOpen(false);
-    }
-    async function handleCancel(e: React.MouseEvent<HTMLButtonElement, MouseEvent> & MouseEvent) {
-      setLoading(true);
-      try {
-        onCancel && (await onCancel(e));
-      } catch (e) {}
-      setIsOpen(false);
-      setLoading(false);
-    }
-    async function handleConfirm(e: React.MouseEvent<HTMLButtonElement, MouseEvent> & MouseEvent) {
-      setLoading(true);
-      try {
-        onConfirm && (await onConfirm(e));
-      } catch (e) {}
-      setIsOpen(false);
-      setLoading(false);
-    }
-    return (
-      <Overlay usePortal={usePortal} isOpen={isOpen} {...other} onClose={onClose} className={cls}>
-        <div className={`${prefixCls}-container`}>
-          <div
-            className={[
-              `${prefixCls}-inner`,
-              title ? `${prefixCls}-shown-title` : null,
-              icon ? `${prefixCls}-shown-icon` : null,
-            ]
-              .filter(Boolean)
-              .join(' ')
-              .trim()}
-            style={{ maxWidth, minWidth, width }}
-          >
-            {(title || icon) && (
-              <div className={`${prefixCls}-header`}>
-                {icon && <Icon type={icon} />}
-                {title && <h4>{title}</h4>}
-                {isCloseButtonShown && <Button basic onClick={(e) => handleCancel(e)} icon="close" type="light" />}
-              </div>
-            )}
-            <div className={`${prefixCls}-body`} style={bodyStyle}>
-              {children || content}
+  const [loading, setLoading] = useState(false);
+  const cls = [prefixCls, className, type ? `${type}` : null].filter(Boolean).join(' ').trim();
+  function onClose() {
+    setIsOpen(false);
+  }
+  async function handleCancel(e: React.MouseEvent<HTMLButtonElement, MouseEvent> & MouseEvent) {
+    setLoading(true);
+    try {
+      onCancel && (await onCancel(e));
+    } catch (e) {}
+    setIsOpen(false);
+    setLoading(false);
+  }
+  async function handleConfirm(e: React.MouseEvent<HTMLButtonElement, MouseEvent> & MouseEvent) {
+    setLoading(true);
+    try {
+      onConfirm && (await onConfirm(e));
+    } catch (e) {}
+    setIsOpen(false);
+    setLoading(false);
+  }
+  return (
+    <Overlay usePortal={usePortal} isOpen={isOpen} {...other} onClose={onClose} className={cls}>
+      <div className={`${prefixCls}-container`}>
+        <div
+          className={[
+            `${prefixCls}-inner`,
+            title ? `${prefixCls}-shown-title` : null,
+            icon ? `${prefixCls}-shown-icon` : null,
+          ]
+            .filter(Boolean)
+            .join(' ')
+            .trim()}
+          style={{ maxWidth, minWidth, width }}
+        >
+          {(title || icon) && (
+            <div className={`${prefixCls}-header`}>
+              {icon && <Icon type={icon} />}
+              {title && <h4>{title}</h4>}
+              {isCloseButtonShown && <Button basic onClick={(e) => handleCancel(e)} icon="close" type="light" />}
             </div>
-            {useButton && (
-              <div className={`${prefixCls}-footer`}>
-                <Button
-                  autoFocus={autoFocus}
-                  type={type}
-                  loading={loading}
-                  disabled={loading}
-                  {...confirmButtonProps}
-                  onClick={(e) => handleConfirm(e)}
-                >
-                  {confirmText}
-                </Button>
-                {cancelText && (
-                  <Button {...cancelButtonProps} onClick={(e) => handleCancel(e)}>
-                    {cancelText}
-                  </Button>
-                )}
-              </div>
-            )}
+          )}
+          <div className={`${prefixCls}-body`} style={bodyStyle}>
+            {children || content}
           </div>
+          {useButton && (
+            <div className={`${prefixCls}-footer`}>
+              <Button
+                autoFocus={autoFocus}
+                type={type}
+                loading={loading}
+                disabled={loading}
+                {...confirmButtonProps}
+                onClick={(e) => handleConfirm(e)}
+              >
+                {confirmText}
+              </Button>
+              {cancelText && (
+                <Button {...cancelButtonProps} onClick={(e) => handleCancel(e)}>
+                  {cancelText}
+                </Button>
+              )}
+            </div>
+          )}
         </div>
-      </Overlay>
-    );
-  });
+      </div>
+    </Overlay>
+  );
+});
 
-Modal.show = CallShow;
-export default Modal;
+type Modal = typeof Modal & {
+  show: (props?: Omit<ModalProps, 'onClosed' | 'isOpen'> & { children?: React.ReactNode }) => void;
+};
+(Modal as Modal).show = CallShow;
+export default Modal as Modal;
