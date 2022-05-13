@@ -1811,11 +1811,12 @@ var CallShow_excluded = ["title", "children"];
 
 
 function CallShow(props) {
-  var {
+  var _ref = props || {},
+      {
     title = '提示框',
     children
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, CallShow_excluded);
+  } = _ref,
+      other = _objectWithoutPropertiesLoose(_ref, CallShow_excluded);
 
   var dv = document.createElement('div');
   dv.id = 'uiw-modal-call-show-element';
