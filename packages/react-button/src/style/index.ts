@@ -6,6 +6,18 @@ interface ButtonProps {
   defaultTheme?: Record<string, string | number>;
 }
 
+const buttonSize = (fintSize: string, iconSize: string, lineHeight: string, minHeight: string) => {
+  return css`
+  font - size: ${fintSize};
+  line - height: ${lineHeight};
+  min - height: ${minHeight};
+
+  .w - icon {
+    font - size: iconSize;
+  }
+  `;
+};
+
 const Button = styled.button<ButtonProps>`
   user-select: none;
   display: inline-flex;
@@ -37,6 +49,7 @@ const Button = styled.button<ButtonProps>`
     display: block;
     width: 100%;
   }
+
   &.disabled,
   &[disabled] {
     cursor: not-allowed;
