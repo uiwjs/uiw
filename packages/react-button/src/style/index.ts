@@ -65,17 +65,42 @@ const buttonVariant = (color: string, background: string) => {
     `;
 };
 
-const buttonSize = (fintSize: string, iconSize: string, lineHeight: string, minHeight: string) => {
+const buttonSize = (fontSize: string, iconSize: string, lineHeight: string, minheight: string) => {
   return css`
-    font-size: ${fintSize};
+    font-size: ${fontSize};
     line-height: ${lineHeight};
-    min-height: ${minHeight};
+    min-height: ${minheight};
 
     .w-icon {
-      font-size: iconSize;
+      font-size: ${iconSize};
     }
   `;
 };
+
+const buttonSizeCss = (props: ButtonProps) => {
+  const { size } = props;
+  switch (size) {
+    case 'large':
+      return buttonSize('16px', '20px', '16px', '36px');
+    case 'small':
+      return css`
+        padding: 0 6px;
+        min-width: 20px;
+        ${() => buttonSize('16px', '14px', '16px', '36px')}
+      `;
+    default:
+      return css``;
+  }
+};
+
+const keyframesRotate = keyframes`
+from {
+  transform: rotateZ(0deg);
+}
+to {
+  transform: rotateZ(360deg);
+}
+`;
 
 const Button = styled.button<CssType>`
 user-select: none;
@@ -229,29 +254,32 @@ ${(props) => props.cssAtt.size === 'large' && buttonSize('16px', '20px', '16px',
   border: 1.2px solid #666f81;
 }
 
-&-loading {
-  &::before {
-    content: '';
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    border-radius: 50%;
-    border: 1.2px solid #fff;
-    color: #fff;
-    margin: 0 3px 0 0;
-    clip-path: polygon(0% 0%, 100% 0, 100% 30%, 0% 30%);
-    animation: rotate 0.5s linear infinite;
-
-    @keyframes rotate {
-      from {
-        transform: rotateZ(0deg);
+${(props) => {
+  return (
+    props.cssAtt.loading &&
+    css`
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        border: 1.2px solid #fff;
+        color: #fff;
+        margin: 0 3px 0 0;
+        clip-path: polygon(0% 0%, 100% 0, 100% 30%, 0% 30%);
+        animation: ${keyframesRotate} 0.5s linear infinite;
       }
-
-      to {
-        transform: rotateZ(360deg);
-      }
-    }
-  }
+      ${() =>
+        props.cssAtt.type === 'light' &&
+        css`
+          &::before: {
+            border: 1.2px solid #666f81;
+          }
+        `}
+    `
+  );
+}}
 }
 `;
 
