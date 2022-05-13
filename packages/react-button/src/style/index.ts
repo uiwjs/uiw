@@ -8,13 +8,13 @@ interface ButtonProps {
 
 const buttonSize = (fintSize: string, iconSize: string, lineHeight: string, minHeight: string) => {
   return css`
-  font - size: ${fintSize};
-  line - height: ${lineHeight};
-  min - height: ${minHeight};
+    font-size: ${fintSize};
+    line-height: ${lineHeight};
+    min-height: ${minHeight};
 
-  .w - icon {
-    font - size: iconSize;
-  }
+    .w-icon {
+      font-size: iconSize;
+    }
   `;
 };
 
