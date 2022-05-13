@@ -1,6 +1,5 @@
 import React from 'react';
 import { IProps, HTMLButtonProps } from '@uiw/utils';
-import ButtonBasic from './style';
 import './style/index.less';
 
 export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'light' | 'dark' | 'link';
@@ -61,10 +60,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
     .join(' ')
     .trim();
 
-  const cssAtt = { prefixCls, size, type, loading, disabled, active, block };
-
   return (
-    <ButtonBasic {...others} ref={ref} disabled={disabled || loading} cssAtt={cssAtt}>
+    <button {...others} ref={ref} type={htmlType} disabled={disabled || loading} className={cls}>
       {icon}
       {children &&
         React.Children.map(children, (child: React.ReactNode) => {
@@ -72,7 +69,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
           if (React.isValidElement(child)) return child;
           return <span>{child}</span>;
         })}
-    </ButtonBasic>
+    </button>
   );
 });
 

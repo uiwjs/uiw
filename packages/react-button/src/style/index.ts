@@ -1,6 +1,10 @@
 import { ButtonProps } from 'src';
 import styled, { css, keyframes } from 'styled-components';
 
+export interface CssType {
+  cssAtt: Partial<ButtonProps>;
+}
+
 const buttonVariant = (color: string, background: string) => {
   return css`
   color: ${color};
@@ -63,17 +67,17 @@ const buttonVariant = (color: string, background: string) => {
 
 const buttonSize = (fintSize: string, iconSize: string, lineHeight: string, minHeight: string) => {
   return css`
-  font - size: ${fintSize};
-  line - height: ${lineHeight};
-  min - height: ${minHeight};
+    font-size: ${fintSize};
+    line-height: ${lineHeight};
+    min-height: ${minHeight};
 
-  .w - icon {
-    font - size: iconSize;
-  }
+    .w-icon {
+      font-size: iconSize;
+    }
   `;
 };
 
-const Button = styled.button<ButtonProps>`
+const Button = styled.button<CssType>`
 user-select: none;
 display: inline-flex;
 flex-direction: row;
@@ -113,8 +117,12 @@ transition: background-color 0.5s, opacity 1s;
   cursor: not-allowed;
 }
 
+${(props) =>
+  props.cssAtt.type === 'primary' &&
+  css`
+    background-color: red;
+  `}
 &-primary {
-  ${buttonVariant('#fff', '#008ef0')};
 }
 
 &-success {
@@ -204,8 +212,7 @@ transition: background-color 0.5s, opacity 1s;
   font-size: 16px;
 }
 
-&-size-large {
-  ${buttonSize('16px', '20px', '16px', '36px')};
+${(props) => props.cssAtt.size === 'large' && buttonSize('16px', '20px', '16px', '36px')}
 }
 
 &-size-small {
