@@ -2,8 +2,6 @@ import styled from 'styled-components';
 
 interface WarpProps {
   theme: {
-    /** 圆角大小-默认 **/
-    borderRadiusDefault: string;
     /** 字体大小-默认 **/
     fontSizeDefault: string;
     /** 行高-默认 **/
@@ -25,7 +23,7 @@ interface WarpProps {
 
 const Warp = styled.div<WarpProps>`
   background: ${(props) => props.theme.backgroundColorBase};
-  border-radius: ${(props) => props.theme.borderRadiusDefault};
+  border-radius: 5px;
   font-size: ${(props) => props.theme.fontSizeDefault};
   line-height: ${(props) => props.theme.lineHeightDefault};
   position: relative;
@@ -80,7 +78,6 @@ const Warp = styled.div<WarpProps>`
 
 Warp.defaultProps = {
   theme: {
-    borderRadiusDefault: '5px',
     fontSizeDefault: '14px',
     lineHeightDefault: 1.5,
     borderColorBaseActive: '#CCCCCC',
