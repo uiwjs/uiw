@@ -13,6 +13,7 @@ import { LayoutMenuType } from 'locale/menu/layoutMenuType';
 export default function Nav() {
   const { state, dispatch } = useContext(ThemeContext);
   const { t: trans, i18n } = useTranslation();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const data = useMemo(() => JSON.parse(trans('menu')), [i18n.language]);
 
   const changeLanguage = (e: ChangeEvent<HTMLSelectElement>) => {

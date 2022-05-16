@@ -58,7 +58,6 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
                 const line = node.position?.start.line;
                 const metaId = getMetaId(meta) || String(line);
                 const Child = mdData.components[`${metaId}`];
-                console.log(Child, mdData);
 
                 if (metaId && typeof Child === 'function') {
                   const copyNodes = mdData.data[metaId].value || '';

@@ -76,7 +76,6 @@ export default function Code({ version, codePen, codeSandbox, noCode, ...other }
   if (typeof noCode === 'boolean') {
     props.noButton = noCode;
   }
-  console.log('noCode', noCode);
   return <CodePreviewLayout {...props} codePadding={0} />;
   // return <CodePreview {...props} dependencies={dependencies} style={{ marginBottom: 0 }} />;
 }
