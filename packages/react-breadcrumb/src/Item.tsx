@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { IProps } from '@uiw/utils';
-import './style/item.less';
+import WarpItem from './style/Item';
 
 type ElementTag<T = any> = T extends HTMLElement ? React.HTMLAttributes<T> : T;
 
@@ -26,12 +26,12 @@ const BreadcrumbItem = React.forwardRef<RefElement, BreadcrumbItemProps>((props,
     .filter(Boolean)
     .join(' ')
     .trim();
-  const otherProps = { className: cls, ...other };
+  const otherProps = { className: cls, ...other, as: TagName };
   if (!isElm) {
     otherProps['data-separator'] = separator;
   }
   return React.createElement(
-    TagName,
+    WarpItem,
     {
       ...otherProps,
       ref,

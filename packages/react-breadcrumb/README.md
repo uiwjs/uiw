@@ -24,7 +24,7 @@ import { Breadcrumb } from 'uiw';
 
 function Demo() {
   return <Breadcrumb>
-    <Breadcrumb.Item>首页</Breadcrumb.Item>
+    <Breadcrumb.Item >首页</Breadcrumb.Item>
     <Breadcrumb.Item separator=">">活动管理</Breadcrumb.Item>
     <Breadcrumb.Item>活动列表</Breadcrumb.Item>
     <Breadcrumb.Item active>活动详情</Breadcrumb.Item>
@@ -77,7 +77,7 @@ const stylIcon = { marginRight: 3, top: 2, display: 'inline-flex' }
 function Demo() {
   return <div>
     <Breadcrumb>
-      <Breadcrumb.Item>
+      <Breadcrumb.Item >
         <a href="#"><Icon style={stylIcon} type="home"/></a>
       </Breadcrumb.Item>
       <Breadcrumb.Item separator=">">
