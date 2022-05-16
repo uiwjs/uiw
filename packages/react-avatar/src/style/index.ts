@@ -1,10 +1,10 @@
-@w-avatar:~ "w-avatar";
+import styled from 'styled-components';
 
-.@{w-avatar} {
+const Warp = styled.span`
   display: inline-block;
   text-align: center;
-  background: #ccc;
-  color: #fff;
+  background: ${(props) => props.theme.backgroundColorAvatar};
+  color: ${(props) => props.theme.colorAvatar};
   vertical-align: middle;
   white-space: nowrap;
   position: relative;
@@ -16,30 +16,37 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  & + .@{w-avatar} {
+  & + & {
     margin-left: 5px;
   }
-  &-mini {
+  &.w-avatar-mini {
     height: 18px;
     width: 18px;
     font-size: 12px;
   }
-  &-small {
+  &.w-avatar-small {
     height: 24px;
     width: 24px;
     font-size: 12px;
   }
-  &-large {
+  &.w-avatar-large {
     height: 40px;
     width: 40px;
     font-size: 24px;
   }
-  &-circle {
+  &.w-avatar-circle {
     border-radius: 50%;
   }
-  > img {
+  &.w-avatar > img {
     width: 100%;
     height: 100%;
     display: block;
   }
-}
+`;
+Warp.defaultProps = {
+  theme: {
+    backgroundColorAvatar: '#ccc',
+    colorAvatar: '#fff',
+  },
+};
+export default Warp;
