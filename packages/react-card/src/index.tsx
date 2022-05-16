@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import './style/index.less';
+import Warp from './style';
 
 export interface CardProps extends IProps, Omit<HTMLDivProps, 'title'> {
   active?: boolean;
@@ -44,7 +44,7 @@ export default React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   );
 
   return (
-    <div {...resetProps} className={cls} ref={ref}>
+    <Warp {...resetProps} prefix={prefixCls} className={cls} ref={ref}>
       {(title || extra) && (
         <div className={`${prefixCls}-head`}>
           {title && <div className={`${prefixCls}-head-title`}>{title}</div>}
@@ -57,6 +57,6 @@ export default React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
         </div>
       )}
       {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
-    </div>
+    </Warp>
   );
 });

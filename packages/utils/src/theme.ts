@@ -21,8 +21,15 @@ export const transformationHump = (value: string, ident: string) => {
 export const transformationVariable = (cssVariable: CssVariableType, ident: string) => {
   const Variable: Record<string, string> = {};
   Object.keys(cssVariable || {}).forEach((key) => {
+    const Reg = new RegExp(`^${ident}`);
     const name = transformationHump(key, ident);
-    Variable[name] = `var(${key})`;
+    if (Reg.test(ident)) {
+      // 这种是变量的方式
+      Variable[name] = `var(${key})`;
+    } else {
+      // 这种是直接值的方式
+      Variable[name] = `${cssVariable[key]}`;
+    }
   });
   return Variable;
 };
