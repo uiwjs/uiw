@@ -28,12 +28,12 @@ const Warp = styled.span<WarpProps>`
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     top: -10px;
-    height: '16px';
-    border-radius: '10px';
+    height: 16px;
+    border-radius: 10px;
     min-width: 16px;
     background: #f04134;
     color: ${(props) => props.theme.colorBadge};
-    line-height: '16px';
+    line-height: 16px;
     text-align: center;
     padding: 0 5px;
     font-size: ${(props) => props.theme.fontSizeSmall};
