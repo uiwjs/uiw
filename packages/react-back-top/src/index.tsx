@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import { getScrollPercent, getScrollTop, scrollToAnimate } from './utils';
-import './style/index.less';
+import Warp from './style';
 
 export interface ChildrenFunction {
   scrollToTop: () => void;
@@ -70,9 +70,9 @@ export default React.forwardRef<HTMLDivElement, BackTopProps>((props, ref) => {
     }
   }
   return (
-    <div onClick={() => clickable && scrollToTop()} className={cls} {...other} ref={ref}>
+    <Warp onClick={() => clickable && scrollToTop()} className={cls} {...other} ref={ref}>
       {content}
       {typeof children !== 'function' ? children : children({ percent, current, scrollToTop: scrollToTop })}
-    </div>
+    </Warp>
   );
 });

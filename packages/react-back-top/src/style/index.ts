@@ -1,6 +1,6 @@
-@w-back-top:~ "w-back-top";
+import styled from 'styled-components';
 
-.@{w-back-top} {
+const Warp = styled.div`
   position: fixed;
   bottom: 50px;
   right: 50px;
@@ -11,12 +11,17 @@
     cursor: auto;
     position: static;
   }
-  &-hide {
+  &.w-back-top-hide {
     transition: all 1s;
     opacity: 0;
     height: 0px;
   }
-  &-show {
+  &.w-back-top-show {
     opacity: 1;
   }
-}
+`;
+
+Warp.defaultProps = {
+  theme: {},
+};
+export default Warp;
