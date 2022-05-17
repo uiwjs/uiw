@@ -80,9 +80,7 @@ class Demo extends React.Component {
               </Card>
             }
           >
-            <div>
-              <Icon type="setting" color="#343a40" style={{ fontSize: 20 }} />
-            </div>
+            <Icon type="setting" color="#343a40" style={{ fontSize: 20 }} />
           </Popover>
         </div>
       </Row>
