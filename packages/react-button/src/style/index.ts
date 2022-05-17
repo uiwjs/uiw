@@ -146,8 +146,8 @@ const Button = styled.button<ButtonProps>`
       width: 1em;
       height: 1em;
       border-radius: 50%;
-      border: 1.2px solid #fff;
-      color: #fff;
+      border: 1.2px solid ${(props) => getThemeVariantValue(props, 'colorButtonLoadingBefore')};
+      color: ${(props) => getThemeVariantValue(props, 'colorButtonLoadingBefore')};
       margin: 0 3px 0 0;
       clip-path: polygon(0% 0%, 100% 0, 100% 30%, 0% 30%);
       animation: rotate 0.5s linear infinite;
@@ -180,6 +180,7 @@ Button.defaultProps = {
     fontSizeButtonIconLarge: '20px',
     // 边框颜色 + 组件 + 组件属性 + 伪类
     borderColorLinghtLoadingBefore: '#666f81',
+    colorButtonLoadingBefore: '#fff',
 
     // 颜色设置
     // Primary

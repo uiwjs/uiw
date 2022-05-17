@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
 interface WarpProps extends ThemeVariantValueOptions {
-  defaultTheme: {
+  defaultTheme?: {
     boxShadowColorBadge: string;
     colorBadge: string;
     fontSizeDefault: string;

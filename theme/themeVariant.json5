@@ -25,6 +25,8 @@
   fontSizeButtonIconSmall: '14px',
   fontSizeButtonIcontDefault: '16px',
   fontSizeButtonIconLarge: '20px',
+  // 颜色 +  组件属性 + 伪类
+  colorLoadingBefore: '#fff',
 
   // 颜色设置
   // Primary
