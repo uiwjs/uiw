@@ -9,7 +9,7 @@
     "lib:css": "lerna exec --scope @uiw/react-button -- compile-less -d src -o esm",
     "lib:css:dist": "lerna exec --scope @uiw/react-button -- compile-less -d src -o lib --combine=dist.css",
     "lib:css:watch": "lerna exec --scope @uiw/react-button -- compile-less -d src -o esm --watch",
-    "lib:watch": "lerna exec --scope @uiw/react-button -- tsbb watch & npm run lib:css:watch",
+    "lib:watch": "lerna exec --scope @uiw/react-button -- tsbb watch ",
     "lib:bootstrap": "lerna bootstrap --hoist --scope @uiw/react-button",
     "lib:build": "npm run lib && npm run lib:css && npm run lib:css:dist",
     "//>>>>>>>>>>>>": "<<<<<<<<<<",
@@ -81,9 +81,5 @@
     "react-dom": "^18.0.0",
     "react-test-renderer": "^18.0.0",
     "tsbb": "~3.7.0"
-  },
-  "dependencies": {
-    "@uiw/react-button": "^4.21.3",
-    "@uiw/react-button-group": "^4.21.3"
   }
 }
