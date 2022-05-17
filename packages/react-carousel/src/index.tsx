@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import './style/index.less';
+import Warp from './style';
 
 export interface CarouselProps extends IProps, HTMLDivProps {
   width?: number;
@@ -130,7 +130,7 @@ function Carousel(props: CarouselProps, ref: React.ForwardedRef<CarouselRef>) {
   }, [direction, currentPosition, width, height]);
 
   return (
-    <div className={cls} style={{ width, height }}>
+    <Warp className={cls} style={{ width, height }}>
       <div
         className={`${cls}-content`}
         style={{ width: width * childCount, transition: transitionInner, ...innerStyle }}
@@ -138,7 +138,7 @@ function Carousel(props: CarouselProps, ref: React.ForwardedRef<CarouselRef>) {
         {childrens}
         <div style={{ width, height, ...style }}>{childrens?.[0]}</div>
       </div>
-    </div>
+    </Warp>
   );
 }
 
