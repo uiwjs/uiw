@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLButtonProps } from '@uiw/utils';
 import WarpButton from './style';
 export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'light' | 'dark' | 'link';
@@ -9,7 +10,7 @@ export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
   active?: boolean;
   loading?: boolean;
   block?: boolean;
-  icon?: React.ReactNode;
+  icon?: IconProps['type'];
   /**
    * 按钮类型
    * @mytag {@link link }
