@@ -6,14 +6,6 @@ interface ButtonProps {
   defaultTheme?: Record<string, string | number>;
 }
 
-const buttonSize = (fintSize: string, iconSize: string, lineHeight: string, minHeight: string) => {
-  return css`
-    font-size: ${fontSize};
-    line-height: ${lineHeight};
-    min-height: ${minheight};
-  `;
-};
-
 const Button = styled.button<ButtonProps>`
   user-select: none;
   display: inline-flex;
@@ -45,7 +37,6 @@ const Button = styled.button<ButtonProps>`
     display: block;
     width: 100%;
   }
-
   &.disabled,
   &[disabled] {
     cursor: not-allowed;
@@ -128,21 +119,21 @@ const Button = styled.button<ButtonProps>`
   }
   &.w-btn-size-large {
     ${(props) => {
-    const fontSize = getThemeVariantValue(props, 'fontSizeLarge');
-    const minHeight = getThemeVariantValue(props, 'minHeightLarge');
-    const fontSizeIcon = getThemeVariantValue(props, 'fontSizeButtonIconLarge');
-    return buttonSize(`${fontSize}`, `${fontSizeIcon}`, fontSize, `${minHeight}`);
-  }}
+      const fontSize = getThemeVariantValue(props, 'fontSizeLarge');
+      const minHeight = getThemeVariantValue(props, 'minHeightLarge');
+      const fontSizeIcon = getThemeVariantValue(props, 'fontSizeButtonIconLarge');
+      return buttonSize(`${fontSize}`, `${fontSizeIcon}`, fontSize, `${minHeight}`);
+    }}
   }
   &.w-btn-size-small {
     padding: 0 6px;
     min-width: ${(props) => getThemeVariantValue(props, 'minHeightSmall')};
     ${(props) => {
-    const fontSize = getThemeVariantValue(props, 'fontSizeSmall');
-    const minHeight = getThemeVariantValue(props, 'minHeightSmall');
-    const fontSizeIcon = getThemeVariantValue(props, 'fontSizeButtonIconSmall');
-    return buttonSize(`${fontSize}`, `${fontSizeIcon}`, fontSize, `${minHeight}`);
-  }}
+      const fontSize = getThemeVariantValue(props, 'fontSizeSmall');
+      const minHeight = getThemeVariantValue(props, 'minHeightSmall');
+      const fontSizeIcon = getThemeVariantValue(props, 'fontSizeButtonIconSmall');
+      return buttonSize(`${fontSize}`, `${fontSizeIcon}`, fontSize, `${minHeight}`);
+    }}
   }
   & .w-icon:not(:last-child) {
     margin-right: 5px;
