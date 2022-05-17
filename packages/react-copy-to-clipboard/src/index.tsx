@@ -1,7 +1,15 @@
 import React from 'react';
 import copy from '@uiw/copy-to-clipboard';
 import { IProps, HTMLSpanProps } from '@uiw/utils';
-import './style/index.less';
+import styled from 'styled-components';
+
+const Span = styled.span`
+  cursor: pointer;
+  &.w-copy-to-clipboard-select {
+    user-select: text;
+    display: none;
+  }
+`;
 
 export interface CopyToClipboardProps extends IProps, Omit<HTMLSpanProps, 'onClick'> {
   text?: string;
@@ -31,9 +39,9 @@ export default function CopyToClipboard<T>(props: CopyToClipboardProps & T) {
     onClick: handleClick,
   };
   return (
-    <span {...otherProps}>
+    <Span {...otherProps}>
       <span className={`${prefixCls}-select`}>{text}</span>
       {children}
-    </span>
+    </Span>
   );
 }
