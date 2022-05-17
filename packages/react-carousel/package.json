@@ -43,6 +43,7 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/utils": "^4.21.2"
+    "@uiw/utils": "^4.21.2",
+    "@types/styled-components": "~5.1.25"
   }
 }
