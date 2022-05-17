@@ -4,7 +4,15 @@ import { buttonVariant, buttonSize } from './Variant';
 
 interface ButtonProps {
   defaultTheme?: Record<string, string | number>;
+  theme?: Record<string, string | number>;
 }
+
+const getSize = (props: ButtonProps, type: string) => {
+  const fontSize = getThemeVariantValue(props, `fontSize${type}`);
+  const minHeight = getThemeVariantValue(props, `minHeight${type}`);
+  const fontSizeIcon = getThemeVariantValue(props, `fontSizeButtonIcon${type}`);
+  return buttonSize(`${fontSize}`, `${fontSizeIcon}`, fontSize, `${minHeight}`);
+};
 
 const Button = styled.button<ButtonProps>`
   user-select: none;
@@ -118,22 +126,12 @@ const Button = styled.button<ButtonProps>`
     font-size: ${(props) => getThemeVariantValue(props, 'fontSizeButtonIcontDefault')};
   }
   &.w-btn-size-large {
-    ${(props) => {
-      const fontSize = getThemeVariantValue(props, 'fontSizeLarge');
-      const minHeight = getThemeVariantValue(props, 'minHeightLarge');
-      const fontSizeIcon = getThemeVariantValue(props, 'fontSizeButtonIconLarge');
-      return buttonSize(`${fontSize}`, `${fontSizeIcon}`, fontSize, `${minHeight}`);
-    }}
+    ${(props) => getSize(props, 'Large')}
   }
   &.w-btn-size-small {
     padding: 0 6px;
     min-width: ${(props) => getThemeVariantValue(props, 'minHeightSmall')};
-    ${(props) => {
-      const fontSize = getThemeVariantValue(props, 'fontSizeSmall');
-      const minHeight = getThemeVariantValue(props, 'minHeightSmall');
-      const fontSizeIcon = getThemeVariantValue(props, 'fontSizeButtonIconSmall');
-      return buttonSize(`${fontSize}`, `${fontSizeIcon}`, fontSize, `${minHeight}`);
-    }}
+    ${(props) => getSize(props, 'Small')}
   }
   & .w-icon:not(:last-child) {
     margin-right: 5px;
