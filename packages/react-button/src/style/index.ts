@@ -11,10 +11,6 @@ const buttonSize = (fintSize: string, iconSize: string, lineHeight: string, minH
     font-size: ${fontSize};
     line-height: ${lineHeight};
     min-height: ${minheight};
-
-    .w-icon {
-      font-size: ${iconSize};
-    }
   `;
 };
 
