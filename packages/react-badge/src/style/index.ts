@@ -1,7 +1,8 @@
 import styled, { keyframes } from 'styled-components';
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
-interface WarpProps {
-  theme: {
+interface WarpProps extends ThemeVariantValueOptions {
+  defaultTheme: {
     boxShadowColorBadge: string;
     colorBadge: string;
     fontSizeDefault: string;
@@ -32,7 +33,7 @@ const Warp = styled.span<WarpProps>`
     border-radius: 10px;
     min-width: 16px;
     background: #f04134;
-    color: ${(props) => props.theme.colorBadge};
+    color: ${(props) => getThemeVariantValue(props, 'colorBadge')};
     line-height: 16px;
     text-align: center;
     padding: 0 5px;
@@ -41,7 +42,7 @@ const Warp = styled.span<WarpProps>`
     -webkit-transform-origin: -10% center;
     transform-origin: -10% center;
     font-family: tahoma;
-    box-shadow: 0 0 0 1px ${(props) => props.theme.boxShadowColorBadge};
+    box-shadow: 0 0 0 1px ${(props) => getThemeVariantValue(props, 'boxShadowColorBadge')};
   }
   &.nowrap sup.w-badge-count {
     top: auto;
@@ -66,12 +67,12 @@ const Warp = styled.span<WarpProps>`
     border-radius: 100%;
     background: #f04134;
     z-index: 10;
-    box-shadow: 0 0 0 1px ${(props) => props.theme.boxShadowColorBadge};
+    box-shadow: 0 0 0 1px ${(props) => getThemeVariantValue(props, 'boxShadowColorBadge')};
   }
   .w-badge-dot {
     line-height: inherit;
     vertical-align: baseline;
-    font-size: ${(props) => props.theme.fontSizeDefault};
+    font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
     margin: 0 4px;
     width: 6px;
     height: 6px;
@@ -100,7 +101,7 @@ const Warp = styled.span<WarpProps>`
 `;
 
 Warp.defaultProps = {
-  theme: {
+  defaultTheme: {
     boxShadowColorBadge: '#fff',
     colorBadge: '#fff',
     fontSizeDefault: '14px',
