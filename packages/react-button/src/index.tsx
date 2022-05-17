@@ -1,7 +1,8 @@
 import React from 'react';
 import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLButtonProps } from '@uiw/utils';
-import './style/index.less';
+// import './style/index.less';
+import WarpButton from './style';
 
 export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'light' | 'dark' | 'link';
 export type ButtonSize = 'large' | 'default' | 'small';
@@ -62,7 +63,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
     .trim();
 
   return (
-    <button {...others} ref={ref} type={htmlType} disabled={disabled || loading} className={cls}>
+    <WarpButton {...others} as="button" ref={ref} type={htmlType} disabled={disabled || loading} className={cls}>
       {icon && <Icon type={icon} />}
       {children &&
         React.Children.map(children, (child: React.ReactNode) => {
@@ -70,7 +71,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
           if (React.isValidElement(child)) return child;
           return <span>{child}</span>;
         })}
-    </button>
+    </WarpButton>
   );
 });
 

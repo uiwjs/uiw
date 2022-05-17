@@ -33,3 +33,29 @@ export const transformationVariable = (cssVariable: CssVariableType, ident: stri
   });
   return Variable;
 };
+
+export type DefaultThemeType = Record<string, string | number>;
+
+/**
+ * @description: 获取主题变量值
+ * @param {options} options
+ * @param {string} field 字段
+ */
+export const getThemeVariantValue = <T extends DefaultThemeType, M extends DefaultThemeType>(
+  options: {
+    defaultTheme?: T;
+    theme?: M;
+  },
+  field?: string,
+) => {
+  const { defaultTheme, theme } = options;
+  if (field) {
+    const defaultValue = ((defaultTheme || {}) as T)[field];
+    const value = ((theme || {}) as M)[field];
+    if (value || typeof value === 'number') {
+      return value;
+    }
+    return defaultValue;
+  }
+  return '';
+};
