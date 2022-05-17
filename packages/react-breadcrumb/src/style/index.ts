@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-
-const Warp = styled.div`
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
+const Warp = styled.div<ThemeVariantValueOptions>`
   display: inline-flex;
-  font-size: ${(props) => props.theme.fontSizeDefault};
+  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
 `;
 
 Warp.defaultProps = {
-  theme: {
+  defaultTheme: {
     fontSizeDefault: '12px',
   },
 };

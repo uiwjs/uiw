@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
-const WarpItem = styled.span`
+const WarpItem = styled.span<ThemeVariantValueOptions>`
   display: inline-flex;
   & + &::before,
   & + & .w-breadcrumb-separator {
     padding-right: 8px;
     padding-left: 8px;
-    color: ${(props) => props.theme.colorBreadcrumb};
+    color: ${(props) => getThemeVariantValue(props, 'colorBreadcrumb')};
   }
   & + &::before {
     display: inline-block;
@@ -22,12 +23,12 @@ const WarpItem = styled.span`
     display: none;
   }
   &.active {
-    color: ${(props) => props.theme.colorBreadcrumb};
+    color: ${(props) => getThemeVariantValue(props, 'colorBreadcrumb')};
   }
 `;
 
 WarpItem.defaultProps = {
-  theme: {
+  defaultTheme: {
     colorBreadcrumb: '#6e6e6e',
   },
 };
