@@ -137,7 +137,7 @@ const Button = styled.button<ButtonProps>`
     margin-right: 5px;
   }
   &.w-btn-loading.w-btn-light::before {
-    border: 1.2px solid ${(props) => getThemeVariantValue(props, 'borderColorButtonLinghtLoadingBefore')};
+    border: 1.2px solid ${(props) => getThemeVariantValue(props, 'borderColorLinghtLoadingBefore')};
   }
   &.w-btn-loading {
     &::before {
@@ -179,7 +179,7 @@ Button.defaultProps = {
     fontSizeButtonIcontDefault: '16px',
     fontSizeButtonIconLarge: '20px',
     // 边框颜色 + 组件 + 组件属性 + 伪类
-    borderColorButtonLinghtLoadingBefore: '#666f81',
+    borderColorLinghtLoadingBefore: '#666f81',
 
     // 颜色设置
     // Primary

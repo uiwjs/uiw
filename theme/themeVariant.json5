@@ -23,8 +23,6 @@
   fontSizeButtonIconSmall: '14px',
   fontSizeButtonIcontDefault: '16px',
   fontSizeButtonIconLarge: '20px',
-  // 边框颜色 + 组件 + 组件属性 + 伪类
-  borderColorButtonLinghtLoadingBefore: '#666f81',
 
   // 颜色设置
   // Primary
@@ -90,6 +88,8 @@
 
   boxShadowColorLightDefault: 'rgba(0, 0, 0, 0.17)',
   boxShadowColorLight4: 'rgba(0, 0, 0, 0.1)',
+  // 边框颜色 +  组件属性 + 伪类
+  borderColorLinghtLoadingBefore: '#666f81',
 
   // Dark
   colorDark: '#fff',
