@@ -9,7 +9,7 @@ interface ButtonProps {
 
 const getSize = (props: ButtonProps, type: string) => {
   const fontSize = getThemeVariantValue(props, `fontSize${type}`);
-  const minHeight = getThemeVariantValue(props, `minHeight${type}`);
+  const minHeight = getThemeVariantValue(props, `minHeightButton${type}`);
   const fontSizeIcon = getThemeVariantValue(props, `fontSizeButtonIcon${type}`);
   return buttonSize(`${fontSize}`, `${fontSizeIcon}`, fontSize, `${minHeight}`);
 };
@@ -30,8 +30,8 @@ const Button = styled.button<ButtonProps>`
   text-align: left;
   line-height: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
   font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
-  min-width: ${(props) => getThemeVariantValue(props, 'minHeightDefault')};
-  min-height: ${(props) => getThemeVariantValue(props, 'minHeightDefault')};
+  min-width: ${(props) => getThemeVariantValue(props, 'minHeightButtonDefault')};
+  min-height: ${(props) => getThemeVariantValue(props, 'minHeightButtonDefault')};
   text-align: center;
   color: ${(props) => getThemeVariantValue(props, 'colorButtonBase')};
   transition: background-color 0.5s, opacity 1s;
@@ -130,7 +130,7 @@ const Button = styled.button<ButtonProps>`
   }
   &.w-btn-size-small {
     padding: 0 6px;
-    min-width: ${(props) => getThemeVariantValue(props, 'minHeightSmall')};
+    min-width: ${(props) => getThemeVariantValue(props, 'minHeightButtonSmall')};
     ${(props) => getSize(props, 'Small')}
   }
   & .w-icon:not(:last-child) {
@@ -171,14 +171,14 @@ Button.defaultProps = {
     fontSizeDefault: '14px',
     fontSizeLarge: '16px',
     // 最小高度
-    minHeightSmall: '24px',
-    minHeightDefault: '30px',
-    minHeightLarge: '36px',
+    minHeightButtonSmall: '24px',
+    minHeightButtonDefault: '30px',
+    minHeightButtonLarge: '36px',
     // 按钮中图标大小
     fontSizeButtonIconSmall: '14px',
     fontSizeButtonIcontDefault: '16px',
     fontSizeButtonIconLarge: '20px',
-    // 边框颜色 + 组件 + 属性 + 伪类
+    // 边框颜色 + 组件 + 组件属性 + 伪类
     borderColorButtonLinghtLoadingBefore: '#666f81',
 
     // 颜色设置
@@ -193,6 +193,7 @@ Button.defaultProps = {
     backgroundColorPrimaryBasicHover: '#c7e8ff',
     colorPrimaryBasicDisabled: '#24a6ff',
     backgroundColorPrimaryBasicActive: '#94d3ff',
+
     // Success
     colorSuccess: '#fff',
     backgroundColorSuccess: '#28a745',
@@ -204,6 +205,7 @@ Button.defaultProps = {
     backgroundColorSuccessBasicHover: '#b7eec4',
     colorSuccessBasicDisabled: '#34ce57',
     backgroundColorSuccessBasicActive: '#8ee4a2',
+
     // Warning
     colorWarning: '#fff',
     backgroundColorWarning: '#ffc107',
@@ -215,6 +217,7 @@ Button.defaultProps = {
     backgroundColorWarningBasicHover: '#fff7dd',
     colorWarningBasicDisabled: '#ffce3a',
     backgroundColorWarningBasicActive: '#ffeaaa',
+
     // Error
     colorError: '#fff',
     backgroundColorError: '#dc3545',
@@ -226,6 +229,7 @@ Button.defaultProps = {
     backgroundColorErrorBasicHover: '#fceced',
     colorErrorBasicDisabled: '#e4606d',
     backgroundColorErrorBasicActive: '#f4c0c5',
+
     // Light
     colorLight: '#393e48',
     backgroundColorLight: '#f8f9fa',
@@ -253,6 +257,7 @@ Button.defaultProps = {
     backgroundColorDarkBasicHover: '#a2a8b5',
     colorDarkBasicDisabled: '#505764',
     backgroundColorDarkBasicActive: '#858e9f',
+
     // Link
     colorLink: '#008ef0',
     colorLinkHover: '#008ef0',
