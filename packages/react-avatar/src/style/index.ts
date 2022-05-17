@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
-const Warp = styled.span`
+const Warp = styled.span<ThemeVariantValueOptions>`
   display: inline-block;
   text-align: center;
-  background: ${(props) => props.theme.backgroundColorAvatar};
-  color: ${(props) => props.theme.colorAvatar};
+  background: ${(props) => getThemeVariantValue(props, 'backgroundColorAvatar')};
+  color: ${(props) => getThemeVariantValue(props, 'colorAvatar')};
   vertical-align: middle;
   white-space: nowrap;
   position: relative;
@@ -44,7 +45,7 @@ const Warp = styled.span`
   }
 `;
 Warp.defaultProps = {
-  theme: {
+  defaultTheme: {
     backgroundColorAvatar: '#ccc',
     colorAvatar: '#fff',
   },

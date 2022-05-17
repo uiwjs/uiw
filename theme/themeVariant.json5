@@ -5,6 +5,10 @@
   fontSizeDefault: '14px',
   fontSizeLarge: '16px',
 
+  //  avatar 头像部分
+  backgroundColorAvatar: '#ccc',
+  colorAvatar: '#fff',
+
   // ---------------------------  button 按钮部分 ------------------------------------
   colorButtonBase: '#fff',
   // 最小高度

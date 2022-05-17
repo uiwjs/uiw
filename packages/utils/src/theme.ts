@@ -36,16 +36,18 @@ export const transformationVariable = (cssVariable: CssVariableType, ident: stri
 
 export type DefaultThemeType = Record<string, string | number>;
 
+export type ThemeVariantValueOptions<T = DefaultThemeType, M = DefaultThemeType> = {
+  defaultTheme?: T;
+  theme?: M;
+};
+
 /**
  * @description: 获取主题变量值
  * @param {options} options
  * @param {string} field 字段
  */
 export const getThemeVariantValue = <T extends DefaultThemeType, M extends DefaultThemeType>(
-  options: {
-    defaultTheme?: T;
-    theme?: M;
-  },
+  options: ThemeVariantValueOptions<T, M>,
   field?: string,
 ) => {
   const { defaultTheme, theme } = options;
