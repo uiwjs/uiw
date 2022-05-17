@@ -4,7 +4,6 @@
   "homepage": "https://uiwjs.github.io",
   "private": true,
   "scripts": {
-    "debug": "./debug",
     "lib": "lerna exec --scope @uiw/react-button -- tsbb build --target react",
     "lib:css": "lerna exec --scope @uiw/react-button -- compile-less -d src -o esm",
     "lib:css:dist": "lerna exec --scope @uiw/react-button -- compile-less -d src -o lib --combine=dist.css",
