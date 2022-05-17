@@ -1,19 +1,15 @@
 import React from 'react';
-import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLButtonProps } from '@uiw/utils';
-// import './style/index.less';
 import WarpButton from './style';
-
 export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'light' | 'dark' | 'link';
 export type ButtonSize = 'large' | 'default' | 'small';
-
 export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
   basic?: boolean;
   disabled?: boolean;
   active?: boolean;
   loading?: boolean;
   block?: boolean;
-  icon?: IconProps['type'];
+  icon?: React.ReactNode;
   /**
    * 按钮类型
    * @mytag {@link link }
@@ -64,7 +60,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
 
   return (
     <WarpButton {...others} as="button" ref={ref} type={htmlType} disabled={disabled || loading} className={cls}>
-      {icon && <Icon type={icon} />}
+      {icon}
       {children &&
         React.Children.map(children, (child: React.ReactNode) => {
           if (!child) return child;

@@ -54,7 +54,7 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from "react"
-import { Button, Divider, ButtonGroup } from 'uiw';
+import { Button, Divider, ButtonGroup,Icon } from 'uiw';
 
 const Demo = ()=>(
   <div>
@@ -80,36 +80,36 @@ const Demo = ()=>(
     </ButtonGroup>
     <Divider style={{ maxWidth: 220 }}>添加图标</Divider>
     <ButtonGroup>
-      <Button icon="copy" type="primary">复制</Button>
-      <Button icon="delete" type="success">删除</Button>
-      <Button icon="file-add" type="warning">添加文件</Button>
-      <Button icon="map" type="danger">地图</Button>
-      <Button icon="linux" type="light">Linux</Button>
-      <Button icon="apple" type="dark">Apple</Button>
+      <Button icon={<Icon type="copy" />} type="primary">复制</Button>
+      <Button icon={<Icon type="delete" />} type="success">删除</Button>
+      <Button icon={<Icon type="file-add" />} type="warning">添加文件</Button>
+      <Button icon={<Icon type="map" />} type="danger">地图</Button>
+      <Button icon={<Icon type="linux" />} type="light">Linux</Button>
+      <Button icon={<Icon type="apple" />} type="dark">Apple</Button>
     </ButtonGroup>
     <ButtonGroup style={{ marginTop: 5 }}>
-      <Button icon="copy" type="primary">复制</Button>
-      <Button icon="delete" type="primary">删除</Button>
-      <Button icon="file-add" type="primary">添加文件</Button>
-      <Button icon="map" type="primary">地图</Button>
-      <Button icon="linux" type="primary">Linux</Button>
-      <Button icon="apple" type="primary">Apple</Button>
+      <Button icon={<Icon type="copy" />} type="primary">复制</Button>
+      <Button icon={<Icon type="delete" />} type="primary">删除</Button>
+      <Button icon={<Icon type="file-add" />} type="primary">添加文件</Button>
+      <Button icon={<Icon type="map" />} type="primary">地图</Button>
+      <Button icon={<Icon type="linux" />} type="primary">Linux</Button>
+      <Button icon={<Icon type="apple" />} type="primary">Apple</Button>
     </ButtonGroup>
     <ButtonGroup style={{ marginTop: 5 }}>
-      <Button icon="copy">复制</Button>
-      <Button icon="delete">删除</Button>
-      <Button icon="file-add">添加文件</Button>
-      <Button icon="map">地图</Button>
-      <Button icon="linux">Linux</Button>
-      <Button icon="apple">Apple</Button>
+      <Button icon={<Icon type="copy" />}>复制</Button>
+      <Button icon={<Icon type="delete" />} >删除</Button>
+      <Button icon={<Icon type="file-add" />} >添加文件</Button>
+      <Button icon={<Icon type="map" />} >地图</Button>
+      <Button icon={<Icon type="linux" />}>Linux</Button>
+      <Button icon={<Icon type="apple" />} >Apple</Button>
     </ButtonGroup>
     <ButtonGroup style={{ marginTop: 5 }}>
-      <Button icon="copy" />
-      <Button icon="delete" />
-      <Button icon="file-add" />
-      <Button icon="map" />
-      <Button icon="linux" />
-      <Button icon="apple" />
+      <Button icon={<Icon type="copy" />} />
+      <Button icon={<Icon type="delete" />}  />
+      <Button icon={<Icon type="file-add" />}  />
+      <Button icon={<Icon type="map" />}  />
+      <Button icon={<Icon type="linux" />} />
+      <Button icon={<Icon type="apple" />} />
     </ButtonGroup>
   </div>
 );
@@ -130,22 +130,22 @@ const closed = <svg viewBox="0 0 16 16" width="16" height="16"> <path fillRule="
 
 const Demo = ()=>(
   <div>
-    <Button icon="weibo" type="primary">主要按钮</Button>
-    <Button icon="chrome" type="success">成功按钮</Button>
-    <Button icon="taobao" type="warning">警告按钮</Button>
-    <Button icon="weibo" type="danger" />
+    <Button icon={<Icon type="weibo" />} type="primary">主要按钮</Button>
+    <Button icon={<Icon type="chrome" />} type="success">成功按钮</Button>
+    <Button icon={<Icon type="taobao" />} type="warning">警告按钮</Button>
+    <Button icon={<Icon type="weibo" />} type="danger" />
     <Button type="danger">
       <Icon type="reload" spin={true} />
       <span>错误<span>按钮</span></span>
       <Icon type="weibo" />
     </Button>
-    <Button icon="chrome" type="light">亮按钮</Button>
-    <Button icon="apple" type="dark">暗按钮</Button>
-    <Button icon={chat} type="dark">暗按钮</Button>
+    <Button icon={<Icon type="chrome" />}  type="light">亮按钮</Button>
+    <Button icon={<Icon type="apple" />} type="dark">暗按钮</Button>
+    <Button icon={<Icon type={chat} />} type="dark">暗按钮</Button>
     <Divider style={{ maxWidth: 220 }}>GitHub</Divider>
-    <Button icon={open} type="success">Open</Button>
-    <Button icon={merged} type="light" style={{ backgroundColor: '#6f42c1', color: '#fff' }}>Merged</Button>
-    <Button icon={closed} type="danger">Closed</Button>
+    <Button icon={<Icon type={open} />}  type="success">Open</Button>
+    <Button icon={<Icon type={merged} />} type="light" style={{ backgroundColor: '#6f42c1', color: '#fff' }}>Merged</Button>
+    <Button icon={<Icon type={closed} />} type="danger">Closed</Button>
   </div>
 );
 export default Demo
@@ -188,7 +188,7 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from "react"
-import { Button, ButtonGroup, Divider } from 'uiw';
+import { Button, ButtonGroup, Divider ,Icon} from 'uiw';
 
 const Demo = ()=>(
   <div>
@@ -214,35 +214,37 @@ const Demo = ()=>(
     </ButtonGroup>
     <Divider style={{ maxWidth: 220 }}>添加图标</Divider>
     <ButtonGroup>
-      <Button disabled icon="copy" type="primary">复制</Button>
-      <Button disabled icon="delete" type="success">删除</Button>
-      <Button disabled icon="file-add" type="warning">添加文件</Button>
-      <Button disabled icon="map" type="danger">地图</Button>
-      <Button disabled icon="linux" type="light">Linux</Button>
-      <Button disabled icon="apple" type="dark">Apple</Button>
+      <Button disabled icon={<Icon type="copy" />}  type="primary">复制</Button>
+      <Button disabled icon={<Icon type="delete" />}   type="success">删除</Button>
+      <Button disabled icon={<Icon type="file-add" />}  type="warning">添加文件</Button>
+      <Button disabled icon={<Icon type="map" />}  type="danger">地图</Button>
+      <Button disabled icon={<Icon type="linux" />} type="light">Linux</Button>
+      <Button disabled  icon={<Icon type="apple" />} type="dark">Apple</Button>
     </ButtonGroup>
     <ButtonGroup style={{ marginTop: 5 }}>
-      <Button disabled icon="copy" type="primary">复制</Button>
-      <Button disabled icon="delete" type="primary">删除</Button>
-      <Button icon="file-add" type="primary">添加文件</Button>
-      <Button disabled icon="map" type="primary">地图</Button>
-      <Button disabled icon="linux" type="primary">Linux</Button>
-      <Button disabled icon="apple" type="primary">Apple</Button>
+      <Button disabled icon={<Icon type="copy" />}  type="primary">复制</Button>
+      <Button disabled icon={<Icon type="delete" />}   type="primary">删除</Button>
+      <Button icon={<Icon type="file-add" />}  type="primary">添加文件</Button>
+      <Button disabled icon={<Icon type="map" />}  type="primary">地图</Button>
+      <Button disabled icon={<Icon type="linux" />} type="primary">Linux</Button>
+      <Button disabled icon={<Icon type="apple" />} type="primary">Apple</Button>
+
+
     </ButtonGroup>
     <ButtonGroup style={{ marginTop: 5 }}>
-      <Button disabled icon="copy">复制</Button>
-      <Button disabled icon="delete">删除</Button>
-      <Button disabled icon="file-add">添加文件</Button>
-      <Button disabled icon="map">地图</Button>
-      <Button disabled icon="linux">Linux</Button>
-      <Button disabled icon="apple">Apple</Button>
+      <Button disabled icon={<Icon type="copy" />} >复制</Button>
+      <Button disabled icon={<Icon type="delete" />} >删除</Button>
+      <Button disabled icon={<Icon type="file-add" />}>添加文件</Button>
+      <Button disabled icon={<Icon type="map" />} >地图</Button>
+      <Button disabled icon={<Icon type="linux" />} >Linux</Button>
+      <Button disabled icon={<Icon type="apple" />}>Apple</Button>
     </ButtonGroup>
     <div style={{ marginTop: 5 }}>
-      <Button disabled icon="weibo" basic type="primary" />
-      <Button disabled icon="chrome" basic type="success" />
-      <Button disabled icon="taobao" basic type="warning" />
-      <Button disabled icon="apple" basic type="danger" />
-      <Button disabled icon="weibo" basic type="dark" />
+      <Button icon={<Icon type="weibo" />} disabled basic type="primary" />
+      <Button icon={<Icon type="chrome" />} disabled basic type="success" />
+      <Button icon={<Icon type="taobao" />} disabled basic type="warning" />
+      <Button icon={<Icon type="apple" />} disabled basic type="danger" />
+      <Button icon={<Icon type="weibo" />} disabled basic type="dark" />
     </div>
   </div>
 );
@@ -343,7 +345,7 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from "react"
-import { Button, Divider } from 'uiw';
+import { Button, Divider ,Icon } from 'uiw';
 
 const chat = (
   <svg width="20" height="20" viewBox="0 0 20 20">
@@ -353,18 +355,18 @@ const chat = (
 
 const Demo = ()=>(
   <div>
-    <Button icon="weibo" basic type="primary">主要按钮</Button>
-    <Button icon="chrome" basic type="success">成功按钮</Button>
-    <Button icon="taobao" basic type="warning">警告按钮</Button>
-    <Button icon="apple" basic type="danger">错误按钮</Button>
-    <Button icon="weibo" basic type="dark">暗按钮</Button>
+    <Button icon={<Icon type="weibo" />}  basic type="primary">主要按钮</Button>
+    <Button icon={<Icon type="chrome" />} basic type="success">成功按钮</Button>
+    <Button icon={<Icon type="taobao" />} basic type="warning">警告按钮</Button>
+    <Button icon={<Icon type="apple" />} basic type="danger">错误按钮</Button>
+    <Button icon={<Icon type="weibo" />} basic type="dark">暗按钮</Button>
     <Divider />
-    <Button icon="weibo" basic type="primary" />
-    <Button icon="chrome" basic type="success" />
-    <Button icon="taobao" basic type="warning" />
-    <Button icon="apple" basic type="danger" />
-    <Button icon="weibo" basic type="dark" />
-    <Button icon="weibo" basic type="dark" />
+    <Button icon={<Icon type="weibo" />} basic type="primary" />
+    <Button icon={<Icon type="chrome" />} basic type="success" />
+    <Button icon={<Icon type="taobao" />} basic type="warning" />
+    <Button icon={<Icon type="apple" />} basic type="danger" />
+    <Button icon={<Icon type="weibo" />} basic type="dark" />
+    <Button icon={<Icon type="weibo" />} basic type="dark" />
   </div>
 );
 export default Demo
@@ -445,7 +447,7 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from "react"
-import { Button, Divider } from 'uiw';
+import { Button, Divider  ,Icon} from 'uiw';
 
 const Demo =()=>{
   return <div>
@@ -456,10 +458,10 @@ const Demo =()=>{
     <Button size="default" type="light">亮按钮</Button>
     <Button size="large" type="dark">暗按钮</Button>
     <Divider />
-    <Button icon="weibo" size="small" type="primary">微博</Button>
-    <Button icon="chrome" size="small" type="success">谷歌浏览器</Button>
-    <Button icon="chrome" type="success">谷歌浏览器</Button>
-    <Button icon="apple" size="large" type="warning">淘宝</Button>
+    <Button icon={<Icon type="weibo" />} size="small" type="primary">微博</Button>
+    <Button icon={<Icon type="chrome" />} size="small" type="success">谷歌浏览器</Button>
+    <Button icon={<Icon type="chrome" />} type="success">谷歌浏览器</Button>
+    <Button icon={<Icon type="apple" />} size="large" type="warning">淘宝</Button>
   </div>
 }
 
