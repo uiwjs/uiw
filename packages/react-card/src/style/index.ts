@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { getThemeVariantValue } from '@uiw/utils';
 
 interface WarpProps {
-  theme: {
+  defaultTheme: {
     /** 字体大小-默认 **/
     fontSizeDefault: string;
     /** 行高-默认 **/
@@ -24,8 +25,8 @@ interface WarpProps {
 const Warp = styled.div<WarpProps>`
   background: ${(props) => props.theme.backgroundColorBase};
   border-radius: 5px;
-  font-size: ${(props) => props.theme.fontSizeDefault};
-  line-height: ${(props) => props.theme.lineHeightDefault};
+  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
+  line-height: ${(props) => getThemeVariantValue(props, 'lineHeightDefault')};
   position: relative;
   transition: all 0.3s;
   &.w-card-bordered {
@@ -33,8 +34,8 @@ const Warp = styled.div<WarpProps>`
   }
   &:not(.w-card-no-hover):hover,
   &.active {
-    box-shadow: 0 1px 6px ${(props) => props.theme.borderColorBaseActive};
-    border-color: ${(props) => props.theme.borderColorBaseActive};
+    box-shadow: 0 1px 6px ${(props) => getThemeVariantValue(props, 'borderColorBaseActive')};
+    border-color: ${(props) => getThemeVariantValue(props, 'borderColorBaseActive')};
   }
   .w-card-head {
     height: 40px;
@@ -44,15 +45,15 @@ const Warp = styled.div<WarpProps>`
     zoom: 1;
   }
   .w-card-head + .w-card-body {
-    border-top: 1px solid ${(props) => props.theme.borderColorBase};
+    border-top: 1px solid ${(props) => getThemeVariantValue(props, 'borderColorBase')};
   }
   .w-card-head-title {
-    font-size: ${(props) => props.theme.fontSizeDefault};
+    font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
     text-overflow: ellipsis;
     max-width: 100%;
     overflow: hidden;
     white-space: nowrap;
-    color: ${(props) => props.theme.colorBase};
+    color: ${(props) => getThemeVariantValue(props, 'colorBase')};
     font-weight: 500;
     display: inline-block;
   }
@@ -65,19 +66,19 @@ const Warp = styled.div<WarpProps>`
     padding: 14px;
   }
   .w-card-body + .w-card-footer {
-    border-top: 1px solid ${(props) => props.theme.borderTopColorCardFooter};
+    border-top: 1px solid ${(props) => getThemeVariantValue(props, 'borderTopColorCardFooter')};
   }
   .w-card-footer {
     padding: 8px 10px;
-    color: ${(props) => props.theme.colorCardFooter};
+    color: ${(props) => getThemeVariantValue(props, 'colorCardFooter')};
     a {
-      color: ${(props) => props.theme.colorCardFooter};
+      color: ${(props) => getThemeVariantValue(props, 'colorCardFooter')};
     }
   }
 `;
 
 Warp.defaultProps = {
-  theme: {
+  defaultTheme: {
     fontSizeDefault: '14px',
     lineHeightDefault: 1.5,
     borderColorBaseActive: '#CCCCCC',
