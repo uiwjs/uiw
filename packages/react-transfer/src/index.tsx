@@ -5,8 +5,8 @@ import Icon from '@uiw/react-icon';
 import Input from '@uiw/react-input';
 import TreeChecked from '@uiw/react-tree-checked';
 import { TreeData } from '@uiw/react-tree';
-import './style/index.less';
 import Checkbox from '@uiw/react-checkbox';
+import TranSferWarp from './style';
 
 export interface TransferOptionType {
   key: string | number;
@@ -232,7 +232,7 @@ function Transfer(props: TransferProps) {
   );
 
   return (
-    <div className={cls} style={{ width: 400, ...style }}>
+    <TranSferWarp className={cls} style={{ width: 400, ...style }}>
       <Card
         bodyStyle={{ padding: '5px 9px' }}
         title={
@@ -307,7 +307,7 @@ function Transfer(props: TransferProps) {
           <TreeChecked data={rightOpions} selectedKeys={rightSelectedKeys} onSelected={rightTreeOnSelected} />
         </div>
       </Card>
-    </div>
+    </TranSferWarp>
   );
 }
 
