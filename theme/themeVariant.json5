@@ -55,6 +55,12 @@
   // 组件
   backgroundColorDividerBase: '#e8e8e8',
 
+  // -------------------------- divider 分割线 ----------------------------------
+  // 组件内部公共
+  borderTopColorDividerWithText: '#e8e8e8',
+  // 组件
+  backgroundColorDividerBase: '#e8e8e8',
+
   // ---------------------------button 按钮部分 ------------------------------------
   colorButtonBase: '#fff',
   // 最小高度
