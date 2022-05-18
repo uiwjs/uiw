@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
-export interface WarpProps extends ThemeVariantValueOptions {
+export interface CardWarpProps extends ThemeVariantValueOptions {
   bordered?: boolean;
   noHover?: boolean;
   active?: boolean;
@@ -10,14 +10,15 @@ export interface WarpProps extends ThemeVariantValueOptions {
     borderColorBaseActive: string;
     borderColorBase: string;
     backgroundColorBase: string;
+    borderRadiusLarge: string;
   };
 }
-const getHoverOrActive = (props: WarpProps) => css`
+const getHoverOrActive = (props: CardWarpProps) => css`
   box-shadow: 0 1px 6px ${() => getThemeVariantValue(props, 'borderColorBaseActive')};
   border-color: ${() => getThemeVariantValue(props, 'borderColorBaseActive')};
 `;
 
-export const getNoHover = (props: WarpProps) => {
+export const getNoHover = (props: CardWarpProps) => {
   if (!props.noHover) {
     return css`
       &:hover {
@@ -28,7 +29,7 @@ export const getNoHover = (props: WarpProps) => {
   return css``;
 };
 
-export const getActive = (props: WarpProps) => {
+export const getActive = (props: CardWarpProps) => {
   if (props.active) {
     return css`
       ${getHoverOrActive(props)}

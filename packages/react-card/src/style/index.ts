@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
-import { WarpProps, getActive, getNoHover } from './utils';
+import { CardWarpProps, getActive, getNoHover } from './utils';
 
-export interface HeadProps extends ThemeVariantValueOptions {
+export type { CardWarpProps };
+export interface CardHeadProps extends ThemeVariantValueOptions {
   defaultTheme?: {
     heightCardHead: string;
     paddingVerticalCardHead: number | string;
@@ -13,7 +14,7 @@ export interface HeadProps extends ThemeVariantValueOptions {
     borderRadius4CardHead: number | string;
   };
 }
-export const Head = styled.div<HeadProps>`
+export const CardHead = styled.div<CardHeadProps>`
   height: ${(props) => getThemeVariantValue(props, 'heightCardHead')};
   line-height: ${(props) => getThemeVariantValue(props, 'heightCardHead')};
   padding: ${(props) => `
@@ -30,13 +31,13 @@ export const Head = styled.div<HeadProps>`
   `};
   zoom: 1;
 `;
-export interface HeadTitleProps extends ThemeVariantValueOptions {
+export interface CardHeadTitleProps extends ThemeVariantValueOptions {
   defaultTheme?: {
     fontSizeDefault: string;
     colorBase: string;
   };
 }
-export const HeadTitle = styled.div<HeadTitleProps>`
+export const CardHeadTitle = styled.div<CardHeadTitleProps>`
   font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
   text-overflow: ellipsis;
   max-width: 100%;
@@ -46,30 +47,30 @@ export const HeadTitle = styled.div<HeadTitleProps>`
   font-weight: 500;
   display: inline-block;
 `;
-export interface HeadExtraProps extends ThemeVariantValueOptions {
+export interface CardHeadExtraProps extends ThemeVariantValueOptions {
   defaultTheme?: {
     rightCardHeadExtra: string;
     topCardHeadExtra: number | string;
   };
 }
-export const HeadExtra = styled.div<HeadExtraProps>`
+export const CardHeadExtra = styled.div<CardHeadExtraProps>`
   position: absolute;
   right: ${(props) => getThemeVariantValue(props, 'rightCardHeadExtra')};
   top: ${(props) => getThemeVariantValue(props, 'topCardHeadExtra')};
 `;
-export interface BodyProps extends ThemeVariantValueOptions {
+export interface CardBodyProps extends ThemeVariantValueOptions {
   defaultTheme?: {
     paddingCardBody: string;
     borderTopCardBody: string;
   };
 }
-export const Body = styled.div<BodyProps>`
+export const CardBody = styled.div<CardBodyProps>`
   padding: ${(props) => getThemeVariantValue(props, 'paddingCardBody')};
-  ${Head} + & {
+  ${CardHead} + & {
     border-top: ${(props) => getThemeVariantValue(props, 'borderTopCardBody')};
   }
 `;
-export interface FooterProps extends ThemeVariantValueOptions {
+export interface CardFooterProps extends ThemeVariantValueOptions {
   defaultTheme?: {
     paddingVerticalCardFooter: string;
     paddingHorizontalCardFooter: string;
@@ -78,7 +79,7 @@ export interface FooterProps extends ThemeVariantValueOptions {
   };
 }
 
-export const Footer = styled.div<FooterProps>`
+export const CardFooter = styled.div<CardFooterProps>`
   padding: ${(props) => `
   ${getThemeVariantValue(props, 'paddingVerticalCardFooter')} ${getThemeVariantValue(
     props,
@@ -89,14 +90,14 @@ export const Footer = styled.div<FooterProps>`
   a {
     color: ${(props) => getThemeVariantValue(props, 'colorCardFooter')};
   }
-  ${Body} + & {
+  ${CardBody} + & {
     border-top: ${(props) => getThemeVariantValue(props, 'borderTopCardFooter')};
   }
 `;
 
-const Warp = styled.div<WarpProps>`
+export const CardWarp = styled.div<CardWarpProps>`
   background: ${(props) => getThemeVariantValue(props, 'backgroundColorBase')};
-  border-radius: 5px;
+  border-radius: ${(props) => getThemeVariantValue(props, 'borderRadiusLarge')};
   font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
   line-height: ${(props) => getThemeVariantValue(props, 'lineHeightDefault')};
   position: relative;
@@ -109,9 +110,9 @@ const Warp = styled.div<WarpProps>`
   ${(props) => getNoHover(props)}
   ${(props) => getActive(props)}
 `;
-
-Warp.defaultProps = {
+CardWarp.defaultProps = {
   defaultTheme: {
+    borderRadiusLarge: '5px',
     fontSizeDefault: '14px',
     lineHeightDefault: 1.5,
     borderColorBaseActive: '#CCCCCC',
@@ -119,7 +120,7 @@ Warp.defaultProps = {
     backgroundColorBase: '#fff',
   },
 };
-Head.defaultProps = {
+CardHead.defaultProps = {
   defaultTheme: {
     heightCardHead: '40px',
     paddingVerticalCardHead: 0,
@@ -130,25 +131,25 @@ Head.defaultProps = {
     borderRadius4CardHead: 0,
   },
 };
-HeadTitle.defaultProps = {
+CardHeadTitle.defaultProps = {
   defaultTheme: {
     fontSizeDefault: '14px',
     colorBase: '#393e48',
   },
 };
-HeadExtra.defaultProps = {
+CardHeadExtra.defaultProps = {
   defaultTheme: {
     rightCardHeadExtra: '16px',
     topCardHeadExtra: 0,
   },
 };
-Body.defaultProps = {
+CardBody.defaultProps = {
   defaultTheme: {
     paddingCardBody: '14px',
     borderTopCardBody: '1px solid #e9e9e9',
   },
 };
-Footer.defaultProps = {
+CardFooter.defaultProps = {
   defaultTheme: {
     paddingVerticalCardFooter: '8px',
     paddingHorizontalCardFooter: '10px',
@@ -156,4 +157,3 @@ Footer.defaultProps = {
     colorCardFooter: '#999999',
   },
 };
-export default Warp;

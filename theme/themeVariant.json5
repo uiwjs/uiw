@@ -14,6 +14,11 @@
   // 行高
   lineHeightDefault: 1.5,
 
+  // 圆角
+  borderRadiusSmall: '2px',
+  borderRadiusDefault: '3px',
+  borderRadiusLarge: '5px',
+
   // ----------------------- avatar 头像部分 ---------------------------------------
   backgroundColorAvatar: '#ccc',
   colorAvatar: '#fff',
