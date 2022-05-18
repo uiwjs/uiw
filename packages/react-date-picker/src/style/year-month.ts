@@ -27,7 +27,7 @@ const WarpYear = styled.div<ThemeVariantValueOptions>`
         color: ${(props) => getThemeVariantValue(props, 'backgroundColorPrimary')};
       }
       &.paging {
-        color: rgba(0, 0, 0, 0.25);
+        color: ${(props) => getThemeVariantValue(props, 'colorDatePickerPaging')};
       }
     }
   }
@@ -41,6 +41,7 @@ WarpYear.defaultProps = {
     colorPrimary: '#fff',
     backgroundColorPrimary: '#008ef0',
     backgroundColorPrimaryBasicHover: '#c7e8ff',
+    colorDatePickerPaging: 'rgba(0, 0, 0, 0.25)',
   },
 };
 export default WarpYear;

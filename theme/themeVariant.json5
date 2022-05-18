@@ -37,6 +37,7 @@
   boxShadowDatepickerTime1: 'rgba(16, 22, 26, 0.1)',
   boxShadowDatepickerTime2: 'rgba(16, 22, 26, 0)',
   boxShadowDatepickerTime3: 'rgba(16, 22, 26, 0.2)',
+  colorDatePickerPaging: 'rgba(0, 0, 0, 0.25)',
 
   // ------------------------ collapse 折叠面板 -----------------------------------
   borderColorCollapseBase: '#d9d9d9',
