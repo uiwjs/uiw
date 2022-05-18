@@ -1,5 +1,5 @@
 import React from 'react';
-import './style/index.less';
+import EmptyWrap from './style';
 
 export interface EmptyProps extends React.HTMLAttributes<HTMLDivElement> {
   prefixCls?: string;
@@ -24,7 +24,7 @@ const Empty = (props: EmptyProps) => {
 
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   return (
-    <div className={cls} {...other}>
+    <EmptyWrap className={cls} {...other}>
       <div className={`${prefixCls}-icon`}>
         {icon ? (
           icon
@@ -49,7 +49,7 @@ const Empty = (props: EmptyProps) => {
       </div>
       {description && <div className={`${prefixCls}-description`}>{description}</div>}
       {children && <div className={`${prefixCls}-footer`}>{children}</div>}
-    </div>
+    </EmptyWrap>
   );
 };
 
