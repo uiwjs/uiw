@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import Warp from './style';
+import Warp, { Footer, Body, Head, HeadTitle, HeadExtra } from './style';
 
 export interface CardProps extends IProps, Omit<HTMLDivProps, 'title'> {
   active?: boolean;
@@ -44,19 +44,27 @@ export default React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   );
 
   return (
-    <Warp {...resetProps} prefix={prefixCls} className={cls} ref={ref}>
+    <Warp
+      {...resetProps}
+      bordered={bordered}
+      active={active}
+      noHover={noHover}
+      prefix={prefixCls}
+      className={cls}
+      ref={ref}
+    >
       {(title || extra) && (
-        <div className={`${prefixCls}-head`}>
-          {title && <div className={`${prefixCls}-head-title`}>{title}</div>}
-          {extra && <div className={`${prefixCls}-extra`}>{extra}</div>}
-        </div>
+        <Head className={`${prefixCls}-head`}>
+          {title && <HeadTitle className={`${prefixCls}-head-title`}>{title}</HeadTitle>}
+          {extra && <HeadExtra className={`${prefixCls}-extra`}>{extra}</HeadExtra>}
+        </Head>
       )}
       {children && (
-        <div className={[`${prefixCls}-body`, bodyClassName].filter(Boolean).join(' ').trim()} style={bodyStyle}>
+        <Body className={[`${prefixCls}-body`, bodyClassName].filter(Boolean).join(' ').trim()} style={bodyStyle}>
           {children}
-        </div>
+        </Body>
       )}
-      {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
+      {footer && <Footer className={`${prefixCls}-footer`}>{footer}</Footer>}
     </Warp>
   );
 });
