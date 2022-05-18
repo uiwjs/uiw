@@ -41,8 +41,11 @@
   widthBadgeColorDot: '6px',
   backgroundColorBadgepPocessing: '#007bff',
   backgroundBadgeCountDot: '#f04134',
-  boxShadowColorBadge: '#fff',
   boxShadowBadgeCountDot: '0 0 0 1px #fff',
+  topBadgeCountDot: '-4px',
+  topBadgeCount: '-10px',
+  heightBadgeCount: '16px',
+  borderRadiusBadgeCount: '10px',
   // ---------------------------breadcrumb 面包屑 ---------------------------------
   colorBreadcrumb: '#6e6e6e',
 

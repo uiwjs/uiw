@@ -67,10 +67,16 @@ export interface BadgeSupCountDotProps extends ThemeVariantValueOptions {
   dot?: boolean;
   nowrap?: boolean;
   defaultTheme?: {
-    boxShadowColorBadge: string;
     colorBadge: string;
     fontSizeSmall: string;
     backgroundBadgeCountDot: string;
+    boxShadowBadgeCountDot: string;
+    widthBadgeColorDot: string;
+    topBadgeCountDot: string;
+    topBadgeCount: string;
+    heightBadgeCount: string;
+    borderRadiusBadgeCount: string;
+
     [k: string]: string | number;
   };
 }
@@ -82,13 +88,13 @@ export const BadgeSupCountDot = styled.sup<BadgeSupCountDotProps>`
       position: absolute;
       -webkit-transform: translateX(-50%);
       transform: translateX(-50%);
-      top: -10px;
-      height: 16px;
-      border-radius: 10px;
-      min-width: 16px;
+      top: ${(props) => getThemeVariantValue(props, 'topBadgeCount')};
+      height: ${(props) => getThemeVariantValue(props, 'heightBadgeCount')};
+      border-radius: ${(props) => getThemeVariantValue(props, 'borderRadiusBadgeCount')};
+      min-width: ${(props) => getThemeVariantValue(props, 'heightBadgeCount')};
       background: ${(props) => getThemeVariantValue(props, 'backgroundBadgeCountDot')};
       color: ${(props) => getThemeVariantValue(props, 'colorBadge')};
-      line-height: 16px;
+      line-height: ${(props) => getThemeVariantValue(props, 'heightBadgeCount')};
       text-align: center;
       padding: 0 5px;
       font-size: ${(props) => getThemeVariantValue(props, 'fontSizeSmall')};
@@ -120,9 +126,9 @@ export const BadgeSupCountDot = styled.sup<BadgeSupCountDotProps>`
       transform-origin: 0 center;
       overflow: hidden;
       color: transparent;
-      top: -4px;
-      height: 6px;
-      width: 6px;
+      top: ${(props) => getThemeVariantValue(props, 'topBadgeCountDot')};
+      height: ${(props) => getThemeVariantValue(props, 'widthBadgeColorDot')};
+      width: ${(props) => getThemeVariantValue(props, 'widthBadgeColorDot')};
       padding: 0;
       border-radius: 100%;
       background: ${(props) => getThemeVariantValue(props, 'backgroundBadgeCountDot')};
@@ -150,10 +156,14 @@ BadgeColorDot.defaultProps = {
 };
 export const BadgeSupCountDotDefaultTheme = {
   backgroundBadgeCountDot: '#f04134',
-  boxShadowColorBadge: '#fff',
   colorBadge: '#fff',
   fontSizeSmall: '12px',
   boxShadowBadgeCountDot: '0 0 0 1px #fff',
+  widthBadgeColorDot: '6px',
+  topBadgeCountDot: '-4px',
+  topBadgeCount: '-10px',
+  heightBadgeCount: '16px',
+  borderRadiusBadgeCount: '10px',
 };
 BadgeSupCountDot.defaultProps = {
   defaultTheme: BadgeSupCountDotDefaultTheme,
