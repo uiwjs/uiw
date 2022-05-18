@@ -55,12 +55,6 @@
   // 组件
   backgroundColorDividerBase: '#e8e8e8',
 
-  // -------------------------- divider 分割线 ----------------------------------
-  // 组件内部公共
-  borderTopColorDividerWithText: '#e8e8e8',
-  // 组件
-  backgroundColorDividerBase: '#e8e8e8',
-
   // -------------------------- empty 空状态 ----------------------------------
   colorEmptyBase: '#c7c7c7',
 
