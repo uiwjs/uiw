@@ -23,6 +23,16 @@
   backgroundColorAvatar: '#ccc',
   colorAvatar: '#fff',
 
+  fontSizeAvatarMini: '12px',
+  fontSizeAvatarSmall: '12px',
+  fontSizeAvatarDefault: '18px',
+  fontSizeAvatarLarge: '24px',
+
+  widthAvatarMini: '18px',
+  widthAvatarSmall: '24px',
+  widthAvatarDefault: '30px',
+  widthAvatarLarge: '40px',
+  borderRadiusDefault: '3px',
   // --------------------------badge 标记部分---------------------------------------
   boxShadowColorBadge: '#fff',
   colorBadge: '#fff',
