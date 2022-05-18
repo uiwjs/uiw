@@ -38,6 +38,16 @@
   boxShadowDatepickerTime2: 'rgba(16, 22, 26, 0)',
   boxShadowDatepickerTime3: 'rgba(16, 22, 26, 0.2)',
 
+  // ------------------------ collapse 折叠面板 -----------------------------------
+  borderColorCollapseBase: '#d9d9d9',
+  // Header
+  backgroundColorCollapseHeaderBase: '#fafafa',
+  colorCollapseHeaderBase: 'rgba(0, 0, 0, 0.85)',
+  backgroundColorCollapseHeaderDisabled: '#f7f7f7',
+  colorCollapseHeaderDisabled: 'rgba(0, 0, 0, 0.25)',
+  // Panel
+  colorCollapsePanelBase: 'rgba(0, 0, 0, 0.65)',
+
   // ---------------------------button 按钮部分 ------------------------------------
   colorButtonBase: '#fff',
   // 最小高度

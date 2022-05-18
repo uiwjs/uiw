@@ -9,7 +9,7 @@ const CollapseWarp = styled.div<CollapseProps>`
   border-radius: 4px;
   line-height: 16px;
   font-size: 14px;
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorCollapseBase')};
+  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorBase')};
   border: 1px solid ${(props) => getThemeVariantValue(props, 'borderColorCollapseBase')};
   overflow: hidden;
   & > .w-collapse-item:last-child .w-collapse-header,
@@ -21,8 +21,8 @@ const CollapseWarp = styled.div<CollapseProps>`
   }
   .w-collapse-header {
     padding: 8px 10px;
-    color: ${(props) => getThemeVariantValue(props, 'colorCollapseHeader')};
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorCollapseHeader')};
+    color: ${(props) => getThemeVariantValue(props, 'colorCollapseHeaderBase')};
+    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorCollapseHeaderBase')};
     cursor: pointer;
     position: relative;
     transition: all 0.3s;
@@ -49,7 +49,7 @@ const CollapseWarp = styled.div<CollapseProps>`
   }
   .w-collapse-panel {
     overflow: hidden;
-    color: ${(props) => getThemeVariantValue(props, 'colorCollapsePanel')};
+    color: ${(props) => getThemeVariantValue(props, 'colorCollapsePanelBase')};
     padding: 0 10px;
     &:before,
     &:after {
@@ -59,28 +59,28 @@ const CollapseWarp = styled.div<CollapseProps>`
       overflow: hidden;
     }
     &:before {
-      border-top: 1px solid ${(props) => getThemeVariantValue(props, 'borderTopColorCollapsePanelBefore')};
+      border-top: 1px solid ${(props) => getThemeVariantValue(props, 'borderColorCollapseBase')};
       margin: 0 -10px;
       z-index: 1;
       position: relative;
     }
     &:after {
-      border-bottom: 1px solid ${(props) => getThemeVariantValue(props, 'borderBottomColorCollapsePanelAfter')};
+      border-bottom: 1px solid ${(props) => getThemeVariantValue(props, 'borderColorCollapseBase')};
       margin: 0 -10px;
       z-index: 1;
       position: relative;
     }
   }
   & > .w-collapse-item:last-child .w-collapse-panel:after {
-    border-bottom: 0 solid #d9d9d9;
+    border-bottom: 0 solid ${(props) => getThemeVariantValue(props, 'borderColorCollapseBase')};
   }
   & > .w-collapse-item:not(.w-collapse-active):last-child .w-collapse-panel:before {
-    border-top: 0 solid #d9d9d9;
+    border-top: 0 solid ${(props) => getThemeVariantValue(props, 'borderColorCollapseBase')};
   }
   .w-collapse-disabled .w-collapse-header {
     cursor: not-allowed;
-    color: '#rgba(0, 0, 0, 0.25)';
-    background-color: #f7f7f7;
+    color: ${(props) => getThemeVariantValue(props, 'colorCollapseHeaderDisabled')};
+    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorCollapseHeaderDisabled')};
   }
   &.w-noborder .w-collapse-header {
     background-color: transparent;
@@ -101,15 +101,15 @@ const CollapseWarp = styled.div<CollapseProps>`
 
 CollapseWarp.defaultProps = {
   defaultTheme: {
-    backgroundColorCollapseBase: '#fff',
+    backgroundColorBase: '#fff',
     borderColorCollapseBase: '#d9d9d9',
     // Header
-    backgroundColorCollapseHeader: '#fafafa',
-    colorCollapseHeader: 'rgba(0, 0, 0, 0.85)',
+    backgroundColorCollapseHeaderBase: '#fafafa',
+    colorCollapseHeaderBase: 'rgba(0, 0, 0, 0.85)',
+    backgroundColorCollapseHeaderDisabled: '#f7f7f7',
+    colorCollapseHeaderDisabled: 'rgba(0, 0, 0, 0.25)',
     // Panel
-    colorCollapsePanel: 'rgba(0, 0, 0, 0.65)',
-    borderTopColorCollapsePanelBefore: '#d9d9d9',
-    borderBottomColorCollapsePanelAfter: '#d9d9d9',
+    colorCollapsePanelBase: 'rgba(0, 0, 0, 0.65)',
   },
 };
 export default CollapseWarp;
