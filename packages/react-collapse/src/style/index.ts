@@ -8,7 +8,7 @@ interface CollapseProps {
 const CollapseWarp = styled.div<CollapseProps>`
   border-radius: 4px;
   line-height: 16px;
-  font-size: 14px;
+  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
   background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorBase')};
   border: 1px solid ${(props) => getThemeVariantValue(props, 'borderColorCollapseBase')};
   overflow: hidden;
@@ -101,6 +101,7 @@ const CollapseWarp = styled.div<CollapseProps>`
 
 CollapseWarp.defaultProps = {
   defaultTheme: {
+    fontSizeDefault: '14px',
     backgroundColorBase: '#fff',
     borderColorCollapseBase: '#d9d9d9',
     // Header
