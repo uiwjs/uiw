@@ -110,50 +110,44 @@ export const CardWarp = styled.div<CardWarpProps>`
   ${(props) => getNoHover(props)}
   ${(props) => getActive(props)}
 `;
-CardWarp.defaultProps = {
-  defaultTheme: {
-    borderRadiusLarge: '5px',
-    fontSizeDefault: '14px',
-    lineHeightDefault: 1.5,
-    borderColorBaseActive: '#CCCCCC',
-    borderColorBase: '#e9e9e9',
-    backgroundColorBase: '#fff',
-  },
+export const CardWarpDefaultTheme = {
+  borderRadiusLarge: '5px',
+  fontSizeDefault: '14px',
+  lineHeightDefault: 1.5,
+  borderColorBaseActive: '#CCCCCC',
+  borderColorBase: '#e9e9e9',
+  backgroundColorBase: '#fff',
 };
-CardHead.defaultProps = {
-  defaultTheme: {
-    heightCardHead: '40px',
-    paddingVerticalCardHead: 0,
-    paddingHorizontalCardHead: '14px',
-    borderRadius1CardHead: '2px',
-    borderRadius2CardHead: '2px',
-    borderRadius3CardHead: 0,
-    borderRadius4CardHead: 0,
-  },
+CardWarp.defaultProps = { defaultTheme: CardWarpDefaultTheme };
+export const CardHeadDefaultTheme = {
+  heightCardHead: '40px',
+  paddingVerticalCardHead: 0,
+  paddingHorizontalCardHead: '14px',
+  borderRadius1CardHead: '2px',
+  borderRadius2CardHead: '2px',
+  borderRadius3CardHead: 0,
+  borderRadius4CardHead: 0,
 };
-CardHeadTitle.defaultProps = {
-  defaultTheme: {
-    fontSizeDefault: '14px',
-    colorBase: '#393e48',
-  },
+CardHead.defaultProps = { defaultTheme: CardHeadDefaultTheme };
+export const CardHeadTitleDefaultTheme = {
+  fontSizeDefault: '14px',
+  colorBase: '#393e48',
 };
-CardHeadExtra.defaultProps = {
-  defaultTheme: {
-    rightCardHeadExtra: '16px',
-    topCardHeadExtra: 0,
-  },
+CardHeadTitle.defaultProps = { defaultTheme: CardHeadTitleDefaultTheme };
+export const CardHeadExtraDefaultTheme = {
+  rightCardHeadExtra: '16px',
+  topCardHeadExtra: 0,
 };
-CardBody.defaultProps = {
-  defaultTheme: {
-    paddingCardBody: '14px',
-    borderTopCardBody: '1px solid #e9e9e9',
-  },
+CardHeadExtra.defaultProps = { defaultTheme: CardHeadExtraDefaultTheme };
+export const CardBodyDefaultTheme = {
+  paddingCardBody: '14px',
+  borderTopCardBody: '1px solid #e9e9e9',
 };
-CardFooter.defaultProps = {
-  defaultTheme: {
-    paddingVerticalCardFooter: '8px',
-    paddingHorizontalCardFooter: '10px',
-    borderTopCardFooter: '1px solid #F2F2F2',
-    colorCardFooter: '#999999',
-  },
+CardBody.defaultProps = { defaultTheme: CardBodyDefaultTheme };
+export const CardFooterDefaultTheme = {
+  paddingVerticalCardFooter: '8px',
+  paddingHorizontalCardFooter: '10px',
+  borderTopCardFooter: '1px solid #F2F2F2',
+  colorCardFooter: '#999999',
 };
+CardFooter.defaultProps = { defaultTheme: CardFooterDefaultTheme };
