@@ -72,10 +72,10 @@ const CollapseWarp = styled.div<CollapseProps>`
     }
   }
   & > .w-collapse-item:last-child .w-collapse-panel:after {
-    border-bottom: 0 solid ${(props) => getThemeVariantValue(props, 'borderBottomColorItemLastChildPanelAfter')};
+    border-bottom: 0 solid #d9d9d9;
   }
   & > .w-collapse-item:not(.w-collapse-active):last-child .w-collapse-panel:before {
-    border-top: 0 solid ${(props) => getThemeVariantValue(props, 'borderTopColorItemLastChildPanelBefore')};
+    border-top: 0 solid #d9d9d9;
   }
   .w-collapse-disabled .w-collapse-header {
     cursor: not-allowed;
