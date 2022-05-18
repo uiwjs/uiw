@@ -1,7 +1,8 @@
 import React from 'react';
 import { HTMLSpanProps, noop } from '@uiw/utils';
 import { useState, useEffect } from 'react';
-import Warp from './style';
+import { AvatarWarp, AvatarImg } from './style';
+export * from './style';
 export interface AvatarProps extends HTMLSpanProps {
   style?: React.CSSProperties;
   className?: string;
@@ -45,7 +46,7 @@ export default React.forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
 
   if (isImgExist && src) {
     children = (
-      <img
+      <AvatarImg
         src={src}
         alt={alt}
         onError={(evn) => {
@@ -60,8 +61,8 @@ export default React.forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
     children = icon;
   }
   return (
-    <Warp {...resetProps} className={cls} ref={ref}>
+    <AvatarWarp {...resetProps} size={size} shape={shape} className={cls} ref={ref}>
       {children}
-    </Warp>
+    </AvatarWarp>
   );
 });
