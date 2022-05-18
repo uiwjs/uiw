@@ -39,6 +39,9 @@
   // ---------------------------breadcrumb 面包屑 ---------------------------------
   colorBreadcrumb: '#6e6e6e',
 
+  // -------------------------- back-top 返回顶部 --------------------------------
+  bottomBackTop: '50px',
+  rightBackTop: '50px',
   // ---------------------------card 卡片 ----------------------------------------
   borderColorBaseActive: '#CCCCCC',
   borderColorBase: '#e9e9e9',

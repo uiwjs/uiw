@@ -12,6 +12,7 @@ export interface CardHeadProps extends ThemeVariantValueOptions {
     borderRadius2CardHead: string;
     borderRadius3CardHead: number | string;
     borderRadius4CardHead: number | string;
+    [x: string]: string | number;
   };
 }
 export const CardHead = styled.div<CardHeadProps>`
@@ -35,6 +36,7 @@ export interface CardHeadTitleProps extends ThemeVariantValueOptions {
   defaultTheme?: {
     fontSizeDefault: string;
     colorBase: string;
+    [x: string]: string | number;
   };
 }
 export const CardHeadTitle = styled.div<CardHeadTitleProps>`
@@ -51,6 +53,7 @@ export interface CardHeadExtraProps extends ThemeVariantValueOptions {
   defaultTheme?: {
     rightCardHeadExtra: string;
     topCardHeadExtra: number | string;
+    [x: string]: string | number;
   };
 }
 export const CardHeadExtra = styled.div<CardHeadExtraProps>`
@@ -62,6 +65,7 @@ export interface CardBodyProps extends ThemeVariantValueOptions {
   defaultTheme?: {
     paddingCardBody: string;
     borderTopCardBody: string;
+    [x: string]: string | number;
   };
 }
 export const CardBody = styled.div<CardBodyProps>`
@@ -76,6 +80,7 @@ export interface CardFooterProps extends ThemeVariantValueOptions {
     paddingHorizontalCardFooter: string;
     borderTopCardFooter: string;
     colorCardFooter: string;
+    [x: string]: string | number;
   };
 }
 

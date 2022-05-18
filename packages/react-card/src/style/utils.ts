@@ -11,6 +11,7 @@ export interface CardWarpProps extends ThemeVariantValueOptions {
     borderColorBase: string;
     backgroundColorBase: string;
     borderRadiusLarge: string;
+    [x: string]: string | number;
   };
 }
 const getHoverOrActive = (props: CardWarpProps) => css`
