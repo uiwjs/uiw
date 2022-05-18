@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
-import './style/caption.less';
-
+import WarpCaption from './style/caption';
 function classnames(...arg: (string | null | undefined)[]) {
   return [...arg].filter(Boolean).join(' ').trim();
 }
@@ -31,7 +30,7 @@ export function DatePickerCaption(props: DatePickerCaptionProps) {
     return (monthLabel && monthLabel[month]) || month + 1;
   }, [panelDate.toDateString(), monthLabel]);
   return (
-    <div className={classnames(prefixCls ? `${prefixCls}-caption` : null, className)} {...other}>
+    <WarpCaption className={classnames(prefixCls ? `${prefixCls}-caption` : null, className)} {...other}>
       <div
         className={classnames(prefixCls ? `${prefixCls}-caption-pane` : null, 'prev')}
         onClick={() => onSelected('prev')}
@@ -59,6 +58,6 @@ export function DatePickerCaption(props: DatePickerCaptionProps) {
         className={classnames(prefixCls ? `${prefixCls}-caption-pane` : null, 'next')}
         onClick={() => onSelected('next')}
       />
-    </div>
+    </WarpCaption>
   );
 }

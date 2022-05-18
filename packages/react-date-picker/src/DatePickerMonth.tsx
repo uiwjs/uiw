@@ -1,6 +1,6 @@
 import React from 'react';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
-import './style/year-month.less';
+import WarpYear from './style/year-month';
 
 export interface DatePickerMonthProps extends IProps, HTMLDivProps {
   panelDate?: Date;
@@ -18,7 +18,10 @@ export function DatePickerMonth(props: DatePickerMonthProps) {
     ...other
   } = props;
   return (
-    <div className={[prefixCls ? `${prefixCls}-month` : null, className].filter(Boolean).join(' ').trim()} {...other}>
+    <WarpYear
+      className={[prefixCls ? `${prefixCls}-month` : null, className].filter(Boolean).join(' ').trim()}
+      {...other}
+    >
       {[...Array(12)].map((_, idx) => {
         const selectedMonth = panelDate!.getMonth();
         return (
@@ -27,6 +30,6 @@ export function DatePickerMonth(props: DatePickerMonthProps) {
           </div>
         );
       })}
-    </div>
+    </WarpYear>
   );
 }

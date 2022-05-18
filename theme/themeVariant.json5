@@ -5,6 +5,9 @@
   fontSizeDefault: '14px',
   fontSizeLarge: '16px',
 
+  // 背景色
+  backgroundColorBase: '#fff',
+
   // ----------------------- avatar 头像部分 ---------------------------------------
   backgroundColorAvatar: '#ccc',
   colorAvatar: '#fff',
@@ -14,6 +17,26 @@
   colorBadge: '#fff',
   // ---------------------------breadcrumb 面包屑 ---------------------------------
   colorBreadcrumb: '#6e6e6e',
+
+  // -------------------------- date-picker 日期 ----------------------------------
+  // 组件内部公共
+  backgroundColorDatePickerBaseHover: '#eaeaea',
+  backgroundColorDatePickerActive: '#d2d2d2',
+  // 组件
+  borderColorDatepickerBase: '#e9e9e9',
+  colorDatePickerDayTodayBase: '#d3d3d3',
+  colorDatepickerTimeBase: '#393e48',
+  borderBottomColorDatepickerCaption: '#ececec',
+  backgroundColorDatepickerCaptionPanePrevBefore: '#333',
+  backgroundColorDatepickerCaptionToday: '#dedede',
+  backgroundColorDatepickerCaptionTodayBefore: '#a0a0a0',
+  backgroundColorDatePickerTodayDisabled: 'rgba(189, 189, 189, 0.47)',
+  backgroundColorDatePickerDayDisabled: '#f5f5f5',
+  colorDatePickerDayHover: '#393e48',
+  colorDatePickerDayEnd: '#6f6f6f',
+  boxShadowDatepickerTime1: 'rgba(16, 22, 26, 0.1)',
+  boxShadowDatepickerTime2: 'rgba(16, 22, 26, 0)',
+  boxShadowDatepickerTime3: 'rgba(16, 22, 26, 0.2)',
 
   // ---------------------------button 按钮部分 ------------------------------------
   colorButtonBase: '#fff',

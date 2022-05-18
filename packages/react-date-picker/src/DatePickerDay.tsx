@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import './style/day.less';
+import WarpDay from './style/day';
 
 function isValidDate(date: Date) {
   return date instanceof Date && !isNaN(date.getTime());
@@ -124,6 +124,7 @@ export function DayRect(props: DayRectProps) {
     cls.disabled = true;
     delete divProps.onClick;
   }
+
   return (
     <div className={classnames(cls)} {...other} {...divProps}>
       {renderDay ? (
@@ -167,7 +168,10 @@ export function DatePickerDay(props: DatePickerDayProps) {
   );
 
   return (
-    <div {...other} className={[prefixCls ? `${prefixCls}-body` : null, className].filter(Boolean).join(' ').trim()}>
+    <WarpDay
+      {...other}
+      className={[prefixCls ? `${prefixCls}-body` : null, className].filter(Boolean).join(' ').trim()}
+    >
       {weekdayLabel}
       <div className={[prefixCls ? `${prefixCls}-day-body` : null].filter(Boolean).join(' ').trim()}>
         {[...Array(6)].map((_, idx) => (
@@ -191,6 +195,6 @@ export function DatePickerDay(props: DatePickerDayProps) {
           </div>
         ))}
       </div>
-    </div>
+    </WarpDay>
   );
 }

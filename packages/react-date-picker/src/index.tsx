@@ -6,8 +6,8 @@ import { DatePickerDay, DatePickerDayProps, DatePickerDayDateSource } from './Da
 import { DatePickerMonth } from './DatePickerMonth';
 import { DatePickerYear } from './DatePickerYear';
 import { DatePickerCaption, DatePickerCaptionType } from './DatePickerCaption';
-import './style/index.less';
-
+// import './style/index.less';
+import Warp from './style';
 export * from './DatePickerDay';
 export * from './DatePickerMonth';
 export * from './DatePickerYear';
@@ -72,7 +72,6 @@ export default function DatePicker(props: DatePickerProps) {
   const [type, setType] = useState<DatePickerState['type']>('day');
   const [selectDate, setSelectDate] = useState(date);
   const [selectPanelDate, setSelectPanelDate] = useState(panelDate);
-
   useEffect(() => {
     if (date) {
       setSelectDate(date);
@@ -126,7 +125,7 @@ export default function DatePicker(props: DatePickerProps) {
     onChange && onChange(new Date(selectPanelDate));
   }
   return (
-    <div className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...other}>
+    <Warp className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...other}>
       <DatePickerCaption
         todayButton={todayButton}
         panelDate={selectPanelDate}
@@ -177,6 +176,6 @@ export default function DatePicker(props: DatePickerProps) {
           {formatter(format!, selectDate || selectPanelDate)}
         </div>
       )}
-    </div>
+    </Warp>
   );
 }
