@@ -1,6 +1,6 @@
 import React from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import './style/index.less';
+import DividerWarp from './style';
 
 export interface DividerProps extends IProps, HTMLDivProps {
   dashed?: boolean;
@@ -30,8 +30,8 @@ export default React.forwardRef<HTMLDivElement, DividerProps>((props, ref) => {
     .join(' ')
     .trim();
   return (
-    <div className={cls} {...restProps} ref={ref}>
+    <DividerWarp className={cls} {...restProps} ref={ref}>
       {children && <span className={`${prefixCls}-inner-text`}>{children}</span>}
-    </div>
+    </DividerWarp>
   );
 });

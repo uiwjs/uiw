@@ -38,6 +38,12 @@
   boxShadowDatepickerTime2: 'rgba(16, 22, 26, 0)',
   boxShadowDatepickerTime3: 'rgba(16, 22, 26, 0.2)',
 
+  // -------------------------- divider 分割线 ----------------------------------
+  // 组件内部公共
+  borderTopColorDividerWithText: '#e8e8e8',
+  // 组件
+  backgroundColorDividerBase: '#e8e8e8',
+
   // ---------------------------button 按钮部分 ------------------------------------
   colorButtonBase: '#fff',
   // 最小高度
