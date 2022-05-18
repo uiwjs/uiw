@@ -3,7 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 import { TransitionStatus } from 'react-transition-group/Transition';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Icon, { IconProps } from '@uiw/react-icon';
-import { CollapseHeader, CollapseHeaderExtra, CollapseHeaderTitle, CollapsePanel } from './style';
+import { CollapseHeader, CollapseHeaderExtra, CollapseHeaderTitle, CollapseItem } from './style';
 
 export interface CollapsePanelProps extends IProps, HTMLDivProps {
   disabled?: boolean;
@@ -58,8 +58,8 @@ export default function Panel(props: CollapsePanelProps) {
   }
 
   return (
-    <CollapsePanel {...resetProps} prefixCls={prefixCls} isActive={isActive} disabled={disabled} className={cls}>
-      <CollapseHeader className={`${prefixCls}-header`} onClick={onItemClick}>
+    <CollapseItem {...resetProps} prefixCls={prefixCls} className={cls}>
+      <CollapseHeader className={`${prefixCls}-header`} isActive={isActive} disabled={disabled} onClick={onItemClick}>
         {showArrow && iconRender}
         <CollapseHeaderTitle className={`${prefixCls}-title`}>{header}</CollapseHeaderTitle>
         {extra && <CollapseHeaderExtra className={`${prefixCls}-extra`}>{extra}</CollapseHeaderExtra>}
@@ -73,6 +73,6 @@ export default function Panel(props: CollapsePanelProps) {
           })
         }
       </CSSTransition>
-    </CollapsePanel>
+    </CollapseItem>
   );
 }

@@ -64,7 +64,7 @@ function InternalCollapse(props: CollapseProps, ref: React.ForwardedRef<HTMLDivE
     }
   }, [activeKey, propsActiveKey]);
   return (
-    <CollapseWarp className={cls} {...resetProps} ref={ref}>
+    <CollapseWarp className={cls} {...resetProps} ref={ref} bordered={bordered}>
       {React.Children.map(children, (child: any, index) => {
         // 如果没有密钥提供，请使用面板顺序作为默认密钥
         const key = child.key || String(index);
@@ -80,6 +80,7 @@ function InternalCollapse(props: CollapseProps, ref: React.ForwardedRef<HTMLDivE
           prefixCls,
           isActive,
           disabled,
+          bordered,
           showArrow,
           onItemClick: disabled ? () => {} : () => onItemClick(key),
           ...child.props,
