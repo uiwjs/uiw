@@ -80,8 +80,8 @@ export const CollapseItem = styled.div<CollapseItemWarpProps>`
     }
 
     ${(props) =>
-      props.bordered &&
-      css`
+    props.bordered &&
+    css`
         border: 0;
         &:after,
         &:before {
