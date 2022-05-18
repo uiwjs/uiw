@@ -34,8 +34,15 @@
   widthAvatarLarge: '40px',
   borderRadiusDefault: '3px',
   // --------------------------badge 标记部分---------------------------------------
-  boxShadowColorBadge: '#fff',
   colorBadge: '#fff',
+  marginVerticalBadgeColorDot: '0px',
+  marginHorizontalBadgeColorDot: '4px',
+  topBadgeColorDot: '-1px',
+  widthBadgeColorDot: '6px',
+  backgroundColorBadgepPocessing: '#007bff',
+  backgroundBadgeCountDot: '#f04134',
+  boxShadowColorBadge: '#fff',
+  boxShadowBadgeCountDot: '0 0 0 1px #fff',
   // ---------------------------breadcrumb 面包屑 ---------------------------------
   colorBreadcrumb: '#6e6e6e',
 
