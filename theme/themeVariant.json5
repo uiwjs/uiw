@@ -47,8 +47,10 @@
   heightBadgeCount: '16px',
   borderRadiusBadgeCount: '10px',
   // ---------------------------breadcrumb 面包屑 ---------------------------------
-  colorBreadcrumb: '#6e6e6e',
-
+  colorBreadcrumbActive: '#6e6e6e',
+  paddingLeftBreadcrumItemBefore: '8px',
+  paddingRightBreadcrumItemBefore: '8px',
+  marginLeftBreadcrumItemInterval: '6px',
   // -------------------------- back-top 返回顶部 --------------------------------
   bottomBackTop: '50px',
   rightBackTop: '50px',
