@@ -13,7 +13,7 @@ export default React.forwardRef<HTMLDivElement, ButtonGroupProps>((props, ref) =
   const cls = [prefixCls, className, vertical && `${prefixCls}-vertical`].filter(Boolean).join(' ').trim();
 
   return (
-    <Warp className={cls} {...resetProps} ref={ref}>
+    <Warp className={cls} {...resetProps} vertical={vertical} ref={ref}>
       {children}
     </Warp>
   );
