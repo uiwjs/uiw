@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
-import WarpYear from './style/year-month';
+import { DatePickerYearMonthWarp, DatePickerYearMonthSelect } from './style/year-month';
+export * from './style/year-month';
 
 export interface DatePickerYearProps extends IProps, HTMLDivProps {
   panelDate?: Date;
@@ -29,17 +30,20 @@ export function DatePickerYear(props: DatePickerYearProps) {
     }
   }
   return (
-    <WarpYear
+    <DatePickerYearMonthWarp
       className={[prefixCls ? `${prefixCls}-year` : null, className].filter(Boolean).join(' ').trim()}
       {...other}
+      isYear
     >
       {panelNum &&
         panelNum.map((_, idx) => {
           const selectedYear = activeYear!.getFullYear();
           const year = selectedYear + panelNum[idx];
           return (
-            <div
+            <DatePickerYearMonthSelect
               key={idx}
+              selected={selectedYear === year}
+              paging={idx === 0 || idx === panelNum.length - 1}
               className={[
                 selectedYear === year ? 'selected' : null,
                 idx === 0 || idx === panelNum.length - 1 ? 'paging' : null,
@@ -49,9 +53,9 @@ export function DatePickerYear(props: DatePickerYearProps) {
                 .trim()}
             >
               <span onClick={() => handleSelected(year, idx)}>{year}</span>
-            </div>
+            </DatePickerYearMonthSelect>
           );
         })}
-    </WarpYear>
+    </DatePickerYearMonthWarp>
   );
 }

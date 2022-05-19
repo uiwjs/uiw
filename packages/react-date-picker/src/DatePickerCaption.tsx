@@ -1,6 +1,13 @@
 import React, { useMemo } from 'react';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
-import WarpCaption from './style/caption';
+import {
+  DatePickerCaptionPane,
+  DatePickerCaptionToday,
+  DatePickerCaptionBase,
+  DatePickerCaptionPaneYear,
+  DatePickerCaptionPaneMonth,
+} from './style/caption';
+export * from './style/caption';
 function classnames(...arg: (string | null | undefined)[]) {
   return [...arg].filter(Boolean).join(' ').trim();
 }
@@ -30,34 +37,36 @@ export function DatePickerCaption(props: DatePickerCaptionProps) {
     return (monthLabel && monthLabel[month]) || month + 1;
   }, [panelDate.toDateString(), monthLabel]);
   return (
-    <WarpCaption className={classnames(prefixCls ? `${prefixCls}-caption` : null, className)} {...other}>
-      <div
+    <DatePickerCaptionBase className={classnames(prefixCls ? `${prefixCls}-caption` : null, className)} {...other}>
+      <DatePickerCaptionPane
         className={classnames(prefixCls ? `${prefixCls}-caption-pane` : null, 'prev')}
         onClick={() => onSelected('prev')}
+        prev
       />
-      <div
+      <DatePickerCaptionPaneMonth
         className={classnames(prefixCls ? `${prefixCls}-caption-pane` : null, 'month')}
         onClick={() => onSelected('month')}
       >
         {renderMonth}
-      </div>
-      <div
+      </DatePickerCaptionPaneMonth>
+      <DatePickerCaptionPaneYear
         className={classnames(prefixCls ? `${prefixCls}-caption-pane` : null, 'year')}
         onClick={() => onSelected('year')}
       >
         {panelDate!.getFullYear()}
-      </div>
+      </DatePickerCaptionPaneYear>
       {todayButton && (
-        <div
+        <DatePickerCaptionToday
           className={classnames(prefixCls ? `${prefixCls}-caption-today` : null)}
           onClick={() => onSelected('today')}
           title={todayButton}
         />
       )}
-      <div
+      <DatePickerCaptionPane
         className={classnames(prefixCls ? `${prefixCls}-caption-pane` : null, 'next')}
         onClick={() => onSelected('next')}
+        next
       />
-    </WarpCaption>
+    </DatePickerCaptionBase>
   );
 }

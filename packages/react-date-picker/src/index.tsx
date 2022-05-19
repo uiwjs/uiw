@@ -6,7 +6,6 @@ import { DatePickerDay, DatePickerDayProps, DatePickerDayDateSource } from './Da
 import { DatePickerMonth } from './DatePickerMonth';
 import { DatePickerYear } from './DatePickerYear';
 import { DatePickerCaption, DatePickerCaptionType } from './DatePickerCaption';
-// import './style/index.less';
 import Warp from './style';
 export * from './DatePickerDay';
 export * from './DatePickerMonth';
