@@ -3,12 +3,13 @@ import copy from '@uiw/copy-to-clipboard';
 import { IProps, HTMLSpanProps } from '@uiw/utils';
 import styled from 'styled-components';
 
-const Span = styled.span`
+export const CopyToClipbordSelect = styled.span`
+  user-select: text;
+  display: none;
+`;
+
+export const CopyToClipbordWarp = styled.span`
   cursor: pointer;
-  &.w-copy-to-clipboard-select {
-    user-select: text;
-    display: none;
-  }
 `;
 
 export interface CopyToClipboardProps extends IProps, Omit<HTMLSpanProps, 'onClick'> {
@@ -39,9 +40,9 @@ export default function CopyToClipboard<T>(props: CopyToClipboardProps & T) {
     onClick: handleClick,
   };
   return (
-    <Span {...otherProps}>
-      <span className={`${prefixCls}-select`}>{text}</span>
+    <CopyToClipbordWarp {...otherProps}>
+      <CopyToClipbordSelect className={`${prefixCls}-select`}>{text}</CopyToClipbordSelect>
       {children}
-    </Span>
+    </CopyToClipbordWarp>
   );
 }
