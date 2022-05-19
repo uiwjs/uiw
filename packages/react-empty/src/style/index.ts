@@ -8,12 +8,16 @@ interface DividerProps {
 const Empty = styled.div<DividerProps>`
   color: ${(props) => getThemeVariantValue(props, 'colorEmptyBase')};
   text-align: center;
-  .w-empty-description {
-    margin-top: 10px;
-  }
-  .w-empty-footer {
-    margin-top: 16px;
-  }
+`;
+
+export const EmptyIcon = styled.div``;
+
+export const EmptyDescription = styled.div`
+  margin-top: 10px;
+`;
+
+export const EmptyFooter = styled.div`
+  margin-top: 16px;
 `;
 
 Empty.defaultProps = {
