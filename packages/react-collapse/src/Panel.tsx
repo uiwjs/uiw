@@ -3,10 +3,11 @@ import { CSSTransition } from 'react-transition-group';
 import { TransitionStatus } from 'react-transition-group/Transition';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Icon, { IconProps } from '@uiw/react-icon';
-import { CollapseHeader, CollapseHeaderExtra, CollapseHeaderTitle, CollapseItem } from './style';
+import { CollapseHeader, CollapseHeaderExtra, CollapseHeaderTitle, CollapseItem, CollapseItemPanel } from './style';
 
 export interface CollapsePanelProps extends IProps, HTMLDivProps {
   disabled?: boolean;
+  bordered?: boolean;
   showArrow?: boolean;
   isActive?: boolean;
   header?: React.ReactNode;
@@ -26,6 +27,7 @@ export default function Panel(props: CollapsePanelProps) {
     disabled = false,
     showArrow,
     header,
+    bordered,
     extra,
     ...resetProps
   } = props;
@@ -58,21 +60,33 @@ export default function Panel(props: CollapsePanelProps) {
   }
 
   return (
-    <CollapseItem {...resetProps} prefixCls={prefixCls} className={cls}>
+    <CollapseItem {...resetProps} className={cls}>
       <CollapseHeader className={`${prefixCls}-header`} isActive={isActive} disabled={disabled} onClick={onItemClick}>
         {showArrow && iconRender}
         <CollapseHeaderTitle className={`${prefixCls}-title`}>{header}</CollapseHeaderTitle>
         {extra && <CollapseHeaderExtra className={`${prefixCls}-extra`}>{extra}</CollapseHeaderExtra>}
       </CollapseHeader>
-      <CSSTransition in={isActive} unmountOnExit={false} timeout={300} classNames={`${prefixCls}-panel`}>
+      <CollapseItemPanel
+        as={CSSTransition}
+        bordered={bordered}
+        in={isActive}
+        unmountOnExit={false}
+        timeout={300}
+        classNames={`${prefixCls}-panel`}
+      >
         {(status: TransitionStatus) =>
-          React.cloneElement(<div>{children}</div>, {
-            className: `${prefixCls}-panel`,
-            style: childStyle(children as React.ReactElement),
-            ref: (e: any) => getInstance(status, e),
-          })
+          React.cloneElement(
+            <CollapseItemPanel in={isActive} bordered={bordered}>
+              {children}
+            </CollapseItemPanel>,
+            {
+              className: `${prefixCls}-panel`,
+              style: childStyle(children as React.ReactElement),
+              ref: (e: any) => getInstance(status, e),
+            },
+          )
         }
-      </CSSTransition>
+      </CollapseItemPanel>
     </CollapseItem>
   );
 }
