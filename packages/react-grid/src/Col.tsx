@@ -1,6 +1,6 @@
 import React from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import ColWrap from './style/colCss';
+import ColWrap from './style/col';
 
 export interface ColProps extends IProps, HTMLDivProps {
   fixed?: boolean;
