@@ -1,0 +1,52 @@
+import styled, { css } from 'styled-components';
+import { ThemeVariantValueOptions } from '@uiw/utils';
+import { ColProps } from 'src/Col';
+
+interface ColWrapProps extends ThemeVariantValueOptions, Pick<ColProps, 'fixed' | 'span' | 'grow' | 'align'> {}
+
+const alignType = { top: 'flex-start', middle: 'center', bottom: 'flex-end', baseline: 'baseline' };
+
+const ColWrap = styled.div<ColWrapProps>`
+  min-width: 0;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%;
+
+  ${(props) => {
+    if (props.fixed) {
+      return css`
+        flex: 0 1 auto;
+      `;
+    }
+  }}
+
+  ${(props) => {
+    if (props.align) {
+      return css`
+        align-self: ${alignType[props.align]};
+      `;
+    }
+  }}
+
+  ${(props) =>
+    props.fixed &&
+    props.grow &&
+    css`
+      flex-grow: ${Number.parseInt(props.grow.toString())}%;
+    `}
+
+  ${(props) =>
+    props.span &&
+    css`
+      flex-basis: ${(100 / 24) * Number.parseInt(props.span.toString())}%;
+      max-width: ${(100 / 24) * Number.parseInt(props.span.toString())}%;
+    `}
+`;
+
+ColWrap.defaultProps = {
+  defaultTheme: {},
+};
+
+export default ColWrap;
