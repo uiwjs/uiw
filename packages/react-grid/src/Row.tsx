@@ -1,6 +1,6 @@
 import React from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import './style/row.less';
+import RowWrap from './style/row';
 
 export interface RowProps extends IProps, HTMLDivProps {
   fixed?: boolean;
@@ -22,7 +22,7 @@ export function Row(props: RowProps = {}) {
     .trim();
   const gutterStyl = !gutter ? {} : { paddingLeft: gutter / 2, paddingRight: gutter / 2 };
   return (
-    <div {...other} className={cls}>
+    <RowWrap {...other} className={cls} align={align} justify={justify}>
       {React.Children.toArray(props.children).map((child) => {
         if (!React.isValidElement(child)) return child;
         return React.cloneElement(
@@ -32,6 +32,6 @@ export function Row(props: RowProps = {}) {
           }),
         );
       })}
-    </div>
+    </RowWrap>
   );
 }

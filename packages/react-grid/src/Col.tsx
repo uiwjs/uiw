@@ -1,6 +1,6 @@
 import React from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import './style/col.less';
+import ColWrap from './style/col';
 
 export interface ColProps extends IProps, HTMLDivProps {
   fixed?: boolean;
@@ -22,9 +22,10 @@ export function Col(props: ColProps = {}) {
     .filter(Boolean)
     .join(' ')
     .trim();
+
   return (
-    <div className={cls} {...other}>
+    <ColWrap className={cls} {...other} fixed={fixed} span={span} grow={grow} align={align}>
       {props.children}
-    </div>
+    </ColWrap>
   );
 }
