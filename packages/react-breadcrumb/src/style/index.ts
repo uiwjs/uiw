@@ -1,11 +1,14 @@
 import styled, { css } from 'styled-components';
-import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
-export const BreadcrumbWarp = styled.div<ThemeVariantValueOptions>`
+import { getThemeVariantValue, ThemeVariantValueOptions, HTMLDivProps, HTMLSpanProps } from '@uiw/utils';
+
+export interface BreadcrumbWarpProps extends ThemeVariantValueOptions, HTMLDivProps {}
+
+export const BreadcrumbWarp = styled.div<BreadcrumbWarpProps>`
   display: inline-flex;
   font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
 `;
 
-export interface BreadcrumbWarpItemProps extends ThemeVariantValueOptions {
+export interface BreadcrumbWarpItemProps extends ThemeVariantValueOptions, HTMLSpanProps {
   active?: boolean;
   noSeparator?: Boolean;
   noBefore?: boolean;
@@ -54,14 +57,20 @@ export const BreadcrumbSeparator = styled.span`
   padding-left: ${(props) => getThemeVariantValue(props, 'paddingLeftBreadcrumItemBefore')};
   color: ${(props) => getThemeVariantValue(props, 'colorBreadcrumb')};
 `;
-BreadcrumbWarpItem.defaultProps = {
-  defaultTheme: {
-    colorBreadcrumbActive: '#6e6e6e',
-    paddingLeftBreadcrumItemBefore: '8px',
-    paddingRightBreadcrumItemBefore: '8px',
-  },
+export const BreadcrumbWarpItemDefaultTheme = {
+  colorBreadcrumbActive: '#6e6e6e',
+  paddingLeftBreadcrumItemBefore: '8px',
+  paddingRightBreadcrumItemBefore: '8px',
 };
-
+BreadcrumbWarpItem.defaultProps = {
+  defaultTheme: BreadcrumbWarpItemDefaultTheme,
+};
+export const BreadcrumbWarpDefaultTheme = {
+  fontSizeDefault: '14px',
+  paddingLeftBreadcrumItemBefore: '8px',
+  paddingRightBreadcrumItemBefore: '8px',
+  marginLeftBreadcrumItemInterval: '6px',
+};
 BreadcrumbWarp.defaultProps = {
   defaultTheme: {
     fontSizeDefault: '14px',
