@@ -161,6 +161,29 @@
   // activeBs
   colorRateBgBase: '#e9e9e9',
 
+  // -------------------------- input 输入框 ----------------------------------
+  lineHeightInputsDefault: '14px',
+  widthInputsDefault: '100%',
+  lineHeightInputLarge: '36px',
+  lineHeightInputSmall: '24px',
+  lineHeightInputAddonAfter: '16px',
+  // Input
+  colorInputBase: '#393e48',
+  boxShadowColorInputHBase: 'rgba(19, 124, 189, 0)',
+  boxShadowColorInputInsHBase: 'rgba(16, 22, 26, 0.15)',
+  boxShadowColorInputInsVBase: 'rgba(16, 22, 26, 0.2)',
+  backgroundColorInputBase: '#fff',
+  heightInputDefault: '30px',
+  fontSizeInputDefault: 'inherit',
+  boxShadowColorInputHFocus: '#393e48',
+  boxShadowColorInputVFocus: 'rgba(57, 62, 72, 0.17)',
+  boxShadowColorInputHHover: '#6e6e6e',
+  boxShadowColorInputVHover: 'rgba(57, 62, 72, 0)',
+  backgrounColorInputDisabled: '#dddddd',
+  colorInputDisabled: '#a5a5a5',
+  // AddonAfter
+  topInputAddonAfter: '3px',
+
   // ---------------------------button 按钮部分 ------------------------------------
   colorButtonBase: '#fff',
   // 最小高度
