@@ -7,7 +7,7 @@ import useMdData from './../useMdData';
 import { CodeBlockData } from 'markdown-react-code-preview-loader';
 import { Loader } from 'uiw';
 import { getMetaId, isMeta } from 'markdown-react-code-preview-loader';
-
+import './index.css';
 export type CreatePageProps<T> = {
   dependencies?: T;
   path: string;
