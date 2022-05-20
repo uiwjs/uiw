@@ -1,6 +1,7 @@
 import React from 'react';
 import { IProps, HTMLButtonProps } from '@uiw/utils';
-import WarpButton from './style';
+import ButtonWarp from './style';
+export { ButtonWarp };
 export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'light' | 'dark' | 'link';
 export type ButtonSize = 'large' | 'default' | 'small';
 export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
@@ -60,7 +61,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
     .trim();
 
   return (
-    <WarpButton
+    <ButtonWarp
       {...others}
       as="button"
       ref={ref}
@@ -85,7 +86,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
           if (React.isValidElement(child)) return child;
           return <span>{child}</span>;
         })}
-    </WarpButton>
+    </ButtonWarp>
   );
 });
 
