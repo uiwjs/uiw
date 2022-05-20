@@ -72,6 +72,27 @@
   colorDescriptionsHead: 'rgba(0, 0, 0, 0.85)',
   colorDescriptionsConent: 'rgba(0, 0, 0, 0.65)',
   colorDescriptionsColon: 'rgba(0, 0, 0, 0.95)',
+
+  // -----------------------------Progress 进度条   -------------------------------
+
+  strokeProgressPathSuccess: '#28a745',
+  strokeProgressPathException: '#dc3545',
+  strokeProgressPath: '#20a0ff',
+  strokeProgressPathTrail: '#e5e9f2',
+
+  colorProgresTextSuccess: '#28a745',
+  colorProgresTextException: '#dc3545',
+  colorProgresText: '#48576a',
+
+  backgroundColorProgressBgSuccess: '#28a745',
+  backgroundColorProgressBgException: '#dc3545',
+  backgroundColorProgressBg: '#108ee9',
+
+  backgroundColorProgressInner: '#e5e9f2',
+
+  backgroundProgressBgActiveBefore: '#fff',
+  backgroundImageProgressBgActive: 'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, 0.15) 50%,rgba(255, 255, 255, 0.15) 75%,transparent 75%,transparent)',
+
   // ---------------------------card 卡片 ----------------------------------------
   borderColorBaseActive: '#CCCCCC',
   borderColorBase: '#e9e9e9',

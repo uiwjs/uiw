@@ -1,9 +1,9 @@
 import React from 'react';
 import { IconProgress } from './utils';
 import { ProgressCircleProps } from './Circle';
-import './style/index.less';
-import './style/line.less';
-
+// import './style/index.less';
+// import './style/line.less';
+import { ProgressWarp, ProgressText, ProgressBar, ProgressInner, ProgressBg } from './style';
 export interface ProgressLineProp<T> extends ProgressCircleProps<T> {}
 
 export default class Line<T> extends React.Component<ProgressLineProp<T>> {
@@ -38,21 +38,25 @@ export default class Line<T> extends React.Component<ProgressLineProp<T>> {
       } else if (progressStatus === 'success') {
         percentView = <IconProgress type="circle-check" />;
       }
-      progressInfo = <span className={`${prefixCls}-text`}>{format ? format(percent as number) : percentView}</span>;
+      progressInfo = (
+        <ProgressText status={status} className={`${prefixCls}-text`}>
+          {format ? format(percent as number) : percentView}
+        </ProgressText>
+      );
     }
     const percentStyle = {
       width: `${percent}%`,
       height: strokeWidth,
     };
     return (
-      <div className={cls} style={style} {...resetProps}>
-        <div className={`${prefixCls}-bar`}>
-          <div className={`${prefixCls}-inner`}>
-            <div className={`${prefixCls}-bg`} style={percentStyle} />
-          </div>
-        </div>
+      <ProgressWarp className={cls} style={style} {...resetProps} isLine={true}>
+        <ProgressBar showText={showText} className={`${prefixCls}-bar`}>
+          <ProgressInner className={`${prefixCls}-inner`}>
+            <ProgressBg status={status} className={`${prefixCls}-bg`} style={percentStyle} />
+          </ProgressInner>
+        </ProgressBar>
         {progressInfo}
-      </div>
+      </ProgressWarp>
     );
   }
 }
