@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import './style/index.less';
+import { LoaderSvg, LoaderTips, LoaderTipsNested, LoaderTipsNestedText, LoaderWarp, LoaderChild } from './style';
 
 export interface LoaderProps extends IProps, HTMLDivProps {
   size?: 'small' | 'default' | 'large';
@@ -33,50 +33,51 @@ export default (props: LoaderProps = {}) => {
 
   const indicatorView = useMemo(
     () => (
-      <svg viewBox="25 25 50 50">
+      <LoaderSvg size={size} viewBox="25 25 50 50">
         <circle cx="50" cy="50" r="20" fill="none" strokeWidth="5" strokeMiterlimit="10" />
-      </svg>
+      </LoaderSvg>
     ),
     [],
   );
 
   const tipsView = useMemo(
     () => (
-      <div
+      <LoaderTips
+        fullscreen={fullscreen}
         className={[`${prefixCls}-tips`, fullscreen ? `${prefixCls}-fullscreen` : null]
           .filter(Boolean)
           .join(' ')
           .trim()}
         style={{ color, backgroundColor: bgColor }}
       >
-        <div className={`${prefixCls}-tips-nested`}>
+        <LoaderTipsNested className={`${prefixCls}-tips-nested`}>
           {indicator || indicatorView}
           {tip && (
-            <div
+            <LoaderTipsNestedText
+              vertical={vertical}
               className={[`${prefixCls}-text`, vertical ? `${prefixCls}-vertical` : null]
                 .filter(Boolean)
                 .join(' ')
                 .trim()}
             >
               {tip}
-            </div>
+            </LoaderTipsNestedText>
           )}
-        </div>
-      </div>
+        </LoaderTipsNested>
+      </LoaderTips>
     ),
     [fullscreen, bgColor, prefixCls, vertical, tip],
   );
-
   return (
-    <div className={cls} {...otherProps}>
+    <LoaderWarp className={cls} {...otherProps}>
       {(loading || fullscreen) && tipsView}
       {children &&
         React.cloneElement(
-          children,
+          <LoaderChild load={loading}>{children}</LoaderChild>,
           Object.assign({}, children.props, {
             className: [`${prefixCls}-warp`, loading ? `${prefixCls}-blur` : null].filter(Boolean).join(' ').trim(),
           }),
         )}
-    </div>
+    </LoaderWarp>
   );
 };
