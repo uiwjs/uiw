@@ -4,11 +4,11 @@ import { ListItemProps, ListProps } from 'src';
 
 export interface ListStyleWarp
   extends ThemeVariantValueOptions,
-    Pick<ListProps<any>, 'striped' | 'noHover' | 'active' | 'bordered' | 'size'> {}
+  Pick<ListProps<any>, 'striped' | 'noHover' | 'active' | 'bordered' | 'size'> { }
 
 export interface ListStyleItemWarpProps
   extends ThemeVariantValueOptions,
-    Pick<ListItemProps<any>, 'disabled' | 'active'> {}
+  Pick<ListItemProps<any>, 'disabled' | 'active'> { }
 
 export const ListStyleItemMain = styled.div`
   display: block;
@@ -45,7 +45,7 @@ export const ListStyleItemWarp = styled.div<ListStyleItemWarpProps>`
 
     :hover {
       ${!props.disabled &&
-      css`
+    css`
         background: ${getThemeVariantValue(props, 'backgroundListItemNotDisabledHover')};
       `}
     }
@@ -88,7 +88,7 @@ export const ListStyleWarp = styled.div<ListStyleWarp>`
   ${ListStyleItemWarp} {
       :last-child {
         ${props.bordered &&
-        css`
+    css`
           border-bottom: 0;
           border-radius: 0 0 14px 4px;
         `}
@@ -96,7 +96,7 @@ export const ListStyleWarp = styled.div<ListStyleWarp>`
 
       :nth-of-type(2n) {
         ${props.striped &&
-        css`
+    css`
           background: ${getThemeVariantValue(props, 'backgroundColorListStriped')};
         `}
       }
@@ -104,7 +104,7 @@ export const ListStyleWarp = styled.div<ListStyleWarp>`
 
     ${ListStyleItemWarp},${ListStyleHeader} {
       ${props.bordered &&
-      css`
+    css`
         border-bottom: 1px solid ${getThemeVariantValue(props, 'backgroundColorListBordered')};
       `}
     }
@@ -112,11 +112,11 @@ export const ListStyleWarp = styled.div<ListStyleWarp>`
     ${ListStyleItemWarp},${ListStyleHeader},${ListStyleFooter} {
       padding: 12px 18px;
       ${props.size === 'small' &&
-      css`
+    css`
         padding: 18px 16px;
       `}
       ${props.size === 'large' &&
-      css`
+    css`
         padding: 16px 24px;
       `}
     }
