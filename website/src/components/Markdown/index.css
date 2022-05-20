@@ -5,4 +5,5 @@
 .w-descriptions table td,
 .w-descriptions table th {
   border: none;
+  padding: none;
 }
