@@ -90,10 +90,14 @@ export const GetStyledCloneComponent = <T = any, M = Record<string, any>>(
   const { children, oProps, isChildClassName = true, className: styleClassName } = props;
   if (React.isValidElement(children)) {
     const { className: oClassName = '', ...rest } = oProps || {};
-    const childProps = children.props;
+    const childProps = children?.props || {};
     const className = childProps?.className || '';
     const oldCls = isChildClassName ? className : '';
-    const cls = [oldCls].concat([oClassName]).concat([styleClassName]);
+    const cls = [oldCls]
+      .concat([oClassName])
+      .concat([styleClassName])
+      .filter((ite) => ite && ite.trim())
+      .join(' ');
     return React.cloneElement(children, { ...(childProps || {}), ...rest, className: cls });
   }
   return React.createElement(React.Fragment, { children });
