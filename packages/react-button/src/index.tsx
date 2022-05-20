@@ -10,6 +10,7 @@ export interface ButtonProps extends IProps, Omit<HTMLButtonProps, 'size'> {
   loading?: boolean;
   block?: boolean;
   icon?: React.ReactNode;
+  focus?: boolean;
   /**
    * 按钮类型
    * @mytag {@link link }
@@ -59,7 +60,24 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
     .trim();
 
   return (
-    <WarpButton {...others} as="button" ref={ref} type={htmlType} disabled={disabled || loading} className={cls}>
+    <WarpButton
+      {...others}
+      as="button"
+      ref={ref}
+      type={htmlType}
+      disabled={disabled || loading}
+      className={cls}
+      param={{
+        focus: !!props.focus,
+        type,
+        size,
+        basic,
+        loading,
+        disabled: disabled || loading,
+        active,
+        block,
+      }}
+    >
       {icon}
       {children &&
         React.Children.map(children, (child: React.ReactNode) => {

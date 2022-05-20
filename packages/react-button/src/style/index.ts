@@ -1,20 +1,23 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { getThemeVariantValue } from '@uiw/utils';
-import { buttonVariant, buttonSize } from './Variant';
-
-interface ButtonProps {
+import { buttonTypes, buttonSizeCss } from './Variant';
+import { ButtonType, ButtonSize } from '../';
+export interface ButtonBaseProps {
   defaultTheme?: Record<string, string | number>;
   theme?: Record<string, string | number>;
+  param?: {
+    size: ButtonSize;
+    type: ButtonType;
+    basic: boolean;
+    loading: boolean;
+    disabled: boolean;
+    active: boolean;
+    block: boolean;
+    focus: boolean;
+  };
 }
 
-const getSize = (props: ButtonProps, type: string) => {
-  const fontSize = getThemeVariantValue(props, `fontSize${type}`);
-  const minHeight = getThemeVariantValue(props, `minHeightButton${type}`);
-  const fontSizeIcon = getThemeVariantValue(props, `fontSizeButtonIcon${type}`);
-  return buttonSize(`${fontSize}`, `${fontSizeIcon}`, fontSize, `${minHeight}`);
-};
-
-const Button = styled.button<ButtonProps>`
+const ButtonBase = styled.button<ButtonBaseProps>`
   user-select: none;
   display: inline-flex;
   flex-direction: row;
@@ -49,121 +52,49 @@ const Button = styled.button<ButtonProps>`
   &[disabled] {
     cursor: not-allowed;
   }
-  &.w-btn-primary {
-    ${(props) => buttonVariant({ ...props, type: 'Primary' })}
-  }
-  &.w-btn-success {
-    ${(props) => buttonVariant({ ...props, type: 'Success' })}
-  }
-  &.w-btn-warning {
-    ${(props) => buttonVariant({ ...props, type: 'Warning' })}
-  }
-  &.w-btn-danger {
-    ${(props) => buttonVariant({ ...props, type: 'Error' })}
-  }
-  &.w-btn-light {
-    box-shadow: inset 0 1px 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')},
-      inset 1px -1px 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')},
-      inset -1px 0px 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')};
-    ${(props) => buttonVariant({ ...props, type: 'Light' })}
-    &:focus,
-    &.focus {
-      outline: 0;
-      box-shadow: inset 0 1px 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')},
-        inset 1px -1px 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')},
-        inset -1px 0px 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')},
-        0 0 0 2px ${(props) => getThemeVariantValue(props, 'boxShadowColorLight4')};
-    }
-    &.w-btn-basic {
-      color: ${(props) => getThemeVariantValue(props, 'colorLightBasic')};
-      &:focus,
-      &.focus {
-        box-shadow: inset 0 0 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')};
-      }
-      &:hover {
-        background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorLightBasicHover')} !important;
-      }
-      &:active,
-      &.active {
-        color: ${(props) => getThemeVariantValue(props, 'colorLightBasic')};
-        background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorLightBasicActive')} !important;
-        background-image: none;
-      }
-      &.disabled,
-      &[disabled] {
-        background-color: transparent !important;
-        color: ${(props) => getThemeVariantValue(props, 'colorLightBasicDisabled')};
-      }
-    }
-    &.disabled,
-    &[disabled] {
-      color: ${(props) => getThemeVariantValue(props, 'colorLightBasicDisabled')};
-      z-index: 0;
-    }
-  }
-  &.w-btn-dark {
-    ${(props) => buttonVariant({ ...props, type: 'Dark' })}
-  }
-  &.w-btn-link {
-    ${(props) => buttonVariant({ ...props, type: 'Link' })}
-    color:${(props) => getThemeVariantValue(props, 'colorLink')}  !important;
-    &:hover:not([disabled]) {
-      color: ${(props) => getThemeVariantValue(props, 'colorLinkNotDisabled')};
-      text-decoration: underline;
-    }
-    &:not([disabled]):active,
-    &:not([disabled]).active {
-      color: ${(props) => getThemeVariantValue(props, 'colorLinkNotDisabledActive')};
-      box-shadow: none;
-      text-decoration: underline;
-    }
-    &.disabled,
-    &[disabled] {
-      z-index: 0;
-    }
-  }
+  ${buttonTypes}
   .w-icon {
     font-size: ${(props) => getThemeVariantValue(props, 'fontSizeButtonIcontDefault')};
   }
-  &.w-btn-size-large {
-    ${(props) => getSize(props, 'Large')}
-  }
-  &.w-btn-size-small {
-    padding: 0 6px;
-    min-width: ${(props) => getThemeVariantValue(props, 'minHeightButtonSmall')};
-    ${(props) => getSize(props, 'Small')}
-  }
-  & .w-icon:not(:last-child) {
+  ${buttonSizeCss}
+  .w-icon:not(:last-child) {
     margin-right: 5px;
   }
-  &.w-btn-loading.w-btn-light::before {
-    border: 1.2px solid ${(props) => getThemeVariantValue(props, 'borderColorLinghtLoadingBefore')};
-  }
-  &.w-btn-loading {
-    &::before {
-      content: '';
-      display: inline-block;
-      width: 1em;
-      height: 1em;
-      border-radius: 50%;
-      border: 1.2px solid ${(props) => getThemeVariantValue(props, 'colorButtonLoadingBefore')};
-      color: ${(props) => getThemeVariantValue(props, 'colorButtonLoadingBefore')};
-      margin: 0 3px 0 0;
-      clip-path: polygon(0% 0%, 100% 0, 100% 30%, 0% 30%);
-      animation: rotate 0.5s linear infinite;
-      @keyframes rotate {
-        from {
-          transform: rotateZ(0deg);
-        }
-        to {
-          transform: rotateZ(360deg);
+  ${(props) =>
+    props.param?.loading &&
+    props.param.type === 'light' &&
+    css`
+      &::before {
+        border: 1.2px solid ${(props) => getThemeVariantValue(props, 'borderColorLinghtLoadingBefore')};
+      }
+    `}
+  ${(props) =>
+    props.param?.loading &&
+    css`
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        border-radius: 50%;
+        border: 1.2px solid ${(props) => getThemeVariantValue(props, 'colorButtonLoadingBefore')};
+        color: ${(props) => getThemeVariantValue(props, 'colorButtonLoadingBefore')};
+        margin: 0 3px 0 0;
+        clip-path: polygon(0% 0%, 100% 0, 100% 30%, 0% 30%);
+        animation: rotate 0.5s linear infinite;
+        @keyframes rotate {
+          from {
+            transform: rotateZ(0deg);
+          }
+          to {
+            transform: rotateZ(360deg);
+          }
         }
       }
-    }
-  }
+    `}
 `;
 
-Button.defaultProps = {
+ButtonBase.defaultProps = {
   defaultTheme: {
     colorButtonBase: '#fff',
     // 大小设置
@@ -275,4 +206,4 @@ Button.defaultProps = {
     colorLinkNotDisabledActive: '#002d4d',
   },
 };
-export default Button;
+export default ButtonBase;

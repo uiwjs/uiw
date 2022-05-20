@@ -25,7 +25,7 @@ import { Button, Divider, Icon } from 'uiw';
 
 const Demo = ()=>(
   <div>
-    <Button type="primary">主要按钮</Button>
+    <Button type="primary" >主要按钮</Button>
     <Button type="success">成功按钮</Button>
     <Button type="warning">警告按钮</Button>
     <Button type="danger">错误按钮</Button>
@@ -209,7 +209,7 @@ const Demo = ()=>(
     <ButtonGroup style={{ marginTop: 5 }}>
       <Button disabled type="light">按钮</Button>
       <Button disabled type="light">按钮</Button>
-      <Button type="light">按钮</Button>
+      <Button disabled type="light">按钮</Button>
       <Button disabled type="light">按钮</Button>
     </ButtonGroup>
     <Divider style={{ maxWidth: 220 }}>添加图标</Divider>
@@ -224,7 +224,7 @@ const Demo = ()=>(
     <ButtonGroup style={{ marginTop: 5 }}>
       <Button disabled icon={<Icon type="copy" />}  type="primary">复制</Button>
       <Button disabled icon={<Icon type="delete" />}   type="primary">删除</Button>
-      <Button icon={<Icon type="file-add" />}  type="primary">添加文件</Button>
+      <Button disabled icon={<Icon type="file-add" />}  type="primary">添加文件</Button>
       <Button disabled icon={<Icon type="map" />}  type="primary">地图</Button>
       <Button disabled icon={<Icon type="linux" />} type="primary">Linux</Button>
       <Button disabled icon={<Icon type="apple" />} type="primary">Apple</Button>
