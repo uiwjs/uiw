@@ -18,22 +18,23 @@ import TimePicker from '@uiw/react-time-picker';
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import { TimePicker, Row, Col } from 'uiw';
+import { TimePicker, Row, Col ,Icon} from 'uiw';
 
 const Demo = () => (
   <Row gutter={10}>
     <Col style={{ width: 200 }} fixed>
       <TimePicker
+        icon={<Icon type="close"/>}
         onChange={(formatDate, date) => {
           console.log('--->', formatDate, date);
         }}
       />
     </Col>
     <Col style={{ width: 200 }} fixed>
-      <TimePicker format="HH:mm" precision="minute" />
+      <TimePicker  icon={<Icon type="close"/>} format="HH:mm" precision="minute" />
     </Col>
     <Col style={{ width: 200 }} fixed>
-      <TimePicker format="HH" precision="hour" />
+      <TimePicker  icon={<Icon type="close"/>} format="HH" precision="hour" />
     </Col>
   </Row>
 )
@@ -45,20 +46,20 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import { TimePicker, Row, Col } from 'uiw';
+import { TimePicker, Row, Col  ,Icon} from 'uiw';
 
 const Demo = () => {
   const value = new Date(2018, 1, 24, 4,5,35);
   return (
     <Row gutter={10}>
       <Col style={{ width: 200 }} fixed>
-        <TimePicker value={value} />
+        <TimePicker  icon={<Icon type="close"/>} value={value} />
       </Col>
       <Col style={{ width: 200 }} fixed>
-        <TimePicker value={value} format="HH:mm" precision="minute" />
+        <TimePicker  icon={<Icon type="close"/>} value={value} format="HH:mm" precision="minute" />
       </Col>
       <Col style={{ width: 200 }} fixed>
-        <TimePicker value={value} format="HH" precision="hour" />
+        <TimePicker  icon={<Icon type="close"/>} value={value} format="HH" precision="hour" />
       </Col>
     </Row>
   )
@@ -71,20 +72,20 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import { TimePicker, Row, Col } from 'uiw';
+import { TimePicker, Row, Col ,Icon } from 'uiw';
 
 const Demo = () => {
   const value = new Date(2018, 1, 24, 4,5,35);
   return (
     <Row gutter={10}>
       <Col style={{ width: 200 }} fixed>
-        <TimePicker size="small" value={value} />
+        <TimePicker  icon={<Icon type="close"/>} size="small" value={value} />
       </Col>
       <Col style={{ width: 200 }} fixed>
-        <TimePicker value={value} format="HH" precision="hour" />
+        <TimePicker  icon={<Icon type="close"/>} value={value} format="HH" precision="hour" />
       </Col>
       <Col style={{ width: 200 }} fixed>
-        <TimePicker size="large" value={value} format="HH:mm" precision="minute" />
+        <TimePicker  icon={<Icon type="close"/>} size="large" value={value} format="HH:mm" precision="minute" />
       </Col>
     </Row>
   )
@@ -99,7 +100,7 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import { TimePicker, Notify, Row, Col, Form, Button } from 'uiw';
+import { TimePicker, Notify, Row, Col, Form, Button ,Icon } from 'uiw';
 
 const Demo = () => (
   <div>
@@ -122,7 +123,7 @@ const Demo = () => (
         date: {
           labelClassName: 'fieldLabel',
           labelFor: 'date-inline',
-          children: <TimePicker />
+          children: <TimePicker  icon={<Icon type="close"/>} />
         },
       }}
     >
@@ -149,12 +150,12 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import { TimePicker, Row, Col } from 'uiw';
+import { TimePicker, Row, Col  ,Icon} from 'uiw';
 
 const Demo = () => (
   <Row gutter={10} style={{ maxWidth: 360 }}>
       <Col style={{ width: 200 }} fixed>
-      <TimePicker
+      <TimePicker  icon={<Icon type="close"/>}
         disabledMinutes={(minute, type) => {
           if (minute % 15 !== 0) {
             return true;
@@ -169,7 +170,7 @@ const Demo = () => (
       />
     </Col>
     <Col style={{ width: 200 }} fixed>
-      <TimePicker disabled value={new Date(2018, 1, 24, 4,5,35)} />
+      <TimePicker  icon={<Icon type="close"/>}disabled value={new Date(2018, 1, 24, 4,5,35)} />
     </Col>
   </Row>
 )
@@ -183,13 +184,13 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import { TimePicker, Row, Col } from 'uiw';
+import { TimePicker, Row, Col  ,Icon} from 'uiw';
 
 const Demo = () => (
   <Row gutter={10} style={{ maxWidth: 360 }}>
     <Col style={{ width: 200 }} fixed>
       <TimePicker
-        hideDisabled
+        hideDisabled  icon={<Icon type="close"/>}
         disabledMinutes={(minute, type) => {
           if (minute % 15 !== 0) {
             return true;
@@ -215,12 +216,12 @@ export default Demo
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import { TimePicker, Row, Col } from 'uiw';
+import { TimePicker, Row, Col  ,Icon} from 'uiw';
 
 const Demo = () => (
   <Row gutter={10} style={{ maxWidth: 360 }}>
     <Col style={{ width: 200 }} fixed>
-      <TimePicker
+      <TimePicker  icon={<Icon type="close"/>}
         hideDisabled
         disabledMinutes={(minute, date) => {
           if (minute % 15 !== 0) {

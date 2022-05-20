@@ -1,6 +1,6 @@
 import React, { useMemo, useRef } from 'react';
 import { IProps, HTMLDivProps, HTMLLiProps } from '@uiw/utils';
-import './style/time-picker.less';
+import { DateTimePanel, DateTimePanelUl, DateTimePanelLi } from './style';
 
 export interface TimePickerPanelProps extends IProps, HTMLDivProps {
   onSelected?: (
@@ -86,8 +86,8 @@ export default function TimePickerPanel(props: TimePickerPanelProps) {
   }, [hideDisabled]);
 
   return (
-    <div className={`${prefixCls}-spinner`} {...other}>
-      <ul>
+    <DateTimePanel className={`${prefixCls}-spinner`} {...other}>
+      <DateTimePanelUl>
         {data.map((item, idx) => {
           const liProps = {} as HTMLLiProps;
           if (!item.disabled) {
@@ -95,11 +95,13 @@ export default function TimePickerPanel(props: TimePickerPanelProps) {
           }
           const currentCount = getMaybeNumber();
           return (
-            <li
+            <DateTimePanelLi
               key={idx}
               data-index={currentCount === item.count ? idx : undefined}
-              ref={(tag) => tag && getItemInstance(tag)}
+              ref={(tag: HTMLLIElement) => tag && getItemInstance(tag)}
               {...liProps}
+              disabled={item.disabled}
+              selected={currentCount === item.count}
               className={[
                 item.disabled ? 'disabled' : null,
                 currentCount === item.count ? 'selected' : null,
@@ -110,10 +112,10 @@ export default function TimePickerPanel(props: TimePickerPanelProps) {
                 .trim()}
             >
               {item.count < 10 ? `0${item.count}` : item.count}
-            </li>
+            </DateTimePanelLi>
           );
         })}
-      </ul>
-    </div>
+      </DateTimePanelUl>
+    </DateTimePanel>
   );
 }

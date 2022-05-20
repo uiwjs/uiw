@@ -44,6 +44,7 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
+    "@uiw/react-icon": "^4.21.2",
     "@uiw/formatter": "~1.3.2",
     "@uiw/react-button": "^4.21.2",
     "@uiw/react-input": "^4.21.2",
