@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import Warp from './style';
+import Warp, { WarpContent } from './style';
 
 export interface CarouselProps extends IProps, HTMLDivProps {
   width?: number;
@@ -131,13 +131,13 @@ function Carousel(props: CarouselProps, ref: React.ForwardedRef<CarouselRef>) {
 
   return (
     <Warp className={cls} style={{ width, height }}>
-      <div
+      <WarpContent
         className={`${cls}-content`}
         style={{ width: width * childCount, transition: transitionInner, ...innerStyle }}
       >
         {childrens}
         <div style={{ width, height, ...style }}>{childrens?.[0]}</div>
-      </div>
+      </WarpContent>
     </Warp>
   );
 }
