@@ -4,9 +4,9 @@ import { ListItemProps, ListProps } from 'src';
 
 interface ListWarp
   extends ThemeVariantValueOptions,
-    Pick<ListProps<any>, 'striped' | 'noHover' | 'active' | 'bordered' | 'size'> {}
+  Pick<ListProps<any>, 'striped' | 'noHover' | 'active' | 'bordered' | 'size'> { }
 
-interface ListItemWarpProps extends ThemeVariantValueOptions, Pick<ListItemProps<any>, 'disabled' | 'active'> {}
+interface ListItemWarpProps extends ThemeVariantValueOptions, Pick<ListItemProps<any>, 'disabled' | 'active'> { }
 
 export const ListItemMain = styled.div`
   display: block;
@@ -43,7 +43,7 @@ export const ListItemWarp = styled.div<ListItemWarpProps>`
 
     :hover {
       ${!props.disabled &&
-      css`
+    css`
         background: ${getThemeVariantValue(props, 'backgroundListItemNotDisabledHover')};
       `}
     }
@@ -63,7 +63,7 @@ export const ListFooter = styled.div``;
 const ListWarp = styled.div<ListWarp>`
   ${(props) => css`
     font-size: ${getThemeVariantValue(props, 'fontSizeDefault')};
-    line-height: 1.5 ${getThemeVariantValue(props, 'lineHeightDefault')};
+    line-height: ${getThemeVariantValue(props, 'lineHeightDefault')};
     color: ${getThemeVariantValue(props, 'colorListBase')};
     box-sizing: border-box;
     margin: 0;
@@ -86,7 +86,7 @@ const ListWarp = styled.div<ListWarp>`
   ${ListItemWarp} {
       :last-child {
         ${props.bordered &&
-        css`
+    css`
           border-bottom: 0;
           border-radius: 0 0 14px 4px;
         `}
@@ -94,7 +94,7 @@ const ListWarp = styled.div<ListWarp>`
 
       :nth-of-type(2n) {
         ${props.striped &&
-        css`
+    css`
           background: ${getThemeVariantValue(props, 'backgroundColorListStriped')};
         `}
       }
@@ -102,7 +102,7 @@ const ListWarp = styled.div<ListWarp>`
 
     ${ListItemWarp},${ListHeader} {
       ${props.bordered &&
-      css`
+    css`
         border-bottom: 1px solid ${getThemeVariantValue(props, 'backgroundColorListBordered')};
       `}
     }
@@ -110,11 +110,11 @@ const ListWarp = styled.div<ListWarp>`
     ${ListItemWarp},${ListHeader},${ListFooter} {
       padding: 12px 18px;
       ${props.size === 'small' &&
-      css`
+    css`
         padding: 18px 16px;
       `}
       ${props.size === 'large' &&
-      css`
+    css`
         padding: 16px 24px;
       `}
     }
