@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type CssVariableType = Record<string, string | number>;
 
 /**
@@ -60,4 +62,39 @@ export const getThemeVariantValue = <T extends DefaultThemeType, M extends Defau
     return defaultValue;
   }
   return '';
+};
+
+export type GetStyledCloneComponentProps<T = any, M = Record<string, any>> = {
+  children?: React.ReactNode;
+  /** 处理的子集传递的参数 **/
+  oProps?: T & { className?: string };
+  /** 是否拼接原始的className */
+  isChildClassName?: boolean;
+  className?: string;
+} & M;
+
+/**
+ * styled-components 当遇到 clone 子集的时候，利用 as 功能进行转换
+ *
+ * 原来：React.cloneElement(child,child.props)
+ *
+ * 新的：
+ * const Demo = styled.div``
+ * <Demo as={GetStyledCloneComponent} >${child}</Demo>
+ *
+ *
+ *  **/
+export const GetStyledCloneComponent = <T = any, M = Record<string, any>>(
+  props: GetStyledCloneComponentProps<T, M>,
+) => {
+  const { children, oProps, isChildClassName = true, className: styleClassName } = props;
+  if (React.isValidElement(children)) {
+    const { className: oClassName = '', ...rest } = oProps || {};
+    const childProps = children.props;
+    const className = childProps?.className || '';
+    const oldCls = isChildClassName ? className : '';
+    const cls = [oldCls].concat([oClassName]).concat([styleClassName]);
+    return React.cloneElement(children, { ...(childProps || {}), ...rest, className: cls });
+  }
+  return React.createElement(React.Fragment, { children });
 };
