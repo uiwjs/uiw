@@ -1,7 +1,7 @@
 import React, { useEffect, useImperativeHandle } from 'react';
 import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLInputProps } from '@uiw/utils';
-import './style/input.less';
+import InputWarp, { Input, InputAddonAfter } from './style/input';
 export * from './InputNumber';
 export { default as InputNumber } from './InputNumber';
 
@@ -22,6 +22,7 @@ export default React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     preIcon = null,
     addonAfter,
     inputStyle,
+    disabled,
     ...otherProps
   } = props;
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -32,7 +33,7 @@ export default React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     className,
     size ? `${prefixCls}-${size}` : null,
     addonAfter ? `${prefixCls}-addon` : null,
-    props.disabled ? 'disabled' : null,
+    disabled ? 'disabled' : null,
   ]
     .filter(Boolean)
     .join(' ')
@@ -51,21 +52,22 @@ export default React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     }
   }
   return (
-    <div className={cls} style={style}>
+    <InputWarp className={cls} style={style} size={size} addonAfter={addonAfter} disabled={disabled}>
       <Icon type={preIcon} />
-      <input
+      <Input
         ref={inputRef}
         type={type}
         autoComplete="off"
+        disabled={disabled}
         {...otherProps}
         style={inputStyle}
         className={`${prefixCls}-inner`}
       />
       {addonAfter && (
-        <span className={`${prefixCls}-addon-after`} ref={addonRef}>
+        <InputAddonAfter className={`${prefixCls}-addon-after`} ref={addonRef}>
           {addonAfter}
-        </span>
+        </InputAddonAfter>
       )}
-    </div>
+    </InputWarp>
   );
 });
