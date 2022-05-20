@@ -43,7 +43,7 @@ export const TagSvg = styled.svg<TagSvgProps>`
       }
     `}
 `;
-
+TagSvg.defaultProps = { defaultTheme: TagDefaultTheme };
 export interface TagWarpProps extends HTMLSpanProps, ThemeVariantValueOptions {
   disabled?: boolean;
 }
@@ -68,3 +68,4 @@ export const TagWarp = styled.span<TagWarpProps>`
       }
     `}
 `;
+TagWarp.defaultProps = { defaultTheme: TagDefaultTheme };
