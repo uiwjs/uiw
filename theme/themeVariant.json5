@@ -132,6 +132,21 @@
   boxShadowDatepickerTime3: 'rgba(16, 22, 26, 0.2)',
   colorDatePickerPaging: 'rgba(0, 0, 0, 0.25)',
 
+  //---------------------------- slider 滑块输入条 --------------------------------
+  backgroundColorSlider: '#e4e8f1',
+  backgroundColorSliderBar: '#008ef0',
+  backgroundColorSliderHandleDisabled: '#e6e6e6',
+  boxShadowSliderHandleDisabled: '0 0 0 1px rgba(16, 22, 26, 0.2), 0 0px 0px rgba(16, 22, 26, 0.2)',
+  boxShadowSliderHandleDisabledActive: '0 0 0 1px rgba(16, 22, 26, 0.2), 0 1px 1px rgba(16, 22, 26, 0.2), 0px 0px 0px 2px rgba(0, 0, 0, 0.1)',
+  backgroundColorSliderHandleDisabledActive: '#d8e1e8',
+  boxShadowSliderHandle: '0 0 0 1px rgba(16, 22, 26, 0.2), 0 1px 1px rgba(16, 22, 26, 0.2)',
+  backgroundColorSliderHandle: '#f5f8fa',
+  backgroundImageSliderHandle: 'linear-gradient(180deg, hsla(0, 0%, 100%, 0.8)',
+  backgroundColorSliderTooltip: 'rgba(0, 0, 0, 0.75)',
+  boxShadowSliderDot: '0 0 0 1.6px rgba(16, 22, 26, 0.16)',
+  backgroundColorSliderDot: '#fff',
+  colorSliderMark: 'rgba(0, 0, 0, 0.43)',
+
   // ------------------------ collapse 折叠面板 -----------------------------------
   borderColorCollapseBase: '#d9d9d9',
   // Header

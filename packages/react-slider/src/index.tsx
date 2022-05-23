@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Dots from './Dots';
-import './style/index.less';
+// import './style/index.less';
+import { SliderWarp, SliderBar, SliderHandle, SliderTooltip } from './style';
 
 export type SliderMarks = {
   style?: React.CSSProperties;
@@ -214,7 +215,7 @@ export default function Slider(props: SliderProps) {
     delete other.onClick;
   }
   return (
-    <div
+    <SliderWarp
       ref={slider}
       className={[
         prefixCls,
@@ -227,8 +228,13 @@ export default function Slider(props: SliderProps) {
         .join(' ')
         .trim()}
       {...other}
+      params={{
+        disabled,
+        marks: !!marks,
+      }}
     >
-      <div
+      <SliderBar
+        params={{ disabled, vertical }}
         ref={bar}
         className={`${prefixCls}-bar`}
         style={{
@@ -240,22 +246,27 @@ export default function Slider(props: SliderProps) {
       {[...arrValue].map((item, idx) => {
         const lleftPostion = getValueToPercent(item);
         return (
-          <div
+          <SliderHandle
+            params={{ disabled, vertical }}
             key={idx}
             className={`${prefixCls}-handle`}
             onMouseDown={(evn) => onHandleBtnDown(idx, evn)}
             style={{ [vertical ? 'top' : 'left']: `${lleftPostion}%` }}
           >
             {(tooltip || tooltip === false) && (
-              <div className={[`${prefixCls}-tooltip`, tooltip ? 'open' : null].filter(Boolean).join(' ').trim()}>
+              <SliderTooltip
+                params={{ disabled, open: tooltip }}
+                className={[`${prefixCls}-tooltip`, tooltip ? 'open' : null].filter(Boolean).join(' ').trim()}
+              >
                 {getLabelValue(item)}
-              </div>
+              </SliderTooltip>
             )}
-          </div>
+          </SliderHandle>
         );
       })}
       {dots && (
         <Dots
+          disabled={disabled}
           prefixCls={prefixCls}
           min={min}
           step={step}
@@ -272,6 +283,6 @@ export default function Slider(props: SliderProps) {
           }}
         />
       )}
-    </div>
+    </SliderWarp>
   );
 }
