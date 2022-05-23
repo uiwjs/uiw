@@ -10,6 +10,7 @@ export interface SliderWarpProps extends SliderBaseProps {
   params?: {
     disabled?: boolean;
     marks?: boolean;
+    vertical?: boolean;
   };
 }
 
@@ -40,8 +41,15 @@ export const SliderWarp = styled.div<SliderWarpProps>`
         margin-bottom: 24px;
       }
     `}
+    ${(props) =>
+    props.params?.vertical &&
+    css`
+      height: 100%;
+      height: stretch;
+      width: 4px;
+      margin: 7px 13px;
+    `}
 `;
-
 export const SliderWarpDefaultTheme = { fontSizeSmall: '12px', backgroundColorSlider: '#e4e8f1' };
 SliderWarp.defaultProps = { defaultTheme: SliderWarpDefaultTheme };
 
@@ -76,7 +84,7 @@ export const SliderBar = styled.div<SliderBarProps>`
 `;
 
 export const SliderBarDefaultTheme = { backgroundColorSliderBar: '#008ef0' };
-SliderBar.defaultProps = { defaultTheme: SliderWarpDefaultTheme };
+SliderBar.defaultProps = { defaultTheme: SliderBarDefaultTheme };
 
 export interface SliderHandleProps extends SliderBaseProps {
   params?: {
@@ -131,9 +139,9 @@ export const SliderHandleDefaultTheme = {
   backgroundColorSliderHandleDisabledActive: '#d8e1e8',
   boxShadowSliderHandle: '0 0 0 1px rgba(16, 22, 26, 0.2), 0 1px 1px rgba(16, 22, 26, 0.2)',
   backgroundColorSliderHandle: '#f5f8fa',
-  backgroundImageSliderHandle: 'linear-gradient(180deg, hsla(0, 0%, 100%, 0.8)',
+  backgroundImageSliderHandle: 'linear-gradient(180deg, hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0))',
 };
-SliderHandle.defaultProps = { defaultTheme: SliderWarpDefaultTheme };
+SliderHandle.defaultProps = { defaultTheme: SliderHandleDefaultTheme };
 
 export interface SliderTooltipProps extends SliderBaseProps {
   params?: {
@@ -155,7 +163,7 @@ export const SliderTooltip = styled.div<SliderTooltipProps>`
   font-size: ${(props) => getThemeVariantValue(props, 'fontSizeSmall')};
   position: absolute;
   background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorSliderTooltip')};
-  color: #fff;
+  color: ${(props) => getThemeVariantValue(props, 'colorSliderTooltip')};
   padding: 0px 4px;
   margin-top: -3px;
   border-radius: 3px;
@@ -173,8 +181,9 @@ export const SliderTooltip = styled.div<SliderTooltipProps>`
 export const SliderTooltipDefaultTheme = {
   fontSizeSmall: '12px',
   backgroundColorSliderTooltip: 'rgba(0, 0, 0, 0.75)',
+  colorSliderTooltip: '#fff',
 };
-SliderTooltip.defaultProps = { defaultTheme: SliderWarpDefaultTheme };
+SliderTooltip.defaultProps = { defaultTheme: SliderTooltipDefaultTheme };
 
 export interface SliderDotProps extends SliderBaseProps {
   params?: {
@@ -200,12 +209,11 @@ export const SliderDot = styled.div<SliderDotProps>`
       }
     `}
 `;
-
 export const SliderDotDefaultTheme = {
   boxShadowSliderDot: '0 0 0 1.6px rgba(16, 22, 26, 0.16)',
   backgroundColorSliderDot: '#fff',
 };
-SliderDot.defaultProps = { defaultTheme: SliderWarpDefaultTheme };
+SliderDot.defaultProps = { defaultTheme: SliderDotDefaultTheme };
 
 export interface SliderMarkProps extends SliderBaseProps {
   params?: {
@@ -256,4 +264,4 @@ export const SliderMark = styled.div<SliderMarkProps>`
 export const SliderMarkDefaultTheme = {
   colorSliderMark: 'rgba(0, 0, 0, 0.43)',
 };
-SliderMark.defaultProps = { defaultTheme: SliderWarpDefaultTheme };
+SliderMark.defaultProps = { defaultTheme: SliderMarkDefaultTheme };

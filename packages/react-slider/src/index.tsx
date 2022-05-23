@@ -231,6 +231,7 @@ export default function Slider(props: SliderProps) {
       params={{
         disabled,
         marks: !!marks,
+        vertical,
       }}
     >
       <SliderBar

@@ -146,6 +146,7 @@
   boxShadowSliderDot: '0 0 0 1.6px rgba(16, 22, 26, 0.16)',
   backgroundColorSliderDot: '#fff',
   colorSliderMark: 'rgba(0, 0, 0, 0.43)',
+  colorSliderTooltip: '#fff',
 
   // ------------------------ collapse 折叠面板 -----------------------------------
   borderColorCollapseBase: '#d9d9d9',
