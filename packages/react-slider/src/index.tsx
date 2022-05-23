@@ -203,7 +203,7 @@ export default function Slider(props: SliderProps) {
     if (marks && marks !== true && marks[val] && marks[val].label) {
       return marks[val].label;
     } else if (marks && marks !== true && marks[val] && typeof marks[val] === 'string') {
-      return marks[val];
+      return marks[val] as React.ReactNode;
     } else if (renderMarks && typeof renderMarks === 'function' && renderMarks(val)) {
       return renderMarks(val);
     }
