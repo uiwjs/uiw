@@ -50,7 +50,7 @@ export default function Step(props: StepProps) {
     }
   }
   let iconNode = null;
-  if (progressDot) {
+  if (progressDot && !icon) {
     iconNode = <span className={`${prefixCls}-dot`} />;
   } else if (icon && typeof icon !== 'string') {
     iconNode = <span className={`${prefixCls}-icon`}>{icon}</span>;
@@ -82,7 +82,7 @@ export default function Step(props: StepProps) {
           {iconNode}
         </div>
       </div>
-      <div className={`${prefixCls}-item-main`}>
+      <div className={[`${prefixCls}-item-main`, !!icon && 'is-icon-main'].filter(Boolean).join(' ').trim()}>
         <div className={`${prefixCls}-item-title`}>{title}</div>
         {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
       </div>
