@@ -2928,8 +2928,12 @@ sup.w-badge-count {
 .w-form-item-error .w-input-inner:focus.w-input-inner:hover,
 .w-form-item-error .w-textarea,
 .w-form-item-error .w-textarea:hover,
+.w-form-item-error .w-search-tree-inner,
 .w-form-item-error .w-textarea:focus.w-textarea:hover {
   box-shadow: 0 0 0 1px #dc3545, 0 0 0 3px rgba(220, 53, 69, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
+}
+.w-form-item-error .w-search-tree-inner .w-input .w-input-inner {
+  box-shadow: none !important;
 }
 .w-form-label {
   line-height: 32px;
@@ -4348,6 +4352,10 @@ a.w-list-item:hover:not(.w-disabled) {
   background: transparent;
   margin-top: -4px;
 }
+.w-steps-dot .w-steps-item-head .is-icon {
+  margin-left: -10px !important;
+  background-color: transparent;
+}
 .w-steps-dot.w-steps-vertical .w-steps-item:last-child .w-steps-item-tail {
   display: none;
 }
@@ -4364,6 +4372,9 @@ a.w-list-item:hover:not(.w-disabled) {
   padding-left: 20px;
   padding-bottom: 24px;
   margin-top: -21px;
+}
+.w-steps-dot.w-steps-vertical .is-icon-main {
+  margin-top: -35px;
 }
 .w-steps-dot.w-steps-vertical .w-steps-next-error .w-steps-item-tail i:after {
   background-color: #f04134;

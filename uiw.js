@@ -9184,7 +9184,7 @@ function Step(props) {
 
   var iconNode = null;
 
-  if (progressDot) {
+  if (progressDot && !icon) {
     iconNode = /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
       className: prefixCls + "-dot"
     });
@@ -9222,7 +9222,7 @@ function Step(props) {
         children: iconNode
       })
     }), /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
-      className: prefixCls + "-item-main",
+      className: [prefixCls + "-item-main", !!icon && 'is-icon-main'].filter(Boolean).join(' ').trim(),
       children: [/*#__PURE__*/(0,jsx_runtime.jsx)("div", {
         className: prefixCls + "-item-title",
         children: title
