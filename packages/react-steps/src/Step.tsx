@@ -1,6 +1,9 @@
 import React, { CSSProperties } from 'react';
 import Icon, { IconProps, IconsName } from '@uiw/react-icon';
 import { IProps, HTMLDivProps } from '@uiw/utils';
+import { Check } from '@uiw/icons/lib/Check';
+import { Close } from '@uiw/icons/lib/Close';
+
 // import './style/index.less';
 import {
   StepsItem,
@@ -13,8 +16,8 @@ import {
   StepsItemMainDescription,
   StepsItemHeadInnerDot,
   StepsItemHeadInnerIcon,
+  StepsItemHeadInnerSvg,
 } from './style';
-
 export interface StepProps extends IProps, Omit<HTMLDivProps, 'title'> {
   nextError?: boolean | undefined;
   title?: React.ReactNode;
@@ -24,7 +27,7 @@ export interface StepProps extends IProps, Omit<HTMLDivProps, 'title'> {
   itemWidth?: number;
   stepNumber?: string;
   adjustMarginRight?: number;
-  icon?: IconProps['type'];
+  icon?: React.ReactNode;
   direction?: 'horizontal' | 'vertical';
 }
 
@@ -73,23 +76,14 @@ export default function Step(props: StepProps) {
         {icon}
       </StepsItemHeadInnerIcon>
     );
-  } else if ((icon && typeof icon === 'string') || status === 'finish' || status === 'error') {
-    iconNode = (
-      <Icon
-        type={
-          [
-            icon && typeof icon === 'string' ? `${icon}` : null,
-            !icon && status === 'finish' ? 'check' : null,
-            !icon && status === 'error' ? 'close' : null,
-          ]
-            .filter(Boolean)
-            .join(' ')
-            .trim() as IconsName | null
-        }
-      />
-    );
+  } else if (status === 'finish' || status === 'error') {
+    iconNode = <StepsItemHeadInnerSvg as={status === 'finish' ? Check : Close} />;
   } else {
-    iconNode = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
+    iconNode = (
+      <StepsItemHeadInnerIcon params={{ status, icon: !!icon }} className={`${prefixCls}-icon`}>
+        {stepNumber}
+      </StepsItemHeadInnerIcon>
+    );
   }
   return (
     <StepsItem

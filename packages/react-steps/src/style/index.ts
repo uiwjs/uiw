@@ -425,6 +425,17 @@ export const StepsItemHeadInnerIcon = styled.span<StepsItemHeadInnerIconProps>`
 `;
 StepsItemHeadInnerIcon.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
 
+export const StepsItemHeadInnerSvg = styled.svg`
+  fill: currentcolor;
+  height: 1em;
+  width: 1em;
+  display: inline-flex;
+  align-self: center;
+  position: relative;
+  transition: color 0.3s;
+  box-sizing: inherit;
+`;
+
 export interface StepsItemMainProps extends StepsBaseProps {
   params?: {
     dot?: boolean;
