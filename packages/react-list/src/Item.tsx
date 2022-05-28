@@ -23,6 +23,7 @@ export const ListItem = React.forwardRef(
       active = false,
       ...resetProps
     } = props;
+
     const cls = [prefixCls, className, props.disabled ? 'w-disabled' : null, active ? 'w-active' : null]
       .filter(Boolean)
       .join(' ')
