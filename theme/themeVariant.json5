@@ -93,6 +93,24 @@
   backgroundProgressBgActiveBefore: '#fff',
   backgroundImageProgressBgActive: 'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, 0.15) 50%,rgba(255, 255, 255, 0.15) 75%,transparent 75%,transparent)',
 
+  // -------------------------- steps 步骤条 -------------------------------------
+  // 行高默认
+  lineHeightDefault: 1.5,
+  colorStepsError: ' #f04134',
+  backgroundColorStepsError: ' #f04134',
+  borderColorStepsError: ' #f04134',
+  backgroundColorStepsProcess: ' #2d8cf0',
+  borderColorStepsProcess: ' #2d8cf0',
+  backgroundStepsItemTail: '#e9e9e9',
+
+  colorStepsItemHeadInner: 'rgba(0, 0, 0, 0.25)',
+  borderColorStepsItemHeadInner: 'rgba(0, 0, 0, 0.25)',
+  backgroundColorStepsItemHeadInner: 'rgba(0, 0, 0, 0.25)',
+  colorStepsItemHeadInnerIcon: '#108ee9',
+
+  colorStepsItemMainTitle: '#999',
+  colorStepsItemMainProcess: ' rgba(0, 0, 0, 0.65)',
+
   // ---------------------------card 卡片 ----------------------------------------
   borderColorBaseActive: '#CCCCCC',
   borderColorBase: '#e9e9e9',
