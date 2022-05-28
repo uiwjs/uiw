@@ -23,6 +23,7 @@ export const StepsBaseDefaultTheme = {
   backgroundStepsItemTail: '#e9e9e9',
   backgroundColorBase: '#fff',
   fontSizeDefault: '14px',
+  fontSizeSmall: '12px',
 
   colorStepsItemHeadInner: 'rgba(0, 0, 0, 0.25)',
   borderColorStepsItemHeadInner: 'rgba(0, 0, 0, 0.25)',
@@ -509,7 +510,7 @@ export interface StepsItemMainDescriptionProps extends StepsBaseProps {
 }
 
 export const StepsItemMainDescription = styled.div<StepsItemMainDescriptionProps>`
-  font-size: 12px;
+  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeSmall')};
   color: ${(props) => getThemeVariantValue(props, 'colorStepsItemMainTitle')};
   max-width: 130px;
   ${(props) =>
