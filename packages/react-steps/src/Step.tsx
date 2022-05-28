@@ -1,5 +1,4 @@
 import React, { CSSProperties } from 'react';
-import Icon, { IconProps, IconsName } from '@uiw/react-icon';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import { Check } from '@uiw/icons/lib/Check';
 import { Close } from '@uiw/icons/lib/Close';
