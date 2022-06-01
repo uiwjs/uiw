@@ -2,10 +2,10 @@ import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import Icon from '@uiw/react-icon';
 import Thead from './Thead';
+import { TableWrap, TableFooter } from './style';
 import { getLevelItems, getAllColumnsKeys } from './util';
 import ExpandableComponent from './Expandable';
 import TableTr from './TableTr';
-import './style/index.less';
 
 // 展开配置
 export interface ExpandableType<T> {
@@ -290,7 +290,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
   const { header, render, ellipsis } = getLevelItems(self.selfColumns);
   return (
     <React.Fragment>
-      <div className={cls} {...other} style={{ ...other.style, ...style.div }}>
+      <TableWrap className={cls} {...other} style={{ ...other.style, ...style.div }} params={{ bordered }}>
         <table style={{ tableLayout: ellipsis ? 'fixed' : 'auto', ...style.table }}>
           {title && <caption>{title}</caption>}
           {columns && columns.length > 0 && (
@@ -331,8 +331,12 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
           )}
           {props.children}
         </table>
-      </div>
-      {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
+      </TableWrap>
+      {footer && (
+        <TableFooter className={`${prefixCls}-footer`} params={{ bordered }}>
+          {footer}
+        </TableFooter>
+      )}
     </React.Fragment>
   );
 }

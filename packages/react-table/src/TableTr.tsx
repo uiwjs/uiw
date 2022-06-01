@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import Icon from '@uiw/react-icon';
-import { LocationWidth, TableColumns, TableProps } from './';
+import Table, { LocationWidth, TableColumns, TableProps } from './';
+import { TableTrItem, TableTrItemChild } from './style';
 import './style/index.less';
 import { noop } from '@uiw/utils';
 import { locationFixed } from './util';
@@ -121,7 +122,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   }
                 }
                 return (
-                  <td
+                  <TableTrItem
                     {...objs}
                     style={
                       keyName.fixed
@@ -129,9 +130,12 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                         : {}
                     }
                     children={
-                      <span className={ellipsis && ellipsis[keyName.key!] ? `${prefixCls}-ellipsis` : undefined}>
+                      <TableTrItemChild
+                        className={ellipsis && ellipsis[keyName.key!] ? `${prefixCls}-ellipsis` : undefined}
+                        params={{ ellipsis: ellipsis && ellipsis[keyName.key!] }}
+                      >
                         {objs.children}
-                      </span>
+                      </TableTrItemChild>
                     }
                     key={colNum}
                     className={[
@@ -142,6 +146,10 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                       .filter((it) => it)
                       .join(' ')
                       .trim()}
+                    params={{
+                      align: keyName.align,
+                      fixed: keyName.fixed,
+                    }}
                     onClick={(evn) => onCell(trData, { rowNum, colNum, keyName: keyName.key! }, evn)}
                   />
                 );
