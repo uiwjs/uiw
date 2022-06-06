@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TableColumns, TableProps, LocationWidth } from './';
-import { TableTh } from './style';
+import { TableCol } from './style';
 import { locationFixed } from './util';
 
 interface ThComponentProps<T> {
@@ -36,7 +36,8 @@ export default class ThComponent<T> extends Component<ThComponentProps<T>> {
       }
     }
     return (
-      <TableTh
+      <TableCol
+        as="th"
         ref={this.wrapper}
         key={colNum}
         {...thProps}
@@ -49,7 +50,7 @@ export default class ThComponent<T> extends Component<ThComponentProps<T>> {
         onClick={(evn) => onCellHead?.(item, colNum, rowNum!, evn)}
       >
         {titleNode}
-      </TableTh>
+      </TableCol>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { IProps, noop } from '@uiw/utils';
 import { TableProps, TableColumns, LocationWidth } from './';
-import { TheadWrap, TheadItemTitle } from './style';
+import { TheadWrap, TableColContent } from './style';
 import './style/index.less';
 import ThComponentProps from './ThComponent';
 
@@ -35,12 +35,12 @@ export default function TheadComponent<T extends { [key: string]: V }, V>(
             {(tds || []).map((item, colNum) => {
               const { title, key, render, children, ellipsis, fixed = false, ...thProps } = item;
               const titleNode: TableColumns<T>['title'] = (
-                <TheadItemTitle
+                <TableColContent
                   className={ellipsis ? `${thProps.className || ''} ${prefixCls}-ellipsis` : undefined}
                   params={{ ellipsis }}
                 >
                   {typeof title === 'function' ? title(item, colNum, rowNum!) : title}
-                </TheadItemTitle>
+                </TableColContent>
               );
               if (thProps.colSpan === 0) {
                 return null;

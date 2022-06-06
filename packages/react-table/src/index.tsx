@@ -274,6 +274,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
     };
     if (scroll) {
       if (scroll.x !== undefined) {
+        style.table.maxWidth = 'none';
         style.table.minWidth = '100%';
         style.table.width = scroll.x;
         style.div.overflowX = 'auto';
