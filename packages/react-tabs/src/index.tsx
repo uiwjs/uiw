@@ -66,14 +66,14 @@ export default function Tabs(props: TabsProps) {
     }
   }, []);
 
-  const divNavRef = useCallback((node, key: number, itemKey: React.Key | null) => {
+  const divNavRef = useCallback((node, key: number, itemKey: React.Key | null, activeKey) => {
     if (node !== null) {
-      node.addEventListener('click', (e: any) => {
-        activeItem.current = node;
-      });
+      // node.addEventListener('click', (e: any) => {
+      //   activeItem.current = node;
+      // });
       divNavWidthChange(node.getBoundingClientRect().width, key);
 
-      if (itemKey === props.activeKey && type === 'line' && labelWidth === 0) {
+      if (itemKey === activeKey) {
         activeItem.current = node;
       }
     }
@@ -103,9 +103,8 @@ export default function Tabs(props: TabsProps) {
     }
   };
 
-  useEffect(() => setActiveKey(props.activeKey), [props.activeKey]);
+  useEffect(() => setActiveKey(props?.activeKey || ''), [props.activeKey]);
   useEffect(() => calcSlideStyle(), [activeKey]);
-
   function calcSlideStyle() {
     if (activeItem.current && type === 'line') {
       labelWidth = activeItem.current.clientWidth;
@@ -176,7 +175,7 @@ export default function Tabs(props: TabsProps) {
           calcSlideStyle();
         };
       }
-      return <div key={key} ref={(ref) => divNavRef(ref, key, item.key)} {...divProps} />;
+      return <div key={key} ref={(ref) => divNavRef(ref, key, item.key, activeKey)} {...divProps} />;
     });
   }
 }
