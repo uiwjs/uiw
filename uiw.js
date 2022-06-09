@@ -10530,14 +10530,14 @@ function Tabs(props) {
       flowNavSet(_extends({}, flowNav));
     }
   }, []);
-  var divNavRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)((node, key, itemKey) => {
+  var divNavRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)((node, key, itemKey, activeKey) => {
     if (node !== null) {
-      node.addEventListener('click', e => {
-        activeItem.current = node;
-      });
+      // node.addEventListener('click', (e: any) => {
+      //   activeItem.current = node;
+      // });
       divNavWidthChange(node.getBoundingClientRect().width, key);
 
-      if (itemKey === props.activeKey && type === 'line' && labelWidth === 0) {
+      if (itemKey === activeKey) {
         activeItem.current = node;
       }
     }
@@ -10573,7 +10573,7 @@ function Tabs(props) {
     }
   };
 
-  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => setActiveKey(props.activeKey), [props.activeKey]);
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => setActiveKey((props == null ? void 0 : props.activeKey) || ''), [props.activeKey]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => calcSlideStyle(), [activeKey]);
 
   function calcSlideStyle() {
@@ -10656,7 +10656,7 @@ function Tabs(props) {
       }
 
       return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
-        ref: _ref => divNavRef(_ref, key, item.key)
+        ref: _ref => divNavRef(_ref, key, item.key, activeKey)
       }, divProps), key);
     });
   }
