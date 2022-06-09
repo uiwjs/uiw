@@ -295,6 +295,7 @@ const form=useRef()
                   onChange={(selectd, selectedAll,  isChecked)=>console.log('SearchTree-> onChange', selectd, selectedAll, isChecked)}
                   options={data}
                   placeholder="请选择选项"
+                  treeProps={{ style:{ 'height':200, overflow:'scroll' }}}
                 />
             )
           },

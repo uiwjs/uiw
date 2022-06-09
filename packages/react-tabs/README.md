@@ -48,19 +48,34 @@ ReactDOM.render(<Demo />, _mount_);
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Tabs } from 'uiw';
+import { Tabs,Button } from 'uiw';
 
 class Demo extends React.Component {
+   constructor(props) {
+    super(props);
+    this.state = {
+      activeKey: '1',
+    };
+  }
+   onClick() {
+     const { activeKey } = this.state;
+    this.setState({activeKey: activeKey < 4 ? (Number(activeKey) + 1).toString() :'1'})
+  };
+
   render() {
     return (
-      <Tabs type="line" activeKey="1" onTabClick={(tab, key, e) => {
+      <>
+        <Button type="primary" onClick={this.onClick.bind(this)}>点击我切换tab显项卡</Button>
+        <Tabs type="line" activeKey={this.state.activeKey} onTabClick={(key,tab, e) => {
           console.log("=>", key, tab);
+          this.setState({activeKey: key})
         }}>
         <Tabs.Pane label="用户管理" key="1">用户管理</Tabs.Pane>
         <Tabs.Pane disabled label="配置管理" key="2">配置管理</Tabs.Pane>
         <Tabs.Pane sequence="fadeIn up" label="角色管理" key="3">角色管理</Tabs.Pane>
         <Tabs.Pane label="大爷欢乐多" key="4"><div>大爷欢乐多22</div></Tabs.Pane>
-      </Tabs>
+ </Tabs>
+      </>
     );
   }
 }
