@@ -191,9 +191,7 @@ ReactDOM.render(<Demo />, _mount_);
 ```jsx
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import {  Form, Button, SearchTree, Card, Row, Col } from 'uiw';;
-
-
+import { Notify, Form, Button, SearchTree, Card, Row, Col,Select } from 'uiw';
 const Demo = () => {
 const form=useRef()
 
@@ -258,7 +256,7 @@ const form=useRef()
         }}
         onSubmit={({initial, current}) => {
           const errorObj = {};
-          if (!current.searchTree) {
+           if (!current.searchTree || current.searchTree.length === 0) {
             errorObj.searchTree = '默认需要选择内容，选择入内容';
           }
           if(Object.keys(errorObj).length > 0) {
@@ -297,6 +295,7 @@ const form=useRef()
                   onChange={(selectd, selectedAll,  isChecked)=>console.log('SearchTree-> onChange', selectd, selectedAll, isChecked)}
                   options={data}
                   placeholder="请选择选项"
+                  treeProps={{ style:{ 'height':200, overflow:'scroll' }}}
                 />
             )
           },
