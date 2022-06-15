@@ -4597,7 +4597,6 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
   };
   var popupRef = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef(null);
   var refNode = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef();
-  var currentHeight = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef(0);
   var elementSource = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef();
   var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(!!overlayProps.isOpen);
   var {
@@ -4607,11 +4606,15 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
   } = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useContext)(ThemeContext);
   external_root_React_commonjs2_react_commonjs_react_amd_react_default().useEffect(() => {
     if (refNode.current && refNode.current.style && ele === elementSource.current) {
-      var _currentHeight = refNode.current.style.height;
-      if (height + 'px' === _currentHeight) return;
-      refNode.current.style.height = Number(_currentHeight.substr(0, _currentHeight.length - 2)) + height + 'px';
+      var currentHeight = Number(refNode.current.style.height.substr(0, refNode.current.style.height.length - 2)); // 设置的高度 < '已有展开的高度',
+
+      if (refNode.current.getBoundingClientRect().height < currentHeight) {
+        refNode.current.style.height = currentHeight + 'px';
+      } else {
+        refNode.current.style.height = currentHeight + height + 'px';
+      }
     }
-  }, [height]);
+  }, [height, ele]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
     if (collapse) setIsOpen(false);
   }, [collapse]);
@@ -4628,25 +4631,12 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
     }
   }
 
-  function onExit(node) {
-    node.style.height = node.scrollHeight + "px";
-    setIsOpen(false);
-  }
-
-  function onExiting(node) {
-    node.style.height = '0px';
-    setContextHeight({
-      height: -currentHeight.current,
-      ele: elementSource.current
-    });
-  }
-
   function onEnter(node) {
-    node.style.height = '1px';
+    node.style.height = '0px';
+    refNode.current = node;
     setIsOpen(true);
-    currentHeight.current = popupRef.current.overlayDom.current.getBoundingClientRect().height;
     setContextHeight({
-      height: currentHeight.current,
+      height: popupRef.current.overlayDom.current.getBoundingClientRect().height,
       ele: elementSource.current
     });
   }
@@ -4657,8 +4647,20 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
 
   function onEntered(node) {
     // node.style.height = 'initial';
-    node.style.height = currentHeight.current + 'px';
-    refNode.current = node;
+    node.style.height = popupRef.current.overlayDom.current.getBoundingClientRect().height + 'px';
+  }
+
+  function onExiting(node) {
+    node.style.height = '0px';
+    setContextHeight({
+      height: -popupRef.current.overlayDom.current.getBoundingClientRect().height,
+      ele: elementSource.current
+    });
+  }
+
+  function onExit(node) {
+    node.style.height = node.scrollHeight + "px";
+    setIsOpen(false);
   }
 
   if (!collapse) {
