@@ -20,7 +20,9 @@ export interface MenuProps extends IProps, HTMLUlProps {
   bordered?: boolean;
 }
 interface MenuContextType {
+  // 需要加上或者减去的高度
   height: number;
+  // 事件源dom
   ele: EventTarget | null;
 }
 export const ThemeContext = createContext(

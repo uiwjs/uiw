@@ -74,18 +74,21 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
   };
   const popupRef = React.useRef<OverlayTriggerRef>(null);
   const refNode = React.useRef<HTMLElement | null>();
-  const currentHeight = React.useRef<number>(0);
   const elementSource = React.useRef<EventTarget | null>();
   const [isOpen, setIsOpen] = useState(!!overlayProps.isOpen);
   const { height, setContextHeight, ele } = useContext(ThemeContext);
 
   React.useEffect(() => {
     if (refNode.current && refNode.current.style && ele === elementSource.current) {
-      const currentHeight = refNode.current!.style.height;
-      if (height + 'px' === currentHeight) return;
-      refNode.current!.style.height = Number(currentHeight.substr(0, currentHeight.length - 2)) + height + 'px';
+      const currentHeight = Number(refNode.current!.style.height.substr(0, refNode.current!.style.height.length - 2));
+      // 设置的高度 < '已有展开的高度',
+      if (refNode.current!.getBoundingClientRect().height < currentHeight) {
+        refNode.current!.style.height = currentHeight + 'px';
+      } else {
+        refNode.current!.style.height = currentHeight + height + 'px';
+      }
     }
-  }, [height]);
+  }, [height, ele]);
 
   useMemo(() => {
     if (collapse) setIsOpen(false);
@@ -101,23 +104,12 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
       }
     }
   }
-  function onExit(node: HTMLElement) {
-    node.style.height = `${node.scrollHeight}px`;
-    setIsOpen(false);
-  }
-  function onExiting(node: HTMLElement) {
-    node.style.height = '0px';
-    setContextHeight({
-      height: -currentHeight.current,
-      ele: elementSource.current!,
-    });
-  }
   function onEnter(node: HTMLElement) {
-    node.style.height = '1px';
+    node.style.height = '0px';
+    refNode.current = node;
     setIsOpen(true);
-    currentHeight.current = popupRef.current!.overlayDom.current!.getBoundingClientRect().height;
     setContextHeight({
-      height: currentHeight.current,
+      height: popupRef.current!.overlayDom.current!.getBoundingClientRect().height,
       ele: elementSource.current!,
     });
   }
@@ -126,9 +118,20 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
   }
   function onEntered(node: HTMLElement) {
     // node.style.height = 'initial';
-    node.style.height = currentHeight.current + 'px';
-    refNode.current = node;
+    node.style.height = popupRef.current!.overlayDom.current!.getBoundingClientRect().height + 'px';
   }
+  function onExiting(node: HTMLElement) {
+    node.style.height = '0px';
+    setContextHeight({
+      height: -popupRef.current!.overlayDom.current!.getBoundingClientRect().height,
+      ele: elementSource.current!,
+    });
+  }
+  function onExit(node: HTMLElement) {
+    node.style.height = `${node.scrollHeight}px`;
+    setIsOpen(false);
+  }
+
   if (!collapse) {
     delete menuProps.onClick;
     menuProps.bordered = false;
