@@ -8660,6 +8660,8 @@ function SearchSelect(props) {
   var inputRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
   var omitTagCount = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => maxTagCount && selectedValue.length > maxTagCount ? selectedValue.length - maxTagCount : 0, [selectedValue.length]);
   var divRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
+  var tagContentRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
+  var [tagClientWidth, setTagClientWidth] = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useState(180);
 
   var valueVerify = value => {
     return value !== undefined && value !== '';
@@ -8806,6 +8808,15 @@ function SearchSelect(props) {
     }
   }
 
+  external_root_React_commonjs2_react_commonjs_react_amd_react_default().useEffect(() => {
+    var _tagContentRef$curren;
+
+    if ((_tagContentRef$curren = tagContentRef.current) != null && _tagContentRef$curren.clientWidth) {
+      var _tagContentRef$curren2;
+
+      setTagClientWidth((_tagContentRef$curren2 = tagContentRef.current) == null ? void 0 : _tagContentRef$curren2.clientWidth);
+    }
+  }, [tagContentRef.current]);
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Dropdown, _extends({
     className: cls,
     trigger: "click",
@@ -8859,6 +8870,7 @@ function SearchSelect(props) {
       children: isMultiple ? /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
         className: [prefixCls + "-inner", prefixCls + "-search-" + showSearch, prefixCls + "-" + size].filter(Boolean).join(' ').trim(),
         children: [/*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
+          ref: tagContentRef,
           className: [prefixCls + "-tag-content", disabled && prefixCls + "-tag-content-disabled"].filter(Boolean).join(' ').trim(),
           children: [isMultiple && selectedValue.slice(0, maxTagCount).map((item, index) => {
             return /*#__PURE__*/(0,jsx_runtime.jsx)(react_tag_esm, _extends({
@@ -8876,7 +8888,14 @@ function SearchSelect(props) {
                 e.stopPropagation();
                 handleItemsClick(index, item);
               },
-              children: item.label
+              children: /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
+                style: {
+                  maxWidth: tagClientWidth - 48,
+                  textOverflow: 'ellipsis',
+                  overflow: 'auto'
+                },
+                children: item.label
+              })
             }), index);
           }), !!omitTagCount && /*#__PURE__*/(0,jsx_runtime.jsxs)(react_tag_esm, {
             style: {
@@ -8902,9 +8921,9 @@ function SearchSelect(props) {
             value: selectedLabel,
             placeholder: selectedValue.length ? '' : placeholder
           })]
-        }), !disabled && (selectIconType === 'close' || selectIconType === 'loading' && loading) && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+        }), /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
           className: prefixCls + "-multiple-colse",
-          type: selectIconType,
+          type: 'close',
           spin: loading && selectIconType === 'loading',
           onClick: resetSelectedValue
         })]

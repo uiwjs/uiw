@@ -3873,6 +3873,9 @@ a.w-list-item:hover:not(.w-disabled) {
   padding: 0px;
   height: 28px;
 }
+.w-search-select-input-contents .w-input-small {
+  width: 100%;
+}
 .w-search-select-input-contents .w-input-inner:hover {
   box-shadow: none !important;
 }
