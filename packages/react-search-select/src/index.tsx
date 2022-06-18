@@ -340,14 +340,14 @@ export default function SearchSelect(props: SearchSelectProps) {
                 placeholder={selectedValue.length ? '' : placeholder}
               />
             </div>
-            {/* {!disabled && (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && ( */}
-            <Icon
-              className={`${prefixCls}-multiple-colse`}
-              type={'close'}
-              spin={loading && selectIconType === 'loading'}
-              onClick={resetSelectedValue}
-            />
-            {/* )} */}
+            {!disabled && (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
+              <Icon
+                className={`${prefixCls}-multiple-colse`}
+                type={selectIconType}
+                spin={loading && selectIconType === 'loading'}
+                onClick={resetSelectedValue}
+              />
+            )}
           </div>
         ) : (
           <Input
