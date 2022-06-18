@@ -8921,9 +8921,9 @@ function SearchSelect(props) {
             value: selectedLabel,
             placeholder: selectedValue.length ? '' : placeholder
           })]
-        }), /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
+        }), !disabled && (selectIconType === 'close' || selectIconType === 'loading' && loading) && /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
           className: prefixCls + "-multiple-colse",
-          type: 'close',
+          type: selectIconType,
           spin: loading && selectIconType === 'loading',
           onClick: resetSelectedValue
         })]
