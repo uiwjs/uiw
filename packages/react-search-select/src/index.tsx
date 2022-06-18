@@ -76,6 +76,8 @@ export default function SearchSelect(props: SearchSelectProps) {
     [selectedValue.length],
   );
   const divRef = useRef<HTMLDivElement>(null);
+  const tagContentRef = useRef<HTMLDivElement>(null);
+  const [tagClientWidth, setTagClientWidth] = React.useState(180);
 
   const valueVerify = (value: ValueType | Array<ValueType> | undefined) => {
     return value !== undefined && value !== '';
@@ -221,6 +223,12 @@ export default function SearchSelect(props: SearchSelectProps) {
     }
   }
 
+  React.useEffect(() => {
+    if (tagContentRef.current?.clientWidth) {
+      setTagClientWidth(tagContentRef.current?.clientWidth);
+    }
+  }, [tagContentRef.current]);
+
   return (
     <Dropdown
       className={cls}
@@ -275,6 +283,7 @@ export default function SearchSelect(props: SearchSelectProps) {
               .trim()}
           >
             <div
+              ref={tagContentRef}
               className={[`${prefixCls}-tag-content`, disabled && `${prefixCls}-tag-content-disabled`]
                 .filter(Boolean)
                 .join(' ')
@@ -301,7 +310,15 @@ export default function SearchSelect(props: SearchSelectProps) {
                         handleItemsClick(index, item);
                       }}
                     >
-                      {item.label}
+                      <span
+                        style={{
+                          maxWidth: tagClientWidth - 48,
+                          textOverflow: 'ellipsis',
+                          overflow: 'auto',
+                        }}
+                      >
+                        {item.label}
+                      </span>
                     </Tag>
                   );
                 })}
@@ -323,14 +340,14 @@ export default function SearchSelect(props: SearchSelectProps) {
                 placeholder={selectedValue.length ? '' : placeholder}
               />
             </div>
-            {!disabled && (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
-              <Icon
-                className={`${prefixCls}-multiple-colse`}
-                type={selectIconType}
-                spin={loading && selectIconType === 'loading'}
-                onClick={resetSelectedValue}
-              />
-            )}
+            {/* {!disabled && (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && ( */}
+            <Icon
+              className={`${prefixCls}-multiple-colse`}
+              type={'close'}
+              spin={loading && selectIconType === 'loading'}
+              onClick={resetSelectedValue}
+            />
+            {/* )} */}
           </div>
         ) : (
           <Input
