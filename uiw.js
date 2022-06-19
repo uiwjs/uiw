@@ -8890,7 +8890,7 @@ function SearchSelect(props) {
               },
               children: /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
                 style: {
-                  maxWidth: tagClientWidth - 48,
+                  maxWidth: tagClientWidth - 63,
                   textOverflow: 'ellipsis',
                   overflow: 'auto'
                 },
