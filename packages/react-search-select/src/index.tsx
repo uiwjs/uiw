@@ -312,7 +312,7 @@ export default function SearchSelect(props: SearchSelectProps) {
                     >
                       <span
                         style={{
-                          maxWidth: tagClientWidth - 48,
+                          maxWidth: tagClientWidth - 63,
                           textOverflow: 'ellipsis',
                           overflow: 'auto',
                         }}
