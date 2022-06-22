@@ -95,8 +95,10 @@ export default function Tabs(props: TabsProps) {
     if (flowNav.nav.length > 0) {
       flowNav.nav.forEach((item) => {
         const curWidth = item.curWidth - deviation;
-        if (curWidth < flowNav.displayStart || curWidth > flowNav.displayEnd) {
-          hiddenNav.push(item.index);
+        if (flowNav.displayStart > 0 || flowNav.displayEnd > 0) {
+          if (curWidth < flowNav.displayStart || curWidth > flowNav.displayEnd) {
+            hiddenNav.push(item.index);
+          }
         }
       });
       hiddenNavSet(hiddenNav);
