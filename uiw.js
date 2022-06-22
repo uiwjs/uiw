@@ -10586,8 +10586,10 @@ function Tabs(props) {
       flowNav.nav.forEach(item => {
         var curWidth = item.curWidth - deviation;
 
-        if (curWidth < flowNav.displayStart || curWidth > flowNav.displayEnd) {
-          hiddenNav.push(item.index);
+        if (flowNav.displayStart > 0 || flowNav.displayEnd > 0) {
+          if (curWidth < flowNav.displayStart || curWidth > flowNav.displayEnd) {
+            hiddenNav.push(item.index);
+          }
         }
       });
       hiddenNavSet(hiddenNav);

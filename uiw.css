@@ -30,7 +30,6 @@
 }
 .w-overlay-inline {
   position: absolute;
-  overflow: visible;
   overflow: initial;
 }
 .w-overlay-inline .w-overlay-container {
@@ -67,7 +66,6 @@
   overflow: auto;
   -webkit-user-select: none;
           -moz-user-select: none;
-           -ms-user-select: none;
        user-select: none;
 }
 .w-overlay-enter .w-overlay-backdrop {
@@ -147,7 +145,6 @@
 .w-btn {
   -webkit-user-select: none;
           -moz-user-select: none;
-           -ms-user-select: none;
        user-select: none;
   display: inline-flex;
   flex-direction: row;
@@ -983,9 +980,7 @@ sup.w-badge-count {
   right: auto;
   bottom: auto;
   overflow: inherit;
-  width: auto;
   width: initial;
-  height: auto;
   height: initial;
 }
 .w-overlay.w-overlay-trigger .w-overlay-container {
@@ -1289,7 +1284,6 @@ sup.w-badge-count {
 }
 .w-timepicker-input .w-timepicker-close-btn {
   display: none;
-  min-height: 0;
   min-height: initial;
   color: #a5a5a5;
 }
@@ -1409,7 +1403,6 @@ sup.w-badge-count {
 .w-datepicker-caption {
   -webkit-user-select: none;
           -moz-user-select: none;
-           -ms-user-select: none;
        user-select: none;
   text-align: center;
   padding: 0 0 3px 0;
@@ -1513,7 +1506,6 @@ sup.w-badge-count {
   color: #393e48;
   -webkit-user-select: none;
           -moz-user-select: none;
-           -ms-user-select: none;
        user-select: none;
   font-size: 14px;
   line-height: 21px;
@@ -1574,7 +1566,6 @@ sup.w-badge-count {
   display: inline-block;
   -webkit-user-select: none;
           -moz-user-select: none;
-           -ms-user-select: none;
        user-select: none;
 }
 .w-calendar-btn-group {
@@ -1720,7 +1711,6 @@ sup.w-badge-count {
   color: inherit;
   -webkit-user-select: none;
           -moz-user-select: none;
-           -ms-user-select: none;
        user-select: none;
   transition: initial;
   transition: background-color 0.3s;
@@ -1766,13 +1756,9 @@ sup.w-badge-count {
 .w-menu-subitem-collapse {
   transition: height 300ms;
   position: relative !important;
-  top: auto !important;
   top: initial !important;
-  left: auto !important;
   left: initial !important;
-  right: auto !important;
   right: initial !important;
-  bottom: auto !important;
   bottom: initial !important;
   width: auto !important;
   overflow: hidden !important;
@@ -1882,7 +1868,6 @@ sup.w-badge-count {
   color: rgba(255, 255, 255, 0.65);
 }
 .w-menu-dark.w-bordered {
-  box-shadow: none;
   box-shadow: initial;
 }
 .w-menu-dark .active {
@@ -2141,7 +2126,6 @@ sup.w-badge-count {
 .w-copy-to-clipboard-select {
   -webkit-user-select: text;
           -moz-user-select: text;
-           -ms-user-select: text;
        user-select: text;
   display: none;
 }
@@ -3332,7 +3316,6 @@ a.w-list-item:hover:not(.w-disabled) {
   display: none !important;
 }
 .w-monthpicker .w-monthpicker-close-btn {
-  min-height: 0;
   min-height: initial;
   color: #a5a5a5;
   cursor: pointer;
@@ -3484,7 +3467,6 @@ a.w-list-item:hover:not(.w-disabled) {
   position: relative;
   -webkit-user-select: none;
           -moz-user-select: none;
-           -ms-user-select: none;
        user-select: none;
   font-size: 12px;
 }
@@ -3827,7 +3809,6 @@ a.w-list-item:hover:not(.w-disabled) {
   display: inline-block;
   -webkit-user-select: none;
           -moz-user-select: none;
-           -ms-user-select: none;
        user-select: none;
   font-size: 12px;
   padding: 1px 5px;
@@ -3976,8 +3957,7 @@ a.w-list-item:hover:not(.w-disabled) {
   display: flex;
   background: #f8f8f9;
   -webkit-user-select: none;
-          -ms-user-select: none;
-      user-select: none;
+          user-select: none;
 }
 .w-split-bar::before,
 .w-split-bar::after {
@@ -4296,7 +4276,6 @@ a.w-list-item:hover:not(.w-disabled) {
   padding-top: 5px;
 }
 .w-steps-dot .w-steps-item-description {
-  max-width: none;
   max-width: initial;
 }
 .w-steps-dot .w-steps-item-error .w-steps-item-tail i:after {
@@ -4334,7 +4313,6 @@ a.w-list-item:hover:not(.w-disabled) {
 .w-steps-dot .w-steps-item-tail {
   padding: 0;
   width: 100%;
-  position: static;
   position: initial;
   height: 2px;
 }
@@ -4418,7 +4396,6 @@ a.w-list-item:hover:not(.w-disabled) {
   cursor: pointer;
   -webkit-user-select: none;
           -moz-user-select: none;
-           -ms-user-select: none;
        user-select: none;
   vertical-align: middle;
 }
@@ -4519,7 +4496,6 @@ a.w-list-item:hover:not(.w-disabled) {
 }
 .w-slider-vertical .w-slider-bar {
   width: 4px;
-  height: auto;
   height: initial;
 }
 .w-slider-vertical .w-slider-handle {
@@ -4802,7 +4778,6 @@ a.w-list-item:hover:not(.w-disabled) {
   cursor: not-allowed;
   -webkit-user-select: none;
           -moz-user-select: none;
-           -ms-user-select: none;
        user-select: none;
   color: rgba(0, 0, 0, 0.25);
 }
@@ -5025,7 +5000,6 @@ a.w-list-item:hover:not(.w-disabled) {
   display: none;
 }
 .w-tree-label {
-  line-height: normal;
   line-height: initial;
 }
 .w-tree-label > * {
