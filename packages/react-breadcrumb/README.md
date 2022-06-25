@@ -17,8 +17,7 @@ import Breadcrumb from '@uiw/react-breadcrumb';
 
 适用广泛的基础用法，在 `Breadcrumb` 中使用 `Breadcrumb.Item` 标签表示从首页开始的每一级。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Breadcrumb } from 'uiw';
 
@@ -38,8 +37,7 @@ export default Demo
 
 使用 `separator=">"` 可以自定义分隔符，分隔符也可以是图标。
 
-<!--rehype:codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&codeSandbox=true&codePen=true
 import React from 'react';
 import { Breadcrumb, Divider, Icon } from 'uiw';
 
@@ -67,8 +65,7 @@ export default Demo
 
 图标放在文字前面。注意文字要使用 `span` 包裹起来，图标 `<Icon />` 需要跟 `span` 同级。`Breadcrumb.Item` 定义 `href` 参数的话，`Item` 上的参数就全部是超链原始属性。
 
-<!--rehype:codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&codeSandbox=true&codePen=true
 import React from 'react';
 import { Breadcrumb, Icon } from 'uiw';
 

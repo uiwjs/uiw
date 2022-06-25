@@ -11,8 +11,7 @@ Transfer 穿梭框
 
 最简单的用法。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Transfer, Row } from 'uiw';
 
@@ -47,8 +46,7 @@ export default Demo
 
 使用 [`Tree`](#/components/tree) 结构作为选项节点
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Transfer, Row } from 'uiw';
 
@@ -95,8 +93,7 @@ export default Demo
 
 将`selectedAll`设置为`true`,启用全部勾选功能
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Transfer, Row } from 'uiw';
 
@@ -145,8 +142,7 @@ export default Demo
 
 将`showSearch`设置为`true`，启用选项搜索框
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Transfer, Row } from 'uiw';
 
@@ -197,8 +193,7 @@ export default Demo
 
 ## Form中使用
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Transfer, Form, Row, Col, Button } from 'uiw';
 
