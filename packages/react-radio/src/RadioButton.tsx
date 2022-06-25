@@ -48,7 +48,6 @@ export const RadioButton = React.forwardRef<any, RadioButtonProps>((props, ref) 
       setChecked(!!props.checked);
     }
   }, [props.checked]);
-  console.log('props.checked', props.checked);
 
   function handleChange(e: React.MouseEvent<HTMLButtonElement, MouseEvent> & MouseEvent) {
     e.persist();

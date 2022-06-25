@@ -33,6 +33,13 @@
   widthAvatarDefault: '30px',
   widthAvatarLarge: '40px',
   borderRadiusDefault: '3px',
+  // ----------------------------- DateInput 日期输入框 ------------------------------
+  borderRadiusDefault: '3px',
+  colorDateInputBase: '#393e48',
+  backgroundColorBase: '#fff',
+  backgroundColorDateInputDisabled: '#dddddd',
+  colorDateInputDisabled: '#a5a5a5',
+
   // --------------------------badge 标记部分---------------------------------------
   colorBadge: '#fff',
   marginVerticalBadgeColorDot: '0px',
@@ -231,6 +238,18 @@
   colorInputDisabled: '#a5a5a5',
   // AddonAfter
   topInputAddonAfter: '3px',
+
+  // ---------------------------modal 模态对话框 ------------------------------------
+  // modal header
+  minHeightModalHeader: '40px',
+  backgroundColorModalHeaderBase: '#fff',
+  boxShadowColorModalHeaderBase: 'rgba(16, 22, 26, 0.15)',
+  minHeightModalHeaderH4: '22px',
+  // modal inner
+  backgroundColorModalInnerBase: '#f9f9f9',
+  minWidthModalInner: '320px',
+  boxShadowModalInnerH: 'rgba(16, 22, 26, 0.1)',
+  boxShadowModalInnerV: 'rgba(16, 22, 26, 0.2)',
 
   // ---------------------------button 按钮部分 ------------------------------------
   colorButtonBase: '#fff',

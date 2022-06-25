@@ -15,8 +15,7 @@ import { Form, FormItem } from '@uiw/react-form';
 
 ### 基本用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 
 import React, { useState, useRef } from "react";
 import { Form, Input, Row, Col, Slider, Button, Notify } from 'uiw';
@@ -99,8 +98,7 @@ export default Demo
 
 一般校验可不需引入外部包解决，如果遇到大型工程表单比较多的地方推荐使用 [jquense/yup](https://github.com/jquense/yup)
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, Input, Notify, Checkbox, Switch, RadioGroup, Radio, Textarea, Row, Col, Button } from 'uiw';
 
@@ -250,8 +248,7 @@ export default Demo
 
 ### 水平登录栏
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, Input, Row, Col, Notify, Button } from 'uiw';
 
@@ -319,8 +316,7 @@ export default Demo
 
 ## 登录
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, Input, Row, Col, Checkbox, Notify, Button } from 'uiw';
 
@@ -379,8 +375,7 @@ export default Demo
 
 ### 表单提交
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, Input, Select, Row, Col, Button } from 'uiw';
 
@@ -469,8 +464,7 @@ export default Demo
 - `value` 用于值传递，
 - `onChange(value)` 用于值变更需要执行的回调函数，回调函数第一个参数必须是 `value`。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, Row, Col, Dropdown, Menu, Icon, Button, Notify } from 'uiw';
 
@@ -586,8 +580,7 @@ export default Demo
 > ⚠️ 注意：`FormItem` 组件只在 `Form` 组件中使用，在 `@v4.10.4+` 以上版本可以当普通 `form` 使用。
 <!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, FormItem, Button ,Input} from 'uiw';
 
@@ -637,8 +630,7 @@ export default Demo
 > ⚠️ 注意：`FormItem` 组件只在 `Form` 组件中使用，在 `@v4.10.4+` 以上版本可以当普通 `form` 使用。
 <!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, FormItem,Input} from 'uiw';
 
