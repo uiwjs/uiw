@@ -28,7 +28,7 @@ export const DateInputBase = styled.input<DateInputBaseProps>`
     `}
 `;
 
-export interface DateInputIconWarpProps {
+export interface DateInputIconWarpProps extends ThemeVariantValueOptions {
   spin?: boolean;
   baseline?: boolean;
   closebtn?: boolean;
@@ -65,6 +65,13 @@ export const DateInputIconWarp = styled.span<DateInputIconWarpProps>`
       }
     `}
 `;
+
+DateInputIconWarp.defaultProps = {
+  defaultTheme: {
+    fillDateInputCloseBase: '#a5a5a5',
+    fillDateInputCloseHover: '#393e48',
+  },
+};
 export interface DateInputIconProps {
   spin?: boolean;
 }
@@ -143,7 +150,5 @@ DateInputRangeWarp.defaultProps = {
     backgroundColorBase: '#fff',
     backgroundColorDateInputDisabled: '#dddddd',
     colorDateInputDisabled: '#a5a5a5',
-    fillDateInputCloseBase: '#a5a5a5',
-    fillDateInputCloseHover: '#393e48',
   },
 };
