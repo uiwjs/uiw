@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Input, { InputProps } from '@uiw/react-input';
 import Popover, { PopoverProps } from '@uiw/react-popover';
 import DatePicker, { DatePickerProps } from '@uiw/react-date-picker';
-import Icon from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
-import './style/date-input-range.less';
+import { DateInputIcon, DateInputIconWarp, DateInputRangeWarp, DateInputDatePickerPopover } from './style/index';
+import { SwapRight } from '@uiw/icons/lib/SwapRight';
+import { Close } from '@uiw/icons/lib/Close';
 
 export interface DateInputRangeProps<V> extends IProps, Omit<InputProps, 'onChange' | 'value'> {
   popoverProps?: PopoverProps;
@@ -51,7 +52,7 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
   }
 
   return (
-    <div
+    <DateInputRangeWarp
       className={[`${prefixCls}-contents`, `${prefixCls}-inner`].filter(Boolean).join(' ').trim()}
       style={{ width: 300, ...bodyStyle }}
     >
@@ -61,11 +62,12 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
         autoAdjustOverflow
         {...popoverProps}
         content={
-          <DatePicker
+          <DateInputDatePickerPopover
+            as={DatePicker}
             date={dateRange[0]}
             className={`${prefixCls}-popover`}
             {...datePickerProps}
-            onChange={(selectedDate) => handleChange(selectedDate, 0)}
+            onChange={(selectedDate: Date | undefined) => handleChange(selectedDate, 0)}
           />
         }
       >
@@ -78,20 +80,21 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
           className={[prefixCls, className].filter(Boolean).join(' ').trim()}
         />
       </Popover>
-
-      <Icon type="swap-right" verticalAlign="baseline" style={{ fontSize: 21, top: -1, margin: '0px 8px 0px 5px' }} />
-
+      <DateInputIconWarp baseline style={{ fontSize: 21, top: -1, margin: '0px 8px 0px 5px' }}>
+        <DateInputIcon as={SwapRight} />
+      </DateInputIconWarp>
       <Popover
         trigger="focus"
         placement="bottomLeft"
         autoAdjustOverflow
         {...popoverProps}
         content={
-          <DatePicker
+          <DateInputDatePickerPopover
+            as={DatePicker}
             date={dateRange[1]}
             className={`${prefixCls}-popover`}
             {...datePickerProps}
-            onChange={(selectedDate) => handleChange(selectedDate, 1)}
+            onChange={(selectedDate: Date | undefined) => handleChange(selectedDate, 1)}
           />
         }
       >
@@ -104,9 +107,12 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
           className={[prefixCls, className].filter(Boolean).join(' ').trim()}
         />
       </Popover>
+
       {allowClear && dateRange.length > 0 && (
-        <Icon className={`${prefixCls}-close-btn`} color="#ccc" onClick={() => setDateRange([])} type="close" />
+        <DateInputIconWarp closebtn onClick={() => setDateRange([])} className={`${prefixCls}-close-btn`}>
+          <DateInputIcon as={Close} />
+        </DateInputIconWarp>
       )}
-    </div>
+    </DateInputRangeWarp>
   );
 }

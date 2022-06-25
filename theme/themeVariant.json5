@@ -33,6 +33,13 @@
   widthAvatarDefault: '30px',
   widthAvatarLarge: '40px',
   borderRadiusDefault: '3px',
+  // ----------------------------- DateInput 日期输入框 ------------------------------
+  borderRadiusDefault: '3px',
+  colorDateInputBase: '#393e48',
+  backgroundColorBase: '#fff',
+  backgroundColorDateInputDisabled: '#dddddd',
+  colorDateInputDisabled: '#a5a5a5',
+
   // --------------------------badge 标记部分---------------------------------------
   colorBadge: '#fff',
   marginVerticalBadgeColorDot: '0px',

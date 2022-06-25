@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Input, { InputProps } from '@uiw/react-input';
 import Popover, { PopoverProps } from '@uiw/react-popover';
 import DatePicker, { DatePickerProps } from '@uiw/react-date-picker';
-import Icon from '@uiw/react-icon';
+import { Close } from '@uiw/icons/lib/Close';
 import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
+import { DateInputIcon, DateInputIconWarp, DateInputDatePickerPopover, DateInputBase } from './style/index';
+export * from './style';
 export * from './DateInputRange';
-import './style/index.less';
 
 export interface DateInputProps extends IProps, Omit<InputProps, 'onChange' | 'value'> {
   popoverProps?: PopoverProps;
@@ -48,7 +49,9 @@ export default function DateInput(props: DateInputProps) {
   }
   if (allowClear && inputProps.value) {
     inputProps.addonAfter = (
-      <Icon className={`${prefixCls}-close-btn`} onClick={() => handleChange(undefined)} type="close" />
+      <DateInputIconWarp closebtn className={`${prefixCls}-close-btn`} onClick={() => handleChange(undefined)}>
+        <DateInputIcon as={Close} />
+      </DateInputIconWarp>
     );
   }
 
@@ -63,15 +66,17 @@ export default function DateInput(props: DateInputProps) {
       onVisibleChange={(open) => setIsOpen(open)}
       {...popoverProps}
       content={
-        <DatePicker
+        <DateInputDatePickerPopover
+          as={DatePicker}
           date={(value && new Date(value)) || undefined}
           className={`${prefixCls}-popover`}
           {...datePickerProps}
-          onChange={(selectedDate) => handleChange(selectedDate!)}
+          onChange={(selectedDate: Date | undefined) => handleChange(selectedDate!)}
         />
       }
     >
-      <Input
+      <DateInputBase
+        as={Input}
         placeholder="请选择日期"
         readOnly
         {...(inputProps as InputProps)}
