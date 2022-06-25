@@ -11,3 +11,7 @@
 .w-rcpl-code.w-display {
   padding: 0;
 }
+
+.w-rcpl-preview .w-steps-item-description {
+  white-space: pre-wrap;
+}
