@@ -7,3 +7,7 @@
   border: none;
   padding: none;
 }
+
+.w-rcpl-code.w-display {
+  padding: 0;
+}

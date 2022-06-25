@@ -1,9 +1,24 @@
 import React, { CSSProperties } from 'react';
-import Icon, { IconProps, IconsName } from '@uiw/react-icon';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import './style/index.less';
+import { Check } from '@uiw/icons/lib/Check';
+import { Close } from '@uiw/icons/lib/Close';
 
+// import './style/index.less';
+import {
+  StepsItem,
+  StepsItemTail,
+  StepsItemTailI,
+  StepsItemHead,
+  StepsItemHeadInner,
+  StepsItemMain,
+  StepsItemMainTitle,
+  StepsItemMainDescription,
+  StepsItemHeadInnerDot,
+  StepsItemHeadInnerIcon,
+  StepsItemHeadInnerSvg,
+} from './style';
 export interface StepProps extends IProps, Omit<HTMLDivProps, 'title'> {
+  nextError?: boolean | undefined;
   title?: React.ReactNode;
   description?: React.ReactNode;
   status?: 'wait' | 'process' | 'finish' | 'error' | 'success';
@@ -11,7 +26,8 @@ export interface StepProps extends IProps, Omit<HTMLDivProps, 'title'> {
   itemWidth?: number;
   stepNumber?: string;
   adjustMarginRight?: number;
-  icon?: IconProps['type'];
+  icon?: React.ReactNode;
+  direction?: 'horizontal' | 'vertical';
 }
 
 export default function Step(props: StepProps) {
@@ -27,6 +43,7 @@ export default function Step(props: StepProps) {
     title,
     description,
     progressDot,
+    direction,
     ...restProps
   } = props;
   const classString = [
@@ -51,41 +68,89 @@ export default function Step(props: StepProps) {
   }
   let iconNode = null;
   if (progressDot) {
-    iconNode = <span className={`${prefixCls}-dot`} />;
+    iconNode = <StepsItemHeadInnerDot params={{ status }} className={`${prefixCls}-dot`} />;
   } else if (icon && typeof icon !== 'string') {
-    iconNode = <span className={`${prefixCls}-icon`}>{icon}</span>;
-  } else if ((icon && typeof icon === 'string') || status === 'finish' || status === 'error') {
     iconNode = (
-      <Icon
-        type={
-          [
-            icon && typeof icon === 'string' ? `${icon}` : null,
-            !icon && status === 'finish' ? 'check' : null,
-            !icon && status === 'error' ? 'close' : null,
-          ]
-            .filter(Boolean)
-            .join(' ')
-            .trim() as IconsName | null
-        }
-      />
+      <StepsItemHeadInnerIcon params={{ status, icon: !!icon }} className={`${prefixCls}-icon`}>
+        {icon}
+      </StepsItemHeadInnerIcon>
     );
+  } else if (status === 'finish' || status === 'error') {
+    iconNode = <StepsItemHeadInnerSvg as={status === 'finish' ? Check : Close} />;
   } else {
-    iconNode = <span className={`${prefixCls}-icon`}>{stepNumber}</span>;
+    iconNode = (
+      <StepsItemHeadInnerIcon params={{ status, icon: !!icon }} className={`${prefixCls}-icon`}>
+        {stepNumber}
+      </StepsItemHeadInnerIcon>
+    );
   }
   return (
-    <div {...restProps} className={classString} style={stepItemStyle}>
-      <div className={`${prefixCls}-item-tail`} style={stepItemDotStyle}>
-        <i style={{ paddingRight: '100%' }} />
-      </div>
-      <div className={`${prefixCls}-item-head`}>
-        <div className={[`${prefixCls}-item-inner`, !!icon && 'is-icon'].filter(Boolean).join(' ').trim()}>
+    <StepsItem
+      {...restProps}
+      params={{
+        status,
+        direction,
+      }}
+      className={classString}
+      style={stepItemStyle}
+    >
+      <StepsItemTail
+        className={`${prefixCls}-item-tail`}
+        params={{ direction, dot: !!progressDot, status: status }}
+        style={stepItemDotStyle}
+      >
+        <StepsItemTailI
+          params={{
+            direction,
+            dot: !!progressDot,
+            status: status,
+            nextError: props.nextError,
+          }}
+          style={{ paddingRight: '100%' }}
+        />
+      </StepsItemTail>
+      <StepsItemHead params={{ dot: !!progressDot }} className={`${prefixCls}-item-head`}>
+        <StepsItemHeadInner
+          params={{
+            direction,
+            dot: !!progressDot,
+            status: status,
+            icon: !!icon,
+          }}
+          className={[`${prefixCls}-item-inner`, !!icon && 'is-icon'].filter(Boolean).join(' ').trim()}
+        >
           {iconNode}
-        </div>
-      </div>
-      <div className={`${prefixCls}-item-main`}>
-        <div className={`${prefixCls}-item-title`}>{title}</div>
-        {description && <div className={`${prefixCls}-item-description`}>{description}</div>}
-      </div>
-    </div>
+        </StepsItemHeadInner>
+      </StepsItemHead>
+      <StepsItemMain
+        params={{
+          direction,
+          dot: !!progressDot,
+        }}
+        className={`${prefixCls}-item-main`}
+      >
+        <StepsItemMainTitle
+          params={{
+            dot: !!progressDot,
+            status: status,
+          }}
+          className={`${prefixCls}-item-title`}
+        >
+          {title}
+        </StepsItemMainTitle>
+        {description && (
+          <StepsItemMainDescription
+            params={{
+              direction,
+              dot: !!progressDot,
+              status: status,
+            }}
+            className={`${prefixCls}-item-description`}
+          >
+            {description}
+          </StepsItemMainDescription>
+        )}
+      </StepsItemMain>
+    </StepsItem>
   );
 }

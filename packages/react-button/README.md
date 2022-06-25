@@ -18,8 +18,7 @@ import ButtonGroup from '@uiw/react-button-group';
 
 ### 基本用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&disableCheckered=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Button, Divider, Icon } from 'uiw';
 
@@ -51,8 +50,7 @@ export default Demo
 
 ### 按钮组
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&disableCheckered=true&codeSandbox=true&codePen=true 
 import React from "react"
 import { Button, Divider, ButtonGroup,Icon } from 'uiw';
 
@@ -118,8 +116,8 @@ export default Demo
 
 ### 图标按钮
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+
+```jsx mdx:preview&disableCheckered=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Button, Icon, Divider } from 'uiw';
 
@@ -154,8 +152,7 @@ export default Demo
 
 ### 按钮加载状态
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&disableCheckered=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Button, Icon, Divider } from 'uiw';
 
@@ -185,8 +182,7 @@ export default Demo
 
 ### 禁用按钮组
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&disableCheckered=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Button, ButtonGroup, Divider ,Icon} from 'uiw';
 
@@ -254,8 +250,7 @@ export default Demo
 
 ### 垂直按钮组
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&disableCheckered=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Button, ButtonGroup, Row, Col } from 'uiw';
 
@@ -305,8 +300,7 @@ export default Demo
 
 设置 `basic=true` 即可获得基本按钮，没有背景颜色的状态按钮。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&disableCheckered=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Button, Divider } from 'uiw';
 
@@ -342,8 +336,7 @@ export default Demo
 
 设置 `basic=true` 即可获得基本按钮，没有背景颜色的状态按钮。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&disableCheckered=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Button, Divider ,Icon } from 'uiw';
 
@@ -375,8 +368,7 @@ export default Demo
 
 ### 激活按钮样式
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&disableCheckered=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Button } from 'uiw';
 
@@ -397,8 +389,7 @@ export default Demo
 
 ### 禁用按钮样式
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&disableCheckered=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Button } from 'uiw';
 
@@ -420,8 +411,7 @@ export default Demo
 
 ### block
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&disableCheckered=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Button, Row, Col } from 'uiw';
 
@@ -444,8 +434,7 @@ export default Demo
 
 `size` 在 `Button.Group`下面不支持。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&disableCheckered=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Button, Divider  ,Icon} from 'uiw';
 

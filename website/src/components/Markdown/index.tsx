@@ -6,7 +6,7 @@ import styles from './index.module.less';
 import useMdData from './../useMdData';
 import { CodeBlockData } from 'markdown-react-code-preview-loader';
 import { Loader } from 'uiw';
-import { getMetaId, isMeta } from 'markdown-react-code-preview-loader';
+import { getMetaId, isMeta, getURLParameters } from 'markdown-react-code-preview-loader';
 import './index.css';
 export type CreatePageProps<T> = {
   dependencies?: T;
@@ -58,16 +58,22 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
                 const line = node.position?.start.line;
                 const metaId = getMetaId(meta) || String(line);
                 const Child = mdData.components[`${metaId}`];
-
+                const parameters = getURLParameters(meta);
                 if (metaId && typeof Child === 'function') {
                   const copyNodes = mdData.data[metaId].value || '';
                   return (
                     <Code
-                      codePen={codePen}
-                      codeSandbox={codeSandbox}
+                      disableToolbar={noCode}
+                      codePen={parameters.codePen}
+                      codeSandbox={parameters.codeSandbox}
+                      disableCheckered={!!parameters.disableCheckered}
                       version={version}
-                      code={<code {...rest} />}
-                      copyNodes={copyNodes}
+                      code={
+                        <pre>
+                          <code {...rest} />
+                        </pre>
+                      }
+                      text={copyNodes}
                     >
                       <Child />
                     </Code>
