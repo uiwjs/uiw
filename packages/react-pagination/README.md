@@ -15,8 +15,7 @@ import Pagination from '@uiw/react-pagination';
 
 ### 基本用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Pagination, Divider } from 'uiw';
 
@@ -58,8 +57,7 @@ export default Demo
 
 ### 迷你分页
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Pagination, Divider } from 'uiw';
 
@@ -77,8 +75,7 @@ export default Demo
 
 目前有三种对齐方式 `左边(left)`、`中间(center)`、`右边(right)`。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Pagination, Divider } from 'uiw';
 

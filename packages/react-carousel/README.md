@@ -17,8 +17,7 @@ import Carousel from '@uiw/react-carousel';
 
 最简单的用法。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Carousel } from 'uiw';
 
@@ -65,8 +64,7 @@ export default Demo
 
 palyTime设置每帧停留时间，scrollTime设置切换帧的速度
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Carousel } from 'uiw';
 
@@ -96,8 +94,7 @@ export default Demo
 
 手动切换到指定帧的位置
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Carousel } from 'uiw';
 

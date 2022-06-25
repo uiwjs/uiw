@@ -17,8 +17,7 @@ import Checkbox from '@uiw/react-checkbox';
 
 单独使用可以表示两种状态之间的切换，半选中只是样式上的表现。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Checkbox } from 'uiw';
 
@@ -36,8 +35,7 @@ export default Demo
 
 ### Form 中使用 Checkbox
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->  
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, Checkbox, Row, Col, Button, Notify } from 'uiw';
 
@@ -120,8 +118,7 @@ export default Demo;
 
 通过设置 `disabled` 属性来禁用多选框。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Checkbox } from 'uiw';
 
@@ -137,8 +134,7 @@ export default Demo
 
 ### 全选
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Checkbox, Divider } from 'uiw';
 
@@ -193,8 +189,7 @@ export default Demo;
 
 方便的从数组生成 `Checkbox` 组。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Checkbox, Divider, Button } from 'uiw';
 
@@ -244,8 +239,7 @@ export default Demo;
 
 通过 `checked` 属性改变 `Checkbox` 组件状态。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Checkbox, Button } from 'uiw';
 
