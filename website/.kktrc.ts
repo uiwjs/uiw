@@ -7,7 +7,8 @@ import scopePluginOptions from '@kkt/scope-plugin-options';
 import { mdCodeModulesLoader } from 'markdown-react-code-preview-loader';
 
 export default (conf: Configuration, env: 'development' | 'production', options: LoaderConfOptions) => {
-  let LOADPATH = env === 'production' ? '/uiw' : '';
+  // 案例地址： uiwjs/uiwjs.github.io/v5
+  let LOADPATH = env === 'production' ? '/uiwjs/uiwjs.github.io/v5' : '';
   conf = lessModules(conf, env, options);
   conf = rawModules(conf, env, { ...options });
   conf = scopePluginOptions(conf, env, {
