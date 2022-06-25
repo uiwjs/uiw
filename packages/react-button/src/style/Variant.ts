@@ -107,7 +107,6 @@ export const buttonVariant = (options: Options) => {
 
 export const buttonTypes = (props: ButtonBaseProps) => {
   const { type, focus, basic, active, disabled } = props.param || {};
-
   switch (type) {
     case 'primary':
       return buttonVariant({ ...props, type: 'Primary' });
@@ -207,6 +206,43 @@ export const buttonTypes = (props: ButtonBaseProps) => {
   }
 };
 
+export const getloadingCss = (props: ButtonBaseProps) => {
+  return css`
+    ${() =>
+      props.param?.loading &&
+      props.param.type === 'light' &&
+      css`
+        &::before {
+          border: 1.2px solid ${() => getThemeVariantValue(props, 'borderColorLinghtLoadingBefore')};
+        }
+      `}
+    ${() =>
+      props.param?.loading &&
+      css`
+        &::before {
+          content: '';
+          display: inline-block;
+          width: 1em;
+          height: 1em;
+          border-radius: 50%;
+          border: 1.2px solid ${() => getThemeVariantValue(props, 'colorButtonLoadingBefore')};
+          color: ${() => getThemeVariantValue(props, 'colorButtonLoadingBefore')};
+          margin: 0 3px 0 0;
+          clip-path: polygon(0% 0%, 100% 0, 100% 30%, 0% 30%);
+          animation: rotate 0.5s linear infinite;
+          @keyframes rotate {
+            from {
+              transform: rotateZ(0deg);
+            }
+            to {
+              transform: rotateZ(360deg);
+            }
+          }
+        }
+      `}
+  `;
+};
+
 export const buttonSize = (fontSize: string, iconSize: string, lineHeight: string | number, minHeight: string) => {
   return css`
     font-size: ${fontSize};
@@ -223,6 +259,7 @@ const getSize = (props: ButtonBaseProps, type: string) => {
   const fontSizeIcon = getThemeVariantValue(props, `fontSizeButtonIcon${type}`);
   return buttonSize(`${fontSize}`, `${fontSizeIcon}`, fontSize, `${minHeight}`);
 };
+
 export const buttonSizeCss = (props: ButtonBaseProps) => {
   const { size } = props.param || {};
   switch (size) {
@@ -237,4 +274,16 @@ export const buttonSizeCss = (props: ButtonBaseProps) => {
     default:
       return css``;
   }
+};
+
+export const getIconAndSizeCss = (props: ButtonBaseProps) => {
+  return css`
+    .w-icon {
+      font-size: ${() => getThemeVariantValue(props, 'fontSizeButtonIcontDefault')};
+    }
+    ${() => buttonSizeCss(props)}
+    .w-icon:not(:last-child) {
+      margin-right: 5px;
+    }
+  `;
 };
