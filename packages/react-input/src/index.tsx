@@ -2,6 +2,7 @@ import React, { useEffect, useImperativeHandle } from 'react';
 import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLInputProps } from '@uiw/utils';
 import InputWarp, { InputBase, InputAddonAfter } from './style/input';
+export * from './style/input';
 export * from './InputNumber';
 export { default as InputNumber } from './InputNumber';
 
