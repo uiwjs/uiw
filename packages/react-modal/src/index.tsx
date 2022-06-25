@@ -5,6 +5,7 @@ import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, noop } from '@uiw/utils';
 import './style/index.less';
 import CallShow from './CallShow';
+import ModalWrap, { ModalBody, ModalContainer, ModalFooter, ModalHeader, ModalInner } from './style';
 
 export interface ModalProps extends IProps, OverlayProps {
   type?: ButtonType;
@@ -88,9 +89,9 @@ const Modal: React.ForwardRefExoticComponent<ModalProps & React.RefAttributes<Ov
       setLoading(false);
     }
     return (
-      <Overlay usePortal={usePortal} isOpen={isOpen} {...other} onClose={onClose} className={cls}>
-        <div className={`${prefixCls}-container`}>
-          <div
+      <ModalWrap as={Overlay} usePortal={usePortal} isOpen={isOpen} {...other} onClose={onClose} className={cls}>
+        <ModalContainer className={`${prefixCls}-container`}>
+          <ModalInner
             className={[
               `${prefixCls}-inner`,
               title ? `${prefixCls}-shown-title` : null,
@@ -102,17 +103,17 @@ const Modal: React.ForwardRefExoticComponent<ModalProps & React.RefAttributes<Ov
             style={{ maxWidth, minWidth, width }}
           >
             {(title || icon) && (
-              <div className={`${prefixCls}-header`}>
+              <ModalHeader className={`${prefixCls}-header`}>
                 {icon && <Icon type={icon} />}
                 {title && <h4>{title}</h4>}
                 {isCloseButtonShown && <Button basic onClick={(e) => handleCancel(e)} icon="close" type="light" />}
-              </div>
+              </ModalHeader>
             )}
-            <div className={`${prefixCls}-body`} style={bodyStyle}>
+            <ModalBody className={`${prefixCls}-body`} style={bodyStyle}>
               {children || content}
-            </div>
+            </ModalBody>
             {useButton && (
-              <div className={`${prefixCls}-footer`}>
+              <ModalFooter className={`${prefixCls}-footer`}>
                 <Button
                   autoFocus={autoFocus}
                   type={type}
@@ -128,11 +129,11 @@ const Modal: React.ForwardRefExoticComponent<ModalProps & React.RefAttributes<Ov
                     {cancelText}
                   </Button>
                 )}
-              </div>
+              </ModalFooter>
             )}
-          </div>
-        </div>
-      </Overlay>
+          </ModalInner>
+        </ModalContainer>
+      </ModalWrap>
     );
   });
 
