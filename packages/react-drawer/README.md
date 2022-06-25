@@ -15,8 +15,7 @@ import Drawer from '@uiw/react-drawer';
 
 ### 基础用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Drawer, ButtonGroup, Button } from 'uiw';
 
@@ -67,8 +66,7 @@ export default Demo
 
 ### 显示位置
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Drawer, ButtonGroup, Button } from 'uiw';
 
@@ -125,8 +123,7 @@ export default Demo
 
 ### 添加页脚
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Drawer, ButtonGroup, Button } from 'uiw';
 

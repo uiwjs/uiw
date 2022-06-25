@@ -16,8 +16,7 @@ import ButtonGroup from '@uiw/react-button-group';
 
 ### 基本用法
 
-<!--rehype:codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&codeSandbox=true&codePen=true
 import React from 'react';
 import { Button, Divider, ButtonGroup } from 'uiw';
 
