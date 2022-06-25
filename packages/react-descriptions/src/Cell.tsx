@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { IProps } from '@uiw/utils';
 import { DescriptionsItemProps } from './DescriptionsItem';
 import { RowProps } from './Row';
-
+import { DescriptionsItem } from './style';
 export interface CellProps
   extends Omit<RowProps, 'children'>,
     Omit<DescriptionsItemProps, 'children'>,
@@ -46,29 +46,45 @@ function Cell(props: CellProps = {}) {
   if (layout === 'horizontal') {
     if (!bordered) {
       return (
-        <TagName {...other} colSpan={span}>
-          <span {...labelProps}>{label}</span>
-          <span className={prefixCls ? `${prefixCls}-item-content` : ''}>{children}</span>
-        </TagName>
+        <DescriptionsItem as={TagName} {...other} colSpan={span}>
+          <DescriptionsItem as="span" {...labelProps} isColon={colon} isLabel={!!label}>
+            {label}
+          </DescriptionsItem>
+          <DescriptionsItem as="span" isContent={!!prefixCls} className={prefixCls ? `${prefixCls}-item-content` : ''}>
+            {children}
+          </DescriptionsItem>
+        </DescriptionsItem>
       );
     }
     return (
       <Fragment>
-        <th {...labelProps}>{label}</th>
-        <TagName
+        <DescriptionsItem as="th" {...labelProps} bordered={bordered} isColon={colon} isLabel={!!label}>
+          {label}
+        </DescriptionsItem>
+        <DescriptionsItem
           {...other}
+          as={TagName}
+          isContent={!!prefixCls}
+          bordered={bordered}
           colSpan={span ? span * 2 - 1 : span}
           className={prefixCls ? `${prefixCls}-item-content` : ''}
         >
           {children}
-        </TagName>
+        </DescriptionsItem>
       </Fragment>
     );
   }
   return (
-    <TagName colSpan={span} className={`${prefixCls}-item-${TagName === 'td' ? 'content' : 'label'}`}>
+    <DescriptionsItem
+      bordered={bordered}
+      isLabel={TagName === 'th'}
+      isContent={TagName === 'td'}
+      as={TagName}
+      colSpan={span}
+      className={`${prefixCls}-item-${TagName === 'td' ? 'content' : 'label'}`}
+    >
       {children}
-    </TagName>
+    </DescriptionsItem>
   );
 }
 

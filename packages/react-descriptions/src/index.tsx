@@ -2,8 +2,8 @@ import React from 'react';
 import { IProps } from '@uiw/utils';
 import DescriptionsItem, { DescriptionsItemProps } from './DescriptionsItem';
 import Row, { RowProps } from './Row';
-import './style/index.less';
-
+// import './style/index.less';
+import { DescriptionsTable, DescriptionsWarp, DescriptionsTableCaption, DescriptionsTableTbody } from './style';
 export * from './DescriptionsItem';
 
 export interface DescriptionsProps extends IProps {
@@ -81,18 +81,22 @@ function InternalDescriptions(props: DescriptionsProps, ref: React.ForwardedRef<
   const childs: Array<React.ReactElement<DescriptionsItemProps>[]> = generateChildrenRows(cloneChildren, column!);
 
   return (
-    <div className={cls} ref={ref}>
-      <table {...other}>
-        {title && <caption className={`${prefixCls}-title`}>{title}</caption>}
-        <tbody className={`${prefixCls}-tbody`}>
+    <DescriptionsWarp bordered={bordered} className={cls} ref={ref}>
+      <DescriptionsTable {...other}>
+        {title && (
+          <DescriptionsTableCaption bordered={bordered} className={`${prefixCls}-title`}>
+            {title}
+          </DescriptionsTableCaption>
+        )}
+        <DescriptionsTableTbody size={size} bordered={bordered} className={`${prefixCls}-tbody`}>
           {childs.map((child, index) => (
             <Row key={index} prefixCls={prefixCls} bordered={bordered} colon={colon} column={column} layout={layout}>
               {child}
             </Row>
           ))}
-        </tbody>
-      </table>
-    </div>
+        </DescriptionsTableTbody>
+      </DescriptionsTable>
+    </DescriptionsWarp>
   );
 }
 

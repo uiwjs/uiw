@@ -1,0 +1,13 @@
+.w-descriptions table tr {
+  border-top: none;
+}
+
+.w-descriptions table td,
+.w-descriptions table th {
+  border: none;
+  padding: none;
+}
+
+.w-rcpl-code.w-display {
+  padding: 0;
+}

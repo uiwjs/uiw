@@ -1,7 +1,7 @@
 import React from 'react';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import { ListItem } from './Item';
-import './style/index.less';
+import ListWarp, { ListFooter, ListHeader } from './style';
 
 export * from './Item';
 
@@ -35,7 +35,7 @@ function InternalList<T>(props: ListProps<T>, ref: React.ForwardedRef<HTMLDivEle
   } = props;
   let items: React.ReactNode;
   if (dataSource && dataSource.length > 0) {
-    items = dataSource.map((item: any, index: number) => renderItem!(item, index));
+    items = dataSource.map((item: any, index: number) => renderItem!(item, index)) as React.ReactNode;
   } else {
     items = children;
   }
@@ -60,11 +60,20 @@ function InternalList<T>(props: ListProps<T>, ref: React.ForwardedRef<HTMLDivEle
     .join(' ')
     .trim();
   return (
-    <div className={classString} {...resetProps} ref={ref}>
-      {header && <div className={`${prefixCls}-header`}>{header}</div>}
+    <ListWarp
+      className={classString}
+      {...resetProps}
+      ref={ref}
+      striped={striped}
+      noHover={noHover}
+      active={active}
+      bordered={bordered}
+      size={size}
+    >
+      {header && <ListHeader className={`${prefixCls}-header`}>{header}</ListHeader>}
       {childrenList}
-      {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
-    </div>
+      {footer && <ListFooter className={`${prefixCls}-footer`}>{footer}</ListFooter>}
+    </ListWarp>
   );
 }
 

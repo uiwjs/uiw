@@ -1,0 +1,341 @@
+{
+  // ------------------------------公共部分-----------------------------------------
+  //字体大小设置
+  fontSizeSmall: '12px',
+  fontSizeDefault: '14px',
+  fontSizeLarge: '16px',
+
+  // 背景色
+  backgroundColorBase: '#fff',
+
+  // 字体颜色
+  colorBase: '#393e48',
+
+  // 行高
+  lineHeightDefault: 1.5,
+
+  // 圆角
+  borderRadiusSmall: '2px',
+  borderRadiusDefault: '3px',
+  borderRadiusLarge: '5px',
+
+  // ----------------------- avatar 头像部分 ---------------------------------------
+  backgroundColorAvatar: '#ccc',
+  colorAvatar: '#fff',
+
+  fontSizeAvatarMini: '12px',
+  fontSizeAvatarSmall: '12px',
+  fontSizeAvatarDefault: '18px',
+  fontSizeAvatarLarge: '24px',
+
+  widthAvatarMini: '18px',
+  widthAvatarSmall: '24px',
+  widthAvatarDefault: '30px',
+  widthAvatarLarge: '40px',
+  borderRadiusDefault: '3px',
+  // --------------------------badge 标记部分---------------------------------------
+  colorBadge: '#fff',
+  marginVerticalBadgeColorDot: '0px',
+  marginHorizontalBadgeColorDot: '4px',
+  topBadgeColorDot: '-1px',
+  widthBadgeColorDot: '6px',
+  backgroundColorBadgepPocessing: '#007bff',
+  backgroundBadgeCountDot: '#f04134',
+  boxShadowBadgeCountDot: '0 0 0 1px #fff',
+  topBadgeCountDot: '-4px',
+  topBadgeCount: '-10px',
+  heightBadgeCount: '16px',
+  borderRadiusBadgeCount: '10px',
+  // ---------------------------breadcrumb 面包屑 ---------------------------------
+  colorBreadcrumbActive: '#6e6e6e',
+  paddingLeftBreadcrumItemBefore: '8px',
+  paddingRightBreadcrumItemBefore: '8px',
+  marginLeftBreadcrumItemInterval: '6px',
+  // -------------------------- back-top 返回顶部 --------------------------------
+  bottomBackTop: '50px',
+  rightBackTop: '50px',
+  // ---------------------------- date-picker 时间 -------------------------------
+  colorDateTimeCloseButton: '#a5a5a5',
+  colorDateTimeCloseButtonHover: '#393e48',
+  colorDateTimeLi: '#393e48',
+  colorDateTimeLiDisabled: '#d4d4d4',
+  colorDateTimeLiSelected: '#000',
+  backgroundColorDateTimeLiSelect: '#f1f1f1',
+  backgroundColorDateTimeLiHover: '#f6f8fa',
+  backgroundColorDateTimeLiActive: '#e1e5e8',
+  borderLeftColorDateTimePanelUl: '#e9e9e9',
+
+  // ----------------------------  Descrptions 描述列表 --------------------------
+  borderColorDescriptions: '#dfe2e5',
+  borderColorDescriptions: '#dfe2e5',
+  borderColorDescriptionsTh: '#fafafa',
+  colorDescriptionsHead: 'rgba(0, 0, 0, 0.85)',
+  colorDescriptionsConent: 'rgba(0, 0, 0, 0.65)',
+  colorDescriptionsColon: 'rgba(0, 0, 0, 0.95)',
+
+  // -----------------------------Progress 进度条   -------------------------------
+
+  strokeProgressPathSuccess: '#28a745',
+  strokeProgressPathException: '#dc3545',
+  strokeProgressPath: '#20a0ff',
+  strokeProgressPathTrail: '#e5e9f2',
+
+  colorProgresTextSuccess: '#28a745',
+  colorProgresTextException: '#dc3545',
+  colorProgresText: '#48576a',
+
+  backgroundColorProgressBgSuccess: '#28a745',
+  backgroundColorProgressBgException: '#dc3545',
+  backgroundColorProgressBg: '#108ee9',
+
+  backgroundColorProgressInner: '#e5e9f2',
+
+  backgroundProgressBgActiveBefore: '#fff',
+  backgroundImageProgressBgActive: 'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, 0.15) 50%,rgba(255, 255, 255, 0.15) 75%,transparent 75%,transparent)',
+
+  // -------------------------- steps 步骤条 -------------------------------------
+  // 行高默认
+  lineHeightDefault: 1.5,
+  colorStepsError: ' #f04134',
+  backgroundColorStepsError: ' #f04134',
+  borderColorStepsError: ' #f04134',
+  backgroundColorStepsProcess: ' #2d8cf0',
+  borderColorStepsProcess: ' #2d8cf0',
+  backgroundStepsItemTail: '#e9e9e9',
+
+  colorStepsItemHeadInner: 'rgba(0, 0, 0, 0.25)',
+  borderColorStepsItemHeadInner: 'rgba(0, 0, 0, 0.25)',
+  backgroundColorStepsItemHeadInner: 'rgba(0, 0, 0, 0.25)',
+  colorStepsItemHeadInnerIcon: '#108ee9',
+
+  colorStepsItemMainTitle: '#999',
+  colorStepsItemMainProcess: ' rgba(0, 0, 0, 0.65)',
+
+  // ---------------------------card 卡片 ----------------------------------------
+  borderColorBaseActive: '#CCCCCC',
+  borderColorBase: '#e9e9e9',
+  heightCardHead: '40px',
+  paddingVerticalCardHead: 0,
+  paddingHorizontalCardHead: '14px',
+  borderRadius1CardHead: '2px',
+  borderRadius2CardHead: '2px',
+  borderRadius3CardHead: 0,
+  borderRadius4CardHead: 0,
+  rightCardHeadExtra: '16px',
+  topCardHeadExtra: 0,
+  paddingCardBody: '14px',
+  borderTopCardBody: '1px solid #e9e9e9',
+  paddingVerticalCardFooter: '8px',
+  paddingHorizontalCardFooter: '10px',
+  borderTopCardFooter: '1px solid #F2F2F2',
+  colorCardFooter: '#999999',
+  // -------------------------- date-picker 日期 ----------------------------------
+  // 组件内部公共
+  backgroundColorDatePickerBaseHover: '#eaeaea',
+  backgroundColorDatePickerActive: '#d2d2d2',
+  // 组件
+  borderColorDatepickerBase: '#e9e9e9',
+  colorDatePickerDayTodayBase: '#d3d3d3',
+  colorDatepickerTimeBase: '#393e48',
+  borderBottomColorDatepickerCaption: '#ececec',
+  backgroundColorDatepickerCaptionPanePrevBefore: '#333',
+  backgroundColorDatepickerCaptionToday: '#dedede',
+  backgroundColorDatepickerCaptionTodayBefore: '#a0a0a0',
+  backgroundColorDatePickerTodayDisabled: 'rgba(189, 189, 189, 0.47)',
+  backgroundColorDatePickerDayDisabled: '#f5f5f5',
+  colorDatePickerDayHover: '#393e48',
+  colorDatePickerDayEnd: '#6f6f6f',
+  boxShadowDatepickerTime1: 'rgba(16, 22, 26, 0.1)',
+  boxShadowDatepickerTime2: 'rgba(16, 22, 26, 0)',
+  boxShadowDatepickerTime3: 'rgba(16, 22, 26, 0.2)',
+  colorDatePickerPaging: 'rgba(0, 0, 0, 0.25)',
+
+  //---------------------------- slider 滑块输入条 --------------------------------
+  backgroundColorSlider: '#e4e8f1',
+  backgroundColorSliderBar: '#008ef0',
+  backgroundColorSliderHandleDisabled: '#e6e6e6',
+  boxShadowSliderHandleDisabled: '0 0 0 1px rgba(16, 22, 26, 0.2), 0 0px 0px rgba(16, 22, 26, 0.2)',
+  boxShadowSliderHandleDisabledActive: '0 0 0 1px rgba(16, 22, 26, 0.2), 0 1px 1px rgba(16, 22, 26, 0.2), 0px 0px 0px 2px rgba(0, 0, 0, 0.1)',
+  backgroundColorSliderHandleDisabledActive: '#d8e1e8',
+  boxShadowSliderHandle: '0 0 0 1px rgba(16, 22, 26, 0.2), 0 1px 1px rgba(16, 22, 26, 0.2)',
+  backgroundColorSliderHandle: '#f5f8fa',
+  backgroundImageSliderHandle: 'linear-gradient(180deg, hsla(0, 0%, 100%, 0.8)',
+  backgroundColorSliderTooltip: 'rgba(0, 0, 0, 0.75)',
+  boxShadowSliderDot: '0 0 0 1.6px rgba(16, 22, 26, 0.16)',
+  backgroundColorSliderDot: '#fff',
+  colorSliderMark: 'rgba(0, 0, 0, 0.43)',
+  colorSliderTooltip: '#fff',
+
+  // ------------------------ collapse 折叠面板 -----------------------------------
+  borderColorCollapseBase: '#d9d9d9',
+  // Header
+  backgroundColorCollapseHeaderBase: '#fafafa',
+  colorCollapseHeaderBase: 'rgba(0, 0, 0, 0.85)',
+  backgroundColorCollapseHeaderDisabled: '#f7f7f7',
+  colorCollapseHeaderDisabled: 'rgba(0, 0, 0, 0.25)',
+  // Panel
+  colorCollapsePanelBase: 'rgba(0, 0, 0, 0.65)',
+
+  // ------------------------ list 列表 -----------------------------------
+  colorListBase: '#52575c',
+  backgroundColorListBase: '#fff',
+  boxShadowListActive: 'rgba(0, 0, 0, 0.2)',
+  borderColorListActive: 'rgba(0, 0, 0, 0.2)',
+  colorListBorder: '#e9e9e9',
+  backgroundColorListStriped: '#f8f8f9',
+  backgroundColorListBordered: '#e8e8e8',
+  // list item
+  colorListItemDisabled: '#a3a6a9',
+  backgroundListItemActive: '#f8f8f9',
+  colorListItemActive: '#007bff',
+  backgroundListItemNotDisabledHover: '#f8f8f9',
+
+  // -------------------------- divider 分割线 ----------------------------------
+  // 组件内部公共
+  borderTopColorDividerWithText: '#e8e8e8',
+  // 组件
+  backgroundColorDividerBase: '#e8e8e8',
+
+  // -------------------------- empty 空状态 ----------------------------------
+  colorEmptyBase: '#c7c7c7',
+
+  // -------------------------- rate 评分 ----------------------------------
+  lineHeightRateDefault: '12px',
+  fontSizeRateDefault: '20px',
+  // active
+  colorRateActiveBase: '#e9e9e9',
+  lineHeightRateActiveDefault: '12px',
+  colorRateActiveOn: '#f5a623',
+  // activeBs
+  colorRateBgBase: '#e9e9e9',
+
+  // -------------------------- input 输入框 ----------------------------------
+  lineHeightInputsDefault: '14px',
+  widthInputsDefault: '100%',
+  lineHeightInputLarge: '36px',
+  lineHeightInputSmall: '24px',
+  lineHeightInputAddonAfter: '16px',
+  // Input
+  colorInputBase: '#393e48',
+  boxShadowColorInputHBase: 'rgba(19, 124, 189, 0)',
+  boxShadowColorInputInsHBase: 'rgba(16, 22, 26, 0.15)',
+  boxShadowColorInputInsVBase: 'rgba(16, 22, 26, 0.2)',
+  backgroundColorInputBase: '#fff',
+  heightInputDefault: '30px',
+  fontSizeInputDefault: 'inherit',
+  boxShadowColorInputHFocus: '#393e48',
+  boxShadowColorInputVFocus: 'rgba(57, 62, 72, 0.17)',
+  boxShadowColorInputHHover: '#6e6e6e',
+  boxShadowColorInputVHover: 'rgba(57, 62, 72, 0)',
+  backgrounColorInputDisabled: '#dddddd',
+  colorInputDisabled: '#a5a5a5',
+  // AddonAfter
+  topInputAddonAfter: '3px',
+
+  // ---------------------------button 按钮部分 ------------------------------------
+  colorButtonBase: '#fff',
+  // 最小高度
+  minHeightButtonSmall: '24px',
+  minHeightButtonDefault: '30px',
+  minHeightButtonLarge: '36px',
+  // 按钮中图标大小
+  fontSizeButtonIconSmall: '14px',
+  fontSizeButtonIcontDefault: '16px',
+  fontSizeButtonIconLarge: '20px',
+  // 颜色 +  组件属性 + 伪类
+  colorLoadingBefore: '#fff',
+
+  // 颜色设置
+  // Primary
+  colorPrimary: '#fff',
+  backgroundColorPrimary: '#008ef0',
+  backgroundColorPrimaryHover: '#0070bd',
+  boxShadowColorPrimaryFocus: 'rgba(0, 142, 240, 0.26)',
+  backgroundColorPrimaryActive: '#00528a',
+  backgroundColorPrimaryDisabled: '#57baff',
+  boxShadowColorPrimaryBasic: '#000',
+  backgroundColorPrimaryBasicHover: '#c7e8ff',
+  colorPrimaryBasicDisabled: '#24a6ff',
+  backgroundColorPrimaryBasicActive: '#94d3ff',
+
+  // Success
+  colorSuccess: '#fff',
+  backgroundColorSuccess: '#28a745',
+  backgroundColorSuccessHover: '#1e7e34',
+  boxShadowColorSuccessFocus: 'rgba(40, 167, 69, 0.26)',
+  backgroundColorSuccessActive: '#145523',
+  backgroundColorSuccessDisabled: '#5dd879',
+  boxShadowColorSuccessBasic: '#000',
+  backgroundColorSuccessBasicHover: '#b7eec4',
+  colorSuccessBasicDisabled: '#34ce57',
+  backgroundColorSuccessBasicActive: '#8ee4a2',
+
+  // Warning
+  colorWarning: '#fff',
+  backgroundColorWarning: '#ffc107',
+  backgroundColorWarningHover: '#d39e00',
+  boxShadowColorWarningFocus: 'rgba(255, 193, 7, 0.26)',
+  backgroundColorWarningActive: '#a07800',
+  backgroundColorWarningDisabled: '#ffdb6d',
+  boxShadowColorWarningBasic: '#000',
+  backgroundColorWarningBasicHover: '#fff7dd',
+  colorWarningBasicDisabled: '#ffce3a',
+  backgroundColorWarningBasicActive: '#ffeaaa',
+
+  // Error
+  colorError: '#fff',
+  backgroundColorError: '#dc3545',
+  backgroundColorErrorHover: '#bd2130',
+  boxShadowColorErrorFocus: 'rgba(220, 53, 69, 0.26)',
+  backgroundColorErrorActive: '#921925',
+  backgroundColorErrorDisabled: '#eb8c95',
+  boxShadowColorErrorBasic: '#000',
+  backgroundColorErrorBasicHover: '#fceced',
+  colorErrorBasicDisabled: '#e4606d',
+  backgroundColorErrorBasicActive: '#f4c0c5',
+
+  // Light
+  colorLight: '#393e48',
+  backgroundColorLight: '#f8f9fa',
+  backgroundColorLightHover: '#dae0e5',
+  boxShadowColorLightFocus: 'rgba(248, 249, 250, 0.26)',
+  backgroundColorLightActive: '#bcc6cf',
+  backgroundColorLightDisabled: '#ffffff',
+  boxShadowColorLightBasic: '#000',
+  backgroundColorLightBasicHover: '#ecedf0',
+  colorLightBasicDisabled: '#adb3be',
+  colorLightBasic: '#9199a7',
+  backgroundColorLightBasicActive: '#d5d8dd',
+
+  boxShadowColorLightDefault: 'rgba(0, 0, 0, 0.17)',
+  boxShadowColorLight4: 'rgba(0, 0, 0, 0.1)',
+  // 边框颜色 +  组件属性 + 伪类
+  borderColorLinghtLoadingBefore: '#666f81',
+
+  // Dark
+  colorDark: '#fff',
+  backgroundColorDark: '#393e48',
+  backgroundColorDarkHover: '#22252c',
+  boxShadowColorDarkFocus: 'rgba(57, 62, 72, 0.26)',
+  backgroundColorDarkActive: '#0c0d0f',
+  backgroundColorDarkDisabled: '#666f81',
+  boxShadowColorDarkBasic: '#000',
+  backgroundColorDarkBasicHover: '#a2a8b5',
+  colorDarkBasicDisabled: '#505764',
+  backgroundColorDarkBasicActive: '#858e9f',
+
+  // Link
+  colorLink: '#008ef0',
+  colorLinkHover: '#008ef0',
+  backgroundColorLink: 'transparent',
+  backgroundColorLinkHover: 'rgba(0, 0, 0, 0)',
+  boxShadowColorLinkFocus: 'rgba(0, 0, 0, 0)',
+  backgroundColorLinkActive: 'rgba(0, 0, 0, 0)',
+  backgroundColorLinkDisabled: 'rgba(51, 51, 51, 0)',
+  boxShadowColorLinkBasic: '#000',
+  backgroundColorLinkBasicHover: 'rgba(107, 107, 107, 0)',
+  colorLinkBasicDisabled: 'rgba(26, 26, 26, 0)',
+  backgroundColorLinkBasicActive: 'rgba(82, 82, 82, 0)',
+  colorLinkNotDisabled: '#006ab3',
+  colorLinkNotDisabledActive: '#002d4d',
+}

@@ -42,7 +42,8 @@
   ],
   "peerDependencies": {
     "react": ">=18.0.0",
-    "react-dom": ">=18.0.0"
+    "react-dom": ">=18.0.0",
+    "styled-components": "~5.3.5"
   },
   "dependencies": {
     "@microsoft/tsdoc": "^0.14.1",

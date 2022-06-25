@@ -24,7 +24,7 @@ import { Card } from 'uiw';
 
 function Demo () {
   return <div>
-    <Card title="Card标题" extra={<a href="#">更多</a>} style={{ width: 300 }}>
+    <Card  title="Card标题" extra={<a href="#">更多</a>} style={{ width: 300 }}>
       卡片内容<br/>
       卡片内容<br/>
       卡片内容<br/>

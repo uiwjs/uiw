@@ -5,17 +5,14 @@
   background-color: @background;
   z-index: 1;
   &:hover {
+    color: @color;
     background-color: darken(@background, 10%);
+    z-index: 2;
   }
   &:focus,
   &.focus {
     outline: 0;
     box-shadow: 0 0 0 2px fadeout(@background, 74%);
-  }
-  &:hover {
-    color: @color;
-    background-color: darken(@background, 10%);
-    z-index: 2;
   }
   &:active,
   &.active {
@@ -35,16 +32,16 @@
     &:hover {
       background-color: lighten(@background, 42%) !important;
     }
+    &.disabled,
+    &[disabled] {
+      background-color: transparent !important;
+      color: lighten(@background, 10%);
+    }
     &:active,
     &.active {
       color: @background;
       background-color: lighten(@background, 32%) !important;
       background-image: none;
-    }
-    &.disabled,
-    &[disabled] {
-      background-color: transparent !important;
-      color: lighten(@background, 10%);
     }
   }
 }

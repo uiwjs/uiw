@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import './style/day.less';
+import { DatePickerWeek, DatePickerBodyWarp, DatePickerWeekDay, DatePickerWeekBase } from './style/day';
+export * from './style/day';
 
 function isValidDate(date: Date) {
   return date instanceof Date && !isNaN(date.getTime());
@@ -125,13 +126,13 @@ export function DayRect(props: DayRectProps) {
     delete divProps.onClick;
   }
   return (
-    <div className={classnames(cls)} {...other} {...divProps}>
+    <DatePickerWeek className={classnames(cls)} {...other} {...divProps} cls={cls}>
       {renderDay ? (
         renderDay(cellDate.getDate(), { ...props, ...cls, date: cellDate })
       ) : (
         <div>{cellDate.getDate()}</div>
       )}
-    </div>
+    </DatePickerWeek>
   );
 }
 
@@ -155,23 +156,26 @@ export function DatePickerDay(props: DatePickerDayProps) {
 
   const weekdayLabel = useMemo(
     () => (
-      <div className={`${prefixCls}-weekday`}>
+      <DatePickerWeekDay className={`${prefixCls}-weekday`}>
         {(weekday || []).map((week, idx) => (
           <div key={idx} className={classnames({ end: idx === 0 || idx === 6 })} title={weekTitle && weekTitle[idx]}>
             {week}
           </div>
         ))}
-      </div>
+      </DatePickerWeekDay>
     ),
     [prefixCls, weekday, weekTitle],
   );
 
   return (
-    <div {...other} className={[prefixCls ? `${prefixCls}-body` : null, className].filter(Boolean).join(' ').trim()}>
+    <DatePickerBodyWarp
+      {...other}
+      className={[prefixCls ? `${prefixCls}-body` : null, className].filter(Boolean).join(' ').trim()}
+    >
       {weekdayLabel}
       <div className={[prefixCls ? `${prefixCls}-day-body` : null].filter(Boolean).join(' ').trim()}>
         {[...Array(6)].map((_, idx) => (
-          <div key={idx} className={`${prefixCls}-week`}>
+          <DatePickerWeekBase key={idx} className={`${prefixCls}-week`}>
             {[...Array(7)].map((_, col) => (
               <DayRect
                 date={date}
@@ -188,9 +192,9 @@ export function DatePickerDay(props: DatePickerDayProps) {
                 index={idx * 7 + col}
               />
             ))}
-          </div>
+          </DatePickerWeekBase>
         ))}
       </div>
-    </div>
+    </DatePickerBodyWarp>
   );
 }

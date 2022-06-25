@@ -26,15 +26,15 @@ function Demo() {
   return <div>
     <div style={{ paddingBottom: 20 }}>
       <Avatar size="large" icon={<Icon type="user"/>} />
-      <Avatar icon="user" />
-      <Avatar size="small" icon="user" />
+      <Avatar icon={<Icon type="user"/>} />
+      <Avatar size="small" icon={<Icon type="user"/>} />
       <Avatar size="mini" icon={<Icon type="user"/>} />
     </div>
     <div>
-      <Avatar shape="square" size="large" icon="user" />
-      <Avatar shape="square" icon="user" />
-      <Avatar shape="square" size="small" icon="user" />
-      <Avatar shape="square" size="mini" icon="user" />
+      <Avatar shape="square" size="large"icon={<Icon type="user"/>} />
+      <Avatar shape="square" icon={<Icon type="user"/>}  />
+      <Avatar shape="square" size="small" icon={<Icon type="user"/>} />
+      <Avatar shape="square" size="mini" icon={<Icon type="user"/>}  />
     </div>
   </div>
 }
@@ -56,7 +56,7 @@ function Demo() {
     <Avatar>U</Avatar>
     <Avatar src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" />
     <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
-    <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
+    <Avatar style={{ backgroundColor: '#87d068' }} icon={<Icon type="user"/>} />
   </div>
 }
 export default Demo
@@ -104,15 +104,15 @@ export default App
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx mdx:preview
 import React from 'react';
-import { Avatar, Badge } from 'uiw';
+import { Avatar, Badge,Icon } from 'uiw';
 
 function Demo() {
   return <div>
     <span style={{ marginRight: 24 }}>
-      <Badge count={1}><Avatar shape="square" icon="user" /></Badge>
+      <Badge count={1}><Avatar shape="square" icon={<Icon type="user"/>}  /></Badge>
     </span>
     <span>
-      <Badge dot><Avatar shape="square" icon="user" /></Badge>
+      <Badge dot><Avatar shape="square" icon={<Icon type="user"/>}  /></Badge>
     </span>
   </div>
 };
@@ -123,8 +123,8 @@ export default Demo
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| icon | 设置头像的图标类型，参考 Icon 组件 | String、ReactNode | - |
-| shape | 指定头像的形状 `square` 正方形或者 `circle` 圆	 | Enum{'`circle`', '`square`' } | - |
+| icon | 设置头像的图标类型，参考 Icon 组件 | ReactNode | - |
+| shape | 指定头像的形状 `square` 正方形或者 `circle` 圆 | Enum{'`circle`', '`square`' } | - |
 | size | 设置头像的大小 | Enum{ '`large`', '`small`','`mini`', '`default`' } | `default` |
 | src | 图片类头像的资源地址 | String | - |
 | alt | 规定图像的替代文本 | String | - |

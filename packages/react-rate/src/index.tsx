@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { IProps, HTMLDivProps, HTMLSpanProps, noop } from '@uiw/utils';
-import './style/index.less';
-
+// import './style/index.less';
+import RateWarp, { RateActive, RateBg } from './style';
 export interface RateProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   value?: number;
   readOnly?: boolean;
@@ -75,14 +75,16 @@ export default function Rate(props: RateProps = {}) {
     onChange(currentValue);
   }
   return (
-    <div {...other} className={cls} onMouseLeave={() => onMouseLeave()}>
+    <RateWarp {...other} className={cls} onMouseLeave={() => onMouseLeave()}>
       {[...Array(count)].map((_, idx) => {
         const halfon =
           (value <= idx + 0.5 && Math.ceil(value) - 1 === idx && hoverCount === -1) || hoverCount === idx + 0.5;
+        const starOn = idx + 1 <= value && hoverCount === -1;
+        const hoverOn = idx + 1 <= hoverCount;
         const activeCls = [
           `${prefixCls}-hight`,
-          idx + 1 <= value && hoverCount === -1 ? 'star-on' : null,
-          idx + 1 <= hoverCount ? 'hover-on' : null,
+          starOn ? 'star-on' : null,
+          hoverOn ? 'hover-on' : null,
           halfon ? 'half-on' : null,
         ]
           .filter(Boolean)
@@ -95,13 +97,13 @@ export default function Rate(props: RateProps = {}) {
         }
         return (
           <span key={idx} {...props}>
-            <span style={{ color }} className={activeCls}>
+            <RateActive style={{ color }} className={activeCls} starOn={starOn} hoverOn={hoverOn} halfon={halfon}>
               {character}
-            </span>
-            <span className={`${prefixCls}-bg`}>{character}</span>
+            </RateActive>
+            <RateBg className={`${prefixCls}-bg`}>{character}</RateBg>
           </span>
         );
       })}
-    </div>
+    </RateWarp>
   );
 }

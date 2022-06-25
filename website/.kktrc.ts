@@ -1,4 +1,4 @@
-import { Configuration } from 'webpack';
+import webpack, { Configuration } from 'webpack';
 import { LoaderConfOptions } from 'kkt';
 import path from 'path';
 import lessModules from '@kkt/less-modules';
@@ -7,6 +7,7 @@ import scopePluginOptions from '@kkt/scope-plugin-options';
 import { mdCodeModulesLoader } from 'markdown-react-code-preview-loader';
 
 export default (conf: Configuration, env: 'development' | 'production', options: LoaderConfOptions) => {
+  let LOADPATH = env === 'production' ? '/uiw' : '';
   conf = lessModules(conf, env, options);
   conf = rawModules(conf, env, { ...options });
   conf = scopePluginOptions(conf, env, {
@@ -19,6 +20,11 @@ export default (conf: Configuration, env: 'development' | 'production', options:
   conf.module!.exprContextRecursive = false;
 
   conf = mdCodeModulesLoader(conf, ['jsx', 'js', 'tsx']);
+  conf.plugins!.push(
+    new webpack.DefinePlugin({
+      LOADPATH: JSON.stringify(LOADPATH),
+    }),
+  );
 
   if (env === 'production') {
     conf.optimization = {

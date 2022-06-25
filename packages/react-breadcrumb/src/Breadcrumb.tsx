@@ -1,7 +1,7 @@
 import React from 'react';
 import { HTMLDivProps } from '@uiw/utils';
 import Item from './Item';
-import './style/index.less';
+import { BreadcrumbWarp } from './style';
 
 export interface BreadcrumbProps extends HTMLDivProps {
   style?: React.CSSProperties;
@@ -14,11 +14,11 @@ const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>((props, ref
   const { prefixCls = 'w-breadcrumb', className, separator = '/', ...other } = props;
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   return (
-    <div {...{ className: cls, ...other }} ref={ref}>
+    <BreadcrumbWarp {...{ className: cls, ...other }} ref={ref}>
       {React.Children.map(props.children, (element: any) => {
         return React.cloneElement(element, Object.assign({ separator }, element.props, {}));
       })}
-    </div>
+    </BreadcrumbWarp>
   );
 });
 type Breadcrumb = typeof Breadcrumb & {

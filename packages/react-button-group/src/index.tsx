@@ -1,6 +1,8 @@
 import React from 'react';
 import { HTMLDivProps, IProps } from '@uiw/utils';
-import './style/index.less';
+// import './style/index.less';
+import ButtonGroupWarp from './style';
+export { ButtonGroupWarp };
 
 export interface ButtonGroupProps extends IProps, HTMLDivProps {
   vertical?: boolean;
@@ -8,12 +10,10 @@ export interface ButtonGroupProps extends IProps, HTMLDivProps {
 
 export default React.forwardRef<HTMLDivElement, ButtonGroupProps>((props, ref) => {
   const { prefixCls = 'w-btn-group', vertical = false, children, className, ...resetProps } = props;
-
   const cls = [prefixCls, className, vertical && `${prefixCls}-vertical`].filter(Boolean).join(' ').trim();
-
   return (
-    <div className={cls} {...resetProps} ref={ref}>
+    <ButtonGroupWarp className={cls} {...resetProps} vertical={vertical} ref={ref}>
       {children}
-    </div>
+    </ButtonGroupWarp>
   );
 });

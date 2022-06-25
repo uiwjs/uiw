@@ -2,8 +2,9 @@ import React from 'react';
 import { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import { IconProgress } from './utils';
-import './style/index.less';
-import './style/circle.less';
+// import './style/index.less';
+// import './style/circle.less';
+import { ProgressText, ProgressWarp, ProgressPath } from './style';
 
 export type Status = 'success' | 'active' | 'exception';
 
@@ -75,24 +76,37 @@ export default class Circle<T> extends React.Component<ProgressCircleProps<T>> {
         percentView = <IconProgress type="check" />;
       }
       progressInfo = (
-        <span className={`${prefixCls}-text`} style={{ fontSize: (width as number) * 0.16 + 6 }}>
+        <ProgressText
+          isCircle={true}
+          status={status}
+          className={`${prefixCls}-text`}
+          style={{ fontSize: (width as number) * 0.16 + 6 }}
+        >
           {format ? format(percent as number) : percentView}
-        </span>
+        </ProgressText>
       );
     }
     return (
-      <div className={cls} style={style} {...resetProps}>
+      <ProgressWarp className={cls} style={style} {...resetProps}>
         <svg viewBox="0 0 100 100" width={`${width}`}>
-          <path ref={this.relativeStrokeWidth.bind(this, 'bg')} className={`${prefixCls}-trail`} fill="none" />
-          <path
+          <ProgressPath
+            status={status}
+            isTrail
+            ref={this.relativeStrokeWidth.bind(this, 'bg')}
+            className={`${prefixCls}-trail`}
+            fill="none"
+          />
+          <ProgressPath
             ref={this.relativeStrokeWidth.bind(this, 'track')}
             strokeLinecap="round"
             className={`${prefixCls}-stroke`}
+            isStroke
+            status={status}
             fill="none"
           />
         </svg>
         {progressInfo}
-      </div>
+      </ProgressWarp>
     );
   }
 }

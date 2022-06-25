@@ -5,10 +5,11 @@ import Button from '@uiw/react-button';
 import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
 import { TimePickerTime, TimePickerTimeProps } from './Time';
-import './style/index.less';
+import { DateTimeCloseButton, DateTimeInput } from './style';
 
 export * from './Panel';
 export * from './Time';
+export * from './style';
 
 export interface TimePickerProps extends IProps, Omit<InputProps, 'onChange' | 'value'> {
   value?: Date;
@@ -21,6 +22,7 @@ export interface TimePickerProps extends IProps, Omit<InputProps, 'onChange' | '
   hideDisabled?: TimePickerTimeProps['hideDisabled'];
   allowClear?: boolean;
   disabled?: boolean;
+  icon?: React.ReactNode;
   onChange?: (
     dataStr?: string,
     date?: Date | '',
@@ -45,6 +47,7 @@ export default function TimePicker(props: TimePickerProps) {
     disabledSeconds,
     hideDisabled,
     precision,
+    icon,
     ...inputProps
   } = props;
   const [date, setDate] = useState(props.value);
@@ -61,9 +64,10 @@ export default function TimePicker(props: TimePickerProps) {
   const _props: InputProps = { ...inputProps, value: inputValue };
   if (allowClear && inputValue !== '' && !!inputValue) {
     _props.addonAfter = (
-      <Button
+      <DateTimeCloseButton
+        as={Button as any}
         className={`${prefixCls}-close-btn`}
-        icon="close"
+        icon={icon}
         disabled={props.disabled}
         onClick={() => {
           setDate(undefined);
@@ -95,7 +99,8 @@ export default function TimePicker(props: TimePickerProps) {
         />
       }
     >
-      <Input
+      <DateTimeInput
+        as={Input}
         placeholder="请选择时间"
         readOnly
         disabled={disabled}
