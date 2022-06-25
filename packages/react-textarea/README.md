@@ -21,7 +21,7 @@ import { Textarea } from 'uiw';
 
 const Demo = () => (
   <div style={{ maxWidth: 300 }}>
-    <Textarea placeholder="请输入内容" />
+    <Textarea placeholder="请输入内容" theme='light'/>
   </div>
 )
 export default Demo
