@@ -19,22 +19,22 @@ const RadioBase = styled.label<RadioBaseProps>`
   ${(props) => {
     const disabled = props?.disabled;
     return css`
-      color: ${disabled && getThemeVariantValue(props, 'colorDefault')};
+      color: ${disabled && getThemeVariantValue(props, 'colorRadioDefault')};
       cursor: ${disabled && 'not-allowed'};
       vertical-align: middle;
       display: inline-block;
-      font-size: ${getThemeVariantValue(props, 'fontSizeDefault')};
+      font-size: ${getThemeVariantValue(props, 'fontSizeSamll')};
       input[type='radio'] {
         outline: none;
         position: relative;
-        width: ${getThemeVariantValue(props, 'widthDefault')};
-        height: ${getThemeVariantValue(props, 'heightDefault')};
+        width: ${getThemeVariantValue(props, 'widthRadioDefault')};
+        height: ${getThemeVariantValue(props, 'heightRadioDefault')};
         background-clip: border-box;
         appearance: none;
         margin: -0.15px 0.6px 0 0;
         border-radius: 50%;
-        background-color: #fff;
-        border: ${getThemeVariantValue(props, 'borderDefault')};
+        background-color: ${getThemeVariantValue(props, 'backgroundColorBase')};
+        border: ${getThemeVariantValue(props, 'borderRadioDefault')};
         transition: border 0.25s, box-shadow 0.25s;
         cursor: ${disabled && 'not-allowed'};
         &:not(:checked):not(:disabled):not(.disabled) {
@@ -45,7 +45,7 @@ const RadioBase = styled.label<RadioBaseProps>`
           }
         }
         &:checked {
-          border: ${disabled && getThemeVariantValue(props, 'borderCheckedDefault')};
+          border: ${disabled && getThemeVariantValue(props, 'borderRadioCheckedDefault')};
           &:focus {
             box-shadow: 0 0 0 2px rgba(0, 142, 240, 0.25);
           }
@@ -60,13 +60,14 @@ const RadioGroupBase = styled.div`
 
 RadioBase.defaultProps = {
   defaultTheme: {
-    colorDefault: '#c7c7c7',
+    backgroundColorBase: '#fff',
+    fontSizeSamll: '12px',
+    colorRadioDefault: '#c7c7c7',
     colorNotCheckedNotDisabledDefault: '#efefef',
-    fontSizeDefault: '12px',
-    widthDefault: '16px',
-    heightDefault: '16px',
-    borderDefault: '1.2px solid #d7d7d7',
-    borderCheckedDefault: '5px solid #008ef0',
+    widthRadioDefault: '16px',
+    heightRadioDefault: '16px',
+    borderRadioDefault: '1.2px solid #d7d7d7',
+    borderRadioCheckedDefault: '5px solid #008ef0',
   },
 };
 
