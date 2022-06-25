@@ -1,7 +1,7 @@
 import { getThemeVariantValue, HTMLDivProps, ThemeVariantValueOptions } from '@uiw/utils';
 import styled, { css } from 'styled-components';
 import { DatePickerProps } from '@uiw/react-date-picker';
-import { InputProps } from '@uiw/react-input';
+import { InputProps, InputBase } from '@uiw/react-input';
 
 export interface DateInputDatePickerPopoverProps extends DatePickerProps {}
 export const DateInputDatePickerPopover = styled.div<DateInputDatePickerPopoverProps>`
@@ -92,7 +92,7 @@ export const DateInputRangeWarp = styled.div<DateTimeInputProps>`
     height: 20px;
   }
 
-  .w-input-inner {
+  ${InputBase} {
     &:hover {
       box-shadow: none !important;
     }
