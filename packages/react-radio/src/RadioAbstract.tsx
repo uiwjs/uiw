@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { IProps, HTMLInputProps } from '@uiw/utils';
+import { RadioText, RadioBase } from './style';
 
 /**
  * Constructs a type by picking all properties from `HTMLInputProps` and then removing `size`.
@@ -55,10 +56,11 @@ export const RadioAbstract = React.forwardRef<HTMLInputElement, RadioAbstractPro
   }
 
   const label = children || value;
+
   return (
-    <label {...{ className: cls, style }}>
-      <input {...{ ...other, type, disabled, value }} checked={checked} onChange={handleChange} ref={ref} />
-      {label && <div className={`${prefixCls}-text`}>{label}</div>}
-    </label>
+    <RadioBase {...{ className: cls, style, disabled, size, checked, label }}>
+      <input {...{ ...other, type, disabled, value, checked }} onChange={handleChange} ref={ref} />
+      {label && <RadioText>{label}</RadioText>}
+    </RadioBase>
   );
 });
