@@ -239,6 +239,18 @@
   // AddonAfter
   topInputAddonAfter: '3px',
 
+  // ---------------------------modal 模态对话框 ------------------------------------
+  // modal header
+  minHeightModalHeader: '40px',
+  backgroundColorModalHeaderBase: '#fff',
+  boxShadowColorModalHeaderBase: 'rgba(16, 22, 26, 0.15)',
+  minHeightModalHeaderH4: '22px',
+  // modal inner
+  backgroundColorModalInnerBase: '#f9f9f9',
+  minWidthModalInner: '320px',
+  boxShadowModalInnerH: 'rgba(16, 22, 26, 0.1)',
+  boxShadowModalInnerV: 'rgba(16, 22, 26, 0.2)',
+
   // ---------------------------button 按钮部分 ------------------------------------
   colorButtonBase: '#fff',
   // 最小高度
