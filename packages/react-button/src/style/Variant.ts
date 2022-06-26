@@ -1,6 +1,8 @@
 import { getThemeVariantValue } from '@uiw/utils';
-import { css, ThemedCssFunction } from 'styled-components';
+import { css } from 'styled-components';
 import { ButtonBaseProps } from '.';
+import { IconBase } from '@uiw/react-icon';
+
 type Options = {
   type: string;
 } & ButtonBaseProps;
@@ -278,11 +280,11 @@ export const buttonSizeCss = (props: ButtonBaseProps) => {
 
 export const getIconAndSizeCss = (props: ButtonBaseProps) => {
   return css`
-    .w-icon {
+    ${IconBase} {
       font-size: ${() => getThemeVariantValue(props, 'fontSizeButtonIcontDefault')};
     }
     ${() => buttonSizeCss(props)}
-    .w-icon:not(:last-child) {
+    ${IconBase}:not(:last-child) {
       margin-right: 5px;
     }
   `;

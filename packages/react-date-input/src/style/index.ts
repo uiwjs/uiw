@@ -2,6 +2,7 @@ import { getThemeVariantValue, HTMLDivProps, ThemeVariantValueOptions } from '@u
 import styled, { css } from 'styled-components';
 import { DatePickerProps } from '@uiw/react-date-picker';
 import { InputProps, InputBase } from '@uiw/react-input';
+import { IconBase, IconBaseProps } from '@uiw/react-icon';
 
 export interface DateInputDatePickerPopoverProps extends DatePickerProps {}
 export const DateInputDatePickerPopover = styled.div<DateInputDatePickerPopoverProps>`
@@ -28,29 +29,11 @@ export const DateInputBase = styled.input<DateInputBaseProps>`
     `}
 `;
 
-export interface DateInputIconWarpProps extends ThemeVariantValueOptions {
-  spin?: boolean;
-  baseline?: boolean;
+export interface DateInputIconWarpProps extends IconBaseProps, ThemeVariantValueOptions {
   closebtn?: boolean;
 }
 
-export const DateInputIconWarp = styled.span<DateInputIconWarpProps>`
-  height: 1em;
-  width: 1em;
-  display: inline-flex;
-  align-self: center;
-  position: relative;
-  transition: color 0.3s;
-  box-sizing: inherit;
-
-  ${(props) =>
-    props.baseline &&
-    css`
-      & {
-        top: 0.125em;
-      }
-    `}
-
+export const DateInputIconWarp = styled(IconBase)<DateInputIconWarpProps>`
   ${(props) =>
     props.closebtn &&
     css`
