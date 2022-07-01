@@ -15,7 +15,7 @@ import MonthPicker from '@uiw/react-month-picker';
 
 ### 基础用法
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { MonthPicker, Row, Col } from 'uiw';
 
@@ -40,7 +40,7 @@ export default Demo
 
 ## 在表单中使用
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, MonthPicker, Notify, Row, Col, Button } from 'uiw';
 

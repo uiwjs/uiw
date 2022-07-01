@@ -15,7 +15,7 @@ import { Row, Col } from '@uiw/react-grid';
 
 ### 基础用法
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Row, Col } from 'uiw';
 
@@ -34,7 +34,7 @@ export default Demo
 
 栅格间隔，可以写成像素值
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Row, Col } from 'uiw';
 
@@ -60,7 +60,7 @@ export default Demo
 
 ### Flex 行设置列对齐
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Row, Col } from 'uiw';
 
@@ -100,7 +100,7 @@ export default Demo
 
 ### Flex 列对齐
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Row, Col } from 'uiw';
 
@@ -119,7 +119,7 @@ export default Demo
 
 ### 对齐内容
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Row, Col } from 'uiw';
 
@@ -160,7 +160,7 @@ export default Demo
 
 可以通过指定 `24` 列中每列的宽度来创建基本网格系统。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Row, Col } from 'uiw';
 
@@ -201,7 +201,7 @@ export default Demo
 
 ### 动态列增长
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Row, Col } from 'uiw';
 

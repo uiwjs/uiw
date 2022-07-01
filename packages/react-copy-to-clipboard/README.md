@@ -15,7 +15,7 @@ import CopyToClipboard from '@uiw/react-copy-to-clipboard';
 
 ### 基础实例
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { CopyToClipboard } from 'uiw';
 
@@ -51,7 +51,7 @@ export default Demo
 
 ## 复制输入框内容
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { CopyToClipboard, Input, Button } from 'uiw';
 

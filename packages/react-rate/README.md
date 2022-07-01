@@ -17,7 +17,7 @@ import Rate from '@uiw/react-rate';
 
 按钮样式的单选组合。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Rate, Divider, Icon } from 'uiw';
 
@@ -42,7 +42,7 @@ export default Demo
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<Rate />`](#/components/rate) 组件
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, Row, Col, Icon, Rate, Button, Notify } from 'uiw';
 
@@ -108,7 +108,7 @@ export default Demo
 
 ### 受控
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Rate, Divider, Icon, RadioGroup, Radio } from 'uiw';
 
@@ -137,7 +137,7 @@ export default Demo
 
 按钮样式的单选组合。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Rate, Divider, Icon } from 'uiw';
 
@@ -160,7 +160,7 @@ export default Demo
 
 按钮样式的单选组合。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Rate, Divider } from 'uiw';
 
@@ -179,7 +179,7 @@ export default Demo
 
 ### 半选
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Rate, Divider, Icon } from 'uiw';
 
@@ -196,7 +196,7 @@ export default Demo
 
 ### 尺寸
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Rate, Divider, Icon } from 'uiw';
 

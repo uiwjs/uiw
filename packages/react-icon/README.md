@@ -15,7 +15,7 @@ import Icon from '@uiw/react-icon';
 
 ### 搜索图标
 
-```jsx mdx:preview&bgWhite=true&noCode=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&noCode=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Input, CopyToClipboard, Icon, Notify } from 'uiw';
 
@@ -118,7 +118,7 @@ const Demo = () => (
 )
 ```
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Icon } from 'uiw';
 
@@ -137,7 +137,7 @@ export default Demo
 
 默认情况下，图标非常小，它们继承了父级的字体大小。 如果没有设置字体大小，可以通过 `size` 来设置尺寸。通常情况 `size` 会很累赘没有什么用。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Icon } from 'uiw';
 
@@ -158,7 +158,7 @@ export default Demo
 > 一个有用的技巧是将 `fill` 设置为 `currentColor`，以便从图标容器的文本颜色继承填充颜色。
 <!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Icon } from 'uiw';
 
@@ -175,7 +175,7 @@ export default Demo
 
 ### 与文本对齐
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Icon } from 'uiw';
 
@@ -198,7 +198,7 @@ export default Demo
 > 默认：`w-icon-` 默认引用的字体文件作用域
 > 自定定义：`w-icon-uiw-` 自定定义作用域
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Icon } from 'uiw';
 
@@ -216,7 +216,7 @@ export default Demo
 
 通过设置参数 `spin={true}` 来设置图标旋转。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Icon } from 'uiw';
 
@@ -233,7 +233,7 @@ export default Demo
 
 ### 自定义图标
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Icon } from 'uiw';
 
@@ -304,7 +304,7 @@ const Demo = () => (
 
 ### 方向性图标
 
-```js mdx:preview&bgWhite=true&noCode=true&codeSandbox=true&codePen=true
+```js mdx:preview&background=#fff&noCode=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Icon } from 'uiw';
 
@@ -333,7 +333,7 @@ export default Demo
 
 圆圈方向性图标
 
-```js mdx:preview&bgWhite=true&noCode=true&codeSandbox=true&codePen=true
+```js mdx:preview&background=#fff&noCode=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Icon } from 'uiw';
 
@@ -361,7 +361,7 @@ export default Demo
 
 其它方向性图标
 
-```js mdx:preview&bgWhite=true&noCode=true&codeSandbox=true&codePen=true
+```js mdx:preview&background=#fff&noCode=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Icon } from 'uiw';
 
@@ -393,7 +393,7 @@ export default Demo
 
 ### 提示建议性图标
 
-```js mdx:preview&bgWhite=true&noCode=true&codeSandbox=true&codePen=true
+```js mdx:preview&background=#fff&noCode=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Icon } from 'uiw';
 
@@ -424,7 +424,7 @@ export default Demo
 
 ## 符号
 
-```js mdx:preview&bgWhite=true&noCode=true&codeSandbox=true&codePen=true
+```js mdx:preview&background=#fff&noCode=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Icon } from 'uiw';
 
@@ -456,7 +456,7 @@ export default Demo
 
 ### 文件
 
-```js mdx:preview&bgWhite=true&noCode=true&codeSandbox=true&codePen=true
+```js mdx:preview&background=#fff&noCode=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Icon } from 'uiw';
 
@@ -486,7 +486,7 @@ export default Demo
 
 ### 其它
 
-```js mdx:preview&bgWhite=true&noCode=true&codeSandbox=true&codePen=true
+```js mdx:preview&background=#fff&noCode=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Icon } from 'uiw';
 
@@ -522,7 +522,7 @@ export default Demo
 
 ### 品牌标识
 
-```js mdx:preview&bgWhite=true&noCode=true&codeSandbox=true&codePen=true
+```js mdx:preview&background=#fff&noCode=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Icon } from 'uiw';
 
@@ -550,7 +550,7 @@ export default Demo
 
 ### 浏览器图标
 
-```js mdx:preview&bgWhite=true&noCode=true&codeSandbox=true&codePen=true
+```js mdx:preview&background=#fff&noCode=true&codeSandbox=true&codePen=true
 import React from "react"
 import { Icon } from 'uiw';
 

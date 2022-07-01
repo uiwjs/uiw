@@ -17,7 +17,7 @@ import Breadcrumb from '@uiw/react-breadcrumb';
 
 适用广泛的基础用法，在 `Breadcrumb` 中使用 `Breadcrumb.Item` 标签表示从首页开始的每一级。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Breadcrumb } from 'uiw';
 

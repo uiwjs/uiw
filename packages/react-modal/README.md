@@ -15,7 +15,7 @@ import Modal from '@uiw/react-modal';
 
 ### 基本用法
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Modal, ButtonGroup, Button } from 'uiw';
 
@@ -76,7 +76,7 @@ export default Demo
 
 这里是利用 `Promise` 等它执行完成再去关闭窗口
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Modal, ButtonGroup, Button } from 'uiw';
 
@@ -138,7 +138,7 @@ export default Demo
 
 这里是利用 `Promise` 等它执行完成再去关闭窗口
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Modal, ButtonGroup, Button, Form, Input, Textarea } from 'uiw';
 
@@ -253,7 +253,7 @@ export default Demo
 
 设置 `useButton={false}` 隐藏默认的按钮，再根据自己需求定义按钮。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Modal, ButtonGroup, Button } from 'uiw';
 
@@ -319,7 +319,7 @@ export default Demo
 
 使用 show() 可以快捷地弹出确认框。接受的参数与 ModalProps 一样, 只是少了 isOpen 与 onClosed
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Modal, ButtonGroup, Button } from 'uiw';
 
