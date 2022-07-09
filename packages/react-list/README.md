@@ -19,7 +19,7 @@ import List, { ListItem } from '@uiw/react-list'; // @ v4.10.0+
 
 ### 基础用法
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { List } from 'uiw';
 
@@ -67,7 +67,7 @@ export default Demo
 
 通过`dataSource`和`renderItem`来创建列表，这两个属性是一起使用。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { List } from 'uiw';
 
@@ -91,7 +91,7 @@ export default Demo
 
 ### 禁用行
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { List } from 'uiw';
 
@@ -137,7 +137,7 @@ export default Demo
 
 `List.Item` 设置 `active` 属性即可设置这张被激活的样式。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { List } from 'uiw';
 
@@ -153,7 +153,7 @@ export default Demo
 
 ### 斑马线
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { List } from 'uiw';
 
@@ -180,7 +180,7 @@ export default Demo
 
 `List.Item` 设置了 `href`，`List.Item`就可以设置标签`<a>`的所有属性了。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { List } from 'uiw';
 
@@ -222,7 +222,7 @@ export default Demo
 
 `List.Item` 设置了 `extra`，`List.Item` 就可以设置右侧内容。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { List } from 'uiw';
 

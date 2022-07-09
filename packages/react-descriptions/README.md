@@ -17,7 +17,7 @@ import Descriptions from '@uiw/react-descriptions';
 
 简单的展示。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true&noScroll=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true&noScroll=true
 import React from 'react';
 import { Descriptions } from 'uiw';
 
@@ -39,7 +39,7 @@ export default Demo
 
 带边框和背景颜色列表。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true&noScroll=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true&noScroll=true
 import React from 'react';
 import { Descriptions, Badge } from 'uiw';
 
@@ -74,7 +74,7 @@ export default Demo
 
 自定义尺寸，适应在各种容器中展示。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true&noScroll=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true&noScroll=true
 import React from 'react';
 import { Descriptions, Divider, Radio, RadioGroup, Badge } from 'uiw';
 
@@ -142,7 +142,7 @@ export default Demo
 
 垂直的列表。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true&noScroll=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true&noScroll=true
 import React from 'react';
 import { Descriptions, Divider } from 'uiw';
 

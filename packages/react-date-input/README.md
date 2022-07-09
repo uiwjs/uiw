@@ -16,7 +16,7 @@ import DateInput,{ DateInputRange } from '@uiw/react-date-input';
 
 ## 基本使用
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { DateInput, DateInputRange, Row, Col } from 'uiw';
 
@@ -65,7 +65,7 @@ export default Demo
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<DateInput />`](#/components/date-input) 组件。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { DateInput,DateInputRange, Notify, Button, Form, Row, Col } from 'uiw';
 
@@ -139,7 +139,7 @@ export default Demo
 
 ## 日期格式
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { DateInput } from 'uiw';
 
@@ -164,7 +164,7 @@ export default Demo
 
 ## 日期时间设置
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { DateInput } from 'uiw';
 
@@ -189,7 +189,7 @@ export default Demo
 
 ## 自动隐藏弹层
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { DateInput } from 'uiw';
 

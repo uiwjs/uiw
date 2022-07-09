@@ -15,7 +15,7 @@ import FileInput from '@uiw/react-file-input';
 
 ### 基础用法
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { FileInput, Button } from 'uiw';
 
@@ -38,7 +38,7 @@ export default Demo
 
 ### 图片墙
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { FileInput, Button,Icon } from 'uiw';
 
@@ -101,7 +101,7 @@ export default Demo
 
 ### 图片预览
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { FileInput, Overlay,Icon } from 'uiw';
 
@@ -140,7 +140,7 @@ export default Demo
 
 ### 图片列表样式
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { FileInput, Button } from 'uiw';
 
@@ -198,7 +198,7 @@ export default Demo
 
 ### 在`Form`表单中使用
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, Row, Col, Icon,FileInput,Button } from 'uiw';
 

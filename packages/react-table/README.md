@@ -15,7 +15,7 @@ import Table from '@uiw/react-table';
 
 ### 基本使用
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Table, Button } from 'uiw';
 
@@ -68,7 +68,7 @@ export default Demo
 
 表头分组通过 `columns` 数组中对象的 `children` 来实现，以渲染分组表头。。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Table, Button } from 'uiw';
 
@@ -143,7 +143,7 @@ export default Demo
 
 表头只支持列合并，使用 `columns` 里的 `colSpan` 进行设置。表格支持行/列合并，使用 `render` 里的单元格属性 `colSpan` 或者 `rowSpan` 设值为 0 时，设置的表格不会渲染。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Table, Button } from 'uiw';
 
@@ -204,7 +204,7 @@ export default Demo
 
 添加表格边框线，页头和页脚的展现效果。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Table, Button } from 'uiw';
 
@@ -262,7 +262,7 @@ export default Demo
 
 ### 点击单元格
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Table, Button, Notify } from 'uiw';
 
@@ -335,7 +335,7 @@ export default Demo
 
 ### 原始HTML
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Table, Button } from 'uiw';
 
@@ -421,7 +421,7 @@ export default Demo
 
 ### 选择和操作
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Table, Button, Checkbox, Pagination, Loader } from 'uiw';
 
@@ -535,7 +535,7 @@ export default Demo
 
 ### 自定义单元格省略提示
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Table, Button, Notify, Tooltip } from 'uiw';
 
@@ -619,7 +619,7 @@ export default Demo
 
 ### 无数据状态
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Table, Button, Empty } from 'uiw';
 
@@ -661,7 +661,7 @@ export default Demo
 
 ### 可展开
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Table, Button, Icon } from 'uiw';
 
@@ -720,7 +720,7 @@ export default Demo
 
 可以通过设置 indentSize 以控制每一层的缩进宽度
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Table, Button, Icon } from 'uiw';
 
@@ -803,7 +803,7 @@ export default Demo
 
 使用 scroll 属性给表格设置宽(x)或高(y)即可
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Table, Button } from 'uiw';
 
@@ -864,7 +864,7 @@ export default Demo
 > ⚠️ 注意: 若并没有 scroll 滚动条，fixed 属性并不会有直观的效果
 <!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Table, Button } from 'uiw';
 
@@ -919,7 +919,7 @@ export default Demo
 
 利用 render 属性, 传递自定义组件实现
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Table, Button, Input, Select } from 'uiw';
 
@@ -1036,7 +1036,7 @@ export default Demo
 
 利用 Form 组件和 render 属性, 实现编辑行效果
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Table, Button, Input, Select, Form, Notify } from 'uiw';
 

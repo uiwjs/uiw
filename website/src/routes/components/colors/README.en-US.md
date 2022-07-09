@@ -6,7 +6,7 @@ Color
 The main color is lake blue, which symbolizes the vast ocean, which gives people a youthful, bright and refreshing image. Lake blue is a pure color and symbolizes the sea.
 (The meaning of color selection: We are committed to innovation, active and continuous efforts, which is the spiritual pursuit of our team.)
 
-<!--rehype:bgWhite=true&noCode=true&bordered=false-->
+<!--rehype:background=#fff&noCode=true&bordered=false-->
 ```jsx mdx:preview
 import React from "react"
 const colors = [

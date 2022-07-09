@@ -15,7 +15,7 @@ import Dropdown from '@uiw/react-dropdown';
 
 ### 基本用法
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Dropdown, Menu, ButtonGroup, Button, Divider, Icon } from 'uiw';
 
@@ -54,7 +54,7 @@ export default Demo
 
 ### 被禁用
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Dropdown, Menu, ButtonGroup, Button } from 'uiw';
 
@@ -107,7 +107,7 @@ export default Demo
 
 ### 弹出位置
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Dropdown, Menu, ButtonGroup, Button, Divider } from 'uiw';
 
@@ -157,7 +157,7 @@ export default Demo
 
 ### 选择器
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Dropdown, Menu, Button, Icon } from 'uiw';
 

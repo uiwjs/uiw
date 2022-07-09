@@ -15,7 +15,7 @@ import Switch from '@uiw/react-switch';
 
 ### 基本用法
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Switch } from 'uiw';
 
@@ -32,7 +32,7 @@ export default Demo
 
 ### Form 中使用 Switch
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, Switch, Row, Col, Button, Notify } from 'uiw';
 
@@ -90,7 +90,7 @@ export default Demo
 
 ### 设置文字
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Switch } from 'uiw';
 
@@ -112,7 +112,7 @@ export default Demo
 
 ### 禁用状态
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Switch } from 'uiw';
 
@@ -128,7 +128,7 @@ export default Demo
 
 ### 尺寸
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Switch } from 'uiw';
 
@@ -148,7 +148,7 @@ export default Demo
 
 通过 `checked` 属性改变 `Switch` 组件状态。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Switch, Button } from 'uiw';
 
