@@ -37,7 +37,17 @@ jobs:
 
     - name: get tag version
       id: tag_version
-      uses: jaywcjlove/changelog-generator@v1.5.0
+      uses: jaywcjlove/changelog-generator@v1.5.7
+
+    - name: Create README.md
+      working-directory: ./website/build
+      run: |
+        cat > README.md << EOF
+        Documentation uiw@v5
+        ====
+
+        Preview: https://raw.githack.com/uiwjs/uiwjs.github.io/v5/index.html
+        EOF
 
     - name: Deploy to uiwjs.github.io Repo
       uses: peaceiris/actions-gh-pages@v3
