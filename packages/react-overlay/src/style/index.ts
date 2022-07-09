@@ -2,9 +2,9 @@ import styled, { css } from 'styled-components';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 import { OverlayProps } from 'src';
 
-interface OverlayWrapProps extends ThemeVariantValueOptions, Pick<OverlayProps, 'usePortal' | 'isOpen'> {}
+interface OverlayWrapProps extends ThemeVariantValueOptions, Pick<OverlayProps, 'usePortal' | 'isOpen'> { }
 
-interface BackdropWrapProps extends ThemeVariantValueOptions {}
+interface BackdropWrapProps extends ThemeVariantValueOptions { }
 
 export const ContentWrap = styled.span`
   position: relative;
