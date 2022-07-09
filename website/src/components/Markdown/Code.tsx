@@ -1,7 +1,7 @@
 import CodePreviewLayout, { CodeLayoutProps } from 'react-code-preview-layout';
 import Codepen from '@uiw/react-codepen';
 import Codesandbox from '@uiw/react-codesandbox';
-import React, { Fragment, useRef, useEffect, useLayoutEffect } from 'react';
+import React, { Fragment, useRef } from 'react';
 
 export interface CodesProps extends CodeLayoutProps {
   version: string;
@@ -26,14 +26,14 @@ export default function Code({ version, codePen, codeSandbox, ...other }: CodesP
   const props: Omit<CodeLayoutProps, 'ref'> = { ...other };
   const $dom = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
-    if ($dom.current) {
-      const parentElement = $dom.current.parentElement;
-      if (parentElement && parentElement.parentElement) {
-        parentElement.parentElement.replaceChild($dom.current, parentElement);
-      }
-    }
-  }, [$dom]);
+  // useLayoutEffect(() => {
+  //   if ($dom.current) {
+  //     const parentElement = $dom.current.parentElement;
+  //     if (parentElement && parentElement.parentElement) {
+  //       parentElement.parentElement.replaceChild($dom.current, parentElement);
+  //     }
+  //   }
+  // }, [$dom]);
   let toolbarExtra: React.ReactNode[] = [];
   if (codePen) {
     const codePenOptions = {
