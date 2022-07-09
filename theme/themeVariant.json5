@@ -19,6 +19,13 @@
   borderRadiusDefault: '3px',
   borderRadiusLarge: '5px',
 
+  // ------------------ alert --------------------------
+  colorAlertPrimary: '#008ef0',
+  colorAlertSuccess: '#28a745',
+  colorAlertWarning: '#ffc107',
+  colorAlertDanger: '#dc3545',
+  colorAlertDefault: '#393e48',
+
   // ----------------------- avatar 头像部分 ---------------------------------------
   backgroundColorAvatar: '#ccc',
   colorAvatar: '#fff',
