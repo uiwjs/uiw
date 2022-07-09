@@ -184,6 +184,10 @@
   heightSwitchSmallCheckboxAfter: '12px',
   widthSwitchSmallCheckboxAfter: '12px',
   lineHeightSwitchSmallCheckboxBefore: '16px',
+
+  //---------------------------- overlay 基础弹出层 --------------------------------
+  backgroundColorOverlayBackdrop: 'rgba(16, 22, 26, 0.7)',
+
   //---------------------------- slider 滑块输入条 --------------------------------
   backgroundColorSlider: '#e4e8f1',
   backgroundColorSliderBar: '#008ef0',
