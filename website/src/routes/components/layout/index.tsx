@@ -5,10 +5,10 @@ import Markdown from '../../../components/Markdown';
 export default function Page() {
   return (
     <Markdown
-      path="https://github.com/uiwjs/react-layout/edit/main/core/README-zh.md"
+      path="https://github.com/uiwjs/react-layout/edit/main/core/README.md"
       dependencies={{ ...uiw }}
       renderPage={async () => {
-        const md = await import('@uiw/react-layout/README-zh.md');
+        const md = await import('@uiw/react-layout/README.md');
         return md.default || md;
       }}
     />

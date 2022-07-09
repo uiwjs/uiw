@@ -10,14 +10,26 @@ export interface CodesProps extends CodeLayoutProps {
   noCode?: boolean;
 }
 
+const getCodePenJs = (js: string, includeModule: string[]) => {
+  let include = (includeModule || []).join('|');
+  let resultJs = js.replace(/import([\s\S]*?)(?=['"])['"].*['"]( *;|;)?/gm, (str) => {
+    // eslint-disable-next-line no-useless-escape
+    if (include && new RegExp(`from\\s+['"](${include})['"](\s.+)?;?`).test(str)) {
+      return str;
+    }
+    return `/** ${str} **/`;
+  });
+  return resultJs;
+};
+
 export default function Code({ version, codePen, codeSandbox, ...other }: CodesProps) {
   const props: Omit<CodeLayoutProps, 'ref'> = { ...other };
+
   let toolbarExtra: React.ReactNode[] = [];
   if (codePen) {
     const codePenOptions = {
       title: `uiw${version} - demo`,
-      includeModule: ['uiw'],
-      js: `${(props.text || '').replace(
+      js: `${getCodePenJs(props.text || '', ['uiw']).replace(
         'export default',
         'const APP_Default = ',
       )}\nReactDOM.createRoot(document.getElementById("container")).render(<APP_Default />)`,
@@ -99,5 +111,4 @@ export default function Code({ version, codePen, codeSandbox, ...other }: CodesP
     );
   }
   return <CodePreviewLayout {...props} toolbarExtra={<Fragment>{toolbarExtra}</Fragment>} />;
-  // return <CodePreview {...props} dependencies={dependencies} style={{ marginBottom: 0 }} />;
 }
