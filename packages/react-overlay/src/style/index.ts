@@ -9,7 +9,7 @@ interface OverlayWrapProps extends ThemeVariantValueOptions, Pick<OverlayProps, 
   openClass?: boolean;
 }
 
-interface BackdropWrapProps extends ThemeVariantValueOptions {}
+interface BackdropWrapProps extends ThemeVariantValueOptions { }
 
 export const ContentWrap = styled.span`
   position: relative;
@@ -94,23 +94,23 @@ export const OverlayWrap = styled.div<OverlayWrapProps>`
 
     ${BackdropWrap} {
       ${props.status === 'entered' &&
-      css`
+    css`
         opacity: 0;
       `}
 
       ${props.trans === 'enterActive' &&
-      css`
+    css`
         opacity: 1;
         transition: opacity 300ms ease-in;
       `}
 
       ${props.status === 'exiting' &&
-      css`
+    css`
         opacity: 1;
       `}
 
       ${props.trans === 'exitActive' &&
-      css`
+    css`
         opacity: 0;
         transition: opacity 300ms ease-in;
       `}
@@ -118,27 +118,27 @@ export const OverlayWrap = styled.div<OverlayWrapProps>`
 
     ${ContentWrap} {
       ${props.status === 'entering' &&
-      css`
+    css`
         transform: scale(0.5);
         opacity: 0;
       `}
 
       ${props.trans === 'enterActive' &&
-      css`
+    css`
         opacity: 1;
         transform: translate(0);
         transition: transform 300ms ease, opacity 300ms ease;
       `}
 
       ${props.status === 'exiting' &&
-      css`
+    css`
         opacity: 1;
         transform: translate(0);
         transition: transform 300ms ease, opacity 300ms ease;
       `}
 
       ${props.trans === 'exitActive' &&
-      css`
+    css`
         transform: scale(0.5);
         opacity: 0;
       `}
