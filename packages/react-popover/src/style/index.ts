@@ -97,28 +97,28 @@ export const OverlayTriggerPopover = styled.div<PopoverWarpProps>`
       }
     `} 
 
-  .top,
-  .topLeft,
-  .topRight {
+  &.top,
+  &.topLeft,
+  &.topRight {
     padding-bottom: 13px;
   }
-  .bottom,
-  .bottomLeft,
-  .bottomRight {
+  &.bottom,
+  &.bottomLeft,
+  &.bottomRight {
     padding-top: 13px;
   }
-  .right,
-  .rightTop,
-  .rightBottom {
+  &.right,
+  &.rightTop,
+  &.rightBottom {
     padding-left: 13px;
   }
-  .left,
-  .leftTop,
-  .leftBottom {
+  &.left,
+  &.leftTop,
+  &.leftBottom {
     padding-right: 13px;
   }
 
-  .no-arrow {
+  &.no-arrow {
     padding: 0 !important;
   }
 `;
