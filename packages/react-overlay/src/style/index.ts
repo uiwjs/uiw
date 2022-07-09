@@ -9,7 +9,7 @@ interface OverlayWrapProps extends ThemeVariantValueOptions, Pick<OverlayProps, 
   openClass?: boolean;
 }
 
-interface BackdropWrapProps extends ThemeVariantValueOptions {}
+interface BackdropWrapProps extends ThemeVariantValueOptions { }
 
 export const ContentWrap = styled.span`
   position: relative;
