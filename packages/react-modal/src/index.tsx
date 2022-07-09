@@ -3,9 +3,9 @@ import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import Button, { ButtonType, ButtonProps } from '@uiw/react-button';
 import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, noop } from '@uiw/utils';
-import './style/index.less';
 import CallShow from './CallShow';
 import ModalWrap, { ModalBody, ModalContainer, ModalFooter, ModalHeader, ModalInner } from './style';
+export * from './style';
 
 export interface ModalProps extends IProps, OverlayProps {
   type?: ButtonType;
