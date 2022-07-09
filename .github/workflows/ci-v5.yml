@@ -35,7 +35,6 @@ jobs:
         output: ./website/build/CONTRIBUTORS.svg
         avatarSize: 42
 
-
     - name: get tag version
       id: tag_version
       uses: jaywcjlove/changelog-generator@v1.5.0
