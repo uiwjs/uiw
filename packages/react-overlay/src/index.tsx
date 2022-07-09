@@ -16,7 +16,7 @@ import Portal, { PortalProps } from '@uiw/react-portal';
 import { GetStyledCloneComponent, IProps, noop } from '@uiw/utils';
 
 // import './style/index.less';
-import { ContainerWrap, ContentWrap, OverlayWrap } from './style';
+import { ContainerWrap, ContentWrap, OverlayWrap, BackdropWrap } from './style';
 
 export interface OverlayProps extends IProps, Omit<TransitionProps, 'timeout'> {
   timeout?: TransitionProps['timeout'];
@@ -180,7 +180,7 @@ export default function Overlay(props: OverlayProps) {
               .trim()}
           >
             {hasBackdrop &&
-              cloneElement(<div />, {
+              cloneElement(<BackdropWrap />, {
                 ...backdropProps,
                 onMouseDown: handleBackdropMouseDown,
                 className: [`${prefixCls}-backdrop`, backdropProps.className].filter(Boolean).join(' ').trim(),
