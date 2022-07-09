@@ -11,11 +11,12 @@
  */
 import React, { cloneElement, useEffect, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import { TransitionProps } from 'react-transition-group/Transition';
+import { TransitionProps, TransitionStatus } from 'react-transition-group/Transition';
 import Portal, { PortalProps } from '@uiw/react-portal';
-import { IProps, noop } from '@uiw/utils';
+import { GetStyledCloneComponent, IProps, noop } from '@uiw/utils';
 
-import './style/index.less';
+// import './style/index.less';
+import { ContainerWrap, ContentWrap, OverlayWrap } from './style';
 
 export interface OverlayProps extends IProps, Omit<TransitionProps, 'timeout'> {
   timeout?: TransitionProps['timeout'];
@@ -90,16 +91,16 @@ export default function Overlay(props: OverlayProps) {
 
   const decoratedChild =
     typeof children === 'object' ? (
-      cloneElement(children, {
+      cloneElement(<ContentWrap as={GetStyledCloneComponent}>{children}</ContentWrap>, {
         ...dialogProps,
         style: { ...children.props.style, ...dialogProps.style },
         className: [children.props.className, `${prefixCls}-content`].filter(Boolean).join(' ').trim(),
         tabIndex: 0,
       })
     ) : (
-      <span {...dialogProps} className={`${prefixCls}-content`}>
+      <ContentWrap {...dialogProps} className={`${prefixCls}-content`}>
         {children}
-      </span>
+      </ContentWrap>
     );
 
   function handleClosed(node: HTMLElement | React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -161,11 +162,13 @@ export default function Overlay(props: OverlayProps) {
       nodeRef={overlay}
       {...otherProps}
     >
-      {(status) => {
+      {(status: TransitionStatus) => {
         return (
-          <div
+          <OverlayWrap
             style={style}
             ref={overlay}
+            usePortal={usePortal}
+            isOpen={isOpen}
             className={[
               prefixCls,
               className,
@@ -184,13 +187,13 @@ export default function Overlay(props: OverlayProps) {
                 tabIndex: maskClosable ? 0 : null,
               })}
             {usePortal ? (
-              <div ref={container} onMouseDown={handleBackdropMouseDown} className={`${prefixCls}-container`}>
+              <ContainerWrap ref={container} onMouseDown={handleBackdropMouseDown} className={`${prefixCls}-container`}>
                 {cloneElement(decoratedChild, { 'data-status': status })}
-              </div>
+              </ContainerWrap>
             ) : (
               cloneElement(decoratedChild, { 'data-status': status })
             )}
-          </div>
+          </OverlayWrap>
         );
       }}
     </CSSTransition>

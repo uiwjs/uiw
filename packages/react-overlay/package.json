@@ -41,7 +41,8 @@
   ],
   "peerDependencies": {
     "react": ">=18.0.0",
-    "react-dom": ">=18.0.0"
+    "react-dom": ">=18.0.0",
+    "styled-components": "~5.3.5"
   },
   "dependencies": {
     "@uiw/react-portal": "^4.21.2",
