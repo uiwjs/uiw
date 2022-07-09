@@ -15,3 +15,8 @@
 .w-rcpl-preview {
   white-space: normal;
 }
+
+.wmde-markdown .w-rcpl-preview ul.w-menu,
+.wmde-markdown .w-rcpl-preview ol.w-menu {
+  padding-left: 5px;
+}
