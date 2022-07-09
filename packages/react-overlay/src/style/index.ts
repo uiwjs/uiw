@@ -2,7 +2,11 @@ import styled, { css } from 'styled-components';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 import { OverlayProps } from 'src';
 
-interface OverlayWrapProps extends ThemeVariantValueOptions, Pick<OverlayProps, 'usePortal' | 'isOpen'> {}
+interface OverlayWrapProps extends ThemeVariantValueOptions, Pick<OverlayProps, 'usePortal' | 'isOpen'> {
+  isEnter?: boolean;
+  isActive?: boolean;
+  isExit?: boolean;
+}
 
 interface BackdropWrapProps extends ThemeVariantValueOptions {}
 
@@ -81,48 +85,73 @@ export const OverlayWrap = styled.div<OverlayWrapProps>`
       }
     `}
 
-    ${props.isOpen &&
+    ${props.isEnter &&
+    css`
+      ${BackdropWrap} {
+        opacity: 0;
+      }
+      ${ContentWrap} {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+    `}
+
+    ${props.isActive &&
+    css`
+      ${BackdropWrap} {
+        opacity: 1;
+        transition: opacity 300ms ease-in;
+      }
+    `}
+
+    ${props.isExit &&
+    css`
+      ${BackdropWrap} {
+        opacity: 1;
+      }
+    `}
+
+    ${props.isActive &&
+    props.isExit &&
+    css`
+      ${BackdropWrap} {
+        opacity: 0;
+        transition: opacity 300ms ease-in;
+      }
+    `}
+
+    ${props.isActive &&
+    props.isEnter &&
+    css`
+      ${ContentWrap} {
+        opacity: 1;
+        transform: translate(0);
+        transition: transform 300ms ease, opacity 300ms ease;
+      }
+    `}
+
+    ${props.isExit &&
+    css`
+      ${ContentWrap} {
+        opacity: 1;
+        transform: translate(0);
+        transition: transform 300ms ease, opacity 300ms ease;
+      }
+    `}
+
+    ${props.isActive &&
+    props.isExit &&
+    css`
+      ${ContentWrap} {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+    `}
+
+    ${(props.isOpen || props.isEnter || props.isExit) &&
     css`
       display: inherit;
     `}
-
-  &.w-overlay-enter .w-overlay-backdrop {
-      opacity: 0;
-    }
-    &.w-overlay-enter-active .w-overlay-backdrop {
-      opacity: 1;
-      transition: opacity 300ms ease-in;
-    }
-    &.w-overlay-exit .w-overlay-backdrop {
-      opacity: 1;
-    }
-    &.w-overlay-exit-active .w-overlay-backdrop {
-      opacity: 0;
-      transition: opacity 300ms ease-in;
-    }
-    &.w-overlay-enter .w-overlay-content {
-      transform: scale(0.5);
-      opacity: 0;
-    }
-    &.w-overlay-enter-active .w-overlay-content {
-      opacity: 1;
-      transform: translate(0);
-      transition: transform 300ms ease, opacity 300ms ease;
-    }
-    &.w-overlay-exit .w-overlay-content {
-      opacity: 1;
-      transform: translate(0);
-      transition: transform 300ms ease, opacity 300ms ease;
-    }
-    &.w-overlay-exit-active .w-overlay-content {
-      transform: scale(0.5);
-      opacity: 0;
-    }
-    &.w-overlay-enter,
-    &.w-overlay-exit,
-    &.w-overlay-enter-done {
-      display: inherit;
-    }
   `}
 `;
 

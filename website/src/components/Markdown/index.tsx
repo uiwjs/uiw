@@ -67,7 +67,7 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
                       codePen={parameters.codePen}
                       codeSandbox={parameters.codeSandbox}
                       disableCheckered={!!parameters.disableCheckered}
-                      background={parameters.background}
+                      // background={parameters.background}
                       version={version}
                       code={
                         <pre>
