@@ -81,10 +81,7 @@ export const OverlayTriggerPopover = styled.div<PopoverWarpProps>`
     ['bottomLeft', 'topLeft'].includes(props.placement || '') &&
     css`
       & ${OverlayTriggerPopoverArrow} {
-        transform: rotate(90deg);
-        left: 50%;
-        margin-left: -15px;
-        top: 2px;
+        left: 15px;
       }
     `} 
 
@@ -95,32 +92,7 @@ export const OverlayTriggerPopover = styled.div<PopoverWarpProps>`
         right: 0;
         left: auto;
       }
-    `} 
-
-  &.top,
-  &.topLeft,
-  &.topRight {
-    padding-bottom: 13px;
-  }
-  &.bottom,
-  &.bottomLeft,
-  &.bottomRight {
-    padding-top: 13px;
-  }
-  &.right,
-  &.rightTop,
-  &.rightBottom {
-    padding-left: 13px;
-  }
-  &.left,
-  &.leftTop,
-  &.leftBottom {
-    padding-right: 13px;
-  }
-
-  &.no-arrow {
-    padding: 0 !important;
-  }
+    `}
 `;
 
 export const OverlayTriggerPopoverContent = styled.div<PopoverWarpProps>`
