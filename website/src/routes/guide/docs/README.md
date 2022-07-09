@@ -50,7 +50,7 @@ sgo --fallback index.html # 启动服务
 
 
 ```markdown
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
+<!--rehype:background=#fff&codeSandbox=true&codePen=true-->
 ```js
 const Demo = () => (
   <div>
@@ -67,7 +67,7 @@ const Demo = () => (
 标识符在 `2.0.0+` 版本文档，可以传递参数，传递方法: 
 
 ```markdown
-<!--rehype:bgWhite=true&noScroll=true&noCode=true&codeSandbox=true&codePen=true-->
+<!--rehype:background=#fff&noScroll=true&noCode=true&codeSandbox=true&codePen=true-->
 ```
 
 参数用英文逗号隔开

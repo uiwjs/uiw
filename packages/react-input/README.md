@@ -15,7 +15,7 @@ import Input from '@uiw/react-input';
 
 ### 基础用法
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Input } from 'uiw';
 
@@ -29,7 +29,7 @@ export default Demo
 
 ### 数字输入框
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { InputNumber,Row,Col } from 'uiw';
 
@@ -80,7 +80,7 @@ export default Demo
 
 ### Form 中使用 Input
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, Input, Row, Col, Button, Notify ,InputNumber} from 'uiw';
 
@@ -159,7 +159,7 @@ export default Demo
 
 ### 插入图标
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Input, Row, Col } from 'uiw';
 
@@ -189,7 +189,7 @@ export default Demo
 
 向后面插入 [`Button`](#/components/button) 或者 [`Tag`](#/components/tag)
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Input, Row, Col, Button, Tag } from 'uiw';
 
@@ -232,7 +232,7 @@ export default Demo
 
 ### 输入框尺寸
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Input, Row, Col, Tag, Button } from 'uiw';
 
@@ -357,7 +357,7 @@ export default Demo
 
 ### 密码输入框
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Input, Row, Col, Button } from 'uiw';
 
@@ -398,7 +398,7 @@ export default Demo
 
 ### 输入框被禁用
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Icon, Input, Row, Col,Button} from 'uiw';
 

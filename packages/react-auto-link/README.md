@@ -15,7 +15,7 @@ import AutoLink from '@uiw/react-auto-link';
 
 ### 基础用法
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { AutoLink } from 'uiw';
 

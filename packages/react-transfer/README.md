@@ -11,7 +11,7 @@ Transfer 穿梭框
 
 最简单的用法。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Transfer, Row } from 'uiw';
 
@@ -46,7 +46,7 @@ export default Demo
 
 使用 [`Tree`](#/components/tree) 结构作为选项节点
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Transfer, Row } from 'uiw';
 
@@ -93,7 +93,7 @@ export default Demo
 
 将`selectedAll`设置为`true`,启用全部勾选功能
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Transfer, Row } from 'uiw';
 
@@ -142,7 +142,7 @@ export default Demo
 
 将`showSearch`设置为`true`，启用选项搜索框
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Transfer, Row } from 'uiw';
 
@@ -193,7 +193,7 @@ export default Demo
 
 ## Form中使用
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Transfer, Form, Row, Col, Button } from 'uiw';
 

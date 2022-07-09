@@ -1,7 +1,8 @@
 import React, { useEffect, useImperativeHandle } from 'react';
 import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLInputProps } from '@uiw/utils';
-import InputWarp, { Input, InputAddonAfter } from './style/input';
+import InputWarp, { InputBase, InputAddonAfter } from './style/input';
+export * from './style/input';
 export * from './InputNumber';
 export { default as InputNumber } from './InputNumber';
 
@@ -54,7 +55,7 @@ export default React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return (
     <InputWarp className={cls} style={style} size={size} addonAfter={addonAfter} disabled={disabled}>
       <Icon type={preIcon} />
-      <Input
+      <InputBase
         ref={inputRef}
         type={type}
         autoComplete="off"

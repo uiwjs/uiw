@@ -17,7 +17,7 @@ import Select from '@uiw/react-select';
 
 适用广泛的基础单选 `value` 的值为当前被选中的 `Option` 的 `value` 属性值。自定义 `Select` 请查看 [`<Dropdown />`](#/components/dropdown) 组件实例。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Row, Col, Select } from 'uiw';
 
@@ -40,7 +40,7 @@ export default Demo
 
 ### 禁用选择器
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Row, Col, Select } from 'uiw';
 
@@ -65,7 +65,7 @@ export default Demo
 
 通过 `size` 属性设置选择器的尺寸，提供三个尺寸参数设置。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Row, Col, Select, Button } from 'uiw';
 
@@ -121,7 +121,7 @@ export default Demo
 
 ### 选项组
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Row, Col, Select } from 'uiw';
 
@@ -152,7 +152,7 @@ export default Demo
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<Select />`](#/components/select) 组件
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, Row, Col, Select, Button, Notify } from 'uiw';
 
@@ -230,7 +230,7 @@ export default Demo
 import 'uiw/lib/esm/select/style/index.less';
 ```
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Row, Col, Select } from 'uiw';
 

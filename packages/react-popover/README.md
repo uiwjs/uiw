@@ -17,7 +17,7 @@ import Popover from '@uiw/react-popover';
 
 最简单的用法。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Popover, Card, Icon,Row,Col, Button } from 'uiw';
 
@@ -94,7 +94,7 @@ export default Demo
 
 位置有 `12` 个方向，根据 `placement` 参数来设置。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Popover, Card, Button } from 'uiw';
 
@@ -169,7 +169,7 @@ export default Demo
 
 ### 鼠标经过弹出目标
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Popover, Card, Button } from 'uiw';
 
@@ -200,7 +200,7 @@ export default Demo
 
 通过设置 `trigger="focus"` 让 `Input` 组件在获取焦点的时候展示 `Popover`
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Popover, Card, Button, Input } from 'uiw';
 
@@ -275,7 +275,7 @@ export default Demo
 
 设置 `usePortal={false}` 将模态对话框生成到根节点的里面，这样为了计算位置准确，你需要将父层样式设为 `position: relative;` 。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Popover, Card, Button } from 'uiw';
 
@@ -328,7 +328,7 @@ export default Demo
 
 ### Confirm 用法
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Popover, Row } from 'uiw';
 

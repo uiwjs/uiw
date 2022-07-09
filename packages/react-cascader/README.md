@@ -15,7 +15,7 @@ import Cascader from '@uiw/react-cascader';
 
 ## 基础示例
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Cascader,Row } from 'uiw';
 
@@ -85,7 +85,7 @@ export default Demo
 
 ## 尺寸
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Cascader,Row } from 'uiw';
 
@@ -135,7 +135,7 @@ export default Demo
 
 ## 搜索选项
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Cascader, } from 'uiw';
 
@@ -191,7 +191,7 @@ export default Demo
 
 ## 移入展开菜单
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Cascader,Row } from 'uiw';
 
@@ -252,7 +252,7 @@ export default Demo
 
 在 [`<Form />`](#/components/form) 表单中应用 `<Cascader />` 组件。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true&noScroll=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true&noScroll=true
 import React from 'react';
 import { Form, Row, Col, Cascader, Button } from 'uiw';
 

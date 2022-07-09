@@ -15,7 +15,7 @@ import Affix from '@uiw/react-affix';
 
 ### 基本用法
  
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Affix, Button } from 'uiw';
 
@@ -31,7 +31,7 @@ export default Demo
 
 这个实例需要你缩小窗口高度，就可以测试看效果啦。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=tru
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=tru
 import React from 'react';
 import { Affix, Button } from 'uiw';
 

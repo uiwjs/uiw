@@ -55,7 +55,7 @@ export default Demo
 
 只包含内容区域。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Card } from 'uiw';
 
@@ -73,7 +73,7 @@ export default Demo
 
 可以调整默认边距，设定宽度。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Card } from 'uiw';
 
@@ -95,7 +95,7 @@ export default Demo
 
 ## 添加页脚
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Card, Icon } from 'uiw';
 
@@ -129,7 +129,7 @@ export default Demo
 
 设置属性 `active=true` 将激活卡片，默认展示鼠标经过的样式。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Card, Icon } from 'uiw';
 
