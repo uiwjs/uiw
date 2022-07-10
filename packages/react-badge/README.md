@@ -15,8 +15,7 @@ import Badge from '@uiw/react-badge';
 
 ### 基础用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Badge, Row, Col, Avatar, Divider } from 'uiw';
 
@@ -52,8 +51,7 @@ export default Demo
 
 不包裹任何元素即是独立使用，可自定样式展现。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Badge, Row, Col, Avatar, Divider } from 'uiw';
 
@@ -96,8 +94,7 @@ export default Demo
 
 不包裹任何元素即是独立使用，可自定样式展现。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Badge, Row, Col } from 'uiw';
 
@@ -121,8 +118,7 @@ export default Demo
 
 以红点的形式标注需要关注的内容。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Badge, Icon } from 'uiw';
 
@@ -143,8 +139,7 @@ export default Demo
 
 用于表示状态的小圆点，可以设置 `processing={true}` 让状态点，显示动画效果。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Badge } from 'uiw';
 

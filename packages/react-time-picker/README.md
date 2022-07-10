@@ -15,8 +15,7 @@ import TimePicker from '@uiw/react-time-picker';
 
 ## 基础用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { TimePicker, Row, Col ,Icon} from 'uiw';
 
@@ -43,8 +42,7 @@ export default Demo
 
 ## 设置初始值
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { TimePicker, Row, Col  ,Icon} from 'uiw';
 
@@ -69,8 +67,7 @@ export default Demo
 
 ## 设置按钮大小
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { TimePicker, Row, Col ,Icon } from 'uiw';
 
@@ -97,8 +94,7 @@ export default Demo
 
 在表单返回的数据，并没有将 `format` 格式化后的数据返回给你，而是返回的一个 `Date`，你可以通过 [`formatter`](#/components/formatter) 重新格式化。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { TimePicker, Notify, Row, Col, Form, Button ,Icon } from 'uiw';
 
@@ -147,8 +143,7 @@ export default Demo
 
 可以使用 `disabledHours` `disabledMinutes` `disabledSeconds` 禁用部分时间选择。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { TimePicker, Row, Col  ,Icon} from 'uiw';
 
@@ -181,8 +176,7 @@ export default Demo
 
 可以使用 `hideDisabled` 将禁用的部分时间隐藏。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { TimePicker, Row, Col  ,Icon} from 'uiw';
 
@@ -213,8 +207,7 @@ export default Demo
 
 可以使用 `hideDisabled` 将禁用的部分时间隐藏。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { TimePicker, Row, Col  ,Icon} from 'uiw';
 

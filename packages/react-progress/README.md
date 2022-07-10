@@ -16,8 +16,7 @@ import Progress from '@uiw/react-progress';
 
 ### 基本用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Progress } from 'uiw';
 
@@ -39,8 +38,7 @@ export default Demo
 
 设置参数`strokeWidth`即可
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Progress } from 'uiw';
 
@@ -60,8 +58,7 @@ export default Demo
 
 ### 圆圈进度条
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Progress } from 'uiw';
 
@@ -82,8 +79,7 @@ export default Demo
 
 通过`strokeWidth`设置圆圈进度宽带，通过`width`（`type="circle"`有效）设置圆圈大小，
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Progress } from 'uiw';
 
@@ -103,8 +99,7 @@ export default Demo
 
 进度条动态展示更直观。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Progress } from 'uiw';
 
@@ -150,8 +145,7 @@ export default Demo
 
 `format` 属性指定格式。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Progress } from 'uiw';
 

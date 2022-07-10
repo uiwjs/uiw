@@ -2,6 +2,7 @@ import React from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import { RadioProps } from './Radio';
 import ButtonGroup from '@uiw/react-button-group';
+import { RadioGroupBase } from './style';
 import './style/group.less';
 
 export interface RadioGroupProps extends IProps, HTMLDivProps {
@@ -13,7 +14,7 @@ export interface RadioGroupProps extends IProps, HTMLDivProps {
 export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
   const { prefixCls = 'w-radio-group', className, name, value, onChange, children, ...other } = props;
   return (
-    <div {...other} ref={ref} className={[prefixCls, className].filter(Boolean).join(' ').trim()}>
+    <RadioGroupBase {...other} ref={ref} className={[prefixCls, className].filter(Boolean).join(' ').trim()}>
       <ButtonGroup>
         {React.Children.toArray(children).map((child) => {
           if (!child) return;
@@ -28,7 +29,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>((pro
           });
         })}
       </ButtonGroup>
-    </div>
+    </RadioGroupBase>
   );
 });
 export default RadioGroup;

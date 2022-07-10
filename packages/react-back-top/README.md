@@ -15,8 +15,7 @@ import BackTop from '@uiw/react-back-top';
 
 ## 基本用法
 
-<!--rehype:codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&codeSandbox=true&codePen=true
 import React from 'react';
 import { BackTop } from 'uiw';
 
@@ -38,8 +37,7 @@ export default Demo
 
 点击按钮滚动到顶部
 
-<!--rehype:codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&codeSandbox=true&codePen=true
 import React from 'react';
 import { BackTop, Button } from 'uiw';
 
@@ -62,8 +60,7 @@ export default Demo
 
 点击按钮滚动到顶部
 
-<!--rehype:codeSandbox=true&codePen=true--> 
-```jsx mdx:preview
+```jsx mdx:preview&codeSandbox=true&codePen=true
 import React from 'react';
 import { BackTop, Button } from 'uiw';
 

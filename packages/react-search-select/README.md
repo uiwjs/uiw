@@ -15,8 +15,7 @@ import SearchSelect from '@uiw/react-search-select';
 
 ## 基础示例
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { SearchSelect,Row,Col } from 'uiw';
 
@@ -74,8 +73,7 @@ export default Demo
 
 通过 size 属性设置选择器的尺寸，提供三个尺寸参数设置。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { SearchSelect,Row,Col } from 'uiw';
 
@@ -136,8 +134,7 @@ export default Demo
 
 通`labelInValue`参数控制value类型和onChange时间返回参数的类型，设置为`true`时，`value`和`onChange`回调返回的值类型从[..., value]变成[..., { label, value}]
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { SearchSelect,Row,Col } from 'uiw';
 
@@ -198,8 +195,7 @@ export default Demo
 
 限制最多只能选择两个选项，达到最大后如果继续选择，会替换最后一个
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { SearchSelect,Row,Col } from 'uiw';
 
@@ -256,8 +252,7 @@ export default Demo
 
 使用`maxTagCount`限制显示tag的数量，超过后使用省略tag显示
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { SearchSelect,Row,Col } from 'uiw';
 
@@ -320,8 +315,7 @@ export default Demo
 
 将`showSearch`设置为`true`启用搜索功能，组件没有内置搜索功能，但`option`是监听变化的，可以通过配合`onSearch`实现
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { SearchSelect,Row,Col } from 'uiw';
 
@@ -393,8 +387,7 @@ export default Demo
 
 在 [`<Form />`](#/components/form) 表单中应用 `<SearchSelect />` 组件。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true&noScroll=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true&noScroll=true
 import React from 'react';
 import { Form, Row, Col, SearchSelect, Button, Notify } from 'uiw';
 

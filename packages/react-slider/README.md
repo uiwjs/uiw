@@ -17,8 +17,7 @@ import Slider from '@uiw/react-slider';
 
 按钮样式的单选组合。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Slider, Divider } from 'uiw';
 
@@ -74,8 +73,7 @@ export default Demo
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<Slider />`](#/components/slider) 组件，需要设置 `initialValue` 初始值。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, Row, Col, Slider, Button, Notify } from 'uiw';
 
@@ -139,8 +137,7 @@ export default Demo
 
 通过设置 `tooltip` 的值，来控制提示的显示。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Slider, Divider } from 'uiw';
 
@@ -165,8 +162,7 @@ export default Demo
 
 通过 `step` 设置或返回每次拖动滑块控件时的递增量。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Slider, Divider} from 'uiw';
 
@@ -236,8 +232,7 @@ export default Demo
 
 ### 标记刻度
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Slider, Divider} from 'uiw';
 
@@ -313,8 +308,7 @@ export default Demo
 
 ### 禁用样式
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Slider, Divider} from 'uiw';
 
@@ -342,8 +336,7 @@ export default Demo
 
 ### 垂直方向
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Row, Col, Slider } from 'uiw';
 

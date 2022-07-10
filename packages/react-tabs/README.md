@@ -17,8 +17,7 @@ import Tabs from '@uiw/react-tabs';
 
 基础的、简洁的卡片式标签页。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tabs } from 'uiw';
 
@@ -43,8 +42,7 @@ export default Demo
 
 基础的、简洁的卡片式标签页。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tabs } from 'uiw';
 
@@ -69,8 +67,7 @@ export default Demo
 
 另一种样式的页签，不提供对应的垂直样式。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tabs } from 'uiw';
 
@@ -94,8 +91,7 @@ export default Demo
 
 ### 卡片样式
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tabs, Divider } from 'uiw';
 
@@ -146,8 +142,7 @@ export default Demo
 
 当pane过多,超出宽度度时,会将超出部分收缩到下拉选项
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tabs } from 'uiw';
 

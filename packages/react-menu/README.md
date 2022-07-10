@@ -21,8 +21,7 @@ import Menu, { MenuItem, MenuDivider, SubMenu } from '@uiw/react-menu'; // @ v4.
 ### 基本用法
 
 
-<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&noScroll=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Menu, MenuItem, Row, Col } from 'uiw';
 
@@ -104,8 +103,7 @@ export default Demo
 
 ### 下拉菜单
 
-<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&noScroll=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Menu, Popover, Button, Row, Col } from 'uiw';
 
@@ -190,8 +188,7 @@ export default Demo
 
 通过设置 `overlayProps={ isOpen: true }`，让菜单默认展开。
 
-<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&noScroll=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Menu, Row, Col } from 'uiw';
 
@@ -232,8 +229,7 @@ export default Demo
 
 内建了两套主题 `light`、`dark`，默认 `light`。
 
-<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&noScroll=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Menu, Row, Col, Switch } from 'uiw';
 
@@ -300,8 +296,7 @@ export default Demo
 
 包括点击选中效果，事件等操作，完整的实例展示。
 
-<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&noScroll=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Menu, Row, Col, Switch } from 'uiw';
 
@@ -412,8 +407,7 @@ export default Demo
 
 内嵌菜单可以被缩起/展开，需要 `SubMenu` 的参数 `collapse` 和 `inlineCollapsed` 配合使用。
 
-<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&noScroll=true&codeSandbox=true&codePen=true
 import React from 'react';
 import { Menu, Row, Col, Icon, Button, Switch } from 'uiw';
 

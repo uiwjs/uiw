@@ -41,9 +41,11 @@
   ],
   "peerDependencies": {
     "react": ">=18.0.0",
-    "react-dom": ">=18.0.0"
+    "react-dom": ">=18.0.0",
+    "styled-components": "~5.3.5"
   },
   "dependencies": {
-    "@uiw/react-radio": "^4.21.2"
+    "@uiw/react-radio": "^4.21.2",
+    "@uiw/utils": "^4.21.2"
   }
 }

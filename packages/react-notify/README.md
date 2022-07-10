@@ -15,8 +15,7 @@ import Notify from '@uiw/react-notify';
 
 ### 基本用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Button, Notify } from 'uiw';
 
@@ -74,8 +73,7 @@ export default Demo
 
 ### 弹出位置
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Button, Notify } from 'uiw';
 
@@ -125,8 +123,7 @@ export default Demo
 
 ### 弹出通知不消失
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Button, Notify } from 'uiw';
 
@@ -153,8 +150,7 @@ export default Demo
 
 ### 标题不展示
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Button, Notify } from 'uiw';
 
@@ -194,8 +190,7 @@ export default Demo
 
 ### 只展示标题
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Button, Notify } from 'uiw';
 
@@ -221,8 +216,7 @@ export default Demo
 
 ### 不展示图标
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Button, Notify } from 'uiw';
 

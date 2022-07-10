@@ -17,8 +17,7 @@ import Collapse from '@uiw/react-collapse';
 
 可以同时展开多个面板，这个例子默认展开了第一个。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Collapse } from 'uiw';
 
@@ -54,8 +53,7 @@ function Demo() {
 export default Demo
 ```
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Collapse } from 'uiw';
 
@@ -86,8 +84,7 @@ export default Demo
 
 手风琴，每次只打开一个tab。默认打开第一个。`Panel` 的 `key` 属性并非必须。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Collapse, Button } from 'uiw';
 
@@ -135,8 +132,7 @@ export default Demo
 
 通过设置`bordered={true}`没有边框的简洁样式。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Collapse } from 'uiw';
 
@@ -169,8 +165,7 @@ export default Demo
 
 自定义各个面板的背景色、圆角、边距和图标。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Collapse } from 'uiw';
 
@@ -209,8 +204,7 @@ export default Demo
 
 ## 自定义面板标题
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Collapse, Icon } from 'uiw';
 
@@ -240,8 +234,7 @@ export default Demo
 
 ## 指定折叠图标
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Collapse, Icon } from 'uiw';
 

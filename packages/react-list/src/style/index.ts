@@ -63,7 +63,7 @@ export const ListFooter = styled.div``;
 const ListWarp = styled.div<ListWarp>`
   ${(props) => css`
     font-size: ${getThemeVariantValue(props, 'fontSizeDefault')};
-    line-height: 1.5 ${getThemeVariantValue(props, 'lineHeightDefault')};
+    line-height: ${getThemeVariantValue(props, 'lineHeightDefault')};
     color: ${getThemeVariantValue(props, 'colorListBase')};
     box-sizing: border-box;
     margin: 0;

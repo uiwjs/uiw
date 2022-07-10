@@ -15,8 +15,7 @@ import DatePicker from '@uiw/react-date-picker';
 
 ### 基础用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { DatePicker } from 'uiw';
 
@@ -53,8 +52,7 @@ export default Demo
 
 ### 显示时间
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { DatePicker } from 'uiw';
 
@@ -78,8 +76,7 @@ export default Demo
 
 ### 设置本地语言
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { DatePicker } from 'uiw';
 
@@ -105,8 +102,7 @@ export default Demo
 
 ### 初始展示日期
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { DatePicker } from 'uiw';
 
@@ -130,8 +126,7 @@ export default Demo
 
 通过 `disabledDate` 方法设置，今天和今天之前不能选择。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { DatePicker } from 'uiw';
 
@@ -161,8 +156,7 @@ export default Demo
 
 使用 `renderDay` 可以自定义日期单元格的内容和样式。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { DatePicker } from 'uiw';
 

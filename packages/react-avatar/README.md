@@ -17,8 +17,7 @@ import Avatar from '@uiw/react-avatar';
 
 头像有四种尺寸，两种形状可选。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Avatar, Icon } from 'uiw';
 
@@ -45,8 +44,7 @@ export default Demo
 
 支持三种类型：Icon 以及字符，其中 Icon 和字符型可以自定义图标颜色及背景色。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Avatar, Icon } from 'uiw';
 
@@ -66,8 +64,7 @@ export default Demo
 
 在组件上使用`onError`事件，处理显示错误的图片。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Avatar, Icon } from 'uiw';
 
@@ -101,8 +98,7 @@ export default App
 
 ## 带徽标的头像
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Avatar, Badge,Icon } from 'uiw';
 

@@ -15,8 +15,7 @@ import PinCode from '@uiw/react-pin-code';
 
 ### 基础用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { PinCode } from 'uiw';
 
@@ -32,8 +31,7 @@ export default Demo
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<PinCode />`](#/components/pin-code) 组件
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, Row, Col, Icon, PinCode, Button, Notify } from 'uiw';
 
@@ -106,8 +104,7 @@ export default Demo
 
 ### 更改占位符
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { PinCode, Divider } from 'uiw';
 
@@ -125,8 +122,7 @@ export default Demo
 
 ### 输入框被禁用
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { PinCode, Divider } from 'uiw';
 
@@ -144,8 +140,7 @@ export default Demo
 
 ### 尺寸大小
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { PinCode, Divider } from 'uiw';
 

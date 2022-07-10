@@ -15,8 +15,7 @@ import Tag from '@uiw/react-tag';
 
 ### 基础用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tag, Divider } from 'uiw';
 
@@ -48,8 +47,7 @@ export default Demo
 
 ### 标签禁用
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tag, Divider } from 'uiw';
 
@@ -79,8 +77,7 @@ export default Demo
 
 ### 添加图标
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tag, Divider, Icon } from 'uiw';
 
@@ -104,8 +101,7 @@ export default Demo
 
 ### 控制关闭标签
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tag, Icon } from 'uiw';
 
@@ -148,8 +144,7 @@ export default Demo
 
 ### 标签组动态删除
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tag, Button, Icon } from 'uiw';
 
@@ -205,8 +200,7 @@ export default Demo
 
 选择你感兴趣的话题，下面实例类似 CheckBox 多选。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tag } from 'uiw';
 
@@ -260,8 +254,7 @@ export default Demo
 
 ### 选择器
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Dropdown, Menu, Button, Icon, Input, Checkbox, Tag, Row, Col } from 'uiw';
 

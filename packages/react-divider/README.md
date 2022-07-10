@@ -17,8 +17,7 @@ import Divider from '@uiw/react-divider';
 
 基础实例包含虚线分割线、带文本的分割线、实线分割线。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Divider } from 'uiw';
 
@@ -38,8 +37,7 @@ export default Demo
 
 ### 垂直分割线
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Divider } from 'uiw';
 
@@ -57,8 +55,7 @@ export default Demo
 
 ### 标题对齐位置
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx mdx:preview
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from "react"
 import { Divider } from 'uiw';
 
