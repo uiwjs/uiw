@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
-import Icon from '@uiw/react-icon';
+import { MinusSquareO } from '@uiw/icons/lib/MinusSquareO';
+import { PlusSquareO } from '@uiw/icons/lib/PlusSquareO';
 import Thead from './Thead';
 import { TableWrap, TableFooter } from './style';
 import { getLevelItems, getAllColumnsKeys } from './util';
@@ -251,7 +252,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
                   if (expandable.expandIcon) {
                     return expandable.expandIcon(expand, record, index);
                   }
-                  return expand ? <Icon type="minus-square-o" /> : <Icon type="plus-square-o" />;
+                  return expand ? <MinusSquareO /> : <PlusSquareO />;
                 }}
               />
             );
