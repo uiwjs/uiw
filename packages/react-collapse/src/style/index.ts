@@ -53,8 +53,8 @@ export const CollapseItem = styled.div<CollapseItemWarpProps>`
     border-radius: 0 0 5px 5px;
     border-bottom: 0 solid ${(props) => getThemeVariantValue(props, 'borderColorCollapseBase')};
     ${(props) =>
-    !props.isActive &&
-    css`
+      !props.isActive &&
+      css`
         border-top: 0 solid ${(props) => getThemeVariantValue(props, 'borderColorCollapseBase')};
       `}
   }
