@@ -24,7 +24,7 @@ import { DateInput, DateInputRange, Row, Col } from 'uiw';
 
 function Demo () {
 
-  const [dataRange,dataRangeSet] =React.useState(['2022-02-25 15:06:24','2022-02-27 14:47:32'])
+  const [dataRange,dataRangeSet] =React.useState(['2022/02/25 15:06:24','2022/02/27 14:47:32'])
 
   function onChange(selectedDate,dataRange) {
     console.log('selectedDate',selectedDate,dataRange)
