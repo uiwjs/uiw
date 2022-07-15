@@ -5,7 +5,7 @@ import Group from './Group';
 // import './style/index.less';
 
 import { SelectWarp } from './style';
-
+export * from './style';
 export interface SelectProps extends IProps, Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'size'> {
   size?: 'large' | 'default' | 'small';
 }

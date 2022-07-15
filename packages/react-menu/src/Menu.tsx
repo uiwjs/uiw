@@ -3,8 +3,8 @@ import { IProps, HTMLUlProps } from '@uiw/utils';
 import { MenuItem } from './MenuItem';
 import { MenuDivider } from './Divider';
 import { SubMenu } from './SubMenu';
-import './style/menu.less';
-
+// import './style/menu.less';
+import { MenuBase } from './style';
 export interface MenuProps extends IProps, HTMLUlProps {
   /** 主题颜色 */
   theme?: 'light' | 'dark';
@@ -47,7 +47,17 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
   );
 
   return (
-    <ul {...htmlProps} ref={ref} className={cls} data-menu="menu">
+    <MenuBase
+      {...htmlProps}
+      params={{
+        bordered,
+        inlineCollapsed,
+        theme,
+      }}
+      ref={ref}
+      className={cls}
+      data-menu="menu"
+    >
       {React.Children.map(children, (child: React.ReactNode, key) => {
         if (!React.isValidElement(child)) return child;
         const props: { inlineIndent?: number; inlineCollapsed?: boolean } = {};
@@ -55,9 +65,9 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
         if (child.props.children && child.type === (SubMenu as any)) {
           props.inlineIndent = inlineIndent;
         }
-        return React.cloneElement(child, Object.assign({ ...props }, child.props, { key: `${key}` }));
+        return React.cloneElement(child, Object.assign({ ...props, theme }, child.props, { key: `${key}` }));
       })}
-    </ul>
+    </MenuBase>
   );
 });
 

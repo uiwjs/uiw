@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
-import Icon, { IconProps } from '@uiw/react-icon';
+import { IconProps } from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
-import './style/item.less';
+// import './style/item.less';
+import { MenuItemBase, MenuItemTextBase, MenuItemIcon } from './style';
 
 const disabledProps = {
   href: undefined,
@@ -24,6 +25,7 @@ export interface MenuItemProps<Tag extends TagType> extends IProps, React.HTMLPr
   active?: boolean;
   icon?: IconProps['type'];
   children?: React.ReactNode;
+  theme?: 'light' | 'dark';
 }
 
 function Internal<Tag extends TagType = 'a'>(props: MenuItemProps<Tag>, ref: React.Ref<React.HTMLProps<Tag>>) {
@@ -39,6 +41,7 @@ function Internal<Tag extends TagType = 'a'>(props: MenuItemProps<Tag>, ref: Rea
     active = false,
     addonAfter,
     isSubMenuItem,
+    theme,
     ...htmlProps
   } = props;
   const anchorCls = [prefixCls, active ? 'active' : null, disabled ? 'w-disabled' : null, className]
@@ -47,23 +50,31 @@ function Internal<Tag extends TagType = 'a'>(props: MenuItemProps<Tag>, ref: Rea
     .trim();
 
   const tagComp = React.createElement(
-    TagName,
+    MenuItemBase,
     {
       ...htmlProps,
       ...(disabled ? disabledProps : {}),
       className: anchorCls,
       ref,
+      as: TagName,
+      params: {
+        theme,
+        active,
+        disabled,
+      },
     } as any,
     <Fragment>
-      <Icon className={`${prefixCls}-icon`} type={icon} />
-      <div
+      <MenuItemIcon className={`${prefixCls}-icon`} type={icon} />
+      <div></div>
+      <MenuItemTextBase
+        params={{ multiline, isText: !!prefixCls }}
         className={[prefixCls && `${prefixCls}-text`, !multiline && `${prefixCls}-multiline`]
           .filter(Boolean)
           .join(' ')
           .trim()}
       >
         {text}
-      </div>
+      </MenuItemTextBase>
       {addonAfter}
     </Fragment>,
   );

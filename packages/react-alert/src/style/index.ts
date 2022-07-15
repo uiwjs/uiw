@@ -15,7 +15,6 @@ const typeVariant = (type: ButtonType, color: string | number) => {
 };
 
 const typeCss = (props: AlertStyleProps) => {
-  console.log('props', props);
   const { type } = props;
   if (type === 'primary') {
     return typeVariant(type, getThemeVariantValue(props, 'colorAlertPrimary'));

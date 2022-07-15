@@ -1,7 +1,8 @@
 import React, { useState, useImperativeHandle, useMemo } from 'react';
 import { IProps } from '@uiw/utils';
 import FormItem, { FormItemProps } from './FormItem';
-import './style/form.less';
+// import './style/form.less';
+import { FormWarp, Fieldset } from './style';
 
 export interface FormProps<T> extends IProps, Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onChange' | 'onSubmit'> {
   prefixCls?: string;
@@ -59,7 +60,10 @@ export type FormElementProps = {
   onChange?: (env: React.BaseSyntheticEvent<HTMLInputElement>, list?: string[]) => void;
 };
 
-export type FormRefType = Record<'onSubmit' | 'resetForm' | 'getFieldValues' | 'setFields' | 'getError' | 'setFieldValue', Function>;
+export type FormRefType = Record<
+  'onSubmit' | 'resetForm' | 'getFieldValues' | 'setFields' | 'getError' | 'setFieldValue',
+  Function
+>;
 
 function newFormState<T>(
   fields: FormProps<T>['fields'],
@@ -303,14 +307,14 @@ function Form<T>(
   }
 
   return (
-    <form
+    <FormWarp
       {...{
         ...others,
         className: [prefixCls, className].filter(Boolean).join(' ').trim(),
         onSubmit: handleSubmit,
       }}
     >
-      <fieldset {...{ disabled: data.submitting }}>
+      <Fieldset {...{ disabled: data.submitting }}>
         {typeof children === 'function'
           ? children({
               fields: formUnits,
@@ -319,8 +323,8 @@ function Form<T>(
               canSubmit: canSubmit,
             })
           : children}
-      </fieldset>
-    </form>
+      </Fieldset>
+    </FormWarp>
   );
 }
 
