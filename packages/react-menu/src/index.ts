@@ -1,5 +1,5 @@
 import Menu from './Menu';
-
+export * from './style';
 export * from './Menu';
 export * from './MenuItem';
 export * from './SubMenu';

@@ -1,7 +1,7 @@
 import CodePreviewLayout, { CodeLayoutProps } from 'react-code-preview-layout';
 import Codepen from '@uiw/react-codepen';
 import Codesandbox from '@uiw/react-codesandbox';
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef } from 'react';
 
 export interface CodesProps extends CodeLayoutProps {
   version: string;
@@ -10,14 +10,35 @@ export interface CodesProps extends CodeLayoutProps {
   noCode?: boolean;
 }
 
+const getCodePenJs = (js: string, includeModule: string[]) => {
+  let include = (includeModule || []).join('|');
+  let resultJs = js.replace(/import([\s\S]*?)(?=['"])['"].*['"]( *;|;)?/gm, (str) => {
+    // eslint-disable-next-line no-useless-escape
+    if (include && new RegExp(`from\\s+['"](${include})['"](\s.+)?;?`).test(str)) {
+      return str;
+    }
+    return `/** ${str} **/`;
+  });
+  return resultJs;
+};
+
 export default function Code({ version, codePen, codeSandbox, ...other }: CodesProps) {
   const props: Omit<CodeLayoutProps, 'ref'> = { ...other };
+  const $dom = useRef<HTMLDivElement>(null);
+
+  // useLayoutEffect(() => {
+  //   if ($dom.current) {
+  //     const parentElement = $dom.current.parentElement;
+  //     if (parentElement && parentElement.parentElement) {
+  //       parentElement.parentElement.replaceChild($dom.current, parentElement);
+  //     }
+  //   }
+  // }, [$dom]);
   let toolbarExtra: React.ReactNode[] = [];
   if (codePen) {
     const codePenOptions = {
       title: `uiw${version} - demo`,
-      includeModule: ['uiw'],
-      js: `${(props.text || '').replace(
+      js: `${getCodePenJs(props.text || '', ['uiw']).replace(
         'export default',
         'const APP_Default = ',
       )}\nReactDOM.createRoot(document.getElementById("container")).render(<APP_Default />)`,
@@ -98,6 +119,5 @@ export default function Code({ version, codePen, codeSandbox, ...other }: CodesP
       </Codesandbox>,
     );
   }
-  return <CodePreviewLayout {...props} toolbarExtra={<Fragment>{toolbarExtra}</Fragment>} />;
-  // return <CodePreview {...props} dependencies={dependencies} style={{ marginBottom: 0 }} />;
+  return <CodePreviewLayout {...props} ref={$dom} toolbarExtra={<Fragment>{toolbarExtra}</Fragment>} />;
 }
