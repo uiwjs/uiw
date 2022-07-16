@@ -2,10 +2,10 @@ import { IconStyleBase } from '@uiw/react-icon';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 import styled, { css } from 'styled-components';
 
-interface CalendarCaptionStyleWrapProps extends ThemeVariantValueOptions {}
-interface CalendarBtnGroupStyleWrapProps extends ThemeVariantValueOptions {}
-interface CalendarPanelStyleWrapProps extends ThemeVariantValueOptions {}
-interface CalendarStyleWrapProps extends ThemeVariantValueOptions {}
+interface CalendarCaptionStyleWrapProps extends ThemeVariantValueOptions { }
+interface CalendarBtnGroupStyleWrapProps extends ThemeVariantValueOptions { }
+interface CalendarPanelStyleWrapProps extends ThemeVariantValueOptions { }
+interface CalendarStyleWrapProps extends ThemeVariantValueOptions { }
 
 export const CalendarCaptionStyleWrap = styled.div<CalendarCaptionStyleWrapProps>`
   font-size: ${(props) => getThemeVariantValue(props, 'fontSizeCalendarCaptionDefualt')};
