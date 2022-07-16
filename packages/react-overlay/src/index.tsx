@@ -134,15 +134,6 @@ export default function Overlay(props: OverlayProps) {
     //   setVisible(false)
     // }
   }
-
-  // const [isEnter, isEnterSet] = useState(false)
-  // const [isActive, isActiveSet] = useState(false)
-  // const [isExit, isExitSet] = useState(false)
-  const cssTransRef = useRef(null);
-  console.log('-->', cssTransRef.current);
-  // Object.entries(cssTransRef.current?.appliedClasses).map(([key, value]) => {
-  //   console.log('key,value', key, value.done)
-  // })
   const TransitionGroupComp = (
     <CSSTransition
       classNames={transitionName}
@@ -150,9 +141,6 @@ export default function Overlay(props: OverlayProps) {
       timeout={timeout!}
       in={isOpen}
       onEnter={(isAppearing: boolean) => {
-        // isEnterSet(true)
-        // isExitSet(false)
-
         onEnter(overlay.current!, isAppearing);
       }}
       onEntering={(isAppearing: boolean) => {
@@ -160,39 +148,27 @@ export default function Overlay(props: OverlayProps) {
         onEntering(overlay.current!);
       }}
       onEntered={(isAppearing: boolean) => {
-        // isEnterSet(true)
-
         onOpened(overlay.current!, isAppearing);
         onEntered(overlay.current!);
       }}
       onExiting={() => {
-        // isEnterSet(true)
-        // isActiveSet(true)
-
         onClosing(overlay.current!);
         onExiting(overlay.current!);
       }}
       onExited={() => {
-        // isEnterSet(false)
-        // isExitSet(true)
-
         handleClosed(overlay.current!);
         onExit(overlay.current!);
       }}
-      ref={cssTransRef}
       nodeRef={overlay}
       {...otherProps}
     >
       {(status: TransitionStatus) => {
         return (
           <OverlayWrap
-            // isEnter={isEnter}
-            // isActive={isActive}
-            // isExit={isExit}
-            isOpen={isOpen}
             style={style}
             ref={overlay}
             usePortal={usePortal}
+            isOpen={isOpen}
             className={[
               prefixCls,
               className,
