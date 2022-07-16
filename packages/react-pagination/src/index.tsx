@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Select from '@uiw/react-select';
 import { IProps, HTMLUlProps } from '@uiw/utils';
-import './style/index.less';
+// import './style/index.less';
 import { PaginationBaseUL, PaginationBaseLI, PaginationBaseLIA } from './style';
 
 export interface PaginationProps extends IProps, Omit<HTMLUlProps, 'onChange'> {
