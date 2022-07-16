@@ -15,7 +15,7 @@ import SearchTree from '@uiw/react-search-tree';
 
 ### 基础实例
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React, { useState, useEffect, useRef } from 'react';
 import { SearchTree, Row } from 'uiw';
 
@@ -118,7 +118,7 @@ export default Demo
 
 ## 尺寸
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React, { useState, useEffect, useRef } from 'react';
 import {  SearchTree } from 'uiw';
 
@@ -158,7 +158,7 @@ export default Demo
 
 ## 自定义空选项
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React, { useState, useEffect, useRef } from 'react';
 import { SearchTree } from 'uiw';
 
@@ -183,7 +183,7 @@ export default Demo
 
 ## Form中使用
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React, { useState, useEffect, useRef } from 'react';
 import { Form, Button, SearchTree, Card, Row, Col } from 'uiw';;
 

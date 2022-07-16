@@ -17,7 +17,7 @@ import { Radio, RadioButton, RadioGroup } from '@uiw/react-radio';
 
 适用广泛的基础最简单的用法，展示各种状态下的样式。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Radio, RadioButton } from 'uiw';
 
@@ -37,7 +37,7 @@ export default Demo
 
 ### Form 中使用 Radio
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, Radio, RadioGroup, RadioButton, Row, Col, Button, Notify } from 'uiw';
 
@@ -133,7 +133,7 @@ export default Demo
 
 适用广泛的基础最简单的用法。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Radio, RadioGroup, RadioButton } from 'uiw';
 
@@ -171,7 +171,7 @@ export default Demo
 
 设置单选初始值
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Radio, RadioGroup, Divider, Button,RadioButton } from 'uiw';
 

@@ -15,7 +15,7 @@ import Message from '@uiw/react-message';
 
 ### 基础用法
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Message, Divider } from 'uiw';
 
@@ -46,7 +46,7 @@ export default Demo
 
 ### 显示图标
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Message, Divider } from 'uiw';
 
@@ -81,7 +81,7 @@ export default Demo
 
 ### 自定义图标
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Message, Divider } from 'uiw';
 
@@ -108,7 +108,7 @@ export default Demo
 
 ### 关闭按钮
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Message, Divider } from 'uiw';
 

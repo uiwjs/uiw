@@ -15,7 +15,7 @@ import Tree from '@uiw/react-tree';
 
 ### 基础用法
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tree, Card, Row, Col, } from 'uiw';
 
@@ -144,7 +144,7 @@ export default Demo
 
 ### 自定义图标
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tree, Card, Row, Col, Icon } from 'uiw';
 
@@ -286,7 +286,7 @@ export default Demo
 
 通过设置 `checkStrictly` 父节点受子节点控制，设置 `multiple` 为多选，设置 `isSelected` 取消选中效果，也可以使用 [`TreeChecked`](#/components/tree-checked) 组件。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tree, Card, Row, Col, Icon } from 'uiw';
 
@@ -398,7 +398,7 @@ export default Demo
 
 ### 禁用选项
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tree, Card, Row, Col, Icon } from 'uiw';
 
@@ -526,7 +526,7 @@ export default Demo
 
 带连接线的树，通过设置 `showLine`。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tree, Card, Row, Col } from 'uiw';
 
@@ -653,7 +653,7 @@ export default Demo
 
 ### 默认展开树
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tree, Card, Row, Col } from 'uiw';
 
@@ -774,7 +774,7 @@ export default Demo
 
 ### Form中使用
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tree, Row, Col, Form, Button } from 'uiw';
 

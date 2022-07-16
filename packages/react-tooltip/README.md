@@ -17,7 +17,7 @@ import Tooltip from '@uiw/react-tooltip';
 
 最简单的用法。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tooltip, Button } from 'uiw';
 
@@ -47,7 +47,7 @@ export default Demo
 
 位置有 `12` 个方向，根据 `placement` 参数来设置。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tooltip, Button, Divider } from 'uiw';
 
@@ -127,7 +127,7 @@ export default Demo
 
 文字提示组件 `<Tooltip />`，通过设置属性 `trigger` 可以文字提示操作方式。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tooltip, Button } from 'uiw';
 
@@ -150,7 +150,7 @@ export default Demo
 
 通过设置属性 `visibleArrow` 可以文字提示框不显示箭头。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tooltip, Button } from 'uiw';
 
@@ -171,7 +171,7 @@ export default Demo
 
 ### 受控组件
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Tooltip, Switch, Divider } from 'uiw';
 

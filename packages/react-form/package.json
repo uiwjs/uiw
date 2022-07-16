@@ -46,6 +46,8 @@
   "dependencies": {
     "@uiw/react-grid": "^4.21.2",
     "@uiw/react-input": "^4.21.2",
-    "@uiw/utils": "^4.21.2"
+    "@uiw/utils": "^4.21.2",
+    "@uiw/react-select": "^4.21.2",
+    "@uiw/react-textarea": "^4.21.2"
   }
 }

@@ -102,3 +102,17 @@ export const GetStyledCloneComponent = <T = any, M = Record<string, any>>(
   }
   return React.createElement(React.Fragment, { children });
 };
+
+/**
+ * 通过 className 获取 react-transition-group 状态
+ * **/
+export const getTransitionGroupStatusType = (pix: string, className: string) => {
+  const reg = new RegExp(`^${pix}`);
+  // 字符串进行分割数组
+  const classArr = className
+    .split(' ')
+    .filter((name) => reg.test(name))
+    .map((name) => name.replace(reg, ''))
+    .filter(Boolean);
+  return classArr;
+};

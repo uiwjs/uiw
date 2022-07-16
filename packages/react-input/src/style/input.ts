@@ -4,7 +4,7 @@ import { InputProps } from 'src';
 
 interface InputWarp extends ThemeVariantValueOptions, Pick<InputProps, 'size' | 'addonAfter' | 'disabled'> {}
 
-export const Input = styled.input<InputWarp>`
+export const InputBase = styled.input<InputWarp>`
   ${(props) => {
     const boxShadowColorInputBase = getThemeVariantValue(props, `boxShadowColorInputBase`);
     const boxShadowColorInputInsHBase = getThemeVariantValue(props, `boxShadowColorInputInsHBase`);
@@ -80,7 +80,7 @@ const InputWarp = styled.div<InputWarp>`
   line-height: ${(props) => getThemeVariantValue(props, 'lineHeightInputsDefault')};
   width: ${(props) => getThemeVariantValue(props, 'widthInputsDefault')};
 
-  & ${Input} {
+  & ${InputBase} {
     width: ${(props) => getThemeVariantValue(props, 'widthInputsDefault')};
   }
 
@@ -95,7 +95,7 @@ const InputWarp = styled.div<InputWarp>`
     if (props.size === 'large') {
       return css`
         font-size: ${getThemeVariantValue(props, 'fontSizeLarge')};
-        ${Input} {
+        ${InputBase} {
           line-height: ${getThemeVariantValue(props, 'lineHeightInputLarge')};
           height: ${getThemeVariantValue(props, 'lineHeightInputLarge')};
         }
@@ -107,7 +107,7 @@ const InputWarp = styled.div<InputWarp>`
     if (props.size === 'small') {
       return css`
         min-width: 20px;
-        ${Input} {
+        ${InputBase} {
           line-height: ${getThemeVariantValue(props, 'lineHeightInputSmall')};
           height: ${getThemeVariantValue(props, 'lineHeightInputSmall')};
           padding: 0 6px;
@@ -126,7 +126,7 @@ const InputWarp = styled.div<InputWarp>`
   }}
 `;
 
-Input.defaultProps = {
+InputBase.defaultProps = {
   defaultTheme: {
     colorInputBase: '#393e48',
     boxShadowColorInputHBase: 'rgba(19, 124, 189, 0)',

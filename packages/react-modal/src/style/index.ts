@@ -83,7 +83,7 @@ ModalInner.defaultProps = {
   },
 };
 
-const ModalWrap = styled.div<ModalWrapProps>`
+export const ModalWrap = styled.div<ModalWrapProps>`
   z-index: 1001;
 
   ${ModalBody},

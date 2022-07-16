@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from 'react';
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
-import OverlayTrigger, { OverlayTriggerProps, OverlayTriggerRef } from '@uiw/react-overlay-trigger';
-import Icon from '@uiw/react-icon';
+import { OverlayTriggerProps, OverlayTriggerRef } from '@uiw/react-overlay-trigger';
 import { IProps } from '@uiw/utils';
 import { MenuItem, MenuItemProps, TagType } from './MenuItem';
 import Menu, { MenuProps } from './Menu';
-import './style/submenu.less';
+// import './style/submenu.less';
+import { SubItemCollapseIcon, SubOverlayTriggerBase } from './style';
 
 export interface SubMenuProps<T extends TagType> extends IProps, MenuItemProps<T> {
   overlayProps?: OverlayTriggerProps;
@@ -13,6 +13,7 @@ export interface SubMenuProps<T extends TagType> extends IProps, MenuItemProps<T
   disabled?: boolean;
   inlineCollapsed?: boolean;
   inlineIndent?: number;
+  theme?: 'light' | 'dark';
 }
 
 function checkedMenuItem(node?: HTMLElement) {
@@ -34,8 +35,13 @@ function checkedMenuItem(node?: HTMLElement) {
 function IconView({ prefixCls, collapse, isOpen }: { prefixCls?: string; collapse?: boolean; isOpen: boolean }) {
   return useMemo(
     () => (
-      <Icon
+      <SubItemCollapseIcon
         type="caret-right"
+        params={{
+          prefixCls,
+          collapse,
+          isOpen,
+        }}
         className={[
           prefixCls ? `${prefixCls}-collapse-icon` : null,
           !collapse && isOpen ? 'w-open' : null,
@@ -62,6 +68,7 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
     collapse = false,
     inlineIndent,
     inlineCollapsed,
+    theme,
     ...other
   } = props;
   const overlayTriggerProps = {} as OverlayTriggerProps & CSSTransitionProps;
@@ -69,6 +76,7 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
     bordered: true,
     children,
     inlineIndent,
+    theme,
     className: [prefixCls ? `${prefixCls}-overlay` : null].filter(Boolean).join(' ').trim(),
   };
   const popupRef = React.useRef<OverlayTriggerRef>(null);
@@ -131,7 +139,7 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
   }
   return (
     <li data-menu="subitem" ref={ref}>
-      <OverlayTrigger
+      <SubOverlayTriggerBase
         placement="rightTop"
         autoAdjustOverflow
         disabled={disabled}
@@ -141,10 +149,14 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
         {...overlayTriggerProps}
         {...overlayProps}
         ref={popupRef}
+        params={{
+          collapse,
+        }}
         overlay={<Menu {...menuProps} style={!collapse ? { paddingLeft: inlineIndent } : {}} />}
       >
         <MenuItem
           {...other}
+          theme={theme}
           ref={null}
           disabled={disabled}
           isSubMenuItem
@@ -158,7 +170,7 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
             .join(' ')
             .trim()}
         />
-      </OverlayTrigger>
+      </SubOverlayTriggerBase>
     </li>
   );
 });

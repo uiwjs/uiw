@@ -1,7 +1,7 @@
 import CodePreviewLayout, { CodeLayoutProps } from 'react-code-preview-layout';
 import Codepen from '@uiw/react-codepen';
 import Codesandbox from '@uiw/react-codesandbox';
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef } from 'react';
 
 export interface CodesProps extends CodeLayoutProps {
   version: string;
@@ -10,14 +10,35 @@ export interface CodesProps extends CodeLayoutProps {
   noCode?: boolean;
 }
 
+const getCodePenJs = (js: string, includeModule: string[]) => {
+  let include = (includeModule || []).join('|');
+  let resultJs = js.replace(/import([\s\S]*?)(?=['"])['"].*['"]( *;|;)?/gm, (str) => {
+    // eslint-disable-next-line no-useless-escape
+    if (include && new RegExp(`from\\s+['"](${include})['"](\s.+)?;?`).test(str)) {
+      return str;
+    }
+    return `/** ${str} **/`;
+  });
+  return resultJs;
+};
+
 export default function Code({ version, codePen, codeSandbox, ...other }: CodesProps) {
   const props: Omit<CodeLayoutProps, 'ref'> = { ...other };
+  const $dom = useRef<HTMLDivElement>(null);
+
+  // useLayoutEffect(() => {
+  //   if ($dom.current) {
+  //     const parentElement = $dom.current.parentElement;
+  //     if (parentElement && parentElement.parentElement) {
+  //       parentElement.parentElement.replaceChild($dom.current, parentElement);
+  //     }
+  //   }
+  // }, [$dom]);
   let toolbarExtra: React.ReactNode[] = [];
   if (codePen) {
     const codePenOptions = {
       title: `uiw${version} - demo`,
-      includeModule: ['uiw'],
-      js: `${(props.text || '').replace(
+      js: `${getCodePenJs(props.text || '', ['uiw']).replace(
         'export default',
         'const APP_Default = ',
       )}\nReactDOM.createRoot(document.getElementById("container")).render(<APP_Default />)`,
@@ -27,7 +48,7 @@ export default function Code({ version, codePen, codeSandbox, ...other }: CodesP
     };
     toolbarExtra.push(
       <Codepen key="Codepen" {...codePenOptions}>
-        <svg viewBox="0 0 1024 1024" width="18" height="18">
+        <svg style={{ fill: 'currentcolor' }} viewBox="0 0 1024 1024" width="18" height="18">
           <path
             d="M123.428571 668l344.571429 229.714286v-205.142857L277.142857 565.142857z m-35.428571-82.285714l110.285714-73.714286-110.285714-73.714286v147.428572z m468 312l344.571429-229.714286-153.714286-102.857143-190.857143 127.428572v205.142857z m-44-281.714286l155.428571-104-155.428571-104-155.428571 104zM277.142857 458.857143l190.857143-127.428572V126.285714L123.428571 356z m548.571429 53.142857l110.285714 73.714286V438.285714z m-78.857143-53.142857l153.714286-102.857143-344.571429-229.714286v205.142857z m277.142857-102.857143v312q0 23.428571-19.428571 36.571429l-468 312q-12 7.428571-24.571429 7.428571t-24.571429-7.428571L19.428571 704.571429q-19.428571-13.142857-19.428571-36.571429V356q0-23.428571 19.428571-36.571429L487.428571 7.428571q12-7.428571 24.571429-7.428571t24.571429 7.428571l468 312q19.428571 13.142857 19.428571 36.571429z"
             p-id="2071"
@@ -89,7 +110,7 @@ export default function Code({ version, codePen, codeSandbox, ...other }: CodesP
     };
     toolbarExtra.push(
       <Codesandbox key="Codesandbox" {...codeSandboxOptions}>
-        <svg viewBox="0 0 1024 1024" width="18" height="18">
+        <svg style={{ fill: 'currentcolor' }} viewBox="0 0 1024 1024" width="18" height="18">
           <path
             d="M85.333333 256l446.08-256L977.493333 256 981.333333 765.866667 531.413333 1024 85.333333 768V256z m89.088 105.856v202.965333l142.72 79.36v150.016l169.472 97.962667v-352.938667L174.421333 361.856z m714.197334 0l-312.192 177.365333v352.938667l169.472-97.962667V644.266667l142.72-79.402667V361.813333zM219.050667 281.642667l311.594666 176.810666 312.32-178.346666-165.162666-93.738667-145.493334 82.986667-146.346666-83.968L219.008 281.6z"
             p-id="4089"
@@ -98,6 +119,5 @@ export default function Code({ version, codePen, codeSandbox, ...other }: CodesP
       </Codesandbox>,
     );
   }
-  return <CodePreviewLayout {...props} toolbarExtra={<Fragment>{toolbarExtra}</Fragment>} />;
-  // return <CodePreview {...props} dependencies={dependencies} style={{ marginBottom: 0 }} />;
+  return <CodePreviewLayout {...props} ref={$dom} toolbarExtra={<Fragment>{toolbarExtra}</Fragment>} />;
 }

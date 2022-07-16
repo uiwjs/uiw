@@ -15,7 +15,7 @@ import Empty from '@uiw/react-empty';
 
 ### 基本使用
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Empty } from 'uiw';
 
@@ -29,7 +29,7 @@ export default Demo
 
 通过自定义属性定制个性化展示。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Empty, Icon, Button } from 'uiw';
 
@@ -53,7 +53,7 @@ export default Demo
 
 ### 无描述展示
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Empty } from 'uiw';
 

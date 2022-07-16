@@ -20,3 +20,43 @@ a {
     height: 100%;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color-scheme: dark;
+
+    --color-fg-default: #c9d1d9;
+    --color-canvas-default: #0d1117;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    color-scheme: light;
+    --color-fg-default: #24292f;
+    --color-canvas-default: #ffffff;
+  }
+}
+
+[data-color-mode*='dark'],
+[data-color-mode*='dark'] body {
+  color-scheme: dark;
+  --color-fg-default: #c9d1d9;
+  --color-canvas-default: #0d1117;
+}
+
+[data-color-mode*='light'],
+[data-color-mode*='light'] body {
+  color-scheme: light;
+  --color-fg-default: #24292f;
+  --color-canvas-default: #ffffff;
+}
+
+main {
+  background-color: var(--color-canvas-default);
+  color: var(--color-fg-default);
+}
+
+main a {
+  color: var(--color-fg-default);
+}

@@ -15,7 +15,7 @@ import Textarea from '@uiw/react-textarea';
 
 ### 基础用法
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Textarea } from 'uiw';
 
@@ -31,7 +31,7 @@ export default Demo
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<Textarea />`](#/components/textarea) 组件
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Form, Row, Col, Textarea, Button, Notify } from 'uiw';
 
@@ -96,7 +96,7 @@ export default Demo
 
 ### 禁用
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Textarea } from 'uiw';
 
@@ -110,7 +110,7 @@ export default Demo
 
 ### HTML Textarea
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Textarea } from 'uiw';
 

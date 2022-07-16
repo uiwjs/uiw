@@ -18,7 +18,6 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
   const { renderPage, path } = props;
   const { mdData, loading } = useMdData(renderPage);
   const version = pkg.version || '2.0.0';
-  // console.log(mdData);
   if (!mdData.source) {
     return null;
   }
@@ -67,6 +66,7 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
                       codePen={parameters.codePen}
                       codeSandbox={parameters.codeSandbox}
                       disableCheckered={!!parameters.disableCheckered}
+                      background={parameters.background}
                       version={version}
                       code={
                         <pre>

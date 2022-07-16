@@ -15,7 +15,7 @@ import Loader from '@uiw/react-loader';
 
 ### 基础实例
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Loader } from "uiw";
 
@@ -33,7 +33,7 @@ export default Demo
 
 ### 警告提示中加载
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React, { Component } from 'react';
 import { Loader, Row, Col, Message, Icon, Button } from "uiw";
 
@@ -101,7 +101,7 @@ export default Demo
 
 ### 卡片加载中
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Loader, Card, Col, Row } from "uiw";
 
@@ -175,7 +175,7 @@ export default Demo
 
 ### 自定义加载图标动画
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Loader, Card, Icon } from "uiw";
 
@@ -215,7 +215,7 @@ export default Demo
 
 页面数据加载时显示。
 
-```jsx mdx:preview&bgWhite=true&codeSandbox=true&codePen=true
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Loader, Icon, Button } from "uiw";
 
