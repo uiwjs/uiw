@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import Select from '@uiw/react-select';
 import { IProps, HTMLUlProps } from '@uiw/utils';
 import './style/index.less';
+import { PaginationBaseUL, PaginationBaseLI, PaginationBaseLIA } from './style';
 
 export interface PaginationProps extends IProps, Omit<HTMLUlProps, 'onChange'> {
   prefixCls?: string;
@@ -135,16 +136,35 @@ export default function Pagination(props: PaginationProps) {
   };
 
   return (
-    <ul className={cls} style={{ ...style, textAlign: alignment }} {...other}>
+    <PaginationBaseUL
+      className={cls}
+      style={{ ...style, textAlign: alignment }}
+      {...other}
+      params={{
+        isDivider: divider,
+        size,
+      }}
+    >
       {initPageSoure.map((item: PaginationItemSourceData, idx) => {
         // eslint-disable-next-line jsx-a11y/anchor-is-valid
-        let label = <a>{item.label}</a>;
+        let label = <PaginationBaseLIA params={{ size }}>{item.label}</PaginationBaseLIA>;
         if (/^(prev|next)$/.test(item.type as string)) {
           // eslint-disable-next-line jsx-a11y/anchor-is-valid
-          label = <a className={`arrow ${item.type}`} />;
+          label = (
+            <PaginationBaseLIA
+              params={{ type: item.type, isArrow: true, size, disabled: item.disabled }}
+              className={`arrow ${item.type}`}
+            />
+          );
         }
         return (
-          <li
+          <PaginationBaseLI
+            params={{
+              disabled: item.disabled,
+              active: item.active,
+              size,
+              isDivider: divider,
+            }}
             className={[item.active ? 'active' : null, item.disabled ? 'disabled' : null]
               .filter(Boolean)
               .join(' ')
@@ -153,11 +173,11 @@ export default function Pagination(props: PaginationProps) {
             key={idx}
           >
             {label}
-          </li>
+          </PaginationBaseLI>
         );
       })}
       {pageSizeOptions.length > 0 && (
-        <li className={`${prefixCls}-options`}>
+        <PaginationBaseLI params={{ isOptions: true, size }} className={`${prefixCls}-options`}>
           <Select size={size} defaultValue={pageSize} onChange={onSizeChange}>
             {pageSizeOptions.map((item: number, index: number) => (
               <Select.Option value={item} key={index}>
@@ -165,8 +185,8 @@ export default function Pagination(props: PaginationProps) {
               </Select.Option>
             ))}
           </Select>
-        </li>
+        </PaginationBaseLI>
       )}
-    </ul>
+    </PaginationBaseUL>
   );
 }
