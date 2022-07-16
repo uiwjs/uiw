@@ -1,10 +1,10 @@
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 import styled, { css } from 'styled-components';
 
-interface CaptionWrapProps extends ThemeVariantValueOptions {}
-interface BtnGroupWrapProps extends ThemeVariantValueOptions {}
-interface PanelWrapProps extends ThemeVariantValueOptions {}
-interface CalendarWrapProps extends ThemeVariantValueOptions {}
+interface CaptionWrapProps extends ThemeVariantValueOptions { }
+interface BtnGroupWrapProps extends ThemeVariantValueOptions { }
+interface PanelWrapProps extends ThemeVariantValueOptions { }
+interface CalendarWrapProps extends ThemeVariantValueOptions { }
 
 export const CaptionWrap = styled.div<CaptionWrapProps>`
   font-size: ${(props) => getThemeVariantValue(props, 'fontSizeCalendarCaptionDefualt')};
