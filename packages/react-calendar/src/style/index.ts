@@ -131,6 +131,7 @@ CaptionWrap.defaultProps = {
 
 BtnGroupWrap.defaultProps = {
   defaultTheme: {
+    fontSizeLarge: '16px',
     backgroundColorCalendarHover: '#ececec',
     backgroundColorCalendarActive: '#ececec',
   },
