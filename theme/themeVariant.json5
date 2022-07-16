@@ -221,6 +221,17 @@
   // Panel
   colorCollapsePanelBase: 'rgba(0, 0, 0, 0.65)',
 
+  // ------------------------ Calendar 日历 -----------------------------------
+  backgroundCalendarDefault: 'white',
+  borderColorCalendarChildDiv: '#ececec',
+  // btngroup
+  backgroundColorCalendarHover: '#ececec',
+  backgroundColorCalendarActive: '#ececec',
+  // panel
+  lineHeightCalendarPanel: '16px',
+  // caption
+  fontSizeCalendarCaptionDefualt: '26px',
+
   // ------------------------ list 列表 -----------------------------------
   colorListBase: '#52575c',
   backgroundColorListBase: '#fff',
