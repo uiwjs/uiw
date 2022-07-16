@@ -19,6 +19,14 @@
   borderRadiusDefault: '3px',
   borderRadiusLarge: '5px',
 
+  // ---------------------- Pagination 分页 -------------------------------------
+  borderColorPaginationBase: '#d4d4d4',
+  backgroundColorPaginationActive: '#ececec',
+  backgroundColorPaginationHover: '#f6f6f6',
+  backgroundColorPaginationTextBase: '#565656',
+  backgroundPaginationTextDisabled: '#d4d4d4',
+  backgroundPaginationTextHover: '#2ea3f4',
+
   // ------------------ alert --------------------------
   colorAlertPrimary: '#008ef0',
   colorAlertSuccess: '#28a745',
