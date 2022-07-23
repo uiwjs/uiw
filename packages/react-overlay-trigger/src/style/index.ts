@@ -7,7 +7,7 @@ interface OverlayTriggerWrapProps extends ThemeVariantValueOptions, OverlayTrigg
 
 export const OverlayTriggerWrap = styled(Overlay)<OverlayTriggerWrapProps>`
   ${(props) => css`
-    position: absolute;
+    position: absolute !important;
     top: auto;
     left: auto;
     right: auto;
