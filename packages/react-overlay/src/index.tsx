@@ -216,3 +216,5 @@ export default function Overlay(props: OverlayProps) {
     return TransitionGroupComp;
   }
 }
+
+export { ContainerWrap, ContentWrap, OverlayWrap, BackdropWrap };
