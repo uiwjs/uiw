@@ -72,3 +72,5 @@ export default React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     </InputWarp>
   );
 });
+
+export { InputBase };
