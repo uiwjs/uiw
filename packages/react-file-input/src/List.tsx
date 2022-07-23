@@ -1,6 +1,15 @@
 import React from 'react';
 import Icon from '@uiw/react-icon';
 import { FileInputListProps } from './';
+import {
+  FileInputListWarp,
+  FileInputListActionsWarp,
+  FileInputListActionsSearchWarp,
+  FileInputListUploadTypeWarp,
+  FileInputListUploadInfoTypeWarp,
+  FileInputListUploadTextTypeWarp,
+  FileInputListUploadIconTypeWarp,
+} from './style';
 import './style/index.less';
 
 const Picture = (props: FileInputListProps) => {
@@ -8,7 +17,7 @@ const Picture = (props: FileInputListProps) => {
     className,
     prefixCls = 'w-fileinput-list',
     dataList = [],
-    uploadType,
+    uploadType, // 'input' | 'picture' | 'text' | 'card';
     size = 'middle',
     shape = 'round',
     readonly,
@@ -22,13 +31,10 @@ const Picture = (props: FileInputListProps) => {
     onRemove,
   } = props;
 
-  const cls = [prefixCls, `${prefixCls}-size-${size}`, `${prefixCls}-shape-${shape}`, className]
-    .filter(Boolean)
-    .join(' ')
-    .trim();
+  const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
 
   return (
-    <div className={cls}>
+    <FileInputListWarp uploadType={uploadType} size={size} shape={shape} className={cls}>
       {children &&
         !readonly &&
         React.isValidElement(children) &&
@@ -37,29 +43,37 @@ const Picture = (props: FileInputListProps) => {
         })}
       <div>
         {dataList.map((item, index) => (
-          <div className={`${prefixCls}-${uploadType}`} key={index}>
+          <FileInputListUploadTypeWarp className={`${prefixCls}-${uploadType}`} uploadType={uploadType} key={index}>
             {uploadType === 'picture' && (
-              <div className={`${prefixCls}-info ${prefixCls}-${uploadType}-info`}>
+              <FileInputListUploadInfoTypeWarp className={`${prefixCls}-info ${prefixCls}-${uploadType}-info`}>
                 <img src={item['dataURL']} alt="" />
                 {showFileIcon?.showPreviewIcon && (
-                  <div className={`${prefixCls}-actions`}>
-                    <span className={`${prefixCls}-actions-search`} onClick={() => onPreview?.(item)}>
+                  <FileInputListActionsWarp className={`${prefixCls}-actions`}>
+                    <FileInputListActionsSearchWarp
+                      className={`${prefixCls}-actions-search`}
+                      onClick={() => onPreview?.(item)}
+                    >
                       <Icon type="search" style={{ color: '#fff', fontSize: 16 }} />
-                    </span>
-                  </div>
+                    </FileInputListActionsSearchWarp>
+                  </FileInputListActionsWarp>
                 )}
-              </div>
+              </FileInputListUploadInfoTypeWarp>
             )}
-            <div className={`${prefixCls}-${uploadType}-text`}>{item.name}</div>
+            <FileInputListUploadTextTypeWarp className={`${prefixCls}-${uploadType}-text`}>
+              {item.name}
+            </FileInputListUploadTextTypeWarp>
             {showFileIcon?.showRemoveIcon && (
-              <div className={`${prefixCls}-${uploadType}-icon`} onClick={() => onRemove?.(index)}>
+              <FileInputListUploadIconTypeWarp
+                className={`${prefixCls}-${uploadType}-icon`}
+                onClick={() => onRemove?.(index)}
+              >
                 <Icon type="delete" style={{ color: '#999' }} />
-              </div>
+              </FileInputListUploadIconTypeWarp>
             )}
-          </div>
+          </FileInputListUploadTypeWarp>
         ))}
       </div>
-    </div>
+    </FileInputListWarp>
   );
 };
 
