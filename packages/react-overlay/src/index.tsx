@@ -37,6 +37,8 @@ export interface OverlayProps extends IProps, Omit<TransitionProps, 'timeout'> {
   onClose?: (evn: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 
+export type transProps = 'enterActive' | 'exitActive' | 'done' | undefined;
+
 export default function Overlay(props: OverlayProps) {
   const {
     className,
@@ -134,8 +136,11 @@ export default function Overlay(props: OverlayProps) {
     //   setVisible(false)
     // }
   }
+  const [trans, transSet] = useState<transProps>(undefined);
+
   const TransitionGroupComp = (
     <CSSTransition
+      // as={CSSTransition}
       classNames={transitionName}
       unmountOnExit={unmountOnExit}
       timeout={timeout!}
@@ -144,6 +149,7 @@ export default function Overlay(props: OverlayProps) {
         onEnter(overlay.current!, isAppearing);
       }}
       onEntering={(isAppearing: boolean) => {
+        transSet('enterActive');
         onOpening(overlay.current!, isAppearing);
         onEntering(overlay.current!);
       }}
@@ -152,10 +158,12 @@ export default function Overlay(props: OverlayProps) {
         onEntered(overlay.current!);
       }}
       onExiting={() => {
+        transSet('exitActive');
         onClosing(overlay.current!);
         onExiting(overlay.current!);
       }}
       onExited={() => {
+        transSet('done');
         handleClosed(overlay.current!);
         onExit(overlay.current!);
       }}
@@ -168,7 +176,10 @@ export default function Overlay(props: OverlayProps) {
             style={style}
             ref={overlay}
             usePortal={usePortal}
+            status={status}
             isOpen={isOpen}
+            trans={trans}
+            openClass={visible && hasBackdrop && usePortal}
             className={[
               prefixCls,
               className,
@@ -182,6 +193,7 @@ export default function Overlay(props: OverlayProps) {
             {hasBackdrop &&
               cloneElement(<BackdropWrap />, {
                 ...backdropProps,
+                trans,
                 onMouseDown: handleBackdropMouseDown,
                 className: [`${prefixCls}-backdrop`, backdropProps.className].filter(Boolean).join(' ').trim(),
                 tabIndex: maskClosable ? 0 : null,
