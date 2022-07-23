@@ -23,7 +23,7 @@ export interface FileInputListProps extends FileInputUploadProps {
   onRemove?: (index: number) => void;
 }
 
-interface Props {
+export interface Props {
   uploadType?: UploadType;
   [key: string]: any;
 }
