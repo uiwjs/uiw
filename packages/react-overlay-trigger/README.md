@@ -75,7 +75,7 @@ const card = (
 const Demo = () => (
   <div>
     <div style={{ position: 'relative' }}>
-      <OverlayTrigger placement="topLeft" overlay={card}>
+      <OverlayTrigger disabled placement="topLeft" overlay={card}>
         <Button style={{ ...btnStl, left: 70 }}>TL</Button>
       </OverlayTrigger>
       <OverlayTrigger placement="top" overlay={card}>

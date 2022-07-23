@@ -304,8 +304,7 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
     <React.Fragment>
       {cloneElement(
         child,
-        // <TriggerWrap as={GetStyledCloneComponent}>{child}</TriggerWrap>,
-        Object.assign({ disabled, style: disabled ? { cursor: 'not-allowed' } : {} }, child.props, {
+        Object.assign({ disabled }, child.props, {
           ...triggerProps,
           ref: triggerRef,
           className: [child.props.className, disabled ? `${prefixCls}-disabled` : null]
