@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { IProps, noop } from '@uiw/utils';
 import Input, { InputProps } from '@uiw/react-input';
-import './style/input.less';
+// import './style/input.less';
+import { DivWrap, InputWrap } from './style';
 
 export interface PinCodeProps extends IProps {
   value?: string[];
@@ -78,7 +79,7 @@ function InternalPinCode(props: PinCodeProps = {}, ref: React.ForwardedRef<HTMLD
   }
 
   return (
-    <div className={cls} style={style} {...otherProps} ref={ref}>
+    <DivWrap className={cls} style={style} {...otherProps} ref={ref}>
       {[...values].map((val, key) => {
         const inpProps: InputProps = {
           min: 0,
@@ -99,7 +100,7 @@ function InternalPinCode(props: PinCodeProps = {}, ref: React.ForwardedRef<HTMLD
           inpProps.autoFocus = true;
         }
         const child = (
-          <Input
+          <InputWrap
             ref={(instance) => {
               if (instance) {
                 input[key] = instance;
@@ -111,7 +112,7 @@ function InternalPinCode(props: PinCodeProps = {}, ref: React.ForwardedRef<HTMLD
         );
         return child;
       })}
-    </div>
+    </DivWrap>
   );
 }
 
