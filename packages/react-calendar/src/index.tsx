@@ -4,7 +4,8 @@ import Icon from '@uiw/react-icon';
 import formatter from '@uiw/formatter';
 import { IProps } from '@uiw/utils';
 import RenderDay from './DayLabel';
-import './style/index.less';
+// import './style/index.less';
+import { BtnGroupWrap, BtnWrap, CalendarWrap, CaptionWrap, TitleWrap } from './style';
 
 export interface CalendarProps extends IProps, DatePickerDayProps {
   /**
@@ -108,29 +109,29 @@ export default function Calendar(props: CalendarProps) {
   }
 
   const titleLable = useMemo(
-    () => <div className={`${prefixCls}-title`}>{formatter(titleFormat, panelDate)}</div>,
+    () => <TitleWrap className={`${prefixCls}-title`}>{formatter(titleFormat, panelDate)}</TitleWrap>,
     [prefixCls, titleFormat, panelDate],
   );
 
   const btngroup = useMemo(
     () => (
-      <div className={`${prefixCls}-btn-group`}>
+      <BtnGroupWrap className={`${prefixCls}-btn-group`}>
         <Icon type="down" onClick={() => handlePaging('prev')} />
-        <span className={`${prefixCls}-btn`} onClick={() => handlePaging('today')}>
+        <BtnWrap className={`${prefixCls}-btn`} onClick={() => handlePaging('today')}>
           {todayLabel}
-        </span>
+        </BtnWrap>
         <Icon type="down" onClick={() => handlePaging('next')} />
-      </div>
+      </BtnGroupWrap>
     ),
     [prefixCls, todayLabel],
   );
 
   return (
-    <div className={cls} style={style}>
-      <div className={`${prefixCls}-caption`}>
+    <CalendarWrap className={cls} style={style}>
+      <CaptionWrap className={`${prefixCls}-caption`}>
         {titleLable}
         {btngroup}
-      </div>
+      </CaptionWrap>
       <DatePickerDay
         onSelectDay={(currentDate, dateSource) => {
           setPanelDate(currentDate!);
@@ -144,6 +145,6 @@ export default function Calendar(props: CalendarProps) {
         panelDate={panelDate || new Date()}
         {...otherProps}
       />
-    </div>
+    </CalendarWrap>
   );
 }
