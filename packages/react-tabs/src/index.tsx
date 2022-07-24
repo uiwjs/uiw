@@ -24,7 +24,15 @@ type FlowNavType = {
 };
 
 export default function Tabs(props: TabsProps) {
-  const { className, children, type = 'default', activeKey: _, onTabClick, ...elementProps } = props;
+  const {
+    prefixCls = 'w-tabs',
+    className,
+    children,
+    type = 'default',
+    activeKey: _,
+    onTabClick,
+    ...elementProps
+  } = props;
 
   const [activeKey, setActiveKey] = useState(props.activeKey);
   const [slideStyle, setSlideStyle] = useState({ width: 0, left: 0 });
@@ -106,13 +114,13 @@ export default function Tabs(props: TabsProps) {
   }
 
   return (
-    <Styled.TabsWarp className={className} {...elementProps}>
+    <Styled.TabsWarp className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...elementProps}>
       <Styled.TabsDivFlex>
         <Styled.TabsDivHidden>
-          <Styled.TabsDivBar ref={divContentRef}>
-            <Styled.TabsDivNav>
+          <Styled.TabsDivBar className={`${prefixCls}-bar`} ref={divContentRef}>
+            <Styled.TabsDivNav className={`${prefixCls}-nav`}>
               {renderNav(children)}
-              <Styled.TabsDivSlide style={slideStyle} />
+              <Styled.TabsDivSlide className={`${prefixCls}-slide`} style={slideStyle} />
             </Styled.TabsDivNav>
           </Styled.TabsDivBar>
         </Styled.TabsDivHidden>
@@ -122,12 +130,12 @@ export default function Tabs(props: TabsProps) {
             placement="bottomRight"
             visibleArrow={false}
             content={
-              <Styled.TabsNavHidden>
+              <Styled.TabsNavHidden className={`${prefixCls}-nav-hidden`}>
                 {renderNav(hiddenNav.map((idx) => (children as Array<React.ReactElement>)[idx]))}
               </Styled.TabsNavHidden>
             }
           >
-            <Styled.TabsFlowContent onClick={showHideenNav}>
+            <Styled.TabsFlowContent onClick={showHideenNav} className={`${prefixCls}-flow-content`}>
               <span>…</span>
             </Styled.TabsFlowContent>
           </Popover>
@@ -148,6 +156,7 @@ export default function Tabs(props: TabsProps) {
         return null;
       }
       const divProps: HTMLDivProps = {
+        className: `${prefixCls}-item`,
         children: item.props.label,
       };
       if (!item.props.disabled) {
