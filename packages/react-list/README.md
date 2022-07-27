@@ -277,7 +277,7 @@ ReactDOM.render(<Demo />, _mount_);
 | striped | 斑马线效果 | Boolean | `false` |
 | footer | 列表底部 | String/ReactNode | - |
 | header | 列表头部 | String/ReactNode | - |
-| dataSource | 是否展示边框 | Boolean | - |
+| dataSource | 列表数据源 | Array[] | - |
 | renderItem | 通过回调函数返回Dome，渲染列表每个行 | Function(item,index) | - |
 
 ## List.Item
