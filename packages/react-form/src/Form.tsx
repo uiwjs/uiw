@@ -1,8 +1,7 @@
 import React, { useState, useImperativeHandle, useMemo } from 'react';
 import { IProps } from '@uiw/utils';
 import FormItem, { FormItemProps } from './FormItem';
-// import './style/form.less';
-import { FormWarp, Fieldset } from './style';
+import { FormStyleWarp, FormStyleFieldset } from './style';
 
 export interface FormProps<T> extends IProps, Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onChange' | 'onSubmit'> {
   prefixCls?: string;
@@ -307,14 +306,14 @@ function Form<T>(
   }
 
   return (
-    <FormWarp
+    <FormStyleWarp
       {...{
         ...others,
         className: [prefixCls, className].filter(Boolean).join(' ').trim(),
         onSubmit: handleSubmit,
       }}
     >
-      <Fieldset {...{ disabled: data.submitting }}>
+      <FormStyleFieldset {...{ disabled: data.submitting }}>
         {typeof children === 'function'
           ? children({
               fields: formUnits,
@@ -323,8 +322,8 @@ function Form<T>(
               canSubmit: canSubmit,
             })
           : children}
-      </Fieldset>
-    </FormWarp>
+      </FormStyleFieldset>
+    </FormStyleWarp>
   );
 }
 

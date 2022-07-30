@@ -6,9 +6,9 @@ import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
 import { DatePickerMonth, DatePickerYear, DatePickerCaption, DatePickerCaptionProps } from '@uiw/react-date-picker';
 // import './style/index.less';
-import { MonthPickerPopoverBase, MonthPickerInputBase, MonthPickerCloseButton } from './style';
+import { MonthPickerPopoverBase, MonthPickerInputStyleBase, MonthPickerCloseButton } from './style';
 import { Close } from '@uiw/icons/lib/Close';
-import { IconBase } from '@uiw/react-icon';
+import { IconStyleBase } from '@uiw/react-icon';
 export interface MonthPickerProps extends IProps, Omit<InputProps, 'value' | 'onChange'> {
   popoverProps?: PopoverProps;
   pickerCaptionProps?: DatePickerCaptionProps;
@@ -63,7 +63,7 @@ export default function MonthPicker(props: MonthPickerProps) {
     inputProps.addonAfter = (
       <MonthPickerCloseButton
         className={`${prefixCls}-close-btn`}
-        icon={<IconBase as={Close} />}
+        icon={<IconStyleBase as={Close} />}
         onClick={() => {
           setDate('');
           onChange && onChange();
@@ -129,7 +129,7 @@ export default function MonthPicker(props: MonthPickerProps) {
         </MonthPickerPopoverBase>
       }
     >
-      <MonthPickerInputBase
+      <MonthPickerInputStyleBase
         placeholder="请输入日期"
         readOnly
         {...(inputProps as any)}

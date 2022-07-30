@@ -278,13 +278,13 @@
   widthInputsDefault: '100%',
   lineHeightInputLarge: '36px',
   lineHeightInputSmall: '24px',
-  lineHeightInputAddonAfter: '16px',
+  lineHeightInputStyleAddonAfter: '16px',
   // Input
-  colorInputBase: '#393e48',
+  colorInputStyleBase: '#393e48',
   boxShadowColorInputHBase: 'rgba(19, 124, 189, 0)',
   boxShadowColorInputInsHBase: 'rgba(16, 22, 26, 0.15)',
   boxShadowColorInputInsVBase: 'rgba(16, 22, 26, 0.2)',
-  backgroundColorInputBase: '#fff',
+  backgroundColorInputStyleBase: '#fff',
   heightInputDefault: '30px',
   fontSizeInputDefault: 'inherit',
   boxShadowColorInputHFocus: '#393e48',
@@ -294,7 +294,7 @@
   backgrounColorInputDisabled: '#dddddd',
   colorInputDisabled: '#a5a5a5',
   // AddonAfter
-  topInputAddonAfter: '3px',
+  topInputStyleAddonAfter: '3px',
 
   // ---------------------------modal 模态对话框 ------------------------------------
   // modal header

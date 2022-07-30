@@ -1,13 +1,13 @@
 import styled, { css } from 'styled-components';
 import { ModalProps, ModalHeader, ModalBody, ModalInner } from '@uiw/react-modal';
 import { ButtonType } from '@uiw/react-button';
-import { IconBase } from '@uiw/react-icon';
+import { IconStyleBase } from '@uiw/react-icon';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 export interface AlertStyleWarpProps extends ModalProps, ThemeVariantValueOptions {}
 
 const typeVariant = (type: ButtonType, color: string | number) => {
   return css`
-    ${type} ${ModalHeader} > ${IconBase} {
+    ${type} ${ModalHeader} > ${IconStyleBase} {
       color: ${color};
     }
   `;
@@ -42,7 +42,7 @@ export const AlertStyleWarp = styled.div<AlertStyleWarpProps>`
     padding: 20px 0 0 20px;
     box-shadow: 0 0 0 0;
     padding-right: 0;
-    ${IconBase} {
+    ${IconStyleBase} {
       font-size: 40px;
       margin-right: 0;
     }
@@ -73,13 +73,13 @@ export const AlertStyleWarp = styled.div<AlertStyleWarpProps>`
           display: flex;
           padding-top: 15px;
           padding-right: 10px;
-          > ${IconBase} {
+          > ${IconStyleBase} {
             font-size: 40px;
             position: absolute;
             top: 18px;
           }
 
-          > button > ${IconBase} {
+          > button > ${IconStyleBase} {
             font-size: 14px;
           }
         }

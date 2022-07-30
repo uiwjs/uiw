@@ -1,6 +1,6 @@
 import React from 'react';
 import svgPaths from '@uiw/icons/fonts/w-icon.json';
-import { IconBase } from './style';
+import { IconStyleBase } from './style';
 export * from './style';
 
 export type IconsName = keyof typeof svgPaths;
@@ -62,5 +62,5 @@ export default function Icon<Tag extends TagType = 'span'>(props: IconProps<Tag>
       .join(' ')
       .trim(),
   };
-  return React.createElement(IconBase, { ...propps, verticalAlign, spin, as: TagName } as any, svg);
+  return React.createElement(IconStyleBase, { ...propps, verticalAlign, spin, as: TagName } as any, svg);
 }

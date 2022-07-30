@@ -19,9 +19,9 @@ export const MonthPickerPopoverBase = styled.div<MonthPickerPopoverBaseProps>`
   line-height: 21px;
 `;
 
-export interface MonthPickerInputBase extends InputProps {}
+export interface MonthPickerInputStyleBase extends InputProps {}
 
-export const MonthPickerInputBase = styled(Input)<MonthPickerInputBase>`
+export const MonthPickerInputStyleBase = styled(Input)<MonthPickerInputStyleBase>`
   display: inline-block;
   & ${MonthPickerCloseButton} {
     min-height: initial;
