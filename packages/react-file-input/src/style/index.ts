@@ -111,7 +111,7 @@ export const FileInputCardActionsRemoveWarp = styled.span`
   justify-content: center;
   cursor: pointer;
 `;
-export const FileInputCardWarp = styled.div<{
+export const FileInputCardStyleWarp = styled.div<{
   size: FileInputListProps['size'];
   shape: FileInputListProps['shape'];
 }>`

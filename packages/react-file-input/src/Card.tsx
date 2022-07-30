@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  FileInputCardWarp,
+  FileInputCardStyleWarp,
   FileInputCardBoxWarp,
   FileInputCardActionsWarp,
   FileInputCardBoxInfoWarp,
@@ -31,7 +31,7 @@ const Card = (props: FileInputListProps) => {
   const isAction = showFileIcon.showPreviewIcon || showFileIcon.showRemoveIcon ? true : false;
 
   return (
-    <FileInputCardWarp shape={shape} size={size} className={`${prefixCls} ${className}`}>
+    <FileInputCardStyleWarp shape={shape} size={size} className={`${prefixCls} ${className}`}>
       {dataList.map((item, index) => (
         <FileInputCardBoxWarp className={`${prefixCls}-box`} key={index}>
           <FileInputCardBoxInfoWarp className={`${prefixCls}-box-info`}>
@@ -63,7 +63,7 @@ const Card = (props: FileInputListProps) => {
           {children}
         </FileInputCardBoxWarp>
       )}
-    </FileInputCardWarp>
+    </FileInputCardStyleWarp>
   );
 };
 

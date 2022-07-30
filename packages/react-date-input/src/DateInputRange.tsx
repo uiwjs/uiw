@@ -4,7 +4,12 @@ import Popover, { PopoverProps } from '@uiw/react-popover';
 import DatePicker, { DatePickerProps } from '@uiw/react-date-picker';
 import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
-import { DateInputIcon, DateInputIconWarp, DateInputRangeWarp, DateInputDatePickerPopover } from './style/index';
+import {
+  DateInputIcon,
+  DateInputIconStyleWarp,
+  DateInputRangeStyleWarp,
+  DateInputDatePickerPopover,
+} from './style/index';
 import { SwapRight } from '@uiw/icons/lib/SwapRight';
 import { Close } from '@uiw/icons/lib/Close';
 
@@ -52,7 +57,7 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
   }
 
   return (
-    <DateInputRangeWarp
+    <DateInputRangeStyleWarp
       className={[`${prefixCls}-contents`, `${prefixCls}-inner`].filter(Boolean).join(' ').trim()}
       style={{ width: 300, ...bodyStyle }}
     >
@@ -80,9 +85,9 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
           className={[prefixCls, className].filter(Boolean).join(' ').trim()}
         />
       </Popover>
-      <DateInputIconWarp baseline style={{ fontSize: 21, top: -1, margin: '0px 8px 0px 5px' }}>
+      <DateInputIconStyleWarp baseline style={{ fontSize: 21, top: -1, margin: '0px 8px 0px 5px' }}>
         <DateInputIcon as={SwapRight} />
-      </DateInputIconWarp>
+      </DateInputIconStyleWarp>
       <Popover
         trigger="focus"
         placement="bottomLeft"
@@ -109,10 +114,10 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
       </Popover>
 
       {allowClear && dateRange.length > 0 && (
-        <DateInputIconWarp closebtn onClick={() => setDateRange([])} className={`${prefixCls}-close-btn`}>
+        <DateInputIconStyleWarp closebtn onClick={() => setDateRange([])} className={`${prefixCls}-close-btn`}>
           <DateInputIcon as={Close} />
-        </DateInputIconWarp>
+        </DateInputIconStyleWarp>
       )}
-    </DateInputRangeWarp>
+    </DateInputRangeStyleWarp>
   );
 }

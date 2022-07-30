@@ -9,8 +9,8 @@ export const DateInputDatePickerPopover = styled.div<DateInputDatePickerPopoverP
   box-shadow: 0 0 0 0;
 `;
 
-export interface DateInputBaseProps extends InputProps {}
-export const DateInputBase = styled.input<DateInputBaseProps>`
+export interface DateInputStyleBaseProps extends InputProps {}
+export const DateInputStyleBase = styled.input<DateInputStyleBaseProps>`
   display: inline-block;
   ${(props) =>
     props.disabled &&
@@ -29,11 +29,11 @@ export const DateInputBase = styled.input<DateInputBaseProps>`
     `}
 `;
 
-export interface DateInputIconWarpProps extends IconBaseProps, ThemeVariantValueOptions {
+export interface DateInputIconStyleWarpProps extends IconBaseProps, ThemeVariantValueOptions {
   closebtn?: boolean;
 }
 
-export const DateInputIconWarp = styled(IconBase)<DateInputIconWarpProps>`
+export const DateInputIconStyleWarp = styled(IconBase)<DateInputIconStyleWarpProps>`
   ${(props) =>
     props.closebtn &&
     css`
@@ -49,7 +49,7 @@ export const DateInputIconWarp = styled(IconBase)<DateInputIconWarpProps>`
     `}
 `;
 
-DateInputIconWarp.defaultProps = {
+DateInputIconStyleWarp.defaultProps = {
   defaultTheme: {
     fillDateInputCloseBase: '#a5a5a5',
     fillDateInputCloseHover: '#393e48',
@@ -65,7 +65,7 @@ export const DateInputIcon = styled.div<DateInputIconProps>`
 
 export interface DateTimeInputProps extends HTMLDivProps, ThemeVariantValueOptions {}
 
-export const DateInputRangeWarp = styled.div<DateTimeInputProps>`
+export const DateInputRangeStyleWarp = styled.div<DateTimeInputProps>`
   display: flex;
   justify-content: space-between;
 
@@ -98,7 +98,7 @@ export const DateInputRangeWarp = styled.div<DateTimeInputProps>`
   padding: 3px 10px 3px 10px;
   vertical-align: middle;
   line-height: 30px;
-  color: ${(props) => getThemeVariantValue(props, 'colorDateInputBase')};
+  color: ${(props) => getThemeVariantValue(props, 'colorDateInputStyleBase')};
   font-weight: 400;
   font-size: inherit;
   transition: box-shadow 0.3s cubic-bezier(0.4, 1, 0.75, 0.9);
@@ -126,10 +126,10 @@ export const DateInputRangeWarp = styled.div<DateTimeInputProps>`
   }
 `;
 
-DateInputRangeWarp.defaultProps = {
+DateInputRangeStyleWarp.defaultProps = {
   defaultTheme: {
     borderRadiusDefault: '3px',
-    colorDateInputBase: '#393e48',
+    colorDateInputStyleBase: '#393e48',
     backgroundColorBase: '#fff',
     backgroundColorDateInputDisabled: '#dddddd',
     colorDateInputDisabled: '#a5a5a5',

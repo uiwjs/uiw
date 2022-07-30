@@ -169,7 +169,7 @@ export const MessageIconWarp = styled.span<MessageIconWarpProps>`
 
 interface messageButtonProps extends ButtonProps {}
 
-export const MessageButtonWarp = styled(Button)<messageButtonProps>`
+export const MessageButtonStyleWarp = styled(Button)<messageButtonProps>`
   position: absolute;
   right: 10px;
   top: 10px;

@@ -63,7 +63,7 @@ export const BadgeColorDot = styled.span<BadgeColorDotProps>`
   }}
 `;
 
-export interface BadgeSupCountDotProps extends ThemeVariantValueOptions {
+export interface BadgeStyleSupCountDotBaseProps extends ThemeVariantValueOptions {
   dot?: boolean;
   nowrap?: boolean;
   defaultTheme?: {
@@ -81,7 +81,7 @@ export interface BadgeSupCountDotProps extends ThemeVariantValueOptions {
   };
 }
 /** 展示 count  **/
-export const BadgeSupCountDot = styled.sup<BadgeSupCountDotProps>`
+export const BadgeStyleSupCountDotBase = styled.sup<BadgeStyleSupCountDotBaseProps>`
   ${(props) =>
     !props.dot &&
     css`
@@ -136,6 +136,7 @@ export const BadgeSupCountDot = styled.sup<BadgeSupCountDotProps>`
       box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowBadgeCountDot')};
     `}
 `;
+
 /** 最外层包裹 **/
 export const BadgeWarp = styled.span<BadgeWarpProps>`
   position: relative;
@@ -143,7 +144,8 @@ export const BadgeWarp = styled.span<BadgeWarpProps>`
   line-height: 1;
   vertical-align: middle;
 `;
-export const BadgeColorDotDefaultTheme = {
+
+export const BadgeColorDotTheme = {
   marginVerticalBadgeColorDot: '0px',
   marginHorizontalBadgeColorDot: '4px',
   topBadgeColorDot: '-1px',
@@ -151,10 +153,12 @@ export const BadgeColorDotDefaultTheme = {
   backgroundColorBadgepPocessing: '#007bff',
   fontSizeDefault: '14px',
 };
+
 BadgeColorDot.defaultProps = {
-  defaultTheme: BadgeColorDotDefaultTheme,
+  defaultTheme: BadgeColorDotTheme,
 };
-export const BadgeSupCountDotDefaultTheme = {
+
+export const BadgeStyleSupCountDotBaseTheme = {
   backgroundBadgeCountDot: '#f04134',
   colorBadge: '#fff',
   fontSizeSmall: '12px',
@@ -165,8 +169,8 @@ export const BadgeSupCountDotDefaultTheme = {
   heightBadgeCount: '16px',
   borderRadiusBadgeCount: '10px',
 };
-BadgeSupCountDot.defaultProps = {
-  defaultTheme: BadgeSupCountDotDefaultTheme,
+BadgeStyleSupCountDotBase.defaultProps = {
+  defaultTheme: BadgeStyleSupCountDotBaseTheme,
 };
 
 BadgeWarp.defaultProps = {};

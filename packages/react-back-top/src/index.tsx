@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import { getScrollPercent, getScrollTop, scrollToAnimate } from './utils';
-import { BackTopWarp } from './style';
+import { BackTopStyleWarp } from './style';
+export * from './style';
 
-export interface ChildrenFunction {
+interface ChildrenFunction {
   scrollToTop: () => void;
   percent: number;
   current: number;
 }
 
-export interface BackTopProps extends IProps, Omit<HTMLDivProps, 'children'> {
+export interface BackTopStyleProps extends IProps, Omit<HTMLDivProps, 'children'> {
   offsetTop?: number;
   clickable?: boolean;
   content?: JSX.Element | string;
@@ -27,7 +28,7 @@ export interface IBackTopState {
   current: number;
 }
 
-export default React.forwardRef<HTMLDivElement, BackTopProps>((props, ref) => {
+const BackTopStyleBase = React.forwardRef<HTMLDivElement, BackTopStyleProps>((props, ref) => {
   const {
     prefixCls = 'w-back-top',
     className,
@@ -70,7 +71,7 @@ export default React.forwardRef<HTMLDivElement, BackTopProps>((props, ref) => {
     }
   }
   return (
-    <BackTopWarp
+    <BackTopStyleWarp
       onClick={() => clickable && scrollToTop()}
       className={cls}
       {...other}
@@ -80,6 +81,8 @@ export default React.forwardRef<HTMLDivElement, BackTopProps>((props, ref) => {
     >
       {content}
       {typeof children !== 'function' ? children : children({ percent, current, scrollToTop: scrollToTop })}
-    </BackTopWarp>
+    </BackTopStyleWarp>
   );
 });
+
+export default BackTopStyleBase;
