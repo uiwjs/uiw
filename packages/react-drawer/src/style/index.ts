@@ -3,10 +3,10 @@ import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 import Overlay, { ContentWrap } from '@uiw/react-overlay';
 import { DrawerProps } from 'src';
 
-interface DrawerWrapperWrapProps extends ThemeVariantValueOptions {}
-interface DrawerHeaderWrapProps extends ThemeVariantValueOptions {}
-interface DrawerHeaderWrapProps extends ThemeVariantValueOptions {}
-interface DrawerWrapProps extends Pick<DrawerProps, 'placement'> {}
+interface DrawerWrapperWrapProps extends ThemeVariantValueOptions { }
+interface DrawerHeaderWrapProps extends ThemeVariantValueOptions { }
+interface DrawerHeaderWrapProps extends ThemeVariantValueOptions { }
+interface DrawerWrapProps extends Pick<DrawerProps, 'placement'> { }
 export const DrawerWrapperWrap = styled.div<DrawerWrapperWrapProps>`
   ${(props) => css`
     box-shadow: 0 0 0 1px ${getThemeVariantValue(props, 'boxShadowColorInDrawerWrapper')},
@@ -67,7 +67,7 @@ export const DrawerBodyClsWrap = styled.div`
   `}
 `;
 
-export const DrawerWrap = styled(Overlay)<DrawerWrapProps>`
+export const DrawerWrap = styled(Overlay) <DrawerWrapProps>`
   ${(props) => css`
     ${(props.placement === 'top' || props.placement === 'bottom') &&
     css`
