@@ -3,7 +3,7 @@ import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import Button, { ButtonType, ButtonProps } from '@uiw/react-button';
 import Icon, { IconProps } from '@uiw/react-icon';
 import { Close } from '@uiw/icons/lib/Close';
-import { IconBase } from '@uiw/react-icon';
+import { IconStyleBase } from '@uiw/react-icon';
 import { IProps, noop } from '@uiw/utils';
 import CallShow from './CallShow';
 import ModalWrap, { ModalBody, ModalContainer, ModalFooter, ModalHeader, ModalInner } from './style';
@@ -109,7 +109,7 @@ const Modal: React.ForwardRefExoticComponent<ModalProps & React.RefAttributes<Ov
                 {icon && <Icon type={icon} />}
                 {title && <h4>{title}</h4>}
                 {isCloseButtonShown && (
-                  <Button basic onClick={(e) => handleCancel(e)} icon={<IconBase as={Close} />} type="light" />
+                  <Button basic onClick={(e) => handleCancel(e)} icon={<IconStyleBase as={Close} />} type="light" />
                 )}
               </ModalHeader>
             )}

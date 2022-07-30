@@ -46,7 +46,7 @@ export const AlertStyleWarp = styled.div<AlertStyleWarpProps>`
       font-size: 40px;
       margin-right: 0;
     }
-    > button > ${IconBase} {
+    > button > ${IconStyleBase} {
       font-size: 14px;
     }
   }
