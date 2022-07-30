@@ -7,6 +7,6 @@ export interface DescriptionsItemProps extends IProps {
   span?: number;
 }
 
-const DescriptionsItem: React.FC<DescriptionsItemProps> = ({ children }) => children as JSX.Element;
+const DescriptionsStyleItem: React.FC<DescriptionsItemProps> = ({ children }) => children as JSX.Element;
 
-export default DescriptionsItem;
+export default DescriptionsStyleItem;

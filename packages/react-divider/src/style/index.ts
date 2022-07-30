@@ -2,11 +2,11 @@ import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import { DividerProps } from 'src';
 
-interface DividerWarpProps
+interface DividerStyleBaseProps
   extends ThemeVariantValueOptions,
     Pick<DividerProps, 'dashed' | 'type' | 'align' | 'prefixCls'> {}
 
-const Divider = styled.div<DividerWarpProps>`
+export const DividerStyleBase = styled.div<DividerStyleBaseProps>`
   font-size: ${(props) => getThemeVariantValue(props, 'fontSizeLarge')};
   line-height: 16px;
   box-sizing: border-box;
@@ -100,12 +100,12 @@ const Divider = styled.div<DividerWarpProps>`
   }}
 `;
 
-export const DividerInnerText = styled.div`
+export const DividerStyleInnerText = styled.div`
   display: inline-block;
   padding: 0 10px;
 `;
 
-Divider.defaultProps = {
+DividerStyleBase.defaultProps = {
   defaultTheme: {
     fontSizeLarge: '16px',
     backgroundColorDividerBase: '#e8e8e8',
@@ -113,4 +113,4 @@ Divider.defaultProps = {
   },
 };
 
-export default Divider;
+export default DividerStyleBase;

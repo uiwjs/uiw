@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { IProps } from '@uiw/utils';
 import { DescriptionsItemProps } from './DescriptionsItem';
 import { RowProps } from './Row';
-import { DescriptionsItem } from './style';
+import { DescriptionsStyleItem } from './style';
 export interface CellProps
   extends Omit<RowProps, 'children'>,
     Omit<DescriptionsItemProps, 'children'>,
@@ -46,22 +46,26 @@ function Cell(props: CellProps = {}) {
   if (layout === 'horizontal') {
     if (!bordered) {
       return (
-        <DescriptionsItem as={TagName} {...other} colSpan={span}>
-          <DescriptionsItem as="span" {...labelProps} isColon={colon} isLabel={!!label}>
+        <DescriptionsStyleItem as={TagName} {...other} colSpan={span}>
+          <DescriptionsStyleItem as="span" {...labelProps} isColon={colon} isLabel={!!label}>
             {label}
-          </DescriptionsItem>
-          <DescriptionsItem as="span" isContent={!!prefixCls} className={prefixCls ? `${prefixCls}-item-content` : ''}>
+          </DescriptionsStyleItem>
+          <DescriptionsStyleItem
+            as="span"
+            isContent={!!prefixCls}
+            className={prefixCls ? `${prefixCls}-item-content` : ''}
+          >
             {children}
-          </DescriptionsItem>
-        </DescriptionsItem>
+          </DescriptionsStyleItem>
+        </DescriptionsStyleItem>
       );
     }
     return (
       <Fragment>
-        <DescriptionsItem as="th" {...labelProps} bordered={bordered} isColon={colon} isLabel={!!label}>
+        <DescriptionsStyleItem as="th" {...labelProps} bordered={bordered} isColon={colon} isLabel={!!label}>
           {label}
-        </DescriptionsItem>
-        <DescriptionsItem
+        </DescriptionsStyleItem>
+        <DescriptionsStyleItem
           {...other}
           as={TagName}
           isContent={!!prefixCls}
@@ -70,12 +74,12 @@ function Cell(props: CellProps = {}) {
           className={prefixCls ? `${prefixCls}-item-content` : ''}
         >
           {children}
-        </DescriptionsItem>
+        </DescriptionsStyleItem>
       </Fragment>
     );
   }
   return (
-    <DescriptionsItem
+    <DescriptionsStyleItem
       bordered={bordered}
       isLabel={TagName === 'th'}
       isContent={TagName === 'td'}
@@ -84,7 +88,7 @@ function Cell(props: CellProps = {}) {
       className={`${prefixCls}-item-${TagName === 'td' ? 'content' : 'label'}`}
     >
       {children}
-    </DescriptionsItem>
+    </DescriptionsStyleItem>
   );
 }
 

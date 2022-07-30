@@ -3,7 +3,13 @@ import { CSSTransition } from 'react-transition-group';
 import { TransitionStatus } from 'react-transition-group/Transition';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Icon, { IconProps } from '@uiw/react-icon';
-import { CollapseHeader, CollapseHeaderExtra, CollapseHeaderTitle, CollapseItem, CollapseItemPanel } from './style';
+import {
+  CollapseStyleHeader,
+  CollapseStyleHeaderExtra,
+  CollapseStyleHeaderTitle,
+  CollapseStyleItem,
+  CollapseStyleItemPanel,
+} from './style';
 
 export interface CollapsePanelProps extends IProps, HTMLDivProps {
   disabled?: boolean;
@@ -60,13 +66,18 @@ export default function Panel(props: CollapsePanelProps) {
   }
 
   return (
-    <CollapseItem {...resetProps} className={cls}>
-      <CollapseHeader className={`${prefixCls}-header`} isActive={isActive} disabled={disabled} onClick={onItemClick}>
+    <CollapseStyleItem {...resetProps} className={cls}>
+      <CollapseStyleHeader
+        className={`${prefixCls}-header`}
+        isActive={isActive}
+        disabled={disabled}
+        onClick={onItemClick}
+      >
         {showArrow && iconRender}
-        <CollapseHeaderTitle className={`${prefixCls}-title`}>{header}</CollapseHeaderTitle>
-        {extra && <CollapseHeaderExtra className={`${prefixCls}-extra`}>{extra}</CollapseHeaderExtra>}
-      </CollapseHeader>
-      <CollapseItemPanel
+        <CollapseStyleHeaderTitle className={`${prefixCls}-title`}>{header}</CollapseStyleHeaderTitle>
+        {extra && <CollapseStyleHeaderExtra className={`${prefixCls}-extra`}>{extra}</CollapseStyleHeaderExtra>}
+      </CollapseStyleHeader>
+      <CollapseStyleItemPanel
         as={CSSTransition}
         bordered={bordered}
         in={isActive}
@@ -76,9 +87,9 @@ export default function Panel(props: CollapsePanelProps) {
       >
         {(status: TransitionStatus) =>
           React.cloneElement(
-            <CollapseItemPanel in={isActive} bordered={bordered}>
+            <CollapseStyleItemPanel in={isActive} bordered={bordered}>
               {children}
-            </CollapseItemPanel>,
+            </CollapseStyleItemPanel>,
             {
               className: `${prefixCls}-panel`,
               style: childStyle(children as React.ReactElement),
@@ -86,7 +97,7 @@ export default function Panel(props: CollapsePanelProps) {
             },
           )
         }
-      </CollapseItemPanel>
-    </CollapseItem>
+      </CollapseStyleItemPanel>
+    </CollapseStyleItem>
   );
 }

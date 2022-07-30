@@ -1,6 +1,6 @@
 import React from 'react';
 import { IProps, HTMLSpanProps } from '@uiw/utils';
-import { BadgeWarp, BadgeColorDot, BadgeSupCountDot } from './style';
+import { BadgeWarp, BadgeColorDot, BadgeStyleSupCountDotBase } from './style';
 
 export interface BadgeProps extends IProps, HTMLSpanProps {
   color?: string;
@@ -51,9 +51,9 @@ export default React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
       )}
       {children}
       {count !== 0 && !color && (
-        <BadgeSupCountDot {...supProps} dot={dot} nowrap={!children}>
+        <BadgeStyleSupCountDotBase {...supProps} dot={dot} nowrap={!children}>
           {!dot && count && max && count > max ? `${max}+` : count}
-        </BadgeSupCountDot>
+        </BadgeStyleSupCountDotBase>
       )}
     </BadgeWarp>
   );

@@ -1,10 +1,11 @@
 import React, { useEffect, useImperativeHandle } from 'react';
 import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLInputProps } from '@uiw/utils';
-import InputWarp, { InputBase, InputAddonAfter } from './style/input';
+import InputStyleWarp, { InputStyleBase, InputStyleAddonAfter } from './style/input';
 export * from './style/input';
 export * from './InputNumber';
 export { default as InputNumber } from './InputNumber';
+export * from './style/input';
 
 export interface InputProps extends IProps, Omit<HTMLInputProps, 'size'> {
   preIcon?: IconProps['type'];
@@ -53,9 +54,9 @@ export default React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     }
   }
   return (
-    <InputWarp className={cls} style={style} size={size} addonAfter={addonAfter} disabled={disabled}>
+    <InputStyleWarp className={cls} style={style} size={size} addonAfter={addonAfter} disabled={disabled}>
       <Icon type={preIcon} />
-      <InputBase
+      <InputStyleBase
         ref={inputRef}
         type={type}
         autoComplete="off"
@@ -65,12 +66,12 @@ export default React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         className={`${prefixCls}-inner`}
       />
       {addonAfter && (
-        <InputAddonAfter className={`${prefixCls}-addon-after`} ref={addonRef}>
+        <InputStyleAddonAfter className={`${prefixCls}-addon-after`} ref={addonRef}>
           {addonAfter}
-        </InputAddonAfter>
+        </InputStyleAddonAfter>
       )}
-    </InputWarp>
+    </InputStyleWarp>
   );
 });
 
-export { InputBase };
+export { InputStyleBase };

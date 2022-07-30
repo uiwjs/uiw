@@ -5,7 +5,13 @@ import formatter from '@uiw/formatter';
 import { IProps } from '@uiw/utils';
 import RenderDay from './DayLabel';
 // import './style/index.less';
-import { BtnGroupWrap, BtnWrap, CalendarWrap, CaptionWrap, TitleWrap } from './style';
+import {
+  CalendarBtnGroupStyleWrap,
+  CalendarBtnStyleWrap,
+  CalendarStyleWrap,
+  CalendarCaptionStyleWrap,
+  CalendarTitleWrap,
+} from './style';
 
 export interface CalendarProps extends IProps, DatePickerDayProps {
   /**
@@ -109,29 +115,29 @@ export default function Calendar(props: CalendarProps) {
   }
 
   const titleLable = useMemo(
-    () => <TitleWrap className={`${prefixCls}-title`}>{formatter(titleFormat, panelDate)}</TitleWrap>,
+    () => <CalendarTitleWrap className={`${prefixCls}-title`}>{formatter(titleFormat, panelDate)}</CalendarTitleWrap>,
     [prefixCls, titleFormat, panelDate],
   );
 
   const btngroup = useMemo(
     () => (
-      <BtnGroupWrap className={`${prefixCls}-btn-group`}>
+      <CalendarBtnGroupStyleWrap className={`${prefixCls}-btn-group`}>
         <Icon type="down" onClick={() => handlePaging('prev')} />
-        <BtnWrap className={`${prefixCls}-btn`} onClick={() => handlePaging('today')}>
+        <CalendarBtnStyleWrap className={`${prefixCls}-btn`} onClick={() => handlePaging('today')}>
           {todayLabel}
-        </BtnWrap>
+        </CalendarBtnStyleWrap>
         <Icon type="down" onClick={() => handlePaging('next')} />
-      </BtnGroupWrap>
+      </CalendarBtnGroupStyleWrap>
     ),
     [prefixCls, todayLabel],
   );
 
   return (
-    <CalendarWrap className={cls} style={style}>
-      <CaptionWrap className={`${prefixCls}-caption`}>
+    <CalendarStyleWrap className={cls} style={style}>
+      <CalendarCaptionStyleWrap className={`${prefixCls}-caption`}>
         {titleLable}
         {btngroup}
-      </CaptionWrap>
+      </CalendarCaptionStyleWrap>
       <DatePickerDay
         onSelectDay={(currentDate, dateSource) => {
           setPanelDate(currentDate!);
@@ -145,6 +151,6 @@ export default function Calendar(props: CalendarProps) {
         panelDate={panelDate || new Date()}
         {...otherProps}
       />
-    </CalendarWrap>
+    </CalendarStyleWrap>
   );
 }

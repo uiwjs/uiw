@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
-const Warp = styled.div<ThemeVariantValueOptions>`
+export const DatePickerStyleWarp = styled.div<ThemeVariantValueOptions>`
   vertical-align: top;
   display: inline-block;
   position: relative;
@@ -40,7 +40,7 @@ const Warp = styled.div<ThemeVariantValueOptions>`
     }
   }
 `;
-Warp.defaultProps = {
+DatePickerStyleWarp.defaultProps = {
   defaultTheme: {
     fontSizeDefault: '14px',
     // 组件内部
@@ -55,5 +55,3 @@ Warp.defaultProps = {
     boxShadowDatepickerTime3: 'rgba(16, 22, 26, 0.2)',
   },
 };
-
-export default Warp;

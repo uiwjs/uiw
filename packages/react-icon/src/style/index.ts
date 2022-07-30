@@ -10,7 +10,8 @@ const loadingCircle = keyframes`
   }
 `;
 
-export interface IconBaseProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement> {
+export interface IconStyleBaseProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement> {
   spin?: boolean;
   verticalAlign?: 'middle' | 'baseline';
   params?: {
@@ -19,7 +20,7 @@ export interface IconBaseProps extends React.DetailedHTMLProps<React.HTMLAttribu
   };
 }
 
-export const IconBase = styled.span<IconBaseProps>`
+export const IconStyleBase = styled.span<IconStyleBaseProps>`
   height: 1em;
   width: 1em;
   & svg {

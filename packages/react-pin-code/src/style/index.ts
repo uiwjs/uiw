@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import Input, { InputProps, InputBase } from '@uiw/react-input';
+import Input, { InputProps, InputStyleBase } from '@uiw/react-input';
 
 // React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 export const DivWrap = styled.div`
@@ -11,7 +11,7 @@ export const InputWrap = styled(Input)<InputProps>`
   & + & {
     margin-left: 8px;
   }
-  > ${InputBase} {
+  > ${InputStyleBase} {
     text-align: center;
     padding: 0 !important;
     font-size: 14px;
@@ -22,7 +22,7 @@ export const InputWrap = styled(Input)<InputProps>`
     props?.size === 'large' &&
     css`
       width: 36px;
-      ${InputBase} {
+      ${InputStyleBase} {
         font-size: 16px;
       }
     `}
@@ -31,7 +31,7 @@ export const InputWrap = styled(Input)<InputProps>`
     props?.size === 'small' &&
     css`
       width: 24px;
-      ${InputBase} {
+      ${InputStyleBase} {
         font-size: 12px;
       }
     `}

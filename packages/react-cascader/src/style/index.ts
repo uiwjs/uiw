@@ -1,17 +1,17 @@
 import styled, { css } from 'styled-components';
-import { getThemeVariantValue, HTMLDivProps, ThemeVariantValueOptions } from '@uiw/utils';
-import { IconBase, IconBaseProps } from '@uiw/react-icon';
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
+import { IconStyleBase, IconStyleBaseProps } from '@uiw/react-icon';
 
-export interface CascaderIconWarpProps extends IconBaseProps, ThemeVariantValueOptions {
+export interface CascaderStyleIconWarpProps extends IconStyleBaseProps, ThemeVariantValueOptions {
   closebtn?: boolean;
 }
 
-export const CascaderIcon = styled.div<IconBaseProps>`
+export const CascaderStyleIcon = styled.div<IconStyleBaseProps>`
   height: 1em;
   width: 1em;
 `;
 
-export const CascaderIconWarp = styled(IconBase)<CascaderIconWarpProps>`
+export const CascaderStyleIconWarp = styled(IconStyleBase)<CascaderStyleIconWarpProps>`
   ${(props) =>
     props.closebtn &&
     css`
@@ -23,7 +23,7 @@ export const CascaderIconWarp = styled(IconBase)<CascaderIconWarpProps>`
     `}
 `;
 
-CascaderIconWarp.defaultProps = {
+CascaderStyleIconWarp.defaultProps = {
   defaultTheme: {
     colorCascaderClose: '#393e48',
   },
