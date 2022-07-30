@@ -7,7 +7,7 @@ export interface AlertStyleWarpProps extends ModalProps, ThemeVariantValueOption
 
 const typeVariant = (type: ButtonType, color: string | number) => {
   return css`
-    ${type} ${ModalHeader} > ${IconStyleBase} {
+    ${ModalHeader} > ${IconStyleBase} {
       color: ${color};
     }
   `;
@@ -45,6 +45,9 @@ export const AlertStyleWarp = styled.div<AlertStyleWarpProps>`
     ${IconStyleBase} {
       font-size: 40px;
       margin-right: 0;
+    }
+    > button > ${IconStyleBase} {
+      font-size: 14px;
     }
   }
   ${ModalBody} {
