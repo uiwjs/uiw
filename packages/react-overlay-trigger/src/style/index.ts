@@ -3,9 +3,9 @@ import Overlay, { ContainerWrap, ContentWrap } from '@uiw/react-overlay';
 import { ThemeVariantValueOptions } from '@uiw/utils';
 import { OverlayTriggerProps } from 'src';
 
-interface OverlayTriggerWrapProps extends ThemeVariantValueOptions, OverlayTriggerProps { }
+interface OverlayTriggerWrapProps extends ThemeVariantValueOptions, OverlayTriggerProps {}
 
-export const OverlayTriggerWrap = styled(Overlay) <OverlayTriggerWrapProps>`
+export const OverlayTriggerWrap = styled(Overlay)<OverlayTriggerWrapProps>`
   ${(props) => css`
     position: absolute !important;
     top: auto;
@@ -26,57 +26,57 @@ export const OverlayTriggerWrap = styled(Overlay) <OverlayTriggerWrapProps>`
       margin: 0;
 
       ${props.placement === 'rightTop' &&
-    css`
+      css`
         transform-origin: left top;
       `}
 
       ${props.placement === 'right' &&
-    css`
+      css`
         transform-origin: left center;
       `}
 
     ${props.placement === 'rightBottom' &&
-    css`
+      css`
         transform-origin: left bottom;
       `}
 
     ${props.placement === 'topLeft' &&
-    css`
+      css`
         transform-origin: bottom left;
       `}
 
     ${props.placement === 'top' &&
-    css`
+      css`
         transform-origin: bottom center;
       `}
 
     ${props.placement === 'topRight' &&
-    css`
+      css`
         transform-origin: bottom right;
       `}
 
     ${props.placement === 'left' &&
-    css`
+      css`
         transform-origin: right center;
       `}
 
     ${props.placement === 'leftBottom' &&
-    css`
+      css`
         transform-origin: right bottom;
       `}
 
     ${props.placement === 'bottomLeft' &&
-    css`
+      css`
         transform-origin: top left;
       `}
 
     ${props.placement === 'bottom' &&
-    css`
+      css`
         transform-origin: top center;
       `}
 
     ${props.placement === 'bottomRight' &&
-    css`
+      css`
         transform-origin: top right;
       `}
     }
