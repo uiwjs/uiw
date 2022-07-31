@@ -32,9 +32,9 @@ export interface OverlayTriggerState {
 export type Delay =
   | number
   | {
-    show?: number;
-    hide?: number;
-  };
+      show?: number;
+      hide?: number;
+    };
 
 export type Placement =
   | 'top'
