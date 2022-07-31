@@ -92,62 +92,43 @@ export const OverlayWrap = styled.div<OverlayWrapProps>`
       display: inherit;
     `}
 
-    ${BackdropWrap} {
-      ${props.status === 'entered' &&
-      css`
-        opacity: 0;
-      `}
-
-      ${props.trans === 'enterActive' &&
-      css`
-        opacity: 1;
-        transition: opacity 300ms ease-in;
-      `}
-
-      ${props.status === 'exiting' &&
-      css`
-        opacity: 1;
-      `}
-
-      ${props.trans === 'exitActive' &&
-      css`
-        opacity: 0;
-        transition: opacity 300ms ease-in;
-      `}
+    &.w-overlay-enter ${BackdropWrap} {
+      opacity: 0;
     }
-
-    ${ContentWrap} {
-      ${props.status === 'entering' &&
-      css`
-        transform: scale(0.5);
-        opacity: 0;
-      `}
-
-      ${props.trans === 'enterActive' &&
-      css`
-        opacity: 1;
-        transform: translate(0);
-        transition: transform 300ms ease, opacity 300ms ease;
-      `}
-
-      ${props.status === 'exiting' &&
-      css`
-        opacity: 1;
-        transform: translate(0);
-        transition: transform 300ms ease, opacity 300ms ease;
-      `}
-
-      ${props.trans === 'exitActive' &&
-      css`
-        transform: scale(0.5);
-        opacity: 0;
-      `}
+    &.w-overlay-enter-active ${BackdropWrap} {
+      opacity: 1;
+      transition: opacity 300ms ease-in;
     }
-
-    ${(props.status === 'entered' || props.status === 'entering' || props.trans === 'done') &&
-    css`
+    &.w-overlay-exit ${BackdropWrap} {
+      opacity: 1;
+    }
+    &.w-overlay-exit-active ${BackdropWrap} {
+      opacity: 0;
+      transition: opacity 300ms ease-in;
+    }
+    &.w-overlay-enter ${ContentWrap} {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    &.w-overlay-enter-active ${ContentWrap} {
+      opacity: 1;
+      transform: translate(0);
+      transition: transform 300ms ease, opacity 300ms ease;
+    }
+    &.w-overlay-exit ${ContentWrap} {
+      opacity: 1;
+      transform: translate(0);
+      transition: transform 300ms ease, opacity 300ms ease;
+    }
+    &.w-overlay-exit-active ${ContentWrap} {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    &.w-overlay-enter,
+    &.w-overlay-enter-done,
+    &.w-overlay-exit {
       display: inherit;
-    `}
+    }
   `}
 `;
 
