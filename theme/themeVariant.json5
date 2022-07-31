@@ -307,6 +307,17 @@
   minWidthModalInner: '320px',
   boxShadowModalInnerH: 'rgba(16, 22, 26, 0.1)',
   boxShadowModalInnerV: 'rgba(16, 22, 26, 0.2)',
+  // ---------------------------Drawer 抽屉 模态对话框 ------------------------------------
+  // Drawer Wrapper
+  boxShadowColorInDrawerWrapper: 'rgba(16, 22, 26, 0.1)',
+  boxShadowColorHvDrawerWrapper: 'rgba(16, 22, 26, 0.2)',
+  backgroundColorDrawerWrapper: '#fff',
+  // Drawer Header
+  backgroundColorDrawerHeader: '#fff',
+  boxShadowColorInDrawerHeader: 'rgba(16, 22, 26, 0.15)',
+  colorHvDrawerHeader: '#393e48',
+  // Drawer Footer
+  boxShadowColorInDrawerFooter: 'rgba(16, 22, 26, 0.15)',
 
   // ---------------------------button 按钮部分 ------------------------------------
   colorButtonStyleBase: '#fff',
