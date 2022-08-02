@@ -47,6 +47,6 @@
   "dependencies": {
     "@uiw/react-portal": "^4.21.2",
     "@uiw/utils": "^4.21.2",
-    "react-transition-group": "4.4.2"
+    "react-transition-group": "~4.4.5"
   }
 }
