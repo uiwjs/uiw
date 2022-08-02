@@ -3,7 +3,15 @@ import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import Icon, { IconProps } from '@uiw/react-icon';
 import Button from '@uiw/react-button';
 import { HTMLDivProps } from '@uiw/utils';
-import './style/index.less';
+import {
+  DrawerWrap,
+  DrawerWrapperWrap,
+  DrawerHeaderWrap,
+  DrawerBodyWrap,
+  DrawerFooterWrap,
+  DrawerBodyClsWrap,
+} from './style';
+// import './style/index.less';
 
 export interface DrawerProps extends OverlayProps {
   footer?: React.ReactNode;
@@ -42,26 +50,37 @@ export default (props: DrawerProps = {}) => {
     ...style,
     [/^(top|bottom)$/.test(placement!) ? 'height' : 'width']: size,
   };
-  const footerView = useMemo(() => (footer ? <div className={`${prefixCls}-footer`}>{footer}</div> : null), [footer]);
+  const footerView = useMemo(
+    () => (footer ? <DrawerFooterWrap className={`${prefixCls}-footer`}>{footer}</DrawerFooterWrap> : null),
+    [footer],
+  );
   const iconView = useMemo(() => (icon ? <Icon type={icon} /> : null), [icon]);
   const titleView = useMemo(() => (title ? <h4>{title}</h4> : null), [title]);
+
   return (
-    <Overlay className={cls} timeout={timeout} isOpen={isOpen} maskClosable={maskClosable} {...overlayProps}>
-      <div className={`${prefixCls}-wrapper`} style={styl}>
+    <DrawerWrap
+      placement={placement}
+      className={cls}
+      timeout={timeout}
+      isOpen={isOpen}
+      maskClosable={maskClosable}
+      {...overlayProps}
+    >
+      <DrawerWrapperWrap className={`${prefixCls}-wrapper`} style={styl}>
         {(title || icon) && (
-          <div className={`${prefixCls}-header`}>
+          <DrawerHeaderWrap className={`${prefixCls}-header`}>
             {iconView}
             {titleView}
             {title && isCloseButtonShown && <Button basic onClick={props.onClose} icon="close" type="light" />}
-          </div>
+          </DrawerHeaderWrap>
         )}
-        <div className={`${prefixCls}-body`}>
-          <div {...bodyProps} className={bodyCls}>
+        <DrawerBodyWrap className={`${prefixCls}-body`}>
+          <DrawerBodyClsWrap {...bodyProps} className={bodyCls}>
             {props.children}
-          </div>
-        </div>
+          </DrawerBodyClsWrap>
+        </DrawerBodyWrap>
         {footerView}
-      </div>
-    </Overlay>
+      </DrawerWrapperWrap>
+    </DrawerWrap>
   );
 };
