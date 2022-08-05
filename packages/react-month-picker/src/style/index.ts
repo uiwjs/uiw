@@ -1,17 +1,22 @@
 import styled, { css } from 'styled-components';
-import { ThemeVariantValueOptions } from '@uiw/utils';
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import Input, { InputProps } from '@uiw/react-input';
 import Button, { ButtonProps } from '@uiw/react-button';
 
-export interface MonthPickerCloseButtonProps extends ButtonProps {}
+export const MonthPickerTheme = {
+  fillMonthPickerStyleCloseButtonBase: '#a5a5a5',
+  fillMonthPickerStyleCloseButtonHover: '#393e48',
+};
 
-export const MonthPickerCloseButton = styled(Button)``;
+export interface MonthPickerStyleCloseButtonProps extends ButtonProps {}
 
-export interface MonthPickerPopoverBaseProps
+export const MonthPickerStyleCloseButton = styled(Button)``;
+
+export interface MonthPickerStylePopoverBaseProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
-    ThemeVariantValueOptions {}
+    ThemeVariantValueOptions<typeof MonthPickerTheme> {}
 
-export const MonthPickerPopoverBase = styled.div<MonthPickerPopoverBaseProps>`
+export const MonthPickerStylePopoverBase = styled.div<MonthPickerStylePopoverBaseProps>`
   padding: 5px;
   min-width: 192px;
   max-width: 192px;
@@ -19,16 +24,18 @@ export const MonthPickerPopoverBase = styled.div<MonthPickerPopoverBaseProps>`
   line-height: 21px;
 `;
 
-export interface MonthPickerInputStyleBase extends InputProps {}
+export interface MonthPickerStyleInputStyleBaseProps
+  extends InputProps,
+    ThemeVariantValueOptions<typeof MonthPickerTheme> {}
 
-export const MonthPickerInputStyleBase = styled(Input)<MonthPickerInputStyleBase>`
+export const MonthPickerStyleInputStyleBase = styled(Input)<MonthPickerStyleInputStyleBaseProps>`
   display: inline-block;
-  & ${MonthPickerCloseButton} {
+  & ${MonthPickerStyleCloseButton} {
     min-height: initial;
-    fill: #a5a5a5;
+    fill: ${(props) => getThemeVariantValue(props, 'fillMonthPickerStyleCloseButtonBase')};
     cursor: pointer;
     &:hover {
-      fill: #393e48;
+      fill: ${(props) => getThemeVariantValue(props, 'fillMonthPickerStyleCloseButtonHover')};
     }
     &:active,
     &:hover {
@@ -38,8 +45,11 @@ export const MonthPickerInputStyleBase = styled(Input)<MonthPickerInputStyleBase
   ${(props) =>
     props.disabled &&
     css`
-      & ${MonthPickerCloseButton} {
+      & ${MonthPickerStyleCloseButton} {
         display: none !important;
       }
     `}
 `;
+MonthPickerStyleInputStyleBase.defaultProps = {
+  defaultTheme: MonthPickerTheme,
+};

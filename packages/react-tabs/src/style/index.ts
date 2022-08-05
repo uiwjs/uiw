@@ -4,7 +4,7 @@ import { TabsProps } from '../';
 
 export interface TabsStyleProps extends TabsProps, ThemeVariantValueOptions {}
 
-export const TabsWarp = styled.div<TabsStyleProps>`
+export const TabsStyleWarp = styled.div<TabsStyleProps>`
   ${(props) => {
     if (props.type === 'line') {
       return css`
@@ -124,6 +124,6 @@ export const TabsItem = styled.div<TabsItemProps>`
 
 export const TabsPaneWarp = styled.div``;
 
-TabsWarp.defaultProps = {
+TabsStyleWarp.defaultProps = {
   defaultTheme: {},
 };

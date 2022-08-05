@@ -2,12 +2,12 @@ import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 import { SwitchProps } from 'src';
 import styled, { css } from 'styled-components';
 
-interface SwitchWrapProps extends ThemeVariantValueOptions, SwitchProps {
+interface SwitchStyleWrapProps extends ThemeVariantValueOptions, SwitchProps {
   size?: 'large' | 'default' | 'small';
   disabled?: boolean;
 }
 
-export const SwitchWrap = styled.div<SwitchWrapProps>`
+export const SwitchStyleWrap = styled.div<SwitchStyleWrapProps>`
   ${(props) => {
     const psd = `props.prefix-text`;
     return css`
@@ -137,7 +137,7 @@ export const SwitchWrap = styled.div<SwitchWrapProps>`
   }}
 `;
 
-SwitchWrap.defaultProps = {
+SwitchStyleWrap.defaultProps = {
   defaultTheme: {
     fontSizeSmall: '12px',
     fontSizeLarge: '16px',
