@@ -250,7 +250,7 @@ export const buttonSize = (fontSize: string, iconSize: string, lineHeight: strin
     font-size: ${fontSize};
     line-height: ${lineHeight};
     min-height: ${minHeight};
-    .w-icon {
+    ${IconStyleBase} {
       font-size: ${iconSize};
     }
   `;
