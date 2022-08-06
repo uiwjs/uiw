@@ -114,7 +114,7 @@ export default function Tabs(props: TabsProps) {
   }
 
   return (
-    <Styled.TabsWarp className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...elementProps}>
+    <Styled.TabsStyleWarp className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...elementProps}>
       <Styled.TabsDivFlex>
         <Styled.TabsDivHidden>
           <Styled.TabsDivBar className={`${prefixCls}-bar`} ref={divContentRef}>
@@ -147,7 +147,7 @@ export default function Tabs(props: TabsProps) {
         }
         return React.cloneElement(item, Object.assign({}, item.props, {}));
       })}
-    </Styled.TabsWarp>
+    </Styled.TabsStyleWarp>
   );
 
   function renderNav(children: React.ReactNode): React.ReactNode {

@@ -2,11 +2,11 @@ import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import { IconStyleBase, IconStyleBaseProps } from '@uiw/react-icon';
 
-export interface TableBaseProps
+export interface TableStyleBaseProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
     ThemeVariantValueOptions {}
 
-export interface TableStyleWrapBaseProps extends TableBaseProps {
+export interface TableStyleWrapBaseProps extends TableStyleBaseProps {
   params?: {
     bordered?: boolean;
   };
@@ -18,20 +18,20 @@ export interface TableStyleDomIconProps extends IconStyleBaseProps {
   isOpacity?: false;
 }
 
-export interface TableStyleColProps extends TableBaseProps {
+export interface TableStyleColProps extends TableStyleBaseProps {
   params?: {
     align?: 'left' | 'center' | 'right';
     fixed?: boolean | 'left' | 'right';
   };
 }
 
-export interface TableStyleColContentProps extends TableBaseProps {
+export interface TableStyleColContentProps extends TableStyleBaseProps {
   params: {
     ellipsis?: boolean;
   };
 }
 
-export interface TableStyleFooterProps extends TableBaseProps {
+export interface TableStyleFooterProps extends TableStyleBaseProps {
   params?: {
     bordered?: boolean;
   };
@@ -121,7 +121,7 @@ export const TableStyleWrap = styled.div<TableStyleWrapBaseProps>`
 TableStyleWrap.defaultProps = { defaultTheme: TableBaseDefaultTheme };
 
 export const TableStyleDomIcon = styled(IconStyleBase)<TableStyleDomIconProps>``;
-export const TheadStyleWrap = styled.thead``;
+export const TableStyleTheadWrap = styled.thead``;
 export const TheadItem = styled.th``;
 
 // 单元格
@@ -184,7 +184,7 @@ export const TableStyleColContent = styled.span<TableStyleColContentProps>`
 TableStyleColContent.defaultProps = { defaultTheme: TableBaseDefaultTheme };
 
 export const TableStyleFooter = styled.div<TableStyleFooterProps>`
-  background: ${(props) => getThemeVariantValue(props, 'backgroundColorTableStyleFooter')};
+  background: ${(props) => getThemeVariantValue(props, 'backgroundColorTableFooter')};
   padding: 10px 8px;
   ${(props) =>
     props.params?.bordered &&

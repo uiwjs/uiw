@@ -39,8 +39,8 @@ export const transformationVariable = (cssVariable: CssVariableType, ident: stri
 export type DefaultThemeType = Record<string, string | number>;
 
 export type ThemeVariantValueOptions<T = DefaultThemeType, M = DefaultThemeType> = {
-  defaultTheme?: T;
-  theme?: M;
+  defaultTheme?: Partial<T>;
+  theme?: Partial<M>;
 };
 
 /**

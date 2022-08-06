@@ -178,6 +178,6 @@ export const TreeNodeDiv = styled.div<TreeNodeDivProps>`
 
 TreeNodeDiv.defaultProps = {
   defaultTheme: {
-    borderRadiusTreeNodeDivDefault: '0 0 0 3px;',
+    borderRadiusTreeNodeDivDefault: '0 0 0 3px',
   },
 };

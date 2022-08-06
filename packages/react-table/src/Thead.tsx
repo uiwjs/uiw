@@ -1,7 +1,7 @@
 import React from 'react';
 import { IProps, noop } from '@uiw/utils';
 import { TableProps, TableColumns, LocationWidth } from './';
-import { TheadStyleWrap, TableStyleColContent } from './style';
+import { TableStyleTheadWrap, TableStyleColContent } from './style';
 import './style/index.less';
 import ThComponentProps from './ThComponent';
 
@@ -27,7 +27,7 @@ export default function TheadComponent<T extends { [key: string]: V }, V>(
     ...other
   } = props;
   return (
-    <TheadStyleWrap className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...other}>
+    <TableStyleTheadWrap className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...other}>
       {data &&
         data.length > 0 &&
         data.map((tds?: TableColumns<T>[], rowNum?: number) => (
@@ -61,6 +61,6 @@ export default function TheadComponent<T extends { [key: string]: V }, V>(
             })}
           </tr>
         ))}
-    </TheadStyleWrap>
+    </TableStyleTheadWrap>
   );
 }

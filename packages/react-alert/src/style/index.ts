@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ModalProps, ModalHeader, ModalBody, ModalInner } from '@uiw/react-modal';
+import { ModalProps, ModalStyleHeader, ModalStyleBody, ModalStyleInner } from '@uiw/react-modal';
 import { ButtonType } from '@uiw/react-button';
 import { IconStyleBase } from '@uiw/react-icon';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
@@ -7,7 +7,7 @@ export interface AlertStyleWarpProps extends ModalProps, ThemeVariantValueOption
 
 const typeVariant = (type: ButtonType, color: string | number) => {
   return css`
-    ${ModalHeader} > ${IconStyleBase} {
+    ${ModalStyleHeader} > ${IconStyleBase} {
       color: ${color};
     }
   `;
@@ -36,7 +36,7 @@ export const AlertStyleTheme = {
 };
 
 export const AlertStyleWarp = styled.div<AlertStyleWarpProps>`
-  ${ModalHeader} {
+  ${ModalStyleHeader} {
     display: table-cell;
     background-color: transparent;
     padding: 20px 0 0 20px;
@@ -50,14 +50,14 @@ export const AlertStyleWarp = styled.div<AlertStyleWarpProps>`
       font-size: 14px;
     }
   }
-  ${ModalBody} {
+  ${ModalStyleBody} {
     display: table-cell;
     padding-right: 20px;
     padding-left: 20px;
     vertical-align: top;
   }
   ${typeCss}
-  ${ModalInner} ${ModalHeader} {
+  ${ModalStyleInner} ${ModalStyleHeader} {
     > button {
       min-width: 18px;
       min-height: 18px;
@@ -70,8 +70,8 @@ export const AlertStyleWarp = styled.div<AlertStyleWarpProps>`
   ${(props) =>
     props.title &&
     css`
-      ${ModalInner} {
-        ${ModalHeader} {
+      ${ModalStyleInner} {
+        ${ModalStyleHeader} {
           word-break: break-word;
           display: flex;
           padding-top: 15px;
@@ -86,7 +86,7 @@ export const AlertStyleWarp = styled.div<AlertStyleWarpProps>`
             font-size: 14px;
           }
         }
-        ${ModalBody} {
+        ${ModalStyleBody} {
           word-break: break-word;
           padding-top: 5px;
         }
@@ -95,7 +95,7 @@ export const AlertStyleWarp = styled.div<AlertStyleWarpProps>`
   ${(props) =>
     props.icon &&
     css`
-      ${ModalHeader} > h4 {
+      ${ModalStyleHeader} > h4 {
         padding-left: 60px;
       }
     `}
@@ -103,7 +103,7 @@ export const AlertStyleWarp = styled.div<AlertStyleWarpProps>`
     props.title &&
     props.icon &&
     css`
-      ${ModalBody} {
+      ${ModalStyleBody} {
         padding-left: 80px;
       }
     `}

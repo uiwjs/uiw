@@ -2,21 +2,23 @@ import styled, { css } from 'styled-components';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 import { ListItemProps, ListProps } from 'src';
 
-interface ListWarp
+export interface ListStyleWarp
   extends ThemeVariantValueOptions,
     Pick<ListProps<any>, 'striped' | 'noHover' | 'active' | 'bordered' | 'size'> {}
 
-interface ListItemWarpProps extends ThemeVariantValueOptions, Pick<ListItemProps<any>, 'disabled' | 'active'> {}
+export interface ListStyleItemWarpProps
+  extends ThemeVariantValueOptions,
+    Pick<ListItemProps<any>, 'disabled' | 'active'> {}
 
-export const ListItemMain = styled.div`
+export const ListStyleItemMain = styled.div`
   display: block;
   flex: 1;
 `;
-export const ListItemExtra = styled.div`
+export const ListStyleItemExtra = styled.div`
   margin-left: 40px;
 `;
 
-export const ListItemWarp = styled.div<ListItemWarpProps>`
+export const ListStyleItemWarp = styled.div<ListStyleItemWarpProps>`
   ${(props) => css`
     display: flex;
     align-items: center;
@@ -57,10 +59,10 @@ const active = css`
   `}
 `;
 
-export const ListHeader = styled.div``;
-export const ListFooter = styled.div``;
+export const ListStyleHeader = styled.div``;
+export const ListStyleFooter = styled.div``;
 
-const ListWarp = styled.div<ListWarp>`
+export const ListStyleWarp = styled.div<ListStyleWarp>`
   ${(props) => css`
     font-size: ${getThemeVariantValue(props, 'fontSizeDefault')};
     line-height: ${getThemeVariantValue(props, 'lineHeightDefault')};
@@ -83,7 +85,7 @@ const ListWarp = styled.div<ListWarp>`
       border-radius: 4px;
     `}
 
-  ${ListItemWarp} {
+  ${ListStyleItemWarp} {
       :last-child {
         ${props.bordered &&
         css`
@@ -100,14 +102,14 @@ const ListWarp = styled.div<ListWarp>`
       }
     }
 
-    ${ListItemWarp},${ListHeader} {
+    ${ListStyleItemWarp},${ListStyleHeader} {
       ${props.bordered &&
       css`
         border-bottom: 1px solid ${getThemeVariantValue(props, 'backgroundColorListBordered')};
       `}
     }
 
-    ${ListItemWarp},${ListHeader},${ListFooter} {
+    ${ListStyleItemWarp},${ListStyleHeader},${ListStyleFooter} {
       padding: 12px 18px;
       ${props.size === 'small' &&
       css`
@@ -121,7 +123,7 @@ const ListWarp = styled.div<ListWarp>`
   `}
 `;
 
-ListWarp.defaultProps = {
+ListStyleWarp.defaultProps = {
   defaultTheme: {
     fontSizeSmall: '12px',
     fontSizeDefault: '14px',
@@ -138,7 +140,7 @@ ListWarp.defaultProps = {
   },
 };
 
-ListItemWarp.defaultProps = {
+ListStyleItemWarp.defaultProps = {
   defaultTheme: {
     colorListItemDisabled: '#a3a6a9',
     backgroundListItemActive: '#f8f8f9',
@@ -147,4 +149,4 @@ ListItemWarp.defaultProps = {
   },
 };
 
-export default ListWarp;
+export default ListStyleWarp;

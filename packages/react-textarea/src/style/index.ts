@@ -2,11 +2,11 @@ import { getThemeVariantValue } from '@uiw/utils';
 import styled from 'styled-components';
 import { TextareaProps } from '../index';
 
-interface TextareaWarpProps extends TextareaProps {
+interface TextareaStyleWarpProps extends TextareaProps {
   defaultTheme?: Record<string, string | number>;
 }
 
-export const TextareaWarp = styled.textarea<TextareaWarpProps>`
+export const TextareaStyleWarp = styled.textarea<TextareaStyleWarpProps>`
   position: relative;
   font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
   outline: none;
@@ -18,7 +18,7 @@ export const TextareaWarp = styled.textarea<TextareaWarpProps>`
   height: auto;
   min-height: 30px;
   color: ${(props) => getThemeVariantValue(props, 'colorTextareaDefault')};
-  background: ${(props) => getThemeVariantValue(props, 'backgroundColorDefault')};
+  background: ${(props) => getThemeVariantValue(props, 'backgroundColorTextareaStyleWarpBase')};
   font-weight: 400;
   max-width: 100%;
   min-width: 100%;
@@ -47,7 +47,7 @@ export const TextareaWarp = styled.textarea<TextareaWarpProps>`
   }
 `;
 
-TextareaWarp.defaultProps = {
+TextareaStyleWarp.defaultProps = {
   defaultTheme: {
     // 圆角
     borderRadiusDefault: '3px',
@@ -59,8 +59,7 @@ TextareaWarp.defaultProps = {
     colorTextareaDefault: '#393e48',
     colorTextareaDark: '#fff',
     //背景色
-    backgroundColorDefault: '#f8f9fa',
-    backgroundColorDark: '#fff',
+    backgroundColorTextareaStyleWarpBase: '#f8f9fa',
     // 阴影
     boxShadowTextarea:
       '0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
