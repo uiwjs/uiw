@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { SelectWarp } from '@uiw/react-select';
+import { SelectStyleWarp } from '@uiw/react-select';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 
 export const PaginationDefaultTheme = {
@@ -184,7 +184,7 @@ export const PaginationBaseLI = styled.li<PaginationBaseLIProps>`
   ${(props) =>
     props.params?.isOptions &&
     css`
-      ${SelectWarp} {
+      ${SelectStyleWarp} {
         border: none !important;
         padding-top: 0;
         padding-bottom: 0;

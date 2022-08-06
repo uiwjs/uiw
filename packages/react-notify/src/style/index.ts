@@ -1,7 +1,7 @@
 import Alert, { AlertProps, AlertStyleWarp } from '@uiw/react-alert';
 import styled, { css } from 'styled-components';
 
-export const AlertWrap = styled(Alert)`
+export const NotifyStyleAlertWrap = styled(Alert)`
   & .w-modal-inner {
     .w-modal-header {
       > .w-icon {
