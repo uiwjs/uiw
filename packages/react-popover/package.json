@@ -44,6 +44,7 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
+    "@uiw/utils": "^4.21.2",
     "@uiw/react-button": "^4.21.2",
     "@uiw/react-icon": "^4.21.2",
     "@uiw/react-overlay-trigger": "^4.21.2"
