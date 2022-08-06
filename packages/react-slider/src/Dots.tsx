@@ -1,7 +1,7 @@
 import React from 'react';
 import { HTMLDivProps } from '@uiw/utils';
-import { SliderProps, SliderMarks } from './index';
-import { SliderMark, SliderDot } from './style';
+import { SliderProps, SliderStyleMarks } from './index';
+import { SliderStyleMark, SliderStyleDot } from './style';
 interface TooltipProps extends HTMLDivProps {
   prefixCls: string;
   data: number[];
@@ -9,18 +9,18 @@ interface TooltipProps extends HTMLDivProps {
   min: number;
   vertical: boolean;
   marks: SliderProps['marks'];
-  markRender: (stepValue: number, mark?: SliderMarks) => React.ReactNode;
+  markRender: (stepValue: number, mark?: SliderStyleMarks) => React.ReactNode;
   disabled?: boolean;
 }
 
 export default function Dots(props: TooltipProps) {
   const { prefixCls, data, step, min, vertical, marks, markRender, disabled } = props;
   return (
-    <SliderDot params={{ vertical }} className={`${prefixCls}-dots`}>
+    <SliderStyleDot params={{ vertical }} className={`${prefixCls}-dots`}>
       {data.map((val, idx) => {
         const stepValue = idx * step + min;
         return (
-          <SliderMark
+          <SliderStyleMark
             key={idx}
             style={{
               [vertical ? 'top' : 'left']: `${val}%`,
@@ -33,9 +33,9 @@ export default function Dots(props: TooltipProps) {
           >
             {marks === true && markRender && markRender(stepValue)}
             {marks !== true && marks && marks[stepValue] && markRender && markRender(stepValue, marks[stepValue])}
-          </SliderMark>
+          </SliderStyleMark>
         );
       })}
-    </SliderDot>
+    </SliderStyleDot>
   );
 }

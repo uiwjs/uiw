@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Dots from './Dots';
 // import './style/index.less';
-import { SliderWarp, SliderBar, SliderHandle, SliderTooltip } from './style';
+import { SliderStyleWarp, SliderStyleBar, SliderStyleHandle, SliderStyleTooltip } from './style';
 
-export type SliderMarks = {
+export type SliderStyleMarks = {
   style?: React.CSSProperties;
   label?: React.ReactNode;
 };
@@ -13,7 +13,7 @@ export interface SliderProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   value?: number | number[];
   min?: number;
   max?: number;
-  marks?: boolean | Record<number, SliderMarks>;
+  marks?: boolean | Record<number, SliderStyleMarks>;
   dots?: boolean;
   range?: boolean;
   vertical?: boolean;
@@ -215,7 +215,7 @@ export default function Slider(props: SliderProps) {
     delete other.onClick;
   }
   return (
-    <SliderWarp
+    <SliderStyleWarp
       ref={slider}
       className={[
         prefixCls,
@@ -234,7 +234,7 @@ export default function Slider(props: SliderProps) {
         vertical,
       }}
     >
-      <SliderBar
+      <SliderStyleBar
         params={{ disabled, vertical }}
         ref={bar}
         className={`${prefixCls}-bar`}
@@ -247,7 +247,7 @@ export default function Slider(props: SliderProps) {
       {[...arrValue].map((item, idx) => {
         const lleftPostion = getValueToPercent(item);
         return (
-          <SliderHandle
+          <SliderStyleHandle
             params={{ disabled, vertical }}
             key={idx}
             className={`${prefixCls}-handle`}
@@ -255,14 +255,14 @@ export default function Slider(props: SliderProps) {
             style={{ [vertical ? 'top' : 'left']: `${lleftPostion}%` }}
           >
             {(tooltip || tooltip === false) && (
-              <SliderTooltip
+              <SliderStyleTooltip
                 params={{ disabled, open: tooltip }}
                 className={[`${prefixCls}-tooltip`, tooltip ? 'open' : null].filter(Boolean).join(' ').trim()}
               >
                 {getLabelValue(item)}
-              </SliderTooltip>
+              </SliderStyleTooltip>
             )}
-          </SliderHandle>
+          </SliderStyleHandle>
         );
       })}
       {dots && (
@@ -284,6 +284,6 @@ export default function Slider(props: SliderProps) {
           }}
         />
       )}
-    </SliderWarp>
+    </SliderStyleWarp>
   );
 }

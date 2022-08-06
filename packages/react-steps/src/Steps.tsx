@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Step, { StepProps } from './Step';
-import { StepsWarp } from './style';
+import { StepsStyleWarp } from './style';
 export interface StepsProps<T> extends IProps, HTMLDivProps {
   status?: StepProps['status'];
   progressDot?: StepProps['progressDot'];
@@ -49,7 +49,7 @@ function InternalSteps<T>(props: StepsProps<T>) {
   }
 
   return (
-    <StepsWarp className={classString} style={style} {...resetProps} ref={warpRef}>
+    <StepsStyleWarp className={classString} style={style} {...resetProps} ref={warpRef}>
       {React.Children.map(children, (child: any, index) => {
         const childProps = {
           stepNumber: `${index + 1}`,
@@ -83,7 +83,7 @@ function InternalSteps<T>(props: StepsProps<T>) {
         }
         return React.cloneElement(child, childProps);
       })}
-    </StepsWarp>
+    </StepsStyleWarp>
   );
 }
 
