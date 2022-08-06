@@ -2,17 +2,17 @@ import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions, HTMLDivProps } from '@uiw/utils';
 import { DatePickerDayRenderDay } from './../index';
 
-export interface DatePickerBodyWarpProps extends ThemeVariantValueOptions, HTMLDivProps {}
-export const DatePickerBodyWarp = styled.div<DatePickerBodyWarpProps>`
+export interface DatePickerStyleBodyWarpProps extends ThemeVariantValueOptions, HTMLDivProps {}
+export const DatePickerStyleBodyWarp = styled.div<DatePickerStyleBodyWarpProps>`
   padding-top: 5px;
 `;
 
-export interface DatePickerWeekProps extends ThemeVariantValueOptions, HTMLDivProps {
+export interface DatePickerStyleWeekProps extends ThemeVariantValueOptions, HTMLDivProps {
   cls?: DatePickerDayRenderDay;
 }
-export interface DatePickerWeekBaseProps extends ThemeVariantValueOptions, HTMLDivProps {}
+export interface DatePickerStyleWeekBaseProps extends ThemeVariantValueOptions, HTMLDivProps {}
 
-export const DatePickerWeekDefaultTheme = {
+export const DatePickerStyleWeekDefaultTheme = {
   // 公共
   backgroundColorPrimary: '#008ef0',
   colorPrimary: '#fff',
@@ -26,11 +26,11 @@ export const DatePickerWeekDefaultTheme = {
   colorDatePickerDayHover: '#393e48',
 };
 
-export const DatePickerWeekBaseDefaultTheme = {
+export const DatePickerStyleWeekBaseDefaultTheme = {
   colorDatePickerDayEnd: '#6f6f6f',
 };
 
-export const DatePickerWeekBase = styled.div<DatePickerWeekBaseProps>`
+export const DatePickerStyleWeekBase = styled.div<DatePickerStyleWeekBaseProps>`
   display: flex;
   width: 100%;
   & > div,
@@ -46,13 +46,13 @@ export const DatePickerWeekBase = styled.div<DatePickerWeekBaseProps>`
     color: ${(props) => getThemeVariantValue(props, 'colorDatePickerDayEnd')};
   }
 `;
-export const DatePickerWeekDay = styled(DatePickerWeekBase)`
+export const DatePickerStyleWeekDay = styled(DatePickerStyleWeekBase)`
   & > div {
     font-weight: bold;
   }
 `;
 
-export const DatePickerWeek = styled(DatePickerWeekBase)<DatePickerWeekProps>`
+export const DatePickerStyleWeek = styled(DatePickerStyleWeekBase)<DatePickerStyleWeekProps>`
   & {
     border-radius: 3px;
     cursor: pointer;
@@ -126,9 +126,9 @@ export const DatePickerWeek = styled(DatePickerWeekBase)<DatePickerWeekProps>`
   }
 `;
 
-DatePickerWeekBase.defaultProps = {
-  defaultTheme: DatePickerWeekDefaultTheme,
+DatePickerStyleWeekBase.defaultProps = {
+  defaultTheme: DatePickerStyleWeekDefaultTheme,
 };
-DatePickerWeek.defaultProps = {
-  defaultTheme: DatePickerWeekDefaultTheme,
+DatePickerStyleWeek.defaultProps = {
+  defaultTheme: DatePickerStyleWeekDefaultTheme,
 };

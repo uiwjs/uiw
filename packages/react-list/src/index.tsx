@@ -1,9 +1,9 @@
 import React from 'react';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import { ListItem } from './Item';
-import ListWarp, { ListFooter, ListHeader } from './style';
-
+import ListWarp, { ListStyleFooter, ListStyleHeader } from './style';
 export * from './Item';
+export * from './style';
 
 export interface ListProps<T> extends IProps, HTMLDivProps {
   bordered?: boolean;
@@ -70,9 +70,9 @@ function InternalList<T>(props: ListProps<T>, ref: React.ForwardedRef<HTMLDivEle
       bordered={bordered}
       size={size}
     >
-      {header && <ListHeader className={`${prefixCls}-header`}>{header}</ListHeader>}
+      {header && <ListStyleHeader className={`${prefixCls}-header`}>{header}</ListStyleHeader>}
       {childrenList}
-      {footer && <ListFooter className={`${prefixCls}-footer`}>{footer}</ListFooter>}
+      {footer && <ListStyleFooter className={`${prefixCls}-footer`}>{footer}</ListStyleFooter>}
     </ListWarp>
   );
 }

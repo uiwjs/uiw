@@ -1,34 +1,34 @@
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 import styled, { css } from 'styled-components';
 
-interface CaptionWrapProps extends ThemeVariantValueOptions {}
-interface BtnGroupWrapProps extends ThemeVariantValueOptions {}
-interface PanelWrapProps extends ThemeVariantValueOptions {}
-interface CalendarWrapProps extends ThemeVariantValueOptions {}
+interface CalendarCaptionStyleWrapProps extends ThemeVariantValueOptions {}
+interface CalendarBtnGroupStyleWrapProps extends ThemeVariantValueOptions {}
+interface CalendarPanelStyleWrapProps extends ThemeVariantValueOptions {}
+interface CalendarStyleWrapProps extends ThemeVariantValueOptions {}
 
-export const CaptionWrap = styled.div<CaptionWrapProps>`
+export const CalendarCaptionStyleWrap = styled.div<CalendarCaptionStyleWrapProps>`
   font-size: ${(props) => getThemeVariantValue(props, 'fontSizeCalendarCaptionDefualt')};
   font-weight: 200;
   width: 100%;
   display: inline-block;
 `;
 
-export const BtnWrap = styled.span``;
+export const CalendarBtnStyleWrap = styled.span``;
 
-export const BtnGroupWrap = styled.div<BtnGroupWrapProps>`
+export const CalendarBtnGroupStyleWrap = styled.div<CalendarBtnGroupStyleWrapProps>`
   ${(props) => css`
     display: inline-block;
     user-select: none;
     float: right;
 
-    & > ${BtnWrap} {
+    & > ${CalendarBtnStyleWrap} {
       font-size: ${getThemeVariantValue(props, 'fontSizeLarge')};
       padding: 2px 3px;
       position: relative;
       top: -3px;
     }
     & > .w-icon,
-    & > ${BtnWrap} {
+    & > ${CalendarBtnStyleWrap} {
       cursor: pointer;
       border-radius: 3px;
       transition: all 0.3s;
@@ -40,7 +40,7 @@ export const BtnGroupWrap = styled.div<BtnGroupWrapProps>`
       }
     }
     & > .w-icon,
-    & > ${BtnWrap} {
+    & > ${CalendarBtnStyleWrap} {
       vertical-align: middle;
       margin-top: -6px;
       > svg {
@@ -58,22 +58,22 @@ export const BtnGroupWrap = styled.div<BtnGroupWrapProps>`
   `}
 `;
 
-export const TitleWrap = styled.div`
+export const CalendarTitleWrap = styled.div`
   display: inline-block;
   user-select: none;
 `;
 
-export const DayWrap = styled.div`
+export const CalendarDayWrap = styled.div`
   padding-right: 5px;
   text-align: right;
 `;
 
-export const InnerWrap = styled.div`
+export const CalendarInnerWrap = styled.div`
   text-align: right;
   padding: 5px;
 `;
 
-export const PanelWrap = styled.div<PanelWrapProps>`
+export const CalendarPanelStyleWrap = styled.div<CalendarPanelStyleWrapProps>`
   ${(props) => css`
     width: 100%;
     height: 90px;
@@ -90,7 +90,7 @@ export const PanelWrap = styled.div<PanelWrapProps>`
   `}
 `;
 
-export const CalendarWrap = styled.div<CalendarWrapProps>`
+export const CalendarStyleWrap = styled.div<CalendarStyleWrapProps>`
   ${(props) => css`
     background: ${getThemeVariantValue(props, 'backgroundCalendarDefault')};
 
@@ -123,13 +123,13 @@ export const CalendarWrap = styled.div<CalendarWrapProps>`
   `}
 `;
 
-CaptionWrap.defaultProps = {
+CalendarCaptionStyleWrap.defaultProps = {
   defaultTheme: {
     fontSizeCalendarCaptionDefualt: '26px',
   },
 };
 
-BtnGroupWrap.defaultProps = {
+CalendarBtnGroupStyleWrap.defaultProps = {
   defaultTheme: {
     fontSizeLarge: '16px',
     backgroundColorCalendarHover: '#ececec',
@@ -137,13 +137,13 @@ BtnGroupWrap.defaultProps = {
   },
 };
 
-PanelWrap.defaultProps = {
+CalendarPanelStyleWrap.defaultProps = {
   defaultTheme: {
     lineHeightCalendarPanel: '16px',
   },
 };
 
-CalendarWrap.defaultProps = {
+CalendarStyleWrap.defaultProps = {
   defaultTheme: {
     backgroundCalendarDefault: 'white',
     borderColorCalendarChildDiv: '#ececec',

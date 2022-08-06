@@ -9,8 +9,8 @@ import { useEffect } from 'react';
 import {
   SearchSelectInputContentsBase,
   SearchSelectTagContentsBase,
-  SearchSelectIconBase,
-  SearchSelectInputBase,
+  SearchSelectIconStyleBase,
+  SearchSelectInputStyleBase,
   SearchSelectInner,
 } from './style';
 import { Close } from '@uiw/icons/lib/Close';
@@ -331,7 +331,7 @@ export default function SearchSelect(props: SearchSelectProps) {
               />
             </SearchSelectTagContentsBase>
             {!disabled && (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
-              <SearchSelectIconBase
+              <SearchSelectIconStyleBase
                 className={`${prefixCls}-multiple-colse`}
                 as={ICONTYPE[selectIconType]}
                 params={{ multiple: true, spin: loading && selectIconType === 'loading' }}
@@ -341,7 +341,7 @@ export default function SearchSelect(props: SearchSelectProps) {
             )}
           </SearchSelectInner>
         ) : (
-          <SearchSelectInputBase
+          <SearchSelectInputStyleBase
             className={`${prefixCls}-search-${showSearch}`}
             readOnly={!showSearch}
             params={{ showSearch }}
@@ -354,7 +354,7 @@ export default function SearchSelect(props: SearchSelectProps) {
             addonAfter={
               !disabled &&
               (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
-                <SearchSelectIconBase
+                <SearchSelectIconStyleBase
                   as={ICONTYPE[selectIconType]}
                   params={{ singe: true, spin: loading && selectIconType === 'loading' }}
                   className={`${prefixCls}-singe-colse`}

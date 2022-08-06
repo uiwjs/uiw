@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import Icon from '@uiw/react-icon';
 import Table, { LocationWidth, TableColumns, TableProps } from './';
-import { TableCol, TableColContent } from './style';
+import { TableStyleCol, TableStyleColContent } from './style';
 import './style/index.less';
 import { noop } from '@uiw/utils';
 import { locationFixed } from './util';
@@ -122,7 +122,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   }
                 }
                 return (
-                  <TableCol
+                  <TableStyleCol
                     {...objs}
                     style={
                       keyName.fixed
@@ -130,12 +130,12 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                         : {}
                     }
                     children={
-                      <TableColContent
+                      <TableStyleColContent
                         className={ellipsis && ellipsis[keyName.key!] ? `${prefixCls}-ellipsis` : undefined}
                         params={{ ellipsis: ellipsis && ellipsis[keyName.key!] }}
                       >
                         {objs.children}
-                      </TableColContent>
+                      </TableStyleColContent>
                     }
                     key={colNum}
                     className={[

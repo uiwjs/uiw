@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { IconBase, IconBaseProps } from '@uiw/react-icon';
+import { IconStyleBase } from '@uiw/react-icon';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import Button, { ButtonProps } from '@uiw/react-button';
 
@@ -86,7 +86,7 @@ export const MessageDivWrap = styled(MessageWrap)<divWrapProps>`
         return css``;
     }
   }}
-    > .w-icon {
+    > ${IconStyleBase} {
     top: 14px;
     left: 14px;
     position: absolute;
@@ -146,7 +146,7 @@ export const MessageTitleSpan = styled(MessageDescriptionSpan)<spanPeops>`
     `}
 `;
 
-interface MessageIconWarpProps extends IconBaseProps, ThemeVariantValueOptions {
+interface MessageIconWarpProps extends ThemeVariantValueOptions {
   params: {
     children: React.ReactNode;
     showIcon: boolean | undefined;
@@ -169,7 +169,7 @@ export const MessageIconWarp = styled.span<MessageIconWarpProps>`
 
 interface messageButtonProps extends ButtonProps {}
 
-export const MessageButtonWarp = styled(Button)<messageButtonProps>`
+export const MessageButtonStyleWarp = styled(Button)<messageButtonProps>`
   position: absolute;
   right: 10px;
   top: 10px;

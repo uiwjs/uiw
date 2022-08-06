@@ -1,11 +1,11 @@
 import { getThemeVariantValue } from '@uiw/utils';
 import { css } from 'styled-components';
-import { ButtonBaseProps } from '.';
-import { IconBase } from '@uiw/react-icon';
+import { ButtonStyleBaseProps } from '.';
+import { IconStyleBase } from '@uiw/react-icon';
 
 type Options = {
   type: string;
-} & ButtonBaseProps;
+} & ButtonStyleBaseProps;
 
 /**
  * @description: 生成公共css
@@ -107,7 +107,7 @@ export const buttonVariant = (options: Options) => {
   `;
 };
 
-export const buttonTypes = (props: ButtonBaseProps) => {
+export const buttonTypes = (props: ButtonStyleBaseProps) => {
   const { type, focus, basic, active, disabled } = props.param || {};
   switch (type) {
     case 'primary':
@@ -208,7 +208,7 @@ export const buttonTypes = (props: ButtonBaseProps) => {
   }
 };
 
-export const getloadingCss = (props: ButtonBaseProps) => {
+export const getloadingCss = (props: ButtonStyleBaseProps) => {
   return css`
     ${() =>
       props.param?.loading &&
@@ -255,14 +255,14 @@ export const buttonSize = (fontSize: string, iconSize: string, lineHeight: strin
     }
   `;
 };
-const getSize = (props: ButtonBaseProps, type: string) => {
+const getSize = (props: ButtonStyleBaseProps, type: string) => {
   const fontSize = getThemeVariantValue(props, `fontSize${type}`);
   const minHeight = getThemeVariantValue(props, `minHeightButton${type}`);
   const fontSizeIcon = getThemeVariantValue(props, `fontSizeButtonIcon${type}`);
   return buttonSize(`${fontSize}`, `${fontSizeIcon}`, fontSize, `${minHeight}`);
 };
 
-export const buttonSizeCss = (props: ButtonBaseProps) => {
+export const buttonSizeCss = (props: ButtonStyleBaseProps) => {
   const { size } = props.param || {};
   switch (size) {
     case 'large':
@@ -278,13 +278,13 @@ export const buttonSizeCss = (props: ButtonBaseProps) => {
   }
 };
 
-export const getIconAndSizeCss = (props: ButtonBaseProps) => {
+export const getIconAndSizeCss = (props: ButtonStyleBaseProps) => {
   return css`
-    ${IconBase} {
+    ${IconStyleBase} {
       font-size: ${() => getThemeVariantValue(props, 'fontSizeButtonIcontDefault')};
     }
     ${() => buttonSizeCss(props)}
-    ${IconBase}:not(:last-child) {
+    ${IconStyleBase}:not(:last-child) {
       margin-right: 5px;
     }
   `;

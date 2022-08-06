@@ -249,6 +249,7 @@ class Demo extends React.Component {
           isOpen={this.state.visible2}
           confirmText="确定按钮"
           cancelText="取消按钮"
+          icon="circle-check"
           type="success"
           onClosed={this.onClosed.bind(this, 'visible2')}
           content="这个对话框只有两个个按钮，单击“确定按钮”后，此对话框将关闭。用作通知用户重要信息。"
@@ -411,7 +412,7 @@ export default Demo
 | cancelText | 取消按钮文字， | String | - |
 | confirmText | 确认按钮文字 | String | `确认` |
 | type | 按钮类型跟 `<Button>` 组件的 `type` 参数一致，同时会影响按钮颜色。 | String | `light` |
-| icon[`<Modal>`](#/components/modal) | 设置对话框右上角图标，，设置 `type` 将图标设置不同的颜色。当前属性为 [`<Icon>`](#/components/icon) 组件的 `type` 属性，所以可以参考该组件自定义图标。 | String/ReactNode | - |
+| icon[`<Modal>`](#/components/modal) | 设置对话框左上角图标，，设置 `type` 将图标设置不同的颜色。当前属性为 [`<Icon>`](#/components/icon) 组件的 `type` 属性，所以可以参考该组件自定义图标。 | String/ReactNode | - |
 | title[`<Modal>`](#/components/modal)  | 设置标题 | Function(e) | - |
 | useButton[`<Modal>`](#/components/modal) | 是否使用默认按钮，如果设置 `false` 需要自定义按钮关闭 | Boolean | `true` |
 | isOpen[`<Modal>`](#/components/modal) | 对话框是否可见 | Boolean | `false` |

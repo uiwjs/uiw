@@ -1,30 +1,30 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
-export interface TableBaseProps
+export interface TableStyleBaseProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
     ThemeVariantValueOptions {}
 
-export interface TableWrapBaseProps extends TableBaseProps {
+export interface TableStyleWrapBaseProps extends TableStyleBaseProps {
   params?: {
     bordered?: boolean;
   };
 }
 
-export interface TableColProps extends TableBaseProps {
+export interface TableStyleColProps extends TableStyleBaseProps {
   params?: {
     align?: 'left' | 'center' | 'right';
     fixed?: boolean | 'left' | 'right';
   };
 }
 
-export interface TableColContentProps extends TableBaseProps {
+export interface TableStyleColContentProps extends TableStyleBaseProps {
   params: {
     ellipsis?: boolean;
   };
 }
 
-export interface TableFooterProps extends TableBaseProps {
+export interface TableStyleFooterProps extends TableStyleBaseProps {
   params?: {
     bordered?: boolean;
   };
@@ -42,7 +42,7 @@ export const TableBaseDefaultTheme = {
   borderRightColorFixedRows: '#f0f0f0', // 固定列
 };
 
-export const TableWrap = styled.div<TableWrapBaseProps>`
+export const TableStyleWrap = styled.div<TableStyleWrapBaseProps>`
   > table {
     display: table !important;
     margin: 0 !important;
@@ -111,13 +111,13 @@ export const TableWrap = styled.div<TableWrapBaseProps>`
       }
     `}
 `;
-TableWrap.defaultProps = { defaultTheme: TableBaseDefaultTheme };
+TableStyleWrap.defaultProps = { defaultTheme: TableBaseDefaultTheme };
 
-export const TheadWrap = styled.thead``;
-export const TheadItem = styled.th``;
+export const TableStyleTheadWrap = styled.thead``;
+export const TableStyleTheadItem = styled.th``;
 
 // 单元格
-export const TableCol = styled.td<TableColProps>`
+export const TableStyleCol = styled.td<TableStyleColProps>`
   text-align: ${(props) => props?.params?.align};
   ${(props) =>
     props?.params?.fixed &&
@@ -160,9 +160,9 @@ export const TableCol = styled.td<TableColProps>`
           }
         `)}
 `;
-TableCol.defaultProps = { defaultTheme: TableBaseDefaultTheme };
+TableStyleCol.defaultProps = { defaultTheme: TableBaseDefaultTheme };
 
-export const TableColContent = styled.span<TableColContentProps>`
+export const TableStyleColContent = styled.span<TableStyleColContentProps>`
   ${(props) =>
     props?.params?.ellipsis &&
     css`
@@ -173,9 +173,9 @@ export const TableColContent = styled.span<TableColContentProps>`
       display: block;
     `}
 `;
-TableColContent.defaultProps = { defaultTheme: TableBaseDefaultTheme };
+TableStyleColContent.defaultProps = { defaultTheme: TableBaseDefaultTheme };
 
-export const TableFooter = styled.div<TableFooterProps>`
+export const TableStyleFooter = styled.div<TableStyleFooterProps>`
   background: ${(props) => getThemeVariantValue(props, 'backgroundColorTableFooter')};
   padding: 10px 8px;
   ${(props) =>
@@ -187,4 +187,4 @@ export const TableFooter = styled.div<TableFooterProps>`
       }
     `}
 `;
-TableFooter.defaultProps = { defaultTheme: TableBaseDefaultTheme };
+TableStyleFooter.defaultProps = { defaultTheme: TableBaseDefaultTheme };

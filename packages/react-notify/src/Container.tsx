@@ -1,10 +1,9 @@
 import React from 'react';
-import Alert, { AlertProps } from '@uiw/react-alert';
+import { AlertProps } from '@uiw/react-alert';
 import { IProps } from '@uiw/utils';
 import { NotificationCreateProps } from './index';
-
+import { NotifyStyleAlertBase, NotifyGlobalStyle } from './style';
 export type Placement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
-
 export interface ContainerProps extends IProps {
   placement?: Placement;
 }
@@ -73,6 +72,7 @@ export default class Container extends React.Component<ContainerProps, Container
     const { placement } = this.state;
     return (
       <React.Fragment>
+        <NotifyGlobalStyle />
         {placement &&
           Object.keys(this.state.notifys[placement]).map((key) => {
             const { description, isOpen, ...alertProps } = this.state.notifys[placement][key];
@@ -80,7 +80,7 @@ export default class Container extends React.Component<ContainerProps, Container
               delete alertProps.type;
             }
             return (
-              <Alert
+              <NotifyStyleAlertBase
                 className={prefixCls}
                 key={key}
                 useButton={false}

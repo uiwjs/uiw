@@ -1,6 +1,6 @@
 import React from 'react';
-import EmptyWrap, { EmptyDescription, EmptyFooter, EmptyIcon } from './style';
-
+import EmptyWrap, { EmptyStyleDescription, EmptyStyleFooter, EmptyStyleIcon } from './style';
+export * from './style';
 export interface EmptyProps extends React.HTMLAttributes<HTMLDivElement> {
   prefixCls?: string;
   icon?: React.ReactNode;
@@ -25,7 +25,7 @@ const Empty = (props: EmptyProps) => {
   const cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   return (
     <EmptyWrap className={cls} {...other}>
-      <EmptyIcon className={`${prefixCls}-icon`}>
+      <EmptyStyleIcon className={`${prefixCls}-icon`}>
         {icon ? (
           icon
         ) : (
@@ -46,9 +46,11 @@ const Empty = (props: EmptyProps) => {
             />
           </svg>
         )}
-      </EmptyIcon>
-      {description && <EmptyDescription className={`${prefixCls}-description`}>{description}</EmptyDescription>}
-      {children && <EmptyFooter className={`${prefixCls}-footer`}>{children}</EmptyFooter>}
+      </EmptyStyleIcon>
+      {description && (
+        <EmptyStyleDescription className={`${prefixCls}-description`}>{description}</EmptyStyleDescription>
+      )}
+      {children && <EmptyStyleFooter className={`${prefixCls}-footer`}>{children}</EmptyStyleFooter>}
     </EmptyWrap>
   );
 };

@@ -3,10 +3,10 @@ import { ThemeVariantValueOptions } from '@uiw/utils';
 import { Props, FileInputListProps } from '../';
 import Input, { InputProps } from '@uiw/react-input';
 
-export interface FileInputWarpProps extends Props, ThemeVariantValueOptions {}
+export interface FileInputStyleWarpProps extends Props, ThemeVariantValueOptions {}
 
 // Input
-export const FileInputWarp = styled(Input)<InputProps>`
+export const FileInputStyleWarp = styled(Input)<InputProps>`
   input {
     &::-webkit-file-upload-button {
       background: transparent;
@@ -53,7 +53,7 @@ export const FileInputWarp = styled(Input)<InputProps>`
 interface FileInputCardActionsProps {
   isAction: boolean;
 }
-export const FileInputCardActionsWarp = styled.div<FileInputCardActionsProps>`
+export const FileInputStyleCardActionsWarp = styled.div<FileInputCardActionsProps>`
   ${(props) =>
     props.isAction &&
     css`
@@ -71,7 +71,7 @@ export const FileInputCardActionsWarp = styled.div<FileInputCardActionsProps>`
       border-radius: 2px;
     `}
 `;
-export const FileInputCardBoxWarp = styled.div<{ btn?: boolean }>`
+export const FileInputStyleCardBoxWarp = styled.div<{ btn?: boolean }>`
   margin-right: 8px;
   margin-bottom: 8px;
   text-align: center;
@@ -90,11 +90,11 @@ export const FileInputCardBoxWarp = styled.div<{ btn?: boolean }>`
       align-items: center;
       justify-content: center;
     `}
-  :hover ${FileInputCardActionsWarp} {
+  :hover ${FileInputStyleCardActionsWarp} {
     opacity: 1;
   }
 `;
-export const FileInputCardBoxInfoWarp = styled.div`
+export const FileInputStyleCardBoxInfoWarp = styled.div`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -103,7 +103,7 @@ export const FileInputCardBoxInfoWarp = styled.div`
     height: 100%;
   }
 `;
-export const FileInputCardActionsRemoveWarp = styled.span`
+export const FileInputStyleCardActionsRemoveWarp = styled.span`
   width: 24px;
   height: 20px;
   display: flex;
@@ -111,7 +111,7 @@ export const FileInputCardActionsRemoveWarp = styled.span`
   justify-content: center;
   cursor: pointer;
 `;
-export const FileInputCardWarp = styled.div<{
+export const FileInputStyleCardWarp = styled.div<{
   size: FileInputListProps['size'];
   shape: FileInputListProps['shape'];
 }>`
@@ -119,7 +119,7 @@ export const FileInputCardWarp = styled.div<{
   ${(props) => {
     if (props.size === 'large') {
       return css`
-        ${FileInputCardBoxWarp} {
+        ${FileInputStyleCardBoxWarp} {
           width: 110px;
           height: 110px;
         }
@@ -127,7 +127,7 @@ export const FileInputCardWarp = styled.div<{
     }
     if (props.size === 'middle') {
       return css`
-        ${FileInputCardBoxWarp} {
+        ${FileInputStyleCardBoxWarp} {
           width: 80px;
           height: 80px;
         }
@@ -135,7 +135,7 @@ export const FileInputCardWarp = styled.div<{
     }
     if (props.size === 'small') {
       return css`
-        ${FileInputCardBoxWarp} {
+        ${FileInputStyleCardBoxWarp} {
           width: 50px;
           height: 50px;
         }
@@ -146,14 +146,14 @@ export const FileInputCardWarp = styled.div<{
   ${(props) => {
     if (props.shape === 'circle') {
       return css`
-        ${FileInputCardBoxWarp} {
+        ${FileInputStyleCardBoxWarp} {
           border-radius: 50%;
         }
       `;
     }
     if (props.shape === 'round') {
       return css`
-        ${FileInputCardBoxWarp} {
+        ${FileInputStyleCardBoxWarp} {
           border-radius: 2px;
         }
       `;
@@ -163,7 +163,7 @@ export const FileInputCardWarp = styled.div<{
 `;
 
 // list
-export const FileInputListActionsWarp = styled.div`
+export const FileInputStyleListActionsWarp = styled.div`
   position: absolute;
   left: 0;
   top: 0;
@@ -177,7 +177,7 @@ export const FileInputListActionsWarp = styled.div`
   background: rgba(0, 0, 0, 0.6);
   border-radius: 2px;
 `;
-export const FileInputListActionsSearchWarp = styled.span`
+export const FileInputStyleListActionsSearchWarp = styled.span`
   width: 24px;
   height: 20px;
   display: flex;
@@ -185,14 +185,14 @@ export const FileInputListActionsSearchWarp = styled.span`
   justify-content: center;
   cursor: pointer;
 `;
-export const FileInputListUploadInfoTypeWarp = styled.div`
-  :hover ${FileInputListActionsWarp} {
+export const FileInputStyleListUploadInfoTypeWarp = styled.div`
+  :hover ${FileInputStyleListActionsWarp} {
     opacity: 1;
   }
 `;
-export const FileInputListUploadTextTypeWarp = styled.div``;
-export const FileInputListUploadIconTypeWarp = styled.div``;
-export const FileInputListUploadTypeWarp = styled.div<{
+export const FileInputStyleListUploadTextTypeWarp = styled.div``;
+export const FileInputStyleListUploadIconTypeWarp = styled.div``;
+export const FileInputStyleListUploadTypeWarp = styled.div<{
   uploadType: FileInputListProps['uploadType'];
 }>`
   ${(props) => {
@@ -203,7 +203,7 @@ export const FileInputListUploadTypeWarp = styled.div<{
         align-items: center;
         padding: 5px;
         margin-top: 8px;
-        ${FileInputListUploadInfoTypeWarp} {
+        ${FileInputStyleListUploadInfoTypeWarp} {
           margin-right: 10px;
           position: relative;
           overflow: hidden;
@@ -213,10 +213,10 @@ export const FileInputListUploadTypeWarp = styled.div<{
             display: block;
           }
         }
-        ${FileInputListUploadTextTypeWarp} {
+        ${FileInputStyleListUploadTextTypeWarp} {
           flex: 1;
         }
-        ${FileInputListUploadIconTypeWarp} {
+        ${FileInputStyleListUploadIconTypeWarp} {
           padding: 5px;
           cursor: pointer;
         }
@@ -224,7 +224,7 @@ export const FileInputListUploadTypeWarp = styled.div<{
     }
   }}
 `;
-export const FileInputListWarp = styled.div<{
+export const FileInputStyleListWarp = styled.div<{
   size: FileInputListProps['size'];
   shape: FileInputListProps['shape'];
   uploadType: FileInputListProps['uploadType'];
@@ -237,8 +237,8 @@ export const FileInputListWarp = styled.div<{
     }
     if (props.size === 'large') {
       return css`
-        ${FileInputListUploadTypeWarp} {
-          ${FileInputListUploadInfoTypeWarp} img {
+        ${FileInputStyleListUploadTypeWarp} {
+          ${FileInputStyleListUploadInfoTypeWarp} img {
             width: 70px;
             height: 70px;
           }
@@ -247,8 +247,8 @@ export const FileInputListWarp = styled.div<{
     }
     if (props.size === 'middle') {
       return css`
-        ${FileInputListUploadTypeWarp} {
-          ${FileInputListUploadInfoTypeWarp} img {
+        ${FileInputStyleListUploadTypeWarp} {
+          ${FileInputStyleListUploadInfoTypeWarp} img {
             width: 50px;
             height: 50px;
           }
@@ -257,8 +257,8 @@ export const FileInputListWarp = styled.div<{
     }
     if (props.size === 'small') {
       return css`
-        ${FileInputListUploadTypeWarp} {
-          ${FileInputListUploadInfoTypeWarp} img {
+        ${FileInputStyleListUploadTypeWarp} {
+          ${FileInputStyleListUploadInfoTypeWarp} img {
             width: 50px;
             height: 50px;
           }
@@ -270,8 +270,8 @@ export const FileInputListWarp = styled.div<{
   ${(props) => {
     if (props.shape === 'round' && props.uploadType === 'picture') {
       return css`
-        ${FileInputListUploadTypeWarp} {
-          ${FileInputListUploadInfoTypeWarp} {
+        ${FileInputStyleListUploadTypeWarp} {
+          ${FileInputStyleListUploadInfoTypeWarp} {
             border-radius: 2px;
           }
         }
@@ -295,10 +295,10 @@ export const FileInputListWarp = styled.div<{
         :first-child {
           margin-top: 8px;
         }
-        ${FileInputListUploadTextTypeWarp} {
+        ${FileInputStyleListUploadTextTypeWarp} {
           flex: 1;
         }
-        ${FileInputListUploadIconTypeWarp} {
+        ${FileInputStyleListUploadIconTypeWarp} {
           padding: 0 5px;
           cursor: pointer;
         }
