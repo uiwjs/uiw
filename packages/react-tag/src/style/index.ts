@@ -3,16 +3,16 @@ import { getThemeVariantValue, HTMLSpanProps, ThemeVariantValueOptions } from '@
 
 export const TagDefaultTheme = {
   fontSizeSmall: '12px',
-  backgroundColorTagSvgHover: 'rgba(0, 0, 0, 0.22)',
-  backgroundColorTagSvgActive: 'rgba(0, 0, 0, 0.32)',
-  backgroundColorTagSvgLightActive: 'rgba(0, 0, 0, 0.15)',
-  fillTagSvgLightHover: '#fff',
+  backgroundColorTagStyleSvgHover: 'rgba(0, 0, 0, 0.22)',
+  backgroundColorTagStyleSvgActive: 'rgba(0, 0, 0, 0.32)',
+  backgroundColorTagStyleSvgLightActive: 'rgba(0, 0, 0, 0.15)',
+  fillTagStyleSvgLightHover: '#fff',
 };
 
-export interface TagSvgProps extends React.SVGProps<SVGSVGElement>, ThemeVariantValueOptions {
+export interface TagStyleSvgProps extends React.SVGProps<SVGSVGElement>, ThemeVariantValueOptions {
   isLight?: boolean;
 }
-export const TagSvg = styled.svg<TagSvgProps>`
+export const TagStyleSvg = styled.svg<TagStyleSvgProps>`
   vertical-align: bottom;
   margin: 0px -3px 0 2px;
   border-radius: 2px;
@@ -22,10 +22,10 @@ export const TagSvg = styled.svg<TagSvgProps>`
   transition: all 0.3s;
   cursor: pointer;
   &:hover {
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTagSvgHover')};
+    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTagStyleSvgHover')};
   }
   &:active {
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTagSvgActive')};
+    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTagStyleSvgActive')};
   }
   ${(props) =>
     props.isLight &&
@@ -34,20 +34,20 @@ export const TagSvg = styled.svg<TagSvgProps>`
         &:hover {
           background-color: currentcolor;
           path {
-            fill: ${(props) => getThemeVariantValue(props, 'fillTagSvgLightHover')};
+            fill: ${(props) => getThemeVariantValue(props, 'fillTagStyleSvgLightHover')};
           }
         }
         &:active {
-          background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTagSvgLightActive')};
+          background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTagStyleSvgLightActive')};
         }
       }
     `}
 `;
-TagSvg.defaultProps = { defaultTheme: TagDefaultTheme };
-export interface TagWarpProps extends HTMLSpanProps, ThemeVariantValueOptions {
+TagStyleSvg.defaultProps = { defaultTheme: TagDefaultTheme };
+export interface TagStyleWarpProps extends HTMLSpanProps, ThemeVariantValueOptions {
   disabled?: boolean;
 }
-export const TagWarp = styled.span<TagWarpProps>`
+export const TagStyleWarp = styled.span<TagStyleWarpProps>`
   border-radius: 2px;
   display: inline-block;
   user-select: none;
@@ -68,4 +68,4 @@ export const TagWarp = styled.span<TagWarpProps>`
       }
     `}
 `;
-TagWarp.defaultProps = { defaultTheme: TagDefaultTheme };
+TagStyleWarp.defaultProps = { defaultTheme: TagDefaultTheme };

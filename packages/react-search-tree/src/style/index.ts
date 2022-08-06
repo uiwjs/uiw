@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import Dropdown from '@uiw/react-dropdown';
-import Input, { InputBase } from '@uiw/react-input';
+import Input, { InputStyleBase } from '@uiw/react-input';
 import Tag from '@uiw/react-tag';
 import { getThemeVariantValue } from '@uiw/utils';
 
@@ -58,7 +58,7 @@ export const DropdownDiv = styled.div<DropdownDivProps>`
   ${(props) => {
     if (props.size === 'small') {
       return css`
-        & ${InputBase} {
+        & ${InputStyleBase} {
           height: 16px;
           font-size: 10px;
           padding: 0px;
@@ -69,7 +69,7 @@ export const DropdownDiv = styled.div<DropdownDivProps>`
   ${(props) => {
     if (props.size === 'large') {
       return css`
-        & ${InputBase} {
+        & ${InputStyleBase} {
           // line-height:0px !important;
           height: 28px;
         }

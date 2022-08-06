@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
-import { getThemeVariantValue, HTMLDivProps, ThemeVariantValueOptions } from '@uiw/utils';
+import { ThemeVariantValueOptions } from '@uiw/utils';
 import React from 'react';
 
 const loaderRotate = keyframes`
@@ -36,10 +36,10 @@ const loaderColor = keyframes`
   }
 `;
 
-export interface LoaderSvgProps extends React.SVGProps<SVGSVGElement>, ThemeVariantValueOptions {
+export interface LoaderStyleSvgProps extends React.SVGProps<SVGSVGElement>, ThemeVariantValueOptions {
   size?: 'small' | 'default' | 'large';
 }
-export const LoaderSvg = styled.svg<LoaderSvgProps>`
+export const LoaderStyleSvg = styled.svg<LoaderStyleSvgProps>`
   height: 100%;
   width: 100%;
   animation: ${loaderRotate} 2s linear infinite;
@@ -81,13 +81,13 @@ export const LoaderSvg = styled.svg<LoaderSvgProps>`
     `}
 `;
 
-export interface LoaderTipsProps
+export interface LoaderStyleTipsProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
     ThemeVariantValueOptions {
   fullscreen?: boolean;
 }
 
-export const LoaderTips = styled.div<LoaderTipsProps>`
+export const LoaderStyleTips = styled.div<LoaderStyleTipsProps>`
   color: #2d8cf0;
   text-align: center;
   position: relative;
@@ -119,22 +119,22 @@ export const LoaderTips = styled.div<LoaderTipsProps>`
     `}
 `;
 
-export interface LoaderTipsNestedProps
+export interface LoaderStyleTipsNestedProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
     ThemeVariantValueOptions {}
 
-export const LoaderTipsNested = styled.div<LoaderTipsNestedProps>`
+export const LoaderStyleTipsNested = styled.div<LoaderStyleTipsNestedProps>`
   vertical-align: middle;
   display: inline-block;
 `;
 
-export interface LoaderTipsNestedTextProps
+export interface LoaderStyleTipsNestedTextProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
     ThemeVariantValueOptions {
   vertical?: boolean;
 }
 
-export const LoaderTipsNestedText = styled.div<LoaderTipsNestedTextProps>`
+export const LoaderStyleTipsNestedText = styled.div<LoaderStyleTipsNestedTextProps>`
   display: inline-block;
   margin-left: 5px;
   vertical-align: middle;
@@ -149,21 +149,21 @@ export const LoaderTipsNestedText = styled.div<LoaderTipsNestedTextProps>`
     `}
 `;
 
-export interface LoaderWarpProps
+export interface LoaderStyleWarpProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
     ThemeVariantValueOptions {}
-export const LoaderWarp = styled.div<LoaderWarpProps>`
+export const LoaderStyleWarp = styled.div<LoaderStyleWarpProps>`
   position: relative;
   display: inline-block;
 `;
 
-export interface LoaderChildProps
+export interface LoaderStyleChildProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
     ThemeVariantValueOptions {
   load?: boolean;
 }
 
-export const LoaderChild = styled.div<LoaderChildProps>`
+export const LoaderStyleChild = styled.div<LoaderStyleChildProps>`
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   ${(props) =>
     props.load &&

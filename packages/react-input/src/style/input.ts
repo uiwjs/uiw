@@ -2,11 +2,11 @@ import styled, { css } from 'styled-components';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 import { InputProps } from 'src';
 
-interface InputWarp extends ThemeVariantValueOptions, Pick<InputProps, 'size' | 'addonAfter' | 'disabled'> {}
+interface InputStyleBaseProps extends ThemeVariantValueOptions, Pick<InputProps, 'size' | 'addonAfter' | 'disabled'> {}
 
-export const InputBase = styled.input<InputWarp>`
+export const InputStyleBase = styled.input<InputStyleBaseProps>`
   ${(props) => {
-    const boxShadowColorInputBase = getThemeVariantValue(props, `boxShadowColorInputBase`);
+    const boxShadowColorInputStyleBase = getThemeVariantValue(props, `boxShadowColorInputStyleBase`);
     const boxShadowColorInputInsHBase = getThemeVariantValue(props, `boxShadowColorInputInsHBase`);
     const boxShadowColorInputInsVBase = getThemeVariantValue(props, `boxShadowColorInputInsVBase`);
     const boxShadowColorInputVFocus = getThemeVariantValue(props, `boxShadowColorInputVFocus`);
@@ -16,16 +16,16 @@ export const InputBase = styled.input<InputWarp>`
       outline: none;
       border: none;
       border-radius: 3px;
-      box-shadow: 0 0 0 0 ${boxShadowColorInputBase}, 0 0 0 0 ${boxShadowColorInputBase},
+      box-shadow: 0 0 0 0 ${boxShadowColorInputStyleBase}, 0 0 0 0 ${boxShadowColorInputStyleBase},
         inset 0 0 0 1px ${boxShadowColorInputInsHBase}, inset 0 1px 1px ${boxShadowColorInputInsVBase};
       box-sizing: border-box;
-      background: ${getThemeVariantValue(props, `backgroundColorInputBase`)};
+      background: ${getThemeVariantValue(props, `backgroundColorInputStyleBase`)};
       height: ${getThemeVariantValue(props, `heightInputDefault`)};
       margin: 0 !important;
       padding: 0 10px;
       vertical-align: middle;
       line-height: ${getThemeVariantValue(props, `heightInputDefault`)};
-      color: ${getThemeVariantValue(props, `colorInputBase`)};
+      color: ${getThemeVariantValue(props, `colorInputStyleBase`)};
       font-weight: 400;
       font-size: ${getThemeVariantValue(props, `fontSizeInputDefault`)};
       transition: box-shadow 0.3s cubic-bezier(0.4, 1, 0.75, 0.9);
@@ -58,14 +58,14 @@ export const InputBase = styled.input<InputWarp>`
   }}
 `;
 
-export const InputAddonAfter = styled.span<InputWarp>`
+export const InputStyleAddonAfter = styled.span<InputStyleBaseProps>`
   ${(props) => {
     return css`
       position: absolute;
-      top: ${getThemeVariantValue(props, `topInputAddonAfter`)};
-      right: ${getThemeVariantValue(props, `topInputAddonAfter`)};
+      top: ${getThemeVariantValue(props, `topInputStyleAddonAfter`)};
+      right: ${getThemeVariantValue(props, `topInputStyleAddonAfter`)};
       display: flex;
-      bottom: ${getThemeVariantValue(props, `topInputAddonAfter`)};
+      bottom: ${getThemeVariantValue(props, `topInputStyleAddonAfter`)};
       > * {
         display: flex !important;
         align-items: center;
@@ -74,13 +74,13 @@ export const InputAddonAfter = styled.span<InputWarp>`
   }}
 `;
 
-const InputWarp = styled.div<InputWarp>`
+export const InputStyleWarp = styled.div<InputStyleBaseProps>`
   position: relative;
   font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
   line-height: ${(props) => getThemeVariantValue(props, 'lineHeightInputsDefault')};
   width: ${(props) => getThemeVariantValue(props, 'widthInputsDefault')};
 
-  & ${InputBase} {
+  & ${InputStyleBase} {
     width: ${(props) => getThemeVariantValue(props, 'widthInputsDefault')};
   }
 
@@ -95,7 +95,7 @@ const InputWarp = styled.div<InputWarp>`
     if (props.size === 'large') {
       return css`
         font-size: ${getThemeVariantValue(props, 'fontSizeLarge')};
-        ${InputBase} {
+        ${InputStyleBase} {
           line-height: ${getThemeVariantValue(props, 'lineHeightInputLarge')};
           height: ${getThemeVariantValue(props, 'lineHeightInputLarge')};
         }
@@ -107,7 +107,7 @@ const InputWarp = styled.div<InputWarp>`
     if (props.size === 'small') {
       return css`
         min-width: 20px;
-        ${InputBase} {
+        ${InputStyleBase} {
           line-height: ${getThemeVariantValue(props, 'lineHeightInputSmall')};
           height: ${getThemeVariantValue(props, 'lineHeightInputSmall')};
           padding: 0 6px;
@@ -115,10 +115,10 @@ const InputWarp = styled.div<InputWarp>`
             padding-left: 26px;
           }
         }
-        ${InputAddonAfter} {
+        ${InputStyleAddonAfter} {
           > * {
-            line-height: ${getThemeVariantValue(props, 'lineHeightInputAddonAfter')};
-            min-height: ${getThemeVariantValue(props, 'lineHeightInputAddonAfter')};
+            line-height: ${getThemeVariantValue(props, 'lineHeightInputStyleAddonAfter')};
+            min-height: ${getThemeVariantValue(props, 'lineHeightInputStyleAddonAfter')};
           }
         }
       `;
@@ -126,13 +126,13 @@ const InputWarp = styled.div<InputWarp>`
   }}
 `;
 
-InputBase.defaultProps = {
+InputStyleBase.defaultProps = {
   defaultTheme: {
-    colorInputBase: '#393e48',
+    colorInputStyleBase: '#393e48',
     boxShadowColorInputHBase: 'rgba(19, 124, 189, 0)',
     boxShadowColorInputInsHBase: 'rgba(16, 22, 26, 0.15)',
     boxShadowColorInputInsVBase: 'rgba(16, 22, 26, 0.2)',
-    backgroundColorInputBase: '#fff',
+    backgroundColorInputStyleBase: '#fff',
     heightInputDefault: '30px',
     fontSizeInputDefault: 'inherit',
     boxShadowColorInputHFocus: '#393e48',
@@ -144,13 +144,13 @@ InputBase.defaultProps = {
   },
 };
 
-InputAddonAfter.defaultProps = {
+InputStyleAddonAfter.defaultProps = {
   defaultTheme: {
-    topInputAddonAfter: '3px',
+    topInputStyleAddonAfter: '3px',
   },
 };
 
-InputWarp.defaultProps = {
+InputStyleWarp.defaultProps = {
   defaultTheme: {
     fontSizeDefault: '14px',
     fontSizeLarge: '16px',
@@ -158,8 +158,8 @@ InputWarp.defaultProps = {
     widthInputsDefault: '100%',
     lineHeightInputLarge: '36px',
     lineHeightInputSmall: '24px',
-    lineHeightInputAddonAfter: '16px',
+    lineHeightInputStyleAddonAfter: '16px',
   },
 };
 
-export default InputWarp;
+export default InputStyleWarp;

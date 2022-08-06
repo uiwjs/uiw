@@ -1,20 +1,20 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions, HTMLDivProps, HTMLSpanProps } from '@uiw/utils';
 
-export interface BreadcrumbWarpProps extends ThemeVariantValueOptions, HTMLDivProps {}
+export interface BreadcrumbStyleWarpProps extends ThemeVariantValueOptions, HTMLDivProps {}
 
-export const BreadcrumbWarp = styled.div<BreadcrumbWarpProps>`
+export const BreadcrumbStyleWarp = styled.div<BreadcrumbStyleWarpProps>`
   display: inline-flex;
   font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
 `;
 
-export interface BreadcrumbWarpItemProps extends ThemeVariantValueOptions, HTMLSpanProps {
+export interface BreadcrumbStyleWarpItemProps extends ThemeVariantValueOptions, HTMLSpanProps {
   active?: boolean;
   noSeparator?: Boolean;
   noBefore?: boolean;
 }
 
-export const BreadcrumbWarpItem = styled.span<BreadcrumbWarpItemProps>`
+export const BreadcrumbStyleWarpItem = styled.span<BreadcrumbStyleWarpItemProps>`
   display: inline-flex;
   &::before {
     padding-right: ${(props) => getThemeVariantValue(props, 'paddingRightBreadcrumItemBefore')};
@@ -52,26 +52,26 @@ export const BreadcrumbWarpItem = styled.span<BreadcrumbWarpItemProps>`
     `}
 `;
 
-export const BreadcrumbSeparator = styled.span`
+export const BreadcrumbStyleSeparator = styled.span`
   padding-right: ${(props) => getThemeVariantValue(props, 'paddingRightBreadcrumItemBefore')};
   padding-left: ${(props) => getThemeVariantValue(props, 'paddingLeftBreadcrumItemBefore')};
   color: ${(props) => getThemeVariantValue(props, 'colorBreadcrumb')};
 `;
-export const BreadcrumbWarpItemDefaultTheme = {
+export const BreadcrumbStyleWarpItemDefaultTheme = {
   colorBreadcrumbActive: '#6e6e6e',
   paddingLeftBreadcrumItemBefore: '8px',
   paddingRightBreadcrumItemBefore: '8px',
 };
-BreadcrumbWarpItem.defaultProps = {
-  defaultTheme: BreadcrumbWarpItemDefaultTheme,
+BreadcrumbStyleWarpItem.defaultProps = {
+  defaultTheme: BreadcrumbStyleWarpItemDefaultTheme,
 };
-export const BreadcrumbWarpDefaultTheme = {
+export const BreadcrumbStyleWarpDefaultTheme = {
   fontSizeDefault: '14px',
   paddingLeftBreadcrumItemBefore: '8px',
   paddingRightBreadcrumItemBefore: '8px',
   marginLeftBreadcrumItemInterval: '6px',
 };
-BreadcrumbWarp.defaultProps = {
+BreadcrumbStyleWarp.defaultProps = {
   defaultTheme: {
     fontSizeDefault: '14px',
     paddingLeftBreadcrumItemBefore: '8px',

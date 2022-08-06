@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components';
 import { RadioAbstractProps, RadioText } from '@uiw/react-radio';
 
-export interface CheckboxBaseProps extends RadioAbstractProps {
+export interface CheckboxStyleBaseProps extends RadioAbstractProps {
   disabled?: boolean;
   indeterminate?: boolean;
 }
 
-const disabledCss = ({ disabled }: CheckboxBaseProps) => {
+const disabledCss = ({ disabled }: CheckboxStyleBaseProps) => {
   return (
     disabled &&
     css`
@@ -21,7 +21,7 @@ const disabledCss = ({ disabled }: CheckboxBaseProps) => {
   );
 };
 
-const indeterminateCss = ({ indeterminate }: CheckboxBaseProps) => {
+const indeterminateCss = ({ indeterminate }: CheckboxStyleBaseProps) => {
   return (
     indeterminate &&
     css`
@@ -46,14 +46,14 @@ const indeterminateCss = ({ indeterminate }: CheckboxBaseProps) => {
   );
 };
 
-const CheckGroupBase = styled.div<CheckboxBaseProps>`
+const CheckGroupStyleBase = styled.div<CheckboxStyleBaseProps>`
   vertical-align: middle;
   font-size: 0;
   cursor: pointer;
   white-space: nowrap;
 `;
 
-const CheckboxBase = styled.div<CheckboxBaseProps>`
+const CheckboxStyleBase = styled.div<CheckboxStyleBaseProps>`
   display: inline-block;
   input[type='checkbox'] {
     vertical-align: middle;
@@ -104,4 +104,4 @@ const CheckboxBase = styled.div<CheckboxBaseProps>`
   }
 `;
 
-export { CheckGroupBase, CheckboxBase };
+export { CheckGroupStyleBase, CheckboxStyleBase };

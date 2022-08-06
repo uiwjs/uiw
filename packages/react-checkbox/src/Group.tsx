@@ -1,6 +1,6 @@
 import React, { useMemo, useRef } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import { CheckGroupBase } from './style';
+import { CheckGroupStyleBase } from './style';
 // import './style/group.less';
 
 export type Value = string | number;
@@ -17,7 +17,7 @@ export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupPorps
   const childs = React.Children.toArray(props.children);
   useMemo(() => (valueRef.current = value || []), [value]);
   return (
-    <CheckGroupBase {...other} className={cls} ref={ref}>
+    <CheckGroupStyleBase {...other} className={cls} ref={ref}>
       {React.Children.map(childs, (element: React.ReactNode) => {
         if (!React.isValidElement(element)) return;
         if (
@@ -50,6 +50,6 @@ export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupPorps
           }),
         );
       })}
-    </CheckGroupBase>
+    </CheckGroupStyleBase>
   );
 });

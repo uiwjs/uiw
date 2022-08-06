@@ -1,39 +1,39 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions, HTMLDivProps } from '@uiw/utils';
-import { ButtonWarp, ButtonBaseLight } from '@uiw/react-button';
+import { ButtonStyleWarp, ButtonStyleBaseLight } from '@uiw/react-button';
 export interface ButtonGroupWarpProps extends ThemeVariantValueOptions, HTMLDivProps {
   vertical?: boolean;
 }
 const Warp = styled.div<ButtonGroupWarpProps>`
-  ${ButtonWarp} {
+  ${ButtonStyleWarp} {
     border-radius: 0;
     box-shadow: inset 1px 0 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')},
       inset -1px 0 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')},
       inset -1px 0px 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')};
   }
-  ${ButtonWarp}:last-child {
+  ${ButtonStyleWarp}:last-child {
     border-radius: 0 3px 3px 0;
   }
-  ${ButtonWarp}:first-child {
+  ${ButtonStyleWarp}:first-child {
     border-radius: 3px 0 0 3px;
   }
-  ${ButtonWarp}:first-child:last-child {
+  ${ButtonStyleWarp}:first-child:last-child {
     border-radius: 3px !important;
   }
-  ${ButtonWarp}:focus {
+  ${ButtonStyleWarp}:focus {
     z-index: 2;
   }
-  ${ButtonWarp} + ${ButtonWarp} {
+  ${ButtonStyleWarp} + ${ButtonStyleWarp} {
     margin-left: -1px !important;
   }
-  ${ButtonWarp}:not(${ButtonBaseLight}):first-child {
+  ${ButtonStyleWarp}:not(${ButtonStyleBaseLight}):first-child {
     box-shadow: inset -1px 0px 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')} !important;
   }
-  ${ButtonWarp}:not(${ButtonBaseLight}):last-child {
+  ${ButtonStyleWarp}:not(${ButtonStyleBaseLight}):last-child {
     box-shadow: inset 1px 0 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')},
       inset 0px 0 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')};
   }
-  ${ButtonBaseLight} {
+  ${ButtonStyleBaseLight} {
     box-shadow: inset 0 1px 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')},
       inset 1px -1px 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')},
       inset -1px 0px 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')} !important;
@@ -41,18 +41,18 @@ const Warp = styled.div<ButtonGroupWarpProps>`
   ${(props) =>
     props.vertical &&
     css`
-      ${ButtonWarp}:not(${ButtonBaseLight}) {
+      ${ButtonStyleWarp}:not(${ButtonStyleBaseLight}) {
         box-shadow: inset 0 -1px 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')},
           inset 0 1px 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')} !important;
       }
-      ${ButtonWarp}:not(${ButtonBaseLight}):first-child {
+      ${ButtonStyleWarp}:not(${ButtonStyleBaseLight}):first-child {
         box-shadow: inset 0 -1px 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')},
           inset 0 0 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')} !important;
       }
-      ${ButtonWarp} {
+      ${ButtonStyleWarp} {
         width: 100%;
         display: block;
-        & + ${ButtonWarp} {
+        & + ${ButtonStyleWarp} {
           margin-left: 0 !important;
           margin-top: -1px !important;
         }

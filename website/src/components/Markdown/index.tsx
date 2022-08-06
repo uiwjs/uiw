@@ -62,6 +62,7 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
                   const copyNodes = mdData.data[metaId].value || '';
                   return (
                     <Code
+                      toolbar={parameters.title || '示例展示'}
                       disableToolbar={noCode}
                       codePen={parameters.codePen}
                       codeSandbox={parameters.codeSandbox}

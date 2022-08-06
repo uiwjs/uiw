@@ -1,6 +1,11 @@
 import React, { useMemo } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import { DatePickerWeek, DatePickerBodyWarp, DatePickerWeekDay, DatePickerWeekBase } from './style/day';
+import {
+  DatePickerStyleWeek,
+  DatePickerStyleBodyWarp,
+  DatePickerStyleWeekDay,
+  DatePickerStyleWeekBase,
+} from './style/day';
 export * from './style/day';
 
 function isValidDate(date: Date) {
@@ -126,13 +131,13 @@ export function DayRect(props: DayRectProps) {
     delete divProps.onClick;
   }
   return (
-    <DatePickerWeek className={classnames(cls)} {...other} {...divProps} cls={cls}>
+    <DatePickerStyleWeek className={classnames(cls)} {...other} {...divProps} cls={cls}>
       {renderDay ? (
         renderDay(cellDate.getDate(), { ...props, ...cls, date: cellDate })
       ) : (
         <div>{cellDate.getDate()}</div>
       )}
-    </DatePickerWeek>
+    </DatePickerStyleWeek>
   );
 }
 
@@ -156,26 +161,26 @@ export function DatePickerDay(props: DatePickerDayProps) {
 
   const weekdayLabel = useMemo(
     () => (
-      <DatePickerWeekDay className={`${prefixCls}-weekday`}>
+      <DatePickerStyleWeekDay className={`${prefixCls}-weekday`}>
         {(weekday || []).map((week, idx) => (
           <div key={idx} className={classnames({ end: idx === 0 || idx === 6 })} title={weekTitle && weekTitle[idx]}>
             {week}
           </div>
         ))}
-      </DatePickerWeekDay>
+      </DatePickerStyleWeekDay>
     ),
     [prefixCls, weekday, weekTitle],
   );
 
   return (
-    <DatePickerBodyWarp
+    <DatePickerStyleBodyWarp
       {...other}
       className={[prefixCls ? `${prefixCls}-body` : null, className].filter(Boolean).join(' ').trim()}
     >
       {weekdayLabel}
       <div className={[prefixCls ? `${prefixCls}-day-body` : null].filter(Boolean).join(' ').trim()}>
         {[...Array(6)].map((_, idx) => (
-          <DatePickerWeekBase key={idx} className={`${prefixCls}-week`}>
+          <DatePickerStyleWeekBase key={idx} className={`${prefixCls}-week`}>
             {[...Array(7)].map((_, col) => (
               <DayRect
                 date={date}
@@ -192,9 +197,9 @@ export function DatePickerDay(props: DatePickerDayProps) {
                 index={idx * 7 + col}
               />
             ))}
-          </DatePickerWeekBase>
+          </DatePickerStyleWeekBase>
         ))}
       </div>
-    </DatePickerBodyWarp>
+    </DatePickerStyleBodyWarp>
   );
 }

@@ -1,20 +1,19 @@
 import styled, { css } from 'styled-components';
-import { ModalProps, ModalHeader, ModalBody, ModalInner } from '@uiw/react-modal';
+import { ModalProps, ModalStyleHeader, ModalStyleBody, ModalStyleInner } from '@uiw/react-modal';
 import { ButtonType } from '@uiw/react-button';
-import { IconBase } from '@uiw/react-icon';
+import { IconStyleBase } from '@uiw/react-icon';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
-
-export interface AlertStyleProps extends ModalProps, ThemeVariantValueOptions {}
+export interface AlertStyleWarpProps extends ModalProps, ThemeVariantValueOptions {}
 
 const typeVariant = (type: ButtonType, color: string | number) => {
   return css`
-    ${type} ${ModalHeader} > ${IconBase} {
+    ${ModalStyleHeader} > ${IconStyleBase} {
       color: ${color};
     }
   `;
 };
 
-const typeCss = (props: AlertStyleProps) => {
+const typeCss = (props: AlertStyleWarpProps) => {
   const { type } = props;
   if (type === 'primary') {
     return typeVariant(type, getThemeVariantValue(props, 'colorAlertPrimary'));
@@ -28,7 +27,7 @@ const typeCss = (props: AlertStyleProps) => {
   return typeVariant('link', getThemeVariantValue(props, 'colorAlertDefault'));
 };
 
-const PropsColor = {
+export const AlertStyleTheme = {
   colorAlertPrimary: '#008ef0',
   colorAlertSuccess: '#28a745',
   colorAlertWarning: '#ffc107',
@@ -36,26 +35,29 @@ const PropsColor = {
   colorAlertDefault: '#393e48',
 };
 
-export const AlertWarp = styled.div<AlertStyleProps>`
-  ${ModalHeader} {
+export const AlertStyleWarp = styled.div<AlertStyleWarpProps>`
+  ${ModalStyleHeader} {
     display: table-cell;
     background-color: transparent;
     padding: 20px 0 0 20px;
     box-shadow: 0 0 0 0;
     padding-right: 0;
-    ${IconBase} {
+    ${IconStyleBase} {
       font-size: 40px;
       margin-right: 0;
     }
+    > button > ${IconStyleBase} {
+      font-size: 14px;
+    }
   }
-  ${ModalBody} {
+  ${ModalStyleBody} {
     display: table-cell;
     padding-right: 20px;
     padding-left: 20px;
     vertical-align: top;
   }
   ${typeCss}
-  ${ModalInner} ${ModalHeader} {
+  ${ModalStyleInner} ${ModalStyleHeader} {
     > button {
       min-width: 18px;
       min-height: 18px;
@@ -68,23 +70,23 @@ export const AlertWarp = styled.div<AlertStyleProps>`
   ${(props) =>
     props.title &&
     css`
-      ${ModalInner} {
-        ${ModalHeader} {
+      ${ModalStyleInner} {
+        ${ModalStyleHeader} {
           word-break: break-word;
           display: flex;
           padding-top: 15px;
           padding-right: 10px;
-          > ${IconBase} {
+          > ${IconStyleBase} {
             font-size: 40px;
             position: absolute;
             top: 18px;
           }
 
-          > button > ${IconBase} {
+          > button > ${IconStyleBase} {
             font-size: 14px;
           }
         }
-        ${ModalBody} {
+        ${ModalStyleBody} {
           word-break: break-word;
           padding-top: 5px;
         }
@@ -93,7 +95,7 @@ export const AlertWarp = styled.div<AlertStyleProps>`
   ${(props) =>
     props.icon &&
     css`
-      ${ModalHeader} > h4 {
+      ${ModalStyleHeader} > h4 {
         padding-left: 60px;
       }
     `}
@@ -101,11 +103,11 @@ export const AlertWarp = styled.div<AlertStyleProps>`
     props.title &&
     props.icon &&
     css`
-      ${ModalBody} {
+      ${ModalStyleBody} {
         padding-left: 80px;
       }
     `}
 `;
-AlertWarp.defaultProps = {
-  defaultTheme: { ...PropsColor },
+AlertStyleWarp.defaultProps = {
+  defaultTheme: { ...AlertStyleTheme },
 };

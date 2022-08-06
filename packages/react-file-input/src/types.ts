@@ -8,7 +8,7 @@ export interface FileInputShowIconProps {
   showAddBtn?: boolean;
 }
 
-export interface FileInputBaseProps {
+export interface FileInputStyleBaseProps {
   className?: string;
   prefixCls?: string;
   /** 上传列表的内置样式 */
@@ -16,7 +16,7 @@ export interface FileInputBaseProps {
   multiple?: boolean;
 }
 
-export interface FileInputUploadProps extends FileInputBaseProps {
+export interface FileInputUploadProps extends FileInputStyleBaseProps {
   value?: FileInputValue[];
   /** 是否是只读模式 */
   readonly?: boolean;

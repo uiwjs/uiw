@@ -4,7 +4,7 @@ import { MenuItem } from './MenuItem';
 import { MenuDivider } from './Divider';
 import { SubMenu } from './SubMenu';
 // import './style/menu.less';
-import { MenuBase } from './style';
+import { MenuStyleBase } from './style';
 export interface MenuProps extends IProps, HTMLUlProps {
   /** 主题颜色 */
   theme?: 'light' | 'dark';
@@ -47,7 +47,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
   );
 
   return (
-    <MenuBase
+    <MenuStyleBase
       {...htmlProps}
       params={{
         bordered,
@@ -67,7 +67,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
         }
         return React.cloneElement(child, Object.assign({ ...props, theme }, child.props, { key: `${key}` }));
       })}
-    </MenuBase>
+    </MenuStyleBase>
   );
 });
 
