@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { getThemeVariantValue } from '@uiw/utils';
 import { TreeRenderTitleNode, TreeProps } from '../index';
 
-interface CSSTransitionWarpProps extends TreeRenderTitleNode {
+interface TreeNodeStyleCSSTransitionProps extends TreeRenderTitleNode {
   defaultTheme?: Record<string, string | number>;
   isOpen: boolean;
   level: number;
@@ -23,21 +23,21 @@ interface TreeNodeUlLidivSpanDivProps {
   judgeisSelected?: boolean;
   isDisabled?: string | null;
 }
-interface TreeNodeDivProps extends TreeProps {
+interface TreeNodeStyleWrapProps extends TreeProps {
   defaultTheme?: Record<string, string | number>;
 }
 
-export const CSSTransitionWarp = styled.div<CSSTransitionWarpProps>`
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeCSSTransitionWarpDefault')};
+export const TreeNodeStyleCSSTransition = styled.div<TreeNodeStyleCSSTransitionProps>`
+  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeTreeNodeStyleCSSTransitionDefault')};
 `;
 
-CSSTransitionWarp.defaultProps = {
+TreeNodeStyleCSSTransition.defaultProps = {
   defaultTheme: {
-    fontSizeCSSTransitionWarpDefault: '14px',
+    fontSizeTreeNodeStyleCSSTransitionDefault: '14px',
   },
 };
 
-export const TreeNodeUl = styled.ul<CSSTransitionWarpProps>`
+export const TreeNodeStyleUl = styled.ul<TreeNodeStyleCSSTransitionProps>`
   padding: 0 !important;
   transition: 0.3s all;
   overflow: hidden;
@@ -66,14 +66,14 @@ export const TreeNodeUl = styled.ul<CSSTransitionWarpProps>`
     `}
 `;
 
-export const TreeNodeUlLidiv = styled.div<TreeNodeUlLidivProps>`
+export const TreeNodeStyleUlDiv = styled.div<TreeNodeUlLidivProps>`
   line-height: initial;
   & > * {
     vertical-align: middle;
   }
 `;
 
-export const TreeNodeUlLidivSpan = styled.div<TreeNodeUlLidivProps>`
+export const TreeNodeStyleUlLidivSpan = styled.div<TreeNodeUlLidivProps>`
   cursor: pointer;
   position: relative;
   z-index: 1;
@@ -91,14 +91,14 @@ export const TreeNodeUlLidivSpan = styled.div<TreeNodeUlLidivProps>`
   }
 `;
 
-TreeNodeUlLidivSpan.defaultProps = {
+TreeNodeStyleUlLidivSpan.defaultProps = {
   defaultTheme: {
-    colorTreeNodeUlLidivSpanDefault: '#2ea3f4',
+    colorTreeNodeDefault: '#2ea3f4',
     transformTreeNodeUlLidivSpanDefault: 'scale(0.79) rotate(0deg)',
   },
 };
 
-export const TreeNodeUlLidivSpanIcon = styled.div<TreeNodeUlLidivSpanIconProps>`
+export const TreeNodeStyleUlLidivSpanIcon = styled.div<TreeNodeUlLidivSpanIconProps>`
   ${(props) =>
     props.isNoChild &&
     !props.isIcon &&
@@ -114,13 +114,13 @@ export const TreeNodeUlLidivSpanIcon = styled.div<TreeNodeUlLidivSpanIconProps>`
     `}
 `;
 
-TreeNodeUlLidivSpanIcon.defaultProps = {
+TreeNodeStyleUlLidivSpanIcon.defaultProps = {
   defaultTheme: {
     transformTreeNodeUlLidivSpanIconDefault: 'scale(0.79) rotate(90deg) !important;',
   },
 };
 
-export const TreeNodeUlLidivSpanDiv = styled.div<TreeNodeUlLidivSpanDivProps>`
+export const TreeNodeStyleUlLidivSpanDiv = styled.div<TreeNodeUlLidivSpanDivProps>`
   display: inline-block;
   padding: 2px 5px;
   cursor: pointer;
@@ -143,7 +143,7 @@ export const TreeNodeUlLidivSpanDiv = styled.div<TreeNodeUlLidivSpanDivProps>`
   }
 `;
 
-export const TreeNodeDiv = styled.div<TreeNodeDivProps>`
+export const TreeNodeStyleWrap = styled.div<TreeNodeStyleWrapProps>`
   li {
     position: relative;
     li {
@@ -170,14 +170,14 @@ export const TreeNodeDiv = styled.div<TreeNodeDivProps>`
         top: -2px;
       }
       &:last-child::before {
-        border-radius: ${(props) => getThemeVariantValue(props, 'borderRadiusTreeNodeDivDefault')};
+        border-radius: ${(props) => getThemeVariantValue(props, 'borderRadiusTreeNodeDefault')};
       }
     }
   }
 `;
 
-TreeNodeDiv.defaultProps = {
+TreeNodeStyleWrap.defaultProps = {
   defaultTheme: {
-    borderRadiusTreeNodeDivDefault: '0 0 0 3px',
+    borderRadiusTreeNodeDefault: '0 0 0 3px',
   },
 };

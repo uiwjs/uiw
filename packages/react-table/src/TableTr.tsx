@@ -1,8 +1,10 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import Icon from '@uiw/react-icon';
-import Table, { LocationWidth, TableColumns, TableProps } from './';
-import { TableStyleCol, TableStyleColContent } from './style';
-import './style/index.less';
+// import Icon from '@uiw/react-icon';
+import { MinusSquareO } from '@uiw/icons/lib/MinusSquareO';
+import { PlusSquareO } from '@uiw/icons/lib/PlusSquareO';
+import { LocationWidth, TableColumns, TableProps } from './';
+import { TableStyleCol, TableStyleColContent, TableStyleDomIcon } from './style';
+// import './style/index.less';
 import { noop } from '@uiw/utils';
 import { locationFixed } from './util';
 
@@ -52,8 +54,8 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     return (key: T[keyof T] | number, isOpacity: boolean) => {
       const flag = expandIndex.includes(key);
       return (
-        <Icon
-          type={flag ? 'minus-square-o' : 'plus-square-o'}
+        <TableStyleDomIcon
+          as={flag ? MinusSquareO : PlusSquareO}
           style={{
             marginRight: 10,
             opacity: isOpacity ? 1 : 0,

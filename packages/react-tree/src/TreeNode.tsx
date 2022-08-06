@@ -4,12 +4,12 @@ import Icon, { IconProps } from '@uiw/react-icon';
 import { IProps, noop } from '@uiw/utils';
 import { TreeData, TreeProps, getChildKeys } from './';
 import {
-  CSSTransitionWarp,
-  TreeNodeUl,
-  TreeNodeUlLidiv,
-  TreeNodeUlLidivSpan,
-  TreeNodeUlLidivSpanIcon,
-  TreeNodeUlLidivSpanDiv,
+  TreeNodeStyleCSSTransition,
+  TreeNodeStyleUl,
+  TreeNodeStyleUlDiv,
+  TreeNodeStyleUlLidivSpan,
+  TreeNodeStyleUlLidivSpanIcon,
+  TreeNodeStyleUlLidivSpanDiv,
 } from './style/index';
 
 interface TreeNodeIconProps {
@@ -88,7 +88,7 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
   }, []);
 
   return (
-    <CSSTransitionWarp
+    <TreeNodeStyleCSSTransition
       as={CSSTransition}
       nodeRef={node}
       classNames={prefixCls}
@@ -100,7 +100,7 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
       onEntered={onEntered}
       onEntering={onEntering}
     >
-      <TreeNodeUl
+      <TreeNodeStyleUl
         ref={node}
         isOpen={isOpen}
         level={level}
@@ -145,13 +145,13 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
           }
           return (
             <li key={idx} style={{ display: item.hideNode ? 'none' : 'block' }}>
-              <TreeNodeUlLidiv className={`${prefixCls}-label`}>
-                <TreeNodeUlLidivSpan
+              <TreeNodeStyleUlDiv className={`${prefixCls}-label`}>
+                <TreeNodeStyleUlLidivSpan
                   style={{ display: noChild ? 'none' : 'auto' }}
                   className={`${prefixCls}-switcher`}
                   onClick={(evn: React.MouseEvent<HTMLElement, MouseEvent>) => onItemClick(item, evn)}
                 >
-                  <TreeNodeUlLidivSpanIcon
+                  <TreeNodeStyleUlLidivSpanIcon
                     as={Icon}
                     type={iconItem || 'caret-right'}
                     isIcon={typeof icon}
@@ -168,8 +168,8 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
                       .join(' ')
                       .trim()}
                   />
-                </TreeNodeUlLidivSpan>
-                <TreeNodeUlLidivSpanDiv
+                </TreeNodeStyleUlLidivSpan>
+                <TreeNodeStyleUlLidivSpanDiv
                   onClick={(evn) => disabledObj.onClick?.(item, evn)}
                   judgeSelected={selected}
                   judgeisSelected={isSelected}
@@ -198,8 +198,8 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
                   ) : (
                     <Label label={item.label} className={disabledObj.disabledClass} />
                   )}
-                </TreeNodeUlLidivSpanDiv>
-              </TreeNodeUlLidiv>
+                </TreeNodeStyleUlLidivSpanDiv>
+              </TreeNodeStyleUlDiv>
               {item.children && (
                 <TreeNode
                   {...other}
@@ -223,7 +223,7 @@ export default function TreeNode<T>(props: TreeNodeProps<T>) {
             </li>
           );
         })}
-      </TreeNodeUl>
-    </CSSTransitionWarp>
+      </TreeNodeStyleUl>
+    </TreeNodeStyleCSSTransition>
   );
 }

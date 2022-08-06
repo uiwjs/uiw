@@ -3,7 +3,7 @@ import { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import TreeNode from './TreeNode';
 // import './style/index.less';
-import { TreeNodeDiv } from './style/index';
+import { TreeNodeStyleWrap } from './style/index';
 
 export type TreeRenderTitleNode = {
   selected?: boolean;
@@ -220,7 +220,7 @@ export default function Tree(props: TreeProps) {
     onChange?.(item.key, selKeys);
   }
   return (
-    <TreeNodeDiv className={cls} {...elementProps}>
+    <TreeNodeStyleWrap className={cls} {...elementProps}>
       <TreeNode
         {...{
           icon,
@@ -236,6 +236,6 @@ export default function Tree(props: TreeProps) {
         data={data}
         level={1}
       />
-    </TreeNodeDiv>
+    </TreeNodeStyleWrap>
   );
 }

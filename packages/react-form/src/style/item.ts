@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { HTMLInputProps, ThemeVariantValueOptions } from '@uiw/utils';
 import { InputStyleBase } from '@uiw/react-input';
-import { SelectWarp } from '@uiw/react-select';
+import { SelectStyleWarp } from '@uiw/react-select';
 import { TextareaStyleWarp } from '@uiw/react-textarea';
 
 interface FormStyleItemProps extends HTMLInputProps, ThemeVariantValueOptions {
@@ -34,7 +34,7 @@ export const FormStyleItem = styled.div<FormStyleItemProps>`
   ${(props) =>
     props.hasError &&
     css`
-      ${InputStyleBase},${SelectWarp},${TextareaStyleWarp} {
+      ${InputStyleBase},${SelectStyleWarp},${TextareaStyleWarp} {
         box-shadow: 0 0 0 1px #dc3545, 0 0 0 3px rgba(220, 53, 69, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
         &:hover {
           box-shadow: 0 0 0 1px #dc3545, 0 0 0 3px rgba(220, 53, 69, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);

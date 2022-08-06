@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
+import { IconStyleBase, IconStyleBaseProps } from '@uiw/react-icon';
 
 export interface TableStyleBaseProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
@@ -10,6 +11,8 @@ export interface TableStyleWrapBaseProps extends TableStyleBaseProps {
     bordered?: boolean;
   };
 }
+
+export interface TableStyleDomIconProps extends IconStyleBaseProps {}
 
 export interface TableStyleColProps extends TableStyleBaseProps {
   params?: {
@@ -113,8 +116,9 @@ export const TableStyleWrap = styled.div<TableStyleWrapBaseProps>`
 `;
 TableStyleWrap.defaultProps = { defaultTheme: TableBaseDefaultTheme };
 
+export const TableStyleDomIcon = styled(IconStyleBase)<TableStyleDomIconProps>``;
 export const TableStyleTheadWrap = styled.thead``;
-export const TableStyleTheadItem = styled.th``;
+export const TheadItem = styled.th``;
 
 // 单元格
 export const TableStyleCol = styled.td<TableStyleColProps>`

@@ -3,7 +3,7 @@ import { IconStyleBase } from '@uiw/react-icon';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import Button, { ButtonProps } from '@uiw/react-button';
 
-interface divWrapProps
+interface DivWrapProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
     ThemeVariantValueOptions {
   params: {
@@ -11,24 +11,23 @@ interface divWrapProps
     type: 'success' | 'warning' | 'info' | 'error' | undefined;
     children: any;
     showIcon: boolean | undefined;
-    icon: any;
     title: React.ReactNode;
   };
 }
 
-export const MessageWrap = styled.div`
+const MessageStyleWrap = styled.div`
   padding: 10px 15px;
   position: relative;
   font-size: 14px;
 `;
 // 最外层div
-export const MessageDivWrap = styled(MessageWrap)<divWrapProps>`
+export const MessageStyleDivWrap = styled(MessageStyleWrap)<DivWrapProps>`
   margin-top: 10px;
   ${(props) => {
     if (props.params?.showIcon) {
       if (props.params?.children && props.params?.title) {
         return css`
-          > .w-icon {
+          > ${IconStyleBase} {
             font-size: 24px;
           }
         `;
@@ -120,11 +119,11 @@ interface spanPeops extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpa
   };
 }
 // 原始span
-export const MessageSpanWrap = styled.span`
+const MessageStyleSpanWrap = styled.span`
   display: block;
 `;
 // 详情description
-export const MessageDescriptionSpan = styled(MessageSpanWrap)<spanPeops>`
+export const MessageStyleDescriptionSpan = styled(MessageStyleSpanWrap)<spanPeops>`
   color: rgba(0, 0, 0, 0.65);
   ${(props) =>
     props.params.showIcon &&
@@ -135,7 +134,7 @@ export const MessageDescriptionSpan = styled(MessageSpanWrap)<spanPeops>`
     `}
 `;
 // 标题title
-export const MessageTitleSpan = styled(MessageDescriptionSpan)<spanPeops>`
+export const MessageStyleTitleSpan = styled(MessageStyleDescriptionSpan)<spanPeops>`
   color: rgba(0, 0, 0, 0.85);
   ${(props) =>
     props.params.showIcon &&
@@ -146,30 +145,9 @@ export const MessageTitleSpan = styled(MessageDescriptionSpan)<spanPeops>`
     `}
 `;
 
-interface MessageIconWarpProps extends ThemeVariantValueOptions {
-  params: {
-    children: React.ReactNode;
-    showIcon: boolean | undefined;
-    title: React.ReactNode;
-  };
-}
-// icon
-export const MessageIconWarp = styled.span<MessageIconWarpProps>`
-  ${(props) =>
-    props.params?.showIcon &&
-    props.params.title &&
-    props.params.children &&
-    css`
-      font-size: 24px;
-    `}
-  top: 14px;
-  left: 14px;
-  position: absolute;
-`;
-
 interface messageButtonProps extends ButtonProps {}
 
-export const MessageButtonStyleWarp = styled(Button)<messageButtonProps>`
+export const MessageStyleButtonWarp = styled(Button)<messageButtonProps>`
   position: absolute;
   right: 10px;
   top: 10px;
@@ -185,7 +163,7 @@ export const MessageButtonStyleWarp = styled(Button)<messageButtonProps>`
   }
 `;
 
-MessageDivWrap.defaultProps = {
+MessageStyleDivWrap.defaultProps = {
   defaultTheme: {
     backgroundMessageSuccess: '#afecbd',
     colorMessageSuccess: '#28a745',
