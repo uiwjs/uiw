@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import Button, { ButtonType, ButtonProps } from '@uiw/react-button';
-import Icon, { IconProps } from '@uiw/react-icon';
 import { Close } from '@uiw/icons/lib/Close';
 import { IconStyleBase } from '@uiw/react-icon';
 import { IProps, noop } from '@uiw/utils';
@@ -23,7 +22,7 @@ export interface ModalProps extends IProps, OverlayProps {
   content?: React.ReactNode;
   confirmText?: string;
   title?: string;
-  icon?: IconProps['type'];
+  icon?: React.ReactNode;
   useButton?: boolean;
   usePortal?: boolean;
   autoFocus?: boolean;
@@ -112,7 +111,7 @@ const Modal: React.ForwardRefExoticComponent<ModalProps & React.RefAttributes<Ov
           >
             {(title || icon) && (
               <ModalStyleHeader className={`${prefixCls}-header`}>
-                {icon && <Icon type={icon} />}
+                {icon && icon}
                 {title && <h4>{title}</h4>}
                 {isCloseButtonShown && (
                   <Button basic onClick={(e) => handleCancel(e)} icon={<IconStyleBase as={Close} />} type="light" />
