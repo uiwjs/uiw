@@ -5,17 +5,17 @@ import { Close } from '@uiw/icons/lib/Close';
 
 // import './style/index.less';
 import {
-  StepsItem,
-  StepsItemTail,
-  StepsItemTailI,
-  StepsItemHead,
-  StepsItemHeadInner,
-  StepsItemMain,
-  StepsItemMainTitle,
-  StepsItemMainDescription,
-  StepsItemHeadInnerDot,
-  StepsItemHeadInnerIcon,
-  StepsItemHeadInnerSvg,
+  StepsStyleItem,
+  StepsStyleItemTail,
+  StepsStyleItemTailI,
+  StepsStyleItemHead,
+  StepsStyleItemHeadInner,
+  StepsStyleItemMain,
+  StepsStyleItemMainTitle,
+  StepsStyleItemMainDescription,
+  StepsStyleItemHeadInnerDot,
+  StepsStyleItemHeadInnerIcon,
+  StepsStyleItemHeadInnerSvg,
 } from './style';
 export interface StepProps extends IProps, Omit<HTMLDivProps, 'title'> {
   nextError?: boolean | undefined;
@@ -68,24 +68,24 @@ export default function Step(props: StepProps) {
   }
   let iconNode = null;
   if (progressDot) {
-    iconNode = <StepsItemHeadInnerDot params={{ status }} className={`${prefixCls}-dot`} />;
+    iconNode = <StepsStyleItemHeadInnerDot params={{ status }} className={`${prefixCls}-dot`} />;
   } else if (icon && typeof icon !== 'string') {
     iconNode = (
-      <StepsItemHeadInnerIcon params={{ status, icon: !!icon }} className={`${prefixCls}-icon`}>
+      <StepsStyleItemHeadInnerIcon params={{ status, icon: !!icon }} className={`${prefixCls}-icon`}>
         {icon}
-      </StepsItemHeadInnerIcon>
+      </StepsStyleItemHeadInnerIcon>
     );
   } else if (status === 'finish' || status === 'error') {
-    iconNode = <StepsItemHeadInnerSvg as={status === 'finish' ? Check : Close} />;
+    iconNode = <StepsStyleItemHeadInnerSvg as={status === 'finish' ? Check : Close} />;
   } else {
     iconNode = (
-      <StepsItemHeadInnerIcon params={{ status, icon: !!icon }} className={`${prefixCls}-icon`}>
+      <StepsStyleItemHeadInnerIcon params={{ status, icon: !!icon }} className={`${prefixCls}-icon`}>
         {stepNumber}
-      </StepsItemHeadInnerIcon>
+      </StepsStyleItemHeadInnerIcon>
     );
   }
   return (
-    <StepsItem
+    <StepsStyleItem
       {...restProps}
       params={{
         status,
@@ -94,12 +94,12 @@ export default function Step(props: StepProps) {
       className={classString}
       style={stepItemStyle}
     >
-      <StepsItemTail
+      <StepsStyleItemTail
         className={`${prefixCls}-item-tail`}
         params={{ direction, dot: !!progressDot, status: status }}
         style={stepItemDotStyle}
       >
-        <StepsItemTailI
+        <StepsStyleItemTailI
           params={{
             direction,
             dot: !!progressDot,
@@ -108,9 +108,9 @@ export default function Step(props: StepProps) {
           }}
           style={{ paddingRight: '100%' }}
         />
-      </StepsItemTail>
-      <StepsItemHead params={{ dot: !!progressDot }} className={`${prefixCls}-item-head`}>
-        <StepsItemHeadInner
+      </StepsStyleItemTail>
+      <StepsStyleItemHead params={{ dot: !!progressDot }} className={`${prefixCls}-item-head`}>
+        <StepsStyleItemHeadInner
           params={{
             direction,
             dot: !!progressDot,
@@ -120,16 +120,16 @@ export default function Step(props: StepProps) {
           className={[`${prefixCls}-item-inner`, !!icon && 'is-icon'].filter(Boolean).join(' ').trim()}
         >
           {iconNode}
-        </StepsItemHeadInner>
-      </StepsItemHead>
-      <StepsItemMain
+        </StepsStyleItemHeadInner>
+      </StepsStyleItemHead>
+      <StepsStyleItemMain
         params={{
           direction,
           dot: !!progressDot,
         }}
         className={`${prefixCls}-item-main`}
       >
-        <StepsItemMainTitle
+        <StepsStyleItemMainTitle
           params={{
             dot: !!progressDot,
             status: status,
@@ -137,9 +137,9 @@ export default function Step(props: StepProps) {
           className={`${prefixCls}-item-title`}
         >
           {title}
-        </StepsItemMainTitle>
+        </StepsStyleItemMainTitle>
         {description && (
-          <StepsItemMainDescription
+          <StepsStyleItemMainDescription
             params={{
               direction,
               dot: !!progressDot,
@@ -148,9 +148,9 @@ export default function Step(props: StepProps) {
             className={`${prefixCls}-item-description`}
           >
             {description}
-          </StepsItemMainDescription>
+          </StepsStyleItemMainDescription>
         )}
-      </StepsItemMain>
-    </StepsItem>
+      </StepsStyleItemMain>
+    </StepsStyleItem>
   );
 }

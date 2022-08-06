@@ -5,7 +5,7 @@ import { IProps } from '@uiw/utils';
 import { MenuItem, MenuItemProps, TagType } from './MenuItem';
 import Menu, { MenuProps } from './Menu';
 // import './style/submenu.less';
-import { SubItemCollapseIcon, SubOverlayTriggerBase } from './style';
+import { SubItemCollapseIcon, MenuStyleSubOverlayTriggerBase } from './style';
 
 export interface SubMenuProps<T extends TagType> extends IProps, MenuItemProps<T> {
   overlayProps?: OverlayTriggerProps;
@@ -139,7 +139,7 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
   }
   return (
     <li data-menu="subitem" ref={ref}>
-      <SubOverlayTriggerBase
+      <MenuStyleSubOverlayTriggerBase
         placement="rightTop"
         autoAdjustOverflow
         disabled={disabled}
@@ -170,7 +170,7 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
             .join(' ')
             .trim()}
         />
-      </SubOverlayTriggerBase>
+      </MenuStyleSubOverlayTriggerBase>
     </li>
   );
 });

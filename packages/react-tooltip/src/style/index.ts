@@ -74,7 +74,7 @@ function tooltipArrowHandle(placement: TooltipStyleProps['placement']) {
   switch (obj[placement!]) {
     case 'right':
       return css`
-        border-right-color: ${(props) => getThemeVariantValue(props, 'borderColorDefault')};
+        border-right-color: ${(props) => getThemeVariantValue(props, 'borderColorTooltipStyleInnerWarpBase')};
         border-width: 5px 5px 5px 0;
         left: 0;
         margin-top: -5px;
@@ -82,7 +82,7 @@ function tooltipArrowHandle(placement: TooltipStyleProps['placement']) {
       `;
     case 'left':
       return css`
-        border-left-color: ${(props) => getThemeVariantValue(props, 'borderColorDefault')};
+        border-left-color: ${(props) => getThemeVariantValue(props, 'borderColorTooltipStyleInnerWarpBase')};
         border-width: 5px 0 5px 5px;
         margin-top: -5px;
         right: 0;
@@ -90,7 +90,7 @@ function tooltipArrowHandle(placement: TooltipStyleProps['placement']) {
       `;
     case 'top':
       return css`
-        border-top-color: ${(props) => getThemeVariantValue(props, 'borderColorDefault')};
+        border-top-color: ${(props) => getThemeVariantValue(props, 'borderColorTooltipStyleInnerWarpBase')};
         border-width: 5px 5px 0;
         bottom: 0;
         left: 50%;
@@ -98,7 +98,7 @@ function tooltipArrowHandle(placement: TooltipStyleProps['placement']) {
       `;
     case 'bottom':
       return css`
-        border-bottom-color: ${(props) => getThemeVariantValue(props, 'borderColorDefault')};
+        border-bottom-color: ${(props) => getThemeVariantValue(props, 'borderColorTooltipStyleInnerWarpBase')};
         border-width: 0 5px 5px;
         left: 50%;
         margin-left: -5px;
@@ -109,8 +109,8 @@ function tooltipArrowHandle(placement: TooltipStyleProps['placement']) {
   }
 }
 
-export const TooltipWarp = styled.div<TooltipStyleProps>``;
-export const TooltipContainerWarp = styled.div<TooltipContainerProps>`
+export const TooltipStyleWarp = styled.div<TooltipStyleProps>``;
+export const TooltipStyleContainerWarp = styled.div<TooltipContainerProps>`
   position: relative;
   display: inline-block;
   ${(props) =>
@@ -120,7 +120,7 @@ export const TooltipContainerWarp = styled.div<TooltipContainerProps>`
     `}
   ${(props) => tooltipHandle(props.placement)}
 `;
-export const TooltipArrowWarp = styled.div<TooltipArrowProps>`
+export const TooltipStyleArrowWarp = styled.div<TooltipArrowProps>`
   position: absolute;
   width: 0;
   height: 0;
@@ -153,7 +153,7 @@ export const TooltipArrowWarp = styled.div<TooltipArrowProps>`
     return css``;
   }}
 `;
-export const TooltipInnerWarp = styled.div<ThemeVariantValueOptions>`
+export const TooltipStyleInnerWarp = styled.div<ThemeVariantValueOptions>`
   font-size: 12px;
   max-width: 250px;
   padding: 5px 10px;
@@ -164,17 +164,17 @@ export const TooltipInnerWarp = styled.div<ThemeVariantValueOptions>`
   border-radius: 4px;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
   word-break: break-all;
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorDefault')};
+  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTooltipStyleInnerWarpBase')};
 `;
 
-TooltipInnerWarp.defaultProps = {
+TooltipStyleInnerWarp.defaultProps = {
   defaultTheme: {
-    backgroundColorDefault: 'rgba(0, 0, 0, 0.75)',
-    borderColorDefault: 'rgba(0, 0, 0, 0.75)',
+    backgroundColorTooltipStyleInnerWarpBase: 'rgba(0, 0, 0, 0.75)',
+    borderColorTooltipStyleInnerWarpBase: 'rgba(0, 0, 0, 0.75)',
   },
 };
-TooltipArrowWarp.defaultProps = {
+TooltipStyleArrowWarp.defaultProps = {
   defaultTheme: {
-    borderColorDefault: 'rgba(0, 0, 0, 0.75)',
+    borderColorTooltipStyleInnerWarpBase: 'rgba(0, 0, 0, 0.75)',
   },
 };

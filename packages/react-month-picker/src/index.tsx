@@ -6,7 +6,7 @@ import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
 import { DatePickerMonth, DatePickerYear, DatePickerCaption, DatePickerCaptionProps } from '@uiw/react-date-picker';
 // import './style/index.less';
-import { MonthPickerPopoverBase, MonthPickerInputStyleBase, MonthPickerCloseButton } from './style';
+import { MonthPickerStylePopoverBase, MonthPickerStyleInputStyleBase, MonthPickerStyleCloseButton } from './style';
 import { Close } from '@uiw/icons/lib/Close';
 import { IconStyleBase } from '@uiw/react-icon';
 export interface MonthPickerProps extends IProps, Omit<InputProps, 'value' | 'onChange'> {
@@ -61,7 +61,7 @@ export default function MonthPicker(props: MonthPickerProps) {
 
   if (allowClear && inputProps.value) {
     inputProps.addonAfter = (
-      <MonthPickerCloseButton
+      <MonthPickerStyleCloseButton
         className={`${prefixCls}-close-btn`}
         icon={<IconStyleBase as={Close} />}
         onClick={() => {
@@ -98,7 +98,7 @@ export default function MonthPicker(props: MonthPickerProps) {
       {...popoverProps}
       onVisibleChange={(open) => setIsOpen(open)}
       content={
-        <MonthPickerPopoverBase className={`${prefixCls}-popover`}>
+        <MonthPickerStylePopoverBase className={`${prefixCls}-popover`}>
           <DatePickerCaption
             panelDate={panelDate}
             monthLabel={monthLabel}
@@ -126,10 +126,10 @@ export default function MonthPicker(props: MonthPickerProps) {
               onSelected={(year, paging) => handleSelectedDate('setFullYear', year, paging)}
             />
           )}
-        </MonthPickerPopoverBase>
+        </MonthPickerStylePopoverBase>
       }
     >
-      <MonthPickerInputStyleBase
+      <MonthPickerStyleInputStyleBase
         placeholder="请输入日期"
         readOnly
         {...(inputProps as any)}
