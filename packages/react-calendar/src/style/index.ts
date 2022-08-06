@@ -1,3 +1,4 @@
+import { IconStyleBase } from '@uiw/react-icon';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 import styled, { css } from 'styled-components';
 
@@ -27,8 +28,7 @@ export const CalendarBtnGroupStyleWrap = styled.div<CalendarBtnGroupStyleWrapPro
       position: relative;
       top: -3px;
     }
-    & > .w-icon,
-    & > ${CalendarBtnStyleWrap} {
+    & > ${IconStyleBase}, & > ${CalendarBtnStyleWrap} {
       cursor: pointer;
       border-radius: 3px;
       transition: all 0.3s;
@@ -39,8 +39,7 @@ export const CalendarBtnGroupStyleWrap = styled.div<CalendarBtnGroupStyleWrapPro
         background-color: ${getThemeVariantValue(props, 'backgroundColorCalendarActive')};
       }
     }
-    & > .w-icon,
-    & > ${CalendarBtnStyleWrap} {
+    & > ${IconStyleBase}, & > ${CalendarBtnStyleWrap} {
       vertical-align: middle;
       margin-top: -6px;
       > svg {
