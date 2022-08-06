@@ -2,6 +2,7 @@ import React from 'react';
 import Alert, { AlertProps } from '@uiw/react-alert';
 import { IProps } from '@uiw/utils';
 import { NotificationCreateProps } from './index';
+import { AlertWrap } from './style';
 
 export type Placement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
@@ -80,7 +81,7 @@ export default class Container extends React.Component<ContainerProps, Container
               delete alertProps.type;
             }
             return (
-              <Alert
+              <AlertWrap
                 className={prefixCls}
                 key={key}
                 useButton={false}
