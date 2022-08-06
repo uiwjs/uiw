@@ -1,14 +1,25 @@
 import React, { useMemo } from 'react';
 import Dropdown, { DropdownProps } from '@uiw/react-dropdown';
-import Icon from '@uiw/react-icon';
 import Menu from '@uiw/react-menu';
-import Input from '@uiw/react-input';
 import Tag, { TagProps } from '@uiw/react-tag';
 import { IProps } from '@uiw/utils';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
-import './style/index.less';
+import {
+  SearchSelectInputContentsBase,
+  SearchSelectTagContentsBase,
+  SearchSelectIconStyleBase,
+  SearchSelectInputStyleBase,
+  SearchSelectInner,
+} from './style';
+import { Close } from '@uiw/icons/lib/Close';
+import { Loading } from '@uiw/icons/lib/Loading';
+
+const ICONTYPE = {
+  close: Close,
+  loading: Loading,
+};
 
 type ValueType = string | number;
 
@@ -268,13 +279,14 @@ export default function SearchSelect(props: SearchSelectProps) {
         style={{ width: '100%', maxWidth: 'none', ...style }}
       >
         {isMultiple ? (
-          <div
+          <SearchSelectInner
+            params={{ showSearch }}
             className={[`${prefixCls}-inner`, `${prefixCls}-search-${showSearch}`, `${prefixCls}-${size}`]
               .filter(Boolean)
               .join(' ')
               .trim()}
           >
-            <div className={`${prefixCls}-tag-content`} style={{}}>
+            <SearchSelectTagContentsBase className={`${prefixCls}-tag-content`} style={{}}>
               {isMultiple &&
                 selectedValue.slice(0, maxTagCount).map((item, index) => {
                   return (
@@ -305,7 +317,7 @@ export default function SearchSelect(props: SearchSelectProps) {
                   +{omitTagCount} …{' '}
                 </Tag>
               )}
-              <Input
+              <SearchSelectInputContentsBase
                 style={{ flex: 1, width: showSearch ? 0 : 50 }}
                 className={`${prefixCls}-input-contents`}
                 readOnly={!showSearch}
@@ -317,20 +329,22 @@ export default function SearchSelect(props: SearchSelectProps) {
                 value={selectedLabel}
                 placeholder={selectedValue.length ? '' : placeholder}
               />
-            </div>
+            </SearchSelectTagContentsBase>
             {!disabled && (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
-              <Icon
+              <SearchSelectIconStyleBase
                 className={`${prefixCls}-multiple-colse`}
-                type={selectIconType}
-                spin={loading && selectIconType === 'loading'}
+                as={ICONTYPE[selectIconType]}
+                params={{ multiple: true, spin: loading && selectIconType === 'loading' }}
+                // spin={loading && selectIconType === 'loading'}
                 onClick={resetSelectedValue}
               />
             )}
-          </div>
+          </SearchSelectInner>
         ) : (
-          <Input
+          <SearchSelectInputStyleBase
             className={`${prefixCls}-search-${showSearch}`}
             readOnly={!showSearch}
+            params={{ showSearch }}
             size={size}
             ref={inputRef}
             disabled={disabled}
@@ -340,11 +354,12 @@ export default function SearchSelect(props: SearchSelectProps) {
             addonAfter={
               !disabled &&
               (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
-                <Icon
-                  type={selectIconType}
+                <SearchSelectIconStyleBase
+                  as={ICONTYPE[selectIconType]}
+                  params={{ singe: true, spin: loading && selectIconType === 'loading' }}
                   className={`${prefixCls}-singe-colse`}
-                  color="#393e48"
-                  spin={loading && selectIconType === 'loading'}
+                  style={{ fill: '#393e48' }}
+                  // spin={loading && selectIconType === 'loading'}
                   onClick={resetSelectedValue}
                 />
               )

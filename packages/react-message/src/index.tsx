@@ -1,10 +1,10 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import Icon, { IconProps } from '@uiw/react-icon';
-import Button from '@uiw/react-button';
-import './style/index.less';
+// import './style/index.less';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 
+import { MessageDivWrap, MessageTitleSpan, MessageDescriptionSpan, MessageButtonStyleWarp } from './style';
 export interface MessageProps extends IProps, Omit<HTMLDivProps, 'title'> {
   title?: React.ReactNode;
   icon?: IconProps['type'];
@@ -85,13 +85,20 @@ export default class Message extends React.Component<MessageProps, IMessageState
       .filter(Boolean)
       .join(' ')
       .trim();
+
     const Child = (
-      <div className={cls} {...elementProps}>
-        {isCloseButtonShown && <Button basic onClick={this.handleClosed} icon="close" type="light" />}
+      <MessageDivWrap params={{ rounded, type, title, children, showIcon, icon }} className={cls} {...elementProps}>
+        {isCloseButtonShown && (
+          <MessageButtonStyleWarp basic onClick={this.handleClosed} icon={<Icon type="close" />} type="light" />
+        )}
         {showIcon && <Icon type={this.renderIcon()} />}
-        <span className={`${prefixCls}-title`}>{title}</span>
-        <span className={`${prefixCls}-description`}>{children}</span>
-      </div>
+        <MessageTitleSpan params={{ showIcon, title, children }} className={`${prefixCls}-title`}>
+          {title}
+        </MessageTitleSpan>
+        <MessageDescriptionSpan params={{ showIcon, title, children }} className={`${prefixCls}-description`}>
+          {children}
+        </MessageDescriptionSpan>
+      </MessageDivWrap>
     );
     if (!isCloseButtonShown) {
       return Child;

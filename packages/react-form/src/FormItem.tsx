@@ -2,7 +2,8 @@ import React from 'react';
 import { Col, Row } from '@uiw/react-grid';
 import { IProps, HTMLInputProps } from '@uiw/utils';
 import { FormFieldsProps } from './Form';
-import './style/form-item.less';
+// import './style/form-item.less';
+import { FormStyleItem, LabelStyle, FormStyleHelpStyle, FormStyleRowStyle } from './style/item';
 
 export interface FormItemProps<T> extends IProps, HTMLInputProps {
   inline?: boolean;
@@ -43,37 +44,39 @@ export default class FormItem<T> extends React.PureComponent<FormItemProps<T>> {
     const labelCls = ['w-form-label', labelClassName].filter(Boolean).join(' ').trim();
     if (inline) {
       return (
-        <div className={cls} style={style} {...otherProps}>
-          <Row>
-            <Col fixed className={labelCls}>
+        <FormStyleItem hasError={hasError} className={cls} style={style} {...otherProps}>
+          <FormStyleRowStyle as={Row}>
+            <LabelStyle as={Col} fixed className={labelCls}>
               {required && <label style={{ color: 'red' }}>*</label>}
-              <label style={labelStyle} htmlFor={labelFor}>
+              <LabelStyle style={labelStyle} htmlFor={labelFor}>
                 {label}
-              </label>
-            </Col>
+              </LabelStyle>
+            </LabelStyle>
             <Col className="w-form-row">{this.props.children}</Col>
-          </Row>
+          </FormStyleRowStyle>
           {help && (
-            <Row>
-              <Col className="w-form-help">{help}</Col>
-            </Row>
+            <FormStyleRowStyle as={Row}>
+              <FormStyleHelpStyle as={Col} className="w-form-help">
+                {help}
+              </FormStyleHelpStyle>
+            </FormStyleRowStyle>
           )}
-        </div>
+        </FormStyleItem>
       );
     }
     return (
-      <div className={cls} style={style} {...otherProps}>
+      <FormStyleItem hasError={hasError} className={cls} style={style} {...otherProps}>
         {label && (
           <React.Fragment>
             {required && <label style={{ color: 'red' }}>*</label>}
-            <label className={labelCls} style={labelStyle} htmlFor={labelFor}>
+            <LabelStyle className={labelCls} style={labelStyle} htmlFor={labelFor}>
               {label}
-            </label>
+            </LabelStyle>
           </React.Fragment>
         )}
         <Col className="w-form-row">{this.props.children}</Col>
-        {help && <div className="w-form-help">{help}</div>}
-      </div>
+        {help && <FormStyleHelpStyle className="w-form-help">{help}</FormStyleHelpStyle>}
+      </FormStyleItem>
     );
   }
 }

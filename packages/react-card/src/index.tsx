@@ -1,6 +1,13 @@
 import React, { useMemo } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import { CardWarp, CardFooter, CardBody, CardHead, CardHeadTitle, CardHeadExtra } from './style';
+import {
+  CardStyleWarp,
+  CardStyleFooter,
+  CardBody,
+  CardStyleHead,
+  CardStyleHeadTitle,
+  CardStyleHeadExtra,
+} from './style';
 export * from './style';
 
 export interface CardProps extends IProps, Omit<HTMLDivProps, 'title'> {
@@ -45,7 +52,7 @@ export default React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   );
 
   return (
-    <CardWarp
+    <CardStyleWarp
       {...resetProps}
       bordered={bordered}
       active={active}
@@ -55,17 +62,17 @@ export default React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
       ref={ref}
     >
       {(title || extra) && (
-        <CardHead className={`${prefixCls}-head`}>
-          {title && <CardHeadTitle className={`${prefixCls}-head-title`}>{title}</CardHeadTitle>}
-          {extra && <CardHeadExtra className={`${prefixCls}-extra`}>{extra}</CardHeadExtra>}
-        </CardHead>
+        <CardStyleHead className={`${prefixCls}-head`}>
+          {title && <CardStyleHeadTitle className={`${prefixCls}-head-title`}>{title}</CardStyleHeadTitle>}
+          {extra && <CardStyleHeadExtra className={`${prefixCls}-extra`}>{extra}</CardStyleHeadExtra>}
+        </CardStyleHead>
       )}
       {children && (
         <CardBody className={[`${prefixCls}-body`, bodyClassName].filter(Boolean).join(' ').trim()} style={bodyStyle}>
           {children}
         </CardBody>
       )}
-      {footer && <CardFooter className={`${prefixCls}-footer`}>{footer}</CardFooter>}
-    </CardWarp>
+      {footer && <CardStyleFooter className={`${prefixCls}-footer`}>{footer}</CardStyleFooter>}
+    </CardStyleWarp>
   );
 });

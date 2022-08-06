@@ -2,7 +2,7 @@ import React from 'react';
 import { IProps, HTMLTextProps } from '@uiw/utils';
 // import './style/index.less';
 import { TextareaWarp } from './style/index';
-
+export * from './style';
 export interface TextareaProps extends IProps, HTMLTextProps {}
 
 export default React.forwardRef<HTMLTextAreaElement, TextareaProps>((props, ref) => {

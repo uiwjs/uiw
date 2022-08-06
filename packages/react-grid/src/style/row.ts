@@ -4,11 +4,11 @@ import { RowProps } from 'src/Row';
 
 // @justifyContentProps: flex-start flex-end center space-between space-around space-evenly;
 
-interface RowWrapProps extends ThemeVariantValueOptions, Pick<RowProps, 'align' | 'justify'> {}
+interface RowStyleWrapProps extends ThemeVariantValueOptions, Pick<RowProps, 'align' | 'justify'> {}
 
 const alignType = { top: 'flex-start', middle: 'center', bottom: 'flex-end', baseline: 'baseline' };
 
-const RowWrap = styled.div<RowWrapProps>`
+const RowStyleWrap = styled.div<RowStyleWrapProps>`
   box-sizing: border-box;
   display: flex;
   flex: 0 1 auto;
@@ -27,8 +27,8 @@ const RowWrap = styled.div<RowWrapProps>`
       justify-content: ${props.justify};
     `}
 `;
-RowWrap.defaultProps = {
+RowStyleWrap.defaultProps = {
   defaultTheme: {},
 };
 
-export default RowWrap;
+export default RowStyleWrap;

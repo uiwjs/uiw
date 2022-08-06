@@ -1,12 +1,12 @@
 import React, { useMemo, useState, useRef, useEffect, ReactElement } from 'react';
-import Dropdown, { DropdownProps } from '@uiw/react-dropdown';
+import { DropdownProps } from '@uiw/react-dropdown';
 import Icon from '@uiw/react-icon';
-import Input from '@uiw/react-input';
-import Tag, { TagProps } from '@uiw/react-tag';
+import { TagProps } from '@uiw/react-tag';
 import Card from '@uiw/react-card';
 import Empty from '@uiw/react-empty';
 import { IProps } from '@uiw/utils';
-import './style/index.less';
+// import './style/index.less';
+import { DropdownWrap, DropdownDiv, DropdownDivTag, DropdownDivSpan, DropdownDivInput } from './style/index';
 
 const TagSize = { large: 25, default: 20, small: 17 };
 
@@ -133,7 +133,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
   }, [JSON.parse(JSON.stringify(selectedOption)), options, emptyOption]);
 
   return (
-    <Dropdown
+    <DropdownWrap
       className={cls}
       trigger="click"
       onVisibleChange={(isOpen: boolean) => {
@@ -150,11 +150,14 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
         onClick={() => inputRef.current?.focus()}
         style={{ minWidth: style?.width || 200, maxWidth: 'none', ...style }}
       >
-        <div className={[`${prefixCls}-inner`, `${prefixCls}-${size}`].filter(Boolean).join(' ').trim()}>
+        <DropdownDiv
+          size={size}
+          className={[`${prefixCls}-inner`, `${prefixCls}-${size}`].filter(Boolean).join(' ').trim()}
+        >
           <div style={{ display: 'flex', flexFlow: 'wrap', width: '100%' }}>
             {selectedOption.map((item, index) => {
               return (
-                <Tag
+                <DropdownDivTag
                   style={{ height: TagSize[size], margin: 1, display: 'flex', alignItems: 'center' }}
                   className={`${prefixCls}-tag`}
                   key={index}
@@ -168,10 +171,10 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
                   }}
                 >
                   {item.label}
-                </Tag>
+                </DropdownDivTag>
               );
             })}
-            <Input
+            <DropdownDivInput
               ref={inputRef}
               className={`${prefixCls}-input-contents`}
               size={size}
@@ -183,7 +186,7 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
             />
           </div>
           {!disabled && (
-            <span style={{ height: 25, width: 14 }} className={`${prefixCls}-close-tag-contents`}>
+            <DropdownDivSpan style={{ height: 25, width: 14 }} className={`${prefixCls}-close-tag-contents`}>
               {(selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
                 <Icon
                   type={selectIconType}
@@ -191,11 +194,11 @@ function SearchTagInput<V extends SearchTagInputOption>(props: SearchTagInputPro
                   onClick={resetSelectedValue}
                 />
               )}
-            </span>
+            </DropdownDivSpan>
           )}
-        </div>
+        </DropdownDiv>
       </div>
-    </Dropdown>
+    </DropdownWrap>
   );
 }
 

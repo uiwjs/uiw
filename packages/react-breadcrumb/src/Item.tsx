@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { IProps } from '@uiw/utils';
-import { BreadcrumbWarpItem, BreadcrumbSeparator } from './style';
+import { BreadcrumbStyleWarpItem, BreadcrumbStyleSeparator } from './style';
 
 type ElementTag<T = any> = T extends HTMLElement ? React.HTMLAttributes<T> : T;
 
@@ -31,7 +31,7 @@ const BreadcrumbItem = React.forwardRef<RefElement, BreadcrumbItemProps>((props,
     otherProps['data-separator'] = separator;
   }
   return React.createElement(
-    BreadcrumbWarpItem,
+    BreadcrumbStyleWarpItem,
     {
       ...otherProps,
       noSeparator: !separator,
@@ -40,7 +40,7 @@ const BreadcrumbItem = React.forwardRef<RefElement, BreadcrumbItemProps>((props,
       ref,
     },
     <Fragment>
-      {isElm && <BreadcrumbSeparator className={`${prefixCls}-separator`}>{separator}</BreadcrumbSeparator>}
+      {isElm && <BreadcrumbStyleSeparator className={`${prefixCls}-separator`}>{separator}</BreadcrumbStyleSeparator>}
       {props.children}
     </Fragment>,
   );
