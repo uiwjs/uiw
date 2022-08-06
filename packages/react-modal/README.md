@@ -351,7 +351,7 @@ export default Demo
 | onConfirm | 点击确定按钮回调 | Function(e) | - |
 | cancelText | 取消按钮文字， | String | - |
 | confirmText | 确认按钮文字 | String | `确认` |
-| icon | 设置对话框左上角图标，设置 `type` 将图标设置不同的颜色。当前属性为 [`<Icon>`](#/components/icon) 组件的 `type` 属性，所以可以参考该组件自定义图标。 | String/ReactNode | - |
+| icon | 设置对话框左上角图标 | ReactNode | - |
 | useButton | 是否使用默认按钮，如果设置 `false` 需要自定义按钮关闭 | Boolean | `true` |
 | type | 按钮类型跟 `<Button>` 组件的 `type` 参数一致，同时会影响按钮颜色。 | String | `light` |
 | width | 设置弹出框宽度 | Number | - |
