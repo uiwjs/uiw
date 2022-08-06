@@ -1,5 +1,6 @@
 import React from 'react';
-import Icon from '@uiw/react-icon';
+import { IconStyleBase } from '@uiw/react-icon';
+import { Delete, Search } from '@uiw/icons';
 import { FileInputListProps } from './';
 import {
   FileInputStyleListWarp,
@@ -56,7 +57,7 @@ const Picture = (props: FileInputListProps) => {
                       className={`${prefixCls}-actions-search`}
                       onClick={() => onPreview?.(item)}
                     >
-                      <Icon type="search" style={{ color: '#fff', fontSize: 16 }} />
+                      <IconStyleBase as={Search} style={{ color: '#fff', fontSize: 16 }} />
                     </FileInputStyleListActionsSearchWarp>
                   </FileInputStyleListActionsWarp>
                 )}
@@ -70,7 +71,7 @@ const Picture = (props: FileInputListProps) => {
                 className={`${prefixCls}-${uploadType}-icon`}
                 onClick={() => onRemove?.(index)}
               >
-                <Icon type="delete" style={{ color: '#999' }} />
+                <IconStyleBase as={Delete} style={{ color: '#999' }} />
               </FileInputStyleListUploadIconTypeWarp>
             )}
           </FileInputStyleListUploadTypeWarp>
