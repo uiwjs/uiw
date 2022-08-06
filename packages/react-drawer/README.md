@@ -18,6 +18,7 @@ import Drawer from '@uiw/react-drawer';
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Drawer, ButtonGroup, Button } from 'uiw';
+import { Information } from '@uiw/icons/lib/Information'
 
 class Demo extends React.Component {
   constructor() {
@@ -39,6 +40,7 @@ class Demo extends React.Component {
           title="抽屉标题"
           isOpen={this.state.visible}
           onClose={this.onClose.bind(this)}
+          icon={<Information style={{ width: 16 }}/>}
         >
           React 可以非常轻松地创建用户交互界面。为你应用的每一个状态设计简洁的视图，在数据改变时 React 也可以高效地更新渲染界面。
           <br /><br />
@@ -69,6 +71,7 @@ export default Demo
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Drawer, ButtonGroup, Button } from 'uiw';
+import { Information } from '@uiw/icons/lib/Information'
 
 class Demo extends React.Component {
   constructor() {
@@ -89,7 +92,7 @@ class Demo extends React.Component {
       <div>
         <Drawer
           title="抽屉标题"
-          icon="information"
+          icon={<Information style={{ width: 16 }}/>}
           placement={this.state.placement}
           isOpen={this.state.visible}
           footer="页脚，可以放点内容"
@@ -183,7 +186,7 @@ export default Demo
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
 | title | 抽屉标题 | String | - |
-| icon | 设置对话框右上角图标 | String/Element | - |
+| icon | 设置对话框右上角图标 | React.ReactNode | - |
 | isOpen | 是否可见 | Boollean | - |
 | closable | 是否显示右上角的关闭按钮 | Boollean | `true` |
 | placement | 抽屉的方向 | Enum{`top`, `right`, `bottom`, `left`} | `right` |
