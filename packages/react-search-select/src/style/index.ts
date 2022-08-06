@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ThemeVariantValueOptions } from '@uiw/utils';
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import Input, { InputProps, InputStyleBase } from '@uiw/react-input';
 import { IconStyleBase, IconStyleBaseProps } from '@uiw/react-icon';
 
@@ -18,9 +18,11 @@ export const SearchSelectTheme = {
     ' 0 0 0 1px #6e6e6e, 0 0 0 3px rgba(57, 62, 72, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
 };
 
-export interface SearchSelectInputContentsBaseProps extends InputProps, ThemeVariantValueOptions {}
+export interface SearchSelectInputContentsBaseProps
+  extends InputProps,
+    ThemeVariantValueOptions<typeof SearchSelectTheme> {}
 
-export const SearchSelectInputContentsBase = styled(Input)`
+export const SearchSelectInputContentsBase = styled(Input)<SearchSelectInputContentsBaseProps>`
   ${InputStyleBase} {
     box-shadow: none;
     padding: 0px;
@@ -37,9 +39,9 @@ export const SearchSelectInputContentsBase = styled(Input)`
       props.disabled &&
       css`
         box-shadow: none;
-        background: #dddddd;
+        background: ${(props) => getThemeVariantValue(props, 'backgroundSearchSelectDisabled')};
         opacity: 0.75;
-        color: #a5a5a5;
+        color: ${(props) => getThemeVariantValue(props, 'colorSearchSelectDisabled')};
         cursor: not-allowed;
         resize: none;
       `}
@@ -61,6 +63,9 @@ export const SearchSelectInputContentsBase = styled(Input)`
       }
     `}
 `;
+SearchSelectInputContentsBase.defaultProps = {
+  defaultTheme: SearchSelectTheme,
+};
 
 export interface SearchSelectTagContentsBaseProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement | ThemeVariantValueOptions>, HTMLDivElement> {}
@@ -121,31 +126,30 @@ export const SearchSelectInner = styled.div<SearchSelectInnerProps>`
   border: none;
   align-items: center;
   border-radius: 3px;
-  box-shadow: 0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px rgba(16, 22, 26, 0.15),
-    inset 0 1px 1px rgba(16, 22, 26, 0.2);
+  box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowSearchSelectBase')};
   box-sizing: border-box;
-  background: #fff;
+  background: ${(props) => getThemeVariantValue(props, 'backgroundSearchSelectBase')};
   margin: 0 !important;
   padding: 1px 10px;
   vertical-align: middle;
   line-height: 30px;
   align-items: center;
-  color: #393e48;
+  color: ${(props) => getThemeVariantValue(props, 'colorSearchSelectBase')};
   font-weight: 400;
   font-size: inherit;
   transition: box-shadow 0.3s cubic-bezier(0.4, 1, 0.75, 0.9);
   appearance: none;
 
   &:focus {
-    box-shadow: 0 0 0 1px #393e48, 0 0 0 3px rgba(57, 62, 72, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
+    box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowSearchSelectFocus')};
   }
 
   &:hover {
-    box-shadow: 0 0 0 1px #6e6e6e, 0 0 0 3px rgba(57, 62, 72, 0), inset 0 1px 1px rgba(16, 22, 26, 0.2);
+    box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowSearchSelectHover')};
   }
 
   &:focus&:hover {
-    box-shadow: 0 0 0 1px #6e6e6e, 0 0 0 3px rgba(57, 62, 72, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
+    box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowSearchSelectFocusHover')};
   }
   ${(props) =>
     props.params?.showSearch === false &&

@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
-import Overlay, { OverlayProps } from '@uiw/react-overlay';
-import Icon, { IconProps } from '@uiw/react-icon';
+import { OverlayProps } from '@uiw/react-overlay';
+import { Close } from '@uiw/icons/lib/Close';
 import Button from '@uiw/react-button';
+import { IconStyleBase } from '@uiw/react-icon';
 import { HTMLDivProps } from '@uiw/utils';
 import {
   DrawerWrap,
@@ -15,7 +16,7 @@ import {
 
 export interface DrawerProps extends OverlayProps {
   footer?: React.ReactNode;
-  icon?: IconProps['type'];
+  icon?: React.ReactNode;
   title?: React.ReactNode;
   bodyProps?: HTMLDivProps;
   placement?: 'top' | 'right' | 'bottom' | 'left';
@@ -54,7 +55,7 @@ export default (props: DrawerProps = {}) => {
     () => (footer ? <DrawerFooterWrap className={`${prefixCls}-footer`}>{footer}</DrawerFooterWrap> : null),
     [footer],
   );
-  const iconView = useMemo(() => (icon ? <Icon type={icon} /> : null), [icon]);
+  const iconView = icon; // useMemo(() => (icon ? <Icon type={icon} /> : null), [icon]);
   const titleView = useMemo(() => (title ? <h4>{title}</h4> : null), [title]);
 
   return (
@@ -71,7 +72,9 @@ export default (props: DrawerProps = {}) => {
           <DrawerHeaderWrap className={`${prefixCls}-header`}>
             {iconView}
             {titleView}
-            {title && isCloseButtonShown && <Button basic onClick={props.onClose} icon="close" type="light" />}
+            {title && isCloseButtonShown && (
+              <Button basic onClick={props.onClose} icon={<IconStyleBase as={Close} />} type="light" />
+            )}
           </DrawerHeaderWrap>
         )}
         <DrawerBodyWrap className={`${prefixCls}-body`}>
