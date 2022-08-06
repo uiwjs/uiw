@@ -6,7 +6,7 @@ import { ButtonStyleBase } from '@uiw/react-button';
 import { ContentWrap } from '@uiw/react-overlay';
 export const NotifyStyleBase = styled.div``;
 export const NotifyGlobalStyle = createGlobalStyle`
-  .w-notify-warpper{
+  .w-notify-warpper {
     position: fixed;
     padding: 5px;
     z-index: 999;

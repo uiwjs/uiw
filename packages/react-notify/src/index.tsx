@@ -64,7 +64,6 @@ function NotificationCreate(props: NotificationCreateProps, type: NotificationCr
     document.body.appendChild(div);
     div.className = ['w-notify-warpper', props.placement].filter(Boolean).join(' ').trim();
     notifysDom[props.placement] = div;
-    console.log('3333', 4443);
     notifys[props.placement] = ReactDOM.render(<Container />, div);
   }
 
