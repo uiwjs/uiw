@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { AlertProps } from '@uiw/react-alert';
 import { randomid } from '@uiw/utils';
 import Container, { Placement, ContainerNotifys } from './Container';
-import './style/index.less';
+// import './style/index.less';
 
 export interface NotificationCreateProps extends Omit<AlertProps, 'type'> {
   placement?: Placement;
@@ -64,6 +64,7 @@ function NotificationCreate(props: NotificationCreateProps, type: NotificationCr
     document.body.appendChild(div);
     div.className = ['w-notify-warpper', props.placement].filter(Boolean).join(' ').trim();
     notifysDom[props.placement] = div;
+    console.log('3333', 4443);
     notifys[props.placement] = ReactDOM.render(<Container />, div);
   }
 
