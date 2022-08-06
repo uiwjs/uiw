@@ -6,7 +6,8 @@ import {
   FileInputStyleCardBoxInfoWarp,
   FileInputStyleCardActionsRemoveWarp,
 } from './style';
-import Icon from '@uiw/react-icon';
+import { IconStyleBase } from '@uiw/react-icon';
+import { Delete, Search } from '@uiw/icons';
 import { FileInputListProps } from './';
 
 const Card = (props: FileInputListProps) => {
@@ -43,7 +44,7 @@ const Card = (props: FileInputListProps) => {
                 className={`${prefixCls}-actions-remove`}
                 onClick={() => onPreview?.(item)}
               >
-                <Icon type="search" style={{ color: '#fff', fontSize: 16 }} />
+                <IconStyleBase as={Search} style={{ color: '#fff', fontSize: 16 }} />
               </FileInputStyleCardActionsRemoveWarp>
             )}
             {showFileIcon?.showRemoveIcon && (
@@ -51,7 +52,7 @@ const Card = (props: FileInputListProps) => {
                 className={`${prefixCls}-actions-remove`}
                 onClick={() => onRemove?.(index)}
               >
-                <Icon type="delete" style={{ color: '#fff', fontSize: 16 }} />
+                <IconStyleBase as={Delete} style={{ color: '#fff', fontSize: 16 }} />
               </FileInputStyleCardActionsRemoveWarp>
             )}
           </FileInputStyleCardActionsWarp>
