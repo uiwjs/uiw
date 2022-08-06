@@ -17,7 +17,7 @@ import Modal from '@uiw/react-modal';
 
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
-import { Modal, ButtonGroup, Button } from 'uiw';
+import { Modal, ButtonGroup, Button, Icon } from 'uiw';
 
 class Demo extends React.Component {
   constructor() {
@@ -40,7 +40,7 @@ class Demo extends React.Component {
           isOpen={this.state.visible}
           confirmText="确定按钮"
           cancelText="取消按钮"
-          icon="information"
+          icon={<Icon type="information" />}
           type="primary"
           onConfirm={() => console.log('您点击了确定按钮！')}
           onCancel={() => console.log('您点击了取消按钮！')}
@@ -255,7 +255,7 @@ export default Demo
 
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
-import { Modal, ButtonGroup, Button } from 'uiw';
+import { Modal, ButtonGroup, Button, Icon } from 'uiw';
 
 class Demo extends React.Component {
   constructor() {
@@ -279,7 +279,7 @@ class Demo extends React.Component {
           useButton={false}
           confirmText="确定按钮"
           cancelText="取消按钮"
-          icon="information"
+          icon={<Icon type="information" />}
           type="danger"
           onConfirm={() => console.log('您点击了确定按钮！')}
           onCancel={() => console.log('您点击了取消按钮！')}

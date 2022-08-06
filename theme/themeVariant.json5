@@ -336,6 +336,9 @@
   // Drawer Footer
   boxShadowColorInDrawerFooter: 'rgba(16, 22, 26, 0.15)',
 
+  // ---------------------------Transfer 穿梭框 ------------------------------------
+  boxShadowColorTransferArrowPropsHover: 'rgba(0, 0, 0, 0.2)',
+
   // ---------------------------button 按钮部分 ------------------------------------
   colorButtonStyleBase: '#fff',
   // 最小高度
