@@ -11,7 +11,7 @@ interface SelectWarpProps extends ThemeVariantValueOptions, Omit<SelectProps, 's
   };
 }
 
-export const SelectWarp = styled.select<SelectWarpProps>`
+export const SelectStyleWarp = styled.select<SelectWarpProps>`
   display: inline-flex;
   appearance: none;
   cursor: ${(props) => getThemeVariantValue(props, 'cursorSelectDefault')};
@@ -65,7 +65,7 @@ export const SelectWarp = styled.select<SelectWarpProps>`
     `}
 `;
 
-SelectWarp.defaultProps = {
+SelectStyleWarp.defaultProps = {
   defaultTheme: {
     // 大小内边距设置
     paddingSelectSmall: '3px 25px 3px 7px',
