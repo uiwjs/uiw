@@ -6,6 +6,7 @@ import TreeChecked from '@uiw/react-tree-checked';
 import { TreeData } from '@uiw/react-tree';
 import Checkbox from '@uiw/react-checkbox';
 import TranSferWarp, { TransferArrow, TransferArrowContent, TransferCard, TransferChekedContentWrap } from './style';
+export * from './style';
 
 export interface TransferOptionType {
   key: string | number;

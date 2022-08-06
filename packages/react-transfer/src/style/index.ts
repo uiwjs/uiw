@@ -3,7 +3,7 @@ import Card from '@uiw/react-card';
 import { IconStyleBase } from '@uiw/react-icon';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
-const TransferWrap = styled.div`
+export const TransferWrap = styled.div`
   display: flex;
   justify-content: space-between;
 `;
