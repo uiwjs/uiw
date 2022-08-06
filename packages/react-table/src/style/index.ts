@@ -12,11 +12,7 @@ export interface TableStyleWrapBaseProps extends TableStyleBaseProps {
   };
 }
 
-export interface TableStyleDomIconProps extends IconStyleBaseProps {
-  hierarchy: Number | 0;
-  indentSize: Number | 0;
-  isOpacity?: false;
-}
+export interface TableStyleDomIconProps extends IconStyleBaseProps {}
 
 export interface TableStyleColProps extends TableStyleBaseProps {
   params?: {
