@@ -31,7 +31,7 @@ export default Demo
 
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
-import { InputNumber,Row,Col } from 'uiw';
+import { InputNumber,Row,Col, Icon, } from 'uiw';
 
 const Demo = () => {
 
@@ -82,7 +82,7 @@ export default Demo
 
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
-import { Form, Input, Row, Col, Button, Notify ,InputNumber} from 'uiw';
+import { Form, Input, Row, Col, Button, Notify ,InputNumber, Icon,} from 'uiw';
 
 const Demo = () => (
   <Form
@@ -161,23 +161,23 @@ export default Demo
 
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
-import { Input, Row, Col } from 'uiw';
+import { Input, Row, Col,Icon } from 'uiw';
 
 const stylItem = { margin: 20 };
 const Demo = () => (
   <div>
     <Row gutter={10}>
       <Col fixed>
-        <Input preIcon="delete" placeholder="请输入内容" />
+        <Input  preIcon= {<Icon type='delete' />} placeholder="请输入内容" />
       </Col>
       <Col fixed>
-        <Input preIcon="tag" placeholder="请输入内容" />
+        <Input  preIcon= {<Icon type='tag' />}  placeholder="请输入内容" />
       </Col>
       <Col fixed>
-        <Input preIcon="picasa" placeholder="请输入内容" />
+        <Input  preIcon= {<Icon type='picasa' />} placeholder="请输入内容" />
       </Col>
       <Col fixed>
-        <Input preIcon="like-o" placeholder="请输入内容" />
+        <Input  preIcon= {<Icon type='like-o' />} placeholder="请输入内容" />
       </Col>
     </Row>
   </div>
@@ -191,35 +191,35 @@ export default Demo
 
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
-import { Input, Row, Col, Button, Tag } from 'uiw';
+import { Input, Row, Col, Button, Tag,Icon } from 'uiw';
 
 const Demo = () => (
   <div>
     <Row gutter={10}>
       <Col fixed>
         <Input
-          preIcon="like-o"
+          preIcon= {<Icon type='like-o' />}
           placeholder="请输入密码"
-          addonAfter={<Button icon="lock" size="small" basic type="light" />}
+          addonAfter={<Button icon={ <Icon type="lock" />} size="small" basic type="light" />}
         />
       </Col>
       <Col fixed>
         <Input
-          preIcon="tag"
+          preIcon= {<Icon type='tag' />}
           placeholder="请输入内容"
           addonAfter={<Tag title="1000" color="#28a745" />}
         />
       </Col>
       <Col fixed>
         <Input
-          preIcon="search"
+          preIcon= {<Icon type='search' />}
           placeholder="请输入内容"
           addonAfter={<Button icon="apple" size="small" type="primary">按钮</Button>}
         />
       </Col>
       <Col fixed>
         <Input
-          preIcon="tag"
+          preIcon= { <Icon type='tag' />}
           placeholder="请输入内容"
           addonAfter={<Button size="small" type="primary">按钮</Button>}
         />
@@ -234,30 +234,30 @@ export default Demo
 
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
-import { Input, Row, Col, Tag, Button } from 'uiw';
+import { Input, Row, Col, Tag, Button ,Icon} from 'uiw';
 
 const Demo = () => (
   <div>
     <Row gutter={10} style={{ marginBottom: 10 }}>
       <Col fixed>
         <Input
-          preIcon="like-o"
+          preIcon= {<Icon type='like-o' />}
           size="large"
           placeholder="请输入密码"
-          addonAfter={<Button icon="lock" basic type="light" />}
+          addonAfter={<Button icon={<Icon type='lock' />} basic type="light" />}
         />
       </Col>
       <Col fixed>
         <Input
-          preIcon="search"
+          preIcon= {<Icon type='search' />}
           placeholder="请输入内容"
-          addonAfter={<Button icon="arrow-right" basic size="small" type="light" />}
+          addonAfter={<Button icon={<Icon type='arrow-right' />} basic size="small" type="light" />}
         />
       </Col>
       <Col fixed>
         <Input
-          preIcon="tag"
           size="small"
+          preIcon= {<Icon type='tag' />}
           placeholder="请输入内容"
           addonAfter={<Button size="small" type="primary">按钮</Button>}
         />
@@ -266,22 +266,22 @@ const Demo = () => (
     <Row gutter={10} style={{ marginBottom: 10 }}>
       <Col fixed>
         <Input
-          preIcon="like-o"
           size="large"
+          preIcon= {<Icon type='like-o' />}
           placeholder="请输入密码"
           addonAfter={<Tag title="1000" color="#28a745" />}
         />
       </Col>
       <Col fixed>
         <Input
-          preIcon="tag"
+          preIcon= {<Icon type='tag' />}
           placeholder="请输入内容"
           addonAfter={<Tag title="药丸" color="#1C7CEB" color="#40bf16">丸</Tag>}
         />
       </Col>
       <Col fixed>
         <Input
-          preIcon="tag"
+          preIcon= {<Icon type='tag' />}
           size="small"
           placeholder="请输入内容"
           addonAfter={<Tag title="1000" color="#28a745" />}
@@ -291,22 +291,22 @@ const Demo = () => (
     <Row gutter={10} style={{ marginBottom: 10 }}>
       <Col fixed>
         <Input
-          preIcon="like-o"
+          preIcon= {<Icon type='like-o' />}
           size="large"
           placeholder="请输入密码"
-          addonAfter={<Button icon="apple" type="primary">按钮</Button>}
+          addonAfter={<Button  icon={<Icon type='apple' />}  type="primary">按钮</Button>}
         />
       </Col>
       <Col fixed>
         <Input
-          preIcon="search"
+          preIcon= {<Icon type='search' />}
           placeholder="请输入内容"
           addonAfter={<Button size="small" type="primary">搜索</Button>}
         />
       </Col>
       <Col fixed>
         <Input
-          preIcon="tag"
+          preIcon= {<Icon type='tag' />}
           size="small"
           placeholder="请输入内容"
           addonAfter={<Button size="small" type="primary">按钮</Button>}
@@ -316,7 +316,7 @@ const Demo = () => (
     <Row gutter={10} style={{ marginBottom: 10 }}>
       <Col fixed>
         <Input
-          preIcon="like-o"
+           preIcon= {<Icon type='like-o' />}
           placeholder="请输入密码"
           addonAfter={<Button size="small" type="light">亮按钮</Button>}
         />
@@ -336,7 +336,7 @@ const Demo = () => (
     </Row>
     <Row gutter={10}>
       <Col fixed>
-        <Input size="small" preIcon="like-o" placeholder="请输入密码" />
+        <Input size="small" preIcon={<Icon type='like-o' />} placeholder="请输入密码" />
       </Col>
       <Col fixed>
         <Input size="small" placeholder="请输入内容" />
@@ -344,7 +344,7 @@ const Demo = () => (
       <Col fixed>
         <Input
           size="small"
-          preIcon="like-o"
+          preIcon= { <Icon type='like-o' />}
           placeholder="请输入内容"
           addonAfter={<Button size="small" type="warning">按钮</Button>}
         />
@@ -359,7 +359,7 @@ export default Demo
 
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
-import { Input, Row, Col, Button } from 'uiw';
+import { Input, Row, Col, Button ,Icon} from 'uiw';
 
 class Demo extends React.Component {
   constructor() {
@@ -383,10 +383,15 @@ class Demo extends React.Component {
                 console.log('instance:', instance);
               }
             }}
-            preIcon="like-o"
+            preIcon= { <Icon type='like-o' />}
             type={this.state.btnIcon === 'lock' ? 'password' : 'text'}
             placeholder="请输入密码"
-            addonAfter={<Button icon={this.state.btnIcon} onClick={this.onClick.bind(this)} size="small" basic type="light" />}
+            addonAfter={<Button
+             icon={<Icon type={this.state.btnIcon} />}
+             onClick={this.onClick.bind(this)}
+             size="small"
+             basic 
+             type="light" />}
           />
         </Col>
       </Row>
@@ -407,23 +412,23 @@ const Demo = () => (
   <>
     <Row gutter={10}>
       <Col fixed>
-        <Input disabled preIcon="delete" placeholder="请输入内容" />
+        <Input disabled preIcon={<Icon type="delete" />} placeholder="请输入内容" />
       </Col>
       <Col fixed>
-        <Input disabled preIcon="tag" placeholder="请输入内容" />
+        <Input disabled preIcon={<Icon type="tag" />} placeholder="请输入内容" />
       </Col>
       <Col fixed>
         <Input
           disabled
-          preIcon="picasa"
+          preIcon={<Icon type="picasa" />}
           placeholder="请输入内容"
           addonAfter={
-            <Button icon="close" disabled size="small" basic type="light" />
+            <Button icon={<Icon type="close" />} disabled size="small" basic type="light" />
           }
         />
       </Col>
       <Col fixed>
-        <Input disabled preIcon="like-o" placeholder="请输入内容" />
+        <Input disabled  preIcon={<Icon type="like-o" />}  placeholder="请输入内容" />
       </Col>
     </Row>
   </>
@@ -437,7 +442,7 @@ export default Demo
 |--------- |-------- |--------- |-------- |-------- |
 | value | 绑定值 | String | - |
 | disabled | 禁用输入框 | Boolean | `false` |
-| preIcon | 输入框`前`面放置图标  | String/ReactNode | - |
+| preIcon | 输入框`前`面放置图标  | ReactNode | - |
 | addonAfter | 	带标签的 input，设置后置标签 | String/ReactNode | - |
 | size | 指定输入框的尺寸，除了默认的大小外，还提供了 `large`、`small` 和 `default` 三种尺寸。 | String | - |
 | inputStyle | 传递给input的样式，在需要动态设置样式场景下使用 | Object | - | v4.18.2 |
