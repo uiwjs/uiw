@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "@uiw/react-button": "^4.21.2",
+    "@uiw/react-icon": "^4.21.2",
     "@uiw/react-overlay": "^4.21.2",
     "@uiw/utils": "^4.21.2"
   }
