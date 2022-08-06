@@ -63,21 +63,6 @@ function NotificationCreate(props: NotificationCreateProps, type: NotificationCr
     const div = document.createElement('div');
     document.body.appendChild(div);
     div.className = ['w-notify-warpper', props.placement].filter(Boolean).join(' ').trim();
-    const divStyle = 'position: fixed;padding: 5px;z-index: 999;';
-    switch (props.placement) {
-      case 'topLeft':
-        div.style.cssText = divStyle + 'top: 0;left: 0;';
-        break;
-      case 'bottomRight':
-        div.style.cssText = divStyle + 'bottom: 0;right: 0;';
-        break;
-      case 'bottomLeft':
-        div.style.cssText = divStyle + 'bottom: 0;left: 0;';
-        break;
-      default:
-        div.style.cssText = divStyle + 'top: 0;right: 0;';
-        break;
-    }
     notifysDom[props.placement] = div;
     notifys[props.placement] = ReactDOM.render(<Container />, div);
   }
