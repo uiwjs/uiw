@@ -17,7 +17,7 @@ import Modal from '@uiw/react-modal';
 
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
-import { Modal, ButtonGroup, Button,Icon } from 'uiw';
+import { Modal, ButtonGroup, Button, Icon } from 'uiw';
 
 class Demo extends React.Component {
   constructor() {
@@ -255,7 +255,7 @@ export default Demo
 
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
-import { Modal, ButtonGroup, Button } from 'uiw';
+import { Modal, ButtonGroup, Button, Icon } from 'uiw';
 
 class Demo extends React.Component {
   constructor() {
