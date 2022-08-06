@@ -2,10 +2,10 @@ import React from 'react';
 import { OverlayTriggerProps } from '@uiw/react-overlay-trigger';
 import Confirm from './Confirm';
 import {
-  OverlayTriggerPopover,
-  OverlayTriggerPopoverContent,
-  OverlayTriggerPopoverArrow,
-  OverlayTriggerPopoverBodyBase,
+  PopoverStyleOverlayTrigger,
+  PopoverStyleOverlayTriggerContent,
+  PopoverStyleOverlayTriggerArrow,
+  PopoverStyleOverlayTriggerDiv,
 } from './style/index';
 
 export interface PopoverProps extends OverlayTriggerProps {
@@ -25,7 +25,7 @@ export default class Popover extends React.Component<PopoverProps> {
   renderArrow = () => {
     const { prefixCls } = this.props;
     return (
-      <OverlayTriggerPopoverArrow className={`${prefixCls}-arrow`}>
+      <PopoverStyleOverlayTriggerArrow className={`${prefixCls}-arrow`}>
         <svg viewBox="0 0 30 30">
           <path
             fillOpacity="0.2"
@@ -36,22 +36,22 @@ export default class Popover extends React.Component<PopoverProps> {
             d="M8.787 7.036c1.22-1.125 2.21-3.376 2.21-5.03V0v30-2.005c0-1.654-.983-3.9-2.21-5.03l-7.183-6.616c-.81-.746-.802-1.96 0-2.7l7.183-6.614z"
           />
         </svg>
-      </OverlayTriggerPopoverArrow>
+      </PopoverStyleOverlayTriggerArrow>
     );
   };
   render() {
     const { prefixCls, className, content, visibleArrow, ...other } = this.props;
     const cls = [prefixCls, className, !visibleArrow ? 'no-arrow' : null].filter(Boolean).join(' ').trim();
     return (
-      <OverlayTriggerPopover
+      <PopoverStyleOverlayTrigger
         {...other}
         overlay={
-          <OverlayTriggerPopoverBodyBase params={{ placement: this.props.placement }} className={cls}>
+          <PopoverStyleOverlayTriggerDiv params={{ placement: this.props.placement }} className={cls}>
             {visibleArrow && this.renderArrow()}
-            <OverlayTriggerPopoverContent className={`${prefixCls}-inner`}>
+            <PopoverStyleOverlayTriggerContent className={`${prefixCls}-inner`}>
               {this.props.content}
-            </OverlayTriggerPopoverContent>
-          </OverlayTriggerPopoverBodyBase>
+            </PopoverStyleOverlayTriggerContent>
+          </PopoverStyleOverlayTriggerDiv>
         }
       >
         {typeof this.props.children === 'object' && (this.props.children as JSX.Element).type.name !== 'Icon' ? (
@@ -59,7 +59,7 @@ export default class Popover extends React.Component<PopoverProps> {
         ) : (
           <span style={{ display: 'block', writingMode: 'vertical-rl' }}>{this.props.children}</span>
         )}
-      </OverlayTriggerPopover>
+      </PopoverStyleOverlayTrigger>
     );
   }
 }
