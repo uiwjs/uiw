@@ -11,7 +11,6 @@ interface DivWrapProps
     type: 'success' | 'warning' | 'info' | 'error' | undefined;
     children: any;
     showIcon: boolean | undefined;
-    icon: any;
     title: React.ReactNode;
   };
 }
@@ -28,7 +27,7 @@ export const MessageStyleDivWrap = styled(MessageStyleWrap)<DivWrapProps>`
     if (props.params?.showIcon) {
       if (props.params?.children && props.params?.title) {
         return css`
-          > .w-icon {
+          > ${IconStyleBase} {
             font-size: 24px;
           }
         `;
@@ -144,27 +143,6 @@ export const MessageStyleTitleSpan = styled(MessageStyleDescriptionSpan)<spanPeo
     css`
       font-size: 16px;
     `}
-`;
-
-interface MessageIconWarpProps extends ThemeVariantValueOptions {
-  params: {
-    children: React.ReactNode;
-    showIcon: boolean | undefined;
-    title: React.ReactNode;
-  };
-}
-// icon
-const MessageStyleIconWarp = styled.span<MessageIconWarpProps>`
-  ${(props) =>
-    props.params?.showIcon &&
-    props.params.title &&
-    props.params.children &&
-    css`
-      font-size: 24px;
-    `}
-  top: 14px;
-  left: 14px;
-  position: absolute;
 `;
 
 interface messageButtonProps extends ButtonProps {}
