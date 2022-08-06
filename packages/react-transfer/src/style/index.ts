@@ -13,9 +13,9 @@ export const TransferChekedContentWrap = styled.div`
   overflow-y: auto;
 `;
 
-interface TransferArrowProps extends ThemeVariantValueOptions {}
+interface TransferArrowProps extends ThemeVariantValueOptions { }
 
-export const TransferArrow = styled(IconStyleBase)<TransferArrowProps>`
+export const TransferArrow = styled(IconStyleBase) <TransferArrowProps>`
   transition: all 0.3s;
   border-radius: 3px;
 
