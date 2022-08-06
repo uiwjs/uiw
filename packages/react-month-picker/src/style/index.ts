@@ -14,7 +14,7 @@ export const MonthPickerStyleCloseButton = styled(Button)``;
 
 export interface MonthPickerStylePopoverBaseProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
-    ThemeVariantValueOptions<typeof MonthPickerTheme> {}
+    ThemeVariantValueOptions<Partial<typeof MonthPickerTheme>> {}
 
 export const MonthPickerStylePopoverBase = styled.div<MonthPickerStylePopoverBaseProps>`
   padding: 5px;
@@ -26,7 +26,7 @@ export const MonthPickerStylePopoverBase = styled.div<MonthPickerStylePopoverBas
 
 export interface MonthPickerStyleInputStyleBaseProps
   extends InputProps,
-    ThemeVariantValueOptions<typeof MonthPickerTheme> {}
+    ThemeVariantValueOptions<Partial<typeof MonthPickerTheme>> {}
 
 export const MonthPickerStyleInputStyleBase = styled(Input)<MonthPickerStyleInputStyleBaseProps>`
   display: inline-block;

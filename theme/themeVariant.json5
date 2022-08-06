@@ -114,23 +114,23 @@
 
   // -----------------------------Progress 进度条   -------------------------------
 
-  strokeProgressPathSuccess: '#28a745',
-  strokeProgressPathException: '#dc3545',
-  strokeProgressPath: '#20a0ff',
-  strokeProgressPathTrail: '#e5e9f2',
+  strokeProgressStylePathSuccess: '#28a745',
+  strokeProgressStylePathException: '#dc3545',
+  strokeProgressStylePath: '#20a0ff',
+  strokeProgressStylePathTrail: '#e5e9f2',
 
   colorProgresTextSuccess: '#28a745',
   colorProgresTextException: '#dc3545',
   colorProgresText: '#48576a',
 
-  backgroundColorProgressBgSuccess: '#28a745',
-  backgroundColorProgressBgException: '#dc3545',
-  backgroundColorProgressBg: '#108ee9',
+  backgroundColorProgressStyleBgSuccess: '#28a745',
+  backgroundColorProgressStyleBgException: '#dc3545',
+  backgroundColorProgressStyleBg: '#108ee9',
 
-  backgroundColorProgressInner: '#e5e9f2',
+  backgroundColorProgressStyleInner: '#e5e9f2',
 
-  backgroundProgressBgActiveBefore: '#fff',
-  backgroundImageProgressBgActive: 'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, 0.15) 50%,rgba(255, 255, 255, 0.15) 75%,transparent 75%,transparent)',
+  backgroundProgressStyleBgActiveBefore: '#fff',
+  backgroundImageProgressStyleBgActive: 'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, 0.15) 50%,rgba(255, 255, 255, 0.15) 75%,transparent 75%,transparent)',
 
   // -------------------------- steps 步骤条 -------------------------------------
   // 行高默认
@@ -140,15 +140,15 @@
   borderColorStepsError: ' #f04134',
   backgroundColorStepsProcess: ' #2d8cf0',
   borderColorStepsProcess: ' #2d8cf0',
-  backgroundStepsItemTail: '#e9e9e9',
+  backgroundStepsStyleItemTail: '#e9e9e9',
 
-  colorStepsItemHeadInner: 'rgba(0, 0, 0, 0.25)',
-  borderColorStepsItemHeadInner: 'rgba(0, 0, 0, 0.25)',
-  backgroundColorStepsItemHeadInner: 'rgba(0, 0, 0, 0.25)',
-  colorStepsItemHeadInnerIcon: '#108ee9',
+  colorStepsStyleItemHeadInner: 'rgba(0, 0, 0, 0.25)',
+  borderColorStepsStyleItemHeadInner: 'rgba(0, 0, 0, 0.25)',
+  backgroundColorStepsStyleItemHeadInner: 'rgba(0, 0, 0, 0.25)',
+  colorStepsStyleItemHeadInnerIcon: '#108ee9',
 
-  colorStepsItemMainTitle: '#999',
-  colorStepsItemMainProcess: ' rgba(0, 0, 0, 0.65)',
+  colorStepsStyleItemMainTitle: '#999',
+  colorStepsStyleItemMainProcess: ' rgba(0, 0, 0, 0.65)',
 
   // ---------------------------card 卡片 ----------------------------------------
   borderColorBaseActive: '#CCCCCC',
@@ -222,19 +222,19 @@
 
   //---------------------------- slider 滑块输入条 --------------------------------
   backgroundColorSlider: '#e4e8f1',
-  backgroundColorSliderBar: '#008ef0',
-  backgroundColorSliderHandleDisabled: '#e6e6e6',
-  boxShadowSliderHandleDisabled: '0 0 0 1px rgba(16, 22, 26, 0.2), 0 0px 0px rgba(16, 22, 26, 0.2)',
-  boxShadowSliderHandleDisabledActive: '0 0 0 1px rgba(16, 22, 26, 0.2), 0 1px 1px rgba(16, 22, 26, 0.2), 0px 0px 0px 2px rgba(0, 0, 0, 0.1)',
-  backgroundColorSliderHandleDisabledActive: '#d8e1e8',
-  boxShadowSliderHandle: '0 0 0 1px rgba(16, 22, 26, 0.2), 0 1px 1px rgba(16, 22, 26, 0.2)',
-  backgroundColorSliderHandle: '#f5f8fa',
-  backgroundImageSliderHandle: 'linear-gradient(180deg, hsla(0, 0%, 100%, 0.8)',
-  backgroundColorSliderTooltip: 'rgba(0, 0, 0, 0.75)',
-  boxShadowSliderDot: '0 0 0 1.6px rgba(16, 22, 26, 0.16)',
-  backgroundColorSliderDot: '#fff',
-  colorSliderMark: 'rgba(0, 0, 0, 0.43)',
-  colorSliderTooltip: '#fff',
+  backgroundColorSliderStyleBar: '#008ef0',
+  backgroundColorSliderStyleHandleDisabled: '#e6e6e6',
+  boxShadowSliderStyleHandleDisabled: '0 0 0 1px rgba(16, 22, 26, 0.2), 0 0px 0px rgba(16, 22, 26, 0.2)',
+  boxShadowSliderStyleHandleDisabledActive: '0 0 0 1px rgba(16, 22, 26, 0.2), 0 1px 1px rgba(16, 22, 26, 0.2), 0px 0px 0px 2px rgba(0, 0, 0, 0.1)',
+  backgroundColorSliderStyleHandleDisabledActive: '#d8e1e8',
+  boxShadowSliderStyleHandle: '0 0 0 1px rgba(16, 22, 26, 0.2), 0 1px 1px rgba(16, 22, 26, 0.2)',
+  backgroundColorSliderStyleHandle: '#f5f8fa',
+  backgroundImageSliderStyleHandle: 'linear-gradient(180deg, hsla(0, 0%, 100%, 0.8)',
+  backgroundColorSliderStyleTooltip: 'rgba(0, 0, 0, 0.75)',
+  boxShadowSliderStyleDot: '0 0 0 1.6px rgba(16, 22, 26, 0.16)',
+  backgroundColorSliderStyleDot: '#fff',
+  colorSliderStyleMark: 'rgba(0, 0, 0, 0.43)',
+  colorSliderStyleTooltip: '#fff',
 
   // ------------------------ collapse 折叠面板 -----------------------------------
   borderColorCollapseBase: '#d9d9d9',

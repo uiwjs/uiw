@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import Select from '@uiw/react-select';
 import { IProps, HTMLUlProps } from '@uiw/utils';
 // import './style/index.less';
-import { PaginationBaseUL, PaginationBaseLI, PaginationBaseLIA } from './style';
+import { PaginationStyleBaseUL, PaginationStyleBaseLI, PaginationStyleBaseLIA } from './style';
 
 export interface PaginationProps extends IProps, Omit<HTMLUlProps, 'onChange'> {
   prefixCls?: string;
@@ -136,7 +136,7 @@ export default function Pagination(props: PaginationProps) {
   };
 
   return (
-    <PaginationBaseUL
+    <PaginationStyleBaseUL
       className={cls}
       style={{ ...style, textAlign: alignment }}
       {...other}
@@ -147,18 +147,18 @@ export default function Pagination(props: PaginationProps) {
     >
       {initPageSoure.map((item: PaginationItemSourceData, idx) => {
         // eslint-disable-next-line jsx-a11y/anchor-is-valid
-        let label = <PaginationBaseLIA params={{ size }}>{item.label}</PaginationBaseLIA>;
+        let label = <PaginationStyleBaseLIA params={{ size }}>{item.label}</PaginationStyleBaseLIA>;
         if (/^(prev|next)$/.test(item.type as string)) {
           // eslint-disable-next-line jsx-a11y/anchor-is-valid
           label = (
-            <PaginationBaseLIA
+            <PaginationStyleBaseLIA
               params={{ type: item.type, isArrow: true, size, disabled: item.disabled }}
               className={`arrow ${item.type}`}
             />
           );
         }
         return (
-          <PaginationBaseLI
+          <PaginationStyleBaseLI
             params={{
               disabled: item.disabled,
               active: item.active,
@@ -173,11 +173,11 @@ export default function Pagination(props: PaginationProps) {
             key={idx}
           >
             {label}
-          </PaginationBaseLI>
+          </PaginationStyleBaseLI>
         );
       })}
       {pageSizeOptions.length > 0 && (
-        <PaginationBaseLI params={{ isOptions: true, size }} className={`${prefixCls}-options`}>
+        <PaginationStyleBaseLI params={{ isOptions: true, size }} className={`${prefixCls}-options`}>
           <Select size={size} defaultValue={pageSize} onChange={onSizeChange}>
             {pageSizeOptions.map((item: number, index: number) => (
               <Select.Option value={item} key={index}>
@@ -185,8 +185,8 @@ export default function Pagination(props: PaginationProps) {
               </Select.Option>
             ))}
           </Select>
-        </PaginationBaseLI>
+        </PaginationStyleBaseLI>
       )}
-    </PaginationBaseUL>
+    </PaginationStyleBaseUL>
   );
 }
