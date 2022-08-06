@@ -223,6 +223,31 @@ export const FileInputStyleListUploadTypeWarp = styled.div<{
       `;
     }
   }}
+  ${(props) => {
+    if (props.uploadType === 'text') {
+      return css`
+        border: 1px solid transparent;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        transition: all 0.5s;
+        :hover {
+          background: #f5f5f5;
+        }
+        :first-child {
+          margin-top: 8px;
+        }
+        ${FileInputStyleListUploadTextTypeWarp} {
+          flex: 1;
+        }
+        ${FileInputStyleListUploadIconTypeWarp} {
+          padding: 0 5px;
+          cursor: pointer;
+        }
+      `;
+    }
+    return css``;
+  }}
 `;
 export const FileInputStyleListWarp = styled.div<{
   size: FileInputListProps['size'];
@@ -280,30 +305,5 @@ export const FileInputStyleListWarp = styled.div<{
     if (props.shape === 'circle') {
       return css``;
     }
-  }}
-  ${(props) => {
-    if (props.uploadType === 'text') {
-      return css`
-        border: 1px solid transparent;
-        display: flex;
-        align-items: center;
-        padding: 5px;
-        transition: all 0.5s;
-        :hover {
-          background: #f5f5f5;
-        }
-        :first-child {
-          margin-top: 8px;
-        }
-        ${FileInputStyleListUploadTextTypeWarp} {
-          flex: 1;
-        }
-        ${FileInputStyleListUploadIconTypeWarp} {
-          padding: 0 5px;
-          cursor: pointer;
-        }
-      `;
-    }
-    return css``;
   }}
 `;
