@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { IProps } from '@uiw/utils';
 import { DescriptionsItemProps } from './DescriptionsItem';
 import Cell from './Cell';
-import { DescriptionsTableRow } from './style';
+import { DescriptionsStyleTableRow } from './style';
 export interface RowProps extends IProps {
   children?: React.ReactElement<DescriptionsItemProps>[];
   bordered?: boolean;
@@ -34,9 +34,9 @@ export default function Row(props: RowProps = {}) {
   return (
     <Fragment>
       {layout === 'vertical' && <tr className={cls}>{handleCell(true)}</tr>}
-      <DescriptionsTableRow bordered={bordered} className={cls}>
+      <DescriptionsStyleTableRow bordered={bordered} className={cls}>
         {handleCell()}
-      </DescriptionsTableRow>
+      </DescriptionsStyleTableRow>
     </Fragment>
   );
 }

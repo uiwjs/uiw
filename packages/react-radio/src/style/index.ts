@@ -7,7 +7,7 @@ export interface RadioBaseProps extends ThemeVariantValueOptions, IProps, Omit<H
   disabled: boolean;
 }
 
-export const RadioInputBase = styled.input``;
+export const RadioInputStyleBase = styled.input``;
 
 const RadioText = styled.div`
   vertical-align: middle;

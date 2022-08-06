@@ -1,11 +1,15 @@
 import React from 'react';
 import { IProps } from '@uiw/utils';
-import DescriptionsItem, { DescriptionsItemProps } from './DescriptionsItem';
+import DescriptionsStyleItem, { DescriptionsItemProps } from './DescriptionsItem';
 import Row, { RowProps } from './Row';
-// import './style/index.less';
-import { DescriptionsTable, DescriptionsWarp, DescriptionsTableCaption, DescriptionsTableTbody } from './style';
+import {
+  DescriptionsStyleTable,
+  DescriptionsStyleWarp,
+  DescriptionsStyleTableCaption,
+  DescriptionsStyleTableTbody,
+} from './style';
 export * from './DescriptionsItem';
-
+export * from './style';
 export interface DescriptionsProps extends IProps {
   column?: number;
   title?: React.ReactNode;
@@ -81,30 +85,30 @@ function InternalDescriptions(props: DescriptionsProps, ref: React.ForwardedRef<
   const childs: Array<React.ReactElement<DescriptionsItemProps>[]> = generateChildrenRows(cloneChildren, column!);
 
   return (
-    <DescriptionsWarp bordered={bordered} className={cls} ref={ref}>
-      <DescriptionsTable {...other}>
+    <DescriptionsStyleWarp bordered={bordered} className={cls} ref={ref}>
+      <DescriptionsStyleTable {...other}>
         {title && (
-          <DescriptionsTableCaption bordered={bordered} className={`${prefixCls}-title`}>
+          <DescriptionsStyleTableCaption bordered={bordered} className={`${prefixCls}-title`}>
             {title}
-          </DescriptionsTableCaption>
+          </DescriptionsStyleTableCaption>
         )}
-        <DescriptionsTableTbody size={size} bordered={bordered} className={`${prefixCls}-tbody`}>
+        <DescriptionsStyleTableTbody size={size} bordered={bordered} className={`${prefixCls}-tbody`}>
           {childs.map((child, index) => (
             <Row key={index} prefixCls={prefixCls} bordered={bordered} colon={colon} column={column} layout={layout}>
               {child}
             </Row>
           ))}
-        </DescriptionsTableTbody>
-      </DescriptionsTable>
-    </DescriptionsWarp>
+        </DescriptionsStyleTableTbody>
+      </DescriptionsStyleTable>
+    </DescriptionsStyleWarp>
   );
 }
 
 const Descriptions = React.forwardRef<HTMLDivElement, DescriptionsProps>(InternalDescriptions);
 type Descriptions = typeof Descriptions & {
-  Item: typeof DescriptionsItem;
+  Item: typeof DescriptionsStyleItem;
 };
 
-(Descriptions as Descriptions).Item = DescriptionsItem;
+(Descriptions as Descriptions).Item = DescriptionsStyleItem;
 
 export default Descriptions as Descriptions;

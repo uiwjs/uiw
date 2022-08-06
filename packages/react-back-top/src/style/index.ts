@@ -1,17 +1,17 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
-export interface BackTopWarpProps extends ThemeVariantValueOptions {
+export const BackTopStyleWarpDefaultTheme = {
+  bottomBackTop: '50px',
+  rightBackTop: '50px',
+};
+export interface BackTopStyleWarpProps extends ThemeVariantValueOptions {
   visible?: boolean;
   fixed?: boolean;
-  defaultTheme?: {
-    bottomBackTop: string;
-    rightBackTop: string;
-    [x: string]: string | number;
-  };
+  defaultTheme?: typeof BackTopStyleWarpDefaultTheme;
 }
 
-export const BackTopWarp = styled.div<BackTopWarpProps>`
+export const BackTopStyleWarp = styled.div<BackTopStyleWarpProps>`
   position: fixed;
   bottom: ${(props) => getThemeVariantValue(props, 'bottomBackTop')};
   right: ${(props) => getThemeVariantValue(props, 'rightBackTop')};
@@ -41,10 +41,7 @@ export const BackTopWarp = styled.div<BackTopWarpProps>`
     }
   }}
 `;
-export const BackTopWarpDefaultTheme = {
-  bottomBackTop: '50px',
-  rightBackTop: '50px',
-};
-BackTopWarp.defaultProps = {
-  defaultTheme: BackTopWarpDefaultTheme,
+
+BackTopStyleWarp.defaultProps = {
+  defaultTheme: BackTopStyleWarpDefaultTheme,
 };

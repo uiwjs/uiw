@@ -4,9 +4,9 @@ import { HTMLInputProps, IProps } from '@uiw/utils';
 import Dropdown, { DropdownProps } from '@uiw/react-dropdown';
 import Menu from '@uiw/react-menu';
 import Icon from '@uiw/react-icon';
-// import './style/index.less';
-import { CascaderIconWarp, CascaderIcon } from './style';
+import { CascaderStyleIconWarp, CascaderStyleIcon } from './style';
 import { Close } from '@uiw/icons/lib/Close';
+export * from './style';
 
 type ValueType = Array<string | number>;
 type OptionType = { value: string | number; label: React.ReactNode; children?: Array<OptionType> };
@@ -258,9 +258,9 @@ function Cascader(props: CascaderProps) {
           addonAfter={
             <span style={{ width: 'auto' }}>
               {!disabled && selectIconType === 'close' && (
-                <CascaderIconWarp closebtn className={`${prefixCls}-close`} onClick={onClear}>
-                  <CascaderIcon as={Close} />
-                </CascaderIconWarp>
+                <CascaderStyleIconWarp closebtn className={`${prefixCls}-close`} onClick={onClear}>
+                  <CascaderStyleIcon as={Close} />
+                </CascaderStyleIconWarp>
               )}
             </span>
           }

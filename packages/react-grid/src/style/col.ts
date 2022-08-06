@@ -2,11 +2,11 @@ import styled, { css } from 'styled-components';
 import { ThemeVariantValueOptions } from '@uiw/utils';
 import { ColProps } from 'src/Col';
 
-interface ColWrapProps extends ThemeVariantValueOptions, Pick<ColProps, 'fixed' | 'span' | 'grow' | 'align'> {}
+interface ColStyleWrapProps extends ThemeVariantValueOptions, Pick<ColProps, 'fixed' | 'span' | 'grow' | 'align'> {}
 
 const alignType = { top: 'flex-start', middle: 'center', bottom: 'flex-end', baseline: 'baseline' };
 
-const ColWrap = styled.div<ColWrapProps>`
+export const ColStyleWrap = styled.div<ColStyleWrapProps>`
   min-width: 0;
   box-sizing: border-box;
   flex: 0 0 auto;
@@ -45,8 +45,8 @@ const ColWrap = styled.div<ColWrapProps>`
     `}
 `;
 
-ColWrap.defaultProps = {
+ColStyleWrap.defaultProps = {
   defaultTheme: {},
 };
 
-export default ColWrap;
+export default ColStyleWrap;

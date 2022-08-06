@@ -1,7 +1,12 @@
 import React from 'react';
-import OverlayTrigger, { OverlayTriggerProps } from '@uiw/react-overlay-trigger';
+import { OverlayTriggerProps } from '@uiw/react-overlay-trigger';
 import Confirm from './Confirm';
-import { OverlayTriggerPopover, OverlayTriggerPopoverContent, OverlayTriggerPopoverArrow } from './style/index';
+import {
+  OverlayTriggerPopover,
+  OverlayTriggerPopoverContent,
+  OverlayTriggerPopoverArrow,
+  OverlayTriggerPopoverBodyBase,
+} from './style/index';
 
 export interface PopoverProps extends OverlayTriggerProps {
   content?: React.ReactNode;
@@ -39,15 +44,14 @@ export default class Popover extends React.Component<PopoverProps> {
     const cls = [prefixCls, className, !visibleArrow ? 'no-arrow' : null].filter(Boolean).join(' ').trim();
     return (
       <OverlayTriggerPopover
-        as={OverlayTrigger}
         {...other}
         overlay={
-          <div className={cls}>
+          <OverlayTriggerPopoverBodyBase params={{ placement: this.props.placement }} className={cls}>
             {visibleArrow && this.renderArrow()}
             <OverlayTriggerPopoverContent className={`${prefixCls}-inner`}>
               {this.props.content}
             </OverlayTriggerPopoverContent>
-          </div>
+          </OverlayTriggerPopoverBodyBase>
         }
       >
         {typeof this.props.children === 'object' && (this.props.children as JSX.Element).type.name !== 'Icon' ? (
