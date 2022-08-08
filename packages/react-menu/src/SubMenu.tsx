@@ -109,7 +109,7 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
   }
   function onExiting(node: HTMLElement) {
     node.style.height = '0px';
-    store.onUpdateSize();
+    // store.onUpdateSize();
   }
   function onEnter(node: HTMLElement) {
     node.style.height = '1px';
@@ -122,10 +122,10 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
   }
   function onEntered(node: HTMLElement) {
     store.onUpdateSize();
-    node.style.height = 'initial';
-    if (popupRef.current && popupRef.current.overlayDom) {
-      node.style.height = popupRef.current.overlayDom.current!.getBoundingClientRect().height + 'px';
-    }
+    // node.style.height = 'initial';
+    // if (popupRef.current && popupRef.current.overlayDom) {
+    //   node.style.height = popupRef.current.overlayDom.current!.getBoundingClientRect().height + 'px';
+    // }
   }
 
   if (!collapse) {
