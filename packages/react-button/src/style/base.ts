@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { getThemeVariantValue } from '@uiw/utils';
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import { buttonVariant, getCommonCss, getloadingCss, getIconAndSizeCss } from './Variant';
 import { ButtonType, ButtonSize } from '../';
 export const ButtonStyleTheme = {
@@ -113,9 +113,9 @@ export const ButtonStyleTheme = {
   colorLinkNotDisabledActive: '#002d4d',
 };
 
-export interface ButtonStyleBaseProps {
-  defaultTheme?: Record<string, string | number>;
-  theme?: Record<string, string | number>;
+export interface ButtonStyleBaseProps
+  extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
+    ThemeVariantValueOptions<typeof ButtonStyleTheme> {
   param?: {
     size: ButtonSize;
     type: ButtonType;

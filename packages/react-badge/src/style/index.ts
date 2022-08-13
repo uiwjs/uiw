@@ -77,22 +77,9 @@ export const BadgeStyleColorDot = styled.span<BadgeStyleColorDotProps>`
   }}
 `;
 
-export interface BadgeStyleSupCountDotBaseProps extends ThemeVariantValueOptions {
+export interface BadgeStyleSupCountDotBaseProps extends ThemeVariantValueOptions<typeof BadgeStyleTheme> {
   dot?: boolean;
   nowrap?: boolean;
-  defaultTheme?: {
-    colorBadge: string;
-    fontSizeSmall: string;
-    backgroundBadgeCountDot: string;
-    boxShadowBadgeCountDot: string;
-    widthBadgeStyleColorDot: string;
-    topBadgeCountDot: string;
-    topBadgeCount: string;
-    heightBadgeCount: string;
-    borderRadiusBadgeCount: string;
-
-    [k: string]: string | number;
-  };
 }
 /** 展示 count  **/
 export const BadgeStyleSupCountDotBase = styled.sup<BadgeStyleSupCountDotBaseProps>`
