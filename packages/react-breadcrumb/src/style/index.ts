@@ -9,11 +9,15 @@ export const BreadcrumbStyleTheme = {
   marginLeftBreadcrumItemInterval: '6px',
 };
 
+const propsTheme = {
+  defaultTheme: { ...BreadcrumbStyleTheme },
+};
+
 export interface BreadcrumbStyleWarpProps extends ThemeVariantValueOptions<typeof BreadcrumbStyleTheme>, HTMLDivProps {}
 
 export const BreadcrumbStyleWarp = styled.div<BreadcrumbStyleWarpProps>`
   display: inline-flex;
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
+  font-size: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeDefault')};
 `;
 
 export interface BreadcrumbStyleWarpItemProps
@@ -27,9 +31,9 @@ export interface BreadcrumbStyleWarpItemProps
 export const BreadcrumbStyleWarpItem = styled.span<BreadcrumbStyleWarpItemProps>`
   display: inline-flex;
   &::before {
-    padding-right: ${(props) => getThemeVariantValue(props, 'paddingRightBreadcrumItemBefore')};
-    padding-left: ${(props) => getThemeVariantValue(props, 'paddingLeftBreadcrumItemBefore')};
-    color: ${(props) => getThemeVariantValue(props, 'colorBreadcrumb')};
+    padding-right: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'paddingRightBreadcrumItemBefore')};
+    padding-left: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'paddingLeftBreadcrumItemBefore')};
+    color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorBreadcrumb')};
   }
 
   &:first-child::before {
@@ -50,28 +54,20 @@ export const BreadcrumbStyleWarpItem = styled.span<BreadcrumbStyleWarpItemProps>
     props.noSeparator &&
     css`
       & {
-        margin-left: ${(props) => getThemeVariantValue(props, 'marginLeftBreadcrumItemInterval')};
+        margin-left: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'marginLeftBreadcrumItemInterval')};
       }
     `}
   ${(props) =>
     props.active &&
     css`
       & {
-        color: ${(props) => getThemeVariantValue(props, 'colorBreadcrumbActive')};
+        color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorBreadcrumbActive')};
       }
     `}
 `;
 
 export const BreadcrumbStyleSeparator = styled.span`
-  padding-right: ${(props) => getThemeVariantValue(props, 'paddingRightBreadcrumItemBefore')};
-  padding-left: ${(props) => getThemeVariantValue(props, 'paddingLeftBreadcrumItemBefore')};
-  color: ${(props) => getThemeVariantValue(props, 'colorBreadcrumb')};
+  padding-right: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'paddingRightBreadcrumItemBefore')};
+  padding-left: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'paddingLeftBreadcrumItemBefore')};
+  color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorBreadcrumb')};
 `;
-
-BreadcrumbStyleWarpItem.defaultProps = {
-  defaultTheme: BreadcrumbStyleTheme,
-};
-
-BreadcrumbStyleWarp.defaultProps = {
-  defaultTheme: BreadcrumbStyleTheme,
-};

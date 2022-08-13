@@ -21,6 +21,9 @@ export const ListStyleTheme = {
   colorListItemActive: '#007bff',
   backgroundListItemNotDisabledHover: '#f8f8f9',
 };
+const propsTheme = {
+  defaultTheme: { ...ListStyleTheme },
+};
 export interface ListStyleWarp
   extends ThemeVariantValueOptions<typeof ListStyleTheme>,
     Pick<ListProps<any>, 'striped' | 'noHover' | 'active' | 'bordered' | 'size'> {}
@@ -47,25 +50,25 @@ export const ListStyleItemWarp = styled.div<ListStyleItemWarpProps>`
       cursor: not-allowed;
       text-decoration: none;
       pointer-events: none;
-      color: ${getThemeVariantValue(props, 'colorListItemDisabled')};
+      color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'colorListItemDisabled')};
     `}
 
     ${props.active &&
     css`
-      background: ${getThemeVariantValue(props, 'backgroundListItemActive')};
-      color: ${getThemeVariantValue(props, 'colorListItemActive')};
+      background: ${getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundListItemActive')};
+      color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'colorListItemActive')};
     `}
 
     ${props.disabled &&
     css`
       display: block;
-      color: ${getThemeVariantValue(props, 'colorListItemDisabled')} !important; //#;
+      color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'colorListItemDisabled')} !important; //#;
     `}
 
     :hover {
       ${!props.disabled &&
       css`
-        background: ${getThemeVariantValue(props, 'backgroundListItemNotDisabledHover')};
+        background: ${getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundListItemNotDisabledHover')};
       `}
     }
   `}
@@ -73,8 +76,8 @@ export const ListStyleItemWarp = styled.div<ListStyleItemWarpProps>`
 
 const active = css`
   ${(props) => css`
-    box-shadow: 0 1px 6px ${getThemeVariantValue(props, 'boxShadowListActive')};
-    border-color: ${getThemeVariantValue(props, 'borderColorListActive')};
+    box-shadow: 0 1px 6px ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowListActive')};
+    border-color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorListActive')};
   `}
 `;
 
@@ -83,15 +86,15 @@ export const ListStyleFooter = styled.div``;
 
 export const ListStyleWarp = styled.div<ListStyleWarp>`
   ${(props) => css`
-    font-size: ${getThemeVariantValue(props, 'fontSizeDefault')};
-    line-height: ${getThemeVariantValue(props, 'lineHeightDefault')};
-    color: ${getThemeVariantValue(props, 'colorListBase')};
+    font-size: ${getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeDefault')};
+    line-height: ${getThemeVariantValue({ ...props, ...propsTheme }, 'lineHeightDefault')};
+    color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'colorListBase')};
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     list-style: none;
     position: relative;
-    background-color: ${getThemeVariantValue(props, 'backgroundColorListBase')};
+    background-color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorListBase')};
     transition: all 0.3s;
     &:hover {
       ${!props.noHover && active}
@@ -100,7 +103,7 @@ export const ListStyleWarp = styled.div<ListStyleWarp>`
 
     ${props.bordered &&
     css`
-      border: 1px solid ${getThemeVariantValue(props, 'colorListBorder')};
+      border: 1px solid ${getThemeVariantValue({ ...props, ...propsTheme }, 'colorListBorder')};
       border-radius: 4px;
     `}
 
@@ -116,7 +119,7 @@ export const ListStyleWarp = styled.div<ListStyleWarp>`
       :nth-of-type(2n) {
         ${props.striped &&
         css`
-          background: ${getThemeVariantValue(props, 'backgroundColorListStriped')};
+          background: ${getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorListStriped')};
         `}
       }
     }
@@ -124,7 +127,7 @@ export const ListStyleWarp = styled.div<ListStyleWarp>`
     ${ListStyleItemWarp},${ListStyleHeader} {
       ${props.bordered &&
       css`
-        border-bottom: 1px solid ${getThemeVariantValue(props, 'backgroundColorListBordered')};
+        border-bottom: 1px solid ${getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorListBordered')};
       `}
     }
 
@@ -141,13 +144,4 @@ export const ListStyleWarp = styled.div<ListStyleWarp>`
     }
   `}
 `;
-
-ListStyleWarp.defaultProps = {
-  defaultTheme: ListStyleTheme,
-};
-
-ListStyleItemWarp.defaultProps = {
-  defaultTheme: ListStyleTheme,
-};
-
 export default ListStyleWarp;

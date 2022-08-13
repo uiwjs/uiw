@@ -24,9 +24,13 @@ export const FileInputTheme = {
   backgroundFileInputStyleListUploadTypeWarpHover: '#f5f5f5',
 };
 
+const propsTheme = {
+  defaultTheme: FileInputTheme,
+};
+
 type ThemeVar = ThemeVariantValueOptions<typeof FileInputTheme>;
 
-export interface FileInputStyleWarpProps extends InputProps, ThemeVar {}
+export interface FileInputStyleWarpProps extends Omit<InputProps, 'defaultTheme'>, ThemeVar {}
 
 // Input
 export const FileInputStyleWarp = styled(Input)<FileInputStyleWarpProps>`
@@ -40,14 +44,19 @@ export const FileInputStyleWarp = styled(Input)<FileInputStyleWarpProps>`
     }
     &:hover:after {
       background-clip: padding-box;
-      background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorFileInputStyleWarpHoverAfterBase')};
-      box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowFileInputStyleWarpHoverAfterBase')};
+      background-color: ${(props) =>
+        getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorFileInputStyleWarpHoverAfterBase')};
+      box-shadow: ${(props) =>
+        getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowFileInputStyleWarpHoverAfterBase')};
     }
     &:after {
-      box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowFileInputStyleWarpAfterBase')};
-      background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorFileInputStyleWarpAfterBase')};
-      background-image: ${(props) => getThemeVariantValue(props, 'backgroundImageFileInputStyleWarpAfterBase')};
-      color: ${(props) => getThemeVariantValue(props, 'colorFileInputStyleWarpAfterBase')};
+      box-shadow: ${(props) =>
+        getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowFileInputStyleWarpAfterBase')};
+      background-color: ${(props) =>
+        getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorFileInputStyleWarpAfterBase')};
+      background-image: ${(props) =>
+        getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundImageFileInputStyleWarpAfterBase')};
+      color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorFileInputStyleWarpAfterBase')};
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -64,15 +73,13 @@ export const FileInputStyleWarp = styled(Input)<FileInputStyleWarpProps>`
     }
     &::before,
     &::after {
-      color: ${(props) => getThemeVariantValue(props, 'colorFileInputStyleWarpBeforeBase')};
+      color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorFileInputStyleWarpBeforeBase')};
       position: absolute;
       top: 0;
       bottom: 0;
     }
   }
 `;
-
-FileInputStyleWarp.defaultProps = { defaultTheme: FileInputTheme };
 
 //Card
 interface FileInputCardActionsProps extends ThemeVar, HTMLDivProps {
@@ -92,11 +99,11 @@ export const FileInputStyleCardActionsWarp = styled.div<FileInputCardActionsProp
       justify-content: center;
       transition: all 0.5s;
       opacity: 0;
-      background: ${(props) => getThemeVariantValue(props, 'backgroundFileInputStyleCardActionsWarpBase')};
+      background: ${(props) =>
+        getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundFileInputStyleCardActionsWarpBase')};
       border-radius: 2px;
     `}
 `;
-FileInputStyleCardActionsWarp.defaultProps = { defaultTheme: FileInputTheme };
 
 export interface FileInputStyleCardBoxWarpProps extends ThemeVar, HTMLDivProps {
   btn?: boolean;
@@ -106,8 +113,10 @@ export const FileInputStyleCardBoxWarp = styled.div<FileInputStyleCardBoxWarpPro
   margin-bottom: 8px;
   text-align: center;
   vertical-align: top;
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorFileInputStyleCardBoxWarpBase')};
-  border: 1px dashed ${(props) => getThemeVariantValue(props, 'borderColorFileInputStyleCardBoxWarpBase')};
+  background-color: ${(props) =>
+    getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorFileInputStyleCardBoxWarpBase')};
+  border: 1px dashed
+    ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorFileInputStyleCardBoxWarpBase')};
   overflow: hidden;
   border-radius: 2px;
   cursor: pointer;
@@ -207,10 +216,10 @@ export const FileInputStyleListActionsWarp = styled.div<FileInputStyleListAction
   justify-content: center;
   transition: all 0.5s;
   opacity: 0;
-  background: ${(props) => getThemeVariantValue(props, 'backgroundFileInputStyleListActionsWarpBase')};
+  background: ${(props) =>
+    getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundFileInputStyleListActionsWarpBase')};
   border-radius: 2px;
 `;
-FileInputStyleListActionsWarp.defaultProps = { defaultTheme: FileInputTheme };
 
 export const FileInputStyleListActionsSearchWarp = styled.span`
   width: 24px;
@@ -236,7 +245,8 @@ export const FileInputStyleListUploadTypeWarp = styled.div<FileInputStyleListUpl
   ${(props) => {
     if (props.uploadType === 'picture') {
       return css`
-        border: 1px solid ${() => getThemeVariantValue(props, 'borderColorFileInputStyleListUploadTypeWarpBase')};
+        border: 1px solid
+          ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorFileInputStyleListUploadTypeWarpBase')};
         display: flex;
         align-items: center;
         padding: 5px;
@@ -270,7 +280,8 @@ export const FileInputStyleListUploadTypeWarp = styled.div<FileInputStyleListUpl
         padding: 5px;
         transition: all 0.5s;
         :hover {
-          background: ${() => getThemeVariantValue(props, 'backgroundFileInputStyleListUploadTypeWarpHover')};
+          background: ${() =>
+            getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundFileInputStyleListUploadTypeWarpHover')};
         }
         :first-child {
           margin-top: 8px;
@@ -287,7 +298,6 @@ export const FileInputStyleListUploadTypeWarp = styled.div<FileInputStyleListUpl
     return css``;
   }}
 `;
-FileInputStyleListUploadTypeWarp.defaultProps = { defaultTheme: FileInputTheme };
 
 export interface FileInputStyleListActionsWarpProps extends HTMLDivProps {
   size: FileInputListProps['size'];

@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions, HTMLDivProps } from '@uiw/utils';
 import { DatePickerStyleTheme } from './theme';
-
+const propsTheme = {
+  defaultTheme: { ...DatePickerStyleTheme },
+};
 export interface DatePickerStyleYearMonthWarpProps
   extends ThemeVariantValueOptions<typeof DatePickerStyleTheme>,
     HTMLDivProps {
@@ -42,27 +44,21 @@ export const DatePickerStyleYearMonthSelect = styled.div<DatePickerStyleYearMont
     props.selected &&
     css`
       & > span {
-        color: ${(props) => getThemeVariantValue(props, 'colorPrimary')};
-        background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorPrimary')};
+        color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorPrimary')};
+        background-color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorPrimary')};
       }
     `}
   > span:hover {
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorPrimaryBasicHover')};
-    color: ${(props) => getThemeVariantValue(props, 'backgroundColorPrimary')};
+    background-color: ${(props) =>
+      getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorPrimaryBasicHover')};
+    color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorPrimary')};
   }
   ${(props) =>
     props.paging &&
     css`
       & {
-        color: ${(props) => getThemeVariantValue(props, 'colorDatePickerPaging')};
+        color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorDatePickerPaging')};
       }
     `}
 `;
-DatePickerStyleYearMonthSelect.defaultProps = {
-  defaultTheme: DatePickerStyleTheme,
-};
-
-DatePickerStyleYearMonthWarp.defaultProps = {
-  defaultTheme: DatePickerStyleTheme,
-};
 export default DatePickerStyleYearMonthWarp;

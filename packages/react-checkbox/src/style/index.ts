@@ -10,7 +10,9 @@ export const CheckboxStyleTheme = {
   borderColorCheckboxChecked: '#fff',
   boxShadowCheckboxHover: 'inset 0 1px 2px rgba(16, 22, 26, 0.35)',
 };
-
+const propsTheme = {
+  defaultTheme: { ...CheckboxStyleTheme },
+};
 export interface CheckboxStyleBaseProps
   extends RadioAbstractProps,
     ThemeVariantValueOptions<typeof CheckboxStyleTheme> {
@@ -78,7 +80,7 @@ const CheckboxStyleBase = styled.div<CheckboxStyleBaseProps>`
     background-clip: border-box;
     appearance: none;
     margin: 0 !important;
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorCheckboxBase')};
+    background-color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorCheckboxBase')};
     transition: background-color 0.3s, box-shadow 0.3s;
     &:after {
       content: '';
@@ -87,18 +89,18 @@ const CheckboxStyleBase = styled.div<CheckboxStyleBaseProps>`
     &:not(:checked):not(:disabled):not(.disabled) {
       &:focus,
       &:hover {
-        box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowCheckboxHover')};
+        box-shadow: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowCheckboxHover')};
       }
     }
   }
   ${disabledCss}
   ${indeterminateCss}
   input[type='checkbox']:checked {
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorCheckboxChecked')};
+    background-color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorCheckboxChecked')};
     &:after {
       transition: background-color 0.2s ease-in;
       display: inline-block;
-      border: solid ${(props) => getThemeVariantValue(props, 'borderColorCheckboxChecked')};
+      border: solid ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorCheckboxChecked')};
       border-width: 0 2px 2px 0;
       transform: rotate(33deg);
       position: relative;
@@ -115,9 +117,5 @@ const CheckboxStyleBase = styled.div<CheckboxStyleBaseProps>`
     font-size: 14px;
   }
 `;
-
-CheckboxStyleBase.defaultProps = {
-  defaultTheme: CheckboxStyleTheme,
-};
 
 export { CheckGroupStyleBase, CheckboxStyleBase };

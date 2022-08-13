@@ -28,6 +28,9 @@ export const InputStyleTheme = {
   lineHeightInputStyleAddonAfter: '16px',
 };
 
+const propsTheme = {
+  defaultTheme: { ...InputStyleTheme },
+};
 export interface InputStyleBaseProps
   extends ThemeVariantValueOptions<typeof InputStyleTheme>,
     Pick<InputProps, 'size' | 'addonAfter' | 'disabled'> {}
@@ -36,11 +39,20 @@ export interface InputStyleAddonAfterProps extends ThemeVariantValueOptions<type
 
 export const InputStyleBase = styled.input<InputStyleBaseProps>`
   ${(props) => {
-    const boxShadowColorInputStyleBase = getThemeVariantValue(props, `boxShadowColorInputStyleBase`);
-    const boxShadowColorInputInsHBase = getThemeVariantValue(props, `boxShadowColorInputInsHBase`);
-    const boxShadowColorInputInsVBase = getThemeVariantValue(props, `boxShadowColorInputInsVBase`);
-    const boxShadowColorInputVFocus = getThemeVariantValue(props, `boxShadowColorInputVFocus`);
-    const boxShadowColorInputHHover = getThemeVariantValue(props, `boxShadowColorInputHHover`);
+    const boxShadowColorInputStyleBase = getThemeVariantValue(
+      { ...props, ...propsTheme },
+      `boxShadowColorInputStyleBase`,
+    );
+    const boxShadowColorInputInsHBase = getThemeVariantValue(
+      { ...props, ...propsTheme },
+      `boxShadowColorInputInsHBase`,
+    );
+    const boxShadowColorInputInsVBase = getThemeVariantValue(
+      { ...props, ...propsTheme },
+      `boxShadowColorInputInsVBase`,
+    );
+    const boxShadowColorInputVFocus = getThemeVariantValue({ ...props, ...propsTheme }, `boxShadowColorInputVFocus`);
+    const boxShadowColorInputHHover = getThemeVariantValue({ ...props, ...propsTheme }, `boxShadowColorInputHHover`);
 
     return css`
       outline: none;
@@ -49,27 +61,27 @@ export const InputStyleBase = styled.input<InputStyleBaseProps>`
       box-shadow: 0 0 0 0 ${boxShadowColorInputStyleBase}, 0 0 0 0 ${boxShadowColorInputStyleBase},
         inset 0 0 0 1px ${boxShadowColorInputInsHBase}, inset 0 1px 1px ${boxShadowColorInputInsVBase};
       box-sizing: border-box;
-      background: ${getThemeVariantValue(props, `backgroundColorInputStyleBase`)};
-      height: ${getThemeVariantValue(props, `heightInputDefault`)};
+      background: ${getThemeVariantValue({ ...props, ...propsTheme }, `backgroundColorInputStyleBase`)};
+      height: ${getThemeVariantValue({ ...props, ...propsTheme }, `heightInputDefault`)};
       margin: 0 !important;
       padding: 0 10px;
       vertical-align: middle;
-      line-height: ${getThemeVariantValue(props, `heightInputDefault`)};
-      color: ${getThemeVariantValue(props, `colorInputStyleBase`)};
+      line-height: ${getThemeVariantValue({ ...props, ...propsTheme }, `heightInputDefault`)};
+      color: ${getThemeVariantValue({ ...props, ...propsTheme }, `colorInputStyleBase`)};
       font-weight: 400;
-      font-size: ${getThemeVariantValue(props, `fontSizeInputDefault`)};
+      font-size: ${getThemeVariantValue({ ...props, ...propsTheme }, `fontSizeInputDefault`)};
       transition: box-shadow 0.3s cubic-bezier(0.4, 1, 0.75, 0.9);
       appearance: none;
       &:not(:first-child) {
         padding-left: 26px;
       }
       &:focus {
-        box-shadow: 0 0 0 1px ${getThemeVariantValue(props, `boxShadowColorInputHFocus`)},
+        box-shadow: 0 0 0 1px ${getThemeVariantValue({ ...props, ...propsTheme }, `boxShadowColorInputHFocus`)},
           0 0 0 3px ${boxShadowColorInputVFocus}, inset 0 1px 1px ${boxShadowColorInputInsVBase};
       }
       &:hover {
         box-shadow: 0 0 0 1px ${boxShadowColorInputHHover},
-          0 0 0 3px ${getThemeVariantValue(props, `boxShadowColorInputVHover`)},
+          0 0 0 3px ${getThemeVariantValue({ ...props, ...propsTheme }, `boxShadowColorInputVHover`)},
           inset 0 1px 1px ${boxShadowColorInputInsVBase};
       }
       &:focus&:hover {
@@ -78,9 +90,9 @@ export const InputStyleBase = styled.input<InputStyleBaseProps>`
       }
       &:disabled {
         box-shadow: none;
-        background: ${getThemeVariantValue(props, `backgrounColorInputDisabled`)};
+        background: ${getThemeVariantValue({ ...props, ...propsTheme }, `backgrounColorInputDisabled`)};
         opacity: 0.75;
-        color: ${getThemeVariantValue(props, `colorInputDisabled`)};
+        color: ${getThemeVariantValue({ ...props, ...propsTheme }, `colorInputDisabled`)};
         cursor: not-allowed;
         resize: none;
       }
@@ -92,10 +104,10 @@ export const InputStyleAddonAfter = styled.span<InputStyleAddonAfterProps>`
   ${(props) => {
     return css`
       position: absolute;
-      top: ${getThemeVariantValue(props, `topInputStyleAddonAfter`)};
-      right: ${getThemeVariantValue(props, `topInputStyleAddonAfter`)};
+      top: ${getThemeVariantValue({ ...props, ...propsTheme }, `topInputStyleAddonAfter`)};
+      right: ${getThemeVariantValue({ ...props, ...propsTheme }, `topInputStyleAddonAfter`)};
       display: flex;
-      bottom: ${getThemeVariantValue(props, `topInputStyleAddonAfter`)};
+      bottom: ${getThemeVariantValue({ ...props, ...propsTheme }, `topInputStyleAddonAfter`)};
       > * {
         display: flex !important;
         align-items: center;
@@ -106,12 +118,12 @@ export const InputStyleAddonAfter = styled.span<InputStyleAddonAfterProps>`
 
 export const InputStyleWarp = styled.div<InputStyleBaseProps>`
   position: relative;
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
-  line-height: ${(props) => getThemeVariantValue(props, 'lineHeightInputsDefault')};
-  width: ${(props) => getThemeVariantValue(props, 'widthInputsDefault')};
+  font-size: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeDefault')};
+  line-height: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'lineHeightInputsDefault')};
+  width: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'widthInputsDefault')};
 
   & ${InputStyleBase} {
-    width: ${(props) => getThemeVariantValue(props, 'widthInputsDefault')};
+    width: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'widthInputsDefault')};
   }
 
   > .w-icon {
@@ -124,10 +136,10 @@ export const InputStyleWarp = styled.div<InputStyleBaseProps>`
   ${(props) => {
     if (props.size === 'large') {
       return css`
-        font-size: ${getThemeVariantValue(props, 'fontSizeLarge')};
+        font-size: ${getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeLarge')};
         ${InputStyleBase} {
-          line-height: ${getThemeVariantValue(props, 'lineHeightInputLarge')};
-          height: ${getThemeVariantValue(props, 'lineHeightInputLarge')};
+          line-height: ${getThemeVariantValue({ ...props, ...propsTheme }, 'lineHeightInputLarge')};
+          height: ${getThemeVariantValue({ ...props, ...propsTheme }, 'lineHeightInputLarge')};
         }
       `;
     }
@@ -138,8 +150,8 @@ export const InputStyleWarp = styled.div<InputStyleBaseProps>`
       return css`
         min-width: 20px;
         ${InputStyleBase} {
-          line-height: ${getThemeVariantValue(props, 'lineHeightInputSmall')};
-          height: ${getThemeVariantValue(props, 'lineHeightInputSmall')};
+          line-height: ${getThemeVariantValue({ ...props, ...propsTheme }, 'lineHeightInputSmall')};
+          height: ${getThemeVariantValue({ ...props, ...propsTheme }, 'lineHeightInputSmall')};
           padding: 0 6px;
           &:not(:first-child) {
             padding-left: 26px;
@@ -147,25 +159,13 @@ export const InputStyleWarp = styled.div<InputStyleBaseProps>`
         }
         ${InputStyleAddonAfter} {
           > * {
-            line-height: ${getThemeVariantValue(props, 'lineHeightInputStyleAddonAfter')};
-            min-height: ${getThemeVariantValue(props, 'lineHeightInputStyleAddonAfter')};
+            line-height: ${getThemeVariantValue({ ...props, ...propsTheme }, 'lineHeightInputStyleAddonAfter')};
+            min-height: ${getThemeVariantValue({ ...props, ...propsTheme }, 'lineHeightInputStyleAddonAfter')};
           }
         }
       `;
     }
   }}
 `;
-
-InputStyleBase.defaultProps = {
-  defaultTheme: InputStyleTheme,
-};
-
-InputStyleAddonAfter.defaultProps = {
-  defaultTheme: InputStyleTheme,
-};
-
-InputStyleWarp.defaultProps = {
-  defaultTheme: InputStyleTheme,
-};
 
 export default InputStyleWarp;

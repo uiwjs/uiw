@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import { DatePickerStyleTheme } from './theme';
-
+const propsTheme = {
+  defaultTheme: { ...DatePickerStyleTheme },
+};
 export interface DatePickerStyleCaptionPaneBaseProps
   extends ThemeVariantValueOptions<typeof DatePickerStyleTheme>,
     React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -17,10 +19,12 @@ export const DatePickerStyleCaptionPaneBase = styled.div<DatePickerStyleCaptionP
   font-weight: bold;
   cursor: pointer;
   &:hover {
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorDatePickerBaseHover')};
+    background-color: ${(props) =>
+      getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorDatePickerBaseHover')};
   }
   &:active {
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorDatePickerActive')};
+    background-color: ${(props) =>
+      getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorDatePickerActive')};
   }
   ${(props) =>
     (props.prev || props.next) &&
@@ -37,7 +41,7 @@ export const DatePickerStyleCaptionPaneBase = styled.div<DatePickerStyleCaptionP
           width: 2px;
           border-radius: 2px;
           background-color: ${(props) =>
-            getThemeVariantValue(props, 'backgroundColorDatePickerStyleCaptionPanePrevBefore')};
+            getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorDatePickerStyleCaptionPanePrevBefore')};
         }
         &::after {
           margin-top: -4px;
@@ -91,7 +95,8 @@ export interface DatePickerStyleCaptionTodayProps
     React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 export const DatePickerStyleCaptionToday = styled.div<DatePickerStyleCaptionTodayProps>`
   cursor: pointer;
-  background: ${(props) => getThemeVariantValue(props, 'backgroundColorDatePickerStyleCaptionToday')};
+  background: ${(props) =>
+    getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorDatePickerStyleCaptionToday')};
   border-radius: 3px;
   display: inline-block;
   height: 10px;
@@ -106,18 +111,19 @@ export const DatePickerStyleCaptionToday = styled.div<DatePickerStyleCaptionToda
     width: 4px;
     border-radius: 3px;
     margin: 3px 0 0 3px;
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorDatePickerStyleCaptionTodayBefore')};
+    background-color: ${(props) =>
+      getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorDatePickerStyleCaptionTodayBefore')};
   }
   &:hover {
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorPrimaryHover')};
+    background-color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorPrimaryHover')};
     &::before {
-      background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorBase')};
+      background-color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorBase')};
     }
   }
   &:active {
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorPrimaryActive')};
+    background-color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorPrimaryActive')};
     &::before {
-      background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorBase')};
+      background-color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorBase')};
     }
   }
 `;
@@ -130,27 +136,9 @@ export const DatePickerStyleCaptionBase = styled.div<DatePickerStyleCaptionBaseP
   user-select: none;
   text-align: center;
   padding: 0 0 3px 0;
-  border-bottom: 1px solid ${(props) => getThemeVariantValue(props, 'borderBottomColorDatepickerCaption')};
+  border-bottom: 1px solid
+    ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderBottomColorDatepickerCaption')};
   & ${DatePickerStyleCaptionPaneYear}+${DatePickerStyleCaptionPaneMonth} {
     margin-left: 5px;
   }
 `;
-
-DatePickerStyleCaptionToday.defaultProps = {
-  defaultTheme: DatePickerStyleTheme,
-};
-
-DatePickerStyleCaptionBase.defaultProps = {
-  defaultTheme: DatePickerStyleTheme,
-};
-DatePickerStyleCaptionPaneYear.defaultProps = {
-  defaultTheme: DatePickerStyleTheme,
-};
-
-DatePickerStyleCaptionPaneMonth.defaultProps = {
-  defaultTheme: DatePickerStyleTheme,
-};
-
-DatePickerStyleCaptionPane.defaultProps = {
-  defaultTheme: DatePickerStyleTheme,
-};

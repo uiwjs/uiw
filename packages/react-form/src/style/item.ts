@@ -11,6 +11,10 @@ export const FormStyleTheme = {
     '0 0 0 1px #dc3545, 0 0 0 3px rgba(220, 53, 69, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
 };
 
+const propsTheme = {
+  defaultTheme: { ...FormStyleTheme },
+};
+
 interface FormStyleItemProps extends HTMLInputProps, ThemeVariantValueOptions<typeof FormStyleTheme> {
   hasError?: boolean;
 }
@@ -29,7 +33,7 @@ export const LabelStyle = styled.label`
 export interface FormStyleHelpStyleProps extends HTMLDivProps, ThemeVariantValueOptions<typeof FormStyleTheme> {}
 
 export const FormStyleHelpStyle = styled.div`
-  color: ${(props) => getThemeVariantValue(props, 'colorFormStyleHelpStyleBase')};
+  color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorFormStyleHelpStyleBase')};
   font-size: 12px;
   padding-top: 3px;
 `;
@@ -44,21 +48,17 @@ export const FormStyleItem = styled.div<FormStyleItemProps>`
     props.hasError &&
     css`
       ${InputStyleBase},${SelectStyleWarp},${TextareaStyleWarp} {
-        box-shadow: ${() => getThemeVariantValue(props, 'boxShadowFormStyleItemErrorBase')};
+        box-shadow: ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowFormStyleItemErrorBase')};
         &:hover {
-          box-shadow: ${() => getThemeVariantValue(props, 'boxShadowFormStyleItemErrorBase')};
+          box-shadow: ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowFormStyleItemErrorBase')};
         }
         &:focus,
         &:hover {
-          box-shadow: ${() => getThemeVariantValue(props, 'boxShadowFormStyleItemErrorBase')};
+          box-shadow: ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowFormStyleItemErrorBase')};
         }
       }
       ${LabelStyle}, ${FormStyleHelpStyle} {
-        color: ${() => getThemeVariantValue(props, 'colorFormStyleItemErrorBase')};
+        color: ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'colorFormStyleItemErrorBase')};
       }
     `}
 `;
-
-FormStyleItem.defaultProps = {
-  defaultTheme: FormStyleTheme,
-};

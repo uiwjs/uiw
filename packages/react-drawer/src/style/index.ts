@@ -12,7 +12,9 @@ export const DrawerStyleTheme = {
   colorHvDrawerHeader: '#393e48',
   boxShadowColorInDrawerFooter: 'rgba(16, 22, 26, 0.15)',
 };
-
+const propsTheme = {
+  defaultTheme: { ...DrawerStyleTheme },
+};
 export interface DrawerWrapperWrapProps extends ThemeVariantValueOptions<typeof DrawerStyleTheme>, HTMLDivProps {}
 export interface DrawerHeaderWrapProps extends ThemeVariantValueOptions<typeof DrawerStyleTheme>, HTMLDivProps {}
 export interface DrawerHeaderWrapProps extends ThemeVariantValueOptions<typeof DrawerStyleTheme>, HTMLDivProps {}
@@ -20,9 +22,9 @@ export interface DrawerWrapProps extends Pick<DrawerProps, 'placement'> {}
 
 export const DrawerStyleWrapperWrap = styled.div<DrawerWrapperWrapProps>`
   ${(props) => css`
-    box-shadow: 0 0 0 1px ${getThemeVariantValue(props, 'boxShadowColorInDrawerWrapper')},
-      0 0 46px 6px ${getThemeVariantValue(props, 'boxShadowColorHvDrawerWrapper')};
-    background-color: ${getThemeVariantValue(props, 'backgroundColorDrawerWrapper')};
+    box-shadow: 0 0 0 1px ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorInDrawerWrapper')},
+      0 0 46px 6px ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorHvDrawerWrapper')};
+    background-color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorDrawerWrapper')};
     position: fixed;
     margin: 0 !important;
     display: flex;
@@ -37,13 +39,13 @@ export const DrawerStyleHeaderWrap = styled.div<DrawerHeaderWrapProps>`
     min-height: 40px;
     padding-left: 13px;
     padding-right: 5px;
-    background-color: ${getThemeVariantValue(props, 'backgroundColorDrawerHeader')};
+    background-color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorDrawerHeader')};
     border-radius: 5px 5px 0 0;
-    box-shadow: 0 1px 0 ${getThemeVariantValue(props, 'boxShadowColorInDrawerHeader')};
+    box-shadow: 0 1px 0 ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorInDrawerHeader')};
     font-size: 16px;
     > .w-icon {
       margin-right: 10px;
-      color: ${getThemeVariantValue(props, 'colorHvDrawerHeader')};
+      color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'colorHvDrawerHeader')};
     }
     h4 {
       margin: 0;
@@ -63,7 +65,7 @@ export const DrawerStyleBodyWrap = styled.div`
 
 export const DrawerStyleFooterWrap = styled.div<DrawerHeaderWrapProps>`
   ${(props) => css`
-    box-shadow: 0 -1px 0 ${getThemeVariantValue(props, 'boxShadowColorInDrawerFooter')};
+    box-shadow: 0 -1px 0 ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorInDrawerFooter')};
     min-height: 40px;
     padding-left: 13px;
     padding-right: 5px;
@@ -203,13 +205,3 @@ export const DrawerStyleWrap = styled(Overlay)<DrawerWrapProps>`
     `}
   `}
 `;
-
-DrawerStyleWrapperWrap.defaultProps = {
-  defaultTheme: DrawerStyleTheme,
-};
-DrawerStyleHeaderWrap.defaultProps = {
-  defaultTheme: DrawerStyleTheme,
-};
-DrawerStyleFooterWrap.defaultProps = {
-  defaultTheme: DrawerStyleTheme,
-};

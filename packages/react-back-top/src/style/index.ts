@@ -5,6 +5,9 @@ export const BackTopStyleTheme = {
   bottomBackTop: '50px',
   rightBackTop: '50px',
 };
+const propsTheme = {
+  defaultTheme: { ...BackTopStyleTheme },
+};
 export interface BackTopStyleWarpProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
     ThemeVariantValueOptions<typeof BackTopStyleTheme> {
@@ -14,8 +17,8 @@ export interface BackTopStyleWarpProps
 
 export const BackTopStyleWarp = styled.div<BackTopStyleWarpProps>`
   position: fixed;
-  bottom: ${(props) => getThemeVariantValue(props, 'bottomBackTop')};
-  right: ${(props) => getThemeVariantValue(props, 'rightBackTop')};
+  bottom: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'bottomBackTop')};
+  right: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'rightBackTop')};
   cursor: pointer;
   z-index: 1006;
   transition: all 1s;

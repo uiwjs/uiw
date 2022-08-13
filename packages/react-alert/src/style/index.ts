@@ -11,6 +11,9 @@ export const AlertStyleTheme = {
   colorAlertDanger: '#dc3545',
   colorAlertDefault: '#393e48',
 };
+const propsTheme = {
+  defaultTheme: { ...AlertStyleTheme },
+};
 
 export interface AlertStyleWarpProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
@@ -30,15 +33,15 @@ const typeVariant = (type: ButtonType, color: string | number) => {
 const typeCss = (props: AlertStyleWarpProps) => {
   const { type } = props;
   if (type === 'primary') {
-    return typeVariant(type, getThemeVariantValue(props, 'colorAlertPrimary'));
+    return typeVariant(type, getThemeVariantValue({ ...props, ...propsTheme }, 'colorAlertPrimary'));
   } else if (type === 'success') {
-    return typeVariant(type, getThemeVariantValue(props, 'colorAlertSuccess'));
+    return typeVariant(type, getThemeVariantValue({ ...props, ...propsTheme }, 'colorAlertSuccess'));
   } else if (type === 'warning') {
-    return typeVariant(type, getThemeVariantValue(props, 'colorAlertWarning'));
+    return typeVariant(type, getThemeVariantValue({ ...props, ...propsTheme }, 'colorAlertWarning'));
   } else if (type === 'danger') {
-    return typeVariant(type, getThemeVariantValue(props, 'colorAlertDanger'));
+    return typeVariant(type, getThemeVariantValue({ ...props, ...propsTheme }, 'colorAlertDanger'));
   }
-  return typeVariant('link', getThemeVariantValue(props, 'colorAlertDefault'));
+  return typeVariant('link', getThemeVariantValue({ ...props, ...propsTheme }, 'colorAlertDefault'));
 };
 
 export const AlertStyleWarp = styled.div<AlertStyleWarpProps>`
@@ -114,6 +117,3 @@ export const AlertStyleWarp = styled.div<AlertStyleWarpProps>`
       }
     `}
 `;
-AlertStyleWarp.defaultProps = {
-  defaultTheme: { ...AlertStyleTheme },
-};

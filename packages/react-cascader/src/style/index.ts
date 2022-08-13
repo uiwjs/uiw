@@ -5,6 +5,9 @@ import { IconStyleBase, IconStyleBaseProps } from '@uiw/react-icon';
 export const CascaderStyleTheme = {
   colorCascaderClose: '#393e48',
 };
+const propsTheme = {
+  defaultTheme: { ...CascaderStyleTheme },
+};
 export interface CascaderStyleIconWarpProps
   extends IconStyleBaseProps,
     ThemeVariantValueOptions<typeof CascaderStyleTheme> {
@@ -23,7 +26,7 @@ export const CascaderStyleIconWarp = styled(IconStyleBase)<CascaderStyleIconWarp
       & {
         font-size: 15px;
         margin-right: 1px;
-        color: ${(props) => getThemeVariantValue(props, 'colorCascaderClose')};
+        color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorCascaderClose')};
       }
     `}
 `;
