@@ -9,7 +9,7 @@ export const PopoverStyleTheme = {
 };
 
 export interface PopoverWarpProps extends OverlayTriggerProps, ThemeVariantValueOptions<typeof PopoverStyleTheme> {
-  defaultTheme?: Record<string, string | number>;
+  // defaultTheme?: Record<string, string | number>;
 }
 
 export const PopoverStyleOverlayTriggerArrow = styled.div<PopoverWarpProps>`
@@ -134,16 +134,18 @@ export const PopoverStyleOverlayTrigger = styled(OverlayTrigger)<PopoverWarpProp
 `;
 
 export const PopoverStyleOverlayTriggerContent = styled.div<PopoverWarpProps>`
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizePopoverDefault')};
+  font-size: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: PopoverStyleTheme }, 'fontSizePopoverDefault')};
   display: block;
   text-align: left;
   text-decoration: none;
   background-color: #fff;
   border-radius: 4px;
   min-height: 23px;
-  box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowPopoverPrimary')};
+  box-shadow: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: PopoverStyleTheme }, 'boxShadowPopoverPrimary')};
 `;
 
-PopoverStyleOverlayTriggerContent.defaultProps = {
-  defaultTheme: PopoverStyleTheme,
-};
+// PopoverStyleOverlayTriggerContent.defaultProps = {
+//   defaultTheme: PopoverStyleTheme,
+// };

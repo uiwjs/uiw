@@ -33,12 +33,13 @@ interface TreeNodeUlLidivSpanDivProps extends ThemeVar {
 interface TreeNodeStyleWrapProps extends TreeProps, ThemeVar {}
 
 export const TreeNodeStyleCSSTransition = styled.div<TreeNodeStyleCSSTransitionProps>`
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeTreeNodeStyleCSSTransitionDefault')};
+  font-size: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'fontSizeTreeNodeStyleCSSTransitionDefault')};
 `;
 
-TreeNodeStyleCSSTransition.defaultProps = {
-  defaultTheme: TreeStyleTheme,
-};
+// TreeNodeStyleCSSTransition.defaultProps = {
+//   defaultTheme: TreeStyleTheme,
+// };
 
 export const TreeNodeStyleUl = styled.ul<TreeNodeStyleCSSTransitionProps>`
   padding: 0 !important;
@@ -86,20 +87,22 @@ export const TreeNodeStyleUlLidivSpan = styled.div<TreeNodeUlLidivProps>`
   display: inline-block;
   text-align: center;
   &:hover {
-    color: ${(props) => getThemeVariantValue(props, 'colorTreeNodeUlLidivSpanDefault')};
+    color: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'colorTreeNodeUlLidivSpanDefault')};
   }
   .w-icon {
     transition: 0.3s all;
-    transform: ${(props) => getThemeVariantValue(props, 'transformTreeNodeUlLidivSpanDefault')};
+    transform: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'transformTreeNodeUlLidivSpanDefault')};
     &.open:not(.no-animation) {
       transform: scale(0.79) rotate(90deg) !important;
     }
   }
 `;
 
-TreeNodeStyleUlLidivSpan.defaultProps = {
-  defaultTheme: TreeStyleTheme,
-};
+// TreeNodeStyleUlLidivSpan.defaultProps = {
+//   defaultTheme: TreeStyleTheme,
+// };
 
 export const TreeNodeStyleUlLidivSpanIcon = styled.div<TreeNodeUlLidivSpanIconProps>`
   ${(props) =>
@@ -113,13 +116,14 @@ export const TreeNodeStyleUlLidivSpanIcon = styled.div<TreeNodeUlLidivSpanIconPr
     props.isItemIsOpen &&
     props.isIconAnimation &&
     css`
-      transform: ${(props) => getThemeVariantValue(props, 'transformTreeNodeUlLidivSpanIconDefault')};
+      transform: ${(props) =>
+        getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'transformTreeNodeUlLidivSpanIconDefault')};
     `}
 `;
 
-TreeNodeStyleUlLidivSpanIcon.defaultProps = {
-  defaultTheme: TreeStyleTheme,
-};
+// TreeNodeStyleUlLidivSpanIcon.defaultProps = {
+//   defaultTheme: TreeStyleTheme,
+// };
 
 export const TreeNodeStyleUlLidivSpanDiv = styled.div<TreeNodeUlLidivSpanDivProps>`
   display: inline-block;
@@ -130,7 +134,8 @@ export const TreeNodeStyleUlLidivSpanDiv = styled.div<TreeNodeUlLidivSpanDivProp
     props.judgeSelected &&
     props.judgeisSelected &&
     css`
-      background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTreeNodeJudgeSelected')};
+      background-color: ${(props) =>
+        getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'backgroundColorTreeNodeJudgeSelected')};
     `}
 
   ${(props) =>
@@ -151,7 +156,8 @@ export const TreeNodeStyleWrap = styled.div<TreeNodeStyleWrapProps>`
       &:before,
       &::after {
         content: ' ';
-        border-left: ${(props) => getThemeVariantValue(props, 'borderTreeNodeDefaultAfter')};
+        border-left: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'borderTreeNodeDefaultAfter')};
         left: -12px;
         position: absolute;
       }
@@ -167,16 +173,18 @@ export const TreeNodeStyleWrap = styled.div<TreeNodeStyleWrapProps>`
         content: ' ';
         width: 10px;
         height: 16px;
-        border-bottom: ${(props) => getThemeVariantValue(props, 'borderTreeNodeDefaultAfter')};
+        border-bottom: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'borderTreeNodeDefaultAfter')};
         top: -2px;
       }
       &:last-child::before {
-        border-radius: ${(props) => getThemeVariantValue(props, 'borderRadiusTreeNodeDefault')};
+        border-radius: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'borderRadiusTreeNodeDefault')};
       }
     }
   }
 `;
 
-TreeNodeStyleWrap.defaultProps = {
-  defaultTheme: TreeStyleTheme,
-};
+// TreeNodeStyleWrap.defaultProps = {
+//   defaultTheme: TreeStyleTheme,
+// };

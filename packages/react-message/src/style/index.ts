@@ -54,13 +54,13 @@ export const MessageStyleDivWrap = styled(MessageStyleWrap)<DivWrapProps>`
       if (props.params?.children) {
         return css`
           display: block;
-          color: ${getThemeVariantValue(props, 'colorMessageChildren')};
+          color: ${getThemeVariantValue({ ...props, defaultTheme: MessageStyleTheme }, 'colorMessageChildren')};
         `;
       }
       if (props.params?.title) {
         return css`
           display: block;
-          color: ${getThemeVariantValue(props, 'colorMessageTitle')};
+          color: ${getThemeVariantValue({ ...props, defaultTheme: MessageStyleTheme }, 'colorMessageTitle')};
         `;
       }
     }
@@ -82,23 +82,29 @@ export const MessageStyleDivWrap = styled(MessageStyleWrap)<DivWrapProps>`
     switch (props.params.type) {
       case 'success':
         return css`
-          background: ${getThemeVariantValue(props, 'backgroundMessageSuccess')};
-          color: ${getThemeVariantValue(props, 'colorMessageSuccess')};
+          background: ${getThemeVariantValue(
+            { ...props, defaultTheme: MessageStyleTheme },
+            'backgroundMessageSuccess',
+          )};
+          color: ${getThemeVariantValue({ ...props, defaultTheme: MessageStyleTheme }, 'colorMessageSuccess')};
         `;
       case 'warning':
         return css`
-          background: ${getThemeVariantValue(props, 'backgroundMessageWarning')};
-          color: ${getThemeVariantValue(props, 'colorMessageWarning')};
+          background: ${getThemeVariantValue(
+            { ...props, defaultTheme: MessageStyleTheme },
+            'backgroundMessageWarning',
+          )};
+          color: ${getThemeVariantValue({ ...props, defaultTheme: MessageStyleTheme }, 'colorMessageWarning')};
         `;
       case 'info':
         return css`
-          background: ${getThemeVariantValue(props, 'backgroundMessageInfo')};
-          color: ${getThemeVariantValue(props, 'colorMessageInfo')};
+          background: ${getThemeVariantValue({ ...props, defaultTheme: MessageStyleTheme }, 'backgroundMessageInfo')};
+          color: ${getThemeVariantValue({ ...props, defaultTheme: MessageStyleTheme }, 'colorMessageInfo')};
         `;
       case 'error':
         return css`
-          background: ${getThemeVariantValue(props, 'backgroundMessageError')};
-          color: ${getThemeVariantValue(props, 'colorMessageError')};
+          background: ${getThemeVariantValue({ ...props, defaultTheme: MessageStyleTheme }, 'backgroundMessageError')};
+          color: ${getThemeVariantValue({ ...props, defaultTheme: MessageStyleTheme }, 'colorMessageError')};
         `;
       default:
         return css``;
@@ -143,7 +149,8 @@ const MessageStyleSpanWrap = styled.span<spanPeops>`
 `;
 // 详情description
 export const MessageStyleDescriptionSpan = styled(MessageStyleSpanWrap)<spanPeops>`
-  color: ${(props) => getThemeVariantValue(props, 'colorMessageDescriptionSpanBase')};
+  color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: MessageStyleTheme }, 'colorMessageDescriptionSpanBase')};
   ${(props) =>
     props.params.showIcon &&
     props.params.title &&
@@ -154,7 +161,7 @@ export const MessageStyleDescriptionSpan = styled(MessageStyleSpanWrap)<spanPeop
 `;
 // 标题title
 export const MessageStyleTitleSpan = styled(MessageStyleDescriptionSpan)<spanPeops>`
-  color: ${(props) => getThemeVariantValue(props, 'colorMessageTitleSpanBase')};
+  color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: MessageStyleTheme }, 'colorMessageTitleSpanBase')};
   ${(props) =>
     props.params.showIcon &&
     props.params.title &&
@@ -173,23 +180,26 @@ export const MessageStyleButtonWarp = styled(Button)<messageButtonProps>`
   padding: 2px;
   min-width: 16px;
   min-height: 16px;
-  color: ${(props) => getThemeVariantValue(props, 'colorMessageButtonWarpBase')};
+  color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: MessageStyleTheme }, 'colorMessageButtonWarpBase')};
   &:hover {
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorMessageButtonWarpHover')};
+    background-color: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: MessageStyleTheme }, 'backgroundColorMessageButtonWarpHover')};
   }
   &:active {
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorMessageButtonWarpActive')};
+    background-color: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: MessageStyleTheme }, 'backgroundColorMessageButtonWarpActive')};
   }
 `;
 
-MessageStyleDivWrap.defaultProps = {
-  defaultTheme: MessageStyleTheme,
-};
+// MessageStyleDivWrap.defaultProps = {
+//   defaultTheme: MessageStyleTheme,
+// };
 
-MessageStyleButtonWarp.defaultProps = {
-  defaultTheme: MessageStyleTheme,
-};
+// MessageStyleButtonWarp.defaultProps = {
+//   defaultTheme: MessageStyleTheme,
+// };
 
-MessageStyleDescriptionSpan.defaultProps = {
-  defaultTheme: MessageStyleTheme,
-};
+// MessageStyleDescriptionSpan.defaultProps = {
+//   defaultTheme: MessageStyleTheme,
+// };

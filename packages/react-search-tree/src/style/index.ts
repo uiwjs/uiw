@@ -31,37 +31,43 @@ export const DropdownDiv = styled.div<DropdownDivProps>`
     border: none;
     align-items: center;
     border-radius: 3px;
-    box-shadow: ${getThemeVariantValue(props, 'boxShadowDropdownDiv')};
+    box-shadow: ${getThemeVariantValue({ ...props, defaultTheme: DropdownStyleTheme }, 'boxShadowDropdownDiv')};
     box-sizing: border-box;
-    background: ${getThemeVariantValue(props, 'backgroundColorDropdownDivBase')};
+    background: ${getThemeVariantValue(
+      { ...props, defaultTheme: DropdownStyleTheme },
+      'backgroundColorDropdownDivBase',
+    )};
     min-height: 30px;
     margin: 0 !important;
     padding: 3px 10px 3px 10px;
     vertical-align: middle;
     line-height: 30px;
-    color: ${getThemeVariantValue(props, 'colorDropdownDivBase')};
+    color: ${getThemeVariantValue({ ...props, defaultTheme: DropdownStyleTheme }, 'colorDropdownDivBase')};
     font-weight: 400;
     font-size: inherit;
     transition: box-shadow 0.3s cubic-bezier(0.4, 1, 0.75, 0.9);
     appearance: none;
 
     &:focus {
-      ${getThemeVariantValue(props, 'boxShadowDropdownDivFocus')};
+      ${getThemeVariantValue({ ...props, defaultTheme: DropdownStyleTheme }, 'boxShadowDropdownDivFocus')};
     }
 
     &:hover {
-      ${getThemeVariantValue(props, 'boxShadowDropdownDivhover')};
+      ${getThemeVariantValue({ ...props, defaultTheme: DropdownStyleTheme }, 'boxShadowDropdownDivhover')};
     }
 
     &:focus&:hover {
-      ${getThemeVariantValue(props, 'boxShadowDropdownDivFocushover')};
+      ${getThemeVariantValue({ ...props, defaultTheme: DropdownStyleTheme }, 'boxShadowDropdownDivFocushover')};
     }
 
     &:disabled {
       box-shadow: none;
-      background: ${getThemeVariantValue(props, 'backgroundColorDropdownDivDisabled')};
+      background: ${getThemeVariantValue(
+        { ...props, defaultTheme: DropdownStyleTheme },
+        'backgroundColorDropdownDivDisabled',
+      )};
       opacity: 0.75;
-      color: ${getThemeVariantValue(props, 'colorDropdownDivDisabled')};
+      color: ${getThemeVariantValue({ ...props, defaultTheme: DropdownStyleTheme }, 'colorDropdownDivDisabled')};
       cursor: not-allowed;
       resize: none;
     }
@@ -89,9 +95,9 @@ export const DropdownDiv = styled.div<DropdownDivProps>`
   }}
 `;
 
-DropdownDiv.defaultProps = {
-  defaultTheme: DropdownStyleTheme,
-};
+// DropdownDiv.defaultProps = {
+//   defaultTheme: DropdownStyleTheme,
+// };
 
 export const DropdownDivTag = styled(Tag)``;
 

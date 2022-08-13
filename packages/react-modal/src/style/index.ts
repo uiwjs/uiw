@@ -24,13 +24,17 @@ export const ModalStyleHeader = styled.div<ModalStyleWrapProps>`
   ${(props) => css`
     display: flex;
     align-items: center;
-    min-height: ${getThemeVariantValue(props, 'minHeightModalStyleHeader')};
+    min-height: ${getThemeVariantValue({ ...props, defaultTheme: ModalStyleTheme }, 'minHeightModalStyleHeader')};
     padding-left: 13px;
     padding-right: 5px;
-    background-color: ${getThemeVariantValue(props, 'backgroundColorModalStyleHeaderBase')};
+    background-color: ${getThemeVariantValue(
+      { ...props, defaultTheme: ModalStyleTheme },
+      'backgroundColorModalStyleHeaderBase',
+    )};
     border-radius: 5px 5px 0 0;
-    box-shadow: 0 1px 0 ${getThemeVariantValue(props, 'boxShadowColorModalStyleHeaderBase')};
-    font-size: ${getThemeVariantValue(props, 'fontSizeLarge')};
+    box-shadow: 0 1px 0
+      ${getThemeVariantValue({ ...props, defaultTheme: ModalStyleTheme }, 'boxShadowColorModalStyleHeaderBase')};
+    font-size: ${getThemeVariantValue({ ...props, defaultTheme: ModalStyleTheme }, 'fontSizeLarge')};
     > .w-icon {
       margin-right: 10px;
       color: #393e48;
@@ -40,25 +44,25 @@ export const ModalStyleHeader = styled.div<ModalStyleWrapProps>`
       padding: 0;
       flex: 1 1 auto;
       font-weight: bold;
-      min-height: ${getThemeVariantValue(props, 'minHeightModalStyleHeaderH4')};
+      min-height: ${getThemeVariantValue({ ...props, defaultTheme: ModalStyleTheme }, 'minHeightModalStyleHeaderH4')};
     }
   `}
 `;
 
-ModalStyleHeader.defaultProps = {
-  defaultTheme: ModalStyleTheme,
-};
+// ModalStyleHeader.defaultProps = {
+//   defaultTheme: ModalStyleTheme,
+// };
 
 export const ModalStyleBody = styled.div<ModalStyleWrapProps>`
   ${(props) => css`
     padding-top: 20px;
-    font-size: ${getThemeVariantValue(props, 'fontSizeDefault')};
+    font-size: ${getThemeVariantValue({ ...props, defaultTheme: ModalStyleTheme }, 'fontSizeDefault')};
   `}
 `;
 
-ModalStyleBody.defaultProps = {
-  defaultTheme: ModalStyleTheme,
-};
+// ModalStyleBody.defaultProps = {
+//   defaultTheme: ModalStyleTheme,
+// };
 
 export const ModalStyleFooter = styled.div<ModalStyleWrapProps>`
   display: flex;
@@ -74,17 +78,21 @@ export const ModalStyleContainer = styled.div<ModalStyleWrapProps>``;
 export const ModalStyleInner = styled.div<ModalStyleWrapProps>`
   ${(props) => css`
     padding-bottom: 20px;
-    background: ${getThemeVariantValue(props, 'backgroundColorModalStyleInnerBase')};
-    min-width: ${getThemeVariantValue(props, 'minWidthModalStyleInner')};
+    background: ${getThemeVariantValue(
+      { ...props, defaultTheme: ModalStyleTheme },
+      'backgroundColorModalStyleInnerBase',
+    )};
+    min-width: ${getThemeVariantValue({ ...props, defaultTheme: ModalStyleTheme }, 'minWidthModalStyleInner')};
     border-radius: 5px;
-    box-shadow: 0 0 0 1px ${getThemeVariantValue(props, 'boxShadowModalStyleInnerH')},
-      0 4px 8px ${getThemeVariantValue(props, 'boxShadowModalStyleInnerV')},
-      0 18px 46px 6px ${getThemeVariantValue(props, 'boxShadowModalStyleInnerV')};
+    box-shadow: 0 0 0 1px
+        ${getThemeVariantValue({ ...props, defaultTheme: ModalStyleTheme }, 'boxShadowModalStyleInnerH')},
+      0 4px 8px ${getThemeVariantValue({ ...props, defaultTheme: ModalStyleTheme }, 'boxShadowModalStyleInnerV')},
+      0 18px 46px 6px ${getThemeVariantValue({ ...props, defaultTheme: ModalStyleTheme }, 'boxShadowModalStyleInnerV')};
   `}
 `;
-ModalStyleInner.defaultProps = {
-  defaultTheme: ModalStyleTheme,
-};
+// ModalStyleInner.defaultProps = {
+//   defaultTheme: ModalStyleTheme,
+// };
 
 export const ModalStyleWrap = styled.div<ModalStyleWrapProps>`
   z-index: 1001;
@@ -95,8 +103,8 @@ export const ModalStyleWrap = styled.div<ModalStyleWrapProps>`
   }
 `;
 
-ModalStyleWrap.defaultProps = {
-  defaultTheme: ModalStyleTheme,
-};
+// ModalStyleWrap.defaultProps = {
+//   defaultTheme: ModalStyleTheme,
+// };
 
 export default ModalStyleWrap;

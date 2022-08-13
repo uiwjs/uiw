@@ -22,14 +22,15 @@ export interface RateActiveProps extends ThemeVar, Pick<RateProps, 'disabled'> {
 export interface RateBgProps extends ThemeVar, Pick<RateProps, 'disabled'> {}
 
 export const RateBg = styled.div<RateBgProps>`
-  color: ${(props) => getThemeVariantValue(props, 'colorRateBgBase')};
+  color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: RateBgStyleTheme }, 'colorRateBgBase')};
 `;
 export const RateActive = styled.div<RateActiveProps>`
   z-index: 3;
-  line-height: ${(props) => getThemeVariantValue(props, 'lineHeightRateActiveDefault')};
+  line-height: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: RateBgStyleTheme }, 'lineHeightRateActiveDefault')};
   position: absolute;
   transition: color 0.3s, width 0.3s;
-  color: ${(props) => getThemeVariantValue(props, 'colorRateActiveBase')};
+  color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: RateBgStyleTheme }, 'colorRateActiveBase')};
   display: none;
 
   ${(props) =>
@@ -41,7 +42,7 @@ export const RateActive = styled.div<RateActiveProps>`
     (props.starOn || props.hoverOn || props.halfon) &&
     css`
       display: inline-block;
-      color: ${(props) => getThemeVariantValue(props, 'colorRateActiveOn')};
+      color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: RateBgStyleTheme }, 'colorRateActiveOn')};
     `}
   ${(props) =>
     props.halfon &&
@@ -54,8 +55,9 @@ export const RateActive = styled.div<RateActiveProps>`
 
 export const RateWarp = styled.div<RateWarpProps>`
   position: relative;
-  line-height: ${(props) => getThemeVariantValue(props, 'lineHeightRateDefault')};
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeRateDefault')};
+  line-height: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: RateBgStyleTheme }, 'lineHeightRateDefault')};
+  font-size: ${(props) => getThemeVariantValue({ ...props, defaultTheme: RateBgStyleTheme }, 'fontSizeRateDefault')};
   font-family: auto;
   display: inline-block;
   vertical-align: middle;
@@ -71,16 +73,16 @@ export const RateWarp = styled.div<RateWarpProps>`
   }
 `;
 
-RateBg.defaultProps = {
-  defaultTheme: RateBgStyleTheme,
-};
+// RateBg.defaultProps = {
+//   defaultTheme: RateBgStyleTheme,
+// };
 
-RateActive.defaultProps = {
-  defaultTheme: RateBgStyleTheme,
-};
+// RateActive.defaultProps = {
+//   defaultTheme: RateBgStyleTheme,
+// };
 
-RateWarp.defaultProps = {
-  defaultTheme: RateBgStyleTheme,
-};
+// RateWarp.defaultProps = {
+//   defaultTheme: RateBgStyleTheme,
+// };
 
 export default RateWarp;

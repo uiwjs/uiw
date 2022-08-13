@@ -81,7 +81,8 @@ function tooltipArrowHandle(placement: TooltipStyleProps['placement']) {
   switch (obj[placement!]) {
     case 'right':
       return css`
-        border-right-color: ${(props) => getThemeVariantValue(props, 'borderColorTooltipStyleInnerWarpBase')};
+        border-right-color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: TooltipStyleTheme }, 'borderColorTooltipStyleInnerWarpBase')};
         border-width: 5px 5px 5px 0;
         left: 0;
         margin-top: -5px;
@@ -89,7 +90,8 @@ function tooltipArrowHandle(placement: TooltipStyleProps['placement']) {
       `;
     case 'left':
       return css`
-        border-left-color: ${(props) => getThemeVariantValue(props, 'borderColorTooltipStyleInnerWarpBase')};
+        border-left-color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: TooltipStyleTheme }, 'borderColorTooltipStyleInnerWarpBase')};
         border-width: 5px 0 5px 5px;
         margin-top: -5px;
         right: 0;
@@ -97,7 +99,8 @@ function tooltipArrowHandle(placement: TooltipStyleProps['placement']) {
       `;
     case 'top':
       return css`
-        border-top-color: ${(props) => getThemeVariantValue(props, 'borderColorTooltipStyleInnerWarpBase')};
+        border-top-color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: TooltipStyleTheme }, 'borderColorTooltipStyleInnerWarpBase')};
         border-width: 5px 5px 0;
         bottom: 0;
         left: 50%;
@@ -105,7 +108,8 @@ function tooltipArrowHandle(placement: TooltipStyleProps['placement']) {
       `;
     case 'bottom':
       return css`
-        border-bottom-color: ${(props) => getThemeVariantValue(props, 'borderColorTooltipStyleInnerWarpBase')};
+        border-bottom-color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: TooltipStyleTheme }, 'borderColorTooltipStyleInnerWarpBase')};
         border-width: 0 5px 5px;
         left: 50%;
         margin-left: -5px;
@@ -169,14 +173,16 @@ export const TooltipStyleInnerWarp = styled.div<ThemeVar>`
   text-align: left;
   text-decoration: none;
   border-radius: 4px;
-  box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowTooltipStyleInnerWarpBase')};
+  box-shadow: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: TooltipStyleTheme }, 'boxShadowTooltipStyleInnerWarpBase')};
   word-break: break-all;
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTooltipStyleInnerWarpBase')};
+  background-color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: TooltipStyleTheme }, 'backgroundColorTooltipStyleInnerWarpBase')};
 `;
 
-TooltipStyleInnerWarp.defaultProps = {
-  defaultTheme: TooltipStyleTheme,
-};
-TooltipStyleArrowWarp.defaultProps = {
-  defaultTheme: TooltipStyleTheme,
-};
+// TooltipStyleInnerWarp.defaultProps = {
+//   defaultTheme: TooltipStyleTheme,
+// };
+// TooltipStyleArrowWarp.defaultProps = {
+//   defaultTheme: TooltipStyleTheme,
+// };

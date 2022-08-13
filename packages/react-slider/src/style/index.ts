@@ -38,10 +38,11 @@ export const SliderStyleWarp = styled.div<SliderStyleWarpProps>`
   width: stretch;
   height: 4px;
   margin: 13px 7px;
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorSlider')};
+  background-color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: SliderStyleTheme }, 'backgroundColorSlider')};
   border-radius: 3px;
   position: relative;
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeSmall')};
+  font-size: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SliderStyleTheme }, 'fontSizeSmall')};
   cursor: pointer;
   user-select: none;
   vertical-align: middle;
@@ -71,7 +72,7 @@ export const SliderStyleWarp = styled.div<SliderStyleWarpProps>`
     `}
 `;
 
-SliderStyleWarp.defaultProps = { defaultTheme: SliderStyleTheme };
+// SliderStyleWarp.defaultProps = { defaultTheme: SliderStyleTheme };
 
 export interface SliderStyleBarProps extends SliderBaseProps {
   params?: {
@@ -83,7 +84,8 @@ export interface SliderStyleBarProps extends SliderBaseProps {
 export const SliderStyleBar = styled.div<SliderStyleBarProps>`
   height: 4px;
   border-radius: 3px;
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorSliderStyleBar')};
+  background-color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: SliderStyleTheme }, 'backgroundColorSliderStyleBar')};
   position: absolute;
   ${(props) =>
     props.params?.disabled &&
@@ -103,7 +105,7 @@ export const SliderStyleBar = styled.div<SliderStyleBarProps>`
     `}
 `;
 
-SliderStyleBar.defaultProps = { defaultTheme: SliderStyleTheme };
+// SliderStyleBar.defaultProps = { defaultTheme: SliderStyleTheme };
 
 export interface SliderStyleHandleProps extends SliderBaseProps {
   params?: {
@@ -116,8 +118,13 @@ export const SliderStyleHandle = styled.div<SliderStyleHandleProps>`
     props.params?.disabled &&
     css`
       & {
-        background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorSliderStyleHandleDisabled')};
-        box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowSliderStyleHandleDisabled')};
+        background-color: ${(props) =>
+          getThemeVariantValue(
+            { ...props, defaultTheme: SliderStyleTheme },
+            'backgroundColorSliderStyleHandleDisabled',
+          )};
+        box-shadow: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: SliderStyleTheme }, 'boxShadowSliderStyleHandleDisabled')};
       }
     `}
   left: 0%;
@@ -127,18 +134,29 @@ export const SliderStyleHandle = styled.div<SliderStyleHandleProps>`
   z-index: 1;
   margin-top: -5px;
   transform: translateX(-50%);
-  box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowSliderStyleHandle')};
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorSliderStyleHandle')};
-  background-image: ${(props) => getThemeVariantValue(props, 'backgroundImageSliderStyleHandle')};
+  box-shadow: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: SliderStyleTheme }, 'boxShadowSliderStyleHandle')};
+  background-color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: SliderStyleTheme }, 'backgroundColorSliderStyleHandle')};
+  background-image: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: SliderStyleTheme }, 'backgroundImageSliderStyleHandle')};
   border-radius: 50%;
   transition: all 0.3;
   ${(props) =>
     props.params?.disabled &&
     css`
       &:active {
-        background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorSliderStyleHandleDisabledActive')};
+        background-color: ${(props) =>
+          getThemeVariantValue(
+            { ...props, defaultTheme: SliderStyleTheme },
+            'backgroundColorSliderStyleHandleDisabledActive',
+          )};
         transition: all 0.3;
-        box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowSliderStyleHandleDisabledActive')};
+        box-shadow: ${(props) =>
+          getThemeVariantValue(
+            { ...props, defaultTheme: SliderStyleTheme },
+            'boxShadowSliderStyleHandleDisabledActive',
+          )};
       }
     `}
   ${(props) =>
@@ -150,7 +168,7 @@ export const SliderStyleHandle = styled.div<SliderStyleHandleProps>`
     `}
 `;
 
-SliderStyleHandle.defaultProps = { defaultTheme: SliderStyleTheme };
+// SliderStyleHandle.defaultProps = { defaultTheme: SliderStyleTheme };
 
 export interface SliderStyleTooltipProps extends SliderBaseProps {
   params?: {
@@ -169,10 +187,11 @@ export const SliderStyleTooltip = styled.div<SliderStyleTooltipProps>`
       }
     `}
   display: none;
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeSmall')};
+  font-size: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SliderStyleTheme }, 'fontSizeSmall')};
   position: absolute;
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorSliderStyleTooltip')};
-  color: ${(props) => getThemeVariantValue(props, 'colorSliderStyleTooltip')};
+  background-color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: SliderStyleTheme }, 'backgroundColorSliderStyleTooltip')};
+  color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SliderStyleTheme }, 'colorSliderStyleTooltip')};
   padding: 0px 4px;
   margin-top: -3px;
   border-radius: 3px;
@@ -187,7 +206,7 @@ export const SliderStyleTooltip = styled.div<SliderStyleTooltipProps>`
     `}
 `;
 
-SliderStyleTooltip.defaultProps = { defaultTheme: SliderStyleTheme };
+// SliderStyleTooltip.defaultProps = { defaultTheme: SliderStyleTheme };
 
 export interface SliderStyleDotProps extends SliderBaseProps {
   params?: {
@@ -200,8 +219,10 @@ export const SliderStyleDot = styled.div<SliderStyleDotProps>`
     width: 4px;
     height: 4px;
     border-radius: 100%;
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorSliderStyleDot')};
-    box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowSliderStyleDot')};
+    background-color: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: SliderStyleTheme }, 'backgroundColorSliderStyleDot')};
+    box-shadow: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: SliderStyleTheme }, 'boxShadowSliderStyleDot')};
     top: 0px;
     transform: translateX(-50%);
   }
@@ -214,7 +235,7 @@ export const SliderStyleDot = styled.div<SliderStyleDotProps>`
     `}
 `;
 
-SliderStyleDot.defaultProps = { defaultTheme: SliderStyleTheme };
+// SliderStyleDot.defaultProps = { defaultTheme: SliderStyleTheme };
 
 export interface SliderStyleMarkProps extends SliderBaseProps {
   params?: {
@@ -234,7 +255,7 @@ export const SliderStyleMark = styled.div<SliderStyleMarkProps>`
     text-align: center;
     cursor: pointer;
     transform: translate(-50%, 50%);
-    color: ${(props) => getThemeVariantValue(props, 'colorSliderStyleMark')};
+    color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SliderStyleTheme }, 'colorSliderStyleMark')};
   }
   ${(props) =>
     props.params?.vertical &&
@@ -263,4 +284,4 @@ export const SliderStyleMark = styled.div<SliderStyleMarkProps>`
     `}
 `;
 
-SliderStyleMark.defaultProps = { defaultTheme: SliderStyleTheme };
+// SliderStyleMark.defaultProps = { defaultTheme: SliderStyleTheme };

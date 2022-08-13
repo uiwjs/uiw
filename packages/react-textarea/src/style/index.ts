@@ -30,17 +30,19 @@ interface TextareaStyleWarpProps extends TextareaProps, ThemeVariantValueOptions
 
 export const TextareaStyleWarp = styled.textarea<TextareaStyleWarpProps>`
   position: relative;
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
+  font-size: ${(props) => getThemeVariantValue({ ...props, defaultTheme: TextareaStyleTheme }, 'fontSizeDefault')};
   outline: none;
   border: none;
-  border-radius: ${(props) => getThemeVariantValue(props, 'borderRadiusDefault')};
-  box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowTextarea')};
+  border-radius: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: TextareaStyleTheme }, 'borderRadiusDefault')};
+  box-shadow: ${(props) => getThemeVariantValue({ ...props, defaultTheme: TextareaStyleTheme }, 'boxShadowTextarea')};
   padding: 5px 10px;
   vertical-align: middle;
   height: auto;
   min-height: 30px;
-  color: ${(props) => getThemeVariantValue(props, 'colorTextareaDefault')};
-  background: ${(props) => getThemeVariantValue(props, 'backgroundColorTextareaStyleWarpBase')};
+  color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: TextareaStyleTheme }, 'colorTextareaDefault')};
+  background: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: TextareaStyleTheme }, 'backgroundColorTextareaStyleWarpBase')};
   font-weight: 400;
   max-width: 100%;
   min-width: 100%;
@@ -51,24 +53,28 @@ export const TextareaStyleWarp = styled.textarea<TextareaStyleWarpProps>`
     padding-left: 30px;
   }
   &:focus {
-    box-shadow: ${(props) => getThemeVariantValue(props, `boxShadowTextareaFocus`)};
+    box-shadow: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: TextareaStyleTheme }, `boxShadowTextareaFocus`)};
   }
   &:hover {
-    box-shadow: ${(props) => getThemeVariantValue(props, `boxShadowTextareaFocus`)};
+    box-shadow: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: TextareaStyleTheme }, `boxShadowTextareaFocus`)};
   }
   &:focus&:hover {
-    box-shadow: ${(props) => getThemeVariantValue(props, `boxShadowTextareaFocusHover`)};
+    box-shadow: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: TextareaStyleTheme }, `boxShadowTextareaFocusHover`)};
   }
   &:disabled {
     box-shadow: none;
-    background: ${(props) => getThemeVariantValue(props, `backgroundTextareaDisabled`)};
+    background: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: TextareaStyleTheme }, `backgroundTextareaDisabled`)};
     opacity: 0.75;
-    color: ${(props) => getThemeVariantValue(props, `colorTextareaDisabled`)};
+    color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: TextareaStyleTheme }, `colorTextareaDisabled`)};
     cursor: not-allowed;
     resize: none;
   }
 `;
 
-TextareaStyleWarp.defaultProps = {
-  defaultTheme: TextareaStyleTheme,
-};
+// TextareaStyleWarp.defaultProps = {
+//   defaultTheme: TextareaStyleTheme,
+// };

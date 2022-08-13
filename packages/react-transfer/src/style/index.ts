@@ -25,13 +25,15 @@ export const TransferArrow = styled(IconStyleBase)<TransferArrowProps>`
 
   &:hover {
     cursor: pointer;
-    box-shadow: 0 1px 6px ${(props) => getThemeVariantValue(props, 'boxShadowColorTransferArrowPropsHover')};
+    box-shadow: 0 1px 6px
+      ${(props) =>
+        getThemeVariantValue({ ...props, defaultTheme: TransferStyleTheme }, 'boxShadowColorTransferArrowPropsHover')};
   }
 `;
 
-TransferArrow.defaultProps = {
-  defaultTheme: TransferStyleTheme,
-};
+// TransferArrow.defaultProps = {
+//   defaultTheme: TransferStyleTheme,
+// };
 
 export const TransferArrowContent = styled.div`
   width: 50px;

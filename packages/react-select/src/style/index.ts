@@ -43,10 +43,10 @@ export interface SelectWarpProps extends ThemeVariantValueOptions<typeof SelectS
 export const SelectStyleWarp = styled.select<SelectWarpProps>`
   display: inline-flex;
   appearance: none;
-  cursor: ${(props) => getThemeVariantValue(props, 'cursorSelectDefault')};
-  color: ${(props) => getThemeVariantValue(props, 'colorSelectBase')};
-  padding: ${(props) => getThemeVariantValue(props, 'paddingSelectDefault')};
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeSelectDefault')};
+  cursor: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'cursorSelectDefault')};
+  color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'colorSelectBase')};
+  padding: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'paddingSelectDefault')};
+  font-size: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'fontSizeSelectDefault')};
   width: 100%;
   max-width: 100%;
   margin: 0;
@@ -54,10 +54,13 @@ export const SelectStyleWarp = styled.select<SelectWarpProps>`
   vertical-align: middle;
   box-sizing: border-box;
   border: none;
-  box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowSelectBase')};
-  border-radius: ${(props) => getThemeVariantValue(props, 'borderRadiusDefault')};
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorSelectBase')};
-  background-image: ${(props) => getThemeVariantValue(props, 'backgroundImageSelectUrl')},
+  box-shadow: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'boxShadowSelectBase')};
+  border-radius: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'borderRadiusDefault')};
+  background-color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'backgroundColorSelectBase')};
+  background-image: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'backgroundImageSelectUrl')},
     linear-gradient(180deg, hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0));
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
@@ -66,34 +69,40 @@ export const SelectStyleWarp = styled.select<SelectWarpProps>`
     outline: none !important;
   }
   &:hover {
-    box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowSelectBase')};
+    box-shadow: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'boxShadowSelectBase')};
     background-clip: padding-box;
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorSelectHover')};
+    background-color: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'backgroundColorSelectHover')};
   }
   &:disabled {
-    box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowSelectDisabled')};
-    background-image: ${(props) => getThemeVariantValue(props, 'backgroundImageSelectUrl')};
+    box-shadow: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'boxShadowSelectDisabled')};
+    background-image: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'backgroundImageSelectUrl')};
     background-size: 0.52em auto, 100%;
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorSelectDisabled')};
+    background-color: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'backgroundColorSelectDisabled')};
     opacity: 0.75;
-    color: ${(props) => getThemeVariantValue(props, 'colorSelectDisabled')};
-    cursor: ${(props) => getThemeVariantValue(props, 'cursorSelectDisabled')};
+    color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'colorSelectDisabled')};
+    cursor: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'cursorSelectDisabled')};
     resize: none;
   }
   ${(props) =>
     props.params.size === 'large' &&
     css`
-      padding: ${(props) => getThemeVariantValue(props, 'paddingSelectLarge')};
-      font-size: ${(props) => getThemeVariantValue(props, 'fontSizeSelectLarge')};
+      padding: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'paddingSelectLarge')};
+      font-size: ${(props) =>
+        getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'fontSizeSelectLarge')};
     `}
   ${(props) =>
     props.params.size === 'small' &&
     css`
-      padding: ${(props) => getThemeVariantValue(props, 'paddingSelectSmall')};
-      font-size: ${(props) => getThemeVariantValue(props, 'fontSizeSelectSmall')};
+      padding: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'paddingSelectSmall')};
+      font-size: ${(props) =>
+        getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'fontSizeSelectSmall')};
     `}
 `;
 
-SelectStyleWarp.defaultProps = {
-  defaultTheme: SelectStyleTheme,
-};
+// SelectStyleWarp.defaultProps = {
+//   defaultTheme: SelectStyleTheme,
+// };

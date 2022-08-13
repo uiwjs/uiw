@@ -55,7 +55,8 @@ export const BackdropWrap = styled.div<OverlayStyleWrapDivProps>`
   left: 0;
   opacity: 1;
   z-index: 20;
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorOverlayBackdrop')};
+  background-color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: OverlayStyleTheme }, 'backgroundColorOverlayBackdrop')};
   overflow: auto;
   user-select: none;
 `;
@@ -141,6 +142,6 @@ export const OverlayWrap = styled.div<OverlayWrapProps>`
   `}
 `;
 
-BackdropWrap.defaultProps = {
-  defaultTheme: OverlayStyleTheme,
-};
+// BackdropWrap.defaultProps = {
+//   defaultTheme: OverlayStyleTheme,
+// };
