@@ -7,6 +7,7 @@ import {
   PopoverStyleOverlayTriggerArrow,
   PopoverStyleOverlayTriggerDiv,
 } from './style/index';
+export * from './style';
 
 export interface PopoverProps extends OverlayTriggerProps {
   content?: React.ReactNode;

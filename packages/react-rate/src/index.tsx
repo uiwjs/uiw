@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { IProps, HTMLDivProps, HTMLSpanProps, noop } from '@uiw/utils';
 // import './style/index.less';
 import RateWarp, { RateActive, RateBg } from './style';
+export * from './style';
 export interface RateProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
   value?: number;
   readOnly?: boolean;

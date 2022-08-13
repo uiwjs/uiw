@@ -7,6 +7,7 @@ import formatter from '@uiw/formatter';
 import { DatePickerMonth, DatePickerYear, DatePickerCaption, DatePickerCaptionProps } from '@uiw/react-date-picker';
 // import './style/index.less';
 import { MonthPickerStylePopoverBase, MonthPickerStyleInputStyleBase, MonthPickerStyleCloseButton } from './style';
+export * from './style';
 import { Close } from '@uiw/icons/lib/Close';
 import { IconStyleBase } from '@uiw/react-icon';
 export interface MonthPickerProps extends IProps, Omit<InputProps, 'value' | 'onChange'> {

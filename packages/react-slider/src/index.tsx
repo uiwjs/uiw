@@ -3,6 +3,7 @@ import { IProps, HTMLDivProps } from '@uiw/utils';
 import Dots from './Dots';
 // import './style/index.less';
 import { SliderStyleWarp, SliderStyleBar, SliderStyleHandle, SliderStyleTooltip } from './style';
+export * from './style';
 
 export type SliderStyleMarks = {
   style?: React.CSSProperties;

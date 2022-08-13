@@ -1,7 +1,7 @@
 import React from 'react';
 import { RadioAbstract, RadioAbstractProps } from '@uiw/react-radio';
 import { SwitchStyleWrap } from './style';
-// import './style/index.less';
+export * from './style/index';
 
 export interface SwitchProps extends RadioAbstractProps {}
 

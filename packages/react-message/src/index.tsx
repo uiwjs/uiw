@@ -14,6 +14,7 @@ import {
   MessageStyleDescriptionSpan,
   MessageStyleButtonWarp,
 } from './style';
+export * from './style';
 export interface MessageProps extends IProps, Omit<HTMLDivProps, 'title'> {
   title?: React.ReactNode;
   icon?: React.ReactNode;

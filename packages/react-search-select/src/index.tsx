@@ -15,6 +15,7 @@ import {
 } from './style';
 import { Close } from '@uiw/icons/lib/Close';
 import { Loading } from '@uiw/icons/lib/Loading';
+export * from './style';
 
 const ICONTYPE = {
   close: Close,

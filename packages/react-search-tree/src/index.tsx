@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SearchTagInput, { DropContent, SearchTagInputOption } from './SearchTagInput';
 import Tree, { TreeData, TreeProps } from '@uiw/react-tree';
 import TreeChecked, { TreeCheckedProps } from '@uiw/react-tree-checked';
+export * from './style';
 
 type SelectOtpion = Record<string | number, string>;
 

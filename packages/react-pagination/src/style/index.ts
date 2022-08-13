@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { SelectStyleWarp } from '@uiw/react-select';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 
-export const PaginationDefaultTheme = {
+export const PaginationStyleTheme = {
   borderColorPaginationBase: '#d4d4d4',
   backgroundColorPaginationActive: '#ececec',
   backgroundColorPaginationHover: '#f6f6f6',
@@ -12,10 +12,11 @@ export const PaginationDefaultTheme = {
   boxShadowdisabledPaginationDisabled: 'inset 0 8px 42px -12px rgba(0, 0, 0, 0.2)',
   boxShadowdisabledPaginationActive: 'inset 0 0 0 rgba(0, 0, 0, 0)',
 };
+type ThemeVar = ThemeVariantValueOptions<typeof PaginationStyleTheme>;
 
 export interface PaginationStyleBaseLIAProps
   extends React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>,
-    ThemeVariantValueOptions {
+    ThemeVar {
   params?: {
     type?: string;
     isArrow?: boolean;
@@ -41,7 +42,8 @@ export const PaginationStyleBaseLIA = styled.a<PaginationStyleBaseLIAProps>`
         height: 8px;
         width: 2px;
         border-radius: 2px;
-        background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorPaginationTextBase')};
+        background-color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: PaginationStyleTheme }, 'backgroundColorPaginationTextBase')};
         transition: all 0.3s;
       }
       &::after {
@@ -73,7 +75,7 @@ export const PaginationStyleBaseLIA = styled.a<PaginationStyleBaseLIAProps>`
     }
     return css``;
   }}
-  
+
   ${(props) =>
     props.params?.size === 'small' &&
     css`
@@ -83,22 +85,23 @@ export const PaginationStyleBaseLIA = styled.a<PaginationStyleBaseLIAProps>`
       }
     `}
 
-      
+
   ${(props) =>
     props.params?.disabled &&
     css`
       &::after,
       &::before {
-        background: ${(props) => getThemeVariantValue(props, 'backgroundPaginationTextDisabled')};
+        background: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: PaginationStyleTheme }, 'backgroundPaginationTextDisabled')};
       }
     `}
 `;
-PaginationStyleBaseLIA.defaultProps = {
-  defaultTheme: PaginationDefaultTheme,
-};
+// PaginationStyleBaseLIA.defaultProps = {
+//   defaultTheme: PaginationStyleTheme,
+// };
 export interface PaginationStyleBaseLIProps
   extends React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>,
-    ThemeVariantValueOptions {
+    ThemeVar {
   params?: {
     disabled?: boolean;
     isOptions?: boolean;
@@ -140,35 +143,45 @@ export const PaginationStyleBaseLI = styled.li<PaginationStyleBaseLIProps>`
       }
       ${props.params.active &&
       css`
-        background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorPaginationActive')};
+        background-color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: PaginationStyleTheme }, 'backgroundColorPaginationActive')};
       `}
       ${!props.params.active &&
       css`
         &:hover ${PaginationStyleBaseLIA} {
-          color: ${(props) => getThemeVariantValue(props, 'backgroundPaginationTextHover')};
+          color: ${(props) =>
+            getThemeVariantValue({ ...props, defaultTheme: PaginationStyleTheme }, 'backgroundPaginationTextHover')};
         }
       `}
     `}
   ${(props) =>
     props.params?.size === 'default' &&
     css`
-      border: 1px solid ${(props) => getThemeVariantValue(props, 'borderColorPaginationBase')};
+      border: 1px solid
+        ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: PaginationStyleTheme }, 'borderColorPaginationBase')};
       border-left: 0;
       ${!props.params.disabled &&
       !props.params.active &&
       css`
         &:hover {
-          background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorPaginationHover')};
+          background-color: ${(props) =>
+            getThemeVariantValue({ ...props, defaultTheme: PaginationStyleTheme }, 'backgroundColorPaginationHover')};
         }
       `}
       ${!props.params.disabled &&
       css`
         &:active {
-          box-shadow: ${() => getThemeVariantValue(props, 'boxShadowdisabledPaginationDisabled')};
+          box-shadow: ${() =>
+            getThemeVariantValue(
+              { ...props, defaultTheme: PaginationStyleTheme },
+              'boxShadowdisabledPaginationDisabled',
+            )};
         }
       `}
       &:first-child {
-        border-left: 1px solid ${() => getThemeVariantValue(props, 'borderColorPaginationBase')};
+        border-left: 1px solid
+          ${() => getThemeVariantValue({ ...props, defaultTheme: PaginationStyleTheme }, 'borderColorPaginationBase')};
         border-radius: 3px 0 0 3px;
       }
       &:last-child {
@@ -176,9 +189,14 @@ export const PaginationStyleBaseLI = styled.li<PaginationStyleBaseLIProps>`
       }
       ${props.params.active &&
       css`
-        background-color: ${() => getThemeVariantValue(props, 'backgroundColorPaginationActive')};
+        background-color: ${() =>
+          getThemeVariantValue({ ...props, defaultTheme: PaginationStyleTheme }, 'backgroundColorPaginationActive')};
         &:active {
-          box-shadow: ${() => getThemeVariantValue(props, 'boxshadowdisabledpaginationactive')};
+          box-shadow: ${() =>
+            getThemeVariantValue(
+              { ...props, defaultTheme: PaginationStyleTheme },
+              'boxshadowdisabledpaginationactive',
+            )};
         }
       `}
     `}
@@ -196,12 +214,12 @@ export const PaginationStyleBaseLI = styled.li<PaginationStyleBaseLIProps>`
     `}
 `;
 
-PaginationStyleBaseLI.defaultProps = {
-  defaultTheme: PaginationDefaultTheme,
-};
+// PaginationStyleBaseLI.defaultProps = {
+//   defaultTheme: PaginationStyleTheme,
+// };
 export interface PaginationStyleBaseULProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLUListElement>, HTMLUListElement>,
-    ThemeVariantValueOptions {
+    ThemeVar {
   params?: {
     size?: 'default' | 'small';
     isDivider?: boolean;
@@ -220,7 +238,9 @@ export const PaginationStyleBaseUL = styled.ul<PaginationStyleBaseULProps>`
     css`
       ${PaginationStyleBaseLI} + ${PaginationStyleBaseLI} {
         margin-left: 8px !important;
-        border: 1px solid ${(props) => getThemeVariantValue(props, 'borderColorPaginationBase')};
+        border: 1px solid
+          ${(props) =>
+            getThemeVariantValue({ ...props, defaultTheme: PaginationStyleTheme }, 'borderColorPaginationBase')};
       }
       ${PaginationStyleBaseLI} {
         border-radius: 4px;
@@ -228,6 +248,6 @@ export const PaginationStyleBaseUL = styled.ul<PaginationStyleBaseULProps>`
     `}
 `;
 
-PaginationStyleBaseUL.defaultProps = {
-  defaultTheme: PaginationDefaultTheme,
-};
+// PaginationStyleBaseUL.defaultProps = {
+//   defaultTheme: PaginationStyleTheme,
+// };

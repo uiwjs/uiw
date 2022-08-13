@@ -8,8 +8,9 @@ export const TagDefaultTheme = {
   backgroundColorTagStyleSvgLightActive: 'rgba(0, 0, 0, 0.15)',
   fillTagStyleSvgLightHover: '#fff',
 };
+type ThemeVar = ThemeVariantValueOptions<typeof TagDefaultTheme>;
 
-export interface TagStyleSvgProps extends React.SVGProps<SVGSVGElement>, ThemeVariantValueOptions {
+export interface TagStyleSvgProps extends React.SVGProps<SVGSVGElement>, ThemeVar {
   isLight?: boolean;
 }
 export const TagStyleSvg = styled.svg<TagStyleSvgProps>`
@@ -22,10 +23,12 @@ export const TagStyleSvg = styled.svg<TagStyleSvgProps>`
   transition: all 0.3s;
   cursor: pointer;
   &:hover {
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTagStyleSvgHover')};
+    background-color: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: TagDefaultTheme }, 'backgroundColorTagStyleSvgHover')};
   }
   &:active {
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTagStyleSvgActive')};
+    background-color: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: TagDefaultTheme }, 'backgroundColorTagStyleSvgActive')};
   }
   ${(props) =>
     props.isLight &&
@@ -34,24 +37,26 @@ export const TagStyleSvg = styled.svg<TagStyleSvgProps>`
         &:hover {
           background-color: currentcolor;
           path {
-            fill: ${(props) => getThemeVariantValue(props, 'fillTagStyleSvgLightHover')};
+            fill: ${(props) =>
+              getThemeVariantValue({ ...props, defaultTheme: TagDefaultTheme }, 'fillTagStyleSvgLightHover')};
           }
         }
         &:active {
-          background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTagStyleSvgLightActive')};
+          background-color: ${(props) =>
+            getThemeVariantValue({ ...props, defaultTheme: TagDefaultTheme }, 'backgroundColorTagStyleSvgLightActive')};
         }
       }
     `}
 `;
-TagStyleSvg.defaultProps = { defaultTheme: TagDefaultTheme };
-export interface TagStyleWarpProps extends HTMLSpanProps, ThemeVariantValueOptions {
+// TagStyleSvg.defaultProps = { defaultTheme: TagDefaultTheme };
+export interface TagStyleWarpProps extends HTMLSpanProps, ThemeVar {
   disabled?: boolean;
 }
 export const TagStyleWarp = styled.span<TagStyleWarpProps>`
   border-radius: 2px;
   display: inline-block;
   user-select: none;
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeSmall')};
+  font-size: ${(props) => getThemeVariantValue({ ...props, defaultTheme: TagDefaultTheme }, 'fontSizeSmall')};
   padding: 1px 5px;
   position: relative;
   white-space: nowrap;
@@ -68,4 +73,4 @@ export const TagStyleWarp = styled.span<TagStyleWarpProps>`
       }
     `}
 `;
-TagStyleWarp.defaultProps = { defaultTheme: TagDefaultTheme };
+// TagStyleWarp.defaultProps = { defaultTheme: TagDefaultTheme };
