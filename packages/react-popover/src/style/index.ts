@@ -1,9 +1,17 @@
 import styled, { css } from 'styled-components';
 import OverlayTrigger, { OverlayTriggerProps } from '@uiw/react-overlay-trigger';
-import { getThemeVariantValue } from '@uiw/utils';
-interface PopoverWarpProps extends OverlayTriggerProps {
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
+
+export const PopoverStyleTheme = {
+  fontSizePopoverDefault: '12px',
+  boxShadowPopoverPrimary:
+    'rgba(16, 22, 26, 0.1) 0px 0px 0px 1px, rgba(16, 22, 26, 0.2) 0px 2px 4px, rgba(16, 22, 26, 0.2) 0px 8px 24px',
+};
+
+export interface PopoverWarpProps extends OverlayTriggerProps, ThemeVariantValueOptions<typeof PopoverStyleTheme> {
   defaultTheme?: Record<string, string | number>;
 }
+
 export const PopoverStyleOverlayTriggerArrow = styled.div<PopoverWarpProps>`
   position: absolute;
   width: 30px;
@@ -66,7 +74,7 @@ export const PopoverStyleOverlayTrigger = styled(OverlayTrigger)<PopoverWarpProp
         right: 2px;
         top: 50%;
       }
-    `} 
+    `}
 
   ${(props) =>
     ['leftTop', 'rightTop'].includes(props.placement || '') &&
@@ -74,7 +82,7 @@ export const PopoverStyleOverlayTrigger = styled(OverlayTrigger)<PopoverWarpProp
       & ${PopoverStyleOverlayTriggerArrow} {
         top: 15px;
       }
-    `} 
+    `}
 
   ${(props) =>
     ['leftBottom', 'rightBottom'].includes(props.placement || '') &&
@@ -83,7 +91,7 @@ export const PopoverStyleOverlayTrigger = styled(OverlayTrigger)<PopoverWarpProp
         bottom: 0;
         top: auto;
       }
-    `} 
+    `}
 
   ${(props) =>
     ['top', 'topLeft', 'topRight'].includes(props.placement || '') &&
@@ -94,7 +102,7 @@ export const PopoverStyleOverlayTrigger = styled(OverlayTrigger)<PopoverWarpProp
         left: 50%;
         margin-left: -15px;
       }
-    `} 
+    `}
 
   ${(props) =>
     ['bottom', 'bottomLeft', 'bottomRight'].includes(props.placement || '') &&
@@ -105,7 +113,7 @@ export const PopoverStyleOverlayTrigger = styled(OverlayTrigger)<PopoverWarpProp
         margin-left: -15px;
         top: 2px;
       }
-    `} 
+    `}
 
   ${(props) =>
     ['bottomLeft', 'topLeft'].includes(props.placement || '') &&
@@ -113,7 +121,7 @@ export const PopoverStyleOverlayTrigger = styled(OverlayTrigger)<PopoverWarpProp
       & ${PopoverStyleOverlayTriggerArrow} {
         left: 15px;
       }
-    `} 
+    `}
 
   ${(props) =>
     ['bottomRight', 'topRight'].includes(props.placement || '') &&
@@ -137,9 +145,5 @@ export const PopoverStyleOverlayTriggerContent = styled.div<PopoverWarpProps>`
 `;
 
 PopoverStyleOverlayTriggerContent.defaultProps = {
-  defaultTheme: {
-    fontSizePopoverDefault: '12px',
-    boxShadowPopoverPrimary:
-      'rgba(16, 22, 26, 0.1) 0px 0px 0px 1px, rgba(16, 22, 26, 0.2) 0px 2px 4px, rgba(16, 22, 26, 0.2) 0px 8px 24px',
-  },
+  defaultTheme: PopoverStyleTheme,
 };

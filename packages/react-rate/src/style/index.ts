@@ -2,13 +2,24 @@ import styled, { css } from 'styled-components';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 import { RateProps } from 'src';
 
-interface RateWarpProps extends ThemeVariantValueOptions, Pick<RateProps, 'disabled'> {}
-interface RateActiveProps extends ThemeVariantValueOptions, Pick<RateProps, 'disabled'> {
+export const RateBgStyleTheme = {
+  colorRateBgBase: '#e9e9e9',
+  colorRateActiveBase: '#e9e9e9',
+  lineHeightRateActiveDefault: '12px',
+  colorRateActiveOn: '#f5a623',
+  lineHeightRateDefault: '12px',
+  fontSizeRateDefault: '20px',
+};
+
+type ThemeVar = ThemeVariantValueOptions<typeof RateBgStyleTheme>;
+
+export interface RateWarpProps extends ThemeVar, Pick<RateProps, 'disabled'> {}
+export interface RateActiveProps extends ThemeVar, Pick<RateProps, 'disabled'> {
   starOn: boolean;
   hoverOn: boolean;
   halfon: boolean;
 }
-interface RateBgProps extends ThemeVariantValueOptions, Pick<RateProps, 'disabled'> {}
+export interface RateBgProps extends ThemeVar, Pick<RateProps, 'disabled'> {}
 
 export const RateBg = styled.div<RateBgProps>`
   color: ${(props) => getThemeVariantValue(props, 'colorRateBgBase')};
@@ -41,7 +52,7 @@ export const RateActive = styled.div<RateActiveProps>`
     `}
 `;
 
-const RateWarp = styled.div<RateWarpProps>`
+export const RateWarp = styled.div<RateWarpProps>`
   position: relative;
   line-height: ${(props) => getThemeVariantValue(props, 'lineHeightRateDefault')};
   font-size: ${(props) => getThemeVariantValue(props, 'fontSizeRateDefault')};
@@ -61,24 +72,15 @@ const RateWarp = styled.div<RateWarpProps>`
 `;
 
 RateBg.defaultProps = {
-  defaultTheme: {
-    colorRateBgBase: '#e9e9e9',
-  },
+  defaultTheme: RateBgStyleTheme,
 };
 
 RateActive.defaultProps = {
-  defaultTheme: {
-    colorRateActiveBase: '#e9e9e9',
-    lineHeightRateActiveDefault: '12px',
-    colorRateActiveOn: '#f5a623',
-  },
+  defaultTheme: RateBgStyleTheme,
 };
 
 RateWarp.defaultProps = {
-  defaultTheme: {
-    lineHeightRateDefault: '12px',
-    fontSizeRateDefault: '20px',
-  },
+  defaultTheme: RateBgStyleTheme,
 };
 
 export default RateWarp;

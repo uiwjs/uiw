@@ -1,7 +1,24 @@
 import styled, { css } from 'styled-components';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 
-interface ModalStyleWrapProps extends ThemeVariantValueOptions {}
+export const ModalStyleTheme = {
+  fontSizeLarge: '16px',
+  fontSizeDefault: '14px',
+  minHeightModalStyleHeader: '40px',
+  backgroundColorModalStyleHeaderBase: '#fff',
+  boxShadowColorModalStyleHeaderBase: 'rgba(16, 22, 26, 0.15)',
+  minHeightModalStyleHeaderH4: '22px',
+
+  backgroundColorModalStyleInnerBase: '#f9f9f9',
+  minWidthModalStyleInner: '320px',
+  boxShadowModalStyleInnerH: 'rgba(16, 22, 26, 0.1)',
+  boxShadowModalStyleInnerV: 'rgba(16, 22, 26, 0.2)',
+};
+type ThemeVar = ThemeVariantValueOptions<typeof ModalStyleTheme>;
+
+export interface ModalStyleWrapProps
+  extends React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>,
+    ThemeVar {}
 
 export const ModalStyleHeader = styled.div<ModalStyleWrapProps>`
   ${(props) => css`
@@ -29,14 +46,7 @@ export const ModalStyleHeader = styled.div<ModalStyleWrapProps>`
 `;
 
 ModalStyleHeader.defaultProps = {
-  defaultTheme: {
-    fontSizeLarge: '16px',
-
-    minHeightModalStyleHeader: '40px',
-    backgroundColorModalStyleHeaderBase: '#fff',
-    boxShadowColorModalStyleHeaderBase: 'rgba(16, 22, 26, 0.15)',
-    minHeightModalStyleHeaderH4: '22px',
-  },
+  defaultTheme: ModalStyleTheme,
 };
 
 export const ModalStyleBody = styled.div<ModalStyleWrapProps>`
@@ -47,9 +57,7 @@ export const ModalStyleBody = styled.div<ModalStyleWrapProps>`
 `;
 
 ModalStyleBody.defaultProps = {
-  defaultTheme: {
-    fontSizeDefault: '14px',
-  },
+  defaultTheme: ModalStyleTheme,
 };
 
 export const ModalStyleFooter = styled.div<ModalStyleWrapProps>`
@@ -75,12 +83,7 @@ export const ModalStyleInner = styled.div<ModalStyleWrapProps>`
   `}
 `;
 ModalStyleInner.defaultProps = {
-  defaultTheme: {
-    backgroundColorModalStyleInnerBase: '#f9f9f9',
-    minWidthModalStyleInner: '320px',
-    boxShadowModalStyleInnerH: 'rgba(16, 22, 26, 0.1)',
-    boxShadowModalStyleInnerV: 'rgba(16, 22, 26, 0.2)',
-  },
+  defaultTheme: ModalStyleTheme,
 };
 
 export const ModalStyleWrap = styled.div<ModalStyleWrapProps>`
@@ -93,7 +96,7 @@ export const ModalStyleWrap = styled.div<ModalStyleWrapProps>`
 `;
 
 ModalStyleWrap.defaultProps = {
-  defaultTheme: {},
+  defaultTheme: ModalStyleTheme,
 };
 
 export default ModalStyleWrap;

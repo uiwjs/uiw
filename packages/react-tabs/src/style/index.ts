@@ -1,15 +1,30 @@
 import styled, { css } from 'styled-components';
-import { ThemeVariantValueOptions } from '@uiw/utils';
+import { getThemeVariantValue, HTMLDivProps, ThemeVariantValueOptions } from '@uiw/utils';
 import { TabsProps } from '../';
 
-export interface TabsStyleProps extends TabsProps, ThemeVariantValueOptions {}
+export const TabsStyleTheme = {
+  colorTabsItemActive: '#008ef0',
+  backgroundColorTabsItemActive: '#fff',
+  colorTabsItemDisabled: 'rgba(0, 0, 0, 0.25)',
+  boxShadowTabsFlowContentDefault: '1px 0px 0px #d9d9d9 inset',
+  backgroundColorTabsNavHiddenBase: '#d9d9d9',
+  backgroundColorTabsBase: '#108ee9',
+  borderBottomTabsAfter: '1px solid #d9d9d9',
+  borderBottomTabsCardAfter: '1px solid #d9d9d9',
+  backgroundColorTabsCardAfter: '#f9f9f9',
+};
+type ThemeVar = ThemeVariantValueOptions<typeof TabsStyleTheme>;
+
+export interface TabsWrapDivProps extends HTMLDivProps, ThemeVar {}
+
+export interface TabsStyleProps extends TabsProps, TabsWrapDivProps {}
 
 export const TabsStyleWarp = styled.div<TabsStyleProps>`
   ${(props) => {
     if (props.type === 'line') {
       return css`
         ${TabsDivSlide} {
-          background-color: #108ee9;
+          background-color: ${getThemeVariantValue(props, 'backgroundColorTabsBase')};
           box-sizing: border-box;
           bottom: 0;
           position: absolute;
@@ -23,7 +38,7 @@ export const TabsStyleWarp = styled.div<TabsStyleProps>`
           content: '';
           position: relative;
           display: block;
-          border-bottom: 1px solid #d9d9d9;
+          border-bottom: ${getThemeVariantValue(props, 'borderBottomTabsAfter')};
         }
       `;
     }
@@ -33,15 +48,15 @@ export const TabsStyleWarp = styled.div<TabsStyleProps>`
           content: '';
           position: relative;
           display: block;
-          border-bottom: 1px solid #d9d9d9;
+          border-bottom: ${getThemeVariantValue(props, 'borderBottomTabsCardAfter')};
         }
         ${TabsItem} {
           margin: 0;
-          border: 1px solid #d9d9d9;
+          border: ${getThemeVariantValue(props, 'borderBottomTabsCardAfter')};
           border-bottom: 0;
           padding: 7px 16px;
           border-radius: 4px 4px 0 0;
-          background: #f9f9f9;
+          background: ${getThemeVariantValue(props, 'backgroundColorTabsCardAfter')};
           margin-right: 5px;
           bottom: -1px;
         }
@@ -68,23 +83,32 @@ export const TabsDivNav = styled.div`
 `;
 export const TabsDivSlide = styled.div``;
 
-export const TabsNavHidden = styled.div`
+export const TabsNavHidden = styled.div<TabsWrapDivProps>`
   display: flex;
   overflow-y: auto;
   padding: 5px 10px 5px 5px;
   max-height: 200px;
   flex-direction: column;
   :hover {
-    background: #d9d9d9;
+    background: ${(props) => getThemeVariantValue(props, 'backgroundColorTabsNavHiddenBase')};
   }
 `;
-export const TabsFlowContent = styled.div`
+TabsNavHidden.defaultProps = {
+  defaultTheme: TabsStyleTheme,
+};
+
+export const TabsFlowContent = styled.div<TabsWrapDivProps>`
   margin-left: 5px;
   padding: 0px 10px 0px 10px;
-  box-shadow: 1px 0px 0px #d9d9d9 inset;
+  box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowTabsFlowContentDefault')};
   cursor: pointer;
 `;
-interface TabsItemProps {
+
+TabsFlowContent.defaultProps = {
+  defaultTheme: TabsStyleTheme,
+};
+
+interface TabsItemProps extends TabsWrapDivProps {
   active: boolean;
   disabled: boolean;
   type: TabsProps['type'];
@@ -103,10 +127,10 @@ export const TabsItem = styled.div<TabsItemProps>`
   ${(props) => {
     if (props.active) {
       return css`
-        color: #008ef0;
+        color: ${getThemeVariantValue(props, 'colorTabsItemActive')};
         ${props.type === 'card' &&
         css`
-          background: #fff;
+          background: ${getThemeVariantValue(props, 'backgroundColorTabsItemActive')};
           z-index: 1;
         `}
       `;
@@ -118,12 +142,12 @@ export const TabsItem = styled.div<TabsItemProps>`
     css`
       cursor: not-allowed;
       user-select: none;
-      color: rgba(0, 0, 0, 0.25);
+      color: ${getThemeVariantValue(props, 'colorTabsItemDisabled')};
     `}
 `;
 
-export const TabsPaneWarp = styled.div``;
+export const TabsPaneWarp = styled.div<TabsWrapDivProps>``;
 
 TabsStyleWarp.defaultProps = {
-  defaultTheme: {},
+  defaultTheme: TabsStyleTheme,
 };

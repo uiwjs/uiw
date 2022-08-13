@@ -2,14 +2,21 @@ import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import { TooltipProps } from '../';
 
-export interface TooltipStyleProps extends TooltipProps, ThemeVariantValueOptions {}
+export const TooltipStyleTheme = {
+  backgroundColorTooltipStyleInnerWarpBase: 'rgba(0, 0, 0, 0.75)',
+  borderColorTooltipStyleInnerWarpBase: 'rgba(0, 0, 0, 0.75)',
+  boxShadowTooltipStyleInnerWarpBase: '0 1px 6px rgba(0, 0, 0, 0.2)',
+};
+type ThemeVar = ThemeVariantValueOptions<typeof TooltipStyleTheme>;
+
+export interface TooltipStyleProps extends TooltipProps, ThemeVar {}
 
 interface TooltipContainerProps {
   visibleArrow: boolean;
   placement: TooltipStyleProps['placement'];
 }
 
-interface TooltipArrowProps extends ThemeVariantValueOptions {
+interface TooltipArrowProps extends ThemeVar {
   placement: TooltipStyleProps['placement'];
 }
 
@@ -153,7 +160,7 @@ export const TooltipStyleArrowWarp = styled.div<TooltipArrowProps>`
     return css``;
   }}
 `;
-export const TooltipStyleInnerWarp = styled.div<ThemeVariantValueOptions>`
+export const TooltipStyleInnerWarp = styled.div<ThemeVar>`
   font-size: 12px;
   max-width: 250px;
   padding: 5px 10px;
@@ -162,19 +169,14 @@ export const TooltipStyleInnerWarp = styled.div<ThemeVariantValueOptions>`
   text-align: left;
   text-decoration: none;
   border-radius: 4px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowTooltipStyleInnerWarpBase')};
   word-break: break-all;
   background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTooltipStyleInnerWarpBase')};
 `;
 
 TooltipStyleInnerWarp.defaultProps = {
-  defaultTheme: {
-    backgroundColorTooltipStyleInnerWarpBase: 'rgba(0, 0, 0, 0.75)',
-    borderColorTooltipStyleInnerWarpBase: 'rgba(0, 0, 0, 0.75)',
-  },
+  defaultTheme: TooltipStyleTheme,
 };
 TooltipStyleArrowWarp.defaultProps = {
-  defaultTheme: {
-    borderColorTooltipStyleInnerWarpBase: 'rgba(0, 0, 0, 0.75)',
-  },
+  defaultTheme: TooltipStyleTheme,
 };

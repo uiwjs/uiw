@@ -1,7 +1,19 @@
 import styled, { css } from 'styled-components';
-import { ThemeVariantValueOptions, getThemeVariantValue, IProps, HTMLInputProps } from '@uiw/utils';
+import { ThemeVariantValueOptions, getThemeVariantValue, IProps, HTMLInputProps, HTMLDivProps } from '@uiw/utils';
 
-export interface RadioBaseProps extends ThemeVariantValueOptions, IProps, Omit<HTMLInputProps, 'size'> {
+export const RadioStyleTheme = {
+  backgroundColorBase: '#fff',
+  fontSizeSamll: '12px',
+  colorRadioDefault: '#c7c7c7',
+  colorNotCheckedNotDisabledDefault: '#efefef',
+  widthRadioDefault: '16px',
+  heightRadioDefault: '16px',
+  borderRadioDefault: '1.2px solid #d7d7d7',
+  borderRadioCheckedDefault: '5px solid #008ef0',
+};
+type ThemeVar = ThemeVariantValueOptions<typeof RadioStyleTheme>;
+
+export interface RadioBaseProps extends ThemeVar, IProps, Omit<HTMLInputProps, 'size'> {
   size?: 'large' | 'default' | 'small';
   checked: boolean;
   disabled: boolean;
@@ -9,7 +21,7 @@ export interface RadioBaseProps extends ThemeVariantValueOptions, IProps, Omit<H
 
 export const RadioInputStyleBase = styled.input``;
 
-const RadioText = styled.div`
+const RadioText = styled.div<HTMLDivProps>`
   vertical-align: middle;
   display: inline-block;
   margin-left: 4px;
@@ -61,16 +73,7 @@ const RadioGroupBase = styled.div`
 `;
 
 RadioBase.defaultProps = {
-  defaultTheme: {
-    backgroundColorBase: '#fff',
-    fontSizeSamll: '12px',
-    colorRadioDefault: '#c7c7c7',
-    colorNotCheckedNotDisabledDefault: '#efefef',
-    widthRadioDefault: '16px',
-    heightRadioDefault: '16px',
-    borderRadioDefault: '1.2px solid #d7d7d7',
-    borderRadioCheckedDefault: '5px solid #008ef0',
-  },
+  defaultTheme: RadioStyleTheme,
 };
 
 export { RadioText, RadioBase, RadioGroupBase };

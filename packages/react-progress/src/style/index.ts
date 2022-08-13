@@ -3,7 +3,7 @@ import { getThemeVariantValue, HTMLSpanProps, HTMLDivProps, ThemeVariantValueOpt
 import { Status } from '..';
 import React from 'react';
 
-export const progressDefaultTheme = {
+export const ProgressStyleTheme = {
   fontSizeSmall: '12px',
   fontSizeDefault: '14px',
   fontSizeLarge: '16px',
@@ -27,6 +27,7 @@ export const progressDefaultTheme = {
   backgroundImageProgressStyleBgActive:
     'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, 0.15) 50%,rgba(255, 255, 255, 0.15) 75%,transparent 75%,transparent)',
 };
+type ThemeVar = ThemeVariantValueOptions<typeof ProgressStyleTheme>;
 
 const ProgressStyleBarStripes = keyframes`
   from {
@@ -52,7 +53,7 @@ const progressActive = keyframes`
   }
 `;
 
-export interface ProgressStyleWarpProps extends HTMLDivProps, ThemeVariantValueOptions {
+export interface ProgressStyleWarpProps extends HTMLDivProps, ThemeVar {
   isLine?: Boolean;
 }
 
@@ -69,9 +70,9 @@ export const ProgressStyleWarp = styled.div<ProgressStyleWarpProps>`
       }
     `}
 `;
-ProgressStyleWarp.defaultProps = { defaultTheme: progressDefaultTheme };
+ProgressStyleWarp.defaultProps = { defaultTheme: ProgressStyleTheme };
 
-export interface ProgressStyleTextProps extends HTMLSpanProps, ThemeVariantValueOptions {
+export interface ProgressStyleTextProps extends HTMLSpanProps, ThemeVar {
   status?: Status;
   isCircle?: boolean;
 }
@@ -109,9 +110,9 @@ export const ProgressStyleText = styled.span<ProgressStyleTextProps>`
     `}
 `;
 
-ProgressStyleText.defaultProps = { defaultTheme: progressDefaultTheme };
+ProgressStyleText.defaultProps = { defaultTheme: ProgressStyleTheme };
 
-export interface ProgressStyleBarProps extends HTMLDivProps, ThemeVariantValueOptions {
+export interface ProgressStyleBarProps extends HTMLDivProps, ThemeVar {
   showText?: boolean;
   style?: React.CSSProperties;
 }
@@ -130,7 +131,7 @@ export const ProgressStyleBar = styled.div<ProgressStyleBarProps>`
       }
     `}
 `;
-export interface ProgressStyleInnerProps extends HTMLDivProps, ThemeVariantValueOptions {}
+export interface ProgressStyleInnerProps extends HTMLDivProps, ThemeVar {}
 
 export const ProgressStyleInner = styled.div<ProgressStyleInnerProps>`
   height: 100%;
@@ -139,9 +140,9 @@ export const ProgressStyleInner = styled.div<ProgressStyleInnerProps>`
   background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorProgressStyleInner')};
   overflow: hidden;
 `;
-ProgressStyleInner.defaultProps = { defaultTheme: progressDefaultTheme };
+ProgressStyleInner.defaultProps = { defaultTheme: ProgressStyleTheme };
 
-export interface ProgressStyleBgProps extends HTMLDivProps, ThemeVariantValueOptions {
+export interface ProgressStyleBgProps extends HTMLDivProps, ThemeVar {
   status?: Status;
 }
 
@@ -185,12 +186,12 @@ export const ProgressStyleBg = styled.div<ProgressStyleBgProps>`
       background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorProgressStyleBgSuccess')};
     `}
 `;
-ProgressStyleBg.defaultProps = { defaultTheme: progressDefaultTheme };
+ProgressStyleBg.defaultProps = { defaultTheme: ProgressStyleTheme };
 
-export interface ProgressStyleSvgProps extends React.SVGProps<SVGSVGElement>, ThemeVariantValueOptions {}
+export interface ProgressStyleSvgProps extends React.SVGProps<SVGSVGElement>, ThemeVar {}
 export const ProgressStyleSvg = styled.svg<ProgressStyleSvgProps>``;
 
-export interface ProgressStylePathProps extends React.SVGProps<SVGPathElement>, ThemeVariantValueOptions {
+export interface ProgressStylePathProps extends React.SVGProps<SVGPathElement>, ThemeVar {
   isTrail?: boolean;
   isStroke?: boolean;
   status?: Status;
@@ -229,4 +230,4 @@ export const ProgressStylePath = styled.path<ProgressStylePathProps>`
     return css``;
   }}
 `;
-ProgressStylePath.defaultProps = { defaultTheme: progressDefaultTheme };
+ProgressStylePath.defaultProps = { defaultTheme: ProgressStyleTheme };

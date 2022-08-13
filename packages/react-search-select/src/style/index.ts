@@ -3,7 +3,7 @@ import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import Input, { InputProps, InputStyleBase } from '@uiw/react-input';
 import { IconStyleBase, IconStyleBaseProps } from '@uiw/react-icon';
 
-export const SearchSelectTheme = {
+export const SearchSelectStyleTheme = {
   backgroundSearchSelectDisabled: '#dddddd',
   backgroundSearchSelectBase: '#fff',
   colorSearchSelectDisabled: '#a5a5a5',
@@ -20,7 +20,7 @@ export const SearchSelectTheme = {
 
 export interface SearchSelectInputContentsBaseProps
   extends InputProps,
-    ThemeVariantValueOptions<typeof SearchSelectTheme> {}
+    ThemeVariantValueOptions<typeof SearchSelectStyleTheme> {}
 
 export const SearchSelectInputContentsBase = styled(Input)<SearchSelectInputContentsBaseProps>`
   ${InputStyleBase} {
@@ -64,7 +64,7 @@ export const SearchSelectInputContentsBase = styled(Input)<SearchSelectInputCont
     `}
 `;
 SearchSelectInputContentsBase.defaultProps = {
-  defaultTheme: SearchSelectTheme,
+  defaultTheme: SearchSelectStyleTheme,
 };
 
 export interface SearchSelectTagContentsBaseProps
@@ -114,7 +114,7 @@ export const SearchSelectIconStyleBase = styled(IconStyleBase)<SearchSelectIconS
 
 export interface SearchSelectInnerProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
-    ThemeVariantValueOptions<typeof SearchSelectTheme> {
+    ThemeVariantValueOptions<typeof SearchSelectStyleTheme> {
   params?: {
     showSearch: boolean;
   };
@@ -158,5 +158,5 @@ export const SearchSelectInner = styled.div<SearchSelectInnerProps>`
     `}
 `;
 SearchSelectInner.defaultProps = {
-  defaultTheme: SearchSelectTheme,
+  defaultTheme: SearchSelectStyleTheme,
 };

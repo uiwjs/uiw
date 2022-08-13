@@ -8,8 +8,9 @@ export const TagDefaultTheme = {
   backgroundColorTagStyleSvgLightActive: 'rgba(0, 0, 0, 0.15)',
   fillTagStyleSvgLightHover: '#fff',
 };
+type ThemeVar = ThemeVariantValueOptions<typeof TagDefaultTheme>;
 
-export interface TagStyleSvgProps extends React.SVGProps<SVGSVGElement>, ThemeVariantValueOptions {
+export interface TagStyleSvgProps extends React.SVGProps<SVGSVGElement>, ThemeVar {
   isLight?: boolean;
 }
 export const TagStyleSvg = styled.svg<TagStyleSvgProps>`
@@ -44,7 +45,7 @@ export const TagStyleSvg = styled.svg<TagStyleSvgProps>`
     `}
 `;
 TagStyleSvg.defaultProps = { defaultTheme: TagDefaultTheme };
-export interface TagStyleWarpProps extends HTMLSpanProps, ThemeVariantValueOptions {
+export interface TagStyleWarpProps extends HTMLSpanProps, ThemeVar {
   disabled?: boolean;
 }
 export const TagStyleWarp = styled.span<TagStyleWarpProps>`

@@ -2,10 +2,21 @@ import styled, { css } from 'styled-components';
 import Dropdown from '@uiw/react-dropdown';
 import Input, { InputStyleBase } from '@uiw/react-input';
 import Tag from '@uiw/react-tag';
-import { getThemeVariantValue } from '@uiw/utils';
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
-interface DropdownDivProps {
-  defaultTheme?: Record<string, string | number>;
+export const DropdownStyleTheme = {
+  backgroundColorDropdownDivBase: '#fff',
+  colorDropdownDivBase: '#393e48',
+  backgroundColorDropdownDivDisabled: '#dddddd',
+  colorDropdownDivDisabled: '#a5a5a5',
+
+  boxShadowDropdownDiv: `0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px rgba(16, 22, 26, 0.15),inset 0 1px 1px rgba(16, 22, 26, 0.2)`,
+  boxShadowDropdownDivFocus: `box-shadow: 0 0 0 1px #393e48, 0 0 0 3px rgba(57, 62, 72, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2)`,
+  boxShadowDropdownDivhover: `box-shadow: 0 0 0 1px #6e6e6e, 0 0 0 3px rgba(57, 62, 72, 0), inset 0 1px 1px rgba(16, 22, 26, 0.2)`,
+  boxShadowDropdownDivFocushover: `box-shadow: 0 0 0 1px #6e6e6e, 0 0 0 3px rgba(57, 62, 72, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2)`,
+};
+
+export interface DropdownDivProps extends ThemeVariantValueOptions<typeof DropdownStyleTheme> {
   size?: string;
 }
 
@@ -22,13 +33,13 @@ export const DropdownDiv = styled.div<DropdownDivProps>`
     border-radius: 3px;
     box-shadow: ${getThemeVariantValue(props, 'boxShadowDropdownDiv')};
     box-sizing: border-box;
-    background: #fff;
+    background: ${getThemeVariantValue(props, 'backgroundColorDropdownDivBase')};
     min-height: 30px;
     margin: 0 !important;
     padding: 3px 10px 3px 10px;
     vertical-align: middle;
     line-height: 30px;
-    color: #393e48;
+    color: ${getThemeVariantValue(props, 'colorDropdownDivBase')};
     font-weight: 400;
     font-size: inherit;
     transition: box-shadow 0.3s cubic-bezier(0.4, 1, 0.75, 0.9);
@@ -48,9 +59,9 @@ export const DropdownDiv = styled.div<DropdownDivProps>`
 
     &:disabled {
       box-shadow: none;
-      background: #dddddd;
+      background: ${getThemeVariantValue(props, 'backgroundColorDropdownDivDisabled')};
       opacity: 0.75;
-      color: #a5a5a5;
+      color: ${getThemeVariantValue(props, 'colorDropdownDivDisabled')};
       cursor: not-allowed;
       resize: none;
     }
@@ -79,12 +90,7 @@ export const DropdownDiv = styled.div<DropdownDivProps>`
 `;
 
 DropdownDiv.defaultProps = {
-  defaultTheme: {
-    boxShadowDropdownDiv: `0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px rgba(16, 22, 26, 0.15),inset 0 1px 1px rgba(16, 22, 26, 0.2)`,
-    boxShadowDropdownDivFocus: `box-shadow: 0 0 0 1px #393e48, 0 0 0 3px rgba(57, 62, 72, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2)`,
-    boxShadowDropdownDivhover: `box-shadow: 0 0 0 1px #6e6e6e, 0 0 0 3px rgba(57, 62, 72, 0), inset 0 1px 1px rgba(16, 22, 26, 0.2)`,
-    boxShadowDropdownDivFocushover: `box-shadow: 0 0 0 1px #6e6e6e, 0 0 0 3px rgba(57, 62, 72, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2)`,
-  },
+  defaultTheme: DropdownStyleTheme,
 };
 
 export const DropdownDivTag = styled(Tag)``;

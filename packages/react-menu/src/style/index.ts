@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { MenuItemProps } from '../';
 import Icon, { IconProps } from '@uiw/react-icon';
 import OverlayTrigger, { OverlayTriggerProps } from '@uiw/react-overlay-trigger';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
@@ -30,7 +29,10 @@ export interface MenuDividerBaseProps
 
 export const MenuDividerBase = styled.li<MenuDividerBaseProps>``;
 
-export interface MenuStyleItemBaseProps extends Omit<MenuItemProps<'a'>, 'theme'>, ThemeVar {
+// export interface MenuStyleItemBaseProps extends Omit<MenuItemProps<'a'>, 'theme'>, ThemeVar {
+export interface MenuStyleItemBaseProps
+  extends React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>,
+    ThemeVar {
   params?: {
     theme?: 'dark' | 'light';
     active?: boolean;

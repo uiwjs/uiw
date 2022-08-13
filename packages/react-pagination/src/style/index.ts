@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { SelectStyleWarp } from '@uiw/react-select';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 
-export const PaginationDefaultTheme = {
+export const PaginationStyleTheme = {
   borderColorPaginationBase: '#d4d4d4',
   backgroundColorPaginationActive: '#ececec',
   backgroundColorPaginationHover: '#f6f6f6',
@@ -12,10 +12,11 @@ export const PaginationDefaultTheme = {
   boxShadowdisabledPaginationDisabled: 'inset 0 8px 42px -12px rgba(0, 0, 0, 0.2)',
   boxShadowdisabledPaginationActive: 'inset 0 0 0 rgba(0, 0, 0, 0)',
 };
+type ThemeVar = ThemeVariantValueOptions<typeof PaginationStyleTheme>;
 
 export interface PaginationStyleBaseLIAProps
   extends React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>,
-    ThemeVariantValueOptions {
+    ThemeVar {
   params?: {
     type?: string;
     isArrow?: boolean;
@@ -73,7 +74,7 @@ export const PaginationStyleBaseLIA = styled.a<PaginationStyleBaseLIAProps>`
     }
     return css``;
   }}
-  
+
   ${(props) =>
     props.params?.size === 'small' &&
     css`
@@ -83,7 +84,7 @@ export const PaginationStyleBaseLIA = styled.a<PaginationStyleBaseLIAProps>`
       }
     `}
 
-      
+
   ${(props) =>
     props.params?.disabled &&
     css`
@@ -94,11 +95,11 @@ export const PaginationStyleBaseLIA = styled.a<PaginationStyleBaseLIAProps>`
     `}
 `;
 PaginationStyleBaseLIA.defaultProps = {
-  defaultTheme: PaginationDefaultTheme,
+  defaultTheme: PaginationStyleTheme,
 };
 export interface PaginationStyleBaseLIProps
   extends React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>,
-    ThemeVariantValueOptions {
+    ThemeVar {
   params?: {
     disabled?: boolean;
     isOptions?: boolean;
@@ -197,11 +198,11 @@ export const PaginationStyleBaseLI = styled.li<PaginationStyleBaseLIProps>`
 `;
 
 PaginationStyleBaseLI.defaultProps = {
-  defaultTheme: PaginationDefaultTheme,
+  defaultTheme: PaginationStyleTheme,
 };
 export interface PaginationStyleBaseULProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLUListElement>, HTMLUListElement>,
-    ThemeVariantValueOptions {
+    ThemeVar {
   params?: {
     size?: 'default' | 'small';
     isDivider?: boolean;
@@ -229,5 +230,5 @@ export const PaginationStyleBaseUL = styled.ul<PaginationStyleBaseULProps>`
 `;
 
 PaginationStyleBaseUL.defaultProps = {
-  defaultTheme: PaginationDefaultTheme,
+  defaultTheme: PaginationStyleTheme,
 };

@@ -1,40 +1,43 @@
 import styled, { css } from 'styled-components';
-import { getThemeVariantValue } from '@uiw/utils';
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import { TreeRenderTitleNode, TreeProps } from '../index';
 
-interface TreeNodeStyleCSSTransitionProps extends TreeRenderTitleNode {
-  defaultTheme?: Record<string, string | number>;
+export const TreeStyleTheme = {
+  borderRadiusTreeNodeDefault: '0 0 0 3px',
+  borderTreeNodeDefaultAfter: '1px solid #d9d9d9',
+  backgroundColorTreeNodeJudgeSelected: '#d5e8fc',
+  colorTreeNodeUlLidivSpanDefault: '#2ea3f4',
+  transformTreeNodeUlLidivSpanDefault: 'scale(0.79) rotate(0deg)',
+  fontSizeTreeNodeStyleCSSTransitionDefault: '14px',
+  transformTreeNodeUlLidivSpanIconDefault: 'scale(0.79) rotate(90deg) !important;',
+};
+type ThemeVar = ThemeVariantValueOptions<typeof TreeStyleTheme>;
+
+interface TreeNodeStyleCSSTransitionProps extends TreeRenderTitleNode, ThemeVar {
   isOpen: boolean;
   level: number;
 }
-interface TreeNodeUlLidivProps {
-  defaultTheme?: Record<string, string | number>;
-}
+interface TreeNodeUlLidivProps extends ThemeVar {}
 
-interface TreeNodeUlLidivSpanIconProps {
-  defaultTheme?: Record<string, string | number>;
+interface TreeNodeUlLidivSpanIconProps extends ThemeVar {
   isIcon?: string;
   isNoChild?: boolean;
   isIconAnimation?: boolean;
   isItemIsOpen?: boolean;
 }
-interface TreeNodeUlLidivSpanDivProps {
+interface TreeNodeUlLidivSpanDivProps extends ThemeVar {
   judgeSelected?: boolean;
   judgeisSelected?: boolean;
   isDisabled?: string | null;
 }
-interface TreeNodeStyleWrapProps extends TreeProps {
-  defaultTheme?: Record<string, string | number>;
-}
+interface TreeNodeStyleWrapProps extends TreeProps, ThemeVar {}
 
 export const TreeNodeStyleCSSTransition = styled.div<TreeNodeStyleCSSTransitionProps>`
   font-size: ${(props) => getThemeVariantValue(props, 'fontSizeTreeNodeStyleCSSTransitionDefault')};
 `;
 
 TreeNodeStyleCSSTransition.defaultProps = {
-  defaultTheme: {
-    fontSizeTreeNodeStyleCSSTransitionDefault: '14px',
-  },
+  defaultTheme: TreeStyleTheme,
 };
 
 export const TreeNodeStyleUl = styled.ul<TreeNodeStyleCSSTransitionProps>`
@@ -88,14 +91,14 @@ export const TreeNodeStyleUlLidivSpan = styled.div<TreeNodeUlLidivProps>`
   .w-icon {
     transition: 0.3s all;
     transform: ${(props) => getThemeVariantValue(props, 'transformTreeNodeUlLidivSpanDefault')};
+    &.open:not(.no-animation) {
+      transform: scale(0.79) rotate(90deg) !important;
+    }
   }
 `;
 
 TreeNodeStyleUlLidivSpan.defaultProps = {
-  defaultTheme: {
-    colorTreeNodeDefault: '#2ea3f4',
-    transformTreeNodeUlLidivSpanDefault: 'scale(0.79) rotate(0deg)',
-  },
+  defaultTheme: TreeStyleTheme,
 };
 
 export const TreeNodeStyleUlLidivSpanIcon = styled.div<TreeNodeUlLidivSpanIconProps>`
@@ -115,9 +118,7 @@ export const TreeNodeStyleUlLidivSpanIcon = styled.div<TreeNodeUlLidivSpanIconPr
 `;
 
 TreeNodeStyleUlLidivSpanIcon.defaultProps = {
-  defaultTheme: {
-    transformTreeNodeUlLidivSpanIconDefault: 'scale(0.79) rotate(90deg) !important;',
-  },
+  defaultTheme: TreeStyleTheme,
 };
 
 export const TreeNodeStyleUlLidivSpanDiv = styled.div<TreeNodeUlLidivSpanDivProps>`
@@ -129,7 +130,7 @@ export const TreeNodeStyleUlLidivSpanDiv = styled.div<TreeNodeUlLidivSpanDivProp
     props.judgeSelected &&
     props.judgeisSelected &&
     css`
-      background-color: #d5e8fc;
+      background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTreeNodeJudgeSelected')};
     `}
 
   ${(props) =>
@@ -150,7 +151,7 @@ export const TreeNodeStyleWrap = styled.div<TreeNodeStyleWrapProps>`
       &:before,
       &::after {
         content: ' ';
-        border-left: 1px solid #d9d9d9;
+        border-left: ${(props) => getThemeVariantValue(props, 'borderTreeNodeDefaultAfter')};
         left: -12px;
         position: absolute;
       }
@@ -166,7 +167,7 @@ export const TreeNodeStyleWrap = styled.div<TreeNodeStyleWrapProps>`
         content: ' ';
         width: 10px;
         height: 16px;
-        border-bottom: 1px solid #d9d9d9;
+        border-bottom: ${(props) => getThemeVariantValue(props, 'borderTreeNodeDefaultAfter')};
         top: -2px;
       }
       &:last-child::before {
@@ -177,7 +178,5 @@ export const TreeNodeStyleWrap = styled.div<TreeNodeStyleWrapProps>`
 `;
 
 TreeNodeStyleWrap.defaultProps = {
-  defaultTheme: {
-    borderRadiusTreeNodeDefault: '0 0 0 3px',
-  },
+  defaultTheme: TreeStyleTheme,
 };

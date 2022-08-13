@@ -2,7 +2,40 @@ import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 import { SwitchProps } from 'src';
 import styled, { css } from 'styled-components';
 
-interface SwitchStyleWrapProps extends ThemeVariantValueOptions, SwitchProps {
+export const SwitchStyleTheme = {
+  fontSizeSmall: '12px',
+  fontSizeLarge: '16px',
+  minWidthSwitchCheckbox: '35px',
+  heightSwitchCheckbox: '20px',
+  backgroundColorSwitchCheckbox: '#dfdfdf',
+  borderRadiusSwitchCheckbox: '16px',
+  boxShadowColorSwitchCheckbox: 'rgba(16, 22, 26, 0.2)',
+  colorSwitchCheckboxBefore: '#fff',
+  lineHeightSwitchCheckboxBefore: '20px',
+  backgroundColorSwitchCheckboxChecked: '#008ef0',
+  colorSwitchCheckboxNotCheckedBefore: '#393e48',
+  heightSwitchCheckboxAfter: '16px',
+  widthSwitchCheckboxAfter: '16px',
+  borderRadiusSwitchCheckboxAfter: '50%',
+  backgroundColorSwitchCheckboxAfter: '#fff',
+  boxShadowColorSwitchCheckboxAfter: 'rgba(0, 35, 11, 0.2)',
+  boxShadowColorSwitchCheckboxFocus: 'rgba(0, 142, 240, 0.25)',
+  boxShadowColorInSwitchCheckboxFocus: 'rgba(16, 22, 26, 0.2)',
+  minWidthSwitchLargeCheckbox: '38px',
+  heightSwitchLargeCheckbox: '24px',
+  heightSwitchLargeCheckboxAfter: '20px',
+  widthSwitchLargeCheckboxAfter: '20px',
+  lineHeightSwitchLargeCheckboxBefore: '24px',
+  minWidthSwitchSmallCheckbox: '15px',
+  heightSwitchSmallCheckbox: '16px',
+  heightSwitchSmallCheckboxAfter: '12px',
+  widthSwitchSmallCheckboxAfter: '12px',
+  lineHeightSwitchSmallCheckboxBefore: '16px',
+};
+
+type ThemeVar = ThemeVariantValueOptions<typeof SwitchStyleTheme>;
+
+interface SwitchStyleWrapProps extends ThemeVar, SwitchProps {
   size?: 'large' | 'default' | 'small';
   disabled?: boolean;
 }
@@ -138,34 +171,5 @@ export const SwitchStyleWrap = styled.div<SwitchStyleWrapProps>`
 `;
 
 SwitchStyleWrap.defaultProps = {
-  defaultTheme: {
-    fontSizeSmall: '12px',
-    fontSizeLarge: '16px',
-    minWidthSwitchCheckbox: '35px',
-    heightSwitchCheckbox: '20px',
-    backgroundColorSwitchCheckbox: '#dfdfdf',
-    borderRadiusSwitchCheckbox: '16px',
-    boxShadowColorSwitchCheckbox: 'rgba(16, 22, 26, 0.2)',
-    colorSwitchCheckboxBefore: '#fff',
-    lineHeightSwitchCheckboxBefore: '20px',
-    backgroundColorSwitchCheckboxChecked: '#008ef0',
-    colorSwitchCheckboxNotCheckedBefore: '#393e48',
-    heightSwitchCheckboxAfter: '16px',
-    widthSwitchCheckboxAfter: '16px',
-    borderRadiusSwitchCheckboxAfter: '50%',
-    backgroundColorSwitchCheckboxAfter: '#fff',
-    boxShadowColorSwitchCheckboxAfter: 'rgba(0, 35, 11, 0.2)',
-    boxShadowColorSwitchCheckboxFocus: 'rgba(0, 142, 240, 0.25)',
-    boxShadowColorInSwitchCheckboxFocus: 'rgba(16, 22, 26, 0.2)',
-    minWidthSwitchLargeCheckbox: '38px',
-    heightSwitchLargeCheckbox: '24px',
-    heightSwitchLargeCheckboxAfter: '20px',
-    widthSwitchLargeCheckboxAfter: '20px',
-    lineHeightSwitchLargeCheckboxBefore: '24px',
-    minWidthSwitchSmallCheckbox: '15px',
-    heightSwitchSmallCheckbox: '16px',
-    heightSwitchSmallCheckboxAfter: '12px',
-    widthSwitchSmallCheckboxAfter: '12px',
-    lineHeightSwitchSmallCheckboxBefore: '16px',
-  },
+  defaultTheme: SwitchStyleTheme,
 };

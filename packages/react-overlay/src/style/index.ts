@@ -3,15 +3,24 @@ import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 import { transProps, OverlayProps } from 'src';
 import { TransitionStatus } from 'react-transition-group';
 
-interface OverlayWrapProps extends ThemeVariantValueOptions, Pick<OverlayProps, 'usePortal' | 'isOpen'> {
+export const OverlayStyleTheme = {
+  backgroundColorOverlayBackdrop: 'rgba(16, 22, 26, 0.7)',
+};
+type ThemeVar = ThemeVariantValueOptions<typeof OverlayStyleTheme>;
+
+export interface OverlayStyleWrapDivProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+    ThemeVar {}
+export interface OverlayStyleWrapSpanProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement | ThemeVar>, HTMLDivElement> {}
+
+export interface OverlayWrapProps extends ThemeVariantValueOptions, Pick<OverlayProps, 'usePortal' | 'isOpen'> {
   status?: TransitionStatus;
   trans?: transProps;
   openClass?: boolean;
 }
 
-interface BackdropWrapProps extends ThemeVariantValueOptions {}
-
-export const ContentWrap = styled.span`
+export const ContentWrap = styled.span<OverlayStyleWrapSpanProps>`
   position: relative;
   outline: 0;
   display: inline-block;
@@ -21,7 +30,7 @@ export const ContentWrap = styled.span`
   z-index: 20;
 `;
 
-export const ContainerWrap = styled.div`
+export const ContainerWrap = styled.div<OverlayStyleWrapDivProps>`
   position: absolute;
   overflow: auto;
   z-index: 99999;
@@ -38,7 +47,7 @@ export const ContainerWrap = styled.div`
   }
 `;
 
-export const BackdropWrap = styled.div<BackdropWrapProps>`
+export const BackdropWrap = styled.div<OverlayStyleWrapDivProps>`
   position: fixed;
   top: 0;
   right: 0;
@@ -133,7 +142,5 @@ export const OverlayWrap = styled.div<OverlayWrapProps>`
 `;
 
 BackdropWrap.defaultProps = {
-  defaultTheme: {
-    backgroundColorOverlayBackdrop: 'rgba(16, 22, 26, 0.7)',
-  },
+  defaultTheme: OverlayStyleTheme,
 };

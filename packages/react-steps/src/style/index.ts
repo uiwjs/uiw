@@ -1,18 +1,7 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, HTMLSpanProps, ThemeVariantValueOptions } from '@uiw/utils';
 
-export interface StepsBaseProps
-  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
-    ThemeVariantValueOptions {}
-export interface StepsBaseSpanProps
-  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanProps>, HTMLSpanProps>,
-    ThemeVariantValueOptions {}
-export interface StepsBaseIProps
-  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
-    ThemeVariantValueOptions {}
-export interface StepsStyleWarpProps extends StepsBaseProps {}
-
-export const StepsBaseDefaultTheme = {
+export const StepsStyleTheme = {
   // 行高默认
   lineHeightDefault: 1.5,
   colorStepsError: ' #f04134',
@@ -34,13 +23,25 @@ export const StepsBaseDefaultTheme = {
   colorStepsStyleItemMainTitle: '#999',
   colorStepsStyleItemMainProcess: ' rgba(0, 0, 0, 0.65)',
 };
+type ThemeVar = ThemeVariantValueOptions<typeof StepsStyleTheme>;
+
+export interface StepsBaseProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+    ThemeVar {}
+export interface StepsBaseSpanProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanProps>, HTMLSpanProps>,
+    ThemeVar {}
+export interface StepsBaseIProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
+    ThemeVar {}
+export interface StepsStyleWarpProps extends StepsBaseProps {}
 
 export const StepsStyleWarp = styled.div<StepsStyleWarpProps>`
   font-size: 0;
   width: 100%;
   line-height: ${(props) => getThemeVariantValue(props, 'lineHeightDefault')};
 `;
-StepsStyleWarp.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+StepsStyleWarp.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemProps extends StepsBaseProps {
   params?: {
@@ -83,7 +84,7 @@ export const StepsStyleItem = styled.div<StepsStyleItemProps>`
       }
     `}
 `;
-StepsStyleItem.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+StepsStyleItem.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemTailProps extends StepsBaseProps {
   params?: {
@@ -162,7 +163,7 @@ export const StepsStyleItemTail = styled.div<StepsStyleItemTailProps>`
       `}
     `}
 `;
-StepsStyleItemTail.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+StepsStyleItemTail.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemTailIProps extends StepsBaseIProps {
   params?: {
@@ -261,7 +262,7 @@ export const StepsStyleItemTailI = styled.i<StepsStyleItemTailIProps>`
     }
   }}
 `;
-StepsStyleItemTailI.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+StepsStyleItemTailI.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemHeadProps extends StepsBaseProps {
   params?: {
@@ -293,7 +294,7 @@ export const StepsStyleItemHead = styled.div<StepsStyleItemHeadProps>`
       }
     `}
 `;
-StepsStyleItemHead.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+StepsStyleItemHead.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemHeadInnerProps extends StepsBaseProps {
   params?: {
@@ -337,7 +338,7 @@ export const StepsStyleItemHeadInner = styled.div<StepsStyleItemHeadInnerProps>`
         background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorBase')};
       }
     `}
-  
+
     ${(props) =>
     props.params?.icon &&
     css`
@@ -380,7 +381,7 @@ export const StepsStyleItemHeadInner = styled.div<StepsStyleItemHeadInnerProps>`
       `}
     `}
 `;
-StepsStyleItemHeadInner.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+StepsStyleItemHeadInner.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemHeadInnerDotProps extends StepsBaseSpanProps {
   params?: {
@@ -397,7 +398,7 @@ export const StepsStyleItemHeadInnerDot = styled.span<StepsStyleItemHeadInnerDot
       }
     `}
 `;
-StepsStyleItemHeadInnerDot.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+StepsStyleItemHeadInnerDot.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemHeadInnerIconProps extends StepsBaseSpanProps {
   params?: {
@@ -423,7 +424,7 @@ export const StepsStyleItemHeadInnerIcon = styled.span<StepsStyleItemHeadInnerIc
       }
     `}
 `;
-StepsStyleItemHeadInnerIcon.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+StepsStyleItemHeadInnerIcon.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export const StepsStyleItemHeadInnerSvg = styled.svg`
   fill: currentcolor;
@@ -471,7 +472,7 @@ export const StepsStyleItemMain = styled.div<StepsStyleItemMainProps>`
       overflow: hidden;
     `}
 `;
-StepsStyleItemMain.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+StepsStyleItemMain.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemMainTitleProps extends StepsBaseProps {
   params?: {
@@ -510,7 +511,7 @@ export const StepsStyleItemMainTitle = styled.div<StepsStyleItemMainTitleProps>`
       }
     `}
 `;
-StepsStyleItemMainTitle.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+StepsStyleItemMainTitle.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemMainDescriptionProps extends StepsBaseProps {
   params?: {
@@ -547,4 +548,4 @@ export const StepsStyleItemMainDescription = styled.div<StepsStyleItemMainDescri
     `}
 `;
 
-StepsStyleItemMainDescription.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+StepsStyleItemMainDescription.defaultProps = { defaultTheme: StepsStyleTheme };

@@ -2,9 +2,22 @@ import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import { IconStyleBase, IconStyleBaseProps } from '@uiw/react-icon';
 
+export const TableBaseDefaultTheme = {
+  borderColorTable: '#dfe2e5',
+  backgroundColorTableFooter: ' #fafafa',
+  borderBottomColorTableRows: '#e8e8e8',
+  backgroundColorTableTr: 'transparent',
+  backgroundColorTable: '#fff',
+  backgroundColorTableEvenRows: '#f9f9f9', // 偶数行背景颜色
+  backgroundColorTableEvenRowsHover: '#efefef', // 偶数行Hover背景颜色
+  backgroundColorTableHead: '#f6f9fb', // 表头背影色
+  borderRightColorFixedRows: '#f0f0f0', // 固定列
+};
+type ThemeVar = ThemeVariantValueOptions<typeof TableBaseDefaultTheme>;
+
 export interface TableStyleBaseProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
-    ThemeVariantValueOptions {}
+    ThemeVar {}
 
 export interface TableStyleWrapBaseProps extends TableStyleBaseProps {
   params?: {
@@ -32,18 +45,6 @@ export interface TableStyleFooterProps extends TableStyleBaseProps {
     bordered?: boolean;
   };
 }
-
-export const TableBaseDefaultTheme = {
-  borderColorTable: '#dfe2e5',
-  backgroundColorTableFooter: ' #fafafa',
-  borderBottomColorTableRows: '#e8e8e8',
-  backgroundColorTableTr: 'transparent',
-  backgroundColorTable: '#fff',
-  backgroundColorTableEvenRows: '#f9f9f9', // 偶数行背景颜色
-  backgroundColorTableEvenRowsHover: '#efefef', // 偶数行Hover背景颜色
-  backgroundColorTableHead: '#f6f9fb', // 表头背影色
-  borderRightColorFixedRows: '#f0f0f0', // 固定列
-};
 
 export const TableStyleWrap = styled.div<TableStyleWrapBaseProps>`
   > table {

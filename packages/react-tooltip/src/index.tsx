@@ -6,6 +6,7 @@ export interface TooltipProps extends IProps, OverlayTriggerProps {
   visibleArrow?: boolean;
   content?: React.ReactNode;
 }
+export * from './style';
 
 export default (props: TooltipProps = {}) => {
   const {

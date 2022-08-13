@@ -8,9 +8,24 @@ import {
   getThemeVariantValue,
 } from '@uiw/utils';
 
-export interface DateTimeInputProps extends HTMLInputProps, ThemeVariantValueOptions {}
+export const DateTimePickerStyleTheme = {
+  borderLeftColorDateTimeStylePanelUl: '#e9e9e9',
+
+  colorDateTimeLi: '#393e48',
+  colorDateTimeLiDisabled: '#d4d4d4',
+  colorDateTimeLiSelected: '#000',
+  backgroundColorDateTimeLiSelect: '#f1f1f1',
+  backgroundColorDateTimeLiHover: '#f6f8fa',
+  backgroundColorDateTimeLiActive: '#e1e5e8',
+
+  colorDateTimeStyleCloseButton: '#a5a5a5',
+  colorDateTimeStyleCloseButtonHover: '#393e48',
+};
+type ThemeVar = ThemeVariantValueOptions<typeof DateTimePickerStyleTheme>;
+
+export interface DateTimeInputProps extends HTMLInputProps, ThemeVar {}
 export const DateTimeInput = styled.input``;
-export interface DateTimeStyleCloseButtonProps extends HTMLButtonProps, ThemeVariantValueOptions {
+export interface DateTimeStyleCloseButtonProps extends HTMLButtonProps, ThemeVar {
   disabled?: boolean;
 }
 /** dateTime 清空按钮 **/
@@ -29,13 +44,8 @@ export const DateTimeStyleCloseButton = styled.button<DateTimeStyleCloseButtonPr
   }
 `;
 
-const DateTimeStyleCloseButtonDefaultTheme = {
-  colorDateTimeStyleCloseButton: '#a5a5a5',
-  colorDateTimeStyleCloseButtonHover: '#393e48',
-};
-
 DateTimeStyleCloseButton.defaultProps = {
-  defaultTheme: DateTimeStyleCloseButtonDefaultTheme,
+  defaultTheme: DateTimePickerStyleTheme,
 };
 
 export const DateTimeStylePanelUl = styled.ul`
@@ -94,17 +104,8 @@ export const DateTimeStylePanelLi = styled.li<DateTimeStylePanelLiProps>`
   }
 `;
 
-const DateTimeStylePanelLiDefaultTheme = {
-  colorDateTimeLi: '#393e48',
-  colorDateTimeLiDisabled: '#d4d4d4',
-  colorDateTimeLiSelected: '#000',
-  backgroundColorDateTimeLiSelect: '#f1f1f1',
-  backgroundColorDateTimeLiHover: '#f6f8fa',
-  backgroundColorDateTimeLiActive: '#e1e5e8',
-};
-
 DateTimeStylePanelLi.defaultProps = {
-  defaultTheme: DateTimeStylePanelLiDefaultTheme,
+  defaultTheme: DateTimePickerStyleTheme,
 };
 
 export interface DateTimeStylePanelProps extends HTMLDivProps, ThemeVariantValueOptions {}
@@ -123,12 +124,9 @@ export const DateTimeStylePanel = styled.div<DateTimeStylePanelProps>`
     }
   }
 `;
-const DateTimeStylePanelDefaultTheme = {
-  borderLeftColorDateTimeStylePanelUl: '#e9e9e9',
-};
 
 DateTimeStylePanel.defaultProps = {
-  defaultTheme: DateTimeStylePanelDefaultTheme,
+  defaultTheme: DateTimePickerStyleTheme,
 };
 
 export interface DateTimeStyleBaseProps extends HTMLDivProps, ThemeVariantValueOptions {}

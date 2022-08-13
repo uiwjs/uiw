@@ -3,9 +3,28 @@ import { IconStyleBase } from '@uiw/react-icon';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import Button, { ButtonProps } from '@uiw/react-button';
 
-interface DivWrapProps
-  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
-    ThemeVariantValueOptions {
+export const MessageStyleTheme = {
+  colorMessageChildren: 'rgba(0, 0, 0, 0.65)',
+  colorMessageTitle: 'rgba(0, 0, 0, 0.85)',
+  backgroundMessageSuccess: '#afecbd',
+  colorMessageSuccess: '#28a745',
+  backgroundMessageWarning: '#fff4d3',
+  colorMessageWarning: '#ffc107',
+  backgroundMessageInfo: '#bde4ff',
+  colorMessageInfo: '#008ef0',
+  backgroundMessageError: '#fae3e5',
+  colorMessageError: '#dc3545',
+
+  colorMessageDescriptionSpanBase: 'rgba(0, 0, 0, 0.65)',
+  colorMessageTitleSpanBase: 'rgba(0, 0, 0, 0.85)',
+  backgroundColorMessageButtonWarpHover: 'rgba(255, 255, 255, 0.21) !important',
+  colorMessageButtonWarpBase: 'rgba(0, 0, 0, 0.38)',
+  backgroundColorMessageButtonWarpActive: 'rgba(0, 0, 0, 0.1) !important',
+};
+
+type ThemeVar = ThemeVariantValueOptions<typeof MessageStyleTheme>;
+
+interface DivWrapProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, ThemeVar {
   params: {
     rounded: boolean | undefined;
     type: 'success' | 'warning' | 'info' | 'error' | undefined;
@@ -15,7 +34,7 @@ interface DivWrapProps
   };
 }
 
-const MessageStyleWrap = styled.div`
+const MessageStyleWrap = styled.div<DivWrapProps>`
   padding: 10px 15px;
   position: relative;
   font-size: 14px;
@@ -35,13 +54,13 @@ export const MessageStyleDivWrap = styled(MessageStyleWrap)<DivWrapProps>`
       if (props.params?.children) {
         return css`
           display: block;
-          color: rgba(0, 0, 0, 0.65);
+          color: ${getThemeVariantValue(props, 'colorMessageChildren')};
         `;
       }
       if (props.params?.title) {
         return css`
           display: block;
-          color: rgba(0, 0, 0, 0.85);
+          color: ${getThemeVariantValue(props, 'colorMessageTitle')};
         `;
       }
     }
@@ -111,7 +130,7 @@ export const MessageStyleDivWrap = styled(MessageStyleWrap)<DivWrapProps>`
   }
 `;
 
-interface spanPeops extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement> {
+interface spanPeops extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>, ThemeVar {
   params: {
     children: React.ReactNode;
     showIcon: boolean | undefined;
@@ -119,12 +138,12 @@ interface spanPeops extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpa
   };
 }
 // 原始span
-const MessageStyleSpanWrap = styled.span`
+const MessageStyleSpanWrap = styled.span<spanPeops>`
   display: block;
 `;
 // 详情description
 export const MessageStyleDescriptionSpan = styled(MessageStyleSpanWrap)<spanPeops>`
-  color: rgba(0, 0, 0, 0.65);
+  color: ${(props) => getThemeVariantValue(props, 'colorMessageDescriptionSpanBase')};
   ${(props) =>
     props.params.showIcon &&
     props.params.title &&
@@ -135,7 +154,7 @@ export const MessageStyleDescriptionSpan = styled(MessageStyleSpanWrap)<spanPeop
 `;
 // 标题title
 export const MessageStyleTitleSpan = styled(MessageStyleDescriptionSpan)<spanPeops>`
-  color: rgba(0, 0, 0, 0.85);
+  color: ${(props) => getThemeVariantValue(props, 'colorMessageTitleSpanBase')};
   ${(props) =>
     props.params.showIcon &&
     props.params.title &&
@@ -145,7 +164,7 @@ export const MessageStyleTitleSpan = styled(MessageStyleDescriptionSpan)<spanPeo
     `}
 `;
 
-interface messageButtonProps extends ButtonProps {}
+interface messageButtonProps extends ButtonProps, ThemeVar {}
 
 export const MessageStyleButtonWarp = styled(Button)<messageButtonProps>`
   position: absolute;
@@ -154,27 +173,23 @@ export const MessageStyleButtonWarp = styled(Button)<messageButtonProps>`
   padding: 2px;
   min-width: 16px;
   min-height: 16px;
-  color: rgba(0, 0, 0, 0.38);
+  color: ${(props) => getThemeVariantValue(props, 'colorMessageButtonWarpBase')};
   &:hover {
-    background-color: rgba(255, 255, 255, 0.21) !important;
+    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorMessageButtonWarpHover')};
   }
   &:active {
-    background-color: rgba(0, 0, 0, 0.1) !important;
+    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorMessageButtonWarpActive')};
   }
 `;
 
 MessageStyleDivWrap.defaultProps = {
-  defaultTheme: {
-    backgroundMessageSuccess: '#afecbd',
-    colorMessageSuccess: '#28a745',
+  defaultTheme: MessageStyleTheme,
+};
 
-    backgroundMessageWarning: '#fff4d3',
-    colorMessageWarning: '#ffc107',
+MessageStyleButtonWarp.defaultProps = {
+  defaultTheme: MessageStyleTheme,
+};
 
-    backgroundMessageInfo: '#bde4ff',
-    colorMessageInfo: '#008ef0',
-
-    backgroundMessageError: '#fae3e5',
-    colorMessageError: '#dc3545',
-  },
+MessageStyleDescriptionSpan.defaultProps = {
+  defaultTheme: MessageStyleTheme,
 };
