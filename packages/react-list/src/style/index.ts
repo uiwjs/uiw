@@ -2,12 +2,31 @@ import styled, { css } from 'styled-components';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 import { ListItemProps, ListProps } from 'src';
 
+export const ListStyleTheme = {
+  fontSizeSmall: '12px',
+  fontSizeDefault: '14px',
+  fontSizeLarge: '16px',
+  lineHeightDefault: 1.5,
+
+  colorListBase: '#52575c',
+  backgroundColorListBase: '#fff',
+  boxShadowListActive: 'rgba(0, 0, 0, 0.2)',
+  borderColorListActive: 'rgba(0, 0, 0, 0.2)',
+  colorListBorder: '#e9e9e9',
+  backgroundColorListStriped: '#f8f8f9',
+  backgroundColorListBordered: '#e8e8e8',
+
+  colorListItemDisabled: '#a3a6a9',
+  backgroundListItemActive: '#f8f8f9',
+  colorListItemActive: '#007bff',
+  backgroundListItemNotDisabledHover: '#f8f8f9',
+};
 export interface ListStyleWarp
-  extends ThemeVariantValueOptions,
+  extends ThemeVariantValueOptions<typeof ListStyleTheme>,
     Pick<ListProps<any>, 'striped' | 'noHover' | 'active' | 'bordered' | 'size'> {}
 
 export interface ListStyleItemWarpProps
-  extends ThemeVariantValueOptions,
+  extends ThemeVariantValueOptions<typeof ListStyleTheme>,
     Pick<ListItemProps<any>, 'disabled' | 'active'> {}
 
 export const ListStyleItemMain = styled.div`
@@ -124,29 +143,11 @@ export const ListStyleWarp = styled.div<ListStyleWarp>`
 `;
 
 ListStyleWarp.defaultProps = {
-  defaultTheme: {
-    fontSizeSmall: '12px',
-    fontSizeDefault: '14px',
-    fontSizeLarge: '16px',
-    lineHeightDefault: 1.5,
-
-    colorListBase: '#52575c',
-    backgroundColorListBase: '#fff',
-    boxShadowListActive: 'rgba(0, 0, 0, 0.2)',
-    borderColorListActive: 'rgba(0, 0, 0, 0.2)',
-    colorListBorder: '#e9e9e9',
-    backgroundColorListStriped: '#f8f8f9',
-    backgroundColorListBordered: '#e8e8e8',
-  },
+  defaultTheme: ListStyleTheme,
 };
 
 ListStyleItemWarp.defaultProps = {
-  defaultTheme: {
-    colorListItemDisabled: '#a3a6a9',
-    backgroundListItemActive: '#f8f8f9',
-    colorListItemActive: '#007bff',
-    backgroundListItemNotDisabledHover: '#f8f8f9',
-  },
+  defaultTheme: ListStyleTheme,
 };
 
 export default ListStyleWarp;

@@ -8,7 +8,7 @@ import React from 'react';
 import { DescriptionsProps } from '..';
 
 /** Descriptions 主题变量**/
-export const DescriptionsDefaultTheme = {
+export const DescriptionsTheme = {
   borderColorDescriptions: '#dfe2e5',
   fontSizeSmall: '12px',
   fontSizeDefault: '14px',
@@ -22,7 +22,9 @@ export const DescriptionsDefaultTheme = {
   colorDescriptionsColon: 'rgba(0, 0, 0, 0.95)',
 };
 
-export interface DescriptionsStyleWarpProps extends HTMLDivProps, ThemeVariantValueOptions {
+type ThemeVar = ThemeVariantValueOptions<typeof DescriptionsTheme>;
+
+export interface DescriptionsStyleWarpProps extends HTMLDivProps, ThemeVar {
   bordered?: boolean;
 }
 export const DescriptionsStyleWarp = styled.div<DescriptionsStyleWarpProps>`
@@ -38,12 +40,12 @@ export const DescriptionsStyleWarp = styled.div<DescriptionsStyleWarpProps>`
     `}
 `;
 DescriptionsStyleWarp.defaultProps = {
-  defaultTheme: DescriptionsDefaultTheme,
+  defaultTheme: DescriptionsTheme,
 };
 export interface DescriptionsStyleItemProps
   extends React.DetailedHTMLProps<React.ThHTMLAttributes<HTMLTableHeaderCellElement>, HTMLTableHeaderCellElement>,
     React.DetailedHTMLProps<React.TdHTMLAttributes<HTMLTableDataCellElement>, HTMLTableDataCellElement>,
-    ThemeVariantValueOptions {
+    ThemeVar {
   bordered?: boolean;
   isLabel?: Boolean;
   isColon?: Boolean;
@@ -92,11 +94,11 @@ export const DescriptionsStyleItem = styled.th<DescriptionsStyleItemProps>`
       }
     `}
 `;
-DescriptionsStyleItem.defaultProps = { defaultTheme: DescriptionsDefaultTheme };
+DescriptionsStyleItem.defaultProps = { defaultTheme: DescriptionsTheme };
 
 export interface DescriptionsStyleTableProps
   extends React.DetailedHTMLProps<React.TableHTMLAttributes<HTMLTableElement>, HTMLTableElement>,
-    ThemeVariantValueOptions {}
+    ThemeVar {}
 export const DescriptionsStyleTable = styled.table<DescriptionsStyleTableProps>`
   display: table !important;
   margin-bottom: 0 !important;
@@ -109,7 +111,7 @@ export const DescriptionsStyleTable = styled.table<DescriptionsStyleTableProps>`
 
 export interface DescriptionsStyleTableCaptionProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
-    ThemeVariantValueOptions {
+    ThemeVar {
   bordered?: boolean;
 }
 export const DescriptionsStyleTableCaption = styled.caption<DescriptionsStyleTableCaptionProps>`
@@ -128,10 +130,10 @@ export const DescriptionsStyleTableCaption = styled.caption<DescriptionsStyleTab
       }
     `}
 `;
-DescriptionsStyleTableCaption.defaultProps = { defaultTheme: DescriptionsDefaultTheme };
+DescriptionsStyleTableCaption.defaultProps = { defaultTheme: DescriptionsTheme };
 export interface DescriptionsStyleTableRowProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLTableRowElement>, HTMLTableRowElement>,
-    ThemeVariantValueOptions {
+    ThemeVar {
   bordered?: boolean;
 }
 export const DescriptionsStyleTableRow = styled.tr<DescriptionsStyleTableRowProps>`
@@ -156,7 +158,7 @@ export const DescriptionsStyleTableRow = styled.tr<DescriptionsStyleTableRowProp
 
 export interface DescriptionsStyleTableTbodyProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLTableSectionElement>, HTMLTableSectionElement>,
-    ThemeVariantValueOptions {
+    ThemeVar {
   bordered?: boolean;
   size?: DescriptionsProps['size'];
 }
@@ -203,5 +205,5 @@ export const DescriptionsStyleTableTbody = styled.tbody<DescriptionsStyleTableTb
 `;
 
 DescriptionsStyleTableTbody.defaultProps = {
-  defaultTheme: DescriptionsDefaultTheme,
+  defaultTheme: DescriptionsTheme,
 };

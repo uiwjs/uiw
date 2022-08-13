@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { getThemeVariantValue } from '@uiw/utils';
 
+export const EmptyStyleTheme = {
+  colorEmptyBase: '#c7c7c7',
+};
+
 interface DividerProps {
   defaultTheme?: Record<string, string | number>;
 }
@@ -21,9 +25,7 @@ export const EmptyStyleFooter = styled.div`
 `;
 
 EmptyStyleBase.defaultProps = {
-  defaultTheme: {
-    colorEmptyBase: '#c7c7c7',
-  },
+  defaultTheme: EmptyStyleTheme,
 };
 
 export default EmptyStyleBase;

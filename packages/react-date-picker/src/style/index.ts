@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
+import { DatePickerStyleTheme } from './theme';
+export interface DatePickerStyleWarpProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+    ThemeVariantValueOptions<typeof DatePickerStyleTheme> {}
 
-export const DatePickerStyleWarp = styled.div<ThemeVariantValueOptions>`
+export const DatePickerStyleWarp = styled.div<DatePickerStyleWarpProps>`
   vertical-align: top;
   display: inline-block;
   position: relative;
@@ -41,17 +45,5 @@ export const DatePickerStyleWarp = styled.div<ThemeVariantValueOptions>`
   }
 `;
 DatePickerStyleWarp.defaultProps = {
-  defaultTheme: {
-    fontSizeDefault: '14px',
-    // 组件内部
-    backgroundColorDatePickerBaseHover: '#eaeaea',
-    backgroundColorDatePickerActive: '#d2d2d2',
-    // 组件
-    borderColorDatepickerBase: '#e9e9e9',
-    colorDatepickerTimeBase: '#393e48',
-    backgroundColorBase: '#fff',
-    boxShadowDatepickerTime1: 'rgba(16, 22, 26, 0.1)',
-    boxShadowDatepickerTime2: 'rgba(16, 22, 26, 0)',
-    boxShadowDatepickerTime3: 'rgba(16, 22, 26, 0.2)',
-  },
+  defaultTheme: DatePickerStyleTheme,
 };

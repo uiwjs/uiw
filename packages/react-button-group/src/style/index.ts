@@ -1,10 +1,15 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions, HTMLDivProps } from '@uiw/utils';
 import { ButtonStyleWarp, ButtonStyleBaseLight } from '@uiw/react-button';
-export interface ButtonGroupWarpProps extends ThemeVariantValueOptions, HTMLDivProps {
+
+export const ButtonGroupStyleTheme = {
+  boxShadowColorLightDefault: 'rgba(0, 0, 0, 0.17)',
+};
+
+export interface ButtonGroupWarpProps extends ThemeVariantValueOptions<typeof ButtonGroupStyleTheme>, HTMLDivProps {
   vertical?: boolean;
 }
-const Warp = styled.div<ButtonGroupWarpProps>`
+export const ButtonGroupWarp = styled.div<ButtonGroupWarpProps>`
   ${ButtonStyleWarp} {
     border-radius: 0;
     box-shadow: inset 1px 0 0 0 ${(props) => getThemeVariantValue(props, 'boxShadowColorLightDefault')},
@@ -66,9 +71,6 @@ const Warp = styled.div<ButtonGroupWarpProps>`
     `}
 `;
 
-Warp.defaultProps = {
-  defaultTheme: {
-    boxShadowColorLightDefault: 'rgba(0, 0, 0, 0.17)',
-  },
+ButtonGroupWarp.defaultProps = {
+  defaultTheme: ButtonGroupStyleTheme,
 };
-export default Warp;

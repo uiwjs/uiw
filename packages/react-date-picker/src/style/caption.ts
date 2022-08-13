@@ -1,14 +1,12 @@
 import styled, { css } from 'styled-components';
-import { getThemeVariantValue, ThemeVariantValueOptions, HTMLDivProps } from '@uiw/utils';
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
+import { DatePickerStyleTheme } from './theme';
 
-export interface DatePickerStyleCaptionPaneBaseProps extends ThemeVariantValueOptions, HTMLDivProps {
+export interface DatePickerStyleCaptionPaneBaseProps
+  extends ThemeVariantValueOptions<typeof DatePickerStyleTheme>,
+    React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   prev?: boolean;
   next?: boolean;
-  defaultTheme?: {
-    backgroundColorDatePickerBaseHover: string;
-    backgroundColorDatePickerStyleCaptionPanePrevBefore: string;
-    backgroundColorDatePickerActive: string;
-  };
 }
 /** 基础的**/
 export const DatePickerStyleCaptionPaneBase = styled.div<DatePickerStyleCaptionPaneBaseProps>`
@@ -88,15 +86,9 @@ export const DatePickerStyleCaptionPaneMonth = styled(
 export const DatePickerStyleCaptionPane = styled(DatePickerStyleCaptionPaneBase)<DatePickerStyleCaptionPaneBaseProps>``;
 
 /** tody 按钮 **/
-export interface DatePickerStyleCaptionTodayProps extends ThemeVariantValueOptions, HTMLDivProps {
-  defaultTheme?: {
-    backgroundColorPrimaryHover: string;
-    backgroundColorPrimaryActive: string;
-    backgroundColorDatePickerStyleCaptionToday: string;
-    backgroundColorDatePickerStyleCaptionTodayBefore: string;
-    backgroundColorBase: string;
-  };
-}
+export interface DatePickerStyleCaptionTodayProps
+  extends ThemeVariantValueOptions<typeof DatePickerStyleTheme>,
+    React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 export const DatePickerStyleCaptionToday = styled.div<DatePickerStyleCaptionTodayProps>`
   cursor: pointer;
   background: ${(props) => getThemeVariantValue(props, 'backgroundColorDatePickerStyleCaptionToday')};
@@ -130,7 +122,10 @@ export const DatePickerStyleCaptionToday = styled.div<DatePickerStyleCaptionToda
   }
 `;
 
-export interface DatePickerStyleCaptionBaseProps extends ThemeVariantValueOptions, HTMLDivProps {}
+export interface DatePickerStyleCaptionBaseProps
+  extends ThemeVariantValueOptions<typeof DatePickerStyleTheme>,
+    React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
+
 export const DatePickerStyleCaptionBase = styled.div<DatePickerStyleCaptionBaseProps>`
   user-select: none;
   text-align: center;
@@ -141,38 +136,21 @@ export const DatePickerStyleCaptionBase = styled.div<DatePickerStyleCaptionBaseP
   }
 `;
 
-export const DatePickerStyleCaptionPaneBaseDefaultTheme = {
-  backgroundColorDatePickerBaseHover: '#eaeaea',
-  backgroundColorDatePickerStyleCaptionPanePrevBefore: '#333',
-  backgroundColorDatePickerActive: '#d2d2d2',
-};
-
-export const DatePickerStyleCaptionTodayDefaultTheme = {
-  backgroundColorPrimaryHover: '#0070bd',
-  backgroundColorPrimaryActive: '#00528a',
-  backgroundColorDatePickerStyleCaptionToday: '#dedede',
-  backgroundColorDatePickerStyleCaptionTodayBefore: '#a0a0a0',
-  backgroundColorBase: '#fff',
-};
-
 DatePickerStyleCaptionToday.defaultProps = {
-  defaultTheme: DatePickerStyleCaptionTodayDefaultTheme,
+  defaultTheme: DatePickerStyleTheme,
 };
 
 DatePickerStyleCaptionBase.defaultProps = {
-  defaultTheme: {
-    //底部边框颜色 Caption
-    borderBottomColorDatepickerCaption: '#ececec',
-  },
+  defaultTheme: DatePickerStyleTheme,
 };
 DatePickerStyleCaptionPaneYear.defaultProps = {
-  defaultTheme: DatePickerStyleCaptionPaneBaseDefaultTheme,
+  defaultTheme: DatePickerStyleTheme,
 };
 
 DatePickerStyleCaptionPaneMonth.defaultProps = {
-  defaultTheme: DatePickerStyleCaptionPaneBaseDefaultTheme,
+  defaultTheme: DatePickerStyleTheme,
 };
 
 DatePickerStyleCaptionPane.defaultProps = {
-  defaultTheme: DatePickerStyleCaptionPaneBaseDefaultTheme,
+  defaultTheme: DatePickerStyleTheme,
 };

@@ -4,8 +4,25 @@ import { DatePickerProps } from '@uiw/react-date-picker';
 import { InputProps, InputStyleBase } from '@uiw/react-input';
 import { IconStyleBase, IconStyleBaseProps } from '@uiw/react-icon';
 
+export const DateInputTheme = {
+  fillDateInputCloseBase: '#a5a5a5',
+  fillDateInputCloseHover: '#393e48',
+
+  borderRadiusDefault: '3px',
+  colorDateInputStyleBase: '#393e48',
+  backgroundColorBase: '#fff',
+  backgroundColorDateInputDisabled: '#dddddd',
+  colorDateInputDisabled: '#a5a5a5',
+  boxShadowDateInputBase:
+    '0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px rgba(16, 22, 26, 0.15),inset 0 1px 1px rgba(16, 22, 26, 0.2)',
+  boxShadowDateInputFocus: '0 0 0 1px #393e48, 0 0 0 3px rgba(57, 62, 72, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
+  boxShadowDateInputHover: '0 0 0 1px #6e6e6e, 0 0 0 3px rgba(57, 62, 72, 0), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
+  boxShadowDateInputFocusHover:
+    ' 0 0 0 1px #6e6e6e, 0 0 0 3px rgba(57, 62, 72, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);',
+};
+
 export interface DateInputDatePickerPopoverProps extends DatePickerProps {}
-export const DateInputDatePickerPopover = styled.div<DateInputDatePickerPopoverProps>`
+export const DateInputStyleDatePickerPopover = styled.div<DateInputDatePickerPopoverProps>`
   box-shadow: 0 0 0 0;
 `;
 
@@ -29,7 +46,9 @@ export const DateInputStyleBase = styled.input<DateInputStyleBaseProps>`
     `}
 `;
 
-export interface DateInputIconStyleWarpProps extends IconStyleBaseProps, ThemeVariantValueOptions {
+export interface DateInputIconStyleWarpProps
+  extends IconStyleBaseProps,
+    ThemeVariantValueOptions<typeof DateInputTheme> {
   closebtn?: boolean;
 }
 
@@ -50,10 +69,7 @@ export const DateInputIconStyleWarp = styled(IconStyleBase)<DateInputIconStyleWa
 `;
 
 DateInputIconStyleWarp.defaultProps = {
-  defaultTheme: {
-    fillDateInputCloseBase: '#a5a5a5',
-    fillDateInputCloseHover: '#393e48',
-  },
+  defaultTheme: DateInputTheme,
 };
 export interface DateInputIconProps {
   spin?: boolean;
@@ -63,7 +79,7 @@ export const DateInputIcon = styled.div<DateInputIconProps>`
   width: 1em;
 `;
 
-export interface DateTimeInputProps extends HTMLDivProps, ThemeVariantValueOptions {}
+export interface DateTimeInputProps extends HTMLDivProps, ThemeVariantValueOptions<typeof DateInputTheme> {}
 
 export const DateInputRangeStyleWarp = styled.div<DateTimeInputProps>`
   display: flex;
@@ -89,8 +105,7 @@ export const DateInputRangeStyleWarp = styled.div<DateTimeInputProps>`
   border: none;
   align-items: center;
   border-radius: ${(props) => getThemeVariantValue(props, 'borderRadiusDefault')};
-  box-shadow: 0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px rgba(16, 22, 26, 0.15),
-    inset 0 1px 1px rgba(16, 22, 26, 0.2);
+  box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowDateInputBase')};
   box-sizing: border-box;
   background: ${(props) => getThemeVariantValue(props, 'backgroundColorBase')};
   min-height: 30px;
@@ -105,15 +120,15 @@ export const DateInputRangeStyleWarp = styled.div<DateTimeInputProps>`
   appearance: none;
 
   &:focus {
-    box-shadow: 0 0 0 1px #393e48, 0 0 0 3px rgba(57, 62, 72, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
+    box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowDateInputFocus')};
   }
 
   &:hover {
-    box-shadow: 0 0 0 1px #6e6e6e, 0 0 0 3px rgba(57, 62, 72, 0), inset 0 1px 1px rgba(16, 22, 26, 0.2);
+    box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowDateInputHover')};
   }
 
   &:focus&:hover {
-    box-shadow: 0 0 0 1px #6e6e6e, 0 0 0 3px rgba(57, 62, 72, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
+    box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowDateInputFocusHover')};
   }
 
   &:disabled {
@@ -127,11 +142,5 @@ export const DateInputRangeStyleWarp = styled.div<DateTimeInputProps>`
 `;
 
 DateInputRangeStyleWarp.defaultProps = {
-  defaultTheme: {
-    borderRadiusDefault: '3px',
-    colorDateInputStyleBase: '#393e48',
-    backgroundColorBase: '#fff',
-    backgroundColorDateInputDisabled: '#dddddd',
-    colorDateInputDisabled: '#a5a5a5',
-  },
+  defaultTheme: DateInputTheme,
 };

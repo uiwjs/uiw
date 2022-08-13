@@ -1,8 +1,38 @@
 import styled, { css } from 'styled-components';
-import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
+import { ThemeVariantValueOptions, getThemeVariantValue, HTMLSpanProps } from '@uiw/utils';
 import { InputProps } from 'src';
 
-interface InputStyleBaseProps extends ThemeVariantValueOptions, Pick<InputProps, 'size' | 'addonAfter' | 'disabled'> {}
+export const InputStyleTheme = {
+  colorInputStyleBase: '#393e48',
+  boxShadowColorInputHBase: 'rgba(19, 124, 189, 0)',
+  boxShadowColorInputInsHBase: 'rgba(16, 22, 26, 0.15)',
+  boxShadowColorInputInsVBase: 'rgba(16, 22, 26, 0.2)',
+  backgroundColorInputStyleBase: '#fff',
+  heightInputDefault: '30px',
+  fontSizeInputDefault: 'inherit',
+  boxShadowColorInputHFocus: '#393e48',
+  boxShadowColorInputVFocus: 'rgba(57, 62, 72, 0.17)',
+  boxShadowColorInputHHover: '#6e6e6e',
+  boxShadowColorInputVHover: 'rgba(57, 62, 72, 0)',
+  backgrounColorInputDisabled: '#dddddd',
+  colorInputDisabled: '#a5a5a5',
+
+  topInputStyleAddonAfter: '3px',
+
+  fontSizeDefault: '14px',
+  fontSizeLarge: '16px',
+  lineHeightInputsDefault: '14px',
+  widthInputsDefault: '100%',
+  lineHeightInputLarge: '36px',
+  lineHeightInputSmall: '24px',
+  lineHeightInputStyleAddonAfter: '16px',
+};
+
+export interface InputStyleBaseProps
+  extends ThemeVariantValueOptions<typeof InputStyleTheme>,
+    Pick<InputProps, 'size' | 'addonAfter' | 'disabled'> {}
+
+export interface InputStyleAddonAfterProps extends ThemeVariantValueOptions<typeof InputStyleTheme>, HTMLSpanProps {}
 
 export const InputStyleBase = styled.input<InputStyleBaseProps>`
   ${(props) => {
@@ -58,7 +88,7 @@ export const InputStyleBase = styled.input<InputStyleBaseProps>`
   }}
 `;
 
-export const InputStyleAddonAfter = styled.span<InputStyleBaseProps>`
+export const InputStyleAddonAfter = styled.span<InputStyleAddonAfterProps>`
   ${(props) => {
     return css`
       position: absolute;
@@ -127,39 +157,15 @@ export const InputStyleWarp = styled.div<InputStyleBaseProps>`
 `;
 
 InputStyleBase.defaultProps = {
-  defaultTheme: {
-    colorInputStyleBase: '#393e48',
-    boxShadowColorInputHBase: 'rgba(19, 124, 189, 0)',
-    boxShadowColorInputInsHBase: 'rgba(16, 22, 26, 0.15)',
-    boxShadowColorInputInsVBase: 'rgba(16, 22, 26, 0.2)',
-    backgroundColorInputStyleBase: '#fff',
-    heightInputDefault: '30px',
-    fontSizeInputDefault: 'inherit',
-    boxShadowColorInputHFocus: '#393e48',
-    boxShadowColorInputVFocus: 'rgba(57, 62, 72, 0.17)',
-    boxShadowColorInputHHover: '#6e6e6e',
-    boxShadowColorInputVHover: 'rgba(57, 62, 72, 0)',
-    backgrounColorInputDisabled: '#dddddd',
-    colorInputDisabled: '#a5a5a5',
-  },
+  defaultTheme: InputStyleTheme,
 };
 
 InputStyleAddonAfter.defaultProps = {
-  defaultTheme: {
-    topInputStyleAddonAfter: '3px',
-  },
+  defaultTheme: InputStyleTheme,
 };
 
 InputStyleWarp.defaultProps = {
-  defaultTheme: {
-    fontSizeDefault: '14px',
-    fontSizeLarge: '16px',
-    lineHeightInputsDefault: '14px',
-    widthInputsDefault: '100%',
-    lineHeightInputLarge: '36px',
-    lineHeightInputSmall: '24px',
-    lineHeightInputStyleAddonAfter: '16px',
-  },
+  defaultTheme: InputStyleTheme,
 };
 
 export default InputStyleWarp;

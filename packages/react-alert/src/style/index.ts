@@ -1,9 +1,23 @@
 import styled, { css } from 'styled-components';
-import { ModalProps, ModalStyleHeader, ModalStyleBody, ModalStyleInner } from '@uiw/react-modal';
+import { ModalStyleHeader, ModalStyleBody, ModalStyleInner } from '@uiw/react-modal';
 import { ButtonType } from '@uiw/react-button';
 import { IconStyleBase } from '@uiw/react-icon';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
-export interface AlertStyleWarpProps extends ModalProps, ThemeVariantValueOptions {}
+
+export const AlertStyleTheme = {
+  colorAlertPrimary: '#008ef0',
+  colorAlertSuccess: '#28a745',
+  colorAlertWarning: '#ffc107',
+  colorAlertDanger: '#dc3545',
+  colorAlertDefault: '#393e48',
+};
+
+export interface AlertStyleWarpProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+    ThemeVariantValueOptions<typeof AlertStyleTheme> {
+  type?: ButtonType;
+  icon?: React.ReactNode;
+}
 
 const typeVariant = (type: ButtonType, color: string | number) => {
   return css`
@@ -25,14 +39,6 @@ const typeCss = (props: AlertStyleWarpProps) => {
     return typeVariant(type, getThemeVariantValue(props, 'colorAlertDanger'));
   }
   return typeVariant('link', getThemeVariantValue(props, 'colorAlertDefault'));
-};
-
-export const AlertStyleTheme = {
-  colorAlertPrimary: '#008ef0',
-  colorAlertSuccess: '#28a745',
-  colorAlertWarning: '#ffc107',
-  colorAlertDanger: '#dc3545',
-  colorAlertDefault: '#393e48',
 };
 
 export const AlertStyleWarp = styled.div<AlertStyleWarpProps>`

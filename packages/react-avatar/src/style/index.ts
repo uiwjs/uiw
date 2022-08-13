@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
-export const AvatarStyleWarpTheme = {
+export const AvatarStyleTheme = {
   backgroundColorAvatar: '#ccc',
   colorAvatar: '#fff',
 
@@ -17,10 +17,11 @@ export const AvatarStyleWarpTheme = {
   borderRadiusDefault: '3px',
 };
 
-export interface AvatarStyleWarpProps extends ThemeVariantValueOptions {
+export interface AvatarStyleWarpProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>,
+    ThemeVariantValueOptions<typeof AvatarStyleTheme> {
   size?: 'large' | 'default' | 'small' | 'mini';
   shape?: 'square' | 'circle';
-  defaultTheme?: typeof AvatarStyleWarpTheme;
 }
 
 export const AvatarStyleImg = styled.img``;
@@ -85,5 +86,5 @@ export const AvatarStyleWarp = styled.span<AvatarStyleWarpProps>`
 `;
 
 AvatarStyleWarp.defaultProps = {
-  defaultTheme: { ...AvatarStyleWarpTheme },
+  defaultTheme: { ...AvatarStyleTheme },
 };

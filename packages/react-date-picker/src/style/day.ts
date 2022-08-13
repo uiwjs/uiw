@@ -1,34 +1,21 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions, HTMLDivProps } from '@uiw/utils';
 import { DatePickerDayRenderDay } from './../index';
+import { DatePickerStyleTheme } from './theme';
 
-export interface DatePickerStyleBodyWarpProps extends ThemeVariantValueOptions, HTMLDivProps {}
+export interface DatePickerStyleBodyWarpProps
+  extends ThemeVariantValueOptions<typeof DatePickerStyleTheme>,
+    HTMLDivProps {}
 export const DatePickerStyleBodyWarp = styled.div<DatePickerStyleBodyWarpProps>`
   padding-top: 5px;
 `;
 
-export interface DatePickerStyleWeekProps extends ThemeVariantValueOptions, HTMLDivProps {
+export interface DatePickerStyleWeekProps extends ThemeVariantValueOptions<typeof DatePickerStyleTheme>, HTMLDivProps {
   cls?: DatePickerDayRenderDay;
 }
-export interface DatePickerStyleWeekBaseProps extends ThemeVariantValueOptions, HTMLDivProps {}
-
-export const DatePickerStyleWeekDefaultTheme = {
-  // 公共
-  backgroundColorPrimary: '#008ef0',
-  colorPrimary: '#fff',
-  backgroundColorPrimaryDisabled: '#57baff',
-  backgroundColorDatePickerTodayDisabled: 'rgba(189, 189, 189, 0.47)',
-  // 组件内部
-  colorDatePickerDayTodayBase: '#d3d3d3',
-  backgroundColorDatePickerBaseHover: '#eaeaea',
-  backgroundColorDatePickerDayDisabled: '#f5f5f5',
-  backgroundColorDatePickerActive: '#d2d2d2',
-  colorDatePickerDayHover: '#393e48',
-};
-
-export const DatePickerStyleWeekBaseDefaultTheme = {
-  colorDatePickerDayEnd: '#6f6f6f',
-};
+export interface DatePickerStyleWeekBaseProps
+  extends ThemeVariantValueOptions<typeof DatePickerStyleTheme>,
+    HTMLDivProps {}
 
 export const DatePickerStyleWeekBase = styled.div<DatePickerStyleWeekBaseProps>`
   display: flex;
@@ -127,8 +114,8 @@ export const DatePickerStyleWeek = styled(DatePickerStyleWeekBase)<DatePickerSty
 `;
 
 DatePickerStyleWeekBase.defaultProps = {
-  defaultTheme: DatePickerStyleWeekDefaultTheme,
+  defaultTheme: DatePickerStyleTheme,
 };
 DatePickerStyleWeek.defaultProps = {
-  defaultTheme: DatePickerStyleWeekDefaultTheme,
+  defaultTheme: DatePickerStyleTheme,
 };

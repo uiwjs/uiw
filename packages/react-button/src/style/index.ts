@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { buttonTypes, getloadingCss, getIconAndSizeCss } from './Variant';
-import { ButtonStyleBaseDefaultTheme, ButtonStyleBaseProps, ButtonStyleBase } from './base';
+import { ButtonStyleTheme, ButtonStyleBaseProps, ButtonStyleBase } from './base';
 export * from './base';
 
 export const ButtonStyleWarp = styled(ButtonStyleBase)<ButtonStyleBaseProps>`
@@ -9,5 +9,5 @@ export const ButtonStyleWarp = styled(ButtonStyleBase)<ButtonStyleBaseProps>`
   ${(props) => getloadingCss(props)}
 `;
 ButtonStyleWarp.defaultProps = {
-  defaultTheme: { ...ButtonStyleBaseDefaultTheme },
+  defaultTheme: { ...ButtonStyleTheme },
 };

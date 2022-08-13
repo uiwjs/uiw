@@ -74,10 +74,10 @@
 
   // --------------------------badge 标记部分---------------------------------------
   colorBadge: '#fff',
-  marginVerticalBadgeColorDot: '0px',
-  marginHorizontalBadgeColorDot: '4px',
-  topBadgeColorDot: '-1px',
-  widthBadgeColorDot: '6px',
+  marginVerticalBadgeStyleColorDot: '0px',
+  marginHorizontalBadgeStyleColorDot: '4px',
+  topBadgeStyleColorDot: '-1px',
+  widthBadgeStyleColorDot: '6px',
   backgroundColorBadgepPocessing: '#007bff',
   backgroundBadgeCountDot: '#f04134',
   boxShadowBadgeCountDot: '0 0 0 1px #fff',

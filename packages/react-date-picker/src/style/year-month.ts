@@ -1,7 +1,10 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions, HTMLDivProps } from '@uiw/utils';
+import { DatePickerStyleTheme } from './theme';
 
-export interface DatePickerStyleYearMonthWarpProps extends ThemeVariantValueOptions, HTMLDivProps {
+export interface DatePickerStyleYearMonthWarpProps
+  extends ThemeVariantValueOptions<typeof DatePickerStyleTheme>,
+    HTMLDivProps {
   isYear?: boolean;
 }
 export const DatePickerStyleYearMonthWarp = styled.div<DatePickerStyleYearMonthWarpProps>`
@@ -18,7 +21,9 @@ export const DatePickerStyleYearMonthWarp = styled.div<DatePickerStyleYearMonthW
       }
     `}
 `;
-export interface DatePickerStyleYearMonthSelectProps extends ThemeVariantValueOptions, HTMLDivProps {
+export interface DatePickerStyleYearMonthSelectProps
+  extends ThemeVariantValueOptions<typeof DatePickerStyleTheme>,
+    HTMLDivProps {
   selected?: boolean;
   paging?: boolean;
 }
@@ -54,20 +59,10 @@ export const DatePickerStyleYearMonthSelect = styled.div<DatePickerStyleYearMont
     `}
 `;
 DatePickerStyleYearMonthSelect.defaultProps = {
-  defaultTheme: {
-    colorPrimary: '#fff',
-    backgroundColorPrimary: '#008ef0',
-    backgroundColorPrimaryBasicHover: '#c7e8ff',
-    colorDatePickerPaging: 'rgba(0, 0, 0, 0.25)',
-  },
+  defaultTheme: DatePickerStyleTheme,
 };
 
 DatePickerStyleYearMonthWarp.defaultProps = {
-  defaultTheme: {
-    colorPrimary: '#fff',
-    backgroundColorPrimary: '#008ef0',
-    backgroundColorPrimaryBasicHover: '#c7e8ff',
-    colorDatePickerPaging: 'rgba(0, 0, 0, 0.25)',
-  },
+  defaultTheme: DatePickerStyleTheme,
 };
 export default DatePickerStyleYearMonthWarp;
