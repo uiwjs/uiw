@@ -1,20 +1,24 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
-export const BackTopStyleWarpDefaultTheme = {
+export const BackTopStyleTheme = {
   bottomBackTop: '50px',
   rightBackTop: '50px',
 };
-export interface BackTopStyleWarpProps extends ThemeVariantValueOptions {
+const propsTheme = {
+  defaultTheme: { ...BackTopStyleTheme },
+};
+export interface BackTopStyleWarpProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+    ThemeVariantValueOptions<typeof BackTopStyleTheme> {
   visible?: boolean;
   fixed?: boolean;
-  defaultTheme?: typeof BackTopStyleWarpDefaultTheme;
 }
 
 export const BackTopStyleWarp = styled.div<BackTopStyleWarpProps>`
   position: fixed;
-  bottom: ${(props) => getThemeVariantValue(props, 'bottomBackTop')};
-  right: ${(props) => getThemeVariantValue(props, 'rightBackTop')};
+  bottom: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'bottomBackTop')};
+  right: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'rightBackTop')};
   cursor: pointer;
   z-index: 1006;
   transition: all 1s;
@@ -43,5 +47,5 @@ export const BackTopStyleWarp = styled.div<BackTopStyleWarpProps>`
 `;
 
 BackTopStyleWarp.defaultProps = {
-  defaultTheme: BackTopStyleWarpDefaultTheme,
+  defaultTheme: BackTopStyleTheme,
 };

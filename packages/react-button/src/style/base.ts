@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import { getThemeVariantValue } from '@uiw/utils';
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import { buttonVariant, getCommonCss, getloadingCss, getIconAndSizeCss } from './Variant';
 import { ButtonType, ButtonSize } from '../';
-export const ButtonStyleBaseDefaultTheme = {
+export const ButtonStyleTheme = {
   colorButtonStyleBase: '#fff',
   // 大小设置
   fontSizeSmall: '12px',
@@ -113,9 +113,9 @@ export const ButtonStyleBaseDefaultTheme = {
   colorLinkNotDisabledActive: '#002d4d',
 };
 
-export interface ButtonStyleBaseProps {
-  defaultTheme?: Record<string, string | number>;
-  theme?: Record<string, string | number>;
+export interface ButtonStyleBaseProps
+  extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
+    ThemeVariantValueOptions<typeof ButtonStyleTheme> {
   param?: {
     size: ButtonSize;
     type: ButtonType;
@@ -284,28 +284,28 @@ const ButtonStyleBaseWarning = styled(ButtonStyleBase)<ButtonStyleBaseProps>`
 `;
 
 ButtonStyleBase.defaultProps = {
-  defaultTheme: { ...ButtonStyleBaseDefaultTheme },
+  defaultTheme: { ...ButtonStyleTheme },
 };
 ButtonStyleBasePrimary.defaultProps = {
-  defaultTheme: { ...ButtonStyleBaseDefaultTheme },
+  defaultTheme: { ...ButtonStyleTheme },
 };
 ButtonStyleBaseSuccess.defaultProps = {
-  defaultTheme: { ...ButtonStyleBaseDefaultTheme },
+  defaultTheme: { ...ButtonStyleTheme },
 };
 ButtonStyleBaseDangers.defaultProps = {
-  defaultTheme: { ...ButtonStyleBaseDefaultTheme },
+  defaultTheme: { ...ButtonStyleTheme },
 };
 ButtonStyleBaseDark.defaultProps = {
-  defaultTheme: { ...ButtonStyleBaseDefaultTheme },
+  defaultTheme: { ...ButtonStyleTheme },
 };
 ButtonStyleBaseLight.defaultProps = {
-  defaultTheme: { ...ButtonStyleBaseDefaultTheme },
+  defaultTheme: { ...ButtonStyleTheme },
 };
 ButtonStyleBaseLink.defaultProps = {
-  defaultTheme: { ...ButtonStyleBaseDefaultTheme },
+  defaultTheme: { ...ButtonStyleTheme },
 };
 ButtonStyleBaseWarning.defaultProps = {
-  defaultTheme: { ...ButtonStyleBaseDefaultTheme },
+  defaultTheme: { ...ButtonStyleTheme },
 };
 
 export {

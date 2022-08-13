@@ -2,6 +2,8 @@ import React, { useState, useImperativeHandle, useMemo } from 'react';
 import { IProps } from '@uiw/utils';
 import FormItem, { FormItemProps } from './FormItem';
 import { FormStyleWarp, FormStyleFieldset } from './style';
+export * from './style/item';
+export * from './style';
 
 export interface FormProps<T> extends IProps, Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onChange' | 'onSubmit'> {
   prefixCls?: string;

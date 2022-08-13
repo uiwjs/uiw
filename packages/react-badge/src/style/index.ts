@@ -1,7 +1,30 @@
 import styled, { keyframes, css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
-export interface BadgeWarpProps extends ThemeVariantValueOptions {}
+export const BadgeStyleTheme = {
+  marginVerticalBadgeStyleColorDot: '0px',
+  marginHorizontalBadgeStyleColorDot: '4px',
+  topBadgeStyleColorDot: '-1px',
+  widthBadgeStyleColorDot: '6px',
+  backgroundColorBadgepPocessing: '#007bff',
+  fontSizeDefault: '14px',
+  backgroundBadgeCountDot: '#f04134',
+  colorBadge: '#fff',
+  fontSizeSmall: '12px',
+  boxShadowBadgeCountDot: '0 0 0 1px #fff',
+  topBadgeCountDot: '-4px',
+  topBadgeCount: '-10px',
+  heightBadgeCount: '16px',
+  borderRadiusBadgeCount: '10px',
+};
+
+const propsTheme = {
+  defaultTheme: { ...BadgeStyleTheme },
+};
+
+export interface BadgeStyleWarpProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>,
+    ThemeVariantValueOptions<typeof BadgeStyleTheme> {}
 
 const keyframesStatusProcessing = keyframes`
   from {
@@ -11,40 +34,36 @@ const keyframesStatusProcessing = keyframes`
     transform: rotateZ(360deg);
   }
 `;
-export interface BadgeColorDotProps extends ThemeVariantValueOptions {
+export interface BadgeStyleColorDotProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>,
+    ThemeVariantValueOptions<typeof BadgeStyleTheme> {
   processing?: boolean;
-  defaultTheme?: {
-    backgroundColorBadgepPocessing: string;
-    widthBadgeColorDot: string;
-    topBadgeColorDot: string;
-    fontSizeDefault: string;
-    [k: string]: string | number;
-  };
 }
 /** 展示 color  **/
-export const BadgeColorDot = styled.span<BadgeColorDotProps>`
+export const BadgeStyleColorDot = styled.span<BadgeStyleColorDotProps>`
   line-height: inherit;
   vertical-align: baseline;
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
+  font-size: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeDefault')};
   margin: ${(props) =>
     css`
-      ${getThemeVariantValue(props, 'marginVerticalBadgeColorDot')} ${getThemeVariantValue(
+      ${getThemeVariantValue({ ...props, ...propsTheme }, 'marginVerticalBadgeStyleColorDot')} ${getThemeVariantValue(
         props,
-        'marginHorizontalBadgeColorDot',
+        'marginHorizontalBadgeStyleColorDot',
       )}
     `};
-  width: ${(props) => getThemeVariantValue(props, 'widthBadgeColorDot')};
-  height: ${(props) => getThemeVariantValue(props, 'widthBadgeColorDot')};
+  width: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'widthBadgeStyleColorDot')};
+  height: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'widthBadgeStyleColorDot')};
   display: inline-block;
   border-radius: 50%;
   vertical-align: middle;
   position: relative;
-  top: ${(props) => getThemeVariantValue(props, 'topBadgeColorDot')};
+  top: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'topBadgeStyleColorDot')};
   ${(props) => {
     if (props.processing) {
       return css`
         position: relative;
-        background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorBadgepPocessing')};
+        background-color: ${(props) =>
+          getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorBadgepPocessing')};
         &:after {
           position: absolute;
           top: 0;
@@ -63,22 +82,9 @@ export const BadgeColorDot = styled.span<BadgeColorDotProps>`
   }}
 `;
 
-export interface BadgeStyleSupCountDotBaseProps extends ThemeVariantValueOptions {
+export interface BadgeStyleSupCountDotBaseProps extends ThemeVariantValueOptions<typeof BadgeStyleTheme> {
   dot?: boolean;
   nowrap?: boolean;
-  defaultTheme?: {
-    colorBadge: string;
-    fontSizeSmall: string;
-    backgroundBadgeCountDot: string;
-    boxShadowBadgeCountDot: string;
-    widthBadgeColorDot: string;
-    topBadgeCountDot: string;
-    topBadgeCount: string;
-    heightBadgeCount: string;
-    borderRadiusBadgeCount: string;
-
-    [k: string]: string | number;
-  };
 }
 /** 展示 count  **/
 export const BadgeStyleSupCountDotBase = styled.sup<BadgeStyleSupCountDotBaseProps>`
@@ -88,21 +94,21 @@ export const BadgeStyleSupCountDotBase = styled.sup<BadgeStyleSupCountDotBasePro
       position: absolute;
       -webkit-transform: translateX(-50%);
       transform: translateX(-50%);
-      top: ${(props) => getThemeVariantValue(props, 'topBadgeCount')};
-      height: ${(props) => getThemeVariantValue(props, 'heightBadgeCount')};
-      border-radius: ${(props) => getThemeVariantValue(props, 'borderRadiusBadgeCount')};
-      min-width: ${(props) => getThemeVariantValue(props, 'heightBadgeCount')};
-      background: ${(props) => getThemeVariantValue(props, 'backgroundBadgeCountDot')};
-      color: ${(props) => getThemeVariantValue(props, 'colorBadge')};
-      line-height: ${(props) => getThemeVariantValue(props, 'heightBadgeCount')};
+      top: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'topBadgeCount')};
+      height: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'heightBadgeCount')};
+      border-radius: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderRadiusBadgeCount')};
+      min-width: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'heightBadgeCount')};
+      background: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundBadgeCountDot')};
+      color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorBadge')};
+      line-height: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'heightBadgeCount')};
       text-align: center;
       padding: 0 5px;
-      font-size: ${(props) => getThemeVariantValue(props, 'fontSizeSmall')};
+      font-size: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeSmall')};
       white-space: nowrap;
       -webkit-transform-origin: -10% center;
       transform-origin: -10% center;
       font-family: tahoma;
-      box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowBadgeCountDot')};
+      box-shadow: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowBadgeCountDot')};
     `}
 
   ${(props) =>
@@ -126,51 +132,21 @@ export const BadgeStyleSupCountDotBase = styled.sup<BadgeStyleSupCountDotBasePro
       transform-origin: 0 center;
       overflow: hidden;
       color: transparent;
-      top: ${(props) => getThemeVariantValue(props, 'topBadgeCountDot')};
-      height: ${(props) => getThemeVariantValue(props, 'widthBadgeColorDot')};
-      width: ${(props) => getThemeVariantValue(props, 'widthBadgeColorDot')};
+      top: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'topBadgeCountDot')};
+      height: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'widthBadgeStyleColorDot')};
+      width: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'widthBadgeStyleColorDot')};
       padding: 0;
       border-radius: 100%;
-      background: ${(props) => getThemeVariantValue(props, 'backgroundBadgeCountDot')};
+      background: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundBadgeCountDot')};
       z-index: 10;
-      box-shadow: ${(props) => getThemeVariantValue(props, 'boxShadowBadgeCountDot')};
+      box-shadow: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowBadgeCountDot')};
     `}
 `;
 
 /** 最外层包裹 **/
-export const BadgeWarp = styled.span<BadgeWarpProps>`
+export const BadgeStyleWarp = styled.span<BadgeStyleWarpProps>`
   position: relative;
   display: inline-block;
   line-height: 1;
   vertical-align: middle;
 `;
-
-export const BadgeColorDotTheme = {
-  marginVerticalBadgeColorDot: '0px',
-  marginHorizontalBadgeColorDot: '4px',
-  topBadgeColorDot: '-1px',
-  widthBadgeColorDot: '6px',
-  backgroundColorBadgepPocessing: '#007bff',
-  fontSizeDefault: '14px',
-};
-
-BadgeColorDot.defaultProps = {
-  defaultTheme: BadgeColorDotTheme,
-};
-
-export const BadgeStyleSupCountDotBaseTheme = {
-  backgroundBadgeCountDot: '#f04134',
-  colorBadge: '#fff',
-  fontSizeSmall: '12px',
-  boxShadowBadgeCountDot: '0 0 0 1px #fff',
-  widthBadgeColorDot: '6px',
-  topBadgeCountDot: '-4px',
-  topBadgeCount: '-10px',
-  heightBadgeCount: '16px',
-  borderRadiusBadgeCount: '10px',
-};
-BadgeStyleSupCountDotBase.defaultProps = {
-  defaultTheme: BadgeStyleSupCountDotBaseTheme,
-};
-
-BadgeWarp.defaultProps = {};

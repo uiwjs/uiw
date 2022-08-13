@@ -1,9 +1,8 @@
 import React from 'react';
 import { HTMLDivProps, IProps } from '@uiw/utils';
 // import './style/index.less';
-import ButtonGroupWarp from './style';
-export { ButtonGroupWarp };
-
+import { ButtonGroupWarp } from './style';
+export * from './style';
 export interface ButtonGroupProps extends IProps, HTMLDivProps {
   vertical?: boolean;
 }

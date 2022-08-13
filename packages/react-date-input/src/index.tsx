@@ -5,7 +5,12 @@ import DatePicker, { DatePickerProps } from '@uiw/react-date-picker';
 import { Close } from '@uiw/icons/lib/Close';
 import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
-import { DateInputIcon, DateInputIconStyleWarp, DateInputDatePickerPopover, DateInputStyleBase } from './style/index';
+import {
+  DateInputIcon,
+  DateInputIconStyleWarp,
+  DateInputStyleDatePickerPopover,
+  DateInputStyleBase,
+} from './style/index';
 export * from './style';
 export * from './DateInputRange';
 
@@ -66,7 +71,7 @@ export default function DateInput(props: DateInputProps) {
       onVisibleChange={(open) => setIsOpen(open)}
       {...popoverProps}
       content={
-        <DateInputDatePickerPopover
+        <DateInputStyleDatePickerPopover
           as={DatePicker}
           date={(value && new Date(value)) || undefined}
           className={`${prefixCls}-popover`}

@@ -1,10 +1,21 @@
 import styled, { css } from 'styled-components';
-import { HTMLInputProps, ThemeVariantValueOptions } from '@uiw/utils';
+import { HTMLInputProps, ThemeVariantValueOptions, HTMLDivProps, getThemeVariantValue } from '@uiw/utils';
 import { InputStyleBase } from '@uiw/react-input';
 import { SelectStyleWarp } from '@uiw/react-select';
 import { TextareaStyleWarp } from '@uiw/react-textarea';
 
-interface FormStyleItemProps extends HTMLInputProps, ThemeVariantValueOptions {
+export const FormStyleTheme = {
+  colorFormStyleHelpStyleBase: '#c2c2c2',
+  colorFormStyleItemErrorBase: '#dc3545',
+  boxShadowFormStyleItemErrorBase:
+    '0 0 0 1px #dc3545, 0 0 0 3px rgba(220, 53, 69, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
+};
+
+const propsTheme = {
+  defaultTheme: { ...FormStyleTheme },
+};
+
+interface FormStyleItemProps extends HTMLInputProps, ThemeVariantValueOptions<typeof FormStyleTheme> {
   hasError?: boolean;
 }
 
@@ -19,8 +30,10 @@ export const LabelStyle = styled.label`
   }
 `;
 
+export interface FormStyleHelpStyleProps extends HTMLDivProps, ThemeVariantValueOptions<typeof FormStyleTheme> {}
+
 export const FormStyleHelpStyle = styled.div`
-  color: #c2c2c2;
+  color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorFormStyleHelpStyleBase')};
   font-size: 12px;
   padding-top: 3px;
 `;
@@ -35,17 +48,17 @@ export const FormStyleItem = styled.div<FormStyleItemProps>`
     props.hasError &&
     css`
       ${InputStyleBase},${SelectStyleWarp},${TextareaStyleWarp} {
-        box-shadow: 0 0 0 1px #dc3545, 0 0 0 3px rgba(220, 53, 69, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
+        box-shadow: ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowFormStyleItemErrorBase')};
         &:hover {
-          box-shadow: 0 0 0 1px #dc3545, 0 0 0 3px rgba(220, 53, 69, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
+          box-shadow: ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowFormStyleItemErrorBase')};
         }
         &:focus,
         &:hover {
-          box-shadow: 0 0 0 1px #dc3545, 0 0 0 3px rgba(220, 53, 69, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
+          box-shadow: ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowFormStyleItemErrorBase')};
         }
       }
       ${LabelStyle}, ${FormStyleHelpStyle} {
-        color: #dc3545;
+        color: ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'colorFormStyleItemErrorBase')};
       }
     `}
 `;

@@ -1,9 +1,26 @@
 import styled, { css } from 'styled-components';
-import { ModalProps, ModalStyleHeader, ModalStyleBody, ModalStyleInner } from '@uiw/react-modal';
+import { ModalStyleHeader, ModalStyleBody, ModalStyleInner } from '@uiw/react-modal';
 import { ButtonType } from '@uiw/react-button';
 import { IconStyleBase } from '@uiw/react-icon';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
-export interface AlertStyleWarpProps extends ModalProps, ThemeVariantValueOptions {}
+
+export const AlertStyleTheme = {
+  colorAlertPrimary: '#008ef0',
+  colorAlertSuccess: '#28a745',
+  colorAlertWarning: '#ffc107',
+  colorAlertDanger: '#dc3545',
+  colorAlertDefault: '#393e48',
+};
+const propsTheme = {
+  defaultTheme: { ...AlertStyleTheme },
+};
+
+export interface AlertStyleWarpProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+    ThemeVariantValueOptions<typeof AlertStyleTheme> {
+  type?: ButtonType;
+  icon?: React.ReactNode;
+}
 
 const typeVariant = (type: ButtonType, color: string | number) => {
   return css`
@@ -16,23 +33,15 @@ const typeVariant = (type: ButtonType, color: string | number) => {
 const typeCss = (props: AlertStyleWarpProps) => {
   const { type } = props;
   if (type === 'primary') {
-    return typeVariant(type, getThemeVariantValue(props, 'colorAlertPrimary'));
+    return typeVariant(type, getThemeVariantValue({ ...props, ...propsTheme }, 'colorAlertPrimary'));
   } else if (type === 'success') {
-    return typeVariant(type, getThemeVariantValue(props, 'colorAlertSuccess'));
+    return typeVariant(type, getThemeVariantValue({ ...props, ...propsTheme }, 'colorAlertSuccess'));
   } else if (type === 'warning') {
-    return typeVariant(type, getThemeVariantValue(props, 'colorAlertWarning'));
+    return typeVariant(type, getThemeVariantValue({ ...props, ...propsTheme }, 'colorAlertWarning'));
   } else if (type === 'danger') {
-    return typeVariant(type, getThemeVariantValue(props, 'colorAlertDanger'));
+    return typeVariant(type, getThemeVariantValue({ ...props, ...propsTheme }, 'colorAlertDanger'));
   }
-  return typeVariant('link', getThemeVariantValue(props, 'colorAlertDefault'));
-};
-
-export const AlertStyleTheme = {
-  colorAlertPrimary: '#008ef0',
-  colorAlertSuccess: '#28a745',
-  colorAlertWarning: '#ffc107',
-  colorAlertDanger: '#dc3545',
-  colorAlertDefault: '#393e48',
+  return typeVariant('link', getThemeVariantValue({ ...props, ...propsTheme }, 'colorAlertDefault'));
 };
 
 export const AlertStyleWarp = styled.div<AlertStyleWarpProps>`
@@ -108,6 +117,3 @@ export const AlertStyleWarp = styled.div<AlertStyleWarpProps>`
       }
     `}
 `;
-AlertStyleWarp.defaultProps = {
-  defaultTheme: { ...AlertStyleTheme },
-};

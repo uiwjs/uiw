@@ -8,7 +8,7 @@ import {
   DateInputIcon,
   DateInputIconStyleWarp,
   DateInputRangeStyleWarp,
-  DateInputDatePickerPopover,
+  DateInputStyleDatePickerPopover,
 } from './style/index';
 import { SwapRight } from '@uiw/icons/lib/SwapRight';
 import { Close } from '@uiw/icons/lib/Close';
@@ -67,7 +67,7 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
         autoAdjustOverflow
         {...popoverProps}
         content={
-          <DateInputDatePickerPopover
+          <DateInputStyleDatePickerPopover
             as={DatePicker}
             date={dateRange[0]}
             className={`${prefixCls}-popover`}
@@ -94,7 +94,7 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
         autoAdjustOverflow
         {...popoverProps}
         content={
-          <DateInputDatePickerPopover
+          <DateInputStyleDatePickerPopover
             as={DatePicker}
             date={dateRange[1]}
             className={`${prefixCls}-popover`}

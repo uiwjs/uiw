@@ -8,6 +8,7 @@ import {
   LoaderStyleWarp,
   LoaderStyleChild,
 } from './style';
+export * from './style';
 
 export interface LoaderProps extends IProps, HTMLDivProps {
   size?: 'small' | 'default' | 'large';

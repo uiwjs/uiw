@@ -5,7 +5,7 @@ import { IconStyleBase } from '@uiw/react-icon';
 
 type Options = {
   type: string;
-} & ButtonStyleBaseProps;
+} & Omit<ButtonStyleBaseProps, 'type'>;
 
 /**
  * @description: 生成公共css

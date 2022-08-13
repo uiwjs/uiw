@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
-export const AvatarStyleWarpTheme = {
+export const AvatarStyleTheme = {
   backgroundColorAvatar: '#ccc',
   colorAvatar: '#fff',
 
@@ -16,11 +16,15 @@ export const AvatarStyleWarpTheme = {
   widthAvatarLarge: '40px',
   borderRadiusDefault: '3px',
 };
+const propsTheme = {
+  defaultTheme: { ...AvatarStyleTheme },
+};
 
-export interface AvatarStyleWarpProps extends ThemeVariantValueOptions {
+export interface AvatarStyleWarpProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>,
+    ThemeVariantValueOptions<typeof AvatarStyleTheme> {
   size?: 'large' | 'default' | 'small' | 'mini';
   shape?: 'square' | 'circle';
-  defaultTheme?: typeof AvatarStyleWarpTheme;
 }
 
 export const AvatarStyleImg = styled.img``;
@@ -28,16 +32,16 @@ export const AvatarStyleImg = styled.img``;
 export const AvatarStyleWarp = styled.span<AvatarStyleWarpProps>`
   display: inline-block;
   text-align: center;
-  background: ${(props) => getThemeVariantValue(props, 'backgroundColorAvatar')};
-  color: ${(props) => getThemeVariantValue(props, 'colorAvatar')};
+  background: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorAvatar')};
+  color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorAvatar')};
   vertical-align: middle;
   white-space: nowrap;
   position: relative;
   overflow: hidden;
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeAvatarDefault')};
-  width: ${(props) => getThemeVariantValue(props, 'widthAvatarDefault')};
-  height: ${(props) => getThemeVariantValue(props, 'widthAvatarDefault')};
-  border-radius: ${(props) => getThemeVariantValue(props, 'borderRadiusDefault')};
+  font-size: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeAvatarDefault')};
+  width: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'widthAvatarDefault')};
+  height: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'widthAvatarDefault')};
+  border-radius: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderRadiusDefault')};
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -49,21 +53,21 @@ export const AvatarStyleWarp = styled.span<AvatarStyleWarpProps>`
     switch (size) {
       case 'mini':
         return css`
-          height: ${getThemeVariantValue(props, 'widthAvatarMini')};
-          width: ${getThemeVariantValue(props, 'widthAvatarMini')};
-          font-size: ${getThemeVariantValue(props, 'fontSizeAvatarMini')};
+          height: ${getThemeVariantValue({ ...props, ...propsTheme }, 'widthAvatarMini')};
+          width: ${getThemeVariantValue({ ...props, ...propsTheme }, 'widthAvatarMini')};
+          font-size: ${getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeAvatarMini')};
         `;
       case 'small':
         return css`
-          height: ${getThemeVariantValue(props, 'widthAvatarSmall')};
-          width: ${getThemeVariantValue(props, 'widthAvatarSmall')};
-          font-size: ${getThemeVariantValue(props, 'fontSizeAvatarSmall')};
+          height: ${getThemeVariantValue({ ...props, ...propsTheme }, 'widthAvatarSmall')};
+          width: ${getThemeVariantValue({ ...props, ...propsTheme }, 'widthAvatarSmall')};
+          font-size: ${getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeAvatarSmall')};
         `;
       case 'large':
         return css`
-          height: ${getThemeVariantValue(props, 'widthAvatarLarge')};
-          width: ${getThemeVariantValue(props, 'widthAvatarLarge')};
-          font-size: ${getThemeVariantValue(props, 'fontSizeAvatarLarge')};
+          height: ${getThemeVariantValue({ ...props, ...propsTheme }, 'widthAvatarLarge')};
+          width: ${getThemeVariantValue({ ...props, ...propsTheme }, 'widthAvatarLarge')};
+          font-size: ${getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeAvatarLarge')};
         `;
       default:
         return css``;
@@ -83,7 +87,3 @@ export const AvatarStyleWarp = styled.span<AvatarStyleWarpProps>`
     display: block;
   }
 `;
-
-AvatarStyleWarp.defaultProps = {
-  defaultTheme: { ...AvatarStyleWarpTheme },
-};
