@@ -36,7 +36,7 @@
       { "name": "Button 按钮", "path": "button" },
       { "divider": true, "name": "布局" },
       { "name": "Divider 分割线", "path": "divider" },
-      { "name": "Grid 删格", "path": "grid" },
+      { "name": "Grid 栅格", "path": "grid" },
       { "name": "Layout 布局", "path": "layout" },
       { "name": "Split 面板分割", "path": "Split" },
       { "divider": true, "name": "表单" },
