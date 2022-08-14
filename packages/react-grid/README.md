@@ -1,4 +1,4 @@
-Grid 删格
+Grid 栅格
 ===
 
 [![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-grid/file/README.md)
@@ -160,7 +160,7 @@ const Demo = () => (
 ReactDOM.render(<Demo />, _mount_);
 ```
 
-### 24删格
+### 24栅格
 
 可以通过指定 `24` 列中每列的宽度来创建基本网格系统。
 
