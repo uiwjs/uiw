@@ -763,7 +763,12 @@ var external_root_ReactDOM_commonjs2_react_dom_commonjs_react_dom_amd_react_dom_
 ;// CONCATENATED MODULE: ../../node_modules/react-transition-group/esm/TransitionGroupContext.js
 
 /* harmony default export */ const TransitionGroupContext = (external_root_React_commonjs2_react_commonjs_react_amd_react_default().createContext(null));
+;// CONCATENATED MODULE: ../../node_modules/react-transition-group/esm/utils/reflow.js
+var forceReflow = function forceReflow(node) {
+  return node.scrollTop;
+};
 ;// CONCATENATED MODULE: ../../node_modules/react-transition-group/esm/Transition.js
+
 
 
 
@@ -991,6 +996,14 @@ var Transition = /*#__PURE__*/function (_React$Component) {
       this.cancelNextCallback();
 
       if (nextStatus === ENTERING) {
+        if (this.props.unmountOnExit || this.props.mountOnEnter) {
+          var node = this.props.nodeRef ? this.props.nodeRef.current : external_root_ReactDOM_commonjs2_react_dom_commonjs_react_dom_amd_react_dom_default().findDOMNode(this); // https://github.com/reactjs/react-transition-group/pull/749
+          // With unmountOnExit or mountOnEnter, the enter animation should happen at the transition between `exited` and `entering`.
+          // To make the animation happen,  we have to separate each rendering and avoid being processed as batched.
+
+          if (node) forceReflow(node);
+        }
+
         this.performEnter(mounting);
       } else {
         this.performExit();
@@ -1195,6 +1208,7 @@ Transition.ENTERED = ENTERED;
 Transition.EXITING = EXITING;
 /* harmony default export */ const esm_Transition = (Transition);
 ;// CONCATENATED MODULE: ../../node_modules/react-transition-group/esm/CSSTransition.js
+
 
 
 
@@ -1424,8 +1438,7 @@ var CSSTransition = /*#__PURE__*/function (_React$Component) {
 
 
     if (phase === 'active') {
-      /* eslint-disable no-unused-expressions */
-      node && node.scrollTop;
+      if (node) forceReflow(node);
     }
 
     if (className) {
