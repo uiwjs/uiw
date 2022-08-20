@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-carousel",
-  "version": "4.21.2",
+  "version": "5.0.0-bate-0",
   "description": "Carousel component",
   "homepage": "https://uiwjs.github.io/#/components/carousel",
   "repository": {
@@ -43,6 +43,6 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/utils": "^4.21.2"
+    "@uiw/utils": "^5.0.0-bate-0"
   }
 }
