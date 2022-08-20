@@ -22,7 +22,7 @@ export default function Nav() {
     for (let i = 0; i < components.length; i++) {
       const com = components[i];
       const label = com.name;
-      if (label.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())) {
+      if (com.path && label.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())) {
         const item = { label, value: com.path || '' };
         option.push(item);
       }
@@ -49,7 +49,75 @@ export default function Nav() {
             </span>
           )}
         </Link>
+      </div>
+      <div className={[styles.nav, state.layout === 'left' ? null : styles.navTop].filter(Boolean).join(' ').trim()}>
+        <div style={{ display: 'flex' }}>
+          {data.map(({ path, name, icon, translation }, idx: number) => {
+            if (Object.keys(nav).includes(icon)) {
+              icon = (nav as any)[icon];
+            }
+            let newName = translation ? trans(`menu.${translation}`) : trans(`menu.${path}`);
+            if (/^\//.test(path)) {
+              newName = trans(`menu.${path}`);
+            }
+
+            if (/^https?:(?:\/\/)?/.test(path)) {
+              if (state.layout === 'top') {
+                return (
+                  <a key={idx} target="__blank" href={path} className={styles.outerUrl}>
+                    {icon} <span>{newName}</span>
+                  </a>
+                );
+              }
+              return (
+                <Tooltip
+                  usePortal={false}
+                  key={idx}
+                  placement={state.layout === 'left' ? 'right' : 'bottom'}
+                  content={<span style={{ whiteSpace: 'nowrap' }}>{newName}</span>}
+                >
+                  <a target="__blank" href={path} className={styles.outerUrl}>
+                    {icon}
+                  </a>
+                </Tooltip>
+              );
+            }
+            let activeStyle: React.CSSProperties = {
+              color: '#fff',
+            };
+            if (state.layout === 'top') {
+              return (
+                <NavLink
+                  to={path}
+                  key={idx}
+                  // @ts-ignore
+                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                >
+                  {icon} <span>{newName}</span>
+                </NavLink>
+              );
+            }
+
+            return (
+              <Tooltip
+                usePortal={false}
+                key={idx}
+                placement={state.layout === 'left' ? 'right' : 'bottom'}
+                content={<span style={{ whiteSpace: 'nowrap' }}>{newName}</span>}
+              >
+                <NavLink
+                  to={path}
+                  // @ts-ignore
+                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                >
+                  {icon}
+                </NavLink>
+              </Tooltip>
+            );
+          })}
+        </div>
         <SearchSelect
+          size="small"
           style={{ width: 200, top: 30, display: 'flex', alignItems: 'center', marginLeft: 5 }}
           placeholder="搜索组件"
           showSearch={true}
@@ -59,72 +127,6 @@ export default function Nav() {
           onSelect={(value) => (window.location.href = `/#/components/${value}`)}
         />
       </div>
-      <div className={[styles.nav, state.layout === 'left' ? null : styles.navTop].filter(Boolean).join(' ').trim()}>
-        {data.map(({ path, name, icon, translation }, idx: number) => {
-          if (Object.keys(nav).includes(icon)) {
-            icon = (nav as any)[icon];
-          }
-          let newName = translation ? trans(`menu.${translation}`) : trans(`menu.${path}`);
-          if (/^\//.test(path)) {
-            newName = trans(`menu.${path}`);
-          }
-
-          if (/^https?:(?:\/\/)?/.test(path)) {
-            if (state.layout === 'top') {
-              return (
-                <a key={idx} target="__blank" href={path} className={styles.outerUrl}>
-                  {icon} <span>{newName}</span>
-                </a>
-              );
-            }
-            return (
-              <Tooltip
-                usePortal={false}
-                key={idx}
-                placement={state.layout === 'left' ? 'right' : 'bottom'}
-                content={<span style={{ whiteSpace: 'nowrap' }}>{newName}</span>}
-              >
-                <a target="__blank" href={path} className={styles.outerUrl}>
-                  {icon}
-                </a>
-              </Tooltip>
-            );
-          }
-          let activeStyle: React.CSSProperties = {
-            color: '#fff',
-          };
-          if (state.layout === 'top') {
-            return (
-              <NavLink
-                to={path}
-                key={idx}
-                // @ts-ignore
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              >
-                {icon} <span>{newName}</span>
-              </NavLink>
-            );
-          }
-
-          return (
-            <Tooltip
-              usePortal={false}
-              key={idx}
-              placement={state.layout === 'left' ? 'right' : 'bottom'}
-              content={<span style={{ whiteSpace: 'nowrap' }}>{newName}</span>}
-            >
-              <NavLink
-                to={path}
-                // @ts-ignore
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              >
-                {icon}
-              </NavLink>
-            </Tooltip>
-          );
-        })}
-      </div>
-
       <div className={[styles.btn, state.layout === 'left' ? null : styles.btnTop].filter(Boolean).join(' ').trim()}>
         <select value={i18n.language} onChange={(e) => changeLanguage(e)}>
           <option value="zh-CN">简体中文</option>
@@ -136,9 +138,9 @@ export default function Nav() {
             {menu.china}
           </a>
         </Tooltip>
-        <button onClick={() => dispatch({ ...state, layout: state.layout === 'left' ? 'top' : 'left' })}>
+        {/* <button onClick={() => dispatch({ ...state, layout: state.layout === 'left' ? 'top' : 'left' })}>
           {state.layout === 'left' ? menu.menu : menu.menutop}
-        </button>
+        </button> */}
       </div>
     </Fragment>
   );
