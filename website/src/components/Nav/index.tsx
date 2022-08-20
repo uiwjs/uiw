@@ -124,7 +124,11 @@ export default function Nav() {
           onSearch={onSearchMenu}
           value={searchText}
           option={menuSearchOption}
-          onSelect={(value) => (window.location.href = `/#/components/${value}`)}
+          onSelect={(value) => {
+            const isHttp = new RegExp(`^http`).test(value as string);
+            if (isHttp) window.open(value as string);
+            else window.location.href = `/#/components/${value}`;
+          }}
         />
       </div>
       <div className={[styles.btn, state.layout === 'left' ? null : styles.btnTop].filter(Boolean).join(' ').trim()}>
