@@ -1,8 +1,14 @@
 name: Create Release & Push Package & v5
+
+# on:
+#   push:
+#     tags:
+#       - v5*
+
 on:
   push:
-    tags: 
-      - v5*
+    branches:
+      - v5
 
 jobs:
   build-deploy:
@@ -17,94 +23,94 @@ jobs:
     - run: npm run hoist
 
     - run: npm run build
-    - run: npm run coverage
+    # - run: npm run coverage
 
-    - run: npm run b:website
-    - run: npm run b:doc
+    # - run: npm run b:website
+    # - run: npm run b:doc
 
-    - run: cp -rp LICENSE packages/uiw
+    # - run: cp -rp LICENSE packages/uiw
 
-    - run: |
-        # Strip git ref prefix from version
-        VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-        COMMIT=released-${VERSION}
+    # - run: |
+    #     # Strip git ref prefix from version
+    #     VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+    #     COMMIT=released-${VERSION}
  
-        # Strip "v" prefix from tag name
-        [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-        echo "version: $VERSION"
-        export VERSION
+    #     # Strip "v" prefix from tag name
+    #     [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+    #     echo "version: $VERSION"
+    #     export VERSION
 
-        node node_modules/.bin/lerna version $VERSION --no-changelog --no-git-tag-version --no-push --yes --force-publish
-        npm run b:website
-        npm run b:doc
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
+    #     node node_modules/.bin/lerna version $VERSION --no-changelog --no-git-tag-version --no-push --yes --force-publish
+    #     npm run b:website
+    #     npm run b:doc
+    #     git config --local user.email "action@github.com"
+    #     git config --local user.name "GitHub Action"
+    #     git add .
 
-        git commit -am $COMMIT
+    #     git commit -am $COMMIT
 
-    - run: rm -rf packages/doc/web
-    - run: mkdir -p packages/doc/web
+    # - run: rm -rf packages/doc/web
+    # - run: mkdir -p packages/doc/web
 
-    - name: Generate Contributors Images
-      uses: jaywcjlove/github-action-contributors@main
-      with:
-        filter-author: (renovate\[bot\]|actions-user|renovate-bot|dependabot\[bot\])
-        output: ./website/build/CONTRIBUTORS.svg
-        avatarSize: 42
+    # - name: Generate Contributors Images
+    #   uses: jaywcjlove/github-action-contributors@main
+    #   with:
+    #     filter-author: (renovate\[bot\]|actions-user|renovate-bot|dependabot\[bot\])
+    #     output: ./website/build/CONTRIBUTORS.svg
+    #     avatarSize: 42
 
-    - run: cp -rf website/build/* packages/doc/web
+    # - run: cp -rf website/build/* packages/doc/web
 
-    - run: npm run bundle
-    - run: cp -rp packages/uiw/dist/*js website/build
-    - run: cp -rp packages/uiw/dist/*css website/build
+    # - run: npm run bundle
+    # - run: cp -rp packages/uiw/dist/*js website/build
+    # - run: cp -rp packages/uiw/dist/*css website/build
 
-    - run: git checkout -f packages/uiw/tsconfig.json
+    # - run: git checkout -f packages/uiw/tsconfig.json
 
-    - run: git status
+    # - run: git status
 
-    - name: git push v5
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: v5
+    # - name: git push v5
+    #   uses: ad-m/github-push-action@master
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     branch: v5
 
-    - name: get tag version
-      id: tag_version
-      uses: jaywcjlove/changelog-generator@v1.5.0
+    # - name: get tag version
+    #   id: tag_version
+    #   uses: jaywcjlove/changelog-generator@v1.5.0
 
-    - name: Create README.md
-      working-directory: ./website/build
-      run: |
-        cat > README.md << EOF
-        Documentation uiw@v5
-        ====
+    # - name: Create README.md
+    #   working-directory: ./website/build
+    #   run: |
+    #     cat > README.md << EOF
+    #     Documentation uiw@v5
+    #     ====
 
-        Preview: https://raw.githack.com/uiwjs/uiwjs.github.io/v5/index.html
-        EOF
+    #     Preview: https://raw.githack.com/uiwjs/uiwjs.github.io/v5/index.html
+    #     EOF
 
-    - name: Deploy to uiwjs.github.io Repo
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions[bot]@users.noreply.github.com'
-        commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
-        personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
-        publish_dir: ./website/build
-        publish_branch: v5
-        external_repository: uiwjs/uiwjs.github.io
+    # - name: Deploy to uiwjs.github.io Repo
+    #   uses: peaceiris/actions-gh-pages@v3
+    #   with:
+    #     user_name: 'github-actions[bot]'
+    #     user_email: 'github-actions[bot]@users.noreply.github.com'
+    #     commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
+    #     personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
+    #     publish_dir: ./website/build
+    #     publish_branch: v5
+    #     external_repository: uiwjs/uiwjs.github.io
 
-    - name: Generate changelog
-      id: changelog
-      uses: jaywcjlove/changelog-generator@v1.5.0
-      with:
-        filter-author: (小弟调调™)
-        filter: (^[\s]+?[R|r]elease)|(^[R|r]elease)
+    # - name: Generate changelog
+    #   id: changelog
+    #   uses: jaywcjlove/changelog-generator@v1.5.0
+    #   with:
+    #     filter-author: (小弟调调™)
+    #     filter: (^[\s]+?[R|r]elease)|(^[R|r]elease)
 
-    - run: |
-        echo "tag: ${{ steps.changelog.outputs.tag }}"
-        echo "version: ${{ steps.changelog.outputs.version }}"
-        echo "ref: ${{ github.ref }}"
+    # - run: |
+    #     echo "tag: ${{ steps.changelog.outputs.tag }}"
+    #     echo "version: ${{ steps.changelog.outputs.version }}"
+    #     echo "ref: ${{ github.ref }}"
 
     # - name: Create Release
     #   uses: ncipollo/release-action@v1
@@ -123,7 +129,6 @@ jobs:
     #       ```
 
     #       ${{ steps.changelog.outputs.changelog }}
-
 
     - name: 📦 @uiw/react-affix publish to NPM
       uses: JS-DevTools/npm-publish@v1
