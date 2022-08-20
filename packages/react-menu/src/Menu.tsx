@@ -3,7 +3,6 @@ import { IProps, HTMLUlProps } from '@uiw/utils';
 import { MenuItem } from './MenuItem';
 import { MenuDivider } from './Divider';
 import { SubMenu } from './SubMenu';
-// import './style/menu.less';
 import { MenuStyleBase } from './style';
 import { useMenuContext, MenuContext } from './hooks';
 export interface MenuProps extends IProps, HTMLUlProps {

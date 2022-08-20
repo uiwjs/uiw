@@ -5,7 +5,6 @@ import { Down } from '@uiw/icons/lib/Down';
 import formatter from '@uiw/formatter';
 import { IProps } from '@uiw/utils';
 import RenderDay from './DayLabel';
-// import './style/index.less';
 import {
   CalendarBtnGroupStyleWrap,
   CalendarBtnStyleWrap,

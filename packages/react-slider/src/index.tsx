@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Dots from './Dots';
-// import './style/index.less';
 import { SliderStyleWarp, SliderStyleBar, SliderStyleHandle, SliderStyleTooltip } from './style';
 export * from './style';
 

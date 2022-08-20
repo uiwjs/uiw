@@ -15,7 +15,6 @@ import { TransitionProps, TransitionStatus } from 'react-transition-group/Transi
 import Portal, { PortalProps } from '@uiw/react-portal';
 import { GetStyledCloneComponent, IProps, noop } from '@uiw/utils';
 
-// import './style/index.less';
 import { ContainerWrap, ContentWrap, OverlayWrap, BackdropWrap } from './style';
 export * from './style';
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { IProps } from '@uiw/utils';
 import Option from './Option';
 import Group from './Group';
-// import './style/index.less';
 
 import { SelectStyleWarp } from './style';
 export * from './style';

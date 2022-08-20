@@ -2,7 +2,6 @@ import React from 'react';
 import { Col, Row } from '@uiw/react-grid';
 import { IProps, HTMLInputProps } from '@uiw/utils';
 import { FormFieldsProps } from './Form';
-// import './style/form-item.less';
 import { FormStyleItem, LabelStyle, FormStyleHelpStyle, FormStyleRowStyle } from './style/item';
 
 export interface FormItemProps<T> extends IProps, HTMLInputProps {

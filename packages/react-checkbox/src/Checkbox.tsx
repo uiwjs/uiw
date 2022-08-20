@@ -2,7 +2,6 @@ import React from 'react';
 import { RadioAbstract, RadioAbstractProps } from '@uiw/react-radio';
 import { CheckboxGroup } from './Group';
 import { CheckboxStyleBase } from './style';
-// import './style/index.less';
 
 export interface CheckboxProps extends RadioAbstractProps {
   indeterminate?: boolean;

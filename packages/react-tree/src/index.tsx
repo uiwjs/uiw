@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import TreeNode from './TreeNode';
-// import './style/index.less';
 import { TreeNodeStyleWrap } from './style/index';
 export * from './style';
 

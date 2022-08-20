@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { IconProps } from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
-// import './style/item.less';
 import { MenuStyleItemBase, MenuItemStyleTextBase, MenuStyleItemIcon } from './style';
 
 const disabledProps = {

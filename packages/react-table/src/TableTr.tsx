@@ -4,7 +4,6 @@ import { MinusSquareO } from '@uiw/icons/lib/MinusSquareO';
 import { PlusSquareO } from '@uiw/icons/lib/PlusSquareO';
 import { LocationWidth, TableColumns, TableProps } from './';
 import { TableStyleCol, TableStyleColContent, TableStyleDomIcon } from './style';
-// import './style/index.less';
 import { noop } from '@uiw/utils';
 import { locationFixed } from './util';
 

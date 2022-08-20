@@ -5,7 +5,6 @@ import { TagProps } from '@uiw/react-tag';
 import Card from '@uiw/react-card';
 import Empty from '@uiw/react-empty';
 import { IProps } from '@uiw/utils';
-// import './style/index.less';
 import { DropdownWrap, DropdownDiv, DropdownDivTag, DropdownDivSpan, DropdownDivInput } from './style/index';
 
 const TagSize = { large: 25, default: 20, small: 17 };

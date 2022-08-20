@@ -1,7 +1,6 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { IconStyleBase } from '@uiw/react-icon';
-// import './style/index.less';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import { CircleCheck } from '@uiw/icons/lib/CircleCheck';
 import { Close } from '@uiw/icons/lib/Close';

@@ -1,7 +1,6 @@
 import React, { useMemo, useRef } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import { CheckGroupStyleBase } from './style';
-// import './style/group.less';
 
 export type Value = string | number;
 export interface CheckboxGroupPorps extends IProps, Omit<HTMLDivProps, 'onChange'> {

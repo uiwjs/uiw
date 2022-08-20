@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { AlertProps } from '@uiw/react-alert';
 import { randomid } from '@uiw/utils';
 import Container, { Placement, ContainerNotifys } from './Container';
-// import './style/index.less';
 
 export interface NotificationCreateProps extends Omit<AlertProps, 'type'> {
   placement?: Placement;

@@ -4,7 +4,6 @@ import { OverlayTriggerProps, OverlayTriggerRef } from '@uiw/react-overlay-trigg
 import { IProps } from '@uiw/utils';
 import { MenuItem, MenuItemProps, TagType } from './MenuItem';
 import Menu, { MenuProps } from './Menu';
-// import './style/submenu.less';
 import { SubItemCollapseIcon, MenuStyleSubOverlayTriggerBase } from './style';
 import { useMenuContext } from './hooks';
 export interface SubMenuProps<T extends TagType> extends IProps, MenuItemProps<T> {
