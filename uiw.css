@@ -30,6 +30,7 @@
 }
 .w-overlay-inline {
   position: absolute;
+  overflow: visible;
   overflow: initial;
 }
 .w-overlay-inline .w-overlay-container {
@@ -980,7 +981,9 @@ sup.w-badge-count {
   right: auto;
   bottom: auto;
   overflow: inherit;
+  width: auto;
   width: initial;
+  height: auto;
   height: initial;
 }
 .w-overlay.w-overlay-trigger .w-overlay-container {
@@ -1284,6 +1287,7 @@ sup.w-badge-count {
 }
 .w-timepicker-input .w-timepicker-close-btn {
   display: none;
+  min-height: 0;
   min-height: initial;
   color: #a5a5a5;
 }
@@ -1756,9 +1760,13 @@ sup.w-badge-count {
 .w-menu-subitem-collapse {
   transition: height 300ms;
   position: relative !important;
+  top: auto !important;
   top: initial !important;
+  left: auto !important;
   left: initial !important;
+  right: auto !important;
   right: initial !important;
+  bottom: auto !important;
   bottom: initial !important;
   width: auto !important;
   overflow: hidden !important;
@@ -1868,6 +1876,7 @@ sup.w-badge-count {
   color: rgba(255, 255, 255, 0.65);
 }
 .w-menu-dark.w-bordered {
+  box-shadow: none;
   box-shadow: initial;
 }
 .w-menu-dark .active {
@@ -3316,6 +3325,7 @@ a.w-list-item:hover:not(.w-disabled) {
   display: none !important;
 }
 .w-monthpicker .w-monthpicker-close-btn {
+  min-height: 0;
   min-height: initial;
   color: #a5a5a5;
   cursor: pointer;
@@ -4276,6 +4286,7 @@ a.w-list-item:hover:not(.w-disabled) {
   padding-top: 5px;
 }
 .w-steps-dot .w-steps-item-description {
+  max-width: none;
   max-width: initial;
 }
 .w-steps-dot .w-steps-item-error .w-steps-item-tail i:after {
@@ -4313,6 +4324,7 @@ a.w-list-item:hover:not(.w-disabled) {
 .w-steps-dot .w-steps-item-tail {
   padding: 0;
   width: 100%;
+  position: static;
   position: initial;
   height: 2px;
 }
@@ -4496,6 +4508,7 @@ a.w-list-item:hover:not(.w-disabled) {
 }
 .w-slider-vertical .w-slider-bar {
   width: 4px;
+  height: auto;
   height: initial;
 }
 .w-slider-vertical .w-slider-handle {
@@ -5000,6 +5013,7 @@ a.w-list-item:hover:not(.w-disabled) {
   display: none;
 }
 .w-tree-label {
+  line-height: normal;
   line-height: initial;
 }
 .w-tree-label > * {
