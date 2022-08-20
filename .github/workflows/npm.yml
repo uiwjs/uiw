@@ -2,7 +2,7 @@ name: Create Release & Push Package
 on:
   push:
     tags: 
-      - v*
+      - v4*
 
 jobs:
   build-deploy:
