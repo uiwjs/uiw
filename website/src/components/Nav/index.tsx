@@ -64,9 +64,9 @@ export default function Nav() {
           if (Object.keys(nav).includes(icon)) {
             icon = (nav as any)[icon];
           }
-          let newName = translation ? trans(`menu.${translation} `) : trans(`menu.${path} `);
+          let newName = translation ? trans(`menu.${translation}`) : trans(`menu.${path}`);
           if (/^\//.test(path)) {
-            newName = trans(`menu.${path} `);
+            newName = trans(`menu.${path}`);
           }
 
           if (/^https?:(?:\/\/)?/.test(path)) {
