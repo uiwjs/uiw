@@ -117,8 +117,8 @@ export default function Nav() {
           })}
         </div>
         <SearchSelect
-          size="small"
-          style={{ width: 200, top: 30, display: 'flex', alignItems: 'center', marginLeft: 5 }}
+          size="large"
+          style={{ width: 400, top: 30, display: 'flex', alignItems: 'center', marginLeft: 5 }}
           placeholder="搜索组件"
           showSearch={true}
           onSearch={onSearchMenu}
