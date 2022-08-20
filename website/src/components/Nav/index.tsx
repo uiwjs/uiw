@@ -1,5 +1,5 @@
-import { Fragment, useContext, ChangeEvent } from 'react';
-import { Tooltip } from 'uiw';
+import { Fragment, useContext, ChangeEvent, useMemo, useState } from 'react';
+import { SearchSelect, Tooltip } from 'uiw';
 import { NavLink, Link } from 'react-router-dom';
 import styles from './index.module.less';
 import { ThemeContext } from '../../contexts';
@@ -13,11 +13,29 @@ import data from '../../menu.json';
 export default function Nav() {
   const { state, dispatch } = useContext(ThemeContext);
   const { t: trans, i18n } = useTranslation();
+  const [searchText, setSearchText] = useState('');
   // eslint-disable-next-line react-hooks/exhaustive-deps
   // const data = useMemo(() => JSON.parse(trans('menu')), [i18n.language]);
+  const menuSearchOption = useMemo(() => {
+    const components = data.find((m) => m.path === '/components')?.children || [];
+    const option = [];
+    for (let i = 0; i < components.length; i++) {
+      const com = components[i];
+      const label = com.name;
+      if (label.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())) {
+        const item = { label, value: com.path || '' };
+        option.push(item);
+      }
+    }
+    return option;
+  }, [searchText, i18n.language]);
 
   const changeLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
     i18n.changeLanguage(e.target.value);
+  };
+
+  const onSearchMenu = (searchText: string) => {
+    setSearchText(searchText);
   };
 
   return (
@@ -31,15 +49,24 @@ export default function Nav() {
             </span>
           )}
         </Link>
+        <SearchSelect
+          style={{ width: 200, top: 30, display: 'flex', alignItems: 'center', marginLeft: 5 }}
+          placeholder="搜索组件"
+          showSearch={true}
+          onSearch={onSearchMenu}
+          value={searchText}
+          option={menuSearchOption}
+          onSelect={(value) => (window.location.href = `/#/components/${value}`)}
+        />
       </div>
       <div className={[styles.nav, state.layout === 'left' ? null : styles.navTop].filter(Boolean).join(' ').trim()}>
         {data.map(({ path, name, icon, translation }, idx: number) => {
           if (Object.keys(nav).includes(icon)) {
             icon = (nav as any)[icon];
           }
-          let newName = translation ? trans(`menu.${translation}`) : trans(`menu.${path}`);
+          let newName = translation ? trans(`menu.${translation} `) : trans(`menu.${path} `);
           if (/^\//.test(path)) {
-            newName = trans(`menu.${path}`);
+            newName = trans(`menu.${path} `);
           }
 
           if (/^https?:(?:\/\/)?/.test(path)) {
