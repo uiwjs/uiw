@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { ThemeVariantValueOptions, getThemeVariantValue, HTMLSpanProps } from '@uiw/utils';
 import { InputProps } from 'src';
-
+import { IconStyleBase } from '@uiw/react-icon';
 export const InputStyleTheme = {
   colorInputStyleBase: '#393e48',
   boxShadowColorInputHBase: 'rgba(19, 124, 189, 0)',
@@ -126,7 +126,7 @@ export const InputStyleWarp = styled.div<InputStyleBaseProps>`
     width: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'widthInputsDefault')};
   }
 
-  > .w-icon {
+  > ${IconStyleBase} {
     position: absolute;
     margin: 0 7px 0 7px;
     transform: translateY(-50%);

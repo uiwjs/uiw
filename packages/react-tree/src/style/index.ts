@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import { TreeRenderTitleNode, TreeProps } from '../index';
+import { IconStyleBase } from '@uiw/react-icon';
 
 export const TreeStyleTheme = {
   borderRadiusTreeNodeDefault: '0 0 0 3px',
@@ -90,7 +91,7 @@ export const TreeNodeStyleUlLidivSpan = styled.div<TreeNodeUlLidivProps>`
     color: ${(props) =>
       getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'colorTreeNodeUlLidivSpanDefault')};
   }
-  .w-icon {
+  ${IconStyleBase} {
     transition: 0.3s all;
     transform: ${(props) =>
       getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'transformTreeNodeUlLidivSpanDefault')};

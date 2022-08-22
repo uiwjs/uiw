@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import { ThemeVariantValueOptions, getThemeVariantValue, HTMLDivProps } from '@uiw/utils';
 import Overlay, { ContentWrap } from '@uiw/react-overlay';
 import { DrawerProps } from 'src';
+import { IconStyleBase } from '@uiw/react-icon';
 
 export const DrawerStyleTheme = {
   boxShadowColorInDrawerWrapper: 'rgba(16, 22, 26, 0.1)',
@@ -43,7 +44,7 @@ export const DrawerStyleHeaderWrap = styled.div<DrawerHeaderWrapProps>`
     border-radius: 5px 5px 0 0;
     box-shadow: 0 1px 0 ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorInDrawerHeader')};
     font-size: 16px;
-    > .w-icon {
+    > ${IconStyleBase} {
       margin-right: 10px;
       color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'colorHvDrawerHeader')};
     }

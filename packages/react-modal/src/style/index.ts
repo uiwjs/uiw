@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
+import { IconStyleBase } from '@uiw/react-icon';
 
 export const ModalStyleTheme = {
   fontSizeLarge: '16px',
@@ -35,7 +36,7 @@ export const ModalStyleHeader = styled.div<ModalStyleWrapProps>`
     box-shadow: 0 1px 0
       ${getThemeVariantValue({ ...props, defaultTheme: ModalStyleTheme }, 'boxShadowColorModalStyleHeaderBase')};
     font-size: ${getThemeVariantValue({ ...props, defaultTheme: ModalStyleTheme }, 'fontSizeLarge')};
-    > .w-icon {
+    > ${IconStyleBase} {
       margin-right: 10px;
       color: #393e48;
     }
