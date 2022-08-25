@@ -328,7 +328,6 @@ __webpack_require__.d(__webpack_exports__, {
   "Circle": () => (/* reexport */ Circle),
   "Col": () => (/* reexport */ Col),
   "Collapse": () => (/* reexport */ react_collapse_esm),
-  "ContextMenu": () => (/* reexport */ ContextMenu),
   "CopyToClipboard": () => (/* reexport */ CopyToClipboard),
   "DateInput": () => (/* reexport */ DateInput),
   "DateInputRange": () => (/* reexport */ DateInputRange),
@@ -4784,7 +4783,8 @@ var Menu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_r
     })
   }));
 });
-var ContextMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
+
+var InternalContextMenu = (props, ref) => {
   var [contextHeight, setContextHeight] = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useState({
     height: 0,
     ele: null
@@ -4797,7 +4797,9 @@ var ContextMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_reac
       ref: ref
     }))
   });
-});
+};
+
+var ContextMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(InternalContextMenu);
 Menu.displayName = 'uiw.Menu';
 ContextMenu.displayName = 'uiw.Menu';
 ContextMenu.Item = MenuItem;
