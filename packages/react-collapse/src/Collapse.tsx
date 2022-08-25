@@ -90,11 +90,13 @@ function InternalCollapse(props: CollapseProps, ref: React.ForwardedRef<HTMLDivE
   );
 }
 
-const Collapse = React.forwardRef<HTMLDivElement, CollapseProps>(InternalCollapse);
-type Collapse = typeof Collapse & {
+type CollapseComponent = React.FC<React.PropsWithRef<CollapseProps>> & {
   Panel: typeof Panel;
 };
 
-(Collapse as Collapse).Panel = Panel;
+const Collapse: CollapseComponent = React.forwardRef<HTMLDivElement>(InternalCollapse) as unknown as CollapseComponent;
 
-export default Collapse as Collapse;
+Collapse.displayName = 'Collapse';
+Collapse.Panel = Panel;
+
+export default Collapse;
