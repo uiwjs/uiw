@@ -6714,6 +6714,7 @@ var Form_excluded = ["prefixCls", "className", "fields", "children", "resetOnSub
 
 
 
+
 function newFormState(fields, cb) {
   var state = {
     initial: {},
@@ -6744,8 +6745,7 @@ function newInitialValue(value) {
 
 var isPromise = promise => promise && typeof promise.then === 'function';
 
-function Form(_ref, ref //| React.RefObject<FormRefType>,
-) {
+function Form(props, ref) {
   var {
     prefixCls = 'w-form',
     className,
@@ -6756,13 +6756,13 @@ function Form(_ref, ref //| React.RefObject<FormRefType>,
     onChange,
     onSubmit,
     afterSubmit
-  } = _ref,
-      others = _objectWithoutPropertiesLoose(_ref, Form_excluded);
+  } = props,
+      others = _objectWithoutPropertiesLoose(props, Form_excluded);
 
-  var initData = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => newFormState(fields, _ref2 => {
+  var initData = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => newFormState(fields, _ref => {
     var {
       initialValue
-    } = _ref2;
+    } = _ref;
     initialValue = newInitialValue(initialValue);
     return {
       initialValue,
@@ -6781,28 +6781,27 @@ function Form(_ref, ref //| React.RefObject<FormRefType>,
   var formUnits = {};
 
   for (var name in fields) {
-    var props = fields[name];
-    if (!props) continue;
+    var itemProps = fields[name];
+    if (!itemProps) continue;
     var error = data.errors[name];
 
-    if (typeof props.initialValue === 'boolean') {
-      props.checked = props.initialValue;
+    if (typeof itemProps.initialValue === 'boolean') {
+      itemProps.checked = itemProps.initialValue;
     }
 
-    var childField = controlField(_extends({}, props, {
+    var childField = controlField(_extends({}, itemProps, {
       name
     }));
-    var help = error || props.help;
-    var labelFor = props.labelFor;
-    formUnits[name] = /*#__PURE__*/(0,jsx_runtime.jsx)(FormItem, _extends({}, _extends({}, props, {
+    var help = error || itemProps.help;
+    var labelFor = itemProps.labelFor;
+    formUnits[name] = /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.createElement)(FormItem, _extends({}, itemProps, {
       key: name,
       children: childField,
-      help,
-      labelFor,
-      state: data,
-      name,
+      help: help,
+      labelFor: labelFor,
+      name: name,
       hasError: !!error
-    })));
+    }));
   }
 
   function setFields(fields) {
@@ -6919,10 +6918,10 @@ function Form(_ref, ref //| React.RefObject<FormRefType>,
 
     for (var _name in fields) {
       if (Object.prototype.hasOwnProperty.call(fields, _name)) {
-        var _props = fields[_name];
-        if (!_props) continue;
+        var fieldsProps = fields[_name];
+        if (!fieldsProps) continue;
 
-        if (_props.validator && _props.validator(current[_name])) {
+        if (fieldsProps.validator && fieldsProps.validator(current[_name])) {
           passesValidators = false;
           break;
         }
@@ -6939,8 +6938,8 @@ function Form(_ref, ref //| React.RefObject<FormRefType>,
 
     var initials = _extends({}, initial);
 
-    Object.entries(initials).map(_ref3 => {
-      var [key, value] = _ref3;
+    Object.entries(initials).map(_ref2 => {
+      var [key, value] = _ref2;
 
       if (Array.isArray(value)) {
         initials[key] = [...value];
@@ -6953,13 +6952,13 @@ function Form(_ref, ref //| React.RefObject<FormRefType>,
     }));
   }
 
-  function controlField(_ref4) {
+  function controlField(_ref3) {
     var {
       children,
       validator,
       name
-    } = _ref4,
-        other = _objectWithoutPropertiesLoose(_ref4, Form_excluded2);
+    } = _ref3,
+        other = _objectWithoutPropertiesLoose(_ref3, Form_excluded2);
 
     var element = typeof children !== 'function' ? children : children({
       onChange: handleChange(name, validator),
@@ -6976,7 +6975,7 @@ function Form(_ref, ref //| React.RefObject<FormRefType>,
     props.id = element.props.id;
     props.value = hasCurrentValue ? data.current && data.current[name] : props.value; // : element.props.value;
 
-    var type = element.props.type; // console.log('type', element)
+    var type = element.props.type;
 
     if (type === 'checkbox' || type === 'switch' || typeof props.value === 'boolean') {
       props.checked = !!props.value;
@@ -6987,10 +6986,9 @@ function Form(_ref, ref //| React.RefObject<FormRefType>,
     return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(element, props);
   }
 
-  return /*#__PURE__*/(0,jsx_runtime.jsx)("form", _extends({}, _extends({}, others, {
+  return /*#__PURE__*/(0,jsx_runtime.jsx)("form", _extends({}, others, {
     className: [prefixCls, className].filter(Boolean).join(' ').trim(),
-    onSubmit: handleSubmit
-  }), {
+    onSubmit: handleSubmit,
     children: /*#__PURE__*/(0,jsx_runtime.jsx)("fieldset", {
       disabled: data.submitting,
       children: typeof children === 'function' ? children({
