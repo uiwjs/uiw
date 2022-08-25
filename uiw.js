@@ -5574,6 +5574,7 @@ function InternalCollapse(props, ref) {
 }
 
 var Collapse = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(InternalCollapse);
+Collapse.displayName = 'Collapse';
 Collapse.Panel = Panel;
 /* harmony default export */ const esm_Collapse = (Collapse);
 
