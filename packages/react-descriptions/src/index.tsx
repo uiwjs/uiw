@@ -96,11 +96,14 @@ function InternalDescriptions(props: DescriptionsProps, ref: React.ForwardedRef<
   );
 }
 
-const Descriptions = React.forwardRef<HTMLDivElement, DescriptionsProps>(InternalDescriptions);
-type Descriptions = typeof Descriptions & {
+type DescriptionsComponent = React.FC<React.PropsWithRef<DescriptionsProps>> & {
   Item: typeof DescriptionsItem;
 };
 
-(Descriptions as Descriptions).Item = DescriptionsItem;
+const Descriptions: DescriptionsComponent = React.forwardRef<HTMLDivElement>(
+  InternalDescriptions,
+) as unknown as DescriptionsComponent;
 
-export default Descriptions as Descriptions;
+Descriptions.Item = DescriptionsItem;
+
+export default Descriptions;
