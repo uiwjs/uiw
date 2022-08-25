@@ -44,6 +44,6 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.21.14"
+    "@uiw/utils": "^4.21.15"
   }
 }
