@@ -8,7 +8,7 @@ export interface SelectProps extends IProps, Omit<React.SelectHTMLAttributes<HTM
   size?: 'large' | 'default' | 'small';
 }
 
-const InternalSelect = (props: SelectProps, ref?: React.LegacyRef<HTMLSelectElement>) => {
+const InternalSelect = (props: SelectProps, ref?: React.ForwardedRef<HTMLSelectElement>) => {
   const { prefixCls = 'w-select', className, size = 'default', ...other } = props;
   return (
     <select

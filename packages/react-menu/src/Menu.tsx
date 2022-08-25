@@ -71,24 +71,30 @@ export const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) =
   );
 });
 
-export const ContextMenu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
+const InternalContextMenu = (props: MenuProps, ref?: React.ForwardedRef<HTMLUListElement>) => {
   const [contextHeight, setContextHeight] = React.useState<MenuContextType>({ height: 0, ele: null });
   return (
     <ThemeContext.Provider value={{ ...contextHeight, setContextHeight }}>
       <Menu {...props} ref={ref} />
     </ThemeContext.Provider>
   );
-});
+};
+
+const ContextMenu: ContextMenuComponent = React.forwardRef<HTMLUListElement>(
+  InternalContextMenu,
+) as unknown as ContextMenuComponent;
+
 Menu.displayName = 'uiw.Menu';
 ContextMenu.displayName = 'uiw.Menu';
 
-type Menu = typeof Menu & {
+type ContextMenuComponent = React.FC<React.PropsWithRef<MenuProps>> & {
   Item: typeof MenuItem;
   SubMenu: typeof SubMenu;
   Divider: typeof MenuDivider;
 };
 
-(ContextMenu as Menu).Item = MenuItem;
-(ContextMenu as Menu).SubMenu = SubMenu;
-(ContextMenu as Menu).Divider = MenuDivider;
-export default ContextMenu as Menu;
+ContextMenu.Item = MenuItem;
+ContextMenu.SubMenu = SubMenu;
+ContextMenu.Divider = MenuDivider;
+
+export default ContextMenu;
