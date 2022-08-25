@@ -1,5 +1,5 @@
 import React from 'react';
-import { IProps, HTMLDivProps, noop } from '@uiw/utils';
+import { IProps, HTMLDivProps } from '@uiw/utils';
 import { ListItem } from './Item';
 import './style/index.less';
 
@@ -25,7 +25,7 @@ function InternalList<T>(props: ListProps<T>, ref: React.ForwardedRef<HTMLDivEle
     noHover = false,
     active = false,
     size = 'default',
-    renderItem = noop,
+    renderItem,
     className,
     children,
     header,
@@ -35,7 +35,7 @@ function InternalList<T>(props: ListProps<T>, ref: React.ForwardedRef<HTMLDivEle
   } = props;
   let items: React.ReactNode;
   if (dataSource && dataSource.length > 0) {
-    items = dataSource.map((item: any, index: number) => renderItem!(item, index));
+    items = dataSource.map((item: any, index: number) => renderItem && renderItem!(item, index));
   } else {
     items = children;
   }
@@ -68,11 +68,8 @@ function InternalList<T>(props: ListProps<T>, ref: React.ForwardedRef<HTMLDivEle
   );
 }
 
-const List = React.forwardRef<HTMLDivElement, ListProps<any>>(InternalList);
-type List = typeof List & {
-  Item: typeof ListItem;
-};
+type ListComponent = React.FC<React.PropsWithRef<ListProps<any>>> & { Item: typeof ListItem };
+const List: ListComponent = React.forwardRef<HTMLDivElement>(InternalList) as unknown as ListComponent;
+List.Item = ListItem;
 
-(List as List).Item = ListItem;
-
-export default List as List;
+export default List;
