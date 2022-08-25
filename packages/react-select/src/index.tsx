@@ -8,7 +8,7 @@ export interface SelectProps extends IProps, Omit<React.SelectHTMLAttributes<HTM
   size?: 'large' | 'default' | 'small';
 }
 
-const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
+const InternalSelect = (props: SelectProps, ref?: React.LegacyRef<HTMLSelectElement>) => {
   const { prefixCls = 'w-select', className, size = 'default', ...other } = props;
   return (
     <select
@@ -17,14 +17,15 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, ref) => 
       className={[prefixCls, className, size ? `${prefixCls}-${size}` : null].filter(Boolean).join(' ').trim()}
     />
   );
-});
+};
 
-type Select = typeof Select & {
+const Select: SelectComponent = React.forwardRef<HTMLSelectElement>(InternalSelect) as unknown as SelectComponent;
+type SelectComponent = React.FC<React.PropsWithRef<SelectProps>> & {
   Option: typeof Option;
   Group: typeof Group;
 };
 
-(Select as Select).Option = Option;
-(Select as Select).Group = Group;
+Select.Option = Option;
+Select.Group = Group;
 
-export default Select as Select;
+export default Select;
