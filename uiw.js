@@ -7867,7 +7867,8 @@ var react_select_esm_excluded = ["prefixCls", "className", "size"];
 
 
 
-var Select = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
+
+var InternalSelect = (props, ref) => {
   var {
     prefixCls = 'w-select',
     className,
@@ -7879,7 +7880,9 @@ var Select = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd
     ref: ref,
     className: [prefixCls, className, size ? prefixCls + "-" + size : null].filter(Boolean).join(' ').trim()
   }));
-});
+};
+
+var Select = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(InternalSelect);
 Select.Option = Option;
 Select.Group = Group;
 /* harmony default export */ const react_select_esm = (Select);
