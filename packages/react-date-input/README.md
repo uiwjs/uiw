@@ -120,10 +120,14 @@ function Demo(){
           <div>
             <Row>
               <Col style={{ width: 200 }} fixed>{fields.date}</Col>
-            </Row>
-            <Row style={{ width: 200 }} >
               <Col fixed>{fields.dateRange}</Col>
-              <Col fixed>{JSON.stringify(state)}</Col>
+            </Row>
+            <Row>
+              <Col style={{ overflow: 'auto', height: 130 }}>
+                <pre>
+                  {JSON.stringify(state, null, 2)}
+                </pre>
+              </Col>
             </Row>
             <Row gutter={10}>
               <Col>
