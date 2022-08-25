@@ -18,7 +18,7 @@ describe('<RadioGroup />', () => {
       expect(json.type).toBe('div');
       expect(json.props.className).toBe('w-radio-group');
       if (json.children) {
-        expect(json.children.length).toBe(2);
+        expect(json.children.length).toBe(1);
       }
     }
     expect(component.root.props.value).toBe('人妖');

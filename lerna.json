@@ -1,5 +1,4 @@
 {
   "packages": ["packages/*", "website"],
-  "version": "independent",
-  "useWorkspaces": true
+  "version": "independent"
 }
