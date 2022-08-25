@@ -7061,7 +7061,6 @@ var react_list_esm_excluded = ["prefixCls", "bordered", "striped", "noHover", "a
 
 
 
-
 function InternalList(props, ref) {
   var {
     prefixCls = 'w-list',
@@ -7070,7 +7069,7 @@ function InternalList(props, ref) {
     noHover = false,
     active = false,
     size = 'default',
-    renderItem = noop,
+    renderItem,
     className,
     children,
     header,
@@ -7082,7 +7081,7 @@ function InternalList(props, ref) {
   var items;
 
   if (dataSource && dataSource.length > 0) {
-    items = dataSource.map((item, index) => renderItem(item, index));
+    items = dataSource.map((item, index) => renderItem && renderItem(item, index));
   } else {
     items = children;
   }
