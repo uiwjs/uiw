@@ -3,7 +3,9 @@ import { IProps } from '@uiw/utils';
 import FormItem, { FormItemProps } from './FormItem';
 import './style/form.less';
 
-export interface FormProps<T> extends IProps, Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onChange' | 'onSubmit'> {
+export interface FormProps<T>
+  extends IProps,
+    Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onChange' | 'onSubmit' | 'children'> {
   prefixCls?: string;
   fields?: Record<string, FormFieldsProps<T>>;
   onSubmit?: (state: FormSubmitProps, event: React.FormEvent) => any;
@@ -11,7 +13,7 @@ export interface FormProps<T> extends IProps, Omit<React.FormHTMLAttributes<HTML
   onChange?: (state: FormState) => void;
   onSubmitError?: (evn: any) => any;
   resetOnSubmit?: boolean;
-  children?: ((handle: FormChildrenProps) => JSX.Element | undefined) | JSX.Element | undefined;
+  children?: (handle: FormChildrenProps) => JSX.Element;
 }
 
 export interface FormState {
@@ -21,9 +23,9 @@ export interface FormState {
   errors: Record<string, any>;
 }
 
-export interface FormFieldsProps<T> extends FormItemProps<T> {
+export interface FormFieldsProps<T> extends Omit<FormItemProps<T>, 'children'> {
   name?: string;
-  children?: React.ReactNode;
+  children?: (handle: FormChildrenProps) => JSX.Element;
   help?: React.ReactNode;
   labelFor?: string;
   inline?: boolean;
@@ -45,10 +47,12 @@ export interface FormAfterSubmitProps {
 }
 
 export interface FormChildrenProps {
-  fields: Record<string, React.ReactElement>;
-  resetForm: () => void;
-  canSubmit: () => boolean;
-  state: FormState;
+  onChange?: (env: React.BaseSyntheticEvent<HTMLInputElement>, list?: string[]) => void;
+  onSubmit?: (env: React.FormEvent) => void;
+  fields?: Record<string, React.ReactElement>;
+  resetForm?: () => void;
+  canSubmit?: () => boolean;
+  state?: FormState;
 }
 
 export type FormElementProps = {
@@ -59,7 +63,10 @@ export type FormElementProps = {
   onChange?: (env: React.BaseSyntheticEvent<HTMLInputElement>, list?: string[]) => void;
 };
 
-export type FormRefType = Record<'onSubmit' | 'resetForm' | 'getFieldValues' | 'setFields' | 'getError' | 'setFieldValue', Function>;
+export type FormRefType = Record<
+  'onSubmit' | 'resetForm' | 'getFieldValues' | 'setFields' | 'getError' | 'setFieldValue',
+  Function
+>;
 
 function newFormState<T>(
   fields: FormProps<T>['fields'],
@@ -90,8 +97,8 @@ function newInitialValue<T>(value: FormFieldsProps<T>['initialValue']) {
 
 const isPromise = (promise: Promise<any>) => promise && typeof promise.then === 'function';
 
-function Form<T>(
-  {
+function Form<T>(props: FormProps<T>, ref: React.ForwardedRef<FormRefType | undefined>) {
+  const {
     prefixCls = 'w-form',
     className,
     fields,
@@ -102,9 +109,7 @@ function Form<T>(
     onSubmit,
     afterSubmit,
     ...others
-  }: FormProps<T>,
-  ref: React.ForwardedRef<FormRefType | undefined>, //| React.RefObject<FormRefType>,
-) {
+  } = props;
   const initData = useMemo(
     () =>
       newFormState(fields, ({ initialValue }) => {
@@ -130,30 +135,25 @@ function Form<T>(
 
   const formUnits: FormChildrenProps['fields'] = {};
   for (const name in fields) {
-    const props = fields[name];
-    if (!props) continue;
+    const itemProps = fields[name];
+    if (!itemProps) continue;
     const error = data.errors[name];
-    if (typeof props.initialValue === 'boolean') {
-      props.checked = props.initialValue;
+    if (typeof itemProps.initialValue === 'boolean') {
+      itemProps.checked = itemProps.initialValue;
     }
-    const childField: FormFieldsProps<T> = controlField({
-      ...props,
-      name,
-    });
-    const help = error || props.help;
-    const labelFor = props.labelFor;
+    const childField: any = controlField({ ...itemProps, name });
+    const help = error || itemProps.help;
+    const labelFor = itemProps.labelFor;
+
     formUnits[name] = (
       <FormItem
-        {...{
-          ...props,
-          key: name,
-          children: childField,
-          help,
-          labelFor,
-          state: data,
-          name,
-          hasError: !!error,
-        }}
+        {...itemProps}
+        key={name}
+        children={childField}
+        help={help}
+        labelFor={labelFor}
+        name={name}
+        hasError={!!error}
       />
     );
   }
@@ -239,9 +239,9 @@ function Form<T>(
     let passesValidators = true;
     for (const name in fields) {
       if (Object.prototype.hasOwnProperty.call(fields, name)) {
-        const props: FormFieldsProps<T> = fields[name];
-        if (!props) continue;
-        if (props.validator && props.validator(current[name])) {
+        const fieldsProps: FormFieldsProps<T> = fields[name];
+        if (!fieldsProps) continue;
+        if (fieldsProps.validator && fieldsProps.validator(current[name])) {
           passesValidators = false;
           break;
         }
@@ -293,7 +293,6 @@ function Form<T>(
     // : element.props.value;
 
     const type = element.props.type;
-    // console.log('type', element)
     if (type === 'checkbox' || type === 'switch' || typeof props.value === 'boolean') {
       props.checked = !!props.value;
       delete props.value;
@@ -303,13 +302,7 @@ function Form<T>(
   }
 
   return (
-    <form
-      {...{
-        ...others,
-        className: [prefixCls, className].filter(Boolean).join(' ').trim(),
-        onSubmit: handleSubmit,
-      }}
-    >
+    <form {...others} className={[prefixCls, className].filter(Boolean).join(' ').trim()} onSubmit={handleSubmit}>
       <fieldset {...{ disabled: data.submitting }}>
         {typeof children === 'function'
           ? children({
