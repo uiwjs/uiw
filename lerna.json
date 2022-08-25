@@ -1,21 +1,5 @@
 {
   "packages": ["packages/*", "website"],
   "version": "independent",
-  "command": {
-    "publish": {
-      "ignoreChanges": ["*.md", "*.test.js", "*.test.tsx"]
-    },
-    "create": {
-      "license": "MIT",
-      "author": "kenny wang <wowohoo@qq.com>",
-      "repository": {
-        "type": "git",
-        "url": "https://github.com/uiwjs/uiw.git"
-      }
-    },
-    "bootstrap": {
-      "yarnClientArgs": ["--no-yarn-lock", "--no-package-lock"],
-      "forceLocal": true
-    }
-  }
+  "useWorkspaces": true
 }
