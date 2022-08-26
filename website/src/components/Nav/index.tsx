@@ -11,24 +11,33 @@ import { useTranslation } from 'react-i18next';
 import data from '../../menu.json';
 
 export default function Nav() {
-  const { state, dispatch } = useContext(ThemeContext);
+  const { state } = useContext(ThemeContext);
   const { t: trans, i18n } = useTranslation();
   const [searchText, setSearchText] = useState('');
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   // const data = useMemo(() => JSON.parse(trans('menu')), [i18n.language]);
   const menuSearchOption = useMemo(() => {
+    const pre = `menu./componentsChildren.`;
+    const preDivider = `menu.divider.`;
     const components = data.find((m) => m.path === '/components')?.children || [];
     const option = [];
     for (let i = 0; i < components.length; i++) {
       const com = components[i];
       const label = com.name;
       if (com.path && label.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())) {
-        const item = { label, value: com.path || '' };
+        let newName = com.name;
+        let newPre = com.divider ? preDivider : pre;
+        if (com.path || com.translation) {
+          newName = com.translation ? trans(`${newPre}${com.translation}`) : trans(`${newPre}${com.path}`);
+        }
+        console.log(newName);
+        const item = { label: newName, value: com.path || '' };
         option.push(item);
       }
     }
     return option;
-  }, [searchText, i18n.language]);
+  }, [searchText, trans]);
 
   const changeLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
     i18n.changeLanguage(e.target.value);
