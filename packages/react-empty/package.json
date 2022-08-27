@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-empty",
-  "version": "5.0.0-bate-1",
+  "version": "5.0.0-bate-2",
   "description": "Empty component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/empty",
@@ -45,6 +45,6 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/utils": "^5.0.0-bate-1"
+    "@uiw/utils": "^5.0.0-bate-2"
   }
 }
