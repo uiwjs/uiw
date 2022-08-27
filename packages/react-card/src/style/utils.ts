@@ -1,6 +1,7 @@
 import { css } from 'styled-components';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
-import { CardStyleTheme } from './index';
+import { CardStyleTheme } from './theme';
+
 type ThemeVar = ThemeVariantValueOptions<typeof CardStyleTheme>;
 const propsTheme = {
   defaultTheme: { ...CardStyleTheme },
@@ -14,6 +15,7 @@ const getHoverOrActive = (props: CardStyleWarpProps) => css`
   box-shadow: 0 1px 6px ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorBaseActive')};
   border-color: ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorBaseActive')};
 `;
+console.log('333', CardStyleTheme, getThemeVariantValue({ ...propsTheme }, 'borderColorBaseActive'));
 
 export const getNoHover = (props: CardStyleWarpProps) => {
   if (!props.noHover) {
