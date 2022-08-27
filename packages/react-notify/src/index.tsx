@@ -3,7 +3,11 @@ import ReactDOM from 'react-dom';
 import { AlertProps } from '@uiw/react-alert';
 import { randomid } from '@uiw/utils';
 import Container, { Placement, ContainerNotifys } from './Container';
-
+import { CircleCheck } from '@uiw/icons/lib/CircleCheck';
+import { Warning } from '@uiw/icons/lib/Warning';
+import { Information } from '@uiw/icons/lib/Information';
+import { CircleClose } from '@uiw/icons/lib/CircleClose';
+import { IconStyleBase } from '@uiw/react-icon';
 export interface NotificationCreateProps extends Omit<AlertProps, 'type'> {
   placement?: Placement;
   description?: React.ReactNode;
@@ -32,16 +36,32 @@ function NotificationCreate(props: NotificationCreateProps, type: NotificationCr
   if (!props.icon && props.icon !== null) {
     switch (props.type) {
       case 'success':
-        props.icon = 'circle-check';
+        props.icon = (
+          <IconStyleBase>
+            <CircleCheck />
+          </IconStyleBase>
+        );
         break;
       case 'warning':
-        props.icon = 'warning';
+        props.icon = (
+          <IconStyleBase>
+            <Warning />
+          </IconStyleBase>
+        );
         break;
       case 'info':
-        props.icon = 'information';
+        props.icon = (
+          <IconStyleBase>
+            <Information />
+          </IconStyleBase>
+        );
         break;
       case 'error':
-        props.icon = 'circle-close';
+        props.icon = (
+          <IconStyleBase>
+            <CircleClose />
+          </IconStyleBase>
+        );
         break;
       default:
         break;

@@ -26,6 +26,7 @@ const typeVariant = (type: ButtonType, color: string | number) => {
   return css`
     ${ModalStyleHeader} > ${IconStyleBase} {
       color: ${color};
+      fill: ${color};
     }
   `;
 };
