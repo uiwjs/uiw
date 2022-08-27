@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-table",
-  "version": "5.0.0-bate-0",
+  "version": "5.0.0-bate-1",
   "description": "Table component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/table",
@@ -45,7 +45,7 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/react-icon": "^5.0.0-bate-0",
-    "@uiw/utils": "^5.0.0-bate-0"
+    "@uiw/react-icon": "^5.0.0-bate-1",
+    "@uiw/utils": "^5.0.0-bate-1"
   }
 }

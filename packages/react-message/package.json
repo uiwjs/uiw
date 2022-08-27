@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-message",
-  "version": "5.0.0-bate-0",
+  "version": "5.0.0-bate-1",
   "description": "Message component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/message",
@@ -45,9 +45,9 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/react-button": "^5.0.0-bate-0",
-    "@uiw/react-icon": "^5.0.0-bate-0",
-    "@uiw/utils": "^5.0.0-bate-0",
+    "@uiw/react-button": "^5.0.0-bate-1",
+    "@uiw/react-icon": "^5.0.0-bate-1",
+    "@uiw/utils": "^5.0.0-bate-1",
     "react-transition-group": "~4.4.5"
   }
 }
