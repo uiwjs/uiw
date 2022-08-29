@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.e615d578.css",
-    "main.js": "/static/js/main.56929b91.js",
+    "main.js": "/static/js/main.824fb4ca.js",
     "static/css/9200.14abaeb3.chunk.css": "/static/css/9200.14abaeb3.chunk.css",
     "static/js/9200.0a1f7353.chunk.js": "/static/js/9200.0a1f7353.chunk.js",
     "static/css/6730.a49ca83e.chunk.css": "/static/css/6730.a49ca83e.chunk.css",
@@ -223,11 +223,11 @@
     "vendors-runtime-helpers.js": "/static/js/vendors-runtime-helpers.bd776423.js",
     "vendors-standalone.js": "/static/js/vendors-standalone.457dd336.chunk.js",
     "vendors-react.js": "/static/js/vendors-react.a09f50fb.js",
-    "static/js/4505.541dfa8b.chunk.js": "/static/js/4505.541dfa8b.chunk.js",
-    "static/js/2784.03a44aed.js": "/static/js/2784.03a44aed.js",
+    "static/js/4505.127ecd1b.chunk.js": "/static/js/4505.127ecd1b.chunk.js",
+    "static/js/4933.47aee11b.js": "/static/js/4933.47aee11b.js",
     "index.html": "/index.html",
     "main.e615d578.css.map": "/static/css/main.e615d578.css.map",
-    "main.56929b91.js.map": "/static/js/main.56929b91.js.map",
+    "main.824fb4ca.js.map": "/static/js/main.824fb4ca.js.map",
     "9200.14abaeb3.chunk.css.map": "/static/css/9200.14abaeb3.chunk.css.map",
     "9200.0a1f7353.chunk.js.map": "/static/js/9200.0a1f7353.chunk.js.map",
     "6730.a49ca83e.chunk.css.map": "/static/css/6730.a49ca83e.chunk.css.map",
@@ -449,14 +449,14 @@
     "vendors-runtime-helpers.bd776423.js.map": "/static/js/vendors-runtime-helpers.bd776423.js.map",
     "vendors-standalone.457dd336.chunk.js.map": "/static/js/vendors-standalone.457dd336.chunk.js.map",
     "vendors-react.a09f50fb.js.map": "/static/js/vendors-react.a09f50fb.js.map",
-    "4505.541dfa8b.chunk.js.map": "/static/js/4505.541dfa8b.chunk.js.map",
-    "2784.03a44aed.js.map": "/static/js/2784.03a44aed.js.map"
+    "4505.127ecd1b.chunk.js.map": "/static/js/4505.127ecd1b.chunk.js.map",
+    "4933.47aee11b.js.map": "/static/js/4933.47aee11b.js.map"
   },
   "entrypoints": [
     "static/js/vendors-runtime-helpers.bd776423.js",
     "static/js/vendors-react.a09f50fb.js",
-    "static/js/2784.03a44aed.js",
+    "static/js/4933.47aee11b.js",
     "static/css/main.e615d578.css",
-    "static/js/main.56929b91.js"
+    "static/js/main.824fb4ca.js"
   ]
 }
