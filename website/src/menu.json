@@ -89,6 +89,14 @@
         "name": "Markdown Preview",
         "path": "https://uiwjs.github.io/react-markdown-preview/"
       },
+      {
+        "name": "Keywords",
+        "path": "https://uiwjs.github.io/react-keywords"
+      },
+      {
+        "name": "Only When",
+        "path": "https://uiwjs.github.io/react-only-when"
+      },
       { "divider": true, "name": "导航" },
       { "name": "Affix 图钉", "path": "affix" },
       { "name": "Breadcrumb 面包屑", "path": "breadcrumb" },
@@ -97,6 +105,10 @@
       { "name": "Pagination 分页", "path": "pagination" },
       { "name": "Steps 步骤条", "path": "steps" },
       { "name": "Tabs 标签页", "path": "tabs" },
+      {
+        "name": "Tabs Draggable",
+        "path": "https://uiwjs.github.io/react-tabs-draggable"
+      },
       { "divider": true, "name": "反馈" },
       { "name": "Overlay 基础弹出层", "path": "overlay" },
       { "name": "OverlayTrigger 基础弹出触发", "path": "overlay-trigger" },
@@ -139,13 +151,45 @@
         "name": "MonacoEditor 代码编辑器",
         "path": "https://jaywcjlove.github.io/react-monacoeditor/"
       },
-      { "divider": true, "name": "其它" },
+      {
+        "name": "Code Preview Layout",
+        "path": "https://uiwjs.github.io/react-code-preview-layout"
+      },
       { "name": "BackTop 返回顶部", "path": "back-top" },
+      { "divider": true, "name": "其它" },
+      {
+        "name": "BackToTop 返回顶部",
+        "path": "https://uiwjs.github.io/react-back-to-top"
+      },
       { "name": "CopyToClipboard 复制", "path": "copy-to-clipboard" },
       { "name": "Portal 入口", "path": "portal" },
       {
         "name": "Github Corners",
         "path": "https://uiwjs.github.io/react-github-corners/"
+      },
+      {
+        "name": "Prismjs",
+        "path": "https://uiwjs.github.io/react-prismjs"
+      },
+      {
+        "name": "Clock",
+        "path": "https://uiwjs.github.io/react-clock"
+      },
+      {
+        "name": "Mac Keyboard",
+        "path": "https://uiwjs.github.io/react-mac-keyboard/"
+      },
+      {
+        "name": "Domain Verify",
+        "path": "https://uiwjs.github.io/react-domain-verify"
+      },
+      {
+        "name": "Shields",
+        "path": "https://uiwjs.github.io/react-shields"
+      },
+      {
+        "name": "Codepen",
+        "path": "https://uiwjs.github.io/react-codepen/"
       },
       {
         "name": "Only When",
