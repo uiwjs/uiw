@@ -156,11 +156,11 @@
         "path": "https://uiwjs.github.io/react-code-preview-layout"
       },
       { "name": "BackTop 返回顶部", "path": "back-top" },
-      { "divider": true, "name": "其它" },
       {
         "name": "BackToTop 返回顶部",
         "path": "https://uiwjs.github.io/react-back-to-top"
       },
+      { "divider": true, "name": "其它" },
       { "name": "CopyToClipboard 复制", "path": "copy-to-clipboard" },
       { "name": "Portal 入口", "path": "portal" },
       {
