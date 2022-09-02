@@ -210,12 +210,29 @@ ReactDOM.render(
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
+import React,{ useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { Form, Row, Col, Icon } from 'uiw';
+import { Form, Row, Col, Icon,FileInput,Button } from 'uiw';
 
-ReactDOM.render(
-  <div>
+function Demo() {
+  const form = useRef()
+  return <div>
+    <Button
+      type="danger" 
+      onClick={()=>{
+        const value =  form.current.getFieldValues()
+        form.current.setFields({
+          ...value,
+          picture1:[],
+          picture2:[],
+          picture3:[]
+        })
+      }}
+    > 
+      清空照片
+    </Button>
     <Form
+      ref={form}
       onSubmit={({initial, current}) => {
          console.log('current',current)
       }}
@@ -283,9 +300,9 @@ ReactDOM.render(
         )
       }}
     </Form>
-  </div>,
-  _mount_
-);
+  </div>
+}
+ReactDOM.render(<Demo />,_mount_)
 ```
 
 ## Props
