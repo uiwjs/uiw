@@ -199,12 +199,28 @@ export default Demo
 ### 在`Form`表单中使用
 
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
-import React from 'react';
+import React,{useRef} from 'react';
 import { Form, Row, Col, Icon,FileInput,Button } from 'uiw';
 
 function Demo() {
+  const form = useRef()
   return <div>
+  <Button
+    type="danger" 
+    onClick={()=>{
+      const value =  form.current.getFieldValues()
+      form.current.setFields({
+        ...value,
+        picture1:[],
+        picture2:[],
+        picture3:[]
+      })
+    }}
+  >
+    清空照片
+  </Button>
     <Form
+      ref={form}
       onSubmit={({initial, current}) => {
          console.log('current',current)
       }}
