@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import {
-  DatePickerCaptionPane,
-  DatePickerCaptionToday,
-  DatePickerCaptionBase,
-  DatePickerCaptionPaneYear,
-  DatePickerCaptionPaneMonth,
+  DatePickerStyleCaptionPane,
+  DatePickerStyleCaptionToday,
+  DatePickerStyleCaptionBase,
+  DatePickerStyleCaptionPaneYear,
+  DatePickerStyleCaptionPaneMonth,
 } from './style/caption';
 export * from './style/caption';
 function classnames(...arg: (string | null | undefined)[]) {
@@ -37,36 +37,36 @@ export function DatePickerCaption(props: DatePickerCaptionProps) {
     return (monthLabel && monthLabel[month]) || month + 1;
   }, [panelDate.toDateString(), monthLabel]);
   return (
-    <DatePickerCaptionBase className={classnames(prefixCls ? `${prefixCls}-caption` : null, className)} {...other}>
-      <DatePickerCaptionPane
+    <DatePickerStyleCaptionBase className={classnames(prefixCls ? `${prefixCls}-caption` : null, className)} {...other}>
+      <DatePickerStyleCaptionPane
         className={classnames(prefixCls ? `${prefixCls}-caption-pane` : null, 'prev')}
         onClick={() => onSelected('prev')}
         prev
       />
-      <DatePickerCaptionPaneMonth
+      <DatePickerStyleCaptionPaneMonth
         className={classnames(prefixCls ? `${prefixCls}-caption-pane` : null, 'month')}
         onClick={() => onSelected('month')}
       >
         {renderMonth}
-      </DatePickerCaptionPaneMonth>
-      <DatePickerCaptionPaneYear
+      </DatePickerStyleCaptionPaneMonth>
+      <DatePickerStyleCaptionPaneYear
         className={classnames(prefixCls ? `${prefixCls}-caption-pane` : null, 'year')}
         onClick={() => onSelected('year')}
       >
         {panelDate!.getFullYear()}
-      </DatePickerCaptionPaneYear>
+      </DatePickerStyleCaptionPaneYear>
       {todayButton && (
-        <DatePickerCaptionToday
+        <DatePickerStyleCaptionToday
           className={classnames(prefixCls ? `${prefixCls}-caption-today` : null)}
           onClick={() => onSelected('today')}
           title={todayButton}
         />
       )}
-      <DatePickerCaptionPane
+      <DatePickerStyleCaptionPane
         className={classnames(prefixCls ? `${prefixCls}-caption-pane` : null, 'next')}
         onClick={() => onSelected('next')}
         next
       />
-    </DatePickerCaptionBase>
+    </DatePickerStyleCaptionBase>
   );
 }

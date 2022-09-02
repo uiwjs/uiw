@@ -1,6 +1,6 @@
 import React from 'react';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
-import { DatePickerYearMonthWarp, DatePickerYearMonthSelect } from './style/year-month';
+import { DatePickerStyleYearMonthWarp, DatePickerStyleYearMonthSelect } from './style/year-month';
 export * from './style/year-month';
 
 export interface DatePickerMonthProps extends IProps, HTMLDivProps {
@@ -19,7 +19,7 @@ export function DatePickerMonth(props: DatePickerMonthProps) {
     ...other
   } = props;
   return (
-    <DatePickerYearMonthWarp
+    <DatePickerStyleYearMonthWarp
       className={[prefixCls ? `${prefixCls}-month` : null, className].filter(Boolean).join(' ').trim()}
       {...other}
       isYear={false}
@@ -27,16 +27,16 @@ export function DatePickerMonth(props: DatePickerMonthProps) {
       {[...Array(12)].map((_, idx) => {
         const selectedMonth = panelDate!.getMonth();
         return (
-          <DatePickerYearMonthSelect
+          <DatePickerStyleYearMonthSelect
             selected={selectedMonth === idx}
             paging={false}
             key={idx}
             className={[selectedMonth === idx ? 'selected' : null].filter(Boolean).join(' ').trim()}
           >
             <span onClick={() => onSelected(idx, false)}>{(monthLabel && monthLabel[idx]) || idx}</span>
-          </DatePickerYearMonthSelect>
+          </DatePickerStyleYearMonthSelect>
         );
       })}
-    </DatePickerYearMonthWarp>
+    </DatePickerStyleYearMonthWarp>
   );
 }

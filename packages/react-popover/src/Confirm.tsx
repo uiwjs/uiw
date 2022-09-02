@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Popover, { PopoverProps } from './';
-import './style/index.less';
 import Button from '@uiw/react-button';
 import Icon from '@uiw/react-icon';
 

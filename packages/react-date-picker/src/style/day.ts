@@ -1,36 +1,25 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions, HTMLDivProps } from '@uiw/utils';
 import { DatePickerDayRenderDay } from './../index';
-
-export interface DatePickerBodyWarpProps extends ThemeVariantValueOptions, HTMLDivProps {}
-export const DatePickerBodyWarp = styled.div<DatePickerBodyWarpProps>`
+import { DatePickerStyleTheme } from './theme';
+const propsTheme = {
+  defaultTheme: { ...DatePickerStyleTheme },
+};
+export interface DatePickerStyleBodyWarpProps
+  extends ThemeVariantValueOptions<typeof DatePickerStyleTheme>,
+    HTMLDivProps {}
+export const DatePickerStyleBodyWarp = styled.div<DatePickerStyleBodyWarpProps>`
   padding-top: 5px;
 `;
 
-export interface DatePickerWeekProps extends ThemeVariantValueOptions, HTMLDivProps {
+export interface DatePickerStyleWeekProps extends ThemeVariantValueOptions<typeof DatePickerStyleTheme>, HTMLDivProps {
   cls?: DatePickerDayRenderDay;
 }
-export interface DatePickerWeekBaseProps extends ThemeVariantValueOptions, HTMLDivProps {}
+export interface DatePickerStyleWeekBaseProps
+  extends ThemeVariantValueOptions<typeof DatePickerStyleTheme>,
+    HTMLDivProps {}
 
-export const DatePickerWeekDefaultTheme = {
-  // 公共
-  backgroundColorPrimary: '#008ef0',
-  colorPrimary: '#fff',
-  backgroundColorPrimaryDisabled: '#57baff',
-  backgroundColorDatePickerTodayDisabled: 'rgba(189, 189, 189, 0.47)',
-  // 组件内部
-  colorDatePickerDayTodayBase: '#d3d3d3',
-  backgroundColorDatePickerBaseHover: '#eaeaea',
-  backgroundColorDatePickerDayDisabled: '#f5f5f5',
-  backgroundColorDatePickerActive: '#d2d2d2',
-  colorDatePickerDayHover: '#393e48',
-};
-
-export const DatePickerWeekBaseDefaultTheme = {
-  colorDatePickerDayEnd: '#6f6f6f',
-};
-
-export const DatePickerWeekBase = styled.div<DatePickerWeekBaseProps>`
+export const DatePickerStyleWeekBase = styled.div<DatePickerStyleWeekBaseProps>`
   display: flex;
   width: 100%;
   & > div,
@@ -43,16 +32,16 @@ export const DatePickerWeekBase = styled.div<DatePickerWeekBaseProps>`
     text-align: center;
   }
   & > div.end {
-    color: ${(props) => getThemeVariantValue(props, 'colorDatePickerDayEnd')};
+    color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorDatePickerDayEnd')};
   }
 `;
-export const DatePickerWeekDay = styled(DatePickerWeekBase)`
+export const DatePickerStyleWeekDay = styled(DatePickerStyleWeekBase)`
   & > div {
     font-weight: bold;
   }
 `;
 
-export const DatePickerWeek = styled(DatePickerWeekBase)<DatePickerWeekProps>`
+export const DatePickerStyleWeek = styled(DatePickerStyleWeekBase)<DatePickerStyleWeekProps>`
   & {
     border-radius: 3px;
     cursor: pointer;
@@ -60,7 +49,7 @@ export const DatePickerWeek = styled(DatePickerWeekBase)<DatePickerWeekProps>`
       (props.cls?.prev || props.cls?.next) &&
       css`
         & {
-          color: ${(props) => getThemeVariantValue(props, 'colorDatePickerDayTodayBase')};
+          color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorDatePickerDayTodayBase')};
         }
       `}
     & > div {
@@ -73,7 +62,8 @@ export const DatePickerWeek = styled(DatePickerWeekBase)<DatePickerWeekProps>`
       props.cls?.today &&
       css`
         & > div {
-          background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorDatePickerBaseHover')};
+          background-color: ${(props) =>
+            getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorDatePickerBaseHover')};
         }
       `}
     ${(props) =>
@@ -82,18 +72,20 @@ export const DatePickerWeek = styled(DatePickerWeekBase)<DatePickerWeekProps>`
         &,
         &&:hover {
           > div {
-            color: ${(props) => getThemeVariantValue(props, 'colorPrimary')};
-            background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorPrimary')};
+            color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorPrimary')};
+            background-color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorPrimary')};
           }
         }
       `}
   
     &:hover > div {
-      background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorDatePickerBaseHover')};
-      color: ${(props) => getThemeVariantValue(props, 'colorDatePickerDayHover')};
+      background-color: ${(props) =>
+        getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorDatePickerBaseHover')};
+      color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorDatePickerDayHover')};
     }
     &:active > div {
-      background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorDatePickerActive')};
+      background-color: ${(props) =>
+        getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorDatePickerActive')};
     }
     ${(props) =>
       props.cls?.disabled &&
@@ -101,34 +93,30 @@ export const DatePickerWeek = styled(DatePickerWeekBase)<DatePickerWeekProps>`
         &,
         &&:hover {
           & > div {
-            color: ${(props) => getThemeVariantValue(props, 'colorDatePickerDayTodayBase')};
+            color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorDatePickerDayTodayBase')};
             cursor: not-allowed;
-            background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorDatePickerDayDisabled')};
+            background-color: ${(props) =>
+              getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorDatePickerDayDisabled')};
           }
           ${() =>
             props.cls?.today &&
             css`
               & > div {
-                background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorDatePickerTodayDisabled')};
-                color: ${(props) => getThemeVariantValue(props, 'colorPrimary')};
+                background-color: ${(props) =>
+                  getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorDatePickerTodayDisabled')};
+                color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorPrimary')};
               }
             `}
           ${() =>
             props.cls?.selected &&
             css`
               & > div {
-                background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorPrimaryDisabled')};
-                color: ${(props) => getThemeVariantValue(props, 'colorPrimary')};
+                background-color: ${(props) =>
+                  getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorPrimaryDisabled')};
+                color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorPrimary')};
               }
             `}
         }
       `}
   }
 `;
-
-DatePickerWeekBase.defaultProps = {
-  defaultTheme: DatePickerWeekDefaultTheme,
-};
-DatePickerWeek.defaultProps = {
-  defaultTheme: DatePickerWeekDefaultTheme,
-};

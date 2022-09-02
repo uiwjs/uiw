@@ -1,6 +1,6 @@
 import React from 'react';
 import { IProps, HTMLSpanProps } from '@uiw/utils';
-import { BadgeWarp, BadgeColorDot, BadgeSupCountDot } from './style';
+import { BadgeStyleWarp, BadgeStyleColorDot, BadgeStyleSupCountDotBase } from './style';
 
 export interface BadgeProps extends IProps, HTMLSpanProps {
   color?: string;
@@ -45,16 +45,17 @@ export default React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
     warpperProps.style = style || {};
   }
   return (
-    <BadgeWarp className={cls} {...other} {...warpperProps} ref={ref}>
+    <BadgeStyleWarp className={cls} {...other} {...warpperProps} ref={ref}>
+      <span></span>
       {color && (
-        <BadgeColorDot className={`${prefixCls}-dot`} processing={processing} style={{ backgroundColor: color }} />
+        <BadgeStyleColorDot className={`${prefixCls}-dot`} processing={processing} style={{ backgroundColor: color }} />
       )}
       {children}
       {count !== 0 && !color && (
-        <BadgeSupCountDot {...supProps} dot={dot} nowrap={!children}>
+        <BadgeStyleSupCountDotBase {...supProps} dot={dot} nowrap={!children}>
           {!dot && count && max && count > max ? `${max}+` : count}
-        </BadgeSupCountDot>
+        </BadgeStyleSupCountDotBase>
       )}
-    </BadgeWarp>
+    </BadgeStyleWarp>
   );
 });

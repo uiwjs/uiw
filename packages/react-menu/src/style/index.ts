@@ -1,31 +1,55 @@
 import styled, { css } from 'styled-components';
-import { MenuItemProps } from '../';
 import Icon, { IconProps } from '@uiw/react-icon';
 import OverlayTrigger, { OverlayTriggerProps } from '@uiw/react-overlay-trigger';
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
+
+export const MenuStyleTheme = {
+  backgroundColorMenuBase: 'rgba(167, 182, 194, 0.3)',
+  backgroundColorMenuActive: 'rgba(115, 134, 148, 0.3)',
+  colorMenuStyleItemIconDisabled: 'rgba(92, 112, 128, 0.5)',
+  colorMenuStyleItemIconDark: 'rgba(142, 142, 142, 0.79)',
+  colorMenuStyleItemIconDarkActive: '#fff',
+
+  colorMenuStyleBaseLight: '#182026',
+  backgroundMenuStyleBaseLight: '#fff',
+  boxShadowMenuStyleBaseBordered:
+    ' 0 0 0 1px rgba(16, 22, 26, 0.1), 0 0 0 rgba(16, 22, 26, 0), 0 1px 1px rgba(16, 22, 26, 0.2);',
+  colorMenuStyleItemBaseLightHover: '#008ef0',
+  colorMenuStyleItemBaseHover: '#fff',
+  borderTopColorMenuDividerBase: 'rgba(16, 22, 26, 0.15)',
+  colorMenuStyleBaseDark: 'rgba(255, 255, 255, 0.65)',
+  backgroundColorMenuStyleBaseDark: '#343a40',
+  borderTopColorMenuDividerBaseDark: 'rgba(255, 255, 255, 0.2)',
+};
+
+type ThemeVar = ThemeVariantValueOptions<typeof MenuStyleTheme>;
 
 export interface MenuDividerBaseProps
-  extends React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement> {}
+  extends React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement | ThemeVar>, HTMLLIElement> {}
 
 export const MenuDividerBase = styled.li<MenuDividerBaseProps>``;
 
-export interface MenuItemBaseProps extends MenuItemProps<'a'> {
+// export interface MenuStyleItemBaseProps extends Omit<MenuItemProps<'a'>, 'theme'>, ThemeVar {
+export interface MenuStyleItemBaseProps
+  extends React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>,
+    ThemeVar {
   params?: {
     theme?: 'dark' | 'light';
     active?: boolean;
     disabled?: boolean;
   };
 }
-export const MenuItemIcon = styled(Icon)<IconProps>``;
+export const MenuStyleItemIcon = styled(Icon)<IconProps>``;
 
-export interface MenuItemTextBaseProps
-  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface MenuItemStyleTextBaseProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement | ThemeVar>, HTMLDivElement> {
   params?: {
     multiline?: boolean;
     isText?: boolean;
   };
 }
 
-export const MenuItemTextBase = styled.div<MenuItemTextBaseProps>`
+export const MenuItemStyleTextBase = styled.div<MenuItemStyleTextBaseProps>`
   ${(props) =>
     props.params?.isText &&
     css`
@@ -41,7 +65,7 @@ export const MenuItemTextBase = styled.div<MenuItemTextBaseProps>`
     `}
 `;
 
-export const MenuItemBase = styled.a<MenuItemBaseProps>`
+export const MenuStyleItemBase = styled.a<MenuStyleItemBaseProps>`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -62,7 +86,10 @@ export const MenuItemBase = styled.a<MenuItemBaseProps>`
           color: inherit;
           cursor: pointer;
           text-decoration: none;
-          background-color: rgba(167, 182, 194, 0.3);
+          background-color: ${getThemeVariantValue(
+            { ...props, defaultTheme: MenuStyleTheme },
+            'backgroundColorMenuBase',
+          )};
         }
       `
     );
@@ -71,10 +98,12 @@ export const MenuItemBase = styled.a<MenuItemBaseProps>`
     color: inherit;
     cursor: pointer;
     text-decoration: none;
-    background-color: rgba(167, 182, 194, 0.3);
+    background-color: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'backgroundColorMenuBase')};
   }
   &:active {
-    background-color: rgba(115, 134, 148, 0.3);
+    background-color: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'backgroundColorMenuActive')};
   }
 
   ${(props) =>
@@ -86,8 +115,11 @@ export const MenuItemBase = styled.a<MenuItemBaseProps>`
         cursor: not-allowed !important;
       }
       &,
-      & ${MenuItemIcon} {
-        color: rgba(92, 112, 128, 0.5) !important;
+      & ${MenuStyleItemIcon} {
+        color: ${getThemeVariantValue(
+          { ...props, defaultTheme: MenuStyleTheme },
+          'colorMenuStyleItemIconDisabled',
+        )} !important;
       }
     `}
   & > * {
@@ -101,17 +133,27 @@ export const MenuItemBase = styled.a<MenuItemBaseProps>`
     css`
       ${props.params?.active &&
       css`
-        color: #fff !important;
+        color: ${getThemeVariantValue(
+          { ...props, defaultTheme: MenuStyleTheme },
+          'colorMenuStyleItemIconDarkActive',
+        )} !important;
       `}
       ${props.params?.disabled &&
       css`
         &,
-        & ${MenuItemIcon} {
-          color: rgba(142, 142, 142, 0.79) !important;
+        & ${MenuStyleItemIcon} {
+          color: ${getThemeVariantValue(
+            { ...props, defaultTheme: MenuStyleTheme },
+            'colorMenuStyleItemIconDark',
+          )} !important;
         }
       `}
     `}
 `;
+
+MenuStyleItemBase.defaultProps = {
+  defaultTheme: MenuStyleTheme,
+};
 
 export interface SubItemCollapseIconProps extends IconProps {
   params?: {
@@ -143,13 +185,13 @@ export const SubItemCollapseIcon = styled(Icon)<SubItemCollapseIconProps>`
     `}
 `;
 
-export interface SubOverlayTriggerBaseProps extends OverlayTriggerProps {
+export interface MenuStyleSubOverlayTriggerBaseProps extends OverlayTriggerProps {
   params?: {
     collapse?: boolean;
   };
 }
 
-export const SubOverlayTriggerBase = styled(OverlayTrigger)<SubOverlayTriggerBaseProps>`
+export const MenuStyleSubOverlayTriggerBase = styled(OverlayTrigger)<MenuStyleSubOverlayTriggerBaseProps>`
   ${(props) =>
     (!props.params?.collapse &&
       css`
@@ -179,8 +221,9 @@ export const SubOverlayTriggerBase = styled(OverlayTrigger)<SubOverlayTriggerBas
   }
 `;
 
-export interface MenuBaseProps
-  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLUListElement>, HTMLUListElement> {
+export interface MenuStyleBaseProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLUListElement>, HTMLUListElement>,
+    ThemeVar {
   params?: {
     /** 主题颜色 */
     theme?: 'light' | 'dark';
@@ -193,7 +236,7 @@ export interface MenuBaseProps
   };
 }
 
-export const MenuBase = styled.ul<MenuBaseProps>`
+export const MenuStyleBase = styled.ul<MenuStyleBaseProps>`
   margin: 0 !important;
   padding: 5px;
   box-sizing: border-box;
@@ -213,8 +256,11 @@ export const MenuBase = styled.ul<MenuBaseProps>`
         ${params.theme !== 'dark' &&
         css`
           & {
-            color: #182026;
-            background: #fff;
+            color: ${getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'colorMenuStyleBaseLight')};
+            background: ${getThemeVariantValue(
+              { ...props, defaultTheme: MenuStyleTheme },
+              'backgroundMenuStyleBaseLight',
+            )};
           }
         `}
       `;
@@ -235,15 +281,15 @@ export const MenuBase = styled.ul<MenuBaseProps>`
   ${(props) =>
     props.params?.bordered &&
     css`
-      box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 0 0 rgba(16, 22, 26, 0), 0 1px 1px rgba(16, 22, 26, 0.2);
+      box-shadow: ${getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'boxShadowMenuStyleBaseBordered')};
     `} {
   }
 
   ${(props) =>
     props.params?.theme === 'light' &&
     css`
-      & > li > ${MenuItemBase}:hover {
-        color: #008ef0;
+      & > li > ${MenuStyleItemBase}:hover {
+        color: ${getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'colorMenuStyleItemBaseLightHover')};
       }
     `}
 
@@ -253,24 +299,24 @@ export const MenuBase = styled.ul<MenuBaseProps>`
       & {
         width: 80px;
         min-width: 80px;
-        > li > ${MenuItemBase} {
+        > li > ${MenuStyleItemBase} {
           justify-content: center;
           padding-top: 10px;
           padding-bottom: 10px;
           font-size: 18px;
           &:hover {
             background-color: transparent;
-            color: #fff;
+            color: ${getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'colorMenuStyleItemBaseHover')};
           }
           > * {
             margin-right: 0;
           }
         }
-        > li > ${MenuItemBase} ${MenuItemTextBase} {
+        > li > ${MenuStyleItemBase} ${MenuItemStyleTextBase} {
           width: 0;
           flex-grow: 0;
         }
-        > li > ${MenuItemBase} ${SubItemCollapseIcon} {
+        > li > ${MenuStyleItemBase} ${SubItemCollapseIcon} {
           display: none;
         }
       }
@@ -278,7 +324,8 @@ export const MenuBase = styled.ul<MenuBaseProps>`
    ${MenuDividerBase} {
     display: block;
     margin: 5px !important;
-    border-top: 1px solid rgba(16, 22, 26, 0.15);
+    border-top: 1px solid
+      ${(props) => getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'borderTopColorMenuDividerBase')};
     > strong {
       display: block;
       line-height: 17px;
@@ -293,15 +340,23 @@ export const MenuBase = styled.ul<MenuBaseProps>`
     props.params?.theme === 'dark' &&
     css`
       & {
-        background: #343a40;
-        color: rgba(255, 255, 255, 0.65);
+        background: ${getThemeVariantValue(
+          { ...props, defaultTheme: MenuStyleTheme },
+          'backgroundColorMenuStyleBaseDark',
+        )};
+        color: ${getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'colorMenuStyleBaseDark')};
       }
       ${props.params.bordered &&
       css`
         box-shadow: initial;
       `}
       ${MenuDividerBase} {
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-top: 1px solid
+          ${getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'borderTopColorMenuDividerBaseDark')};
       }
     `}
 `;
+
+// MenuStyleBase.defaultProps = {
+//   defaultTheme: MenuStyleTheme,
+// };

@@ -1,10 +1,17 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { DatePickerDay, DatePickerDayProps, DatePickerDayDateSource } from '@uiw/react-date-picker';
-import Icon from '@uiw/react-icon';
+import { IconStyleBase } from '@uiw/react-icon';
+import { Down } from '@uiw/icons/lib/Down';
 import formatter from '@uiw/formatter';
 import { IProps } from '@uiw/utils';
 import RenderDay from './DayLabel';
-import './style/index.less';
+import {
+  CalendarBtnGroupStyleWrap,
+  CalendarBtnStyleWrap,
+  CalendarStyleWrap,
+  CalendarCaptionStyleWrap,
+  CalendarTitleWrap,
+} from './style';
 
 export interface CalendarProps extends IProps, DatePickerDayProps {
   /**
@@ -108,29 +115,29 @@ export default function Calendar(props: CalendarProps) {
   }
 
   const titleLable = useMemo(
-    () => <div className={`${prefixCls}-title`}>{formatter(titleFormat, panelDate)}</div>,
+    () => <CalendarTitleWrap className={`${prefixCls}-title`}>{formatter(titleFormat, panelDate)}</CalendarTitleWrap>,
     [prefixCls, titleFormat, panelDate],
   );
 
   const btngroup = useMemo(
     () => (
-      <div className={`${prefixCls}-btn-group`}>
-        <Icon type="down" onClick={() => handlePaging('prev')} />
-        <span className={`${prefixCls}-btn`} onClick={() => handlePaging('today')}>
+      <CalendarBtnGroupStyleWrap className={`${prefixCls}-btn-group`}>
+        <IconStyleBase as={Down} onClick={() => handlePaging('prev')} style={{ width: 18 }} />
+        <CalendarBtnStyleWrap className={`${prefixCls}-btn`} onClick={() => handlePaging('today')}>
           {todayLabel}
-        </span>
-        <Icon type="down" onClick={() => handlePaging('next')} />
-      </div>
+        </CalendarBtnStyleWrap>
+        <IconStyleBase as={Down} onClick={() => handlePaging('next')} style={{ width: 18 }} />
+      </CalendarBtnGroupStyleWrap>
     ),
     [prefixCls, todayLabel],
   );
 
   return (
-    <div className={cls} style={style}>
-      <div className={`${prefixCls}-caption`}>
+    <CalendarStyleWrap className={cls} style={style}>
+      <CalendarCaptionStyleWrap className={`${prefixCls}-caption`}>
         {titleLable}
         {btngroup}
-      </div>
+      </CalendarCaptionStyleWrap>
       <DatePickerDay
         onSelectDay={(currentDate, dateSource) => {
           setPanelDate(currentDate!);
@@ -144,6 +151,6 @@ export default function Calendar(props: CalendarProps) {
         panelDate={panelDate || new Date()}
         {...otherProps}
       />
-    </div>
+    </CalendarStyleWrap>
   );
 }

@@ -1,10 +1,21 @@
 import styled, { css } from 'styled-components';
-import { HTMLInputProps, ThemeVariantValueOptions } from '@uiw/utils';
-import { InputBase } from '@uiw/react-input';
-import { SelectWarp } from '@uiw/react-select';
-import { TextareaWarp } from '@uiw/react-textarea';
+import { HTMLInputProps, ThemeVariantValueOptions, HTMLDivProps, getThemeVariantValue } from '@uiw/utils';
+import { InputStyleBase } from '@uiw/react-input';
+import { SelectStyleWarp } from '@uiw/react-select';
+import { TextareaStyleWarp } from '@uiw/react-textarea';
 
-interface ParentDivProps extends HTMLInputProps, ThemeVariantValueOptions {
+export const FormStyleTheme = {
+  colorFormStyleHelpStyleBase: '#c2c2c2',
+  colorFormStyleItemErrorBase: '#dc3545',
+  boxShadowFormStyleItemErrorBase:
+    '0 0 0 1px #dc3545, 0 0 0 3px rgba(220, 53, 69, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
+};
+
+const propsTheme = {
+  defaultTheme: { ...FormStyleTheme },
+};
+
+interface FormStyleItemProps extends HTMLInputProps, ThemeVariantValueOptions<typeof FormStyleTheme> {
   hasError?: boolean;
 }
 
@@ -19,33 +30,35 @@ export const LabelStyle = styled.label`
   }
 `;
 
-export const HelpStyle = styled.div`
-  color: #c2c2c2;
+export interface FormStyleHelpStyleProps extends HTMLDivProps, ThemeVariantValueOptions<typeof FormStyleTheme> {}
+
+export const FormStyleHelpStyle = styled.div`
+  color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorFormStyleHelpStyleBase')};
   font-size: 12px;
   padding-top: 3px;
 `;
-export const RowStyle = styled.div`
+export const FormStyleRowStyle = styled.div`
   align-items: center;
   display: flex;
 `;
 
-export const ParentDiv = styled.div<ParentDivProps>`
+export const FormStyleItem = styled.div<FormStyleItemProps>`
   margin-bottom: 10px;
   ${(props) =>
     props.hasError &&
     css`
-      ${InputBase},${SelectWarp},${TextareaWarp} {
-        box-shadow: 0 0 0 1px #dc3545, 0 0 0 3px rgba(220, 53, 69, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
+      ${InputStyleBase},${SelectStyleWarp},${TextareaStyleWarp} {
+        box-shadow: ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowFormStyleItemErrorBase')};
         &:hover {
-          box-shadow: 0 0 0 1px #dc3545, 0 0 0 3px rgba(220, 53, 69, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
+          box-shadow: ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowFormStyleItemErrorBase')};
         }
         &:focus,
         &:hover {
-          box-shadow: 0 0 0 1px #dc3545, 0 0 0 3px rgba(220, 53, 69, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
+          box-shadow: ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowFormStyleItemErrorBase')};
         }
       }
-      ${LabelStyle}, ${HelpStyle} {
-        color: #dc3545;
+      ${LabelStyle}, ${FormStyleHelpStyle} {
+        color: ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'colorFormStyleItemErrorBase')};
       }
     `}
 `;

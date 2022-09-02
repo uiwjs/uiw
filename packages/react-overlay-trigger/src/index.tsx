@@ -1,10 +1,10 @@
 import React, { cloneElement, useEffect, useRef, useState, useImperativeHandle } from 'react';
-import { IProps, noop } from '@uiw/utils';
+import { GetStyledCloneComponent, IProps, noop } from '@uiw/utils';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import contains from './utils';
 import { IBoundingClientRect } from './util/getBoundingClientRect';
 import { getStyle } from './getStyle';
-import './style/index.less';
+import { OverlayTriggerWrap, TriggerWrap } from './style';
 
 export interface OverlayTriggerProps extends IProps, OverlayProps {
   onVisibleChange?: (isVisbale: boolean) => void;
@@ -298,11 +298,12 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
     }
   }
   overlayProps.style = { ...overlayProps.style, ...overlayStyl };
+
   return (
     <React.Fragment>
       {cloneElement(
         child,
-        Object.assign({}, child.props, {
+        Object.assign({ disabled }, child.props, {
           ...triggerProps,
           ref: triggerRef,
           className: [child.props.className, disabled ? `${prefixCls}-disabled` : null]
@@ -311,8 +312,9 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
             .trim(),
         }),
       )}
-      <Overlay
+      <OverlayTriggerWrap
         {...overlayProps}
+        // as={Overlay}
         style={{ ...overlayProps.style, ...overlayStyl }}
         onEnter={handleEnter}
         className={[prefixCls, className, overlayStyl.placement].filter(Boolean).join(' ').trim()}
@@ -329,7 +331,7 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
             className: [overlay.props && overlay.props.className, placement].filter(Boolean).join(' ').trim(),
           }),
         )}
-      </Overlay>
+      </OverlayTriggerWrap>
     </React.Fragment>
   );
 });

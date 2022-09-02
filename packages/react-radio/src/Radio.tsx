@@ -1,6 +1,5 @@
 import React from 'react';
 import { RadioAbstract, RadioAbstractProps } from './RadioAbstract';
-import './style/index.less';
 
 export interface RadioProps extends RadioAbstractProps {}
 

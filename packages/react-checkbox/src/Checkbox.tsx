@@ -1,8 +1,7 @@
 import React from 'react';
 import { RadioAbstract, RadioAbstractProps } from '@uiw/react-radio';
 import { CheckboxGroup } from './Group';
-import { CheckboxBase } from './style';
-// import './style/index.less';
+import { CheckboxStyleBase } from './style';
 
 export interface CheckboxProps extends RadioAbstractProps {
   indeterminate?: boolean;
@@ -21,7 +20,7 @@ function InternalCheckbox(props: CheckboxProps, ref: React.ForwardedRef<HTMLInpu
 
   const cls = [className, indeterminate && 'indeterminate'].filter(Boolean).join(' ').trim();
   return (
-    <CheckboxBase
+    <CheckboxStyleBase
       as={RadioAbstract}
       ref={ref}
       {...other}

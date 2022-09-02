@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { CalendarProps } from './';
+import { CalendarDayWrap, CalendarInnerWrap, CalendarPanelStyleWrap } from './style';
 
 export type RenderDayProps = {
   prefixCls?: string;
@@ -31,9 +32,9 @@ export default function RenderDay(props: RenderDayProps) {
 
   return useMemo(
     () => (
-      <div className={`${prefixCls}-inner`}>
-        <div className={`${prefixCls}-day`}>{day}</div>
-        <div className={`${prefixCls}-panel`}>
+      <CalendarInnerWrap className={`${prefixCls}-inner`}>
+        <CalendarDayWrap className={`${prefixCls}-day`}>{day}</CalendarDayWrap>
+        <CalendarPanelStyleWrap className={`${prefixCls}-panel`}>
           {dayData &&
             dayData.length > 0 &&
             dayData.map((item, idx) => {
@@ -44,8 +45,8 @@ export default function RenderDay(props: RenderDayProps) {
                 </div>
               );
             })}
-        </div>
-      </div>
+        </CalendarPanelStyleWrap>
+      </CalendarInnerWrap>
     ),
     [dayData, day],
   );

@@ -1,9 +1,7 @@
 import React from 'react';
 import { IconProgress } from './utils';
 import { ProgressCircleProps } from './Circle';
-// import './style/index.less';
-// import './style/line.less';
-import { ProgressWarp, ProgressText, ProgressBar, ProgressInner, ProgressBg } from './style';
+import { ProgressStyleWarp, ProgressStyleText, ProgressStyleBar, ProgressStyleInner, ProgressStyleBg } from './style';
 export interface ProgressLineProp<T> extends ProgressCircleProps<T> {}
 
 export default class Line<T> extends React.Component<ProgressLineProp<T>> {
@@ -39,9 +37,9 @@ export default class Line<T> extends React.Component<ProgressLineProp<T>> {
         percentView = <IconProgress type="circle-check" />;
       }
       progressInfo = (
-        <ProgressText status={status} className={`${prefixCls}-text`}>
+        <ProgressStyleText status={status} className={`${prefixCls}-text`}>
           {format ? format(percent as number) : percentView}
-        </ProgressText>
+        </ProgressStyleText>
       );
     }
     const percentStyle = {
@@ -49,14 +47,14 @@ export default class Line<T> extends React.Component<ProgressLineProp<T>> {
       height: strokeWidth,
     };
     return (
-      <ProgressWarp className={cls} style={style} {...resetProps} isLine={true}>
-        <ProgressBar showText={showText} className={`${prefixCls}-bar`}>
-          <ProgressInner className={`${prefixCls}-inner`}>
-            <ProgressBg status={status} className={`${prefixCls}-bg`} style={percentStyle} />
-          </ProgressInner>
-        </ProgressBar>
+      <ProgressStyleWarp className={cls} style={style} {...resetProps} isLine={true}>
+        <ProgressStyleBar showText={showText} className={`${prefixCls}-bar`}>
+          <ProgressStyleInner className={`${prefixCls}-inner`}>
+            <ProgressStyleBg status={status} className={`${prefixCls}-bg`} style={percentStyle} />
+          </ProgressStyleInner>
+        </ProgressStyleBar>
         {progressInfo}
-      </ProgressWarp>
+      </ProgressStyleWarp>
     );
   }
 }

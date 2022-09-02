@@ -2,17 +2,25 @@ import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import { DividerProps } from 'src';
 
-interface DividerWarpProps
-  extends ThemeVariantValueOptions,
+export const DividerStyleTheme = {
+  fontSizeLarge: '16px',
+  backgroundColorDividerBase: '#e8e8e8',
+  borderTopColorDividerWithText: '#e8e8e8',
+};
+const propsTheme = {
+  defaultTheme: { ...DividerStyleTheme },
+};
+interface DividerStyleBaseProps
+  extends ThemeVariantValueOptions<typeof DividerStyleTheme>,
     Pick<DividerProps, 'dashed' | 'type' | 'align' | 'prefixCls'> {}
 
-const Divider = styled.div<DividerWarpProps>`
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeLarge')};
+export const DividerStyleBase = styled.div<DividerStyleBaseProps>`
+  font-size: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeLarge')};
   line-height: 16px;
   box-sizing: border-box;
   padding: 0;
   list-style: none;
-  background: ${(props) => getThemeVariantValue(props, 'backgroundColorDividerBase')};
+  background: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorDividerBase')};
 
   ${(props) => {
     if (props.prefixCls) {
@@ -48,7 +56,8 @@ const Divider = styled.div<DividerWarpProps>`
               position: relative;
               top: 50%;
               width: 50%;
-              border-top: 1px solid ${(props) => getThemeVariantValue(props, 'borderTopColorDividerWithText')};
+              border-top: 1px solid
+                ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderTopColorDividerWithText')};
               transform: translateY(50%);
             }
           `}
@@ -93,24 +102,17 @@ const Divider = styled.div<DividerWarpProps>`
       } else {
         return css`
           background: none;
-          border-top: 1px dashed ${(props) => getThemeVariantValue(props, 'borderTopColorDividerWithText')};
+          border-top: 1px dashed
+            ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderTopColorDividerWithText')};
         `;
       }
     }
   }}
 `;
 
-export const DividerInnerText = styled.div`
+export const DividerStyleInnerText = styled.div`
   display: inline-block;
   padding: 0 10px;
 `;
 
-Divider.defaultProps = {
-  defaultTheme: {
-    fontSizeLarge: '16px',
-    backgroundColorDividerBase: '#e8e8e8',
-    borderTopColorDividerWithText: '#e8e8e8',
-  },
-};
-
-export default Divider;
+export default DividerStyleBase;

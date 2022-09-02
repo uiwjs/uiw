@@ -1,12 +1,26 @@
 import styled, { css } from 'styled-components';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
-import { OverlayProps } from 'src';
+import { transProps, OverlayProps } from 'src';
+import { TransitionStatus } from 'react-transition-group';
 
-interface OverlayWrapProps extends ThemeVariantValueOptions, Pick<OverlayProps, 'usePortal' | 'isOpen'> {}
+export const OverlayStyleTheme = {
+  backgroundColorOverlayBackdrop: 'rgba(16, 22, 26, 0.7)',
+};
+type ThemeVar = ThemeVariantValueOptions<typeof OverlayStyleTheme>;
 
-interface BackdropWrapProps extends ThemeVariantValueOptions {}
+export interface OverlayStyleWrapDivProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+    ThemeVar {}
+export interface OverlayStyleWrapSpanProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement | ThemeVar>, HTMLDivElement> {}
 
-export const ContentWrap = styled.span`
+export interface OverlayWrapProps extends ThemeVariantValueOptions, Pick<OverlayProps, 'usePortal' | 'isOpen'> {
+  status?: TransitionStatus;
+  trans?: transProps;
+  openClass?: boolean;
+}
+
+export const ContentWrap = styled.span<OverlayStyleWrapSpanProps>`
   position: relative;
   outline: 0;
   display: inline-block;
@@ -16,7 +30,7 @@ export const ContentWrap = styled.span`
   z-index: 20;
 `;
 
-export const ContainerWrap = styled.div`
+export const ContainerWrap = styled.div<OverlayStyleWrapDivProps>`
   position: absolute;
   overflow: auto;
   z-index: 99999;
@@ -33,7 +47,7 @@ export const ContainerWrap = styled.div`
   }
 `;
 
-export const BackdropWrap = styled.div<BackdropWrapProps>`
+export const BackdropWrap = styled.div<OverlayStyleWrapDivProps>`
   position: fixed;
   top: 0;
   right: 0;
@@ -41,7 +55,8 @@ export const BackdropWrap = styled.div<BackdropWrapProps>`
   left: 0;
   opacity: 1;
   z-index: 20;
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorOverlayBackdrop')};
+  background-color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: OverlayStyleTheme }, 'backgroundColorOverlayBackdrop')};
   overflow: auto;
   user-select: none;
 `;
@@ -65,9 +80,10 @@ export const OverlayWrap = styled.div<OverlayWrapProps>`
       z-index: 9999;
     }
 
-    .w-overlay-open {
+    ${props.openClass &&
+    css`
       overflow: hidden;
-    }
+    `}
 
     ${!props.usePortal &&
     css`
@@ -86,48 +102,46 @@ export const OverlayWrap = styled.div<OverlayWrapProps>`
       display: inherit;
     `}
 
-  &.w-overlay-enter .w-overlay-backdrop {
+    &.w-overlay-enter ${BackdropWrap} {
       opacity: 0;
     }
-    &.w-overlay-enter-active .w-overlay-backdrop {
+    &.w-overlay-enter-active ${BackdropWrap} {
       opacity: 1;
       transition: opacity 300ms ease-in;
     }
-    &.w-overlay-exit .w-overlay-backdrop {
+    &.w-overlay-exit ${BackdropWrap} {
       opacity: 1;
     }
-    &.w-overlay-exit-active .w-overlay-backdrop {
+    &.w-overlay-exit-active ${BackdropWrap} {
       opacity: 0;
       transition: opacity 300ms ease-in;
     }
-    &.w-overlay-enter .w-overlay-content {
+    &.w-overlay-enter ${ContentWrap} {
       transform: scale(0.5);
       opacity: 0;
     }
-    &.w-overlay-enter-active .w-overlay-content {
+    &.w-overlay-enter-active ${ContentWrap} {
       opacity: 1;
       transform: translate(0);
       transition: transform 300ms ease, opacity 300ms ease;
     }
-    &.w-overlay-exit .w-overlay-content {
+    &.w-overlay-exit ${ContentWrap} {
       opacity: 1;
       transform: translate(0);
       transition: transform 300ms ease, opacity 300ms ease;
     }
-    &.w-overlay-exit-active .w-overlay-content {
+    &.w-overlay-exit-active ${ContentWrap} {
       transform: scale(0.5);
       opacity: 0;
     }
     &.w-overlay-enter,
-    &.w-overlay-exit,
-    &.w-overlay-enter-done {
+    &.w-overlay-enter-done,
+    &.w-overlay-exit {
       display: inherit;
     }
   `}
 `;
 
-BackdropWrap.defaultProps = {
-  defaultTheme: {
-    backgroundColorOverlayBackdrop: 'rgba(16, 22, 26, 0.7)',
-  },
-};
+// BackdropWrap.defaultProps = {
+//   defaultTheme: OverlayStyleTheme,
+// };

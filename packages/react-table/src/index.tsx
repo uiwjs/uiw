@@ -3,10 +3,11 @@ import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import { MinusSquareO } from '@uiw/icons/lib/MinusSquareO';
 import { PlusSquareO } from '@uiw/icons/lib/PlusSquareO';
 import Thead from './Thead';
-import { TableWrap, TableFooter } from './style';
+import { TableStyleWrap, TableStyleFooter } from './style';
 import { getLevelItems, getAllColumnsKeys } from './util';
 import ExpandableComponent from './Expandable';
 import TableTr from './TableTr';
+export * from './style';
 
 // 展开配置
 export interface ExpandableType<T> {
@@ -292,7 +293,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
   const { header, render, ellipsis } = getLevelItems(self.selfColumns);
   return (
     <React.Fragment>
-      <TableWrap className={cls} {...other} style={{ ...other.style, ...style.div }} params={{ bordered }}>
+      <TableStyleWrap className={cls} {...other} style={{ ...other.style, ...style.div }} params={{ bordered }}>
         <table style={{ tableLayout: ellipsis ? 'fixed' : 'auto', ...style.table }}>
           {title && <caption>{title}</caption>}
           {columns && columns.length > 0 && (
@@ -333,11 +334,11 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
           )}
           {props.children}
         </table>
-      </TableWrap>
+      </TableStyleWrap>
       {footer && (
-        <TableFooter className={`${prefixCls}-footer`} params={{ bordered }}>
+        <TableStyleFooter className={`${prefixCls}-footer`} params={{ bordered }}>
           {footer}
-        </TableFooter>
+        </TableStyleFooter>
       )}
     </React.Fragment>
   );

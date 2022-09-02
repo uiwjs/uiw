@@ -1,13 +1,22 @@
 import React, { useMemo } from 'react';
-import Overlay, { OverlayProps } from '@uiw/react-overlay';
-import Icon, { IconProps } from '@uiw/react-icon';
+import { OverlayProps } from '@uiw/react-overlay';
+import { Close } from '@uiw/icons/lib/Close';
 import Button from '@uiw/react-button';
+import { IconStyleBase } from '@uiw/react-icon';
 import { HTMLDivProps } from '@uiw/utils';
-import './style/index.less';
+import {
+  DrawerStyleWrap,
+  DrawerStyleWrapperWrap,
+  DrawerStyleHeaderWrap,
+  DrawerStyleBodyWrap,
+  DrawerStyleFooterWrap,
+  DrawerStyleBodyClsWrap,
+} from './style';
+export * from './style';
 
 export interface DrawerProps extends OverlayProps {
   footer?: React.ReactNode;
-  icon?: IconProps['type'];
+  icon?: React.ReactNode;
   title?: React.ReactNode;
   bodyProps?: HTMLDivProps;
   placement?: 'top' | 'right' | 'bottom' | 'left';
@@ -42,26 +51,39 @@ export default (props: DrawerProps = {}) => {
     ...style,
     [/^(top|bottom)$/.test(placement!) ? 'height' : 'width']: size,
   };
-  const footerView = useMemo(() => (footer ? <div className={`${prefixCls}-footer`}>{footer}</div> : null), [footer]);
-  const iconView = useMemo(() => (icon ? <Icon type={icon} /> : null), [icon]);
+  const footerView = useMemo(
+    () => (footer ? <DrawerStyleFooterWrap className={`${prefixCls}-footer`}>{footer}</DrawerStyleFooterWrap> : null),
+    [footer],
+  );
+  const iconView = icon; // useMemo(() => (icon ? <Icon type={icon} /> : null), [icon]);
   const titleView = useMemo(() => (title ? <h4>{title}</h4> : null), [title]);
+
   return (
-    <Overlay className={cls} timeout={timeout} isOpen={isOpen} maskClosable={maskClosable} {...overlayProps}>
-      <div className={`${prefixCls}-wrapper`} style={styl}>
+    <DrawerStyleWrap
+      placement={placement}
+      className={cls}
+      timeout={timeout}
+      isOpen={isOpen}
+      maskClosable={maskClosable}
+      {...overlayProps}
+    >
+      <DrawerStyleWrapperWrap className={`${prefixCls}-wrapper`} style={styl}>
         {(title || icon) && (
-          <div className={`${prefixCls}-header`}>
+          <DrawerStyleHeaderWrap className={`${prefixCls}-header`}>
             {iconView}
             {titleView}
-            {title && isCloseButtonShown && <Button basic onClick={props.onClose} icon="close" type="light" />}
-          </div>
+            {title && isCloseButtonShown && (
+              <Button basic onClick={props.onClose} icon={<IconStyleBase as={Close} />} type="light" />
+            )}
+          </DrawerStyleHeaderWrap>
         )}
-        <div className={`${prefixCls}-body`}>
-          <div {...bodyProps} className={bodyCls}>
+        <DrawerStyleBodyWrap className={`${prefixCls}-body`}>
+          <DrawerStyleBodyClsWrap {...bodyProps} className={bodyCls}>
             {props.children}
-          </div>
-        </div>
+          </DrawerStyleBodyClsWrap>
+        </DrawerStyleBodyWrap>
         {footerView}
-      </div>
-    </Overlay>
+      </DrawerStyleWrapperWrap>
+    </DrawerStyleWrap>
   );
 };

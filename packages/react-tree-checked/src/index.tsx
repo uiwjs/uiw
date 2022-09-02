@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 import Tree, { TreeProps, TreeRenderTitleNode, TreeData } from '@uiw/react-tree';
 import Checkbox, { CheckboxProps } from '@uiw/react-checkbox';
-import './style/index.less';
+import { TreeCheckboxStyleBase } from './style/index';
+export * from './style';
 
 export interface TreeCheckedProps extends TreeProps {}
 
@@ -24,7 +25,12 @@ export default function TreeChecked({ prefixCls = 'w-treechecked', ...props }: T
         }
         return (
           <Fragment>
-            <Checkbox className={`${prefixCls}-checked`} disabled={node.disabled} {...checkedProps} />
+            <TreeCheckboxStyleBase
+              as={Checkbox}
+              className={`${prefixCls}-checked`}
+              disabled={node.disabled}
+              {...checkedProps}
+            />
             {item.label && <span className={node.disabledClass}>{item.label}</span>}
           </Fragment>
         );

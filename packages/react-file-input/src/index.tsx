@@ -3,15 +3,15 @@ import Input from './Input';
 import FileList from './FileList';
 import { isUploadType } from './utils';
 import { InputProps } from '@uiw/react-input';
-import { UploadType, FileInputBaseProps, FileInputUploadProps, FileInputShowIconProps } from './types';
-import './style/index.less';
+import { UploadType, FileInputStyleBaseProps, FileInputUploadProps, FileInputShowIconProps } from './types';
+export * from './style';
 export interface FileInputValue {
   dataURL?: string;
   file?: File;
   name?: string;
   [key: string]: any;
 }
-export interface FileInputProps extends FileInputBaseProps, InputProps {
+export interface FileInputProps extends FileInputStyleBaseProps, InputProps {
   dataLabel?: string;
 }
 export interface FileInputListProps extends FileInputUploadProps {
@@ -23,7 +23,7 @@ export interface FileInputListProps extends FileInputUploadProps {
   onRemove?: (index: number) => void;
 }
 
-interface Props {
+export interface Props {
   uploadType?: UploadType;
   [key: string]: any;
 }

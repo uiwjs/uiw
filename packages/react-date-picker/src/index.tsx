@@ -6,11 +6,12 @@ import { DatePickerDay, DatePickerDayProps, DatePickerDayDateSource } from './Da
 import { DatePickerMonth } from './DatePickerMonth';
 import { DatePickerYear } from './DatePickerYear';
 import { DatePickerCaption, DatePickerCaptionType } from './DatePickerCaption';
-import Warp from './style';
+import { DatePickerStyleWarp } from './style';
 export * from './DatePickerDay';
 export * from './DatePickerMonth';
 export * from './DatePickerYear';
 export * from './DatePickerCaption';
+export * from './style/theme';
 
 const MONTH_LABEL = [
   '一月',
@@ -124,7 +125,7 @@ export default function DatePicker(props: DatePickerProps) {
     onChange && onChange(new Date(selectPanelDate));
   }
   return (
-    <Warp className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...other}>
+    <DatePickerStyleWarp className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...other}>
       <DatePickerCaption
         todayButton={todayButton}
         panelDate={selectPanelDate}
@@ -165,7 +166,7 @@ export default function DatePicker(props: DatePickerProps) {
       {type === 'time' && (
         <TimePickerTime
           date={selectPanelDate}
-          {...showTime}
+          {...(typeof showTime === 'boolean' ? {} : showTime)}
           className={`${prefixCls}-timepicker`}
           onSelected={onSelectedTime}
         />
@@ -175,6 +176,6 @@ export default function DatePicker(props: DatePickerProps) {
           {formatter(format!, selectDate || selectPanelDate)}
         </div>
       )}
-    </Warp>
+    </DatePickerStyleWarp>
   );
 }

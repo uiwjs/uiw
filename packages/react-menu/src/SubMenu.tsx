@@ -4,9 +4,8 @@ import { OverlayTriggerProps, OverlayTriggerRef } from '@uiw/react-overlay-trigg
 import { IProps } from '@uiw/utils';
 import { MenuItem, MenuItemProps, TagType } from './MenuItem';
 import Menu, { MenuProps } from './Menu';
-// import './style/submenu.less';
-import { SubItemCollapseIcon, SubOverlayTriggerBase } from './style';
-
+import { SubItemCollapseIcon, MenuStyleSubOverlayTriggerBase } from './style';
+import { useMenuContext } from './hooks';
 export interface SubMenuProps<T extends TagType> extends IProps, MenuItemProps<T> {
   overlayProps?: OverlayTriggerProps;
   collapse?: boolean;
@@ -79,11 +78,18 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
     theme,
     className: [prefixCls ? `${prefixCls}-overlay` : null].filter(Boolean).join(' ').trim(),
   };
+  const store = useMenuContext();
   const popupRef = React.useRef<OverlayTriggerRef>(null);
   const [isOpen, setIsOpen] = useState(!!overlayProps.isOpen);
   useMemo(() => {
     if (collapse) setIsOpen(false);
   }, [collapse]);
+
+  React.useEffect(() => {
+    if (store && store.onUpdateNode && popupRef.current) {
+      store.onUpdateNode(popupRef.current);
+    }
+  }, []);
 
   function onClick(e: React.MouseEvent<HTMLUListElement, MouseEvent>) {
     const target = e.currentTarget;
@@ -97,23 +103,28 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
   }
   function onExit(node: HTMLElement) {
     node.style.height = `${node.scrollHeight}px`;
+    store.onUpdateSize();
     setIsOpen(false);
   }
   function onExiting(node: HTMLElement) {
     node.style.height = '0px';
+    // store.onUpdateSize();
   }
   function onEnter(node: HTMLElement) {
     node.style.height = '1px';
+    store.onUpdateSize();
     setIsOpen(true);
   }
   function onEntering(node: HTMLElement) {
     node.style.height = `${node.scrollHeight}px`;
+    store.onUpdateSize();
   }
   function onEntered(node: HTMLElement) {
-    node.style.height = 'initial';
-    if (popupRef.current && popupRef.current.overlayDom) {
-      node.style.height = popupRef.current.overlayDom.current!.getBoundingClientRect().height + 'px';
-    }
+    store.onUpdateSize();
+    // node.style.height = 'initial';
+    // if (popupRef.current && popupRef.current.overlayDom) {
+    //   node.style.height = popupRef.current.overlayDom.current!.getBoundingClientRect().height + 'px';
+    // }
   }
 
   if (!collapse) {
@@ -139,7 +150,7 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
   }
   return (
     <li data-menu="subitem" ref={ref}>
-      <SubOverlayTriggerBase
+      <MenuStyleSubOverlayTriggerBase
         placement="rightTop"
         autoAdjustOverflow
         disabled={disabled}
@@ -170,7 +181,7 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
             .join(' ')
             .trim()}
         />
-      </SubOverlayTriggerBase>
+      </MenuStyleSubOverlayTriggerBase>
     </li>
   );
 });

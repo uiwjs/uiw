@@ -1,18 +1,15 @@
-import { ThemeVariantValueOptions } from '@uiw/utils';
 import styled from 'styled-components';
 
-interface CarouselProps extends ThemeVariantValueOptions {}
+type HTMLDivElements = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
-const Warp = styled.div<CarouselProps>`
+export interface CarouselStyleProps extends HTMLDivElements {}
+export interface CarouselStyleWarpContentProps extends HTMLDivElements {}
+
+export const CarouselStyleWarp = styled.div<CarouselStyleProps>`
   overflow: hidden;
 `;
 
-export const WarpContent = styled.div`
+export const CarouselStyleWarpContent = styled.div<CarouselStyleWarpContentProps>`
   min-height: 200px;
   transition: 0.6s ease-in-out;
 `;
-
-Warp.defaultProps = {
-  defaultTheme: {},
-};
-export default Warp;

@@ -1,16 +1,15 @@
-import React, { useEffect, useState, useRef, useCallback, useMemo } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Pane from './Pane';
-import './style/index.less';
 import Popover from '@uiw/react-popover';
-
+import * as Styled from './style';
 export * from './Pane';
+export * from './style';
 
 Tabs.Pane = Pane;
 
 let labelWidth: number = 0;
 export interface TabsProps extends IProps, HTMLDivProps {
-  prefixCls?: string;
   activeKey?: string;
   type?: 'default' | 'line' | 'card';
   children?: React.ReactNode;
@@ -39,7 +38,6 @@ export default function Tabs(props: TabsProps) {
   const [activeKey, setActiveKey] = useState(props.activeKey);
   const [slideStyle, setSlideStyle] = useState({ width: 0, left: 0 });
   const activeItem = useRef<HTMLDivElement | undefined>();
-  const cls = [prefixCls, className, type ? `${prefixCls}-${type}` : null].filter(Boolean).join(' ').trim();
 
   const [flowNav, flowNavSet] = useState<FlowNavType>({
     content: 0,
@@ -52,7 +50,7 @@ export default function Tabs(props: TabsProps) {
   const deviation = 15;
 
   const [nodes, nodesSet] = useState<any>();
-  const divContentRef = useCallback((node) => {
+  const divContentRef = useCallback((node: HTMLDivElement | null) => {
     if (node !== null) {
       nodesSet(nodes);
       node.addEventListener('scroll', (e: any) => {
@@ -66,7 +64,7 @@ export default function Tabs(props: TabsProps) {
     }
   }, []);
 
-  const divNavRef = useCallback((node, key: number, itemKey: React.Key | null) => {
+  const divNavRef = useCallback((node: HTMLDivElement | null, key: number, itemKey: React.Key | null) => {
     if (node !== null) {
       node.addEventListener('click', (e: any) => {
         activeItem.current = node;
@@ -117,40 +115,40 @@ export default function Tabs(props: TabsProps) {
   }
 
   return (
-    <div className={cls} {...elementProps}>
-      <div style={{ display: 'flex' }}>
-        <div style={{ overflow: 'hidden' }}>
-          <div className={`${prefixCls}-bar`} ref={divContentRef}>
-            <div className={`${prefixCls}-nav`} style={{ width: 'max-content' }}>
+    <Styled.TabsStyleWarp className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...elementProps}>
+      <Styled.TabsDivFlex>
+        <Styled.TabsDivHidden>
+          <Styled.TabsDivBar className={`${prefixCls}-bar`} ref={divContentRef}>
+            <Styled.TabsDivNav className={`${prefixCls}-nav`}>
               {renderNav(children)}
-              <div style={slideStyle} className={`${prefixCls}-slide`} />
-            </div>
-          </div>
-        </div>
+              <Styled.TabsDivSlide className={`${prefixCls}-slide`} style={slideStyle} />
+            </Styled.TabsDivNav>
+          </Styled.TabsDivBar>
+        </Styled.TabsDivHidden>
         {hiddenNav.length > 0 && (
           <Popover
             trigger="click"
             placement="bottomRight"
             visibleArrow={false}
             content={
-              <div className={`${prefixCls}-nav-hidden`}>
+              <Styled.TabsNavHidden className={`${prefixCls}-nav-hidden`}>
                 {renderNav(hiddenNav.map((idx) => (children as Array<React.ReactElement>)[idx]))}
-              </div>
+              </Styled.TabsNavHidden>
             }
           >
-            <div onClick={showHideenNav} className={`${prefixCls}-flow-content`}>
+            <Styled.TabsFlowContent onClick={showHideenNav} className={`${prefixCls}-flow-content`}>
               <span>…</span>
-            </div>
+            </Styled.TabsFlowContent>
           </Popover>
         )}
-      </div>
+      </Styled.TabsDivFlex>
       {React.Children.map(children, (item: any) => {
         if (!item || activeKey !== item.key) {
           return null;
         }
         return React.cloneElement(item, Object.assign({}, item.props, {}));
       })}
-    </div>
+    </Styled.TabsStyleWarp>
   );
 
   function renderNav(children: React.ReactNode): React.ReactNode {
@@ -159,14 +157,7 @@ export default function Tabs(props: TabsProps) {
         return null;
       }
       const divProps: HTMLDivProps = {
-        className: [
-          `${prefixCls}-item`,
-          item.key === activeKey ? 'active' : null,
-          item.props.disabled ? 'disabled' : null,
-        ]
-          .filter(Boolean)
-          .join(' ')
-          .trim(),
+        className: `${prefixCls}-item`,
         children: item.props.label,
       };
       if (!item.props.disabled) {
@@ -176,7 +167,16 @@ export default function Tabs(props: TabsProps) {
           calcSlideStyle();
         };
       }
-      return <div key={key} ref={(ref) => divNavRef(ref, key, item.key)} {...divProps} />;
+      return (
+        <Styled.TabsItem
+          type={type}
+          disabled={item.props.disabled}
+          active={item.key === activeKey}
+          key={key}
+          ref={(ref) => divNavRef(ref, key, item.key)}
+          {...divProps}
+        />
+      );
     });
   }
 }

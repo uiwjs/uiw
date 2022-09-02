@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import Button, { ButtonType, ButtonProps } from '@uiw/react-button';
-import Icon, { IconProps } from '@uiw/react-icon';
+import { Close } from '@uiw/icons/lib/Close';
+import { IconStyleBase } from '@uiw/react-icon';
 import { IProps, noop } from '@uiw/utils';
 import CallShow from './CallShow';
-import ModalWrap, { ModalBody, ModalContainer, ModalFooter, ModalHeader, ModalInner } from './style';
+import ModalStyleWrap, {
+  ModalStyleBody,
+  ModalStyleContainer,
+  ModalStyleFooter,
+  ModalStyleHeader,
+  ModalStyleInner,
+} from './style';
 export * from './style';
 
 export interface ModalProps extends IProps, OverlayProps {
@@ -15,7 +22,7 @@ export interface ModalProps extends IProps, OverlayProps {
   content?: React.ReactNode;
   confirmText?: string;
   title?: string;
-  icon?: IconProps['type'];
+  icon?: React.ReactNode;
   useButton?: boolean;
   usePortal?: boolean;
   autoFocus?: boolean;
@@ -89,9 +96,9 @@ const Modal: React.ForwardRefExoticComponent<ModalProps & React.RefAttributes<Ov
       setLoading(false);
     }
     return (
-      <ModalWrap as={Overlay} usePortal={usePortal} isOpen={isOpen} {...other} onClose={onClose} className={cls}>
-        <ModalContainer className={`${prefixCls}-container`}>
-          <ModalInner
+      <ModalStyleWrap as={Overlay} usePortal={usePortal} isOpen={isOpen} {...other} onClose={onClose} className={cls}>
+        <ModalStyleContainer className={`${prefixCls}-container`}>
+          <ModalStyleInner
             className={[
               `${prefixCls}-inner`,
               title ? `${prefixCls}-shown-title` : null,
@@ -103,17 +110,19 @@ const Modal: React.ForwardRefExoticComponent<ModalProps & React.RefAttributes<Ov
             style={{ maxWidth, minWidth, width }}
           >
             {(title || icon) && (
-              <ModalHeader className={`${prefixCls}-header`}>
-                {icon && <Icon type={icon} />}
+              <ModalStyleHeader className={`${prefixCls}-header`}>
+                {icon && icon}
                 {title && <h4>{title}</h4>}
-                {isCloseButtonShown && <Button basic onClick={(e) => handleCancel(e)} icon="close" type="light" />}
-              </ModalHeader>
+                {isCloseButtonShown && (
+                  <Button basic onClick={(e) => handleCancel(e)} icon={<IconStyleBase as={Close} />} type="light" />
+                )}
+              </ModalStyleHeader>
             )}
-            <ModalBody className={`${prefixCls}-body`} style={bodyStyle}>
+            <ModalStyleBody className={`${prefixCls}-body`} style={bodyStyle}>
               {children || content}
-            </ModalBody>
+            </ModalStyleBody>
             {useButton && (
-              <ModalFooter className={`${prefixCls}-footer`}>
+              <ModalStyleFooter className={`${prefixCls}-footer`}>
                 <Button
                   autoFocus={autoFocus}
                   type={type}
@@ -129,11 +138,11 @@ const Modal: React.ForwardRefExoticComponent<ModalProps & React.RefAttributes<Ov
                     {cancelText}
                   </Button>
                 )}
-              </ModalFooter>
+              </ModalStyleFooter>
             )}
-          </ModalInner>
-        </ModalContainer>
-      </ModalWrap>
+          </ModalStyleInner>
+        </ModalStyleContainer>
+      </ModalStyleWrap>
     );
   });
 

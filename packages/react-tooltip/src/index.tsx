@@ -1,12 +1,12 @@
 import React from 'react';
 import OverlayTrigger, { OverlayTriggerProps } from '@uiw/react-overlay-trigger';
 import { IProps } from '@uiw/utils';
-import './style/index.less';
-
+import { TooltipStyleWarp, TooltipStyleContainerWarp, TooltipStyleArrowWarp, TooltipStyleInnerWarp } from './style';
 export interface TooltipProps extends IProps, OverlayTriggerProps {
   visibleArrow?: boolean;
   content?: React.ReactNode;
 }
+export * from './style';
 
 export default (props: TooltipProps = {}) => {
   const {
@@ -23,7 +23,8 @@ export default (props: TooltipProps = {}) => {
   } = props;
   const cls = [prefixCls, className, !visibleArrow ? 'no-arrow' : null].filter(Boolean).join(' ').trim();
   return (
-    <OverlayTrigger
+    <TooltipStyleWarp
+      as={OverlayTrigger}
       usePortal={usePortal}
       isOpen={isOpen}
       trigger={trigger}
@@ -32,13 +33,13 @@ export default (props: TooltipProps = {}) => {
       placement={placement}
       {...other}
       overlay={
-        <div className={cls}>
-          {visibleArrow && <div className={`${prefixCls}-arrow`} />}
-          <div className={`${prefixCls}-inner`}>{props.content}</div>
-        </div>
+        <TooltipStyleContainerWarp placement={placement} visibleArrow={visibleArrow} className={cls}>
+          {visibleArrow && <TooltipStyleArrowWarp placement={placement} className={`${prefixCls}-arrow`} />}
+          <TooltipStyleInnerWarp className={`${prefixCls}-inner`}>{props.content}</TooltipStyleInnerWarp>
+        </TooltipStyleContainerWarp>
       }
     >
       {typeof props.children === 'object' ? props.children : <span>{props.children}</span>}
-    </OverlayTrigger>
+    </TooltipStyleWarp>
   );
 };

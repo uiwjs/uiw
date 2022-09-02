@@ -1,7 +1,14 @@
 import React from 'react';
-import Icon from '@uiw/react-icon';
+import {
+  FileInputStyleCardWarp,
+  FileInputStyleCardBoxWarp,
+  FileInputStyleCardActionsWarp,
+  FileInputStyleCardBoxInfoWarp,
+  FileInputStyleCardActionsRemoveWarp,
+} from './style';
+import { IconStyleBase } from '@uiw/react-icon';
+import { Delete, Search } from '@uiw/icons';
 import { FileInputListProps } from './';
-import './style/index.less';
 
 const Card = (props: FileInputListProps) => {
   const {
@@ -21,41 +28,42 @@ const Card = (props: FileInputListProps) => {
     onPreview,
     onRemove,
   } = props;
-  const cls = [prefixCls, `${prefixCls}-size-${size}`, `${prefixCls}-shape-${shape}`, className]
-    .filter(Boolean)
-    .join(' ')
-    .trim();
-
   const isAction = showFileIcon.showPreviewIcon || showFileIcon.showRemoveIcon ? true : false;
 
   return (
-    <div className={cls}>
+    <FileInputStyleCardWarp shape={shape} size={size} className={`${prefixCls} ${className}`}>
       {dataList.map((item, index) => (
-        <div className={`${prefixCls}-box`} key={index}>
-          <div className={`${prefixCls}-box-info`}>
+        <FileInputStyleCardBoxWarp className={`${prefixCls}-box`} key={index}>
+          <FileInputStyleCardBoxInfoWarp className={`${prefixCls}-box-info`}>
             <img src={item['dataURL']} alt="" />
-          </div>
+          </FileInputStyleCardBoxInfoWarp>
 
-          <div className={isAction ? `${prefixCls}-actions` : ''}>
+          <FileInputStyleCardActionsWarp className={isAction ? `${prefixCls}-actions` : ''} isAction={isAction}>
             {showFileIcon?.showPreviewIcon && (
-              <span className={`${prefixCls}-actions-remove`} onClick={() => onPreview?.(item)}>
-                <Icon type="search" style={{ color: '#fff', fontSize: 16 }} />
-              </span>
+              <FileInputStyleCardActionsRemoveWarp
+                className={`${prefixCls}-actions-remove`}
+                onClick={() => onPreview?.(item)}
+              >
+                <IconStyleBase as={Search} style={{ fill: '#fff', fontSize: 16 }} />
+              </FileInputStyleCardActionsRemoveWarp>
             )}
             {showFileIcon?.showRemoveIcon && (
-              <span className={`${prefixCls}-actions-remove`} onClick={() => onRemove?.(index)}>
-                <Icon type="delete" style={{ color: '#fff', fontSize: 16 }} />
-              </span>
+              <FileInputStyleCardActionsRemoveWarp
+                className={`${prefixCls}-actions-remove`}
+                onClick={() => onRemove?.(index)}
+              >
+                <IconStyleBase as={Delete} style={{ fill: '#fff', fontSize: 16 }} />
+              </FileInputStyleCardActionsRemoveWarp>
             )}
-          </div>
-        </div>
+          </FileInputStyleCardActionsWarp>
+        </FileInputStyleCardBoxWarp>
       ))}
       {maxNumber > dataList.length && !readonly && (
-        <div className={`${prefixCls}-box ${prefixCls}-btn`} onClick={onAdd}>
+        <FileInputStyleCardBoxWarp className={`${prefixCls}-box ${prefixCls}-btn`} btn onClick={onAdd}>
           {children}
-        </div>
+        </FileInputStyleCardBoxWarp>
       )}
-    </div>
+    </FileInputStyleCardWarp>
   );
 };
 

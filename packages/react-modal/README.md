@@ -17,7 +17,7 @@ import Modal from '@uiw/react-modal';
 
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
-import { Modal, ButtonGroup, Button } from 'uiw';
+import { Modal, ButtonGroup, Button, Icon } from 'uiw';
 
 class Demo extends React.Component {
   constructor() {
@@ -40,7 +40,7 @@ class Demo extends React.Component {
           isOpen={this.state.visible}
           confirmText="确定按钮"
           cancelText="取消按钮"
-          icon="information"
+          icon={<Icon type="information" />}
           type="primary"
           onConfirm={() => console.log('您点击了确定按钮！')}
           onCancel={() => console.log('您点击了取消按钮！')}
@@ -140,7 +140,7 @@ export default Demo
 
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
-import { Modal, ButtonGroup, Button, Form, Input, Textarea } from 'uiw';
+import { Modal, ButtonGroup, Button, Form, Input, Textarea, Row, Col } from 'uiw';
 
 class Demo extends React.Component {
   constructor() {
@@ -255,7 +255,7 @@ export default Demo
 
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
-import { Modal, ButtonGroup, Button } from 'uiw';
+import { Modal, ButtonGroup, Button, Icon } from 'uiw';
 
 class Demo extends React.Component {
   constructor() {
@@ -279,7 +279,7 @@ class Demo extends React.Component {
           useButton={false}
           confirmText="确定按钮"
           cancelText="取消按钮"
-          icon="information"
+          icon={<Icon type="information" />}
           type="danger"
           onConfirm={() => console.log('您点击了确定按钮！')}
           onCancel={() => console.log('您点击了取消按钮！')}
@@ -351,7 +351,7 @@ export default Demo
 | onConfirm | 点击确定按钮回调 | Function(e) | - |
 | cancelText | 取消按钮文字， | String | - |
 | confirmText | 确认按钮文字 | String | `确认` |
-| icon | 设置对话框右上角图标，设置 `type` 将图标设置不同的颜色。当前属性为 [`<Icon>`](#/components/icon) 组件的 `type` 属性，所以可以参考该组件自定义图标。 | String/ReactNode | - |
+| icon | 设置对话框左上角图标，设置 `type` 将图标设置不同的颜色。当前属性为 [`<Icon>`](#/components/icon) 组件的 `type` 属性，所以可以参考该组件自定义图标。 | String/ReactNode | - |
 | useButton | 是否使用默认按钮，如果设置 `false` 需要自定义按钮关闭 | Boolean | `true` |
 | type | 按钮类型跟 `<Button>` 组件的 `type` 参数一致，同时会影响按钮颜色。 | String | `light` |
 | width | 设置弹出框宽度 | Number | - |

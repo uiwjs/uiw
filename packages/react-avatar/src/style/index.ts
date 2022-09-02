@@ -1,88 +1,7 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
-export interface AvatarWarpProps extends ThemeVariantValueOptions {
-  size?: 'large' | 'default' | 'small' | 'mini';
-  shape?: 'square' | 'circle';
-  defaultTheme?: {
-    backgroundColorAvatar: string;
-    colorAvatar: string;
-
-    fontSizeAvatarMini: string;
-    fontSizeAvatarSmall: string;
-    fontSizeAvatarDefault: string;
-    fontSizeAvatarLarge: string;
-
-    widthAvatarMini: string;
-    widthAvatarSmall: string;
-    widthAvatarDefault: string;
-    widthAvatarLarge: string;
-    borderRadiusDefault: string;
-  };
-}
-
-export const AvatarImg = styled.img``;
-
-export const AvatarWarp = styled.span<AvatarWarpProps>`
-  display: inline-block;
-  text-align: center;
-  background: ${(props) => getThemeVariantValue(props, 'backgroundColorAvatar')};
-  color: ${(props) => getThemeVariantValue(props, 'colorAvatar')};
-  vertical-align: middle;
-  white-space: nowrap;
-  position: relative;
-  overflow: hidden;
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeAvatarDefault')};
-  width: ${(props) => getThemeVariantValue(props, 'widthAvatarDefault')};
-  height: ${(props) => getThemeVariantValue(props, 'widthAvatarDefault')};
-  border-radius: ${(props) => getThemeVariantValue(props, 'borderRadiusDefault')};
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  & + & {
-    margin-left: 5px;
-  }
-  ${(props) => {
-    const { size } = props;
-    switch (size) {
-      case 'mini':
-        return css`
-          height: ${getThemeVariantValue(props, 'widthAvatarMini')};
-          width: ${getThemeVariantValue(props, 'widthAvatarMini')};
-          font-size: ${getThemeVariantValue(props, 'fontSizeAvatarMini')};
-        `;
-      case 'small':
-        return css`
-          height: ${getThemeVariantValue(props, 'widthAvatarSmall')};
-          width: ${getThemeVariantValue(props, 'widthAvatarSmall')};
-          font-size: ${getThemeVariantValue(props, 'fontSizeAvatarSmall')};
-        `;
-      case 'large':
-        return css`
-          height: ${getThemeVariantValue(props, 'widthAvatarLarge')};
-          width: ${getThemeVariantValue(props, 'widthAvatarLarge')};
-          font-size: ${getThemeVariantValue(props, 'fontSizeAvatarLarge')};
-        `;
-      default:
-        return css``;
-    }
-  }}
-
-  ${(props) =>
-    props.shape === 'circle' &&
-    css`
-      border-radius: 50%;
-    `} 
-  &.w-avatar-circle {
-  }
-  & > ${AvatarImg} {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-`;
-
-export const AvatarWarpDefaultTheme = {
+export const AvatarStyleTheme = {
   backgroundColorAvatar: '#ccc',
   colorAvatar: '#fff',
 
@@ -97,7 +16,74 @@ export const AvatarWarpDefaultTheme = {
   widthAvatarLarge: '40px',
   borderRadiusDefault: '3px',
 };
-
-AvatarWarp.defaultProps = {
-  defaultTheme: AvatarWarpDefaultTheme,
+const propsTheme = {
+  defaultTheme: { ...AvatarStyleTheme },
 };
+
+export interface AvatarStyleWarpProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>,
+    ThemeVariantValueOptions<typeof AvatarStyleTheme> {
+  size?: 'large' | 'default' | 'small' | 'mini';
+  shape?: 'square' | 'circle';
+}
+
+export const AvatarStyleImg = styled.img``;
+
+export const AvatarStyleWarp = styled.span<AvatarStyleWarpProps>`
+  display: inline-block;
+  text-align: center;
+  background: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorAvatar')};
+  color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorAvatar')};
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  font-size: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeAvatarDefault')};
+  width: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'widthAvatarDefault')};
+  height: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'widthAvatarDefault')};
+  border-radius: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderRadiusDefault')};
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  & + & {
+    margin-left: 5px;
+  }
+  ${(props) => {
+    const { size } = props;
+    switch (size) {
+      case 'mini':
+        return css`
+          height: ${getThemeVariantValue({ ...props, ...propsTheme }, 'widthAvatarMini')};
+          width: ${getThemeVariantValue({ ...props, ...propsTheme }, 'widthAvatarMini')};
+          font-size: ${getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeAvatarMini')};
+        `;
+      case 'small':
+        return css`
+          height: ${getThemeVariantValue({ ...props, ...propsTheme }, 'widthAvatarSmall')};
+          width: ${getThemeVariantValue({ ...props, ...propsTheme }, 'widthAvatarSmall')};
+          font-size: ${getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeAvatarSmall')};
+        `;
+      case 'large':
+        return css`
+          height: ${getThemeVariantValue({ ...props, ...propsTheme }, 'widthAvatarLarge')};
+          width: ${getThemeVariantValue({ ...props, ...propsTheme }, 'widthAvatarLarge')};
+          font-size: ${getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeAvatarLarge')};
+        `;
+      default:
+        return css``;
+    }
+  }}
+
+  ${(props) =>
+    props.shape === 'circle' &&
+    css`
+      border-radius: 50%;
+    `} 
+  &.w-avatar-circle {
+  }
+  & > ${AvatarStyleImg} {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+`;

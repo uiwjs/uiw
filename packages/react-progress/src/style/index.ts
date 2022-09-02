@@ -3,32 +3,33 @@ import { getThemeVariantValue, HTMLSpanProps, HTMLDivProps, ThemeVariantValueOpt
 import { Status } from '..';
 import React from 'react';
 
-export const progressDefaultTheme = {
+export const ProgressStyleTheme = {
   fontSizeSmall: '12px',
   fontSizeDefault: '14px',
   fontSizeLarge: '16px',
 
-  strokeProgressPathSuccess: '#28a745',
-  strokeProgressPathException: '#dc3545',
-  strokeProgressPath: '#20a0ff',
-  strokeProgressPathTrail: '#e5e9f2',
+  strokeProgressStylePathSuccess: '#28a745',
+  strokeProgressStylePathException: '#dc3545',
+  strokeProgressStylePath: '#20a0ff',
+  strokeProgressStylePathTrail: '#e5e9f2',
 
   colorProgresTextSuccess: '#28a745',
   colorProgresTextException: '#dc3545',
   colorProgresText: '#48576a',
 
-  backgroundColorProgressBgSuccess: '#28a745',
-  backgroundColorProgressBgException: '#dc3545',
-  backgroundColorProgressBg: '#108ee9',
+  backgroundColorProgressStyleBgSuccess: '#28a745',
+  backgroundColorProgressStyleBgException: '#dc3545',
+  backgroundColorProgressStyleBg: '#108ee9',
 
-  backgroundColorProgressInner: '#e5e9f2',
+  backgroundColorProgressStyleInner: '#e5e9f2',
 
-  backgroundProgressBgActiveBefore: '#fff',
-  backgroundImageProgressBgActive:
+  backgroundProgressStyleBgActiveBefore: '#fff',
+  backgroundImageProgressStyleBgActive:
     'linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, 0.15) 50%,rgba(255, 255, 255, 0.15) 75%,transparent 75%,transparent)',
 };
+type ThemeVar = ThemeVariantValueOptions<typeof ProgressStyleTheme>;
 
-const progressBarStripes = keyframes`
+const ProgressStyleBarStripes = keyframes`
   from {
     background-position: 0 0;
   }
@@ -52,11 +53,11 @@ const progressActive = keyframes`
   }
 `;
 
-export interface ProgressWarpProps extends HTMLDivProps, ThemeVariantValueOptions {
+export interface ProgressStyleWarpProps extends HTMLDivProps, ThemeVar {
   isLine?: Boolean;
 }
 
-export const ProgressWarp = styled.div<ProgressWarpProps>`
+export const ProgressStyleWarp = styled.div<ProgressStyleWarpProps>`
   position: relative;
   line-height: 1;
   display: inline-block;
@@ -65,19 +66,19 @@ export const ProgressWarp = styled.div<ProgressWarpProps>`
     css`
       & {
         width: 100%;
-        font-size: ${(props) => getThemeVariantValue(props, 'fontSizeSmall')};
+        font-size: ${(props) => getThemeVariantValue({ ...props, defaultTheme: ProgressStyleTheme }, 'fontSizeSmall')};
       }
     `}
 `;
-ProgressWarp.defaultProps = { defaultTheme: progressDefaultTheme };
+// ProgressStyleWarp.defaultProps = { defaultTheme: ProgressStyleTheme };
 
-export interface ProgressTextProps extends HTMLSpanProps, ThemeVariantValueOptions {
+export interface ProgressStyleTextProps extends HTMLSpanProps, ThemeVar {
   status?: Status;
   isCircle?: boolean;
 }
 
-export const ProgressText = styled.span<ProgressTextProps>`
-  color: ${(props) => getThemeVariantValue(props, 'colorProgresText')};
+export const ProgressStyleText = styled.span<ProgressStyleTextProps>`
+  color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: ProgressStyleTheme }, 'colorProgresText')};
   display: inline-block;
   vertical-align: middle;
   margin-left: 10px;
@@ -86,12 +87,14 @@ export const ProgressText = styled.span<ProgressTextProps>`
   ${(props) =>
     props.status === 'exception' &&
     css`
-      color: ${(props) => getThemeVariantValue(props, 'colorProgresTextException')};
+      color: ${(props) =>
+        getThemeVariantValue({ ...props, defaultTheme: ProgressStyleTheme }, 'colorProgresTextException')};
     `}
   ${(props) =>
     props.status === 'success' &&
     css`
-      color: ${(props) => getThemeVariantValue(props, 'colorProgresTextSuccess')};
+      color: ${(props) =>
+        getThemeVariantValue({ ...props, defaultTheme: ProgressStyleTheme }, 'colorProgresTextSuccess')};
     `}
   ${(props) =>
     props.isCircle &&
@@ -104,19 +107,19 @@ export const ProgressText = styled.span<ProgressTextProps>`
         text-align: center;
         margin: 0;
         transform: translate(0, -50%);
-        font-size: ${(props) => getThemeVariantValue(props, 'fontSizeLarge')};
+        font-size: ${(props) => getThemeVariantValue({ ...props, defaultTheme: ProgressStyleTheme }, 'fontSizeLarge')};
       }
     `}
 `;
 
-ProgressText.defaultProps = { defaultTheme: progressDefaultTheme };
+// ProgressStyleText.defaultProps = { defaultTheme: ProgressStyleTheme };
 
-export interface ProgressBarProps extends HTMLDivProps, ThemeVariantValueOptions {
+export interface ProgressStyleBarProps extends HTMLDivProps, ThemeVar {
   showText?: boolean;
   style?: React.CSSProperties;
 }
 
-export const ProgressBar = styled.div<ProgressBarProps>`
+export const ProgressStyleBar = styled.div<ProgressStyleBarProps>`
   box-sizing: border-box;
   display: inline-block;
   width: 100%;
@@ -130,34 +133,37 @@ export const ProgressBar = styled.div<ProgressBarProps>`
       }
     `}
 `;
-export interface ProgressInnerProps extends HTMLDivProps, ThemeVariantValueOptions {}
+export interface ProgressStyleInnerProps extends HTMLDivProps, ThemeVar {}
 
-export const ProgressInner = styled.div<ProgressInnerProps>`
+export const ProgressStyleInner = styled.div<ProgressStyleInnerProps>`
   height: 100%;
   width: 100%;
   border-radius: 100px;
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorProgressInner')};
+  background-color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: ProgressStyleTheme }, 'backgroundColorProgressStyleInner')};
   overflow: hidden;
 `;
-ProgressInner.defaultProps = { defaultTheme: progressDefaultTheme };
+// ProgressStyleInner.defaultProps = { defaultTheme: ProgressStyleTheme };
 
-export interface ProgressBgProps extends HTMLDivProps, ThemeVariantValueOptions {
+export interface ProgressStyleBgProps extends HTMLDivProps, ThemeVar {
   status?: Status;
 }
 
-export const ProgressBg = styled.div<ProgressBgProps>`
+export const ProgressStyleBg = styled.div<ProgressStyleBgProps>`
   height: 100%;
   border-radius: 100px;
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorProgressBg')};
+  background-color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: ProgressStyleTheme }, 'backgroundColorProgressStyleBg')};
   transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
   position: relative;
   ${(props) =>
     props.status === 'active' &&
     css`
       & {
-        background-image: ${(props) => getThemeVariantValue(props, 'backgroundImageProgressBgActive')};
+        background-image: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: ProgressStyleTheme }, 'backgroundImageProgressStyleBgActive')};
         background-size: 12px 12px;
-        animation: ${progressBarStripes} 1s linear infinite;
+        animation: ${ProgressStyleBarStripes} 1s linear infinite;
         &:before {
           content: ' ';
           opacity: 0;
@@ -166,7 +172,11 @@ export const ProgressBg = styled.div<ProgressBgProps>`
           left: 0;
           right: 0;
           bottom: 0;
-          background: ${(props) => getThemeVariantValue(props, 'backgroundProgressBgActiveBefore')};
+          background: ${(props) =>
+            getThemeVariantValue(
+              { ...props, defaultTheme: ProgressStyleTheme },
+              'backgroundProgressStyleBgActiveBefore',
+            )};
           border-radius: 10px;
           animation: ${progressActive} 2.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
         }
@@ -176,31 +186,37 @@ export const ProgressBg = styled.div<ProgressBgProps>`
     props.status === 'exception' &&
     css`
       & {
-        background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorProgressBgException')};
+        background-color: ${(props) =>
+          getThemeVariantValue(
+            { ...props, defaultTheme: ProgressStyleTheme },
+            'backgroundColorProgressStyleBgException',
+          )};
       }
     `}
     ${(props) =>
     props.status === 'success' &&
     css`
-      background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorProgressBgSuccess')};
+      background-color: ${(props) =>
+        getThemeVariantValue({ ...props, defaultTheme: ProgressStyleTheme }, 'backgroundColorProgressStyleBgSuccess')};
     `}
 `;
-ProgressBg.defaultProps = { defaultTheme: progressDefaultTheme };
+// ProgressStyleBg.defaultProps = { defaultTheme: ProgressStyleTheme };
 
-export interface ProgressSvgProps extends React.SVGProps<SVGSVGElement>, ThemeVariantValueOptions {}
-export const ProgressSvg = styled.svg<ProgressSvgProps>``;
+export interface ProgressStyleSvgProps extends React.SVGProps<SVGSVGElement>, ThemeVar {}
+export const ProgressStyleSvg = styled.svg<ProgressStyleSvgProps>``;
 
-export interface ProgressPathProps extends React.SVGProps<SVGPathElement>, ThemeVariantValueOptions {
+export interface ProgressStylePathProps extends React.SVGProps<SVGPathElement>, ThemeVar {
   isTrail?: boolean;
   isStroke?: boolean;
   status?: Status;
 }
-export const ProgressPath = styled.path<ProgressPathProps>`
+export const ProgressStylePath = styled.path<ProgressStylePathProps>`
   ${(props) =>
     props.isTrail &&
     css`
       & {
-        stroke: ${(props) => getThemeVariantValue(props, 'strokeprogresspathtrail')};
+        stroke: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: ProgressStyleTheme }, 'strokeProgressStylePathtrail')};
       }
     `}
   ${(props) => {
@@ -209,19 +225,25 @@ export const ProgressPath = styled.path<ProgressPathProps>`
         case 'success':
           return css`
             & {
-              stroke: ${(props) => getThemeVariantValue(props, 'strokeProgressPathSuccess')};
+              stroke: ${(props) =>
+                getThemeVariantValue({ ...props, defaultTheme: ProgressStyleTheme }, 'strokeProgressStylePathSuccess')};
             }
           `;
         case 'exception':
           return css`
             & {
-              stroke: ${(props) => getThemeVariantValue(props, 'strokeProgressPathException')};
+              stroke: ${(props) =>
+                getThemeVariantValue(
+                  { ...props, defaultTheme: ProgressStyleTheme },
+                  'strokeProgressStylePathException',
+                )};
             }
           `;
         default:
           return css`
             & {
-              stroke: ${(props) => getThemeVariantValue(props, 'strokeProgressPath')};
+              stroke: ${(props) =>
+                getThemeVariantValue({ ...props, defaultTheme: ProgressStyleTheme }, 'strokeProgressStylePath')};
             }
           `;
       }
@@ -229,4 +251,4 @@ export const ProgressPath = styled.path<ProgressPathProps>`
     return css``;
   }}
 `;
-ProgressPath.defaultProps = { defaultTheme: progressDefaultTheme };
+// ProgressStylePath.defaultProps = { defaultTheme: ProgressStyleTheme };

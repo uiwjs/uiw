@@ -5,7 +5,12 @@ import DatePicker, { DatePickerProps } from '@uiw/react-date-picker';
 import { Close } from '@uiw/icons/lib/Close';
 import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
-import { DateInputIcon, DateInputIconWarp, DateInputDatePickerPopover, DateInputBase } from './style/index';
+import {
+  DateInputIcon,
+  DateInputIconStyleWarp,
+  DateInputStyleDatePickerPopover,
+  DateInputStyleBase,
+} from './style/index';
 export * from './style';
 export * from './DateInputRange';
 
@@ -49,9 +54,9 @@ export default function DateInput(props: DateInputProps) {
   }
   if (allowClear && inputProps.value) {
     inputProps.addonAfter = (
-      <DateInputIconWarp closebtn className={`${prefixCls}-close-btn`} onClick={() => handleChange(undefined)}>
+      <DateInputIconStyleWarp closebtn className={`${prefixCls}-close-btn`} onClick={() => handleChange(undefined)}>
         <DateInputIcon as={Close} />
-      </DateInputIconWarp>
+      </DateInputIconStyleWarp>
     );
   }
 
@@ -66,7 +71,7 @@ export default function DateInput(props: DateInputProps) {
       onVisibleChange={(open) => setIsOpen(open)}
       {...popoverProps}
       content={
-        <DateInputDatePickerPopover
+        <DateInputStyleDatePickerPopover
           as={DatePicker}
           date={(value && new Date(value)) || undefined}
           className={`${prefixCls}-popover`}
@@ -75,7 +80,7 @@ export default function DateInput(props: DateInputProps) {
         />
       }
     >
-      <DateInputBase
+      <DateInputStyleBase
         as={Input}
         placeholder="请选择日期"
         readOnly

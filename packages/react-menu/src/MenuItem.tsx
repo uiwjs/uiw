@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
 import { IconProps } from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
-// import './style/item.less';
-import { MenuItemBase, MenuItemTextBase, MenuItemIcon } from './style';
+import { MenuStyleItemBase, MenuItemStyleTextBase, MenuStyleItemIcon } from './style';
 
 const disabledProps = {
   href: undefined,
@@ -50,7 +49,7 @@ function Internal<Tag extends TagType = 'a'>(props: MenuItemProps<Tag>, ref: Rea
     .trim();
 
   const tagComp = React.createElement(
-    MenuItemBase,
+    MenuStyleItemBase,
     {
       ...htmlProps,
       ...(disabled ? disabledProps : {}),
@@ -64,9 +63,8 @@ function Internal<Tag extends TagType = 'a'>(props: MenuItemProps<Tag>, ref: Rea
       },
     } as any,
     <Fragment>
-      <MenuItemIcon className={`${prefixCls}-icon`} type={icon} />
-      <div></div>
-      <MenuItemTextBase
+      <MenuStyleItemIcon className={`${prefixCls}-icon`} type={icon} />
+      <MenuItemStyleTextBase
         params={{ multiline, isText: !!prefixCls }}
         className={[prefixCls && `${prefixCls}-text`, !multiline && `${prefixCls}-multiline`]
           .filter(Boolean)
@@ -74,7 +72,7 @@ function Internal<Tag extends TagType = 'a'>(props: MenuItemProps<Tag>, ref: Rea
           .trim()}
       >
         {text}
-      </MenuItemTextBase>
+      </MenuItemStyleTextBase>
       {addonAfter}
     </Fragment>,
   );

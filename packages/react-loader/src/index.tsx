@@ -1,6 +1,14 @@
 import React, { useMemo } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import { LoaderSvg, LoaderTips, LoaderTipsNested, LoaderTipsNestedText, LoaderWarp, LoaderChild } from './style';
+import {
+  LoaderStyleSvg,
+  LoaderStyleTips,
+  LoaderStyleTipsNested,
+  LoaderStyleTipsNestedText,
+  LoaderStyleWarp,
+  LoaderStyleChild,
+} from './style';
+export * from './style';
 
 export interface LoaderProps extends IProps, HTMLDivProps {
   size?: 'small' | 'default' | 'large';
@@ -33,16 +41,16 @@ export default (props: LoaderProps = {}) => {
 
   const indicatorView = useMemo(
     () => (
-      <LoaderSvg size={size} viewBox="25 25 50 50">
+      <LoaderStyleSvg size={size} viewBox="25 25 50 50">
         <circle cx="50" cy="50" r="20" fill="none" strokeWidth="5" strokeMiterlimit="10" />
-      </LoaderSvg>
+      </LoaderStyleSvg>
     ),
     [],
   );
 
   const tipsView = useMemo(
     () => (
-      <LoaderTips
+      <LoaderStyleTips
         fullscreen={fullscreen}
         className={[`${prefixCls}-tips`, fullscreen ? `${prefixCls}-fullscreen` : null]
           .filter(Boolean)
@@ -50,10 +58,10 @@ export default (props: LoaderProps = {}) => {
           .trim()}
         style={{ color, backgroundColor: bgColor }}
       >
-        <LoaderTipsNested className={`${prefixCls}-tips-nested`}>
+        <LoaderStyleTipsNested className={`${prefixCls}-tips-nested`}>
           {indicator || indicatorView}
           {tip && (
-            <LoaderTipsNestedText
+            <LoaderStyleTipsNestedText
               vertical={vertical}
               className={[`${prefixCls}-text`, vertical ? `${prefixCls}-vertical` : null]
                 .filter(Boolean)
@@ -61,23 +69,23 @@ export default (props: LoaderProps = {}) => {
                 .trim()}
             >
               {tip}
-            </LoaderTipsNestedText>
+            </LoaderStyleTipsNestedText>
           )}
-        </LoaderTipsNested>
-      </LoaderTips>
+        </LoaderStyleTipsNested>
+      </LoaderStyleTips>
     ),
     [fullscreen, bgColor, prefixCls, vertical, tip],
   );
   return (
-    <LoaderWarp className={cls} {...otherProps}>
+    <LoaderStyleWarp className={cls} {...otherProps}>
       {(loading || fullscreen) && tipsView}
       {children &&
         React.cloneElement(
-          <LoaderChild load={loading}>{children}</LoaderChild>,
+          <LoaderStyleChild load={loading}>{children}</LoaderStyleChild>,
           Object.assign({}, children.props, {
             className: [`${prefixCls}-warp`, loading ? `${prefixCls}-blur` : null].filter(Boolean).join(' ').trim(),
           }),
         )}
-    </LoaderWarp>
+    </LoaderStyleWarp>
   );
 };

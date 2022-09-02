@@ -1,29 +1,29 @@
 import styled from 'styled-components';
 import { getThemeVariantValue } from '@uiw/utils';
 
+export const EmptyStyleTheme = {
+  colorEmptyBase: '#c7c7c7',
+};
+const propsTheme = {
+  defaultTheme: { ...EmptyStyleTheme },
+};
 interface DividerProps {
   defaultTheme?: Record<string, string | number>;
 }
 
-const Empty = styled.div<DividerProps>`
-  color: ${(props) => getThemeVariantValue(props, 'colorEmptyBase')};
+export const EmptyStyleBase = styled.div<DividerProps>`
+  color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorEmptyBase')};
   text-align: center;
 `;
 
-export const EmptyIcon = styled.div``;
+export const EmptyStyleIcon = styled.div``;
 
-export const EmptyDescription = styled.div`
+export const EmptyStyleDescription = styled.div`
   margin-top: 10px;
 `;
 
-export const EmptyFooter = styled.div`
+export const EmptyStyleFooter = styled.div`
   margin-top: 16px;
 `;
 
-Empty.defaultProps = {
-  defaultTheme: {
-    colorEmptyBase: '#c7c7c7',
-  },
-};
-
-export default Empty;
+export default EmptyStyleBase;

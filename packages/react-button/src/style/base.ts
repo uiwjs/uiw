@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
-import { getThemeVariantValue } from '@uiw/utils';
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import { buttonVariant, getCommonCss, getloadingCss, getIconAndSizeCss } from './Variant';
 import { ButtonType, ButtonSize } from '../';
-export const ButtonBaseDefaultTheme = {
-  colorButtonBase: '#fff',
+export const ButtonStyleTheme = {
+  colorButtonStyleBase: '#fff',
   // 大小设置
   fontSizeSmall: '12px',
   fontSizeDefault: '14px',
@@ -113,9 +113,9 @@ export const ButtonBaseDefaultTheme = {
   colorLinkNotDisabledActive: '#002d4d',
 };
 
-export interface ButtonBaseProps {
-  defaultTheme?: Record<string, string | number>;
-  theme?: Record<string, string | number>;
+export interface ButtonStyleBaseProps
+  extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
+    ThemeVariantValueOptions<typeof ButtonStyleTheme> {
   param?: {
     size: ButtonSize;
     type: ButtonType;
@@ -127,7 +127,7 @@ export interface ButtonBaseProps {
     focus: boolean;
   };
 }
-const ButtonBase = styled.button<ButtonBaseProps>`
+const ButtonStyleBase = styled.button<ButtonStyleBaseProps>`
   user-select: none;
   display: inline-flex;
   flex-direction: row;
@@ -146,7 +146,7 @@ const ButtonBase = styled.button<ButtonBaseProps>`
   min-width: ${(props) => getThemeVariantValue(props, 'minHeightButtonDefault')};
   min-height: ${(props) => getThemeVariantValue(props, 'minHeightButtonDefault')};
   text-align: center;
-  color: ${(props) => getThemeVariantValue(props, 'colorButtonBase')};
+  color: ${(props) => getThemeVariantValue(props, 'colorButtonStyleBase')};
   transition: background-color 0.5s, opacity 1s;
   & > *:not(:last-child) {
     margin-right: 5px;
@@ -174,19 +174,19 @@ const ButtonBase = styled.button<ButtonBaseProps>`
     cursor: not-allowed;
   }
 `;
-const ButtonBasePrimary = styled(ButtonBase)<ButtonBaseProps>`
+const ButtonStyleBasePrimary = styled(ButtonStyleBase)<ButtonStyleBaseProps>`
   ${(props) => buttonVariant({ ...props, type: 'Primary' })}
 `;
-const ButtonBaseSuccess = styled(ButtonBase)<ButtonBaseProps>`
+const ButtonStyleBaseSuccess = styled(ButtonStyleBase)<ButtonStyleBaseProps>`
   ${(props) => buttonVariant({ ...props, type: 'Success' })}
 `;
-const ButtonBaseDangers = styled(ButtonBase)<ButtonBaseProps>`
+const ButtonStyleBaseDangers = styled(ButtonStyleBase)<ButtonStyleBaseProps>`
   ${(props) => buttonVariant({ ...props, type: 'Error' })}
 `;
-const ButtonBaseDark = styled(ButtonBase)<ButtonBaseProps>`
+const ButtonStyleBaseDark = styled(ButtonStyleBase)<ButtonStyleBaseProps>`
   ${(props) => buttonVariant({ ...props, type: 'Dark' })}
 `;
-const ButtonBaseLight = styled(ButtonBase)<ButtonBaseProps>`
+const ButtonStyleBaseLight = styled(ButtonStyleBase)<ButtonStyleBaseProps>`
   ${(props) => {
     const { focus, basic, active, disabled } = props.param || {};
     return css`
@@ -249,7 +249,7 @@ const ButtonBaseLight = styled(ButtonBase)<ButtonBaseProps>`
     `;
   }}
 `;
-const ButtonBaseLink = styled(ButtonBase)<ButtonBaseProps>`
+const ButtonStyleBaseLink = styled(ButtonStyleBase)<ButtonStyleBaseProps>`
   ${(props) => {
     const { disabled } = props.param || {};
     return css`
@@ -279,42 +279,42 @@ const ButtonBaseLink = styled(ButtonBase)<ButtonBaseProps>`
     `;
   }}
 `;
-const ButtonBaseWarning = styled(ButtonBase)<ButtonBaseProps>`
+const ButtonStyleBaseWarning = styled(ButtonStyleBase)<ButtonStyleBaseProps>`
   ${(props) => buttonVariant({ ...props, type: 'Warning' })}
 `;
 
-ButtonBase.defaultProps = {
-  defaultTheme: { ...ButtonBaseDefaultTheme },
+ButtonStyleBase.defaultProps = {
+  defaultTheme: { ...ButtonStyleTheme },
 };
-ButtonBasePrimary.defaultProps = {
-  defaultTheme: { ...ButtonBaseDefaultTheme },
+ButtonStyleBasePrimary.defaultProps = {
+  defaultTheme: { ...ButtonStyleTheme },
 };
-ButtonBaseSuccess.defaultProps = {
-  defaultTheme: { ...ButtonBaseDefaultTheme },
+ButtonStyleBaseSuccess.defaultProps = {
+  defaultTheme: { ...ButtonStyleTheme },
 };
-ButtonBaseDangers.defaultProps = {
-  defaultTheme: { ...ButtonBaseDefaultTheme },
+ButtonStyleBaseDangers.defaultProps = {
+  defaultTheme: { ...ButtonStyleTheme },
 };
-ButtonBaseDark.defaultProps = {
-  defaultTheme: { ...ButtonBaseDefaultTheme },
+ButtonStyleBaseDark.defaultProps = {
+  defaultTheme: { ...ButtonStyleTheme },
 };
-ButtonBaseLight.defaultProps = {
-  defaultTheme: { ...ButtonBaseDefaultTheme },
+ButtonStyleBaseLight.defaultProps = {
+  defaultTheme: { ...ButtonStyleTheme },
 };
-ButtonBaseLink.defaultProps = {
-  defaultTheme: { ...ButtonBaseDefaultTheme },
+ButtonStyleBaseLink.defaultProps = {
+  defaultTheme: { ...ButtonStyleTheme },
 };
-ButtonBaseWarning.defaultProps = {
-  defaultTheme: { ...ButtonBaseDefaultTheme },
+ButtonStyleBaseWarning.defaultProps = {
+  defaultTheme: { ...ButtonStyleTheme },
 };
 
 export {
-  ButtonBase,
-  ButtonBasePrimary,
-  ButtonBaseSuccess,
-  ButtonBaseDangers,
-  ButtonBaseDark,
-  ButtonBaseLight,
-  ButtonBaseLink,
-  ButtonBaseWarning,
+  ButtonStyleBase,
+  ButtonStyleBasePrimary,
+  ButtonStyleBaseSuccess,
+  ButtonStyleBaseDangers,
+  ButtonStyleBaseDark,
+  ButtonStyleBaseLight,
+  ButtonStyleBaseLink,
+  ButtonStyleBaseWarning,
 };

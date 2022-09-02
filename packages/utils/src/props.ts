@@ -42,7 +42,6 @@ export type HTMLLiProps = React.LiHTMLAttributes<HTMLLIElement>;
  */
 export type HTMLUlProps = React.LiHTMLAttributes<HTMLUListElement>;
 // export type HTMLUlProps = React.HTMLAttributes<HTMLUListElement>;
-
 export type AnchorProps =
   | 'download'
   | 'href'
@@ -59,3 +58,4 @@ export interface IProps {
   className?: string;
   prefixCls?: string;
 }
+export type HTMLOrSVGICONElement = ((props: React.HTMLAttributes<HTMLOrSVGElement>) => JSX.Element) | undefined;

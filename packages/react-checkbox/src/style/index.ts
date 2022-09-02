@@ -1,12 +1,26 @@
 import styled, { css } from 'styled-components';
 import { RadioAbstractProps, RadioText } from '@uiw/react-radio';
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
-export interface CheckboxBaseProps extends RadioAbstractProps {
+export const CheckboxStyleTheme = {
+  boxShadowCheckboxChecked: 'inset 0 0 0 1px rgb(0, 142, 240)',
+  backgroundColorCheckboxChecked: '#008df8',
+  backgroundColorCheckboxBase: '#d7d7d7',
+  colorCheckboxDisabled: '#6e6e6e',
+  borderColorCheckboxChecked: '#fff',
+  boxShadowCheckboxHover: 'inset 0 1px 2px rgba(16, 22, 26, 0.35)',
+};
+const propsTheme = {
+  defaultTheme: { ...CheckboxStyleTheme },
+};
+export interface CheckboxStyleBaseProps
+  extends RadioAbstractProps,
+    ThemeVariantValueOptions<typeof CheckboxStyleTheme> {
   disabled?: boolean;
   indeterminate?: boolean;
 }
 
-const disabledCss = ({ disabled }: CheckboxBaseProps) => {
+const disabledCss = ({ disabled, ...rest }: CheckboxStyleBaseProps) => {
   return (
     disabled &&
     css`
@@ -15,22 +29,22 @@ const disabledCss = ({ disabled }: CheckboxBaseProps) => {
         opacity: 0.5;
       }
       ${RadioText} {
-        color: #6e6e6e;
+        color: ${() => getThemeVariantValue({ ...rest }, 'colorCheckboxDisabled')};
       }
     `
   );
 };
 
-const indeterminateCss = ({ indeterminate }: CheckboxBaseProps) => {
+const indeterminateCss = ({ indeterminate, ...rest }: CheckboxStyleBaseProps) => {
   return (
     indeterminate &&
     css`
       input[type='checkbox']:checked {
         background-color: transparent;
-        box-shadow: inset 0 0 0 1px rgb(0, 142, 240);
+        box-shadow: ${() => getThemeVariantValue({ ...rest }, 'boxShadowCheckboxChecked')};
         &:after {
           display: inline-block;
-          background-color: #008df8;
+          background-color: ${() => getThemeVariantValue({ ...rest }, 'backgroundColorCheckboxChecked')};
           box-sizing: inherit;
           transform: rotate(0);
           position: relative;
@@ -46,14 +60,14 @@ const indeterminateCss = ({ indeterminate }: CheckboxBaseProps) => {
   );
 };
 
-const CheckGroupBase = styled.div<CheckboxBaseProps>`
+const CheckGroupStyleBase = styled.div<CheckboxStyleBaseProps>`
   vertical-align: middle;
   font-size: 0;
   cursor: pointer;
   white-space: nowrap;
 `;
 
-const CheckboxBase = styled.div<CheckboxBaseProps>`
+const CheckboxStyleBase = styled.div<CheckboxStyleBaseProps>`
   display: inline-block;
   input[type='checkbox'] {
     vertical-align: middle;
@@ -66,7 +80,7 @@ const CheckboxBase = styled.div<CheckboxBaseProps>`
     background-clip: border-box;
     appearance: none;
     margin: 0 !important;
-    background-color: #d7d7d7;
+    background-color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorCheckboxBase')};
     transition: background-color 0.3s, box-shadow 0.3s;
     &:after {
       content: '';
@@ -75,18 +89,18 @@ const CheckboxBase = styled.div<CheckboxBaseProps>`
     &:not(:checked):not(:disabled):not(.disabled) {
       &:focus,
       &:hover {
-        box-shadow: inset 0 1px 2px rgba(16, 22, 26, 0.35);
+        box-shadow: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowCheckboxHover')};
       }
     }
   }
   ${disabledCss}
   ${indeterminateCss}
   input[type='checkbox']:checked {
-    background-color: #008ef0;
+    background-color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorCheckboxChecked')};
     &:after {
       transition: background-color 0.2s ease-in;
       display: inline-block;
-      border: solid #fff;
+      border: solid ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorCheckboxChecked')};
       border-width: 0 2px 2px 0;
       transform: rotate(33deg);
       position: relative;
@@ -104,4 +118,4 @@ const CheckboxBase = styled.div<CheckboxBaseProps>`
   }
 `;
 
-export { CheckGroupBase, CheckboxBase };
+export { CheckGroupStyleBase, CheckboxStyleBase };

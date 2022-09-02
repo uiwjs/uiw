@@ -8,7 +8,7 @@ import React from 'react';
 import { DescriptionsProps } from '..';
 
 /** Descriptions 主题变量**/
-export const DescriptionsDefaultTheme = {
+export const DescriptionsStyleTheme = {
   borderColorDescriptions: '#dfe2e5',
   fontSizeSmall: '12px',
   fontSizeDefault: '14px',
@@ -21,35 +21,36 @@ export const DescriptionsDefaultTheme = {
   colorDescriptionsConent: 'rgba(0, 0, 0, 0.65)',
   colorDescriptionsColon: 'rgba(0, 0, 0, 0.95)',
 };
+const propsTheme = {
+  defaultTheme: { ...DescriptionsStyleTheme },
+};
+type ThemeVar = ThemeVariantValueOptions<typeof DescriptionsStyleTheme>;
 
-export interface DescriptionsWarpProps extends HTMLDivProps, ThemeVariantValueOptions {
+export interface DescriptionsStyleWarpProps extends HTMLDivProps, ThemeVar {
   bordered?: boolean;
 }
-export const DescriptionsWarp = styled.div<DescriptionsWarpProps>`
-  background: ${(props) => getThemeVariantValue(props, 'backgroundColorBase')};
+export const DescriptionsStyleWarp = styled.div<DescriptionsStyleWarpProps>`
+  background: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorBase')};
   ${(props) =>
     props.bordered &&
     css`
       & {
         overflow: hidden;
         border-radius: 3px;
-        border: 1px solid ${(props) => getThemeVariantValue(props, 'borderColorDescriptions')};
+        border: 1px solid ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorDescriptions')};
       }
     `}
 `;
-DescriptionsWarp.defaultProps = {
-  defaultTheme: DescriptionsDefaultTheme,
-};
-export interface DescriptionsItemProps
+export interface DescriptionsStyleItemProps
   extends React.DetailedHTMLProps<React.ThHTMLAttributes<HTMLTableHeaderCellElement>, HTMLTableHeaderCellElement>,
     React.DetailedHTMLProps<React.TdHTMLAttributes<HTMLTableDataCellElement>, HTMLTableDataCellElement>,
-    ThemeVariantValueOptions {
+    ThemeVar {
   bordered?: boolean;
   isLabel?: Boolean;
   isColon?: Boolean;
   isContent?: Boolean;
 }
-export const DescriptionsItem = styled.th<DescriptionsItemProps>`
+export const DescriptionsStyleItem = styled.th<DescriptionsStyleItemProps>`
   ${(props) =>
     props.isLabel &&
     css`
@@ -72,15 +73,15 @@ export const DescriptionsItem = styled.th<DescriptionsItemProps>`
         content: ':';
       }
       & {
-        color: ${(props) => getThemeVariantValue(props, 'colorDescriptionsColon')};
+        color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorDescriptionsColon')};
       }
     `}
       ${(props) =>
     props.isContent &&
     css`
       & {
-        font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
-        color: ${(props) => getThemeVariantValue(props, 'colorDescriptionsConent')};
+        font-size: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeDefault')};
+        color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorDescriptionsConent')};
       }
     `}
     ${(props) =>
@@ -92,12 +93,10 @@ export const DescriptionsItem = styled.th<DescriptionsItemProps>`
       }
     `}
 `;
-DescriptionsItem.defaultProps = { defaultTheme: DescriptionsDefaultTheme };
-
-export interface DescriptionsTableProps
+export interface DescriptionsStyleTableProps
   extends React.DetailedHTMLProps<React.TableHTMLAttributes<HTMLTableElement>, HTMLTableElement>,
-    ThemeVariantValueOptions {}
-export const DescriptionsTable = styled.table<DescriptionsTableProps>`
+    ThemeVar {}
+export const DescriptionsStyleTable = styled.table<DescriptionsStyleTableProps>`
   display: table !important;
   margin-bottom: 0 !important;
   margin: 0;
@@ -107,17 +106,17 @@ export const DescriptionsTable = styled.table<DescriptionsTableProps>`
   width: 100%;
 `;
 
-export interface DescriptionsTableCaptionProps
+export interface DescriptionsStyleTableCaptionProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
-    ThemeVariantValueOptions {
+    ThemeVar {
   bordered?: boolean;
 }
-export const DescriptionsTableCaption = styled.caption<DescriptionsTableCaptionProps>`
+export const DescriptionsStyleTableCaption = styled.caption<DescriptionsStyleTableCaptionProps>`
   font-weight: bold;
   text-align: left;
   margin-bottom: 8px;
-  color: ${(props) => getThemeVariantValue(props, 'colorDescriptionsHead')};
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeLarge')};
+  color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorDescriptionsHead')};
+  font-size: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeLarge')};
   line-height: 1.5;
   ${(props) =>
     props.bordered &&
@@ -128,13 +127,13 @@ export const DescriptionsTableCaption = styled.caption<DescriptionsTableCaptionP
       }
     `}
 `;
-DescriptionsTableCaption.defaultProps = { defaultTheme: DescriptionsDefaultTheme };
-export interface DescriptionsTableRowProps
+
+export interface DescriptionsStyleTableRowProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLTableRowElement>, HTMLTableRowElement>,
-    ThemeVariantValueOptions {
+    ThemeVar {
   bordered?: boolean;
 }
-export const DescriptionsTableRow = styled.tr<DescriptionsTableRowProps>`
+export const DescriptionsStyleTableRow = styled.tr<DescriptionsStyleTableRowProps>`
   &&:nth-child(2n) {
     background-color: transparent;
   }
@@ -154,14 +153,14 @@ export const DescriptionsTableRow = styled.tr<DescriptionsTableRowProps>`
     `}
 `;
 
-export interface DescriptionsTableTbodyProps
+export interface DescriptionsStyleTableTbodyProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLTableSectionElement>, HTMLTableSectionElement>,
-    ThemeVariantValueOptions {
+    ThemeVar {
   bordered?: boolean;
   size?: DescriptionsProps['size'];
 }
 
-export const DescriptionsTableTbody = styled.tbody<DescriptionsTableTbodyProps>`
+export const DescriptionsStyleTableTbody = styled.tbody<DescriptionsStyleTableTbodyProps>`
   word-wrap: break-word;
   ${(props) =>
     props.bordered &&
@@ -169,13 +168,16 @@ export const DescriptionsTableTbody = styled.tbody<DescriptionsTableTbodyProps>`
       & {
         tr th {
           padding: 8px 12px;
-          background-color: ${(props) => getThemeVariantValue(props, 'borderColorDescriptionsTh')};
+          background-color: ${(props) =>
+            getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorDescriptionsTh')};
           font-weight: normal;
         }
         tr th,
         tr td {
-          border-top: 1px solid ${(props) => getThemeVariantValue(props, 'borderColorDescriptions')};
-          border-right: 1px solid ${(props) => getThemeVariantValue(props, 'borderColorDescriptions')};
+          border-top: 1px solid
+            ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorDescriptions')};
+          border-right: 1px solid
+            ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorDescriptions')};
         }
         &:first-child tr:first-child th,
         &:first-child tr:first-child td {
@@ -187,8 +189,8 @@ export const DescriptionsTableTbody = styled.tbody<DescriptionsTableTbodyProps>`
     props.size === 'small' &&
     props.bordered &&
     css`
-      & ${DescriptionsTableRow} td,
-      & ${DescriptionsTableRow} th {
+      & ${DescriptionsStyleTableRow} td,
+      & ${DescriptionsStyleTableRow} th {
         padding: 4px 8px;
       }
     `}
@@ -196,12 +198,8 @@ export const DescriptionsTableTbody = styled.tbody<DescriptionsTableTbodyProps>`
     props.size === 'large' &&
     props.bordered &&
     css`
-      & ${DescriptionsTableRow} ${DescriptionsItem} {
+      & ${DescriptionsStyleTableRow} ${DescriptionsStyleItem} {
         padding: 14px 16px;
       }
     `}
 `;
-
-DescriptionsTableTbody.defaultProps = {
-  defaultTheme: DescriptionsDefaultTheme,
-};

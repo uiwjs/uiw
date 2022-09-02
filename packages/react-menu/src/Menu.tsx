@@ -3,8 +3,8 @@ import { IProps, HTMLUlProps } from '@uiw/utils';
 import { MenuItem } from './MenuItem';
 import { MenuDivider } from './Divider';
 import { SubMenu } from './SubMenu';
-// import './style/menu.less';
-import { MenuBase } from './style';
+import { MenuStyleBase } from './style';
+import { useMenuContext, MenuContext } from './hooks';
 export interface MenuProps extends IProps, HTMLUlProps {
   /** 主题颜色 */
   theme?: 'light' | 'dark';
@@ -31,6 +31,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
     inlineCollapsed,
     ...htmlProps
   } = props;
+  const store = useMenuContext();
   const cls = useMemo(
     () =>
       [
@@ -47,27 +48,29 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
   );
 
   return (
-    <MenuBase
-      {...htmlProps}
-      params={{
-        bordered,
-        inlineCollapsed,
-        theme,
-      }}
-      ref={ref}
-      className={cls}
-      data-menu="menu"
-    >
-      {React.Children.map(children, (child: React.ReactNode, key) => {
-        if (!React.isValidElement(child)) return child;
-        const props: { inlineIndent?: number; inlineCollapsed?: boolean } = {};
-        // Sub Menu
-        if (child.props.children && child.type === (SubMenu as any)) {
-          props.inlineIndent = inlineIndent;
-        }
-        return React.cloneElement(child, Object.assign({ ...props, theme }, child.props, { key: `${key}` }));
-      })}
-    </MenuBase>
+    <MenuContext.Provider value={store}>
+      <MenuStyleBase
+        {...htmlProps}
+        params={{
+          bordered,
+          inlineCollapsed,
+          theme,
+        }}
+        ref={ref}
+        className={cls}
+        data-menu="menu"
+      >
+        {React.Children.map(children, (child: React.ReactNode, key) => {
+          if (!React.isValidElement(child)) return child;
+          const props: { inlineIndent?: number; inlineCollapsed?: boolean } = {};
+          // Sub Menu
+          if (child.props.children && child.type === (SubMenu as any)) {
+            props.inlineIndent = inlineIndent;
+          }
+          return React.cloneElement(child, Object.assign({ ...props, theme }, child.props, { key: `${key}` }));
+        })}
+      </MenuStyleBase>
+    </MenuContext.Provider>
   );
 });
 

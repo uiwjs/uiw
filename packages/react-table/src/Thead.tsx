@@ -1,8 +1,7 @@
 import React from 'react';
 import { IProps, noop } from '@uiw/utils';
 import { TableProps, TableColumns, LocationWidth } from './';
-import { TheadWrap, TableColContent } from './style';
-import './style/index.less';
+import { TableStyleTheadWrap, TableStyleColContent } from './style';
 import ThComponentProps from './ThComponent';
 
 export interface TheadProps<T extends { [key: string]: V }, V = any> extends IProps {
@@ -27,7 +26,7 @@ export default function TheadComponent<T extends { [key: string]: V }, V>(
     ...other
   } = props;
   return (
-    <TheadWrap className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...other}>
+    <TableStyleTheadWrap className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...other}>
       {data &&
         data.length > 0 &&
         data.map((tds?: TableColumns<T>[], rowNum?: number) => (
@@ -35,12 +34,12 @@ export default function TheadComponent<T extends { [key: string]: V }, V>(
             {(tds || []).map((item, colNum) => {
               const { title, key, render, children, ellipsis, fixed = false, ...thProps } = item;
               const titleNode: TableColumns<T>['title'] = (
-                <TableColContent
+                <TableStyleColContent
                   className={ellipsis ? `${thProps.className || ''} ${prefixCls}-ellipsis` : undefined}
                   params={{ ellipsis }}
                 >
                   {typeof title === 'function' ? title(item, colNum, rowNum!) : title}
-                </TableColContent>
+                </TableStyleColContent>
               );
               if (thProps.colSpan === 0) {
                 return null;
@@ -61,6 +60,6 @@ export default function TheadComponent<T extends { [key: string]: V }, V>(
             })}
           </tr>
         ))}
-    </TheadWrap>
+    </TableStyleTheadWrap>
   );
 }

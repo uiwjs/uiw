@@ -3,7 +3,6 @@ import { IProps, HTMLDivProps } from '@uiw/utils';
 import { RadioProps } from './Radio';
 import ButtonGroup from '@uiw/react-button-group';
 import { RadioGroupBase } from './style';
-import './style/group.less';
 
 export interface RadioGroupProps extends IProps, HTMLDivProps {
   name?: RadioProps['name'];

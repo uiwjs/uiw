@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { IProps } from '@uiw/utils';
-import { ListItemExtra, ListItemMain, ListItemWarp } from './style';
+import { ListStyleItemExtra, ListStyleItemMain, ListStyleItemWarp } from './style';
 
 export type TagType = React.ComponentType | keyof JSX.IntrinsicElements;
 
@@ -30,7 +30,7 @@ export const ListItem = React.forwardRef(
       .trim();
     const TagName = props.href && typeof tagName === 'string' ? 'a' : tagName;
     return React.createElement(
-      ListItemWarp,
+      ListStyleItemWarp,
       {
         ...resetProps,
         className: cls,
@@ -43,8 +43,8 @@ export const ListItem = React.forwardRef(
         children
       ) : (
         <Fragment>
-          <ListItemMain className={`${prefixCls}-main`}>{children}</ListItemMain>
-          <ListItemExtra className={`${prefixCls}-extra`}>{extra}</ListItemExtra>
+          <ListStyleItemMain className={`${prefixCls}-main`}>{children}</ListStyleItemMain>
+          <ListStyleItemExtra className={`${prefixCls}-extra`}>{extra}</ListStyleItemExtra>
         </Fragment>
       ),
     );
