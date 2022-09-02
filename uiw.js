@@ -6441,7 +6441,7 @@ var FileList = props => {
   var [fileList, setFileList] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     setFileList(inValue);
-  }, []);
+  }, [value]);
   var handleClickInput = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)(() => openFileDialog(inputRef), [inputRef]);
   var onFileUpload = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)(() => {
     if (inputRef.current) inputRef.current.value = '';
