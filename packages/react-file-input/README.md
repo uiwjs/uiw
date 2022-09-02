@@ -210,82 +210,101 @@ ReactDOM.render(
 
 <!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
 ```jsx
+import React,{ useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { Form, Row, Col, Icon } from 'uiw';
+import { Form, Row, Col, Icon,FileInput,Button } from 'uiw';
 
-ReactDOM.render(
-  <div>
-    <Form
-      onSubmit={({initial, current}) => {
-         console.log('current',current)
-      }}
-      fields={{
-        picture1: {
-          label: '图片墙',
-          initialValue: [
-            {
-              dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png'
-            }
-          ],
-          children: (
-            <FileInput uploadType="card">
-              <Icon type="plus" />
-            </FileInput>
+function Demo() {
+  const form = useRef()
+  return (
+    <div>
+      <Button
+        type="danger" 
+        onClick={()=>{
+          const value =  form.current.getFieldValues()
+          form.current.setFields({
+            ...value,
+            picture1:[],
+            picture2:[],
+            picture3:[]
+          })
+        }}
+      > 
+        清空照片
+      </Button>
+      <Form
+        ref={form}
+        onSubmit={({initial, current}) => {
+          console.log('current',current)
+        }}
+        fields={{
+          picture1: {
+            label: '图片墙',
+            initialValue: [
+              {
+                dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png'
+              }
+            ],
+            children: (
+              <FileInput uploadType="card">
+                <Icon type="plus" />
+              </FileInput>
+            )
+          },
+          picture2: {
+            label: '图片列表',
+            initialValue: [
+              {
+                dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png'
+              }
+            ],
+            children: (
+              <FileInput uploadType="picture">
+                <Button>新增</Button>
+              </FileInput>
+            )
+          },
+          picture3: {
+            label: '图片名称列表',
+            children: (
+              <FileInput uploadType="text">
+                <Button>新增</Button>
+              </FileInput>
+            )
+          },
+        }}>
+        {({ fields, state, canSubmit }) => {
+          return (
+            <div>
+              <Row>
+                <Col>{fields.picture1}</Col>
+              </Row>
+              <Row>
+                <Col>{fields.picture2}</Col>
+              </Row>
+              <Row>
+                <Col>{fields.picture3}</Col>
+              </Row>
+              <Row gutter={10}>
+                <Col>
+                  <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <pre style={{ padding: '10px 0 0 10px' }}>
+                    {JSON.stringify(state.current, null, 2)}
+                  </pre>
+                </Col>
+              </Row>
+            </div>
           )
-        },
-        picture2: {
-          label: '图片列表',
-          initialValue: [
-            {
-              dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png'
-            }
-          ],
-          children: (
-            <FileInput uploadType="picture">
-              <Button>新增</Button>
-            </FileInput>
-          )
-        },
-        picture3: {
-          label: '图片名称列表',
-          children: (
-            <FileInput uploadType="text">
-              <Button>新增</Button>
-            </FileInput>
-          )
-        },
-      }}>
-      {({ fields, state, canSubmit }) => {
-        return (
-          <div>
-            <Row>
-              <Col>{fields.picture1}</Col>
-            </Row>
-            <Row>
-              <Col>{fields.picture2}</Col>
-            </Row>
-            <Row>
-              <Col>{fields.picture3}</Col>
-            </Row>
-            <Row gutter={10}>
-              <Col>
-                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <pre style={{ padding: '10px 0 0 10px' }}>
-                  {JSON.stringify(state.current, null, 2)}
-                </pre>
-              </Col>
-            </Row>
-          </div>
-        )
-      }}
-    </Form>
-  </div>,
-  _mount_
-);
+        }}
+      </Form>
+    </div>
+  )
+}
+ReactDOM.render(<Demo />,_mount_)
 ```
 
 ## Props

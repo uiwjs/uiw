@@ -13,7 +13,7 @@ export const FileList = (props: FileInputUploadProps) => {
 
   useEffect(() => {
     setFileList(inValue);
-  }, []);
+  }, [value]);
 
   const handleClickInput = useCallback(() => openFileDialog(inputRef), [inputRef]);
 
