@@ -22,7 +22,7 @@ export interface MenuItemProps<Tag extends TagType> extends IProps, React.HTMLPr
   isSubMenuItem?: boolean;
   disabled?: boolean;
   active?: boolean;
-  icon?: IconProps['type'];
+  icon?: React.ReactNode;
   children?: React.ReactNode;
   theme?: 'light' | 'dark';
 }
