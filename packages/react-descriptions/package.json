@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-descriptions",
-  "version": "5.0.0-bate-0",
+  "version": "5.0.0-bate-5",
   "description": "Descriptions component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/descriptions",
@@ -45,6 +45,6 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/utils": "^5.0.0-bate-0"
+    "@uiw/utils": "^5.0.0-bate-5"
   }
 }

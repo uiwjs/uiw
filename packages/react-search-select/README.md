@@ -33,7 +33,7 @@ const Demo = () => {
 
   return(
     <Row gutter={20}>
-     <label>单选</label>
+     <label style={{ lineHeight: '30px' }}>单选</label>
      <Row>
        <SearchSelect
          mode="single"
@@ -42,7 +42,7 @@ const Demo = () => {
          option={option}
        />
      </Row>
-     <label>多选</label>
+     <label style={{ lineHeight: '30px' }}>多选</label>
      <Row>
        <SearchSelect
          mode="multiple"
@@ -52,7 +52,7 @@ const Demo = () => {
          option={option}
        />
      </Row>
-     <label>禁用</label>
+     <label style={{ lineHeight: '30px' }}>禁用</label>
      <Row>
        <SearchSelect
          mode="single"

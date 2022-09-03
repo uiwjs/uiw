@@ -5,7 +5,7 @@ export const RadioStyleTheme = {
   backgroundColorBase: '#fff',
   fontSizeSamll: '12px',
   colorRadioDefault: '#c7c7c7',
-  colorNotCheckedNotDisabledDefault: '#efefef',
+  colorNotCheckedNotDisabledDefault: '#cecece',
   widthRadioDefault: '16px',
   heightRadioDefault: '16px',
   borderRadioDefault: '1.2px solid #d7d7d7',
@@ -45,11 +45,13 @@ const RadioBase = styled.label<RadioBaseProps>`
         height: ${getThemeVariantValue({ ...props, defaultTheme: RadioStyleTheme }, 'heightRadioDefault')};
         background-clip: border-box;
         appearance: none;
-        margin: -0.15px 0.6px 0 0;
+        margin-top: -1.5px;
+        margin-right: 1px;
         border-radius: 50%;
         background-color: ${getThemeVariantValue({ ...props, defaultTheme: RadioStyleTheme }, 'backgroundColorBase')};
         border: ${getThemeVariantValue({ ...props, defaultTheme: RadioStyleTheme }, 'borderRadioDefault')};
         transition: border 0.25s, box-shadow 0.25s;
+        vertical-align: middle;
         cursor: ${disabled && 'not-allowed'};
         &:not(:checked):not(:disabled):not(.disabled) {
           background-color: ${disabled &&
@@ -60,11 +62,12 @@ const RadioBase = styled.label<RadioBaseProps>`
           }
         }
         &:checked {
-          border: ${disabled &&
-          getThemeVariantValue({ ...props, defaultTheme: RadioStyleTheme }, 'borderRadioCheckedDefault')};
+          border: ${getThemeVariantValue({ ...props, defaultTheme: RadioStyleTheme }, 'borderRadioCheckedDefault')};
           &:focus {
             box-shadow: 0 0 0 2px rgba(0, 142, 240, 0.25);
           }
+          border-color: ${disabled &&
+          getThemeVariantValue({ ...props, defaultTheme: RadioStyleTheme }, 'colorNotCheckedNotDisabledDefault')};
         }
       }
     `;
@@ -73,9 +76,5 @@ const RadioBase = styled.label<RadioBaseProps>`
 const RadioGroupBase = styled.div`
   font-size: 0;
 `;
-
-// RadioBase.defaultProps = {
-//   defaultTheme: RadioStyleTheme,
-// };
 
 export { RadioText, RadioBase, RadioGroupBase };

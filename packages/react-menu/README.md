@@ -111,8 +111,8 @@ const btnStl = {position: 'relative', width: 70 }
 const content = (
   <Menu>
     <Menu.Divider title="编辑" />
-    <Menu.Item icon={<Icon type="file-add" />}  icon="file-add" text="添加文件" />
-    <Menu.Item icon={<Icon type="folder-add" />}  icon="folder-add" text="添加文件夹" />
+    <Menu.Item icon={<Icon type="file-add" />}  text="添加文件" />
+    <Menu.Item icon={<Icon type="folder-add" />}  text="添加文件夹" />
     <Menu.Item icon={<Icon type="copy" />} text="拷贝" />
     <Menu.Item icon={<Icon type="delete" />} disabled text="删除" />
     <Menu.Divider title="其它" />
@@ -263,7 +263,7 @@ class Demo extends React.Component {
                 <Menu.Item  icon={<Icon type="tags-o" />}  text="标签名称" />
               </Menu.SubMenu>
               <Menu.Divider title="其它" />
-              <Menu.Item active icon="map" text="谷歌地图" />
+              <Menu.Item active  icon={<Icon type="map" />}  text="谷歌地图" />
               <Menu.SubMenu  icon={<Icon type="bar-chart" />}  text="每年2019年统计报表导出">
                 <Menu.Item text="添加文件" />
                 <Menu.Item text="添加文件夹" />
@@ -272,9 +272,9 @@ class Demo extends React.Component {
                   <Menu.Item  icon={<Icon type="file-add" />} text="添加文件" />
                   <Menu.Item  icon={<Icon type="folder-add" />} text="添加文件夹" />
                 </Menu.SubMenu>
-                <Menu.Item  icon={<Icon type="copy" />} icon="copy" text="拷贝" />
+                <Menu.Item  icon={<Icon type="copy" />}  text="拷贝" />
               </Menu.SubMenu>
-              <Menu.Item icon="setting" disabled text="偏好设置" />
+              <Menu.Item  icon={<Icon type="setting" />}  disabled text="偏好设置" />
               <Menu.SubMenu  icon={<Icon type="setting-o" />}  text="选项" collapse>
                 <Menu.Item  icon={<Icon type="dot-chart" />}  text="显示边栏" />
                 <Menu.Item  icon={<Icon type="date" />} text="添加日期" />
@@ -532,14 +532,14 @@ export default Demo
 其它参数可根据 `tagName` 来设置，默认 `<a />` 标签时，可设置 `href="https://wwww.google.com"` 或者 `target="_blank"` 等参数，你可以设置 [react-router-dom](https://github.com/ReactTraining/react-router) 路由 `<Link>`，例如：
 
 ```jsx
-import { Menu } from 'uiw';
+import { Menu,Icon } from 'uiw';
 import { Link } from 'react-router-dom';
 
 const Demo = () => {
   return (
     <Menu style={{ maxWidth: 200 }}>
       <Menu.Item tagName={Link} to="/home" icon="reload" text="跳转首页" />
-      <Menu.Item icon="map" text="百度地图" href="https://map.baidu.com" target="_blank" />
+      <Menu.Item icon={<Icon type="map"/>}  text="百度地图" href="https://map.baidu.com" target="_blank" />
     </Menu>
   )
 }

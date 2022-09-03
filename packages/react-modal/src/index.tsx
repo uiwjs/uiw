@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import Button, { ButtonType, ButtonProps } from '@uiw/react-button';
 import { Close } from '@uiw/icons/lib/Close';
-import { IconStyleBase } from '@uiw/react-icon';
 import { IProps, noop } from '@uiw/utils';
 import CallShow from './CallShow';
 import ModalStyleWrap, {
@@ -113,9 +112,7 @@ const Modal: React.ForwardRefExoticComponent<ModalProps & React.RefAttributes<Ov
               <ModalStyleHeader className={`${prefixCls}-header`}>
                 {icon && icon}
                 {title && <h4>{title}</h4>}
-                {isCloseButtonShown && (
-                  <Button basic onClick={(e) => handleCancel(e)} icon={<IconStyleBase as={Close} />} type="light" />
-                )}
+                {isCloseButtonShown && <Button basic onClick={(e) => handleCancel(e)} icon={<Close />} type="light" />}
               </ModalStyleHeader>
             )}
             <ModalStyleBody className={`${prefixCls}-body`} style={bodyStyle}>

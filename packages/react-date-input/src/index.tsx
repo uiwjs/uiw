@@ -5,12 +5,7 @@ import DatePicker, { DatePickerProps } from '@uiw/react-date-picker';
 import { Close } from '@uiw/icons/lib/Close';
 import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
-import {
-  DateInputIcon,
-  DateInputIconStyleWarp,
-  DateInputStyleDatePickerPopover,
-  DateInputStyleBase,
-} from './style/index';
+import { DateInputIconStyleWarp, DateInputStyleDatePickerPopover, DateInputStyleBase } from './style/index';
 export * from './style';
 export * from './DateInputRange';
 
@@ -55,7 +50,7 @@ export default function DateInput(props: DateInputProps) {
   if (allowClear && inputProps.value) {
     inputProps.addonAfter = (
       <DateInputIconStyleWarp closebtn className={`${prefixCls}-close-btn`} onClick={() => handleChange(undefined)}>
-        <DateInputIcon as={Close} />
+        <Close />
       </DateInputIconStyleWarp>
     );
   }

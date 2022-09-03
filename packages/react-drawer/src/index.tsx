@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import { OverlayProps } from '@uiw/react-overlay';
 import { Close } from '@uiw/icons/lib/Close';
 import Button from '@uiw/react-button';
-import { IconStyleBase } from '@uiw/react-icon';
 import { HTMLDivProps } from '@uiw/utils';
 import {
   DrawerStyleWrap,
@@ -72,9 +71,7 @@ export default (props: DrawerProps = {}) => {
           <DrawerStyleHeaderWrap className={`${prefixCls}-header`}>
             {iconView}
             {titleView}
-            {title && isCloseButtonShown && (
-              <Button basic onClick={props.onClose} icon={<IconStyleBase as={Close} />} type="light" />
-            )}
+            {title && isCloseButtonShown && <Button basic onClick={props.onClose} icon={<Close />} type="light" />}
           </DrawerStyleHeaderWrap>
         )}
         <DrawerStyleBodyWrap className={`${prefixCls}-body`}>

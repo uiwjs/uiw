@@ -6,6 +6,8 @@ import { MenuItem, MenuItemProps, TagType } from './MenuItem';
 import Menu, { MenuProps } from './Menu';
 import { SubItemCollapseIcon, MenuStyleSubOverlayTriggerBase } from './style';
 import { useMenuContext } from './hooks';
+import { CaretRight } from '@uiw/icons/lib/CaretRight';
+
 export interface SubMenuProps<T extends TagType> extends IProps, MenuItemProps<T> {
   overlayProps?: OverlayTriggerProps;
   collapse?: boolean;
@@ -35,7 +37,6 @@ function IconView({ prefixCls, collapse, isOpen }: { prefixCls?: string; collaps
   return useMemo(
     () => (
       <SubItemCollapseIcon
-        type="caret-right"
         params={{
           prefixCls,
           collapse,
@@ -49,7 +50,9 @@ function IconView({ prefixCls, collapse, isOpen }: { prefixCls?: string; collaps
           .filter(Boolean)
           .join(' ')
           .trim()}
-      />
+      >
+        <CaretRight style={{ fill: 'currentColor' }} />
+      </SubItemCollapseIcon>
     ),
     [prefixCls, collapse, isOpen],
   );

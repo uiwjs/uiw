@@ -250,7 +250,7 @@ export default Demo
 
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
-import { Form, Input, Row, Col, Notify, Button } from 'uiw';
+import { Form, Input, Row, Col, Notify, Button,Icon } from 'uiw';
 
 const Demo = () => (
   <div>
@@ -282,12 +282,12 @@ const Demo = () => (
         username: {
           labelClassName: 'fieldLabel',
           labelFor: 'username-inline',
-          children: <Input preIcon="user" id="username-inline" />
+          children: <Input preIcon= {<Icon type="user" />} id="username-inline" />
         },
         password: {
           labelClassName: 'fieldLabel',
           labelFor: 'password-inline',
-          children: <Input preIcon="lock" id="password-inline" type="password" />
+          children: <Input  preIcon= {<Icon type="lock" />}  id="password-inline" type="password" />
         },
       }}
     >
@@ -318,7 +318,7 @@ export default Demo
 
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
-import { Form, Input, Row, Col, Checkbox, Notify, Button } from 'uiw';
+import { Form, Input, Row, Col, Checkbox, Notify, Button,Icon  } from 'uiw';
 
 const Demo = () => (
   <div>
@@ -331,13 +331,13 @@ const Demo = () => (
           labelClassName: 'fieldLabel',
           labelStyle: { width: 60 },
           labelFor: 'username',
-          children: <Input preIcon="user" id="username" />
+          children: <Input  preIcon= {<Icon type="user" />} id="username" />
         },
         password: {
           labelClassName: 'fieldLabel',
           labelStyle: { width: 60 },
           labelFor: 'password',
-          children: <Input preIcon="lock" id="password" type="password" />
+          children: <Input  preIcon= {<Icon type="lock" />}  id="password" type="password" />
         },
         terms: {
           validator: (currentValue) => !currentValue ? '必须统一服务条款' : null,

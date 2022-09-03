@@ -32,12 +32,18 @@ export const MonthPickerStyleInputStyleBase = styled(Input)<MonthPickerStyleInpu
   display: inline-block;
   & ${MonthPickerStyleCloseButton} {
     min-height: initial;
-    fill: ${(props) =>
-      getThemeVariantValue({ ...props, defaultTheme: MonthPickerTheme }, 'fillMonthPickerStyleCloseButtonBase')};
+    color: ${(props) =>
+      getThemeVariantValue(
+        { ...props, defaultTheme: MonthPickerTheme },
+        'fillMonthPickerStyleCloseButtonBase',
+      )} !important;
     cursor: pointer;
     &:hover {
-      fill: ${(props) =>
-        getThemeVariantValue({ ...props, defaultTheme: MonthPickerTheme }, 'fillMonthPickerStyleCloseButtonHover')};
+      color: ${(props) =>
+        getThemeVariantValue(
+          { ...props, defaultTheme: MonthPickerTheme },
+          'fillMonthPickerStyleCloseButtonHover',
+        )} !important;
     }
     &:active,
     &:hover {

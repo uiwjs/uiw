@@ -24,11 +24,7 @@ export const SelectStyleTheme = {
   // 阴影
   boxShadowSelectBase: 'inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 -1px 0 rgba(16, 22, 26, 0.1);',
   boxShadowSelectDisabled: 'none',
-  // 鼠标移入
-  cursorSelectDefault: 'pointer',
-  cursorSelectDisabled: 'not-allowed',
 
-  //
   borderRadiusDefault: '3px',
 
   backgroundImageSelectUrl: `url(${selectArrow})`,
@@ -43,7 +39,7 @@ export interface SelectWarpProps extends ThemeVariantValueOptions<typeof SelectS
 export const SelectStyleWarp = styled.select<SelectWarpProps>`
   display: inline-flex;
   appearance: none;
-  cursor: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'cursorSelectDefault')};
+  cursor: pointer;
   color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'colorSelectBase')};
   padding: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'paddingSelectDefault')};
   font-size: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'fontSizeSelectDefault')};
@@ -84,7 +80,7 @@ export const SelectStyleWarp = styled.select<SelectWarpProps>`
       getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'backgroundColorSelectDisabled')};
     opacity: 0.75;
     color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'colorSelectDisabled')};
-    cursor: ${(props) => getThemeVariantValue({ ...props, defaultTheme: SelectStyleTheme }, 'cursorSelectDisabled')};
+    cursor: not-allowed;
     resize: none;
   }
   ${(props) =>

@@ -7,7 +7,6 @@ import { DatePickerMonth, DatePickerYear, DatePickerCaption, DatePickerCaptionPr
 import { MonthPickerStylePopoverBase, MonthPickerStyleInputStyleBase, MonthPickerStyleCloseButton } from './style';
 export * from './style';
 import { Close } from '@uiw/icons/lib/Close';
-import { IconStyleBase } from '@uiw/react-icon';
 export interface MonthPickerProps extends IProps, Omit<InputProps, 'value' | 'onChange'> {
   popoverProps?: PopoverProps;
   pickerCaptionProps?: DatePickerCaptionProps;
@@ -62,7 +61,7 @@ export default function MonthPicker(props: MonthPickerProps) {
     inputProps.addonAfter = (
       <MonthPickerStyleCloseButton
         className={`${prefixCls}-close-btn`}
-        icon={<IconStyleBase as={Close} />}
+        icon={<Close />}
         onClick={() => {
           setDate('');
           onChange && onChange();

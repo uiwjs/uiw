@@ -133,7 +133,6 @@ export const FileInputStyleCardBoxWarp = styled.div<FileInputStyleCardBoxWarpPro
     opacity: 1;
   }
 `;
-FileInputStyleCardBoxWarp.defaultProps = { defaultTheme: FileInputTheme };
 
 export const FileInputStyleCardBoxInfoWarp = styled.div`
   box-sizing: border-box;
@@ -203,7 +202,9 @@ export const FileInputStyleCardWarp = styled.div<{
   }}
 `;
 
-export interface FileInputStyleListActionsWarpProps extends HTMLDivProps, ThemeVar {}
+export interface FileInputStyleListActionsWarpProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+    ThemeVar {}
 // list
 export const FileInputStyleListActionsWarp = styled.div<FileInputStyleListActionsWarpProps>`
   position: absolute;
@@ -299,12 +300,12 @@ export const FileInputStyleListUploadTypeWarp = styled.div<FileInputStyleListUpl
   }}
 `;
 
-export interface FileInputStyleListActionsWarpProps extends HTMLDivProps {
+export interface FileInputStyleListWarpProps extends HTMLDivProps {
   size: FileInputListProps['size'];
   shape: FileInputListProps['shape'];
   uploadType: FileInputListProps['uploadType'];
 }
-export const FileInputStyleListWarp = styled.div<FileInputStyleListActionsWarpProps>`
+export const FileInputStyleListWarp = styled.div<FileInputStyleListWarpProps>`
   padding-bottom: 8px;
   width: 100%;
   ${(props) => {

@@ -63,21 +63,13 @@ export const DateInputIconStyleWarp = styled(IconStyleBase)<DateInputIconStyleWa
       & {
         display: flex;
         margin: 0 3px;
-        fill: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'fillDateInputCloseBase')};
+        color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'fillDateInputCloseBase')};
         cursor: pointer;
         &:hover {
-          fill: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'fillDateInputCloseHover')};
+          color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'fillDateInputCloseHover')};
         }
       }
     `}
-`;
-
-export interface DateInputIconProps {
-  spin?: boolean;
-}
-export const DateInputIcon = styled.div<DateInputIconProps>`
-  height: 1em;
-  width: 1em;
 `;
 
 export interface DateTimeInputProps extends HTMLDivProps, ThemeVariantValueOptions<typeof DateInputStyleTheme> {}

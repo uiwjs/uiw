@@ -1,36 +1,8 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import { CardStyleWarpProps, getActive, getNoHover } from './utils';
-
-export const CardStyleTheme = {
-  borderRadiusLarge: '5px',
-  fontSizeDefault: '14px',
-  lineHeightDefault: 1.5,
-  borderColorBaseActive: '#CCCCCC',
-  borderColorBase: '#e9e9e9',
-  backgroundColorBase: '#fff',
-
-  heightCardStyleHead: '40px',
-  paddingVerticalCardStyleHead: 0,
-  paddingHorizontalCardStyleHead: '14px',
-  borderRadius1CardStyleHead: '2px',
-  borderRadius2CardStyleHead: '2px',
-  borderRadius3CardStyleHead: 0,
-  borderRadius4CardStyleHead: 0,
-
-  colorBase: '#393e48',
-
-  rightCardStyleHeadExtra: '16px',
-  topCardStyleHeadExtra: 0,
-
-  paddingCardBody: '14px',
-  borderTopCardBody: '1px solid #e9e9e9',
-
-  paddingVerticalCardStyleFooter: '8px',
-  paddingHorizontalCardStyleFooter: '10px',
-  borderTopCardStyleFooter: '1px solid #F2F2F2',
-  colorCardStyleFooter: '#999999',
-};
+import { CardStyleTheme } from './theme';
+export { CardStyleTheme };
 const propsTheme = {
   defaultTheme: { ...CardStyleTheme },
 };
@@ -117,15 +89,3 @@ export const CardStyleWarp = styled.div<CardStyleWarpProps>`
   ${(props) => getNoHover(props)}
   ${(props) => getActive(props)}
 `;
-
-CardStyleWarp.defaultProps = { defaultTheme: CardStyleTheme };
-
-CardStyleHead.defaultProps = { defaultTheme: CardStyleTheme };
-
-CardStyleHeadTitle.defaultProps = { defaultTheme: CardStyleTheme };
-
-CardStyleHeadExtra.defaultProps = { defaultTheme: CardStyleTheme };
-
-CardBody.defaultProps = { defaultTheme: CardStyleTheme };
-
-CardStyleFooter.defaultProps = { defaultTheme: CardStyleTheme };

@@ -14,11 +14,6 @@ export interface CascaderStyleIconWarpProps
   closebtn?: boolean;
 }
 
-export const CascaderStyleIcon = styled.div<IconStyleBaseProps>`
-  height: 1em;
-  width: 1em;
-`;
-
 export const CascaderStyleIconWarp = styled(IconStyleBase)<CascaderStyleIconWarpProps>`
   ${(props) =>
     props.closebtn &&
@@ -30,7 +25,3 @@ export const CascaderStyleIconWarp = styled(IconStyleBase)<CascaderStyleIconWarp
       }
     `}
 `;
-
-CascaderStyleIconWarp.defaultProps = {
-  defaultTheme: CascaderStyleTheme,
-};

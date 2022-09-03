@@ -1,6 +1,6 @@
 import React from 'react';
 import { IProps } from '@uiw/utils';
-import DescriptionsStyleItem, { DescriptionsItemProps } from './DescriptionsItem';
+import DescriptionsItem, { DescriptionsItemProps } from './DescriptionsItem';
 import Row, { RowProps } from './Row';
 import {
   DescriptionsStyleTable,
@@ -104,11 +104,21 @@ function InternalDescriptions(props: DescriptionsProps, ref: React.ForwardedRef<
   );
 }
 
-const Descriptions = React.forwardRef<HTMLDivElement, DescriptionsProps>(InternalDescriptions);
-type Descriptions = typeof Descriptions & {
-  Item: typeof DescriptionsStyleItem;
+// const Descriptions = React.forwardRef<HTMLDivElement, DescriptionsProps>(InternalDescriptions);
+// type Descriptions = typeof Descriptions & {
+//   Item: typeof DescriptionsItem;
+// };
+
+// (Descriptions as Descriptions).Item = DescriptionsItem;
+
+type DescriptionsComponent = React.FC<React.PropsWithRef<DescriptionsProps>> & {
+  Item: typeof DescriptionsItem;
 };
 
-(Descriptions as Descriptions).Item = DescriptionsStyleItem;
+const Descriptions: DescriptionsComponent = React.forwardRef<HTMLDivElement>(
+  InternalDescriptions,
+) as unknown as DescriptionsComponent;
 
-export default Descriptions as Descriptions;
+Descriptions.Item = DescriptionsItem;
+
+export default Descriptions;

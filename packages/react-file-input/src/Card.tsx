@@ -44,7 +44,9 @@ const Card = (props: FileInputListProps) => {
                 className={`${prefixCls}-actions-remove`}
                 onClick={() => onPreview?.(item)}
               >
-                <IconStyleBase as={Search} style={{ fill: '#fff', fontSize: 16 }} />
+                <IconStyleBase style={{ color: '#fff', fontSize: 16 }}>
+                  <Search />
+                </IconStyleBase>
               </FileInputStyleCardActionsRemoveWarp>
             )}
             {showFileIcon?.showRemoveIcon && (
@@ -52,7 +54,9 @@ const Card = (props: FileInputListProps) => {
                 className={`${prefixCls}-actions-remove`}
                 onClick={() => onRemove?.(index)}
               >
-                <IconStyleBase as={Delete} style={{ fill: '#fff', fontSize: 16 }} />
+                <IconStyleBase style={{ color: '#fff', fontSize: 16 }}>
+                  <Delete />
+                </IconStyleBase>
               </FileInputStyleCardActionsRemoveWarp>
             )}
           </FileInputStyleCardActionsWarp>

@@ -27,7 +27,7 @@ export const SearchSelectInputContentsBase = styled(Input)<SearchSelectInputCont
     box-shadow: none;
     padding: 0px;
     // min-width: 50px;
-    height: 28px;
+    height: 20px;
     &:hover {
       box-shadow: none !important;
     }
@@ -52,7 +52,7 @@ export const SearchSelectInputContentsBase = styled(Input)<SearchSelectInputCont
     props.size === 'small' &&
     css`
       ${InputStyleBase} {
-        height: 16px;
+        height: 20px;
         font-size: 10px;
         padding: 0px;
       }
@@ -61,7 +61,7 @@ export const SearchSelectInputContentsBase = styled(Input)<SearchSelectInputCont
     props.size === 'large' &&
     css`
       ${InputStyleBase} {
-        height: 28px;
+        height: 26px;
       }
     `}
 `;
@@ -76,6 +76,7 @@ export const SearchSelectTagContentsBase = styled.div`
   align-items: center;
   flex-flow: wrap;
   width: 100%;
+  box-sizing: border-box;
 `;
 
 export interface SearchSelectInputStyleBaseProps extends InputProps, ThemeVariantValueOptions {
@@ -103,14 +104,17 @@ export const SearchSelectIconStyleBase = styled(IconStyleBase)<SearchSelectIconS
   ${(props) =>
     props.params?.multiple &&
     css`
-      left: 7px;
-      font-size: 15px;
+      left: 3px;
+      font-size: 14px;
+      cursor: pointer;
     `}
 
   ${(props) =>
     props.params?.singe &&
     css`
-      font-size: 15px;
+      font-size: 14px;
+      cursor: pointer;
+      left: -3px;
     `}
 `;
 
@@ -119,6 +123,8 @@ export interface SearchSelectInnerProps
     ThemeVariantValueOptions<typeof SearchSelectStyleTheme> {
   params?: {
     showSearch: boolean;
+    size: string;
+    len: number;
   };
 }
 export const SearchSelectInner = styled.div<SearchSelectInnerProps>`
@@ -134,7 +140,7 @@ export const SearchSelectInner = styled.div<SearchSelectInnerProps>`
   background: ${(props) =>
     getThemeVariantValue({ ...props, defaultTheme: SearchSelectStyleTheme }, 'backgroundSearchSelectBase')};
   margin: 0 !important;
-  padding: 1px 10px;
+  padding: 5px 10px;
   vertical-align: middle;
   line-height: 30px;
   align-items: center;
@@ -159,12 +165,19 @@ export const SearchSelectInner = styled.div<SearchSelectInnerProps>`
     box-shadow: ${(props) =>
       getThemeVariantValue({ ...props, defaultTheme: SearchSelectStyleTheme }, 'boxShadowSearchSelectFocusHover')};
   }
-  ${(props) =>
-    props.params?.showSearch === false &&
-    css`
-      cursor: pointer;
-    `}
+  ${(props) => {
+    const { showSearch, size = 'default', len = 0 } = props?.params || {};
+    return css`
+      cursor: ${showSearch === false && 'pointer'};
+      padding: ${size === 'small' && '2px 5px'};
+      padding-left: ${len > 0 && returnPaddingLeft(size)};
+    `;
+  }}
 `;
-// SearchSelectInner.defaultProps = {
-//   defaultTheme: SearchSelectStyleTheme,
-// };
+
+function returnPaddingLeft(size: string) {
+  if (size !== 'small') {
+    return '6px';
+  }
+  return null;
+}

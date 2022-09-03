@@ -4,7 +4,7 @@ import { HTMLInputProps, IProps } from '@uiw/utils';
 import Dropdown, { DropdownProps } from '@uiw/react-dropdown';
 import Menu from '@uiw/react-menu';
 import Icon from '@uiw/react-icon';
-import { CascaderStyleIconWarp, CascaderStyleIcon } from './style';
+import { CascaderStyleIconWarp } from './style';
 import { Close } from '@uiw/icons/lib/Close';
 export * from './style';
 
@@ -259,7 +259,7 @@ function Cascader(props: CascaderProps) {
             <span style={{ width: 'auto' }}>
               {!disabled && selectIconType === 'close' && (
                 <CascaderStyleIconWarp closebtn className={`${prefixCls}-close`} onClick={onClear}>
-                  <CascaderStyleIcon as={Close} />
+                  <Close />
                 </CascaderStyleIconWarp>
               )}
             </span>
