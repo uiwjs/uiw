@@ -108,7 +108,8 @@
     "/extensions": "扩展",
     "issue": "提交问题",
     "github": "Github",
-    "gitee": "Gitee"
+    "gitee": "Gitee",
+    "searchInPlaceholder": "搜索组件"
   },
   "footer": {
     "greeting": "犯了错误还是想对文件做出贡献？",

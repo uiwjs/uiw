@@ -128,7 +128,7 @@ export default function Nav() {
         <SearchSelect
           size="large"
           style={{ width: 400, top: 30, display: 'flex', alignItems: 'center', marginLeft: 5 }}
-          placeholder="搜索组件"
+          placeholder={trans('menu.searchInPlaceholder')}
           showSearch={true}
           onSearch={onSearchMenu}
           value={searchText}

@@ -108,7 +108,8 @@
     "/extensions": "Extensions",
     "issue": "Submit an issue",
     "github": "Github",
-    "gitee": "Gitee"
+    "gitee": "Gitee",
+    "searchInPlaceholder": "Search Component"
   },
   "footer": {
     "greeting": "Making a mistake or want to contribute to the documentation?",
