@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import Icon, { IconProps } from '@uiw/react-icon';
+import { IconProps, IconStyleBase } from '@uiw/react-icon';
 import OverlayTrigger, { OverlayTriggerProps } from '@uiw/react-overlay-trigger';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
@@ -39,7 +39,7 @@ export interface MenuStyleItemBaseProps
     disabled?: boolean;
   };
 }
-export const MenuStyleItemIcon = styled(Icon)<IconProps>``;
+export const MenuStyleItemIcon = styled(IconStyleBase)<IconProps>``;
 
 export interface MenuItemStyleTextBaseProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement | ThemeVar>, HTMLDivElement> {
@@ -163,7 +163,7 @@ export interface SubItemCollapseIconProps extends IconProps {
   };
 }
 
-export const SubItemCollapseIcon = styled(Icon)<SubItemCollapseIconProps>`
+export const SubItemCollapseIcon = styled(IconStyleBase)<SubItemCollapseIconProps>`
   ${(props) =>
     props.params?.prefixCls &&
     css`

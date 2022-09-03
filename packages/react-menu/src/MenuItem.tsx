@@ -22,7 +22,7 @@ export interface MenuItemProps<Tag extends TagType> extends IProps, React.HTMLPr
   isSubMenuItem?: boolean;
   disabled?: boolean;
   active?: boolean;
-  icon?: IconProps['type'];
+  icon?: React.ReactNode;
   children?: React.ReactNode;
   theme?: 'light' | 'dark';
 }
@@ -63,8 +63,7 @@ function Internal<Tag extends TagType = 'a'>(props: MenuItemProps<Tag>, ref: Rea
       },
     } as any,
     <Fragment>
-      <MenuStyleItemIcon className={`${prefixCls}-icon`} type={icon} />
-      <div></div>
+      <MenuStyleItemIcon className={`${prefixCls}-icon`}>{icon}</MenuStyleItemIcon>
       <MenuItemStyleTextBase
         params={{ multiline, isText: !!prefixCls }}
         className={[prefixCls && `${prefixCls}-text`, !multiline && `${prefixCls}-multiline`]
