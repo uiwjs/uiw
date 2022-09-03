@@ -20,7 +20,7 @@ export interface MenuProps extends IProps, HTMLUlProps {
   bordered?: boolean;
 }
 
-const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
+const Menu = (props: MenuProps, ref?: React.ForwardedRef<HTMLUListElement>) => {
   const {
     prefixCls = 'w-menu',
     className,
@@ -72,18 +72,19 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
       </MenuStyleBase>
     </MenuContext.Provider>
   );
-});
+};
 
 Menu.displayName = 'uiw.Menu';
+const ContextMenu: ContextMenuComponent = React.forwardRef<HTMLUListElement>(Menu) as unknown as ContextMenuComponent;
 
-type Menu = typeof Menu & {
+type ContextMenuComponent = React.FC<React.PropsWithRef<MenuProps>> & {
   Item: typeof MenuItem;
   SubMenu: typeof SubMenu;
   Divider: typeof MenuDivider;
 };
 
-(Menu as Menu).Item = MenuItem;
-(Menu as Menu).SubMenu = SubMenu;
-(Menu as Menu).Divider = MenuDivider;
+ContextMenu.Item = MenuItem;
+ContextMenu.SubMenu = SubMenu;
+ContextMenu.Divider = MenuDivider;
 
-export default Menu as Menu;
+export default ContextMenu;
