@@ -23,9 +23,10 @@ export interface IconStyleBaseProps
 export const IconStyleBase = styled.span<IconStyleBaseProps>`
   height: 1em;
   width: 1em;
-  & svg {
+  fill: 'currentColor' & svg {
     height: 1em;
     width: 1em;
+    fill: 'currentColor';
   }
   display: inline-flex;
   align-self: center;
