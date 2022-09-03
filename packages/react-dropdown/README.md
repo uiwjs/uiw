@@ -18,15 +18,15 @@ import Dropdown from '@uiw/react-dropdown';
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Dropdown, Menu, ButtonGroup, Button, Divider, Icon } from 'uiw';
-
+import { Reload ,HeartOn,Appstore,BarChart,Setting,} from "@uiw/icons"
 const menu = (
   <div>
     <Menu bordered style={{ minWidth: 120 }}>
-      <Menu.Item icon="reload" text="重新加载" />
-      <Menu.Item icon="heart-on" text="另存为" active />
-      <Menu.Item icon="appstore" text="应用商城" />
-      <Menu.Item icon="bar-chart" text="月统计报表" />
-      <Menu.Item icon="setting" text="偏好设置" />
+      <Menu.Item icon={<Reload/>} text="重新加载" />
+      <Menu.Item icon={<HeartOn/>} text="另存为" active />
+      <Menu.Item  icon={<Appstore/>} text="应用商城" />
+      <Menu.Item icon={<BarChart/>} text="月统计报表" />
+      <Menu.Item  icon={<Setting/>}  text="偏好设置" />
     </Menu>
   </div>
 );
@@ -57,26 +57,28 @@ export default Demo
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Dropdown, Menu, ButtonGroup, Button } from 'uiw';
+import { Reload ,HeartOn,Appstore,BarChart,Setting,Copy,More} from "@uiw/icons"
 
 const menu = (
   <div>
-    <Menu bordered style={{ maxWidth: 200 }}>
-      <Menu.Item icon="reload" text="重新加载" />
+    <Menu bordered style={{ minWidth: 120 }}>
+      <Menu.Item icon={<Reload/>} text="重新加载" />
       <Menu.Divider />
-      <Menu.Item icon="heart-on" text="另存为" active />
-      <Menu.Item icon="appstore" text="应用商城" />
-      <Menu.Item icon="bar-chart" text="月统计报表导出" />
-      <Menu.Item icon="setting" text="偏好设置" />
+      <Menu.Item icon={<HeartOn/>} text="另存为" active />
+      <Menu.Item  icon={<Appstore/>} text="应用商城" />
+      <Menu.Item icon={<BarChart/>} text="月统计报表" />
+      <Menu.Item  icon={<Setting/>}  text="偏好设置" />
     </Menu>
   </div>
 );
 
+
 function Demo() {
   return <div>
     <ButtonGroup style={{ marginRight: 5, display: 'inline-block' }}>
-      <Button disabled icon="copy">点击右边</Button>
+      <Button disabled icon={<Copy/>}>点击右边</Button>
       <Dropdown disabled trigger="click" placement="bottomRight" menu={menu}>
-        <Button icon="more" />
+        <Button icon={<More/>} />
       </Dropdown>
     </ButtonGroup>
     <Dropdown disabled menu={menu}>
@@ -110,25 +112,27 @@ export default Demo
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Dropdown, Menu, ButtonGroup, Button, Divider } from 'uiw';
+import { Reload ,HeartOn,Appstore,BarChart,Setting,Copy,More} from "@uiw/icons"
 
 const menu = (
   <div>
-    <Menu bordered style={{ maxWidth: 200 }}>
-      <Menu.Item icon="reload" text="重新加载" />
+    <Menu bordered style={{ minWidth: 120 }}>
+      <Menu.Item icon={<Reload/>} text="重新加载" />
       <Menu.Divider />
-      <Menu.Item icon="heart-on" text="另存为" active />
-      <Menu.Item icon="appstore" text="应用商城" />
-      <Menu.Item icon="bar-chart" text="月统计报表导出" />
-      <Menu.Item icon="setting" text="偏好设置" />
+      <Menu.Item icon={<HeartOn/>} text="另存为" active />
+      <Menu.Item  icon={<Appstore/>} text="应用商城" />
+      <Menu.Item icon={<BarChart/>} text="月统计报表" />
+      <Menu.Item  icon={<Setting/>}  text="偏好设置" />
     </Menu>
   </div>
 );
+
 function Demo() {
   return <div>
     <ButtonGroup style={{ marginRight: 5, display: 'inline-block' }}>
-      <Button icon="copy">top</Button>
+      <Button  icon={<Copy/>}>top</Button>
       <Dropdown trigger="click" placement="top" menu={menu}>
-        <Button icon="more" />
+        <Button icon={<More/>} />
       </Dropdown>
     </ButtonGroup>
     <Dropdown menu={menu} trigger="click" placement="topLeft">

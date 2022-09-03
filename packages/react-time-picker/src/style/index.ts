@@ -7,6 +7,7 @@ import {
   HTMLLiProps,
   getThemeVariantValue,
 } from '@uiw/utils';
+import Button, { ButtonProps } from '@uiw/react-button';
 
 export const DateTimePickerStyleTheme = {
   borderLeftColorDateTimeStylePanelUl: '#e9e9e9',
@@ -25,11 +26,11 @@ type ThemeVar = ThemeVariantValueOptions<typeof DateTimePickerStyleTheme>;
 
 export interface DateTimeInputProps extends HTMLInputProps, ThemeVar {}
 export const DateTimeInput = styled.input``;
-export interface DateTimeStyleCloseButtonProps extends HTMLButtonProps, ThemeVar {
+export interface DateTimeStyleCloseButtonProps extends ButtonProps, ThemeVar {
   disabled?: boolean;
 }
 /** dateTime 清空按钮 **/
-export const DateTimeStyleCloseButton = styled.button<DateTimeStyleCloseButtonProps>`
+export const DateTimeStyleCloseButton = styled(Button)<DateTimeStyleCloseButtonProps>`
   ${DateTimeInput}.disabled & {
     display: none !important;
   }
@@ -37,21 +38,20 @@ export const DateTimeStyleCloseButton = styled.button<DateTimeStyleCloseButtonPr
     display: none;
     min-height: initial;
     color: ${(props) =>
-      getThemeVariantValue({ ...props, defaultTheme: DateTimePickerStyleTheme }, 'colorDateTimeStyleCloseButton')};
+      getThemeVariantValue(
+        { ...props, defaultTheme: DateTimePickerStyleTheme },
+        'colorDateTimeStyleCloseButton',
+      )} !important;
     &:hover {
       color: ${(props) =>
         getThemeVariantValue(
           { ...props, defaultTheme: DateTimePickerStyleTheme },
           'colorDateTimeStyleCloseButtonHover',
-        )};
+        )} !important;
       background-color: transparent !important;
     }
   }
 `;
-
-// DateTimeStyleCloseButton.defaultProps = {
-//   defaultTheme: DateTimePickerStyleTheme,
-// };
 
 export const DateTimeStylePanelUl = styled.ul`
   list-style: none;

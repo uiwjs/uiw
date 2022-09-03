@@ -356,7 +356,3 @@ export const MenuStyleBase = styled.ul<MenuStyleBaseProps>`
       }
     `}
 `;
-
-// MenuStyleBase.defaultProps = {
-//   defaultTheme: MenuStyleTheme,
-// };

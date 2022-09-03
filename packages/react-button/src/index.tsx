@@ -1,6 +1,7 @@
 import React from 'react';
 import { IProps, HTMLButtonProps } from '@uiw/utils';
 import { ButtonStyleWarp, ButtonStyleBaseLight } from './style';
+import { IconStyleBase } from '@uiw/react-icon';
 export * from './style';
 export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'light' | 'dark' | 'link';
 export type ButtonSize = 'large' | 'default' | 'small';
@@ -79,7 +80,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
         block,
       }}
     >
-      {icon}
+      {icon ? <IconStyleBase>{icon}</IconStyleBase> : <React.Fragment />}
       {children &&
         React.Children.map(children, (child: React.ReactNode) => {
           if (!child) return child;

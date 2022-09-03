@@ -224,11 +224,12 @@ function Transfer(props: TransferProps) {
 
   const Arrow = (props: { click: () => void; style: React.CSSProperties }) => (
     <TransferArrow
-      as={DownSquareO}
       onClick={() => props.click()}
       className={`${prefixCls}-arrow`}
       style={{ fontSize: 20, stroke: '#e9e9e9', ...props.style }}
-    />
+    >
+      <DownSquareO />
+    </TransferArrow>
   );
 
   return (

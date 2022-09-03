@@ -52,9 +52,9 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
   const IconDom = useMemo(() => {
     return (key: T[keyof T] | number, isOpacity: boolean) => {
       const flag = expandIndex.includes(key);
+      const Icon = flag ? MinusSquareO : PlusSquareO;
       return (
         <TableStyleDomIcon
-          as={flag ? MinusSquareO : PlusSquareO}
           style={{
             marginRight: 10,
             opacity: isOpacity ? 1 : 0,
@@ -65,7 +65,9 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
           onClick={() => {
             setExpandIndex(flag ? expandIndex.filter((it) => it !== key) : [...expandIndex, key]);
           }}
-        />
+        >
+          <Icon />
+        </TableStyleDomIcon>
       );
     };
   }, [expandIndex]);

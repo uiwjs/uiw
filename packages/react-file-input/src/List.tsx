@@ -57,7 +57,9 @@ const Picture = (props: FileInputListProps) => {
                       className={`${prefixCls}-actions-search`}
                       onClick={() => onPreview?.(item)}
                     >
-                      <IconStyleBase as={Search} style={{ color: '#fff', fontSize: 16 }} />
+                      <IconStyleBase style={{ color: '#fff', fontSize: 16 }}>
+                        <Search />
+                      </IconStyleBase>
                     </FileInputStyleListActionsSearchWarp>
                   </FileInputStyleListActionsWarp>
                 )}
@@ -71,7 +73,9 @@ const Picture = (props: FileInputListProps) => {
                 className={`${prefixCls}-${uploadType}-icon`}
                 onClick={() => onRemove?.(index)}
               >
-                <IconStyleBase as={Delete} style={{ color: '#999' }} />
+                <IconStyleBase style={{ color: '#999' }}>
+                  <Delete />
+                </IconStyleBase>
               </FileInputStyleListUploadIconTypeWarp>
             )}
           </FileInputStyleListUploadTypeWarp>

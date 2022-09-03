@@ -46,7 +46,6 @@ export default React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   }
   return (
     <BadgeStyleWarp className={cls} {...other} {...warpperProps} ref={ref}>
-      <span></span>
       {color && (
         <BadgeStyleColorDot className={`${prefixCls}-dot`} processing={processing} style={{ backgroundColor: color }} />
       )}

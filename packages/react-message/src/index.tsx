@@ -54,24 +54,24 @@ export default class Message extends React.Component<MessageProps, IMessageState
       switch (type) {
         case 'success':
           fill = '#28a745';
-          base = CircleCheck;
+          base = <CircleCheck />;
           break;
         case 'warning':
           fill = '#ffc107';
-          base = Warning;
+          base = <Warning />;
           break;
         case 'info':
           fill = '#008ef0';
-          base = Information;
+          base = <Information />;
           break;
         case 'error':
           fill = '#dc3545';
-          base = CircleClose;
+          base = <CircleClose />;
           break;
         default:
           break;
       }
-      return <IconStyleBase fill={fill} as={base} />;
+      return <IconStyleBase style={{ color: fill }}>{base}</IconStyleBase>;
     }
   };
   render() {
@@ -106,7 +106,7 @@ export default class Message extends React.Component<MessageProps, IMessageState
           <MessageStyleButtonWarp
             basic
             onClick={this.handleClosed}
-            icon={<IconStyleBase fill="rgba(0, 0, 0, 0.38)" as={Close} />}
+            icon={<Close style={{ fill: 'rgba(0, 0, 0, 0.38)' }} />}
             type="light"
           />
         )}

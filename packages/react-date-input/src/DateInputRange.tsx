@@ -4,12 +4,7 @@ import Popover, { PopoverProps } from '@uiw/react-popover';
 import DatePicker, { DatePickerProps } from '@uiw/react-date-picker';
 import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
-import {
-  DateInputIcon,
-  DateInputIconStyleWarp,
-  DateInputRangeStyleWarp,
-  DateInputStyleDatePickerPopover,
-} from './style/index';
+import { DateInputIconStyleWarp, DateInputRangeStyleWarp, DateInputStyleDatePickerPopover } from './style/index';
 import { SwapRight } from '@uiw/icons/lib/SwapRight';
 import { Close } from '@uiw/icons/lib/Close';
 
@@ -85,8 +80,8 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
           className={[prefixCls, className].filter(Boolean).join(' ').trim()}
         />
       </Popover>
-      <DateInputIconStyleWarp baseline style={{ fontSize: 21, top: -1, margin: '0px 8px 0px 5px' }}>
-        <DateInputIcon as={SwapRight} />
+      <DateInputIconStyleWarp verticalAlign="baseline" style={{ fontSize: 21, top: -1, margin: '0px 8px 0px 5px' }}>
+        <SwapRight />
       </DateInputIconStyleWarp>
       <Popover
         trigger="focus"
@@ -115,7 +110,7 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
 
       {allowClear && dateRange.length > 0 && (
         <DateInputIconStyleWarp closebtn onClick={() => setDateRange([])} className={`${prefixCls}-close-btn`}>
-          <DateInputIcon as={Close} />
+          <Close />
         </DateInputIconStyleWarp>
       )}
     </DateInputRangeStyleWarp>
