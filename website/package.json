@@ -46,7 +46,8 @@
     "react-i18next": "^11.16.7",
     "react-router-dom": "~6.3.0",
     "styled-components": "^5.3.5",
-    "uiw": "^4.21.3"
+    "uiw": "^4.21.3",
+    "@wcj/dark-mode": "^1.0.14"
   },
   "devDependencies": {
     "@kkt/less-modules": "~7.1.1",
