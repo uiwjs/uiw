@@ -15,7 +15,7 @@ export interface FormProps<T>
   onChange?: (state: FormState) => void;
   onSubmitError?: (evn: any) => any;
   resetOnSubmit?: boolean;
-  children?: (handle: FormChildrenProps) => JSX.Element;
+  children?: JSX.Element | ((handle: FormChildrenProps) => JSX.Element);
 }
 
 export interface FormState {
@@ -27,7 +27,7 @@ export interface FormState {
 
 export interface FormFieldsProps<T> extends Omit<FormItemProps<T>, 'children'> {
   name?: string;
-  children?: (handle: FormChildrenProps) => JSX.Element;
+  children?: JSX.Element | ((handle: FormChildrenProps) => JSX.Element);
   help?: React.ReactNode;
   labelFor?: string;
   inline?: boolean;
