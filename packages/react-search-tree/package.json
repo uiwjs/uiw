@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-search-tree",
-  "version": "5.0.0-bate-4",
+  "version": "5.0.0-bate-5",
   "description": "TreeChecked component",
   "homepage": "https://uiwjs.github.io/#/components/search-tree",
   "repository": {
@@ -44,15 +44,15 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/react-card": "^5.0.0-bate-4",
-    "@uiw/react-checkbox": "^5.0.0-bate-4",
-    "@uiw/react-dropdown": "^5.0.0-bate-4",
-    "@uiw/react-empty": "^5.0.0-bate-4",
-    "@uiw/react-icon": "^5.0.0-bate-4",
-    "@uiw/react-input": "^5.0.0-bate-4",
-    "@uiw/react-tag": "^5.0.0-bate-4",
-    "@uiw/react-tree": "^5.0.0-bate-4",
-    "@uiw/react-tree-checked": "^5.0.0-bate-4",
-    "@uiw/utils": "^5.0.0-bate-4"
+    "@uiw/react-card": "^5.0.0-bate-5",
+    "@uiw/react-checkbox": "^5.0.0-bate-5",
+    "@uiw/react-dropdown": "^5.0.0-bate-5",
+    "@uiw/react-empty": "^5.0.0-bate-5",
+    "@uiw/react-icon": "^5.0.0-bate-5",
+    "@uiw/react-input": "^5.0.0-bate-5",
+    "@uiw/react-tag": "^5.0.0-bate-5",
+    "@uiw/react-tree": "^5.0.0-bate-5",
+    "@uiw/react-tree-checked": "^5.0.0-bate-5",
+    "@uiw/utils": "^5.0.0-bate-5"
   }
 }
