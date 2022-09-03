@@ -31,7 +31,6 @@ export default function Nav() {
         if (com.path || com.translation) {
           newName = com.translation ? trans(`${newPre}${com.translation}`) : trans(`${newPre}${com.path}`);
         }
-        console.log(newName);
         const item = { label: newName, value: com.path || '' };
         option.push(item);
       }
