@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-popover",
-  "version": "5.0.0-bate-3",
+  "version": "5.0.0-bate-4",
   "description": "Popover component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/popover",
@@ -45,9 +45,9 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/react-button": "^5.0.0-bate-3",
-    "@uiw/react-icon": "^5.0.0-bate-3",
-    "@uiw/react-overlay-trigger": "^5.0.0-bate-3",
-    "@uiw/utils": "^5.0.0-bate-3"
+    "@uiw/react-button": "^5.0.0-bate-4",
+    "@uiw/react-icon": "^5.0.0-bate-4",
+    "@uiw/react-overlay-trigger": "^5.0.0-bate-4",
+    "@uiw/utils": "^5.0.0-bate-4"
   }
 }

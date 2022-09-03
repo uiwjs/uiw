@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-steps",
-  "version": "5.0.0-bate-3",
+  "version": "5.0.0-bate-4",
   "description": "Steps component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/steps",
@@ -46,6 +46,6 @@
   },
   "dependencies": {
     "@uiw/icons": "2.6.1",
-    "@uiw/utils": "^5.0.0-bate-3"
+    "@uiw/utils": "^5.0.0-bate-4"
   }
 }
