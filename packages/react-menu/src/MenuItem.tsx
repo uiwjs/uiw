@@ -63,7 +63,7 @@ function Internal<Tag extends TagType = 'a'>(props: MenuItemProps<Tag>, ref: Rea
       },
     } as any,
     <Fragment>
-      <MenuStyleItemIcon className={`${prefixCls}-icon`} type={icon} />
+      <MenuStyleItemIcon className={`${prefixCls}-icon`}>{icon}</MenuStyleItemIcon>
       <MenuItemStyleTextBase
         params={{ multiline, isText: !!prefixCls }}
         className={[prefixCls && `${prefixCls}-text`, !multiline && `${prefixCls}-multiline`]
