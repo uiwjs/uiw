@@ -67,7 +67,7 @@
     "@kkt/ncc": "~1.0.8",
     "@types/react": "~17.0.39",
     "@types/react-dom": "~17.0.11",
-    "@types/react-test-renderer": "~17.0.1",
+    "@types/react-test-renderer": "~18.0.0",
     "@types/react-transition-group": "~4.4.4",
     "compile-less-cli": "~1.8.11",
     "husky": "~7.0.4",
