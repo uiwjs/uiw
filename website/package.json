@@ -48,7 +48,7 @@
     "@kkt/scope-plugin-options": "~7.1.1",
     "@types/react": "~18.0.0",
     "@types/react-dom": "~18.0.0",
-    "kkt": "~7.1.5",
+    "kkt": "~7.2.0",
     "react-test-renderer": "~18.2.0"
   },
   "author": "kenny wang <wowohoo@qq.com>",
