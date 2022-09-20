@@ -39,7 +39,7 @@
     "@uiw/reset.css": "~1.0.5",
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0",
-    "react-router-dom": "~6.2.2",
+    "react-router-dom": "~6.4.0",
     "uiw": "^4.21.18"
   },
   "devDependencies": {
