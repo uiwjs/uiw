@@ -108,24 +108,30 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
     node.style.height = '0px';
     refNode.current = node;
     setIsOpen(true);
-    setContextHeight({
-      height: popupRef.current!.overlayDom.current!.getBoundingClientRect().height,
-      ele: elementSource.current!,
-    });
+    if (popupRef.current && popupRef.current.overlayDom.current) {
+      setContextHeight({
+        height: popupRef.current.overlayDom.current.getBoundingClientRect().height,
+        ele: elementSource.current!,
+      });
+    }
   }
   function onEntering(node: HTMLElement) {
     node.style.height = `${node.scrollHeight}px`;
   }
   function onEntered(node: HTMLElement) {
     // node.style.height = 'initial';
-    node.style.height = popupRef.current!.overlayDom.current!.getBoundingClientRect().height + 'px';
+    if (popupRef.current && popupRef.current.overlayDom.current) {
+      node.style.height = popupRef.current.overlayDom.current.getBoundingClientRect().height + 'px';
+    }
   }
   function onExiting(node: HTMLElement) {
     node.style.height = '0px';
-    setContextHeight({
-      height: -popupRef.current!.overlayDom.current!.getBoundingClientRect().height,
-      ele: elementSource.current!,
-    });
+    if (popupRef.current && popupRef.current.overlayDom.current) {
+      setContextHeight({
+        height: -popupRef.current!.overlayDom.current!.getBoundingClientRect().height,
+        ele: elementSource.current!,
+      });
+    }
   }
   function onExit(node: HTMLElement) {
     node.style.height = `${node.scrollHeight}px`;
@@ -154,7 +160,9 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
     menuProps.onClick = onClick;
   }
   return (
-    <div
+    <li
+      data-menu="subitem"
+      ref={ref}
       onClick={(e) => {
         if (collapse) {
           e.stopPropagation();
@@ -163,37 +171,35 @@ export const SubMenu = React.forwardRef(function <Tag extends TagType = 'a'>(
         elementSource.current = e.target;
       }}
     >
-      <li data-menu="subitem" ref={ref}>
-        <OverlayTrigger
-          placement="rightTop"
-          autoAdjustOverflow
+      <OverlayTrigger
+        placement="rightTop"
+        autoAdjustOverflow
+        disabled={disabled}
+        isOpen={isOpen}
+        usePortal={false}
+        isOutside
+        {...overlayTriggerProps}
+        {...overlayProps}
+        ref={popupRef}
+        overlay={<Menu {...menuProps} style={!collapse ? { paddingLeft: inlineIndent } : {}} />}
+      >
+        <MenuItem
+          {...other}
+          ref={null}
           disabled={disabled}
-          isOpen={isOpen}
-          usePortal={false}
-          isOutside
-          {...overlayTriggerProps}
-          {...overlayProps}
-          ref={popupRef}
-          overlay={<Menu {...menuProps} style={!collapse ? { paddingLeft: inlineIndent } : {}} />}
-        >
-          <MenuItem
-            {...other}
-            ref={null}
-            disabled={disabled}
-            isSubMenuItem
-            addonAfter={<IconView collapse={collapse} prefixCls={prefixCls} isOpen={isOpen} />}
-            className={[
-              prefixCls ? `${prefixCls}-title` : null,
-              !collapse ? `${prefixCls}-collapse-title` : null,
-              className,
-            ]
-              .filter(Boolean)
-              .join(' ')
-              .trim()}
-          />
-        </OverlayTrigger>
-      </li>
-    </div>
+          isSubMenuItem
+          addonAfter={<IconView collapse={collapse} prefixCls={prefixCls} isOpen={isOpen} />}
+          className={[
+            prefixCls ? `${prefixCls}-title` : null,
+            !collapse ? `${prefixCls}-collapse-title` : null,
+            className,
+          ]
+            .filter(Boolean)
+            .join(' ')
+            .trim()}
+        />
+      </OverlayTrigger>
+    </li>
   );
 });
 
