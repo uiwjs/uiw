@@ -123,16 +123,7 @@
   top: 0.125em;
 }
 .w-icon-spin svg {
-  -webkit-animation: loading-circle 1s infinite linear;
-          animation: loading-circle 1s infinite linear;
-}
-@-webkit-keyframes loading-circle {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  animation: loading-circle 1s infinite linear;
 }
 @keyframes loading-circle {
   0% {
@@ -601,16 +592,7 @@
   margin: 0 3px 0 0;
   -webkit-clip-path: polygon(0% 0%, 100% 0, 100% 30%, 0% 30%);
           clip-path: polygon(0% 0%, 100% 0, 100% 30%, 0% 30%);
-  -webkit-animation: rotate 0.5s linear infinite;
-          animation: rotate 0.5s linear infinite;
-}
-@-webkit-keyframes rotate {
-  from {
-    transform: rotateZ(0deg);
-  }
-  to {
-    transform: rotateZ(360deg);
-  }
+  animation: rotate 0.5s linear infinite;
 }
 @keyframes rotate {
   from {
@@ -871,18 +853,7 @@ sup.w-badge-count {
   border-radius: 50%;
   background-color: inherit;
   content: '';
-  -webkit-animation: wStatusProcessing 1.2s infinite ease-in-out;
-          animation: wStatusProcessing 1.2s infinite ease-in-out;
-}
-@-webkit-keyframes wStatusProcessing {
-  0% {
-    transform: scale(0.8);
-    opacity: 0.5;
-  }
-  100% {
-    transform: scale(2.8);
-    opacity: 0;
-  }
+  animation: wStatusProcessing 1.2s infinite ease-in-out;
 }
 @keyframes wStatusProcessing {
   0% {
@@ -3084,8 +3055,7 @@ a.w-list-item:hover:not(.w-disabled) {
 .w-loader-tips-nested svg {
   height: 100%;
   width: 100%;
-  -webkit-animation: loaderRotate 2s linear infinite;
-          animation: loaderRotate 2s linear infinite;
+  animation: loaderRotate 2s linear infinite;
   transform-origin: center center;
   fill: currentcolor;
   vertical-align: middle;
@@ -3093,8 +3063,7 @@ a.w-list-item:hover:not(.w-disabled) {
 .w-loader-tips-nested svg circle {
   stroke-dasharray: 1, 200;
   stroke-dashoffset: 0;
-  -webkit-animation: loaderDash 1.5s ease-in-out infinite, loaderColor 6s ease-in-out infinite;
-          animation: loaderDash 1.5s ease-in-out infinite, loaderColor 6s ease-in-out infinite;
+  animation: loaderDash 1.5s ease-in-out infinite, loaderColor 6s ease-in-out infinite;
   stroke-linecap: round;
 }
 .w-loader-large .w-loader-tips-nested svg {
@@ -3161,28 +3130,9 @@ a.w-list-item:hover:not(.w-disabled) {
   left: 0px;
   z-index: 99999;
 }
-@-webkit-keyframes loaderRotate {
-  to {
-    transform: rotate(1turn);
-  }
-}
 @keyframes loaderRotate {
   to {
     transform: rotate(1turn);
-  }
-}
-@-webkit-keyframes loaderDash {
-  0% {
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0;
-  }
-  50% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -35;
-  }
-  to {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -124;
   }
 }
 @keyframes loaderDash {
@@ -3197,16 +3147,6 @@ a.w-list-item:hover:not(.w-disabled) {
   to {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -124;
-  }
-}
-@-webkit-keyframes loaderColor {
-  0%,
-  to {
-    stroke: currentColor;
-  }
-  80%,
-  90% {
-    stroke: currentColor;
   }
 }
 @keyframes loaderColor {
@@ -3681,8 +3621,7 @@ a.w-list-item:hover:not(.w-disabled) {
 .w-progress-status-active .w-progress-bg {
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-size: 12px 12px;
-  -webkit-animation: progress-bar-stripes 1s linear infinite;
-          animation: progress-bar-stripes 1s linear infinite;
+  animation: progress-bar-stripes 1s linear infinite;
 }
 .w-progress-status-active .w-progress-bg:before {
   content: ' ';
@@ -3694,8 +3633,7 @@ a.w-list-item:hover:not(.w-disabled) {
   bottom: 0;
   background: #fff;
   border-radius: 10px;
-  -webkit-animation: w-progress-active 2.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
-          animation: w-progress-active 2.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+  animation: w-progress-active 2.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
 }
 .w-progress-status-exception .w-progress-bg {
   background-color: #dc3545;
@@ -3727,34 +3665,12 @@ a.w-list-item:hover:not(.w-disabled) {
   transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
   position: relative;
 }
-@-webkit-keyframes progress-bar-stripes {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 24px 0;
-  }
-}
 @keyframes progress-bar-stripes {
   from {
     background-position: 0 0;
   }
   to {
     background-position: 24px 0;
-  }
-}
-@-webkit-keyframes w-progress-active {
-  0% {
-    opacity: 0.1;
-    width: 0;
-  }
-  20% {
-    opacity: 0.5;
-    width: 0;
-  }
-  100% {
-    opacity: 0;
-    width: 100%;
   }
 }
 @keyframes w-progress-active {

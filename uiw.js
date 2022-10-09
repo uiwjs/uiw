@@ -4548,10 +4548,13 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
     node.style.height = '0px';
     refNode.current = node;
     setIsOpen(true);
-    setContextHeight({
-      height: popupRef.current.overlayDom.current.getBoundingClientRect().height,
-      ele: elementSource.current
-    });
+
+    if (popupRef.current && popupRef.current.overlayDom.current) {
+      setContextHeight({
+        height: popupRef.current.overlayDom.current.getBoundingClientRect().height,
+        ele: elementSource.current
+      });
+    }
   }
 
   function onEntering(node) {
@@ -4560,15 +4563,20 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
 
   function onEntered(node) {
     // node.style.height = 'initial';
-    node.style.height = popupRef.current.overlayDom.current.getBoundingClientRect().height + 'px';
+    if (popupRef.current && popupRef.current.overlayDom.current) {
+      node.style.height = popupRef.current.overlayDom.current.getBoundingClientRect().height + 'px';
+    }
   }
 
   function onExiting(node) {
     node.style.height = '0px';
-    setContextHeight({
-      height: -popupRef.current.overlayDom.current.getBoundingClientRect().height,
-      ele: elementSource.current
-    });
+
+    if (popupRef.current && popupRef.current.overlayDom.current) {
+      setContextHeight({
+        height: -popupRef.current.overlayDom.current.getBoundingClientRect().height,
+        ele: elementSource.current
+      });
+    }
   }
 
   function onExit(node) {
@@ -4598,7 +4606,9 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
     menuProps.onClick = onClick;
   }
 
-  return /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+  return /*#__PURE__*/(0,jsx_runtime.jsx)("li", {
+    "data-menu": "subitem",
+    ref: ref,
     onClick: e => {
       if (collapse) {
         e.stopPropagation();
@@ -4607,36 +4617,32 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
 
       elementSource.current = e.target;
     },
-    children: /*#__PURE__*/(0,jsx_runtime.jsx)("li", {
-      "data-menu": "subitem",
-      ref: ref,
-      children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_overlay_trigger_esm, _extends({
-        placement: "rightTop",
-        autoAdjustOverflow: true,
+    children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_overlay_trigger_esm, _extends({
+      placement: "rightTop",
+      autoAdjustOverflow: true,
+      disabled: disabled,
+      isOpen: isOpen,
+      usePortal: false,
+      isOutside: true
+    }, overlayTriggerProps, overlayProps, {
+      ref: popupRef,
+      overlay: /*#__PURE__*/(0,jsx_runtime.jsx)(Menu, _extends({}, menuProps, {
+        style: !collapse ? {
+          paddingLeft: inlineIndent
+        } : {}
+      })),
+      children: /*#__PURE__*/(0,jsx_runtime.jsx)(MenuItem, _extends({}, other, {
+        ref: null,
         disabled: disabled,
-        isOpen: isOpen,
-        usePortal: false,
-        isOutside: true
-      }, overlayTriggerProps, overlayProps, {
-        ref: popupRef,
-        overlay: /*#__PURE__*/(0,jsx_runtime.jsx)(Menu, _extends({}, menuProps, {
-          style: !collapse ? {
-            paddingLeft: inlineIndent
-          } : {}
-        })),
-        children: /*#__PURE__*/(0,jsx_runtime.jsx)(MenuItem, _extends({}, other, {
-          ref: null,
-          disabled: disabled,
-          isSubMenuItem: true,
-          addonAfter: /*#__PURE__*/(0,jsx_runtime.jsx)(IconView, {
-            collapse: collapse,
-            prefixCls: prefixCls,
-            isOpen: isOpen
-          }),
-          className: [prefixCls ? prefixCls + "-title" : null, !collapse ? prefixCls + "-collapse-title" : null, className].filter(Boolean).join(' ').trim()
-        }))
+        isSubMenuItem: true,
+        addonAfter: /*#__PURE__*/(0,jsx_runtime.jsx)(IconView, {
+          collapse: collapse,
+          prefixCls: prefixCls,
+          isOpen: isOpen
+        }),
+        className: [prefixCls ? prefixCls + "-title" : null, !collapse ? prefixCls + "-collapse-title" : null, className].filter(Boolean).join(' ').trim()
       }))
-    })
+    }))
   });
 });
 SubMenu.displayName = 'uiw.SubMenu';
