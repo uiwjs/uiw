@@ -33,7 +33,6 @@ const CodePreview = ({ inline, node, components, data, ...props }: CodeProps & C
   if (metaId && typeof Child === 'function') {
     const code = data[metaId].value || '';
     const param = getURLParameters(meta);
-    console.log(':param:', param);
     return (
       <CodeLayout
         ref={$dom}
@@ -60,7 +59,6 @@ export default function Markdown(props: MarkdownProps) {
   return (
     <Fragment>
       <MarkdownPreview
-        style={{ paddingTop: 30 }}
         source={props.source || ''}
         disableCopy
         warpperElement={{

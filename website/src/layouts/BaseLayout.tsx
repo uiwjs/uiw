@@ -32,6 +32,23 @@ export default function Components(props: ComponentsProps) {
               </div>
             </Sider>
             <Content style={{ padding: 20 }} className={styles.layoutContent}>
+              <Header
+                style={{
+                  height: 'inherit',
+                  lineHeight: '32px',
+                  position: 'absolute',
+                  padding: '5px 10px',
+                  right: 10,
+                  marginTop: -10,
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'flex-end',
+                  backgroundColor: 'transparent',
+                  zIndex: 99,
+                }}
+              >
+                <VersionSelect data={version} />
+              </Header>
               <Outlet />
             </Content>
           </Layout>
@@ -77,7 +94,7 @@ export default function Components(props: ComponentsProps) {
             >
               <VersionSelect data={version} />
             </Header>
-            <Content style={{ padding: 20 }} className={styles.layoutContent}>
+            <Content style={{ padding: 20 }} data-ddd="xxx" className={styles.layoutContent}>
               <Outlet />
             </Content>
           </Layout>
