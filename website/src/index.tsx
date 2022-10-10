@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { useRoutes, HashRouter } from 'react-router-dom';
 import BackToUp from '@uiw/react-back-to-top';
 import '@uiw/reset.css';
@@ -13,12 +13,13 @@ export const Provider = ({ children }: { children: React.ReactNode }) => {
   return <ThemeContext.Provider value={{ state, dispatch }}>{children}</ThemeContext.Provider>;
 };
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container!);
+root.render(
   <HashRouter>
     <BackToUp style={{ zIndex: 9999 }}>Top</BackToUp>
     <Provider>
       <App />
     </Provider>
   </HashRouter>,
-  document.getElementById('root'),
 );

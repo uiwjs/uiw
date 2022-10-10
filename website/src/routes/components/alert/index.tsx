@@ -1,16 +1,6 @@
-import React from 'react';
-import { Alert, Button, ButtonGroup } from 'uiw';
-import Markdown from '../../../components/Markdown';
+import data from '@uiw/react-alert/README.md';
+import Markdown from '../../../components/Markdown/Markdown';
 
 export default function Page() {
-  return (
-    <Markdown
-      path="https://github.com/uiwjs/uiw/tree/master/packages/react-alert/README.md"
-      dependencies={{ Alert, Button, ButtonGroup }}
-      renderPage={async () => {
-        const md = await import('uiw/node_modules/@uiw/react-alert/README.md');
-        return md.default || md;
-      }}
-    />
-  );
+  return <Markdown {...data} path="https://github.com/uiwjs/uiw/tree/master/packages/react-alert/README.md" />;
 }

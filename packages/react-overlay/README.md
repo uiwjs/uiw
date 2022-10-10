@@ -15,13 +15,11 @@ import Overlay from '@uiw/react-overlay';
 
 ### 基本用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Overlay, Button, Card } from 'uiw';
 
-function Demo() {
+export default function Demo() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [hasBackdrop, setHasBackdrop] = React.useState(true);
   return (
@@ -61,19 +59,15 @@ function Demo() {
     </div>
   )
 }
-
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ### 完全定制弹出容器
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Overlay, Button } from 'uiw';
+import { Overlay, Button, Icon } from 'uiw';
 
-function Demo() {
+export default function Demo() {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div>
@@ -134,31 +128,27 @@ function Demo() {
     </div>
   )
 }
-
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ### usePortal
 
 [`Portals`](https://reactjs.org/docs/portals.html#event-bubbling-through-portals) 是 react 16 提供的官方解决方案，使得组件可以脱离父组件层级挂载在 DOM 树的任何位置，我们利用这个方法，可将模态对话框生成到根节点的外面，默认情况生成到跟节点的外面，通过将 `usePortal` 设置为 `false` 将对话框生成在父组件层级挂载的 DOM 树中。 
 
-<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Overlay, Button, Card } from 'uiw';
 
-function Demo() {
+export default function Demo() {
   const [isOpen, setIsOpen] = React.useState(false);
   function toggleOverlay(e) {
     setIsOpen(!isOpen);
   }
   return (
-    <div>
+    <div style={{ position: 'relative', minHeight: 200 }}>
       <Button type="primary" onClick={toggleOverlay}>点击弹出内容</Button>
       <Overlay usePortal={false} isOpen={isOpen} onClose={toggleOverlay}>
         <Card active style={{ width: 500 }} active>
-          <h3 style={{marginTop: 0}}>基础弹出层</h3>
+          <h3 style={{marginTop: 0}}>基础弹出层1</h3>
           <p>Portals 是 react 16 提供的官方解决方案，使得组件可以脱离父组件层级挂载在DOM树的任何位置，我们利用这个方法，可将模态对话框生成到根节点的外面，默认情况生成到跟节点的外面，通过将 usePortal 设置为 false 将对话框生成在父组件层级挂载的DOM树中。</p>
           <Button type="danger" onClick={toggleOverlay}>关闭</Button>
         </Card>
@@ -166,8 +156,6 @@ function Demo() {
     </div>
   )
 }
-
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ### 自定义动画
@@ -176,13 +164,11 @@ ReactDOM.render(<Demo />, _mount_);
 
 > 注意：`@3.2.0` ~~`transitionDuration={1000}`~~ 更名为 `timeout`
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Overlay, Button, Card } from 'uiw';
 
-function Demo() {
+export default function Demo() {
   const [isOpen, setIsOpen] = React.useState(false);
   function toggleOverlay(e) {
     setIsOpen(!isOpen);
@@ -205,8 +191,6 @@ function Demo() {
     </div>
   )
 }
-
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 你可以根据动画样式库 [**`animate.css`**](https://daneden.github.io/animate.css/) 添加不同的出入动画。默认通过的 [`Less`](http://lesscss.org/) 生成 CSS 动画的实例代码，定义 `transitionName` 动画样式名字为 `animation-bouce`，下面是上面实例的样式：

@@ -1,17 +1,8 @@
-import React from 'react';
-import { Overlay, Button, Icon, Card, Divider } from 'uiw';
-import Markdown from '../../../components/Markdown';
 import './index.less';
 
+import data from '@uiw/react-overlay/README.md';
+import Markdown from '../../../components/Markdown/Markdown';
+
 export default function Page() {
-  return (
-    <Markdown
-      path="https://github.com/uiwjs/uiw/tree/master/packages/react-overlay/README.md"
-      dependencies={{ Overlay, Button, Icon, Card, Divider }}
-      renderPage={async () => {
-        const md = await import('uiw/node_modules/@uiw/react-overlay/README.md');
-        return md.default || md;
-      }}
-    />
-  );
+  return <Markdown {...data} path="https://github.com/uiwjs/uiw/tree/master/packages/react-overlay/README.md" />;
 }

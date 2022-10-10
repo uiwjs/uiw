@@ -1,14 +1,6 @@
-import React from 'react';
-import { Split, Divider, Button, Menu } from 'uiw';
-import Markdown from '../../../components/Markdown';
+import data from '@uiw/react-split/README-zh.md';
+import Markdown from '../../../components/Markdown/Markdown';
 
-export default () => (
-  <Markdown
-    path="https://github.com/uiwjs/react-split/edit/master/README.md"
-    dependencies={{ Split, Divider, Button, Menu }}
-    renderPage={async () => {
-      const md = await import('@uiw/react-split/README.md');
-      return md.default || md;
-    }}
-  />
-);
+export default function Page() {
+  return <Markdown {...data} path="https://github.com/uiwjs/react-split/edit/master/README.md" />;
+}

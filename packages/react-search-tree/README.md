@@ -1,4 +1,4 @@
-SearchTree 带搜索的Tree选择控件
+SearchTree 带搜索的 Tree 选择控件
 ===
 
 [![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-search-tree/file/README.md)
@@ -15,11 +15,9 @@ import SearchTree from '@uiw/react-search-tree';
 
 ### 基础实例
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React, { useState, useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
-import {  SearchTree } from 'uiw';
+import { SearchTree, Row } from 'uiw';
 
 const data = [
   {
@@ -59,75 +57,71 @@ const data = [
   { label: '澳门', key: 16 },
 ];
 
-const Demo = () => {
+export default function Demo() {
+  const [value,valueSet]=useState([{ label: '黄浦区', key: 12 }])
+  const [valueSinge,valueSingeSet]=useState([{ label: '上海市', key: '1-0-0' }])
 
-const [value,valueSet]=useState([{ label: '黄浦区', key: 12 }])
-const [valueSinge,valueSingeSet]=useState([{ label: '上海市', key: '1-0-0' }])
+  const onChange=(selectd, selectedAll,  isChecked)=>{
+    console.log('SearchTree-> onChange',selectedAll, selectd, isChecked)
+    valueSet(selectedAll)
+  }
 
-const onChange=(selectd, selectedAll,  isChecked)=>{
-  console.log('SearchTree-> onChange',selectedAll, selectd, isChecked)
-  valueSet(selectedAll)
-}
+  const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
+    console.log('SearchTree-> onChange', selectd, selectedAll, isChecked)
+    valueSingeSet(selectedAll)
+  }
 
-const onChangeSinge=(selectd, selectedAll,  isChecked)=>{
-  console.log('SearchTree-> onChange', selectd, selectedAll, isChecked)
-  valueSingeSet(selectedAll)
-}
-
- return (
-   <Row gutter={20}>
-    <label>单选</label>
-    <Row>
-      <SearchTree
-        style={{width: 200}}
-        multiple={false}
-        allowClear={true}
-        onSearch={(searchValue)=>console.log('singe',searchValue)}
-        onChange={onChangeSinge}
-        value={valueSinge}
-        options={data}
-        placeholder="请选择选项"
-      />
+  return (
+    <Row gutter={20}>
+      <label>单选</label>
+      <Row>
+        <SearchTree
+          style={{width: 200}}
+          multiple={false}
+          allowClear={true}
+          onSearch={(searchValue)=>console.log('singe',searchValue)}
+          onChange={onChangeSinge}
+          value={valueSinge}
+          options={data}
+          placeholder="请选择选项"
+        />
+      </Row>
+      <label>多选</label>
+      <Row>
+        <SearchTree
+          style={{ width: 200 }}
+          allowClear={true}
+          onSearch={(searchValue)=>console.log('multiple',searchValue)}
+          onChange={onChange}
+          value={value}
+          options={data}
+          placeholder="请选择选项"
+        />
+      </Row>
+      <label>禁用</label>
+      <Row>
+        <SearchTree
+          disabled={true}
+          style={{ width: 200 }}
+          allowClear={true}
+          value={[{ label: '东城区', key: 10 },{ label: '成都市',  key: 2 }]}
+          options={data}
+          placeholder="请选择选项"
+        />
+      </Row>
     </Row>
-    <label>多选</label>
-    <Row>
-      <SearchTree
-        style={{ width: 200 }}
-        allowClear={true}
-        onSearch={(searchValue)=>console.log('multiple',searchValue)}
-        onChange={onChange}
-        value={value}
-        options={data}
-        placeholder="请选择选项"
-      />
-    </Row>
-    <label>禁用</label>
-    <Row>
-      <SearchTree
-        disabled={true}
-        style={{ width: 200 }}
-        allowClear={true}
-        value={[{ label: '东城区', key: 10 },{ label: '成都市',  key: 2 }]}
-        options={data}
-        placeholder="请选择选项"
-      />
-    </Row>
-  </Row>
-  )
+  );
 }
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ## 尺寸
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React, { useState, useEffect, useRef } from 'react';
-import {  SearchTree } from 'uiw';
+import { SearchTree } from 'uiw';
 
-const Demo = () => {
-
-const data = [
+export default function Demo() {
+  const data = [
     { label: '小尺寸', key: 1 },
     { label: '默认尺寸', key: 2 },
     { label: '大尺寸', key: 3 },
@@ -155,18 +149,15 @@ const data = [
     </>
   )
 }
-
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ## 自定义空选项
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React, { useState, useEffect, useRef } from 'react';
 import {  SearchTree } from 'uiw';
 
-const Demo = () => {
+export default function Demo() {
   return(
     <>
       <SearchTree
@@ -181,20 +172,16 @@ const Demo = () => {
     </>
   )
 }
-
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ## Form中使用
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React, { useState, useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
 import { Notify, Form, Button, SearchTree, Card, Row, Col,Select } from 'uiw';
-const Demo = () => {
-const form=useRef()
 
+export default function Demo() {
+  const form=useRef()
   const data = [
     {
       label: '上海市',
@@ -333,7 +320,6 @@ const form=useRef()
     </div>
   );
 }
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ## Props

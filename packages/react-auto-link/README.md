@@ -15,20 +15,20 @@ import AutoLink from '@uiw/react-auto-link';
 
 ### 基础用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { AutoLink } from 'uiw';
 
-ReactDOM.render(
-  <div>
-    <AutoLink
-      text="uiw uiwjs uiw https://github.com/uiwjs uiwjs http://github.com/uiwjs"
-      target="__blank"
-    />
-  </div>,
-  _mount_
-);
+export default function Demo() {
+  return (
+    <div>
+      <AutoLink
+        text="uiw uiwjs uiw https://github.com/uiwjs uiwjs http://github.com/uiwjs"
+        target="__blank"
+      />
+    </div>
+  )
+}
 ```
 
 ## API

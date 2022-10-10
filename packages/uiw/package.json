@@ -105,7 +105,7 @@
     "@uiw/react-search-tree": "^4.21.18",
     "@uiw/react-select": "^4.21.18",
     "@uiw/react-slider": "^4.21.18",
-    "@uiw/react-split": "~5.8.5",
+    "@uiw/react-split": "~5.8.10",
     "@uiw/react-steps": "^4.21.18",
     "@uiw/react-switch": "^4.21.18",
     "@uiw/react-table": "^4.21.18",

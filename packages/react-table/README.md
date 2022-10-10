@@ -15,9 +15,8 @@ import Table from '@uiw/react-table';
 
 ### 基本使用
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Table, Button } from 'uiw';
 
 const columns = [
@@ -63,15 +62,14 @@ const Demo = () => (
     <Table columns={columns} data={dataSource} />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 ### 表头分组
 
 表头分组通过 `columns` 数组中对象的 `children` 来实现，以渲染分组表头。。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Table, Button } from 'uiw';
 
 const columns = [
@@ -138,16 +136,15 @@ const Demo = () => (
     <Table bordered columns={columns} data={dataSource} />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 表格行/列合并
 
 表头只支持列合并，使用 `columns` 里的 `colSpan` 进行设置。表格支持行/列合并，使用 `render` 里的单元格属性 `colSpan` 或者 `rowSpan` 设值为 0 时，设置的表格不会渲染。
-
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx
-import ReactDOM from 'react-dom';
+ 
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Table, Button } from 'uiw';
 
 const columns = [
@@ -199,7 +196,7 @@ const Demo = () => (
     <Table bordered columns={columns} data={dataSource} />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 
@@ -207,9 +204,8 @@ ReactDOM.render(<Demo />, _mount_);
 
 添加表格边框线，页头和页脚的展现效果。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Table, Button } from 'uiw';
 
 const columns = [
@@ -261,14 +257,13 @@ const Demo = () => (
     <Table title="这里是标题，没有边框" footer="这里是页脚 Footer，没有边框" columns={columns} data={dataSource} />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 点击单元格
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Table, Button, Notify } from 'uiw';
 
 const columns = [
@@ -335,14 +330,13 @@ const Demo = () => (
     />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 原始HTML
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Table, Button } from 'uiw';
 
 const Demo = () => (
@@ -422,15 +416,13 @@ const Demo = () => (
     </Table>
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 选择和操作
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Table, Button, Checkbox, Pagination, Loader } from 'uiw';
 
 class Demo extends React.Component {
@@ -538,14 +530,13 @@ class Demo extends React.Component {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 自定义单元格省略提示
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Table, Button, Notify, Tooltip } from 'uiw';
 
 const columns = [
@@ -623,14 +614,13 @@ const Demo = () => (
     />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 无数据状态
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Table, Button, Empty } from 'uiw';
 
 const columns = [
@@ -666,14 +656,13 @@ const Demo = () => (
     />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 可展开
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Table, Button, Icon } from 'uiw';
 
 const columns = [
@@ -722,7 +711,7 @@ const Demo = () => (
     />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 树形数据展示
@@ -731,9 +720,7 @@ ReactDOM.render(<Demo />, _mount_);
 
 可以通过设置 indentSize 以控制每一层的缩进宽度
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
 import React from 'react';
 import { Table, Button, Icon } from 'uiw';
 
@@ -809,16 +796,15 @@ const Demo = () => {
     </div>
   )
 };
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 表格列过宽导致 footer 滑动出表格底部
 
 使用 scroll 属性给表格设置宽(x)或高(y)即可
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Table, Button } from 'uiw';
 
 const columns = [
@@ -869,7 +855,7 @@ const Demo = () => (
     />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 固定列 
@@ -878,9 +864,8 @@ ReactDOM.render(<Demo />, _mount_);
 > ⚠️ 注意: 若并没有 scroll 滚动条，fixed 属性并不会有直观的效果
 <!--rehype:style=border-left: 8px solid #ffe564;background-color: #ffe56440;padding: 12px 16px;-->
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Table, Button } from 'uiw';
 
 const columns = [
@@ -927,17 +912,15 @@ const Demo = () => (
     <Table scroll={{x: 1200}} bordered columns={columns} data={dataSource} />
   </div>
 );
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 可编辑
 
 利用 render 属性, 传递自定义组件实现
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Table, Button, Input, Select } from 'uiw';
 
 const columns = (onChange) => [
@@ -1046,17 +1029,15 @@ const Demo = () => {
     <Table columns={columns(onChange)} data={data} />
   </div>
 };
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 可编辑行
 
 利用 Form 组件和 render 属性, 实现编辑行效果
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Table, Button, Input, Select, Form, Notify } from 'uiw';
 
 const columns = (actived, setChange, fields) => {
@@ -1164,7 +1145,7 @@ const Demo = () => {
     {({ fields }) => <Table columns={columns(id, setChange, fields)} data={data} />}
   </Form>
 };
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## Props

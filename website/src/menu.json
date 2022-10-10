@@ -86,6 +86,10 @@
         "path": "https://uiwjs.github.io/react-heat-map"
       },
       {
+        "name": "Watermark 水印",
+        "path": "https://uiwjs.github.io/react-watermark"
+      },
+      {
         "name": "Markdown Preview",
         "path": "https://uiwjs.github.io/react-markdown-preview/"
       },

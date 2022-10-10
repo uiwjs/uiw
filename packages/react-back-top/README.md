@@ -15,68 +15,68 @@ import BackTop from '@uiw/react-back-top';
 
 ## 基本用法
 
-<!--rehype:codeSandbox=true&codePen=true--> 
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { BackTop } from 'uiw';
 
-ReactDOM.render(
-  <div>
-    <div>滚动滚动条，【快看右下角】，显示返回顶部按钮。</div>
-    <BackTop
-      style={{ backgroundColor: 'red', color: '#fff' }}
-      step={500}
-      speed={10}
-      content={<div>Top</div>}
-    />
-  </div>,
-  _mount_
-);
+export default function Demo() {
+  return (
+    <div>
+      <div>滚动滚动条，【快看右下角】，显示返回顶部按钮。</div>
+      <BackTop
+        style={{ backgroundColor: 'red', color: '#fff' }}
+        step={500}
+        speed={10}
+        content={<div>Top</div>}
+      />
+    </div>
+  )
+}
 ```
 
 ## 函数子组件
 
 点击按钮滚动到顶部
 
-<!--rehype:codeSandbox=true&codePen=true--> 
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { BackTop, Button } from 'uiw';
 
-ReactDOM.render(
-  <BackTop
-    fixed={false}
-    step={500}
-    clickable={false}
-    speed={10}
-  >
-    {({ percent, scrollToTop }) => (
-      <Button onClick={() => scrollToTop() } type="success">点击滚动到顶部{`${percent}%`}</Button>
-    )}
-  </BackTop>,
-  _mount_
-);
+export default function Demo() {
+  return (
+    <BackTop
+      fixed={false}
+      step={500}
+      clickable={false}
+      speed={10}
+    >
+      {({ percent, scrollToTop }) => (
+        <Button onClick={() => scrollToTop() } type="success">点击滚动到顶部{`${percent}%`}</Button>
+      )}
+    </BackTop>
+  )
+}
 ```
 
 ## 组件子节点
 
 点击按钮滚动到顶部
 
-<!--rehype:codeSandbox=true&codePen=true--> 
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { BackTop, Button } from 'uiw';
 
-ReactDOM.render(
-  <BackTop
-    fixed={false}
-    step={500}
-    speed={10}
-  >
-    <Button type="success">点击滚动到顶部</Button>
-  </BackTop>,
-  _mount_
-);
+export default function Demo() {
+  return (
+    <BackTop
+      fixed={false}
+      step={500}
+      speed={10}
+    >
+      <Button type="success">点击滚动到顶部</Button>
+    </BackTop>
+  )
+}
 ```
 
 ## Params

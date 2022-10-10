@@ -15,12 +15,11 @@ import FileInput from '@uiw/react-file-input';
 
 ### 基础用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { FileInput, Button } from 'uiw';
 
-const Demo = () => {
+export default function Demo() {
   const onChange = (e) => {
     console.log(e)
   }
@@ -33,21 +32,15 @@ const Demo = () => {
     </div>
   )
 }
-
-ReactDOM.render(
-  <Demo />,
-  _mount_
-);
 ```
 
 ### 图片墙
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
-import { FileInput, Button } from 'uiw';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
+import { FileInput, Button, Icon } from 'uiw';
 
-const Demo = () => {
+export default function Demo() {
   return (
     <div>
       <FileInput
@@ -100,22 +93,15 @@ const Demo = () => {
     </div>
   )
 }
-
-ReactDOM.render(
-  <Demo />,
-  _mount_
-);
 ```
 
 ### 图片预览
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { FileInput, Overlay } from 'uiw';
+import { FileInput, Overlay, Icon } from 'uiw';
 
-const Demo=()=>{
+export default function Demo() {
   const [visible,visibleSet]=React.useState(false)
   const [curfile,curFileSet]=React.useState(null)
   console.log('curfile',curfile)
@@ -144,77 +130,72 @@ const Demo=()=>{
     </>
    )
 }
-
-ReactDOM.render(<Demo/>   ,_mount_
-);
 ```
 
 ### 图片列表样式
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { FileInput, Button } from 'uiw';
 
-ReactDOM.render(
-  <div>
-    <FileInput
-      uploadType="picture"
-      size="large"
-      onPreview={() => console.log(234)}
-      value={[
-        { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
-      ]}
-    >
-      <Button>新增</Button>
-    </FileInput>
-    <br />
-    <FileInput
-      uploadType="picture"
-      shape="circle"
-      onPreview={() => console.log(234)}
-      value={[
-        { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
-      ]}
-    >
-      <Button>新增</Button>
-    </FileInput>
-    <br />
-    <FileInput
-      uploadType="picture"
-      size="small"
-      onPreview={() => console.log(234)}
-      value={[
-        { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
-      ]}
-    >
-      <Button>新增</Button>
-    </FileInput>
-    <br />
-    <FileInput
-      uploadType="text"
-      multiple
-      maxNumber={2}
-      value={[
-        { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
-      ]}
-    >
-      <Button>新增</Button>
-    </FileInput>
-  </div>,
-  _mount_
-);
+export default function Demo() {
+  return (
+    <div>
+      <FileInput
+        uploadType="picture"
+        size="large"
+        onPreview={() => console.log(234)}
+        value={[
+          { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
+        ]}
+      >
+        <Button>新增</Button>
+      </FileInput>
+      <br />
+      <FileInput
+        uploadType="picture"
+        shape="circle"
+        onPreview={() => console.log(234)}
+        value={[
+          { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
+        ]}
+      >
+        <Button>新增</Button>
+      </FileInput>
+      <br />
+      <FileInput
+        uploadType="picture"
+        size="small"
+        onPreview={() => console.log(234)}
+        value={[
+          { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
+        ]}
+      >
+        <Button>新增</Button>
+      </FileInput>
+      <br />
+      <FileInput
+        uploadType="text"
+        multiple
+        maxNumber={2}
+        value={[
+          { dataURL: 'https://avatars2.githubusercontent.com/u/1680273?s=40&v=4', name: 'uiw.png' }
+        ]}
+      >
+        <Button>新增</Button>
+      </FileInput>
+    </div>
+  );
+}
 ```
 
-### 在`Form`表单中使用
+### 在 `Form` 表单中使用
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React,{ useRef } from 'react';
-import ReactDOM from 'react-dom';
 import { Form, Row, Col, Icon,FileInput,Button } from 'uiw';
 
-function Demo() {
+export default function Demo() {
   const form = useRef()
   return (
     <div>
@@ -304,17 +285,13 @@ function Demo() {
     </div>
   )
 }
-ReactDOM.render(<Demo />,_mount_)
 ```
 
 ## Props
 
 - `uploadType: input` 基础输入框上传
-
 - `uploadType: picture` 图片列展示列表，显示图片
-
 - `uploadType: text` 图片列展示列表，不显示图片
-
 - `uploadType: card` 图片墙列表
 
 | 参数 | 说明 | 类型 | 默认值 |

@@ -17,9 +17,8 @@ import Calendar from '@uiw/react-calendar';
 
 下面是基础使用方法，可以设置日历通知事项，在日历渲染单元格时，会根据 data 内容来渲染单元格通知事项。
 
-<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Calendar, Badge } from 'uiw';
 
 const data = [
@@ -58,17 +57,18 @@ function filterData(dt) {
   });
 }
 
-ReactDOM.render(
-  <div>
-    <Calendar
-      onSelectDay={(date, dateSource) => {
-        console.log('date:', date, dateSource);
-      }}
-      data={filterData(data)}
-    />
-  </div>,
-  _mount_
-);
+export default function Demo() {
+  return(
+    <div>
+      <Calendar
+        onSelectDay={(date, dateSource) => {
+          console.log('date:', date, dateSource);
+        }}
+        data={filterData(data)}
+      />
+    </div>
+  );
+}
 ```
 
 
@@ -76,9 +76,8 @@ ReactDOM.render(
 
 在日历面板上面添加通知事件，还可以通过设置 `disabledDate` 来禁止部分日期点击，如下实例每月12号不能点击。
 
-<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Calendar, Badge } from 'uiw';
 
 const data = [
@@ -127,18 +126,19 @@ function disabledDate(currentDate, props) {
   // return currentDate && currentDate.valueOf() < Date.now();
 }
 
-ReactDOM.render(
-  <div>
-    <Calendar
-      onSelectDay={(date, dateSource) => {
-        console.log('date:', date, dateSource);
-      }}
-      disabledDate={disabledDate}
-      data={filterData(data)}
-    />
-  </div>,
-  _mount_
-);
+export default function Demo() {
+  return(
+    <div>
+      <Calendar
+        onSelectDay={(date, dateSource) => {
+          console.log('date:', date, dateSource);
+        }}
+        disabledDate={disabledDate}
+        data={filterData(data)}
+      />
+    </div>
+  );
+}
 ```
 
 | 参数 | 说明 | 类型 | 默认值 |

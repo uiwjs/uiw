@@ -15,150 +15,150 @@ import PinCode from '@uiw/react-pin-code';
 
 ### 基础用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { PinCode } from 'uiw';
 
-const Demo = () => (
-  <div>
-    <PinCode autoFocus value={['', '', '', '', '']} onChange={(val) => console.log(val)} />
-  </div>
-);
-ReactDOM.render(<Demo />, _mount_);
+export default function Demo() {
+  return (
+    <div>
+      <PinCode autoFocus value={['', '', '', '', '']} onChange={(val) => console.log(val)} />
+    </div>
+  );
+}
 ```
 
 ### 在表单中使用
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<PinCode />`](#/components/pin-code) 组件
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Form, Row, Col, Icon, PinCode, Button, Notify } from 'uiw';
 
-const Demo = () => (
-  <div>
-    <Form
-      resetOnSubmit={false}
-      onSubmitError={(error) => {
-        if (error.filed) {
-          return { ...error.filed };
-        }
-        return null;
-      }}
-      onSubmit={({initial, current}) => {
-        const errorObj = {};
-        if (current.pinCode.join('').length === 0) {
-          errorObj.pinCode = '请输入安全码！';
-        }
-        if (current.pinCode.join('').length < 5) {
-          errorObj.pinCode = '安全码没有输入完整！';
-        }
-        if(Object.keys(errorObj).length > 0) {
-          const err = new Error();
-          err.filed = errorObj;
-          Notify.error({ title: '提交失败！', description: '请确认提交表单是否正确！' });
-          throw err;
-        }
-        Notify.success({
-          title: '提交成功！',
-          description: `表单提交成功，安全码为：${current.pinCode.join('')}！`,
-        });
-      }}
-      fields={{
-        pinCode: {
-          initialValue: ['', '', '', '', ''],
-          children: <PinCode />
-        },
-      }}
-    >
-      {({ fields, state, canSubmit }) => {
-        console.log('state:',state.current.pinCode.join(''))
-        return (
-          <div>
-            <Row>
-              <Col fixed>{fields.pinCode}</Col>
-            </Row>
-            <Row>
-              <Col fixed>
-                <Button size="small" disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
-                <span style={{ paddingLeft: 16, color: '#a7a7a7', verticalAlign: 'middle' }}>
-                  {state.current.pinCode.join('')}
-                </span>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <pre style={{ padding: 10, marginTop: 10 }}>
-                  {JSON.stringify(state.current, null, 2)}
-                </pre>
-              </Col>
-            </Row>
-          </div>
-        )
-      }}
-    </Form>
-  </div>
-)
-ReactDOM.render(<Demo />, _mount_);
+export default function Demo() {
+  return (
+    <div>
+      <Form
+        resetOnSubmit={false}
+        onSubmitError={(error) => {
+          if (error.filed) {
+            return { ...error.filed };
+          }
+          return null;
+        }}
+        onSubmit={({initial, current}) => {
+          const errorObj = {};
+          if (current.pinCode.join('').length === 0) {
+            errorObj.pinCode = '请输入安全码！';
+          }
+          if (current.pinCode.join('').length < 5) {
+            errorObj.pinCode = '安全码没有输入完整！';
+          }
+          if(Object.keys(errorObj).length > 0) {
+            const err = new Error();
+            err.filed = errorObj;
+            Notify.error({ title: '提交失败！', description: '请确认提交表单是否正确！' });
+            throw err;
+          }
+          Notify.success({
+            title: '提交成功！',
+            description: `表单提交成功，安全码为：${current.pinCode.join('')}！`,
+          });
+        }}
+        fields={{
+          pinCode: {
+            initialValue: ['', '', '', '', ''],
+            children: <PinCode />
+          },
+        }}
+      >
+        {({ fields, state, canSubmit }) => {
+          console.log('state:',state.current.pinCode.join(''))
+          return (
+            <div>
+              <Row>
+                <Col fixed>{fields.pinCode}</Col>
+              </Row>
+              <Row>
+                <Col fixed>
+                  <Button size="small" disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+                  <span style={{ paddingLeft: 16, color: '#a7a7a7', verticalAlign: 'middle' }}>
+                    {state.current.pinCode.join('')}
+                  </span>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <pre style={{ padding: 10, marginTop: 10 }}>
+                    {JSON.stringify(state.current, null, 2)}
+                  </pre>
+                </Col>
+              </Row>
+            </div>
+          )
+        }}
+      </Form>
+    </div>
+  )
+}
 ```
 
 ### 更改占位符
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { PinCode, Divider } from 'uiw';
 
-const Demo = () => (
-  <div>
-    <PinCode placeholder="■" value={['8', '7', '3', '', '']} onChange={(val) => console.log(val)} />
-    <Divider />
-    <PinCode placeholder="★" value={['6', '', '', '', '']} onChange={(val) => console.log(val)} />
-    <Divider />
-    <PinCode placeholder="🤣" value={['', '', '', '', '']} onChange={(val) => console.log(val)} />
-  </div>
-);
-ReactDOM.render(<Demo />, _mount_);
+export default function Demo() {
+  return (
+    <div>
+      <PinCode placeholder="■" value={['8', '7', '3', '', '']} onChange={(val) => console.log(val)} />
+      <Divider />
+      <PinCode placeholder="★" value={['6', '', '', '', '']} onChange={(val) => console.log(val)} />
+      <Divider />
+      <PinCode placeholder="🤣" value={['', '', '', '', '']} onChange={(val) => console.log(val)} />
+    </div>
+  );
+}
 ```
 
 ### 输入框被禁用
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { PinCode, Divider } from 'uiw';
 
-const Demo = () => (
-  <div>
-    <PinCode disabled value={['1', '9', '8', '7', '0']} />
-    <Divider />
-    <PinCode disabled value={['', '', '', '', '']} />
-    <Divider />
-    <PinCode disabled placeholder="🤣" value={['', '', '', '', '']} />
-  </div>
-);
-ReactDOM.render(<Demo />, _mount_);
+export default function Demo() {
+  return (
+    <div>
+      <PinCode disabled value={['1', '9', '8', '7', '0']} />
+      <Divider />
+      <PinCode disabled value={['', '', '', '', '']} />
+      <Divider />
+      <PinCode disabled placeholder="🤣" value={['', '', '', '', '']} />
+    </div>
+  );
+}
 ```
 
 ### 尺寸大小
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { PinCode, Divider } from 'uiw';
 
-const Demo = () => (
-  <div>
-    <PinCode size="large" value={['1', '9', '8', '7', '0']} />
-    <Divider />
-    <PinCode value={['', '', '', '', '']} />
-    <Divider />
-    <PinCode size="small" value={['', '', '', '', '']} />
-  </div>
-);
-ReactDOM.render(<Demo />, _mount_);
+export default function Demo() {
+  return (
+    <div>
+      <PinCode size="large" value={['1', '9', '8', '7', '0']} />
+      <Divider />
+      <PinCode value={['', '', '', '', '']} />
+      <Divider />
+      <PinCode size="small" value={['', '', '', '', '']} />
+    </div>
+  );
+}
 ```
 
 ## PinCode

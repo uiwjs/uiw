@@ -17,12 +17,11 @@ import Carousel from '@uiw/react-carousel';
 
 最简单的用法。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import { Carousel } from 'uiw';
 
-function Demo() {
+export default function Demo() {
   return (
     <div style={{ display:'flex' }}>
       <Carousel>
@@ -57,20 +56,17 @@ function Demo() {
     </div>
   );
 }
-
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ## 控制播放频率
 
 palyTime设置每帧停留时间，scrollTime设置切换帧的速度
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import { Carousel } from 'uiw';
 
-function Demo() {
+export default function Demo() {
   return (
     <Carousel palyTime={1000} scrollTime={500}>
       <div style={{ height: '100%', background: '#1EABCD' }}>
@@ -88,55 +84,50 @@ function Demo() {
     </Carousel>
   );
 }
-
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ## 切换到指定帧
 
 手动切换到指定帧的位置
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview
 import React from 'react';
 import { Carousel } from 'uiw';
 
-function Demo() {
+export default function Demo() {
 
   const ref=React.useRef()
   const [autoPlay,autoPlaySet]=React.useState(true)
 
   return (
-      <React.Fragment>
-        <Carousel
-          ref={ref}
-          position={2}
-          autoPlay={autoPlay}
-          afterChange={(current)=>console.log('after',current)}
-          beforeChange={(current)=>console.log('before',current)}
-        >
-          <div style={{ height: '100%', background: '#1EABCD' }}>
-            <span>1</span>
-          </div>
-          <div style={{ height: '100%',  background: '#393b46' }}>
-            <span>2</span>
-          </div>
-          <div style={{ height: '100%',  background: '#008EF0' }}>
-            <span>3</span>
-          </div>
-          <div style={{ height: '100%',  background: '#393E48' }}>
-            <span>4</span>
-          </div>
-        </Carousel>
-        <button onClick={() => ref.current.gotoSlide(1)}>跳转</button>
-        <button onClick={() => ref.current.prevSlide()}>上一张</button>
-        <button onClick={() => ref.current.nextSlide()}>下一张</button>
-        <button onClick={() =>autoPlaySet(autoPlay?false:true)}>{autoPlay?'暂停':'开始'}</button>
-      </React.Fragment>
-    );
-  }
-
-ReactDOM.render(<Demo />, _mount_);
+    <React.Fragment>
+      <Carousel
+        ref={ref}
+        position={2}
+        autoPlay={autoPlay}
+        afterChange={(current)=>console.log('after',current)}
+        beforeChange={(current)=>console.log('before',current)}
+      >
+        <div style={{ height: '100%', background: '#1EABCD' }}>
+          <span>1</span>
+        </div>
+        <div style={{ height: '100%',  background: '#393b46' }}>
+          <span>2</span>
+        </div>
+        <div style={{ height: '100%',  background: '#008EF0' }}>
+          <span>3</span>
+        </div>
+        <div style={{ height: '100%',  background: '#393E48' }}>
+          <span>4</span>
+        </div>
+      </Carousel>
+      <button onClick={() => ref.current.gotoSlide(1)}>跳转</button>
+      <button onClick={() => ref.current.prevSlide()}>上一张</button>
+      <button onClick={() => ref.current.nextSlide()}>下一张</button>
+      <button onClick={() =>autoPlaySet(autoPlay?false:true)}>{autoPlay?'暂停':'开始'}</button>
+    </React.Fragment>
+  );
+}
 ```
 
 ## Props

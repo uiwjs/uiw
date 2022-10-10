@@ -1,12 +1,6 @@
-import React from 'react';
-import Markdown from '../../../components/Markdown';
+import data from './README.md';
+import Markdown from '../../../components/Markdown/Markdown';
 
-export default () => (
-  <Markdown
-    path="https://github.com/uiwjs/reset-css/blob/master/README.md"
-    renderPage={async () => {
-      const md = await import('./README.md');
-      return md.default || md;
-    }}
-  />
-);
+export default function Page() {
+  return <Markdown {...data} path="https://github.com/uiwjs/reset-css/blob/master/README.md" />;
+}

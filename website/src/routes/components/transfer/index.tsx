@@ -1,14 +1,6 @@
-import React from 'react';
-import { Form, Button, TreeChecked, Transfer, Row, Col, Card, Icon } from 'uiw';
-import Markdown from '../../../components/Markdown';
+import data from '@uiw/react-transfer/README.md';
+import Markdown from '../../../components/Markdown/Markdown';
 
-export default () => (
-  <Markdown
-    path="https://github.com/uiwjs/uiw/tree/master/packages/react-transfer/README.md"
-    dependencies={{ Form, Button, TreeChecked, Transfer, Row, Col, Card, Icon, React }}
-    renderPage={async () => {
-      const md = await import('uiw/node_modules/@uiw/react-transfer/README.md');
-      return md.default || md;
-    }}
-  />
-);
+export default function Page() {
+  return <Markdown {...data} path="https://github.com/uiwjs/uiw/tree/master/packages/react-transfer/README.md" />;
+}

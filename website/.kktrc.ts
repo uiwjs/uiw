@@ -1,17 +1,13 @@
 import { Configuration } from 'webpack';
 import { LoaderConfOptions } from 'kkt';
-import path from 'path';
 import lessModules from '@kkt/less-modules';
-import rawModules from '@kkt/raw-modules';
-import scopePluginOptions from '@kkt/scope-plugin-options';
+import { mdCodeModulesLoader } from 'markdown-react-code-preview-loader';
+import { disableScopePlugin } from '@kkt/scope-plugin-options';
 
 export default (conf: Configuration, env: 'development' | 'production', options: LoaderConfOptions) => {
   conf = lessModules(conf, env, options);
-  conf = rawModules(conf, env, { ...options });
-  conf = scopePluginOptions(conf, env, {
-    ...options,
-    allowedFiles: [path.resolve(process.cwd(), 'README.md')],
-  });
+  conf = mdCodeModulesLoader(conf);
+  conf = disableScopePlugin(conf);
 
   /** https://github.com/uiwjs/react-code-preview/issues/94 */
   conf.module!.exprContextCritical = false;

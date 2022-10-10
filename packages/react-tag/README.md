@@ -15,74 +15,73 @@ import Tag from '@uiw/react-tag';
 
 ### 基础用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
 import { Tag, Divider } from 'uiw';
 
-const Demo = () => (
-  <div>
-    <Tag title="成功-绿色" color="#28a745" />
-    <Tag title="主要-蓝色" color="#008EF0" />
-    <Tag title="信息-青色" color="#1EABCD" />
-    <Tag title="导航-藏青" color="#393E48" />
-    <Divider />
-    <Tag color="#ffc107">警告-黄色</Tag>
-    <Tag color="#F95C2B">提醒-橙色</Tag>
-    <Tag color="#dc3545">危险-红色</Tag>
-    <Tag>默认颜色</Tag>
-    <Divider />
-    <Tag light color="#28a745">成功-绿色</Tag>
-    <Tag light color="#008EF0">主要-蓝色</Tag>
-    <Tag light color="#1EABCD">信息-青色</Tag>
-    <Tag light color="#393E48">导航-藏青</Tag>
-    <Divider />
-    <Tag light color="#ffc107">警告-黄色</Tag>
-    <Tag light color="#F95C2B">提醒-橙色</Tag>
-    <Tag light color="#dc3545">危险-红色</Tag>
-    <Tag light>默认颜色</Tag>
-  </div>
-)
-ReactDOM.render(<Demo />, _mount_);
+export default function Demo() {
+  return (
+    <div>
+      <Tag title="成功-绿色" color="#28a745" />
+      <Tag title="主要-蓝色" color="#008EF0" />
+      <Tag title="信息-青色" color="#1EABCD" />
+      <Tag title="导航-藏青" color="#393E48" />
+      <Divider />
+      <Tag color="#ffc107">警告-黄色</Tag>
+      <Tag color="#F95C2B">提醒-橙色</Tag>
+      <Tag color="#dc3545">危险-红色</Tag>
+      <Tag>默认颜色</Tag>
+      <Divider />
+      <Tag light color="#28a745">成功-绿色</Tag>
+      <Tag light color="#008EF0">主要-蓝色</Tag>
+      <Tag light color="#1EABCD">信息-青色</Tag>
+      <Tag light color="#393E48">导航-藏青</Tag>
+      <Divider />
+      <Tag light color="#ffc107">警告-黄色</Tag>
+      <Tag light color="#F95C2B">提醒-橙色</Tag>
+      <Tag light color="#dc3545">危险-红色</Tag>
+      <Tag light>默认颜色</Tag>
+    </div>
+  )
+}
 ```
 
 ### 标签禁用
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
 import { Tag, Divider } from 'uiw';
 
-const Demo = () => (
-  <div>
-    <Tag disabled title="成功-绿色" color="#28a745" />
-    <Tag disabled title="主要-蓝色" color="#008EF0" />
-    <Tag disabled title="信息-青色" color="#1EABCD" />
-    <Tag disabled title="导航-藏青" color="#393E48" />
-    <Tag disabled color="#ffc107">警告-黄色</Tag>
-    <Tag disabled color="#F95C2B">提醒-橙色</Tag>
-    <Tag disabled color="#dc3545">危险-红色</Tag>
-    <Tag disabled>默认颜色</Tag>
-    <Divider />
-    <Tag light disabled color="#28a745">成功-绿色</Tag>
-    <Tag light disabled color="#008EF0">主要-蓝色</Tag>
-    <Tag light disabled color="#1EABCD">信息-青色</Tag>
-    <Tag light disabled color="#393E48">导航-藏青</Tag>
-    <Tag light disabled color="#ffc107">警告-黄色</Tag>
-    <Tag light disabled color="#F95C2B">提醒-橙色</Tag>
-    <Tag light disabled color="#dc3545">危险-红色</Tag>
-    <Tag light disabled>默认颜色</Tag>
-  </div>
-)
-ReactDOM.render(<Demo />, _mount_);
+export default function Demo() {
+  return (
+    <div>
+      <Tag disabled title="成功-绿色" color="#28a745" />
+      <Tag disabled title="主要-蓝色" color="#008EF0" />
+      <Tag disabled title="信息-青色" color="#1EABCD" />
+      <Tag disabled title="导航-藏青" color="#393E48" />
+      <Tag disabled color="#ffc107">警告-黄色</Tag>
+      <Tag disabled color="#F95C2B">提醒-橙色</Tag>
+      <Tag disabled color="#dc3545">危险-红色</Tag>
+      <Tag disabled>默认颜色</Tag>
+      <Divider />
+      <Tag light disabled color="#28a745">成功-绿色</Tag>
+      <Tag light disabled color="#008EF0">主要-蓝色</Tag>
+      <Tag light disabled color="#1EABCD">信息-青色</Tag>
+      <Tag light disabled color="#393E48">导航-藏青</Tag>
+      <Tag light disabled color="#ffc107">警告-黄色</Tag>
+      <Tag light disabled color="#F95C2B">提醒-橙色</Tag>
+      <Tag light disabled color="#dc3545">危险-红色</Tag>
+      <Tag light disabled>默认颜色</Tag>
+    </div>
+  )
+}
 ```
 
 ### 添加图标
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import { Tag, Divider } from 'uiw';
+import { Tag, Divider, Icon } from 'uiw';
 
 const Demo = () => (
   <div>
@@ -99,13 +98,12 @@ const Demo = () => (
     <Tag light color="#dc3545"><Icon type="heart-on" verticalAlign="baseline" /> 信息-红色</Tag>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 控制关闭标签
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tag, Icon } from 'uiw';
@@ -144,13 +142,12 @@ class Demo extends React.Component {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 标签组动态删除
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tag, Button, Icon } from 'uiw';
@@ -200,15 +197,14 @@ class Demo extends React.Component {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 热门标签
 
 选择你感兴趣的话题，下面实例类似 CheckBox 多选。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tag } from 'uiw';
@@ -258,13 +254,12 @@ class Demo extends React.Component {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 选择器
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Dropdown, Menu, Button, Icon, Input, Checkbox, Tag, Row, Col } from 'uiw';
@@ -391,12 +386,13 @@ const option = [
   { label: '黄冈市, 中国', value: 8, color: '#dc3545' },
 ];
 
-ReactDOM.render(
-  <div>
-    <SelectTag placeholder="选择城市" option={option} value={[2, 8]} onChange={(item) => { console.log('item', item); }} />
-  </div>,
-  _mount_
-);
+export default function Demo() {
+  return (
+    <div>
+      <SelectTag placeholder="选择城市" option={option} value={[2, 8]} onChange={(item) => { console.log('item', item); }} />
+    </div>
+  )
+}
 ```
 
 ## Tag

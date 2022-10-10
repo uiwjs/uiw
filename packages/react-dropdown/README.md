@@ -15,10 +15,8 @@ import Dropdown from '@uiw/react-dropdown';
 
 ### 基本用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Dropdown, Menu, ButtonGroup, Button, Divider, Icon } from 'uiw';
 
 const menu = (
@@ -51,14 +49,14 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+
+export default Demo;
 ```
 
 ### 被禁用
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Dropdown, Menu, ButtonGroup, Button } from 'uiw';
 
 const menu = (
@@ -74,46 +72,46 @@ const menu = (
   </div>
 );
 
-ReactDOM.render(
-  <div>
-    <ButtonGroup style={{ marginRight: 5, display: 'inline-block' }}>
-      <Button disabled icon="copy">点击右边</Button>
-      <Dropdown disabled trigger="click" placement="bottomRight" menu={menu}>
-        <Button icon="more" />
+export default function Demo() {
+  return(
+    <div>
+      <ButtonGroup style={{ marginRight: 5, display: 'inline-block' }}>
+        <Button disabled icon="copy">点击右边</Button>
+        <Dropdown disabled trigger="click" placement="bottomRight" menu={menu}>
+          <Button icon="more" />
+        </Dropdown>
+      </ButtonGroup>
+      <Dropdown disabled menu={menu}>
+        <Button basic type="link"> (超连接样式)link </Button>
       </Dropdown>
-    </ButtonGroup>
-    <Dropdown disabled menu={menu}>
-      <Button basic type="link"> (超连接样式)link </Button>
-    </Dropdown>
-    <Dropdown disabled menu={menu}>
-      <Button type="primary">主要按钮</Button>
-    </Dropdown>
-    <Dropdown disabled menu={menu}>
-      <Button type="success">成功按钮</Button>
-    </Dropdown>
-    <Dropdown disabled menu={menu}>
-      <Button type="warning">警告按钮</Button>
-    </Dropdown>
-    <Dropdown disabled menu={menu}>
-      <Button type="danger">错误按钮</Button>
-    </Dropdown>
-    <Dropdown disabled menu={menu}>
-      <Button type="light">亮按钮</Button>
-    </Dropdown>
-    <Dropdown disabled menu={menu}>
-      <Button type="dark">暗按钮</Button>
-    </Dropdown>
-  </div>,
-  _mount_
-);
+      <Dropdown disabled menu={menu}>
+        <Button type="primary">主要按钮</Button>
+      </Dropdown>
+      <Dropdown disabled menu={menu}>
+        <Button type="success">成功按钮</Button>
+      </Dropdown>
+      <Dropdown disabled menu={menu}>
+        <Button type="warning">警告按钮</Button>
+      </Dropdown>
+      <Dropdown disabled menu={menu}>
+        <Button type="danger">错误按钮</Button>
+      </Dropdown>
+      <Dropdown disabled menu={menu}>
+        <Button type="light">亮按钮</Button>
+      </Dropdown>
+      <Dropdown disabled menu={menu}>
+        <Button type="dark">暗按钮</Button>
+      </Dropdown>
+    </div>
+  );
+}
 ```
 
 ### 弹出位置
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
-import { Dropdown, Menu, ButtonGroup, Button } from 'uiw';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
+import { Dropdown, Menu, Divider, ButtonGroup, Button } from 'uiw';
 
 const menu = (
   <div>
@@ -128,44 +126,43 @@ const menu = (
   </div>
 );
 
-ReactDOM.render(
-  <div>
-    <ButtonGroup style={{ marginRight: 5, display: 'inline-block' }}>
-      <Button icon="copy">top</Button>
-      <Dropdown trigger="click" placement="top" menu={menu}>
-        <Button icon="more" />
+export default function Demo() {
+  return(
+    <div>
+      <ButtonGroup style={{ marginRight: 5, display: 'inline-block' }}>
+        <Button icon="copy">top</Button>
+        <Dropdown trigger="click" placement="top" menu={menu}>
+          <Button icon="more" />
+        </Dropdown>
+      </ButtonGroup>
+      <Dropdown menu={menu} trigger="click" placement="topLeft">
+        <Button type="primary">topLeft</Button>
       </Dropdown>
-    </ButtonGroup>
-    <Dropdown menu={menu} trigger="click" placement="topLeft">
-      <Button type="primary">topLeft</Button>
-    </Dropdown>
-    <Dropdown menu={menu} trigger="click" placement="topRight">
-      <Button type="success">topRight</Button>
-    </Dropdown>
-    <Divider />
-    <Dropdown menu={menu} trigger="click" placement="bottomRight">
-      <Button type="light">bottomRight</Button>
-    </Dropdown>
-    <Dropdown menu={menu} trigger="click" placement="bottom">
-      <Button type="warning">bottom</Button>
-    </Dropdown>
-    <Dropdown menu={menu} trigger="click" placement="bottomLeft">
-      <Button type="danger">bottomLeft</Button>
-    </Dropdown>
-    <Dropdown menu={menu} trigger="click" placement="right">
-      <Button type="dark">right</Button>
-    </Dropdown>
-  </div>,
-  _mount_
-);
+      <Dropdown menu={menu} trigger="click" placement="topRight">
+        <Button type="success">topRight</Button>
+      </Dropdown>
+      <Divider />
+      <Dropdown menu={menu} trigger="click" placement="bottomRight">
+        <Button type="light">bottomRight</Button>
+      </Dropdown>
+      <Dropdown menu={menu} trigger="click" placement="bottom">
+        <Button type="warning">bottom</Button>
+      </Dropdown>
+      <Dropdown menu={menu} trigger="click" placement="bottomLeft">
+        <Button type="danger">bottomLeft</Button>
+      </Dropdown>
+      <Dropdown menu={menu} trigger="click" placement="right">
+        <Button type="dark">right</Button>
+      </Dropdown>
+    </div>
+  );
+}
 ```
 
 ### 选择器
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Dropdown, Menu, Button, Icon } from 'uiw';
 
 function Select(props) {
@@ -226,13 +223,15 @@ const option2 = [
   { label: '头等舱', value: 4 },
 ];
 
-ReactDOM.render(
-  <div>
-    <Select option={option} value={1} onChange={(item) => { console.log('item', item); }} />
-    <Select option={option2} value={2} onChange={(item) => { console.log('item', item); }} />
-  </div>,
-  _mount_
-);
+
+export default function Demo() {
+  return(
+    <div>
+      <Select option={option} value={1} onChange={(item) => { console.log('item', item); }} />
+      <Select option={option2} value={2} onChange={(item) => { console.log('item', item); }} />
+    </div>
+  );
+}
 ```
 
 ## Props

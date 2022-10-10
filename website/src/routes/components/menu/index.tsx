@@ -1,16 +1,6 @@
-import React from 'react';
-import { Menu, Drawer, MenuItem, MenuDivider, SubMenu, Row, Col, Switch, Icon, Popover, Button } from 'uiw';
-import Markdown from '../../../components/Markdown';
+import data from '@uiw/react-menu/README.md';
+import Markdown from '../../../components/Markdown/Markdown';
 
 export default function Page() {
-  return (
-    <Markdown
-      path="https://github.com/uiwjs/uiw/tree/master/packages/react-menu/README.md"
-      dependencies={{ Menu, MenuItem, MenuDivider, Drawer, SubMenu, Row, Col, Switch, Icon, Popover, Button }}
-      renderPage={async () => {
-        const md = await import('uiw/node_modules/@uiw/react-menu/README.md');
-        return md.default || md;
-      }}
-    />
-  );
+  return <Markdown {...data} path="https://github.com/uiwjs/uiw/tree/master/packages/react-menu/README.md" />;
 }

@@ -20,93 +20,91 @@ import Menu, { MenuItem, MenuDivider, SubMenu } from '@uiw/react-menu'; // @ v4.
 
 ### 基本用法
 
-
-<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Menu, MenuItem, Row, Col } from 'uiw';
 
-const Demo = () => (
-  <Row justify="flex-start" gutter={10}>
-    <Col fixed>
-      <Menu bordered>
-        <MenuItem icon="reload" text="重新加载" />
-        <Menu.Divider />
-        <Menu.Item icon="heart-on" text="另存为" active />
-        <Menu.Item icon="appstore" text="应用商城" />
-        <Menu.Item icon="bar-chart" text="月统计报表导出" />
-        <Menu.Item icon="setting" text="偏好设置" />
-        <Menu.Divider />
-        <Menu.Item icon="map" text="谷歌地图" />
-        <Menu.Item icon="map" text="百度地图" href="https://map.baidu.com" target="_blank" />
-      </Menu>
-    </Col>
-    <Col fixed>
-      <Menu bordered>
-        <Menu.Divider title="编辑" />
-        <Menu.Item icon="file-add" text="添加文件" />
-        <Menu.Item icon="folder-add" text="添加文件夹" />
-        <Menu.Item icon="copy" text="拷贝" />
-        <Menu.Item icon="delete" disabled text="删除" />
-        <Menu.SubMenu icon="setting-o" text="选项" collapse>
-          <Menu.Item icon="dot-chart" text="显示边栏" />
-          <Menu.Item icon="date" text="添加日期" />
-          <Menu.Item icon="tags-o" text="标签名称" />
-        </Menu.SubMenu>
-        <Menu.Divider title="其它" />
-        <Menu.SubMenu icon="bar-chart" text="月统计报表导出">
+export default function Demo() {
+  return (
+    <Row justify="flex-start" gutter={10}>
+      <Col fixed>
+        <Menu bordered>
+          <MenuItem icon="reload" text="重新加载" />
+          <Menu.Divider />
+          <Menu.Item icon="heart-on" text="另存为" active />
+          <Menu.Item icon="appstore" text="应用商城" />
+          <Menu.Item icon="bar-chart" text="月统计报表导出" />
+          <Menu.Item icon="setting" text="偏好设置" />
+          <Menu.Divider />
+          <Menu.Item icon="map" text="谷歌地图" />
+          <Menu.Item icon="map" text="百度地图" href="https://map.baidu.com" target="_blank" />
+        </Menu>
+      </Col>
+      <Col fixed>
+        <Menu bordered>
+          <Menu.Divider title="编辑" />
           <Menu.Item icon="file-add" text="添加文件" />
           <Menu.Item icon="folder-add" text="添加文件夹" />
-          <Menu.Divider title="类别" />
           <Menu.Item icon="copy" text="拷贝" />
-          <Menu.SubMenu icon="bar-chart" text="报表" collapse>
+          <Menu.Item icon="delete" disabled text="删除" />
+          <Menu.SubMenu icon="setting-o" text="选项" collapse>
+            <Menu.Item icon="dot-chart" text="显示边栏" />
+            <Menu.Item icon="date" text="添加日期" />
+            <Menu.Item icon="tags-o" text="标签名称" />
+          </Menu.SubMenu>
+          <Menu.Divider title="其它" />
+          <Menu.SubMenu icon="bar-chart" text="月统计报表导出">
             <Menu.Item icon="file-add" text="添加文件" />
-            <Menu.SubMenu icon="folder-add" text="添加文件夹">
+            <Menu.Item icon="folder-add" text="添加文件夹" />
+            <Menu.Divider title="类别" />
+            <Menu.Item icon="copy" text="拷贝" />
+            <Menu.SubMenu icon="bar-chart" text="报表" collapse>
               <Menu.Item icon="file-add" text="添加文件" />
-              <Menu.Item icon="folder-add" text="添加文件夹" />
+              <Menu.SubMenu icon="folder-add" text="添加文件夹">
+                <Menu.Item icon="file-add" text="添加文件" />
+                <Menu.Item icon="folder-add" text="添加文件夹" />
+              </Menu.SubMenu>
             </Menu.SubMenu>
           </Menu.SubMenu>
-        </Menu.SubMenu>
-        <Menu.SubMenu icon="setting" disabled text="偏好设置">
+          <Menu.SubMenu icon="setting" disabled text="偏好设置">
+            <Menu.Item icon="file-add" text="添加文件" />
+            <Menu.Item icon="folder-add" text="添加文件夹" />
+          </Menu.SubMenu>
+          <Menu.Item icon="map" text="谷歌地图" />
+        </Menu>
+      </Col>
+      <Col fixed>
+        <Menu bordered>
           <Menu.Item icon="file-add" text="添加文件" />
           <Menu.Item icon="folder-add" text="添加文件夹" />
-        </Menu.SubMenu>
-        <Menu.Item icon="map" text="谷歌地图" />
-      </Menu>
-    </Col>
-    <Col fixed>
-      <Menu bordered>
-        <Menu.Item icon="file-add" text="添加文件" />
-        <Menu.Item icon="folder-add" text="添加文件夹" />
-        <Menu.SubMenu icon="bar-chart" text="月统计报表导出"
-          overlayProps={{
-            isOpen: true
-          }}
-        >
-          <Menu.Item icon="file-add" text="添加文件" />
-          <Menu.Divider title="类别" />
-          <Menu.Item icon="copy" text="拷贝" />
-          <Menu.SubMenu icon="bar-chart" text="报表" collapse>
+          <Menu.SubMenu icon="bar-chart" text="月统计报表导出"
+            overlayProps={{
+              isOpen: true
+            }}
+          >
             <Menu.Item icon="file-add" text="添加文件" />
-            <Menu.SubMenu icon="folder-add" text="添加文件夹">
+            <Menu.Divider title="类别" />
+            <Menu.Item icon="copy" text="拷贝" />
+            <Menu.SubMenu icon="bar-chart" text="报表" collapse>
               <Menu.Item icon="file-add" text="添加文件" />
-              <Menu.Item icon="folder-add" text="添加文件夹" />
+              <Menu.SubMenu icon="folder-add" text="添加文件夹">
+                <Menu.Item icon="file-add" text="添加文件" />
+                <Menu.Item icon="folder-add" text="添加文件夹" />
+              </Menu.SubMenu>
             </Menu.SubMenu>
           </Menu.SubMenu>
-        </Menu.SubMenu>
-        <Menu.Item icon="map" text="谷歌地图" />
-      </Menu>
-    </Col>
-  </Row>
-)
-ReactDOM.render(<Demo />, _mount_);
+          <Menu.Item icon="map" text="谷歌地图" />
+        </Menu>
+      </Col>
+    </Row>
+  )
+}
 ```
 
 ### 下拉菜单
 
-<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Menu, Popover, Button, Row, Col } from 'uiw';
 
 const btnStl = {position: 'relative', width: 70 }
@@ -123,118 +121,119 @@ const content = (
     <Menu.Item icon="map" text="谷歌地图" />
   </Menu>
 )
-const Demo = () => (
-  <div>
-    <div style={{ position: 'relative' }}>
 
-      <Popover trigger="click" placement="topLeft" content={content}>
-        <Button style={{ ...btnStl, left: 70 }}>TL</Button>
-      </Popover>
-      <Popover trigger="click" placement="top" content={content}>
-        <Button style={{ ...btnStl, left: 70}}>Top</Button>
-      </Popover>
-      <Popover trigger="click" placement="topRight" content={content}>
-        <Button style={{ ...btnStl, left: 70 }}>TR</Button>
-      </Popover>
+export default function Demo() {
+  return (
+    <div>
+      <div style={{ position: 'relative' }}>
 
+        <Popover trigger="click" placement="topLeft" content={content}>
+          <Button style={{ ...btnStl, left: 70 }}>TL</Button>
+        </Popover>
+        <Popover trigger="click" placement="top" content={content}>
+          <Button style={{ ...btnStl, left: 70}}>Top</Button>
+        </Popover>
+        <Popover trigger="click" placement="topRight" content={content}>
+          <Button style={{ ...btnStl, left: 70 }}>TR</Button>
+        </Popover>
+
+      </div>
+      <div style={{ position: 'relative', paddingTop: 10 }}>
+
+        <Popover trigger="click" placement="leftTop" content={content}>
+          <Button style={{ ...btnStl }}>LT</Button>
+        </Popover>
+        <Popover trigger="click" placement="rightTop" content={content}>
+          <Button style={{ ...btnStl, left: 216 }}>RT</Button>
+        </Popover>
+
+      </div>
+      <div style={{ position: 'relative', paddingTop: 10 }}>
+
+        <Popover trigger="click" placement="left" content={content}>
+          <Button style={{ ...btnStl }}>Left</Button>
+        </Popover>
+        <Popover trigger="click" placement="right" content={content}>
+          <Button style={{ ...btnStl, left: 216 }}>Right</Button>
+        </Popover>
+
+      </div>
+      <div style={{ position: 'relative', paddingTop: 10 }}>
+
+        <Popover trigger="click" placement="leftBottom" content={content}>
+          <Button style={{ ...btnStl }}>LB</Button>
+        </Popover>
+        <Popover trigger="click" placement="rightBottom" content={content}>
+          <Button style={{ ...btnStl, left: 216 }}>RB</Button>
+        </Popover>
+
+      </div>
+      <div style={{ position: 'relative', paddingTop: 10 }}>
+
+        <Popover trigger="click" placement="bottomLeft" content={content}>
+          <Button style={{ ...btnStl, left: 70 }}>BL</Button>
+        </Popover>
+        <Popover trigger="click" placement="bottom" content={content}>
+          <Button style={{ ...btnStl, left: 70 }}>Bottom</Button>
+        </Popover>
+        <Popover trigger="click" placement="bottomRight" content={content}>
+          <Button style={{ ...btnStl, left: 70 }}>BR</Button>
+        </Popover>
+
+      </div>
     </div>
-    <div style={{ position: 'relative', paddingTop: 10 }}>
-
-      <Popover trigger="click" placement="leftTop" content={content}>
-        <Button style={{ ...btnStl }}>LT</Button>
-      </Popover>
-      <Popover trigger="click" placement="rightTop" content={content}>
-        <Button style={{ ...btnStl, left: 216 }}>RT</Button>
-      </Popover>
-
-    </div>
-    <div style={{ position: 'relative', paddingTop: 10 }}>
-
-      <Popover trigger="click" placement="left" content={content}>
-        <Button style={{ ...btnStl }}>Left</Button>
-      </Popover>
-      <Popover trigger="click" placement="right" content={content}>
-        <Button style={{ ...btnStl, left: 216 }}>Right</Button>
-      </Popover>
-
-    </div>
-    <div style={{ position: 'relative', paddingTop: 10 }}>
-
-      <Popover trigger="click" placement="leftBottom" content={content}>
-        <Button style={{ ...btnStl }}>LB</Button>
-      </Popover>
-      <Popover trigger="click" placement="rightBottom" content={content}>
-        <Button style={{ ...btnStl, left: 216 }}>RB</Button>
-      </Popover>
-
-    </div>
-    <div style={{ position: 'relative', paddingTop: 10 }}>
-
-      <Popover trigger="click" placement="bottomLeft" content={content}>
-        <Button style={{ ...btnStl, left: 70 }}>BL</Button>
-      </Popover>
-      <Popover trigger="click" placement="bottom" content={content}>
-        <Button style={{ ...btnStl, left: 70 }}>Bottom</Button>
-      </Popover>
-      <Popover trigger="click" placement="bottomRight" content={content}>
-        <Button style={{ ...btnStl, left: 70 }}>BR</Button>
-      </Popover>
-
-    </div>
-  </div>
-)
-ReactDOM.render(<Demo />, _mount_);
+  );
+}
 ```
 
 ### 内嵌菜单
 
 通过设置 `overlayProps={ isOpen: true }`，让菜单默认展开。
 
-<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Menu, Row, Col } from 'uiw';
 
-const Demo = () => (
-  <Row justify="flex-start" gutter={10}>
-    <Col fixed>
-      <Menu bordered style={{ maxWidth: 200 }}>
-        <Menu.Item icon="delete" disabled text="删除" />
-        <Menu.SubMenu icon="setting-o" text="选项" disabled collapse>
-          <Menu.Item icon="dot-chart" text="显示边栏" />
-          <Menu.Item icon="date" text="添加日期" />
-          <Menu.Item icon="tags-o" text="标签名称" />
-        </Menu.SubMenu>
-        <Menu.Divider title="其它" />
-        <Menu.SubMenu
-          icon="bar-chart" text="每年2019年统计报表导出" collapse
-          // overlayProps={{ isOpen: true }}
-        >
-          <Menu.Item text="添加文件" />
-          <Menu.Item text="添加文件夹" />
-          <Menu.Divider title="类别" />
-          <Menu.Item icon="copy" text="拷贝" />
-          <Menu.SubMenu icon="folder-add" text="添加文件夹" collapse>
-            <Menu.Item icon="file-add" text="添加文件" />
-            <Menu.Item icon="folder-add" text="添加文件夹" />
+export default function Demo() {
+  return (
+    <Row justify="flex-start" gutter={10}>
+      <Col fixed>
+        <Menu bordered style={{ maxWidth: 200 }}>
+          <Menu.Item icon="delete" disabled text="删除" />
+          <Menu.SubMenu icon="setting-o" text="选项" disabled collapse>
+            <Menu.Item icon="dot-chart" text="显示边栏" />
+            <Menu.Item icon="date" text="添加日期" />
+            <Menu.Item icon="tags-o" text="标签名称" />
           </Menu.SubMenu>
-        </Menu.SubMenu>
-        <Menu.Item icon="setting" disabled text="偏好设置" />
-        <Menu.Item icon="map" text="谷歌地图" />
-      </Menu>
-    </Col>
-  </Row>
-)
-ReactDOM.render(<Demo />, _mount_);
+          <Menu.Divider title="其它" />
+          <Menu.SubMenu
+            icon="bar-chart" text="每年2019年统计报表导出" collapse
+            // overlayProps={{ isOpen: true }}
+          >
+            <Menu.Item text="添加文件" />
+            <Menu.Item text="添加文件夹" />
+            <Menu.Divider title="类别" />
+            <Menu.Item icon="copy" text="拷贝" />
+            <Menu.SubMenu icon="folder-add" text="添加文件夹" collapse>
+              <Menu.Item icon="file-add" text="添加文件" />
+              <Menu.Item icon="folder-add" text="添加文件夹" />
+            </Menu.SubMenu>
+          </Menu.SubMenu>
+          <Menu.Item icon="setting" disabled text="偏好设置" />
+          <Menu.Item icon="map" text="谷歌地图" />
+        </Menu>
+      </Col>
+    </Row>
+  )
+}
 ```
 
 ### 主题
 
 内建了两套主题 `light`、`dark`，默认 `light`。
 
-<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Menu, Row, Col, Switch } from 'uiw';
 
 class Demo extends React.Component {
@@ -292,18 +291,15 @@ class Demo extends React.Component {
     );
   }
 }
-
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 完整菜单展示
 
 包括点击选中效果，事件等操作，完整的实例展示。
 
-<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Menu, Row, Col, Switch } from 'uiw';
 
 class Demo extends React.Component {
@@ -406,18 +402,16 @@ class Demo extends React.Component {
   }
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 缩起内嵌菜单
 
 内嵌菜单可以被缩起/展开，需要 `SubMenu` 的参数 `collapse` 和 `inlineCollapsed` 配合使用。
 
-<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Menu, Row, Col, Icon, Button } from 'uiw';
+import { Menu, Row, Col, Icon, Button, Switch } from 'uiw';
 
 const menusData = [
   { key: '1', icon: 'delete', label: '删除' },
@@ -451,7 +445,7 @@ const menusData = [
   },
 ];
 
-const Demo = () => {
+export default function Demo() {
   const [theme, setTheme] = React.useState('dark');
   const [collapse, setCollapse] = React.useState(false);
   const menuRef = React.useRef();
@@ -510,8 +504,6 @@ const Demo = () => {
     </div>
   )
 }
-
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ## Menu.Props

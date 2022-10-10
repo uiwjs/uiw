@@ -15,10 +15,8 @@ import Modal from '@uiw/react-modal';
 
 ### 基本用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Modal, ButtonGroup, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -71,17 +69,15 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 延迟关闭对话框
 
 这里是利用 `Promise` 等它执行完成再去关闭窗口
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Modal, ButtonGroup, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -134,7 +130,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 
@@ -142,11 +138,9 @@ ReactDOM.render(<Demo />, _mount_);
 
 这里是利用 `Promise` 等它执行完成再去关闭窗口
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Modal, ButtonGroup, Button } from 'uiw';
+import { Modal, ButtonGroup, Button, Form, Input, Textarea } from 'uiw';
 
 class Demo extends React.Component {
   constructor() {
@@ -252,17 +246,16 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+
+export default Demo;
 ```
 
 ### 自定义页脚
 
 设置 `useButton={false}` 隐藏默认的按钮，再根据自己需求定义按钮。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Modal, ButtonGroup, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -320,17 +313,15 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 快捷弹出
 
 使用 show() 可以快捷地弹出确认框。接受的参数与 ModalProps 一样, 只是少了 isOpen 与 onClosed
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Modal, ButtonGroup, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -349,7 +340,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ## Props

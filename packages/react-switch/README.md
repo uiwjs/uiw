@@ -15,148 +15,144 @@ import Switch from '@uiw/react-switch';
 
 ### 基本用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Switch } from 'uiw';
 
-const Demo = () => (
-  <div>
-    <Switch checked style={{ marginRight: 10 }} />
-    <Switch style={{ marginRight: 10 }} />
-    <Switch data-checked="开" data-unchecked="关">电源</Switch>
-  </div>
-);
-ReactDOM.render(<Demo />, _mount_);
+export default function Demo() {
+  return (
+    <div>
+      <Switch checked style={{ marginRight: 10 }} />
+      <Switch style={{ marginRight: 10 }} />
+      <Switch data-checked="开" data-unchecked="关">电源</Switch>
+    </div>
+  );
+}
 ```
 
 
 ### Form 中使用 Switch
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Form, Switch, Row, Col, Button, Notify } from 'uiw';
 
-const Demo = () => (
-  <Form
-    onChange={({ initial, current }) => { }}
-    resetOnSubmit={false}
-    onSubmitError={(error) => error && error.filed ? { ...error.filed } : null}
-    onSubmit={({initial, current}) => {
-      console.log('switch::', initial, current)
-      const ErrObj = {};
-      if(Object.keys(ErrObj).length > 0) {
-        const err = new Error();
-        err.filed = ErrObj;
-        throw err;
-      }
-    }}
-    fields={{
-      switch: {
-        checked: true,
-        initialValue: true,
-        label: '请输入内容',
-        help: '必选选项！',
-        validator: value => !value ? '必填选项！' : null,
-        children: <Switch style={{ maxWidth: 200 }} />,
-      },
-    }}
-  >
-    {({ fields, state, canSubmit }) => {
-      return (
-        <div>
-          <Row>
-            <Col>{fields.switch}</Col>
-          </Row>
-          <Row>
-            <Col>
-              <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <pre style={{ padding: 10, marginTop: 10 }}>
-                {JSON.stringify(state.current, null, 2)}
-              </pre>
-            </Col>
-          </Row>
-        </div>
-      );
-    }}
-  </Form>
-);
-
-ReactDOM.render(<Demo />, _mount_);
+export default function Demo() {
+  return (
+    <Form
+      onChange={({ initial, current }) => { }}
+      resetOnSubmit={false}
+      onSubmitError={(error) => error && error.filed ? { ...error.filed } : null}
+      onSubmit={({initial, current}) => {
+        console.log('switch::', initial, current)
+        const ErrObj = {};
+        if(Object.keys(ErrObj).length > 0) {
+          const err = new Error();
+          err.filed = ErrObj;
+          throw err;
+        }
+      }}
+      fields={{
+        switch: {
+          checked: true,
+          initialValue: true,
+          label: '请输入内容',
+          help: '必选选项！',
+          validator: value => !value ? '必填选项！' : null,
+          children: <Switch style={{ maxWidth: 200 }} />,
+        },
+      }}
+    >
+      {({ fields, state, canSubmit }) => {
+        return (
+          <div>
+            <Row>
+              <Col>{fields.switch}</Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <pre style={{ padding: 10, marginTop: 10 }}>
+                  {JSON.stringify(state.current, null, 2)}
+                </pre>
+              </Col>
+            </Row>
+          </div>
+        );
+      }}
+    </Form>
+  );
+}
 ```
 
 ### 设置文字
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Switch } from 'uiw';
 
-const Demo = () => (
-  <div>
-    <Switch
-      data-checked="开"
-      data-unchecked="关"
-      onChange={(e) => {
-        console.log('e', e.target.checked);
-      }}
-      style={{ marginRight: 10 }}
-    />
-  </div>
-);
-ReactDOM.render(<Demo />, _mount_);
+export default function Demo() {
+  return (
+    <div>
+      <Switch
+        data-checked="开"
+        data-unchecked="关"
+        onChange={(e) => {
+          console.log('e', e.target.checked);
+        }}
+        style={{ marginRight: 10 }}
+      />
+    </div>
+  );
+}
 ```
-
 
 ### 禁用状态
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Switch } from 'uiw';
 
-const Demo = () => (
-  <div>
-    <Switch disabled checked style={{ marginRight: 10 }} />
-    <Switch disabled style={{ marginRight: 10 }} />
-    <Switch disabled data-checked="开" data-unchecked="关">电源</Switch>
-  </div>
-);
-ReactDOM.render(<Demo />, _mount_);
+export default function Demo() {
+  return (
+    <div>
+      <Switch disabled checked style={{ marginRight: 10 }} />
+      <Switch disabled style={{ marginRight: 10 }} />
+      <Switch disabled data-checked="开" data-unchecked="关">电源</Switch>
+    </div>
+  );
+}
 ```
 
 ### 尺寸
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Switch } from 'uiw';
 
-const Demo = () => (
-  <div>
-    <Switch size="large" style={{ marginRight: 10 }} data-checked="开" data-unchecked="关" />
-    <Switch size="large" checked style={{ marginRight: 10 }} />
-    <Switch style={{ marginRight: 10 }} />
-    <Switch style={{ marginRight: 10 }} data-checked="开" data-unchecked="关" />
-    <Switch size="small" data-checked="开" data-unchecked="关">电源</Switch>
-  </div>
-);
-ReactDOM.render(<Demo />, _mount_);
+export default function Demo() {
+  return (
+    <div>
+      <Switch size="large" style={{ marginRight: 10 }} data-checked="开" data-unchecked="关" />
+      <Switch size="large" checked style={{ marginRight: 10 }} />
+      <Switch style={{ marginRight: 10 }} />
+      <Switch style={{ marginRight: 10 }} data-checked="开" data-unchecked="关" />
+      <Switch size="small" data-checked="开" data-unchecked="关">电源</Switch>
+    </div>
+  );
+}
 ```
 
 ### 控制组件
 
 通过 `checked` 属性改变 `Switch` 组件状态。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Switch, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -187,7 +183,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ## Switch 

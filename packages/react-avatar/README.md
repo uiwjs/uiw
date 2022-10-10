@@ -17,58 +17,57 @@ import Avatar from '@uiw/react-avatar';
 
 头像有四种尺寸，两种形状可选。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Avatar, Icon } from 'uiw';
 
-ReactDOM.render(
-  <div>
-    <div style={{ paddingBottom: 20 }}>
-      <Avatar size="large" icon={<Icon type="user"/>} />
-      <Avatar icon="user" />
-      <Avatar size="small" icon="user" />
-      <Avatar size="mini" icon={<Icon type="user"/>} />
-    </div>
+export default function Demo() {
+  return (
     <div>
-      <Avatar shape="square" size="large" icon="user" />
-      <Avatar shape="square" icon="user" />
-      <Avatar shape="square" size="small" icon="user" />
-      <Avatar shape="square" size="mini" icon="user" />
+      <div style={{ paddingBottom: 20 }}>
+        <Avatar size="large" icon={<Icon type="user"/>} />
+        <Avatar icon="user" />
+        <Avatar size="small" icon="user" />
+        <Avatar size="mini" icon={<Icon type="user"/>} />
+      </div>
+      <div>
+        <Avatar shape="square" size="large" icon="user" />
+        <Avatar shape="square" icon="user" />
+        <Avatar shape="square" size="small" icon="user" />
+        <Avatar shape="square" size="mini" icon="user" />
+      </div>
     </div>
-  </div>,
-  _mount_
-);
+  )
+}
 ```
 
 ## 其它类型
 
 支持三种类型：Icon 以及字符，其中 Icon 和字符型可以自定义图标颜色及背景色。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Avatar, Icon } from 'uiw';
 
-ReactDOM.render(
-  <div>
-    <Avatar icon={<Icon type="user"/>} />
-    <Avatar>U</Avatar>
-    <Avatar src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" />
-    <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
-    <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
-  </div>,
-  _mount_
-);
+export default function Demo() {
+  return (
+    <div>
+      <Avatar icon={<Icon type="user"/>} />
+      <Avatar>U</Avatar>
+      <Avatar src="https://avatars2.githubusercontent.com/u/1680273?s=40&v=4" />
+      <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
+      <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
+    </div>
+  )
+}
 ```
 
 ## 图片支持
 
 在组件上使用`onError`事件，处理显示错误的图片。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Avatar, Icon } from 'uiw';
 
 const App = () => {
@@ -96,27 +95,27 @@ const App = () => {
   )
 }
 
-ReactDOM.render(<App />, _mount_);
+export default App;
 ```
 
 ## 带徽标的头像
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview
+import React from 'react';
 import { Avatar, Badge } from 'uiw';
 
-ReactDOM.render(
-  <div>
-    <span style={{ marginRight: 24 }}>
-      <Badge count={1}><Avatar shape="square" icon="user" /></Badge>
-    </span>
-    <span>
-      <Badge dot><Avatar shape="square" icon="user" /></Badge>
-    </span>
-  </div>,
-  _mount_
-);
+export default function Demo() {
+  return (
+    <div>
+      <span style={{ marginRight: 24 }}>
+        <Badge count={1}><Avatar shape="square" icon="user" /></Badge>
+      </span>
+      <span>
+        <Badge dot><Avatar shape="square" icon="user" /></Badge>
+      </span>
+    </div>
+  )
+}
 ```
 
 ## Props

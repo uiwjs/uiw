@@ -11,20 +11,17 @@ Transfer 穿梭框
 
 最简单的用法。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import { Transfer } from 'uiw';
+import { Transfer, Row } from 'uiw';
 
 function Demo() {
-
   const options = [
     { label: '武汉市',  key: 1 },
     { label: '汉南区1', key: 5 },
     { label: '汉南区2', key: 6 },
     { label: '汉南区3', key: 7 },
   ]
-
   const [value,valueSet] = React.useState([{ label: '武汉市',  key: 1 }])
 
   return (
@@ -40,17 +37,16 @@ function Demo() {
   );
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ## 树形节点
 
 使用 [`Tree`](#/components/tree) 结构作为选项节点
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import { Transfer } from 'uiw';
+import { Transfer, Row } from 'uiw';
 
 function Demo() {
 const options = [
@@ -88,17 +84,16 @@ const options = [
   );
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ## 全部选择
 
 将`selectedAll`设置为`true`,启用全部勾选功能
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import { Transfer } from 'uiw';
+import { Transfer, Row } from 'uiw';
 
 function Demo() {
 
@@ -138,17 +133,16 @@ function Demo() {
   );
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ## 搜索选项
 
 将`showSearch`设置为`true`，启用选项搜索框
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import { Transfer } from 'uiw';
+import { Transfer, Row } from 'uiw';
 
 function Demo() {
 const options = [
@@ -192,15 +186,14 @@ const options = [
   );
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ## Form中使用
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import { Transfer, Form } from 'uiw';
+import { Transfer, Form, Row, Col, Button } from 'uiw';
 
 function Demo() {
 
@@ -288,7 +281,7 @@ function Demo() {
   );
 }
 
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ## Props

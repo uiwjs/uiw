@@ -1,16 +1,6 @@
-import React from 'react';
-import { Descriptions, Divider, Badge, Radio, RadioGroup } from 'uiw';
-import Markdown from '../../../components/Markdown';
+import data from '@uiw/react-descriptions/README.md';
+import Markdown from '../../../components/Markdown/Markdown';
 
 export default function Page() {
-  return (
-    <Markdown
-      path="https://github.com/uiwjs/uiw/tree/master/packages/react-descriptions/README.md"
-      dependencies={{ Descriptions, Divider, Badge, Radio, RadioGroup }}
-      renderPage={async () => {
-        const md = await import('uiw/node_modules/@uiw/react-descriptions/README.md');
-        return md.default || md;
-      }}
-    />
-  );
+  return <Markdown {...data} path="https://github.com/uiwjs/uiw/tree/master/packages/react-descriptions/README.md" />;
 }

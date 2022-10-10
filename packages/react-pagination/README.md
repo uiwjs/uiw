@@ -15,14 +15,11 @@ import Pagination from '@uiw/react-pagination';
 
 ### 基本用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Pagination, Divider } from 'uiw';
 
-
-const Demo = () => {
+export default function Demo() {
   const [pageObj, setPageObj] = React.useState({
     current: 2,
     pageSize: 10
@@ -53,69 +50,64 @@ const Demo = () => {
     </div>
   )
 }
-
-ReactDOM.render(
-  <Demo />,
-  _mount_
-);
 ```
 
 ### 迷你分页
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Pagination, Divider } from 'uiw';
 
-ReactDOM.render(
-  <div>
-    <Pagination size="small" current={1} pageSize={5} pageSizeOptions={[5, 10, 20, 30]} total={249} />
-    <Divider />
-    <Pagination size="small" current={1} pageSize={10} total={50} />
-  </div>,
-  _mount_
-);
+export default function Demo() {
+  return (
+    <div>
+      <Pagination size="small" current={1} pageSize={5} pageSizeOptions={[5, 10, 20, 30]} total={249} />
+      <Divider />
+      <Pagination size="small" current={1} pageSize={10} total={50} />
+    </div>
+  );
+}
 ```
 
 ### 对齐
 
 目前有三种对齐方式 `左边(left)`、`中间(center)`、`右边(right)`。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Pagination, Divider } from 'uiw';
 
-ReactDOM.render(
-  <div>
-    <Pagination
-      current={5}
-      total={250}
-      onChange={(pageNumber) => { 
-        console.log(`pageNumber:${pageNumber}`)
-      }}
-    />
-    <Divider />
-    <Pagination
-      current={1}
-      alignment="center"
-      total={250}
-      onChange={(pageNumber) => { 
-        console.log(`pageNumber:${pageNumber}`)
-      }}
-    />
-    <Divider />
-    <Pagination
-      current={25}
-      alignment="right"
-      total={250}
-      onChange={(pageNumber) => { 
-        console.log(`pageNumber:${pageNumber}`)
-      }}
-    />
-  </div>,
-  _mount_
-);
+export default function Demo() {
+  return (
+    <div>
+      <Pagination
+        current={5}
+        total={250}
+        onChange={(pageNumber) => { 
+          console.log(`pageNumber:${pageNumber}`)
+        }}
+      />
+      <Divider />
+      <Pagination
+        current={1}
+        alignment="center"
+        total={250}
+        onChange={(pageNumber) => { 
+          console.log(`pageNumber:${pageNumber}`)
+        }}
+      />
+      <Divider />
+      <Pagination
+        current={25}
+        alignment="right"
+        total={250}
+        onChange={(pageNumber) => { 
+          console.log(`pageNumber:${pageNumber}`)
+        }}
+      />
+    </div>
+  );
+}
 ```
 
 ### Props

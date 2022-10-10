@@ -7,7 +7,7 @@
   border-spacing: 0;
   border-collapse: collapse;
   table-layout: fixed;
-  width: 100%;
+  width: 100% !important;
 }
 
 .@{descriptions-prefix} {
@@ -75,6 +75,8 @@
     tr td {
       border-top: 1px solid #dfe2e5;
       border-right: 1px solid #dfe2e5;
+      border-left: 0;
+      border-bottom: 0;
     }
     &:first-child tr:first-child th,
     &:first-child tr:first-child td {

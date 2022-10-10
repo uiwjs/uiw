@@ -15,12 +15,11 @@ import Notify from '@uiw/react-notify';
 
 ### 基本用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Button, Notify } from 'uiw';
 
-const Demo = () => {
+export default function Demo() {
   return (
     <div>
       <Button
@@ -68,18 +67,16 @@ const Demo = () => {
     </div>
   );
 }
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 
 ### 弹出位置
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Button, Notify } from 'uiw';
 
-const Demo = () => {
+export default function Demo() {
   return (
     <div>
       <Button
@@ -120,17 +117,15 @@ const Demo = () => {
     </div>
   );
 }
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ### 弹出通知不消失
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Button, Notify } from 'uiw';
 
-const Demo = () => {
+export default function Demo() {
   return (
     <div>
       <Button
@@ -148,17 +143,15 @@ const Demo = () => {
     </div>
   );
 }
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ### 标题不展示
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Button, Notify } from 'uiw';
 
-const Demo = () => {
+export default function Demo() {
   return (
     <div>
       <Button
@@ -189,17 +182,15 @@ const Demo = () => {
     </div>
   );
 }
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ### 只展示标题
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Button, Notify } from 'uiw';
 
-const Demo = () => {
+export default function Demo() {
   return (
     <div>
       <Button
@@ -216,17 +207,15 @@ const Demo = () => {
     </div>
   );
 }
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ### 不展示图标
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Button, Notify } from 'uiw';
 
-const Demo = () => {
+export default function Demo() {
   return (
     <div>
       <Button
@@ -252,7 +241,6 @@ const Demo = () => {
     </div>
   );
 }
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ## Notify

@@ -17,128 +17,125 @@ import { Radio, RadioButton, RadioGroup } from '@uiw/react-radio';
 
 适用广泛的基础最简单的用法，展示各种状态下的样式。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Radio, RadioButton } from 'uiw';
 
-const Demo = () => (
-  <div>
-    <Radio value="1">Radio</Radio>
-    <Radio value="2" checked>选中</Radio>
-    <Radio value="3" disabled>禁用</Radio>
-    <Radio value="4" checked disabled>选中并禁用</Radio>
-    <Radio value="4" checked disabled>选中并禁用</Radio>
-    <RadioButton value="5" >RadioButton</RadioButton>
-    <RadioButton value="5" checked >RadioButton 选中</RadioButton>
-  </div>
-);
-ReactDOM.render(<Demo />, _mount_);
+export default function Demo() {
+  return (
+    <div>
+      <Radio value="1">Radio</Radio>
+      <Radio value="2" checked>选中</Radio>
+      <Radio value="3" disabled>禁用</Radio>
+      <Radio value="4" checked disabled>选中并禁用</Radio>
+      <Radio value="4" checked disabled>选中并禁用</Radio>
+      <RadioButton value="5" >RadioButton</RadioButton>
+      <RadioButton value="5" checked >RadioButton 选中</RadioButton>
+    </div>
+  );
+}
 ```
 
 ### Form 中使用 Radio
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Form, Radio, RadioGroup, RadioButton, Row, Col, Button, Notify } from 'uiw';
 
-const Demo = () => (
-  <Form
-    onChange={({ initial, current }) => {}}
-    resetOnSubmit={false}
-    onSubmitError={(error) => error && error.filed ? { ...error.filed } : null}
-    onSubmit={({initial, current}) => {
-      const ErrObj = {};
-      if (current.radioGroup === 'unknown') {
-        ErrObj.radioGroup = '请选择性别！';
-      }
+export default function Demo() {
+  return (
+    <Form
+      onChange={({ initial, current }) => {}}
+      resetOnSubmit={false}
+      onSubmitError={(error) => error && error.filed ? { ...error.filed } : null}
+      onSubmit={({initial, current}) => {
+        const ErrObj = {};
+        if (current.radioGroup === 'unknown') {
+          ErrObj.radioGroup = '请选择性别！';
+        }
 
-      if(Object.keys(ErrObj).length > 0) {
-        const err = new Error();
-        err.filed = ErrObj;
-        throw err;
-      }
+        if(Object.keys(ErrObj).length > 0) {
+          const err = new Error();
+          err.filed = ErrObj;
+          throw err;
+        }
 
-      Notify.success({
-        title: '提交成功！', description: `填写：【填写成功】！`
-      });
-    }}
-    fields={{
-      radioGroup: {
-        value: 'girl',
-        label: '请输入内容',
-        help: '必须选择性别！',
-        children: (
-          <RadioGroup>
-            <Radio value="man">男</Radio>
-            <Radio value="girl">女</Radio>
-            <Radio value="shemale">中性</Radio>
-            <Radio value="unknown">未知</Radio>
-          </RadioGroup>
-        ),
-      },
-      radioButtonGroup: {
-        value: 'girl',
-        label: '请输入内容',
-        help: '必须选择性别！',
-        children: (
-          <RadioGroup>
-            <RadioButton value="man">男</RadioButton>
-            <RadioButton value="girl">女</RadioButton>
-            <RadioButton value="shemale">中性</RadioButton>
-            <RadioButton value="unknown">未知</RadioButton>
-          </RadioGroup>
-        ),
-      },
-      radio: {
-        help: '请选择！该选项为必选！',
-        validator: (value) => !value ? '必填选项！' : null,
-        children: <Radio value="man">已阅读</Radio>,
-      },
-    }}
-  >
-    {({ fields, state, canSubmit }) => {
-      return (
-        <div>
-          <Row>
-            <Col>{fields.radioGroup}</Col>
-          </Row>
-          <Row>
-            <Col>{fields.radioButtonGroup}</Col>
-          </Row>
-          <Row>
-            <Col>{fields.radio}</Col>
-          </Row>
-          <Row>
-            <Col>
-              <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <pre style={{ padding: 10, marginTop: 10 }}>
-                {JSON.stringify(state.current, null, 2)}
-              </pre>
-            </Col>
-          </Row>
-        </div>
-      );
-    }}
-  </Form>
-);
-
-ReactDOM.render(<Demo />, _mount_);
+        Notify.success({
+          title: '提交成功！', description: `填写：【填写成功】！`
+        });
+      }}
+      fields={{
+        radioGroup: {
+          value: 'girl',
+          label: '请输入内容',
+          help: '必须选择性别！',
+          children: (
+            <RadioGroup>
+              <Radio value="man">男</Radio>
+              <Radio value="girl">女</Radio>
+              <Radio value="shemale">中性</Radio>
+              <Radio value="unknown">未知</Radio>
+            </RadioGroup>
+          ),
+        },
+        radioButtonGroup: {
+          value: 'girl',
+          label: '请输入内容',
+          help: '必须选择性别！',
+          children: (
+            <RadioGroup>
+              <RadioButton value="man">男</RadioButton>
+              <RadioButton value="girl">女</RadioButton>
+              <RadioButton value="shemale">中性</RadioButton>
+              <RadioButton value="unknown">未知</RadioButton>
+            </RadioGroup>
+          ),
+        },
+        radio: {
+          help: '请选择！该选项为必选！',
+          validator: (value) => !value ? '必填选项！' : null,
+          children: <Radio value="man">已阅读</Radio>,
+        },
+      }}
+    >
+      {({ fields, state, canSubmit }) => {
+        return (
+          <div>
+            <Row>
+              <Col>{fields.radioGroup}</Col>
+            </Row>
+            <Row>
+              <Col>{fields.radioButtonGroup}</Col>
+            </Row>
+            <Row>
+              <Col>{fields.radio}</Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <pre style={{ padding: 10, marginTop: 10 }}>
+                  {JSON.stringify(state.current, null, 2)}
+                </pre>
+              </Col>
+            </Row>
+          </div>
+        );
+      }}
+    </Form>
+  );
+}
 ```
 
 ### 单选
 
 适用广泛的基础最简单的用法。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Radio, RadioGroup, RadioButton } from 'uiw';
 
 class Demo extends React.Component {
@@ -168,18 +165,16 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 单选组
 
 设置单选初始值
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Radio, RadioGroup, Divider, Button } from 'uiw';
+import { Radio, RadioGroup, RadioButton, Divider, Button } from 'uiw';
 
 class Demo extends React.Component {
   constructor(props) {
@@ -224,7 +219,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ## Radio

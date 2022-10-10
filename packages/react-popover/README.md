@@ -17,10 +17,8 @@ import Popover from '@uiw/react-popover';
 
 最简单的用法。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Popover, Card, Icon,Row,Col, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -91,16 +89,15 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 位置
 
 位置有 `12` 个方向，根据 `placement` 参数来设置。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Popover, Card, Button } from 'uiw';
 
 const btnStl = {position: 'relative', width: 70 }
@@ -109,74 +106,74 @@ const content = (
     <div>Are you sure you want to delete these items? You won't be able to recover them.</div>
   </Card>
 )
-const Demo = () => (
-  <div>
-    <div style={{ position: 'relative' }}>
+export default function Demo() {
+  return (
+    <div>
+      <div style={{ position: 'relative' }}>
 
-      <Popover trigger="click" placement="topLeft" content={content}>
-        <Button style={{ ...btnStl, left: 70 }}>TL</Button>
-      </Popover>
-      <Popover trigger="click" placement="top" content={content}>
-        <Button style={{ ...btnStl, left: 70}}>Top</Button>
-      </Popover>
-      <Popover trigger="click" placement="topRight" content={content}>
-        <Button style={{ ...btnStl, left: 70 }}>TR</Button>
-      </Popover>
+        <Popover trigger="click" placement="topLeft" content={content}>
+          <Button style={{ ...btnStl, left: 70 }}>TL</Button>
+        </Popover>
+        <Popover trigger="click" placement="top" content={content}>
+          <Button style={{ ...btnStl, left: 70}}>Top</Button>
+        </Popover>
+        <Popover trigger="click" placement="topRight" content={content}>
+          <Button style={{ ...btnStl, left: 70 }}>TR</Button>
+        </Popover>
 
+      </div>
+      <div style={{ position: 'relative', paddingTop: 10 }}>
+
+        <Popover trigger="click" placement="leftTop" content={content}>
+          <Button style={{ ...btnStl }}>LT</Button>
+        </Popover>
+        <Popover trigger="click" placement="rightTop" content={content}>
+          <Button style={{ ...btnStl, left: 216 }}>RT</Button>
+        </Popover>
+
+      </div>
+      <div style={{ position: 'relative', paddingTop: 10 }}>
+
+        <Popover trigger="click" placement="left" content={content}>
+          <Button style={{ ...btnStl }}>Left</Button>
+        </Popover>
+        <Popover trigger="click" placement="right" content={content}>
+          <Button style={{ ...btnStl, left: 216 }}>Right</Button>
+        </Popover>
+
+      </div>
+      <div style={{ position: 'relative', paddingTop: 10 }}>
+
+        <Popover trigger="click" placement="leftBottom" content={content}>
+          <Button style={{ ...btnStl }}>LB</Button>
+        </Popover>
+        <Popover trigger="click" placement="rightBottom" content={content}>
+          <Button style={{ ...btnStl, left: 216 }}>RB</Button>
+        </Popover>
+
+      </div>
+      <div style={{ position: 'relative', paddingTop: 10 }}>
+
+        <Popover trigger="click" placement="bottomLeft" content={content}>
+          <Button style={{ ...btnStl, left: 70 }}>BL</Button>
+        </Popover>
+        <Popover trigger="click" placement="bottom" content={content}>
+          <Button style={{ ...btnStl, left: 70 }}>Bottom</Button>
+        </Popover>
+        <Popover trigger="click" placement="bottomRight" content={content}>
+          <Button style={{ ...btnStl, left: 70 }}>BR</Button>
+        </Popover>
+
+      </div>
     </div>
-    <div style={{ position: 'relative', paddingTop: 10 }}>
-
-      <Popover trigger="click" placement="leftTop" content={content}>
-        <Button style={{ ...btnStl }}>LT</Button>
-      </Popover>
-      <Popover trigger="click" placement="rightTop" content={content}>
-        <Button style={{ ...btnStl, left: 216 }}>RT</Button>
-      </Popover>
-
-    </div>
-    <div style={{ position: 'relative', paddingTop: 10 }}>
-
-      <Popover trigger="click" placement="left" content={content}>
-        <Button style={{ ...btnStl }}>Left</Button>
-      </Popover>
-      <Popover trigger="click" placement="right" content={content}>
-        <Button style={{ ...btnStl, left: 216 }}>Right</Button>
-      </Popover>
-
-    </div>
-    <div style={{ position: 'relative', paddingTop: 10 }}>
-
-      <Popover trigger="click" placement="leftBottom" content={content}>
-        <Button style={{ ...btnStl }}>LB</Button>
-      </Popover>
-      <Popover trigger="click" placement="rightBottom" content={content}>
-        <Button style={{ ...btnStl, left: 216 }}>RB</Button>
-      </Popover>
-
-    </div>
-    <div style={{ position: 'relative', paddingTop: 10 }}>
-
-      <Popover trigger="click" placement="bottomLeft" content={content}>
-        <Button style={{ ...btnStl, left: 70 }}>BL</Button>
-      </Popover>
-      <Popover trigger="click" placement="bottom" content={content}>
-        <Button style={{ ...btnStl, left: 70 }}>Bottom</Button>
-      </Popover>
-      <Popover trigger="click" placement="bottomRight" content={content}>
-        <Button style={{ ...btnStl, left: 70 }}>BR</Button>
-      </Popover>
-
-    </div>
-  </div>
-)
-ReactDOM.render(<Demo />, _mount_);
+  );
+}
 ```
 
 ### 鼠标经过弹出目标
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Popover, Card, Button } from 'uiw';
 
 const btnStl = {position: 'relative', width: 70 }
@@ -192,24 +189,23 @@ const content = (
     <div>这是你鼠标经过弹出的目标。</div>
   </Card>
 )
-const Demo = () => (
-  <div>
-    <Popover trigger="hover" placement="top" content={content}>
-      <Button>鼠标经过弹出目标</Button>
-    </Popover>
-  </div>
-)
-ReactDOM.render(<Demo />, _mount_);
+export default function Demo() {
+  return (
+    <div>
+      <Popover trigger="hover" placement="top" content={content}>
+        <Button>鼠标经过弹出目标</Button>
+      </Popover>
+    </div>
+  )
+}
 ```
 
 ### 焦点展示
 
 通过设置 `trigger="focus"` 让 `Input` 组件在获取焦点的时候展示 `Popover`
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Popover, Card, Button, Input } from 'uiw';
 
 const btnStl = {position: 'relative', width: 70 }
@@ -276,17 +272,15 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### usePortal
 
 设置 `usePortal={false}` 将模态对话框生成到根节点的里面，这样为了计算位置准确，你需要将父层样式设为 `position: relative;` 。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Popover, Card, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -333,15 +327,13 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### Confirm 用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Popover, Row } from 'uiw';
 
 class Demo extends React.Component {
@@ -353,7 +345,8 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+
+export default Demo;
 ```
 
 ## Props

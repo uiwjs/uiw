@@ -15,13 +15,11 @@ import Cascader from '@uiw/react-cascader';
 
 ## 基础示例
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
-import { Cascader } from 'uiw';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
+import { Cascader, Row } from 'uiw';
 
 const Demo = () => {
-
   const options = [
     {
       label: '上海市',
@@ -81,18 +79,16 @@ const Demo = () => {
     </Row>
   )
 };
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## 尺寸
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
-import { Cascader } from 'uiw';
+```jsx mdx:preview
+import React from 'react';
+import { Cascader, Row } from 'uiw';
 
 const Demo = () => {
-
   const options = [
     {
       label: '尺寸', value: 1,
@@ -112,38 +108,36 @@ const Demo = () => {
 
   return (
     <Row style={{ flexDirection: 'column' }}>
-        <Cascader
-          style={{ width: 150 }}
-          value={[1, 2, 3]}
-          option={options}
-          size="small"
-        />
-        <Cascader
-          style={{ width: 175, marginTop: 10 }}
-          value={[1, 2, 4]}
-          option={options}
-        />
-        <Cascader
-          style={{ width: 200, marginTop: 10 }}
-          value={[1, 2, 5]}
-          option={options}
-          size="large"
-        />
+      <Cascader
+        style={{ width: 150 }}
+        value={[1, 2, 3]}
+        option={options}
+        size="small"
+      />
+      <Cascader
+        style={{ width: 175, marginTop: 10 }}
+        value={[1, 2, 4]}
+        option={options}
+      />
+      <Cascader
+        style={{ width: 200, marginTop: 10 }}
+        value={[1, 2, 5]}
+        option={options}
+        size="large"
+      />
     </Row>
   )
 };
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## 搜索选项
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Cascader } from 'uiw';
 
 const Demo = () => {
-
   const options = [
     {
       label: '上海市',
@@ -189,15 +183,15 @@ const Demo = () => {
     />
   )
 };
-ReactDOM.render(<Demo />, _mount_);
+
+export default Demo
 ```
 
 ## 移入展开菜单
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
-import { Cascader } from 'uiw';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
+import { Cascader, Row } from 'uiw';
 
 const Demo = () => {
 
@@ -236,29 +230,28 @@ const Demo = () => {
 
   return (
     <Row style={{ flexDirection: 'column' }}>
-        <Cascader
-          style={{ width:200 }}
-          expandTrigger="hover"
-          allowClear={true}
-          placeholder="请选择"
-          value={[1, 4, 7]}
-          option={options}
-          onChange={(value, seleteds) => console.log(value, seleteds)}
-          onSearch={true}
-        />
+      <Cascader
+        style={{ width:200 }}
+        expandTrigger="hover"
+        allowClear={true}
+        placeholder="请选择"
+        value={[1, 4, 7]}
+        option={options}
+        onChange={(value, seleteds) => console.log(value, seleteds)}
+        onSearch={true}
+      />
     </Row>
   )
 };
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ### 在表单中使用
 
 在 [`<Form />`](#/components/form) 表单中应用 `<Cascader />` 组件。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true&noScroll=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Form, Row, Col, Cascader, Button } from 'uiw';
 
 const Demo = () => {
@@ -360,7 +353,7 @@ const options = [
     </div>
   );
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo
 ```
 
 ## Props

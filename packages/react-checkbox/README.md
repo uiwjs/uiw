@@ -17,28 +17,27 @@ import Checkbox from '@uiw/react-checkbox';
 
 单独使用可以表示两种状态之间的切换，半选中只是样式上的表现。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Checkbox } from 'uiw';
 
-ReactDOM.render(
-  <div>
-    <Checkbox onChange={(e) =>{
-      console.log(e.target.checked)
-      console.log(e.target)
-    }}>未选中</Checkbox>
-    <Checkbox checked >选中</Checkbox>
-  </div>,
-  _mount_
-);
+export default function Demo() {
+  return(
+    <div>
+      <Checkbox onChange={(e) =>{
+        console.log(e.target.checked)
+        console.log(e.target)
+      }}>未选中</Checkbox>
+      <Checkbox checked >选中</Checkbox>
+    </div>
+  );
+}
 ```
 
 ### Form 中使用 Checkbox
-
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->  
-```jsx
-import ReactDOM from 'react-dom';
+ 
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Form, Checkbox, Row, Col, Button, Notify } from 'uiw';
 
 const Demo = () => (
@@ -113,33 +112,33 @@ const Demo = () => (
     </Form>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+
+export default Demo;
 ```
 
 ### 禁用样式
 
 通过设置 `disabled` 属性来禁用多选框。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Checkbox } from 'uiw';
 
-ReactDOM.render(
-  <div>
-    <Checkbox disabled checked>未选中禁用</Checkbox>
-    <Checkbox disabled checked>选中禁用</Checkbox>
-    <Checkbox disabled indeterminate>半选中禁用</Checkbox>
-  </div>,
-  _mount_
-);
+export default function Demo() {
+  return(
+    <div>
+      <Checkbox disabled checked>未选中禁用</Checkbox>
+      <Checkbox disabled checked>选中禁用</Checkbox>
+      <Checkbox disabled indeterminate>半选中禁用</Checkbox>
+    </div>
+  );
+}
 ```
 
 ### 全选
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Checkbox, Divider } from 'uiw';
 
 const checkedList = [ '四川菜', '湖北菜', '西北菜', '新疆菜', '东北菜' ];
@@ -185,17 +184,15 @@ class Demo extends React.Component {
     )
   }
 }
-
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 多选组
 
 方便的从数组生成 `Checkbox` 组。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Checkbox, Divider, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -237,16 +234,15 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 控制组件
 
 通过 `checked` 属性改变 `Checkbox` 组件状态。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true--> 
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Checkbox, Button } from 'uiw';
 
 class Demo extends React.Component {
@@ -277,7 +273,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 

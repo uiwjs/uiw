@@ -15,13 +15,11 @@ import MonthPicker from '@uiw/react-month-picker';
 
 ### 基础用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { MonthPicker, Row, Col } from 'uiw';
 
-const Demo = () => {
+export default function Demo() {
   const [formatDate, setFormatDate] = React.useState('2019/04')
   function onChange(date, formatDate) {
     setFormatDate(formatDate)
@@ -37,55 +35,54 @@ const Demo = () => {
     </Row>
   )
 }
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ## 在表单中使用
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Form, MonthPicker, Notify, Row, Col, Button } from 'uiw';
 
-const Demo = () => (
-  <div>
-    <Form
-      onSubmit={({initial, current}) => {
-        if(current.date) {
-          Notify.success({
-            title: '提交成功！',
-            description: `表单提交时间成功，时间为：${current.date}`,
-          });
-        } else {
-          Notify.error({
-            title: '提交失败！',
-            description: `表单提交时间成功，时间为：${current.date}，将自动填充初始化值！`,
-          });
-        }
-        console.log('-->>', initial, current);
-      }}
-      fields={{
-        date: {
-          labelClassName: 'fieldLabel',
-          labelFor: 'date-inline',
-          children: <MonthPicker id="date-inline" />
-        },
-      }}
-    >
-      {({ fields, state, canSubmit }) => {
-        return (
-          <Row gutter={10}>
-            <Col style={{ width: 200 }} fixed>{fields.date}</Col>
-            <Col>
-              <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
-            </Col>
-          </Row>
-        )
-      }}
-    </Form>
-  </div>
-)
-ReactDOM.render(<Demo />, _mount_);
+export default function Demo() {
+  return (
+    <div>
+      <Form
+        onSubmit={({initial, current}) => {
+          if(current.date) {
+            Notify.success({
+              title: '提交成功！',
+              description: `表单提交时间成功，时间为：${current.date}`,
+            });
+          } else {
+            Notify.error({
+              title: '提交失败！',
+              description: `表单提交时间成功，时间为：${current.date}，将自动填充初始化值！`,
+            });
+          }
+          console.log('-->>', initial, current);
+        }}
+        fields={{
+          date: {
+            labelClassName: 'fieldLabel',
+            labelFor: 'date-inline',
+            children: <MonthPicker id="date-inline" />
+          },
+        }}
+      >
+        {({ fields, state, canSubmit }) => {
+          return (
+            <Row gutter={10}>
+              <Col style={{ width: 200 }} fixed>{fields.date}</Col>
+              <Col>
+                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+              </Col>
+            </Row>
+          )
+        }}
+      </Form>
+    </div>
+  )
+}
 ```
 
 ## Props

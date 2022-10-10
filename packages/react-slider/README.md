@@ -17,13 +17,11 @@ import Slider from '@uiw/react-slider';
 
 按钮样式的单选组合。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Slider, Divider } from 'uiw';
 
-function Demo() {
+export default function Demo() {
   const [value, setValue] = React.useState(20);
   const [value2, setValue2] = React.useState(-5);
   const [value3, setValue3] = React.useState([10, 50]);
@@ -67,86 +65,82 @@ function Demo() {
     </div>
   )
 }
-
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ### 在表单中使用
 
 在 [`<Form />`](#/components/form) 表单中应用 [`<Slider />`](#/components/slider) 组件，需要设置 `initialValue` 初始值。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Form, Row, Col, Slider, Button, Notify } from 'uiw';
 
-const Demo = () => (
-  <div>
-    <Form
-      onSubmit={({initial, current}) => {
-        if(current.age === initial.age) {
-          Notify.error({
-            title: '提交失败！',
-            description: `表单提交年龄失败，年龄为：${current.age}，与初始化值是一样滴！`,
-          });
-        } else {
-          Notify.success({
-            title: '提交成功！',
-            description: `表单提交年龄成功，年龄为：${current.age}，将自动填充初始化值！`,
-          });
-        }
-      }}
-      fields={{
-        age: {
-          initialValue: 0,
-          inline: true,
-          label: '年龄',
-          help: '值必须大于 10',
-          validator: (value) => value < 10 ? '必填选项！' : null,
-          children: <Slider />
-        },
-      }}
-    >
-      {({ fields, state, canSubmit }) => {
-        console.log('state:', state)
-        return (
-          <div>
-            <Row gutter={10}>
-              <Col style={{ maxWidth: 300 }}>{fields.age}</Col>
-              <Col>{state.current.age}</Col>
-            </Row>
-            <Row>
-              <Col fixed>
-                <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <pre style={{ padding: 10, marginTop: 10 }}>
-                  {JSON.stringify(state.current, null, 2)}
-                </pre>
-              </Col>
-            </Row>
-          </div>
-        )
-      }}
-    </Form>
-  </div>
-)
-ReactDOM.render(<Demo />, _mount_);
+export default function Demo() {
+  return (
+    <div>
+      <Form
+        onSubmit={({initial, current}) => {
+          if(current.age === initial.age) {
+            Notify.error({
+              title: '提交失败！',
+              description: `表单提交年龄失败，年龄为：${current.age}，与初始化值是一样滴！`,
+            });
+          } else {
+            Notify.success({
+              title: '提交成功！',
+              description: `表单提交年龄成功，年龄为：${current.age}，将自动填充初始化值！`,
+            });
+          }
+        }}
+        fields={{
+          age: {
+            initialValue: 0,
+            inline: true,
+            label: '年龄',
+            help: '值必须大于 10',
+            validator: (value) => value < 10 ? '必填选项！' : null,
+            children: <Slider />
+          },
+        }}
+      >
+        {({ fields, state, canSubmit }) => {
+          console.log('state:', state)
+          return (
+            <div>
+              <Row gutter={10}>
+                <Col style={{ maxWidth: 300 }}>{fields.age}</Col>
+                <Col>{state.current.age}</Col>
+              </Row>
+              <Row>
+                <Col fixed>
+                  <Button disabled={!canSubmit()} type="primary" htmlType="submit">提交</Button>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <pre style={{ padding: 10, marginTop: 10 }}>
+                    {JSON.stringify(state.current, null, 2)}
+                  </pre>
+                </Col>
+              </Row>
+            </div>
+          )
+        }}
+      </Form>
+    </div>
+  )
+}
 ```
 
 ### 控制提示显示
 
 通过设置 `tooltip` 的值，来控制提示的显示。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Slider, Divider } from 'uiw';
 
-function Demo() {
+export default function Demo() {
   return (
     <div>
       <div>设置 tooltip 值为 <b>true</b>，提示将始终显示。</div>
@@ -160,17 +154,14 @@ function Demo() {
     </div>
   )
 }
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ### 刻度
 
 通过 `step` 设置或返回每次拖动滑块控件时的递增量。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Slider, Divider} from 'uiw';
 
 class Demo extends React.Component {
@@ -234,15 +225,13 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 标记刻度
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Slider, Divider} from 'uiw';
 
 class Demo extends React.Component {
@@ -312,92 +301,82 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 禁用样式
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Slider, Divider} from 'uiw';
 
-class Demo extends React.Component {
-  render() {
-    return (
-      <div>
-        <Slider value={25} disabled style={{ maxWidth: 260 }} />
-        <Divider />
-        <Slider
-          step={10}
-          disabled
-          dots
-          value={50}
-          style={{ maxWidth: 260 }}
-        />
-        <Divider />
-        <Slider disabled step={2} value={26} min={20} max={44} dots marks />
-      </div>
-    )
-  }
+export default function Demo() {
+  return (
+    <div>
+      <Slider value={25} disabled style={{ maxWidth: 260 }} />
+      <Divider />
+      <Slider
+        step={10}
+        disabled
+        dots
+        value={50}
+        style={{ maxWidth: 260 }}
+      />
+      <Divider />
+      <Slider disabled step={2} value={26} min={20} max={44} dots marks />
+    </div>
+  )
 }
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ### 垂直方向
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Row, Col, Slider } from 'uiw';
 
-class Demo extends React.Component {
-  render() {
-    return (
-      <Row>
-        <Col fixed style={{ width: 70 }}>
-          <Slider
-            vertical
-            min={-10}
-            max={30}
-            step={2}
-            dots
-            value={20}
-            marks={{
-              [-10]: '-10°C',
-              [-2]: '-2°C',
-              0: ' ',
-              2: {
-                style: { color: '#af00ff' },
-              },
-              30: {
-                style: { color: '#ff7c00' },
-                label: <strong>30°C</strong>,
-              }
-            }}
-            style={{ height: 260 }}
-            renderMarks={(mark) => `${mark}°C`}
-          />
-        </Col>
-        <Col fixed>
-          <Slider vertical value={25} style={{ height: 260 }} />
-        </Col>
-        <Col fixed>
-          <Slider vertical value={62} progress={false} tooltip style={{ height: 260 }} />
-        </Col>
-        <Col fixed>
-          <Slider vertical value={50} step={10} dots style={{ height: 260 }} />
-        </Col>
-        <Col fixed>
-          <Slider vertical step={2} value={[26, 40]} min={20} max={44} dots marks style={{ height: 260 }} />
-        </Col>
-      </Row>
-    );
-  }
+export default function Demo() {
+  return (
+    <Row>
+      <Col fixed style={{ width: 70 }}>
+        <Slider
+          vertical
+          min={-10}
+          max={30}
+          step={2}
+          dots
+          value={20}
+          marks={{
+            [-10]: '-10°C',
+            [-2]: '-2°C',
+            0: ' ',
+            2: {
+              style: { color: '#af00ff' },
+            },
+            30: {
+              style: { color: '#ff7c00' },
+              label: <strong>30°C</strong>,
+            }
+          }}
+          style={{ height: 260 }}
+          renderMarks={(mark) => `${mark}°C`}
+        />
+      </Col>
+      <Col fixed>
+        <Slider vertical value={25} style={{ height: 260 }} />
+      </Col>
+      <Col fixed>
+        <Slider vertical value={62} progress={false} tooltip style={{ height: 260 }} />
+      </Col>
+      <Col fixed>
+        <Slider vertical value={50} step={10} dots style={{ height: 260 }} />
+      </Col>
+      <Col fixed>
+        <Slider vertical step={2} value={[26, 40]} min={20} max={44} dots marks style={{ height: 260 }} />
+      </Col>
+    </Row>
+  );
 }
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 ## Props

@@ -1,16 +1,6 @@
-import React from 'react';
-import { Col, Row } from 'uiw';
-import Markdown from '../../../components/Markdown';
+import data from '@uiw/react-grid/README.md';
+import Markdown from '../../../components/Markdown/Markdown';
 
 export default function Page() {
-  return (
-    <Markdown
-      path="https://github.com/uiwjs/uiw/tree/master/packages/react-grid/README.md"
-      dependencies={{ Col, Row }}
-      renderPage={async () => {
-        const md = await import('uiw/node_modules/@uiw/react-grid/README.md');
-        return md.default || md;
-      }}
-    />
-  );
+  return <Markdown {...data} path="https://github.com/uiwjs/uiw/tree/master/packages/react-grid/README.md" />;
 }

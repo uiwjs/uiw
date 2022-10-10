@@ -16,97 +16,99 @@ import Progress from '@uiw/react-progress';
 
 ### 基本用法
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Progress } from 'uiw';
 
 const { Line } = Progress;
 const sty = {marginBottom:10}
-const Demo = () => (
-  <div>
-    <Progress.Line style={sty} percent={30} />
-    <Line style={sty} percent={50} status="active" />
-    <Line style={sty} percent={70} status="exception" />
-    <Line style={sty} percent={100} />
-    <Line style={sty} percent={50} showText={false} />
-  </div>
-);
-ReactDOM.render(<Demo />, _mount_);
+
+export default function Demo() {
+  return (
+    <div>
+      <Progress.Line style={sty} percent={30} />
+      <Line style={sty} percent={50} status="active" />
+      <Line style={sty} percent={70} status="exception" />
+      <Line style={sty} percent={100} />
+      <Line style={sty} percent={50} showText={false} />
+    </div>
+  );
+}
 ```
 
 ### 进度条大小设置
 
 设置参数`strokeWidth`即可
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Progress } from 'uiw';
 
 const { Line } = Progress;
 const sty = {marginBottom:10}
-const Demo = () => (
-  <div>
-    <Progress.Line style={sty} strokeWidth={6} percent={30} />
-    <Line style={sty} strokeWidth={14} percent={50} status="active" />
-    <Line style={sty} strokeWidth={18} percent={70} status="exception" />
-    <Line style={sty} strokeWidth={12} percent={100} />
-    <Line style={sty} strokeWidth={14} percent={50} showText={false} />
-  </div>
-);
-ReactDOM.render(<Demo />, _mount_);
+
+export default function Demo() {
+  return (
+    <div>
+      <Progress.Line style={sty} strokeWidth={6} percent={30} />
+      <Line style={sty} strokeWidth={14} percent={50} status="active" />
+      <Line style={sty} strokeWidth={18} percent={70} status="exception" />
+      <Line style={sty} strokeWidth={12} percent={100} />
+      <Line style={sty} strokeWidth={14} percent={50} showText={false} />
+    </div>
+  );
+}
 ```
 
 ### 圆圈进度条
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Progress } from 'uiw';
 
 const { Circle } = Progress;
 const sty = {marginBottom:10}
-const Demo = () => (
-  <div>
-    <Progress.Circle style={sty} percent={30} />
-    <Circle style={sty} percent={75} />
-    <Circle style={sty} percent={70} status="exception" />
-    <Circle style={sty} percent={100} />
-  </div>
-);
-ReactDOM.render(<Demo />, _mount_);
+
+export default function Demo() {
+  return (
+    <div>
+      <Progress.Circle style={sty} percent={30} />
+      <Circle style={sty} percent={75} />
+      <Circle style={sty} percent={70} status="exception" />
+      <Circle style={sty} percent={100} />
+    </div>
+  );
+}
 ```
 
 ### 不同尺寸圆圈进度条
 
 通过`strokeWidth`设置圆圈进度宽带，通过`width`（`type="circle"`有效）设置圆圈大小，
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { Progress } from 'uiw';
 
 let sty = {marginRight:15}
-const Demo = () => (
-  <div>
-    <Progress.Circle style={sty} width={80} strokeWidth={2} percent={30} />
-    <Progress.Circle style={sty} width={100} strokeWidth={10} percent={75} />
-    <Progress.Circle style={sty} percent={70} status="exception" />
-    <Progress.Circle style={sty} width={100} strokeWidth={3} percent={75} />
-  </div>
-);
-ReactDOM.render(<Demo />, _mount_);
+
+export default function Demo() {
+  return (
+    <div>
+      <Progress.Circle style={sty} width={80} strokeWidth={2} percent={30} />
+      <Progress.Circle style={sty} width={100} strokeWidth={10} percent={75} />
+      <Progress.Circle style={sty} percent={70} status="exception" />
+      <Progress.Circle style={sty} width={100} strokeWidth={3} percent={75} />
+    </div>
+  );
+}
 ```
 
 ### 动态展示
 
 进度条动态展示更直观。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Progress } from 'uiw';
 
 class Demo extends React.Component {
@@ -144,44 +146,41 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+
+export default Demo;
 ```
 
 ## 自定义文字格式
 
 `format` 属性指定格式。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Progress } from 'uiw';
 
 const sty = {marginRight:10}
-class Demo extends React.Component {
-  render() {
-    return (
-      <div>
-        <Progress.Circle style={sty} percent={80} type="circle" format={percent => (
-            <span>
-              {`${percent} %`}
-              <div style={{padding:"10px 0 0 0",fontSize:21}}>已完成</div>
-            </span>
-          )}/>
-        <Progress.Circle style={sty} percent={70} status="exception" type="circle" format={percent => (
+
+export default function Demo() {
+  return (
+    <div>
+      <Progress.Circle style={sty} percent={80} type="circle" format={percent => (
           <span>
             {`${percent} %`}
-            <div style={{padding:"10px 0 0 0",fontSize:21}}>已关闭</div>
+            <div style={{padding:"10px 0 0 0",fontSize:21}}>已完成</div>
           </span>
         )}/>
-        <Progress.Circle style={sty} percent={100} type="circle" format={percent => `已完成`}/>
-        <Progress.Line style={sty} percent={70} format={percent => `${percent}℃`}/>
-        <Progress.Line strokeWidth={18} percent={1} status="exception" />
-      </div>
-    )
-  }
+      <Progress.Circle style={sty} percent={70} status="exception" type="circle" format={percent => (
+        <span>
+          {`${percent} %`}
+          <div style={{padding:"10px 0 0 0",fontSize:21}}>已关闭</div>
+        </span>
+      )}/>
+      <Progress.Circle style={sty} percent={100} type="circle" format={percent => `已完成`}/>
+      <Progress.Line style={sty} percent={70} format={percent => `${percent}℃`}/>
+      <Progress.Line strokeWidth={18} percent={1} status="exception" />
+    </div>
+  )
 }
-ReactDOM.render(<Demo />, _mount_);
 ```
 
 

@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
 import { Divider } from 'uiw';
+import styles from './index.module.less';
 
 export type FooterProps = {
   path?: string;
@@ -9,7 +9,7 @@ export default function (props: FooterProps = {}) {
   const { path } = props;
   const url = /^http/.test(path || '') ? path : `https://github.com/uiwjs/uiw/blob/master/${path}`;
   return (
-    <Fragment>
+    <div className={styles.docinfo}>
       犯了错误还是想对文件做出贡献？
       {url && (
         <a href={url} target="_blank" rel="noopener noreferrer">
@@ -40,6 +40,6 @@ export default function (props: FooterProps = {}) {
       <a target="_blank" rel="noopener noreferrer" href="http://uiw.gitee.io">
         国内镜像
       </a>
-    </Fragment>
+    </div>
   );
 }

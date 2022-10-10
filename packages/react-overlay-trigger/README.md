@@ -17,9 +17,8 @@ import OverlayTrigger from '@uiw/react-overlay-trigger';
 
 最简单的用法。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { OverlayTrigger } from 'uiw';
 
 const tooltip = (
@@ -33,16 +32,16 @@ const Demo = () => (
     <span>鼠标移动到此处，点击显示和消失触发事件</span>
   </OverlayTrigger>
 )
-ReactDOM.render(<Demo />, _mount_);
+
+export default Demo;
 ```
 
 ### 配合组件使用
 
 下面配合 [`<Card />`](#/components/card) 组件使用。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { OverlayTrigger, Card } from 'uiw';
 
 const card = (
@@ -56,16 +55,15 @@ const Demo = () => (
     <span>鼠标移动到此处，显示和消失触发事件</span>
   </OverlayTrigger>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 位置
 
 位置有 12 个方向，根据 placement 参数来设置。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { OverlayTrigger, Card, Button } from 'uiw';
 const btnStl = {position: 'relative', width: 70, height: 50 }
 
@@ -125,17 +123,15 @@ const Demo = () => (
     </div>
   </div>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 鼠标经过事件
 
 默认离开**触发区域**隐藏弹出目标，设置 `isOutside` 值为 `true`，在**触发区域**或**弹出目标区域**内，不隐藏**弹出目标**。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { OverlayTrigger, Card, Divider } from 'uiw';
 
 const card = (
@@ -172,7 +168,7 @@ class Demo extends React.Component {
     )
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 
@@ -180,9 +176,8 @@ ReactDOM.render(<Demo />, _mount_);
 
 延迟属性，只针对 `trigger=hover` 有效。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
-import ReactDOM from 'react-dom';
+```jsx mdx:preview&bg=#fff
+import React from 'react';
 import { OverlayTrigger, Card } from 'uiw';
 
 const card = (
@@ -196,17 +191,15 @@ const Demo = () => (
     <span>鼠标移动到此处，显示和消失触发事件，延迟 `4s` 消失</span>
   </OverlayTrigger>
 )
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### 组件受控
 
 通过设置属性 isOpen 可以文字提示手动控制状态的展示。
 
-<!--rehype:bgWhite=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { OverlayTrigger, Card, Divider, Switch } from 'uiw';
 
 const card = (
@@ -251,17 +244,15 @@ class Demo extends React.Component {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ### usePortal
 
 设置 `usePortal={false}` 将模态对话框生成到根节点的里面。
 
-<!--rehype:bgWhite=true&noScroll=true&codeSandbox=true&codePen=true-->
-```jsx
+```jsx mdx:preview&bg=#fff
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { OverlayTrigger, Card, Divider } from 'uiw';
 
 const card = (
@@ -303,7 +294,7 @@ class Demo extends React.Component {
     );
   }
 }
-ReactDOM.render(<Demo />, _mount_);
+export default Demo;
 ```
 
 ## Props
