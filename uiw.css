@@ -787,7 +787,7 @@
   line-height: 1;
   vertical-align: middle;
 }
-sup.w-badge-count {
+.w-badge sup.w-badge-count {
   position: absolute;
   transform: translateX(-50%);
   top: -10px;
@@ -2200,7 +2200,7 @@ sup.w-badge-count {
   border-spacing: 0;
   border-collapse: collapse;
   table-layout: fixed;
-  width: 100%;
+  width: 100% !important;
 }
 .w-descriptions {
   background: #fff;
@@ -2261,6 +2261,8 @@ sup.w-badge-count {
 .w-descriptions-bordered tbody tr td {
   border-top: 1px solid #dfe2e5;
   border-right: 1px solid #dfe2e5;
+  border-left: 0;
+  border-bottom: 0;
 }
 .w-descriptions-bordered tbody:first-child tr:first-child th,
 .w-descriptions-bordered tbody:first-child tr:first-child td {
