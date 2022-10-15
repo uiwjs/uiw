@@ -18,7 +18,6 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>((pro
         {React.Children.toArray(children).map((child) => {
           if (!child) return;
           if (!React.isValidElement(child)) return child;
-          console.log(111, child.props);
           return React.cloneElement(child, {
             ...(child.props || {}),
             ...{
