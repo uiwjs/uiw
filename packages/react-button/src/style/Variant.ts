@@ -2,7 +2,10 @@ import { getThemeVariantValue } from '@uiw/utils';
 import { css } from 'styled-components';
 import { ButtonStyleBaseProps } from '.';
 import { IconStyleBase } from '@uiw/react-icon';
-
+import { ButtonStyleTheme } from './theme';
+const propsTheme = {
+  defaultTheme: { ...ButtonStyleTheme },
+};
 type Options = {
   type: string;
 } & Omit<ButtonStyleBaseProps, 'type'>;
@@ -27,16 +30,22 @@ export const buttonVariant = (options: Options) => {
   const { type, param } = options;
   const { basic, focus, active, disabled } = param || {};
 
-  const color = getThemeVariantValue(options, `color${type}`);
-  const backgroundColor = getThemeVariantValue(options, `backgroundColor${type}`);
-  const backgroundColorHover = getThemeVariantValue(options, `backgroundColor${type}Hover`);
-  const boxShadowColorFocus = getThemeVariantValue(options, `boxShadowColor${type}Focus`);
-  const backgroundColorActive = getThemeVariantValue(options, `backgroundColor${type}Active`);
-  const backgroundColorDisabled = getThemeVariantValue(options, `backgroundColor${type}Disabled`);
-  const boxShadowColorBasic = getThemeVariantValue(options, `boxShadowColor${type}Basic`);
-  const backgroundColorBasicHover = getThemeVariantValue(options, `backgroundColor${type}BasicHover`);
-  const colorBasicDisabled = getThemeVariantValue(options, `color${type}BasicDisabled`);
-  const backgroundColorBasicActive = getThemeVariantValue(options, `backgroundColor${type}BasicActive`);
+  const color = getThemeVariantValue({ ...options, ...propsTheme }, `color${type}`);
+  const backgroundColor = getThemeVariantValue({ ...options, ...propsTheme }, `backgroundColor${type}`);
+  const backgroundColorHover = getThemeVariantValue({ ...options, ...propsTheme }, `backgroundColor${type}Hover`);
+  const boxShadowColorFocus = getThemeVariantValue({ ...options, ...propsTheme }, `boxShadowColor${type}Focus`);
+  const backgroundColorActive = getThemeVariantValue({ ...options, ...propsTheme }, `backgroundColor${type}Active`);
+  const backgroundColorDisabled = getThemeVariantValue({ ...options, ...propsTheme }, `backgroundColor${type}Disabled`);
+  const boxShadowColorBasic = getThemeVariantValue({ ...options, ...propsTheme }, `boxShadowColor${type}Basic`);
+  const backgroundColorBasicHover = getThemeVariantValue(
+    { ...options, ...propsTheme },
+    `backgroundColor${type}BasicHover`,
+  );
+  const colorBasicDisabled = getThemeVariantValue({ ...options, ...propsTheme }, `color${type}BasicDisabled`);
+  const backgroundColorBasicActive = getThemeVariantValue(
+    { ...options, ...propsTheme },
+    `backgroundColor${type}BasicActive`,
+  );
 
   return css`
     color: ${color};
@@ -120,38 +129,47 @@ export const buttonTypes = (props: ButtonStyleBaseProps) => {
       return buttonVariant({ ...props, type: 'Dark' });
     case 'light':
       return css`
-        box-shadow: inset 0 1px 0 0 ${getThemeVariantValue(props, 'boxShadowColorLightDefault')},
-          inset 1px -1px 0 0 ${getThemeVariantValue(props, 'boxShadowColorLightDefault')},
-          inset -1px 0px 0 0 ${getThemeVariantValue(props, 'boxShadowColorLightDefault')};
+        box-shadow: inset 0 1px 0 0 ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorLightDefault')},
+          inset 1px -1px 0 0 ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorLightDefault')},
+          inset -1px 0px 0 0 ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorLightDefault')};
         ${buttonVariant({ ...props, type: 'Light' })}
         ${getCommonCss(
           `
               outline: 0;
-              box-shadow: inset 0 1px 0 0 ${getThemeVariantValue(props, 'boxShadowColorLightDefault')},
-                inset 1px -1px 0 0 ${getThemeVariantValue(props, 'boxShadowColorLightDefault')},
-                inset -1px 0px 0 0 ${getThemeVariantValue(props, 'boxShadowColorLightDefault')},
-                0 0 0 2px ${getThemeVariantValue(props, 'boxShadowColorLight4')};
+              box-shadow: inset 0 1px 0 0 ${getThemeVariantValue(
+                { ...props, ...propsTheme },
+                'boxShadowColorLightDefault',
+              )},
+                inset 1px -1px 0 0 ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorLightDefault')},
+                inset -1px 0px 0 0 ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorLightDefault')},
+                0 0 0 2px ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorLight4')};
         `,
           '&:focus',
           focus,
         )}
         ${basic &&
         css`
-          color: ${getThemeVariantValue(props, 'colorLightBasic')} !important;
+          color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'colorLightBasic')} !important;
           &:focus {
-            box-shadow: inset 0 0 0 0 ${getThemeVariantValue(props, 'boxShadowColorLightDefault')};
+            box-shadow: inset 0 0 0 0 ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorLightDefault')};
           }
           ${focus &&
           css`
-            box-shadow: inset 0 0 0 0 ${getThemeVariantValue(props, 'boxShadowColorLightDefault')};
+            box-shadow: inset 0 0 0 0 ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorLightDefault')};
           `}
           &:hover {
-            background-color: ${getThemeVariantValue(props, 'backgroundColorLightBasicHover')} !important;
+            background-color: ${getThemeVariantValue(
+              { ...props, ...propsTheme },
+              'backgroundColorLightBasicHover',
+            )} !important;
           }
           ${getCommonCss(
             `
-              color: ${getThemeVariantValue(props, 'colorLightBasic')};
-              background-color: ${getThemeVariantValue(props, 'backgroundColorLightBasicActive')} !important;
+              color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'colorLightBasic')};
+              background-color: ${getThemeVariantValue(
+                { ...props, ...propsTheme },
+                'backgroundColorLightBasicActive',
+              )} !important;
               background-image: none;
                 `,
             '&:active',
@@ -160,7 +178,7 @@ export const buttonTypes = (props: ButtonStyleBaseProps) => {
           ${getCommonCss(
             `
                 background-color: transparent !important;
-                color: ${getThemeVariantValue(props, 'colorLightBasicDisabled')};
+                color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'colorLightBasicDisabled')};
                 `,
             '&[disabled]',
             disabled,
@@ -168,7 +186,7 @@ export const buttonTypes = (props: ButtonStyleBaseProps) => {
         `}
         ${getCommonCss(
           `
-          color: ${getThemeVariantValue(props, 'colorLightBasicDisabled')};
+          color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'colorLightBasicDisabled')};
           z-index: 0;
           `,
           '&[disabled]',
@@ -178,14 +196,14 @@ export const buttonTypes = (props: ButtonStyleBaseProps) => {
     case 'link':
       return css`
         ${buttonVariant({ ...props, type: 'Link' })};
-        color: ${getThemeVariantValue(props, 'colorLink')} !important;
+        color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'colorLink')} !important;
         &:hover:not([disabled]) {
-          color: ${getThemeVariantValue(props, 'colorLinkNotDisabled')};
+          color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'colorLinkNotDisabled')};
           text-decoration: underline;
         }
         ${getCommonCss(
           `
-          color: ${getThemeVariantValue(props, 'colorLinkNotDisabledActive')};
+          color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'colorLinkNotDisabledActive')};
           box-shadow: none;
           text-decoration: underline;
           `,
@@ -215,7 +233,8 @@ export const getloadingCss = (props: ButtonStyleBaseProps) => {
       props.param.type === 'light' &&
       css`
         &::before {
-          border: 1.2px solid ${() => getThemeVariantValue(props, 'borderColorLinghtLoadingBefore')};
+          border: 1.2px solid
+            ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorLinghtLoadingBefore')};
         }
       `}
     ${() =>
@@ -227,8 +246,8 @@ export const getloadingCss = (props: ButtonStyleBaseProps) => {
           width: 1em;
           height: 1em;
           border-radius: 50%;
-          border: 1.2px solid ${() => getThemeVariantValue(props, 'colorButtonLoadingBefore')};
-          color: ${() => getThemeVariantValue(props, 'colorButtonLoadingBefore')};
+          border: 1.2px solid ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'colorButtonLoadingBefore')};
+          color: ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'colorButtonLoadingBefore')};
           margin: 0 3px 0 0;
           clip-path: polygon(0% 0%, 100% 0, 100% 30%, 0% 30%);
           animation: rotate 0.5s linear infinite;
@@ -256,9 +275,9 @@ export const buttonSize = (fontSize: string, iconSize: string, lineHeight: strin
   `;
 };
 const getSize = (props: ButtonStyleBaseProps, type: string) => {
-  const fontSize = getThemeVariantValue(props, `fontSize${type}`);
-  const minHeight = getThemeVariantValue(props, `minHeightButton${type}`);
-  const fontSizeIcon = getThemeVariantValue(props, `fontSizeButtonIcon${type}`);
+  const fontSize = getThemeVariantValue({ ...props, ...propsTheme }, `fontSize${type}`);
+  const minHeight = getThemeVariantValue({ ...props, ...propsTheme }, `minHeightButton${type}`);
+  const fontSizeIcon = getThemeVariantValue({ ...props, ...propsTheme }, `fontSizeButtonIcon${type}`);
   return buttonSize(`${fontSize}`, `${fontSizeIcon}`, fontSize, `${minHeight}`);
 };
 
@@ -270,7 +289,7 @@ export const buttonSizeCss = (props: ButtonStyleBaseProps) => {
     case 'small':
       return css`
         padding: 0 6px;
-        min-width: ${getThemeVariantValue(props, 'minHeightButtonSmall')};
+        min-width: ${getThemeVariantValue({ ...props, ...propsTheme }, 'minHeightButtonSmall')};
         ${getSize(props, 'Small')}
       `;
     default:
@@ -281,7 +300,7 @@ export const buttonSizeCss = (props: ButtonStyleBaseProps) => {
 export const getIconAndSizeCss = (props: ButtonStyleBaseProps) => {
   return css`
     ${IconStyleBase} {
-      font-size: ${() => getThemeVariantValue(props, 'fontSizeButtonIcontDefault')};
+      font-size: ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeButtonIcontDefault')};
     }
     ${() => buttonSizeCss(props)}
     ${IconStyleBase}:not(:last-child) {

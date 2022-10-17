@@ -133,7 +133,6 @@ export const FileInputStyleCardBoxWarp = styled.div<FileInputStyleCardBoxWarpPro
     opacity: 1;
   }
 `;
-FileInputStyleCardBoxWarp.defaultProps = { defaultTheme: FileInputTheme };
 
 export const FileInputStyleCardBoxInfoWarp = styled.div`
   box-sizing: border-box;

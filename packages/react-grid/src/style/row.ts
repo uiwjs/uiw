@@ -27,8 +27,5 @@ const RowStyleWrap = styled.div<RowStyleWrapProps>`
       justify-content: ${props.justify};
     `}
 `;
-RowStyleWrap.defaultProps = {
-  defaultTheme: {},
-};
 
 export default RowStyleWrap;

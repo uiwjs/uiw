@@ -151,10 +151,6 @@ export const MenuStyleItemBase = styled.a<MenuStyleItemBaseProps>`
     `}
 `;
 
-MenuStyleItemBase.defaultProps = {
-  defaultTheme: MenuStyleTheme,
-};
-
 export interface SubItemCollapseIconProps extends IconProps {
   params?: {
     prefixCls?: string;
