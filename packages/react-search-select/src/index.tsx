@@ -334,13 +334,15 @@ export default function SearchSelect(props: SearchSelectProps) {
                 placeholder={selectedValue.length ? '' : placeholder}
               />
             </SearchSelectTagContentsBase>
-            <SearchSelectIconStyleBase
-              className={`${prefixCls}-multiple-colse`}
-              as={ICONTYPE[selectIconType]}
-              params={{ multiple: true, spin: loading && selectIconType === 'loading' }}
-              // spin={loading && selectIconType === 'loading'}
-              onClick={resetSelectedValue}
-            />
+            {!disabled && (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
+              <SearchSelectIconStyleBase
+                className={`${prefixCls}-multiple-colse`}
+                as={ICONTYPE[selectIconType]}
+                params={{ multiple: true, spin: loading && selectIconType === 'loading' }}
+                // spin={loading && selectIconType === 'loading'}
+                onClick={resetSelectedValue}
+              />
+            )}
           </SearchSelectInner>
         ) : (
           <SearchSelectInputStyleBase

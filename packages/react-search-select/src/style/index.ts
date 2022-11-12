@@ -104,14 +104,17 @@ export const SearchSelectIconStyleBase = styled(IconStyleBase)<SearchSelectIconS
   ${(props) =>
     props.params?.multiple &&
     css`
-      left: 7px;
-      font-size: 15px;
+      left: 3px;
+      font-size: 14px;
+      cursor: pointer;
     `}
 
   ${(props) =>
     props.params?.singe &&
     css`
-      font-size: 15px;
+      font-size: 14px;
+      cursor: pointer;
+      left: -3px;
     `}
 `;
 
