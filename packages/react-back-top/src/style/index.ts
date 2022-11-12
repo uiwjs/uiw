@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
+import BackToUp from '@uiw/react-back-to-top';
 
 export const BackTopStyleTheme = {
   bottomBackTop: '50px',
@@ -15,8 +16,8 @@ export interface BackTopStyleWarpProps
   fixed?: boolean;
 }
 
-export const BackTopStyleWarp = styled.div<BackTopStyleWarpProps>`
-  position: fixed;
+export const BackTopStyleWarp = styled(BackToUp)<BackTopStyleWarpProps>`
+  /* position: fixed; */
   bottom: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'bottomBackTop')};
   right: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'rightBackTop')};
   cursor: pointer;

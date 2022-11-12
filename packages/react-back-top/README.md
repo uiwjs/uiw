@@ -42,16 +42,29 @@ import React from 'react';
 import { BackTop, Button } from 'uiw';
 
 function Demo() {
-  return <BackTop
-    fixed={false}
-    step={500}
-    clickable={false}
-    speed={10}
-  >
-    {({ percent, scrollToTop }) => (
-      <Button onClick={() => scrollToTop() } type="success">点击滚动到顶部{`${percent}%`}</Button>
-    )}
-  </BackTop>
+  const ref = React.useRef(null)
+   const [element, setElement]= React.useState();
+  React.useEffect(() => setElement(ref.current), [])
+
+  return(
+  <div ref={ref} style={{height:300, overflow:'auto' }}>
+    <div style={{height:150}}/>
+    <BackTop
+      fixed={false}
+      step={500}
+      clickable={false}
+      showBelow={0}
+      speed={10}
+      size={200}
+      hideProgress={true}
+      // element={element}
+    >
+      {({ percent, scrollToTop }) => {
+        return <Button onClick={() => scrollToTop() } type="success">点击滚动到顶部{`${percent}%`}</Button>
+        }}
+    </BackTop>
+  </div>
+  )
 }
 export default Demo
 ```
@@ -70,7 +83,7 @@ function Demo() {
     step={500}
     speed={10}
   >
-    <Button type="success">点击滚动到顶部</Button>
+    <Button type="success">滚动到顶部</Button>
   </BackTop>
 }
 
