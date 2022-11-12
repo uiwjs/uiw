@@ -2,10 +2,7 @@ import React from 'react';
 import { IconProps } from '@uiw/react-icon';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import { IconProgress } from './utils';
-// import './style/index.less';
-// import './style/circle.less';
 import { ProgressStyleText, ProgressStyleWarp, ProgressStylePath } from './style';
-
 export type Status = 'success' | 'active' | 'exception';
 
 export interface ProgressCircleProps<T> extends IProps, HTMLDivProps {

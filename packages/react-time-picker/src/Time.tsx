@@ -1,7 +1,6 @@
 import React from 'react';
 import { IProps } from '@uiw/utils';
 import TimePanel, { TimePickerPanelProps } from './Panel';
-// import './style/time-picker.less';
 import { DateTimeStyleBase } from './style';
 
 export interface TimePickerTimeProps extends IProps, TimePickerPanelProps {

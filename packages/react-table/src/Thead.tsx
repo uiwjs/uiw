@@ -2,7 +2,6 @@ import React from 'react';
 import { IProps, noop } from '@uiw/utils';
 import { TableProps, TableColumns, LocationWidth } from './';
 import { TableStyleTheadWrap, TableStyleColContent } from './style';
-import './style/index.less';
 import ThComponentProps from './ThComponent';
 
 export interface TheadProps<T extends { [key: string]: V }, V = any> extends IProps {

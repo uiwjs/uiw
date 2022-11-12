@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { DatePickerDay, DatePickerDayProps, DatePickerDayDateSource } from '@uiw/react-date-picker';
-import Icon from '@uiw/react-icon';
+import { IconStyleBase } from '@uiw/react-icon';
+import { Down } from '@uiw/icons/lib/Down';
 import formatter from '@uiw/formatter';
 import { IProps } from '@uiw/utils';
 import RenderDay from './DayLabel';
-// import './style/index.less';
 import {
   CalendarBtnGroupStyleWrap,
   CalendarBtnStyleWrap,
@@ -122,11 +122,11 @@ export default function Calendar(props: CalendarProps) {
   const btngroup = useMemo(
     () => (
       <CalendarBtnGroupStyleWrap className={`${prefixCls}-btn-group`}>
-        <Icon type="down" onClick={() => handlePaging('prev')} />
+        <IconStyleBase as={Down} onClick={() => handlePaging('prev')} style={{ width: 18 }} />
         <CalendarBtnStyleWrap className={`${prefixCls}-btn`} onClick={() => handlePaging('today')}>
           {todayLabel}
         </CalendarBtnStyleWrap>
-        <Icon type="down" onClick={() => handlePaging('next')} />
+        <IconStyleBase as={Down} onClick={() => handlePaging('next')} style={{ width: 18 }} />
       </CalendarBtnGroupStyleWrap>
     ),
     [prefixCls, todayLabel],

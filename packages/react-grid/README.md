@@ -1,4 +1,4 @@
-Grid 删格
+Grid 栅格
 ===
 
 [![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-grid/file/README.md)

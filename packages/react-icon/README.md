@@ -43,7 +43,7 @@ class Demo extends React.Component {
     const { len, result } = this.state;
     return (
       <div>
-        <Input preIcon="search" placeholder="请输入图标名称" type="text" style={{ maxWidth: 200 }} onChange={this.onChange.bind(this)} />
+        <Input preIcon={<Icon type="search" />} placeholder="请输入图标名称" type="text" style={{ maxWidth: 200 }} onChange={this.onChange.bind(this)} />
         <div style={{ padding: '10px 0' }}>
           搜索到 {this.state.len} 个结果{len > 0 && <span>，下面展示 {len > 15 ? '15' : len} 个图标，可以点击复制图标代码: </span>}
         </div>

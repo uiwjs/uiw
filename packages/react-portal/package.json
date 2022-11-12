@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-portal",
-  "version": "4.21.2",
+  "version": "5.0.0-bate-5",
   "description": "Portal component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/portal",
@@ -40,7 +40,7 @@
     "frontend"
   ],
   "peerDependencies": {
-    "react": ">=18.0.0",
-    "react-dom": ">=18.0.0"
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
   }
 }

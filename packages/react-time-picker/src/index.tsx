@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Popover, { PopoverProps } from '@uiw/react-popover';
 import Input, { InputProps } from '@uiw/react-input';
-import Button from '@uiw/react-button';
 import { IProps } from '@uiw/utils';
 import formatter from '@uiw/formatter';
 import { TimePickerTime, TimePickerTimeProps } from './Time';
@@ -65,7 +64,6 @@ export default function TimePicker(props: TimePickerProps) {
   if (allowClear && inputValue !== '' && !!inputValue) {
     _props.addonAfter = (
       <DateTimeStyleCloseButton
-        as={Button as any}
         className={`${prefixCls}-close-btn`}
         icon={icon}
         disabled={props.disabled}

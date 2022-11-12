@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import Tree, { TreeProps, TreeRenderTitleNode, TreeData } from '@uiw/react-tree';
 import Checkbox, { CheckboxProps } from '@uiw/react-checkbox';
-// import './style/index.less';
 import { TreeCheckboxStyleBase } from './style/index';
+export * from './style';
 
 export interface TreeCheckedProps extends TreeProps {}
 

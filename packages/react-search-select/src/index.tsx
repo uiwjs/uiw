@@ -15,6 +15,7 @@ import {
 } from './style';
 import { Close } from '@uiw/icons/lib/Close';
 import { Loading } from '@uiw/icons/lib/Loading';
+export * from './style';
 
 const ICONTYPE = {
   close: Close,
@@ -23,7 +24,7 @@ const ICONTYPE = {
 
 type ValueType = string | number;
 
-const TagSize = { large: 25, default: 20, small: 17 };
+const TagSize = { large: 24, default: 18, small: 18 };
 
 export interface SearchSelectProps extends IProps, DropdownProps {
   mode?: 'single' | 'multiple';
@@ -280,7 +281,7 @@ export default function SearchSelect(props: SearchSelectProps) {
       >
         {isMultiple ? (
           <SearchSelectInner
-            params={{ showSearch }}
+            params={{ showSearch, size, len: selectedValue ? selectedValue.length : 0 }}
             className={[`${prefixCls}-inner`, `${prefixCls}-search-${showSearch}`, `${prefixCls}-${size}`]
               .filter(Boolean)
               .join(' ')
@@ -313,7 +314,10 @@ export default function SearchSelect(props: SearchSelectProps) {
                   );
                 })}
               {!!omitTagCount && (
-                <Tag style={{ height: 20, margin: 1, display: 'flex', alignItems: 'center' }} disabled={true}>
+                <Tag
+                  style={{ height: TagSize[size], margin: 1, display: 'flex', alignItems: 'center' }}
+                  disabled={true}
+                >
                   +{omitTagCount} …{' '}
                 </Tag>
               )}
@@ -330,15 +334,13 @@ export default function SearchSelect(props: SearchSelectProps) {
                 placeholder={selectedValue.length ? '' : placeholder}
               />
             </SearchSelectTagContentsBase>
-            {!disabled && (selectIconType === 'close' || (selectIconType === 'loading' && loading)) && (
-              <SearchSelectIconStyleBase
-                className={`${prefixCls}-multiple-colse`}
-                as={ICONTYPE[selectIconType]}
-                params={{ multiple: true, spin: loading && selectIconType === 'loading' }}
-                // spin={loading && selectIconType === 'loading'}
-                onClick={resetSelectedValue}
-              />
-            )}
+            <SearchSelectIconStyleBase
+              className={`${prefixCls}-multiple-colse`}
+              as={ICONTYPE[selectIconType]}
+              params={{ multiple: true, spin: loading && selectIconType === 'loading' }}
+              // spin={loading && selectIconType === 'loading'}
+              onClick={resetSelectedValue}
+            />
           </SearchSelectInner>
         ) : (
           <SearchSelectInputStyleBase

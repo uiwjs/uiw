@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
-import { MenuItemProps } from '../';
-import Icon, { IconProps } from '@uiw/react-icon';
+import { IconProps, IconStyleBase } from '@uiw/react-icon';
 import OverlayTrigger, { OverlayTriggerProps } from '@uiw/react-overlay-trigger';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 
@@ -30,14 +29,17 @@ export interface MenuDividerBaseProps
 
 export const MenuDividerBase = styled.li<MenuDividerBaseProps>``;
 
-export interface MenuStyleItemBaseProps extends Omit<MenuItemProps<'a'>, 'theme'>, ThemeVar {
+// export interface MenuStyleItemBaseProps extends Omit<MenuItemProps<'a'>, 'theme'>, ThemeVar {
+export interface MenuStyleItemBaseProps
+  extends React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>,
+    ThemeVar {
   params?: {
     theme?: 'dark' | 'light';
     active?: boolean;
     disabled?: boolean;
   };
 }
-export const MenuStyleItemIcon = styled(Icon)<IconProps>``;
+export const MenuStyleItemIcon = styled(IconStyleBase)<IconProps>``;
 
 export interface MenuItemStyleTextBaseProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement | ThemeVar>, HTMLDivElement> {
@@ -84,7 +86,10 @@ export const MenuStyleItemBase = styled.a<MenuStyleItemBaseProps>`
           color: inherit;
           cursor: pointer;
           text-decoration: none;
-          background-color: ${getThemeVariantValue(props, 'backgroundColorMenuBase')};
+          background-color: ${getThemeVariantValue(
+            { ...props, defaultTheme: MenuStyleTheme },
+            'backgroundColorMenuBase',
+          )};
         }
       `
     );
@@ -93,10 +98,12 @@ export const MenuStyleItemBase = styled.a<MenuStyleItemBaseProps>`
     color: inherit;
     cursor: pointer;
     text-decoration: none;
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorMenuBase')};
+    background-color: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'backgroundColorMenuBase')};
   }
   &:active {
-    background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorMenuActive')};
+    background-color: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'backgroundColorMenuActive')};
   }
 
   ${(props) =>
@@ -109,7 +116,10 @@ export const MenuStyleItemBase = styled.a<MenuStyleItemBaseProps>`
       }
       &,
       & ${MenuStyleItemIcon} {
-        color: ${getThemeVariantValue(props, 'colorMenuStyleItemIconDisabled')} !important;
+        color: ${getThemeVariantValue(
+          { ...props, defaultTheme: MenuStyleTheme },
+          'colorMenuStyleItemIconDisabled',
+        )} !important;
       }
     `}
   & > * {
@@ -123,21 +133,23 @@ export const MenuStyleItemBase = styled.a<MenuStyleItemBaseProps>`
     css`
       ${props.params?.active &&
       css`
-        color: ${getThemeVariantValue(props, 'colorMenuStyleItemIconDarkActive')} !important;
+        color: ${getThemeVariantValue(
+          { ...props, defaultTheme: MenuStyleTheme },
+          'colorMenuStyleItemIconDarkActive',
+        )} !important;
       `}
       ${props.params?.disabled &&
       css`
         &,
         & ${MenuStyleItemIcon} {
-          color: ${getThemeVariantValue(props, 'colorMenuStyleItemIconDark')} !important;
+          color: ${getThemeVariantValue(
+            { ...props, defaultTheme: MenuStyleTheme },
+            'colorMenuStyleItemIconDark',
+          )} !important;
         }
       `}
     `}
 `;
-
-MenuStyleItemBase.defaultProps = {
-  defaultTheme: MenuStyleTheme,
-};
 
 export interface SubItemCollapseIconProps extends IconProps {
   params?: {
@@ -147,7 +159,7 @@ export interface SubItemCollapseIconProps extends IconProps {
   };
 }
 
-export const SubItemCollapseIcon = styled(Icon)<SubItemCollapseIconProps>`
+export const SubItemCollapseIcon = styled(IconStyleBase)<SubItemCollapseIconProps>`
   ${(props) =>
     props.params?.prefixCls &&
     css`
@@ -240,8 +252,11 @@ export const MenuStyleBase = styled.ul<MenuStyleBaseProps>`
         ${params.theme !== 'dark' &&
         css`
           & {
-            color: ${getThemeVariantValue(props, 'colorMenuStyleBaseLight')};
-            background: ${getThemeVariantValue(props, 'backgroundMenuStyleBaseLight')};
+            color: ${getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'colorMenuStyleBaseLight')};
+            background: ${getThemeVariantValue(
+              { ...props, defaultTheme: MenuStyleTheme },
+              'backgroundMenuStyleBaseLight',
+            )};
           }
         `}
       `;
@@ -262,7 +277,7 @@ export const MenuStyleBase = styled.ul<MenuStyleBaseProps>`
   ${(props) =>
     props.params?.bordered &&
     css`
-      box-shadow: ${getThemeVariantValue(props, 'boxShadowMenuStyleBaseBordered')};
+      box-shadow: ${getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'boxShadowMenuStyleBaseBordered')};
     `} {
   }
 
@@ -270,7 +285,7 @@ export const MenuStyleBase = styled.ul<MenuStyleBaseProps>`
     props.params?.theme === 'light' &&
     css`
       & > li > ${MenuStyleItemBase}:hover {
-        color: ${getThemeVariantValue(props, 'colorMenuStyleItemBaseLightHover')};
+        color: ${getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'colorMenuStyleItemBaseLightHover')};
       }
     `}
 
@@ -287,7 +302,7 @@ export const MenuStyleBase = styled.ul<MenuStyleBaseProps>`
           font-size: 18px;
           &:hover {
             background-color: transparent;
-            color: ${getThemeVariantValue(props, 'colorMenuStyleItemBaseHover')};
+            color: ${getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'colorMenuStyleItemBaseHover')};
           }
           > * {
             margin-right: 0;
@@ -305,7 +320,8 @@ export const MenuStyleBase = styled.ul<MenuStyleBaseProps>`
    ${MenuDividerBase} {
     display: block;
     margin: 5px !important;
-    border-top: 1px solid ${(props) => getThemeVariantValue(props, 'borderTopColorMenuDividerBase')};
+    border-top: 1px solid
+      ${(props) => getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'borderTopColorMenuDividerBase')};
     > strong {
       display: block;
       line-height: 17px;
@@ -320,19 +336,19 @@ export const MenuStyleBase = styled.ul<MenuStyleBaseProps>`
     props.params?.theme === 'dark' &&
     css`
       & {
-        background: ${getThemeVariantValue(props, 'backgroundColorMenuStyleBaseDark')};
-        color: ${getThemeVariantValue(props, 'colorMenuStyleBaseDark')};
+        background: ${getThemeVariantValue(
+          { ...props, defaultTheme: MenuStyleTheme },
+          'backgroundColorMenuStyleBaseDark',
+        )};
+        color: ${getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'colorMenuStyleBaseDark')};
       }
       ${props.params.bordered &&
       css`
         box-shadow: initial;
       `}
       ${MenuDividerBase} {
-        border-top: 1px solid ${getThemeVariantValue(props, 'borderTopColorMenuDividerBaseDark')};
+        border-top: 1px solid
+          ${getThemeVariantValue({ ...props, defaultTheme: MenuStyleTheme }, 'borderTopColorMenuDividerBaseDark')};
       }
     `}
 `;
-
-MenuStyleBase.defaultProps = {
-  defaultTheme: MenuStyleTheme,
-};

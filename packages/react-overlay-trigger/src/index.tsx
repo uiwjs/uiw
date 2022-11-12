@@ -4,7 +4,6 @@ import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import contains from './utils';
 import { IBoundingClientRect } from './util/getBoundingClientRect';
 import { getStyle } from './getStyle';
-// import './style/index.less';
 import { OverlayTriggerWrap, TriggerWrap } from './style';
 
 export interface OverlayTriggerProps extends IProps, OverlayProps {

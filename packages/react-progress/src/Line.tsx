@@ -1,8 +1,6 @@
 import React from 'react';
 import { IconProgress } from './utils';
 import { ProgressCircleProps } from './Circle';
-// import './style/index.less';
-// import './style/line.less';
 import { ProgressStyleWarp, ProgressStyleText, ProgressStyleBar, ProgressStyleInner, ProgressStyleBg } from './style';
 export interface ProgressLineProp<T> extends ProgressCircleProps<T> {}
 

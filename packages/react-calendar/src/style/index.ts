@@ -1,19 +1,40 @@
+import { IconStyleBase } from '@uiw/react-icon';
 import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
 import styled, { css } from 'styled-components';
+import { DatePickerStyleBodyWarp, DatePickerStyleWeekDay, DatePickerStyleWeekBase } from '@uiw/react-date-picker';
 
-interface CalendarCaptionStyleWrapProps extends ThemeVariantValueOptions {}
-interface CalendarBtnGroupStyleWrapProps extends ThemeVariantValueOptions {}
-interface CalendarPanelStyleWrapProps extends ThemeVariantValueOptions {}
-interface CalendarStyleWrapProps extends ThemeVariantValueOptions {}
+export const CalendarStyleTheme = {
+  fontSizeCalendarCaptionDefualt: '26px',
+  fontSizeLarge: '16px',
+  backgroundColorCalendarHover: '#ececec',
+  backgroundColorCalendarActive: '#ececec',
+  lineHeightCalendarPanel: '16px',
+  backgroundCalendarDefault: 'white',
+  borderColorCalendarChildDiv: '#ececec',
+};
+const propsTheme = {
+  defaultTheme: { ...CalendarStyleTheme },
+};
+
+type HTMLDivElements = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+
+type ThemeVar = ThemeVariantValueOptions<typeof CalendarStyleTheme>;
+
+export interface CalendarCaptionStyleWrapProps extends HTMLDivElements, ThemeVar {}
+export interface CalendarBtnGroupStyleWrapProps extends HTMLDivElements, ThemeVar {}
+export interface CalendarPanelStyleWrapProps extends HTMLDivElements, ThemeVar {}
+export interface CalendarStyleWrapProps extends HTMLDivElements, ThemeVar {}
+export interface CalendarBtnStyleWrapProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement> {}
 
 export const CalendarCaptionStyleWrap = styled.div<CalendarCaptionStyleWrapProps>`
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeCalendarCaptionDefualt')};
+  font-size: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeCalendarCaptionDefualt')};
   font-weight: 200;
   width: 100%;
   display: inline-block;
 `;
 
-export const CalendarBtnStyleWrap = styled.span``;
+export const CalendarBtnStyleWrap = styled.span<CalendarBtnStyleWrapProps>``;
 
 export const CalendarBtnGroupStyleWrap = styled.div<CalendarBtnGroupStyleWrapProps>`
   ${(props) => css`
@@ -22,25 +43,23 @@ export const CalendarBtnGroupStyleWrap = styled.div<CalendarBtnGroupStyleWrapPro
     float: right;
 
     & > ${CalendarBtnStyleWrap} {
-      font-size: ${getThemeVariantValue(props, 'fontSizeLarge')};
+      font-size: ${getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeLarge')};
       padding: 2px 3px;
       position: relative;
       top: -3px;
     }
-    & > .w-icon,
-    & > ${CalendarBtnStyleWrap} {
+    & > ${IconStyleBase}, & > ${CalendarBtnStyleWrap} {
       cursor: pointer;
       border-radius: 3px;
       transition: all 0.3s;
       &:hover {
-        background-color: ${getThemeVariantValue(props, 'backgroundColorCalendarHover')};
+        background-color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorCalendarHover')};
       }
       &:active {
-        background-color: ${getThemeVariantValue(props, 'backgroundColorCalendarActive')};
+        background-color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorCalendarActive')};
       }
     }
-    & > .w-icon,
-    & > ${CalendarBtnStyleWrap} {
+    & > ${IconStyleBase}, & > ${CalendarBtnStyleWrap} {
       vertical-align: middle;
       margin-top: -6px;
       > svg {
@@ -77,7 +96,7 @@ export const CalendarPanelStyleWrap = styled.div<CalendarPanelStyleWrapProps>`
   ${(props) => css`
     width: 100%;
     height: 90px;
-    line-height: ${getThemeVariantValue(props, 'lineHeightCalendarPanel')};
+    line-height: ${getThemeVariantValue({ ...props, ...propsTheme }, 'lineHeightCalendarPanel')};
     overflow-y: auto;
     text-align: left;
     > * {
@@ -85,26 +104,26 @@ export const CalendarPanelStyleWrap = styled.div<CalendarPanelStyleWrapProps>`
       white-space: nowrap;
       width: 100%;
       text-overflow: ellipsis;
-      font-size: ${getThemeVariantValue(props, 'fontSizeSmall')};
+      font-size: ${getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeSmall')};
     }
   `}
 `;
 
 export const CalendarStyleWrap = styled.div<CalendarStyleWrapProps>`
   ${(props) => css`
-    background: ${getThemeVariantValue(props, 'backgroundCalendarDefault')};
+    background: ${getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundCalendarDefault')};
 
-    .w-datepicker-body {
+    ${DatePickerStyleBodyWarp} {
       padding: 0 0 0 0;
     }
-    .w-datepicker-week:last-child > div {
+    ${DatePickerStyleWeekBase}:last-child > div {
       border-bottom: 0;
     }
-    .w-datepicker-week > div {
+    ${DatePickerStyleWeekBase} > div {
       display: inline-flex;
       border-radius: 0;
-      border-right: 1px solid ${getThemeVariantValue(props, 'borderColorCalendarChildDiv')};
-      border-bottom: 1px solid ${getThemeVariantValue(props, 'borderColorCalendarChildDiv')};
+      border-right: 1px solid ${getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorCalendarChildDiv')};
+      border-bottom: 1px solid ${getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorCalendarChildDiv')};
       &:last-child {
         border-right: 0;
       }
@@ -113,39 +132,12 @@ export const CalendarStyleWrap = styled.div<CalendarStyleWrapProps>`
         border-radius: 0;
       }
     }
-    .w-datepicker-weekday {
+    ${DatePickerStyleWeekDay} {
       > div {
-        background-color: ${getThemeVariantValue(props, 'borderColorCalendarChildDiv')};
+        background-color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorCalendarChildDiv')};
         height: 32px;
         line-height: 32px;
       }
     }
   `}
 `;
-
-CalendarCaptionStyleWrap.defaultProps = {
-  defaultTheme: {
-    fontSizeCalendarCaptionDefualt: '26px',
-  },
-};
-
-CalendarBtnGroupStyleWrap.defaultProps = {
-  defaultTheme: {
-    fontSizeLarge: '16px',
-    backgroundColorCalendarHover: '#ececec',
-    backgroundColorCalendarActive: '#ececec',
-  },
-};
-
-CalendarPanelStyleWrap.defaultProps = {
-  defaultTheme: {
-    lineHeightCalendarPanel: '16px',
-  },
-};
-
-CalendarStyleWrap.defaultProps = {
-  defaultTheme: {
-    backgroundCalendarDefault: 'white',
-    borderColorCalendarChildDiv: '#ececec',
-  },
-};

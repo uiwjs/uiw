@@ -1,15 +1,31 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
+import { IconStyleBase, IconStyleBaseProps } from '@uiw/react-icon';
+
+export const TableBaseDefaultTheme = {
+  borderColorTable: '#dfe2e5',
+  backgroundColorTableFooter: ' #fafafa',
+  borderBottomColorTableRows: '#e8e8e8',
+  backgroundColorTableTr: 'transparent',
+  backgroundColorTable: '#fff',
+  backgroundColorTableEvenRows: '#f9f9f9', // 偶数行背景颜色
+  backgroundColorTableEvenRowsHover: '#efefef', // 偶数行Hover背景颜色
+  backgroundColorTableHead: '#f6f9fb', // 表头背影色
+  borderRightColorFixedRows: '#f0f0f0', // 固定列
+};
+type ThemeVar = ThemeVariantValueOptions<typeof TableBaseDefaultTheme>;
 
 export interface TableStyleBaseProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
-    ThemeVariantValueOptions {}
+    ThemeVar {}
 
 export interface TableStyleWrapBaseProps extends TableStyleBaseProps {
   params?: {
     bordered?: boolean;
   };
 }
+
+export interface TableStyleDomIconProps extends IconStyleBaseProps {}
 
 export interface TableStyleColProps extends TableStyleBaseProps {
   params?: {
@@ -30,18 +46,6 @@ export interface TableStyleFooterProps extends TableStyleBaseProps {
   };
 }
 
-export const TableBaseDefaultTheme = {
-  borderColorTable: '#dfe2e5',
-  backgroundColorTableFooter: ' #fafafa',
-  borderBottomColorTableRows: '#e8e8e8',
-  backgroundColorTableTr: 'transparent',
-  backgroundColorTable: '#fff',
-  backgroundColorTableEvenRows: '#f9f9f9', // 偶数行背景颜色
-  backgroundColorTableEvenRowsHover: '#efefef', // 偶数行Hover背景颜色
-  backgroundColorTableHead: '#f6f9fb', // 表头背影色
-  borderRightColorFixedRows: '#f0f0f0', // 固定列
-};
-
 export const TableStyleWrap = styled.div<TableStyleWrapBaseProps>`
   > table {
     display: table !important;
@@ -53,10 +57,13 @@ export const TableStyleWrap = styled.div<TableStyleWrapBaseProps>`
     tr > td {
       border: 0;
       padding: 5px 8px;
-      border-bottom: 1px solid ${(props) => getThemeVariantValue(props, 'borderBottomColorTableRows')};
+      border-bottom: 1px solid
+        ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'borderBottomColorTableRows')};
     }
     tr {
-      background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTableTr')};
+      background-color: ${(props) =>
+        getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'backgroundColorTableTr')};
     }
     > caption {
       text-align: left;
@@ -65,19 +72,25 @@ export const TableStyleWrap = styled.div<TableStyleWrapBaseProps>`
     > tbody > tr {
       transition: all 0.3s;
       > td {
-        background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTableTbodyTrTd')};
+        background-color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'backgroundColorTableTbodyTrTd')};
         position: relative;
         z-index: 1;
       }
       &:hover,
       &:hover:nth-child(2n) {
         > td {
-          background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTableEvenRowsHover')};
+          background-color: ${(props) =>
+            getThemeVariantValue(
+              { ...props, defaultTheme: TableBaseDefaultTheme },
+              'backgroundColorTableEvenRowsHover',
+            )};
         }
       }
       &:nth-child(2n) {
         > td {
-          background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTableEvenRows')};
+          background-color: ${(props) =>
+            getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'backgroundColorTableEvenRows')};
         }
       }
     }
@@ -85,13 +98,15 @@ export const TableStyleWrap = styled.div<TableStyleWrapBaseProps>`
       > tr > th {
         font-weight: normal;
         padding: 8px;
-        background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTableHead')};
+        background-color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'backgroundColorTableHead')};
         position: relative;
         z-index: 1;
       }
       > tr,
       tr:nth-child(2n) {
-        background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorTableHead')};
+        background-color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'backgroundColorTableHead')};
         border: transparent;
       }
     }
@@ -103,7 +118,8 @@ export const TableStyleWrap = styled.div<TableStyleWrapBaseProps>`
         tr > th,
         tr > td,
         > caption {
-          border: 1px solid ${(props) => getThemeVariantValue(props, 'borderColorTable')};
+          border: 1px solid
+            ${(props) => getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'borderColorTable')};
         }
         > caption {
           border-bottom: 0;
@@ -111,10 +127,11 @@ export const TableStyleWrap = styled.div<TableStyleWrapBaseProps>`
       }
     `}
 `;
-TableStyleWrap.defaultProps = { defaultTheme: TableBaseDefaultTheme };
+// TableStyleWrap.defaultProps = { defaultTheme: TableBaseDefaultTheme };
 
+export const TableStyleDomIcon = styled(IconStyleBase)<TableStyleDomIconProps>``;
 export const TableStyleTheadWrap = styled.thead``;
-export const TableStyleTheadItem = styled.th``;
+export const TheadItem = styled.th``;
 
 // 单元格
 export const TableStyleCol = styled.td<TableStyleColProps>`
@@ -137,7 +154,9 @@ export const TableStyleCol = styled.td<TableStyleColProps>`
             transition: box-shadow 0.3s;
             content: '';
             pointer-events: none;
-            border-right: 1px solid ${(props) => getThemeVariantValue(props, 'borderRightColorFixedRows')};
+            border-right: 1px solid
+              ${(props) =>
+                getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'borderRightColorFixedRows')};
             /* border-right: 1px solid #f0f0f0; */
           }
           // 暂时没有看到left
@@ -160,7 +179,7 @@ export const TableStyleCol = styled.td<TableStyleColProps>`
           }
         `)}
 `;
-TableStyleCol.defaultProps = { defaultTheme: TableBaseDefaultTheme };
+// TableStyleCol.defaultProps = { defaultTheme: TableBaseDefaultTheme };
 
 export const TableStyleColContent = styled.span<TableStyleColContentProps>`
   ${(props) =>
@@ -173,18 +192,20 @@ export const TableStyleColContent = styled.span<TableStyleColContentProps>`
       display: block;
     `}
 `;
-TableStyleColContent.defaultProps = { defaultTheme: TableBaseDefaultTheme };
+// TableStyleColContent.defaultProps = { defaultTheme: TableBaseDefaultTheme };
 
 export const TableStyleFooter = styled.div<TableStyleFooterProps>`
-  background: ${(props) => getThemeVariantValue(props, 'backgroundColorTableFooter')};
+  background: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'backgroundColorTableFooter')};
   padding: 10px 8px;
   ${(props) =>
     props.params?.bordered &&
     css`
       & {
-        border: 1px solid ${(props) => getThemeVariantValue(props, 'borderColorTable')};
+        border: 1px solid
+          ${(props) => getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'borderColorTable')};
         border-top: 0;
       }
     `}
 `;
-TableStyleFooter.defaultProps = { defaultTheme: TableBaseDefaultTheme };
+// TableStyleFooter.defaultProps = { defaultTheme: TableBaseDefaultTheme };

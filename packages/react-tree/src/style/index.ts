@@ -1,41 +1,46 @@
 import styled, { css } from 'styled-components';
-import { getThemeVariantValue } from '@uiw/utils';
+import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
 import { TreeRenderTitleNode, TreeProps } from '../index';
+import { IconStyleBase } from '@uiw/react-icon';
 
-interface TreeNodeStyleCSSTransitionProps extends TreeRenderTitleNode {
-  defaultTheme?: Record<string, string | number>;
+export const TreeStyleTheme = {
+  borderRadiusTreeNodeDefault: '0 0 0 3px',
+  borderTreeNodeDefaultAfter: '1px solid #d9d9d9',
+  backgroundColorTreeNodeJudgeSelected: '#d5e8fc',
+  colorTreeNodeUlLidivSpanDefault: '#2ea3f4',
+  transformTreeNodeUlLidivSpanDefault: 'scale(0.79) rotate(0deg)',
+  fontSizeTreeNodeStyleCSSTransitionDefault: '14px',
+  transformTreeNodeUlLidivSpanIconDefault: 'scale(0.79) rotate(90deg) !important;',
+};
+type ThemeVar = ThemeVariantValueOptions<typeof TreeStyleTheme>;
+
+interface TreeNodeStyleCSSTransitionProps extends TreeRenderTitleNode, ThemeVar {
   isOpen: boolean;
   level: number;
 }
-interface TreeNodeUlLidivProps {
-  defaultTheme?: Record<string, string | number>;
-}
+interface TreeNodeUlLidivProps extends ThemeVar {}
 
-interface TreeNodeUlLidivSpanIconProps {
-  defaultTheme?: Record<string, string | number>;
+interface TreeNodeUlLidivSpanIconProps extends ThemeVar {
   isIcon?: string;
   isNoChild?: boolean;
   isIconAnimation?: boolean;
   isItemIsOpen?: boolean;
 }
-interface TreeNodeUlLidivSpanDivProps {
+interface TreeNodeUlLidivSpanDivProps extends ThemeVar {
   judgeSelected?: boolean;
   judgeisSelected?: boolean;
   isDisabled?: string | null;
 }
-interface TreeNodeStyleWrapProps extends TreeProps {
-  defaultTheme?: Record<string, string | number>;
-}
+interface TreeNodeStyleWrapProps extends TreeProps, ThemeVar {}
 
 export const TreeNodeStyleCSSTransition = styled.div<TreeNodeStyleCSSTransitionProps>`
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeTreeNodeStyleCSSTransitionDefault')};
+  font-size: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'fontSizeTreeNodeStyleCSSTransitionDefault')};
 `;
 
-TreeNodeStyleCSSTransition.defaultProps = {
-  defaultTheme: {
-    fontSizeTreeNodeStyleCSSTransitionDefault: '14px',
-  },
-};
+// TreeNodeStyleCSSTransition.defaultProps = {
+//   defaultTheme: TreeStyleTheme,
+// };
 
 export const TreeNodeStyleUl = styled.ul<TreeNodeStyleCSSTransitionProps>`
   padding: 0 !important;
@@ -83,20 +88,22 @@ export const TreeNodeStyleUlLidivSpan = styled.div<TreeNodeUlLidivProps>`
   display: inline-block;
   text-align: center;
   &:hover {
-    color: ${(props) => getThemeVariantValue(props, 'colorTreeNodeUlLidivSpanDefault')};
+    color: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'colorTreeNodeUlLidivSpanDefault')};
   }
-  .w-icon {
+  ${IconStyleBase} {
     transition: 0.3s all;
-    transform: ${(props) => getThemeVariantValue(props, 'transformTreeNodeUlLidivSpanDefault')};
+    transform: ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'transformTreeNodeUlLidivSpanDefault')};
+    &.open:not(.no-animation) {
+      transform: scale(0.79) rotate(90deg) !important;
+    }
   }
 `;
 
-TreeNodeStyleUlLidivSpan.defaultProps = {
-  defaultTheme: {
-    colorTreeNodeDefault: '#2ea3f4',
-    transformTreeNodeUlLidivSpanDefault: 'scale(0.79) rotate(0deg)',
-  },
-};
+// TreeNodeStyleUlLidivSpan.defaultProps = {
+//   defaultTheme: TreeStyleTheme,
+// };
 
 export const TreeNodeStyleUlLidivSpanIcon = styled.div<TreeNodeUlLidivSpanIconProps>`
   ${(props) =>
@@ -110,15 +117,14 @@ export const TreeNodeStyleUlLidivSpanIcon = styled.div<TreeNodeUlLidivSpanIconPr
     props.isItemIsOpen &&
     props.isIconAnimation &&
     css`
-      transform: ${(props) => getThemeVariantValue(props, 'transformTreeNodeUlLidivSpanIconDefault')};
+      transform: ${(props) =>
+        getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'transformTreeNodeUlLidivSpanIconDefault')};
     `}
 `;
 
-TreeNodeStyleUlLidivSpanIcon.defaultProps = {
-  defaultTheme: {
-    transformTreeNodeUlLidivSpanIconDefault: 'scale(0.79) rotate(90deg) !important;',
-  },
-};
+// TreeNodeStyleUlLidivSpanIcon.defaultProps = {
+//   defaultTheme: TreeStyleTheme,
+// };
 
 export const TreeNodeStyleUlLidivSpanDiv = styled.div<TreeNodeUlLidivSpanDivProps>`
   display: inline-block;
@@ -129,7 +135,8 @@ export const TreeNodeStyleUlLidivSpanDiv = styled.div<TreeNodeUlLidivSpanDivProp
     props.judgeSelected &&
     props.judgeisSelected &&
     css`
-      background-color: #d5e8fc;
+      background-color: ${(props) =>
+        getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'backgroundColorTreeNodeJudgeSelected')};
     `}
 
   ${(props) =>
@@ -150,7 +157,8 @@ export const TreeNodeStyleWrap = styled.div<TreeNodeStyleWrapProps>`
       &:before,
       &::after {
         content: ' ';
-        border-left: 1px solid #d9d9d9;
+        border-left: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'borderTreeNodeDefaultAfter')};
         left: -12px;
         position: absolute;
       }
@@ -166,18 +174,18 @@ export const TreeNodeStyleWrap = styled.div<TreeNodeStyleWrapProps>`
         content: ' ';
         width: 10px;
         height: 16px;
-        border-bottom: 1px solid #d9d9d9;
+        border-bottom: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'borderTreeNodeDefaultAfter')};
         top: -2px;
       }
       &:last-child::before {
-        border-radius: ${(props) => getThemeVariantValue(props, 'borderRadiusTreeNodeDefault')};
+        border-radius: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: TreeStyleTheme }, 'borderRadiusTreeNodeDefault')};
       }
     }
   }
 `;
 
-TreeNodeStyleWrap.defaultProps = {
-  defaultTheme: {
-    borderRadiusTreeNodeDefault: '0 0 0 3px',
-  },
-};
+// TreeNodeStyleWrap.defaultProps = {
+//   defaultTheme: TreeStyleTheme,
+// };

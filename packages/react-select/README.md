@@ -226,10 +226,6 @@ export default Demo
 
 这个组件是最简单的基础样式组件，可以直接引用样式，使用 `w-select` 纯样式即可达到效果，下拉框右边箭头效果通过样式更改，通过 [`b64`](http://b64.io/) 工具，转换成 `base64` 格式。
 
-```jsx
-import 'uiw/lib/esm/select/style/index.less';
-```
-
 ```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
 import React from 'react';
 import { Row, Col, Select } from 'uiw';

@@ -11,6 +11,7 @@ export * from './DatePickerDay';
 export * from './DatePickerMonth';
 export * from './DatePickerYear';
 export * from './DatePickerCaption';
+export * from './style/theme';
 
 const MONTH_LABEL = [
   '一月',

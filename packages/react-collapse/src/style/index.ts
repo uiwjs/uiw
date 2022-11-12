@@ -1,39 +1,52 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
+import { IconStyleBase } from '@uiw/react-icon';
 
-interface CollapseStyleWarpProps extends ThemeVariantValueOptions {
+export const CollapseStyleTheme = {
+  fontSizeDefault: '14px',
+  backgroundColorBase: '#fff',
+  borderColorCollapseBase: '#d9d9d9',
+  colorCollapsePanelBase: 'rgba(0, 0, 0, 0.65)',
+
+  colorCollapseStyleHeaderBase: 'rgba(0, 0, 0, 0.85)',
+  backgroundColorCollapseStyleHeaderBase: '#fafafa',
+  colorCollapseStyleHeaderDisabled: 'rgba(0, 0, 0, 0.25)',
+  backgroundColorCollapseStyleHeaderDisabled: '#f7f7f7',
+};
+const propsTheme = {
+  defaultTheme: { ...CollapseStyleTheme },
+};
+type ThemeVar = ThemeVariantValueOptions<typeof CollapseStyleTheme>;
+type HTMLDivElements = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+
+interface CollapseStyleWarpProps extends ThemeVar, HTMLDivElements {
   bordered?: boolean;
-  defaultTheme?: Record<string, string | number>;
 }
 
-interface CollapseStyleItemWarpProps extends ThemeVariantValueOptions {
+interface CollapseStyleItemWarpProps extends ThemeVar, HTMLDivElements {
   isActive?: boolean;
-  defaultTheme?: Record<string, string | number>;
 }
 
-interface CollapseStyleItemPanelProps extends ThemeVariantValueOptions {
+interface CollapseStyleItemPanelProps extends ThemeVar, HTMLDivElements {
   in?: boolean;
   prefixCls?: string;
   bordered?: boolean;
-  defaultTheme?: Record<string, string | number>;
 }
 
-interface CollapseStyleHeaderProps extends ThemeVariantValueOptions {
+interface CollapseStyleHeaderProps extends ThemeVar, HTMLDivElements {
   isActive?: boolean;
   disabled?: boolean;
-  defaultTheme?: Record<string, string | number>;
 }
 
-interface CollapseStyleHeaderTitleProps extends ThemeVariantValueOptions {
-  defaultTheme?: Record<string, string | number>;
-}
+interface CollapseStyleHeaderTitleProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement> {}
 
-const CollapseStyleWarp = styled.div<CollapseStyleWarpProps>`
+export const CollapseStyleWarp = styled.div<CollapseStyleWarpProps>`
   border-radius: 4px;
   line-height: 16px;
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorBase')};
-  border: 1px solid ${(props) => getThemeVariantValue(props, 'borderColorCollapseBase')};
+  font-size: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'fontSizeDefault')};
+  background-color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorBase')};
+  border: 1px solid ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorCollapseBase')};
   overflow: hidden;
 
   ${(props) =>
@@ -51,11 +64,11 @@ const CollapseStyleWarp = styled.div<CollapseStyleWarpProps>`
 export const CollapseStyleItem = styled.div<CollapseStyleItemWarpProps>`
   &:last-child {
     border-radius: 0 0 5px 5px;
-    border-bottom: 0 solid ${(props) => getThemeVariantValue(props, 'borderColorCollapseBase')};
+    border-bottom: 0 solid ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorCollapseBase')};
     ${(props) =>
       !props.isActive &&
       css`
-        border-top: 0 solid ${(props) => getThemeVariantValue(props, 'borderColorCollapseBase')};
+        border-top: 0 solid ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorCollapseBase')};
       `}
   }
 `;
@@ -63,14 +76,15 @@ export const CollapseStyleItem = styled.div<CollapseStyleItemWarpProps>`
 export const CollapseStyleHeader = styled.div<CollapseStyleHeaderProps>`
   border-radius: 0 0 5px 5px;
   padding: 8px 10px;
-  color: ${(props) => getThemeVariantValue(props, 'colorCollapseStyleHeaderBase')};
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorCollapseStyleHeaderBase')};
+  color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorCollapseStyleHeaderBase')};
+  background-color: ${(props) =>
+    getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorCollapseStyleHeaderBase')};
   cursor: pointer;
   position: relative;
   transition: all 0.3s;
   z-index: 1;
   display: flex;
-  & > .w-icon:first-child {
+  & > ${IconStyleBase}:first-child {
     margin-top: -2px;
     margin-right: 5px;
     transform: scale(0.85) rotate(-90deg);
@@ -87,7 +101,7 @@ export const CollapseStyleHeader = styled.div<CollapseStyleHeaderProps>`
   ${(props) =>
     props.isActive &&
     css`
-      & > .w-icon:first-child {
+      & > ${IconStyleBase}:first-child {
         transform: scale(0.85) rotate(0);
       }
     `}
@@ -96,14 +110,15 @@ export const CollapseStyleHeader = styled.div<CollapseStyleHeaderProps>`
     props.disabled &&
     css`
       cursor: not-allowed;
-      color: ${(props) => getThemeVariantValue(props, 'colorCollapseStyleHeaderDisabled')};
-      background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorCollapseStyleHeaderDisabled')};
+      color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorCollapseStyleHeaderDisabled')};
+      background-color: ${(props) =>
+        getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorCollapseStyleHeaderDisabled')};
     `}
 `;
 
 export const CollapseStyleItemPanel = styled.div<CollapseStyleItemPanelProps>`
   overflow: hidden;
-  color: ${(props) => getThemeVariantValue(props, 'colorCollapsePanelBase')};
+  color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorCollapsePanelBase')};
   padding: 0 10px;
   &:before,
   &:after {
@@ -114,18 +129,18 @@ export const CollapseStyleItemPanel = styled.div<CollapseStyleItemPanelProps>`
     border: 0;
   }
   &:before {
-    border-top: 1px solid ${(props) => getThemeVariantValue(props, 'borderColorCollapseBase')};
+    border-top: 1px solid ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorCollapseBase')};
     margin: 0 -10px;
     z-index: 1;
     position: relative;
 
     &:last-child {
-      border-top: 0 solid ${(props) => getThemeVariantValue(props, 'borderColorCollapseBase')};
+      border-top: 0 solid ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorCollapseBase')};
     }
   }
 
   &:after {
-    border-bottom: 1px solid ${(props) => getThemeVariantValue(props, 'borderColorCollapseBase')};
+    border-bottom: 1px solid ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorCollapseBase')};
     margin: 0 -10px;
     z-index: 1;
     position: relative;
@@ -150,35 +165,5 @@ export const CollapseStyleHeaderTitle = styled.span<CollapseStyleHeaderTitleProp
 `;
 
 export const CollapseStyleHeaderExtra = styled.div``;
-
-CollapseStyleWarp.defaultProps = {
-  defaultTheme: {
-    fontSizeDefault: '14px',
-    backgroundColorBase: '#fff',
-    borderColorCollapseBase: '#d9d9d9',
-  },
-};
-
-CollapseStyleItem.defaultProps = {
-  defaultTheme: {
-    borderColorCollapseBase: '#d9d9d9',
-  },
-};
-
-CollapseStyleItemPanel.defaultProps = {
-  defaultTheme: {
-    colorCollapsePanelBase: 'rgba(0, 0, 0, 0.65)',
-    borderColorCollapseBase: '#d9d9d9',
-  },
-};
-
-CollapseStyleHeader.defaultProps = {
-  defaultTheme: {
-    colorCollapseStyleHeaderBase: 'rgba(0, 0, 0, 0.85)',
-    backgroundColorCollapseStyleHeaderBase: '#fafafa',
-    colorCollapseStyleHeaderDisabled: 'rgba(0, 0, 0, 0.25)',
-    backgroundColorCollapseStyleHeaderDisabled: '#f7f7f7',
-  },
-};
 
 export default CollapseStyleWarp;

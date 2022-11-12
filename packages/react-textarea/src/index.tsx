@@ -1,6 +1,5 @@
 import React from 'react';
 import { IProps, HTMLTextProps } from '@uiw/utils';
-// import './style/index.less';
 import { TextareaStyleWarp } from './style/index';
 export * from './style';
 export interface TextareaProps extends IProps, HTMLTextProps {}

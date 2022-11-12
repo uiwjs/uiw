@@ -3,7 +3,6 @@ import { IProps, HTMLDivProps } from '@uiw/utils';
 import { Check } from '@uiw/icons/lib/Check';
 import { Close } from '@uiw/icons/lib/Close';
 
-// import './style/index.less';
 import {
   StepsStyleItem,
   StepsStyleItemTail,

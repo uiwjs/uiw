@@ -1,12 +1,39 @@
 import styled, { css } from 'styled-components';
-import { ThemeVariantValueOptions } from '@uiw/utils';
-import { Props, FileInputListProps } from '../';
+import { ThemeVariantValueOptions, HTMLDivProps, getThemeVariantValue } from '@uiw/utils';
+import { FileInputListProps } from '../';
 import Input, { InputProps } from '@uiw/react-input';
 
-export interface FileInputStyleWarpProps extends Props, ThemeVariantValueOptions {}
+export const FileInputTheme = {
+  boxShadowFileInputStyleWarpAfterBase: 'inset 0 0 0 1px rgb(16 22 26 / 8%);',
+  backgroundImageFileInputStyleWarpAfterBase: ' linear-gradient(180deg, hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0))',
+  backgroundColorFileInputStyleWarpAfterBase: '#f5f8fa',
+  colorFileInputStyleWarpAfterBase: '#182026',
+
+  backgroundColorFileInputStyleWarpHoverAfterBase: '#ebf1f5',
+  boxShadowFileInputStyleWarpHoverAfterBase: 'inset 0 0 0 1px rgb(16 22 26 / 20%), inset 0 -1px 0 rgb(16 22 26 / 10%)',
+
+  colorFileInputStyleWarpBeforeBase: '#757575',
+
+  backgroundFileInputStyleCardActionsWarpBase: 'rgba(0, 0, 0, 0.6)',
+
+  backgroundColorFileInputStyleCardBoxWarpBase: '#fafafa',
+  borderColorFileInputStyleCardBoxWarpBase: '#d9d9d9',
+  backgroundFileInputStyleListActionsWarpBase: ' rgba(0, 0, 0, 0.6)',
+
+  borderColorFileInputStyleListUploadTypeWarpBase: '#d9d9d9',
+  backgroundFileInputStyleListUploadTypeWarpHover: '#f5f5f5',
+};
+
+const propsTheme = {
+  defaultTheme: FileInputTheme,
+};
+
+type ThemeVar = ThemeVariantValueOptions<typeof FileInputTheme>;
+
+export interface FileInputStyleWarpProps extends Omit<InputProps, 'defaultTheme'>, ThemeVar {}
 
 // Input
-export const FileInputStyleWarp = styled(Input)<InputProps>`
+export const FileInputStyleWarp = styled(Input)<FileInputStyleWarpProps>`
   input {
     &::-webkit-file-upload-button {
       background: transparent;
@@ -17,14 +44,19 @@ export const FileInputStyleWarp = styled(Input)<InputProps>`
     }
     &:hover:after {
       background-clip: padding-box;
-      background-color: #ebf1f5;
-      box-shadow: inset 0 0 0 1px rgb(16 22 26 / 20%), inset 0 -1px 0 rgb(16 22 26 / 10%);
+      background-color: ${(props) =>
+        getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorFileInputStyleWarpHoverAfterBase')};
+      box-shadow: ${(props) =>
+        getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowFileInputStyleWarpHoverAfterBase')};
     }
     &:after {
-      box-shadow: inset 0 0 0 1px rgb(16 22 26 / 8%);
-      background-color: #f5f8fa;
-      background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0));
-      color: #182026;
+      box-shadow: ${(props) =>
+        getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowFileInputStyleWarpAfterBase')};
+      background-color: ${(props) =>
+        getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorFileInputStyleWarpAfterBase')};
+      background-image: ${(props) =>
+        getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundImageFileInputStyleWarpAfterBase')};
+      color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorFileInputStyleWarpAfterBase')};
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -41,7 +73,7 @@ export const FileInputStyleWarp = styled(Input)<InputProps>`
     }
     &::before,
     &::after {
-      color: #757575;
+      color: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'colorFileInputStyleWarpBeforeBase')};
       position: absolute;
       top: 0;
       bottom: 0;
@@ -50,7 +82,7 @@ export const FileInputStyleWarp = styled(Input)<InputProps>`
 `;
 
 //Card
-interface FileInputCardActionsProps {
+interface FileInputCardActionsProps extends ThemeVar, HTMLDivProps {
   isAction: boolean;
 }
 export const FileInputStyleCardActionsWarp = styled.div<FileInputCardActionsProps>`
@@ -67,17 +99,24 @@ export const FileInputStyleCardActionsWarp = styled.div<FileInputCardActionsProp
       justify-content: center;
       transition: all 0.5s;
       opacity: 0;
-      background: rgba(0, 0, 0, 0.6);
+      background: ${(props) =>
+        getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundFileInputStyleCardActionsWarpBase')};
       border-radius: 2px;
     `}
 `;
-export const FileInputStyleCardBoxWarp = styled.div<{ btn?: boolean }>`
+
+export interface FileInputStyleCardBoxWarpProps extends ThemeVar, HTMLDivProps {
+  btn?: boolean;
+}
+export const FileInputStyleCardBoxWarp = styled.div<FileInputStyleCardBoxWarpProps>`
   margin-right: 8px;
   margin-bottom: 8px;
   text-align: center;
   vertical-align: top;
-  background-color: #fafafa;
-  border: 1px dashed #d9d9d9;
+  background-color: ${(props) =>
+    getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorFileInputStyleCardBoxWarpBase')};
+  border: 1px dashed
+    ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorFileInputStyleCardBoxWarpBase')};
   overflow: hidden;
   border-radius: 2px;
   cursor: pointer;
@@ -94,6 +133,7 @@ export const FileInputStyleCardBoxWarp = styled.div<{ btn?: boolean }>`
     opacity: 1;
   }
 `;
+
 export const FileInputStyleCardBoxInfoWarp = styled.div`
   box-sizing: border-box;
   width: 100%;
@@ -162,8 +202,11 @@ export const FileInputStyleCardWarp = styled.div<{
   }}
 `;
 
+export interface FileInputStyleListActionsWarpProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+    ThemeVar {}
 // list
-export const FileInputStyleListActionsWarp = styled.div`
+export const FileInputStyleListActionsWarp = styled.div<FileInputStyleListActionsWarpProps>`
   position: absolute;
   left: 0;
   top: 0;
@@ -174,9 +217,11 @@ export const FileInputStyleListActionsWarp = styled.div`
   justify-content: center;
   transition: all 0.5s;
   opacity: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: ${(props) =>
+    getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundFileInputStyleListActionsWarpBase')};
   border-radius: 2px;
 `;
+
 export const FileInputStyleListActionsSearchWarp = styled.span`
   width: 24px;
   height: 20px;
@@ -192,13 +237,17 @@ export const FileInputStyleListUploadInfoTypeWarp = styled.div`
 `;
 export const FileInputStyleListUploadTextTypeWarp = styled.div``;
 export const FileInputStyleListUploadIconTypeWarp = styled.div``;
-export const FileInputStyleListUploadTypeWarp = styled.div<{
+
+export interface FileInputStyleListUploadTypeWarpProps extends ThemeVar {
   uploadType: FileInputListProps['uploadType'];
-}>`
+}
+
+export const FileInputStyleListUploadTypeWarp = styled.div<FileInputStyleListUploadTypeWarpProps>`
   ${(props) => {
     if (props.uploadType === 'picture') {
       return css`
-        border: 1px solid #d9d9d9;
+        border: 1px solid
+          ${() => getThemeVariantValue({ ...props, ...propsTheme }, 'borderColorFileInputStyleListUploadTypeWarpBase')};
         display: flex;
         align-items: center;
         padding: 5px;
@@ -223,12 +272,40 @@ export const FileInputStyleListUploadTypeWarp = styled.div<{
       `;
     }
   }}
+  ${(props) => {
+    if (props.uploadType === 'text') {
+      return css`
+        border: 1px solid transparent;
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        transition: all 0.5s;
+        :hover {
+          background: ${() =>
+            getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundFileInputStyleListUploadTypeWarpHover')};
+        }
+        :first-child {
+          margin-top: 8px;
+        }
+        ${FileInputStyleListUploadTextTypeWarp} {
+          flex: 1;
+        }
+        ${FileInputStyleListUploadIconTypeWarp} {
+          padding: 0 5px;
+          cursor: pointer;
+        }
+      `;
+    }
+    return css``;
+  }}
 `;
-export const FileInputStyleListWarp = styled.div<{
+
+export interface FileInputStyleListWarpProps extends HTMLDivProps {
   size: FileInputListProps['size'];
   shape: FileInputListProps['shape'];
   uploadType: FileInputListProps['uploadType'];
-}>`
+}
+export const FileInputStyleListWarp = styled.div<FileInputStyleListWarpProps>`
   padding-bottom: 8px;
   width: 100%;
   ${(props) => {
@@ -280,30 +357,5 @@ export const FileInputStyleListWarp = styled.div<{
     if (props.shape === 'circle') {
       return css``;
     }
-  }}
-  ${(props) => {
-    if (props.uploadType === 'text') {
-      return css`
-        border: 1px solid transparent;
-        display: flex;
-        align-items: center;
-        padding: 5px;
-        transition: all 0.5s;
-        :hover {
-          background: #f5f5f5;
-        }
-        :first-child {
-          margin-top: 8px;
-        }
-        ${FileInputStyleListUploadTextTypeWarp} {
-          flex: 1;
-        }
-        ${FileInputStyleListUploadIconTypeWarp} {
-          padding: 0 5px;
-          cursor: pointer;
-        }
-      `;
-    }
-    return css``;
   }}
 `;

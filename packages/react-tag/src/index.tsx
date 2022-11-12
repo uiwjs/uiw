@@ -1,6 +1,5 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { IProps, HTMLSpanProps } from '@uiw/utils';
-// import './style/index.less';
 import { TagStyleWarp, TagStyleSvg } from './style';
 
 export interface TagProps extends IProps, Omit<HTMLSpanProps, 'title'> {

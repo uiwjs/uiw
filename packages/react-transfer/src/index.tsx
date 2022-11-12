@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { IProps } from '@uiw/utils';
-import Card from '@uiw/react-card';
-import Icon from '@uiw/react-icon';
+import { DownSquareO } from '@uiw/icons/lib/DownSquareO';
 import Input from '@uiw/react-input';
 import TreeChecked from '@uiw/react-tree-checked';
 import { TreeData } from '@uiw/react-tree';
 import Checkbox from '@uiw/react-checkbox';
-import TranSferWarp from './style';
+import TranSferWarp, { TransferArrow, TransferArrowContent, TransferCard, TransferChekedContentWrap } from './style';
+export * from './style';
 
 export interface TransferOptionType {
   key: string | number;
@@ -223,17 +223,18 @@ function Transfer(props: TransferProps) {
   };
 
   const Arrow = (props: { click: () => void; style: React.CSSProperties }) => (
-    <Icon
+    <TransferArrow
       onClick={() => props.click()}
-      type="down-square-o"
       className={`${prefixCls}-arrow`}
-      style={{ fontSize: 20, stroke: '#e9e9e9', fill: '#333', ...props.style }}
-    />
+      style={{ fontSize: 20, stroke: '#e9e9e9', ...props.style }}
+    >
+      <DownSquareO />
+    </TransferArrow>
   );
 
   return (
     <TranSferWarp className={cls} style={{ width: 400, ...style }}>
-      <Card
+      <TransferCard
         bodyStyle={{ padding: '5px 9px' }}
         title={
           <div>
@@ -258,7 +259,7 @@ function Transfer(props: TransferProps) {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => searchValueLeftChange(e.target.value)}
           />
         )}
-        <div className={`${prefixCls}-cheked-content`}>
+        <TransferChekedContentWrap className={`${prefixCls}-cheked-content`}>
           <TreeChecked
             defaultExpandAll={true}
             placeholder={placeholder || '搜索选项'}
@@ -266,9 +267,9 @@ function Transfer(props: TransferProps) {
             selectedKeys={leftSelectedKeys}
             onSelected={leftTreeOnSelected}
           />
-        </div>
-      </Card>
-      <div className={`${prefixCls}-arrow-content`}>
+        </TransferChekedContentWrap>
+      </TransferCard>
+      <TransferArrowContent className={`${prefixCls}-arrow-content`}>
         <Arrow
           click={() => transferClick('left')}
           style={{ transform: 'rotate(-90deg)', background: leftSelectedKeys.length > 0 ? '#393E48' : 'none' }}
@@ -277,8 +278,8 @@ function Transfer(props: TransferProps) {
           click={() => transferClick('right')}
           style={{ transform: 'rotate(90deg)', background: rightSelectedKeys.length > 0 ? '#393E48' : 'none' }}
         />
-      </div>
-      <Card
+      </TransferArrowContent>
+      <TransferCard
         bodyStyle={{ padding: '5px 9px' }}
         className={`${prefixCls}-card`}
         title={
@@ -306,7 +307,7 @@ function Transfer(props: TransferProps) {
         <div className={`${prefixCls}-cheked-content`} style={bodyStyle}>
           <TreeChecked data={rightOpions} selectedKeys={rightSelectedKeys} onSelected={rightTreeOnSelected} />
         </div>
-      </Card>
+      </TransferCard>
     </TranSferWarp>
   );
 }

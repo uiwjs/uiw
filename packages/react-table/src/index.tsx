@@ -7,6 +7,7 @@ import { TableStyleWrap, TableStyleFooter } from './style';
 import { getLevelItems, getAllColumnsKeys } from './util';
 import ExpandableComponent from './Expandable';
 import TableTr from './TableTr';
+export * from './style';
 
 // 展开配置
 export interface ExpandableType<T> {

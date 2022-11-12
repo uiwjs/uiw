@@ -2,11 +2,11 @@ import styled, { css } from 'styled-components';
 import Input, { InputProps, InputStyleBase } from '@uiw/react-input';
 
 // React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-export const DivWrap = styled.div`
+export const PinCodeStyleDivWrap = styled.div`
   display: flex;
 `;
 
-export const InputWrap = styled(Input)<InputProps>`
+export const PinCodeStyleInputWrap = styled(Input)<InputProps>`
   width: 30px;
   & + & {
     margin-left: 8px;

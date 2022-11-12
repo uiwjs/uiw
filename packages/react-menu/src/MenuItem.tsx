@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { IconProps } from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
-// import './style/item.less';
 import { MenuStyleItemBase, MenuItemStyleTextBase, MenuStyleItemIcon } from './style';
 
 const disabledProps = {
@@ -23,7 +22,7 @@ export interface MenuItemProps<Tag extends TagType> extends IProps, React.HTMLPr
   isSubMenuItem?: boolean;
   disabled?: boolean;
   active?: boolean;
-  icon?: IconProps['type'];
+  icon?: React.ReactNode;
   children?: React.ReactNode;
   theme?: 'light' | 'dark';
 }
@@ -64,8 +63,7 @@ function Internal<Tag extends TagType = 'a'>(props: MenuItemProps<Tag>, ref: Rea
       },
     } as any,
     <Fragment>
-      <MenuStyleItemIcon className={`${prefixCls}-icon`} type={icon} />
-      <div></div>
+      {icon && <MenuStyleItemIcon className={`${prefixCls}-icon`}>{icon}</MenuStyleItemIcon>}
       <MenuItemStyleTextBase
         params={{ multiline, isText: !!prefixCls }}
         className={[prefixCls && `${prefixCls}-text`, !multiline && `${prefixCls}-multiline`]

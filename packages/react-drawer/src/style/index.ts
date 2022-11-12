@@ -1,17 +1,31 @@
 import styled, { css } from 'styled-components';
-import { ThemeVariantValueOptions, getThemeVariantValue } from '@uiw/utils';
+import { ThemeVariantValueOptions, getThemeVariantValue, HTMLDivProps } from '@uiw/utils';
 import Overlay, { ContentWrap } from '@uiw/react-overlay';
 import { DrawerProps } from 'src';
+import { IconStyleBase } from '@uiw/react-icon';
 
-interface DrawerWrapperWrapProps extends ThemeVariantValueOptions {}
-interface DrawerHeaderWrapProps extends ThemeVariantValueOptions {}
-interface DrawerHeaderWrapProps extends ThemeVariantValueOptions {}
-interface DrawerWrapProps extends Pick<DrawerProps, 'placement'> {}
-export const DrawerWrapperWrap = styled.div<DrawerWrapperWrapProps>`
+export const DrawerStyleTheme = {
+  boxShadowColorInDrawerWrapper: 'rgba(16, 22, 26, 0.1)',
+  boxShadowColorHvDrawerWrapper: 'rgba(16, 22, 26, 0.2)',
+  backgroundColorDrawerWrapper: '#fff',
+  backgroundColorDrawerHeader: '#fff',
+  boxShadowColorInDrawerHeader: 'rgba(16, 22, 26, 0.15)',
+  colorHvDrawerHeader: '#393e48',
+  boxShadowColorInDrawerFooter: 'rgba(16, 22, 26, 0.15)',
+};
+const propsTheme = {
+  defaultTheme: { ...DrawerStyleTheme },
+};
+export interface DrawerWrapperWrapProps extends ThemeVariantValueOptions<typeof DrawerStyleTheme>, HTMLDivProps {}
+export interface DrawerHeaderWrapProps extends ThemeVariantValueOptions<typeof DrawerStyleTheme>, HTMLDivProps {}
+export interface DrawerHeaderWrapProps extends ThemeVariantValueOptions<typeof DrawerStyleTheme>, HTMLDivProps {}
+export interface DrawerWrapProps extends Pick<DrawerProps, 'placement'> {}
+
+export const DrawerStyleWrapperWrap = styled.div<DrawerWrapperWrapProps>`
   ${(props) => css`
-    box-shadow: 0 0 0 1px ${getThemeVariantValue(props, 'boxShadowColorInDrawerWrapper')},
-      0 0 46px 6px ${getThemeVariantValue(props, 'boxShadowColorHvDrawerWrapper')};
-    background-color: ${getThemeVariantValue(props, 'backgroundColorDrawerWrapper')};
+    box-shadow: 0 0 0 1px ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorInDrawerWrapper')},
+      0 0 46px 6px ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorHvDrawerWrapper')};
+    background-color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorDrawerWrapper')};
     position: fixed;
     margin: 0 !important;
     display: flex;
@@ -19,20 +33,20 @@ export const DrawerWrapperWrap = styled.div<DrawerWrapperWrapProps>`
   `}
 `;
 
-export const DrawerHeaderWrap = styled.div<DrawerHeaderWrapProps>`
+export const DrawerStyleHeaderWrap = styled.div<DrawerHeaderWrapProps>`
   ${(props) => css`
     display: flex;
     align-items: center;
     min-height: 40px;
     padding-left: 13px;
     padding-right: 5px;
-    background-color: ${getThemeVariantValue(props, 'backgroundColorDrawerHeader')};
+    background-color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'backgroundColorDrawerHeader')};
     border-radius: 5px 5px 0 0;
-    box-shadow: 0 1px 0 ${getThemeVariantValue(props, 'boxShadowColorInDrawerHeader')};
+    box-shadow: 0 1px 0 ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorInDrawerHeader')};
     font-size: 16px;
-    > .w-icon {
+    > ${IconStyleBase} {
       margin-right: 10px;
-      color: ${getThemeVariantValue(props, 'colorHvDrawerHeader')};
+      color: ${getThemeVariantValue({ ...props, ...propsTheme }, 'colorHvDrawerHeader')};
     }
     h4 {
       margin: 0;
@@ -42,7 +56,7 @@ export const DrawerHeaderWrap = styled.div<DrawerHeaderWrapProps>`
   `}
 `;
 
-export const DrawerBodyWrap = styled.div`
+export const DrawerStyleBodyWrap = styled.div`
   ${(props) => css`
     flex: 1 1 auto;
     overflow: auto;
@@ -50,9 +64,9 @@ export const DrawerBodyWrap = styled.div`
   `}
 `;
 
-export const DrawerFooterWrap = styled.div<DrawerHeaderWrapProps>`
+export const DrawerStyleFooterWrap = styled.div<DrawerHeaderWrapProps>`
   ${(props) => css`
-    box-shadow: 0 -1px 0 ${getThemeVariantValue(props, 'boxShadowColorInDrawerFooter')};
+    box-shadow: 0 -1px 0 ${getThemeVariantValue({ ...props, ...propsTheme }, 'boxShadowColorInDrawerFooter')};
     min-height: 40px;
     padding-left: 13px;
     padding-right: 5px;
@@ -61,17 +75,17 @@ export const DrawerFooterWrap = styled.div<DrawerHeaderWrapProps>`
   `}
 `;
 
-export const DrawerBodyClsWrap = styled.div`
+export const DrawerStyleBodyClsWrap = styled.div`
   ${(props) => css`
     padding: 15px;
   `}
 `;
 
-export const DrawerWrap = styled(Overlay)<DrawerWrapProps>`
+export const DrawerStyleWrap = styled(Overlay)<DrawerWrapProps>`
   ${(props) => css`
     ${(props.placement === 'top' || props.placement === 'bottom') &&
     css`
-      ${DrawerWrapperWrap} {
+      ${DrawerStyleWrapperWrap} {
         left: 0;
         right: 0;
       }
@@ -79,21 +93,21 @@ export const DrawerWrap = styled(Overlay)<DrawerWrapProps>`
 
     ${props.placement === 'top' &&
     css`
-      ${DrawerWrapperWrap} {
+      ${DrawerStyleWrapperWrap} {
         top: 0;
       }
     `}
 
   ${props.placement === 'bottom' &&
     css`
-      ${DrawerWrapperWrap} {
+      ${DrawerStyleWrapperWrap} {
         bottom: 0;
       }
     `}
 
   ${(props.placement === 'right' || props.placement === 'left') &&
     css`
-      ${DrawerWrapperWrap} {
+      ${DrawerStyleWrapperWrap} {
         bottom: 0;
         top: 0;
       }
@@ -101,14 +115,14 @@ export const DrawerWrap = styled(Overlay)<DrawerWrapProps>`
 
   ${props.placement === 'right' &&
     css`
-      ${DrawerWrapperWrap} {
+      ${DrawerStyleWrapperWrap} {
         right: 0;
       }
     `}
 
   ${props.placement === 'left' &&
     css`
-      ${DrawerWrapperWrap} {
+      ${DrawerStyleWrapperWrap} {
         left: 0;
       }
     `}
@@ -192,23 +206,3 @@ export const DrawerWrap = styled(Overlay)<DrawerWrapProps>`
     `}
   `}
 `;
-
-DrawerWrapperWrap.defaultProps = {
-  defaultTheme: {
-    boxShadowColorInDrawerWrapper: 'rgba(16, 22, 26, 0.1)',
-    boxShadowColorHvDrawerWrapper: 'rgba(16, 22, 26, 0.2)',
-    backgroundColorDrawerWrapper: '#fff',
-  },
-};
-DrawerHeaderWrap.defaultProps = {
-  defaultTheme: {
-    backgroundColorDrawerHeader: '#fff',
-    boxShadowColorInDrawerHeader: 'rgba(16, 22, 26, 0.15)',
-    colorHvDrawerHeader: '#393e48',
-  },
-};
-DrawerFooterWrap.defaultProps = {
-  defaultTheme: {
-    boxShadowColorInDrawerFooter: 'rgba(16, 22, 26, 0.15)',
-  },
-};

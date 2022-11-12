@@ -4,6 +4,7 @@ import Pane from './Pane';
 import Popover from '@uiw/react-popover';
 import * as Styled from './style';
 export * from './Pane';
+export * from './style';
 
 Tabs.Pane = Pane;
 

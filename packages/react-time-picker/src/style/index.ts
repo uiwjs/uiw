@@ -7,36 +7,51 @@ import {
   HTMLLiProps,
   getThemeVariantValue,
 } from '@uiw/utils';
+import Button, { ButtonProps } from '@uiw/react-button';
 
-export interface DateTimeInputProps extends HTMLInputProps, ThemeVariantValueOptions {}
+export const DateTimePickerStyleTheme = {
+  borderLeftColorDateTimeStylePanelUl: '#e9e9e9',
+
+  colorDateTimeLi: '#393e48',
+  colorDateTimeLiDisabled: '#d4d4d4',
+  colorDateTimeLiSelected: '#000',
+  backgroundColorDateTimeLiSelect: '#f1f1f1',
+  backgroundColorDateTimeLiHover: '#f6f8fa',
+  backgroundColorDateTimeLiActive: '#e1e5e8',
+
+  colorDateTimeStyleCloseButton: '#a5a5a5',
+  colorDateTimeStyleCloseButtonHover: '#393e48',
+};
+type ThemeVar = ThemeVariantValueOptions<typeof DateTimePickerStyleTheme>;
+
+export interface DateTimeInputProps extends HTMLInputProps, ThemeVar {}
 export const DateTimeInput = styled.input``;
-export interface DateTimeStyleCloseButtonProps extends HTMLButtonProps, ThemeVariantValueOptions {
+export interface DateTimeStyleCloseButtonProps extends ButtonProps, ThemeVar {
   disabled?: boolean;
 }
 /** dateTime 清空按钮 **/
-export const DateTimeStyleCloseButton = styled.button<DateTimeStyleCloseButtonProps>`
+export const DateTimeStyleCloseButton = styled(Button)<DateTimeStyleCloseButtonProps>`
   ${DateTimeInput}.disabled & {
     display: none !important;
   }
   ${DateTimeInput} & {
     display: none;
     min-height: initial;
-    color: ${(props) => getThemeVariantValue(props, 'colorDateTimeStyleCloseButton')};
+    color: ${(props) =>
+      getThemeVariantValue(
+        { ...props, defaultTheme: DateTimePickerStyleTheme },
+        'colorDateTimeStyleCloseButton',
+      )} !important;
     &:hover {
-      color: ${(props) => getThemeVariantValue(props, 'colorDateTimeStyleCloseButtonHover')};
+      color: ${(props) =>
+        getThemeVariantValue(
+          { ...props, defaultTheme: DateTimePickerStyleTheme },
+          'colorDateTimeStyleCloseButtonHover',
+        )} !important;
       background-color: transparent !important;
     }
   }
 `;
-
-const DateTimeStyleCloseButtonDefaultTheme = {
-  colorDateTimeStyleCloseButton: '#a5a5a5',
-  colorDateTimeStyleCloseButtonHover: '#393e48',
-};
-
-DateTimeStyleCloseButton.defaultProps = {
-  defaultTheme: DateTimeStyleCloseButtonDefaultTheme,
-};
 
 export const DateTimeStylePanelUl = styled.ul`
   list-style: none;
@@ -60,31 +75,45 @@ export const DateTimeStylePanelLi = styled.li<DateTimeStylePanelLiProps>`
     height: 28px;
     line-height: 28px;
     transition: all 0.3s;
-    color: ${(props) => getThemeVariantValue(props, 'colorDateTimeLi')};
+    color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: DateTimePickerStyleTheme }, 'colorDateTimeLi')};
     ${(props) =>
       !props.disabled &&
       css`
         &:hover {
-          background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorDateTimeLiHover')};
+          background-color: ${(props) =>
+            getThemeVariantValue(
+              { ...props, defaultTheme: DateTimePickerStyleTheme },
+              'backgroundColorDateTimeLiHover',
+            )};
         }
         &:active {
-          background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorDateTimeLiActive')};
+          background-color: ${(props) =>
+            getThemeVariantValue(
+              { ...props, defaultTheme: DateTimePickerStyleTheme },
+              'backgroundColorDateTimeLiActive',
+            )};
         }
       `}
     ${(props) =>
       props.selected &&
       css`
         & {
-          background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorDateTimeLiSelect')};
+          background-color: ${(props) =>
+            getThemeVariantValue(
+              { ...props, defaultTheme: DateTimePickerStyleTheme },
+              'backgroundColorDateTimeLiSelect',
+            )};
           font-weight: bold;
-          color: ${(props) => getThemeVariantValue(props, 'colorDateTimeLiSelected')};
+          color: ${(props) =>
+            getThemeVariantValue({ ...props, defaultTheme: DateTimePickerStyleTheme }, 'colorDateTimeLiSelected')};
         }
       `}
     ${(props) =>
       props.disabled &&
       css`
         & {
-          color: ${(props) => getThemeVariantValue(props, 'colorDateTimeLiDisabled')};
+          color: ${(props) =>
+            getThemeVariantValue({ ...props, defaultTheme: DateTimePickerStyleTheme }, 'colorDateTimeLiDisabled')};
           cursor: not-allowed;
           &.hide {
             display: none;
@@ -94,18 +123,9 @@ export const DateTimeStylePanelLi = styled.li<DateTimeStylePanelLiProps>`
   }
 `;
 
-const DateTimeStylePanelLiDefaultTheme = {
-  colorDateTimeLi: '#393e48',
-  colorDateTimeLiDisabled: '#d4d4d4',
-  colorDateTimeLiSelected: '#000',
-  backgroundColorDateTimeLiSelect: '#f1f1f1',
-  backgroundColorDateTimeLiHover: '#f6f8fa',
-  backgroundColorDateTimeLiActive: '#e1e5e8',
-};
-
-DateTimeStylePanelLi.defaultProps = {
-  defaultTheme: DateTimeStylePanelLiDefaultTheme,
-};
+// DateTimeStylePanelLi.defaultProps = {
+//   defaultTheme: DateTimePickerStyleTheme,
+// };
 
 export interface DateTimeStylePanelProps extends HTMLDivProps, ThemeVariantValueOptions {}
 
@@ -119,17 +139,19 @@ export const DateTimeStylePanel = styled.div<DateTimeStylePanelProps>`
   }
   & + & {
     ul {
-      border-left: 1px solid ${(props) => getThemeVariantValue(props, 'borderLeftColorDateTimeStylePanelUl')};
+      border-left: 1px solid
+        ${(props) =>
+          getThemeVariantValue(
+            { ...props, defaultTheme: DateTimePickerStyleTheme },
+            'borderLeftColorDateTimeStylePanelUl',
+          )};
     }
   }
 `;
-const DateTimeStylePanelDefaultTheme = {
-  borderLeftColorDateTimeStylePanelUl: '#e9e9e9',
-};
 
-DateTimeStylePanel.defaultProps = {
-  defaultTheme: DateTimeStylePanelDefaultTheme,
-};
+// DateTimeStylePanel.defaultProps = {
+//   defaultTheme: DateTimePickerStyleTheme,
+// };
 
 export interface DateTimeStyleBaseProps extends HTMLDivProps, ThemeVariantValueOptions {}
 export const DateTimeStyleBase = styled.div`

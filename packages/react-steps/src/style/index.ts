@@ -1,18 +1,7 @@
 import styled, { css } from 'styled-components';
 import { getThemeVariantValue, HTMLSpanProps, ThemeVariantValueOptions } from '@uiw/utils';
 
-export interface StepsBaseProps
-  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
-    ThemeVariantValueOptions {}
-export interface StepsBaseSpanProps
-  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanProps>, HTMLSpanProps>,
-    ThemeVariantValueOptions {}
-export interface StepsBaseIProps
-  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
-    ThemeVariantValueOptions {}
-export interface StepsStyleWarpProps extends StepsBaseProps {}
-
-export const StepsBaseDefaultTheme = {
+export const StepsStyleTheme = {
   // 行高默认
   lineHeightDefault: 1.5,
   colorStepsError: ' #f04134',
@@ -34,13 +23,25 @@ export const StepsBaseDefaultTheme = {
   colorStepsStyleItemMainTitle: '#999',
   colorStepsStyleItemMainProcess: ' rgba(0, 0, 0, 0.65)',
 };
+type ThemeVar = ThemeVariantValueOptions<typeof StepsStyleTheme>;
+
+export interface StepsBaseProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+    ThemeVar {}
+export interface StepsBaseSpanProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanProps>, HTMLSpanProps>,
+    ThemeVar {}
+export interface StepsBaseIProps
+  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
+    ThemeVar {}
+export interface StepsStyleWarpProps extends StepsBaseProps {}
 
 export const StepsStyleWarp = styled.div<StepsStyleWarpProps>`
   font-size: 0;
   width: 100%;
-  line-height: ${(props) => getThemeVariantValue(props, 'lineHeightDefault')};
+  line-height: ${(props) => getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'lineHeightDefault')};
 `;
-StepsStyleWarp.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+// StepsStyleWarp.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemProps extends StepsBaseProps {
   params?: {
@@ -79,11 +80,11 @@ export const StepsStyleItem = styled.div<StepsStyleItemProps>`
     props.params?.status === 'error' &&
     css`
       & i[class^='w-icon-'] {
-        color: ${(props) => getThemeVariantValue(props, 'colorStepsIError')};
+        color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'colorStepsIError')};
       }
     `}
 `;
-StepsStyleItem.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+// StepsStyleItem.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemTailProps extends StepsBaseProps {
   params?: {
@@ -129,7 +130,8 @@ export const StepsStyleItemTail = styled.div<StepsStyleItemTailProps>`
       css`
         & {
           padding-right: 50%;
-          background: ${(props) => getThemeVariantValue(props, 'backgroundStepsStyleItemTail')};
+          background: ${(props) =>
+            getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'backgroundStepsStyleItemTail')};
         }
       `}
       ${StepsStyleItem}:first-child && {
@@ -162,7 +164,7 @@ export const StepsStyleItemTail = styled.div<StepsStyleItemTailProps>`
       `}
     `}
 `;
-StepsStyleItemTail.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+// StepsStyleItemTail.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemTailIProps extends StepsBaseIProps {
   params?: {
@@ -178,7 +180,8 @@ export const StepsStyleItemTailI = styled.i<StepsStyleItemTailIProps>`
   width: 100%;
   height: 100%;
   position: relative;
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundStepsStyleItemTail')};
+  background-color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'backgroundStepsStyleItemTail')};
   &:after {
     position: absolute;
     content: ' ';
@@ -191,7 +194,8 @@ export const StepsStyleItemTailI = styled.i<StepsStyleItemTailIProps>`
     props.params?.nextError &&
     css`
       &:after {
-        background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorStepsError')};
+        background-color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'backgroundColorStepsError')};
         width: 100%;
         transition: all 0.6s;
       }
@@ -202,7 +206,8 @@ export const StepsStyleItemTailI = styled.i<StepsStyleItemTailIProps>`
     props.params.direction === 'vertical' &&
     css`
       &:after {
-        background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorStepsError')};
+        background-color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'backgroundColorStepsError')};
       }
     `}
   ${(props) => {
@@ -213,7 +218,8 @@ export const StepsStyleItemTailI = styled.i<StepsStyleItemTailIProps>`
           ${params.dot &&
           css`
             &:after {
-              background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorStepsError')};
+              background-color: ${(props) =>
+                getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'backgroundColorStepsError')};
               width: 100%;
             }
             ${params.direction === 'vertical' &&
@@ -229,7 +235,8 @@ export const StepsStyleItemTailI = styled.i<StepsStyleItemTailIProps>`
           ${!params.nextError &&
           css`
             &:after {
-              background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorStepsProcess')};
+              background-color: ${(props) =>
+                getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'backgroundColorStepsProcess')};
               width: 100%;
             }
           `}
@@ -238,7 +245,8 @@ export const StepsStyleItemTailI = styled.i<StepsStyleItemTailIProps>`
           params.dot &&
           css`
             &:after {
-              background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorStepsProcess')};
+              background-color: ${(props) =>
+                getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'backgroundColorStepsProcess')};
             }
           `}
         `;
@@ -247,7 +255,8 @@ export const StepsStyleItemTailI = styled.i<StepsStyleItemTailIProps>`
           ${params.dot &&
           css`
             &:after {
-              background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorStepsProcess')};
+              background-color: ${(props) =>
+                getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'backgroundColorStepsProcess')};
               width: 100%;
             }
           `}
@@ -261,7 +270,7 @@ export const StepsStyleItemTailI = styled.i<StepsStyleItemTailIProps>`
     }
   }}
 `;
-StepsStyleItemTailI.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+// StepsStyleItemTailI.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemHeadProps extends StepsBaseProps {
   params?: {
@@ -274,7 +283,7 @@ export const StepsStyleItemHead = styled.div<StepsStyleItemHeadProps>`
   display: inline-block;
   vertical-align: top;
   padding-left: 10px;
-  background: ${(props) => getThemeVariantValue(props, 'backgroundColorBase')};
+  background: ${(props) => getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'backgroundColorBase')};
   &:not(:first-child) {
     margin-left: -10px;
   }
@@ -293,7 +302,7 @@ export const StepsStyleItemHead = styled.div<StepsStyleItemHeadProps>`
       }
     `}
 `;
-StepsStyleItemHead.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+// StepsStyleItemHead.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemHeadInnerProps extends StepsBaseProps {
   params?: {
@@ -308,36 +317,44 @@ export const StepsStyleItemHeadInner = styled.div<StepsStyleItemHeadInnerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid ${(props) => getThemeVariantValue(props, 'borderColorStepsStyleItemHeadInner')};
-  color: ${(props) => getThemeVariantValue(props, 'colorStepsStyleItemHeadInner')};
-  background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorBase')};
+  border: 1px solid
+    ${(props) =>
+      getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'borderColorStepsStyleItemHeadInner')};
+  color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'colorStepsStyleItemHeadInner')};
+  background-color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'backgroundColorBase')};
   width: 26px;
   height: 26px;
   line-height: 26px;
   text-align: center;
   border-radius: 26px;
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
+  font-size: ${(props) => getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'fontSizeDefault')};
   margin-right: 8px;
   transition: background-color 0.3s ease, border-color 0.3s ease;
   ${(props) =>
     ['process', 'finish'].includes(props.params?.status || '') &&
     css`
       & {
-        border-color: ${(props) => getThemeVariantValue(props, 'borderColorStepsProcess')};
-        background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorStepsProcess')};
-        color: ${(props) => getThemeVariantValue(props, 'backgroundColorBase')};
+        border-color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'borderColorStepsProcess')};
+        background-color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'backgroundColorStepsProcess')};
+        color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'backgroundColorBase')};
       }
     `}
   ${(props) =>
     props.params?.status === 'error' &&
     css`
       & {
-        color: ${(props) => getThemeVariantValue(props, 'colorStepsError')};
-        border-color: ${(props) => getThemeVariantValue(props, 'borderColorStepsError')};
-        background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorBase')};
+        color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'colorStepsError')};
+        border-color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'borderColorStepsError')};
+        background-color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'backgroundColorBase')};
       }
     `}
-  
+
     ${(props) =>
     props.params?.icon &&
     css`
@@ -362,14 +379,20 @@ export const StepsStyleItemHeadInner = styled.div<StepsStyleItemHeadInnerProps>`
       ${props.params.status === 'error' &&
       css`
         & {
-          background: ${(props) => getThemeVariantValue(props, 'backgroundColorStepsError')};
+          background: ${(props) =>
+            getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'backgroundColorStepsError')};
         }
       `}
       ${props.params.status === 'wait' &&
       css`
         & {
-          border-color: ${(props) => getThemeVariantValue(props, 'borderColorStepsStyleItemHeadInner')};
-          background-color: ${(props) => getThemeVariantValue(props, 'backgroundColorStepsStyleItemHeadInner')};
+          border-color: ${(props) =>
+            getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'borderColorStepsStyleItemHeadInner')};
+          background-color: ${(props) =>
+            getThemeVariantValue(
+              { ...props, defaultTheme: StepsStyleTheme },
+              'backgroundColorStepsStyleItemHeadInner',
+            )};
         }
       `}
       ${props.params.direction === 'vertical' &&
@@ -380,7 +403,7 @@ export const StepsStyleItemHeadInner = styled.div<StepsStyleItemHeadInnerProps>`
       `}
     `}
 `;
-StepsStyleItemHeadInner.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+// StepsStyleItemHeadInner.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemHeadInnerDotProps extends StepsBaseSpanProps {
   params?: {
@@ -393,11 +416,12 @@ export const StepsStyleItemHeadInnerDot = styled.span<StepsStyleItemHeadInnerDot
     props.params?.status === 'wait' &&
     css`
       & {
-        background: ${(props) => getThemeVariantValue(props, 'borderColorStepsStyleItemHeadInner')};
+        background: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'borderColorStepsStyleItemHeadInner')};
       }
     `}
 `;
-StepsStyleItemHeadInnerDot.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+// StepsStyleItemHeadInnerDot.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemHeadInnerIconProps extends StepsBaseSpanProps {
   params?: {
@@ -412,18 +436,19 @@ export const StepsStyleItemHeadInnerIcon = styled.span<StepsStyleItemHeadInnerIc
     props.params?.icon &&
     css`
       & {
-        color: ${(props) => getThemeVariantValue(props, 'colorStepsStyleItemHeadInnerIcon')};
+        color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'colorStepsStyleItemHeadInnerIcon')};
       }
     `}
   ${(props) =>
     props.params?.status === 'error' &&
     css`
       & {
-        color: ${(props) => getThemeVariantValue(props, 'colorStepsError')};
+        color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'colorStepsError')};
       }
     `}
 `;
-StepsStyleItemHeadInnerIcon.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+// StepsStyleItemHeadInnerIcon.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export const StepsStyleItemHeadInnerSvg = styled.svg`
   fill: currentcolor;
@@ -471,7 +496,7 @@ export const StepsStyleItemMain = styled.div<StepsStyleItemMainProps>`
       overflow: hidden;
     `}
 `;
-StepsStyleItemMain.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+// StepsStyleItemMain.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemMainTitleProps extends StepsBaseProps {
   params?: {
@@ -483,23 +508,25 @@ export interface StepsStyleItemMainTitleProps extends StepsBaseProps {
 export const StepsStyleItemMainTitle = styled.div<StepsStyleItemMainTitleProps>`
   padding-right: 10px;
   line-height: 26px;
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeDefault')};
+  font-size: ${(props) => getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'fontSizeDefault')};
   font-weight: 700;
-  background: ${(props) => getThemeVariantValue(props, 'backgroundColorBase')};
-  color: ${(props) => getThemeVariantValue(props, 'colorStepsStyleItemMainTitle')};
+  background: ${(props) => getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'backgroundColorBase')};
+  color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'colorStepsStyleItemMainTitle')};
   display: inline-block;
   ${(props) =>
     props.params?.status === 'process' &&
     css`
       & {
-        color: ${(props) => getThemeVariantValue(props, 'colorStepsStyleItemMainProcess')};
+        color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'colorStepsStyleItemMainProcess')};
       }
     `}
   ${(props) =>
     props.params?.status === 'error' &&
     css`
       & {
-        color: ${(props) => getThemeVariantValue(props, 'colorStepsError')};
+        color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'colorStepsError')};
       }
     `}
   ${(props) =>
@@ -510,7 +537,7 @@ export const StepsStyleItemMainTitle = styled.div<StepsStyleItemMainTitleProps>`
       }
     `}
 `;
-StepsStyleItemMainTitle.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+// StepsStyleItemMainTitle.defaultProps = { defaultTheme: StepsStyleTheme };
 
 export interface StepsStyleItemMainDescriptionProps extends StepsBaseProps {
   params?: {
@@ -521,21 +548,23 @@ export interface StepsStyleItemMainDescriptionProps extends StepsBaseProps {
 }
 
 export const StepsStyleItemMainDescription = styled.div<StepsStyleItemMainDescriptionProps>`
-  font-size: ${(props) => getThemeVariantValue(props, 'fontSizeSmall')};
-  color: ${(props) => getThemeVariantValue(props, 'colorStepsStyleItemMainTitle')};
+  font-size: ${(props) => getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'fontSizeSmall')};
+  color: ${(props) =>
+    getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'colorStepsStyleItemMainTitle')};
   max-width: 130px;
   ${(props) =>
     props.params?.status === 'process' &&
     css`
       & {
-        color: ${(props) => getThemeVariantValue(props, 'colorStepsStyleItemMainProcess')};
+        color: ${(props) =>
+          getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'colorStepsStyleItemMainProcess')};
       }
     `}
   ${(props) =>
     props.params?.status === 'error' &&
     css`
       & {
-        color: ${(props) => getThemeVariantValue(props, 'colorStepsError')};
+        color: ${(props) => getThemeVariantValue({ ...props, defaultTheme: StepsStyleTheme }, 'colorStepsError')};
       }
     `}
   ${(props) =>
@@ -547,4 +576,4 @@ export const StepsStyleItemMainDescription = styled.div<StepsStyleItemMainDescri
     `}
 `;
 
-StepsStyleItemMainDescription.defaultProps = { defaultTheme: StepsBaseDefaultTheme };
+// StepsStyleItemMainDescription.defaultProps = { defaultTheme: StepsStyleTheme };

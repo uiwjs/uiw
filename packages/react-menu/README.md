@@ -23,77 +23,77 @@ import Menu, { MenuItem, MenuDivider, SubMenu } from '@uiw/react-menu'; // @ v4.
 
 ```jsx mdx:preview&background=#fff&noScroll=true&codeSandbox=true&codePen=true
 import React from 'react';
-import { Menu, MenuItem, Row, Col } from 'uiw';
+import { Menu, MenuItem, Row, Col ,Icon} from 'uiw';
 
 const Demo = () => (
   <Row justify="flex-start" gutter={10}>
     <Col fixed>
       <Menu bordered>
-        <MenuItem icon="reload" text="重新加载" />
+        <MenuItem icon={<Icon type="reload" />} text="重新加载" />
         <Menu.Divider />
-        <Menu.Item icon="heart-on" text="另存为" active />
-        <Menu.Item icon="appstore" text="应用商城" />
-        <Menu.Item icon="bar-chart" text="月统计报表导出" />
-        <Menu.Item icon="setting" text="偏好设置" />
+        <Menu.Item icon={<Icon type="heart-on" />} text="另存为" active />
+        <Menu.Item icon={<Icon type="appstore" />} text="应用商城" />
+        <Menu.Item icon={<Icon type="bar-chart" />} text="月统计报表导出" />
+        <Menu.Item icon={<Icon type="setting" />} text="偏好设置" />
         <Menu.Divider />
-        <Menu.Item icon="map" text="谷歌地图" />
-        <Menu.Item icon="map" text="百度地图" href="https://map.baidu.com" target="_blank" />
+        <Menu.Item icon={<Icon type="map" />} text="谷歌地图" />
+        <Menu.Item icon={<Icon type="map" />} text="百度地图" href="https://map.baidu.com" target="_blank" />
       </Menu>
     </Col>
     <Col fixed>
       <Menu bordered>
         <Menu.Divider title="编辑" />
-        <Menu.Item icon="file-add" text="添加文件" />
-        <Menu.Item icon="folder-add" text="添加文件夹" />
-        <Menu.Item icon="copy" text="拷贝" />
-        <Menu.Item icon="delete" disabled text="删除" />
-        <Menu.SubMenu icon="setting-o" text="选项" collapse>
-          <Menu.Item icon="dot-chart" text="显示边栏" />
-          <Menu.Item icon="date" text="添加日期" />
-          <Menu.Item icon="tags-o" text="标签名称" />
+        <Menu.Item icon={<Icon type="file-add" />} text="添加文件" />
+        <Menu.Item icon={<Icon type="folder-add" />}  text="添加文件夹" />
+        <Menu.Item icon={<Icon type="copy" />}  text="拷贝" />
+        <Menu.Item icon={<Icon type="delete" />}   disabled text="删除" />
+        <Menu.SubMenu icon={<Icon type="setting-o" />} text="选项" collapse>
+          <Menu.Item icon={<Icon type="ot-chart" />} text="显示边栏" />
+          <Menu.Item icon={<Icon type="date" />}  text="添加日期" />
+          <Menu.Item icon={<Icon type="tags-o" />}  text="标签名称" />
         </Menu.SubMenu>
         <Menu.Divider title="其它" />
-        <Menu.SubMenu icon="bar-chart" text="月统计报表导出">
-          <Menu.Item icon="file-add" text="添加文件" />
-          <Menu.Item icon="folder-add" text="添加文件夹" />
+        <Menu.SubMenu icon={<Icon type="bar-chart" />}   text="月统计报表导出" collapse>
+          <Menu.Item icon={<Icon type="file-add" />}  text="添加文件" />
+          <Menu.Item icon={<Icon type="folder-add" />}  text="添加文件夹" />
           <Menu.Divider title="类别" />
-          <Menu.Item icon="copy" text="拷贝" />
-          <Menu.SubMenu icon="bar-chart" text="报表" collapse>
-            <Menu.Item icon="file-add" text="添加文件" />
-            <Menu.SubMenu icon="folder-add" text="添加文件夹">
-              <Menu.Item icon="file-add" text="添加文件" />
-              <Menu.Item icon="folder-add" text="添加文件夹" />
+          <Menu.Item icon={<Icon type="copy" />}  text="拷贝" />
+          <Menu.SubMenu icon={<Icon type="bar-chart" />}  text="报表" collapse>
+            <Menu.Item  icon={<Icon type="file-add" />} text="添加文件" />
+            <Menu.SubMenu icon={<Icon type="folder-add" />} text="添加文件夹">
+              <Menu.Item icon={<Icon type="file-add" />}   text="添加文件" />
+              <Menu.Item icon={<Icon type="folder-add" />} text="添加文件夹" />
             </Menu.SubMenu>
           </Menu.SubMenu>
         </Menu.SubMenu>
-        <Menu.SubMenu icon="setting" disabled text="偏好设置">
-          <Menu.Item icon="file-add" text="添加文件" />
-          <Menu.Item icon="folder-add" text="添加文件夹" />
+        <Menu.SubMenu icon={<Icon type="setting" />}  disabled text="偏好设置">
+          <Menu.Item icon={<Icon type="file-add" />} text="添加文件" />
+          <Menu.Item  icon={<Icon type="folder-add" />}  text="添加文件夹" />
         </Menu.SubMenu>
-        <Menu.Item icon="map" text="谷歌地图" />
+        <Menu.Item icon={<Icon type="map" />} text="谷歌地图" />
       </Menu>
     </Col>
     <Col fixed>
       <Menu bordered>
-        <Menu.Item icon="file-add" text="添加文件" />
-        <Menu.Item icon="folder-add" text="添加文件夹" />
-        <Menu.SubMenu icon="bar-chart" text="月统计报表导出"
+        <Menu.Item icon={<Icon type="file-add" />} text="添加文件" />
+        <Menu.Item icon={<Icon type="folder-add" />}  text="添加文件夹" />
+        <Menu.SubMenu icon={<Icon type="bar-chart" />} text="月统计报表导出"
           overlayProps={{
             isOpen: true
           }}
         >
-          <Menu.Item icon="file-add" text="添加文件" />
+          <Menu.Item icon={<Icon type="file-add" />} text="添加文件" />
           <Menu.Divider title="类别" />
-          <Menu.Item icon="copy" text="拷贝" />
-          <Menu.SubMenu icon="bar-chart" text="报表" collapse>
-            <Menu.Item icon="file-add" text="添加文件" />
-            <Menu.SubMenu icon="folder-add" text="添加文件夹">
-              <Menu.Item icon="file-add" text="添加文件" />
-              <Menu.Item icon="folder-add" text="添加文件夹" />
+          <Menu.Item icon={<Icon type="copy" />} text="拷贝" />
+          <Menu.SubMenu icon={<Icon type="bar-chart" />}  text="报表" collapse>
+            <Menu.Item icon={<Icon type="file-add" />}   text="添加文件" />
+            <Menu.SubMenu icon={<Icon type="folder-add" />} text="添加文件夹">
+              <Menu.Item icon={<Icon type="file-add" />}  text="添加文件" />
+              <Menu.Item  icon={<Icon type="folder-add" />}  text="添加文件夹" />
             </Menu.SubMenu>
           </Menu.SubMenu>
         </Menu.SubMenu>
-        <Menu.Item icon="map" text="谷歌地图" />
+        <Menu.Item icon={<Icon type="map" />}  text="谷歌地图" />
       </Menu>
     </Col>
   </Row>
@@ -105,20 +105,20 @@ export default Demo
 
 ```jsx mdx:preview&background=#fff&noScroll=true&codeSandbox=true&codePen=true
 import React from 'react';
-import { Menu, Popover, Button, Row, Col } from 'uiw';
+import { Menu, Popover, Button, Row, Col  ,Icon} from 'uiw';
 
 const btnStl = {position: 'relative', width: 70 }
 const content = (
   <Menu>
     <Menu.Divider title="编辑" />
-    <Menu.Item icon="file-add" text="添加文件" />
-    <Menu.Item icon="folder-add" text="添加文件夹" />
-    <Menu.Item icon="copy" text="拷贝" />
-    <Menu.Item icon="delete" disabled text="删除" />
+    <Menu.Item icon={<Icon type="file-add" />}  text="添加文件" />
+    <Menu.Item icon={<Icon type="folder-add" />}  text="添加文件夹" />
+    <Menu.Item icon={<Icon type="copy" />} text="拷贝" />
+    <Menu.Item icon={<Icon type="delete" />} disabled text="删除" />
     <Menu.Divider title="其它" />
-    <Menu.Item icon="bar-chart" text="月统计报表导出" />
-    <Menu.Item icon="setting" disabled text="偏好设置" />
-    <Menu.Item icon="map" text="谷歌地图" />
+    <Menu.Item icon={<Icon type="bar-chart" />} text="月统计报表导出" />
+    <Menu.Item icon={<Icon type="setting" />} disabled text="偏好设置" />
+    <Menu.Item icon={<Icon type="map" />}  text="谷歌地图" />
   </Menu>
 )
 const Demo = () => (
@@ -190,34 +190,33 @@ export default Demo
 
 ```jsx mdx:preview&background=#fff&noScroll=true&codeSandbox=true&codePen=true
 import React from 'react';
-import { Menu, Row, Col } from 'uiw';
+import { Menu, Row, Col ,Icon } from 'uiw';
 
 const Demo = () => (
   <Row justify="flex-start" gutter={10}>
     <Col fixed>
       <Menu bordered style={{ maxWidth: 200 }}>
-        <Menu.Item icon="delete" disabled text="删除" />
-        <Menu.SubMenu icon="setting-o" text="选项" disabled collapse>
-          <Menu.Item icon="dot-chart" text="显示边栏" />
-          <Menu.Item icon="date" text="添加日期" />
-          <Menu.Item icon="tags-o" text="标签名称" />
+        <Menu.Item  icon={<Icon type="delete" />} disabled text="删除" />
+        <Menu.SubMenu  icon={<Icon type="setting-o" />} text="选项" disabled collapse>
+          <Menu.Item  icon={<Icon type="dot-chart" />}text="显示边栏" />
+          <Menu.Item  icon={<Icon type="date" />} text="添加日期" />
+          <Menu.Item  icon={<Icon type="tags-o" />}  text="标签名称" />
         </Menu.SubMenu>
         <Menu.Divider title="其它" />
-        <Menu.SubMenu
-          icon="bar-chart" text="每年2019年统计报表导出" collapse
+        <Menu.SubMenu icon={<Icon type="bar-chart" />} text="每年2019年统计报表导出" collapse
           // overlayProps={{ isOpen: true }}
         >
           <Menu.Item text="添加文件" />
           <Menu.Item text="添加文件夹" />
           <Menu.Divider title="类别" />
-          <Menu.Item icon="copy" text="拷贝" />
-          <Menu.SubMenu icon="folder-add" text="添加文件夹" collapse>
-            <Menu.Item icon="file-add" text="添加文件" />
-            <Menu.Item icon="folder-add" text="添加文件夹" />
+          <Menu.Item icon={<Icon type="copy" />}  text="拷贝" />
+          <Menu.SubMenu  icon={<Icon type="folder-add" />} text="添加文件夹" collapse>
+            <Menu.Item  icon={<Icon type="file-add" />}  text="添加文件" />
+            <Menu.Item  icon={<Icon type="folder-add" />}  text="添加文件夹" />
           </Menu.SubMenu>
         </Menu.SubMenu>
-        <Menu.Item icon="setting" disabled text="偏好设置" />
-        <Menu.Item icon="map" text="谷歌地图" />
+        <Menu.Item  icon={<Icon type="setting" />} disabled text="偏好设置" />
+        <Menu.Item  icon={<Icon type="map" />} text="谷歌地图" />
       </Menu>
     </Col>
   </Row>
@@ -231,7 +230,7 @@ export default Demo
 
 ```jsx mdx:preview&background=#fff&noScroll=true&codeSandbox=true&codePen=true
 import React from 'react';
-import { Menu, Row, Col, Switch } from 'uiw';
+import { Menu, Row, Col, Switch  ,Icon} from 'uiw';
 
 class Demo extends React.Component {
   constructor(props) {
@@ -257,29 +256,29 @@ class Demo extends React.Component {
         <Row justify="flex-start" gutter={10}>
           <Col fixed>
             <Menu theme={this.state.theme} bordered style={{ maxWidth: 200 }}>
-              <Menu.Item icon="delete" disabled text="删除" />
-              <Menu.SubMenu icon="setting-o" text="选项" disabled collapse>
-                <Menu.Item icon="dot-chart" text="显示边栏" />
-                <Menu.Item icon="date" text="添加日期" />
-                <Menu.Item icon="tags-o" text="标签名称" />
+              <Menu.Item  icon={<Icon type="delete" />}  disabled text="删除" />
+              <Menu.SubMenu  icon={<Icon type="setting-o" />} text="选项" disabled collapse>
+                <Menu.Item  icon={<Icon type="dot-chart" />}  text="显示边栏" />
+                <Menu.Item  icon={<Icon type="date" />}  text="添加日期" />
+                <Menu.Item  icon={<Icon type="tags-o" />}  text="标签名称" />
               </Menu.SubMenu>
               <Menu.Divider title="其它" />
-              <Menu.Item active icon="map" text="谷歌地图" />
-              <Menu.SubMenu icon="bar-chart" text="每年2019年统计报表导出">
+              <Menu.Item active  icon={<Icon type="map" />}  text="谷歌地图" />
+              <Menu.SubMenu  icon={<Icon type="bar-chart" />}  text="每年2019年统计报表导出">
                 <Menu.Item text="添加文件" />
                 <Menu.Item text="添加文件夹" />
                 <Menu.Divider title="类别" />
-                <Menu.SubMenu icon="folder-add" text="添加文件夹" collapse>
-                  <Menu.Item icon="file-add" text="添加文件" />
-                  <Menu.Item icon="folder-add" text="添加文件夹" />
+                <Menu.SubMenu  icon={<Icon type="folder-add" />} text="添加文件夹" collapse>
+                  <Menu.Item  icon={<Icon type="file-add" />} text="添加文件" />
+                  <Menu.Item  icon={<Icon type="folder-add" />} text="添加文件夹" />
                 </Menu.SubMenu>
-                <Menu.Item icon="copy" text="拷贝" />
+                <Menu.Item  icon={<Icon type="copy" />}  text="拷贝" />
               </Menu.SubMenu>
-              <Menu.Item icon="setting" disabled text="偏好设置" />
-              <Menu.SubMenu icon="setting-o" text="选项" collapse>
-                <Menu.Item icon="dot-chart" text="显示边栏" />
-                <Menu.Item icon="date" text="添加日期" />
-                <Menu.Item icon="tags-o" text="标签名称" />
+              <Menu.Item  icon={<Icon type="setting" />}  disabled text="偏好设置" />
+              <Menu.SubMenu  icon={<Icon type="setting-o" />}  text="选项" collapse>
+                <Menu.Item  icon={<Icon type="dot-chart" />}  text="显示边栏" />
+                <Menu.Item  icon={<Icon type="date" />} text="添加日期" />
+                <Menu.Item  icon={<Icon type="tags-o" />} text="标签名称" />
               </Menu.SubMenu>
             </Menu>
           </Col>
@@ -298,7 +297,7 @@ export default Demo
 
 ```jsx mdx:preview&background=#fff&noScroll=true&codeSandbox=true&codePen=true
 import React from 'react';
-import { Menu, Row, Col, Switch } from 'uiw';
+import { Menu, Row, Col, Switch  ,Icon} from 'uiw';
 
 class Demo extends React.Component {
   constructor(props) {
@@ -351,7 +350,7 @@ class Demo extends React.Component {
     menus.forEach((item, key) => {
       if (item.childrend) {
         items.push(
-          <Menu.SubMenu key={key} icon={item.icon} text={item.label} collapse
+          <Menu.SubMenu key={key}  icon={<Icon type={item.icon} />} text={item.label} collapse
             // 参数 usePortal 容易出问题
             // overlayProps={{ usePortal: true }}
           >
@@ -365,7 +364,7 @@ class Demo extends React.Component {
           <Menu.Item
             onClick={this.onClickItem.bind(this, item.key)}
             active={active === item.key} key={`${k}${key}`}
-            icon={item.icon}
+             icon={<Icon type={item.icon} />} 
             text={item.label}
           />
         );
@@ -455,7 +454,7 @@ const Demo = () => {
     menus.forEach((item, key) => {
       if (item.childrend) {
         items.push(
-          <Menu.SubMenu key={key} icon={item.icon} text={item.label}
+          <Menu.SubMenu key={key} icon={<Icon type={item.icon} />}  text={item.label}
             collapse={collapse}
           >
             {renderMenu(item.childrend)}
@@ -468,7 +467,7 @@ const Demo = () => {
           <Menu.Item
             onClick={onClickItem.bind(this, item.key)}
             key={key}
-            icon={item.icon}
+           icon={<Icon type={item.icon} />} 
             text={item.label}
           />
         );
@@ -522,7 +521,7 @@ export default Demo
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| icon | 菜单图标 [`<Icon />`](#/components/icon) 的 `type` 属性 | ReactNode/String | - |
+| icon | 菜单图标 [`<Icon />`](#/components/icon)| ReactNode | - |
 | text | 菜单标题内容 | ReactNode | - |
 | addonAfter | 菜单标题后面插入内容 | ReactNode | - |
 | ~~isSubMenuItem~~ | 不可用，SubMenu 组件传递给 Item 组件的**标记**属性，这是一个内部参数。 | Boolean | - |
@@ -533,14 +532,14 @@ export default Demo
 其它参数可根据 `tagName` 来设置，默认 `<a />` 标签时，可设置 `href="https://wwww.google.com"` 或者 `target="_blank"` 等参数，你可以设置 [react-router-dom](https://github.com/ReactTraining/react-router) 路由 `<Link>`，例如：
 
 ```jsx
-import { Menu } from 'uiw';
+import { Menu,Icon } from 'uiw';
 import { Link } from 'react-router-dom';
 
 const Demo = () => {
   return (
     <Menu style={{ maxWidth: 200 }}>
       <Menu.Item tagName={Link} to="/home" icon="reload" text="跳转首页" />
-      <Menu.Item icon="map" text="百度地图" href="https://map.baidu.com" target="_blank" />
+      <Menu.Item icon={<Icon type="map"/>}  text="百度地图" href="https://map.baidu.com" target="_blank" />
     </Menu>
   )
 }
@@ -550,7 +549,7 @@ const Demo = () => {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |--------- |-------- |--------- |-------- |
-| icon | 菜单图标 [`<Icon />`](#/components/icon) 的 `type` 属性 | String | - |
+| icon | 菜单图标 [`<Icon />`](#/components/icon) | ReactNode | - |
 | text | 菜单标题内容 | ReactNode | - |
 | disabled | 禁用状态 | Boolean | `false` |
 | collapse | 默认子菜单是 OverlayTrigger 的弹出层，通过设置 `collapse={true}` 变为~~折叠~~(弹出框式 `@v4.2.0+`)菜单  | Boolean | `false` |
