@@ -45,8 +45,4 @@ export const ColStyleWrap = styled.div<ColStyleWrapProps>`
     `}
 `;
 
-ColStyleWrap.defaultProps = {
-  defaultTheme: {},
-};
-
 export default ColStyleWrap;

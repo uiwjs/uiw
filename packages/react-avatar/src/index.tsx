@@ -64,7 +64,6 @@ export default React.forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
   return (
     <AvatarStyleWarp {...resetProps} size={size} shape={shape} className={cls} ref={ref}>
       {children}
-      <span></span>
     </AvatarStyleWarp>
   );
 });

@@ -274,7 +274,7 @@ class Demo extends React.Component {
                 </Menu.SubMenu>
                 <Menu.Item  icon={<Icon type="copy" />}  text="拷贝" />
               </Menu.SubMenu>
-              <Menu.Item icon="setting" disabled text="偏好设置" />
+              <Menu.Item  icon={<Icon type="setting" />}  disabled text="偏好设置" />
               <Menu.SubMenu  icon={<Icon type="setting-o" />}  text="选项" collapse>
                 <Menu.Item  icon={<Icon type="dot-chart" />}  text="显示边栏" />
                 <Menu.Item  icon={<Icon type="date" />} text="添加日期" />

@@ -45,7 +45,3 @@ export const BackTopStyleWarp = styled.div<BackTopStyleWarpProps>`
     }
   }}
 `;
-
-BackTopStyleWarp.defaultProps = {
-  defaultTheme: BackTopStyleTheme,
-};

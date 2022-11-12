@@ -89,15 +89,3 @@ export const CardStyleWarp = styled.div<CardStyleWarpProps>`
   ${(props) => getNoHover(props)}
   ${(props) => getActive(props)}
 `;
-
-CardStyleWarp.defaultProps = { defaultTheme: CardStyleTheme };
-
-CardStyleHead.defaultProps = { defaultTheme: CardStyleTheme };
-
-CardStyleHeadTitle.defaultProps = { defaultTheme: CardStyleTheme };
-
-CardStyleHeadExtra.defaultProps = { defaultTheme: CardStyleTheme };
-
-CardBody.defaultProps = { defaultTheme: CardStyleTheme };
-
-CardStyleFooter.defaultProps = { defaultTheme: CardStyleTheme };

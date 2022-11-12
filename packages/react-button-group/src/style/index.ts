@@ -75,7 +75,3 @@ export const ButtonGroupWarp = styled.div<ButtonGroupWarpProps>`
       }
     `}
 `;
-
-ButtonGroupWarp.defaultProps = {
-  defaultTheme: ButtonGroupStyleTheme,
-};
