@@ -9,6 +9,7 @@ import menu from '../icons/menu';
 import pkg from 'uiw/package.json';
 import { useTranslation } from 'react-i18next';
 import data from '../../menu.json';
+import '@wcj/dark-mode';
 
 export default function Nav() {
   const { state } = useContext(ThemeContext);
@@ -140,7 +141,7 @@ export default function Nav() {
         />
       </div>
       <div className={[styles.btn, state.layout === 'left' ? null : styles.btnTop].filter(Boolean).join(' ').trim()}>
-        {/* <dark-mode light="Light" dark="Dart" ></dark-mode> */}
+        <dark-mode light="Light" dark="Dart"></dark-mode>
         <select value={i18n.language} onChange={(e) => changeLanguage(e)}>
           <option value="zh-CN">简体中文</option>
           <option value="en-US">English</option>
