@@ -17,7 +17,7 @@ export const CardStyleHead = styled.div<CardStyleHeadProps>`
   line-height: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'heightCardStyleHead')};
   padding: ${(props) => `
     ${getThemeVariantValue({ ...props, ...propsTheme }, 'paddingVerticalCardStyleHead')} ${getThemeVariantValue(
-    props,
+    { ...props, ...propsTheme },
     'paddingHorizontalCardStyleHead',
   )}
   `};
@@ -26,7 +26,7 @@ export const CardStyleHead = styled.div<CardStyleHeadProps>`
     props,
     'borderRadius2CardStyleHead',
   )} ${getThemeVariantValue({ ...props, ...propsTheme }, 'borderRadius3CardStyleHead')} ${getThemeVariantValue(
-    props,
+    { ...props, ...propsTheme },
     'borderRadius4CardStyleHead',
   )}
   `};
