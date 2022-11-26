@@ -44,7 +44,7 @@ const Demo = () => {
             style={{ width: 200 }}
           />
         </Col>
-        <Col fixed>限制大小</Col>
+        <Col fixed style={{ lineHeight: '30px' }}>限制大小</Col>
         <Col fixed>
           <InputNumber
             placeholder="请输入内容"
@@ -53,7 +53,7 @@ const Demo = () => {
             max={10}
           />
         </Col>
-        <Col fixed>超出限界警告</Col>
+        <Col fixed style={{ lineHeight: '30px' }}>超出限界警告</Col>
         <Col fixed>
           <InputNumber
             placeholder="请输入内容"
@@ -63,7 +63,7 @@ const Demo = () => {
             overLimitColor={'red'}
           />
         </Col>
-        <Col fixed>设置步涨值</Col>
+        <Col fixed style={{ lineHeight: '30px' }}>设置步涨值</Col>
         <Col fixed>
           <InputNumber
             placeholder="请输入内容"
