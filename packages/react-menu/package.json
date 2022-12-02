@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-menu",
-  "version": "5.0.0-bate-5",
+  "version": "5.0.0-bate-6",
   "description": "Menu component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/menu",
@@ -45,9 +45,9 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/react-icon": "^5.0.0-bate-5",
-    "@uiw/react-overlay-trigger": "^5.0.0-bate-5",
-    "@uiw/utils": "^5.0.0-bate-5",
+    "@uiw/react-icon": "^5.0.0-bate-6",
+    "@uiw/react-overlay-trigger": "^5.0.0-bate-6",
+    "@uiw/utils": "^5.0.0-bate-6",
     "react-transition-group": "~4.4.5"
   }
 }
