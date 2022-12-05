@@ -23,7 +23,7 @@ interface TableTrProps<T> {
   hierarchy: number;
   childrenColumnName: string;
   locationWidth: { [key: string]: LocationWidth };
-  isAutoExpandedCol?: boolean;
+  isAutoExpanded?: boolean;
 }
 
 export default function TableTr<T extends { [key: string]: any }>(props: TableTrProps<T>) {
@@ -41,7 +41,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     childrenColumnName,
     locationWidth,
     header,
-    isAutoExpandedCol = true,
+    isAutoExpanded = true,
   } = props;
   const [isOpacity, setIsOpacity] = useState(false);
   const [childrenIndex, setChildrenIndex] = useState(0);
@@ -113,9 +113,9 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
 
                 let isExpanded = false;
 
-                if ((isOpacity || hierarchy || isHasChildren) && colNum === childrenIndex && isAutoExpandedCol) {
+                if ((isOpacity || hierarchy || isHasChildren) && colNum === childrenIndex && isAutoExpanded) {
                   isExpanded = true;
-                } else if ((isOpacity || hierarchy || isHasChildren) && !isAutoExpandedCol && keyName.isExpanded) {
+                } else if ((isOpacity || hierarchy || isHasChildren) && !isAutoExpanded && keyName.isExpanded) {
                   isExpanded = true;
                 }
 

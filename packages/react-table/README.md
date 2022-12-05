@@ -1182,6 +1182,8 @@ export default Demo
 | align | 设置列的对齐方式 | "left"\|"center"\|"right" | - | - |
 | className | 列样式类名 | String | - | - |
 | fixed | 把选择框列固定	 | Boolean \|"left"\|"right" | - | 4.15.1 |
+| isExpanded | 是否当前列显示展开按钮	 | Boolean | - | - |
+
 
 ### expandable
 
@@ -1200,3 +1202,4 @@ export default Demo
 | onExpand | 点击展开图标触发 | (expanded,record,index)=>void | - |
 | indentSize | 控制树形结构每一层的缩进宽度 | Number | 16 |
 | childrenColumnName | 指定树形结构的列名 | String | children |
+| isAutoExpanded | 是否自动设置展开按钮位置 | boolean | true |

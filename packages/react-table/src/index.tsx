@@ -32,7 +32,7 @@ export interface ExpandableType<T> {
   // 指定树形结构的列名
   childrenColumnName?: string;
   /**是否自动设置展开按钮位置*/
-  isAutoExpandedCol?: boolean;
+  isAutoExpanded?: boolean;
 }
 
 export type TableColumns<T = any> = {
@@ -323,7 +323,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
                 isExpandedDom={isExpandedDom}
                 indentSize={typeof expandable?.indentSize === 'number' ? expandable?.indentSize : 16}
                 childrenColumnName={expandable?.childrenColumnName || 'children'}
-                isAutoExpandedCol={expandable?.isAutoExpandedCol}
+                isAutoExpanded={expandable?.isAutoExpanded}
               />
             </tbody>
           )}
