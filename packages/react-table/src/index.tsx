@@ -47,7 +47,7 @@ export type TableColumns<T = any> = {
   align?: 'left' | 'center' | 'right';
   className?: string;
   fixed?: boolean | 'left' | 'right';
-  isExpandedCol?: boolean;
+  isExpanded?: boolean;
   [key: string]: any;
 };
 

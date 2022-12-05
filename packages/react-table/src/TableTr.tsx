@@ -115,7 +115,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
 
                 if ((isOpacity || hierarchy || isHasChildren) && colNum === childrenIndex && isAutoExpandedCol) {
                   isExpanded = true;
-                } else if ((isOpacity || hierarchy || isHasChildren) && !isAutoExpandedCol && keyName.isExpandedCol) {
+                } else if ((isOpacity || hierarchy || isHasChildren) && !isAutoExpandedCol && keyName.isExpanded) {
                   isExpanded = true;
                 }
 
