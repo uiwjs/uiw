@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-copy-to-clipboard",
-  "version": "5.0.0-bate-7",
+  "version": "5.0.0-bate-8",
   "description": "CpyToClipboard component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/copy-to-clipboard",
@@ -46,6 +46,6 @@
   },
   "dependencies": {
     "@uiw/copy-to-clipboard": "~1.0.11",
-    "@uiw/utils": "^5.0.0-bate-7"
+    "@uiw/utils": "^5.0.0-bate-8"
   }
 }
