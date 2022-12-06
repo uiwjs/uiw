@@ -4,7 +4,7 @@ import { MinusSquareO } from '@uiw/icons/lib/MinusSquareO';
 import { PlusSquareO } from '@uiw/icons/lib/PlusSquareO';
 import Thead from './Thead';
 import { TableStyleWrap, TableStyleFooter } from './style';
-import { getLevelItems, getAllColumnsKeys } from './util';
+import { getLevelItems, getAllColumnsKeys, NodeTreeData } from './util';
 import ExpandableComponent from './Expandable';
 import TableTr from './TableTr';
 export * from './style';
@@ -73,6 +73,7 @@ export interface TableProps<T extends { [key: string]: V } = any, V = any> exten
   expandable?: ExpandableType<T>;
   rowKey?: keyof T;
   scroll?: { x?: React.CSSProperties['width']; y?: React.CSSProperties['height'] };
+  isAutoMergeRowSpan?: boolean;
 }
 
 export interface LocationWidth {
@@ -104,6 +105,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
     expandable,
     rowKey,
     scroll,
+    isAutoMergeRowSpan = false,
     ...other
   } = props;
   const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
@@ -294,6 +296,14 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
   }, [scroll]);
   const cls = [prefixCls, className, bordered ? `${prefixCls}-bordered` : null].filter(Boolean).join(' ').trim();
   const { header, render, ellipsis } = getLevelItems(self.selfColumns);
+
+  const treeData = useMemo(
+    () =>
+      (isAutoMergeRowSpan && new NodeTreeData(data, rowKey as string, expandable?.childrenColumnName || 'children')) ||
+      undefined,
+    [data, rowKey, expandable?.childrenColumnName, isAutoMergeRowSpan],
+  );
+
   return (
     <React.Fragment>
       <TableStyleWrap className={cls} {...other} style={{ ...other.style, ...style.div }} params={{ bordered }}>
@@ -324,6 +334,8 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
                 indentSize={typeof expandable?.indentSize === 'number' ? expandable?.indentSize : 16}
                 childrenColumnName={expandable?.childrenColumnName || 'children'}
                 isAutoExpanded={expandable?.isAutoExpanded}
+                treeData={treeData}
+                isAutoMergeRowSpan={isAutoMergeRowSpan}
               />
             </tbody>
           )}

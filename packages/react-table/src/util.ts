@@ -140,3 +140,65 @@ export function locationFixed(
   if (fixed === 'right') return { right: location[index]?.right };
   return { left: location[index]?.left };
 }
+
+// 通过树获取子节点个数
+// 记录顶层父级
+// 通过顶层父级进行获取展开的 key
+// 通过 key 进行获取个数
+export class NodeTreeData {
+  parentToChild: Map<string | number, (string | number)[]> = new Map([]);
+  childToParent: Map<string | number, string | number> = new Map([]);
+  childTreeCount: Map<string | number, number> = new Map([]);
+
+  rowKey: string = 'id';
+  childName: string = 'children';
+
+  constructor(dataList: any[], rowKey?: string, childName?: string) {
+    this.rowKey = rowKey || this.rowKey;
+    this.childName = childName || this.childName;
+    this.init(dataList);
+  }
+  /**把根据父级 key 存储对应下所有子集的个数*/
+  init(dataList: any[], parentList: string[] = []) {
+    dataList.forEach((item) => {
+      if (Array.isArray(item[this.childName])) {
+        const newParent = parentList.concat([item[this.rowKey]]);
+        const parentKey = newParent[0];
+        this.childToParent.set(item[this.rowKey], parentKey);
+        this.parentToChild.set(parentKey, newParent);
+        this.childTreeCount.set(item[this.rowKey], item[this.childName].length);
+        this.init(item[this.childName], newParent);
+      }
+    });
+  }
+  /**获取合并行数*/
+  getSum(key: string, expandedKeys: (string | number)[]) {
+    const parentKey = this.childToParent.get(key) || '';
+    const childList = this.parentToChild.get(parentKey) || [];
+    const summary: Record<string, number> = {};
+    let lg = childList.length;
+    for (let index = 0; index < lg; index++) {
+      const childKey = childList[index];
+      if (expandedKeys.includes(childKey)) {
+        summary[childKey] = 1;
+        const count = this.childTreeCount.get(childKey || '') || 0;
+        Object.entries(summary).forEach(([k, value]) => {
+          /**计算合并行个数*/
+          summary[k] = value + count;
+        });
+      } else {
+        break;
+      }
+    }
+    return summary;
+  }
+}
+
+export const getRowSpan = (rowSpan: number, leve: number, index: number) => {
+  const show = leve < index + 1;
+  const newRowSpan = leve === index ? rowSpan : undefined;
+  return {
+    show,
+    rowSpan: newRowSpan,
+  };
+};

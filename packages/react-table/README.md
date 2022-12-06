@@ -1165,6 +1165,7 @@ export default Demo
 | expandable | 可展开配置 | ExpandableType | - |
 | rowKey | 表格行 key 的取值 | String | - |
 | scroll | 表格是否可滚动，也可以指定滚动区域的宽、高 | { x?: React.CSSProperties['width'], y?: React.CSSProperties['height'] } | - |
+| isAutoMergeRowSpan |  是否自动合并行 | boolean | - |
 
 
 ### ColumnProps

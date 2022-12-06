@@ -1,11 +1,11 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect, Fragment } from 'react';
 // import Icon from '@uiw/react-icon';
 import { MinusSquareO } from '@uiw/icons/lib/MinusSquareO';
 import { PlusSquareO } from '@uiw/icons/lib/PlusSquareO';
 import { LocationWidth, TableColumns, TableProps } from './';
 import { TableStyleCol, TableStyleColContent, TableStyleDomIcon } from './style';
 import { noop } from '@uiw/utils';
-import { locationFixed } from './util';
+import { locationFixed, NodeTreeData, getRowSpan } from './util';
 
 interface TableTrProps<T> {
   rowKey?: keyof T;
@@ -24,6 +24,8 @@ interface TableTrProps<T> {
   childrenColumnName: string;
   locationWidth: { [key: string]: LocationWidth };
   isAutoExpanded?: boolean;
+  treeData?: NodeTreeData;
+  isAutoMergeRowSpan?: boolean;
 }
 
 export default function TableTr<T extends { [key: string]: any }>(props: TableTrProps<T>) {
@@ -42,6 +44,8 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     locationWidth,
     header,
     isAutoExpanded = true,
+    treeData,
+    isAutoMergeRowSpan,
   } = props;
   const [isOpacity, setIsOpacity] = useState(false);
   const [childrenIndex, setChildrenIndex] = useState(0);
@@ -88,15 +92,34 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     <React.Fragment>
       {data.map((trData, rowNum) => {
         const key = rowKey ? trData[rowKey] : rowNum;
+        const summary = treeData?.getSum(key as string, expandIndex);
         return (
           <React.Fragment key={rowNum}>
             <tr key={key}>
               {keys!.map((keyName, colNum) => {
+                let itemShow: {
+                  show?: boolean;
+                  rowSpan?: number;
+                } = {};
+                if (isAutoMergeRowSpan && summary) {
+                  itemShow = getRowSpan(summary[key], hierarchy, colNum);
+                  if (!itemShow.show) {
+                    return <Fragment />;
+                  }
+                }
+
                 let objs: React.TdHTMLAttributes<HTMLTableDataCellElement> = {
                   children: trData[keyName.key!],
                 };
                 if (render[keyName.key!]) {
-                  const child = render[keyName.key!](trData[keyName.key!], keyName.key, trData, rowNum, colNum);
+                  const child = render[keyName.key!](
+                    trData[keyName.key!],
+                    keyName.key,
+                    trData,
+                    rowNum,
+                    colNum,
+                    itemShow.rowSpan,
+                  );
                   if (React.isValidElement(child)) {
                     objs.children = child;
                   } else {
@@ -108,7 +131,10 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                       objs.children = child.children;
                     }
                   }
+                } else if (itemShow.rowSpan && isAutoMergeRowSpan) {
+                  objs.rowSpan = itemShow.rowSpan;
                 }
+
                 const isHasChildren = Array.isArray(trData[childrenColumnName]);
 
                 let isExpanded = false;
@@ -128,6 +154,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                     </>
                   );
                 }
+
                 if (keyName.fixed) {
                   if (keyName.fixed === 'right') {
                     objs.className = `${prefixCls}-fixed-right`;
@@ -135,6 +162,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                     objs.className = `${prefixCls}-fixed-true`;
                   }
                 }
+
                 return (
                   <TableStyleCol
                     {...objs}
