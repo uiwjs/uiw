@@ -175,22 +175,30 @@ export class NodeTreeData {
   getSum(key: string, expandedKeys: (string | number)[]) {
     const parentKey = this.childToParent.get(key) || '';
     const childList = this.parentToChild.get(parentKey) || [];
-    const summary: Record<string, number> = {};
+    const summary: Record<string, { count: number; level: number }> = {};
+    const summaryCount: Record<string | number, number> = {};
     let lg = childList.length;
     for (let index = 0; index < lg; index++) {
       const childKey = childList[index];
       if (expandedKeys.includes(childKey)) {
-        summary[childKey] = 1;
+        summary[childKey] = { count: 1, level: index };
         const count = this.childTreeCount.get(childKey || '') || 0;
         Object.entries(summary).forEach(([k, value]) => {
           /**计算合并行个数*/
-          summary[k] = value + count;
+          summary[k] = {
+            count: value.count + count,
+            level: value.level,
+          };
+          summaryCount[value.level] = value.count + count;
         });
       } else {
         break;
       }
     }
-    return summary;
+    return {
+      summary,
+      summaryCount,
+    };
   }
 }
 

@@ -199,6 +199,96 @@ const Demo = () => (
 export default Demo
 ```
 
+### 自动合并行
+
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
+import React from 'react';
+import { Table, Button, Icon } from 'uiw';
+
+const columns = [
+  {
+    title: '姓名',
+    ellipsis: true, 
+    key: 'name', 
+  }, 
+  {
+    title: '年龄',
+    style: { color: 'red' },
+    key: 'age',
+    level:2
+  }, 
+   {
+    title: '年龄2',
+    style: { color: 'red' },
+    key: 'age',
+    level:2
+  }, 
+  {
+    title: '操作',
+    key: 'edit',
+    width: 98,
+    render: (text, key, rowData, rowNumber, columnNumber) => (
+      <div>
+        <Button size="small" type="danger">删除</Button>
+        <Button size="small" type="success">修改</Button>
+      </div>
+    ),
+  },
+];
+const dataSource = [
+  { 
+    name: '邓紫棋', 
+    age: '10', 
+    id: '1', 
+    children: [
+      {
+        name: '邓紫棋-0-1', 
+        age: '10', 
+        id: '1-1', 
+        children: [
+          { 
+            name: '邓紫棋-0-1-1', 
+            age: '10', 
+            id: '1-1-1',
+            children: [
+              {name: '邓紫棋-0-1-1-1', age: '10', id: '-0-1-1-1'},
+              {name: '邓紫棋-0-1-1-2', age: '10', id: '-0-1-1-2'},
+              {name: '邓紫棋-0-1-1-3', age: '10', id: '-0-1-1-3'},
+            ]
+          },
+          { name: '邓紫棋-0-1-2', age: '10', id: '1-1-2',}
+        ]
+      },
+      {name: '邓紫棋-0-2', age: '10', id: '1-1'},
+      {name: '邓紫棋-0-3', age: '10', id: '1-1'},
+    ]
+  },
+  { name: '李易峰', age: '32', id: '2',
+  },
+  { name: '范冰冰', age: '23', id: '3', 
+    children: [
+      {name: '范冰冰0-1', age: '23', id: '3-1'},
+      {name: '范冰冰0-2', age: '23', id: '3-2'},
+      {name: '范冰冰0-3', age: '23', id: '3-3'},
+    ]
+  },
+];
+const Demo = () => {
+  const [expandedRowKeys, setExpandedRowKeys] = React.useState([])
+  return (
+    <div>
+      <Table 
+        rowKey="id"
+        columns={columns}
+        data={dataSource}
+        isAutoMergeRowSpan={true}
+      />
+    </div>
+  )
+};
+export default Demo
+```
+
 
 ### 标题页脚
 
@@ -1165,8 +1255,7 @@ export default Demo
 | expandable | 可展开配置 | ExpandableType | - |
 | rowKey | 表格行 key 的取值 | String | - |
 | scroll | 表格是否可滚动，也可以指定滚动区域的宽、高 | { x?: React.CSSProperties['width'], y?: React.CSSProperties['height'] } | - |
-| isAutoMergeRowSpan |  是否自动合并行 | boolean | - |
-
+| isAutoMergeRowSpan |  是否自动合并行(和表头配置中的`level`配合使用) | boolean | - |
 
 ### ColumnProps
 
@@ -1184,7 +1273,7 @@ export default Demo
 | className | 列样式类名 | String | - | - |
 | fixed | 把选择框列固定	 | Boolean \|"left"\|"right" | - | 4.15.1 |
 | isExpanded | 是否当前列显示展开按钮	 | Boolean | - | - |
-
+| level | 合并行层级(和`isAutoMergeRowSpan`一起使用) | number | - | - |
 
 ### expandable
 

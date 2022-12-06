@@ -336,6 +336,8 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
                 isAutoExpanded={expandable?.isAutoExpanded}
                 treeData={treeData}
                 isAutoMergeRowSpan={isAutoMergeRowSpan}
+                expandIndex={expandIndex}
+                setExpandIndex={setExpandIndex}
               />
             </tbody>
           )}

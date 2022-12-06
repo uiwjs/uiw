@@ -26,6 +26,8 @@ interface TableTrProps<T> {
   isAutoExpanded?: boolean;
   treeData?: NodeTreeData;
   isAutoMergeRowSpan?: boolean;
+  expandIndex: (number | T[keyof T])[];
+  setExpandIndex: React.Dispatch<React.SetStateAction<(number | T[keyof T])[]>>;
 }
 
 export default function TableTr<T extends { [key: string]: any }>(props: TableTrProps<T>) {
@@ -46,10 +48,12 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     isAutoExpanded = true,
     treeData,
     isAutoMergeRowSpan,
+    expandIndex,
+    setExpandIndex,
   } = props;
   const [isOpacity, setIsOpacity] = useState(false);
   const [childrenIndex, setChildrenIndex] = useState(0);
-  const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
+  // const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
   useEffect(() => {
     setIsOpacity(!!data?.find((it) => it[childrenColumnName]));
     setChildrenIndex(keys?.findIndex((it) => it.key === 'uiw-expanded') === -1 ? 0 : 1);
@@ -92,19 +96,25 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     <React.Fragment>
       {data.map((trData, rowNum) => {
         const key = rowKey ? trData[rowKey] : rowNum;
-        const summary = treeData?.getSum(key as string, expandIndex);
+        const summary = treeData?.getSum(key as string, expandIndex || []);
         return (
           <React.Fragment key={rowNum}>
             <tr key={key}>
               {keys!.map((keyName, colNum) => {
+                const isHasChildren = Array.isArray(trData[childrenColumnName]);
                 let itemShow: {
                   show?: boolean;
                   rowSpan?: number;
                 } = {};
+                console.log(isAutoMergeRowSpan, summary);
                 if (isAutoMergeRowSpan && summary) {
-                  itemShow = getRowSpan(summary[key], hierarchy, colNum);
-                  if (!itemShow.show) {
-                    return <Fragment />;
+                  const newLaval = Reflect.get(keyName, 'level');
+                  const summaryCount = summary.summaryCount[newLaval];
+
+                  if (hierarchy === newLaval && isHasChildren) {
+                    itemShow.rowSpan = summaryCount;
+                  } else if (hierarchy && Reflect.has(keyName, 'level') && hierarchy > newLaval) {
+                    return <Fragment key={colNum} />;
                   }
                 }
 
@@ -134,8 +144,6 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                 } else if (itemShow.rowSpan && isAutoMergeRowSpan) {
                   objs.rowSpan = itemShow.rowSpan;
                 }
-
-                const isHasChildren = Array.isArray(trData[childrenColumnName]);
 
                 let isExpanded = false;
 
