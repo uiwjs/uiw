@@ -106,7 +106,6 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   show?: boolean;
                   rowSpan?: number;
                 } = {};
-                console.log(isAutoMergeRowSpan, summary);
                 if (isAutoMergeRowSpan && summary) {
                   const newLaval = Reflect.get(keyName, 'level');
                   const summaryCount = summary.summaryCount[newLaval];
@@ -117,19 +116,15 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                     return <Fragment key={colNum} />;
                   }
                 }
-
                 let objs: React.TdHTMLAttributes<HTMLTableDataCellElement> = {
                   children: trData[keyName.key!],
                 };
                 if (render[keyName.key!]) {
-                  const child = render[keyName.key!](
-                    trData[keyName.key!],
-                    keyName.key,
-                    trData,
-                    rowNum,
-                    colNum,
-                    itemShow.rowSpan,
-                  );
+                  const child = render[keyName.key!](trData[keyName.key!], keyName.key, trData, rowNum, colNum, {
+                    level: hierarchy,
+                    rowSpan: itemShow.rowSpan,
+                    summary,
+                  });
                   if (React.isValidElement(child)) {
                     objs.children = child;
                   } else {
