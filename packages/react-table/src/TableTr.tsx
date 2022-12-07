@@ -5,7 +5,7 @@ import { PlusSquareO } from '@uiw/icons/lib/PlusSquareO';
 import { LocationWidth, TableColumns, TableProps } from './';
 import { TableStyleCol, TableStyleColContent, TableStyleDomIcon } from './style';
 import { noop } from '@uiw/utils';
-import { locationFixed, NodeTreeData, getRowSpan } from './util';
+import { locationFixed, NodeTreeData } from './util';
 
 interface TableTrProps<T> {
   rowKey?: keyof T;

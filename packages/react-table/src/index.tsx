@@ -42,7 +42,29 @@ export type TableColumns<T = any> = {
   colSpan?: number;
   children?: TableColumns<T>[];
   ellipsis?: boolean;
-  render?: (text: string, keyName: string, rowData: T, rowNumber: number, columnNumber: number) => React.ReactNode;
+  render?: (
+    text: string,
+    keyName: string,
+    rowData: T,
+    rowNumber: number,
+    columnNumber: number,
+    leveConfig: {
+      level: number;
+      rowSpan?: number;
+      summary:
+        | {
+            summary: Record<
+              string,
+              {
+                count: number;
+                level: number;
+              }
+            >;
+            summaryCount: Record<string | number, number>;
+          }
+        | undefined;
+    },
+  ) => React.ReactNode;
   style?: React.CSSProperties;
   align?: 'left' | 'center' | 'right';
   className?: string;

@@ -1376,7 +1376,7 @@ export default Demo
 | width | 列宽度。| Number | - | - |
 | colSpan | 合并表头行。| Number | - | - |
 | ellipsis | 超过宽度将自动省略。`v4.8.7+`| Boolean | `false` | - |
-| render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前值的 `key`，行索引数据，当前行号，当前列号。| `Function(text, key, rowData, rowNumber, columnNumber)` | - | - |
+| render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前值的 `key`，行索引数据，当前行号，当前列号。| `Function(text, key, rowData, rowNumber, columnNumber,leveConfig: level: number,rowSpan?: number, summary: { summary: Record<string, {count: number;level: number;}>;summaryCount: Record<string \| number, number>;} \| undefined)` | - | - |
 | align | 设置列的对齐方式 | "left"\|"center"\|"right" | - | - |
 | className | 列样式类名 | String | - | - |
 | fixed | 把选择框列固定	 | Boolean \|"left"\|"right" | - | 4.15.1 |
