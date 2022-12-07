@@ -246,7 +246,6 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
 
   const self = useMemo(() => {
     let keys = getAllColumnsKeys<T>(columns);
-    console.log('keys--->', keys);
     let selfColumns: TableColumns<T>[] = [];
     if (expandable?.expandedRowRender) {
       keys = [{ key: 'uiw-expanded', align: 'center' }, ...keys];
