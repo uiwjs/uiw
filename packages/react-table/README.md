@@ -33,6 +33,7 @@ const columns = [
     title: '年龄',
     style: { color: 'red' },
     key: 'age',
+    isExpandedButton:true,
   }, {
     title: '地址',
     key: 'info',
@@ -215,6 +216,7 @@ const columns = [
     title: '年龄',
     style: { color: 'red' },
     key: 'age',
+    isExpandedButton:true,
     render: (text, key, rowData, rowNum, colNum,{level}) => {
      const obj = {
        children: text,
@@ -297,6 +299,11 @@ const Demo = () => {
     <div>
       <Table 
         rowKey="id"
+        expandable={{
+          onExpand:(key,record,...rest)=>{
+            console.log(key,record,rest)
+          }
+        }}
         columns={columns}
         data={dataSource}
       />

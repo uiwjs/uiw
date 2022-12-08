@@ -28,6 +28,8 @@ interface TableTrProps<T> {
   isAutoMergeRowSpan?: boolean;
   expandIndex: (number | T[keyof T])[];
   setExpandIndex: React.Dispatch<React.SetStateAction<(number | T[keyof T])[]>>;
+  // 点击展开图标触发
+  onExpand?: (expanded: boolean, record: T, index: number, hierarchy?: number) => void;
 }
 
 export default function TableTr<T extends { [key: string]: any }>(props: TableTrProps<T>) {
@@ -50,17 +52,18 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     isAutoMergeRowSpan,
     expandIndex,
     setExpandIndex,
+    onExpand,
   } = props;
   const [isOpacity, setIsOpacity] = useState(false);
   const [childrenIndex, setChildrenIndex] = useState(0);
-  // const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
+
   useEffect(() => {
     setIsOpacity(!!data?.find((it) => it[childrenColumnName]));
     setChildrenIndex(keys?.findIndex((it) => it.key === 'uiw-expanded') === -1 ? 0 : 1);
   }, [data]);
 
   const IconDom = useMemo(() => {
-    return (key: T[keyof T] | number, isOpacity: boolean) => {
+    return (key: T[keyof T] | number, isOpacity: boolean, trData: T, rowNum: number) => {
       const flag = expandIndex.includes(key);
       const Icon = flag ? MinusSquareO : PlusSquareO;
       return (
@@ -73,6 +76,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
             marginTop: 3.24,
           }}
           onClick={() => {
+            onExpand && onExpand(flag, trData, rowNum, hierarchy);
             setExpandIndex(flag ? expandIndex.filter((it) => it !== key) : [...expandIndex, key]);
           }}
         >
@@ -148,10 +152,10 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   isExpanded = true;
                 }
 
-                if (isExpanded) {
+                if (isExpanded || keyName.isExpandedButton) {
                   objs.children = (
                     <>
-                      {IconDom(key, isHasChildren)}
+                      {IconDom(key, isHasChildren || !!keyName?.isExpandedButton, trData, rowNum)}
                       <span style={{ paddingLeft: hierarchy * indentSize }}></span>
                       {objs.children}
                     </>

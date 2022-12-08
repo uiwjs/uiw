@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect, useRef } from 'react';
+import React, { useMemo, useState, useEffect, useRef, Fragment } from 'react';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import { MinusSquareO } from '@uiw/icons/lib/MinusSquareO';
 import { PlusSquareO } from '@uiw/icons/lib/PlusSquareO';
@@ -26,7 +26,7 @@ export interface ExpandableType<T> {
   // 展开的行变化触发
   onExpandedRowsChange?: (expandedRows: Array<T[keyof T] | number>) => void;
   // 点击展开图标触发
-  onExpand?: (expanded: boolean, record: T, index: number) => void;
+  onExpand?: (expanded: boolean, record: T, index: number, hierarchy?: number) => void;
   // 控制树形结构每一层的缩进宽度
   indentSize?: number;
   // 指定树形结构的列名
@@ -70,6 +70,7 @@ export type TableColumns<T = any> = {
   className?: string;
   fixed?: boolean | 'left' | 'right';
   isExpanded?: boolean;
+  isExpandedButton?: boolean;
   [key: string]: any;
 };
 
@@ -351,6 +352,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
                 onCell={onCell}
                 hierarchy={0}
                 isExpandedDom={isExpandedDom}
+                onExpand={expandable?.onExpand}
                 indentSize={typeof expandable?.indentSize === 'number' ? expandable?.indentSize : 16}
                 childrenColumnName={expandable?.childrenColumnName || 'children'}
                 isAutoExpanded={expandable?.isAutoExpanded}
