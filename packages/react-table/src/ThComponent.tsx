@@ -5,6 +5,7 @@ import { locationFixed } from './util';
 
 interface ThComponentProps<T> {
   colNum: number;
+  bordered?: boolean;
   item: TableColumns<T>;
   prefixCls: string;
   titleNode: JSX.Element;
@@ -46,6 +47,7 @@ export default class ThComponent<T> extends Component<ThComponentProps<T>> {
         params={{
           align: item?.align || 'left',
           fixed: fixed,
+          bordered: this.props.bordered,
         }}
         onClick={(evn) => onCellHead?.(item, colNum, rowNum!, evn)}
       >
