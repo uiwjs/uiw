@@ -73,7 +73,7 @@ export const TableStyleWrap = styled.div<TableStyleWrapBaseProps>`
       transition: all 0.3s;
       > td {
         background-color: ${(props) =>
-          getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'backgroundColorTableTbodyTrTd')};
+          getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'backgroundColorTable')};
         position: relative;
         z-index: 1;
       }

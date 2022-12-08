@@ -1,11 +1,11 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect, Fragment } from 'react';
 // import Icon from '@uiw/react-icon';
 import { MinusSquareO } from '@uiw/icons/lib/MinusSquareO';
 import { PlusSquareO } from '@uiw/icons/lib/PlusSquareO';
 import { LocationWidth, TableColumns, TableProps } from './';
 import { TableStyleCol, TableStyleColContent, TableStyleDomIcon } from './style';
 import { noop } from '@uiw/utils';
-import { locationFixed } from './util';
+import { locationFixed, NodeTreeData } from './util';
 
 interface TableTrProps<T> {
   rowKey?: keyof T;
@@ -23,6 +23,13 @@ interface TableTrProps<T> {
   hierarchy: number;
   childrenColumnName: string;
   locationWidth: { [key: string]: LocationWidth };
+  isAutoExpanded?: boolean;
+  treeData?: NodeTreeData;
+  isAutoMergeRowSpan?: boolean;
+  expandIndex: (number | T[keyof T])[];
+  setExpandIndex: React.Dispatch<React.SetStateAction<(number | T[keyof T])[]>>;
+  // 点击展开图标触发
+  onExpand?: (expanded: boolean, record: T, index: number, hierarchy?: number) => void;
 }
 
 export default function TableTr<T extends { [key: string]: any }>(props: TableTrProps<T>) {
@@ -40,17 +47,23 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     childrenColumnName,
     locationWidth,
     header,
+    isAutoExpanded = true,
+    treeData,
+    isAutoMergeRowSpan,
+    expandIndex,
+    setExpandIndex,
+    onExpand,
   } = props;
   const [isOpacity, setIsOpacity] = useState(false);
   const [childrenIndex, setChildrenIndex] = useState(0);
-  const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
+
   useEffect(() => {
     setIsOpacity(!!data?.find((it) => it[childrenColumnName]));
     setChildrenIndex(keys?.findIndex((it) => it.key === 'uiw-expanded') === -1 ? 0 : 1);
   }, [data]);
 
   const IconDom = useMemo(() => {
-    return (key: T[keyof T] | number, isOpacity: boolean) => {
+    return (key: T[keyof T] | number, isOpacity: boolean, trData: T, rowNum: number) => {
       const flag = expandIndex.includes(key);
       const Icon = flag ? MinusSquareO : PlusSquareO;
       return (
@@ -63,6 +76,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
             marginTop: 3.24,
           }}
           onClick={() => {
+            onExpand && onExpand(flag, trData, rowNum, hierarchy);
             setExpandIndex(flag ? expandIndex.filter((it) => it !== key) : [...expandIndex, key]);
           }}
         >
@@ -86,15 +100,35 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     <React.Fragment>
       {data.map((trData, rowNum) => {
         const key = rowKey ? trData[rowKey] : rowNum;
+        const summary = treeData?.getSum(key as string, expandIndex || []);
         return (
           <React.Fragment key={rowNum}>
             <tr key={key}>
               {keys!.map((keyName, colNum) => {
+                const isHasChildren = Array.isArray(trData[childrenColumnName]);
+                let itemShow: {
+                  show?: boolean;
+                  rowSpan?: number;
+                } = {};
+                if (isAutoMergeRowSpan && summary) {
+                  const newLaval = Reflect.get(keyName, 'level');
+                  const summaryCount = summary.summaryCount[newLaval];
+
+                  if (hierarchy === newLaval && isHasChildren) {
+                    itemShow.rowSpan = summaryCount;
+                  } else if (hierarchy && Reflect.has(keyName, 'level') && hierarchy > newLaval) {
+                    return <Fragment key={colNum} />;
+                  }
+                }
                 let objs: React.TdHTMLAttributes<HTMLTableDataCellElement> = {
                   children: trData[keyName.key!],
                 };
                 if (render[keyName.key!]) {
-                  const child = render[keyName.key!](trData[keyName.key!], keyName.key, trData, rowNum, colNum);
+                  const child = render[keyName.key!](trData[keyName.key!], keyName.key, trData, rowNum, colNum, {
+                    level: hierarchy,
+                    rowSpan: itemShow.rowSpan,
+                    summary,
+                  });
                   if (React.isValidElement(child)) {
                     objs.children = child;
                   } else {
@@ -106,17 +140,38 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                       objs.children = child.children;
                     }
                   }
+                } else if (itemShow.rowSpan && isAutoMergeRowSpan) {
+                  objs.rowSpan = itemShow.rowSpan;
                 }
-                const isHasChildren = Array.isArray(trData[childrenColumnName]);
-                if (colNum === childrenIndex && (isOpacity || hierarchy || isHasChildren)) {
-                  objs.children = (
-                    <>
-                      {IconDom(key, isHasChildren)}
-                      <span style={{ paddingLeft: hierarchy * indentSize }}></span>
-                      {objs.children}
-                    </>
-                  );
+
+                let isExpanded = false;
+
+                if ((isOpacity || hierarchy || isHasChildren) && colNum === childrenIndex && isAutoExpanded) {
+                  isExpanded = true;
+                } else if ((isOpacity || hierarchy || isHasChildren) && !isAutoExpanded && keyName.isExpanded) {
+                  isExpanded = true;
                 }
+
+                if (isExpanded || keyName.isExpandedButton) {
+                  if (keyName.isExpandedButtonLayout === 'right') {
+                    objs.children = (
+                      <>
+                        {IconDom(key, isHasChildren || !!keyName?.isExpandedButton, trData, rowNum)}
+                        <span style={{ paddingLeft: hierarchy * indentSize }}></span>
+                        {objs.children}
+                      </>
+                    );
+                  } else {
+                    objs.children = (
+                      <>
+                        <span style={{ paddingLeft: hierarchy * indentSize }}></span>
+                        {objs.children}
+                        {IconDom(key, isHasChildren || !!keyName?.isExpandedButton, trData, rowNum)}
+                      </>
+                    );
+                  }
+                }
+
                 if (keyName.fixed) {
                   if (keyName.fixed === 'right') {
                     objs.className = `${prefixCls}-fixed-right`;
@@ -124,6 +179,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                     objs.className = `${prefixCls}-fixed-true`;
                   }
                 }
+
                 return (
                   <TableStyleCol
                     {...objs}
