@@ -5,7 +5,7 @@ Table 表格
 [![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-table.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-table)
 [![npm version](https://img.shields.io/npm/v/@uiw/react-table.svg?label=@uiw/react-table)](https://npmjs.com/@uiw/react-table)
 
-表示两种相互对立的状态间的切换，多用于触发「开/关」。选中时的内容支持响应式。
+用于列表数据渲染
 
 ```jsx
 import { Table } from 'uiw';
