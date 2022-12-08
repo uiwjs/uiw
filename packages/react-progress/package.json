@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-progress",
-  "version": "5.0.0-bate-11",
+  "version": "5.0.0-bate-12",
   "description": "Progress component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/progress",
@@ -45,7 +45,7 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/react-icon": "^5.0.0-bate-11",
-    "@uiw/utils": "^5.0.0-bate-11"
+    "@uiw/react-icon": "^5.0.0-bate-12",
+    "@uiw/utils": "^5.0.0-bate-12"
   }
 }
