@@ -334,6 +334,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
           {columns && columns.length > 0 && (
             <Thead
               onCellHead={onCellHead}
+              bordered={bordered}
               data={header}
               locationWidth={locationWidth}
               updateLocation={updateLocation}
@@ -350,6 +351,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
                 render={render}
                 ellipsis={ellipsis}
                 prefixCls={prefixCls}
+                bordered={bordered}
                 onCell={onCell}
                 hierarchy={0}
                 isExpandedDom={isExpandedDom}

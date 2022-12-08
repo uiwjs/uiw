@@ -19,6 +19,7 @@ interface TableTrProps<T> {
   isExpandedDom: (record: T, index: number) => false | JSX.Element;
   // 控制树形结构每一层的缩进宽度
   indentSize: number;
+  bordered?: boolean;
   // 层级
   hierarchy: number;
   childrenColumnName: string;
@@ -208,6 +209,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                     params={{
                       align: keyName.align,
                       fixed: keyName.fixed,
+                      bordered: props.bordered,
                     }}
                     onClick={(evn) => onCell(trData, { rowNum, colNum, keyName: keyName.key! }, evn)}
                   />
