@@ -153,13 +153,23 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                 }
 
                 if (isExpanded || keyName.isExpandedButton) {
-                  objs.children = (
-                    <>
-                      {IconDom(key, isHasChildren || !!keyName?.isExpandedButton, trData, rowNum)}
-                      <span style={{ paddingLeft: hierarchy * indentSize }}></span>
-                      {objs.children}
-                    </>
-                  );
+                  if (keyName.isExpandedButtonLayout === 'right') {
+                    objs.children = (
+                      <>
+                        {IconDom(key, isHasChildren || !!keyName?.isExpandedButton, trData, rowNum)}
+                        <span style={{ paddingLeft: hierarchy * indentSize }}></span>
+                        {objs.children}
+                      </>
+                    );
+                  } else {
+                    objs.children = (
+                      <>
+                        <span style={{ paddingLeft: hierarchy * indentSize }}></span>
+                        {objs.children}
+                        {IconDom(key, isHasChildren || !!keyName?.isExpandedButton, trData, rowNum)}
+                      </>
+                    );
+                  }
                 }
 
                 if (keyName.fixed) {

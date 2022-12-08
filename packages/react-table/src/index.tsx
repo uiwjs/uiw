@@ -71,6 +71,7 @@ export type TableColumns<T = any> = {
   fixed?: boolean | 'left' | 'right';
   isExpanded?: boolean;
   isExpandedButton?: boolean;
+  isExpandedButtonLayout?: 'left' | 'right';
   [key: string]: any;
 };
 
