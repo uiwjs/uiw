@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-rate",
-  "version": "5.0.0-bate-10",
+  "version": "5.0.0-bate-11",
   "description": "Rate component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/rate",
@@ -45,6 +45,6 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/utils": "^5.0.0-bate-10"
+    "@uiw/utils": "^5.0.0-bate-11"
   }
 }
