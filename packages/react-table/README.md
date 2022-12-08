@@ -1388,6 +1388,8 @@ export default Demo
 | className | 列样式类名 | String | - | - |
 | fixed | 把选择框列固定	 | Boolean \|"left"\|"right" | - | 4.15.1 |
 | isExpanded | 是否当前列显示展开按钮	 | Boolean | - | - |
+| isExpandedButton | 是否直接显示展开按钮	 | Boolean | - | - |
+| isExpandedButtonLayout | 展开按钮显示右边还是左边 	 | `left \| right` | - | - |
 | level | 合并行层级(和`isAutoMergeRowSpan`一起使用) | number | - | - |
 
 ### expandable
