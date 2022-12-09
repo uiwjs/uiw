@@ -101,12 +101,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     <React.Fragment>
       {data.map((trData, rowNum) => {
         const key = rowKey ? trData[rowKey] : rowNum;
-        const mergeSpan = getMergeSpanCount(
-          trData[childrenColumnName] || [],
-          expandIndex || [],
-          rowKey as string,
-          childrenColumnName,
-        );
+        const summary = treeData?.getSum(key as string, expandIndex || []);
         return (
           <React.Fragment key={rowNum}>
             <tr>
@@ -116,16 +111,15 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   show?: boolean;
                   rowSpan?: number;
                 } = {};
-                if (isAutoMergeRowSpan) {
+                if (isAutoMergeRowSpan && summary) {
                   const newLaval = Reflect.get(keyName, 'level');
-                  const summaryCount = mergeSpan;
+                  const summaryCount = summary.summaryCount[newLaval];
                   if (hierarchy === newLaval && isHasChildren) {
                     itemShow.rowSpan = summaryCount;
                   } else if (hierarchy && Reflect.has(keyName, 'level') && hierarchy > newLaval) {
                     return <Fragment key={colNum} />;
                   }
                 }
-                console.log(mergeSpan);
                 let objs: React.TdHTMLAttributes<HTMLTableDataCellElement> = {
                   children: trData[keyName.key!],
                 };
