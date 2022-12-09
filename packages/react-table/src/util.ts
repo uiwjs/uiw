@@ -159,30 +159,36 @@ export class NodeTreeData {
     this.init(dataList);
   }
   /**把根据父级 key 存储对应下所有子集的个数*/
-  init(dataList: any[], parentList: string[] = []) {
+  init(dataList: any[], parentList: string[] = [], level = 0) {
     dataList.forEach((item) => {
-      if (Array.isArray(item[this.childName])) {
-        const newParent = parentList.concat([item[this.rowKey]]);
+      const rowKey = item[this.rowKey];
+      const newParent = parentList.concat([rowKey]);
+      if (level === 0) {
+        this.childToParent.set(rowKey, rowKey);
+      }
+      if (parentList.length) {
         const parentKey = newParent[0];
-        this.childToParent.set(item[this.rowKey], parentKey);
         this.parentToChild.set(parentKey, newParent);
-        this.childTreeCount.set(item[this.rowKey], item[this.childName].length);
-        this.init(item[this.childName], newParent);
+      }
+      if (Array.isArray(item[this.childName])) {
+        this.childTreeCount.set(rowKey, item[this.childName].length);
+        this.init(item[this.childName], newParent, level + 1);
       }
     });
   }
   /**获取合并行数*/
   getSum(key: string, expandedKeys: (string | number)[]) {
-    const parentKey = this.childToParent.get(key) || '';
-    const childList = this.parentToChild.get(parentKey) || [];
+    const parentKey = this.childToParent.get(key);
+    const childList = this.parentToChild.get(parentKey as string) || [];
     const summary: Record<string, { count: number; level: number }> = {};
     const summaryCount: Record<string | number, number> = {};
     let lg = childList.length;
+
     for (let index = 0; index < lg; index++) {
       const childKey = childList[index];
       if (expandedKeys.includes(childKey)) {
         summary[childKey] = { count: 1, level: index };
-        const count = this.childTreeCount.get(childKey || '') || 0;
+        const count = this.childTreeCount.get(childKey as string) || 0;
         Object.entries(summary).forEach(([k, value]) => {
           /**计算合并行个数*/
           summary[k] = {
@@ -210,3 +216,24 @@ export const getRowSpan = (rowSpan: number, leve: number, index: number) => {
     rowSpan: newRowSpan,
   };
 };
+
+export class DeepData {
+  constructor(dataList: any[], private rowKey: string = 'id', private childName: string = 'children') {
+    this.loop(dataList);
+  }
+  /**
+   * 1. 子集对应的父级树
+   * 2. 每一项对应当前子集个数
+   */
+
+  loop(dataList: any[], parentList: (string | number)[] = []) {
+    dataList.forEach((item) => {
+      const rowKey = item[this.rowKey];
+      const newParentList = parentList.concat([rowKey]);
+      if (Array.isArray(item[this.childName])) {
+        // this.childTreeCount.set(rowKey, item[this.childName].length);
+        // this.init(item[this.childName], newParent, level + 1);
+      }
+    });
+  }
+}

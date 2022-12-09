@@ -104,7 +104,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
         const summary = treeData?.getSum(key as string, expandIndex || []);
         return (
           <React.Fragment key={rowNum}>
-            <tr key={key}>
+            <tr>
               {keys!.map((keyName, colNum) => {
                 const isHasChildren = Array.isArray(trData[childrenColumnName]);
                 let itemShow: {
@@ -114,7 +114,6 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                 if (isAutoMergeRowSpan && summary) {
                   const newLaval = Reflect.get(keyName, 'level');
                   const summaryCount = summary.summaryCount[newLaval];
-
                   if (hierarchy === newLaval && isHasChildren) {
                     itemShow.rowSpan = summaryCount;
                   } else if (hierarchy && Reflect.has(keyName, 'level') && hierarchy > newLaval) {
@@ -124,6 +123,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                 let objs: React.TdHTMLAttributes<HTMLTableDataCellElement> = {
                   children: trData[keyName.key!],
                 };
+
                 if (render[keyName.key!]) {
                   const child = render[keyName.key!](trData[keyName.key!], keyName.key, trData, rowNum, colNum, {
                     level: hierarchy,
@@ -134,6 +134,9 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                     objs.children = child;
                   } else {
                     if (child.props) {
+                      if (itemShow.rowSpan) {
+                        child.props.rowSpan = itemShow.rowSpan;
+                      }
                       objs = { ...child.props, children: objs.children };
                       if (child.props.rowSpan === 0 || child.props.colSpan === 0) return null;
                     }
@@ -145,6 +148,9 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   objs.rowSpan = itemShow.rowSpan;
                 }
 
+                if (`${key}` === '0') {
+                  console.log('key--->', objs);
+                }
                 let isExpanded = false;
 
                 if ((isOpacity || hierarchy || isHasChildren) && colNum === childrenIndex && isAutoExpanded) {
