@@ -217,6 +217,7 @@ const columns = [
     style: { color: 'red' },
     key: 'age',
     isExpandedButton:true,
+    isExpandedButtonLayout:"right",
     render: (text, key, rowData, rowNum, colNum,{level}) => {
      const obj = {
        children: text,

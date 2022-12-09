@@ -60,19 +60,26 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     setIsOpacity(!!data?.find((it) => it[childrenColumnName]));
     setChildrenIndex(keys?.findIndex((it) => it.key === 'uiw-expanded') === -1 ? 0 : 1);
   }, [data]);
+  //
 
   const IconDom = useMemo(() => {
-    return (key: T[keyof T] | number, isOpacity: boolean, trData: T, rowNum: number) => {
+    return (key: T[keyof T] | number, isOpacity: boolean, trData: T, rowNum: number, layout: any = 'left') => {
       const flag = expandIndex.includes(key);
       const Icon = flag ? MinusSquareO : PlusSquareO;
+      const newProps: { float?: any; marginLeft?: number } = {};
+      if (layout === 'left') {
+        newProps.float = 'left';
+        newProps.marginLeft = hierarchy * indentSize;
+      } else {
+        newProps.marginLeft = indentSize;
+      }
       return (
         <TableStyleDomIcon
           style={{
             marginRight: 10,
             opacity: isOpacity ? 1 : 0,
-            marginLeft: hierarchy * indentSize,
-            float: 'left',
             marginTop: 3.24,
+            ...newProps,
           }}
           onClick={() => {
             onExpand && onExpand(flag, trData, rowNum, hierarchy);
@@ -166,17 +173,24 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   if (keyName.isExpandedButtonLayout === 'right') {
                     objs.children = (
                       <>
-                        {isExpandedBtn && IconDom(key, isHasChildren || !!keyName?.isExpandedButton, trData, rowNum)}
                         <span style={{ paddingLeft: hierarchy * indentSize }}></span>
                         {objs.children}
+                        {isExpandedBtn &&
+                          IconDom(
+                            key,
+                            isHasChildren || !!keyName?.isExpandedButton,
+                            trData,
+                            rowNum,
+                            keyName.isExpandedButtonLayout,
+                          )}
                       </>
                     );
                   } else {
                     objs.children = (
                       <>
+                        {isExpandedBtn && IconDom(key, isHasChildren || !!keyName?.isExpandedButton, trData, rowNum)}
                         <span style={{ paddingLeft: hierarchy * indentSize }}></span>
                         {objs.children}
-                        {isExpandedBtn && IconDom(key, isHasChildren || !!keyName?.isExpandedButton, trData, rowNum)}
                       </>
                     );
                   }
