@@ -144,8 +144,8 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   if (React.isValidElement(child)) {
                     objs.children = child;
                   } else {
-                    if (Reflect.has(child, 'isExpanded')) {
-                      isExpanded = Reflect.get(child, 'isExpanded');
+                    if (child.isExpanded === false) {
+                      isExpanded = false;
                     }
                     if (child.props) {
                       if (itemShow.rowSpan) {
