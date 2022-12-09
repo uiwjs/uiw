@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-avatar",
-  "version": "5.0.0-bate-17",
+  "version": "5.0.0-bate-18",
   "description": "Avatar component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/button",
@@ -45,7 +45,7 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/react-icon": "^5.0.0-bate-17",
-    "@uiw/utils": "^5.0.0-bate-17"
+    "@uiw/react-icon": "^5.0.0-bate-18",
+    "@uiw/utils": "^5.0.0-bate-18"
   }
 }

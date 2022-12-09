@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-form",
-  "version": "5.0.0-bate-17",
+  "version": "5.0.0-bate-18",
   "description": "Form component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/form",
@@ -45,10 +45,10 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/react-grid": "^5.0.0-bate-17",
-    "@uiw/react-input": "^5.0.0-bate-17",
-    "@uiw/react-select": "^5.0.0-bate-17",
-    "@uiw/react-textarea": "^5.0.0-bate-17",
-    "@uiw/utils": "^5.0.0-bate-17"
+    "@uiw/react-grid": "^5.0.0-bate-18",
+    "@uiw/react-input": "^5.0.0-bate-18",
+    "@uiw/react-select": "^5.0.0-bate-18",
+    "@uiw/react-textarea": "^5.0.0-bate-18",
+    "@uiw/utils": "^5.0.0-bate-18"
   }
 }
