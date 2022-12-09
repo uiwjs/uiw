@@ -101,7 +101,12 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     <React.Fragment>
       {data.map((trData, rowNum) => {
         const key = rowKey ? trData[rowKey] : rowNum;
-        const summary = treeData?.getSum(key as string, expandIndex || []);
+        const mergeSpan = getMergeSpanCount(
+          trData[childrenColumnName] || [],
+          expandIndex || [],
+          rowKey as string,
+          childrenColumnName,
+        );
         return (
           <React.Fragment key={rowNum}>
             <tr>
@@ -111,28 +116,43 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   show?: boolean;
                   rowSpan?: number;
                 } = {};
-                if (isAutoMergeRowSpan && summary) {
+                if (isAutoMergeRowSpan) {
                   const newLaval = Reflect.get(keyName, 'level');
-                  const summaryCount = summary.summaryCount[newLaval];
+                  const summaryCount = mergeSpan;
                   if (hierarchy === newLaval && isHasChildren) {
                     itemShow.rowSpan = summaryCount;
                   } else if (hierarchy && Reflect.has(keyName, 'level') && hierarchy > newLaval) {
                     return <Fragment key={colNum} />;
                   }
                 }
+                console.log(mergeSpan);
                 let objs: React.TdHTMLAttributes<HTMLTableDataCellElement> = {
                   children: trData[keyName.key!],
                 };
+
+                let isExpanded = false;
+
+                if ((isOpacity || hierarchy || isHasChildren) && colNum === childrenIndex && isAutoExpanded) {
+                  isExpanded = true;
+                } else if ((isOpacity || hierarchy || isHasChildren) && !isAutoExpanded && keyName.isExpanded) {
+                  isExpanded = true;
+                }
+                if (keyName.isExpandedButton) {
+                  isExpanded = true;
+                }
 
                 if (render[keyName.key!]) {
                   const child = render[keyName.key!](trData[keyName.key!], keyName.key, trData, rowNum, colNum, {
                     level: hierarchy,
                     rowSpan: itemShow.rowSpan,
-                    summary,
                   });
+
                   if (React.isValidElement(child)) {
                     objs.children = child;
                   } else {
+                    if (Reflect.has(child, 'isExpanded')) {
+                      isExpanded = Reflect.get(child, 'isExpanded');
+                    }
                     if (child.props) {
                       if (itemShow.rowSpan) {
                         child.props.rowSpan = itemShow.rowSpan;
@@ -146,22 +166,6 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   }
                 } else if (itemShow.rowSpan && isAutoMergeRowSpan) {
                   objs.rowSpan = itemShow.rowSpan;
-                }
-
-                let isExpanded = false;
-
-                if ((isOpacity || hierarchy || isHasChildren) && colNum === childrenIndex && isAutoExpanded) {
-                  isExpanded = true;
-                } else if ((isOpacity || hierarchy || isHasChildren) && !isAutoExpanded && keyName.isExpanded) {
-                  isExpanded = true;
-                }
-                if (keyName.isExpandedButton) {
-                  isExpanded = true;
-                }
-                if (Reflect.has(objs, 'isExpanded')) {
-                  isExpanded = Reflect.get(objs, 'isExpanded');
-                  // @ts-ignore
-                  delete objs['isExpanded'];
                 }
 
                 if (isExpanded) {
