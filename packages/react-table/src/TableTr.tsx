@@ -148,9 +148,6 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   objs.rowSpan = itemShow.rowSpan;
                 }
 
-                if (`${key}` === '0') {
-                  console.log('key--->', objs);
-                }
                 let isExpanded = false;
 
                 if ((isOpacity || hierarchy || isHasChildren) && colNum === childrenIndex && isAutoExpanded) {
@@ -158,8 +155,16 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                 } else if ((isOpacity || hierarchy || isHasChildren) && !isAutoExpanded && keyName.isExpanded) {
                   isExpanded = true;
                 }
+                if (keyName.isExpandedButton) {
+                  isExpanded = true;
+                }
+                if (Reflect.has(objs, 'isExpanded')) {
+                  isExpanded = Reflect.get(objs, 'isExpanded');
+                  // @ts-ignore
+                  delete objs['isExpanded'];
+                }
 
-                if (isExpanded || keyName.isExpandedButton) {
+                if (isExpanded) {
                   if (keyName.isExpandedButtonLayout === 'right') {
                     objs.children = (
                       <>
