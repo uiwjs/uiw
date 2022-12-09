@@ -5,7 +5,7 @@ import { PlusSquareO } from '@uiw/icons/lib/PlusSquareO';
 import { LocationWidth, TableColumns, TableProps } from './';
 import { TableStyleCol, TableStyleColContent, TableStyleDomIcon } from './style';
 import { noop } from '@uiw/utils';
-import { locationFixed, NodeTreeData } from './util';
+import { locationFixed, getMergeRowSpan } from './util';
 
 interface TableTrProps<T> {
   rowKey?: keyof T;
@@ -25,7 +25,6 @@ interface TableTrProps<T> {
   childrenColumnName: string;
   locationWidth: { [key: string]: LocationWidth };
   isAutoExpanded?: boolean;
-  treeData?: NodeTreeData;
   isAutoMergeRowSpan?: boolean;
   expandIndex: (number | T[keyof T])[];
   setExpandIndex: React.Dispatch<React.SetStateAction<(number | T[keyof T])[]>>;
@@ -49,7 +48,6 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     locationWidth,
     header,
     isAutoExpanded = true,
-    treeData,
     isAutoMergeRowSpan,
     expandIndex,
     setExpandIndex,
@@ -101,7 +99,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     <React.Fragment>
       {data.map((trData, rowNum) => {
         const key = rowKey ? trData[rowKey] : rowNum;
-        const summary = treeData?.getSum(key as string, expandIndex || []);
+        const mergeSpan = getMergeRowSpan([trData], expandIndex, rowKey as string, childrenColumnName);
         return (
           <React.Fragment key={rowNum}>
             <tr>
@@ -111,11 +109,10 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   show?: boolean;
                   rowSpan?: number;
                 } = {};
-                if (isAutoMergeRowSpan && summary) {
+                if (isAutoMergeRowSpan) {
                   const newLaval = Reflect.get(keyName, 'level');
-                  const summaryCount = summary.summaryCount[newLaval];
                   if (hierarchy === newLaval && isHasChildren) {
-                    itemShow.rowSpan = summaryCount;
+                    itemShow.rowSpan = mergeSpan;
                   } else if (hierarchy && Reflect.has(keyName, 'level') && hierarchy > newLaval) {
                     return <Fragment key={colNum} />;
                   }

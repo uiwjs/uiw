@@ -320,12 +320,6 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
   }, [scroll]);
   const cls = [prefixCls, className, bordered ? `${prefixCls}-bordered` : null].filter(Boolean).join(' ').trim();
   const { header, render, ellipsis } = getLevelItems(self.selfColumns);
-
-  const treeData = useMemo(
-    () => new NodeTreeData(data, rowKey as string, expandable?.childrenColumnName || 'children'),
-    [data, rowKey, expandable?.childrenColumnName, isAutoMergeRowSpan],
-  );
-
   return (
     <React.Fragment>
       <TableStyleWrap className={cls} {...other} style={{ ...other.style, ...style.div }} params={{ bordered }}>
@@ -359,7 +353,6 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
                 indentSize={typeof expandable?.indentSize === 'number' ? expandable?.indentSize : 16}
                 childrenColumnName={expandable?.childrenColumnName || 'children'}
                 isAutoExpanded={expandable?.isAutoExpanded}
-                treeData={treeData}
                 isAutoMergeRowSpan={isAutoMergeRowSpan}
                 expandIndex={expandIndex}
                 setExpandIndex={setExpandIndex}
