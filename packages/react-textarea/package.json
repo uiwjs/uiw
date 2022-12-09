@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-textarea",
-  "version": "5.0.0-bate-12",
+  "version": "5.0.0-bate-14",
   "description": "Textarea component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/textarea",
@@ -45,6 +45,6 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/utils": "^5.0.0-bate-12"
+    "@uiw/utils": "^5.0.0-bate-14"
   }
 }
