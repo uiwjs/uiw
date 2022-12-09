@@ -135,6 +135,9 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   isExpanded = true;
                 }
 
+                /**按钮不展示，其他的距离还保留*/
+                let isExpandedBtn = isExpanded;
+
                 if (render[keyName.key!]) {
                   const child = render[keyName.key!](trData[keyName.key!], keyName.key, trData, rowNum, colNum, {
                     level: hierarchy,
@@ -145,7 +148,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                     objs.children = child;
                   } else {
                     if (child.isExpanded === false) {
-                      isExpanded = false;
+                      isExpandedBtn = false;
                     }
                     if (child.props) {
                       if (itemShow.rowSpan) {
@@ -166,7 +169,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   if (keyName.isExpandedButtonLayout === 'right') {
                     objs.children = (
                       <>
-                        {IconDom(key, isHasChildren || !!keyName?.isExpandedButton, trData, rowNum)}
+                        {isExpandedBtn && IconDom(key, isHasChildren || !!keyName?.isExpandedButton, trData, rowNum)}
                         <span style={{ paddingLeft: hierarchy * indentSize }}></span>
                         {objs.children}
                       </>
@@ -176,7 +179,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                       <>
                         <span style={{ paddingLeft: hierarchy * indentSize }}></span>
                         {objs.children}
-                        {IconDom(key, isHasChildren || !!keyName?.isExpandedButton, trData, rowNum)}
+                        {isExpandedBtn && IconDom(key, isHasChildren || !!keyName?.isExpandedButton, trData, rowNum)}
                       </>
                     );
                   }
