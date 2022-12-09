@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "version": "5.0.0-bate-14",
+  "version": "5.0.0-bate-17",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "private": true,
   "sideEffects": true,
