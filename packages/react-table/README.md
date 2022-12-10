@@ -22,7 +22,7 @@ import { Table, Button } from 'uiw';
 const columns = [
   {
     // title: '姓名',
-    ellipsis: true, 
+    ellipsis: true,
     title: ({ key }) => {
       return (
         <span>字段: {key}</span>
@@ -59,7 +59,7 @@ const dataSource = [
 ];
 const Demo = () => (
   <div>
-    <Table columns={columns} data={dataSource} />
+    <Table bordered columns={columns} data={dataSource} />
   </div>
 );
 export default Demo
@@ -810,8 +810,7 @@ import { Table, Button } from 'uiw';
 const columns = [
   {
     // title: '姓名',
-    ellipsis: true, 
-    width: 1000,
+    ellipsis: true,
     title: ({ key }) => {
       return (
         <span>字段: {key}</span>
@@ -849,7 +848,7 @@ const dataSource = [
 const Demo = () => (
   <div>
     <Table 
-      scroll={{x: 1800, y: 100}}
+      scroll={{x: 1800, y: 300}}
       footer={<div style={{height: 20, }}>这个是footer</div>}
       columns={columns} data={dataSource} 
     />
@@ -873,18 +872,18 @@ const columns = [
     title: '姓名',
     ellipsis: true, 
     // fixed: true,
-    width: 50,
+    width: 400,
     key: 'name', 
   }, {
     // fixed: true,
     title: '年龄',
-    width: 50,
     style: { color: 'red' },
+    width: 400,
     key: 'age',
   }, {
     title: '地址',
-    width: 50,
     key: 'info',
+    width: 400,
   }, {
     title: '操作',
     key: 'edit',

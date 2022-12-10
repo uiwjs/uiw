@@ -4,6 +4,7 @@ import { getMetaId, isMeta, getURLParameters, CodeBlockData } from 'markdown-rea
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import { CodeProps } from 'react-markdown/lib/ast-to-react';
 import Footer from './Footer';
+import styles from './index.module.less';
 
 /**
  *
@@ -59,6 +60,7 @@ export default function Markdown(props: MarkdownProps) {
   return (
     <Fragment>
       <MarkdownPreview
+        className={styles.markdownWrap}
         source={props.source || ''}
         disableCopy
         warpperElement={{

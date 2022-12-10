@@ -1,10 +1,12 @@
 @table-prefix: ~'w-table';
 
 .@{table-prefix} {
+  width: 100%;
+  overflow: auto;
   > table {
     display: table !important;
     margin: 0 !important;
-    width: 100%;
+    // width: 100% !important;
     border-spacing: 0;
     border-collapse: collapse;
     tr > th,
@@ -92,8 +94,15 @@
     content: '';
     pointer-events: none;
   }
+  &-fixed-true::before {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid #dfe2e5;
+  }
   &-fixed-right::after {
-    box-shadow: inset -10px 0 8px -8px rgb(0 0 0 / 15%);
     position: absolute;
     top: 0;
     bottom: -1px;
@@ -104,6 +113,17 @@
     content: '';
     pointer-events: none;
     border-right: 1px solid #f0f0f0;
+  }
+  &-fixed-right-first::after {
+    box-shadow: inset -10px 0 8px -8px rgb(0 0 0 / 15%);
+  }
+  &-fixed-right::before {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 0;
+    bottom: 0;
+    border-right: 1px solid #dfe2e5;
   }
   &-bordered {
     > table {
