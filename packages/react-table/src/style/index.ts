@@ -32,6 +32,7 @@ export interface TableStyleColProps extends TableStyleBaseProps {
     align?: 'left' | 'center' | 'right';
     fixed?: boolean | 'left' | 'right';
     bordered?: boolean;
+    first?: boolean;
   };
 }
 
@@ -160,7 +161,6 @@ export const TableStyleCol = styled.td<TableStyleColProps>`
           `}
 
           &::after {
-            box-shadow: inset -10px 0 8px -8px rgb(0 0 0 / 15%);
             position: absolute;
             top: 0;
             bottom: -1px;
@@ -175,7 +175,12 @@ export const TableStyleCol = styled.td<TableStyleColProps>`
                 getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'borderRightColorFixedRows')};
             /* border-right: 1px solid #f0f0f0; */
           }
-          // 暂时没有看到left
+          ${props?.params?.first &&
+          css`
+            &::after {
+              box-shadow: inset -10px 0 8px -8px rgb(0 0 0 / 15%);
+            }
+          `}
         `
       : css`
           position: sticky !important;

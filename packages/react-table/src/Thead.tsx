@@ -26,6 +26,7 @@ export default function TheadComponent<T extends { [key: string]: V }, V>(
     updateLocation,
     ...other
   } = props;
+  let rightFixedNum = 0;
   return (
     <TableStyleTheadWrap className={[prefixCls, className].filter(Boolean).join(' ').trim()} {...other}>
       {data &&
@@ -45,9 +46,13 @@ export default function TheadComponent<T extends { [key: string]: V }, V>(
               if (thProps.colSpan === 0) {
                 return null;
               }
+              if (fixed === 'right') {
+                rightFixedNum = rightFixedNum + 1;
+              }
               return (
                 <ThComponentProps
                   colNum={colNum}
+                  rightFixedKey={rightFixedNum}
                   item={item}
                   key={colNum}
                   bordered={props.bordered}
