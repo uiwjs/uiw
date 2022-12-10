@@ -5,7 +5,7 @@ import { PlusSquareO } from '@uiw/icons/lib/PlusSquareO';
 import { LocationWidth, TableColumns, TableProps } from './';
 import { TableStyleCol, TableStyleColContent, TableStyleDomIcon } from './style';
 import { noop } from '@uiw/utils';
-import { locationFixed, NodeTreeData } from './util';
+import { locationFixed, getMergeRowSpan } from './util';
 
 interface TableTrProps<T> {
   rowKey?: keyof T;
@@ -25,7 +25,6 @@ interface TableTrProps<T> {
   childrenColumnName: string;
   locationWidth: { [key: string]: LocationWidth };
   isAutoExpanded?: boolean;
-  treeData?: NodeTreeData;
   isAutoMergeRowSpan?: boolean;
   expandIndex: (number | T[keyof T])[];
   setExpandIndex: React.Dispatch<React.SetStateAction<(number | T[keyof T])[]>>;
@@ -49,7 +48,6 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     locationWidth,
     header,
     isAutoExpanded = true,
-    treeData,
     isAutoMergeRowSpan,
     expandIndex,
     setExpandIndex,
@@ -62,19 +60,26 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     setIsOpacity(!!data?.find((it) => it[childrenColumnName]));
     setChildrenIndex(keys?.findIndex((it) => it.key === 'uiw-expanded') === -1 ? 0 : 1);
   }, [data]);
+  //
 
   const IconDom = useMemo(() => {
-    return (key: T[keyof T] | number, isOpacity: boolean, trData: T, rowNum: number) => {
+    return (key: T[keyof T] | number, isOpacity: boolean, trData: T, rowNum: number, layout: any = 'left') => {
       const flag = expandIndex.includes(key);
       const Icon = flag ? MinusSquareO : PlusSquareO;
+      const newProps: { float?: any; marginLeft?: number } = {};
+      if (layout === 'left') {
+        newProps.float = 'left';
+        newProps.marginLeft = hierarchy * indentSize;
+      } else {
+        newProps.marginLeft = indentSize;
+      }
       return (
         <TableStyleDomIcon
           style={{
             marginRight: 10,
             opacity: isOpacity ? 1 : 0,
-            marginLeft: hierarchy * indentSize,
-            float: 'left',
             marginTop: 3.24,
+            ...newProps,
           }}
           onClick={() => {
             onExpand && onExpand(flag, trData, rowNum, hierarchy);
@@ -101,22 +106,20 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     <React.Fragment>
       {data.map((trData, rowNum) => {
         const key = rowKey ? trData[rowKey] : rowNum;
-        const summary = treeData?.getSum(key as string, expandIndex || []);
+        const mergeSpan = getMergeRowSpan([trData], expandIndex, rowKey as string, childrenColumnName);
         return (
           <React.Fragment key={rowNum}>
-            <tr key={key}>
+            <tr>
               {keys!.map((keyName, colNum) => {
                 const isHasChildren = Array.isArray(trData[childrenColumnName]);
                 let itemShow: {
                   show?: boolean;
                   rowSpan?: number;
                 } = {};
-                if (isAutoMergeRowSpan && summary) {
+                if (isAutoMergeRowSpan) {
                   const newLaval = Reflect.get(keyName, 'level');
-                  const summaryCount = summary.summaryCount[newLaval];
-
                   if (hierarchy === newLaval && isHasChildren) {
-                    itemShow.rowSpan = summaryCount;
+                    itemShow.rowSpan = mergeSpan;
                   } else if (hierarchy && Reflect.has(keyName, 'level') && hierarchy > newLaval) {
                     return <Fragment key={colNum} />;
                   }
@@ -124,16 +127,37 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                 let objs: React.TdHTMLAttributes<HTMLTableDataCellElement> = {
                   children: trData[keyName.key!],
                 };
+
+                let isExpanded = false;
+
+                if ((isOpacity || hierarchy || isHasChildren) && colNum === childrenIndex && isAutoExpanded) {
+                  isExpanded = true;
+                } else if ((isOpacity || hierarchy || isHasChildren) && !isAutoExpanded && keyName.isExpanded) {
+                  isExpanded = true;
+                }
+                if (keyName.isExpandedButton) {
+                  isExpanded = true;
+                }
+
+                /**按钮不展示，其他的距离还保留*/
+                let isExpandedBtn = isExpanded;
+
                 if (render[keyName.key!]) {
                   const child = render[keyName.key!](trData[keyName.key!], keyName.key, trData, rowNum, colNum, {
                     level: hierarchy,
                     rowSpan: itemShow.rowSpan,
-                    summary,
                   });
+
                   if (React.isValidElement(child)) {
                     objs.children = child;
                   } else {
+                    if (child.isExpanded === false) {
+                      isExpandedBtn = false;
+                    }
                     if (child.props) {
+                      if (itemShow.rowSpan) {
+                        child.props.rowSpan = itemShow.rowSpan;
+                      }
                       objs = { ...child.props, children: objs.children };
                       if (child.props.rowSpan === 0 || child.props.colSpan === 0) return null;
                     }
@@ -145,29 +169,28 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                   objs.rowSpan = itemShow.rowSpan;
                 }
 
-                let isExpanded = false;
-
-                if ((isOpacity || hierarchy || isHasChildren) && colNum === childrenIndex && isAutoExpanded) {
-                  isExpanded = true;
-                } else if ((isOpacity || hierarchy || isHasChildren) && !isAutoExpanded && keyName.isExpanded) {
-                  isExpanded = true;
-                }
-
-                if (isExpanded || keyName.isExpandedButton) {
+                if (isExpanded) {
                   if (keyName.isExpandedButtonLayout === 'right') {
                     objs.children = (
                       <>
-                        {IconDom(key, isHasChildren || !!keyName?.isExpandedButton, trData, rowNum)}
                         <span style={{ paddingLeft: hierarchy * indentSize }}></span>
                         {objs.children}
+                        {isExpandedBtn &&
+                          IconDom(
+                            key,
+                            isHasChildren || !!keyName?.isExpandedButton,
+                            trData,
+                            rowNum,
+                            keyName.isExpandedButtonLayout,
+                          )}
                       </>
                     );
                   } else {
                     objs.children = (
                       <>
+                        {isExpandedBtn && IconDom(key, isHasChildren || !!keyName?.isExpandedButton, trData, rowNum)}
                         <span style={{ paddingLeft: hierarchy * indentSize }}></span>
                         {objs.children}
-                        {IconDom(key, isHasChildren || !!keyName?.isExpandedButton, trData, rowNum)}
                       </>
                     );
                   }

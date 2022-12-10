@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-pagination",
-  "version": "5.0.0-bate-10",
+  "version": "5.0.0-bate-18",
   "description": "Pagination component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/pagination",
@@ -45,7 +45,7 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/react-select": "^5.0.0-bate-10",
-    "@uiw/utils": "^5.0.0-bate-10"
+    "@uiw/react-select": "^5.0.0-bate-18",
+    "@uiw/utils": "^5.0.0-bate-18"
   }
 }

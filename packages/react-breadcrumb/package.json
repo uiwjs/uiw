@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-breadcrumb",
-  "version": "5.0.0-bate-10",
+  "version": "5.0.0-bate-18",
   "description": "Breadcrumb component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/breadcrumb",
@@ -45,6 +45,6 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/utils": "^5.0.0-bate-10"
+    "@uiw/utils": "^5.0.0-bate-18"
   }
 }
