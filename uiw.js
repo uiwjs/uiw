@@ -2225,7 +2225,7 @@ var react_button_group_esm_excluded = ["prefixCls", "vertical", "children", "cla
 
 ;// CONCATENATED MODULE: ../../node_modules/@uiw/formatter/esm/index.js
 /**! 
- * @uiw/formatter v2.0.1 
+ * @uiw/formatter v1.3.5 
  * Get a formatted date. 
  * 
  * Copyright (c) 2022 Kenny Wang <wowohoo@qq.com> 
