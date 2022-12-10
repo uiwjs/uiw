@@ -63,7 +63,7 @@
     "node": ">=16.0.0"
   },
   "devDependencies": {
-    "@kkt/less-modules": "~7.2.1",
+    "@kkt/less-modules": "~7.3.0",
     "@kkt/ncc": "~1.0.15",
     "@types/react": "~18.0.0",
     "@types/react-dom": "~18.0.0",
