@@ -22,12 +22,6 @@ export interface BackTopStyleProps extends IProps, Omit<HTMLDivProps, 'children'
   speed?: number;
   children?: React.ReactNode | ((props: ChildrenFunction) => React.ReactNode);
   element?: HTMLElement;
-
-  // prefixCls = 'w-back-to-up',
-  // top = 120,
-  // size = 35,
-  // strokeWidth = 3,
-  // smooth = true,
 }
 
 export interface IBackTopState {
