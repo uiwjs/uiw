@@ -4,6 +4,7 @@ import { locationFixed } from './util';
 
 interface ThComponentProps<T> {
   colNum: number;
+  rightNum: number;
   item: TableColumns<T>;
   prefixCls: string;
   titleNode: JSX.Element;
@@ -24,12 +25,13 @@ export default class ThComponent<T> extends Component<ThComponentProps<T>> {
   }
 
   render() {
-    const { colNum, prefixCls, item, titleNode, onCellHead, rowNum, locationWidth } = this.props;
+    const { colNum, rightNum, prefixCls, item, titleNode, onCellHead, rowNum, locationWidth } = this.props;
     const { title, key, render, children, ellipsis, fixed = false, ...thProps } = item;
     let cls = '';
     if (fixed) {
       if (fixed === 'right') {
-        cls = prefixCls + '-fixed-right';
+        const rightCls = rightNum === 1 ? `${prefixCls}-fixed-right-first` : '';
+        cls = prefixCls + '-fixed-right ' + rightCls;
       } else {
         cls = prefixCls + '-fixed-true';
       }

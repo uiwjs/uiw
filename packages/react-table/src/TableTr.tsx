@@ -82,6 +82,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
     <React.Fragment>
       {data.map((trData, rowNum) => {
         const key = rowKey ? trData[rowKey] : rowNum;
+        let rightFixedNum = 0;
         return (
           <React.Fragment key={rowNum}>
             <tr key={key}>
@@ -115,7 +116,9 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                 }
                 if (keyName.fixed) {
                   if (keyName.fixed === 'right') {
-                    objs.className = `${prefixCls}-fixed-right`;
+                    rightFixedNum = rightFixedNum + 1;
+                    const cls = rightFixedNum === 1 ? `${prefixCls}-fixed-right-first` : '';
+                    objs.className = `${prefixCls}-fixed-right ${cls}`;
                   } else {
                     objs.className = `${prefixCls}-fixed-true`;
                   }
