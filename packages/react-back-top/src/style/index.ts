@@ -1,47 +1,48 @@
 import styled, { css } from 'styled-components';
-import { getThemeVariantValue, ThemeVariantValueOptions } from '@uiw/utils';
+import { ThemeVariantValueOptions } from '@uiw/utils';
+import BackToUp, { BackToUpProps } from '@uiw/react-back-to-top';
 
 export const BackTopStyleTheme = {
   bottomBackTop: '50px',
   rightBackTop: '50px',
 };
-const propsTheme = {
-  defaultTheme: { ...BackTopStyleTheme },
-};
+
 export interface BackTopStyleWarpProps
-  extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+  extends BackToUpProps,
+    React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
     ThemeVariantValueOptions<typeof BackTopStyleTheme> {
-  visible?: boolean;
-  fixed?: boolean;
+  visible?: string;
+  fixed?: string;
+  offsetTop?: number;
 }
 
-export const BackTopStyleWarp = styled.div<BackTopStyleWarpProps>`
-  position: fixed;
-  bottom: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'bottomBackTop')};
-  right: ${(props) => getThemeVariantValue({ ...props, ...propsTheme }, 'rightBackTop')};
-  cursor: pointer;
-  z-index: 1006;
-  transition: all 1s;
-  ${(props) =>
-    !props.fixed &&
-    css`
-      cursor: auto;
-      position: static;
-    `}
+export const BackTopStyleWarp = styled(BackToUp)<BackTopStyleWarpProps>`
+  width: inherit !important;
+  height: inherit !important;
+
   ${(props) => {
-    switch (props.visible) {
-      case true:
-        return css`
-          opacity: 1;
-        `;
-      case false:
-        return css`
-          transition: all 1s;
+    return (
+      props.fixed !== 'true' &&
+      css`
+        svg {
+          width: 0;
+          height: 0;
           opacity: 0;
-          height: 0px;
-        `;
-      default:
-        return css``;
-    }
+        }
+        div {
+          display: inline-flex !important;
+          position: static !important;
+          width: auto !important;
+        }
+      `
+    );
+  }}
+  ${(props) => {
+    return (
+      props.visible !== 'true' &&
+      css`
+        opacity: 0 !important;
+      `
+    );
   }}
 `;
