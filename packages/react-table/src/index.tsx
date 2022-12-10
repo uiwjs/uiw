@@ -1,10 +1,10 @@
-import React, { useMemo, useState, useEffect, useRef } from 'react';
+import React, { useMemo, useState, useEffect, useRef, Fragment } from 'react';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import { MinusSquareO } from '@uiw/icons/lib/MinusSquareO';
 import { PlusSquareO } from '@uiw/icons/lib/PlusSquareO';
 import Thead from './Thead';
 import { TableStyleWrap, TableStyleFooter } from './style';
-import { getLevelItems, getAllColumnsKeys } from './util';
+import { getLevelItems, getAllColumnsKeys, NodeTreeData } from './util';
 import ExpandableComponent from './Expandable';
 import TableTr from './TableTr';
 export * from './style';
@@ -26,11 +26,13 @@ export interface ExpandableType<T> {
   // 展开的行变化触发
   onExpandedRowsChange?: (expandedRows: Array<T[keyof T] | number>) => void;
   // 点击展开图标触发
-  onExpand?: (expanded: boolean, record: T, index: number) => void;
+  onExpand?: (expanded: boolean, record: T, index: number, hierarchy?: number) => void;
   // 控制树形结构每一层的缩进宽度
   indentSize?: number;
   // 指定树形结构的列名
   childrenColumnName?: string;
+  /**是否自动设置展开按钮位置*/
+  isAutoExpanded?: boolean;
 }
 
 export type TableColumns<T = any> = {
@@ -40,11 +42,36 @@ export type TableColumns<T = any> = {
   colSpan?: number;
   children?: TableColumns<T>[];
   ellipsis?: boolean;
-  render?: (text: string, keyName: string, rowData: T, rowNumber: number, columnNumber: number) => React.ReactNode;
+  render?: (
+    text: string,
+    keyName: string,
+    rowData: T,
+    rowNumber: number,
+    columnNumber: number,
+    leveConfig: {
+      level: number;
+      rowSpan?: number;
+      summary:
+        | {
+            summary: Record<
+              string,
+              {
+                count: number;
+                level: number;
+              }
+            >;
+            summaryCount: Record<string | number, number>;
+          }
+        | undefined;
+    },
+  ) => React.ReactNode;
   style?: React.CSSProperties;
   align?: 'left' | 'center' | 'right';
   className?: string;
   fixed?: boolean | 'left' | 'right';
+  isExpanded?: boolean;
+  isExpandedButton?: boolean;
+  isExpandedButtonLayout?: 'left' | 'right';
   [key: string]: any;
 };
 
@@ -70,6 +97,7 @@ export interface TableProps<T extends { [key: string]: V } = any, V = any> exten
   expandable?: ExpandableType<T>;
   rowKey?: keyof T;
   scroll?: { x?: React.CSSProperties['width']; y?: React.CSSProperties['height'] };
+  isAutoMergeRowSpan?: boolean;
 }
 
 export interface LocationWidth {
@@ -101,6 +129,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
     expandable,
     rowKey,
     scroll,
+    isAutoMergeRowSpan = false,
     ...other
   } = props;
   const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
@@ -299,6 +328,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
           {columns && columns.length > 0 && (
             <Thead
               onCellHead={onCellHead}
+              bordered={bordered}
               data={header}
               locationWidth={locationWidth}
               updateLocation={updateLocation}
@@ -315,11 +345,17 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
                 render={render}
                 ellipsis={ellipsis}
                 prefixCls={prefixCls}
+                bordered={bordered}
                 onCell={onCell}
                 hierarchy={0}
                 isExpandedDom={isExpandedDom}
+                onExpand={expandable?.onExpand}
                 indentSize={typeof expandable?.indentSize === 'number' ? expandable?.indentSize : 16}
                 childrenColumnName={expandable?.childrenColumnName || 'children'}
+                isAutoExpanded={expandable?.isAutoExpanded}
+                isAutoMergeRowSpan={isAutoMergeRowSpan}
+                expandIndex={expandIndex}
+                setExpandIndex={setExpandIndex}
               />
             </tbody>
           )}

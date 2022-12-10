@@ -6,6 +6,7 @@ import ThComponentProps from './ThComponent';
 
 export interface TheadProps<T extends { [key: string]: V }, V = any> extends IProps {
   data?: TableColumns<T>[][];
+  bordered?: boolean;
   onCellHead?: TableProps<T, V>['onCellHead'];
   align?: TableColumns['align'];
   className?: TableColumns['className'];
@@ -49,6 +50,7 @@ export default function TheadComponent<T extends { [key: string]: V }, V>(
                   colNum={colNum}
                   item={item}
                   key={colNum}
+                  bordered={props.bordered}
                   prefixCls={prefixCls}
                   onCellHead={onCellHead}
                   rowNum={rowNum!}

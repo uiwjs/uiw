@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-back-top",
-  "version": "5.0.0-bate-5",
+  "version": "5.0.0-bate-18",
   "description": "BackTop component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/back-top",
@@ -49,6 +49,7 @@
     "@uiw/utils": "^5.0.0-bate-5"
   },
   "devDependencies": {
-    "@types/styled-components": "~5.1.25"
+    "@types/styled-components": "~5.1.25",
+    "@uiw/utils": "^5.0.0-bate-18"
   }
 }

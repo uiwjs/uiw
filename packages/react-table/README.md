@@ -5,7 +5,7 @@ Table 表格
 [![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-table.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-table)
 [![npm version](https://img.shields.io/npm/v/@uiw/react-table.svg?label=@uiw/react-table)](https://npmjs.com/@uiw/react-table)
 
-表示两种相互对立的状态间的切换，多用于触发「开/关」。选中时的内容支持响应式。
+用于列表数据渲染
 
 ```jsx
 import { Table } from 'uiw';
@@ -33,6 +33,7 @@ const columns = [
     title: '年龄',
     style: { color: 'red' },
     key: 'age',
+    isExpandedButton:true,
   }, {
     title: '地址',
     key: 'info',
@@ -196,6 +197,211 @@ const Demo = () => (
     <Table bordered columns={columns} data={dataSource} />
   </div>
 );
+export default Demo
+```
+
+### 列合并
+
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
+import React from 'react';
+import { Table, Button, Icon } from 'uiw';
+
+const columns = [
+  {
+    title: '姓名',
+    ellipsis: true, 
+    key: 'name', 
+  }, 
+  {
+    title: '年龄',
+    style: { color: 'red' },
+    key: 'age',
+    isExpandedButton:true,
+    isExpandedButtonLayout:"right",
+    render: (text, key, rowData, rowNum, colNum,{level}) => {
+     const obj = {
+       children: text,
+       props: {}
+     }
+     if (level === 0) {
+       obj.props.colSpan = 2;
+     }
+     return obj;
+    }
+  }, 
+   {
+    title: '年龄2',
+    style: { color: 'red' },
+    key: 'age1',
+    render: (text, key, rowData, rowNum, colNum,{level}) => {
+     const obj = {
+       children: rowData.age,
+       props: {}
+     }
+     if (level === 0) {
+       obj.props.colSpan = 0;
+     }
+     return obj;
+    }
+  }, 
+  {
+    title: '操作',
+    key: 'edit',
+    width: 98,
+    render: (text, key, rowData, rowNumber, columnNumber) => (
+      <div>
+        <Button size="small" type="danger">删除</Button>
+        <Button size="small" type="success">修改</Button>
+      </div>
+    ),
+  },
+];
+const dataSource = [
+  { 
+    name: '邓紫棋', 
+    age: '10', 
+    id: '1', 
+    children: [
+      {
+        name: '邓紫棋-0-1', 
+        age: '10', 
+        id: '1-1', 
+        children: [
+          { 
+            name: '邓紫棋-0-1-1', 
+            age: '10', 
+            id: '1-1-1',
+            children: [
+              {name: '邓紫棋-0-1-1-1', age: '10', id: '-0-1-1-1'},
+              {name: '邓紫棋-0-1-1-2', age: '10', id: '-0-1-1-2'},
+              {name: '邓紫棋-0-1-1-3', age: '10', id: '-0-1-1-3'},
+            ]
+          },
+          { name: '邓紫棋-0-1-2', age: '10', id: '1-1-2',}
+        ]
+      },
+      {name: '邓紫棋-0-2', age: '10', id: '1-1'},
+      {name: '邓紫棋-0-3', age: '10', id: '1-1'},
+    ]
+  },
+  { name: '李易峰', age: '32', id: '2',
+  },
+  { name: '范冰冰', age: '23', id: '3', 
+    children: [
+      {name: '范冰冰0-1', age: '23', id: '3-1'},
+      {name: '范冰冰0-2', age: '23', id: '3-2'},
+      {name: '范冰冰0-3', age: '23', id: '3-3'},
+    ]
+  },
+];
+const Demo = () => {
+  const [expandedRowKeys, setExpandedRowKeys] = React.useState([])
+  return (
+    <div>
+      <Table 
+        rowKey="id"
+        expandable={{
+          onExpand:(key,record,...rest)=>{
+            console.log(key,record,rest)
+          }
+        }}
+        columns={columns}
+        data={dataSource}
+      />
+    </div>
+  )
+};
+export default Demo
+```
+
+
+### 自动合并行
+
+```jsx mdx:preview&background=#fff&codeSandbox=true&codePen=true
+import React from 'react';
+import { Table, Button, Icon } from 'uiw';
+
+const columns = [
+  {
+    title: '姓名',
+    ellipsis: true, 
+    key: 'name', 
+  }, 
+  {
+    title: '年龄',
+    style: { color: 'red' },
+    key: 'age',
+    level:2
+  }, 
+   {
+    title: '年龄2',
+    style: { color: 'red' },
+    key: 'age',
+    level:2
+  }, 
+  {
+    title: '操作',
+    key: 'edit',
+    width: 98,
+    render: (text, key, rowData, rowNumber, columnNumber) => (
+      <div>
+        <Button size="small" type="danger">删除</Button>
+        <Button size="small" type="success">修改</Button>
+      </div>
+    ),
+  },
+];
+const dataSource = [
+  { 
+    name: '邓紫棋', 
+    age: '10', 
+    id: '1', 
+    children: [
+      {
+        name: '邓紫棋-0-1', 
+        age: '10', 
+        id: '1-1', 
+        children: [
+          { 
+            name: '邓紫棋-0-1-1', 
+            age: '10', 
+            id: '1-1-1',
+            children: [
+              {name: '邓紫棋-0-1-1-1', age: '10', id: '-0-1-1-1'},
+              {name: '邓紫棋-0-1-1-2', age: '10', id: '-0-1-1-2'},
+              {name: '邓紫棋-0-1-1-3', age: '10', id: '-0-1-1-3'},
+            ]
+          },
+          { name: '邓紫棋-0-1-2', age: '10', id: '1-1-2',}
+        ]
+      },
+      {name: '邓紫棋-0-2', age: '10', id: '1-1'},
+      {name: '邓紫棋-0-3', age: '10', id: '1-1'},
+    ]
+  },
+  { name: '李易峰', age: '32', id: '2',
+  },
+  { name: '范冰冰', age: '23', id: '3', 
+    children: [
+      {name: '范冰冰0-1', age: '23', id: '3-1'},
+      {name: '范冰冰0-2', age: '23', id: '3-2'},
+      {name: '范冰冰0-3', age: '23', id: '3-3'},
+    ]
+  },
+];
+const Demo = () => {
+  const [expandedRowKeys, setExpandedRowKeys] = React.useState([])
+  return (
+    <div>
+      <Table 
+        rowKey="id"
+        columns={columns}
+        data={dataSource}
+        isAutoMergeRowSpan={true}
+      />
+    </div>
+  )
+};
 export default Demo
 ```
 
@@ -1165,7 +1371,7 @@ export default Demo
 | expandable | 可展开配置 | ExpandableType | - |
 | rowKey | 表格行 key 的取值 | String | - |
 | scroll | 表格是否可滚动，也可以指定滚动区域的宽、高 | { x?: React.CSSProperties['width'], y?: React.CSSProperties['height'] } | - |
-
+| isAutoMergeRowSpan |  是否自动合并行(和表头配置中的`level`配合使用) | boolean | - |
 
 ### ColumnProps
 
@@ -1178,10 +1384,14 @@ export default Demo
 | width | 列宽度。| Number | - | - |
 | colSpan | 合并表头行。| Number | - | - |
 | ellipsis | 超过宽度将自动省略。`v4.8.7+`| Boolean | `false` | - |
-| render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前值的 `key`，行索引数据，当前行号，当前列号。| `Function(text, key, rowData, rowNumber, columnNumber)` | - | - |
+| render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前值的 `key`，行索引数据，当前行号，当前列号。| `Function(text, key, rowData, rowNumber, columnNumber,leveConfig: level: number,rowSpan?: number, summary: { summary: Record<string, {count: number;level: number;}>;summaryCount: Record<string \| number, number>;} \| undefined)` | - | - |
 | align | 设置列的对齐方式 | "left"\|"center"\|"right" | - | - |
 | className | 列样式类名 | String | - | - |
 | fixed | 把选择框列固定	 | Boolean \|"left"\|"right" | - | 4.15.1 |
+| isExpanded | 是否当前列显示展开按钮	 | Boolean | - | - |
+| isExpandedButton | 是否直接显示展开按钮	 | Boolean | - | - |
+| isExpandedButtonLayout | 展开按钮显示右边还是左边 	 | `left \| right` | - | - |
+| level | 合并行层级(和`isAutoMergeRowSpan`一起使用) | number | - | - |
 
 ### expandable
 
@@ -1200,3 +1410,4 @@ export default Demo
 | onExpand | 点击展开图标触发 | (expanded,record,index)=>void | - |
 | indentSize | 控制树形结构每一层的缩进宽度 | Number | 16 |
 | childrenColumnName | 指定树形结构的列名 | String | children |
+| isAutoExpanded | 是否自动设置展开按钮位置 | boolean | true |

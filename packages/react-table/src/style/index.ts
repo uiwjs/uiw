@@ -31,6 +31,7 @@ export interface TableStyleColProps extends TableStyleBaseProps {
   params?: {
     align?: 'left' | 'center' | 'right';
     fixed?: boolean | 'left' | 'right';
+    bordered?: boolean;
   };
 }
 
@@ -47,6 +48,8 @@ export interface TableStyleFooterProps extends TableStyleBaseProps {
 }
 
 export const TableStyleWrap = styled.div<TableStyleWrapBaseProps>`
+  width: 100%;
+  overflow: auto;
   > table {
     display: table !important;
     margin: 0 !important;
@@ -73,7 +76,7 @@ export const TableStyleWrap = styled.div<TableStyleWrapBaseProps>`
       transition: all 0.3s;
       > td {
         background-color: ${(props) =>
-          getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'backgroundColorTableTbodyTrTd')};
+          getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'backgroundColorTable')};
         position: relative;
         z-index: 1;
       }
@@ -142,7 +145,20 @@ export const TableStyleCol = styled.td<TableStyleColProps>`
       ? css`
           position: sticky !important;
           z-index: 2 !important;
-          // border: 0; 透风 1px
+
+          ${props?.params?.bordered &&
+          css`
+            &:before {
+              content: '';
+              position: absolute;
+              right: -1px;
+              top: 0;
+              bottom: 0;
+              border-right: 1px solid
+                ${getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'borderColorTable')};
+            }
+          `}
+
           &::after {
             box-shadow: inset -10px 0 8px -8px rgb(0 0 0 / 15%);
             position: absolute;
@@ -164,7 +180,18 @@ export const TableStyleCol = styled.td<TableStyleColProps>`
       : css`
           position: sticky !important;
           z-index: 2 !important;
-          // border: 0; 透风 1px
+          ${props?.params?.bordered &&
+          css`
+            &:before {
+              content: '';
+              position: absolute;
+              left: -1px;
+              top: 0;
+              bottom: 0;
+              border-left: 1px solid
+                ${getThemeVariantValue({ ...props, defaultTheme: TableBaseDefaultTheme }, 'borderColorTable')};
+            }
+          `}
           &:after {
             box-shadow: inset 10px 0 8px -8px rgb(0 0 0 / 15%);
             position: absolute;

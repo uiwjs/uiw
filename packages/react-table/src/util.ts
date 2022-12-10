@@ -140,3 +140,19 @@ export function locationFixed(
   if (fixed === 'right') return { right: location[index]?.right };
   return { left: location[index]?.left };
 }
+
+export const getMergeRowSpan = (
+  data: any[],
+  expandedKeys: (string | number)[],
+  rowKey = 'id',
+  childName = 'children',
+) => {
+  let childSum = data.length;
+  data.forEach((item) => {
+    if (Array.isArray(item[childName]) && expandedKeys.includes(item[rowKey])) {
+      const sum = getMergeRowSpan(item[childName], expandedKeys);
+      childSum = childSum + sum;
+    }
+  });
+  return childSum;
+};

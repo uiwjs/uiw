@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-tabs",
-  "version": "5.0.0-bate-5",
+  "version": "5.0.0-bate-18",
   "description": "Tabs component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/tabs",
@@ -45,7 +45,7 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/react-popover": "^5.0.0-bate-5",
-    "@uiw/utils": "^5.0.0-bate-5"
+    "@uiw/react-popover": "^5.0.0-bate-18",
+    "@uiw/utils": "^5.0.0-bate-18"
   }
 }
