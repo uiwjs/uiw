@@ -4558,10 +4558,13 @@ a.w-list-item:hover:not(.w-disabled) {
   margin-left: 5px;
 }
 
+.w-table {
+  width: 100%;
+  overflow: auto;
+}
 .w-table > table {
   display: table !important;
   margin: 0 !important;
-  width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
 }
@@ -4641,8 +4644,15 @@ a.w-list-item:hover:not(.w-disabled) {
   content: '';
   pointer-events: none;
 }
+.w-table-fixed-true::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  border-left: 1px solid #dfe2e5;
+}
 .w-table-fixed-right::after {
-  box-shadow: inset -10px 0 8px -8px rgba(0, 0, 0, 0.15);
   position: absolute;
   top: 0;
   bottom: -1px;
@@ -4653,6 +4663,17 @@ a.w-list-item:hover:not(.w-disabled) {
   content: '';
   pointer-events: none;
   border-right: 1px solid #f0f0f0;
+}
+.w-table-fixed-right-first::after {
+  box-shadow: inset -10px 0 8px -8px rgba(0, 0, 0, 0.15);
+}
+.w-table-fixed-right::before {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 0;
+  bottom: 0;
+  border-right: 1px solid #dfe2e5;
 }
 .w-table-bordered > table tr > th,
 .w-table-bordered > table tr > td,

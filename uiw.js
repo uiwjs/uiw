@@ -357,16 +357,13 @@ function getScroll(target, top) {
   if (typeof window === 'undefined') {
     return 0;
   }
-
   var prop = top ? 'pageYOffset' : 'pageXOffset';
   var method = top ? 'scrollTop' : 'scrollLeft';
   var isWindow = target === window;
   var ret = isWindow ? target[prop] : target[method];
-
   if (isWindow && typeof ret !== 'number') {
     ret = document.documentElement[method];
   }
-
   return ret;
 }
 
@@ -418,30 +415,25 @@ class Affix extends (external_root_React_commonjs2_react_commonjs_react_amd_reac
     this.events = ['resize', 'scroll', 'touchstart', 'touchmove', 'touchend', 'pageshow', 'load'];
     this.eventHandlers = {};
     this.timeout = void 0;
-
     this.getInstance = node => {
       if (node) {
         this.box = node;
       }
     };
-
     this.updatePosition = this.updatePosition.bind(this);
   }
-
   componentDidMount() {
-    var target = this.props.target || getDefaultTarget; // Wait for parent component ref has its value
-
+    var target = this.props.target || getDefaultTarget;
+    // Wait for parent component ref has its value
     this.timeout = window.setTimeout(() => {
       this.target = target();
       this.setTargetEventListeners();
     });
   }
-
   componentWillUnmount() {
     this.clearEventListeners();
     clearTimeout(this.timeout);
   }
-
   updatePosition() {
     var {
       offsetTop
@@ -449,11 +441,9 @@ class Affix extends (external_root_React_commonjs2_react_commonjs_react_amd_reac
     var {
       offsetBottom
     } = this.props;
-
     if (!this.box || !this.box.offsetParent) {
       return;
     }
-
     var elemSize = {
       width: this.box.clientWidth,
       height: this.box.clientHeight
@@ -462,21 +452,17 @@ class Affix extends (external_root_React_commonjs2_react_commonjs_react_amd_reac
       top: true,
       bottom: false
     };
-
     if (typeof offsetTop !== 'number' && typeof offsetBottom !== 'number') {
       offsetMode.top = true;
       offsetTop = 0;
     }
-
     if (typeof offsetBottom === 'number') {
       offsetMode.top = false;
       offsetMode.bottom = true;
     }
-
     var elemOffset = getOffset(this.box, this.target);
     var box = this.box.getBoundingClientRect();
     var bottom = document.documentElement.clientHeight - box.y - elemOffset.height;
-
     if (offsetMode.top && box.y < 0) {
       this.setPlaceholderStyle(_extends({}, elemSize));
       this.setAffixStyle({
@@ -498,7 +484,6 @@ class Affix extends (external_root_React_commonjs2_react_commonjs_react_amd_reac
       this.setAffixStyle();
     }
   }
-
   setAffixStyle(affixStyle) {
     var {
       onChange
@@ -510,14 +495,12 @@ class Affix extends (external_root_React_commonjs2_react_commonjs_react_amd_reac
       onChange && onChange(affixed);
     });
   }
-
   setPlaceholderStyle(placeholderStyle) {
     this.setState({
       placeholderStyle
     });
-  } // 设置监听事件
-
-
+  }
+  // 设置监听事件
   setTargetEventListeners() {
     this.clearEventListeners();
     this.events.forEach(eventName => {
@@ -525,23 +508,20 @@ class Affix extends (external_root_React_commonjs2_react_commonjs_react_amd_reac
       this.target && this.target.addEventListener(eventName, this.updatePosition, false);
     });
   }
-
   clearEventListeners() {
     this.events.forEach(eventName => {
       var handler = this.eventHandlers[eventName];
       this.target && this.target.removeEventListener(eventName, handler, false);
     });
   }
-
   render() {
     var _this$props = this.props,
-        {
-      prefixCls,
-      className,
-      children
-    } = _this$props,
-        resetProps = _objectWithoutPropertiesLoose(_this$props, _excluded);
-
+      {
+        prefixCls,
+        className,
+        children
+      } = _this$props,
+      resetProps = _objectWithoutPropertiesLoose(_this$props, _excluded);
     var cls = [className, prefixCls].filter(Boolean).join(' ').trim();
     return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({}, resetProps, {
       ref: this.getInstance,
@@ -553,7 +533,6 @@ class Affix extends (external_root_React_commonjs2_react_commonjs_react_amd_reac
       })
     }));
   }
-
 }
 Affix.defaultProps = {
   prefixCls: 'w-affix',
@@ -1411,20 +1390,16 @@ function Portal(props) {
       }
     };
   }, []);
-
   if (!canUseDOM) {
     return null;
   }
-
   if (!containerRef.current) {
     containerRef.current = document.body;
   }
-
   if (!defaultNode.current) {
     defaultNode.current = document.createElement('div');
     containerRef.current.appendChild(defaultNode.current);
   }
-
   return /*#__PURE__*/external_root_ReactDOM_commonjs2_react_dom_commonjs_react_dom_amd_react_dom_default().createPortal(props.children, defaultNode.current);
 }
 
@@ -1435,7 +1410,6 @@ function Portal(props) {
 
 
 var esm_excluded = ["className", "style", "isOpen", "prefixCls", "usePortal", "maskClosable", "backdropProps", "portalProps", "hasBackdrop", "unmountOnExit", "timeout", "transitionName", "onOpening", "onOpened", "onClosing", "onClosed", "onClose", "onEnter", "onExiting", "onEntering", "onEntered", "onExit", "children", "dialogProps"];
-
 /**
  * Overlay 组件
  * ---------------
@@ -1456,37 +1430,36 @@ var esm_excluded = ["className", "style", "isOpen", "prefixCls", "usePortal", "m
 
 function Overlay(props) {
   var {
-    className,
-    style,
-    isOpen: _ = false,
-    prefixCls = 'w-overlay',
-    usePortal = true,
-    maskClosable = true,
-    backdropProps = {},
-    portalProps = {},
-    hasBackdrop = true,
-    unmountOnExit = true,
-    // 设置 true 销毁根节点
-    timeout = 300,
-    transitionName = 'w-overlay',
-    // onEnter = noop,
-    onOpening = noop,
-    onOpened = noop,
-    onClosing = noop,
-    onClosed = noop,
-    onClose = noop,
-    onEnter: _onEnter = noop,
-    onExiting: _onExiting = noop,
-    onEntering: _onEntering = noop,
-    onEntered: _onEntered = noop,
-    onExit = noop,
-    children,
-    dialogProps = {}
-  } = props,
-      otherProps = _objectWithoutPropertiesLoose(props, esm_excluded);
-
-  var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(); // const [isOpen, setIsOpen] = useState(props.isOpen || false);
-
+      className,
+      style,
+      isOpen: _ = false,
+      prefixCls = 'w-overlay',
+      usePortal = true,
+      maskClosable = true,
+      backdropProps = {},
+      portalProps = {},
+      hasBackdrop = true,
+      unmountOnExit = true,
+      // 设置 true 销毁根节点
+      timeout = 300,
+      transitionName = 'w-overlay',
+      // onEnter = noop,
+      onOpening = noop,
+      onOpened = noop,
+      onClosing = noop,
+      onClosed = noop,
+      onClose = noop,
+      onEnter: _onEnter = noop,
+      onExiting: _onExiting = noop,
+      onEntering: _onEntering = noop,
+      onEntered: _onEntered = noop,
+      onExit = noop,
+      children,
+      dialogProps = {}
+    } = props,
+    otherProps = _objectWithoutPropertiesLoose(props, esm_excluded);
+  var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)();
+  // const [isOpen, setIsOpen] = useState(props.isOpen || false);
   var [visible, setVisible] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
   var container = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
   var overlay = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
@@ -1494,7 +1467,6 @@ function Overlay(props) {
     if (isOpen !== props.isOpen && props.isOpen) {
       setVisible(true);
     }
-
     if (isOpen !== props.isOpen && !props.isOpen) {
       overlayWillClose();
       setIsOpen(false);
@@ -1514,39 +1486,33 @@ function Overlay(props) {
     className: prefixCls + "-content",
     children: children
   }));
-
   function handleClosed(node) {
     setVisible(false);
     onClosed && onClosed(node);
   }
-
   function handleBackdropMouseDown(e) {
     if (e.target !== container.current && usePortal) {
       return;
     }
-
     if (maskClosable && hasBackdrop) {
       overlayWillClose();
       setIsOpen(false);
       onClose && onClose(e);
     }
-
     backdropProps && backdropProps.onMouseDown && backdropProps.onMouseDown(e);
   }
-
   function overlayWillOpen() {
     if (hasBackdrop && usePortal) {
       document.body.classList.add(prefixCls + "-open");
     }
   }
-
   function overlayWillClose() {
     if (hasBackdrop && usePortal) {
       document.body.classList.remove(prefixCls + "-open");
-    } // if (unmountOnExit) {
+    }
+    // if (unmountOnExit) {
     //   setVisible(false)
     // }
-
   }
 
   var TransitionGroupComp = /*#__PURE__*/(0,jsx_runtime.jsx)(esm_CSSTransition, _extends({
@@ -1559,17 +1525,14 @@ function Overlay(props) {
     },
     onEntering: isAppearing => {
       onOpening(overlay.current, isAppearing);
-
       _onEntering(overlay.current);
     },
     onEntered: isAppearing => {
       onOpened(overlay.current, isAppearing);
-
       _onEntered(overlay.current);
     },
     onExiting: () => {
       onClosing(overlay.current);
-
       _onExiting(overlay.current);
     },
     onExited: () => {
@@ -1600,7 +1563,6 @@ function Overlay(props) {
       });
     }
   }));
-
   if (visible && usePortal) {
     return /*#__PURE__*/(0,jsx_runtime.jsx)(Portal, _extends({}, _extends({}, portalProps), {
       children: TransitionGroupComp
@@ -1625,18 +1587,16 @@ var react_icon_esm_excluded = ["className", "prefixCls", "verticalAlign", "tagNa
 
 function Icon(props) {
   var {
-    className,
-    prefixCls = 'w-icon',
-    verticalAlign = 'middle',
-    tagName: TagName = 'span',
-    color,
-    type,
-    spin = false
-  } = props,
-      others = _objectWithoutPropertiesLoose(props, react_icon_esm_excluded);
-
+      className,
+      prefixCls = 'w-icon',
+      verticalAlign = 'middle',
+      tagName: TagName = 'span',
+      color,
+      type,
+      spin = false
+    } = props,
+    others = _objectWithoutPropertiesLoose(props, react_icon_esm_excluded);
   var svg = null;
-
   if (typeof type === 'string') {
     svg = /*#__PURE__*/(0,jsx_runtime.jsx)("svg", {
       fill: color,
@@ -1653,15 +1613,12 @@ function Icon(props) {
   } else {
     return null;
   }
-
   others.style = _extends({
     fill: 'currentColor'
   }, others.style);
-
   var propps = _extends({}, others, {
     className: [prefixCls, className, prefixCls && verticalAlign ? prefixCls + "-" + verticalAlign : null, spin && prefixCls ? prefixCls + "-spin" : null].filter(Boolean).join(' ').trim()
   });
-
   return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().createElement(TagName, _extends({}, propps), svg);
 }
 
@@ -1679,21 +1636,20 @@ var react_button_esm_excluded = ["prefixCls", "disabled", "active", "loading", "
 
 /* harmony default export */ const esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-btn',
-    disabled = false,
-    active = false,
-    loading = false,
-    block = false,
-    basic = false,
-    htmlType = 'button',
-    type = 'light',
-    size = 'default',
-    icon,
-    className,
-    children
-  } = props,
-      others = _objectWithoutPropertiesLoose(props, react_button_esm_excluded);
-
+      prefixCls = 'w-btn',
+      disabled = false,
+      active = false,
+      loading = false,
+      block = false,
+      basic = false,
+      htmlType = 'button',
+      type = 'light',
+      size = 'default',
+      icon,
+      className,
+      children
+    } = props,
+    others = _objectWithoutPropertiesLoose(props, react_button_esm_excluded);
   var cls = [className, prefixCls, size ? prefixCls + "-size-" + size : null, type ? prefixCls + "-" + type : null, basic ? prefixCls + "-basic" : null, loading ? prefixCls + "-loading" : null, disabled || loading ? 'disabled' : null, active ? 'active' : null, block ? 'block' : null].filter(Boolean).join(' ').trim();
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("button", _extends({}, others, {
     ref: ref,
@@ -1725,12 +1681,11 @@ var CallShow_excluded = ["title", "children"];
 
 function CallShow(props) {
   var _ref = props || {},
-      {
-    title = '提示框',
-    children
-  } = _ref,
-      other = _objectWithoutPropertiesLoose(_ref, CallShow_excluded);
-
+    {
+      title = '提示框',
+      children
+    } = _ref,
+    other = _objectWithoutPropertiesLoose(_ref, CallShow_excluded);
   var dv = document.createElement('div');
   dv.id = 'uiw-modal-call-show-element';
   document.body.appendChild(dv);
@@ -1760,31 +1715,30 @@ var react_modal_esm_excluded = ["prefixCls", "className", "children", "useButton
 
 var Modal = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-modal',
-    className,
-    children,
-    useButton = true,
-    usePortal = true,
-    autoFocus = false,
-    isOpen: _ = false,
-    title,
-    cancelText,
-    cancelButtonProps,
-    confirmButtonProps,
-    content,
-    confirmText = '确认',
-    type = 'light',
-    icon,
-    maxWidth = 500,
-    minWidth = 320,
-    width,
-    isCloseButtonShown = true,
-    onCancel = noop,
-    onConfirm = noop,
-    bodyStyle
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_modal_esm_excluded);
-
+      prefixCls = 'w-modal',
+      className,
+      children,
+      useButton = true,
+      usePortal = true,
+      autoFocus = false,
+      isOpen: _ = false,
+      title,
+      cancelText,
+      cancelButtonProps,
+      confirmButtonProps,
+      content,
+      confirmText = '确认',
+      type = 'light',
+      icon,
+      maxWidth = 500,
+      minWidth = 320,
+      width,
+      isCloseButtonShown = true,
+      onCancel = noop,
+      onConfirm = noop,
+      bodyStyle
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_modal_esm_excluded);
   var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(props.isOpen);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     if (props.isOpen !== isOpen) {
@@ -1793,47 +1747,37 @@ var Modal = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_
   }, [props.isOpen]);
   var [loading, setLoading] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
   var cls = [prefixCls, className, type ? "" + type : null].filter(Boolean).join(' ').trim();
-
   function onClose() {
     setIsOpen(false);
   }
-
   function handleCancel(_x) {
     return _handleCancel.apply(this, arguments);
   }
-
   function _handleCancel() {
     _handleCancel = _asyncToGenerator(function* (e) {
       setLoading(true);
-
       try {
         onCancel && (yield onCancel(e));
       } catch (e) {}
-
       setIsOpen(false);
       setLoading(false);
     });
     return _handleCancel.apply(this, arguments);
   }
-
   function handleConfirm(_x2) {
     return _handleConfirm.apply(this, arguments);
   }
-
   function _handleConfirm() {
     _handleConfirm = _asyncToGenerator(function* (e) {
       setLoading(true);
-
       try {
         onConfirm && (yield onConfirm(e));
       } catch (e) {}
-
       setIsOpen(false);
       setLoading(false);
     });
     return _handleConfirm.apply(this, arguments);
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Overlay, _extends({
     usePortal: usePortal,
     isOpen: isOpen
@@ -1902,14 +1846,12 @@ var react_alert_esm_excluded = ["prefixCls", "className", "width"];
   if (props === void 0) {
     props = {};
   }
-
   var {
-    prefixCls = 'w-alert',
-    className,
-    width = 400
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_alert_esm_excluded);
-
+      prefixCls = 'w-alert',
+      className,
+      width = 400
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_alert_esm_excluded);
   var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   return /*#__PURE__*/(0,jsx_runtime.jsx)(react_modal_esm, _extends({}, other, {
     width: width,
@@ -1930,16 +1872,13 @@ var delimiter = /((?:https?:\/\/)?(?:(?:[a-z0-9]?(?:[a-z0-9\-]{1,61}[a-z0-9])?\.
   if (props === void 0) {
     props = {};
   }
-
   var {
-    text = ''
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_auto_link_esm_excluded);
-
+      text = ''
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_auto_link_esm_excluded);
   return /*#__PURE__*/(0,jsx_runtime.jsx)(external_root_React_commonjs2_react_commonjs_react_amd_react_.Fragment, {
     children: text.split(delimiter).map((word, idx) => {
       var match = word.match(delimiter);
-
       if (match && match[0]) {
         var url = match[0];
         return /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.createElement)("a", _extends({}, other, {
@@ -1947,7 +1886,6 @@ var delimiter = /((?:https?:\/\/)?(?:(?:[a-z0-9]?(?:[a-z0-9\-]{1,61}[a-z0-9])?\.
           href: url.startsWith('http') ? url : "http://" + url
         }), url);
       }
-
       return /*#__PURE__*/(0,jsx_runtime.jsx)(external_root_React_commonjs2_react_commonjs_react_amd_react_.Fragment, {
         children: word
       }, idx);
@@ -1971,31 +1909,28 @@ var react_avatar_esm_excluded = ["prefixCls", "shape", "size", "className", "src
 
 /* harmony default export */ const react_avatar_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-avatar',
-    shape = 'circle',
-    size = 'default',
-    className,
-    src,
-    alt,
-    icon,
-    onError: _onError = noop
-  } = props,
-      resetProps = _objectWithoutPropertiesLoose(props, react_avatar_esm_excluded);
-
+      prefixCls = 'w-avatar',
+      shape = 'circle',
+      size = 'default',
+      className,
+      src,
+      alt,
+      icon,
+      onError: _onError = noop
+    } = props,
+    resetProps = _objectWithoutPropertiesLoose(props, react_avatar_esm_excluded);
   var children = props.children;
   var [isImgExist, setIsImgExist] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(true);
   var cls = [prefixCls, className, size ? prefixCls + "-" + size : null, shape ? prefixCls + "-" + shape : null, src ? prefixCls + "-image" : null].filter(Boolean).join(' ').trim();
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     setIsImgExist(true);
   }, [props.src]);
-
   if (isImgExist && src) {
     children = /*#__PURE__*/(0,jsx_runtime.jsx)("img", {
       src: src,
       alt: alt,
       onError: evn => {
         var errorFlag = _onError ? _onError(evn) : undefined;
-
         if (errorFlag !== false) {
           setIsImgExist(false);
         }
@@ -2008,7 +1943,6 @@ var react_avatar_esm_excluded = ["prefixCls", "shape", "size", "className", "src
   } else if (icon && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().isValidElement(icon)) {
     children = icon;
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)("span", _extends({}, resetProps, {
     className: cls,
     ref: ref,
@@ -2022,40 +1956,34 @@ var react_avatar_esm_excluded = ["prefixCls", "shape", "size", "className", "src
  */
 function getScrollTop() {
   var scrollTop = 0;
-
   if (document && document.documentElement && document.documentElement.scrollTop) {
     scrollTop = document.documentElement.scrollTop;
   } else if (document.body) {
     scrollTop = document.body.scrollTop;
   }
-
   return scrollTop;
 }
+
 /**
  * TODO
  * @param {*} position 滚动到何处
  * @param {*} step 步长
  * @param {*} current 滚动条当前位置
  */
-
 function scrollToAnimate(position, step, current) {
   if (position === void 0) {
     position = 0;
   }
-
   if (step === void 0) {
     step = 100;
   }
-
   if (current === void 0) {
     current = 0;
   }
-
   var start = 0;
   var timer = setInterval(() => {
     if (current - start >= position) {
       start += step;
-
       if (current - start >= position) {
         window.scrollTo(0, current - start);
       } else {
@@ -2069,18 +1997,14 @@ function scrollToAnimate(position, step, current) {
 /**
  * 获取滚动条位置百分比
  */
-
 function getScrollPercent(offsetTop) {
   if (offsetTop === void 0) {
     offsetTop = 0;
   }
-
   var percent = 0;
-
   if (offsetTop < getScrollTop()) {
     percent = Math.round((getScrollTop() - offsetTop) / (document.body.scrollHeight - offsetTop - window.innerHeight) * 100);
   }
-
   return percent > 100 ? 100 : percent;
 }
 
@@ -2097,18 +2021,17 @@ var react_back_top_esm_excluded = ["prefixCls", "className", "content", "childre
 
 /* harmony default export */ const react_back_top_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-back-top',
-    className,
-    content,
-    children,
-    offsetTop = 0,
-    fixed = true,
-    speed = 100,
-    showBelow = 1,
-    clickable = true
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_back_top_esm_excluded);
-
+      prefixCls = 'w-back-top',
+      className,
+      content,
+      children,
+      offsetTop = 0,
+      fixed = true,
+      speed = 100,
+      showBelow = 1,
+      clickable = true
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_back_top_esm_excluded);
   var topShowBelow = !fixed ? 0 : showBelow || 0;
   var [percent, setPercent] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(0);
   var [current, setCurrent] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(0);
@@ -2120,18 +2043,15 @@ var react_back_top_esm_excluded = ["prefixCls", "className", "content", "childre
       window && window.removeEventListener('scroll', onScroll);
     };
   });
-
   function onScroll() {
     setPercent(getScrollPercent(offsetTop));
     setCurrent(getScrollTop());
   }
-
   function scrollToTop() {
     if (typeof offsetTop === 'number' && typeof speed === 'number' && typeof current === 'number') {
       scrollToAnimate(offsetTop, speed, current);
     }
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", _extends({
     onClick: () => clickable && scrollToTop(),
     className: cls
@@ -2158,25 +2078,23 @@ var react_badge_esm_excluded = ["prefixCls", "className", "style", "color", "max
 
 /* harmony default export */ const react_badge_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-badge',
-    className,
-    style = {},
-    color,
-    max = 99,
-    dot = false,
-    processing = false,
-    count,
-    children
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_badge_esm_excluded);
-
+      prefixCls = 'w-badge',
+      className,
+      style = {},
+      color,
+      max = 99,
+      dot = false,
+      processing = false,
+      count,
+      children
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_badge_esm_excluded);
   var supProps = {
     className: [!dot ? prefixCls + "-count" : null, dot ? 'dot' : null].filter(Boolean).join(' ').trim(),
     style: {}
   };
   var cls = [className, prefixCls, !children ? 'nowrap' : null, !children ? prefixCls + "-status" : null, processing ? prefixCls + "-processing" : null].filter(Boolean).join(' ').trim();
   var warpperProps = {};
-
   if (count || count === 0) {
     supProps.style = _extends({
       backgroundColor: color
@@ -2184,7 +2102,6 @@ var react_badge_esm_excluded = ["prefixCls", "className", "style", "color", "max
   } else {
     warpperProps.style = style || {};
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("span", _extends({
     className: cls
   }, other, warpperProps, {
@@ -2213,25 +2130,21 @@ var Item_excluded = ["prefixCls", "className", "tagName", "active", "separator"]
 
 var BreadcrumbItem = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-breadcrumb',
-    className,
-    tagName: TagName = 'span',
-    active,
-    separator
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, Item_excluded);
-
+      prefixCls = 'w-breadcrumb',
+      className,
+      tagName: TagName = 'span',
+      active,
+      separator
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, Item_excluded);
   var isElm = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().isValidElement(separator);
   var cls = [prefixCls + "-item", className, active ? 'active' : null, !separator ? 'no-separator' : null, isElm ? 'no-before' : null].filter(Boolean).join(' ').trim();
-
   var otherProps = _extends({
     className: cls
   }, other);
-
   if (!isElm) {
     otherProps['data-separator'] = separator;
   }
-
   return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().createElement(TagName, _extends({}, otherProps, {
     ref
   }), /*#__PURE__*/(0,jsx_runtime.jsxs)(external_root_React_commonjs2_react_commonjs_react_amd_react_.Fragment, {
@@ -2256,12 +2169,11 @@ var Breadcrumb_excluded = ["prefixCls", "className", "separator"];
 
 var Breadcrumb = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-breadcrumb',
-    className,
-    separator = '/'
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, Breadcrumb_excluded);
-
+      prefixCls = 'w-breadcrumb',
+      className,
+      separator = '/'
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, Breadcrumb_excluded);
   var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({}, _extends({
     className: cls
@@ -2296,13 +2208,12 @@ var react_button_group_esm_excluded = ["prefixCls", "vertical", "children", "cla
 
 /* harmony default export */ const react_button_group_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-btn-group',
-    vertical = false,
-    children,
-    className
-  } = props,
-      resetProps = _objectWithoutPropertiesLoose(props, react_button_group_esm_excluded);
-
+      prefixCls = 'w-btn-group',
+      vertical = false,
+      children,
+      className
+    } = props,
+    resetProps = _objectWithoutPropertiesLoose(props, react_button_group_esm_excluded);
   var cls = [prefixCls, className, vertical && prefixCls + "-vertical"].filter(Boolean).join(' ').trim();
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
     className: cls
@@ -2314,7 +2225,7 @@ var react_button_group_esm_excluded = ["prefixCls", "vertical", "children", "cla
 
 ;// CONCATENATED MODULE: ../../node_modules/@uiw/formatter/esm/index.js
 /**! 
- * @uiw/formatter v1.3.3 
+ * @uiw/formatter v1.3.5 
  * Get a formatted date. 
  * 
  * Copyright (c) 2022 Kenny Wang <wowohoo@qq.com> 
@@ -2360,21 +2271,17 @@ formatter.utc = function (str, date) {
 
 ;// CONCATENATED MODULE: ../react-overlay-trigger/esm/utils.js
 var utils_canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
-
 function fallback(context, node) {
   if (node) {
     do {
       if (node === context) return true;
     } while (node = node.parentNode);
   }
-
   return false;
 }
-
 function isDOM(item) {
   return typeof HTMLElement === 'function' ? item instanceof HTMLElement : item && typeof item === 'object' && item.nodeType === 1 && typeof item.nodeName === 'string';
 }
-
 var contains = (() => {
   // HTML DOM and SVG DOM may have different support levels,
   // so we need to check on context instead of a document root element.
@@ -2382,15 +2289,12 @@ var contains = (() => {
     if (context && context.contains && typeof context.contains === 'function' && isDOM(node)) {
       return context.contains(node);
     }
-
     if (context && context.compareDocumentPosition && isDOM(node)) {
       return context === node || !!(context.compareDocumentPosition(node) && 16);
     }
-
     return fallback(context, node);
   } : fallback;
 })();
-
 /* harmony default export */ const utils = (contains);
 
 ;// CONCATENATED MODULE: ../react-overlay-trigger/esm/util/getStyleComputedProperty.js
@@ -2404,9 +2308,8 @@ var contains = (() => {
 function getStyleComputedProperty(element, property) {
   if (element.nodeType !== 1) {
     return [];
-  } // NOTE: 1 DOM access here
-
-
+  }
+  // NOTE: 1 DOM access here
   var window = element.ownerDocument.defaultView;
   var css = window.getComputedStyle(element, null);
   return property ? css[property] : css;
@@ -2422,6 +2325,7 @@ function getStyleComputedProperty(element, property) {
  * @param {String} axis - `x` or `y`
  * @return {number} borders - The borders size of the given axis
  */
+
 function getBordersSize(styles, axis) {
   var sideA = axis === 'x' ? 'Left' : 'Top';
   var sideB = sideA === 'Left' ? 'Right' : 'Bottom';
@@ -2435,6 +2339,7 @@ function getBordersSize(styles, axis) {
 
 var isIE11 = isBrowser && !!(window.MSInputMethodContext && document.documentMode);
 var isIE10 = isBrowser && /MSIE 10/.test(navigator.userAgent);
+
 /**
  * Determines if the browser is Internet Explorer
  * @method
@@ -2442,26 +2347,21 @@ var isIE10 = isBrowser && /MSIE 10/.test(navigator.userAgent);
  * @param {Number} version to check
  * @returns {Boolean} isIE
  */
-
 function isIE(version) {
   if (version === 11) {
     return isIE11;
   }
-
   if (version === 10) {
     return isIE10;
   }
-
   return isIE11 || isIE10;
 }
 
 ;// CONCATENATED MODULE: ../react-overlay-trigger/esm/util/getWindowSizes.js
 
-
 function getSize(axis, body, html, computedStyle) {
   return Math.max(body["offset" + axis], body["scroll" + axis], html["client" + axis], html["offset" + axis], html["scroll" + axis], isIE(10) ? parseInt(html["offset" + axis], 10) + parseInt(computedStyle["margin" + (axis === 'Height' ? 'Top' : 'Left')], 10) + parseInt(computedStyle["margin" + (axis === 'Height' ? 'Bottom' : 'Right')], 10) : 0);
 }
-
 function getWindowSizes(document) {
   var body = document.body;
   var html = document.documentElement;
@@ -2473,7 +2373,6 @@ function getWindowSizes(document) {
 }
 
 ;// CONCATENATED MODULE: ../react-overlay-trigger/esm/util/getClientRect.js
-
 
 /**
  * Given element offsets, generate an output similar to getBoundingClientRect
@@ -2496,7 +2395,6 @@ function getClientRect(offsets) {
 
 
 
-
 /**
  * Get bounding client rect of given element
  * @method
@@ -2505,10 +2403,11 @@ function getClientRect(offsets) {
  * @return {Object} client rect
  */
 function getBoundingClientRect(element) {
-  var rect = {}; // IE10 10 FIX: Please, don't ask, the element isn't
+  var rect = {};
+
+  // IE10 10 FIX: Please, don't ask, the element isn't
   // considered in DOM in some circumstances...
   // This isn't reproducible in IE10 compatibility mode of IE11
-
   try {
     if (isIE(10)) {
       rect = element.getBoundingClientRect();
@@ -2520,26 +2419,27 @@ function getBoundingClientRect(element) {
       rect.right += scrollLeft;
     } else {
       rect = element.getBoundingClientRect();
-    } // eslint-disable-next-line
-
+    }
+    // eslint-disable-next-line
   } catch (e) {}
-
   var result = {
     left: rect.left,
     top: rect.top,
     width: rect.right - rect.left,
     height: rect.bottom - rect.top
-  }; // subtract scrollbar size from sizes
+  };
 
+  // subtract scrollbar size from sizes
   var sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
   var width = sizes.width || element.clientWidth || result.right - result.left;
   var height = sizes.height || element.clientHeight || result.bottom - result.top;
   var horizScrollbar = element.offsetWidth - width;
   var vertScrollbar = element.offsetHeight - height;
   result.offsetLeft = element.offsetLeft || element.scrollLeft || 0;
-  result.offsetTop = element.offsetTop || element.offsetTop || 0; // if an hypothetical scrollbar is detected, we must be sure it's not a `border`
-  // we make this check conditional for performance reasons
+  result.offsetTop = element.offsetTop || element.offsetTop || 0;
 
+  // if an hypothetical scrollbar is detected, we must be sure it's not a `border`
+  // we make this check conditional for performance reasons
   if (horizScrollbar || vertScrollbar) {
     var styles = getStyleComputedProperty(element);
     horizScrollbar -= getBordersSize(styles, 'x');
@@ -2547,7 +2447,6 @@ function getBoundingClientRect(element) {
     result.width -= horizScrollbar;
     result.height -= vertScrollbar;
   }
-
   return getClientRect(result);
 }
 
@@ -2560,11 +2459,11 @@ function getBoundingClientRect(element) {
  * @returns {Object} object containing width and height properties
  */
 function getOuterSizes(element) {
-  var rect = element.getBoundingClientRect(); // const window = element.ownerDocument.defaultView;
+  var rect = element.getBoundingClientRect();
+  // const window = element.ownerDocument.defaultView;
   // const styles = window.getComputedStyle(element);
   // const x = parseFloat(styles.marginTop || 0) + parseFloat(styles.marginBottom || 0);
   // const y = parseFloat(styles.marginLeft || 0) + parseFloat(styles.marginRight || 0);
-
   var result = {
     width: element.offsetWidth || element.scrollWidth || rect.width || 0,
     height: element.offsetHeight || element.scrollHeight || rect.height || 0
@@ -2590,103 +2489,81 @@ function getStyle(options) {
     top: 0,
     placement
   };
-
   if (!triggerDom || !popupDom || !document) {
     return sty;
   }
-
   var winSizeHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
   var winSizeWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
   sty.placement = placement;
   var scrollTop = getScroll(triggerDom.ownerDocument.documentElement, true);
   var scrollLeft = getScroll(triggerDom.ownerDocument.documentElement);
-
   var trigger = _extends({}, getBoundingClientRect(triggerDom), getOuterSizes(triggerDom));
-
   var popup = _extends({}, getBoundingClientRect(popupDom), getOuterSizes(popupDom));
-
   var bottom = winSizeHeight - trigger.bottom;
   var right = winSizeWidth - trigger.left - trigger.width;
   sty.top = trigger.top + scrollTop;
   sty.left = trigger.left;
-
   if (!usePortal) {
     sty.top = trigger.offsetTop;
     sty.left = trigger.offsetLeft;
   }
-
   if (placement && /^(top)/.test(placement)) {
     sty.top -= popup.height;
   }
-
   if (placement && /^(right)/.test(placement)) {
     sty.left += trigger.width;
   }
-
   if (placement && /^(bottom)/.test(placement)) {
     sty.top += trigger.height;
   }
-
   if (placement && /^(left)/.test(placement)) {
     sty.left -= popup.width;
   }
-
   switch (sty.placement) {
     case 'bottomLeft':
     case 'topLeft':
       break;
-
-    case 'bottom': // eslint-disable-next-line
-
+    case 'bottom':
+    // eslint-disable-next-line
     case 'top':
       sty.left = sty.left - (popup.width - trigger.width) / 2;
       break;
-
     case 'bottomRight':
     case 'topRight':
       sty.left = sty.left + scrollLeft + trigger.width - popup.width;
       break;
-
     case 'rightTop':
     case 'leftTop':
       break;
-
-    case 'right': // eslint-disable-next-line
-
+    case 'right':
+    // eslint-disable-next-line
     case 'left':
       sty.top = sty.top - (popup.height - trigger.height) / 2;
       break;
-
     case 'rightBottom':
     case 'leftBottom':
       sty.top = sty.top - popup.height + trigger.height;
       break;
-
     default:
       break;
   }
-
   if (autoAdjustOverflow) {
     if (placement && /^(top)/.test(placement) && trigger.top < popup.height && bottom > popup.height) {
       sty.placement = placement.replace(/^top/, 'bottom');
       sty.top = sty.top + popup.height + trigger.height;
     }
-
     if (placement && /^(bottom)/.test(placement) && bottom < popup.height && trigger.top > popup.height) {
       sty.placement = placement.replace(/^bottom/, 'top');
       sty.top = sty.top - popup.height - trigger.height;
     }
-
     if (placement && /^(right)/.test(placement) && right < popup.width) {
       sty.placement = placement.replace(/^right/, 'left');
       sty.left = sty.left - trigger.width - popup.width;
     }
-
     if (placement && /^(left)/.test(placement) && trigger.left < popup.width) {
       sty.placement = placement.replace(/^left/, 'right');
       sty.left = sty.left + trigger.width + popup.width;
     }
-
     if (placement && /^(left|right)/.test(placement) && usePortal) {
       // Top
       if (/(Top)$/.test(placement) && trigger.top < 0 || /(right|left)$/.test(placement) && trigger.top + trigger.height / 2 < popup.height / 2 || /(Bottom)$/.test(placement) && trigger.top + trigger.height < popup.height) {
@@ -2697,18 +2574,15 @@ function getStyle(options) {
       if (placement && /(Top)$/.test(placement) && trigger.top < 0) {
         sty.top -= trigger.top;
       }
-
       if (placement && /(Bottom)$/.test(placement) && trigger.bottom < popup.height) {
         // eslint-disable-next-line
         sty.top = sty.top + (popup.height - trigger.bottom);
       }
-
       if (placement && /(right|left)$/.test(placement) && trigger.bottom - trigger.height / 2 < popup.height / 2) {
         sty.top = sty.top + popup.height / 2 - (trigger.bottom - trigger.height / 2);
       }
-    } // Bottom Public Part
-
-
+    }
+    // Bottom Public Part
     if (placement && /^(left|right)/.test(placement)) {
       if (/(Top)$/.test(placement) && bottom + trigger.height < popup.height) {
         sty.top = sty.top - (popup.height - bottom - trigger.height); // eslint-disable-line
@@ -2727,9 +2601,8 @@ function getStyle(options) {
       // left
       if (/(Left)$/.test(placement) && trigger.left < 0 || /(top|bottom)$/.test(placement) && trigger.left + trigger.width / 2 < popup.width / 2 || /(Right)$/.test(placement) && trigger.left + trigger.width < popup.width) {
         sty.left = scrollLeft;
-      } // right
-
-
+      }
+      // right
       if (/(top|bottom)$/.test(placement) && right + trigger.width / 2 < popup.width / 2) {
         sty.left = trigger.left + trigger.width + right - popup.width;
       }
@@ -2741,7 +2614,6 @@ function getStyle(options) {
       if (/(Left)$/.test(placement) && trigger.width + right < popup.width) {
         sty.left = sty.left - (popup.width - trigger.width - right);
       }
-
       if (/(Right)$/.test(placement) && right < 0) {
         sty.left = sty.left + right; // eslint-disable-line
       }
@@ -2766,32 +2638,29 @@ var react_overlay_trigger_esm_excluded = ["className", "prefixCls", "usePortal",
 
 
 
-
 var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
   show: delay,
   hide: delay
 };
-
 /* harmony default export */ const react_overlay_trigger_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    className,
-    prefixCls = 'w-overlay-trigger',
-    usePortal = true,
-    isOutside = false,
-    isClickOutside = true,
-    disabled = false,
-    isOpen: _ = false,
-    trigger = 'hover',
-    placement = 'top',
-    autoAdjustOverflow,
-    transitionName,
-    children,
-    overlay,
-    onVisibleChange = noop,
-    onEnter = noop
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_overlay_trigger_esm_excluded);
-
+      className,
+      prefixCls = 'w-overlay-trigger',
+      usePortal = true,
+      isOutside = false,
+      isClickOutside = true,
+      disabled = false,
+      isOpen: _ = false,
+      trigger = 'hover',
+      placement = 'top',
+      autoAdjustOverflow,
+      transitionName,
+      children,
+      overlay,
+      onVisibleChange = noop,
+      onEnter = noop
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_overlay_trigger_esm_excluded);
   var zIndex = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(999);
   var triggerRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)();
   var popupRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)();
@@ -2812,29 +2681,23 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
     overlayDom: popupRef
   }));
   var child = external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.only(children);
-
   var overlayProps = _extends({}, other, {
     placement,
     isOpen,
     dialogProps: {}
   });
-
   var triggerProps = {};
-
   function getChildProps() {
     if (child && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().isValidElement(child)) {
       return child.props;
     }
-
     return {};
   }
-
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     if (isClickOutside && isOpen) {
       document && document.addEventListener('mousedown', handleClickOutside);
       window.addEventListener('resize', handleResize);
     }
-
     return () => {
       document && isClickOutside && document.removeEventListener('mousedown', handleClickOutside);
       window.removeEventListener('resize', handleResize);
@@ -2858,7 +2721,6 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
     }));
     onVisibleChange(isOpen);
   }, [isOpen]);
-
   var handleResize = () => {
     if (isOpen) {
       zIndex.current -= 1;
@@ -2866,96 +2728,78 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
       onVisibleChange && onVisibleChange(false);
     }
   };
-
   var handleClickOutside = e => {
     var popNode = popupRef.current;
     var childNode = triggerRef.current;
-
     if (popNode && childNode && e.target && !utils(popNode, e.target) && !utils(childNode, e.target)) {
       zIndex.current -= 1;
       setIsOpen(false);
       onVisibleChange && onVisibleChange(false);
     }
   };
-
   function clearTimeouts() {
     if (timeoutRef.current.length > 0) {
       for (var timeoutId of timeoutRef.current) {
         window.clearTimeout(timeoutId);
       }
-
       timeoutRef.current = [];
     }
   }
-
   function handleShow() {
     var _props$children;
-
     clearTimeouts();
     hoverStateRef.current = 'show';
     var delay = normalizeDelay(props.delay);
-
     if (!delay.show && !((_props$children = props.children) != null && _props$children.props.disabled)) {
       _show();
-
       return;
     }
-
     var handle = window.setTimeout(() => {
       if (hoverStateRef.current === 'show') _show();
     }, delay.show);
     clearTimeout(handle);
     timeoutRef.current.push(handle);
   }
-
   function handleHide(isOutside) {
     clearTimeouts();
     if (!isOutside && props.isOutside) return;
     hoverStateRef.current = 'hide';
     var delay = normalizeDelay(props.delay);
-
     if (!delay.hide) {
       _hide();
-
       return;
     }
-
     var handle = window.setTimeout(() => {
       if (hoverStateRef.current === 'hide') _hide();
     }, delay.hide);
     timeoutRef.current.push(handle);
-  } // Simple implementation of mouseEnter and mouseLeave.
+  }
+
+  // Simple implementation of mouseEnter and mouseLeave.
   // React's built version is broken: https://github.com/facebook/react/issues/4251
   // for cases when the trigger is disabled and mouseOut/Over can cause flicker
   // moving from one child element to another.
-
-
   function handleMouseOverOut(handler, e, relatedNative) {
     var target = e.currentTarget;
     var related = e.relatedTarget || e.nativeEvent[relatedNative];
     var isOutside = true;
-
     if (popupRef.current && utils(popupRef.current, related) || triggerRef.current && utils(triggerRef.current, related)) {
       isOutside = false;
     }
-
     if ((!related || related !== target) && !utils(target, related)) {
       handler(isOutside, e);
     }
   }
-
   function _hide() {
     if (!isOpen) return;
     zIndex.current -= 1;
     setIsOpen(false);
   }
-
   function _show() {
     if (isOpen) return;
     zIndex.current += 1;
     setIsOpen(true);
   }
-
   function handleEnter(node, isAppearing) {
     onEnter && onEnter(node, isAppearing);
     var styls = getStyle({
@@ -2969,7 +2813,6 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
       zIndex: zIndex.current
     }));
   }
-
   if (trigger === 'click' && !disabled) {
     triggerProps.onClick = e => {
       var {
@@ -2979,27 +2822,22 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
       if (onClick) onClick(e, !isOpen);
     };
   }
-
   if (trigger === 'focus' && !disabled) {
     triggerProps.onFocus = () => handleShow();
   }
-
   if (trigger === 'hover' && !disabled) {
     triggerProps.onMouseOver = triggerProps.onMouseEnter = e => {
       handleMouseOverOut(handleShow, e, 'fromElement');
     };
-
     triggerProps.onMouseOut = triggerProps.onMouseLeave = e => {
       handleMouseOverOut(handleHide, e, 'toElement');
     };
-
     if (overlayProps.dialogProps) {
       overlayProps.dialogProps.onMouseLeave = e => {
         handleMouseOverOut(handleHide, e, 'toElement');
       };
     }
   }
-
   overlayProps.style = _extends({}, overlayProps.style, overlayStyl);
   return /*#__PURE__*/(0,jsx_runtime.jsxs)((external_root_React_commonjs2_react_commonjs_react_amd_react_default()).Fragment, {
     children: [/*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.cloneElement)(child, Object.assign({}, child.props, _extends({}, triggerProps, {
@@ -3119,7 +2957,6 @@ var react_popover_esm_excluded = ["prefixCls", "className", "content", "visibleA
 class Popover extends (external_root_React_commonjs2_react_commonjs_react_amd_react_default()).Component {
   constructor() {
     super(...arguments);
-
     this.renderArrow = () => {
       var {
         prefixCls
@@ -3139,16 +2976,14 @@ class Popover extends (external_root_React_commonjs2_react_commonjs_react_amd_re
       });
     };
   }
-
   render() {
     var _this$props = this.props,
-        {
-      prefixCls,
-      className,
-      visibleArrow
-    } = _this$props,
-        other = _objectWithoutPropertiesLoose(_this$props, react_popover_esm_excluded);
-
+      {
+        prefixCls,
+        className,
+        visibleArrow
+      } = _this$props,
+      other = _objectWithoutPropertiesLoose(_this$props, react_popover_esm_excluded);
     var cls = [prefixCls, className, !visibleArrow ? 'no-arrow' : null].filter(Boolean).join(' ').trim();
     return /*#__PURE__*/(0,jsx_runtime.jsx)(react_overlay_trigger_esm, _extends({}, other, {
       overlay: /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
@@ -3167,7 +3002,6 @@ class Popover extends (external_root_React_commonjs2_react_commonjs_react_amd_re
       })
     }));
   }
-
 }
 Popover.Confirm = Confirm;
 Popover.defaultProps = {
@@ -3190,35 +3024,30 @@ var InputNumber_excluded = ["className", "min", "max", "step", "overLimitColor",
 
 /* harmony default export */ const InputNumber = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    className,
-    min,
-    max,
-    step,
-    overLimitColor,
-    keyboard = false,
-    prefixCls = 'w-input-number'
-  } = props,
-      otherProps = _objectWithoutPropertiesLoose(props, InputNumber_excluded);
-
+      className,
+      min,
+      max,
+      step,
+      overLimitColor,
+      keyboard = false,
+      prefixCls = 'w-input-number'
+    } = props,
+    otherProps = _objectWithoutPropertiesLoose(props, InputNumber_excluded);
   var value = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
     var _ref;
-
     return Number.parseFloat((_ref = props.value || 0) == null ? void 0 : _ref.toString());
   }, [props.value]);
   var [isOverLimit, isOverLimitSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(overLimitComp(value));
-
   function overLimitComp(value) {
     if (typeof min === 'number' && value < min) return true;
     if (typeof max === 'number' && value > max) return true;
     return false;
   }
-
   var onChange = v => {
     var isOverLimit = overLimitComp(Number.parseFloat(v.target.value));
     isOverLimitSet(isOverLimit);
     props.onChange == null ? void 0 : props.onChange(v);
   };
-
   var overLimitProps = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
     if (!overLimitColor) return {
       min,
@@ -3251,17 +3080,16 @@ var react_input_esm_excluded = ["prefixCls", "className", "style", "size", "type
 
 /* harmony default export */ const react_input_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-input',
-    className,
-    style,
-    size = 'default',
-    type = 'text',
-    preIcon = null,
-    addonAfter,
-    inputStyle
-  } = props,
-      otherProps = _objectWithoutPropertiesLoose(props, react_input_esm_excluded);
-
+      prefixCls = 'w-input',
+      className,
+      style,
+      size = 'default',
+      type = 'text',
+      preIcon = null,
+      addonAfter,
+      inputStyle
+    } = props,
+    otherProps = _objectWithoutPropertiesLoose(props, react_input_esm_excluded);
   var inputRef = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef(null);
   var addonRef = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef(null);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useImperativeHandle)(ref, () => inputRef.current);
@@ -3269,14 +3097,12 @@ var react_input_esm_excluded = ["prefixCls", "className", "style", "size", "type
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     computedInputPadding();
   });
-
   function computedInputPadding() {
     if (addonRef.current && inputRef.current) {
       var input = window && window.getComputedStyle(addonRef.current, null);
       inputRef.current.style.paddingRight = addonRef.current.clientWidth + parseInt(input.right, 10) * 2 + "px";
     }
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
     className: cls,
     style: style,
@@ -3309,52 +3135,42 @@ var Panel_excluded = ["prefixCls", "className", "count", "date", "type", "disabl
 
 function TimePickerPanel(props) {
   var {
-    prefixCls = 'w-timepicker',
-    count = 24,
-    date,
-    type = 'Hours',
-    hideDisabled,
-    onSelected
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, Panel_excluded);
-
+      prefixCls = 'w-timepicker',
+      count = 24,
+      date,
+      type = 'Hours',
+      hideDisabled,
+      onSelected
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, Panel_excluded);
   var disableds = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)([]);
-
   function getMaybeNumber() {
     if (date && type) {
       return new Date(date)["get" + type]();
     }
-
     return 0;
   }
-
   function handleClick(num, e) {
     if (!date) return;
     var currentDate = new Date(date);
     currentDate["set" + type](num);
     onSelected && onSelected(type, num, disableds.current, currentDate);
   }
-
   function getDisabledItem(num) {
     var disabled = props["disabled" + type];
-
     if (disabled) {
       return disabled(num, type, new Date(date));
     }
-
     return false;
   }
-
   function getItemInstance(tag) {
     if (tag && tag.parentNode && tag.dataset['index']) {
       var offsetTop = Number(tag.dataset['index']) * tag.clientHeight;
-
       if (tag.parentNode.parentNode) {
         tag.parentNode.parentNode.scrollTop = offsetTop;
       }
     }
   }
-
   var data = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
     return [...Array(count)].map((_, idx) => {
       var disabled = getDisabledItem(idx);
@@ -3371,11 +3187,9 @@ function TimePickerPanel(props) {
     children: /*#__PURE__*/(0,jsx_runtime.jsx)("ul", {
       children: data.map((item, idx) => {
         var liProps = {};
-
         if (!item.disabled) {
           liProps.onClick = e => handleClick(item.count, e);
         }
-
         var currentCount = getMaybeNumber();
         return /*#__PURE__*/(0,jsx_runtime.jsx)("li", _extends({
           "data-index": currentCount === item.count ? idx : undefined,
@@ -3400,12 +3214,11 @@ var Time_excluded = ["prefixCls", "className", "precision"];
 
 function TimePickerTime(props) {
   var {
-    prefixCls = 'w-timepicker',
-    className,
-    precision = 'second'
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, Time_excluded);
-
+      prefixCls = 'w-timepicker',
+      className,
+      precision = 'second'
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, Time_excluded);
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
     className: [prefixCls, className].filter(Boolean).join(' ').trim(),
     children: [/^(second|minute|hour)$/.test(precision) && /*#__PURE__*/(0,jsx_runtime.jsx)(TimePickerPanel, _extends({
@@ -3440,21 +3253,20 @@ var react_time_picker_esm_excluded = ["prefixCls", "className", "disabled", "val
 
 function TimePicker(props) {
   var {
-    prefixCls = 'w-timepicker',
-    className,
-    disabled,
-    format = 'HH:mm:ss',
-    popoverProps,
-    allowClear = true,
-    onChange,
-    disabledHours,
-    disabledMinutes,
-    disabledSeconds,
-    hideDisabled,
-    precision
-  } = props,
-      inputProps = _objectWithoutPropertiesLoose(props, react_time_picker_esm_excluded);
-
+      prefixCls = 'w-timepicker',
+      className,
+      disabled,
+      format = 'HH:mm:ss',
+      popoverProps,
+      allowClear = true,
+      onChange,
+      disabledHours,
+      disabledMinutes,
+      disabledSeconds,
+      hideDisabled,
+      precision
+    } = props,
+    inputProps = _objectWithoutPropertiesLoose(props, react_time_picker_esm_excluded);
   var [date, setDate] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(props.value);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => setDate(props.value), [props.value]);
   var timeProps = {
@@ -3466,11 +3278,9 @@ function TimePicker(props) {
   };
   var inputValue = date ? formatter(format, new Date(date)) : '';
   var datePickerTime = date || new Date();
-
   var _props = _extends({}, inputProps, {
     value: inputValue
   });
-
   if (allowClear && inputValue !== '' && !!inputValue) {
     _props.addonAfter = /*#__PURE__*/(0,jsx_runtime.jsx)(esm, {
       className: prefixCls + "-close-btn",
@@ -3485,7 +3295,6 @@ function TimePicker(props) {
       type: "light"
     });
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Popover, _extends({
     trigger: "focus",
     placement: "bottomLeft",
@@ -3519,8 +3328,7 @@ function TimePicker(props) {
 
 
 var DatePickerDay_excluded = ["date", "row", "col", "index", "today", "panelDate", "disabledDate", "renderDay", "onSelectDay"],
-    _excluded2 = ["prefixCls", "className", "weekday", "weekTitle", "date", "today", "panelDate", "disabledDate", "renderDay", "onSelectDay"];
-
+  _excluded2 = ["prefixCls", "className", "weekday", "weekTitle", "date", "today", "panelDate", "disabledDate", "renderDay", "onSelectDay"];
 
 
 
@@ -3528,24 +3336,21 @@ var DatePickerDay_excluded = ["date", "row", "col", "index", "today", "panelDate
 function isValidDate(date) {
   return date instanceof Date && !isNaN(date.getTime());
 }
-
 function classnames(obj) {
   return Object.keys(obj || {}).map(keyName => obj[keyName] ? keyName : null).filter(Boolean).join(' ').trim();
 }
-
 function DayRect(props) {
   var {
-    date: selectedDate,
-    col,
-    index,
-    today,
-    panelDate,
-    disabledDate,
-    renderDay,
-    onSelectDay
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, DatePickerDay_excluded);
-
+      date: selectedDate,
+      col,
+      index,
+      today,
+      panelDate,
+      disabledDate,
+      renderDay,
+      onSelectDay
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, DatePickerDay_excluded);
   var cls = {
     end: col === 0 || col === 6,
     prev: false,
@@ -3561,29 +3366,22 @@ function DayRect(props) {
   var week = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => new Date(new Date(date).setDate(1)).getDay(), [date.toDateString()]);
   var lastDay = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => new Date(year, month === 0 ? 12 : month + 1, 0).getDate(), [date.toDateString()]);
   var day = index;
-
   if (date) {
     day = day - week + 1;
-
     if (day < 1) {
       cls.prev = true;
     }
-
     if (day > lastDay) {
       cls.next = true;
     }
   }
-
   var cellDate = new Date(new Date(date).setDate(day));
-
   if (today && today.toDateString() === cellDate.toDateString()) {
     cls.today = true;
   }
-
   if (selectedDate && selectedDate.toDateString() === cellDate.toDateString()) {
     cls.selected = true;
   }
-
   var divProps = {
     onClick: () => {
       var cellMonth = cellDate.getMonth();
@@ -3594,12 +3392,10 @@ function DayRect(props) {
       });
     }
   };
-
   if (disabledDate && disabledDate(cellDate, _extends({}, props, cls))) {
     cls.disabled = true;
     delete divProps.onClick;
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
     className: classnames(cls)
   }, other, divProps, {
@@ -3614,19 +3410,18 @@ var WEEKTITLE = ['星期天', '星期一', '星期二', '星期三', '星期四'
 var WEEKDAY = ['日', '一', '二', '三', '四', '五', '六'];
 function DatePickerDay(props) {
   var {
-    prefixCls = 'w-datepicker',
-    className,
-    weekday = WEEKDAY,
-    weekTitle = WEEKTITLE,
-    date,
-    today,
-    panelDate,
-    disabledDate,
-    renderDay,
-    onSelectDay: _onSelectDay
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, _excluded2);
-
+      prefixCls = 'w-datepicker',
+      className,
+      weekday = WEEKDAY,
+      weekTitle = WEEKTITLE,
+      date,
+      today,
+      panelDate,
+      disabledDate,
+      renderDay,
+      onSelectDay: _onSelectDay
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, _excluded2);
   var weekdayLabel = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
     className: prefixCls + "-weekday",
     children: (weekday || []).map((week, idx) => /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
@@ -3674,14 +3469,13 @@ var DatePickerMonth_excluded = ["prefixCls", "className", "panelDate", "monthLab
 
 function DatePickerMonth(props) {
   var {
-    prefixCls = 'w-datepicker',
-    className,
-    panelDate = new Date(),
-    monthLabel,
-    onSelected = noop
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, DatePickerMonth_excluded);
-
+      prefixCls = 'w-datepicker',
+      className,
+      panelDate = new Date(),
+      monthLabel,
+      onSelected = noop
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, DatePickerMonth_excluded);
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
     className: [prefixCls ? prefixCls + "-month" : null, className].filter(Boolean).join(' ').trim()
   }, other, {
@@ -3708,15 +3502,13 @@ var DatePickerYear_excluded = ["prefixCls", "panelNum", "className", "panelDate"
 
 function DatePickerYear(props) {
   var {
-    prefixCls = 'w-datepicker',
-    panelNum = [-7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    className,
-    onSelected = noop
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, DatePickerYear_excluded);
-
+      prefixCls = 'w-datepicker',
+      panelNum = [-7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      className,
+      onSelected = noop
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, DatePickerYear_excluded);
   var [activeYear, setActiveYear] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(props.panelDate);
-
   function handleSelected(year, idx) {
     if (idx === 0 || idx === panelNum.length - 1) {
       var date = new Date(activeYear);
@@ -3727,7 +3519,6 @@ function DatePickerYear(props) {
       onSelected(year);
     }
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
     className: [prefixCls ? prefixCls + "-year" : null, className].filter(Boolean).join(' ').trim()
   }, other, {
@@ -3757,26 +3548,22 @@ var DatePickerCaption_excluded = ["prefixCls", "className", "panelDate", "monthL
 
 
 
-
 function DatePickerCaption_classnames() {
   for (var _len = arguments.length, arg = new Array(_len), _key = 0; _key < _len; _key++) {
     arg[_key] = arguments[_key];
   }
-
   return [...arg].filter(Boolean).join(' ').trim();
 }
-
 function DatePickerCaption(props) {
   var {
-    prefixCls = 'w-datepicker',
-    className,
-    panelDate = new Date(),
-    monthLabel,
-    onSelected = noop,
-    todayButton
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, DatePickerCaption_excluded);
-
+      prefixCls = 'w-datepicker',
+      className,
+      panelDate = new Date(),
+      monthLabel,
+      onSelected = noop,
+      todayButton
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, DatePickerCaption_excluded);
   var renderMonth = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
     var month = panelDate.getMonth();
     return monthLabel && monthLabel[month] || month + 1;
@@ -3831,23 +3618,22 @@ var react_date_picker_esm_excluded = ["prefixCls", "className", "weekday", "week
 var MONTH_LABEL = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
 function DatePicker(props) {
   var {
-    prefixCls = 'w-datepicker',
-    className,
-    weekday,
-    weekTitle,
-    monthLabel = MONTH_LABEL,
-    date,
-    today = new Date(),
-    todayButton,
-    panelDate = new Date(),
-    disabledDate,
-    renderDay,
-    onChange = noop,
-    onPanelChange = noop,
-    showTime
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_date_picker_esm_excluded);
-
+      prefixCls = 'w-datepicker',
+      className,
+      weekday,
+      weekTitle,
+      monthLabel = MONTH_LABEL,
+      date,
+      today = new Date(),
+      todayButton,
+      panelDate = new Date(),
+      disabledDate,
+      renderDay,
+      onChange = noop,
+      onPanelChange = noop,
+      showTime
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_date_picker_esm_excluded);
   var [type, setType] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)('day');
   var [selectDate, setSelectDate] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(date);
   var [selectPanelDate, setSelectPanelDate] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(panelDate);
@@ -3858,51 +3644,41 @@ function DatePicker(props) {
     }
   }, [date]);
   var format = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => showTime && showTime.format ? showTime.format : 'HH:mm:ss', [showTime]);
-
   function handleSelected(curType) {
     if (curType && /^(year|month|time)$/.test(curType)) {
       if (type === 'time') {
         curType = 'day';
       }
-
       setType(curType);
     } else {
       var currentDate = new Date(selectPanelDate);
       var month = currentDate.getMonth();
-
       if (curType === 'prev') {
         month -= 1;
       }
-
       if (curType === 'next') {
         month += 1;
       }
-
       currentDate.setMonth(month);
-
       if (curType === 'prev' || curType === 'next') {
         onPanelChange && onPanelChange(new Date(currentDate), curType);
       }
-
       setSelectPanelDate(curType === 'today' ? today : currentDate);
       curType === 'today' && setSelectDate(today);
       setType('day');
     }
   }
-
   function onSelectedTime(type, num) {
     (selectPanelDate || new Date())["set" + type](num);
     setSelectPanelDate(new Date(selectPanelDate));
     onChange && onChange(new Date(selectPanelDate));
   }
-
   function onSelectedDate(type, month, paging) {
     (selectPanelDate || new Date())[type](month);
     setSelectPanelDate(new Date(selectPanelDate));
     setType('day');
     onChange && onChange(new Date(selectPanelDate));
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", _extends({
     className: [prefixCls, className].filter(Boolean).join(' ').trim()
   }, other, {
@@ -3962,19 +3738,15 @@ function RenderDay(props) {
   } = props;
   var dayData = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => (data || []).filter(item => {
     var arr = (item.date && item.date.split('/') || []).map(num => Number(num));
-
     if (arr.length === 1) {
       return day === arr[0];
     }
-
     if (currentDate && arr.length === 2) {
       return currentDate.getMonth() + 1 === arr[0] && day === arr[1];
     }
-
     if (currentDate && arr.length === 3) {
       return currentDate.getFullYear() === arr[0] && currentDate.getMonth() + 1 === arr[1] && day === arr[2];
     }
-
     return false;
   }), [currentDate, day, data]);
   return (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
@@ -3986,10 +3758,9 @@ function RenderDay(props) {
       className: prefixCls + "-panel",
       children: dayData && dayData.length > 0 && dayData.map((item, idx) => {
         var {
-          label
-        } = item,
-            other = _objectWithoutPropertiesLoose(item, DayLabel_excluded);
-
+            label
+          } = item,
+          other = _objectWithoutPropertiesLoose(item, DayLabel_excluded);
         return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({}, other, {
           children: label
         }), idx);
@@ -4016,20 +3787,19 @@ var react_calendar_esm_excluded = ["prefixCls", "className", "style", "today", "
 var esm_MONTH_LABEL = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
 function Calendar(props) {
   var {
-    prefixCls = 'w-calendar',
-    className,
-    style,
-    today = new Date(),
-    date,
-    data,
-    monthLabel = esm_MONTH_LABEL,
-    titleFormat = 'YYYY/MM',
-    todayLabel = '今天',
-    onPaging,
-    onSelectDay: _onSelectDay
-  } = props,
-      otherProps = _objectWithoutPropertiesLoose(props, react_calendar_esm_excluded);
-
+      prefixCls = 'w-calendar',
+      className,
+      style,
+      today = new Date(),
+      date,
+      data,
+      monthLabel = esm_MONTH_LABEL,
+      titleFormat = 'YYYY/MM',
+      todayLabel = '今天',
+      onPaging,
+      onSelectDay: _onSelectDay
+    } = props,
+    otherProps = _objectWithoutPropertiesLoose(props, react_calendar_esm_excluded);
   var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   var [panelDate, setPanelDate] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(props.panelDate || new Date());
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
@@ -4037,30 +3807,23 @@ function Calendar(props) {
       setPanelDate(panelDate);
     }
   }, [props.panelDate]);
-
   function handlePaging(type) {
     var currentDate = new Date();
-
     if (type === 'today') {
       currentDate = today || new Date();
     } else {
       var _month = panelDate.getMonth();
-
       if (panelDate && type === 'prev') {
         panelDate.setMonth(_month - 1);
       }
-
       if (panelDate && type === 'next') {
         panelDate.setMonth(_month + 1);
       }
-
       currentDate = panelDate;
     }
-
     setPanelDate(new Date(currentDate));
     onPaging && onPaging(type, currentDate.getMonth() + 1, currentDate);
   }
-
   var titleLable = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
     className: prefixCls + "-title",
     children: formatter(titleFormat, panelDate)
@@ -4116,20 +3879,19 @@ var react_card_esm_excluded = ["prefixCls", "className", "title", "extra", "foot
 
 /* harmony default export */ const react_card_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-card',
-    className,
-    title,
-    extra,
-    footer,
-    bordered = true,
-    noHover = false,
-    active = false,
-    bodyStyle,
-    bodyClassName,
-    children
-  } = props,
-      resetProps = _objectWithoutPropertiesLoose(props, react_card_esm_excluded);
-
+      prefixCls = 'w-card',
+      className,
+      title,
+      extra,
+      footer,
+      bordered = true,
+      noHover = false,
+      active = false,
+      bodyStyle,
+      bodyClassName,
+      children
+    } = props,
+    resetProps = _objectWithoutPropertiesLoose(props, react_card_esm_excluded);
   var cls = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => [prefixCls, className, bordered ? prefixCls + "-bordered" : null, noHover ? prefixCls + "-no-hover" : null, active ? 'active' : null].filter(Boolean).join(' ').trim(), [prefixCls, className, bordered, noHover]);
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", _extends({}, resetProps, {
     className: cls,
@@ -4163,7 +3925,6 @@ var react_card_esm_excluded = ["prefixCls", "className", "title", "extra", "foot
 
 
 
-
 function Carousel(props, ref) {
   var {
     position = 0,
@@ -4184,23 +3945,19 @@ function Carousel(props, ref) {
   var [transitionInner, transitionInnerSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(scrollTime * 0.001 + "s ease-in-out");
   var positionRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(currentPosition);
   var childCount = external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.count(props.children) + 1;
-
   var _stopPlay = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)({
     stop: () => {},
     after: afterChange,
     before: beforeChange
   });
-
   external_root_React_commonjs2_react_commonjs_react_amd_react_default().useImperativeHandle(ref, () => ({
     gotoSlide,
     prevSlide: () => gotoSlide(positionRef.current - 1),
     nextSlide: () => gotoSlide(positionRef.current + 1),
     stopPlay: () => _stopPlay.current.stop()
   }), [ref]);
-
   var gotoSlide = slidNumber => {
     _stopPlay.current.stop();
-
     var maxSlid = childCount - 1;
     var slidNumberTemp = slidNumber > maxSlid ? maxSlid : slidNumber;
     slidNumberTemp = slidNumber < 0 ? 0 : slidNumberTemp;
@@ -4208,31 +3965,25 @@ function Carousel(props, ref) {
     currentPositionSet(slidNumberTemp);
     play();
   };
-
   var play = function play(ms) {
     if (ms === void 0) {
       ms = palyTime;
     }
-
     if (autoPlay) {
       var time = setInterval(() => {
         _stopPlay.current.after == null ? void 0 : _stopPlay.current.after(positionRef.current);
         positionRef.current++;
-
         if (positionRef.current >= childCount) {
           positionRef.current = 0;
         }
-
         currentPositionSet(positionRef.current);
         _stopPlay.current.before == null ? void 0 : _stopPlay.current.before(positionRef.current);
       }, ms);
-
       _stopPlay.current.stop = () => {
         clearInterval(time);
       };
     }
   };
-
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     play();
     return () => {
@@ -4241,19 +3992,16 @@ function Carousel(props, ref) {
   }, [autoPlay]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     var time;
-
     if (childCount === currentPosition + 1) {
       time = setTimeout(() => {
         _stopPlay.current.before = () => {
           transitionInnerSet(scrollTime * 0.001 + "s ease-in-out");
           _stopPlay.current.before = props.beforeChange;
         };
-
         transitionInnerSet('none');
         gotoSlide(0);
       }, scrollTime);
     }
-
     return () => {
       clearTimeout(time);
     };
@@ -4272,22 +4020,18 @@ function Carousel(props, ref) {
       transform: '',
       display: ''
     };
-
     switch (direction) {
       case 'horizontal':
         style.transform = "translate3d(" + -(currentPosition * width) + "px, 0px, 0px)";
         style.display = 'flex';
         break;
-
       case 'vertical':
         style.transform = "translate3d(0px, " + -(currentPosition * height) + "px, 0px)";
         style.display = 'block';
         break;
-
       default:
         break;
     }
-
     return style;
   }, [direction, currentPosition, width, height]);
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
@@ -4312,7 +4056,6 @@ function Carousel(props, ref) {
     })
   });
 }
-
 /* harmony default export */ const react_carousel_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(Carousel));
 
 ;// CONCATENATED MODULE: ../react-dropdown/esm/index.js
@@ -4325,15 +4068,14 @@ var react_dropdown_esm_excluded = ["prefixCls", "placement", "className", "menu"
 
 function Dropdown(props) {
   var {
-    prefixCls = 'w-dropdown',
-    placement = 'bottomLeft',
-    className,
-    menu,
-    children,
-    disabled
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_dropdown_esm_excluded);
-
+      prefixCls = 'w-dropdown',
+      placement = 'bottomLeft',
+      className,
+      menu,
+      children,
+      disabled
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_dropdown_esm_excluded);
   var cls = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => [prefixCls, className].filter(Boolean).join(' ').trim(), [prefixCls, className]);
   return /*#__PURE__*/(0,jsx_runtime.jsx)(react_overlay_trigger_esm, _extends({
     isOutside: true,
@@ -4367,22 +4109,20 @@ var disabledProps = {
   onMouseLeave: undefined,
   tabIndex: -1
 };
-
 function Internal(props, ref) {
   var {
-    prefixCls = 'w-menu-item',
-    className,
-    tagName: TagName = 'a',
-    disabled = false,
-    multiline = false,
-    icon,
-    text,
-    active = false,
-    addonAfter,
-    isSubMenuItem
-  } = props,
-      htmlProps = _objectWithoutPropertiesLoose(props, MenuItem_excluded);
-
+      prefixCls = 'w-menu-item',
+      className,
+      tagName: TagName = 'a',
+      disabled = false,
+      multiline = false,
+      icon,
+      text,
+      active = false,
+      addonAfter,
+      isSubMenuItem
+    } = props,
+    htmlProps = _objectWithoutPropertiesLoose(props, MenuItem_excluded);
   var anchorCls = [prefixCls, active ? 'active' : null, disabled ? 'w-disabled' : null, className].filter(Boolean).join(' ').trim();
   var tagComp = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().createElement(TagName, _extends({}, htmlProps, disabled ? disabledProps : {}, {
     className: anchorCls,
@@ -4396,16 +4136,13 @@ function Internal(props, ref) {
       children: text
     }), addonAfter]
   }));
-
   if (isSubMenuItem) {
     return tagComp;
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("li", {
     children: [" ", tagComp, " "]
   });
 }
-
 var MenuItem = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(Internal);
 MenuItem.displayName = 'uiw.MenuItem';
 
@@ -4417,21 +4154,18 @@ var Divider_excluded = ["prefixCls", "className", "title"];
 
 var MenuDivider = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-menu-divider',
-    className,
-    title
-  } = props,
-      htmlProps = _objectWithoutPropertiesLoose(props, Divider_excluded);
-
+      prefixCls = 'w-menu-divider',
+      className,
+      title
+    } = props,
+    htmlProps = _objectWithoutPropertiesLoose(props, Divider_excluded);
   var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
-
   if (!title) {
     return /*#__PURE__*/(0,jsx_runtime.jsx)("li", _extends({}, htmlProps, {
       ref: ref,
       className: cls
     }));
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)("li", _extends({}, htmlProps, {
     ref: ref,
     className: cls,
@@ -4457,26 +4191,21 @@ var SubMenu_excluded = ["prefixCls", "className", "disabled", "overlayProps", "c
 
 
 
-
 function checkedMenuItem(node) {
   var isCheck = false;
-
   if (node) {
     // eslint-disable-next-line
     do {
       if (!node.dataset.menu) {
         isCheck = true;
       }
-
       if (node.dataset.menu && /^(subitem|divider)$/.test(node.dataset.menu)) {
         isCheck = false;
       }
     } while (!node.dataset.menu && (node = node.parentNode));
   }
-
   return isCheck;
 }
-
 function IconView(_ref) {
   var {
     prefixCls,
@@ -4488,19 +4217,17 @@ function IconView(_ref) {
     className: [prefixCls ? prefixCls + "-collapse-icon" : null, !collapse && isOpen ? 'w-open' : null, !collapse && !isOpen ? 'w-close' : null].filter(Boolean).join(' ').trim()
   }), [prefixCls, collapse, isOpen]);
 }
-
 var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(function (props, ref) {
   var {
-    prefixCls = 'w-menu-subitem',
-    className,
-    disabled,
-    overlayProps = {},
-    children,
-    collapse = false,
-    inlineIndent
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, SubMenu_excluded);
-
+      prefixCls = 'w-menu-subitem',
+      className,
+      disabled,
+      overlayProps = {},
+      children,
+      collapse = false,
+      inlineIndent
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, SubMenu_excluded);
   var overlayTriggerProps = {};
   var menuProps = {
     bordered: true,
@@ -4519,8 +4246,8 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
   } = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useContext)(ThemeContext);
   external_root_React_commonjs2_react_commonjs_react_amd_react_default().useEffect(() => {
     if (refNode.current && refNode.current.style && ele === elementSource.current) {
-      var currentHeight = Number(refNode.current.style.height.substr(0, refNode.current.style.height.length - 2)); // 设置的高度 < '已有展开的高度',
-
+      var currentHeight = Number(refNode.current.style.height.substr(0, refNode.current.style.height.length - 2));
+      // 设置的高度 < '已有展开的高度',
       if (refNode.current.getBoundingClientRect().height < currentHeight) {
         refNode.current.style.height = currentHeight + 'px';
       } else {
@@ -4531,24 +4258,20 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
     if (collapse) setIsOpen(false);
   }, [collapse]);
-
   function onClick(e) {
     var target = e.currentTarget;
     var related = e.relatedTarget || e.nativeEvent.target;
     if (target.children.length < 1) return;
-
     if (checkedMenuItem(related)) {
       if (popupRef.current) {
         popupRef.current.hide();
       }
     }
   }
-
   function onEnter(node) {
     node.style.height = '0px';
     refNode.current = node;
     setIsOpen(true);
-
     if (popupRef.current && popupRef.current.overlayDom.current) {
       setContextHeight({
         height: popupRef.current.overlayDom.current.getBoundingClientRect().height,
@@ -4556,21 +4279,17 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
       });
     }
   }
-
   function onEntering(node) {
     node.style.height = node.scrollHeight + "px";
   }
-
   function onEntered(node) {
     // node.style.height = 'initial';
     if (popupRef.current && popupRef.current.overlayDom.current) {
       node.style.height = popupRef.current.overlayDom.current.getBoundingClientRect().height + 'px';
     }
   }
-
   function onExiting(node) {
     node.style.height = '0px';
-
     if (popupRef.current && popupRef.current.overlayDom.current) {
       setContextHeight({
         height: -popupRef.current.overlayDom.current.getBoundingClientRect().height,
@@ -4578,12 +4297,10 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
       });
     }
   }
-
   function onExit(node) {
     node.style.height = node.scrollHeight + "px";
     setIsOpen(false);
   }
-
   if (!collapse) {
     delete menuProps.onClick;
     menuProps.bordered = false;
@@ -4605,7 +4322,6 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
     overlayTriggerProps.usePortal = true;
     menuProps.onClick = onClick;
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)("li", {
     "data-menu": "subitem",
     ref: ref,
@@ -4614,7 +4330,6 @@ var SubMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_am
         e.stopPropagation();
         return;
       }
-
       elementSource.current = e.target;
     },
     children: /*#__PURE__*/(0,jsx_runtime.jsx)(react_overlay_trigger_esm, _extends({
@@ -4663,16 +4378,15 @@ var Menu_excluded = ["prefixCls", "className", "children", "bordered", "theme", 
 var ThemeContext = /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.createContext)({});
 var Menu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-menu',
-    className,
-    children,
-    bordered,
-    theme = 'light',
-    inlineIndent = 10,
-    inlineCollapsed
-  } = props,
-      htmlProps = _objectWithoutPropertiesLoose(props, Menu_excluded);
-
+      prefixCls = 'w-menu',
+      className,
+      children,
+      bordered,
+      theme = 'light',
+      inlineIndent = 10,
+      inlineCollapsed
+    } = props,
+    htmlProps = _objectWithoutPropertiesLoose(props, Menu_excluded);
   var cls = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => [prefixCls, bordered ? 'w-bordered' : null, inlineCollapsed ? prefixCls + "-inline-collapsed" : null, theme ? prefixCls + "-" + theme : null, className].filter(Boolean).join(' ').trim(), [prefixCls, bordered, inlineCollapsed, theme, className]);
   return /*#__PURE__*/(0,jsx_runtime.jsx)("ul", _extends({}, htmlProps, {
     ref: ref,
@@ -4680,19 +4394,17 @@ var Menu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_r
     "data-menu": "menu",
     children: external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.map(children, (child, key) => {
       if (! /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().isValidElement(child)) return child;
-      var props = {}; // Sub Menu
-
+      var props = {};
+      // Sub Menu
       if (child.props.children && child.type === SubMenu) {
         props.inlineIndent = inlineIndent;
       }
-
       return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(child, Object.assign(_extends({}, props), child.props, {
         key: "" + key
       }));
     })
   }));
 });
-
 var InternalContextMenu = (props, ref) => {
   var [contextHeight, setContextHeight] = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useState({
     height: 0,
@@ -4707,7 +4419,6 @@ var InternalContextMenu = (props, ref) => {
     }))
   });
 };
-
 var ContextMenu = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(InternalContextMenu);
 Menu.displayName = 'uiw.Menu';
 ContextMenu.displayName = 'uiw.Menu';
@@ -4728,7 +4439,6 @@ ContextMenu.Divider = MenuDivider;
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const react_cascader_esm_style = ({});
 ;// CONCATENATED MODULE: ../react-cascader/esm/index.js
-
 
 
 
@@ -4777,15 +4487,12 @@ function Cascader(props) {
       setSearchOption(tempOptions);
     }
   }, [onSearch]);
-
   var iteratorOption = function iteratorOption(options, cb, opts) {
     if (opts === void 0) {
       opts = [];
     }
-
     options.map(opt => {
       var optsTemp = [...opts, opt];
-
       if (opt.children) {
         iteratorOption(opt.children, cb, optsTemp);
       } else {
@@ -4793,7 +4500,6 @@ function Cascader(props) {
       }
     });
   };
-
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     if (value) {
       var valueTemp = [];
@@ -4809,59 +4515,47 @@ function Cascader(props) {
       setSelectedValue(valueTemp);
     }
   }, [value]);
-
   function onVisibleChange(isOpen) {
     setInnerIsOpen(isOpen);
   }
-
   function renderSelectIcon(type) {
     var selectIconType;
-
     if (type === 'enter' && allowClear && selectedValue.length > 0) {
       selectIconType = 'close';
     } else {
       selectIconType = '';
     }
-
     setSelectIconType(selectIconType);
   }
-
   var searchItemClick = options => {
     setSearchText('');
     setInnerIsOpen(false);
     handelChange(false, options);
   };
-
   var handleItemClick = (optionsItem, level) => {
     selectedValue.splice(level, selectedValue.length - level, optionsItem);
     if (!optionsItem.children) setInnerIsOpen(false);
     handelChange(true, selectedValue);
   };
-
   var handelChange = (isSeleted, selectedValue) => {
     setSelectedValue([...selectedValue]);
     var value = selectedValue.map(item => item.value);
     onChange == null ? void 0 : onChange(isSeleted, value, selectedValue);
   };
-
   var onClear = e => {
     e.stopPropagation();
     handelChange(false, []);
   };
-
   var handelSearch = searchText => {
     setSearchText(searchText);
   };
-
   var inputChange = e => {
     if (!innerIsOpen) {
       setInnerIsOpen(!innerIsOpen);
     }
-
     var value = e.target.value;
     onSearch && handelSearch(value);
   };
-
   var widths = (style == null ? void 0 : style.width) * 0.7 || undefined;
   var trigger = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
     return (cb, click) => {
@@ -4869,26 +4563,21 @@ function Cascader(props) {
         onClick: () => {},
         onMouseOver: () => {}
       };
-
       var callback = () => {
         cb();
       };
-
       if (expandTrigger === 'click' || click) {
         triggers.onClick = callback;
       } else if (expandTrigger === 'hover') {
         triggers.onMouseOver = callback;
       }
-
       return triggers;
     };
   }, []);
-
   var OptionIter = function OptionIter(option, level) {
     if (level === void 0) {
       level = 0;
     }
-
     if (!option) return;
     return /*#__PURE__*/(0,jsx_runtime.jsx)(react_menu_esm, {
       bordered: true,
@@ -4906,7 +4595,6 @@ function Cascader(props) {
         children: '没有数据'
       }) : option.map((opt, index) => {
         var _selectedValue$level, _opt$children;
-
         var active = ((_selectedValue$level = selectedValue[level]) == null ? void 0 : _selectedValue$level.value) === opt.value;
         return /*#__PURE__*/(0,jsx_runtime.jsx)(react_menu_esm.Item, _extends({
           active: active,
@@ -4920,7 +4608,6 @@ function Cascader(props) {
       })
     }, level);
   };
-
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     var inputValue = selectedValue.map(opt => opt.label).join(' / ');
     setInputValue(inputValue);
@@ -4944,7 +4631,6 @@ function Cascader(props) {
       },
       children: new Array(selectedValue.length + 1).fill(0).map((_, index) => {
         var _selectedValue;
-
         var options = index ? (_selectedValue = selectedValue[index - 1]) == null ? void 0 : _selectedValue.children : option;
         return OptionIter(options, index);
       }).filter(m => !!m)
@@ -4996,7 +4682,6 @@ function Cascader(props) {
     })
   }));
 }
-
 /* harmony default export */ const react_cascader_esm = (Cascader);
 
 ;// CONCATENATED MODULE: ../react-radio/esm/RadioAbstract.js
@@ -5008,26 +4693,23 @@ var RadioAbstract_excluded = ["prefixCls", "type", "disabled", "value", "classNa
 
 var RadioAbstract = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-radio',
-    type = 'radio',
-    disabled = false,
-    value = '',
-    className,
-    style,
-    children,
-    size,
-    checked: prChecked = false,
-    onChange
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, RadioAbstract_excluded);
-
+      prefixCls = 'w-radio',
+      type = 'radio',
+      disabled = false,
+      value = '',
+      className,
+      style,
+      children,
+      size,
+      checked: prChecked = false,
+      onChange
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, RadioAbstract_excluded);
   var [checked, setChecked] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(prChecked);
   var [prevChecked, setPrevChecked] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)();
-
   if (prChecked !== prevChecked) {
     setPrevChecked(prChecked);
   }
-
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
     if (prChecked !== prevChecked) {
       setChecked(prChecked);
@@ -5039,13 +4721,11 @@ var RadioAbstract = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_re
       setChecked(!!props.checked);
     }
   }, [props.checked]);
-
   function handleChange(e) {
     e.persist();
     setChecked(e.target.checked);
     onChange && onChange(e);
   }
-
   var label = children || value;
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("label", {
     className: cls,
@@ -5094,15 +4774,14 @@ var RadioGroup_excluded = ["prefixCls", "className", "name", "value", "onChange"
 
 var RadioGroup = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-radio-group',
-    className,
-    name,
-    value,
-    onChange,
-    children
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, RadioGroup_excluded);
-
+      prefixCls = 'w-radio-group',
+      className,
+      name,
+      value,
+      onChange,
+      children
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, RadioGroup_excluded);
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({}, other, {
     ref: ref,
     className: [prefixCls, className].filter(Boolean).join(' ').trim(),
@@ -5127,34 +4806,31 @@ var RadioGroup = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react
 var RadioButton_excluded = ["prefixCls", "type", "disabled", "value", "className", "style", "children", "size", "checked", "onChange"];
 
 
+
 /**
  * Constructs a type by picking all properties from `HTMLInputProps` and then removing `size`.
  * Omit: https://www.typescriptlang.org/docs/handbook/utility-types.html#omittk
  */
 
-
 var RadioButton = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-radio',
-    type = 'button',
-    disabled = false,
-    value = '',
-    className,
-    style,
-    children,
-    size = 'small',
-    checked: prChecked = false,
-    onChange
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, RadioButton_excluded);
-
+      prefixCls = 'w-radio',
+      type = 'button',
+      disabled = false,
+      value = '',
+      className,
+      style,
+      children,
+      size = 'small',
+      checked: prChecked = false,
+      onChange
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, RadioButton_excluded);
   var [checked, setChecked] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(prChecked);
   var [prevChecked, setPrevChecked] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)();
-
   if (prChecked !== prevChecked) {
     setPrevChecked(prChecked);
   }
-
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
     if (prChecked !== prevChecked) {
       setChecked(prChecked);
@@ -5167,16 +4843,13 @@ var RadioButton = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_reac
     }
   }, [props.checked]);
   console.log('props.checked', props.checked);
-
   function handleChange(e) {
     e.persist();
-
     if (!checked) {
       setChecked(!checked);
       onChange && onChange(value);
     }
   }
-
   var label = children || value;
   return /*#__PURE__*/(0,jsx_runtime.jsx)(esm, _extends({}, _extends({}, other, {
     className: cls,
@@ -5213,14 +4886,13 @@ var Group_excluded = ["prefixCls", "className", "name", "value", "onChange"];
 
 var CheckboxGroup = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-checkbox-group',
-    className,
-    name,
-    value,
-    onChange: _onChange
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, Group_excluded);
-
+      prefixCls = 'w-checkbox-group',
+      className,
+      name,
+      value,
+      onChange: _onChange
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, Group_excluded);
   var valueRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)([]);
   var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   var childs = external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.toArray(props.children);
@@ -5230,13 +4902,11 @@ var CheckboxGroup = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_re
     ref: ref,
     children: external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.map(childs, element => {
       if (! /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().isValidElement(element)) return;
-
       if (Array.isArray(value) && element && element.props && element.props.value && value.includes(element.props.value)) {
         if (!valueRef.current.includes(element.props.value)) {
           valueRef.current.push(element.props.value);
         }
       }
-
       return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(element, Object.assign({}, element.props, {
         name,
         checked: valueRef.current.includes(element.props.value),
@@ -5244,13 +4914,11 @@ var CheckboxGroup = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_re
           if (e.target.type && e.target.type !== 'checkbox') return;
           var checked = e.target.checked;
           var include = valueRef.current.includes(element.props.value);
-
           if (!include && checked) {
             valueRef.current.push(element.props.value);
           } else if (include && !checked) {
             valueRef.current = valueRef.current.filter(val => val !== element.props.value);
           }
-
           _onChange && _onChange(e, valueRef.current);
         }
       }));
@@ -5270,18 +4938,16 @@ var Checkbox_excluded = ["className", "prefixCls", "type", "indeterminate", "dis
 
 
 
-
 function InternalCheckbox(props, ref) {
   var {
-    className,
-    prefixCls = 'w-checkbox',
-    type = 'checkbox',
-    indeterminate = false,
-    disabled = false,
-    value = ''
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, Checkbox_excluded);
-
+      className,
+      prefixCls = 'w-checkbox',
+      type = 'checkbox',
+      indeterminate = false,
+      disabled = false,
+      value = ''
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, Checkbox_excluded);
   var cls = [className, indeterminate && 'indeterminate'].filter(Boolean).join(' ').trim();
   return /*#__PURE__*/(0,jsx_runtime.jsx)(RadioAbstract, _extends({
     ref: ref
@@ -5293,7 +4959,6 @@ function InternalCheckbox(props, ref) {
     className: cls
   }));
 }
-
 var Checkbox = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(InternalCheckbox);
 Checkbox.Group = CheckboxGroup;
 /* harmony default export */ const esm_Checkbox = (Checkbox);
@@ -5315,44 +4980,38 @@ var esm_Panel_excluded = ["prefixCls", "className", "icon", "children", "isActiv
 
 function Panel(props) {
   var {
-    prefixCls = 'w-collapse',
-    className,
-    icon = 'down',
-    children: _children,
-    isActive,
-    onItemClick,
-    disabled = false,
-    showArrow,
-    header,
-    extra
-  } = props,
-      resetProps = _objectWithoutPropertiesLoose(props, esm_Panel_excluded);
-
+      prefixCls = 'w-collapse',
+      className,
+      icon = 'down',
+      children: _children,
+      isActive,
+      onItemClick,
+      disabled = false,
+      showArrow,
+      header,
+      extra
+    } = props,
+    resetProps = _objectWithoutPropertiesLoose(props, esm_Panel_excluded);
   var cls = [prefixCls ? prefixCls + "-item" : null, className, isActive ? prefixCls + "-active" : null, disabled ? prefixCls + "-disabled" : null].filter(Boolean).join(' ').trim();
   var iconRender = typeof icon === 'string' ? /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
     type: icon
   }) : icon;
-
   var childStyle = child => {
     return Object.assign({}, child && child.props ? child.props.style : {}, {
       transitionDuration: '300ms'
     });
   };
-
   function getInstance(status, instance) {
     if (!instance) {
       return;
     }
-
     if (status === 'exited' || status === 'exiting') {
       instance.style.height = '1px';
     }
-
     if (status === 'entered' || status === 'entering') {
       instance.style.height = instance.scrollHeight + "px";
     }
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", _extends({
     className: cls
   }, resetProps, {
@@ -5393,53 +5052,43 @@ var Collapse_excluded = ["prefixCls", "className", "children", "accordion", "bor
 
 
 
-
 function toArray(activeKey) {
   var currentActiveKey = activeKey;
-
   if (!Array.isArray(currentActiveKey)) {
     currentActiveKey = currentActiveKey ? [currentActiveKey] : [];
   }
-
   return currentActiveKey;
 }
-
 function InternalCollapse(props, ref) {
   var {
-    prefixCls = 'w-collapse',
-    className,
-    children,
-    accordion = false,
-    bordered,
-    showArrow = true,
-    activeKey: propsActiveKey,
-    onChange
-  } = props,
-      resetProps = _objectWithoutPropertiesLoose(props, Collapse_excluded);
-
+      prefixCls = 'w-collapse',
+      className,
+      children,
+      accordion = false,
+      bordered,
+      showArrow = true,
+      activeKey: propsActiveKey,
+      onChange
+    } = props,
+    resetProps = _objectWithoutPropertiesLoose(props, Collapse_excluded);
   var [activeKey, setActiveKey] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(toArray(propsActiveKey));
   var cls = [prefixCls, className, bordered ? 'w-noborder' : null].filter(Boolean).join(' ').trim();
-
   function onItemClick(key) {
     var keys = activeKey;
-
     if (accordion) {
       keys = keys[0] === key ? [] : [key];
     } else {
       keys = [...keys];
       var index = keys.indexOf(key);
       var isActive = index > -1;
-
       if (isActive) {
         keys.splice(index, 1);
       } else {
         keys.push(key);
       }
     }
-
     setActiveKey(keys);
   }
-
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
     if (propsActiveKey !== activeKey) {
       setActiveKey(toArray(propsActiveKey));
@@ -5461,14 +5110,12 @@ function InternalCollapse(props, ref) {
         disabled
       } = child.props;
       var isActive = false;
-
       if (accordion) {
         // 手风琴模式下默认选择第一个
         isActive = activeKey[0] === key;
       } else {
         isActive = activeKey.indexOf(key) > -1;
       }
-
       var childProps = _extends({
         prefixCls,
         isActive,
@@ -5476,12 +5123,10 @@ function InternalCollapse(props, ref) {
         showArrow,
         onItemClick: disabled ? () => {} : () => onItemClick(key)
       }, child.props);
-
       return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(child, childProps);
     })
   }));
 }
-
 var Collapse = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(InternalCollapse);
 Collapse.displayName = 'Collapse';
 Collapse.Panel = Panel;
@@ -5510,29 +5155,25 @@ var react_copy_to_clipboard_esm_excluded = ["prefixCls", "className", "text", "c
 
 function CopyToClipboard(props) {
   var {
-    prefixCls = 'w-copy-to-clipboard',
-    className,
-    text = '',
-    children,
-    onClick = () => null
-  } = props,
-      resetProps = _objectWithoutPropertiesLoose(props, react_copy_to_clipboard_esm_excluded);
-
+      prefixCls = 'w-copy-to-clipboard',
+      className,
+      text = '',
+      children,
+      onClick = () => null
+    } = props,
+    resetProps = _objectWithoutPropertiesLoose(props, react_copy_to_clipboard_esm_excluded);
   function handleClick(e) {
     if (!text) {
       return onClick('', false, e);
     }
-
     copy_to_clipboard_umd_default()(text, isCopy => {
       onClick(text, isCopy, e);
     });
   }
-
   var otherProps = _extends({}, resetProps, {
     className: [prefixCls, className].filter(Boolean).join(' ').trim(),
     onClick: handleClick
   });
-
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("span", _extends({}, otherProps, {
     children: [/*#__PURE__*/(0,jsx_runtime.jsx)("span", {
       className: prefixCls + "-select",
@@ -5559,44 +5200,38 @@ var DateInputRange_excluded = ["prefixCls", "bodyStyle", "className", "popoverPr
 
 function DateInputRange(props) {
   var {
-    prefixCls = 'w-dateinputrange',
-    bodyStyle = undefined,
-    className,
-    popoverProps,
-    datePickerProps,
-    allowClear = true,
-    format = 'YYYY/MM/DD',
-    onChange,
-    value
-  } = props,
-      inputProps = _objectWithoutPropertiesLoose(props, DateInputRange_excluded);
-
+      prefixCls = 'w-dateinputrange',
+      bodyStyle = undefined,
+      className,
+      popoverProps,
+      datePickerProps,
+      allowClear = true,
+      format = 'YYYY/MM/DD',
+      onChange,
+      value
+    } = props,
+    inputProps = _objectWithoutPropertiesLoose(props, DateInputRange_excluded);
   var [dateRange, setDateRange] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     var valueTemp = [];
     var propsValue = value;
-
     if (Array.isArray(propsValue) && !!(propsValue != null && propsValue.length)) {
       propsValue.forEach((date, index) => {
         valueTemp[index] = typeof propsValue[index] === 'string' ? new Date(date) : date;
       });
     }
-
     setDateRange(valueTemp);
   }, [JSON.stringify(value)]);
-
   function handleChange(cdate, idx) {
     var changeValue = [...dateRange];
     changeValue[idx] = cdate;
     setDateRange(changeValue);
     onChange && onChange(cdate, changeValue);
   }
-
   function clearDateRange() {
     setDateRange([]);
     onChange && onChange(undefined, []);
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
     className: [prefixCls + "-contents", prefixCls + "-inner"].filter(Boolean).join(' ').trim(),
     style: _extends({
@@ -5644,7 +5279,8 @@ function DateInputRange(props) {
         placeholder: "\u8BF7\u9009\u62E9\u65E5\u671F",
         readOnly: true
       }, inputProps, {
-        value: dateRange[1] ? formatter(format, dateRange[1]) : '' // onChange={(v) => console.log('v2', v)}
+        value: dateRange[1] ? formatter(format, dateRange[1]) : ''
+        // onChange={(v) => console.log('v2', v)}
         ,
         className: [prefixCls, className].filter(Boolean).join(' ').trim()
       }))
@@ -5675,17 +5311,16 @@ var react_date_input_esm_excluded = ["prefixCls", "className", "popoverProps", "
 
 function DateInput(props) {
   var {
-    prefixCls = 'w-dateinput',
-    className,
-    popoverProps,
-    datePickerProps,
-    allowClear = true,
-    autoClose = false,
-    format = 'YYYY/MM/DD',
-    onChange
-  } = props,
-      inputProps = _objectWithoutPropertiesLoose(props, react_date_input_esm_excluded);
-
+      prefixCls = 'w-dateinput',
+      className,
+      popoverProps,
+      datePickerProps,
+      allowClear = true,
+      autoClose = false,
+      format = 'YYYY/MM/DD',
+      onChange
+    } = props,
+    inputProps = _objectWithoutPropertiesLoose(props, react_date_input_esm_excluded);
   var [date, setDate] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(props.value);
   var value = date || '';
   inputProps.value = typeof value === 'string' ? value : formatter(format, value);
@@ -5694,13 +5329,11 @@ function DateInput(props) {
       setDate(props.value);
     }
   }, [props.value]);
-
   function handleChange(cdate) {
     autoClose && setIsOpen(false);
     setDate(cdate);
     onChange && onChange(cdate);
   }
-
   if (allowClear && inputProps.value) {
     inputProps.addonAfter = /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
       className: prefixCls + "-close-btn",
@@ -5708,7 +5341,6 @@ function DateInput(props) {
       type: "close"
     });
   }
-
   var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Popover, _extends({
     trigger: "focus",
@@ -5739,7 +5371,6 @@ var DescriptionsItem = _ref => {
   } = _ref;
   return children;
 };
-
 /* harmony default export */ const esm_DescriptionsItem = (DescriptionsItem);
 
 ;// CONCATENATED MODULE: ../react-descriptions/esm/Cell.js
@@ -5749,29 +5380,25 @@ var Cell_excluded = ["prefixCls", "className", "tagName", "layout", "bordered", 
 
 
 
-
 function Cell(props) {
   if (props === void 0) {
     props = {};
   }
-
   var {
-    prefixCls,
-    className,
-    tagName: TagName = 'td',
-    layout,
-    bordered,
-    label,
-    colon,
-    span,
-    children
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, Cell_excluded);
-
+      prefixCls,
+      className,
+      tagName: TagName = 'td',
+      layout,
+      bordered,
+      label,
+      colon,
+      span,
+      children
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, Cell_excluded);
   var labelProps = {
     className: [prefixCls ? prefixCls + "-item-label" : null, className, colon ? prefixCls + "-item-colon" : null, !label ? prefixCls + "-item-no-label" : null].filter(Boolean).join(' ').trim()
   };
-
   if (layout === 'horizontal') {
     if (!bordered) {
       return /*#__PURE__*/(0,jsx_runtime.jsxs)(TagName, _extends({}, other, {
@@ -5784,7 +5411,6 @@ function Cell(props) {
         })]
       }));
     }
-
     return /*#__PURE__*/(0,jsx_runtime.jsxs)(external_root_React_commonjs2_react_commonjs_react_amd_react_.Fragment, {
       children: [/*#__PURE__*/(0,jsx_runtime.jsx)("th", _extends({}, labelProps, {
         children: label
@@ -5795,14 +5421,12 @@ function Cell(props) {
       }))]
     });
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)(TagName, {
     colSpan: span,
     className: prefixCls + "-item-" + (TagName === 'td' ? 'content' : 'label'),
     children: children
   });
 }
-
 /* harmony default export */ const esm_Cell = (Cell);
 
 ;// CONCATENATED MODULE: ../react-descriptions/esm/Row.js
@@ -5816,7 +5440,6 @@ function Row(props) {
   if (props === void 0) {
     props = {};
   }
-
   var {
     prefixCls,
     layout,
@@ -5825,7 +5448,6 @@ function Row(props) {
     colon,
     children = []
   } = props;
-
   function handleCell(isHead) {
     return children.map((child, index) => /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.createElement)(esm_Cell, _extends({}, child.props, {
       prefixCls: prefixCls,
@@ -5838,7 +5460,6 @@ function Row(props) {
       bordered: bordered
     }), isHead ? child.props.label : child.props.children));
   }
-
   var cls = prefixCls ? prefixCls + "-row" : '';
   return /*#__PURE__*/(0,jsx_runtime.jsxs)(external_root_React_commonjs2_react_commonjs_react_amd_react_.Fragment, {
     children: [layout === 'vertical' && /*#__PURE__*/(0,jsx_runtime.jsx)("tr", {
@@ -5865,57 +5486,50 @@ var react_descriptions_esm_excluded = ["prefixCls", "className", "title", "borde
 
 
 
-
 var generateChildrenRows = (children, column) => {
   var rows = [];
   var columns = null;
   var leftSpans;
   children.forEach((node, index) => {
     var itemNode = node;
-
     if (!columns) {
       leftSpans = column;
       columns = [];
       rows.push(columns);
-    } // Always set last span to align the end of Descriptions
+    }
 
-
+    // Always set last span to align the end of Descriptions
     var lastItem = index === children.length - 1;
-
     if (lastItem) {
       itemNode = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(itemNode, {
         span: leftSpans
       });
-    } // Calculate left fill span
-
-
+    }
+    // Calculate left fill span
     var {
       span = 1
     } = itemNode.props;
     columns.push(itemNode);
     leftSpans -= span;
-
     if (leftSpans <= 0) {
       columns = null;
     }
   });
   return rows;
 };
-
 function InternalDescriptions(props, ref) {
   var {
-    prefixCls = 'w-descriptions',
-    className,
-    title,
-    bordered,
-    column = 3,
-    size,
-    colon = true,
-    children,
-    layout = 'horizontal'
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_descriptions_esm_excluded);
-
+      prefixCls = 'w-descriptions',
+      className,
+      title,
+      bordered,
+      column = 3,
+      size,
+      colon = true,
+      children,
+      layout = 'horizontal'
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_descriptions_esm_excluded);
   var cls = [prefixCls, className, prefixCls && layout ? prefixCls + "-" + layout : null, bordered ? prefixCls + "-bordered" : null, size ? prefixCls + "-" + size : null].filter(Boolean).join(' ').trim();
   var cloneChildren = external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.toArray(children);
   var childs = generateChildrenRows(cloneChildren, column);
@@ -5940,7 +5554,6 @@ function InternalDescriptions(props, ref) {
     }))
   });
 }
-
 var Descriptions = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(InternalDescriptions);
 Descriptions.Item = esm_DescriptionsItem;
 /* harmony default export */ const react_descriptions_esm = (Descriptions);
@@ -5957,15 +5570,14 @@ var react_divider_esm_excluded = ["prefixCls", "className", "children", "dashed"
 
 /* harmony default export */ const react_divider_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-divider',
-    className,
-    children,
-    dashed = false,
-    type = 'horizontal',
-    align = 'center'
-  } = props,
-      restProps = _objectWithoutPropertiesLoose(props, react_divider_esm_excluded);
-
+      prefixCls = 'w-divider',
+      className,
+      children,
+      dashed = false,
+      type = 'horizontal',
+      align = 'center'
+    } = props,
+    restProps = _objectWithoutPropertiesLoose(props, react_divider_esm_excluded);
   var cls = [className, prefixCls, prefixCls && type ? prefixCls + "-" + type : null, prefixCls && align ? prefixCls + "-" + align : null, children ? prefixCls + "-with-text" : null, !!dashed ? prefixCls + "-dashed" : null].filter(Boolean).join(' ').trim();
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
     className: cls
@@ -5996,31 +5608,27 @@ var react_drawer_esm_excluded = ["prefixCls", "className", "style", "placement",
   if (props === void 0) {
     props = {};
   }
-
   var {
-    prefixCls = 'w-drawer',
-    className,
-    style,
-    placement = 'right',
-    size = 260,
-    title,
-    footer,
-    icon,
-    isCloseButtonShown = true,
-    bodyProps,
-    timeout = 300,
-    isOpen = false,
-    maskClosable = true
-  } = props,
-      overlayProps = _objectWithoutPropertiesLoose(props, react_drawer_esm_excluded);
-
+      prefixCls = 'w-drawer',
+      className,
+      style,
+      placement = 'right',
+      size = 260,
+      title,
+      footer,
+      icon,
+      isCloseButtonShown = true,
+      bodyProps,
+      timeout = 300,
+      isOpen = false,
+      maskClosable = true
+    } = props,
+    overlayProps = _objectWithoutPropertiesLoose(props, react_drawer_esm_excluded);
   var cls = [className, prefixCls, placement].filter(Boolean).join(' ').trim();
   var bodyCls = [bodyProps ? bodyProps.className : null, prefixCls ? prefixCls + "-body-inner" : null].filter(Boolean).join(' ').trim();
-
   var styl = _extends({}, style, {
     [/^(top|bottom)$/.test(placement) ? 'height' : 'width']: size
   });
-
   var footerView = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => footer ? /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
     className: prefixCls + "-footer",
     children: footer
@@ -6070,19 +5678,17 @@ var react_empty_esm_excluded = ["prefixCls", "className", "icon", "iconProps", "
 
 
 
-
 var Empty = props => {
   var {
-    prefixCls = 'w-empty',
-    className,
-    icon,
-    iconProps,
-    size = 64,
-    description = '暂无数据',
-    children
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_empty_esm_excluded);
-
+      prefixCls = 'w-empty',
+      className,
+      icon,
+      iconProps,
+      size = 64,
+      description = '暂无数据',
+      children
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_empty_esm_excluded);
   var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", _extends({
     className: cls
@@ -6120,7 +5726,6 @@ var Empty = props => {
     })]
   }));
 };
-
 /* harmony default export */ const react_empty_esm = (Empty);
 
 ;// CONCATENATED MODULE: ../react-file-input/esm/Input.js
@@ -6132,12 +5737,11 @@ var Input_excluded = ["className", "dataLabel", "prefixCls"];
 
 /* harmony default export */ const Input = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    className,
-    dataLabel = 'Browse',
-    prefixCls = 'w-fileinput'
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, Input_excluded);
-
+      className,
+      dataLabel = 'Browse',
+      prefixCls = 'w-fileinput'
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, Input_excluded);
   var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   return /*#__PURE__*/(0,jsx_runtime.jsx)(react_input_esm, _extends({
     ref: ref,
@@ -6152,7 +5756,6 @@ var Input_excluded = ["className", "dataLabel", "prefixCls"];
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const react_file_input_esm_style = ({});
 ;// CONCATENATED MODULE: ../react-file-input/esm/List.js
-
 
 
 
@@ -6220,11 +5823,9 @@ var Picture = props => {
     })]
   });
 };
-
 /* harmony default export */ const List = (Picture);
 
 ;// CONCATENATED MODULE: ../react-file-input/esm/Card.js
-
 
 
 
@@ -6291,7 +5892,6 @@ var Card = props => {
     })]
   });
 };
-
 /* harmony default export */ const esm_Card = (Card);
 
 ;// CONCATENATED MODULE: ../react-file-input/esm/utils.js
@@ -6310,11 +5910,9 @@ var getBase64 = file => {
 };
 var getListFiles = (files, dataURLKey) => {
   var promiseFiles = [];
-
   for (var i = 0; i < files.length; i += 1) {
     promiseFiles.push(getBase64(files[i]));
   }
-
   return Promise.all(promiseFiles).then(fileListBase64 => {
     var fileList = fileListBase64.map((base64, index) => ({
       [dataURLKey]: base64,
@@ -6356,44 +5954,35 @@ var FileList = props => {
     if (inputRef.current) inputRef.current.value = '';
     handleClickInput();
   }, [handleClickInput]);
-
   var onInputChange = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(function* (e) {
       var files = e.target.files;
       if (!files) return;
       var updatedFileList = yield getListFiles(files, 'dataURL');
       var updatedList = [...fileList, ...updatedFileList];
-
       if (maxNumber < updatedList.length) {
         updatedList = updatedList.slice(0, maxNumber);
       }
-
       setFileList(updatedList);
       onChange == null ? void 0 : onChange(updatedList);
     });
-
     return function onInputChange(_x) {
       return _ref.apply(this, arguments);
     };
   }();
-
   var onRemove = index => {
     var updatedList = [...fileList];
     updatedList.splice(index, 1);
     setFileList(updatedList);
     onChange == null ? void 0 : onChange(updatedList);
   };
-
   var Comp;
-
   if (uploadType === 'card') {
     Comp = esm_Card;
   }
-
   if (uploadType === 'picture' || uploadType === 'text') {
     Comp = List;
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsxs)((external_root_React_commonjs2_react_commonjs_react_amd_react_default()).Fragment, {
     children: [/*#__PURE__*/(0,jsx_runtime.jsx)("input", {
       type: "file",
@@ -6421,23 +6010,18 @@ var FileList = props => {
 
 
 
-
 function Upload(props) {
   var {
     uploadType = 'input'
   } = props;
-
   if (uploadType === 'input') {
     return /*#__PURE__*/(0,jsx_runtime.jsx)(Input, _extends({}, props));
   }
-
   if (isUploadType(uploadType)) {
     return /*#__PURE__*/(0,jsx_runtime.jsx)(esm_FileList, _extends({}, props));
   }
-
   return null;
 }
-
 /* harmony default export */ const react_file_input_esm = (Upload);
 
 ;// CONCATENATED MODULE: ../react-grid/esm/style/col.css
@@ -6454,17 +6038,15 @@ function Col(props) {
   if (props === void 0) {
     props = {};
   }
-
   var {
-    prefixCls = 'w-col',
-    className,
-    fixed,
-    span,
-    grow,
-    align
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, Col_excluded);
-
+      prefixCls = 'w-col',
+      className,
+      fixed,
+      span,
+      grow,
+      align
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, Col_excluded);
   var cls = [prefixCls, className, span ? prefixCls + "-" + span : null, fixed ? prefixCls + "-fixed" : null, align ? prefixCls + "-align-" + align : null, fixed ? prefixCls + "-grow-" + grow : null].filter(Boolean).join(' ').trim();
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
     className: cls
@@ -6487,16 +6069,14 @@ function Row_Row(props) {
   if (props === void 0) {
     props = {};
   }
-
   var {
-    prefixCls = 'w-row',
-    className,
-    gutter = 0,
-    justify,
-    align
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, Row_excluded);
-
+      prefixCls = 'w-row',
+      className,
+      gutter = 0,
+      justify,
+      align
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, Row_excluded);
   var cls = [prefixCls, className, align ? prefixCls + "-align-" + align : null, justify ? prefixCls + "-justify-" + justify : null].filter(Boolean).join(' ').trim();
   var gutterStyl = !gutter ? {} : {
     paddingLeft: gutter / 2,
@@ -6532,24 +6112,22 @@ var FormItem_excluded = ["prefixCls", "className", "required", "style", "label",
 class FormItem extends (external_root_React_commonjs2_react_commonjs_react_amd_react_default()).PureComponent {
   render() {
     var _this$props = this.props,
-        {
-      prefixCls,
-      className,
-      required,
-      style,
-      label,
-      labelFor,
-      labelClassName,
-      labelStyle,
-      help,
-      inline,
-      hasError
-    } = _this$props,
-        otherProps = _objectWithoutPropertiesLoose(_this$props, FormItem_excluded);
-
+      {
+        prefixCls,
+        className,
+        required,
+        style,
+        label,
+        labelFor,
+        labelClassName,
+        labelStyle,
+        help,
+        inline,
+        hasError
+      } = _this$props,
+      otherProps = _objectWithoutPropertiesLoose(_this$props, FormItem_excluded);
     var cls = [prefixCls, className, hasError ? prefixCls + "-error" : null].filter(Boolean).join(' ').trim();
     var labelCls = ['w-form-label', labelClassName].filter(Boolean).join(' ').trim();
-
     if (inline) {
       return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", _extends({
         className: cls,
@@ -6581,7 +6159,6 @@ class FormItem extends (external_root_React_commonjs2_react_commonjs_react_amd_r
         })]
       }));
     }
-
     return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", _extends({
       className: cls,
       style: style
@@ -6607,7 +6184,6 @@ class FormItem extends (external_root_React_commonjs2_react_commonjs_react_amd_r
       })]
     }));
   }
-
 }
 FormItem.defaultProps = {
   prefixCls: 'w-form-item'
@@ -6620,8 +6196,7 @@ FormItem.defaultProps = {
 
 
 var Form_excluded = ["prefixCls", "className", "fields", "children", "resetOnSubmit", "onSubmitError", "onChange", "onSubmit", "afterSubmit"],
-    Form_excluded2 = ["children", "validator", "name", "help", "label", "labelFor", "labelClassName", "labelStyle", "inline", "initialValue"];
-
+  Form_excluded2 = ["children", "validator", "name", "help", "label", "labelFor", "labelClassName", "labelStyle", "inline", "initialValue"];
 
 
 
@@ -6634,7 +6209,6 @@ function newFormState(fields, cb) {
     submitting: false,
     errors: {}
   };
-
   for (var name in fields) {
     var props = fields[name];
     if (!props) continue;
@@ -6647,30 +6221,25 @@ function newFormState(fields, cb) {
     state.initial[name] = Array.isArray(initialValue) ? [...initialValue] : initialValue;
     state.current[name] = _currentValue;
   }
-
   return state;
 }
-
 function newInitialValue(value) {
   return value === null || value === undefined ? '' : value;
 }
-
 var isPromise = promise => promise && typeof promise.then === 'function';
-
 function Form(props, ref) {
   var {
-    prefixCls = 'w-form',
-    className,
-    fields,
-    children,
-    resetOnSubmit,
-    onSubmitError,
-    onChange,
-    onSubmit,
-    afterSubmit
-  } = props,
-      others = _objectWithoutPropertiesLoose(props, Form_excluded);
-
+      prefixCls = 'w-form',
+      className,
+      fields,
+      children,
+      resetOnSubmit,
+      onSubmitError,
+      onChange,
+      onSubmit,
+      afterSubmit
+    } = props,
+    others = _objectWithoutPropertiesLoose(props, Form_excluded);
   var initData = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => newFormState(fields, _ref => {
     var {
       initialValue
@@ -6691,16 +6260,13 @@ function Form(props, ref) {
     setFieldValue: setFieldValue
   }), [data]);
   var formUnits = {};
-
   for (var name in fields) {
     var itemProps = fields[name];
     if (!itemProps) continue;
     var error = data.errors[name];
-
     if (typeof itemProps.initialValue === 'boolean') {
       itemProps.checked = itemProps.initialValue;
     }
-
     var childField = controlField(_extends({}, itemProps, {
       name
     }));
@@ -6715,64 +6281,52 @@ function Form(props, ref) {
       hasError: !!error
     }));
   }
-
   function setFields(fields) {
     var tempData = _extends({}, data, {
       current: fields
     });
-
     setData(tempData);
   }
-
   function setFieldValue(fieldName, value) {
     var tempData = _extends({}, data, {
       current: _extends({}, data.current, {
         [fieldName]: value
       })
     });
-
     setData(tempData);
   }
-
   function handleChange(name, validator, element, cb) {
     return (env, list) => {
-      var value = env && env.target && 'value' in env.target ? env.target.value : env; // 控件 Checkbox.Group 多选值的处理
-
-      value = list || value; // 控件 Checkbox 值的处理
-
+      var value = env && env.target && 'value' in env.target ? env.target.value : env;
+      // 控件 Checkbox.Group 多选值的处理
+      value = list || value;
+      // 控件 Checkbox 值的处理
       if (!list && element && env && env.target && /(radio)/.test(env.target.type)) {
         // 控件 Switch/Radio/Checkbox 值的处理
         value = env.target.value ? env.target.value : env.target.checked;
       }
-
       if (!list && element && env && env.target && /(checkbox)/.test(env.target.type)) {
         // 控件 Switch/Radio/Checkbox 值的处理
         value = env.target.checked;
       }
-
       var nextState = {
         current: _extends({}, data.current, {
           [name]: value
         })
       };
       var error = validator && validator(value);
-
       if (!error) {
         nextState.errors = _extends({}, data.errors);
         delete nextState.errors[name];
       }
-
       if (env && env.persist && typeof env.persist === 'function') env.persist();
       setData(_extends({}, data, nextState));
-
       if (cb) {
         cb(env);
       }
-
       onChange && onChange(_extends({}, data, nextState));
     };
   }
-
   function handleSubmit(e) {
     e && e.preventDefault();
     var {
@@ -6785,16 +6339,13 @@ function Form(props, ref) {
     var nextState = {
       submitting: false
     };
-
     var onError = evn => setData(_extends({}, data, nextState, {
       errors: onSubmitError && onSubmitError(evn) || {}
     }));
-
     var onSuccess = response => {
       if (resetOnSubmit) {
         nextState.current = initial;
       }
-
       setData(_extends({}, data, nextState, {
         errors: {}
       }));
@@ -6804,13 +6355,11 @@ function Form(props, ref) {
         reset: handleReset
       });
     };
-
     try {
       var afterSubmitPromise = onSubmit ? onSubmit({
         initial,
         current
       }, e) : undefined;
-
       if (afterSubmitPromise && isPromise(afterSubmitPromise)) {
         return afterSubmitPromise.then(onSuccess).catch(onError);
       } else {
@@ -6820,39 +6369,31 @@ function Form(props, ref) {
       onError(evn);
     }
   }
-
   function canSubmit() {
     var {
       submitting,
       current = {}
     } = data;
     var passesValidators = true;
-
     for (var _name in fields) {
       if (Object.prototype.hasOwnProperty.call(fields, _name)) {
         var fieldsProps = fields[_name];
         if (!fieldsProps) continue;
-
         if (fieldsProps.validator && fieldsProps.validator(current[_name])) {
           passesValidators = false;
           break;
         }
       }
     }
-
     return !submitting && passesValidators;
   }
-
   function handleReset() {
     var {
       initial
     } = data;
-
     var initials = _extends({}, initial);
-
     Object.entries(initials).map(_ref2 => {
       var [key, value] = _ref2;
-
       if (Array.isArray(value)) {
         initials[key] = [...value];
       }
@@ -6863,41 +6404,35 @@ function Form(props, ref) {
       errors: {}
     }));
   }
-
   function controlField(_ref3) {
     var {
-      children,
-      validator,
-      name
-    } = _ref3,
-        other = _objectWithoutPropertiesLoose(_ref3, Form_excluded2);
-
+        children,
+        validator,
+        name
+      } = _ref3,
+      other = _objectWithoutPropertiesLoose(_ref3, Form_excluded2);
     var element = typeof children !== 'function' ? children : children({
       onChange: handleChange(name, validator),
       onSubmit: handleSubmit,
       canSubmit: canSubmit
     });
     if (!element || external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.count(element) !== 1 || !name) return element;
-
     var props = _extends({
       name: element.props.name || name
     }, other);
-
     var hasCurrentValue = Object.prototype.hasOwnProperty.call(data.current, name);
     props.id = element.props.id;
-    props.value = hasCurrentValue ? data.current && data.current[name] : props.value; // : element.props.value;
+    props.value = hasCurrentValue ? data.current && data.current[name] : props.value;
+    // : element.props.value;
 
     var type = element.props.type;
-
     if (type === 'checkbox' || type === 'switch' || typeof props.value === 'boolean') {
       props.checked = !!props.value;
       delete props.value;
     }
-
     props.onChange = handleChange(name, validator, element, element.props.onChange);
     return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(element, props);
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)("form", _extends({}, others, {
     className: [prefixCls, className].filter(Boolean).join(' ').trim(),
     onSubmit: handleSubmit,
@@ -6912,7 +6447,6 @@ function Form(props, ref) {
     })
   }));
 }
-
 /* harmony default export */ const esm_Form = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(Form));
 
 ;// CONCATENATED MODULE: ../react-form/esm/index.js
@@ -6931,15 +6465,14 @@ var esm_Item_excluded = ["prefixCls", "className", "children", "extra", "tagName
 
 var ListItem = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-list-item',
-    className,
-    children,
-    extra,
-    tagName = 'div',
-    active = false
-  } = props,
-      resetProps = _objectWithoutPropertiesLoose(props, esm_Item_excluded);
-
+      prefixCls = 'w-list-item',
+      className,
+      children,
+      extra,
+      tagName = 'div',
+      active = false
+    } = props,
+    resetProps = _objectWithoutPropertiesLoose(props, esm_Item_excluded);
   var cls = [prefixCls, className, props.disabled ? 'w-disabled' : null, active ? 'w-active' : null].filter(Boolean).join(' ').trim();
   var TagName = props.href && typeof tagName === 'string' ? 'a' : tagName;
   return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().createElement(TagName, _extends({}, resetProps, {
@@ -6970,32 +6503,28 @@ var react_list_esm_excluded = ["prefixCls", "bordered", "striped", "noHover", "a
 
 
 
-
 function InternalList(props, ref) {
   var {
-    prefixCls = 'w-list',
-    bordered = true,
-    striped = false,
-    noHover = false,
-    active = false,
-    size = 'default',
-    renderItem,
-    className,
-    children,
-    header,
-    footer,
-    dataSource = []
-  } = props,
-      resetProps = _objectWithoutPropertiesLoose(props, react_list_esm_excluded);
-
+      prefixCls = 'w-list',
+      bordered = true,
+      striped = false,
+      noHover = false,
+      active = false,
+      size = 'default',
+      renderItem,
+      className,
+      children,
+      header,
+      footer,
+      dataSource = []
+    } = props,
+    resetProps = _objectWithoutPropertiesLoose(props, react_list_esm_excluded);
   var items;
-
   if (dataSource && dataSource.length > 0) {
     items = dataSource.map((item, index) => renderItem && renderItem(item, index));
   } else {
     items = children;
   }
-
   var childrenList = external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.map(items, (child, index) => /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().isValidElement(child) && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(child, {
     key: index
   }));
@@ -7013,7 +6542,6 @@ function InternalList(props, ref) {
     })]
   }));
 }
-
 var esm_List = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(InternalList);
 esm_List.Item = ListItem;
 /* harmony default export */ const react_list_esm = (esm_List);
@@ -7248,22 +6776,20 @@ var react_loader_esm_excluded = ["prefixCls", "className", "size", "loading", "t
   if (props === void 0) {
     props = {};
   }
-
   var {
-    prefixCls = 'w-loader',
-    className,
-    size = 'default',
-    loading = true,
-    tip,
-    vertical,
-    color,
-    bgColor,
-    children,
-    indicator,
-    fullscreen = false
-  } = props,
-      otherProps = _objectWithoutPropertiesLoose(props, react_loader_esm_excluded);
-
+      prefixCls = 'w-loader',
+      className,
+      size = 'default',
+      loading = true,
+      tip,
+      vertical,
+      color,
+      bgColor,
+      children,
+      indicator,
+      fullscreen = false
+    } = props,
+    otherProps = _objectWithoutPropertiesLoose(props, react_loader_esm_excluded);
   var cls = [prefixCls, className, size ? prefixCls + "-" + size : null].filter(Boolean).join(' ').trim();
   var indicatorView = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => /*#__PURE__*/(0,jsx_runtime.jsx)("svg", {
     viewBox: "25 25 50 50",
@@ -7316,7 +6842,6 @@ var react_message_esm_excluded = ["prefixCls", "className", "type", "title", "de
 class Message extends (external_root_React_commonjs2_react_commonjs_react_amd_react_default()).Component {
   constructor(props) {
     super(props);
-
     this.handleClosed = e => {
       var {
         onClose
@@ -7326,62 +6851,51 @@ class Message extends (external_root_React_commonjs2_react_commonjs_react_amd_re
       });
       onClose && onClose(e);
     };
-
     this.renderIcon = () => {
       var {
         type,
         showIcon
       } = this.props;
       var icon = this.props.icon;
-
       if (!icon && showIcon) {
         switch (type) {
           case 'success':
             icon = 'circle-check';
             break;
-
           case 'warning':
             icon = 'warning';
             break;
-
           case 'info':
             icon = 'information';
             break;
-
           case 'error':
             icon = 'circle-close';
             break;
-
           default:
             break;
         }
       }
-
       return icon;
     };
-
     this.state = {
       isOpen: true
     };
   }
-
   render() {
     var _this$props = this.props,
-        {
-      prefixCls,
-      className,
-      type,
-      title,
-      description,
-      showIcon,
-      rounded,
-      isCloseButtonShown
-    } = _this$props,
-        elementProps = _objectWithoutPropertiesLoose(_this$props, react_message_esm_excluded);
-
+      {
+        prefixCls,
+        className,
+        type,
+        title,
+        description,
+        showIcon,
+        rounded,
+        isCloseButtonShown
+      } = _this$props,
+      elementProps = _objectWithoutPropertiesLoose(_this$props, react_message_esm_excluded);
     var children = description || this.props.children;
     var cls = [prefixCls, className, prefixCls + "-" + type, rounded ? prefixCls + "-rounded" : null, showIcon ? prefixCls + "-icon" : null, showIcon ? "" + prefixCls + (title ? '-title' : '') + (children ? '-description' : '') : null].filter(Boolean).join(' ').trim();
-
     var Child = /*#__PURE__*/(0,jsx_runtime.jsxs)("div", _extends({
       className: cls
     }, elementProps, {
@@ -7400,11 +6914,9 @@ class Message extends (external_root_React_commonjs2_react_commonjs_react_amd_re
         children: children
       })]
     }));
-
     if (!isCloseButtonShown) {
       return Child;
     }
-
     return /*#__PURE__*/(0,jsx_runtime.jsx)(esm_CSSTransition, {
       in: this.state.isOpen,
       unmountOnExit: true,
@@ -7413,7 +6925,6 @@ class Message extends (external_root_React_commonjs2_react_commonjs_react_amd_re
       children: Child
     });
   }
-
 }
 Message.defaultProps = {
   prefixCls: 'w-message',
@@ -7440,24 +6951,22 @@ var react_month_picker_esm_excluded = ["prefixCls", "format", "onChange", "class
 var react_month_picker_esm_MONTH_LABEL = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
 function MonthPicker(props) {
   var {
-    prefixCls = 'w-monthpicker',
-    format = 'YYYY/MM',
-    onChange = () => {},
-    className,
-    popoverProps,
-    pickerCaptionProps = {},
-    allowClear = true,
-    monthLabel = react_month_picker_esm_MONTH_LABEL
-  } = props,
-      inputProps = _objectWithoutPropertiesLoose(props, react_month_picker_esm_excluded);
-
+      prefixCls = 'w-monthpicker',
+      format = 'YYYY/MM',
+      onChange = () => {},
+      className,
+      popoverProps,
+      pickerCaptionProps = {},
+      allowClear = true,
+      monthLabel = react_month_picker_esm_MONTH_LABEL
+    } = props,
+    inputProps = _objectWithoutPropertiesLoose(props, react_month_picker_esm_excluded);
   var [isOpen, setIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
   var [panelDate, setPanelDate] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(new Date());
   var [type, setType] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)('month');
   var [date, setDate] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(props.value);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => setDate(props.value), [props.value]);
   inputProps.value = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => typeof date === 'string' ? date : date ? formatter(format, date) : '', [format, date]);
-
   if (allowClear && inputProps.value) {
     inputProps.addonAfter = /*#__PURE__*/(0,jsx_runtime.jsx)(esm, {
       className: prefixCls + "-close-btn",
@@ -7471,24 +6980,19 @@ function MonthPicker(props) {
       type: "light"
     });
   }
-
   function handleSelectedDate(type, num, paging) {
     var curPanelDate = new Date(new Date(panelDate)[type](num));
-
     if (!paging) {
       setType('month');
     }
-
     var curDate = formatter(format, new Date(curPanelDate));
     setDate(curDate);
     setPanelDate(curPanelDate);
     onChange && onChange(curPanelDate, curDate);
-
     if (type === 'setMonth') {
       setIsOpen(false);
     }
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Popover, _extends({
     trigger: "focus",
     placement: "bottomLeft",
@@ -7553,26 +7057,21 @@ class Container extends (external_root_React_commonjs2_react_commonjs_react_amd_
       notifys: {}
     };
   }
-
   create(props) {
     var {
       placement,
       key
     } = props;
-
     if (!notifys[placement]) {
       notifys[placement] = {};
     }
-
     props.isOpen = false;
     notifys[placement][key] = props;
-
     if (props.duration) {
       timer[key] = setTimeout(() => {
         this.closed(key, placement);
       }, props.duration);
     }
-
     this.setState({
       notifys,
       placement
@@ -7583,12 +7082,10 @@ class Container extends (external_root_React_commonjs2_react_commonjs_react_amd_
       });
     });
   }
-
   closed(key, placement) {
     if (!key || !placement || !notifys[placement][key]) {
       return;
     }
-
     notifys[placement][key].isOpen = false;
     var props = notifys[placement][key];
     this.setState({
@@ -7597,13 +7094,11 @@ class Container extends (external_root_React_commonjs2_react_commonjs_react_amd_
       clearTimeout(timer[key]);
       delete timer[key];
       delete notifys[placement][key];
-
       if (props && props.willUnmount) {
         props.willUnmount(props, notifys);
       }
     });
   }
-
   render() {
     var {
       prefixCls
@@ -7614,16 +7109,14 @@ class Container extends (external_root_React_commonjs2_react_commonjs_react_amd_
     return /*#__PURE__*/(0,jsx_runtime.jsx)((external_root_React_commonjs2_react_commonjs_react_amd_react_default()).Fragment, {
       children: placement && Object.keys(this.state.notifys[placement]).map(key => {
         var _this$state$notifys$p = this.state.notifys[placement][key],
-            {
-          description,
-          isOpen
-        } = _this$state$notifys$p,
-            alertProps = _objectWithoutPropertiesLoose(_this$state$notifys$p, Container_excluded);
-
+          {
+            description,
+            isOpen
+          } = _this$state$notifys$p,
+          alertProps = _objectWithoutPropertiesLoose(_this$state$notifys$p, Container_excluded);
         if (alertProps.type === 'open') {
           delete alertProps.type;
         }
-
         return /*#__PURE__*/(0,jsx_runtime.jsx)(react_alert_esm, _extends({
           className: prefixCls,
           useButton: false,
@@ -7637,7 +7130,6 @@ class Container extends (external_root_React_commonjs2_react_commonjs_react_amd_
       })
     });
   }
-
 }
 Container.defaultProps = {
   prefixCls: 'w-notify',
@@ -7657,54 +7149,42 @@ Container.defaultProps = {
 
 var esm_notifys = {};
 var notifysDom = {};
-
 function NotificationCreate(props, type) {
   if (type === void 0) {
     type = 'open';
   }
-
   if (!props.placement) {
     props.placement = 'topRight';
   }
-
   props.type = type;
-
   if (!props.icon && props.icon !== null) {
     switch (props.type) {
       case 'success':
         props.icon = 'circle-check';
         break;
-
       case 'warning':
         props.icon = 'warning';
         break;
-
       case 'info':
         props.icon = 'information';
         break;
-
       case 'error':
         props.icon = 'circle-close';
         break;
-
       default:
         break;
     }
   }
-
   switch (props.type) {
     case 'info':
       props.type = 'primary';
       break;
-
     case 'error':
       props.type = 'danger';
       break;
-
     default:
       break;
   }
-
   if (props.placement && !esm_notifys[props.placement]) {
     var div = document.createElement('div');
     document.body.appendChild(div);
@@ -7712,40 +7192,32 @@ function NotificationCreate(props, type) {
     notifysDom[props.placement] = div;
     esm_notifys[props.placement] = external_root_ReactDOM_commonjs2_react_dom_commonjs_react_dom_amd_react_dom_default().render( /*#__PURE__*/(0,jsx_runtime.jsx)(Container, {}), div);
   }
-
   if (props.duration !== null) {
     props.duration = (props.duration || 4.5) * 1000;
   }
-
   if (esm_notifys[props.placement]) {
     esm_notifys[props.placement].create(_extends({}, props, {
       duration: props.duration,
       key: randomid_randomid(),
-
       willUnmount(nprops, notifysChild) {
         if (!nprops) return;
         nprops.onClose && nprops.onClose();
         var keys = Object.keys(notifysChild[props.placement]);
-
         if (keys.length === 0 && esm_notifys[props.placement]) {
           delete esm_notifys[props.placement];
-
           if (notifysDom[props.placement]) {
             document.body.removeChild(notifysDom[props.placement]);
           }
         }
       }
-
     }));
   }
 }
-
 ['open', 'success', 'warning', 'info', 'error'].forEach(type => {
   NotificationCreate[type] = function (options) {
     if (options === void 0) {
       options = {};
     }
-
     return NotificationCreate(options, type);
   };
 });
@@ -7779,21 +7251,18 @@ var react_select_esm_excluded = ["prefixCls", "className", "size"];
 
 
 
-
 var InternalSelect = (props, ref) => {
   var {
-    prefixCls = 'w-select',
-    className,
-    size = 'default'
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_select_esm_excluded);
-
+      prefixCls = 'w-select',
+      className,
+      size = 'default'
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_select_esm_excluded);
   return /*#__PURE__*/(0,jsx_runtime.jsx)("select", _extends({}, other, {
     ref: ref,
     className: [prefixCls, className, size ? prefixCls + "-" + size : null].filter(Boolean).join(' ').trim()
   }));
 };
-
 var Select = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(InternalSelect);
 Select.Option = Option;
 Select.Group = Group;
@@ -7813,22 +7282,21 @@ var react_pagination_esm_excluded = ["className", "style", "prefixCls", "alignme
 
 function Pagination(props) {
   var {
-    className,
-    style,
-    prefixCls = 'w-pagination',
-    alignment = 'left',
-    size = 'default',
-    total = 0,
-    pageSize = 10,
-    // The number of pages displayed.
-    pageSizeOptions = [],
-    current: currentNumber = 1,
-    onChange = () => null,
-    onShowSizeChange,
-    divider
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_pagination_esm_excluded);
-
+      className,
+      style,
+      prefixCls = 'w-pagination',
+      alignment = 'left',
+      size = 'default',
+      total = 0,
+      pageSize = 10,
+      // The number of pages displayed.
+      pageSizeOptions = [],
+      current: currentNumber = 1,
+      onChange = () => null,
+      onShowSizeChange,
+      divider
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_pagination_esm_excluded);
   var [current, setCurrent] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(currentNumber);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => setCurrent(currentNumber), [currentNumber]);
   var cls = [prefixCls, className, divider ? 'divider' : null, size].filter(Boolean).join(' ').trim();
@@ -7841,13 +7309,11 @@ function Pagination(props) {
     var itemCount = count <= 5 ? count : 5;
     var num = 0;
     var basic = 0;
-
     if (current > 3 && count > 5) {
       data.push({
         label: 1
       });
     }
-
     if (current > 4 && count > 6) {
       data.push({
         type: 'jumpPrev',
@@ -7855,24 +7321,18 @@ function Pagination(props) {
         goto: 5
       });
     }
-
     while (num < itemCount) {
       num += 1;
-
       if (current > 3 && count > 5) {
         basic = current - 3;
       }
-
       var label = num + basic;
-
       if (count - current === 0 && count > 5) {
         label -= 2;
       }
-
       if (count - current === 1 && count > 5) {
         label -= 1;
       }
-
       if (label <= count) {
         data.push({
           label,
@@ -7880,7 +7340,6 @@ function Pagination(props) {
         });
       }
     }
-
     if (current + 3 < count && count > 6) {
       data.push({
         type: 'jumpNext',
@@ -7888,18 +7347,17 @@ function Pagination(props) {
         goto: 5
       });
     }
-
     if (current + 2 < count && count > 5) {
       data.push({
         label: count
       });
     }
-
     data.push({
       type: 'next',
       disabled: current === count
     });
-    return data; // return [
+    return data;
+    // return [
     //   { type: 'prev', disabled: true },
     //   { type: 'jumpPrev', label: '•••', goto: 5 },
     //   { label: 1 },
@@ -7910,50 +7368,39 @@ function Pagination(props) {
     //   { type: 'next' },
     // ];
   }, [current, total, pageSize]);
-
   function handleClick(item) {
     if (item.active || item.disabled) {
       return;
     }
-
     var count = Math.ceil(total / pageSize);
     var state = {};
-
     if (item.label) {
       state.current = item.label;
     }
-
     if (item.type === 'prev') {
       state.current = current - 1 > 0 ? current - 1 : 1;
     }
-
     if (item.type === 'next') {
       state.current = current + 1 <= count ? current + 1 : count;
     }
-
     if (/^(jumpPrev|jumpNext)/.test(item.type) && item.goto) {
       state.current = item.type === 'jumpPrev' ? current - item.goto : current + item.goto;
-
       if (state.current > count) {
         state.current = count;
       }
-
       if (state.current < 1) {
         state.current = 1;
       }
     }
-
     setCurrent(state.current);
     onChange && onChange(state.current, total, pageSize);
   }
-
   var onSizeChange = e => {
     var sizeCount = Number(e.target.value);
     var count = Math.ceil(total / sizeCount);
     var newCurrent = current > count ? count : current;
     onShowSizeChange && onShowSizeChange(newCurrent, sizeCount);
   };
-
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("ul", _extends({
     className: cls,
     style: _extends({}, style, {
@@ -7965,14 +7412,12 @@ function Pagination(props) {
       var label = /*#__PURE__*/(0,jsx_runtime.jsx)("a", {
         children: item.label
       });
-
       if (/^(prev|next)$/.test(item.type)) {
         // eslint-disable-next-line jsx-a11y/anchor-is-valid
         label = /*#__PURE__*/(0,jsx_runtime.jsx)("a", {
           className: "arrow " + item.type
         });
       }
-
       return /*#__PURE__*/(0,jsx_runtime.jsx)("li", {
         className: [item.active ? 'active' : null, item.disabled ? 'disabled' : null].filter(Boolean).join(' ').trim(),
         onClick: () => handleClick(item),
@@ -8006,77 +7451,64 @@ var react_pin_code_esm_excluded = ["prefixCls", "placeholder", "value", "autoFoc
 
 
 
-
 function InternalPinCode(props, ref) {
   if (props === void 0) {
     props = {};
   }
-
   var {
-    prefixCls = 'w-pin-code',
-    placeholder = '○',
-    value = [],
-    autoFocus,
-    className,
-    size = 'default',
-    style,
-    disabled,
-    onChange = noop,
-    onBlur = noop,
-    onFocus = noop
-  } = props,
-      otherProps = _objectWithoutPropertiesLoose(props, react_pin_code_esm_excluded);
-
+      prefixCls = 'w-pin-code',
+      placeholder = '○',
+      value = [],
+      autoFocus,
+      className,
+      size = 'default',
+      style,
+      disabled,
+      onChange = noop,
+      onBlur = noop,
+      onFocus = noop
+    } = props,
+    otherProps = _objectWithoutPropertiesLoose(props, react_pin_code_esm_excluded);
   var [input] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)({});
   var [placehold, setPlacehold] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(placeholder);
   var [values, setValues] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(value);
   var cls = [prefixCls, className, size ? prefixCls + "-" + size : null, disabled ? 'disabled' : null].filter(Boolean).join(' ').trim();
-
   function handleChange(e, idx) {
     var val = e.target.value;
     val = val.charAt(val.length - 1);
     var arr = [...values];
-
     if (Number(val) > -1 && val) {
       e.currentTarget.value = val;
       arr[idx] = val;
-
       if (input[idx + 1]) {
         input[idx + 1].focus();
       }
-
       setValues(arr);
     } else if (!val) {
       arr[idx] = '';
       setValues(arr);
     }
   }
-
   function handleKeyDown(e, idx) {
     var val = e.currentTarget.value;
     var key = e.key.toLocaleLowerCase();
-
     if (!val && input[idx - 1] && /(backspace|delete)/.test(key)) {
       input[idx - 1].focus();
     }
   }
-
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     if (values !== value) {
       onChange(values);
     }
   }, [values]);
-
   function handleBlur(event) {
     setPlacehold(placeholder);
     onBlur(event);
   }
-
   function handleFocus(event) {
     setPlacehold('');
     onFocus(event);
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
     className: cls,
     style: style
@@ -8098,11 +7530,9 @@ function InternalPinCode(props, ref) {
         disabled,
         size
       };
-
       if (autoFocus && key === 0) {
         inpProps.autoFocus = true;
       }
-
       var child = /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.createElement)(react_input_esm, _extends({
         ref: instance => {
           if (instance) {
@@ -8112,12 +7542,10 @@ function InternalPinCode(props, ref) {
       }, inpProps, {
         key: key
       }));
-
       return child;
     })
   }));
 }
-
 /* harmony default export */ const react_pin_code_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef(InternalPinCode));
 
 ;// CONCATENATED MODULE: ../react-progress/esm/utils.js
@@ -8152,18 +7580,14 @@ class Circle extends (external_root_React_commonjs2_react_commonjs_react_amd_rea
       strokeWidth,
       percent
     } = this.props;
-
     if (elm && elm.parentNode) {
       var {
         width
       } = elm.parentNode.getBoundingClientRect();
-
       var _strokeWidth = (strokeWidth / width * 100).toFixed(1);
-
       var radius = parseInt((50 - parseFloat(_strokeWidth) / 2).toString(), 10);
       elm.setAttribute('stroke-width', _strokeWidth);
       elm.setAttribute('d', "M 50 50 m 0 -" + radius + " a " + radius + " " + radius + " 0 1 1 0 " + radius * 2 + " a " + radius + " " + radius + " 0 1 1 0 -" + radius * 2);
-
       if (type === 'track') {
         // 计算周长
         var perimeter = 2 * Math.PI * radius;
@@ -8171,28 +7595,24 @@ class Circle extends (external_root_React_commonjs2_react_commonjs_react_amd_rea
       }
     }
   }
-
   render() {
     var _this$props = this.props,
-        {
-      prefixCls,
-      style,
-      className,
-      showText,
-      percent,
-      format,
-      width,
-      status
-    } = _this$props,
-        resetProps = _objectWithoutPropertiesLoose(_this$props, Circle_excluded);
-
+      {
+        prefixCls,
+        style,
+        className,
+        showText,
+        percent,
+        format,
+        width,
+        status
+      } = _this$props,
+      resetProps = _objectWithoutPropertiesLoose(_this$props, Circle_excluded);
     var cls = [prefixCls, className, prefixCls + "-circle", showText ? prefixCls + "-show-text" : null, status ? prefixCls + "-status-" + status : null, parseInt(percent.toString(), 10) >= 100 ? prefixCls + "-status-success" : null].filter(Boolean).join(' ').trim();
     var progressInfo;
     var progressStatus = parseInt(percent.toString(), 10) >= 100 && !('status' in this.props) ? 'success' : status;
-
     if (showText) {
       var percentView = percent + "%";
-
       if (progressStatus === 'exception') {
         percentView = /*#__PURE__*/(0,jsx_runtime.jsx)(IconProgress, {
           type: "close"
@@ -8202,7 +7622,6 @@ class Circle extends (external_root_React_commonjs2_react_commonjs_react_amd_rea
           type: "check"
         });
       }
-
       progressInfo = /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
         className: prefixCls + "-text",
         style: {
@@ -8211,7 +7630,6 @@ class Circle extends (external_root_React_commonjs2_react_commonjs_react_amd_rea
         children: format ? format(percent) : percentView
       });
     }
-
     return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", _extends({
       className: cls,
       style: style
@@ -8232,7 +7650,6 @@ class Circle extends (external_root_React_commonjs2_react_commonjs_react_amd_rea
       }), progressInfo]
     }));
   }
-
 }
 Circle.defaultProps = {
   prefixCls: 'w-progress',
@@ -8242,8 +7659,8 @@ Circle.defaultProps = {
   width: 126,
   // 圆圈进度条画布宽度
   strokeWidth: 6 // 进度条大小设置
-
 };
+
 
 
 ;// CONCATENATED MODULE: ../react-progress/esm/style/line.css
@@ -8262,25 +7679,22 @@ var Line_excluded = ["prefixCls", "style", "className", "showText", "percent", "
 class Line extends (external_root_React_commonjs2_react_commonjs_react_amd_react_default()).Component {
   render() {
     var _this$props = this.props,
-        {
-      prefixCls,
-      style,
-      className,
-      showText,
-      percent,
-      format,
-      strokeWidth,
-      status
-    } = _this$props,
-        resetProps = _objectWithoutPropertiesLoose(_this$props, Line_excluded);
-
+      {
+        prefixCls,
+        style,
+        className,
+        showText,
+        percent,
+        format,
+        strokeWidth,
+        status
+      } = _this$props,
+      resetProps = _objectWithoutPropertiesLoose(_this$props, Line_excluded);
     var cls = [prefixCls, className, prefixCls + "-line", showText ? prefixCls + "-show-text" : null, status ? prefixCls + "-status-" + status : null, parseInt(percent.toString(), 10) >= 100 ? prefixCls + "-status-success" : null].filter(Boolean).join(' ').trim();
     var progressInfo;
-
     if (showText) {
       var progressStatus = parseInt(percent.toString(), 10) >= 100 && !('status' in this.props) ? 'success' : status;
       var percentView = percent + "%";
-
       if (progressStatus === 'exception') {
         percentView = /*#__PURE__*/(0,jsx_runtime.jsx)(IconProgress, {
           type: "circle-close"
@@ -8290,13 +7704,11 @@ class Line extends (external_root_React_commonjs2_react_commonjs_react_amd_react
           type: "circle-check"
         });
       }
-
       progressInfo = /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
         className: prefixCls + "-text",
         children: format ? format(percent) : percentView
       });
     }
-
     var percentStyle = {
       width: percent + "%",
       height: strokeWidth
@@ -8317,7 +7729,6 @@ class Line extends (external_root_React_commonjs2_react_commonjs_react_amd_react
       }), progressInfo]
     }));
   }
-
 }
 Line.defaultProps = {
   prefixCls: 'w-progress',
@@ -8328,8 +7739,8 @@ Line.defaultProps = {
   width: 126,
   // 圆圈进度条画布宽度
   strokeWidth: 6 // 进度条大小设置
-
 };
+
 
 
 ;// CONCATENATED MODULE: ../react-progress/esm/index.js
@@ -8358,72 +7769,60 @@ function Rate(props) {
   if (props === void 0) {
     props = {};
   }
-
   var {
-    prefixCls = 'w-rate',
-    count = 5,
-    value: defValue = 0,
-    className,
-    allowHalf,
-    character = '★',
-    readOnly = false,
-    disabled,
-    onChange = noop,
-    onHoverChange = noop,
-    color
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_rate_esm_excluded);
-
+      prefixCls = 'w-rate',
+      count = 5,
+      value: defValue = 0,
+      className,
+      allowHalf,
+      character = '★',
+      readOnly = false,
+      disabled,
+      onChange = noop,
+      onHoverChange = noop,
+      color
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_rate_esm_excluded);
   var [value, setValue] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(defValue);
   var [hoverCount, setHoverCount] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(-1);
   var cls = [prefixCls, className, disabled ? 'disabled' : null].filter(Boolean).join(' ').trim();
   var [prevValue, setPrevValue] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)();
-
   if (defValue !== prevValue) {
     setPrevValue(defValue);
   }
-
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
     if (value !== prevValue) {
       setValue(defValue);
     }
   }, [prevValue]);
-
   function _onMouseLeave() {
     setHoverCount(-1);
   }
-
   function getValue(e, key) {
     e.persist();
     var currentValue = key;
     var isLeft = e.clientX - e.currentTarget.getBoundingClientRect().left <= e.currentTarget.getBoundingClientRect().width / 2;
-
     if (allowHalf) {
       e.persist();
       currentValue = isLeft ? key + 0.5 : key + 1;
     } else {
       currentValue = key + 1;
     }
-
     return currentValue;
   }
-
   function onMouseMove(e, key) {
     var currentValue = getValue(e, key);
-
     if (hoverCount !== currentValue) {
       setHoverCount(currentValue);
       onHoverChange(currentValue);
     }
   }
-
   function onClick(e, key) {
     if (readOnly) return;
     var currentValue = getValue(e, key);
     setValue(currentValue);
     onChange(currentValue);
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({}, other, {
     className: cls,
     onMouseLeave: () => _onMouseLeave(),
@@ -8431,13 +7830,10 @@ function Rate(props) {
       var halfon = value <= idx + 0.5 && Math.ceil(value) - 1 === idx && hoverCount === -1 || hoverCount === idx + 0.5;
       var activeCls = [prefixCls + "-hight", idx + 1 <= value && hoverCount === -1 ? 'star-on' : null, idx + 1 <= hoverCount ? 'hover-on' : null, halfon ? 'half-on' : null].filter(Boolean).join(' ').trim();
       var props = {};
-
       if (!readOnly) {
         props.onClick = e => onClick(e, idx);
-
         props.onMouseMove = e => onMouseMove(e, idx);
       }
-
       return /*#__PURE__*/(0,jsx_runtime.jsxs)("span", _extends({}, props, {
         children: [/*#__PURE__*/(0,jsx_runtime.jsx)("span", {
           style: {
@@ -8469,43 +7865,36 @@ var react_tag_esm_excluded = ["prefixCls", "className", "style", "title", "child
   if (props === void 0) {
     props = {};
   }
-
   var {
-    prefixCls = 'w-tag',
-    className,
-    style,
-    title = '',
-    children,
-    visible = true,
-    color = '#6E6E6E',
-    disabled = false,
-    bordered = true,
-    closable,
-    light = false,
-    onClose
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_tag_esm_excluded);
-
+      prefixCls = 'w-tag',
+      className,
+      style,
+      title = '',
+      children,
+      visible = true,
+      color = '#6E6E6E',
+      disabled = false,
+      bordered = true,
+      closable,
+      light = false,
+      onClose
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_tag_esm_excluded);
   var cls = [prefixCls, className, light ? prefixCls + "-light" : null, disabled ? 'disabled' : null].filter(Boolean).join(' ').trim();
-
   var styl = _extends({}, style);
-
   if (!light) {
     styl.color = '#fff';
     styl.backgroundColor = color;
   } else {
     styl.color = color;
     styl.borderColor = color;
-
     if (bordered && light) {
       styl.boxShadow = "inset 0 0 0 1px " + color;
     }
   }
-
   if (!visible) {
     return null;
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("span", _extends({
     className: cls,
     style: styl
@@ -8549,31 +7938,29 @@ var TagSize = {
 };
 function SearchSelect(props) {
   var _style$width;
-
   var {
-    allowClear = false,
-    disabled = false,
-    valueAmount,
-    size = 'default',
-    option = [],
-    maxTagCount,
-    loading = false,
-    labelInValue = false,
-    prefixCls = 'w-search-select',
-    className,
-    mode = 'single',
-    style,
-    value,
-    defaultValue,
-    showSearch = false,
-    tagProps = {},
-    placeholder,
-    onSearch,
-    onChange,
-    onSelect
-  } = props,
-      others = _objectWithoutPropertiesLoose(props, react_search_select_esm_excluded);
-
+      allowClear = false,
+      disabled = false,
+      valueAmount,
+      size = 'default',
+      option = [],
+      maxTagCount,
+      loading = false,
+      labelInValue = false,
+      prefixCls = 'w-search-select',
+      className,
+      mode = 'single',
+      style,
+      value,
+      defaultValue,
+      showSearch = false,
+      tagProps = {},
+      placeholder,
+      onSearch,
+      onChange,
+      onSelect
+    } = props,
+    others = _objectWithoutPropertiesLoose(props, react_search_select_esm_excluded);
   var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   var isMultiple = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => mode === 'multiple', [mode]);
   var [innerIsOpen, setInnerIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
@@ -8585,11 +7972,9 @@ function SearchSelect(props) {
   var divRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
   var tagContentRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
   var [tagClientWidth, setTagClientWidth] = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useState(180);
-
   var valueVerify = value => {
     return value !== undefined && value !== '';
   };
-
   var valueRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)();
   valueRef.current = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => selectedValue, [selectedValue]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
@@ -8610,15 +7995,12 @@ function SearchSelect(props) {
       setSelectedLabel('');
     }
   }, [JSON.stringify(value)]);
-
   var getSelectOption = (option, value) => {
     var findResult = option.find(item => item.value === value);
     return findResult;
   };
-
   function selectedValueChange(changeValue) {
     var opts = [];
-
     if (labelInValue) {
       if (Array.isArray(changeValue)) {
         opts = changeValue;
@@ -8630,30 +8012,25 @@ function SearchSelect(props) {
         opts = changeValue.map(v => getSelectOption(option, v)).filter(m => !!m);
       } else {
         var findResult = getSelectOption(option, changeValue);
-
         if (findResult) {
           setSelectedLabel(findResult.label);
           opts.push(findResult);
         }
       }
     }
-
     if (!isMultiple && opts.length > 0) setSelectedLabel(opts[0].label || '');
     setSelectedValue(opts.slice(0, valueAmount));
   }
-
   function removeSelectItem(index) {
     var selectedValue = valueRef.current;
     selectedValue.splice(index, 1);
     var values = [...selectedValue];
     return values;
   }
-
   var selectedLabelChange = value => {
     setSelectedLabel(value);
     showSearch && (onSearch == null ? void 0 : onSearch(value));
   };
-
   function handleItemClick(item) {
     setInnerIsOpen(false);
     var values = [item];
@@ -8661,47 +8038,40 @@ function SearchSelect(props) {
     var resultValue = item.value;
     handleChange(resultValue, values);
   }
-
   function handleItemsClick(index, item) {
     var values = index !== -1 ? removeSelectItem(index) : [...selectedValue.slice(0, valueAmount ? valueAmount - 1 : undefined), item];
     var resultValue = values.map(item => item.value);
     handleChange(resultValue, values);
   }
-
   function handleChange(resultValue, values) {
     setSelectedLabel('');
     onSelect && onSelect(resultValue);
     handleSelectChange(resultValue, values); // 支持form组件
 
     value === undefined && setSelectedValue(values); // 如果受控于父组件则不需要内部维护状态
-  } // 渲染icon
+  }
 
-
+  // 渲染icon
   function renderSelectIcon(type) {
     var selectIconType;
-
     if (type === 'enter' && allowClear && (selectedValue.length > 0 || selectedLabel)) {
       selectIconType = 'close';
     } else {
       selectIconType = '';
     }
-
     setSelectIconType(selectIconType);
-  } // handle change
-
-
+  }
+  // handle change
   function handleInputChange(value) {
     setInnerIsOpen(true);
-    setSelectIconType(showSearch && value ? 'loading' : ''); // setSelectedLabel(value);
+    setSelectIconType(showSearch && value ? 'loading' : '');
+    // setSelectedLabel(value);
     // showSearch && onSearch && onSearch(value);
-
     selectedLabelChange(value);
-  } // 清除选中的值
-
-
+  }
+  // 清除选中的值
   function resetSelectedValue(e) {
     var _inputRef$current;
-
     e.stopPropagation();
     (_inputRef$current = inputRef.current) == null ? void 0 : _inputRef$current.focus();
     setSelectedValue([]);
@@ -8709,34 +8079,27 @@ function SearchSelect(props) {
     setInnerIsOpen(false);
     handleSelectChange('', []);
   }
-
   function handleSelectChange(value, options) {
     if (!onChange) return;
     onChange(labelInValue ? options : value);
   }
-
   function inputKeyDown(e) {
     if (isMultiple && selectedValue.length > 0 && !selectedLabel && e.keyCode === 8) {
       handleItemsClick(selectedValue.length - 1);
     }
   }
-
   function onVisibleChange(isOpen) {
     var selectedValue = valueRef.current;
     setInnerIsOpen(isOpen);
     if (!isOpen) selectedLabelChange('');
-
     if (!isMultiple && selectedValue.length > 0) {
       setSelectedLabel(selectedValue[0].label);
     }
   }
-
   external_root_React_commonjs2_react_commonjs_react_amd_react_default().useEffect(() => {
     var _tagContentRef$curren;
-
     if ((_tagContentRef$curren = tagContentRef.current) != null && _tagContentRef$curren.clientWidth) {
       var _tagContentRef$curren2;
-
       setTagClientWidth((_tagContentRef$curren2 = tagContentRef.current) == null ? void 0 : _tagContentRef$curren2.clientWidth);
     }
   }, [tagContentRef.current]);
@@ -8783,7 +8146,6 @@ function SearchSelect(props) {
       onMouseLeave: () => renderSelectIcon('leave'),
       onClick: () => {
         var _inputRef$current2;
-
         return (_inputRef$current2 = inputRef.current) == null ? void 0 : _inputRef$current2.focus();
       },
       style: _extends({
@@ -9094,40 +8456,32 @@ var Step_excluded = ["prefixCls", "className", "style", "status", "itemWidth", "
 
 function Step(props) {
   var {
-    prefixCls = 'w-steps',
-    className,
-    style,
-    status,
-    itemWidth,
-    icon,
-    adjustMarginRight,
-    stepNumber,
-    title,
-    description,
-    progressDot
-  } = props,
-      restProps = _objectWithoutPropertiesLoose(props, Step_excluded);
-
+      prefixCls = 'w-steps',
+      className,
+      style,
+      status,
+      itemWidth,
+      icon,
+      adjustMarginRight,
+      stepNumber,
+      title,
+      description,
+      progressDot
+    } = props,
+    restProps = _objectWithoutPropertiesLoose(props, Step_excluded);
   var classString = [prefixCls + "-item", prefixCls + "-item-" + status, className, icon ? prefixCls + "-custom" : null].filter(Boolean).join(' ').trim();
-
   var stepItemStyle = _extends({}, style);
-
   var stepItemDotStyle = {};
-
   if (itemWidth) {
     stepItemStyle.width = itemWidth;
   }
-
   if (adjustMarginRight) {
     stepItemStyle.marginRight = adjustMarginRight;
-
     if (progressDot) {
       stepItemDotStyle.paddingRight = Math.abs(adjustMarginRight);
     }
   }
-
   var iconNode = null;
-
   if (progressDot && !icon) {
     iconNode = /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
       className: prefixCls + "-dot"
@@ -9147,7 +8501,6 @@ function Step(props) {
       children: stepNumber
     });
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", _extends({}, restProps, {
     className: classString,
     style: stepItemStyle,
@@ -9185,41 +8538,35 @@ var Steps_excluded = ["prefixCls", "style", "className", "children", "current", 
 
 
 
-
 function InternalSteps(props) {
   var {
-    prefixCls = 'w-steps',
-    style = {},
-    children,
-    current,
-    status = 'process',
-    progressDot = false,
-    direction = 'horizontal'
-  } = props,
-      resetProps = _objectWithoutPropertiesLoose(props, Steps_excluded);
-
+      prefixCls = 'w-steps',
+      style = {},
+      children,
+      current,
+      status = 'process',
+      progressDot = false,
+      direction = 'horizontal'
+    } = props,
+    resetProps = _objectWithoutPropertiesLoose(props, Steps_excluded);
   var warpRef = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)(null);
   var [lastStepOffsetWidth, setLastStepOffsetWidth] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(0);
   var filteredChildren = external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.toArray(children).filter(c => !!c);
   var lastIndex = filteredChildren.length - 1; // 最后一个节点的索引数字
-
   var classString = [prefixCls, prefixCls + "-" + direction, !!progressDot ? prefixCls + "-dot" : null].filter(Boolean).join(' ').trim();
-  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => calcStepOffsetWidth()); // 计算每一步的宽度
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => calcStepOffsetWidth());
 
+  // 计算每一步的宽度
   function calcStepOffsetWidth() {
     var domNode = warpRef.current;
-
     if (domNode && domNode.lastChild) {
       var width = (domNode.lastChild.offsetWidth || 0) + 1;
-
       if (width === lastStepOffsetWidth || Math.abs(width - lastStepOffsetWidth) <= 3) {
         return;
       }
-
       setLastStepOffsetWidth(width);
     }
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
     className: classString,
     style: style
@@ -9231,22 +8578,18 @@ function InternalSteps(props) {
         prefixCls,
         progressDot
       }, child.props);
-
       if (index !== lastIndex && direction !== 'vertical') {
         childProps.itemWidth = 100 / lastIndex + "%";
         childProps.adjustMarginRight = -Math.round(lastStepOffsetWidth / lastIndex + 1);
       }
-
       if (progressDot && direction !== 'vertical') {
         childProps.itemWidth = 100 / filteredChildren.length + "%";
         childProps.adjustMarginRight = 0;
-      } // 错误前面
-
-
+      }
+      // 错误前面
       if (status === 'error' && index === current - 1) {
         childProps.className = prefixCls + "-next-error";
       }
-
       if (!child.props.status) {
         if (index === current) {
           childProps.status = status;
@@ -9256,12 +8599,10 @@ function InternalSteps(props) {
           childProps.status = 'wait';
         }
       }
-
       return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(child, childProps);
     })
   }));
 }
-
 InternalSteps.Step = Step;
 /* harmony default export */ const Steps = (InternalSteps);
 
@@ -9314,23 +8655,22 @@ var react_slider_esm_excluded = ["prefixCls", "value", "min", "max", "dots", "st
 
 function Slider(props) {
   var {
-    prefixCls = 'w-slider',
-    value = 0,
-    min = 0,
-    max = 100,
-    dots = false,
-    step = 1,
-    disabled = false,
-    progress = true,
-    tooltip = false,
-    className,
-    marks,
-    renderMarks,
-    vertical,
-    onChange
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_slider_esm_excluded);
-
+      prefixCls = 'w-slider',
+      value = 0,
+      min = 0,
+      max = 100,
+      dots = false,
+      step = 1,
+      disabled = false,
+      progress = true,
+      tooltip = false,
+      className,
+      marks,
+      renderMarks,
+      vertical,
+      onChange
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_slider_esm_excluded);
   var bar = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef(null);
   var slider = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef(null);
   var indexBar = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef();
@@ -9341,166 +8681,128 @@ function Slider(props) {
   var move = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef();
   var [arrValue, setArrValue] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(Array.isArray(value) ? value : [value]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => setArrValue(Array.isArray(value) ? value : [value]), [value]);
-
   other.onClick = evn => {
     if (move.current !== undefined) {
       return;
     }
-
     var markOffset = slider.current.getBoundingClientRect();
     var vals = getWidthToValue(evn[vertical ? 'clientY' : 'clientX'] - markOffset[vertical ? 'y' : 'x']);
     var curr = getRangeValue(vals);
     handleChange(curr);
   };
-
   function getRangeValue(val) {
     if (!Array.isArray(value)) {
       return Array.isArray(val) ? val : [val];
     }
-
     var newData = [...arrValue];
     var val1 = newData[0];
     var val2 = newData[1];
-
     if (val1 < val2 && val1 > val || val1 > val2 && val1 < val) {
       newData[0] = val;
     }
-
     if (val1 < val2 && val2 < val || val1 > val2 && val2 > val) {
       newData[1] = val;
     }
-
     if (val1 > val && val2 < val) {
       var half = val2 + (val1 - val2) / 2;
-
       if (half >= val) {
         newData[1] = val;
       }
-
       if (half < val) {
         newData[0] = val;
       }
     }
-
     if (val2 > val && val1 < val) {
       var _half = val1 + (val2 - val1) / 2;
-
       if (_half >= val) {
         newData[0] = val;
       }
-
       if (_half < val) {
         newData[1] = val;
       }
     }
-
     return newData;
   }
-
   function handleChange(val) {
     setArrValue([...val]);
     onChange && onChange(arrValue.length === 1 ? val[0] : val);
   }
-
   function getWidthToValue(width) {
     var equal = (max - min) / step;
     var percent = 0;
-
     if (slider.current) {
       percent = width / slider.current[vertical ? 'clientHeight' : 'clientWidth'] * 100;
     }
-
     if (percent <= 0) {
       percent = 0;
     }
-
     if (percent >= 100) {
       percent = 100;
     }
-
     var num = equal * (percent / 100) + 0.5;
     var numFloor = Math.floor(num);
     var vals = numFloor * step + min;
     return vals;
   }
-
   function onHandleBtnDown(idx, env) {
     if (disabled) {
       return;
     }
-
     indexBar.current = idx;
     move.current = true;
     startX.current = env[vertical ? 'clientY' : 'clientX'];
-
     if (bar.current) {
       barWidth.current = bar.current[vertical ? 'clientHeight' : 'clientWidth'];
       barOffsetLeft.current = bar.current[vertical ? 'offsetTop' : 'offsetLeft'];
     }
-
     var vals = [...arrValue];
-
     if (Array.isArray(value)) {
       barWidth.current = indexBar.current === 1 && vals[1] > vals[0] || indexBar.current !== 1 && vals[0] > vals[1] ? barWidth.current + barOffsetLeft.current : barOffsetLeft.current;
     }
-
     window.addEventListener('mousemove', onDragging);
     window.addEventListener('mouseup', onDragEnd);
   }
-
   function onDragging(env) {
     if (!move.current) {
       return;
     }
-
     var vals = [...arrValue];
     var valueToWidth = getWidthToValue(env[vertical ? 'clientY' : 'clientX'] - startX.current + barWidth.current);
-
     if (valueToWidth !== curValue.current) {
       vals[indexBar.current] = valueToWidth;
-
       var _barStyl = getStyle(vals);
-
       if (bar.current) {
         bar.current.style[vertical ? 'top' : 'left'] = _barStyl.left;
         bar.current.style[vertical ? 'bottom' : 'right'] = _barStyl.right;
       }
-
       handleChange(vals);
       curValue.current = valueToWidth;
     }
   }
-
   function onDragEnd() {
     move.current = undefined;
     window.removeEventListener('mousemove', onDragging, false);
     window.removeEventListener('mouseup', onDragEnd, false);
   }
-
   var stepArray = () => {
     var equal = (max - min) / step;
     var stepWidth = 100 * step / (max - min);
     var result = [0];
-
     for (var i = 1; i < equal; i += 1) {
       result.push(i * stepWidth);
     }
-
     result.push(100);
     return result;
   };
-
   function getValueToPercent(vals) {
     return (vals - min) * 100 / (max - min);
   }
-
   function getStyle(val) {
     val = val || arrValue;
     var barStyl = {
       left: '0%',
       right: '100%'
     };
-
     if (!Array.isArray(value)) {
       barStyl.right = 100 - getValueToPercent(val[0]) + "%";
     } else {
@@ -9509,10 +8811,8 @@ function Slider(props) {
       barStyl.left = getValueToPercent(leftValue) + "%";
       barStyl.right = 100 - getValueToPercent(rightValue) + "%";
     }
-
     return barStyl;
   }
-
   function getLabelValue(val) {
     if (marks && marks !== true && marks[val] && marks[val].label) {
       return marks[val].label;
@@ -9521,16 +8821,12 @@ function Slider(props) {
     } else if (renderMarks && typeof renderMarks === 'function' && renderMarks(val)) {
       return renderMarks(val);
     }
-
     return val;
   }
-
   var barStyl = getStyle();
-
   if (disabled) {
     delete other.onClick;
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", _extends({
     ref: slider,
     className: [prefixCls, className, disabled ? 'disabled' : null, marks ? prefixCls + "-with-marks" : null, vertical ? prefixCls + "-vertical" : null].filter(Boolean).join(' ').trim()
@@ -9568,13 +8864,11 @@ function Slider(props) {
         if (mark === void 0) {
           mark = {};
         }
-
         if (!mark) {
           return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
             children: [" ", getLabelValue(stepValue), " "]
           });
         }
-
         var other = typeof mark === 'object' ? mark : {};
         delete other.label;
         return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", _extends({}, other, {
@@ -9598,10 +8892,9 @@ var react_switch_esm_excluded = ["prefixCls"];
 
 /* harmony default export */ const react_switch_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-switch'
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_switch_esm_excluded);
-
+      prefixCls = 'w-switch'
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_switch_esm_excluded);
   return /*#__PURE__*/(0,jsx_runtime.jsx)(RadioAbstract, _extends({
     prefixCls: prefixCls
   }, _extends({}, other, {
@@ -9616,7 +8909,6 @@ var react_switch_esm_excluded = ["prefixCls"];
 /* harmony default export */ const react_table_esm_style = ({});
 ;// CONCATENATED MODULE: ../react-table/esm/util.js
 
-
 /**
  * Get colspan number
  * @param {Array} date
@@ -9625,42 +8917,33 @@ function getColspanNum(data, num) {
   if (data === void 0) {
     data = [];
   }
-
   if (num === void 0) {
     num = 1;
   }
-
   var childs = [];
-
   for (var i = 0; i < data.length; i += 1) {
     if (data[i].children) {
       childs = childs.concat(data[i].children || []);
     }
   }
-
   if (childs && childs.length > 0) {
     num = getColspanNum(childs, num + 1);
   }
-
   return num;
 }
+
 /**
  * Get rowspan number
  * @param {Array} date
  */
-
-
 function getRowspanNum(data, child) {
   if (data === void 0) {
     data = [];
   }
-
   if (child === void 0) {
     child = [];
   }
-
   var childs = [];
-
   for (var i = 0; i < data.length; i += 1) {
     if (!data[i].children) {
       childs.push(data[i]);
@@ -9668,10 +8951,8 @@ function getRowspanNum(data, child) {
       childs = childs.concat(getRowspanNum(data[i].children, child));
     }
   }
-
   return childs;
 }
-
 /**
  * JSON Array => Array
  * @param {Array} date
@@ -9683,90 +8964,72 @@ function getLevelItems(data, result) {
       render: {}
     };
   }
-
   if (result && !result.header) {
     result.header = [];
   }
-
   if (result && !result.render) {
     result.render = {};
   }
-
   var child = [];
   var levelTop = [];
-
   for (var i = 0; i < data.length; i += 1) {
     if (data[i].render && data[i].key) {
       result.render[data[i].key] = data[i].render;
     }
-
     if (data[i].ellipsis && data[i].key) {
       if (!result.ellipsis) result.ellipsis = {};
       result.ellipsis[data[i].key] = true;
     }
-
     if (result.header.length === 0) {
       // Calculation rowspan
       if (data[i].children && data[i].children && data[i].children.length > 0) {
         data[i].colSpan = getRowspanNum(data[i].children).length;
       }
-
       levelTop.push(data[i]);
     }
-
     if (data[i] && data[i].children) {
       child = child.concat(data[i].children.map(item => {
         // Calculation rowspan
         if (item.children && item.children.length > 0) {
           item.colSpan = getRowspanNum(item.children).length;
         }
-
         return item;
       }));
     }
-  } // level 1
-
-
+  }
+  // level 1
   if (result.header.length === 0) {
     var num = getColspanNum(levelTop);
     result.header.push(levelTop.map(item => {
       if (num === 1) return item;
-
       if (!item.children || item.children && item.children.length === 0) {
         item.rowSpan = num;
       }
-
       return item;
     }));
   }
-
   if (child && child.length > 0) {
     var _num = getColspanNum(child);
-
     result.header.push(child.map(item => {
       if (_num === 1) return item;
-
       if (!item.children || item.children && item.children.length === 0) {
         item.rowSpan = _num;
       }
-
       return item;
     }));
     result = getLevelItems(child, result);
   }
-
   return result;
 }
+
 /**
  * Get all columns keys
  * @param {Array} data
  */
-
 function getAllColumnsKeys(data, keys) {
   if (keys === void 0) {
     keys = [];
   }
-
   for (var i = 0; i < data.length; i += 1) {
     if (data[i].children) {
       keys = keys.concat(getAllColumnsKeys(data[i].children || []));
@@ -9778,12 +9041,10 @@ function getAllColumnsKeys(data, keys) {
       }));
     }
   }
-
   return keys;
 }
 function locationFixed(fixed, location, index) {
   var _location$index, _location$index2;
-
   if (!fixed) return {};
   if (fixed === 'right') return {
     right: (_location$index = location[index]) == null ? void 0 : _location$index.right
@@ -9805,16 +9066,15 @@ class ThComponent extends external_root_React_commonjs2_react_commonjs_react_amd
     super(...arguments);
     this.wrapper = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().createRef();
   }
-
   componentDidMount() {
     this.props.updateLocation({
       width: this.wrapper.current.getBoundingClientRect().width
     }, "" + this.props.rowNum + this.props.colNum, this.props.item.key, this.props.item.colSpan);
   }
-
   render() {
     var {
       colNum,
+      rightNum,
       prefixCls,
       item,
       titleNode,
@@ -9822,22 +9082,19 @@ class ThComponent extends external_root_React_commonjs2_react_commonjs_react_amd
       rowNum,
       locationWidth
     } = this.props;
-
     var {
-      fixed = false
-    } = item,
-        thProps = _objectWithoutPropertiesLoose(item, ThComponent_excluded);
-
+        fixed = false
+      } = item,
+      thProps = _objectWithoutPropertiesLoose(item, ThComponent_excluded);
     var cls = '';
-
     if (fixed) {
       if (fixed === 'right') {
-        cls = prefixCls + '-fixed-right';
+        var rightCls = rightNum === 1 ? prefixCls + "-fixed-right-first" : '';
+        cls = prefixCls + '-fixed-right ' + rightCls;
       } else {
         cls = prefixCls + '-fixed-true';
       }
     }
-
     return /*#__PURE__*/(0,jsx_runtime.jsx)("th", _extends({
       ref: this.wrapper
     }, thProps, {
@@ -9847,14 +9104,13 @@ class ThComponent extends external_root_React_commonjs2_react_commonjs_react_amd
       children: titleNode
     }), colNum);
   }
-
 }
 
 ;// CONCATENATED MODULE: ../react-table/esm/Thead.js
 
 
 var Thead_excluded = ["prefixCls", "className", "data", "onCellHead", "locationWidth", "updateLocation"],
-    Thead_excluded2 = ["title", "key", "render", "children", "ellipsis", "fixed"];
+  Thead_excluded2 = ["title", "key", "render", "children", "ellipsis", "fixed"];
 
 
 
@@ -9864,40 +9120,40 @@ function TheadComponent(props) {
   if (props === void 0) {
     props = {};
   }
-
   var {
-    prefixCls = 'w-table',
-    className,
-    data = [],
-    onCellHead = noop,
-    locationWidth,
-    updateLocation
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, Thead_excluded);
-
+      prefixCls = 'w-table',
+      className,
+      data = [],
+      onCellHead = noop,
+      locationWidth,
+      updateLocation
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, Thead_excluded);
+  var rightFixedNum = 0;
   return /*#__PURE__*/(0,jsx_runtime.jsx)("thead", _extends({
     className: [prefixCls, className].filter(Boolean).join(' ').trim()
   }, other, {
     children: data && data.length > 0 && data.map((tds, rowNum) => /*#__PURE__*/(0,jsx_runtime.jsx)("tr", {
       children: (tds || []).map((item, colNum) => {
         var {
-          title,
-          ellipsis,
-          fixed = false
-        } = item,
-            thProps = _objectWithoutPropertiesLoose(item, Thead_excluded2);
-
+            title,
+            ellipsis,
+            fixed = false
+          } = item,
+          thProps = _objectWithoutPropertiesLoose(item, Thead_excluded2);
         var titleNode = /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
           className: ellipsis ? (thProps.className || '') + " " + prefixCls + "-ellipsis" : undefined,
           children: typeof title === 'function' ? title(item, colNum, rowNum) : title
         });
-
         if (thProps.colSpan === 0) {
           return null;
         }
-
+        if (fixed === 'right') {
+          rightFixedNum = rightFixedNum + 1;
+        }
         return /*#__PURE__*/(0,jsx_runtime.jsx)(ThComponent, {
           colNum: colNum,
+          rightNum: rightFixedNum,
           item: item,
           prefixCls: prefixCls,
           onCellHead: onCellHead,
@@ -9912,7 +9168,6 @@ function TheadComponent(props) {
 }
 
 ;// CONCATENATED MODULE: ../react-table/esm/Expandable.js
-
 
 
 /**
@@ -9933,10 +9188,10 @@ function ExpandableComponent(_ref) {
     },
     onClick: () => {
       setExpand(!expand);
-
-      _onClick(expand); // record: T, index: number, expanded: boolean
-
+      _onClick(expand);
+      // record: T, index: number, expanded: boolean
     },
+
     children: expandIcon(expand)
   });
 }
@@ -9993,7 +9248,6 @@ function TableTr(props) {
       });
     };
   }, [expandIndex]);
-
   var getIndex = key => {
     var j = 0;
     var i = header.findIndex(it => {
@@ -10002,24 +9256,21 @@ function TableTr(props) {
     });
     return "" + i + j;
   };
-
   if (!Array.isArray(data) || !data.length) {
     return null;
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)((external_root_React_commonjs2_react_commonjs_react_amd_react_default()).Fragment, {
     children: data.map((trData, rowNum) => {
       var key = rowKey ? trData[rowKey] : rowNum;
+      var rightFixedNum = 0;
       return /*#__PURE__*/(0,jsx_runtime.jsxs)((external_root_React_commonjs2_react_commonjs_react_amd_react_default()).Fragment, {
         children: [/*#__PURE__*/(0,jsx_runtime.jsx)("tr", {
           children: keys.map((keyName, colNum) => {
             var objs = {
               children: trData[keyName.key]
             };
-
             if (render[keyName.key]) {
               var child = render[keyName.key](trData[keyName.key], keyName.key, trData, rowNum, colNum);
-
               if ( /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().isValidElement(child)) {
                 objs.children = child;
               } else {
@@ -10029,15 +9280,12 @@ function TableTr(props) {
                   });
                   if (child.props.rowSpan === 0 || child.props.colSpan === 0) return null;
                 }
-
                 if (child.children) {
                   objs.children = child.children;
                 }
               }
             }
-
             var isHasChildren = Array.isArray(trData[childrenColumnName]);
-
             if (colNum === childrenIndex && (isOpacity || hierarchy || isHasChildren)) {
               objs.children = /*#__PURE__*/(0,jsx_runtime.jsxs)(jsx_runtime.Fragment, {
                 children: [IconDom(key, isHasChildren), /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
@@ -10047,15 +9295,15 @@ function TableTr(props) {
                 }), objs.children]
               });
             }
-
             if (keyName.fixed) {
               if (keyName.fixed === 'right') {
-                objs.className = prefixCls + "-fixed-right";
+                rightFixedNum = rightFixedNum + 1;
+                var cls = rightFixedNum === 1 ? prefixCls + "-fixed-right-first" : '';
+                objs.className = prefixCls + "-fixed-right " + cls;
               } else {
                 objs.className = prefixCls + "-fixed-true";
               }
             }
-
             return /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.createElement)("td", _extends({}, objs, {
               style: keyName.fixed ? _extends({}, locationFixed(keyName.fixed, locationWidth, "" + getIndex(keyName.key || 'undefined'))) : {},
               children: /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
@@ -10091,126 +9339,106 @@ var react_table_esm_excluded = ["prefixCls", "className", "columns", "data", "ti
 
 
 
- // 展开配置
 
+
+// 展开配置
 
 
 function Table(props) {
   if (props === void 0) {
     props = {};
   }
-
   var {
-    prefixCls = 'w-table',
-    className,
-    columns = [],
-    data = [],
-    title,
-    footer,
-    bordered,
-    onCell = noop,
-    onCellHead = noop,
-    empty,
-    expandable,
-    rowKey,
-    scroll
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_table_esm_excluded);
-
+      prefixCls = 'w-table',
+      className,
+      columns = [],
+      data = [],
+      title,
+      footer,
+      bordered,
+      onCell = noop,
+      onCellHead = noop,
+      empty,
+      expandable,
+      rowKey,
+      scroll
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_table_esm_excluded);
   var [expandIndex, setExpandIndex] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
   var [locationWidth, setLocationWidth] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)({});
   var finalLocationWidth = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useRef)({});
-
   var updateLocation = function updateLocation(params, index, key, colSpan) {
     if (colSpan === void 0) {
       colSpan = 0;
     }
-
     finalLocationWidth.current = _extends({}, finalLocationWidth.current, {
       [index]: _extends({}, finalLocationWidth.current[index], params, {
         key: key,
         colSpan
       })
     });
-
     if (index === "" + (header.length - 1) + (header[header.length - 1].length - 1)) {
       setLocationWidth(computed());
     }
   };
-
   var deepClumnsLocation = (params, fistIndex) => {
     var initialValue = 0,
-        headerIndex = 0,
-        deepParams = [];
+      headerIndex = 0,
+      deepParams = [];
     params.forEach((_, index) => {
       var i = "" + fistIndex + headerIndex;
-
       if (typeof params[index] === 'number') {
         initialValue = params[index] + initialValue;
         deepParams.push(params[index]);
         return;
       }
-
       if (finalLocationWidth.current[i]) {
         finalLocationWidth.current[i].left = initialValue;
         initialValue = finalLocationWidth.current[i].width + initialValue;
-
         if (Array.isArray(params[index].children)) {
           deepParams.push(...params[index].children);
         } else {
           deepParams.push(finalLocationWidth.current[i].width);
         }
       }
-
       headerIndex += 1;
     });
     initialValue = 0, headerIndex = header[fistIndex].length - 1;
-
     for (var _index = params.length - 1; _index >= 0; _index--) {
       var i = "" + fistIndex + headerIndex;
-
       if (typeof params[_index] === 'number') {
         initialValue = params[_index] + initialValue;
         continue;
       }
-
       if (finalLocationWidth.current[i]) {
         finalLocationWidth.current[i].right = initialValue;
         initialValue = finalLocationWidth.current[i].width + initialValue;
       }
-
       headerIndex -= 1;
     }
-
     if (deepParams.filter(it => typeof it !== 'number').length) deepClumnsLocation(deepParams, fistIndex + 1);
   };
-
   var computed = () => {
     deepClumnsLocation(columns, 0);
     return finalLocationWidth.current;
   };
-
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     var childKey = (expandable == null ? void 0 : expandable.childrenColumnName) || 'children';
-
     var deep = params => {
       var arr1 = [];
       var arr = params.map((it, index) => {
         if (Array.isArray(it[childKey])) {
           arr1.push(...deep(it[childKey]));
         }
-
         return rowKey ? it[rowKey] : index;
       });
       return [...arr1, ...arr];
     };
-
     if (expandable) {
       if (expandable.defaultExpandAllRows) {
         setExpandIndex(deep(data));
         return;
       }
-
       if (expandable.defaultExpandedRowKeys) {
         setExpandIndex(expandable.defaultExpandedRowKeys);
         return;
@@ -10229,17 +9457,13 @@ function Table(props) {
       if (!expandable) {
         return false;
       }
-
       if (!expandable.expandedRowRender) {
         return false;
       }
-
       var flag = true;
-
       if (expandable.rowExpandable) {
         flag = expandable.rowExpandable(record);
       }
-
       return flag && /*#__PURE__*/(0,jsx_runtime.jsx)("tr", {
         style: expandIndex.includes(rowKey ? record[rowKey] : index) ? {} : {
           display: 'none'
@@ -10257,7 +9481,6 @@ function Table(props) {
   var self = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
     var keys = getAllColumnsKeys(columns);
     var selfColumns = [];
-
     if (expandable != null && expandable.expandedRowRender) {
       keys = [{
         key: 'uiw-expanded',
@@ -10270,12 +9493,10 @@ function Table(props) {
         align: 'center',
         render: (text, key, record, index) => {
           var _expandable$defaultEx;
-
           return /*#__PURE__*/(0,jsx_runtime.jsx)(ExpandableComponent, {
             defaultExpand: expandable.defaultExpandAllRows === undefined ? !!((_expandable$defaultEx = expandable.defaultExpandedRowKeys) != null && _expandable$defaultEx.includes(rowKey ? record[rowKey] : index)) : !!expandable.defaultExpandAllRows,
             onClick: expand => {
               expandable.onExpand == null ? void 0 : expandable.onExpand(expand, record, index);
-
               if (expand) {
                 var result = expandIndex.filter(it => rowKey ? it !== record[rowKey] : it !== index);
                 expandable.onExpandedRowsChange ? expandable.onExpandedRowsChange(result) : setExpandIndex(result);
@@ -10288,11 +9509,9 @@ function Table(props) {
               if (expandable.rowExpandable && !(expandable.rowExpandable != null && expandable.rowExpandable(record))) {
                 return null;
               }
-
               if (expandable.expandIcon) {
                 return expandable.expandIcon(expand, record, index);
               }
-
               return expand ? /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
                 type: "minus-square-o"
               }) : /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
@@ -10305,7 +9524,6 @@ function Table(props) {
     } else {
       selfColumns = [...columns];
     }
-
     return {
       keys,
       selfColumns
@@ -10316,7 +9534,6 @@ function Table(props) {
       table: {},
       div: {}
     };
-
     if (scroll) {
       if (scroll.x !== undefined) {
         style.table.minWidth = '100%';
@@ -10324,13 +9541,11 @@ function Table(props) {
         style.div.overflowX = 'auto';
         style.div.overflowY = 'hidden';
       }
-
       if (scroll.y !== undefined) {
         style.div.maxHeight = scroll.y;
         style.div.overflowY = 'scroll';
       }
     }
-
     return style;
   }, [scroll]);
   var cls = [prefixCls, className, bordered ? prefixCls + "-bordered" : null].filter(Boolean).join(' ').trim();
@@ -10401,13 +9616,11 @@ var Pane_excluded = ["prefixCls", "className", "label"];
   if (props === void 0) {
     props = {};
   }
-
   var {
-    prefixCls = 'w-tabs-pane',
-    className
-  } = props,
-      resetProps = _objectWithoutPropertiesLoose(props, Pane_excluded);
-
+      prefixCls = 'w-tabs-pane',
+      className
+    } = props,
+    resetProps = _objectWithoutPropertiesLoose(props, Pane_excluded);
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
     className: [prefixCls, className].filter(Boolean).join(' ').trim()
   }, resetProps));
@@ -10431,16 +9644,14 @@ Tabs.Pane = Pane;
 var labelWidth = 0;
 function Tabs(props) {
   var _flowNav$nav;
-
   var {
-    prefixCls = 'w-tabs',
-    className,
-    children,
-    type = 'default',
-    onTabClick
-  } = props,
-      elementProps = _objectWithoutPropertiesLoose(props, react_tabs_esm_excluded);
-
+      prefixCls = 'w-tabs',
+      className,
+      children,
+      type = 'default',
+      onTabClick
+    } = props,
+    elementProps = _objectWithoutPropertiesLoose(props, react_tabs_esm_excluded);
   var [activeKey, setActiveKey] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(props.activeKey);
   var [slideStyle, setSlideStyle] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)({
     width: 0,
@@ -10480,13 +9691,11 @@ function Tabs(props) {
       //   activeItem.current = node;
       // });
       divNavWidthChange(node.getBoundingClientRect().width, key);
-
       if (itemKey === activeKey) {
         activeItem.current = node;
       }
     }
   }, []);
-
   var divNavWidthChange = (width, index) => {
     var curWidth = 0;
     flowNav.nav.slice(0, index + 1).forEach(nav => curWidth += nav.width);
@@ -10497,18 +9706,14 @@ function Tabs(props) {
     };
     flowNavSet(flowNav);
   };
-
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     showHideenNav();
   }, [flowNav.displayEnd > ((_flowNav$nav = flowNav.nav[flowNav.nav.length - 1]) == null ? void 0 : _flowNav$nav.curWidth)]);
-
   var showHideenNav = () => {
     var hiddenNav = [];
-
     if (flowNav.nav.length > 0) {
       flowNav.nav.forEach(item => {
         var curWidth = item.curWidth - deviation;
-
         if (flowNav.displayStart > 0 || flowNav.displayEnd > 0) {
           if (curWidth < flowNav.displayStart || curWidth > flowNav.displayEnd) {
             hiddenNav.push(item.index);
@@ -10518,10 +9723,8 @@ function Tabs(props) {
       hiddenNavSet(hiddenNav);
     }
   };
-
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => setActiveKey((props == null ? void 0 : props.activeKey) || ''), [props.activeKey]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => calcSlideStyle(), [activeKey]);
-
   function calcSlideStyle() {
     if (activeItem.current && type === 'line') {
       labelWidth = activeItem.current.clientWidth;
@@ -10531,7 +9734,6 @@ function Tabs(props) {
       });
     }
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", _extends({
     className: cls
   }, elementProps, {
@@ -10577,22 +9779,18 @@ function Tabs(props) {
       if (!item || activeKey !== item.key) {
         return null;
       }
-
       return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(item, Object.assign({}, item.props, {}));
     })]
   }));
-
   function renderNav(children) {
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default().Children.map(children, (item, key) => {
       if (!item) {
         return null;
       }
-
       var divProps = {
         className: [prefixCls + "-item", item.key === activeKey ? 'active' : null, item.props.disabled ? 'disabled' : null].filter(Boolean).join(' ').trim(),
         children: item.props.label
       };
-
       if (!item.props.disabled) {
         divProps.onClick = e => {
           setActiveKey(item.key);
@@ -10600,7 +9798,6 @@ function Tabs(props) {
           calcSlideStyle();
         };
       }
-
       return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
         ref: _ref => divNavRef(_ref, key, item.key, activeKey)
       }, divProps), key);
@@ -10620,11 +9817,10 @@ var react_textarea_esm_excluded = ["prefixCls", "className"];
 
 /* harmony default export */ const react_textarea_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-textarea',
-    className
-  } = props,
-      restProps = _objectWithoutPropertiesLoose(props, react_textarea_esm_excluded);
-
+      prefixCls = 'w-textarea',
+      className
+    } = props,
+    restProps = _objectWithoutPropertiesLoose(props, react_textarea_esm_excluded);
   return /*#__PURE__*/(0,jsx_runtime.jsx)("textarea", _extends({
     className: [prefixCls, className].filter(Boolean).join(' ').trim()
   }, restProps, {
@@ -10649,20 +9845,18 @@ var react_tooltip_esm_excluded = ["prefixCls", "className", "placement", "isOpen
   if (props === void 0) {
     props = {};
   }
-
   var {
-    prefixCls = 'w-tooltip',
-    className,
-    placement = 'top',
-    isOpen = false,
-    trigger,
-    delay,
-    usePortal = true,
-    visibleArrow = true,
-    onVisibleChange
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_tooltip_esm_excluded);
-
+      prefixCls = 'w-tooltip',
+      className,
+      placement = 'top',
+      isOpen = false,
+      trigger,
+      delay,
+      usePortal = true,
+      visibleArrow = true,
+      onVisibleChange
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_tooltip_esm_excluded);
   var cls = [prefixCls, className, !visibleArrow ? 'no-arrow' : null].filter(Boolean).join(' ').trim();
   return /*#__PURE__*/(0,jsx_runtime.jsx)(react_overlay_trigger_esm, _extends({
     usePortal: usePortal,
@@ -10698,7 +9892,6 @@ var TreeNode_excluded = ["prefixCls", "renderTitle", "icon", "iconAnimation", "i
 
 
 
-
 var Label = _ref => {
   var {
     label,
@@ -10709,31 +9902,27 @@ var Label = _ref => {
     children: label
   }), [label]);
 };
-
 function TreeNode(props) {
   var {
-    prefixCls,
-    renderTitle,
-    icon,
-    iconAnimation,
-    isSelected,
-    openKeys,
-    selectedKeys,
-    data,
-    level,
-    parent,
-    onItemClick = noop,
-    onItemSelected = noop
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, TreeNode_excluded);
-
+      prefixCls,
+      renderTitle,
+      icon,
+      iconAnimation,
+      isSelected,
+      openKeys,
+      selectedKeys,
+      data,
+      level,
+      parent,
+      onItemClick = noop,
+      onItemSelected = noop
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, TreeNode_excluded);
   var isOpen = false;
   var node = external_root_React_commonjs2_react_commonjs_react_amd_react_default().useRef(null);
-
   if (parent && (parent.key || parent.key === 0)) {
     isOpen = !!(openKeys && openKeys.indexOf(parent.key) > -1);
   }
-
   var onExit = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useCallback)(() => {
     node.current.style.height = node.current.scrollHeight + "px";
   }, []);
@@ -10783,7 +9972,6 @@ function TreeNode(props) {
           disabledClass: undefined,
           disabledStyle: undefined
         };
-
         if (item.disabled) {
           disabledObj.onClick = undefined;
           disabledObj.disabled = 'disabled';
@@ -10793,7 +9981,6 @@ function TreeNode(props) {
             color: '#00000040'
           };
         }
-
         return /*#__PURE__*/(0,jsx_runtime.jsxs)("li", {
           style: {
             display: item.hideNode ? 'none' : 'block'
@@ -10860,7 +10047,6 @@ var react_tree_esm_excluded = ["prefixCls", "icon", "data", "openKeys", "selecte
 
 
 
-
 /**
  * a contains b
  * @param {Array} a
@@ -10870,114 +10056,92 @@ var isContained = (a, b) => {
   if (!(a instanceof Array) || !(b instanceof Array)) return false;
   if (a.length < b.length) return false;
   var aStr = a.toString();
-
   for (var i = 0, len = b.length; i < len; i += 1) {
     if (aStr.indexOf(b[i]) === -1) return false;
   }
-
   return true;
 };
-
 var getChildKeys = function getChildKeys(childs, result, depth) {
   if (childs === void 0) {
     childs = [];
   }
-
   if (result === void 0) {
     result = [];
   }
-
   childs.forEach(item => {
     if (!item.hideNode) {
       result.push(item.key);
     }
-
     if (typeof depth === 'number' && !(depth - 1)) return;
-
     if (item.children && item.children.length > 0) {
       result = result.concat(getChildKeys(item.children, undefined, depth ? depth - 1 : undefined));
     }
   });
   return result;
 };
-
 var getParentKeys = function getParentKeys(childs, result) {
   if (childs === void 0) {
     childs = {};
   }
-
   if (result === void 0) {
     result = [];
   }
-
   if (childs.key) {
     result.push(childs.key);
   }
-
   if (childs.parent) {
     result = getParentKeys(childs.parent, result);
   }
-
   return result;
 };
-
 var getParentSelectKeys = function getParentSelectKeys(childs, selectedKeys, result) {
   if (childs === void 0) {
     childs = {};
   }
-
   if (selectedKeys === void 0) {
     selectedKeys = [];
   }
-
   if (result === void 0) {
     result = [];
   }
-
   if (childs.key && childs.children && isContained(selectedKeys, getChildKeys(childs.children, undefined, 1))) {
     result.push(childs.key);
-
     if (childs.parent && !childs.parent.parent) {
       if (isContained(selectedKeys, getChildKeys(childs.children))) {
         selectedKeys = selectedKeys.concat(result);
       }
-
       if (isContained(selectedKeys, getChildKeys(childs.parent.children))) {
         result.push(childs.parent.key);
       }
     }
   }
-
   if (childs.parent) {
     result = getParentSelectKeys(childs.parent, selectedKeys, result);
   }
-
   return result;
 };
-
 function Tree(props) {
   var {
-    prefixCls = 'w-tree',
-    icon = 'caret-right',
-    data = [],
-    openKeys = [],
-    selectedKeys = [],
-    defaultExpandAll = false,
-    showLine = false,
-    iconAnimation = true,
-    isSelected = true,
-    checkStrictly = false,
-    multiple = false,
-    onExpand = noop,
-    onSelected = noop,
-    className,
-    autoExpandParent = true,
-    renderTitle,
-    onChange,
-    value
-  } = props,
-      elementProps = _objectWithoutPropertiesLoose(props, react_tree_esm_excluded);
-
+      prefixCls = 'w-tree',
+      icon = 'caret-right',
+      data = [],
+      openKeys = [],
+      selectedKeys = [],
+      defaultExpandAll = false,
+      showLine = false,
+      iconAnimation = true,
+      isSelected = true,
+      checkStrictly = false,
+      multiple = false,
+      onExpand = noop,
+      onSelected = noop,
+      className,
+      autoExpandParent = true,
+      renderTitle,
+      onChange,
+      value
+    } = props,
+    elementProps = _objectWithoutPropertiesLoose(props, react_tree_esm_excluded);
   var [curOpenKeys, setCurOpenKeys] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(openKeys);
   var [curSelectedKeys, setCurSelectedKeys] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(value || selectedKeys);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
@@ -10985,29 +10149,24 @@ function Tree(props) {
   }, [JSON.stringify(props.selectedKeys), JSON.stringify(props.value)]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     var arrOpenKeys = [...curOpenKeys];
-
     if (defaultExpandAll) {
       arrOpenKeys = getChildKeys(data);
     } else if (autoExpandParent) {
       arrOpenKeys.push(...getChildKeys(data || [], undefined, 1));
     }
-
     setCurOpenKeys(arrOpenKeys);
   }, []);
   var cls = [className, prefixCls, showLine ? prefixCls + "-line" : null].filter(Boolean).join(' ').trim();
-
   function onItemClick(item, evn) {
     if (!item.children) {
       return;
-    } // const { onExpand } = this.props;
+    }
+    // const { onExpand } = this.props;
     // const { openKeys } = this.state;
-
-
     var currentKeys = [...curOpenKeys];
     var key = currentKeys.find(v => v === item.key);
     var cls = evn.currentTarget.className.replace(/(\s)open/g, '');
     var expanded = false;
-
     if (!key && item.key) {
       currentKeys.push(item.key);
       evn.currentTarget.className = [cls, 'open'].filter(Boolean).join(' ').trim();
@@ -11016,24 +10175,20 @@ function Tree(props) {
       currentKeys = currentKeys.filter(v => v !== item.key);
       evn.currentTarget.className = cls;
     }
-
     setCurOpenKeys(currentKeys);
     onExpand && onExpand(item.key, expanded, item, evn);
   }
-
   function onItemSelected(item, evn) {
     // const { onSelected, multiple, checkStrictly } = this.props;
     var selKeys = [...curSelectedKeys];
     var findKey = selKeys.find(v => v === item.key);
     var selected = false;
-
     if (!findKey && findKey !== 0) {
       selected = true;
       selKeys.push(item.key);
     } else {
       selKeys = selKeys.filter(v => v !== item.key);
     }
-
     if (checkStrictly) {
       if (!findKey) {
         selKeys = selKeys.concat(getChildKeys(item.children).filter(val => selKeys.indexOf(val) === -1));
@@ -11044,16 +10199,13 @@ function Tree(props) {
         selKeys = selKeys.filter(val => getParentKeys(item.parent).indexOf(val) === -1);
       }
     }
-
     if (!multiple) {
       selKeys = !findKey ? [item.key] : [];
     }
-
     setCurSelectedKeys(selKeys);
     onSelected && onSelected(selKeys, item.key, selected, item, evn);
     onChange == null ? void 0 : onChange(item.key, selKeys);
   }
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
     className: cls
   }, elementProps, {
@@ -11088,10 +10240,9 @@ var react_tree_checked_esm_excluded = ["prefixCls"];
 
 function TreeChecked(_ref) {
   var {
-    prefixCls = 'w-treechecked'
-  } = _ref,
-      props = _objectWithoutPropertiesLoose(_ref, react_tree_checked_esm_excluded);
-
+      prefixCls = 'w-treechecked'
+    } = _ref,
+    props = _objectWithoutPropertiesLoose(_ref, react_tree_checked_esm_excluded);
   props.className = [prefixCls, props.className].filter(Boolean).join(' ').trim();
   props.checkStrictly = true;
   props.isSelected = false;
@@ -11099,17 +10250,14 @@ function TreeChecked(_ref) {
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Tree, _extends({
     renderTitle: (item, node) => {
       var checkedProps = {};
-
       if (node.isHalfChecked) {
         checkedProps.indeterminate = true;
       }
-
       if (node.selected) {
         checkedProps.checked = true;
       } else {
         checkedProps.checked = false;
       }
-
       return /*#__PURE__*/(0,jsx_runtime.jsxs)(external_root_React_commonjs2_react_commonjs_react_amd_react_.Fragment, {
         children: [/*#__PURE__*/(0,jsx_runtime.jsx)(react_checkbox_esm, _extends({
           className: prefixCls + "-checked",
@@ -11143,7 +10291,6 @@ var SearchTagInput_TagSize = {
   default: 20,
   small: 17
 };
-
 function SearchTagInput(props) {
   var {
     prefixCls = 'w-search-tree',
@@ -11161,8 +10308,8 @@ function SearchTagInput(props) {
     values,
     onChange,
     onSearch,
-    emptyOption // ...others
-
+    emptyOption
+    // ...others
   } = props;
   var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   var [innerIsOpen, setInnerIsOpen] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(false);
@@ -11175,44 +10322,37 @@ function SearchTagInput(props) {
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     setSelectedOption(values);
   }, [JSON.stringify(values)]);
-
   function renderSelectIcon(type) {
     var selectIconType = type === 'enter' && allowClear && (!!selectedOption.length || searchValue) ? 'close' : '';
     setSelectIconType(selectIconType);
   }
-
   var handleSelectChange = function handleSelectChange(selectedAll, selectd, isChecked) {
     if (isChecked === void 0) {
       isChecked = true;
     }
-
     setSelectedOption(selectedAll);
     searchValueChange('');
     onChange == null ? void 0 : onChange(selectedAll, selectd, isChecked);
   };
-
   var removeSelectItem = index => {
     var selectedOption = optionRef.current;
     var curreentItem = selectedOption[index];
     selectedOption.splice(index, 1);
     handleSelectChange([...selectedOption], curreentItem, false);
   };
-
   function handleInputChange(value) {
     setInnerIsOpen(true);
     searchValueChange(value);
     setSelectIconType(value ? 'loading' : '');
   }
-
   var searchValueChange = value => {
     searchValueSet(value);
     onSearch == null ? void 0 : onSearch(value);
-  }; // 清除选中的值
+  };
 
-
+  // 清除选中的值
   function resetSelectedValue(e) {
     var _inputRef$current;
-
     e.stopPropagation();
     (_inputRef$current = inputRef.current) == null ? void 0 : _inputRef$current.focus();
     handleInputChange('');
@@ -11220,13 +10360,11 @@ function SearchTagInput(props) {
     setSelectedOption([]);
     handleSelectChange([]);
   }
-
   function inputKeyDown(e) {
     if (selectedOption.length > 0 && !searchValue && e.keyCode === 8) {
       removeSelectItem(selectedOption.length - 1);
     }
   }
-
   var newContent = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => {
     if (emptyOption) {
       return typeof emptyOption === 'boolean' ? /*#__PURE__*/(0,jsx_runtime.jsx)(react_empty_esm, {
@@ -11236,20 +10374,17 @@ function SearchTagInput(props) {
         }
       }) : emptyOption;
     }
-
     var newProps = _extends({}, content.props, {
       onSelected: function onSelected(selectedAll, selectd, isChecked) {
         if (isChecked === void 0) {
           isChecked = true;
         }
-
         setInnerIsOpen(!selectCloseDrop);
         handleSelectChange(selectedAll, selectd, isChecked);
       },
       values: selectedOption,
       options
     });
-
     return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(content, newProps);
   }, [JSON.parse(JSON.stringify(selectedOption)), options, emptyOption]);
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Dropdown, {
@@ -11272,7 +10407,6 @@ function SearchTagInput(props) {
       onMouseLeave: () => renderSelectIcon('leave'),
       onClick: () => {
         var _inputRef$current2;
-
         return (_inputRef$current2 = inputRef.current) == null ? void 0 : _inputRef$current2.focus();
       },
       style: _extends({
@@ -11332,7 +10466,6 @@ function SearchTagInput(props) {
     })
   });
 }
-
 /* harmony default export */ const esm_SearchTagInput = (SearchTagInput);
 
 ;// CONCATENATED MODULE: ../react-search-tree/esm/index.js
@@ -11344,14 +10477,12 @@ var react_search_tree_esm_excluded = ["onChange", "onSearch", "multiple", "optio
 
 
 
-
 // type TreeCheckedsProps = TreeCheckedProps & Partial<DropContent<SearchTagInputOption>>
 function TreeCheckeds(props) {
   var [selectOption, selectOptionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)({});
   var [keys, keysSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     var _props$values;
-
     var selectOption = {};
     var keys = (_props$values = props.values) == null ? void 0 : _props$values.map(opt => {
       selectOption[opt.key] = opt.label;
@@ -11360,7 +10491,6 @@ function TreeCheckeds(props) {
     selectOptionSet(selectOption);
     keysSet(keys || []);
   }, [props.values]);
-
   var onSelected = (_, item, isChecked, evn) => {
     var curSelectOption = getOptionsRecursion([evn], selectOption, isChecked);
     var isNumberKey = false;
@@ -11377,7 +10507,6 @@ function TreeCheckeds(props) {
       label: evn.label
     }, isChecked);
   };
-
   var getOptionsRecursion = (childrens, selectOption, isAdd) => {
     var addOrDel = (key, label, isAdd) => {
       if (isAdd) {
@@ -11386,7 +10515,6 @@ function TreeCheckeds(props) {
         delete selectOption[key];
       }
     };
-
     var iteratorParent = child => {
       // 向上迭代
       if (child.parent) {
@@ -11395,20 +10523,16 @@ function TreeCheckeds(props) {
         iteratorParent(child.parent);
       }
     };
-
     childrens.forEach(child => {
       var _child$children, _child$label;
-
       if (!!((_child$children = child.children) != null && _child$children.length)) {
         selectOption = getOptionsRecursion(child.children, selectOption, isAdd);
       }
-
       addOrDel(child.key, (_child$label = child.label) == null ? void 0 : _child$label.toString(), isAdd);
       iteratorParent(child);
     });
     return selectOption;
   };
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)(TreeChecked, _extends({
     defaultExpandAll: true
   }, props, {
@@ -11417,17 +10541,14 @@ function TreeCheckeds(props) {
     onSelected: onSelected
   }));
 }
-
 function SingeTree(props) {
   var [keys, keysSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     var _props$values2;
-
     var keys = [];
     if ((_props$values2 = props.values) != null && _props$values2.length) keys[0] = props.values[0].key;
     keysSet(keys);
   }, [props.values]);
-
   var onSelected = (_1, _2, isChecked, evn) => {
     var {
       key,
@@ -11439,7 +10560,6 @@ function SingeTree(props) {
     };
     props.onSelected == null ? void 0 : props.onSelected(isChecked ? [cur] : [], cur, isChecked);
   };
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Tree, _extends({
     defaultExpandAll: true
   }, props, {
@@ -11449,32 +10569,29 @@ function SingeTree(props) {
     onSelected: onSelected
   }));
 }
-
 function SearchTree(props) {
   var {
-    onChange,
-    onSearch,
-    multiple = true,
-    options = [],
-    value = [],
-    emptyOption = !options.length,
-    treeProps
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, react_search_tree_esm_excluded);
-
+      onChange,
+      onSearch,
+      multiple = true,
+      options = [],
+      value = [],
+      emptyOption = !options.length,
+      treeProps
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, react_search_tree_esm_excluded);
   var [selectedValues, selectedValuesSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(Array.isArray(value) ? value : [value]);
   var [selectedOptions, selectedOptionSet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(options);
   var [isEmpty, isEmptySet] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(emptyOption);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     selectedValuesSet(Array.isArray(value) ? value : []);
   }, [JSON.stringify(value)]);
-
   var selectedChange = (resultValue, cur, isChecked) => {
     selectedValuesSet(resultValue);
     onChange == null ? void 0 : onChange(cur, resultValue, isChecked);
-  }; // 防抖
+  };
 
-
+  // 防抖
   var debounce = (fn, ms) => {
     var timeoutId;
     return searchValue => {
@@ -11485,18 +10602,14 @@ function SearchTree(props) {
       }, ms);
     };
   };
-
   var selectedSearch = searchValue => {
     var hiddenNodeForSeach = function hiddenNodeForSeach(childrens, parentIsHide) {
       if (parentIsHide === void 0) {
         parentIsHide = true;
       }
-
       childrens.forEach(child => {
         var _child$children2;
-
         var isHide = !child.label.includes(searchValue.trim()) && parentIsHide;
-
         if (!!((_child$children2 = child.children) != null && _child$children2.length)) {
           hiddenNodeForSeach(child.children, isHide);
           var find = child.children.find(item => !item.hideNode);
@@ -11506,14 +10619,12 @@ function SearchTree(props) {
         }
       });
     };
-
     hiddenNodeForSeach(options);
     selectedOptionSet([...options]);
     var isEmpt = true;
     options.forEach(opt => isEmpt = isEmpt && !!opt.hideNode);
     isEmptySet(typeof emptyOption === 'boolean' && isEmpt ? isEmpt : emptyOption);
   };
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)(esm_SearchTagInput, _extends({}, other, {
     emptyOption: isEmpty,
     selectCloseDrop: !multiple,
@@ -11524,7 +10635,6 @@ function SearchTree(props) {
     content: multiple ? /*#__PURE__*/(0,jsx_runtime.jsx)(TreeCheckeds, _extends({}, treeProps)) : /*#__PURE__*/(0,jsx_runtime.jsx)(SingeTree, _extends({}, treeProps))
   }));
 }
-
 /* harmony default export */ const react_search_tree_esm = (SearchTree);
 
 ;// CONCATENATED MODULE: ../react-transfer/esm/style/index.css
@@ -11542,13 +10652,11 @@ function SearchTree(props) {
 
 
 var CheckedStatus;
-
 (function (CheckedStatus) {
   CheckedStatus[CheckedStatus["UnChecked"] = 0] = "UnChecked";
   CheckedStatus[CheckedStatus["AllChecked"] = 1] = "AllChecked";
   CheckedStatus[CheckedStatus["Indeterminate"] = 2] = "Indeterminate";
 })(CheckedStatus || (CheckedStatus = {}));
-
 function Transfer(props) {
   var {
     placeholder,
@@ -11582,16 +10690,12 @@ function Transfer(props) {
       hiddenNode(child => !!(value != null && value.find(selectd => child.key === selectd.key)));
     }
   }, [JSON.stringify(value)]);
-
   var hiddenNode = callBackfn => {
     selectedOptionsShowCount.current = 0;
-
     var hiddenNodeForSeach = childrens => {
       childrens.forEach(child => {
         var _child$children;
-
         var isHide = callBackfn(child); // && parentIsHide;
-
         if (!!((_child$children = child.children) != null && _child$children.length)) {
           hiddenNodeForSeach(child.children);
           var find = child.children.find(item => !item.hideNode);
@@ -11599,17 +10703,14 @@ function Transfer(props) {
         } else {
           child.hideNode = isHide;
         }
-
         if (!child.hideNode) {
           selectedOptionsShowCount.current++;
         }
       });
     };
-
     hiddenNodeForSeach(selectedOptions);
     selectedOptionSet([...selectedOptions]);
   };
-
   var getOptionsRecursion = (childrens, selectOption, isAdd) => {
     var addOrDel = (key, label, isAdd) => {
       if (isAdd) {
@@ -11618,7 +10719,6 @@ function Transfer(props) {
         selectOption.delete(key);
       }
     };
-
     var iteratorParent = child => {
       if (child.parent) {
         var selectCount = child.parent.children.filter(child => !selectOption.get(child.key) && !child.hideNode).length;
@@ -11626,30 +10726,24 @@ function Transfer(props) {
         iteratorParent(child.parent);
       }
     };
-
     childrens.forEach(child => {
       var _child$children2, _child$label;
-
       if (!!((_child$children2 = child.children) != null && _child$children2.length)) {
         selectOption = getOptionsRecursion(child.children, selectOption, isAdd);
       }
-
       addOrDel(child.key, (_child$label = child.label) == null ? void 0 : _child$label.toString(), isAdd);
       iteratorParent(child);
     });
     return selectOption;
   };
-
   var leftTreeOnSelected = (selectedKeys, _1, isChecked, evn) => {
     leftSelectedKeySet(selectedKeys);
     var selectOptionTemp = getOptionsRecursion([evn], leftSelectOption, isChecked);
     leftSelectOptionSet(selectOptionTemp);
   };
-
   var rightTreeOnSelected = selectedKeys => {
     rightSelectedKeySet(selectedKeys);
   };
-
   var transferClick = transferType => {
     if (transferType === 'left') {
       leftSelectOption.forEach((value, key) => {
@@ -11663,7 +10757,6 @@ function Transfer(props) {
       });
       rightSelectedKeySet([]);
     }
-
     selectOptionSet(selectOption);
     var option = [];
     selectOption.forEach((label, key) => option.push({
@@ -11672,22 +10765,18 @@ function Transfer(props) {
     }));
     props.onChange == null ? void 0 : props.onChange(transferType, option);
   };
-
   var searchValueLeftChange = searchValue => {
     hiddenNode(child => {
       var searchIsMatch = !child.label.includes(searchValue.trim());
-
       if (!searchIsMatch) {
         var isSekected = rightOpions.find(selected => selected.key === child.key);
         searchIsMatch = !!isSekected;
       }
-
       return searchIsMatch;
     });
     searchValueLeftSet(searchValue);
     props.onSearch == null ? void 0 : props.onSearch('left', searchValue);
   };
-
   var searchValueRightChange = searchValue => {
     searchValueRightSet(searchValue);
     rightOpions.forEach(option => {
@@ -11697,29 +10786,23 @@ function Transfer(props) {
     rightOpionSet(rightOpions);
     props.onSearch == null ? void 0 : props.onSearch('right', searchValue);
   };
-
   var selectAllLeftChange = e => {
     var isChecked = e.target.checked;
     selectAllChecked.left = isChecked ? 1 : 0;
-
     if (isChecked) {
       var keys = [];
-
       var selectedOptionsRecursion = selectedOptions => {
         selectedOptions.forEach(child => {
           var _child$children3;
-
           if ((_child$children3 = child.children) != null && _child$children3.length) {
             selectedOptionsRecursion(child.children);
           }
-
           if (!child.hideNode) {
             leftSelectOption.set(child.key, child.label);
             keys.push(child.key);
           }
         });
       };
-
       selectedOptionsRecursion(selectedOptions);
       leftSelectOptionSet(leftSelectOption);
       leftSelectedKeySet(keys);
@@ -11727,24 +10810,19 @@ function Transfer(props) {
       leftSelectedKeySet([]);
       leftSelectOptionSet(new Map());
     }
-
     selectAllCheckedSet(selectAllChecked);
   };
-
   var selectAllRightChange = e => {
     var isChecked = e.target.checked;
     selectAllChecked.right = isChecked ? 1 : 0;
-
     if (isChecked) {
       var keys = rightOpions.map(child => child.key);
       rightSelectedKeySet(keys);
     } else {
       rightSelectedKeySet([]);
     }
-
     selectAllCheckedSet(selectAllChecked);
   };
-
   var Arrow = props => /*#__PURE__*/(0,jsx_runtime.jsx)(Icon, {
     onClick: () => props.click(),
     type: "down-square-o",
@@ -11755,7 +10833,6 @@ function Transfer(props) {
       fill: '#333'
     }, props.style)
   });
-
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", {
     className: cls,
     style: _extends({
@@ -11840,7 +10917,6 @@ function Transfer(props) {
     })]
   });
 }
-
 /* harmony default export */ const react_transfer_esm = (Transfer);
 
 ;// CONCATENATED MODULE: ./src/index.ts
