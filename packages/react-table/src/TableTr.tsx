@@ -107,6 +107,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
       {data.map((trData, rowNum) => {
         const key = rowKey ? trData[rowKey] : rowNum;
         const mergeSpan = getMergeRowSpan([trData], expandIndex, rowKey as string, childrenColumnName);
+        let rightFixedNum = 0;
         return (
           <React.Fragment key={rowNum}>
             <tr>
@@ -198,6 +199,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
 
                 if (keyName.fixed) {
                   if (keyName.fixed === 'right') {
+                    rightFixedNum = rightFixedNum + 1;
                     objs.className = `${prefixCls}-fixed-right`;
                   } else {
                     objs.className = `${prefixCls}-fixed-true`;
@@ -233,6 +235,7 @@ export default function TableTr<T extends { [key: string]: any }>(props: TableTr
                       align: keyName.align,
                       fixed: keyName.fixed,
                       bordered: props.bordered,
+                      first: rightFixedNum === 1,
                     }}
                     onClick={(evn) => onCell(trData, { rowNum, colNum, keyName: keyName.key! }, evn)}
                   />

@@ -5,6 +5,7 @@ import { locationFixed } from './util';
 
 interface ThComponentProps<T> {
   colNum: number;
+  rightFixedKey: number;
   bordered?: boolean;
   item: TableColumns<T>;
   prefixCls: string;
@@ -26,7 +27,7 @@ export default class ThComponent<T> extends Component<ThComponentProps<T>> {
   }
 
   render() {
-    const { colNum, prefixCls, item, titleNode, onCellHead, rowNum, locationWidth } = this.props;
+    const { colNum, rightFixedKey, prefixCls, item, titleNode, onCellHead, rowNum, locationWidth } = this.props;
     const { title, key, render, children, ellipsis, fixed = false, ...thProps } = item;
     let cls = '';
     if (fixed) {
@@ -48,6 +49,7 @@ export default class ThComponent<T> extends Component<ThComponentProps<T>> {
           align: item?.align || 'left',
           fixed: fixed,
           bordered: this.props.bordered,
+          first: rightFixedKey === 1,
         }}
         onClick={(evn) => onCellHead?.(item, colNum, rowNum!, evn)}
       >

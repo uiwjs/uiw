@@ -127,7 +127,7 @@ export default function Nav() {
         </div>
         <SearchSelect
           size="large"
-          style={{ width: 400, top: 30, display: 'flex', alignItems: 'center', marginLeft: 5 }}
+          style={{ maxWidth: 400, top: 30, display: 'flex', alignItems: 'center', marginLeft: 5 }}
           placeholder={trans('menu.searchInPlaceholder')}
           showSearch={true}
           onSearch={onSearchMenu}
