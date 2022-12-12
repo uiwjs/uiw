@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-list",
-  "version": "5.0.0-bate-18",
+  "version": "5.0.0-bate-19",
   "description": "List component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/list",
@@ -45,6 +45,6 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/utils": "^5.0.0-bate-18"
+    "@uiw/utils": "^5.0.0-bate-19"
   }
 }
