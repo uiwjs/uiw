@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-form",
-  "version": "4.21.20",
+  "version": "4.21.21",
   "description": "Form component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/form",
@@ -44,8 +44,8 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-grid": "^4.21.20",
-    "@uiw/react-input": "^4.21.20",
-    "@uiw/utils": "^4.21.20"
+    "@uiw/react-grid": "^4.21.21",
+    "@uiw/react-input": "^4.21.21",
+    "@uiw/utils": "^4.21.21"
   }
 }
