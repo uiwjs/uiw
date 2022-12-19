@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-badge",
-  "version": "4.21.21",
+  "version": "4.21.22",
   "description": "Badge component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/badge",
@@ -44,6 +44,6 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/utils": "^4.21.21"
+    "@uiw/utils": "^4.21.22"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-search-tree",
-  "version": "4.21.21",
+  "version": "4.21.22",
   "description": "TreeChecked component",
   "homepage": "https://uiwjs.github.io/#/components/search-tree",
   "repository": {
@@ -43,15 +43,15 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-card": "^4.21.21",
-    "@uiw/react-checkbox": "^4.21.21",
-    "@uiw/react-dropdown": "^4.21.21",
-    "@uiw/react-empty": "^4.21.21",
-    "@uiw/react-icon": "^4.21.21",
-    "@uiw/react-input": "^4.21.21",
-    "@uiw/react-tag": "^4.21.21",
-    "@uiw/react-tree": "^4.21.21",
-    "@uiw/react-tree-checked": "^4.21.21",
-    "@uiw/utils": "^4.21.21"
+    "@uiw/react-card": "^4.21.22",
+    "@uiw/react-checkbox": "^4.21.22",
+    "@uiw/react-dropdown": "^4.21.22",
+    "@uiw/react-empty": "^4.21.22",
+    "@uiw/react-icon": "^4.21.22",
+    "@uiw/react-input": "^4.21.22",
+    "@uiw/react-tag": "^4.21.22",
+    "@uiw/react-tree": "^4.21.22",
+    "@uiw/react-tree-checked": "^4.21.22",
+    "@uiw/utils": "^4.21.22"
   }
 }
