@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-overlay-trigger",
-  "version": "5.0.0-bate-18",
+  "version": "5.0.0-bate-19",
   "description": "OverlayTrigger component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/overlay-trigger",
@@ -45,7 +45,7 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/react-overlay": "^5.0.0-bate-18",
-    "@uiw/utils": "^5.0.0-bate-18"
+    "@uiw/react-overlay": "^5.0.0-bate-19",
+    "@uiw/utils": "^5.0.0-bate-19"
   }
 }

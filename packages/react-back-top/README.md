@@ -19,42 +19,49 @@ import BackTop from '@uiw/react-back-top';
 import React from 'react';
 import { BackTop } from 'uiw';
 
-function Demo() {
-  return <div>
-    <div>滚动滚动条，【快看右下角】，显示返回顶部按钮。</div>
-    <BackTop
-      style={{ backgroundColor: 'red', color: '#fff' }}
-      step={500}
-      speed={10}
-      content={<div>Top</div>}
-    />
-  </div>
+export default function Demo() {
+  return (
+    <div>
+      <div>滚动滚动条，【快看右下角】，显示返回顶部按钮。滚动高度超过 50 像素显示</div>
+      <BackTop
+        offsetTop={1}
+        style={{ backgroundColor: 'red', color: '#fff' }}
+        showBelow={50}
+        step={500}
+        speed={10}
+        content={<div>Top</div>}
+      />
+    </div>
+  )
 }
-export default Demo
 ```
 
-## 函数子组件
-
-点击按钮滚动到顶部
 
 ```jsx mdx:preview&codeSandbox=true&codePen=true
 import React from 'react';
 import { BackTop, Button } from 'uiw';
 
 function Demo() {
-  return <BackTop
-    fixed={false}
-    step={500}
-    clickable={false}
-    speed={10}
-  >
-    {({ percent, scrollToTop }) => (
-      <Button onClick={() => scrollToTop() } type="success">点击滚动到顶部{`${percent}%`}</Button>
-    )}
-  </BackTop>
+  return (
+      <BackTop
+        fixed={false}
+        step={500}
+        clickable={false}
+        speed={10}
+      >
+        {({ percent, scrollToTop }) => {
+          return (
+            <Button onClick={() => scrollToTop() } type="success">点击滚动到顶部{`${percent}%`}</Button>
+          )
+        }}
+      </BackTop>
+  )
 }
+
 export default Demo
 ```
+
+
 
 ## 组件子节点
 
@@ -65,13 +72,17 @@ import React from 'react';
 import { BackTop, Button } from 'uiw';
 
 function Demo() {
-  return <BackTop
-    fixed={false}
-    step={500}
-    speed={10}
-  >
-    <Button type="success">点击滚动到顶部</Button>
-  </BackTop>
+  return (
+    <div style={{ width: '100%' }}>
+      <BackTop
+        fixed={false}
+        step={500}
+        speed={10}
+      >
+        <Button type="success">点击滚动到顶部</Button>
+      </BackTop>
+    </div>
+  )
 }
 
 export default Demo

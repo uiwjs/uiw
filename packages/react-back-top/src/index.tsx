@@ -21,6 +21,7 @@ export interface BackTopStyleProps extends IProps, Omit<HTMLDivProps, 'children'
   showBelow?: number;
   speed?: number;
   children?: React.ReactNode | ((props: ChildrenFunction) => React.ReactNode);
+  element?: HTMLElement;
 }
 
 export interface IBackTopState {
@@ -41,10 +42,12 @@ const BackTopStyleBase = React.forwardRef<HTMLDivElement, BackTopStyleProps>((pr
     clickable = true,
     ...other
   } = props;
-  const topShowBelow = !fixed ? 0 : showBelow || 0;
+  const topShowBelow = fixed ? showBelow : 0;
   const [percent, setPercent] = useState(0);
   const [current, setCurrent] = useState(0);
+
   const visible = percent >= topShowBelow;
+
   const cls = [
     prefixCls,
     className,
@@ -55,29 +58,43 @@ const BackTopStyleBase = React.forwardRef<HTMLDivElement, BackTopStyleProps>((pr
     .filter(Boolean)
     .join(' ')
     .trim();
+
+  const styles: React.CSSProperties = {
+    width: 'inherit !important',
+    height: 'inherit !important',
+    position: fixed ? 'fixed' : 'sticky',
+    opacity: offsetTop === 0 ? 1 : 0,
+  };
+
   useEffect(() => {
-    window && window.addEventListener('scroll', onScroll);
+    window.addEventListener('scroll', onScroll);
     return function () {
       window && window.removeEventListener('scroll', onScroll);
     };
-  });
-  function onScroll() {
+  }, []);
+
+  const onScroll = () => {
     setPercent(getScrollPercent(offsetTop));
     setCurrent(getScrollTop());
-  }
-  function scrollToTop() {
+  };
+
+  const scrollToTop = () => {
     if (typeof offsetTop === 'number' && typeof speed === 'number' && typeof current === 'number') {
       scrollToAnimate(offsetTop, speed, current);
     }
-  }
+  };
+
   return (
     <BackTopStyleWarp
-      onClick={() => clickable && scrollToTop()}
       className={cls}
+      top={offsetTop}
+      as={BackTopStyleWarp}
+      onClick={() => clickable && scrollToTop()}
+      size={undefined}
+      visible={visible.toString()}
+      fixed={`${fixed}`}
       {...other}
-      fixed={fixed}
-      visible={visible}
-      ref={ref}
+      style={styles}
     >
       {content}
       {typeof children !== 'function' ? children : children({ percent, current, scrollToTop: scrollToTop })}
