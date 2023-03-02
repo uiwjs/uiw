@@ -19,7 +19,7 @@ export default class ThComponent<T> extends Component<ThComponentProps<T>> {
   wrapper = React.createRef<HTMLTableCellElement>();
   componentDidMount() {
     this.props.updateLocation(
-      { width: this.wrapper.current!.getBoundingClientRect().width },
+      { width: this.props.item.width || this.wrapper.current!.getBoundingClientRect().width },
       `${this.props.rowNum}${this.props.colNum}`,
       this.props.item.key!,
       this.props.item.colSpan,
@@ -51,7 +51,7 @@ export default class ThComponent<T> extends Component<ThComponentProps<T>> {
           bordered: this.props.bordered,
           first: rightFixedKey === 1,
         }}
-        onClick={(evn) => onCellHead?.(item, colNum, rowNum!, evn)}
+        onClick={(evn: any) => onCellHead?.(item, colNum, rowNum!, evn)}
       >
         {titleNode}
       </TableStyleCol>

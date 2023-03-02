@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect, useRef, Fragment } from 'react';
+import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import { MinusSquareO } from '@uiw/icons/lib/MinusSquareO';
 import { PlusSquareO } from '@uiw/icons/lib/PlusSquareO';
@@ -135,6 +135,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
   const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
   const [locationWidth, setLocationWidth] = useState<{ [key: string]: LocationWidth }>({});
   const finalLocationWidth = useRef<{ [key: string]: LocationWidth }>({});
+
   const updateLocation = (params: LocationWidth, index: string, key: string, colSpan: number = 0) => {
     finalLocationWidth.current = {
       ...finalLocationWidth.current,
@@ -153,6 +154,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
     let initialValue = 0,
       headerIndex = 0,
       deepParams: Array<TableColumns<T> | number> = [];
+    console.log('initialValue0000', initialValue);
     params.forEach((_, index) => {
       const i = `${fistIndex}${headerIndex}`;
       if (typeof params[index] === 'number') {
@@ -184,6 +186,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
       }
       headerIndex -= 1;
     }
+    console.log('initialValue', initialValue);
     if (deepParams.filter((it) => typeof it !== 'number').length) deepClumnsLocation(deepParams, fistIndex + 1);
   };
 
