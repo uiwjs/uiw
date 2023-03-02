@@ -136,17 +136,6 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
   const [locationWidth, setLocationWidth] = useState<{ [key: string]: LocationWidth }>({});
   const finalLocationWidth = useRef<{ [key: string]: LocationWidth }>({});
 
-  useEffect(() => {
-    // finalLocationWidth.current = {};
-    const d = Object.keys(finalLocationWidth.current);
-    (d || []).forEach((item: string) => {
-      finalLocationWidth.current[item] = { ...finalLocationWidth.current[item], left: 0, right: 0 };
-    });
-
-    // console.log(444, finalLocationWidth.current, locationWidth)
-    setLocationWidth(computed());
-  }, [columns, finalLocationWidth]);
-
   const updateLocation = (params: LocationWidth, index: string, key: string, colSpan: number = 0) => {
     finalLocationWidth.current = {
       ...finalLocationWidth.current,
