@@ -6,6 +6,7 @@ import styles from './index.module.less';
 import useMdData from './../useMdData';
 import { CodeBlockData } from 'markdown-react-code-preview-loader';
 import { Loader } from 'uiw';
+import { Root, Element, RootContent } from 'hast';
 import { getMetaId, isMeta, getURLParameters } from 'markdown-react-code-preview-loader';
 import './index.css';
 export type CreatePageProps<T> = {
@@ -29,6 +30,19 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
           <MarkdownPreview
             source={mdData.source}
             className={styles.markdown}
+            rehypeRewrite={(node: Root | RootContent, index: number, parent: Root | Element) => {
+              if (node.type === 'element' && node.tagName === 'pre' && node.children[0].data?.meta) {
+                const meta = node.children[0].data?.meta as string;
+                if (isMeta(meta)) {
+                  node.tagName = 'div';
+                  if (!node.properties) {
+                    node.properties = {};
+                  }
+                  node.properties!['data-md'] = meta;
+                  node.properties!['data-meta'] = 'preview';
+                }
+              }
+            }}
             components={{
               /**
                * bordered 边框
@@ -38,9 +52,10 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
                * noScroll 预览区域不显示滚动条。
                * codePen 显示 Codepen 按钮，要特别注意 包导入的问题，实例中的 import 主要用于 Codepen 使用。
                */
-              code: ({ inline, node, ...props }) => {
+              div: ({ node, ...props }) => {
                 const {
                   'data-meta': meta,
+                  'data-md': metaData,
                   noPreview,
                   noScroll,
                   bgWhite,
@@ -51,36 +66,31 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
                   bordered,
                   ...rest
                 } = props as any;
-                if (inline || !isMeta(meta)) {
-                  return <code {...rest} />;
+                if (meta === 'preview') {
+                  const line = node.position?.start.line;
+                  const metaId = getMetaId(meta) || String(line);
+                  const Child = mdData.components[metaId];
+                  if (metaId && typeof Child === 'function') {
+                    const code = mdData.data[metaId].value || '';
+                    const parameters = getURLParameters(metaData);
+                    return (
+                      <Code
+                        toolbar={parameters.title || '示例展示'}
+                        disableToolbar={noCode}
+                        codePen={parameters.codePen}
+                        codeSandbox={parameters.codeSandbox}
+                        disableCheckered={!!parameters.disableCheckered}
+                        background={parameters.background}
+                        version={version}
+                        code={<pre {...(rest as React.HTMLAttributes<HTMLPreElement>)} />}
+                        text={code}
+                      >
+                        <Child />
+                      </Code>
+                    );
+                  }
                 }
-                const line = node.position?.start.line;
-                const metaId = getMetaId(meta) || String(line);
-                const Child = mdData.components[`${metaId}`];
-                const parameters = getURLParameters(meta);
-                if (metaId && typeof Child === 'function') {
-                  const copyNodes = mdData.data[metaId].value || '';
-                  return (
-                    <Code
-                      toolbar={parameters.title || '示例展示'}
-                      disableToolbar={noCode}
-                      codePen={parameters.codePen}
-                      codeSandbox={parameters.codeSandbox}
-                      disableCheckered={!!parameters.disableCheckered}
-                      background={parameters.background}
-                      version={version}
-                      code={
-                        <pre>
-                          <code {...rest} />
-                        </pre>
-                      }
-                      text={copyNodes}
-                    >
-                      <Child />
-                    </Code>
-                  );
-                }
-                return <code {...rest} />;
+                return <div {...props} />;
               },
             }}
           />
