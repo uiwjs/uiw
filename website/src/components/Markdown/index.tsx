@@ -68,7 +68,7 @@ export default function CreatePage<T>(props: CreatePageProps<T>) {
                 } = props as any;
                 if (meta === 'preview') {
                   const line = node.position?.start.line;
-                  const metaId = getMetaId(meta) || String(line);
+                  const metaId = getMetaId(metaData) || String(line);
                   const Child = mdData.components[metaId];
                   if (metaId && typeof Child === 'function') {
                     const code = mdData.data[metaId].value || '';
