@@ -10139,6 +10139,9 @@ function Tree(props) {
     setCurSelectedKeys(props.value || props.selectedKeys || []);
   }, [JSON.stringify(props.selectedKeys), JSON.stringify(props.value)]);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
+    setCurOpenKeys(openKeys);
+  }, [JSON.stringify(openKeys)]);
+  (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
     var arrOpenKeys = [...curOpenKeys];
     if (defaultExpandAll) {
       arrOpenKeys = getChildKeys(data);
