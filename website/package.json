@@ -38,7 +38,7 @@
     "@uiw/reset.css": "~1.0.5",
     "markdown-react-code-preview-loader": "^2.1.2",
     "react": ">=16.9.0",
-    "react-code-preview-layout": "^2.0.6",
+    "react-code-preview-layout": "^3.0.0",
     "react-dom": ">=16.9.0",
     "react-router-dom": "~6.4.2",
     "uiw": "^4.21.24"
