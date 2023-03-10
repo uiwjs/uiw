@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-badge",
-  "version": "5.0.0-bate-19",
+  "version": "5.0.0-bate.2.0",
   "description": "Badge component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/badge",
@@ -45,6 +45,6 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/utils": "^5.0.0-bate-19"
+    "@uiw/utils": "^5.0.0-bate.2.0"
   }
 }
