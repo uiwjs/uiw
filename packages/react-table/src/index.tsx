@@ -4,7 +4,7 @@ import { MinusSquareO } from '@uiw/icons/lib/MinusSquareO';
 import { PlusSquareO } from '@uiw/icons/lib/PlusSquareO';
 import Thead from './Thead';
 import { TableStyleWrap, TableStyleFooter } from './style';
-import { getLevelItems, getAllColumnsKeys, NodeTreeData } from './util';
+import { getLevelItems, getAllColumnsKeys } from './util';
 import ExpandableComponent from './Expandable';
 import TableTr from './TableTr';
 export * from './style';
@@ -135,6 +135,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
   const [expandIndex, setExpandIndex] = useState<Array<T[keyof T] | number>>([]);
   const [locationWidth, setLocationWidth] = useState<{ [key: string]: LocationWidth }>({});
   const finalLocationWidth = useRef<{ [key: string]: LocationWidth }>({});
+  const tableRef = useRef<any>(null);
 
   const updateLocation = (params: LocationWidth, index: string, key: string, colSpan: number = 0) => {
     finalLocationWidth.current = {
@@ -154,7 +155,6 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
     let initialValue = 0,
       headerIndex = 0,
       deepParams: Array<TableColumns<T> | number> = [];
-    console.log('initialValue0000', initialValue);
     params.forEach((_, index) => {
       const i = `${fistIndex}${headerIndex}`;
       if (typeof params[index] === 'number') {
@@ -186,7 +186,6 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
       }
       headerIndex -= 1;
     }
-    console.log('initialValue', initialValue);
     if (deepParams.filter((it) => typeof it !== 'number').length) deepClumnsLocation(deepParams, fistIndex + 1);
   };
 
@@ -217,6 +216,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
       }
     }
   }, []);
+
   useEffect(() => {
     if (expandable) {
       if (expandable.expandedRowKeys && JSON.stringify(expandable.expandedRowKeys) !== JSON.stringify(expandIndex)) {
@@ -323,16 +323,48 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
   }, [scroll]);
   const cls = [prefixCls, className, bordered ? `${prefixCls}-bordered` : null].filter(Boolean).join(' ').trim();
   const { header, render, ellipsis } = getLevelItems(self.selfColumns);
+
+  /**
+   * 处理 column width
+   */
+  const headData = useMemo(() => {
+    let newData = header;
+    if (tableRef.current && header[0].length > 0) {
+      const arr = header[0].map((item) => item.width || false);
+      if (!arr.includes(false)) {
+        // 如果每列都设置了宽度，则判断设置的宽度小于容器宽度，则删除列的宽度，让table自动计算
+        const w = tableRef.current.scrollWidth;
+        const allNum = header[0].reduce((pre, cur) => {
+          return pre + (cur.width || 0);
+        }, 0);
+        if (allNum < w - 1) {
+          newData[0] = header[0].map((item: TableColumns) => {
+            if (!item.fixed) {
+              delete item.width;
+            }
+            return item;
+          });
+        }
+      }
+    }
+    return newData;
+  }, [header, tableRef]);
   return (
     <React.Fragment>
-      <TableStyleWrap className={cls} {...other} style={{ ...other.style, ...style.div }} params={{ bordered }}>
+      <TableStyleWrap
+        ref={tableRef}
+        className={cls}
+        {...other}
+        style={{ ...other.style, ...style.div }}
+        params={{ bordered }}
+      >
         <table style={{ tableLayout: ellipsis ? 'fixed' : 'auto', ...style.table }}>
           {title && <caption>{title}</caption>}
           {columns && columns.length > 0 && (
             <Thead
               onCellHead={onCellHead}
               bordered={bordered}
-              data={header}
+              data={headData}
               locationWidth={locationWidth}
               updateLocation={updateLocation}
             />
