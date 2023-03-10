@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-tag",
-  "version": "5.0.0-bate.2.0",
+  "version": "5.0.0-bate.2.1",
   "description": "Tag component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/tag",
@@ -45,6 +45,6 @@
     "styled-components": ">=5.3.5"
   },
   "dependencies": {
-    "@uiw/utils": "^5.0.0-bate.2.0"
+    "@uiw/utils": "^5.0.0-bate.2.1"
   }
 }
