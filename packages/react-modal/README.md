@@ -140,7 +140,7 @@ export default Demo;
 
 ```jsx mdx:preview&bg=#fff
 import React from 'react';
-import { Modal, ButtonGroup, Button, Form, Input, Textarea } from 'uiw';
+import { Modal, ButtonGroup, Button, Form, Input, Textarea, Row, Col, Notify } from 'uiw';
 
 class Demo extends React.Component {
   constructor() {
