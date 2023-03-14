@@ -25,7 +25,8 @@ jobs:
 
       - run: cp -rp LICENSE packages/uiw
 
-      - run: |
+      - continue-on-error: true
+        run: |
           # Strip git ref prefix from version
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
           COMMIT=released-${VERSION}
