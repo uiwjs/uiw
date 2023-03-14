@@ -7002,7 +7002,7 @@ function MonthPicker(props) {
             setType(captionType);
           } else {
             var year = new Date(panelDate).getFullYear();
-            var curPanelDate = new Date(new Date(panelDate).setFullYear(type === 'next' ? year + 1 : year - 1));
+            var curPanelDate = new Date(new Date(panelDate).setFullYear(captionType === 'next' ? year + 1 : year - 1));
             setPanelDate(curPanelDate);
           }
         }
