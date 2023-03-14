@@ -127,6 +127,7 @@ jobs:
 
 
       - name: Sync to Gitee
+        continue-on-error: true
         run: |
           mirror() {
             git clone "https://github.com/$1/$2"
