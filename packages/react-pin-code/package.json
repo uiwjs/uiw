@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-pin-code",
-  "version": "4.21.25",
+  "version": "4.21.26",
   "description": "PinCode component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/pin-code",
@@ -44,7 +44,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-input": "^4.21.25",
-    "@uiw/utils": "^4.21.25"
+    "@uiw/react-input": "^4.21.26",
+    "@uiw/utils": "^4.21.26"
   }
 }
