@@ -6,444 +6,571 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 16
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: 'https://registry.npmjs.org'
 
-    - run: npm install
-    - run: npm run hoist
+      - run: npm install
+      - run: npm run hoist
 
-    - run: npm run build
-    - run: npm run coverage
+      - run: npm run build
+      - run: npm run coverage
 
-    - run: npm run b:website
-    - run: npm run b:doc
+      - run: npm run b:website
+      - run: npm run b:doc
 
-    - run: cp -rp LICENSE packages/uiw
+      - run: cp -rp LICENSE packages/uiw
 
-    - run: |
-        # Strip git ref prefix from version
-        VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-        COMMIT=released-${VERSION}
- 
-        # Strip "v" prefix from tag name
-        [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-        echo "version: $VERSION"
-        export VERSION
+      - continue-on-error: true
+        run: |
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          COMMIT=released-${VERSION}
+  
+          # Strip "v" prefix from tag name
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+          echo "version: $VERSION"
+          export VERSION
 
-        node node_modules/.bin/lerna version $VERSION --no-changelog --no-git-tag-version --no-push --yes --force-publish
-        npm run b:website
-        npm run b:doc
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
+          node node_modules/.bin/lerna version $VERSION --no-changelog --no-git-tag-version --no-push --yes --force-publish
+          npm run b:website
+          npm run b:doc
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
 
-        git commit -am $COMMIT
+          git commit -am $COMMIT
 
-    - run: rm -rf packages/doc/web
-    - run: mkdir -p packages/doc/web
+      - run: rm -rf packages/doc/web
+      - run: mkdir -p packages/doc/web
 
-    - name: Generate Contributors Images
-      uses: jaywcjlove/github-action-contributors@main
-      with:
-        filter-author: (renovate\[bot\]|actions-user|renovate-bot|dependabot\[bot\])
-        output: ./website/build/CONTRIBUTORS.svg
-        avatarSize: 42
+      - name: Generate Contributors Images
+        uses: jaywcjlove/github-action-contributors@main
+        with:
+          filter-author: (renovate\[bot\]|actions-user|renovate-bot|dependabot\[bot\])
+          output: ./website/build/CONTRIBUTORS.svg
+          avatarSize: 42
 
-    - run: cp -rf website/build/* packages/doc/web
+      - run: cp -rf website/build/* packages/doc/web
 
-    - run: npm run bundle
-    - run: cp -rp packages/uiw/dist/*js website/build
-    - run: cp -rp packages/uiw/dist/*css website/build
+      - run: npm run bundle
+      - run: cp -rp packages/uiw/dist/*js website/build
+      - run: cp -rp packages/uiw/dist/*css website/build
 
-    - run: git checkout -f packages/uiw/tsconfig.json
+      - run: git checkout -f packages/uiw/tsconfig.json
 
-    - run: git status
+      - run: git status
 
-    - name: git push master
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: git push master
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: get tag version
-      id: tag_version
-      uses: jaywcjlove/changelog-generator@v1.5.0
+      - name: get tag version
+        id: tag_version
+        uses: jaywcjlove/changelog-generator@main
 
-    - name: Deploy to uiwjs.github.io
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions[bot]@users.noreply.github.com'
-        commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
-        personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
-        publish_dir: ./website/build
-        publish_branch: master
-        external_repository: uiwjs/uiwjs.github.io
+      - name: Deploy to uiwjs.github.io
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
+          personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
+          publish_dir: ./website/build
+          publish_branch: master
+          external_repository: uiwjs/uiwjs.github.io
 
-    - name: Deploy gh-pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions[bot]@users.noreply.github.com'
-        commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
-        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        publish_branch: gh-pages
-        publish_dir: ./website/build
-        cname: uiw.js.cool
+      - name: Deploy gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_branch: gh-pages
+          publish_dir: ./website/build
+          cname: uiw.js.cool
 
-    - name: Generate changelog
-      id: changelog
-      uses: jaywcjlove/changelog-generator@v1.5.0
-      with:
-        filter-author: (小弟调调™)
-        filter: (^[\s]+?[R|r]elease)|(^[R|r]elease)
+      - name: Generate changelog
+        id: changelog
+        uses: jaywcjlove/changelog-generator@main
+        with:
+          filter-author: (小弟调调™)
+          filter: (^[\s]+?[R|r]elease)|(^[R|r]elease)
 
-    - run: |
-        echo "tag: ${{ steps.changelog.outputs.tag }}"
-        echo "version: ${{ steps.changelog.outputs.version }}"
-        echo "ref: ${{ github.ref }}"
+      - run: |
+          echo "tag: ${{ steps.changelog.outputs.tag }}"
+          echo "version: ${{ steps.changelog.outputs.version }}"
+          echo "ref: ${{ github.ref }}"
 
-    - name: Create Release
-      uses: ncipollo/release-action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        name: ${{ steps.changelog.outputs.tag }}
-        tag: ${{ steps.changelog.outputs.tag }}
-        body: |
-          [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/uiw@${{steps.changelog.outputs.version}}/file/README.md) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/uiw)](https://bundlephobia.com/result?p=uiw@${{steps.changelog.outputs.version}}) [![npm version](https://img.shields.io/npm/v/uiw.svg)](https://www.npmjs.com/package/uiw)
-          
-          Documentation ${{ steps.changelog.outputs.tag }}: https://raw.githack.com/uiwjs/uiw/${{ steps.changelog.outputs.gh-pages-short-hash }}/index.html
-          Comparing Changes: ${{ steps.changelog.outputs.compareurl }}
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: ${{ steps.changelog.outputs.tag }}
+          tag: ${{ steps.changelog.outputs.tag }}
+          body: |
+            [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/uiw@${{steps.changelog.outputs.version}}/file/README.md) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/uiw)](https://bundlephobia.com/result?p=uiw@${{steps.changelog.outputs.version}}) [![npm version](https://img.shields.io/npm/v/uiw.svg)](https://www.npmjs.com/package/uiw)
+            
+            Documentation ${{ steps.changelog.outputs.tag }}: https://raw.githack.com/uiwjs/uiw/${{ steps.changelog.outputs.gh-pages-short-hash }}/index.html
+            Comparing Changes: ${{ steps.changelog.outputs.compareurl }}
 
-          ```bash
-          npm i uiw@${{steps.changelog.outputs.version}}
-          ```
+            ```bash
+            npm i uiw@${{steps.changelog.outputs.version}}
+            ```
 
-          ${{ steps.changelog.outputs.changelog }}
+            ${{ steps.changelog.outputs.changelog }}
 
 
-    - name: Sync to Gitee
-      run: |
-        mirror() {
-          git clone "https://github.com/$1/$2"
-          cd "$2"
-          git remote add gitee "https://jaywcjlove:${{ secrets.GITEE_TOKEN }}@gitee.com/uiw/$2.git"
-          git remote set-head origin -d
-          git push gitee --prune +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
-          cd ..
-        }
-        mirror uiwjs uiw
+      - name: Sync to Gitee
+        continue-on-error: true
+        run: |
+          mirror() {
+            git clone "https://github.com/$1/$2"
+            cd "$2"
+            git remote add gitee "https://jaywcjlove:${{ secrets.GITEE_TOKEN }}@gitee.com/uiw/$2.git"
+            git remote set-head origin -d
+            git push gitee --prune +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
+            cd ..
+          }
+          mirror uiwjs uiw
 
-    - name: 📦 @uiw/react-affix publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-affix/package.json
-    - name: 📦 @uiw/react-alert publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-alert/package.json
-    - name: 📦 @uiw/react-auto-link publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-auto-link/package.json
-    - name: 📦 @uiw/react-avatar publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-avatar/package.json
-    - name: 📦 @uiw/react-back-top publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-back-top/package.json
-    - name: 📦 @uiw/react-badge publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-badge/package.json
-    - name: 📦 @uiw/react-breadcrumb publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-breadcrumb/package.json
-    - name: 📦 @uiw/react-button publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-button/package.json
-    - name: 📦 @uiw/react-button-group publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-button-group/package.json
-    - name: 📦 @uiw/react-calendar publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-calendar/package.json
-    - name: 📦 @uiw/react-card publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-card/package.json
-    - name: 📦 @uiw/react-carousel publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-carousel/package.json
-    - name: 📦 @uiw/react-cascader publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-cascader/package.json
-    - name: 📦 @uiw/react-checkbox publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-checkbox/package.json
-    - name: 📦 @uiw/react-collapse publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-collapse/package.json
-    - name: 📦 @uiw/react-copy-to-clipboard publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-copy-to-clipboard/package.json
-    - name: 📦 @uiw/react-date-input publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-date-input/package.json
-    - name: 📦 @uiw/react-date-picker publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-date-picker/package.json
-    - name: 📦 @uiw/react-descriptions publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-descriptions/package.json
-    - name: 📦 @uiw/react-divider publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-divider/package.json
-    - name: 📦 @uiw/react-drawer publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-drawer/package.json
-    - name: 📦 @uiw/react-dropdown publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-dropdown/package.json
-    - name: 📦 @uiw/react-empty publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-empty/package.json
-    - name: 📦 @uiw/react-file-input publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-file-input/package.json
-    - name: 📦 @uiw/react-form publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-form/package.json
-    - name: 📦 @uiw/react-grid publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-grid/package.json
-    - name: 📦 @uiw/react-icon publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-icon/package.json
-    - name: 📦 @uiw/react-input publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-input/package.json
-    - name: 📦 @uiw/react-list publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-list/package.json
-    - name: 📦 @uiw/react-loader publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-loader/package.json
-    - name: 📦 @uiw/react-menu publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-menu/package.json
-    - name: 📦 @uiw/react-message publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-message/package.json
-    - name: 📦 @uiw/react-modal publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-modal/package.json
-    - name: 📦 @uiw/react-month-picker publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-month-picker/package.json
-    - name: 📦 @uiw/react-notify publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-notify/package.json
-    - name: 📦 @uiw/react-overlay publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-overlay/package.json
-    - name: 📦 @uiw/react-overlay-trigger publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-overlay-trigger/package.json
-    - name: 📦 @uiw/react-pagination publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-pagination/package.json
-    - name: 📦 @uiw/react-pin-code publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-pin-code/package.json
-    - name: 📦 @uiw/react-popover publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-popover/package.json
-    - name: 📦 @uiw/react-portal publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-portal/package.json
-    - name: 📦 @uiw/react-progress publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-progress/package.json
-    - name: 📦 @uiw/react-radio publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-radio/package.json
-    - name: 📦 @uiw/react-rate publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-rate/package.json
-    - name: 📦 @uiw/react-search-select publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-search-select/package.json
-    - name: 📦 @uiw/react-search-tree publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-search-tree/package.json
-    - name: 📦 @uiw/react-select publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-select/package.json
-    - name: 📦 @uiw/react-slider publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-slider/package.json
-    - name: 📦 @uiw/react-steps publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-steps/package.json
-    - name: 📦 @uiw/react-switch publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-switch/package.json
-    - name: 📦 @uiw/react-table publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-table/package.json
-    - name: 📦 @uiw/react-tabs publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-tabs/package.json
-    - name: 📦 @uiw/react-tag publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-tag/package.json
-    - name: 📦 @uiw/react-textarea publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-textarea/package.json
-    - name: 📦 @uiw/react-time-picker publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-time-picker/package.json
-    - name: 📦 @uiw/react-tooltip publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-tooltip/package.json
-    - name: 📦 @uiw/react-tree publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-tree/package.json
-    - name: 📦 @uiw/react-tree-checked publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-tree-checked/package.json
-    - name: 📦 @uiw/react-transfer publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/react-transfer/package.json
-    - name: 📦 @uiw/utils publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/utils/package.json
-    - name: 📦 @uiw/uiw publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/uiw/package.json
-    - name: 📦 @uiw/doc publish to NPM
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/doc/package.json
+      - name: 📦 @uiw/react-affix publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-affix/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-alert publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-alert/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-auto-link publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-auto-link/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-avatar publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-avatar/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-back-top publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-back-top/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-badge publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-badge/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-breadcrumb publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-breadcrumb/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-button publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-button/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-button-group publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-button-group/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-calendar publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-calendar/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-card publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-card/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-carousel publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-carousel/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-cascader publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-cascader/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-checkbox publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-checkbox/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-collapse publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-collapse/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-copy-to-clipboard publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-copy-to-clipboard/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-date-input publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-date-input/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-date-picker publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-date-picker/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-descriptions publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-descriptions/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-divider publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-divider/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-drawer publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-drawer/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-dropdown publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-dropdown/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-empty publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-empty/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-file-input publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-file-input/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-form publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-form/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-grid publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-grid/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-icon publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-icon/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-input publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-input/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-list publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-list/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-loader publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-loader/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-menu publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-menu/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-message publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-message/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-modal publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-modal/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-month-picker publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-month-picker/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-notify publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-notify/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-overlay publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-overlay/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-overlay-trigger publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-overlay-trigger/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-pagination publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-pagination/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-pin-code publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-pin-code/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-popover publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-popover/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-portal publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-portal/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-progress publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-progress/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-radio publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-radio/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-rate publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-rate/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-search-select publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-search-select/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-search-tree publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-search-tree/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-select publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-select/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-slider publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-slider/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-steps publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-steps/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-switch publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-switch/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-table publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-table/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-tabs publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-tabs/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-tag publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-tag/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-textarea publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-textarea/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-time-picker publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-time-picker/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-tooltip publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-tooltip/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-tree publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-tree/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-tree-checked publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-tree-checked/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/react-transfer publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/react-transfer/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/utils publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/utils/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/uiw publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/uiw/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📦 @uiw/doc publish to NPM
+        continue-on-error: true
+        working-directory: ./packages/doc/
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+

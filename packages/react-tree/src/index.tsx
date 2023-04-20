@@ -158,6 +158,10 @@ export default function Tree(props: TreeProps) {
   }, [JSON.stringify(props.selectedKeys), JSON.stringify(props.value)]);
 
   useEffect(() => {
+    setCurOpenKeys(openKeys);
+  }, [JSON.stringify(openKeys)]);
+
+  useEffect(() => {
     let arrOpenKeys: TreeData['key'][] = [...curOpenKeys];
     if (defaultExpandAll) {
       arrOpenKeys = getChildKeys(data);

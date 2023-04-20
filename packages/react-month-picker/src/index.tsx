@@ -106,7 +106,9 @@ export default function MonthPicker(props: MonthPickerProps) {
                 setType(captionType);
               } else {
                 const year = new Date(panelDate).getFullYear();
-                const curPanelDate = new Date(new Date(panelDate).setFullYear(type === 'next' ? year + 1 : year - 1));
+                const curPanelDate = new Date(
+                  new Date(panelDate).setFullYear(captionType === 'next' ? year + 1 : year - 1),
+                );
                 setPanelDate(curPanelDate);
               }
             }}
