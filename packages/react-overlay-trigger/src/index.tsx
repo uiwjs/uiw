@@ -336,7 +336,7 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
           Object.assign({
             ...overlay.props,
             ref: popupRef,
-            className: ['aaa', overlay.props && overlay.props.className, placement].filter(Boolean).join(' ').trim(),
+            className: [overlay.props && overlay.props.className, placement].filter(Boolean).join(' ').trim(),
           }),
         )}
       </Overlay>
