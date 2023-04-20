@@ -251,13 +251,22 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
 
   function hide() {
     if (!isOpen) return;
-    zIndex.current -= 1;
+    if (zIndex.current <= 999) {
+      zIndex.current = 999;
+    } else {
+      zIndex.current -= 1;
+    }
     setIsOpen(false);
   }
 
   function show() {
     if (isOpen) return;
-    zIndex.current += 1;
+    const nodeIndex = triggerRef.current?.style.zIndex;
+    if (nodeIndex) {
+      zIndex.current = Number(nodeIndex) + 1;
+    } else {
+      zIndex.current += 1;
+    }
     setIsOpen(true);
   }
 
@@ -305,6 +314,7 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
         Object.assign({}, child.props, {
           ...triggerProps,
           ref: triggerRef,
+          style: { zIndex: zIndex.current },
           className: [child.props.className, disabled ? `${prefixCls}-disabled` : null]
             .filter(Boolean)
             .join(' ')
