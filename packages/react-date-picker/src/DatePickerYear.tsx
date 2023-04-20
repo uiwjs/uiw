@@ -23,7 +23,6 @@ export function DatePickerYear(props: DatePickerYearProps) {
       const date = new Date(activeYear!);
       date.setFullYear(year);
       setActiveYear(date);
-      onSelected!(year, true);
     } else {
       onSelected!(year);
     }

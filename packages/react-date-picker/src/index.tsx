@@ -167,7 +167,7 @@ export default function DatePicker(props: DatePickerProps) {
       {type === 'time' && (
         <TimePickerTime
           date={selectPanelDate}
-          {...showTime}
+          {...(showTime as any)}
           className={`${prefixCls}-timepicker`}
           onSelected={onSelectedTime}
         />
