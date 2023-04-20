@@ -2788,12 +2788,22 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
   }
   function _hide() {
     if (!isOpen) return;
-    zIndex.current -= 1;
+    if (zIndex.current <= 999) {
+      zIndex.current = 999;
+    } else {
+      zIndex.current -= 1;
+    }
     setIsOpen(false);
   }
   function _show() {
+    var _triggerRef$current;
     if (isOpen) return;
-    zIndex.current += 1;
+    var nodeIndex = (_triggerRef$current = triggerRef.current) == null ? void 0 : _triggerRef$current.style.zIndex;
+    if (nodeIndex) {
+      zIndex.current = Number(nodeIndex) + 1;
+    } else {
+      zIndex.current += 1;
+    }
     setIsOpen(true);
   }
   function handleEnter(node, isAppearing) {
@@ -2838,6 +2848,9 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
   return /*#__PURE__*/(0,jsx_runtime.jsxs)((external_root_React_commonjs2_react_commonjs_react_amd_react_default()).Fragment, {
     children: [/*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.cloneElement)(child, Object.assign({}, child.props, _extends({}, triggerProps, {
       ref: triggerRef,
+      style: {
+        zIndex: zIndex.current
+      },
       className: [child.props.className, disabled ? prefixCls + "-disabled" : null].filter(Boolean).join(' ').trim()
     }))), /*#__PURE__*/(0,jsx_runtime.jsx)(Overlay, _extends({}, overlayProps, {
       style: _extends({}, overlayProps.style, overlayStyl),
