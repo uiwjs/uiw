@@ -14,20 +14,22 @@ return /******/ (() => { // webpackBootstrap
 /***/ 448:
 /***/ (function(module) {
 
-/*!
- * @uiw/copy-to-clipboard v1.0.12
- * Copy to clipboard.
+/**! 
+ * @uiw/copy-to-clipboard v1.0.14 
+ * Copy to clipboard. 
  * 
- * Copyright (c) 2021 Kenny Wang
- * https://github.com/uiwjs/copy-to-clipboard.git
+ * Copyright (c) 2023 Kenny Wang 
+ * https://github.com/uiwjs/copy-to-clipboard.git 
  * 
- * Licensed under the MIT license.
+ * @website: https://uiwjs.github.io/copy-to-clipboard
+ 
+ * Licensed under the MIT license 
  */
 
 (function (global, factory) {
    true ? module.exports = factory() :
   0;
-}(this, (function () { 'use strict';
+})(this, (function () { 'use strict';
 
   /**
    * *** This styling is an extra step which is likely not required. ***
@@ -82,7 +84,7 @@ return /******/ (() => { // webpackBootstrap
 
   return copyTextToClipboard;
 
-})));
+}));
 //# sourceMappingURL=copy-to-clipboard.umd.js.map
 
 
@@ -2216,11 +2218,14 @@ var react_button_group_esm_excluded = ["prefixCls", "vertical", "children", "cla
 
 ;// CONCATENATED MODULE: ../../node_modules/@uiw/formatter/esm/index.js
 /**! 
- * @uiw/formatter v2.0.1 
+ * @uiw/formatter v2.0.2 
  * Get a formatted date. 
  * 
- * Copyright (c) 2022 Kenny Wang <wowohoo@qq.com> 
+ * Copyright (c) 2023 Kenny Wang <wowohoo@qq.com> 
  * https://github.com/uiwjs/date-formatter.git 
+ * 
+ * @website: https://github.com/uiwjs/date-formatter.git
+ 
  * Licensed under the MIT license 
  */
 
@@ -2245,7 +2250,7 @@ function formatter(str, date, utc) {
         var chars = args[1];
         var name = args[0];
         if (utc === true) {
-            name = "getUTC".concat(name.slice(3));
+            name = "getUTC".concat(String(name).slice(3));
         }
         if (!date) {
             date = new Date();
@@ -3505,7 +3510,6 @@ function DatePickerYear(props) {
       var date = new Date(activeYear);
       date.setFullYear(year);
       setActiveYear(date);
-      onSelected(year, true);
     } else {
       onSelected(year);
     }
@@ -4680,6 +4684,11 @@ function Cascader(props) {
 
 var RadioAbstract_excluded = ["prefixCls", "type", "disabled", "value", "className", "style", "children", "size", "checked", "onChange"];
 
+
+/**
+ * Constructs a type by picking all properties from `HTMLInputProps` and then removing `size`.
+ * Omit: https://www.typescriptlang.org/docs/handbook/utility-types.html#omittk
+ */
 
 
 var RadioAbstract = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
@@ -10645,12 +10654,12 @@ function SearchTree(props) {
 
 
 
-var CheckedStatus;
-(function (CheckedStatus) {
+var CheckedStatus = /*#__PURE__*/function (CheckedStatus) {
   CheckedStatus[CheckedStatus["UnChecked"] = 0] = "UnChecked";
   CheckedStatus[CheckedStatus["AllChecked"] = 1] = "AllChecked";
   CheckedStatus[CheckedStatus["Indeterminate"] = 2] = "Indeterminate";
-})(CheckedStatus || (CheckedStatus = {}));
+  return CheckedStatus;
+}(CheckedStatus || {});
 function Transfer(props) {
   var {
     placeholder,
