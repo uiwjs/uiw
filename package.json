@@ -65,8 +65,8 @@
   "devDependencies": {
     "@kkt/less-modules": "~7.3.0",
     "@kkt/ncc": "~1.0.15",
-    "@types/react": "~18.0.0",
-    "@types/react-dom": "~18.0.0",
+    "@types/react": "~18.2.0",
+    "@types/react-dom": "~18.2.0",
     "@types/react-test-renderer": "~18.0.0",
     "@types/react-transition-group": "~4.4.4",
     "compile-less-cli": "~1.8.11",
