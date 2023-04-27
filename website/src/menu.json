@@ -165,43 +165,47 @@
         "path": "https://uiwjs.github.io/react-back-to-top"
       },
       { "divider": true, "name": "其它" },
-      { "name": "CopyToClipboard 复制", "path": "copy-to-clipboard" },
       { "name": "Portal 入口", "path": "portal" },
-      {
-        "name": "Github Corners",
-        "path": "https://uiwjs.github.io/react-github-corners/"
-      },
-      {
-        "name": "Prismjs",
-        "path": "https://uiwjs.github.io/react-prismjs"
-      },
+      { "name": "CopyToClipboard 复制", "path": "copy-to-clipboard" },
       {
         "name": "Clock",
         "path": "https://uiwjs.github.io/react-clock"
-      },
-      {
-        "name": "Mac Keyboard",
-        "path": "https://uiwjs.github.io/react-mac-keyboard/"
-      },
-      {
-        "name": "Domain Verify",
-        "path": "https://uiwjs.github.io/react-domain-verify"
-      },
-      {
-        "name": "Shields",
-        "path": "https://uiwjs.github.io/react-shields"
       },
       {
         "name": "Codepen",
         "path": "https://uiwjs.github.io/react-codepen/"
       },
       {
+        "name": "Domain Verify",
+        "path": "https://uiwjs.github.io/react-domain-verify"
+      },
+      {
+        "name": "Github Corners",
+        "path": "https://uiwjs.github.io/react-github-corners/"
+      },
+      {
+        "name": "Mac Keyboard",
+        "path": "https://uiwjs.github.io/react-mac-keyboard/"
+      },
+      {
         "name": "Only When",
         "path": "https://uiwjs.github.io/react-only-when/"
       },
       {
+        "name": "React Login Page 登录",
+        "path": "https://uiwjs.github.io/react-login-page"
+      },
+      {
+        "name": "Prismjs",
+        "path": "https://uiwjs.github.io/react-prismjs"
+      },
+      {
         "name": "Run Web",
         "path": "https://uiwjs.github.io/react-run-web/"
+      },
+      {
+        "name": "Shields",
+        "path": "https://uiwjs.github.io/react-shields"
       }
     ]
   },
