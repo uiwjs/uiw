@@ -98,7 +98,7 @@ export default function Demo() {
 
 ```jsx mdx:preview&bg=#fff
 import React from 'react';
-import { Form, Input, Notify, Checkbox, Switch, RadioGroup, Radio, Textarea, Row, Col, Button } from 'uiw';
+import { Form, Input, Notify, Checkbox, Switch, RadioGroup, Radio, Textarea, Row, Col, Button, Select, SearchSelect } from 'uiw';
 
 export default function Demo() {
   return(
@@ -141,6 +141,40 @@ export default function Demo() {
           initialValue: '9',
           label: '年龄',
           children: <Input type="number" />
+        },
+        select: {
+          children: (
+            <Select>
+              <Select.Option value="w">Choose an item...</Select.Option>
+              <Select.Option value="1">One</Select.Option>
+              <Select.Option value="2">Two</Select.Option>
+              <Select.Option value="3">Three</Select.Option>
+              <Select.Option value="4">Four</Select.Option>
+            </Select>
+          )
+        },
+        searchSelect: {
+          initialValue:[{label: 'a7', value: 7},{label: 'a8', value: 8}],
+          children: (
+            <SearchSelect
+              allowClear
+              labelInValue={true}
+              showSearch={true}
+              mode="multiple"
+              disabled={false}
+              placeholder="请选择选项"
+              option={[
+                { label: 'a1', value: 1 },
+                { label: 'a2', value: 2 },
+                { label: 'a3', value: 3 },
+                { label: 'a4', value: 4 },
+                { label: 'a5', value: 5 },
+                { label: 'a6', value: 6 },
+                { label: 'a7', value: 7 },
+                { label: 'a8', value: 8 },
+              ]}
+            />
+          )
         },
         checkbox: {
           initialValue: ['四川菜'],
@@ -205,6 +239,10 @@ export default function Demo() {
             <Row gutter={10}>
               <Col>{fields.userName}</Col>
               <Col>{fields.age}</Col>
+            </Row>
+            <Row gutter={10}>
+              <Col>{fields.select}</Col>
+              <Col>{fields.searchSelect}</Col>
             </Row>
             <Row gutter={10}>
               <Col>{fields.checkbox}</Col>
