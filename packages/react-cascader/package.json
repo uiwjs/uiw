@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-cascader",
-  "version": "4.21.27",
+  "version": "4.21.28",
   "description": "Cascader component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "homepage": "https://uiwjs.github.io/#/components/cascader",
@@ -43,12 +43,12 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-dropdown": "^4.21.27",
-    "@uiw/react-icon": "^4.21.27",
-    "@uiw/react-input": "^4.21.27",
-    "@uiw/react-loader": "^4.21.27",
-    "@uiw/react-menu": "^4.21.27",
-    "@uiw/react-tag": "^4.21.27",
-    "@uiw/utils": "^4.21.27"
+    "@uiw/react-dropdown": "^4.21.28",
+    "@uiw/react-icon": "^4.21.28",
+    "@uiw/react-input": "^4.21.28",
+    "@uiw/react-loader": "^4.21.28",
+    "@uiw/react-menu": "^4.21.28",
+    "@uiw/react-tag": "^4.21.28",
+    "@uiw/utils": "^4.21.28"
   }
 }
