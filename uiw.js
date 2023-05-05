@@ -2639,6 +2639,7 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
   hide: delay
 };
 /* harmony default export */ const react_overlay_trigger_esm = (/*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
+  var _child$props;
   var {
       className,
       prefixCls = 'w-overlay-trigger',
@@ -2848,9 +2849,9 @@ var normalizeDelay = delay => delay && typeof delay === 'object' ? delay : {
   return /*#__PURE__*/(0,jsx_runtime.jsxs)((external_root_React_commonjs2_react_commonjs_react_amd_react_default()).Fragment, {
     children: [/*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.cloneElement)(child, Object.assign({}, child.props, _extends({}, triggerProps, {
       ref: triggerRef,
-      style: {
+      style: _extends({}, (_child$props = child.props) == null ? void 0 : _child$props.style, {
         zIndex: zIndex.current
-      },
+      }),
       className: [child.props.className, disabled ? prefixCls + "-disabled" : null].filter(Boolean).join(' ').trim()
     }))), /*#__PURE__*/(0,jsx_runtime.jsx)(Overlay, _extends({}, overlayProps, {
       style: _extends({}, overlayProps.style, overlayStyl),
