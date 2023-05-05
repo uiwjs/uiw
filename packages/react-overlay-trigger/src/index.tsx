@@ -307,6 +307,7 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
     }
   }
   overlayProps.style = { ...overlayProps.style, ...overlayStyl };
+
   return (
     <React.Fragment>
       {cloneElement(
@@ -314,7 +315,7 @@ export default React.forwardRef<OverlayTriggerRef, OverlayTriggerProps>((props, 
         Object.assign({}, child.props, {
           ...triggerProps,
           ref: triggerRef,
-          style: { zIndex: zIndex.current },
+          style: { ...child.props?.style, zIndex: zIndex.current },
           className: [child.props.className, disabled ? `${prefixCls}-disabled` : null]
             .filter(Boolean)
             .join(' ')
