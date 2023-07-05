@@ -215,97 +215,97 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "Affix": () => (/* reexport */ Affix),
-  "Alert": () => (/* reexport */ react_alert_esm),
-  "AutoLink": () => (/* reexport */ react_auto_link_esm),
-  "Avatar": () => (/* reexport */ react_avatar_esm),
-  "BackTop": () => (/* reexport */ react_back_top_esm),
-  "Badge": () => (/* reexport */ react_badge_esm),
-  "Breadcrumb": () => (/* reexport */ react_breadcrumb_esm),
-  "Button": () => (/* reexport */ esm),
-  "ButtonGroup": () => (/* reexport */ react_button_group_esm),
-  "Calendar": () => (/* reexport */ Calendar),
-  "Card": () => (/* reexport */ react_card_esm),
-  "Carousel": () => (/* reexport */ react_carousel_esm),
-  "Cascader": () => (/* reexport */ react_cascader_esm),
-  "Checkbox": () => (/* reexport */ react_checkbox_esm),
-  "CheckboxGroup": () => (/* reexport */ CheckboxGroup),
-  "Circle": () => (/* reexport */ Circle),
-  "Col": () => (/* reexport */ Col),
-  "Collapse": () => (/* reexport */ react_collapse_esm),
-  "CopyToClipboard": () => (/* reexport */ CopyToClipboard),
-  "DateInput": () => (/* reexport */ DateInput),
-  "DateInputRange": () => (/* reexport */ DateInputRange),
-  "DatePicker": () => (/* reexport */ DatePicker),
-  "DatePickerCaption": () => (/* reexport */ DatePickerCaption),
-  "DatePickerDay": () => (/* reexport */ DatePickerDay),
-  "DatePickerMonth": () => (/* reexport */ DatePickerMonth),
-  "DatePickerYear": () => (/* reexport */ DatePickerYear),
-  "DayRect": () => (/* reexport */ DayRect),
-  "Descriptions": () => (/* reexport */ react_descriptions_esm),
-  "Divider": () => (/* reexport */ react_divider_esm),
-  "Drawer": () => (/* reexport */ react_drawer_esm),
-  "Dropdown": () => (/* reexport */ Dropdown),
-  "Empty": () => (/* reexport */ react_empty_esm),
-  "FileInput": () => (/* reexport */ react_file_input_esm),
-  "Form": () => (/* reexport */ react_form_esm),
-  "FormItem": () => (/* reexport */ FormItem),
-  "Icon": () => (/* reexport */ Icon),
-  "Input": () => (/* reexport */ react_input_esm),
-  "InputNumber": () => (/* reexport */ InputNumber),
-  "Layout": () => (/* reexport */ react_layout_esm),
-  "LayoutContent": () => (/* reexport */ LayoutContent),
-  "LayoutContext": () => (/* reexport */ LayoutContext),
-  "LayoutFooter": () => (/* reexport */ LayoutFooter),
-  "LayoutHeader": () => (/* reexport */ LayoutHeader),
-  "LayoutSider": () => (/* reexport */ LayoutSider),
-  "Line": () => (/* reexport */ Line),
-  "List": () => (/* reexport */ react_list_esm),
-  "ListItem": () => (/* reexport */ ListItem),
-  "Loader": () => (/* reexport */ react_loader_esm),
-  "Menu": () => (/* reexport */ react_menu_esm),
-  "MenuDivider": () => (/* reexport */ MenuDivider),
-  "MenuItem": () => (/* reexport */ MenuItem),
-  "Message": () => (/* reexport */ Message),
-  "Modal": () => (/* reexport */ react_modal_esm),
-  "MonthPicker": () => (/* reexport */ MonthPicker),
-  "Notify": () => (/* reexport */ react_notify_esm),
-  "Overlay": () => (/* reexport */ Overlay),
-  "OverlayTrigger": () => (/* reexport */ react_overlay_trigger_esm),
-  "Pagination": () => (/* reexport */ Pagination),
-  "PinCode": () => (/* reexport */ react_pin_code_esm),
-  "Popover": () => (/* reexport */ Popover),
-  "Portal": () => (/* reexport */ Portal),
-  "Progress": () => (/* reexport */ react_progress_esm),
-  "Radio": () => (/* reexport */ esm_Radio),
-  "RadioAbstract": () => (/* reexport */ RadioAbstract),
-  "RadioButton": () => (/* reexport */ esm_RadioButton),
-  "RadioGroup": () => (/* reexport */ esm_RadioGroup),
-  "Rate": () => (/* reexport */ Rate),
-  "Row": () => (/* reexport */ Row_Row),
-  "SearchSelect": () => (/* reexport */ SearchSelect),
-  "SearchTree": () => (/* reexport */ react_search_tree_esm),
-  "Select": () => (/* reexport */ react_select_esm),
-  "Slider": () => (/* reexport */ Slider),
-  "Split": () => (/* reexport */ Split),
-  "Steps": () => (/* reexport */ react_steps_esm),
-  "SubMenu": () => (/* reexport */ SubMenu),
-  "Switch": () => (/* reexport */ react_switch_esm),
-  "Table": () => (/* reexport */ Table),
-  "Tabs": () => (/* reexport */ Tabs),
-  "Tag": () => (/* reexport */ react_tag_esm),
-  "Textarea": () => (/* reexport */ react_textarea_esm),
-  "ThemeContext": () => (/* reexport */ ThemeContext),
-  "TimePicker": () => (/* reexport */ TimePicker),
-  "TimePickerTime": () => (/* reexport */ TimePickerTime),
-  "Tooltip": () => (/* reexport */ react_tooltip_esm),
-  "Transfer": () => (/* reexport */ react_transfer_esm),
-  "Tree": () => (/* reexport */ Tree),
-  "TreeChecked": () => (/* reexport */ TreeChecked),
-  "canUseDOM": () => (/* reexport */ canUseDOM),
-  "formatter": () => (/* reexport */ formatter),
-  "getChildKeys": () => (/* reexport */ getChildKeys),
-  "randomid": () => (/* reexport */ randomid)
+  Affix: () => (/* reexport */ Affix),
+  Alert: () => (/* reexport */ react_alert_esm),
+  AutoLink: () => (/* reexport */ react_auto_link_esm),
+  Avatar: () => (/* reexport */ react_avatar_esm),
+  BackTop: () => (/* reexport */ react_back_top_esm),
+  Badge: () => (/* reexport */ react_badge_esm),
+  Breadcrumb: () => (/* reexport */ react_breadcrumb_esm),
+  Button: () => (/* reexport */ esm),
+  ButtonGroup: () => (/* reexport */ react_button_group_esm),
+  Calendar: () => (/* reexport */ Calendar),
+  Card: () => (/* reexport */ react_card_esm),
+  Carousel: () => (/* reexport */ react_carousel_esm),
+  Cascader: () => (/* reexport */ react_cascader_esm),
+  Checkbox: () => (/* reexport */ react_checkbox_esm),
+  CheckboxGroup: () => (/* reexport */ CheckboxGroup),
+  Circle: () => (/* reexport */ Circle),
+  Col: () => (/* reexport */ Col),
+  Collapse: () => (/* reexport */ react_collapse_esm),
+  CopyToClipboard: () => (/* reexport */ CopyToClipboard),
+  DateInput: () => (/* reexport */ DateInput),
+  DateInputRange: () => (/* reexport */ DateInputRange),
+  DatePicker: () => (/* reexport */ DatePicker),
+  DatePickerCaption: () => (/* reexport */ DatePickerCaption),
+  DatePickerDay: () => (/* reexport */ DatePickerDay),
+  DatePickerMonth: () => (/* reexport */ DatePickerMonth),
+  DatePickerYear: () => (/* reexport */ DatePickerYear),
+  DayRect: () => (/* reexport */ DayRect),
+  Descriptions: () => (/* reexport */ react_descriptions_esm),
+  Divider: () => (/* reexport */ react_divider_esm),
+  Drawer: () => (/* reexport */ react_drawer_esm),
+  Dropdown: () => (/* reexport */ Dropdown),
+  Empty: () => (/* reexport */ react_empty_esm),
+  FileInput: () => (/* reexport */ react_file_input_esm),
+  Form: () => (/* reexport */ react_form_esm),
+  FormItem: () => (/* reexport */ FormItem),
+  Icon: () => (/* reexport */ Icon),
+  Input: () => (/* reexport */ react_input_esm),
+  InputNumber: () => (/* reexport */ InputNumber),
+  Layout: () => (/* reexport */ react_layout_esm),
+  LayoutContent: () => (/* reexport */ LayoutContent),
+  LayoutContext: () => (/* reexport */ LayoutContext),
+  LayoutFooter: () => (/* reexport */ LayoutFooter),
+  LayoutHeader: () => (/* reexport */ LayoutHeader),
+  LayoutSider: () => (/* reexport */ LayoutSider),
+  Line: () => (/* reexport */ Line),
+  List: () => (/* reexport */ react_list_esm),
+  ListItem: () => (/* reexport */ ListItem),
+  Loader: () => (/* reexport */ react_loader_esm),
+  Menu: () => (/* reexport */ react_menu_esm),
+  MenuDivider: () => (/* reexport */ MenuDivider),
+  MenuItem: () => (/* reexport */ MenuItem),
+  Message: () => (/* reexport */ Message),
+  Modal: () => (/* reexport */ react_modal_esm),
+  MonthPicker: () => (/* reexport */ MonthPicker),
+  Notify: () => (/* reexport */ react_notify_esm),
+  Overlay: () => (/* reexport */ Overlay),
+  OverlayTrigger: () => (/* reexport */ react_overlay_trigger_esm),
+  Pagination: () => (/* reexport */ Pagination),
+  PinCode: () => (/* reexport */ react_pin_code_esm),
+  Popover: () => (/* reexport */ Popover),
+  Portal: () => (/* reexport */ Portal),
+  Progress: () => (/* reexport */ react_progress_esm),
+  Radio: () => (/* reexport */ esm_Radio),
+  RadioAbstract: () => (/* reexport */ RadioAbstract),
+  RadioButton: () => (/* reexport */ esm_RadioButton),
+  RadioGroup: () => (/* reexport */ esm_RadioGroup),
+  Rate: () => (/* reexport */ Rate),
+  Row: () => (/* reexport */ Row_Row),
+  SearchSelect: () => (/* reexport */ SearchSelect),
+  SearchTree: () => (/* reexport */ react_search_tree_esm),
+  Select: () => (/* reexport */ react_select_esm),
+  Slider: () => (/* reexport */ Slider),
+  Split: () => (/* reexport */ Split),
+  Steps: () => (/* reexport */ react_steps_esm),
+  SubMenu: () => (/* reexport */ SubMenu),
+  Switch: () => (/* reexport */ react_switch_esm),
+  Table: () => (/* reexport */ Table),
+  Tabs: () => (/* reexport */ Tabs),
+  Tag: () => (/* reexport */ react_tag_esm),
+  Textarea: () => (/* reexport */ react_textarea_esm),
+  ThemeContext: () => (/* reexport */ ThemeContext),
+  TimePicker: () => (/* reexport */ TimePicker),
+  TimePickerTime: () => (/* reexport */ TimePickerTime),
+  Tooltip: () => (/* reexport */ react_tooltip_esm),
+  Transfer: () => (/* reexport */ react_transfer_esm),
+  Tree: () => (/* reexport */ Tree),
+  TreeChecked: () => (/* reexport */ TreeChecked),
+  canUseDOM: () => (/* reexport */ canUseDOM),
+  formatter: () => (/* reexport */ formatter),
+  getChildKeys: () => (/* reexport */ getChildKeys),
+  randomid: () => (/* reexport */ randomid)
 });
 
 ;// CONCATENATED MODULE: ../../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
@@ -6567,193 +6567,162 @@ var Layout_excluded = ["prefixCls", "className", "hasSider", "children"];
 
 
 var LayoutContext = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().createContext({
-  siderHook: {
-    addSider: () => null,
-    removeSider: () => null
-  }
+  addSider: () => null,
+  removeSider: () => null
 });
-class Layout extends (external_root_React_commonjs2_react_commonjs_react_amd_react_default()).Component {
-  constructor() {
-    super(...arguments);
-    this.state = {
-      siders: []
-    };
-  }
-
-  getSiderHook() {
-    return {
-      addSider: id => {
-        this.setState(state => ({
-          siders: [...state.siders, id]
-        }));
-      },
-      removeSider: id => {
-        this.setState(state => ({
-          siders: state.siders.filter(currentId => currentId !== id)
-        }));
-      }
-    };
-  }
-
-  render() {
-    var _this$props = this.props,
-        {
-      prefixCls,
+var Layout = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
+  var {
+      prefixCls = 'w-layout',
       className,
       hasSider,
       children
-    } = _this$props,
-        other = _objectWithoutPropertiesLoose(_this$props, Layout_excluded);
-
-    return /*#__PURE__*/(0,jsx_runtime.jsx)(LayoutContext.Provider, {
-      value: {
-        siderHook: this.getSiderHook()
-      },
-      children: /*#__PURE__*/(0,jsx_runtime.jsx)("section", _extends({
-        className: [prefixCls, className, typeof hasSider === 'boolean' && hasSider || this.state.siders.length > 0 ? prefixCls + "-has-sider" : null].filter(Boolean).join(' ').trim()
-      }, other, {
-        children: children
-      }))
-    });
-  }
-
-}
-Layout.Header = void 0;
-Layout.Footer = void 0;
-Layout.Sider = void 0;
-Layout.Content = void 0;
-Layout.defaultProps = {
-  prefixCls: 'w-layout'
-};
-
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, Layout_excluded);
+  var [siders, setSiders] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)([]);
+  var addSider = id => {
+    setSiders(state => [...state, id]);
+  };
+  var removeSider = id => {
+    setSiders(state => [...state.filter(currentId => currentId !== id)]);
+  };
+  var cls = [prefixCls, className, typeof hasSider === 'boolean' && hasSider || siders.length > 0 ? prefixCls + "-has-sider" : null].filter(Boolean).join(' ').trim();
+  return /*#__PURE__*/(0,jsx_runtime.jsx)(LayoutContext.Provider, {
+    value: {
+      addSider,
+      removeSider
+    },
+    children: /*#__PURE__*/(0,jsx_runtime.jsx)("section", _extends({
+      ref: ref,
+      className: cls
+    }, other, {
+      children: children
+    }))
+  });
+});
+Layout.displayName = 'Layout';
+/* harmony default export */ const esm_Layout = (Layout);
 ;// CONCATENATED MODULE: ../../node_modules/@uiw/react-layout/esm/Header.js
 
 
 var Header_excluded = ["prefixCls", "className", "children"];
 
 
-function LayoutHeader(props) {
+var LayoutHeader = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var _ref = props || {},
-      {
-    prefixCls = 'w-layout-header',
-    className,
-    children
-  } = _ref,
-      other = _objectWithoutPropertiesLoose(_ref, Header_excluded);
-
+    {
+      prefixCls = 'w-layout-header',
+      className,
+      children
+    } = _ref,
+    other = _objectWithoutPropertiesLoose(_ref, Header_excluded);
+  var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   return /*#__PURE__*/(0,jsx_runtime.jsx)("header", _extends({
-    className: [prefixCls, className].filter(Boolean).join(' ').trim()
+    ref: ref,
+    className: cls
   }, other, {
     children: children
   }));
-}
-
+});
 ;// CONCATENATED MODULE: ../../node_modules/@uiw/react-layout/esm/Footer.js
 
 
 var Footer_excluded = ["prefixCls", "className", "children"];
 
 
-function LayoutFooter(props) {
+var LayoutFooter = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-layout-footer',
-    className,
-    children
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, Footer_excluded);
-
+      prefixCls = 'w-layout-footer',
+      className,
+      children
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, Footer_excluded);
+  var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   return /*#__PURE__*/(0,jsx_runtime.jsx)("footer", _extends({
-    className: [prefixCls, className].filter(Boolean).join(' ').trim()
+    ref: ref,
+    className: cls
   }, other, {
     children: children
   }));
-}
-
+});
 ;// CONCATENATED MODULE: ../../node_modules/@uiw/react-layout/esm/Sider.js
 
 
-var Sider_excluded = ["prefixCls", "className", "style", "children", "width", "collapsedWidth", "collapsed", "siderHook"];
+var Sider_excluded = ["prefixCls", "className", "style", "children", "width", "collapsedWidth", "collapsed", "addSider", "removeSider"];
 
 
 
 function randomid() {
   return parseInt(String(Math.random() * 1e15), 10).toString(36);
 }
-
-function Sider(props) {
-  if (props === void 0) {
-    props = {};
-  }
-
-  var {
-    prefixCls = 'w-layout-sider',
-    className,
-    style,
-    children,
-    width = 200,
-    collapsedWidth = 80,
-    collapsed = false,
-    siderHook
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, Sider_excluded);
-
+var Sider = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
+  var _ref = props,
+    {
+      prefixCls = 'w-layout-sider',
+      className,
+      style,
+      children,
+      width = 200,
+      collapsedWidth = 80,
+      collapsed = false,
+      addSider,
+      removeSider
+    } = _ref,
+    other = _objectWithoutPropertiesLoose(_ref, Sider_excluded);
   var [sliderId] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)("w-layout-" + randomid());
   var [rawWidth, setRawWidth] = (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useState)(collapsed ? collapsedWidth : width);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useEffect)(() => {
-    if (siderHook && !!siderHook.addSider) {
-      siderHook.addSider(sliderId);
+    if (addSider) {
+      addSider(sliderId);
     }
-
     return () => {
-      if (siderHook && !!siderHook.removeSider) {
-        siderHook.removeSider(sliderId);
+      if (removeSider) {
+        removeSider(sliderId);
       }
     };
   }, []);
   (0,external_root_React_commonjs2_react_commonjs_react_amd_react_.useMemo)(() => setRawWidth(collapsed ? collapsedWidth : width), [width, collapsedWidth, collapsed]);
-
   var divStyle = _extends({}, style, {
     flex: "0 0 " + rawWidth,
     maxWidth: rawWidth,
     minWidth: rawWidth,
     width: rawWidth
   });
-
   return /*#__PURE__*/(0,jsx_runtime.jsx)("div", _extends({
+    ref: ref,
     className: [prefixCls, className].filter(Boolean).join(' ').trim(),
     style: divStyle
   }, other, {
     children: children
   }));
-}
-
-function LayoutSider(props) {
+});
+var LayoutSider = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   return /*#__PURE__*/(0,jsx_runtime.jsx)(LayoutContext.Consumer, {
-    children: context => /*#__PURE__*/(0,jsx_runtime.jsx)(Sider, _extends({}, props, context))
+    children: context => /*#__PURE__*/(0,jsx_runtime.jsx)(Sider, _extends({
+      ref: ref
+    }, props, context))
   });
-}
-
+});
 ;// CONCATENATED MODULE: ../../node_modules/@uiw/react-layout/esm/Content.js
 
 
 var Content_excluded = ["prefixCls", "className", "children"];
 
 
-function LayoutContent(props) {
+var LayoutContent = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
   var {
-    prefixCls = 'w-layout-content',
-    className,
-    children
-  } = props,
-      other = _objectWithoutPropertiesLoose(props, Content_excluded);
-
+      prefixCls = 'w-layout-content',
+      className,
+      children
+    } = props,
+    other = _objectWithoutPropertiesLoose(props, Content_excluded);
+  var cls = [prefixCls, className].filter(Boolean).join(' ').trim();
   return /*#__PURE__*/(0,jsx_runtime.jsx)("main", _extends({
-    className: [prefixCls, className].filter(Boolean).join(' ').trim()
+    ref: ref,
+    className: cls
   }, other, {
     children: children
   }));
-}
-
+});
 ;// CONCATENATED MODULE: ../../node_modules/@uiw/react-layout/esm/style/index.css
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const react_layout_esm_style = ({});
@@ -6764,17 +6733,16 @@ function LayoutContent(props) {
 
 
 
-Layout.Header = LayoutHeader;
-Layout.Footer = LayoutFooter;
-Layout.Sider = LayoutSider;
-Layout.Content = LayoutContent;
+esm_Layout.Header = LayoutHeader;
+esm_Layout.Footer = LayoutFooter;
+esm_Layout.Sider = LayoutSider;
+esm_Layout.Content = LayoutContent;
 
 
 
 
 
-/* harmony default export */ const react_layout_esm = (Layout);
-
+/* harmony default export */ const react_layout_esm = (esm_Layout);
 ;// CONCATENATED MODULE: ../react-loader/esm/style/index.css
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const react_loader_esm_style = ({});
