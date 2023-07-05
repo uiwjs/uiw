@@ -57,6 +57,10 @@
       { "name": "Transfer 穿梭框", "path": "transfer" },
       { "name": "Textarea 多行文本输入框", "path": "textarea" },
       {
+        "name": "CSVReader 文件 CSV 输入",
+        "path": "https://uiwjs.github.io/react-csv-reader/"
+      },
+      {
         "name": "Color 颜色选择器",
         "path": "https://uiwjs.github.io/react-color/"
       },
@@ -81,6 +85,10 @@
       { "name": "List 列表", "path": "list" },
       { "name": "AutoLink 文本超链接", "path": "auto-link" },
       { "name": "Empty 空状态", "path": "empty" },
+      {
+        "name": "JSONView JSON 预览",
+        "path": "https://uiwjs.github.io/react-heat-map"
+      },
       {
         "name": "HeatMap 日历热图",
         "path": "https://uiwjs.github.io/react-heat-map"
