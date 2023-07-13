@@ -15,7 +15,7 @@ return /******/ (() => { // webpackBootstrap
 /***/ (function(module) {
 
 /**! 
- * @uiw/copy-to-clipboard v1.0.14 
+ * @uiw/copy-to-clipboard v1.0.15 
  * Copy to clipboard. 
  * 
  * Copyright (c) 2023 Kenny Wang 
@@ -57,6 +57,7 @@ return /******/ (() => { // webpackBootstrap
    * @param {CopyTextToClipboard} cb 
    */
   function copyTextToClipboard(text, cb) {
+    if (typeof document === "undefined") return;
     const el = document.createElement('textarea');
     el.value = text;
     el.setAttribute('readonly', '');
