@@ -5,7 +5,7 @@
 </p>
 <p align="center">
   <a href="https://github.com/uiwjs/uiw/actions">
-    <img alt="Github Actions" src="https://github.com/uiwjs/uiw/workflows/Build%20uiw/badge.svg">
+    <img alt="Github Actions" src="https://github.com/uiwjs/uiw/actions/workflows/deploy.yml/badge.svg">
   </a>
   <a href="https://github.com/uiwjs/uiw">
     <img alt="License MIT" src="https://img.shields.io/dub/l/vibe-d.svg">
