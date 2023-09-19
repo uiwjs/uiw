@@ -8,7 +8,6 @@ export * from './Pane';
 
 Tabs.Pane = Pane;
 
-let labelWidth: number = 0;
 export interface TabsProps extends IProps, HTMLDivProps {
   prefixCls?: string;
   activeKey?: string;
@@ -52,7 +51,7 @@ export default function Tabs(props: TabsProps) {
   const deviation = 15;
 
   const [nodes, nodesSet] = useState<any>();
-  const divContentRef = useCallback((node) => {
+  const divContentRef = useCallback((node: HTMLDivElement) => {
     if (node !== null) {
       nodesSet(nodes);
       node.addEventListener('scroll', (e: any) => {
@@ -66,18 +65,21 @@ export default function Tabs(props: TabsProps) {
     }
   }, []);
 
-  const divNavRef = useCallback((node, key: number, itemKey: React.Key | null, activeKey) => {
-    if (node !== null) {
-      // node.addEventListener('click', (e: any) => {
-      //   activeItem.current = node;
-      // });
-      divNavWidthChange(node.getBoundingClientRect().width, key);
+  const divNavRef = useCallback(
+    (node: HTMLDivElement | null, key: number, itemKey: React.Key | null, activeKey?: string) => {
+      if (node !== null) {
+        // node.addEventListener('click', (e: any) => {
+        //   activeItem.current = node;
+        // });
+        divNavWidthChange(node.getBoundingClientRect().width, key);
 
-      if (itemKey === activeKey) {
-        activeItem.current = node;
+        if (itemKey === activeKey) {
+          activeItem.current = node;
+        }
       }
-    }
-  }, []);
+    },
+    [],
+  );
 
   const divNavWidthChange = (width: number, index: number) => {
     let curWidth = 0;
@@ -109,7 +111,6 @@ export default function Tabs(props: TabsProps) {
   useEffect(() => calcSlideStyle(), [activeKey]);
   function calcSlideStyle() {
     if (activeItem.current && type === 'line') {
-      labelWidth = activeItem.current.clientWidth;
       setSlideStyle({
         width: activeItem.current.clientWidth,
         left: activeItem.current.offsetLeft,
