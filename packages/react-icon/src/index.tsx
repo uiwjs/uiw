@@ -3,7 +3,7 @@ import svgPaths from '@uiw/icons/fonts/w-icon.json';
 import './style/index.less';
 
 export type IconsName = keyof typeof svgPaths;
-type TagType = React.ElementType | keyof JSX.IntrinsicElements;
+export type TagType = React.ElementType | keyof JSX.IntrinsicElements;
 type ElementProps<T extends TagType, E = React.ReactElement> = {
   fill?: string;
   style?: React.CSSProperties;

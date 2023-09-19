@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon, { IconProps } from '@uiw/react-icon';
+import Icon, { IconProps, TagType } from '@uiw/react-icon';
 import { HTMLSpanProps, noop } from '@uiw/utils';
 import './style/index.less';
 import { useState } from 'react';
@@ -9,7 +9,7 @@ export interface AvatarProps extends HTMLSpanProps {
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;
-  icon?: IconProps['type'];
+  icon?: IconProps<TagType>['type'];
   alt?: string;
   src?: string;
   size?: 'large' | 'default' | 'small' | 'mini';
