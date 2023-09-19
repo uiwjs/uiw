@@ -9,7 +9,7 @@ export interface ChildrenFunction {
   current: number;
 }
 
-export interface BackTopProps extends IProps, Omit<HTMLDivProps, 'children'> {
+export interface BackTopProps extends IProps, Omit<HTMLDivProps, 'children' | 'content'> {
   offsetTop?: number;
   clickable?: boolean;
   content?: JSX.Element | string;

@@ -3,9 +3,9 @@ import svgPaths from '@uiw/icons/fonts/w-icon.json';
 import './style/index.less';
 
 export type IconsName = keyof typeof svgPaths;
-type TagType = React.ComponentType | keyof JSX.IntrinsicElements;
-
-export interface IconProps<Tag extends TagType = 'span', E = React.ReactElement> extends React.HTMLAttributes<Tag> {
+type TagType = React.ElementType | keyof JSX.IntrinsicElements;
+type ElementProps<T extends TagType, E = React.ReactElement> = {
+  fill?: string;
   style?: React.CSSProperties;
   className?: string;
   prefixCls?: string;
@@ -13,54 +13,53 @@ export interface IconProps<Tag extends TagType = 'span', E = React.ReactElement>
    * HTML tag to use for the rendered element.
    * @default "span"
    */
-  tagName?: Tag;
+  tagName?: T;
   type?: IconsName | null | E;
   spin?: boolean;
   color?: string;
   verticalAlign?: 'middle' | 'baseline';
-}
+};
 
-export default function Icon<Tag extends TagType = 'span'>(props: IconProps<Tag>) {
+export type IconProps<T extends TagType> = ElementProps<T> & React.ComponentPropsWithoutRef<T>;
+
+const Icon = <T extends TagType = 'span'>(props: IconProps<T>) => {
   const {
     className,
     prefixCls = 'w-icon',
     verticalAlign = 'middle',
-    tagName: TagName = 'span',
+    tagName: Element = 'span',
     color,
     type,
     spin = false,
-    ...others
+    style,
+    ...reset
   } = props;
 
   let svg = null;
   if (typeof type === 'string') {
     svg = (
-      <svg fill={color} viewBox="0 0 20 20">
-        {(svgPaths[type] || []).map((d, i) => (
+      <svg fill={color || props.fill} viewBox="0 0 20 20">
+        {(svgPaths[type as IconsName] || []).map((d, i) => (
           <path key={i} d={d} fillRule="evenodd" />
         ))}
       </svg>
     );
-  } else if (React.isValidElement(type)) {
-    svg = React.cloneElement(type, {
-      fill: color,
-    });
-  } else {
-    return null;
   }
-  others.style = { fill: 'currentColor', ...others.style };
-  const propps = {
-    ...others,
-    className: [
-      prefixCls,
-      className,
-      prefixCls && verticalAlign ? `${prefixCls}-${verticalAlign}` : null,
-      spin && prefixCls ? `${prefixCls}-spin` : null,
-    ]
-      .filter(Boolean)
-      .join(' ')
-      .trim(),
-  };
+  const initStyle = { fill: 'currentColor', ...style };
+  const cls = [
+    prefixCls,
+    className,
+    prefixCls && verticalAlign ? `${prefixCls}-${verticalAlign}` : null,
+    spin && prefixCls ? `${prefixCls}-spin` : null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
+  return (
+    <Element className={cls} {...reset} style={initStyle}>
+      {svg}
+    </Element>
+  );
+};
 
-  return React.createElement(TagName, { ...propps } as any, svg);
-}
+export default Icon;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import Dots from './Dots';
 import './style/index.less';
@@ -66,7 +66,7 @@ export default function Slider(props: SliderProps) {
     handleChange(curr);
   };
 
-  function getRangeValue(val: number | number[]) {
+  function getRangeValue(val: number) {
     if (!Array.isArray(value)) {
       return Array.isArray(val) ? val : [val];
     }
@@ -202,10 +202,17 @@ export default function Slider(props: SliderProps) {
     if (marks && marks !== true && marks[val] && marks[val].label) {
       return marks[val].label;
     } else if (marks && marks !== true && marks[val] && typeof marks[val] === 'string') {
-      return marks[val];
+      return marks[val] as ReactElement;
     } else if (renderMarks && typeof renderMarks === 'function' && renderMarks(val)) {
       return renderMarks(val);
     }
+    // if (marks && typeof marks !== 'boolean' && marks[val].label) {
+    //   return marks[val].label;
+    // } else if (marks && typeof marks !== 'boolean' && typeof marks[val] === 'string') {
+    //   return marks[val] as ReactElement;
+    // } else if (renderMarks && typeof renderMarks === 'function' && renderMarks(val)) {
+    //   return renderMarks(val);
+    // }
     return val;
   }
 
