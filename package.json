@@ -69,7 +69,7 @@
     "@types/react-dom": "~18.2.0",
     "@types/react-test-renderer": "~18.0.0",
     "@types/react-transition-group": "~4.4.4",
-    "compile-less-cli": "~1.8.11",
+    "compile-less-cli": "~1.9.0",
     "husky": "~8.0.0",
     "kkt": "~7.3.0",
     "lerna": "~6.0.0",
