@@ -125,18 +125,6 @@ function SearchTree<V extends SearchTagInputOption>(props: SearchTreeProps<V>) {
     onChange?.(cur, resultValue, isChecked);
   };
 
-  // 防抖
-  const debounce = (fn: Function, ms: number) => {
-    let timeoutId: NodeJS.Timeout;
-    return (searchValue: string) => {
-      onSearch?.(searchValue);
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        fn(searchValue);
-      }, ms);
-    };
-  };
-
   const selectedSearch = (searchValue: string) => {
     const hiddenNodeForSeach = (childrens: TreeData[], parentIsHide: boolean = true) => {
       childrens.forEach((child: TreeData) => {
