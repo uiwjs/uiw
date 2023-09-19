@@ -5,7 +5,7 @@
  * @argument {Object} offsets
  * @returns {Object} ClientRect like output
  */
-export default function getClientRect(offsets: ClientRect): ClientRect {
+export default function getClientRect(offsets: DOMRect): DOMRect {
   return {
     ...offsets,
     right: offsets.left + offsets.width,

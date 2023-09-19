@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import Icon, { IconProps } from '@uiw/react-icon';
+import Icon, { IconProps, IconTagType } from '@uiw/react-icon';
 import { IProps, noop } from '@uiw/utils';
 import { TreeData, TreeProps, getChildKeys } from './';
 
@@ -18,7 +18,8 @@ interface DisabledObj {
   disabledClass?: string;
   disabledStyle?: React.CSSProperties;
 }
-interface TreeNodeProps<T = (data: TreeData, props: TreeNodeIconProps) => IconProps['type']> extends IProps {
+interface TreeNodeProps<T = (data: TreeData, props: TreeNodeIconProps) => IconProps<IconTagType>['type']>
+  extends IProps {
   data: TreeData[];
   level: number;
   parent?: TreeData;

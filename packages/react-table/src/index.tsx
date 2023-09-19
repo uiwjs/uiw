@@ -166,7 +166,7 @@ export default function Table<T extends { [key: string]: V }, V>(props: TablePro
       const arr1: Array<T[keyof T] | number> = [];
       const arr = params.map((it: T, index: number) => {
         if (Array.isArray(it[childKey])) {
-          arr1.push(...deep(it[childKey]));
+          arr1.push(...deep(it[childKey] as TableColumns<T>));
         }
         return rowKey ? it[rowKey] : index;
       });

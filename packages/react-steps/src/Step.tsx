@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import Icon, { IconProps, IconsName } from '@uiw/react-icon';
+import Icon, { IconProps, IconsName, IconTagType } from '@uiw/react-icon';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 import './style/index.less';
 
@@ -11,7 +11,7 @@ export interface StepProps extends IProps, Omit<HTMLDivProps, 'title'> {
   itemWidth?: number;
   stepNumber?: string;
   adjustMarginRight?: number;
-  icon?: IconProps['type'];
+  icon?: IconProps<IconTagType>['type'];
 }
 
 export default function Step(props: StepProps) {

@@ -2,14 +2,14 @@ import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { TransitionStatus } from 'react-transition-group/Transition';
 import { IProps, HTMLDivProps } from '@uiw/utils';
-import Icon, { IconProps } from '@uiw/react-icon';
+import Icon, { IconProps, IconTagType } from '@uiw/react-icon';
 
 export interface CollapsePanelProps extends IProps, HTMLDivProps {
   disabled?: boolean;
   showArrow?: boolean;
   isActive?: boolean;
   header?: React.ReactNode;
-  icon?: IconProps['type'];
+  icon?: IconProps<IconTagType>['type'];
   extra?: React.ReactNode;
   onItemClick?: (evn: React.MouseEvent<HTMLDivElement>) => void;
 }

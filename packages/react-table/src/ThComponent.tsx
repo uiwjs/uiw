@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { TableColumns, TableProps, LocationWidth } from './';
 import { locationFixed } from './util';
 
-interface ThComponentProps<T> {
+interface ThComponentProps<T extends { [key: string]: V } = any, V = any> {
   colNum: number;
   rightNum: number;
   item: TableColumns<T>;
@@ -13,7 +13,7 @@ interface ThComponentProps<T> {
   locationWidth: { [key: string]: LocationWidth };
   updateLocation: (params: LocationWidth, index: string, key: string, colSpan?: number) => void;
 }
-export default class ThComponent<T> extends Component<ThComponentProps<T>> {
+export default class ThComponent<T extends { [key: string]: V } = any, V = any> extends Component<ThComponentProps<T>> {
   wrapper = React.createRef<HTMLTableCellElement>();
   componentDidMount() {
     this.props.updateLocation(

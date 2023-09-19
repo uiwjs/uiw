@@ -20,7 +20,7 @@ function getSize(axis: 'Height' | 'Width', body: BodyElement, html: IHTMLElement
     html[`offset${axis}`],
     html[`scroll${axis}`],
     isIE(10)
-      ? parseInt(html[`offset${axis}`], 10) +
+      ? parseInt(html[`offset${axis}` as keyof IHTMLElement], 10) +
           parseInt(computedStyle[`margin${axis === 'Height' ? 'Top' : 'Left'}`], 10) +
           parseInt(computedStyle[`margin${axis === 'Height' ? 'Bottom' : 'Right'}`], 10)
       : 0,

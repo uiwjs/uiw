@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IconProps } from '@uiw/react-icon';
+import { IconProps, IconTagType } from '@uiw/react-icon';
 import { IProps, HTMLDivProps, noop } from '@uiw/utils';
 import TreeNode from './TreeNode';
 import './style/index.less';
@@ -16,7 +16,7 @@ export type TreeRenderTitleNode = {
 };
 
 export interface TreeProps extends IProps, Omit<HTMLDivProps, 'onChange'> {
-  icon?: IconProps['type'];
+  icon?: IconProps<IconTagType>['type'];
   data?: TreeData[];
   openKeys?: TreeData['key'][];
   selectedKeys?: TreeData['key'][];

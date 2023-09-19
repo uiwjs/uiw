@@ -5,7 +5,7 @@ import getWindowSizes, { WindowSize } from './getWindowSizes';
 import getClientRect from './getClientRect';
 import isIE from './isIE';
 
-export interface IBoundingClientRect {
+export interface IBoundingClientRect extends DOMRect {
   left: number;
   right: number;
   top: number;
