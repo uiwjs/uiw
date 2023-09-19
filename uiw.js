@@ -1708,7 +1708,6 @@ var react_modal_esm_excluded = ["prefixCls", "className", "children", "useButton
 
 
 var Modal = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().forwardRef((props, ref) => {
-  var _handleCancel, _handleConfirm;
   var {
       prefixCls = 'w-modal',
       className,
@@ -1746,24 +1745,32 @@ var Modal = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_
     setIsOpen(false);
   }
   function handleCancel(_x) {
-    return (_handleCancel = _handleCancel || _asyncToGenerator(function* (e) {
+    return _handleCancel.apply(this, arguments);
+  }
+  function _handleCancel() {
+    _handleCancel = _asyncToGenerator(function* (e) {
       setLoading(true);
       try {
         onCancel && (yield onCancel(e));
       } catch (e) {}
       setIsOpen(false);
       setLoading(false);
-    })).apply(this, arguments);
+    });
+    return _handleCancel.apply(this, arguments);
   }
   function handleConfirm(_x2) {
-    return (_handleConfirm = _handleConfirm || _asyncToGenerator(function* (e) {
+    return _handleConfirm.apply(this, arguments);
+  }
+  function _handleConfirm() {
+    _handleConfirm = _asyncToGenerator(function* (e) {
       setLoading(true);
       try {
         onConfirm && (yield onConfirm(e));
       } catch (e) {}
       setIsOpen(false);
       setLoading(false);
-    })).apply(this, arguments);
+    });
+    return _handleConfirm.apply(this, arguments);
   }
   return /*#__PURE__*/(0,jsx_runtime.jsx)(Overlay, _extends({
     usePortal: usePortal,
@@ -5944,7 +5951,6 @@ var isUploadType = type => {
 
 
 var FileList = props => {
-  var _ref;
   var {
     uploadType,
     value = [],
@@ -5963,8 +5969,8 @@ var FileList = props => {
     if (inputRef.current) inputRef.current.value = '';
     handleClickInput();
   }, [handleClickInput]);
-  var onInputChange = function onInputChange(_x) {
-    return (_ref = _ref || _asyncToGenerator(function* (e) {
+  var onInputChange = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator(function* (e) {
       var files = e.target.files;
       if (!files) return;
       var updatedFileList = yield getListFiles(files, 'dataURL');
@@ -5974,8 +5980,11 @@ var FileList = props => {
       }
       setFileList(updatedList);
       onChange == null ? void 0 : onChange(updatedList);
-    })).apply(this, arguments);
-  };
+    });
+    return function onInputChange(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
   var onRemove = index => {
     var updatedList = [...fileList];
     updatedList.splice(index, 1);
