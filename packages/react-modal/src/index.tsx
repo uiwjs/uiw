@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
 import Button, { ButtonType, ButtonProps } from '@uiw/react-button';
-import Icon, { IconProps } from '@uiw/react-icon';
+import Icon, { IconProps, IconTagType } from '@uiw/react-icon';
 import { IProps, noop } from '@uiw/utils';
 import './style/index.less';
 import CallShow from './CallShow';
@@ -14,7 +14,7 @@ export interface ModalProps extends IProps, OverlayProps {
   content?: React.ReactNode;
   confirmText?: string;
   title?: string;
-  icon?: IconProps['type'];
+  icon?: IconProps<IconTagType>['type'];
   useButton?: boolean;
   usePortal?: boolean;
   autoFocus?: boolean;

@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
 import Overlay, { OverlayProps } from '@uiw/react-overlay';
-import Icon, { IconProps } from '@uiw/react-icon';
+import Icon, { IconProps, IconTagType } from '@uiw/react-icon';
 import Button from '@uiw/react-button';
 import { HTMLDivProps } from '@uiw/utils';
 import './style/index.less';
 
 export interface DrawerProps extends OverlayProps {
   footer?: React.ReactNode;
-  icon?: IconProps['type'];
+  icon?: IconProps<IconTagType>['type'];
   title?: React.ReactNode;
   bodyProps?: HTMLDivProps;
   placement?: 'top' | 'right' | 'bottom' | 'left';

@@ -1,13 +1,13 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
-import Icon, { IconProps } from '@uiw/react-icon';
+import Icon, { IconProps, IconTagType } from '@uiw/react-icon';
 import Button from '@uiw/react-button';
 import './style/index.less';
 import { IProps, HTMLDivProps } from '@uiw/utils';
 
 export interface MessageProps extends IProps, Omit<HTMLDivProps, 'title'> {
   title?: React.ReactNode;
-  icon?: IconProps['type'];
+  icon?: IconProps<IconTagType>['type'];
   type?: 'success' | 'warning' | 'info' | 'error';
   description?: React.ReactNode;
   showIcon?: boolean;

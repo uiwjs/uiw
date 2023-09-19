@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import Icon from '@uiw/react-icon';
 import { FileInputListProps } from './';
 import './style/index.less';
@@ -34,7 +34,7 @@ const Picture = (props: FileInputListProps) => {
         React.isValidElement(children) &&
         React.cloneElement(children, {
           onClick: onAdd,
-        })}
+        } as HTMLAttributes<HTMLElement>)}
       <div>
         {dataList.map((item, index) => (
           <div className={`${prefixCls}-${uploadType}`} key={index}>
