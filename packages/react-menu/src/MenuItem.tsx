@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Icon, { IconProps } from '@uiw/react-icon';
+import Icon, { IconProps, IconTagType } from '@uiw/react-icon';
 import { IProps } from '@uiw/utils';
 import './style/item.less';
 
@@ -22,7 +22,7 @@ export interface MenuItemProps<Tag extends TagType> extends IProps, React.HTMLPr
   isSubMenuItem?: boolean;
   disabled?: boolean;
   active?: boolean;
-  icon?: IconProps['type'];
+  icon?: IconProps<IconTagType>['type'];
   children?: React.ReactNode;
 }
 

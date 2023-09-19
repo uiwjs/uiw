@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { IProps } from '@uiw/utils';
 
-export type TagType = React.ComponentType | keyof JSX.IntrinsicElements;
+type TagType = React.ComponentType | keyof JSX.IntrinsicElements;
 
 export interface ListItemProps<Tag extends TagType> extends IProps, React.HTMLProps<Tag> {
   disabled?: boolean;

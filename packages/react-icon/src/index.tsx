@@ -3,8 +3,8 @@ import svgPaths from '@uiw/icons/fonts/w-icon.json';
 import './style/index.less';
 
 export type IconsName = keyof typeof svgPaths;
-export type TagType = React.ElementType | keyof JSX.IntrinsicElements;
-type ElementProps<T extends TagType, E = React.ReactElement> = {
+export type IconTagType = React.ElementType | keyof JSX.IntrinsicElements;
+type ElementProps<T extends IconTagType, E = React.ReactElement> = {
   fill?: string;
   style?: React.CSSProperties;
   className?: string;
@@ -20,9 +20,9 @@ type ElementProps<T extends TagType, E = React.ReactElement> = {
   verticalAlign?: 'middle' | 'baseline';
 };
 
-export type IconProps<T extends TagType> = ElementProps<T> & React.ComponentPropsWithoutRef<T>;
+export type IconProps<T extends IconTagType> = ElementProps<T> & React.ComponentPropsWithoutRef<T>;
 
-const Icon = <T extends TagType = 'span'>(props: IconProps<T>) => {
+const Icon = <T extends IconTagType = 'span'>(props: IconProps<T>) => {
   const {
     className,
     prefixCls = 'w-icon',
