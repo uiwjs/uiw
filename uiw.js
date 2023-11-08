@@ -4961,7 +4961,8 @@ function Panel(props) {
       instance.style.height = '1px';
     }
     if (status === 'entered' || status === 'entering') {
-      instance.style.height = instance.scrollHeight + "px";
+      // instance.style.height = `${instance.scrollHeight}px`;
+      instance.style.height = getElementHeight(instance) + "px";
     }
   }
   return /*#__PURE__*/(0,jsx_runtime.jsxs)("div", _extends({
@@ -4973,8 +4974,8 @@ function Panel(props) {
       children: [showArrow && iconRender, /*#__PURE__*/(0,jsx_runtime.jsx)("span", {
         className: prefixCls + "-title",
         children: header
-      }), extra && /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
-        className: prefixCls + "-extra",
+      }), /*#__PURE__*/(0,jsx_runtime.jsx)(Extra, {
+        prefixCls: prefixCls,
         children: extra
       })]
     }), /*#__PURE__*/(0,jsx_runtime.jsx)(esm_CSSTransition, {
@@ -4982,15 +4983,52 @@ function Panel(props) {
       unmountOnExit: false,
       timeout: 300,
       classNames: prefixCls + "-panel",
-      children: status => /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement( /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
-        children: _children
-      }), {
-        className: prefixCls + "-panel",
-        style: childStyle(_children),
-        ref: e => getInstance(status, e)
-      })
+      children: status => {
+        return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement( /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+          children: _children
+        }), {
+          className: prefixCls + "-panel",
+          style: childStyle(_children),
+          ref: e => getInstance(status, e)
+        });
+      }
     })]
   }));
+}
+function Extra(_ref) {
+  var {
+    children,
+    prefixCls
+  } = _ref;
+  if (!children) return null;
+  return /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
+    className: prefixCls + "-extra",
+    children: children
+  });
+}
+function getElementHeight(elm) {
+  var childNodes = elm.children;
+  var totalHeight = 0;
+  var beforeElmStyle = getComputedStyle(elm, '::before');
+  var afterElmStyle = getComputedStyle(elm, '::after');
+  var beforeHeight = parseInt(beforeElmStyle.height) || 0;
+  var afterHeight = parseInt(afterElmStyle.height) || 0;
+  totalHeight += beforeHeight + afterHeight;
+  if (childNodes.length === 0) {
+    return totalHeight;
+  }
+  for (var i = 0; i < childNodes.length; i++) {
+    var childNode = childNodes[i];
+    var computedStyle = getComputedStyle(childNode);
+    var height = childNode.offsetHeight + parseInt(computedStyle.marginTop) + parseInt(computedStyle.marginBottom) + parseInt(computedStyle.borderTopWidth) + parseInt(computedStyle.borderBottomWidth) + parseInt(computedStyle.paddingTop) + parseInt(computedStyle.paddingBottom);
+    totalHeight += height;
+    var beforeStyle = getComputedStyle(childNode, '::before');
+    var afterStyle = getComputedStyle(childNode, '::after');
+    var _beforeHeight = parseInt(beforeStyle.height) || 0;
+    var _afterHeight = parseInt(afterStyle.height) || 0;
+    totalHeight += _beforeHeight + _afterHeight;
+  }
+  return totalHeight;
 }
 ;// CONCATENATED MODULE: ../react-collapse/esm/style/index.css
 // extracted by mini-css-extract-plugin
