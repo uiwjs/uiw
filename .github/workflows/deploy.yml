@@ -11,6 +11,9 @@ on:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -71,434 +74,434 @@ jobs:
       - name: 📦 @uiw/react-affix publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-affix/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-alert publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-alert/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-auto-link publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-auto-link/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-avatar publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-avatar/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-back-top publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-back-top/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-badge publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-badge/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-breadcrumb publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-breadcrumb/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-button publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-button/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-button-group publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-button-group/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-calendar publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-calendar/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-card publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-card/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-carousel publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-carousel/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-cascader publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-cascader/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-checkbox publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-checkbox/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-collapse publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-collapse/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-copy-to-clipboard publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-copy-to-clipboard/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-date-input publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-date-input/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-date-picker publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-date-picker/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-descriptions publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-descriptions/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-divider publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-divider/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-drawer publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-drawer/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-dropdown publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-dropdown/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-empty publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-empty/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-file-input publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-file-input/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-form publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-form/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-grid publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-grid/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-icon publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-icon/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-input publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-input/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-list publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-list/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-loader publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-loader/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-menu publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-menu/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-message publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-message/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-modal publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-modal/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-month-picker publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-month-picker/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-notify publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-notify/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-overlay publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-overlay/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-overlay-trigger publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-overlay-trigger/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-pagination publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-pagination/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-pin-code publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-pin-code/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-popover publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-popover/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-portal publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-portal/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-progress publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-progress/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-radio publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-radio/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-rate publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-rate/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-search-select publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-search-select/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-search-tree publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-search-tree/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-select publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-select/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-slider publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-slider/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-steps publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-steps/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-switch publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-switch/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-table publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-table/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-tabs publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-tabs/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-tag publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-tag/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-textarea publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-textarea/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-time-picker publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-time-picker/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-tooltip publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-tooltip/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-tree publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-tree/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-tree-checked publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-tree-checked/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/react-transfer publish to NPM
         continue-on-error: true
         working-directory: ./packages/react-transfer/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/utils publish to NPM
         continue-on-error: true
         working-directory: ./packages/utils/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/uiw publish to NPM
         continue-on-error: true
         working-directory: ./packages/uiw/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 📦 @uiw/doc publish to NPM
         continue-on-error: true
         working-directory: ./packages/doc/
-        run: npm publish --access public
+        run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
