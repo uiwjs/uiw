@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { TransitionStatus } from 'react-transition-group/Transition';
 import { IProps, HTMLDivProps } from '@uiw/utils';
@@ -52,7 +52,8 @@ export default function Panel(props: CollapsePanelProps) {
       instance.style.height = '1px';
     }
     if (status === 'entered' || status === 'entering') {
-      instance.style.height = `${instance.scrollHeight}px`;
+      // instance.style.height = `${instance.scrollHeight}px`;
+      instance.style.height = `${getElementHeight(instance)}px`;
     }
   }
   return (
@@ -60,17 +61,55 @@ export default function Panel(props: CollapsePanelProps) {
       <div className={`${prefixCls}-header`} onClick={onItemClick}>
         {showArrow && iconRender}
         <span className={`${prefixCls}-title`}>{header}</span>
-        {extra && <div className={`${prefixCls}-extra`}>{extra}</div>}
+        <Extra prefixCls={prefixCls}>{extra}</Extra>
       </div>
       <CSSTransition in={isActive} unmountOnExit={false} timeout={300} classNames={`${prefixCls}-panel`}>
-        {(status: TransitionStatus) =>
-          React.cloneElement(<div>{children}</div>, {
+        {(status: TransitionStatus) => {
+          return React.cloneElement(<div>{children}</div>, {
             className: `${prefixCls}-panel`,
             style: childStyle(children as React.ReactElement),
             ref: (e: any) => getInstance(status, e),
-          })
-        }
+          });
+        }}
       </CSSTransition>
     </div>
   );
+}
+
+function Extra({ children, prefixCls }: PropsWithChildren<{ prefixCls: string }>) {
+  if (!children) return null;
+  return <div className={`${prefixCls}-extra`}>{children}</div>;
+}
+
+function getElementHeight(elm: HTMLDivElement) {
+  const childNodes = elm.children;
+  let totalHeight = 0;
+  const beforeElmStyle = getComputedStyle(elm, '::before');
+  const afterElmStyle = getComputedStyle(elm, '::after');
+  const beforeHeight = parseInt(beforeElmStyle.height) || 0;
+  const afterHeight = parseInt(afterElmStyle.height) || 0;
+  totalHeight += beforeHeight + afterHeight;
+  if (childNodes.length === 0) {
+    return totalHeight;
+  }
+  for (let i = 0; i < childNodes.length; i++) {
+    const childNode = childNodes[i] as HTMLDivElement;
+    const computedStyle = getComputedStyle(childNode);
+    const height =
+      childNode.offsetHeight +
+      parseInt(computedStyle.marginTop) +
+      parseInt(computedStyle.marginBottom) +
+      parseInt(computedStyle.borderTopWidth) +
+      parseInt(computedStyle.borderBottomWidth) +
+      parseInt(computedStyle.paddingTop) +
+      parseInt(computedStyle.paddingBottom);
+    totalHeight += height;
+
+    const beforeStyle = getComputedStyle(childNode, '::before');
+    const afterStyle = getComputedStyle(childNode, '::after');
+    const beforeHeight = parseInt(beforeStyle.height) || 0;
+    const afterHeight = parseInt(afterStyle.height) || 0;
+    totalHeight += beforeHeight + afterHeight;
+  }
+  return totalHeight;
 }
