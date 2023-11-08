@@ -3912,8 +3912,7 @@ a.w-list-item:hover:not(.w-disabled) {
   z-index: 10;
 }
 .w-split > .w-split-pane {
-  -webkit-transform: none;
-          transform: none;
+  transform: none;
 }
 .w-split:not(.dragging) > .w-split-pane {
   transition: all 0.3s;

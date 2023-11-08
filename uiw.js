@@ -15,7 +15,7 @@ return /******/ (() => { // webpackBootstrap
 /***/ (function(module) {
 
 /**! 
- * @uiw/copy-to-clipboard v1.0.15 
+ * @uiw/copy-to-clipboard v1.0.16 
  * Copy to clipboard. 
  * 
  * Copyright (c) 2023 Kenny Wang 
