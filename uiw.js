@@ -5020,7 +5020,7 @@ function getElementHeight(elm) {
   for (var i = 0; i < childNodes.length; i++) {
     var childNode = childNodes[i];
     var computedStyle = getComputedStyle(childNode);
-    var height = childNode.offsetHeight + parseInt(computedStyle.marginTop) + parseInt(computedStyle.marginBottom) + parseInt(computedStyle.borderTopWidth) + parseInt(computedStyle.borderBottomWidth) + parseInt(computedStyle.paddingTop) + parseInt(computedStyle.paddingBottom);
+    var height = childNode.offsetHeight + +parseInt(computedStyle.marginTop) + parseInt(computedStyle.marginBottom) + parseInt(computedStyle.borderTopWidth) + parseInt(computedStyle.borderBottomWidth);
     totalHeight += height;
     var beforeStyle = getComputedStyle(childNode, '::before');
     var afterStyle = getComputedStyle(childNode, '::after');
