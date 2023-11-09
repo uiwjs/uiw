@@ -13,6 +13,63 @@ import { Collapse } from 'uiw';
 import Collapse from '@uiw/react-collapse';
 ```
 
+```jsx mdx:preview&bg=#fff
+import React, { useState } from 'react';
+import { Collapse } from 'uiw';
+
+const styl = {
+    border: '1px solid #efefef',
+    marginBottom: 10,
+    //height: 32,
+    //lineHeight: 32,
+    padding: 10,
+}
+
+export default function App() {
+  const [recent, setRecent] = useState([]);
+  const [list, setList] = useState(["a", "b", "c", "d", "e"]);
+  const onListClick = (index) => {
+    const newList = [...list];
+    const ls = newList.splice(index, 1);
+    setRecent([...recent, ls]);
+    setList(newList);
+  };
+  const onRecentClick = (index) => {
+    const newRecent = [...recent];
+    const ls = newRecent.splice(index, 1);
+    setList([...list, ls]);
+    setRecent(newRecent);
+  };
+  return (
+    <div className="App">
+      {/* <Scrollbars autoHide> */}
+      <Collapse>
+        <Collapse.Panel header="Test1">
+          {recent.map((item) => {
+            return (
+              <div className="item" style={styl} key={item} onClick={onRecentClick}>
+                {item}
+              </div>
+            );
+          })}
+        </Collapse.Panel>
+        <Collapse.Panel header="Tset2">
+          {list.map((item) => {
+            return (
+              <div className="item" key={item} style={styl} onClick={onListClick}>
+                {item}
+              </div>
+            );
+          })}
+        </Collapse.Panel>
+      </Collapse>
+      {/* </Scrollbars> */}
+    </div>
+  );
+}
+
+
+```
 ## 基本用法
 
 可以同时展开多个面板，这个例子默认展开了第一个。

@@ -97,12 +97,10 @@ function getElementHeight(elm: HTMLDivElement) {
     const computedStyle = getComputedStyle(childNode);
     const height =
       childNode.offsetHeight +
-      parseInt(computedStyle.marginTop) +
+      +parseInt(computedStyle.marginTop) +
       parseInt(computedStyle.marginBottom) +
       parseInt(computedStyle.borderTopWidth) +
-      parseInt(computedStyle.borderBottomWidth) +
-      parseInt(computedStyle.paddingTop) +
-      parseInt(computedStyle.paddingBottom);
+      parseInt(computedStyle.borderBottomWidth);
     totalHeight += height;
 
     const beforeStyle = getComputedStyle(childNode, '::before');
