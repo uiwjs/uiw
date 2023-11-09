@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-transfer",
-  "version": "4.22.1",
+  "version": "4.22.2",
   "description": "TreeChecked component",
   "homepage": "https://uiwjs.github.io/#/components/transfer",
   "repository": {
@@ -42,12 +42,12 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-card": "^4.22.1",
-    "@uiw/react-checkbox": "^4.22.1",
-    "@uiw/react-icon": "^4.22.1",
-    "@uiw/react-input": "^4.22.1",
-    "@uiw/react-tree": "^4.22.1",
-    "@uiw/react-tree-checked": "^4.22.1",
-    "@uiw/utils": "^4.22.1"
+    "@uiw/react-card": "^4.22.2",
+    "@uiw/react-checkbox": "^4.22.2",
+    "@uiw/react-icon": "^4.22.2",
+    "@uiw/react-input": "^4.22.2",
+    "@uiw/react-tree": "^4.22.2",
+    "@uiw/react-tree-checked": "^4.22.2",
+    "@uiw/utils": "^4.22.2"
   }
 }
