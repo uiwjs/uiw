@@ -57,12 +57,16 @@
       { "name": "Transfer 穿梭框", "path": "transfer" },
       { "name": "Textarea 多行文本输入框", "path": "textarea" },
       {
-        "name": "CSVReader 文件 CSV 输入",
-        "path": "https://uiwjs.github.io/react-csv-reader/"
-      },
-      {
         "name": "Color 颜色选择器",
         "path": "https://uiwjs.github.io/react-color/"
+      },
+      {
+        "name": "XML Reader",
+        "path": "https://uiwjs.github.io/react-xml-reader/"
+      },
+      {
+        "name": "CSV Reader 文件 CSV 输入",
+        "path": "https://uiwjs.github.io/react-csv-reader/"
       },
       { "divider": true, "name": "时间日历" },
       { "name": "Calendar 日历", "path": "calendar" },
@@ -87,7 +91,15 @@
       { "name": "Empty 空状态", "path": "empty" },
       {
         "name": "JSONView JSON 预览",
-        "path": "https://uiwjs.github.io/react-heat-map"
+        "path": "https://uiwjs.github.io/react-json-view"
+      },
+      {
+        "name": "IFrame",
+        "path": "https://uiwjs.github.io/react-iframe"
+      },
+      {
+        "name": "Signature 签名",
+        "path": "https://uiwjs.github.io/react-signature"
       },
       {
         "name": "HeatMap 日历热图",
@@ -171,6 +183,15 @@
       {
         "name": "BackToTop 返回顶部",
         "path": "https://uiwjs.github.io/react-back-to-top"
+      },
+      { "divider": true, "name": "Hooks" },
+      {
+        "name": "useColorScheme",
+        "path": "https://uiwjs.github.io/react-use-colorscheme"
+      },
+      {
+        "name": "useOnline",
+        "path": "https://uiwjs.github.io/react-use-online"
       },
       { "divider": true, "name": "其它" },
       { "name": "Portal 入口", "path": "portal" },
