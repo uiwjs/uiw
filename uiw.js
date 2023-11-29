@@ -1467,11 +1467,11 @@ function Overlay(props) {
       setIsOpen(true);
     }
   }, [visible]);
-  var decoratedChild = typeof children === 'object' ? /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.cloneElement)(children, _extends({}, dialogProps, {
+  var decoratedChild = typeof children === 'object' ? ( /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.cloneElement)(children, _extends({}, dialogProps, {
     style: _extends({}, children.props.style, dialogProps.style),
     className: [children.props.className, prefixCls + "-content"].filter(Boolean).join(' ').trim(),
     tabIndex: 0
-  })) : /*#__PURE__*/(0,jsx_runtime.jsx)("span", _extends({}, dialogProps, {
+  }))) : /*#__PURE__*/(0,jsx_runtime.jsx)("span", _extends({}, dialogProps, {
     className: prefixCls + "-content",
     children: children
   }));
@@ -1546,9 +1546,9 @@ function Overlay(props) {
           children: /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.cloneElement)(decoratedChild, {
             'data-status': status
           })
-        }) : /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.cloneElement)(decoratedChild, {
+        }) : ( /*#__PURE__*/(0,external_root_React_commonjs2_react_commonjs_react_amd_react_.cloneElement)(decoratedChild, {
           'data-status': status
-        })]
+        }))]
       });
     }
   }));
