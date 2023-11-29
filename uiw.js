@@ -8154,7 +8154,7 @@ function SearchSelect(props) {
 ;// CONCATENATED MODULE: ../../node_modules/@uiw/react-split/esm/index.js
 
 
-var react_split_esm_excluded = ["prefixCls", "className", "children", "mode", "visiable", "renderBar", "lineBar", "disable", "onDragEnd", "onDragging"];
+var react_split_esm_excluded = ["prefixCls", "className", "children", "mode", "visiable", "visible", "renderBar", "lineBar", "disable", "onDragEnd", "onDragging"];
 
 
 
@@ -8182,21 +8182,17 @@ class Split extends (external_root_React_commonjs2_react_commonjs_react_amd_reac
     this.onDragEnd = this.onDragEnd.bind(this);
     this.onDragging = this.onDragging.bind(this);
   }
-
   componentWillUnmount() {
     this.removeEvent();
   }
-
   removeEvent() {
     window.removeEventListener('mousemove', this.onDragging, false);
     window.removeEventListener('mouseup', this.onDragEnd, false);
   }
-
   onMouseDown(paneNumber, env) {
     if (!env.target || !this.warpper) {
       return;
     }
-
     this.paneNumber = paneNumber;
     this.startX = env.clientX;
     this.startY = env.clientY;
@@ -8206,35 +8202,29 @@ class Split extends (external_root_React_commonjs2_react_commonjs_react_amd_reac
     var nextTarget = this.target.nextElementSibling;
     this.boxWidth = this.warpper.clientWidth;
     this.boxHeight = this.warpper.clientHeight;
-
     if (prevTarget) {
       this.preWidth = prevTarget.clientWidth;
       this.preHeight = prevTarget.clientHeight;
     }
-
     if (nextTarget) {
       this.nextWidth = nextTarget.clientWidth;
       this.nextHeight = nextTarget.clientHeight;
     }
-
     window.addEventListener('mousemove', this.onDragging);
     window.addEventListener('mouseup', this.onDragEnd, false);
     this.setState({
       dragging: true
     });
   }
-
   onDragging(env) {
     if (!this.move) {
       return;
     }
-
     if (!this.state.dragging) {
       this.setState({
         dragging: true
       });
     }
-
     var {
       mode,
       onDragging
@@ -8245,43 +8235,34 @@ class Split extends (external_root_React_commonjs2_react_commonjs_react_amd_reac
     var y = env.clientY - this.startY;
     this.preSize = 0;
     this.nextSize = 0;
-
     if (mode === 'horizontal') {
       this.preSize = this.preWidth + x > -1 ? this.preWidth + x : 0;
       this.nextSize = this.nextWidth - x > -1 ? this.nextWidth - x : 0;
-
       if (this.preSize === 0 || this.nextSize === 0) {
         return;
       }
-
       this.preSize = (this.preSize / this.boxWidth >= 1 ? 1 : this.preSize / this.boxWidth) * 100;
       this.nextSize = (this.nextSize / this.boxWidth >= 1 ? 1 : this.nextSize / this.boxWidth) * 100;
-
       if (prevTarget && nextTarget) {
         prevTarget.style.width = this.preSize + "%";
         nextTarget.style.width = this.nextSize + "%";
       }
     }
-
     if (mode === 'vertical' && this.preHeight + y > -1 && this.nextHeight - y > -1) {
       this.preSize = this.preHeight + y > -1 ? this.preHeight + y : 0;
       this.nextSize = this.nextHeight - y > -1 ? this.nextHeight - y : 0;
       this.preSize = (this.preSize / this.boxHeight >= 1 ? 1 : this.preSize / this.boxHeight) * 100;
       this.nextSize = (this.nextSize / this.boxHeight >= 1 ? 1 : this.nextSize / this.boxHeight) * 100;
-
       if (this.preSize === 0 || this.nextSize === 0) {
         return;
       }
-
       if (prevTarget && nextTarget) {
         prevTarget.style.height = this.preSize + "%";
         nextTarget.style.height = this.nextSize + "%";
       }
     }
-
     onDragging && onDragging(this.preSize, this.nextSize, this.paneNumber);
   }
-
   onDragEnd() {
     var {
       onDragEnd
@@ -8293,21 +8274,20 @@ class Split extends (external_root_React_commonjs2_react_commonjs_react_amd_reac
       dragging: false
     });
   }
-
   render() {
+    var _this$props$visible;
     var _this$props = this.props,
-        {
-      prefixCls,
-      className,
-      children,
-      mode,
-      visiable,
-      renderBar,
-      lineBar,
-      disable
-    } = _this$props,
-        other = _objectWithoutPropertiesLoose(_this$props, react_split_esm_excluded);
-
+      {
+        prefixCls,
+        className,
+        children,
+        mode,
+        visible = (_this$props$visible = this.props.visible) != null ? _this$props$visible : this.props.visiable,
+        renderBar,
+        lineBar,
+        disable
+      } = _this$props,
+      other = _objectWithoutPropertiesLoose(_this$props, react_split_esm_excluded);
     var {
       dragging
     } = this.state;
@@ -8322,41 +8302,35 @@ class Split extends (external_root_React_commonjs2_react_commonjs_react_amd_reac
           className: [prefixCls + "-pane", element.props.className].filter(Boolean).join(' ').trim(),
           style: _extends({}, element.props.style)
         });
-        var visiableBar = visiable === true || visiable && visiable.includes(idx + 1) || false;
+        var visibleBar = visible === true || visible && visible.includes(idx + 1) || false;
         var barProps = {
           className: [prefixCls + "-bar", lineBar ? prefixCls + "-line-bar" : null, !lineBar ? prefixCls + "-large-bar" : null].filter(Boolean).join(' ').trim()
         };
-
         if (disable === true || disable && disable.includes(idx + 1)) {
           barProps.className = [barProps.className, disable ? 'disable' : null].filter(Boolean).join(' ').trim();
         }
-
         var BarCom = null;
-
-        if (idx !== 0 && visiableBar && renderBar) {
+        if (idx !== 0 && visibleBar && renderBar) {
           BarCom = renderBar(_extends({}, barProps, {
             onMouseDown: this.onMouseDown.bind(this, idx + 1)
           }));
-        } else if (idx !== 0 && visiableBar) {
+        } else if (idx !== 0 && visibleBar) {
           BarCom = /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().createElement('div', _extends({}, barProps), /*#__PURE__*/(0,jsx_runtime.jsx)("div", {
             onMouseDown: this.onMouseDown.bind(this, idx + 1)
           }));
         }
-
         return /*#__PURE__*/(0,jsx_runtime.jsxs)((external_root_React_commonjs2_react_commonjs_react_amd_react_default()).Fragment, {
           children: [BarCom, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default().cloneElement(element, _extends({}, props))]
         }, idx);
       })
     }));
   }
-
 }
 Split.defaultProps = {
   prefixCls: 'w-split',
   visiable: true,
   mode: 'horizontal'
 };
-//# sourceMappingURL=index.js.map
 ;// CONCATENATED MODULE: ../react-steps/esm/style/index.css
 // extracted by mini-css-extract-plugin
 /* harmony default export */ const react_steps_esm_style = ({});
