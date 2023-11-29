@@ -1,6 +1,7 @@
 BackTop 返回顶部
 ===
 
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee)](https://jaywcjlove.github.io/#/sponsor)
 [![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-back-top/file/README.md)
 [![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-back-top.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-back-top)
 [![npm version](https://img.shields.io/npm/v/@uiw/react-back-top.svg?label=@uiw/react-back-top)](https://npmjs.com/@uiw/react-back-top)

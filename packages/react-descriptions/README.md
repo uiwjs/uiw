@@ -1,6 +1,7 @@
 Descriptions 描述列表
 ===
 
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee)](https://jaywcjlove.github.io/#/sponsor)
 [![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-descriptions/file/README.md)
 [![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-descriptions.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-descriptions)
 [![npm version](https://img.shields.io/npm/v/@uiw/react-descriptions.svg?label=@uiw/react-descriptions)](https://npmjs.com/@uiw/react-descriptions)

@@ -1,6 +1,7 @@
 OverlayTrigger 基础触发弹出
 ===
 
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee)](https://jaywcjlove.github.io/#/sponsor)
 [![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-overlay-trigger/file/README.md)
 [![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-overlay-trigger.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-overlay-trigger)
 [![npm version](https://img.shields.io/npm/v/@uiw/react-overlay-trigger.svg?label=@uiw/react-overlay-trigger)](https://npmjs.com/@uiw/react-overlay-trigger)

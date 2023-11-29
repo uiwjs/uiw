@@ -2,6 +2,7 @@
   "name": "@uiw/doc",
   "version": "4.22.2",
   "description": "UIW documentation website.",
+  "funding": "https://jaywcjlove.github.io/#/sponsor",
   "homepage": "https://uiwjs.github.io",
   "files": [
     "web"

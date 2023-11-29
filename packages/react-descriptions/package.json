@@ -3,6 +3,7 @@
   "version": "4.22.2",
   "description": "Descriptions component",
   "author": "Kenny Wong <wowohoo@qq.com>",
+  "funding": "https://jaywcjlove.github.io/#/sponsor",
   "homepage": "https://uiwjs.github.io/#/components/descriptions",
   "repository": {
     "type": "git",

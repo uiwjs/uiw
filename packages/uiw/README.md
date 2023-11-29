@@ -4,6 +4,9 @@
   </a>
 </p>
 <p align="center">
+  <a href="https://jaywcjlove.github.io/#/sponsor">
+    <img alt="Buy me a coffee" src="https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee">
+  </a>
   <a href="https://github.com/uiwjs/uiw/actions">
     <img alt="Github Actions" src="https://github.com/uiwjs/uiw/actions/workflows/deploy.yml/badge.svg">
   </a>
@@ -11,7 +14,7 @@
     <img alt="License MIT" src="https://img.shields.io/dub/l/vibe-d.svg">
   </a>
   <a href="https://github.com/facebook/jest">
-    <img alt="jest" src="https://facebook.github.io/jest/img/jest-badge.svg">
+    <img alt="jest" src="https://jestjs.io/img/jest-badge.svg">
   </a>
   <a href="https://gitpod.io/#https://github.com/uiwjs/uiw">
     <img alt="Open in Gitpod" src="https://shields.io/badge/Open%20in-Gitpod-green?logo=Gitpod">

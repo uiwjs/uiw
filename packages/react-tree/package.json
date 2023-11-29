@@ -3,6 +3,7 @@
   "version": "4.22.2",
   "description": "Tree component",
   "author": "Kenny Wong <wowohoo@qq.com>",
+  "funding": "https://jaywcjlove.github.io/#/sponsor",
   "homepage": "https://uiwjs.github.io/#/components/tree",
   "repository": {
     "type": "git",

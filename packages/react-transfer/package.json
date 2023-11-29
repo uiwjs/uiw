@@ -2,6 +2,7 @@
   "name": "@uiw/react-transfer",
   "version": "4.22.2",
   "description": "TreeChecked component",
+  "funding": "https://jaywcjlove.github.io/#/sponsor",
   "homepage": "https://uiwjs.github.io/#/components/transfer",
   "repository": {
     "type": "git",

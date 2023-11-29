@@ -3,6 +3,7 @@
   "version": "4.22.2",
   "description": "utils tools for uiw",
   "author": "Kenny Wong <wowohoo@qq.com>",
+  "funding": "https://jaywcjlove.github.io/#/sponsor",
   "homepage": "https://github.com/uiwjs/uiw/tree/master/packages/utils#readme",
   "repository": {
     "type": "git",

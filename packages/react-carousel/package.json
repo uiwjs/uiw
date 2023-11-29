@@ -2,6 +2,7 @@
   "name": "@uiw/react-carousel",
   "version": "4.22.2",
   "description": "Carousel component",
+  "funding": "https://jaywcjlove.github.io/#/sponsor",
   "homepage": "https://uiwjs.github.io/#/components/carousel",
   "repository": {
     "type": "git",

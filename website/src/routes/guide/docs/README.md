@@ -1,6 +1,7 @@
 文档编辑预览
 ===
 
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee)](https://jaywcjlove.github.io/#/sponsor)
 [![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/doc/file/README.md)
 [![NPM Downloads](https://img.shields.io/npm/dm/@uiw/doc.svg?style=flat)](https://www.npmjs.com/package/@uiw/doc)
 [![jsdelivr cdn](https://data.jsdelivr.com/v1/package/npm/@uiw/doc/badge?style=rounded)](https://www.jsdelivr.com/package/npm/@uiw/doc)
