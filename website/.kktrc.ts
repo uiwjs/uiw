@@ -12,6 +12,8 @@ export default (conf: Configuration, env: 'development' | 'production', options:
   /** https://github.com/uiwjs/react-code-preview/issues/94 */
   conf.module!.exprContextCritical = false;
   conf.module!.exprContextRecursive = false;
+  conf.ignoreWarnings = [{ module: /node_modules[\\/]parse5[\\/]/ }];
+
   if (env === 'production') {
     conf.optimization = {
       ...conf.optimization,

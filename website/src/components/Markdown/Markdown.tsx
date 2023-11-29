@@ -1,10 +1,19 @@
 import { Fragment, useEffect, useRef } from 'react';
 import CodeLayout from 'react-code-preview-layout';
-import { getMetaId, isMeta, getURLParameters, CodeBlockData } from 'markdown-react-code-preview-loader';
+import { getMetaId, getURLParameters, CodeBlockData } from 'markdown-react-code-preview-loader';
 import MarkdownPreview from '@uiw/react-markdown-preview';
-import { CodeProps } from 'react-markdown/lib/ast-to-react';
 import Footer from './Footer';
+import { type Node } from 'unist';
 import styles from './index.module.less';
+
+const Preview = CodeLayout.Preview;
+const Code = CodeLayout.Code;
+const Toolbar = CodeLayout.Toolbar;
+
+interface CodePreviewProps extends CodeBlockData {
+  'data-meta'?: string;
+  node?: Node;
+}
 
 /**
  *
@@ -12,9 +21,9 @@ import styles from './index.module.less';
  *    ```jsx mdx:preview&bg=#fff
  * ```
  */
-const CodePreview = ({ inline, node, components, data, ...props }: CodeProps & CodeBlockData) => {
+const CodePreview = ({ node, components, data, ...props }: CodePreviewProps) => {
   const $dom = useRef<HTMLDivElement>(null);
-  const { 'data-meta': meta, ...rest } = props as any;
+  const { headings, headingsList, ...rest } = props as any;
 
   useEffect(() => {
     if ($dom.current) {
@@ -25,27 +34,22 @@ const CodePreview = ({ inline, node, components, data, ...props }: CodeProps & C
     }
   }, [$dom]);
 
-  if (inline || !isMeta(meta)) {
-    return <code {...props} />;
-  }
-  const line = node.position?.start.line;
+  const line = node?.position?.start.line;
+  const meta = (node?.data as any)?.meta as string;
   const metaId = getMetaId(meta) || String(line);
   const Child = components[`${metaId}`];
   if (metaId && typeof Child === 'function') {
     const code = data[metaId].value || '';
-    const param = getURLParameters(meta);
+    const param = getURLParameters(meta || '');
     return (
-      <CodeLayout
-        ref={$dom}
-        background={param.bg || param.background}
-        disableCode={param.nocode === 'true'}
-        disableToolbar={param.toolbar === 'true'}
-        style={{ marginBottom: 10 }}
-        toolbar={param.title || 'Example'}
-        code={<pre {...rest} />}
-        text={code}
-      >
-        <Child />
+      <CodeLayout ref={$dom}>
+        <Preview style={{ background: param.bg || 'transparent' }}>
+          <Child />
+        </Preview>
+        <Toolbar text={code}>{param.title || 'Example'}</Toolbar>
+        <Code>
+          <pre {...rest} />
+        </Code>
       </CodeLayout>
     );
   }
@@ -63,12 +67,12 @@ export default function Markdown(props: MarkdownProps) {
         className={styles.markdownWrap}
         source={props.source || ''}
         disableCopy
-        warpperElement={{
+        wrapperElement={{
           'data-color-mode': 'light',
         }}
         components={{
           code: (codeProps) => {
-            return <CodePreview {...codeProps} {...props} />;
+            return <CodePreview {...props} {...codeProps} />;
           },
         }}
       />
