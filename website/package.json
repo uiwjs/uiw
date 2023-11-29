@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "version": "4.22.2",
+  "version": "4.22.3",
   "description": "A high quality UI Toolkit, A Component Library for React 16+.",
   "private": true,
   "sideEffects": true,
@@ -42,7 +42,7 @@
     "react-code-preview-layout": "^3.1.4",
     "react-dom": ">=16.9.0",
     "react-router-dom": "^6.16.0",
-    "uiw": "^4.22.2"
+    "uiw": "^4.22.3"
   },
   "devDependencies": {
     "@kkt/less-modules": "^7.5.2",

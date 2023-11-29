@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-copy-to-clipboard",
-  "version": "4.22.2",
+  "version": "4.22.3",
   "description": "CpyToClipboard component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "funding": "https://jaywcjlove.github.io/#/sponsor",
@@ -46,6 +46,6 @@
   },
   "dependencies": {
     "@uiw/copy-to-clipboard": "~1.0.11",
-    "@uiw/utils": "^4.22.2"
+    "@uiw/utils": "^4.22.3"
   }
 }

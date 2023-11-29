@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-overlay-trigger",
-  "version": "4.22.2",
+  "version": "4.22.3",
   "description": "OverlayTrigger component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "funding": "https://jaywcjlove.github.io/#/sponsor",
@@ -45,7 +45,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@uiw/react-overlay": "^4.22.2",
-    "@uiw/utils": "^4.22.2"
+    "@uiw/react-overlay": "^4.22.3",
+    "@uiw/utils": "^4.22.3"
   }
 }
