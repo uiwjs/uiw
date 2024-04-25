@@ -64,8 +64,8 @@
   "devDependencies": {
     "@kkt/less-modules": "^7.5.4",
     "@kkt/ncc": "^1.1.1",
-    "@types/react": "~18.2.0",
-    "@types/react-dom": "~18.2.0",
+    "@types/react": "~18.3.0",
+    "@types/react-dom": "~18.3.0",
     "@types/react-test-renderer": "~18.0.0",
     "@types/react-transition-group": "~4.4.4",
     "compile-less-cli": "^1.9.1",
@@ -74,9 +74,9 @@
     "lerna": "^8.0.0",
     "lint-staged": "^15.1.0",
     "prettier": "^3.0.3",
-    "react": "~18.2.0",
-    "react-dom": "~18.2.0",
-    "react-test-renderer": "~18.2.0",
+    "react": "~18.3.0",
+    "react-dom": "~18.3.0",
+    "react-test-renderer": "~18.3.0",
     "tsbb": "^4.1.14"
   }
 }
