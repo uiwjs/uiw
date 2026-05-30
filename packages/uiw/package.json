@@ -54,8 +54,8 @@
   },
   "dependencies": {
     "@babel/runtime": "~7.23.0",
-    "@types/react": "~18.2.0",
-    "@types/react-dom": "~18.2.0",
+    "@types/react": "~18.3.0",
+    "@types/react-dom": "~18.3.0",
     "@uiw/formatter": "~2.0.0",
     "@uiw/react-affix": "^4.22.3",
     "@uiw/react-alert": "^4.22.3",
