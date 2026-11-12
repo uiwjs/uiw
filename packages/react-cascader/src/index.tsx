@@ -51,6 +51,10 @@ function Cascader(props: CascaderProps) {
   const [searchOption, setSearchOption] = useState<Array<SearchOptionType>>();
 
   useEffect(() => {
+    if (disabled) setInnerIsOpen(false);
+  }, [disabled]);
+
+  useEffect(() => {
     if (onSearch) {
       const tempOptions: Array<SearchOptionType> = [];
       iteratorOption(option, (opt) => {
@@ -104,12 +108,14 @@ function Cascader(props: CascaderProps) {
   }
 
   const searchItemClick = (options: Array<OptionType>) => {
+    if (disabled) return;
     setSearchText('');
     setInnerIsOpen(false);
     handelChange(false, options);
   };
 
   const handleItemClick = (optionsItem: OptionType, level: number) => {
+    if (disabled) return;
     selectedValue.splice(level, selectedValue.length - level, optionsItem);
     if (!optionsItem.children) setInnerIsOpen(false);
 
@@ -206,7 +212,7 @@ function Cascader(props: CascaderProps) {
       disabled={disabled}
       {...others}
       onVisibleChange={onVisibleChange}
-      isOpen={innerIsOpen}
+      isOpen={innerIsOpen && !disabled}
       menu={
         !searchText ? (
           <div style={{ display: 'flex' }}>
