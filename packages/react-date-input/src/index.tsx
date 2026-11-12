@@ -31,6 +31,8 @@ export default function DateInput(props: DateInputProps) {
     ...inputProps
   } = props;
   const [date, setDate] = useState(props.value);
+  const [isOpen, setIsOpen] = useState(false);
+  const disabled = inputProps.disabled;
 
   const value = date || '';
   inputProps.value = typeof value === 'string' ? value : formatter(format, value);
@@ -41,27 +43,31 @@ export default function DateInput(props: DateInputProps) {
     }
   }, [props.value]);
 
+  useEffect(() => {
+    if (disabled) setIsOpen(false);
+  }, [disabled]);
+
   function handleChange(cdate?: Date) {
+    if (disabled) return;
     autoClose && setIsOpen(false);
     setDate(cdate);
     onChange && onChange(cdate);
   }
-  if (allowClear && inputProps.value) {
+  if (allowClear && !disabled && inputProps.value) {
     inputProps.addonAfter = (
       <Icon className={`${prefixCls}-close-btn`} onClick={() => handleChange(undefined)} type="close" />
     );
   }
-
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Popover
       trigger="focus"
       placement="bottomLeft"
       autoAdjustOverflow
-      isOpen={isOpen}
       onVisibleChange={(open) => setIsOpen(open)}
       {...popoverProps}
+      disabled={disabled || popoverProps?.disabled}
+      isOpen={!disabled && (popoverProps?.isOpen ?? isOpen)}
       content={
         <DatePicker
           date={(value && new Date(value)) || undefined}

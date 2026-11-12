@@ -31,6 +31,7 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
     ...inputProps
   } = props;
 
+  const disabled = inputProps.disabled;
   const [dateRange, setDateRange] = useState<Array<Date | undefined>>([]);
   useEffect(() => {
     let valueTemp: Array<Date> = [];
@@ -44,6 +45,7 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
   }, [JSON.stringify(value)]);
 
   function handleChange(cdate: Date | undefined, idx?: number) {
+    if (disabled) return;
     const changeValue = [...dateRange];
     changeValue[idx!] = cdate;
     setDateRange(changeValue);
@@ -51,6 +53,7 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
   }
 
   function clearDateRange() {
+    if (disabled) return;
     setDateRange([]);
     onChange && onChange(undefined, []);
   }
@@ -65,6 +68,8 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
         placement="bottomLeft"
         autoAdjustOverflow
         {...popoverProps}
+        disabled={disabled || popoverProps?.disabled}
+        isOpen={disabled ? false : popoverProps?.isOpen}
         content={
           <DatePicker
             date={dateRange[0]}
@@ -91,6 +96,8 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
         placement="bottomLeft"
         autoAdjustOverflow
         {...popoverProps}
+        disabled={disabled || popoverProps?.disabled}
+        isOpen={disabled ? false : popoverProps?.isOpen}
         content={
           <DatePicker
             date={dateRange[1]}
@@ -109,7 +116,7 @@ export function DateInputRange<V extends string | Date>(props: DateInputRangePro
           className={[prefixCls, className].filter(Boolean).join(' ').trim()}
         />
       </Popover>
-      {allowClear && dateRange.length > 0 && (
+      {allowClear && !disabled && dateRange.length > 0 && (
         <Icon className={`${prefixCls}-close-btn`} color="#a5a5a5" onClick={() => clearDateRange()} type="close" />
       )}
     </div>
