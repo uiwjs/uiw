@@ -88,6 +88,8 @@ export default function TimePicker(props: TimePickerProps) {
           {...timeProps}
           date={datePickerTime}
           onSelected={(type, num, disableds, currentDate) => {
+            if (disabled) return;
+
             setDate(new Date(currentDate!));
             const dataStr = currentDate ? formatter(format, currentDate) : '';
             onChange && onChange(dataStr, currentDate, type, num, disableds);
