@@ -258,6 +258,7 @@ export default function SearchSelect(props: SearchSelectProps) {
               return (
                 <Menu.Item
                   active={index !== -1}
+                  disabled={disabled}
                   key={index}
                   text={item.label}
                   onClick={() => (isMultiple ? handleItemsClick(index, item) : handleItemClick(item))}
