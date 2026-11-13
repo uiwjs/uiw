@@ -261,7 +261,6 @@ function Transfer(props: TransferProps) {
         <div className={`${prefixCls}-cheked-content`}>
           <TreeChecked
             defaultExpandAll={true}
-            placeholder={placeholder || '搜索选项'}
             data={selectedOptions}
             selectedKeys={leftSelectedKeys}
             onSelected={leftTreeOnSelected}
