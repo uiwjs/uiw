@@ -1,6 +1,8 @@
 # 快速上手
 
 [![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee)](https://jaywcjlove.github.io/#/sponsor)
+[![Telegram Channel](https://img.shields.io/badge/%20-Telegram-00618f.svg?logo=Telegram)](https://t.me/s/AwesomeMacApps)
+[![Follow On X](https://img.shields.io/badge/Follow%20on%20X-333333?logo=x&logoColor=white)](https://x.com/jaywcjlove)
 [![CI](https://github.com/uiwjs/uiw/actions/workflows/npm.yml/badge.svg)](https://github.com/uiwjs/uiw/actions/workflows/npm.yml)
 [![](https://img.shields.io/github/issues/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/issues)
 [![](https://img.shields.io/github/forks/uiwjs/uiw.svg)](https://github.com/uiwjs/uiw/network)

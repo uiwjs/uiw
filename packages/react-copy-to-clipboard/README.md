@@ -2,6 +2,8 @@ CopyToClipboard 复制
 ===
 
 [![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee)](https://jaywcjlove.github.io/#/sponsor)
+[![Telegram Channel](https://img.shields.io/badge/%20-Telegram-00618f.svg?logo=Telegram)](https://t.me/s/AwesomeMacApps)
+[![Follow On X](https://img.shields.io/badge/Follow%20on%20X-333333?logo=x&logoColor=white)](https://x.com/jaywcjlove)
 [![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-copy-to-clipboard/file/README.md)
 [![NPM Downloads](https://img.shields.io/npm/dm/@uiw/react-copy-to-clipboard.svg?style=flat)](https://www.npmjs.com/package/@uiw/react-copy-to-clipboard)
 [![npm version](https://img.shields.io/npm/v/@uiw/react-copy-to-clipboard.svg?label=@uiw/react-copy-to-clipboard)](https://npmjs.com/@uiw/react-copy-to-clipboard)

@@ -47,6 +47,9 @@
   <a href="https://jaywcjlove.github.io/#/sponsor">
     <img alt="Buy me a coffee" src="https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee">
   </a>
+  <a href="https://x.com/jaywcjlove">
+    <img alt="Follow On X" src="https://img.shields.io/badge/Follow%20on%20X-333333?logo=x&logoColor=white">
+  </a>
   <a href="https://github.com/uiwjs/uiw/actions">
     <img alt="Github Actions" src="https://github.com/uiwjs/uiw/actions/workflows/deploy.yml/badge.svg">
   </a>
