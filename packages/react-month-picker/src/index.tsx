@@ -46,18 +46,22 @@ export default function MonthPicker(props: MonthPickerProps) {
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
+  const disabled = inputProps.disabled;
   const [panelDate, setPanelDate] = useState(new Date());
   const [type, setType] = useState('month');
   const [date, setDate] = useState(props.value);
 
   useEffect(() => setDate(props.value), [props.value]);
+  useEffect(() => {
+    if (disabled) setIsOpen(false);
+  }, [disabled]);
 
   inputProps.value = useMemo(
     () => (typeof date === 'string' ? date : date ? formatter(format, date) : ''),
     [format, date],
   );
 
-  if (allowClear && inputProps.value) {
+  if (allowClear && !disabled && inputProps.value) {
     inputProps.addonAfter = (
       <Button
         className={`${prefixCls}-close-btn`}
@@ -74,6 +78,7 @@ export default function MonthPicker(props: MonthPickerProps) {
   }
 
   function handleSelectedDate(type: 'setMonth' | 'setFullYear', num: number, paging?: boolean) {
+    if (disabled) return;
     const curPanelDate = new Date(new Date(panelDate)[type](num));
     if (!paging) {
       setType('month');
@@ -92,8 +97,9 @@ export default function MonthPicker(props: MonthPickerProps) {
       trigger="focus"
       placement="bottomLeft"
       autoAdjustOverflow
-      isOpen={isOpen}
       {...popoverProps}
+      disabled={disabled || popoverProps?.disabled}
+      isOpen={!disabled && (popoverProps?.isOpen ?? isOpen)}
       onVisibleChange={(open) => setIsOpen(open)}
       content={
         <div className={`${prefixCls}-popover`}>
