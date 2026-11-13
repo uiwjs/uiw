@@ -50,7 +50,7 @@ jobs:
         id: create_tag
         uses: jaywcjlove/create-tag-action@main
         with:
-          package-path: ./core/package.json
+          package-path: ./packages/uiw/package.json
 
       - name: get tag version
         id: tag_version
@@ -88,16 +88,16 @@ jobs:
       - name: Create Release
         uses: jaywcjlove/create-tag-action@main
         with:
-          package-path: ./core/package.json
+          package-path: ./packages/uiw/package.json
           release: true
           body: |
-            [![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee)](https://jaywcjlove.github.io/#/sponsor) [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@uiw/react-md-editor@${{steps.changelog.outputs.version}}/file/README.md)
+            [![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee)](https://jaywcjlove.github.io/#/sponsor) [![](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/uiw@${{steps.changelog.outputs.version}}/file/README.md)
 
-            Documentation ${{ steps.changelog.outputs.tag }}: https://raw.githack.com/uiwjs/react-md-editor/${{ steps.changelog.outputs.gh-pages-short-hash }}/index.html  
+            Documentation ${{ steps.changelog.outputs.tag }}: https://raw.githack.com/uiwjs/uiw/${{ steps.changelog.outputs.gh-pages-short-hash }}/index.html  
             Comparing Changes: ${{ steps.changelog.outputs.compareurl }} 
 
             ```bash
-            npm i @uiw/react-md-editor@${{steps.changelog.outputs.version}}
+            npm i uiw@${{steps.changelog.outputs.version}}
             ```
             
             ${{ steps.changelog.outputs.changelog }}
