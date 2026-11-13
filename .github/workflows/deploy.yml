@@ -56,27 +56,6 @@ jobs:
         id: tag_version
         uses: jaywcjlove/changelog-generator@main
 
-      - name: Deploy to uiwjs.github.io Repo
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
-          personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
-          publish_dir: ./website/build
-          publish_branch: master
-          external_repository: uiwjs/uiwjs.github.io
-
-      - name: Deploy gh-pages Branch
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./website/build
-          cname: uiw.js.cool
-
       - name: Generate Changelog
         id: changelog
         uses: jaywcjlove/changelog-generator@main
@@ -101,6 +80,27 @@ jobs:
             ```
             
             ${{ steps.changelog.outputs.changelog }}
+
+      - name: Deploy to uiwjs.github.io Repo
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
+          personal_token: ${{ secrets.PERSONAL_TOKEN_UIW }}
+          publish_dir: ./website/build
+          publish_branch: master
+          external_repository: uiwjs/uiwjs.github.io
+
+      - name: Deploy gh-pages Branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: '[${{steps.tag_version.outputs.tag}}] ${{ github.event.head_commit.message }}'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./website/build
+          cname: uiw.js.cool
 
       - name: 📦 @uiw/react-affix publish to NPM
         continue-on-error: true
