@@ -590,8 +590,7 @@
   border: 1.2px solid #fff;
   color: #fff;
   margin: 0 3px 0 0;
-  -webkit-clip-path: polygon(0% 0%, 100% 0, 100% 30%, 0% 30%);
-          clip-path: polygon(0% 0%, 100% 0, 100% 30%, 0% 30%);
+  clip-path: polygon(0% 0%, 100% 0, 100% 30%, 0% 30%);
   animation: rotate 0.5s linear infinite;
 }
 @keyframes rotate {
@@ -1125,8 +1124,8 @@
   font-size: inherit;
   transition: box-shadow 0.3s cubic-bezier(0.4, 1, 0.75, 0.9);
   -webkit-appearance: none;
-          -moz-appearance: none;
-       appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 .w-input-inner:not(:first-child) {
   padding-left: 26px;
@@ -1879,8 +1878,8 @@
   height: 16px;
   background-clip: border-box;
   -webkit-appearance: none;
-          -moz-appearance: none;
-       appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   margin: -0.15px 0.6px 0 0;
   border-radius: 50%;
   background-color: #fff;
@@ -1941,8 +1940,8 @@
   border-radius: 2px;
   background-clip: border-box;
   -webkit-appearance: none;
-          -moz-appearance: none;
-       appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   margin: 0 !important;
   background-color: #d7d7d7;
   transition: background-color 0.3s, box-shadow 0.3s;
@@ -2145,8 +2144,8 @@
   font-size: inherit;
   transition: box-shadow 0.3s cubic-bezier(0.4, 1, 0.75, 0.9);
   -webkit-appearance: none;
-          -moz-appearance: none;
-       appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 .w-dateinputrange-inner:focus {
   box-shadow: 0 0 0 1px #393e48, 0 0 0 3px rgba(57, 62, 72, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
@@ -3366,8 +3365,8 @@ a.w-list-item:hover:not(.w-disabled) {
   display: inline-flex;
   font-size: 14px;
   -webkit-appearance: none;
-          -moz-appearance: none;
-       appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   cursor: pointer;
   color: #182026;
   padding: 6px 25px 6px 10px;
@@ -3818,8 +3817,8 @@ a.w-list-item:hover:not(.w-disabled) {
   font-size: inherit;
   transition: box-shadow 0.3s cubic-bezier(0.4, 1, 0.75, 0.9);
   -webkit-appearance: none;
-          -moz-appearance: none;
-       appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 .w-search-select-inner:focus {
   box-shadow: 0 0 0 1px #393e48, 0 0 0 3px rgba(57, 62, 72, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
@@ -4462,8 +4461,8 @@ a.w-list-item:hover:not(.w-disabled) {
   background-clip: border-box;
   background-color: #dfdfdf;
   -webkit-appearance: none;
-          -moz-appearance: none;
-       appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   outline: 0;
   font-size: 12px;
   border-radius: 16px;
@@ -4804,8 +4803,8 @@ a.w-list-item:hover:not(.w-disabled) {
   width: 100%;
   transition: box-shadow 0.1s cubic-bezier(0.4, 1, 0.75, 0.9);
   -webkit-appearance: none;
-          -moz-appearance: none;
-       appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 .w-textarea:not(:first-child) {
   padding-left: 30px;
@@ -5071,8 +5070,8 @@ a.w-list-item:hover:not(.w-disabled) {
   font-size: inherit;
   transition: box-shadow 0.3s cubic-bezier(0.4, 1, 0.75, 0.9);
   -webkit-appearance: none;
-          -moz-appearance: none;
-       appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 .w-search-tree-inner:focus {
   box-shadow: 0 0 0 1px #393e48, 0 0 0 3px rgba(57, 62, 72, 0.17), inset 0 1px 1px rgba(16, 22, 26, 0.2);
