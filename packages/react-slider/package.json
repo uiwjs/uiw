@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-slider",
-  "version": "4.22.5",
+  "version": "4.22.6",
   "description": "Slider component",
   "author": "Kenny Wong <wowohoo@qq.com>",
   "funding": "https://jaywcjlove.github.io/#/sponsor",
@@ -46,6 +46,6 @@
   },
   "dependencies": {
     "@babel/runtime": "~7.23.0",
-    "@uiw/utils": "^4.22.5"
+    "@uiw/utils": "^4.22.6"
   }
 }

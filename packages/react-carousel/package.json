@@ -1,6 +1,6 @@
 {
   "name": "@uiw/react-carousel",
-  "version": "4.22.5",
+  "version": "4.22.6",
   "description": "Carousel component",
   "funding": "https://jaywcjlove.github.io/#/sponsor",
   "homepage": "https://uiwjs.github.io/#/components/carousel",
@@ -44,6 +44,6 @@
   },
   "dependencies": {
     "@babel/runtime": "~7.23.0",
-    "@uiw/utils": "^4.22.5"
+    "@uiw/utils": "^4.22.6"
   }
 }
